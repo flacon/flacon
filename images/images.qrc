@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="trackBtn">trackBtn.png</file>
+        <file alias="noCover">nocover.png</file>
+        <file alias="audioBtn">audioBtn.png</file>
+        <file alias="wait">wait.mng</file>
+        <file alias="logo">../misc/flacon-48x48.png</file>
+    </qresource>
+</RCC>

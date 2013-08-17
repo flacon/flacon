@@ -1,0 +1,21 @@
+[main]
+host = https://www.transifex.com
+
+[flaconng.flacon]
+file_filter = translations/flacon_<lang>.ts
+source_file = translations/src.flacon.ts
+source_lang = en
+type = QT
+
+[flaconng.flacon_desktop]
+source_file = misc/flacon.desktop
+source_lang = en
+file_filter = translations/flacon_<lang>.desktop
+type = DESKTOP
+
+[flaconng.About_Translators]
+source_file = translations/src.translators.info
+source_lang = en
+file_filter = translations/translators_<lang>.info
+type = MOZILLAPROPERTIES
+

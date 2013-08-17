@@ -1,0 +1,17 @@
+moc_*.cxx
+qrc_*.cxx
+cmake_install.cmake
+cmake_uninstall.cmake
+Makefile
+CMakeFiles
+CMakeCache.txt
+CPackConfig.cmake
+CPackSourceConfig.cmake
+lib*.so
+lib*.so.*
+ui_*.h
+*.qm
+*~
+*.autosave
+CMakeLists.txt.user*
+/build
