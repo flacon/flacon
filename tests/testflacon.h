@@ -84,7 +84,8 @@ private slots:
 
 
 private:
-    void createAudioFile(const QString &fileName, int duration, bool cdQuality = true);
+    bool createAudioFile(const QString &fileName, int duration, bool cdQuality = true);
+    bool doCreateAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality);
     void writeTextFile( const QString &fileName, const QString &content);
     void writeTextFile( const QString &fileName, const QStringList &content);
 

@@ -87,15 +87,31 @@ void TestFlacon::initTestCase()
 /************************************************
 
  ************************************************/
-void TestFlacon::createAudioFile(const QString &fileName, int duration, bool cdQuality)
+bool TestFlacon::createAudioFile(const QString &fileName, int duration, bool cdQuality)
+{
+    if (doCreateAudioFile("avconv", fileName, duration, cdQuality))
+        return true;
+
+    if (doCreateAudioFile("ffmpeg", fileName, duration, cdQuality))
+        return true;
+
+    QTest::qFail(QString("Can't create audio file:\n\t%1").arg(fileName).toLocal8Bit(), __FILE__, __LINE__);
+
+    return false;
+}
+
+
+/************************************************
+
+ ************************************************/
+bool TestFlacon::doCreateAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality)
 {
     if (QFileInfo(fileName).exists())
-        return;
+        return true;
 
     QStringList args;
     args << "-y"; //  Overwrite output files."
-    args << "-ar" << "48000"; //44100
-    //args << "-ar" << "44100";
+    args << "-ar" << (cdQuality ? "44100" : " 48000");
     args << "-f" << "s16le";
     args << "-acodec" << "pcm_s16le";
     args << "-ac" << "2";
@@ -106,16 +122,16 @@ void TestFlacon::createAudioFile(const QString &fileName, int duration, bool cdQ
     QProcess proc;
     //proc.setProcessChannelMode(QProcess::ForwardedChannels);
 
-    proc.start("avconv", args);
+    proc.start(program, args);
     proc.waitForStarted();
 
     if (proc.state() == QProcess::NotRunning)
     {
-        proc.start("ffmpeg", args);
-        proc.waitForStarted();
+        return false;
     }
 
     proc.waitForFinished(-1);
+    return proc.exitCode() == 0;
 }
 
 
@@ -444,7 +460,6 @@ void TestFlacon::testTrackResultFilePath_data()
             << TEST_OUT_DIR "/Artist/2013 - Album/01 - Song01.wav"
             << mCdAudioFile;
 
-
     QTest::newRow("6")
             << ""
             << "%a/%y - %A/%n - %t"
@@ -477,9 +492,10 @@ void TestFlacon::testTrackResultFilePath()
     QString result = disk.track(0)->resultFilePath();
     if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath())
     {
-        QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3").arg(
+        QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   AudioFile: %4").arg(
                     QFileInfo(result).absoluteFilePath(), result,
-                    expected);
+                    expected,
+                    audioFile);
         QFAIL(msg.toLocal8Bit());
     }
     //QCOMPARE(result, expected);
