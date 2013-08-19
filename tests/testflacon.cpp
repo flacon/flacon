@@ -57,8 +57,6 @@ TestFlacon::TestFlacon(QObject *parent) :
     mTmpDir(TEST_OUT_DIR),
     mDataDir(TEST_DATA_DIR)
 {
-    // ffmpeg -ar 48000 -f s16le -acodec pcm_s16le -ac 2 -i /dev/urandom  -t 600 frnd.wav
-    // avconv -ar 48000 -f s16le -acodec pcm_s16le -ac 2 -i /dev/urandom  -t 600 arnd.wav
 }
 
 
@@ -67,44 +65,35 @@ TestFlacon::TestFlacon(QObject *parent) :
  ************************************************/
 void TestFlacon::initTestCase()
 {
-
     QSettings::setPath(QSettings::IniFormat,    QSettings::UserScope, QString::fromLocal8Bit(TEST_OUT_DIR));
     QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QString::fromLocal8Bit(TEST_OUT_DIR));
 
-    settings->setValue(Settings::Prog_Shntool, "/usr/bin/shntool");
+    QString shntool = settings->findProgram("shntool");
+    if (shntool.isEmpty())
+        FAIL(QString("Program \"%1\" not found.").arg("shntool").toLocal8Bit());
 
-
+    settings->setValue(Settings::Prog_Shntool, shntool);
     settings->sync();
 
+    QString ffmpeg = settings->findProgram("avconv");
+    if (ffmpeg.isEmpty())
+        ffmpeg = settings->findProgram("ffmpeg");
+
+    if (ffmpeg.isEmpty())
+        FAIL(QString("Program \"%1\" not found.").arg("avconv/ffmpeg").toLocal8Bit());
+
     mCdAudioFile = mTmpDir + "CD_10Min.wav";
-    createAudioFile(mCdAudioFile, 600, true);
+    createAudioFile(ffmpeg, mCdAudioFile, 600, true);
 
     mHdAudioFile = mTmpDir + "HD_10Min.wav";
-    createAudioFile(mHdAudioFile, 600, true);
+    createAudioFile(ffmpeg, mHdAudioFile, 600, false);
 }
 
 
 /************************************************
 
  ************************************************/
-bool TestFlacon::createAudioFile(const QString &fileName, int duration, bool cdQuality)
-{
-    if (doCreateAudioFile("avconv", fileName, duration, cdQuality))
-        return true;
-
-    if (doCreateAudioFile("ffmpeg", fileName, duration, cdQuality))
-        return true;
-
-    QTest::qFail(QString("Can't create audio file:\n\t%1").arg(fileName).toLocal8Bit(), __FILE__, __LINE__);
-
-    return false;
-}
-
-
-/************************************************
-
- ************************************************/
-bool TestFlacon::doCreateAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality)
+bool TestFlacon::createAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality)
 {
     if (QFileInfo(fileName).exists())
         return true;
@@ -124,7 +113,6 @@ bool TestFlacon::doCreateAudioFile(const QString &program, const QString &fileNa
 
     proc.start(program, args);
     proc.waitForStarted();
-
     if (proc.state() == QProcess::NotRunning)
     {
         return false;
