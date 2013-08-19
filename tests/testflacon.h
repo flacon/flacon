@@ -77,6 +77,12 @@ private slots:
     void testTrackResultFilePath_data();
     void testTrackResultFilePath();
 
+    void testOutFormatEncoderArgs_data();
+    void testOutFormatEncoderArgs();
+
+    void testOutFormatGainArgs_data();
+    void testOutFormatGainArgs();
+
     void testTrackSetCodepages_data();
     void testTrackSetCodepages();
 
@@ -93,11 +99,16 @@ private:
     void checkFileExists(const QString &fileName);
     void checkFileNotExists(const QString &fileName);
 
+    void applySettings(const QStringList &settings);
+
+
+    Disk *standardDisk();
 
     QString mCdAudioFile;
     QString mHdAudioFile;
     const QString mTmpDir;
     const QString mDataDir;
+    Disk *mStandardDisk;
 };
 
 QStringList &operator<<(QStringList &list, int value);

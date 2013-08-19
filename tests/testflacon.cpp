@@ -41,7 +41,6 @@
 #include <QDir>
 #include <QProcess>
 
-
 #define protected public;
 
 #define FAIL(message) \
@@ -49,13 +48,15 @@ do {\
     QTest::qFail(message, __FILE__, __LINE__);\
 } while (0)
 
+
 /************************************************
 
  ************************************************/
 TestFlacon::TestFlacon(QObject *parent) :
     QObject(parent),
     mTmpDir(TEST_OUT_DIR),
-    mDataDir(TEST_DATA_DIR)
+    mDataDir(TEST_DATA_DIR),
+    mStandardDisk(0)
 {
 }
 
@@ -226,6 +227,59 @@ void TestFlacon::checkFileNotExists(const QString &fileName)
 /************************************************
 
  ************************************************/
+void TestFlacon::applySettings(const QStringList &set)
+{
+    for (int i=0; i<set.count(); i+=2)
+    {
+        settings->setValue(set.at(i), set.at(i+1));
+    }
+    settings->sync();
+}
+
+
+/************************************************
+
+ ************************************************/
+Disk *TestFlacon::standardDisk()
+{
+    if (mStandardDisk == 0)
+    {
+        QString cueFile = mTmpDir + "testTrackResultFileName.cue";
+
+        QStringList cue;
+        cue << "REM GENRE \"Genre\"";
+        cue << "REM DATE 2013";
+        cue << "REM DISCID 123456789";
+        cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
+        cue << "PERFORMER \"Artist\"";
+        cue << "TITLE \"Album\"";
+        cue << "FILE \"en.wav\" WAVE";
+        cue << "  TRACK 01 AUDIO";
+        cue << "    TITLE \"Song01\"";
+        cue << "    INDEX 01 00:00:00";
+        cue << "  TRACK 02 AUDIO";
+        cue << "    TITLE \"Song02\"";
+        cue << "    INDEX 01 03:39:10";
+        cue << "  TRACK 03 AUDIO";
+        cue << "    TITLE \"Song03\"";
+        cue << "    INDEX 01 07:25:42";
+        cue << "  TRACK 04 AUDIO";
+        cue << "    TITLE \"Song04\"";
+        cue << "    INDEX 01 12:04:72";
+
+        writeTextFile(cueFile, cue);
+
+        mStandardDisk = new Disk(this);
+        mStandardDisk->loadFromCue(cueFile);
+    }
+
+    return mStandardDisk;
+}
+
+
+/************************************************
+
+ ************************************************/
 bool TestFlacon::compareCue(const QString &result, const QString &expected, QString *error)
 {
     QFile resFile(result);
@@ -259,338 +313,141 @@ void TestFlacon::testSafeString()
 }
 
 
+
+
 /************************************************
 
  ************************************************/
-void TestFlacon::testTrackResultFileName_data()
+QStringList TestFlacon::readFile(const QString &fileName)
 {
-    QTest::addColumn<QString>("cueFile");
-    QTest::addColumn<QString>("pattern");
-    QTest::addColumn<QString>("expected");
+    QStringList res;
+    QFile file(fileName);
+    file.open(QIODevice::ReadOnly);
 
-    QString cueFile = TEST_OUT_DIR "testTrackResultFileName.cue";
-
+    if (!file.isOpen())
     {
-        QStringList cue;
-        cue << "REM GENRE \"Genre\"";
-        cue << "REM DATE 2013";
-        cue << "REM DISCID 123456789";
-        cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
-        cue << "PERFORMER \"Artist\"";
-        cue << "TITLE \"Album\"";
-        cue << "FILE \"en.wav\" WAVE";
-        cue << "  TRACK 01 AUDIO";
-        cue << "    TITLE \"Song01\"";
-        cue << "    INDEX 01 00:00:00";
-        cue << "  TRACK 02 AUDIO";
-        cue << "    TITLE \"Song02\"";
-        cue << "    INDEX 01 03:39:10";
-        cue << "  TRACK 03 AUDIO";
-        cue << "    TITLE \"Song03\"";
-        cue << "    INDEX 01 07:25:42";
-        cue << "  TRACK 04 AUDIO";
-        cue << "    TITLE \"Song04\"";
-        cue << "    INDEX 01 12:04:72";
-
-        writeTextFile(cueFile, cue);
+        FAIL(QString("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
+        return res;
     }
 
-
-    QTest::newRow("1")
-            << cueFile
-            << "%a/%y - %A/%n - %t"
-            << "Artist/2013 - Album/01 - Song01.wav";
-
-    QTest::newRow("2")
-            << cueFile
-            << "N/n/A/a/t/y/g"
-            << "N/n/A/a/t/y/g.wav";
-
-    QTest::newRow("3")
-            << cueFile
-            << "N/n/A/a/t/y/g"
-            << "N/n/A/a/t/y/g.wav";
-
-    QTest::newRow("4")
-            << cueFile
-            << "/%%/%Q/%N/%n/%A/%a/%t/%y/%g/%%"
-            << "/%/%Q/04/01/Album/Artist/Song01/2013/Genre/%.wav";
-
-
-    QTest::newRow("5")
-            << cueFile
-            << "%%Q/%%N/%%n/%%A/%%a/%%t/%%y/%%g"
-            << "%Q/%N/%n/%A/%a/%t/%y/%g.wav";
-
-    QTest::newRow("6")
-            << cueFile
-            << "%%%Q/%%%N/%%%n/%%%A/%%%a/%%%t/%%%y/%%%g/%%%"
-            << "%%Q/%04/%01/%Album/%Artist/%Song01/%2013/%Genre/%%.wav";
-
-    cueFile = TEST_OUT_DIR "testTrackResultFileName2.cue";
+    QTextStream stream(&file);
+    while(!stream.atEnd())
     {
-        QStringList cue;
-        cue << "REM DATE 2013";
-        cue << "REM DISCID 123456789";
-        cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
-        cue << "PERFORMER \"Artist\"";
-        cue << "FILE \"en.wav\" WAVE";
-        cue << "  TRACK 01 AUDIO";
-        cue << "    TITLE \"Song01\"";
-        cue << "    INDEX 01 00:00:00";
-        cue << "  TRACK 02 AUDIO";
-        cue << "    TITLE \"Song02\"";
-        cue << "    INDEX 01 03:39:10";
-        cue << "  TRACK 03 AUDIO";
-        cue << "    TITLE \"Song03\"";
-        cue << "    INDEX 01 07:25:42";
-        cue << "  TRACK 04 AUDIO";
-        cue << "    TITLE \"Song04\"";
-        cue << "    INDEX 01 12:04:72";
-
-        writeTextFile(cueFile, cue);
+        QString str = stream.readLine();
+        res << str << "\n";
     }
 
-
-    QTest::newRow("1")
-            << cueFile
-            << "{}/{Text}/{%n}/{%n Text}/{%A}/{%A Text}"
-            << "{}/{Text}/01/01 Text//.wav";
-
-
-    QTest::newRow("2")
-            << cueFile
-            << "Test{Text/{%n}/{%n Text}/{%A}/{%A Text}"
-            << "Test{Text/01/01 Text//.wav";
-
-
-    QTest::newRow("3")
-            << cueFile
-            << "Text}/{%n}/{%n Text}/{%A}/{%A Text}"
-            << "Text}/01/01 Text//.wav";
-
+    file.close();
+    return res;
 }
 
 
 /************************************************
 
  ************************************************/
-void TestFlacon::testTrackResultFileName()
+void TestFlacon::writeFile(const QStringList &strings, const QString &fileName)
 {
-    QFETCH(QString, cueFile);
-    QFETCH(QString, pattern);
-    QFETCH(QString, expected);
+    QFile file(fileName);
+    file.open(QIODevice::WriteOnly);
 
-    settings->setValue(Settings::OutFiles_Pattern, pattern);
-    settings->setValue(Settings::OutFiles_Format, "WAV");
+    if (!file.isOpen())
+        QFAIL(QString("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
 
-    Disk disk;
-    disk.loadFromCue(cueFile);
-
-    QString result = disk.track(0)->resultFileName();
-    //QCOMPARE(result, expected);
-
-    if (result != expected)
+    foreach(const QString &string, strings)
     {
-        QString msg = QString("Compared values are not the same\n   Pattern   %1\n   Actual:   %2\n   Expected: %3").arg(
-                    pattern,
-                    result,
-                    expected);
+        file.write(string.toLocal8Bit());
+    }
+}
+
+
+/************************************************
+
+ ************************************************/
+QString TestFlacon::stigListToString(const QStringList &strings, const QString divider)
+{
+    return  "\n--------------------------\n" +
+            strings.join(divider) +
+            "\n--------------------------\n";
+}
+
+
+
+/************************************************
+
+ ************************************************/
+QStringList &operator<<(QStringList &list, int value)
+{
+    return list << QString("%1").arg(value);
+}
+
+
+/************************************************
+
+ ************************************************/
+ConverterTester::ConverterTester(const QString &cueFile, const QString &audioFile, const QString &expectedCue, const QString &resultFiles)
+{
+    mResultFiles = resultFiles.split(';', QString::SkipEmptyParts);
+    mExpectedCue = expectedCue;
+    project->clear();
+    mDisk = new Disk();
+    project->addDisk(mDisk);
+
+    mDisk->loadFromCue(cueFile);
+    mDisk->setAudioFile(audioFile);
+
+}
+
+/************************************************
+
+ ************************************************/
+void ConverterTester::run()
+{
+    Converter conv;
+    QEventLoop loop;
+    loop.connect(&conv, SIGNAL(finished()), &loop, SLOT(quit()));
+    conv.start();
+    loop.exec();
+
+    QDir outDir = QFileInfo(mDisk->track(0)->resultFilePath()).dir();
+    QStringList files = outDir.entryList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::Files);
+    project->clear();
+
+    QStringList missing;
+    foreach(QString f, mResultFiles)
+    {
+        if (files.removeAll(f) == 0)
+            missing << f;
+    }
+
+
+    QString msg = "";
+    if (!missing.isEmpty())
+        msg += QString("\nFiles not exists:\n  *%1").arg(missing.join("\n  *"));
+
+    if (!files.isEmpty())
+        msg += QString("\nFiles exists:\n  *%1").arg(files.join("\n  *"));
+
+
+    if (!mExpectedCue.isEmpty())
+    {
+        QString resCueFile;
+        files = outDir.entryList(QStringList() << "*.cue", QDir::Files);
+        if (files.isEmpty())
+        {
+            msg += "\nResult CUE file not found.";
+        }
+        else
+        {
+            QString err;
+            if (!TestFlacon::compareCue(outDir.absoluteFilePath(files.first()), mExpectedCue, &err))
+                msg += "\n" + err;
+        }
+    }
+
+    if (!msg.isEmpty())
         QFAIL(msg.toLocal8Bit());
-    }
 
 }
-
-
-/************************************************
-
- ************************************************/
-void TestFlacon::testTrackResultFilePath_data()
-{
-    //QTest::addColumn<QString>("cueFile");
-    QTest::addColumn<QString>("outDir");
-    QTest::addColumn<QString>("pattern");
-    QTest::addColumn<QString>("expected");
-    QTest::addColumn<QString>("audioFile");
-
-
-    QTest::newRow("1")
-            << "/home/user/music"
-            << "%a/%y - %A/%n - %t"
-            << "/home/user/music/Artist/2013 - Album/01 - Song01.wav"
-            << "";
-
-
-    QTest::newRow("2")
-            << "~/music"
-            << "%a/%y - %A/%n - %t"
-            << QDir::homePath() + "/music/Artist/2013 - Album/01 - Song01.wav"
-            << "";
-
-
-    QTest::newRow("3")
-            << "/music"
-            << "%a/%y - %A/%n - %t"
-            << "/music/Artist/2013 - Album/01 - Song01.wav"
-            << "";
-
-
-    QTest::newRow("4")
-            << ""
-            << "%a/%y - %A/%n - %t"
-            << QDir::homePath() + "/Artist/2013 - Album/01 - Song01.wav"
-            << "";
-
-
-    QTest::newRow("5")
-            << "."
-            << "%a/%y - %A/%n - %t"
-            << TEST_OUT_DIR "/Artist/2013 - Album/01 - Song01.wav"
-            << mCdAudioFile;
-
-    QTest::newRow("6")
-            << ""
-            << "%a/%y - %A/%n - %t"
-            << TEST_OUT_DIR "/Artist/2013 - Album/01 - Song01.wav"
-            << mCdAudioFile;
-}
-
-
-/************************************************
-
- ************************************************/
-void TestFlacon::testTrackResultFilePath()
-{
-    //QFETCH(QString, cueFile);
-    QFETCH(QString, outDir);
-    QFETCH(QString, pattern);
-    QFETCH(QString, expected);
-    QFETCH(QString, audioFile);
-
-    settings->setValue(Settings::OutFiles_Directory, outDir);
-    settings->setValue(Settings::OutFiles_Pattern, pattern);
-    settings->setValue(Settings::OutFiles_Format, "WAV");
-
-    Disk disk;
-    disk.loadFromCue(TEST_DATA_DIR "simple.cue");
-
-    if (!audioFile.isEmpty())
-        disk.setAudioFile(audioFile);
-
-    QString result = disk.track(0)->resultFilePath();
-    if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath())
-    {
-        QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   AudioFile: %4").arg(
-                    QFileInfo(result).absoluteFilePath(), result,
-                    expected,
-                    audioFile);
-        QFAIL(msg.toLocal8Bit());
-    }
-    //QCOMPARE(result, expected);
-}
-
-
-/************************************************
-
- ************************************************/
-void TestFlacon::testTrackSetCodepages_data()
-{
-    QTest::addColumn<QString>("cueFile");
-    QTest::addColumn<QString>("sampleFile");
-    QTest::addColumn<QString>("codepageBefore");
-    QTest::addColumn<QString>("codepageAfter");
-
-
-    QTest::newRow("TrackSet_UTF-8")
-            << "ru_utf8.cue"    << "ru.result"  << "Big5"   << "UTF-8";
-
-    QTest::newRow("TrackSet_UTF-8_BOM")
-            << "ru_utf8_BOM.cue"<< "ru.result"  << "Big5"   << "";
-
-    QTest::newRow("TrackSet_CP1251")
-            << "ru_cp1251.cue"  << "ru.result"  << "UTF-8"  << "Windows-1251";
-}
-
-
-/************************************************
-
- ************************************************/
-void TestFlacon::testTrackSetCodepages()
-{
-    static int count = 0;
-    count++;
-
-    QFETCH(QString, cueFile);
-    QFETCH(QString, sampleFile);
-    QFETCH(QString, codepageBefore);
-    QFETCH(QString, codepageAfter);
-
-    QString outFilePattern = QString("%1%2.%3.%4")
-            .arg(TEST_OUT_DIR)
-            .arg(count, 2, 10, QChar('0'))
-            .arg(QTest::currentDataTag());
-
-    QString testDataDir = TEST_DATA_DIR;
-
-    QString testCueFile = outFilePattern.arg("cue");
-    QString expectedFile = outFilePattern.arg("expected");
-    QString resultFile = outFilePattern.arg("result");
-
-    if (QFileInfo(testCueFile).exists())
-        QFile(testCueFile).remove();
-
-    if (!QFile::copy(testDataDir + cueFile, testCueFile))
-        QFAIL(QString("Can't copy file %1 to %2").arg(testDataDir + cueFile, testCueFile).toLocal8Bit().data());
-
-    Disk disk;
-
-    if (!codepageBefore.isEmpty())
-        settings->setValue(Settings::Tags_DefaultCodepage, codepageBefore);
-    else
-        settings->setValue(Settings::Tags_DefaultCodepage, "UTF-8");
-
-    disk.loadFromCue(testCueFile);
-
-    if (!codepageAfter.isEmpty())
-        disk.setTextCodecName(codepageAfter);
-
-    QStringList expected = this->readFile(TEST_DATA_DIR + sampleFile);
-
-    QStringList result;
-    // Result *************************
-    //result << "GENRE:" << tracks.genre() << "\n";
-    //resultSl << "ALBUM:" << tracks.album() << "\n";
-    result << "DISCID:" << disk.discId() << "\n";
-
-    for(int i=0; i<disk.count(); ++i)
-    {
-        Track *track = disk.track(i);
-        result << "Track " << (i + 1) << "\n";
-        result << "  " << "INDEX:"    << track->index()       << "\n";
-        result << "  " << "TRACKNUM:" << track->trackNum()    << "\n";
-        result << "  " << "ALBUM:"    << track->album()       << "\n";
-        result << "  " << "TITLE:"    << track->title()       << "\n";
-        result << "  " << "ARTIST:"   << track->artist()      << "\n";
-        result << "  " << "GENRE:"    << track->genre()       << "\n";
-        result << "  " << "YEAR:"     << track->date()        << "\n";
-    }
-
-    // Result *************************
-
-
-
-
-    writeFile(result, resultFile);
-    writeFile(expected, expectedFile);
-
-    if (result.join("") != expected.join(""))
-    {
-        QString msg = "The result is different from the expected. Use the following command for details:";
-        QString cmd = QString("diff %1 %2").arg(expectedFile, resultFile);
-        QFAIL((msg + "\n    " + cmd).toLocal8Bit());
-    }
-}
-
 
 /************************************************
 
@@ -785,141 +642,580 @@ void TestFlacon::testConvert()
 /************************************************
 
  ************************************************/
-QStringList TestFlacon::readFile(const QString &fileName)
+void TestFlacon::testTrackResultFileName()
 {
-    QStringList res;
-    QFile file(fileName);
-    file.open(QIODevice::ReadOnly);
+    QFETCH(QString, cueFile);
+    QFETCH(QString, pattern);
+    QFETCH(QString, expected);
 
-    if (!file.isOpen())
+    settings->setValue(Settings::OutFiles_Pattern, pattern);
+    settings->setValue(Settings::OutFiles_Format, "WAV");
+
+    Disk disk;
+    disk.loadFromCue(cueFile);
+
+    QString result = disk.track(0)->resultFileName();
+    //QCOMPARE(result, expected);
+
+    if (result != expected)
     {
-        FAIL(QString("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
-        return res;
-    }
-
-    QTextStream stream(&file);
-    while(!stream.atEnd())
-    {
-        QString str = stream.readLine();
-        res << str << "\n";
-    }
-
-    file.close();
-    return res;
-}
-
-
-/************************************************
-
- ************************************************/
-void TestFlacon::writeFile(const QStringList &strings, const QString &fileName)
-{
-    QFile file(fileName);
-    file.open(QIODevice::WriteOnly);
-
-    if (!file.isOpen())
-        QFAIL(QString("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
-
-    foreach(const QString &string, strings)
-    {
-        file.write(string.toLocal8Bit());
-    }
-}
-
-
-/************************************************
-
- ************************************************/
-QString TestFlacon::stigListToString(const QStringList &strings, const QString divider)
-{
-    return  "\n--------------------------\n" +
-            strings.join(divider) +
-            "\n--------------------------\n";
-}
-
-
-
-/************************************************
-
- ************************************************/
-QStringList &operator<<(QStringList &list, int value)
-{
-    return list << QString("%1").arg(value);
-}
-
-
-
-/************************************************
-
- ************************************************/
-ConverterTester::ConverterTester(const QString &cueFile, const QString &audioFile, const QString &expectedCue, const QString &resultFiles)
-{
-    mResultFiles = resultFiles.split(';', QString::SkipEmptyParts);
-    mExpectedCue = expectedCue;
-    project->clear();
-    mDisk = new Disk();
-    project->addDisk(mDisk);
-
-    mDisk->loadFromCue(cueFile);
-    mDisk->setAudioFile(audioFile);
-
-}
-
-
-/************************************************
-
- ************************************************/
-void ConverterTester::run()
-{
-    Converter conv;
-    QEventLoop loop;
-    loop.connect(&conv, SIGNAL(finished()), &loop, SLOT(quit()));
-    conv.start();
-    loop.exec();
-
-    QDir outDir = QFileInfo(mDisk->track(0)->resultFilePath()).dir();
-    QStringList files = outDir.entryList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::Files);
-    project->clear();
-
-    QStringList missing;
-    foreach(QString f, mResultFiles)
-    {
-        if (files.removeAll(f) == 0)
-            missing << f;
-    }
-
-
-    QString msg = "";
-    if (!missing.isEmpty())
-        msg += QString("\nFiles not exists:\n  *%1").arg(missing.join("\n  *"));
-
-    if (!files.isEmpty())
-        msg += QString("\nFiles exists:\n  *%1").arg(files.join("\n  *"));
-
-
-    if (!mExpectedCue.isEmpty())
-    {
-        QString resCueFile;
-        files = outDir.entryList(QStringList() << "*.cue", QDir::Files);
-        if (files.isEmpty())
-        {
-            msg += "\nResult CUE file not found.";
-        }
-        else
-        {
-            QString err;
-            if (!TestFlacon::compareCue(outDir.absoluteFilePath(files.first()), mExpectedCue, &err))
-                msg += "\n" + err;
-        }
-    }
-
-    if (!msg.isEmpty())
+        QString msg = QString("Compared values are not the same\n   Pattern   %1\n   Actual:   %2\n   Expected: %3").arg(
+                    pattern,
+                    result,
+                    expected);
         QFAIL(msg.toLocal8Bit());
+    }
 
 }
 
 
+/************************************************
 
+ ************************************************/
+void TestFlacon::testTrackResultFileName_data()
+{
+    QTest::addColumn<QString>("cueFile");
+    QTest::addColumn<QString>("pattern");
+    QTest::addColumn<QString>("expected");
+
+    QString cueFile = mTmpDir + "testTrackResultFileName.cue";
+
+    {
+        QStringList cue;
+        cue << "REM GENRE \"Genre\"";
+        cue << "REM DATE 2013";
+        cue << "REM DISCID 123456789";
+        cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
+        cue << "PERFORMER \"Artist\"";
+        cue << "TITLE \"Album\"";
+        cue << "FILE \"en.wav\" WAVE";
+        cue << "  TRACK 01 AUDIO";
+        cue << "    TITLE \"Song01\"";
+        cue << "    INDEX 01 00:00:00";
+        cue << "  TRACK 02 AUDIO";
+        cue << "    TITLE \"Song02\"";
+        cue << "    INDEX 01 03:39:10";
+        cue << "  TRACK 03 AUDIO";
+        cue << "    TITLE \"Song03\"";
+        cue << "    INDEX 01 07:25:42";
+        cue << "  TRACK 04 AUDIO";
+        cue << "    TITLE \"Song04\"";
+        cue << "    INDEX 01 12:04:72";
+
+        writeTextFile(cueFile, cue);
+    }
+
+
+    QTest::newRow("1")
+            << cueFile
+            << "%a/%y - %A/%n - %t"
+            << "Artist/2013 - Album/01 - Song01.wav";
+
+    QTest::newRow("2")
+            << cueFile
+            << "N/n/A/a/t/y/g"
+            << "N/n/A/a/t/y/g.wav";
+
+    QTest::newRow("3")
+            << cueFile
+            << "N/n/A/a/t/y/g"
+            << "N/n/A/a/t/y/g.wav";
+
+    QTest::newRow("4")
+            << cueFile
+            << "/%%/%Q/%N/%n/%A/%a/%t/%y/%g/%%"
+            << "/%/%Q/04/01/Album/Artist/Song01/2013/Genre/%.wav";
+
+
+    QTest::newRow("5")
+            << cueFile
+            << "%%Q/%%N/%%n/%%A/%%a/%%t/%%y/%%g"
+            << "%Q/%N/%n/%A/%a/%t/%y/%g.wav";
+
+    QTest::newRow("6")
+            << cueFile
+            << "%%%Q/%%%N/%%%n/%%%A/%%%a/%%%t/%%%y/%%%g/%%%"
+            << "%%Q/%04/%01/%Album/%Artist/%Song01/%2013/%Genre/%%.wav";
+
+    cueFile = TEST_OUT_DIR "testTrackResultFileName2.cue";
+    {
+        QStringList cue;
+        cue << "REM DATE 2013";
+        cue << "REM DISCID 123456789";
+        cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
+        cue << "PERFORMER \"Artist\"";
+        cue << "FILE \"en.wav\" WAVE";
+        cue << "  TRACK 01 AUDIO";
+        cue << "    TITLE \"Song01\"";
+        cue << "    INDEX 01 00:00:00";
+        cue << "  TRACK 02 AUDIO";
+        cue << "    TITLE \"Song02\"";
+        cue << "    INDEX 01 03:39:10";
+        cue << "  TRACK 03 AUDIO";
+        cue << "    TITLE \"Song03\"";
+        cue << "    INDEX 01 07:25:42";
+        cue << "  TRACK 04 AUDIO";
+        cue << "    TITLE \"Song04\"";
+        cue << "    INDEX 01 12:04:72";
+
+        writeTextFile(cueFile, cue);
+    }
+
+
+    QTest::newRow("1")
+            << cueFile
+            << "{}/{Text}/{%n}/{%n Text}/{%A}/{%A Text}"
+            << "{}/{Text}/01/01 Text//.wav";
+
+
+    QTest::newRow("2")
+            << cueFile
+            << "Test{Text/{%n}/{%n Text}/{%A}/{%A Text}"
+            << "Test{Text/01/01 Text//.wav";
+
+
+    QTest::newRow("3")
+            << cueFile
+            << "Text}/{%n}/{%n Text}/{%A}/{%A Text}"
+            << "Text}/01/01 Text//.wav";
+
+}
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testTrackResultFilePath()
+{
+    //QFETCH(QString, cueFile);
+    QFETCH(QString, outDir);
+    QFETCH(QString, pattern);
+    QFETCH(QString, expected);
+    QFETCH(QString, audioFile);
+
+    settings->setValue(Settings::OutFiles_Directory, outDir);
+    settings->setValue(Settings::OutFiles_Pattern, pattern);
+    settings->setValue(Settings::OutFiles_Format, "WAV");
+
+    Disk disk;
+    disk.loadFromCue(mDataDir + "simple.cue");
+
+    if (!audioFile.isEmpty())
+        disk.setAudioFile(audioFile);
+
+    QString result = disk.track(0)->resultFilePath();
+    if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath())
+    {
+        QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   AudioFile: %4").arg(
+                    QFileInfo(result).absoluteFilePath(), result,
+                    expected,
+                    audioFile);
+        QFAIL(msg.toLocal8Bit());
+    }
+    //QCOMPARE(result, expected);
+}
+
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testTrackResultFilePath_data()
+{
+    //QTest::addColumn<QString>("cueFile");
+    QTest::addColumn<QString>("outDir");
+    QTest::addColumn<QString>("pattern");
+    QTest::addColumn<QString>("expected");
+    QTest::addColumn<QString>("audioFile");
+
+
+    QTest::newRow("1")
+            << "/home/user/music"
+            << "%a/%y - %A/%n - %t"
+            << "/home/user/music/Artist/2013 - Album/01 - Song01.wav"
+            << "";
+
+
+    QTest::newRow("2")
+            << "~/music"
+            << "%a/%y - %A/%n - %t"
+            << QDir::homePath() + "/music/Artist/2013 - Album/01 - Song01.wav"
+            << "";
+
+
+    QTest::newRow("3")
+            << "/music"
+            << "%a/%y - %A/%n - %t"
+            << "/music/Artist/2013 - Album/01 - Song01.wav"
+            << "";
+
+
+    QTest::newRow("4")
+            << ""
+            << "%a/%y - %A/%n - %t"
+            << QDir::homePath() + "/Artist/2013 - Album/01 - Song01.wav"
+            << "";
+
+
+    QTest::newRow("5")
+            << "."
+            << "%a/%y - %A/%n - %t"
+            << mTmpDir + "/Artist/2013 - Album/01 - Song01.wav"
+            << mCdAudioFile;
+
+    QTest::newRow("6")
+            << ""
+            << "%a/%y - %A/%n - %t"
+            << mTmpDir + "/Artist/2013 - Album/01 - Song01.wav"
+            << mCdAudioFile;
+}
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testTrackSetCodepages()
+{
+    static int count = 0;
+    count++;
+
+    QFETCH(QString, cueFile);
+    QFETCH(QString, sampleFile);
+    QFETCH(QString, codepageBefore);
+    QFETCH(QString, codepageAfter);
+
+    QString outFilePattern = QString("%1%2.%3.%4")
+            .arg(TEST_OUT_DIR)
+            .arg(count, 2, 10, QChar('0'))
+            .arg(QTest::currentDataTag());
+
+    QString testDataDir = TEST_DATA_DIR;
+
+    QString testCueFile = outFilePattern.arg("cue");
+    QString expectedFile = outFilePattern.arg("expected");
+    QString resultFile = outFilePattern.arg("result");
+
+    if (QFileInfo(testCueFile).exists())
+        QFile(testCueFile).remove();
+
+    if (!QFile::copy(testDataDir + cueFile, testCueFile))
+        QFAIL(QString("Can't copy file %1 to %2").arg(testDataDir + cueFile, testCueFile).toLocal8Bit().data());
+
+    Disk disk;
+
+    if (!codepageBefore.isEmpty())
+        settings->setValue(Settings::Tags_DefaultCodepage, codepageBefore);
+    else
+        settings->setValue(Settings::Tags_DefaultCodepage, "UTF-8");
+
+    disk.loadFromCue(testCueFile);
+
+    if (!codepageAfter.isEmpty())
+        disk.setTextCodecName(codepageAfter);
+
+    QStringList expected = this->readFile(TEST_DATA_DIR + sampleFile);
+
+    QStringList result;
+    // Result *************************
+    //result << "GENRE:" << tracks.genre() << "\n";
+    //resultSl << "ALBUM:" << tracks.album() << "\n";
+    result << "DISCID:" << disk.discId() << "\n";
+
+    for(int i=0; i<disk.count(); ++i)
+    {
+        Track *track = disk.track(i);
+        result << "Track " << (i + 1) << "\n";
+        result << "  " << "INDEX:"    << track->index()       << "\n";
+        result << "  " << "TRACKNUM:" << track->trackNum()    << "\n";
+        result << "  " << "ALBUM:"    << track->album()       << "\n";
+        result << "  " << "TITLE:"    << track->title()       << "\n";
+        result << "  " << "ARTIST:"   << track->artist()      << "\n";
+        result << "  " << "GENRE:"    << track->genre()       << "\n";
+        result << "  " << "YEAR:"     << track->date()        << "\n";
+    }
+
+    // Result *************************
+
+
+
+
+    writeFile(result, resultFile);
+    writeFile(expected, expectedFile);
+
+    if (result.join("") != expected.join(""))
+    {
+        QString msg = "The result is different from the expected. Use the following command for details:";
+        QString cmd = QString("diff %1 %2").arg(expectedFile, resultFile);
+        QFAIL((msg + "\n    " + cmd).toLocal8Bit());
+    }
+}
+
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testTrackSetCodepages_data()
+{
+    QTest::addColumn<QString>("cueFile");
+    QTest::addColumn<QString>("sampleFile");
+    QTest::addColumn<QString>("codepageBefore");
+    QTest::addColumn<QString>("codepageAfter");
+
+
+    QTest::newRow("TrackSet_UTF-8")
+            << "ru_utf8.cue"    << "ru.result"  << "Big5"   << "UTF-8";
+
+    QTest::newRow("TrackSet_UTF-8_BOM")
+            << "ru_utf8_BOM.cue"<< "ru.result"  << "Big5"   << "";
+
+    QTest::newRow("TrackSet_CP1251")
+            << "ru_cp1251.cue"  << "ru.result"  << "UTF-8"  << "Windows-1251";
+}
+
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testOutFormatEncoderArgs()
+{
+    QFETCH(QString, formatId);
+    QFETCH(QStringList, config);
+    QFETCH(QString, expected);
+
+    applySettings(config);
+
+    foreach (OutFormat *format, OutFormat::allFormats())
+    {
+        if (format->id() != formatId)
+            continue;
+
+        Disk *disk = standardDisk();
+        QStringList args = format->encoderArgs(disk->track(0), "OutFile.wav");
+
+        QString result = args.join(" ");
+        if (result != expected)
+        {
+            QString msg = QString("Compared values are not the same\n   Format   %1\n   Actual:   %2\n   Expected: %3").arg(
+                        formatId,
+                        result,
+                        expected);
+            QFAIL(msg.toLocal8Bit());
+        }
+        return;
+    }
+
+    FAIL(QString("Unknown format \"%1\"").arg(formatId).toLocal8Bit());
+}
+
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testOutFormatEncoderArgs_data()
+{
+    QTest::addColumn<QString>("formatId");
+    QTest::addColumn<QStringList>("config");
+    QTest::addColumn<QString>("expected");
+
+    QStringList cfg;
+
+    //*******************************************
+    // FLAC
+    //*******************************************
+    cfg.clear();
+    cfg << "Programs/flac"     << "/opt/flac";
+    cfg << "Flac/Compression"  << "5";
+    cfg << "Flac/ReplayGain"   << "Disable";
+
+    QTest::newRow("Flac_1")
+            << "FLAC"
+            << cfg
+            << "/opt/flac "
+               "--force "
+               "--silent "
+               "--compression-level-5 "
+               "--tag artist=Artist "
+               "--tag album=Album "
+               "--tag genre=Genre "
+               "--tag date=2013 "
+               "--tag title=Song01 "
+               "--tag comment=ExactAudioCopy v0.99pb4 "
+               "--tag discId=123456789 "
+               "--tag TRACKNUMBER=1 "
+               "--tag TOTALTRACKS=4 "
+               "--tag TRACKTOTAL=4 "
+               "- "
+               "-o OutFile.wav";
+
+    //*******************************************
+    cfg.clear();
+    cfg << "Programs/flac"     << "/opt/flac";
+    cfg << "Flac/Compression"  << "1";
+    cfg << "Flac/ReplayGain"   << "Disable";
+
+    QTest::newRow("Flac_2")
+            << "FLAC"
+            << cfg
+            << "/opt/flac "
+               "--force "
+               "--silent "
+               "--compression-level-1 "
+               "--tag artist=Artist "
+               "--tag album=Album "
+               "--tag genre=Genre "
+               "--tag date=2013 "
+               "--tag title=Song01 "
+               "--tag comment=ExactAudioCopy v0.99pb4 "
+               "--tag discId=123456789 "
+               "--tag TRACKNUMBER=1 "
+               "--tag TOTALTRACKS=4 "
+               "--tag TRACKTOTAL=4 "
+               "- "
+               "-o OutFile.wav";
+
+    //*******************************************
+    // AAC
+    //*******************************************
+    cfg.clear();
+    cfg << "Programs/faac"     << "/opt/faac";
+    cfg << "Aac/UseQuality"    << "true";
+    cfg << "Aac/Quality"       << "500";
+
+    QTest::newRow("AAC_1")
+            << "AAC"
+            << cfg
+            << "/opt/faac "
+               "-w "
+               "-q 500 "
+               "--artist Artist "
+               "--title Song01 "
+               "--genre Genre "
+               "--album Album "
+               "--track 1/4 "
+               "--year 2013 "
+               "--comment ExactAudioCopy v0.99pb4 "
+               "-o OutFile.wav "
+               "-";
+
+
+    //*******************************************
+    cfg.clear();
+    cfg << "Programs/faac"     << "/opt/faac";
+    cfg << "Aac/UseQuality"    << "true";
+    cfg << "Aac/Quality"       << "10";
+
+    QTest::newRow("AAC_2")
+            << "AAC"
+            << cfg
+            << "/opt/faac "
+               "-w "
+               "-q 10 "
+               "--artist Artist "
+               "--title Song01 "
+               "--genre Genre "
+               "--album Album "
+               "--track 1/4 "
+               "--year 2013 "
+               "--comment ExactAudioCopy v0.99pb4 "
+               "-o OutFile.wav "
+               "-";
+
+    //*******************************************
+    cfg.clear();
+    cfg << "Programs/faac"     << "/opt/faac";
+    cfg << "Aac/UseQuality"    << "false";
+    cfg << "Aac/Quality"       << "500";
+    cfg << "Aac/Bitrate"       << "64";
+
+    QTest::newRow("AAC_3")
+            << "AAC"
+            << cfg
+            << "/opt/faac "
+               "-w "
+               "-b 64 "
+               "--artist Artist "
+               "--title Song01 "
+               "--genre Genre "
+               "--album Album "
+               "--track 1/4 "
+               "--year 2013 "
+               "--comment ExactAudioCopy v0.99pb4 "
+               "-o OutFile.wav "
+               "-";
+
+}
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testOutFormatGainArgs()
+{
+    QFETCH(QString, formatId);
+    QFETCH(QStringList, config);
+    QFETCH(QString, expected);
+
+    applySettings(config);
+
+    foreach (OutFormat *format, OutFormat::allFormats())
+    {
+        if (format->id() != formatId)
+            continue;
+
+        QStringList args = format->gainArgs(QStringList() << "OutFile_01.wav" << "OutFile_02.wav" << "OutFile_03.wav");
+
+        QString result = args.join(" ");
+        if (result != expected)
+        {
+            QString msg = QString("Compared values are not the same\n   Format   %1\n   Actual:   %2\n   Expected: %3").arg(
+                        formatId,
+                        result,
+                        expected);
+            QFAIL(msg.toLocal8Bit());
+        }
+        return;
+    }
+
+    FAIL(QString("Unknown format \"%1\"").arg(formatId).toLocal8Bit());
+}
+
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testOutFormatGainArgs_data()
+{
+    QTest::addColumn<QString>("formatId");
+    QTest::addColumn<QStringList>("config");
+    QTest::addColumn<QString>("expected");
+
+    QStringList cfg;
+
+    //*******************************************
+    // FLAC
+    //*******************************************
+    cfg.clear();
+    cfg << "Programs/metaflac" << "/opt/metaflac";
+    cfg << "Flac/ReplayGain"   << "Track";
+
+    QTest::newRow("Flac_1")
+            << "FLAC"
+            << cfg
+            << "/opt/metaflac "
+               "--add-replay-gain "
+               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
+
+
+    //*******************************************
+    cfg.clear();
+    cfg << "Programs/metaflac" << "/opt/metaflac";
+    cfg << "Flac/ReplayGain"   << "Album";
+
+    QTest::newRow("Flac_2")
+            << "FLAC"
+            << cfg
+            << "/opt/metaflac "
+               "--add-replay-gain "
+               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
+
+
+}
 
 
 QTEST_MAIN(TestFlacon)
