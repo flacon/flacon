@@ -32,6 +32,7 @@
 #include "wav.h"
 #include "flac.h"
 #include "aac.h"
+#include "mp3.h"
 
 #include <QDebug>
 
@@ -44,6 +45,7 @@ void initOutFormats(QList<OutFormat*> *formats)
     *formats << new OutFormat_Wav();
     *formats << new OutFormat_Flac();
     *formats << new OutFormat_Aac();
+    *formats << new OutFormat_Mp3();
 }
 
 

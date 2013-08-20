@@ -29,7 +29,11 @@
 
 #include <QObject>
 #include <QStringList>
+#include <QMap>
+#include <QVariant>
 class Disk;
+
+#define SettingsValues QMap<QString, QVariant>
 
 class ConverterTester
 {
@@ -99,8 +103,7 @@ private:
     void checkFileExists(const QString &fileName);
     void checkFileNotExists(const QString &fileName);
 
-    void applySettings(const QStringList &settings);
-
+    void applySettings(const SettingsValues &config);
 
     Disk *standardDisk();
 

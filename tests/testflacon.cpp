@@ -227,11 +227,13 @@ void TestFlacon::checkFileNotExists(const QString &fileName)
 /************************************************
 
  ************************************************/
-void TestFlacon::applySettings(const QStringList &set)
+void TestFlacon::applySettings(const SettingsValues &config)
 {
-    for (int i=0; i<set.count(); i+=2)
+    SettingsValues::const_iterator i;
+    i = config.begin();
+    for (i = config.begin(); i != config.end(); ++i)
     {
-        settings->setValue(set.at(i), set.at(i+1));
+        settings->setValue(i.key(), i.value());
     }
     settings->sync();
 }
@@ -976,7 +978,7 @@ void TestFlacon::testTrackSetCodepages_data()
 void TestFlacon::testOutFormatEncoderArgs()
 {
     QFETCH(QString, formatId);
-    QFETCH(QStringList, config);
+    QFETCH(SettingsValues, config);
     QFETCH(QString, expected);
 
     applySettings(config);
@@ -1011,136 +1013,239 @@ void TestFlacon::testOutFormatEncoderArgs()
 void TestFlacon::testOutFormatEncoderArgs_data()
 {
     QTest::addColumn<QString>("formatId");
-    QTest::addColumn<QStringList>("config");
+    QTest::addColumn<SettingsValues>("config");
     QTest::addColumn<QString>("expected");
 
-    QStringList cfg;
+    SettingsValues cfg;
 
     //*******************************************
     // FLAC
     //*******************************************
     cfg.clear();
-    cfg << "Programs/flac"     << "/opt/flac";
-    cfg << "Flac/Compression"  << "5";
-    cfg << "Flac/ReplayGain"   << "Disable";
+    cfg.insert("Programs/flac",     "/opt/flac");
+    cfg.insert("Flac/Compression",  5);
+    cfg.insert("Flac/ReplayGain",   "Disable");
 
     QTest::newRow("Flac_1")
             << "FLAC"
             << cfg
-            << "/opt/flac "
-               "--force "
-               "--silent "
+            << "/opt/flac --force --silent "
                "--compression-level-5 "
-               "--tag artist=Artist "
-               "--tag album=Album "
-               "--tag genre=Genre "
-               "--tag date=2013 "
-               "--tag title=Song01 "
-               "--tag comment=ExactAudioCopy v0.99pb4 "
-               "--tag discId=123456789 "
-               "--tag TRACKNUMBER=1 "
-               "--tag TOTALTRACKS=4 "
-               "--tag TRACKTOTAL=4 "
-               "- "
-               "-o OutFile.wav";
+               "--tag artist=Artist --tag album=Album --tag genre=Genre --tag date=2013 --tag title=Song01 --tag comment=ExactAudioCopy v0.99pb4 "
+               "--tag discId=123456789 --tag TRACKNUMBER=1 --tag TOTALTRACKS=4 --tag TRACKTOTAL=4 - -o OutFile.wav";
 
     //*******************************************
     cfg.clear();
-    cfg << "Programs/flac"     << "/opt/flac";
-    cfg << "Flac/Compression"  << "1";
-    cfg << "Flac/ReplayGain"   << "Disable";
+    cfg.insert("Programs/flac",     "/opt/flac");
+    cfg.insert("Flac/Compression",  1);
+    cfg.insert("Flac/ReplayGain",   "Disable");
 
     QTest::newRow("Flac_2")
             << "FLAC"
             << cfg
-            << "/opt/flac "
-               "--force "
-               "--silent "
+            << "/opt/flac --force --silent "
                "--compression-level-1 "
-               "--tag artist=Artist "
-               "--tag album=Album "
-               "--tag genre=Genre "
-               "--tag date=2013 "
-               "--tag title=Song01 "
-               "--tag comment=ExactAudioCopy v0.99pb4 "
-               "--tag discId=123456789 "
-               "--tag TRACKNUMBER=1 "
-               "--tag TOTALTRACKS=4 "
-               "--tag TRACKTOTAL=4 "
-               "- "
-               "-o OutFile.wav";
+               "--tag artist=Artist --tag album=Album --tag genre=Genre --tag date=2013 --tag title=Song01 --tag comment=ExactAudioCopy v0.99pb4 "
+               "--tag discId=123456789 --tag TRACKNUMBER=1 --tag TOTALTRACKS=4 --tag TRACKTOTAL=4 - -o OutFile.wav";
+
 
     //*******************************************
     // AAC
     //*******************************************
     cfg.clear();
-    cfg << "Programs/faac"     << "/opt/faac";
-    cfg << "Aac/UseQuality"    << "true";
-    cfg << "Aac/Quality"       << "500";
+    cfg.insert("Programs/faac",  "/opt/faac");
+    cfg.insert("Aac/UseQuality", true);
+    cfg.insert("Aac/Quality",    500);
 
     QTest::newRow("AAC_1")
             << "AAC"
             << cfg
-            << "/opt/faac "
-               "-w "
+            << "/opt/faac -w "
                "-q 500 "
-               "--artist Artist "
-               "--title Song01 "
-               "--genre Genre "
-               "--album Album "
-               "--track 1/4 "
-               "--year 2013 "
-               "--comment ExactAudioCopy v0.99pb4 "
-               "-o OutFile.wav "
-               "-";
+               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 --comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
 
 
     //*******************************************
     cfg.clear();
-    cfg << "Programs/faac"     << "/opt/faac";
-    cfg << "Aac/UseQuality"    << "true";
-    cfg << "Aac/Quality"       << "10";
+    cfg.insert("Programs/faac",  "/opt/faac");
+    cfg.insert("Aac/UseQuality", true);
+    cfg.insert("Aac/Quality",    10);
 
     QTest::newRow("AAC_2")
             << "AAC"
             << cfg
-            << "/opt/faac "
-               "-w "
+            << "/opt/faac -w "
                "-q 10 "
-               "--artist Artist "
-               "--title Song01 "
-               "--genre Genre "
-               "--album Album "
-               "--track 1/4 "
-               "--year 2013 "
-               "--comment ExactAudioCopy v0.99pb4 "
-               "-o OutFile.wav "
-               "-";
+               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 --comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
 
     //*******************************************
     cfg.clear();
-    cfg << "Programs/faac"     << "/opt/faac";
-    cfg << "Aac/UseQuality"    << "false";
-    cfg << "Aac/Quality"       << "500";
-    cfg << "Aac/Bitrate"       << "64";
+    cfg.insert("Programs/faac",  "/opt/faac");
+    cfg.insert("Aac/UseQuality", false);
+    cfg.insert("Aac/Quality",    500);
+    cfg.insert("Aac/Bitrate",    64);
 
     QTest::newRow("AAC_3")
             << "AAC"
             << cfg
-            << "/opt/faac "
-               "-w "
+            << "/opt/faac -w "
                "-b 64 "
-               "--artist Artist "
-               "--title Song01 "
-               "--genre Genre "
-               "--album Album "
-               "--track 1/4 "
-               "--year 2013 "
-               "--comment ExactAudioCopy v0.99pb4 "
-               "-o OutFile.wav "
-               "-";
+               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 --comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
+
+
+    //*******************************************
+    // MP3
+    //*******************************************
+    cfg.clear();
+    cfg.insert("Programs/lame",  "/opt/lame");
+    cfg.insert("Mp3/Preset",     "vbrMedium");
+    cfg.insert("Aac/Quality",    500);
+
+    QTest::newRow("MP3_vbrMedium")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "--preset medium "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "vbrStandard");
+
+    QTest::newRow("MP3_vbrStandard")
+            << "MP3"
+            << cfg
+            << "/opt/lame "
+               "--silent "
+               "--preset standard "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "vbrStandardFast");
+
+    QTest::newRow("MP3_vbrStandardFast")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "--preset fast standard "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "vbrExtreme");
+
+    QTest::newRow("MP3_vbrExtreme")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "--preset extreme "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "vbrExtremeFast");
+
+    QTest::newRow("MP3_vbrExtremeFast")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "--preset fast extreme "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "cbrInsane");
+
+    QTest::newRow("MP3_cbrInsane")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "--preset insane "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "cbrKbps");
+    cfg.insert("Mp3/Bitrate",    64);
+
+    QTest::newRow("MP3_cbrKbps64")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "--preset cbr 64 "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "cbrKbps");
+    cfg.insert("Mp3/Bitrate",    128);
+
+    QTest::newRow("MP3_cbrKbps128")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "--preset cbr 128 "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "abrKbps");
+    cfg.insert("Mp3/Bitrate",    64);
+
+    QTest::newRow("MP3_abrKbps64")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "--preset 64 "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "abrKbps");
+    cfg.insert("Mp3/Bitrate",    128);
+
+    QTest::newRow("MP3_abrKbps128")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "--preset 128 "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "vbrQuality");
+    cfg.insert("Mp3/Quality",    0);
+
+    QTest::newRow("MP3_vbrQuality0")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "-V 9 "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "vbrQuality");
+    cfg.insert("Mp3/Quality",    4);
+
+    QTest::newRow("MP3_vbrQuality4")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "-V 5 "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+
+    //*******************************************
+    cfg.insert("Mp3/Preset",     "vbrQuality");
+    cfg.insert("Mp3/Quality",    9);
+
+    QTest::newRow("MP3_vbrQuality9")
+            << "MP3"
+            << cfg
+            << "/opt/lame --silent "
+               "-V 0 "
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
 }
+
+
 
 /************************************************
 
@@ -1148,7 +1253,7 @@ void TestFlacon::testOutFormatEncoderArgs_data()
 void TestFlacon::testOutFormatGainArgs()
 {
     QFETCH(QString, formatId);
-    QFETCH(QStringList, config);
+    QFETCH(SettingsValues, config);
     QFETCH(QString, expected);
 
     applySettings(config);
@@ -1182,38 +1287,58 @@ void TestFlacon::testOutFormatGainArgs()
 void TestFlacon::testOutFormatGainArgs_data()
 {
     QTest::addColumn<QString>("formatId");
-    QTest::addColumn<QStringList>("config");
+    QTest::addColumn<SettingsValues>("config");
     QTest::addColumn<QString>("expected");
 
-    QStringList cfg;
+    SettingsValues cfg;
 
     //*******************************************
     // FLAC
     //*******************************************
     cfg.clear();
-    cfg << "Programs/metaflac" << "/opt/metaflac";
-    cfg << "Flac/ReplayGain"   << "Track";
+    cfg.insert("Programs/metaflac", "/opt/metaflac");
+    cfg.insert("Flac/ReplayGain",   "Track");
 
-    QTest::newRow("Flac_1")
+    QTest::newRow("Flac_Track")
             << "FLAC"
             << cfg
-            << "/opt/metaflac "
-               "--add-replay-gain "
+            << "/opt/metaflac --add-replay-gain "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
 
     //*******************************************
-    cfg.clear();
-    cfg << "Programs/metaflac" << "/opt/metaflac";
-    cfg << "Flac/ReplayGain"   << "Album";
+    cfg.insert("Flac/ReplayGain",   "Album");
 
-    QTest::newRow("Flac_2")
+    QTest::newRow("Flac_Album")
             << "FLAC"
             << cfg
-            << "/opt/metaflac "
-               "--add-replay-gain "
+            << "/opt/metaflac --add-replay-gain "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
+
+
+    //*******************************************
+    // MP3
+    //*******************************************
+    cfg.clear();
+    cfg.insert("Programs/mp3gain",  "/opt/mp3gain");
+    cfg.insert("Mp3/ReplayGain",    "Track");
+
+    QTest::newRow("Mp3_Track")
+            << "MP3"
+            << cfg
+            << "/opt/mp3gain -a -c "
+               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
+
+
+    //*******************************************
+    cfg.insert("Mp3/ReplayGain",    "Album");
+
+    QTest::newRow("Mp3_Track")
+            << "MP3"
+            << cfg
+            << "/opt/mp3gain -a -c "
+               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
 }
 

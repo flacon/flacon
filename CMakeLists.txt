@@ -66,7 +66,7 @@ set(HEADERS
     outformats/aac.h
     outformats/wav.h
     outformats/flac.h
-#    outformats/mp3.h
+    outformats/mp3.h
 )
 
 set(SOURCES
@@ -97,6 +97,7 @@ set(SOURCES
     outformats/aac.cpp
     outformats/wav.cpp
     outformats/flac.cpp
+    outformats/mp3.cpp
 )
 
 set (MOCS
@@ -124,6 +125,7 @@ set (MOCS
     outformats/aac.h
     outformats/wav.h
     outformats/flac.h
+    outformats/mp3.h
 )
 
 set (FORMS
@@ -133,7 +135,7 @@ set (FORMS
 
     outformats/flac_config.ui
     outformats/aac_config.ui
-
+    outformats/mp3_config.ui
 )
 
 set(LIBRARIES
