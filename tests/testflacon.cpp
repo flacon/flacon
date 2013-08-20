@@ -1243,6 +1243,68 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "-V 0 "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
+
+
+    //*******************************************
+    // Ogg
+    //*******************************************
+    cfg.clear();
+    cfg.insert("Programs/oggenc",   "/opt/oggenc");
+    cfg.insert("Ogg/UseQuality",    true);
+    cfg.insert("Ogg/Quality",       5);
+    cfg.insert("Ogg/MinBitrate",    "");
+    cfg.insert("Ogg/NormBitrate",   "");
+    cfg.insert("Ogg/MaxBitrate",    "");
+
+    QTest::newRow("Ogg Quality 5")
+            << "OGG"
+            << cfg
+            << "/opt/oggenc --quiet "
+               "-q 5 "
+               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment COMMENT=ExactAudioCopy v0.99pb4 "
+               "--comment DISCID=123456789 --tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
+
+
+    //*******************************************
+    cfg.insert("Ogg/Quality",       10);
+
+    QTest::newRow("Ogg Quality 10")
+            << "OGG"
+            << cfg
+            << "/opt/oggenc --quiet "
+               "-q 10 "
+               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment COMMENT=ExactAudioCopy v0.99pb4 "
+               "--comment DISCID=123456789 --tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
+
+
+    //*******************************************
+    cfg.insert("Programs/oggenc",   "/opt/oggenc");
+    cfg.insert("Ogg/UseQuality",    false);
+    cfg.insert("Ogg/MinBitrate",    "");
+    cfg.insert("Ogg/NormBitrate",   "");
+    cfg.insert("Ogg/MaxBitrate",    "");
+
+    QTest::newRow("Ogg Bitrate 0 0 0")
+            << "OGG"
+            << cfg
+            << "/opt/oggenc --quiet "
+               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment COMMENT=ExactAudioCopy v0.99pb4 "
+               "--comment DISCID=123456789 --tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
+
+    //*******************************************
+    cfg.insert("Programs/oggenc",   "/opt/oggenc");
+    cfg.insert("Ogg/UseQuality",    false);
+    cfg.insert("Ogg/MinBitrate",    64);
+    cfg.insert("Ogg/NormBitrate",   128);
+    cfg.insert("Ogg/MaxBitrate",    350);
+
+    QTest::newRow("Ogg Bitrate 64 128 350")
+            << "OGG"
+            << cfg
+            << "/opt/oggenc --quiet "
+               "-b 128 -m 64 -M 350 "
+               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment COMMENT=ExactAudioCopy v0.99pb4 "
+               "--comment DISCID=123456789 --tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
 }
 
 
@@ -1338,6 +1400,29 @@ void TestFlacon::testOutFormatGainArgs_data()
             << "MP3"
             << cfg
             << "/opt/mp3gain -a -c "
+               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
+
+
+    //*******************************************
+    // Ogg
+    //*******************************************
+    cfg.clear();
+    cfg.insert("Programs/vorbisgain",   "/opt/vorbisgain");
+    cfg.insert("Ogg/ReplayGain",        "Track");
+
+    QTest::newRow("Ogg Track")
+            << "OGG"
+            << cfg
+            << "/opt/vorbisgain "
+               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
+
+    //*******************************************
+    cfg.insert("Ogg/ReplayGain",        "Album");
+
+    QTest::newRow("Ogg Album")
+            << "OGG"
+            << cfg
+            << "/opt/vorbisgain --album "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
 }

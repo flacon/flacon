@@ -81,6 +81,7 @@ public:
     static QString lossyCompressionToolTip(int min, int max);
     static void setLossyToolTip(QSlider *widget);
     static void setLossyToolTip(QSpinBox *widget);
+    static void setLossyToolTip(QDoubleSpinBox *widget);
 
     static void fillReplayGainComboBox(QComboBox *comboBox);
     static void fillBitrateComboBox(QComboBox *comboBox, const QList<int> &bitrates);

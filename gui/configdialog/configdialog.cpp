@@ -326,6 +326,15 @@ void EncoderConfigPage::setLossyToolTip(QSpinBox *widget)
 /************************************************
 
  ************************************************/
+void EncoderConfigPage::setLossyToolTip(QDoubleSpinBox *widget)
+{
+    widget->setToolTip(lossyCompressionToolTip(widget->minimum(), widget->maximum()));
+}
+
+
+/************************************************
+
+ ************************************************/
 QString EncoderConfigPage::losslessCompressionToolTip(int min, int max)
 {
     return tr("Sets compression level, between %1 (fastest) and %2 (highest compression).\n"
