@@ -131,7 +131,7 @@ QStringList OutFormat_Mp3::encoderArgs(Track *track, const QString &outFile) con
 QStringList OutFormat_Mp3::gainArgs(const QStringList &files) const
 {
     QStringList args;
-    args << settings->value("Programs/mp3gain").toString();
+    args <<  args << settings->programName(gainProgramName());
     args << "-a"; // Album gain
     args << "-c"; // ignore clipping warning when applying gain
 

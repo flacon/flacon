@@ -64,10 +64,11 @@ set(HEADERS
 
     outformats/outformat.h
     outformats/aac.h
-    outformats/wav.h
     outformats/flac.h
     outformats/mp3.h
     outformats/ogg.h
+    outformats/wav.h
+    outformats/wv.h
 )
 
 set(SOURCES
@@ -96,10 +97,11 @@ set(SOURCES
 
     outformats/outformat.cpp
     outformats/aac.cpp
-    outformats/wav.cpp
     outformats/flac.cpp
     outformats/mp3.cpp
     outformats/ogg.cpp
+    outformats/wav.cpp
+    outformats/wv.cpp
 )
 
 set (MOCS
@@ -125,10 +127,11 @@ set (MOCS
     converter/gain.h
 
     outformats/aac.h
-    outformats/wav.h
     outformats/flac.h
     outformats/mp3.h
     outformats/ogg.h
+    outformats/wav.h
+    outformats/wv.h
 )
 
 set (FORMS
@@ -140,6 +143,7 @@ set (FORMS
     outformats/aac_config.ui
     outformats/mp3_config.ui
     outformats/ogg_config.ui
+    outformats/wv_config.ui
 )
 
 set(LIBRARIES

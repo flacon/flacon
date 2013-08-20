@@ -48,7 +48,7 @@ QStringList OutFormat_Aac::encoderArgs(Track *track, const QString &outFile) con
 {
     QStringList args;
 
-    args << settings->programName("faac");
+    args << settings->programName(encoderProgramName());
     args << "-w"; // Wrap  AAC  data  in  an MP4 container.
 
     // Quality settings .........................................

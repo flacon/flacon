@@ -1305,6 +1305,45 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "-b 128 -m 64 -M 350 "
                "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment COMMENT=ExactAudioCopy v0.99pb4 "
                "--comment DISCID=123456789 --tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
+
+
+
+    //*******************************************
+    // WavPack
+    //*******************************************
+    cfg.clear();
+    cfg.insert("Programs/wavpack",  "/opt/wavpack");
+    cfg.insert("WV/Compression",   0);
+
+    QTest::newRow("WavPack Quality 0")
+            << "WV"
+            << cfg
+            << "/opt/wavpack -q "
+               "-f "
+               "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
+
+
+    //*******************************************
+    cfg.insert("WV/Compression",   1);
+
+    QTest::newRow("WavPack Quality 1")
+            << "WV"
+            << cfg
+            << "/opt/wavpack -q "
+               "-h "
+               "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
+
+
+    //*******************************************
+    cfg.insert("WV/Compression",   2);
+
+    QTest::newRow("WavPack Quality 2")
+            << "WV"
+            << cfg
+            << "/opt/wavpack -q "
+               "-hh "
+               "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
+
 }
 
 
@@ -1425,6 +1464,31 @@ void TestFlacon::testOutFormatGainArgs_data()
             << "/opt/vorbisgain --album "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
+
+
+    //*******************************************
+    // WavPack
+    //*******************************************
+    cfg.clear();
+    cfg.insert("Programs/wvgain",   "/opt/wvgain");
+    cfg.insert("Ogg/ReplayGain",    "Track");
+
+    QTest::newRow("WavPack Track")
+            << "WV"
+            << cfg
+            << "/opt/wvgain "
+               "-a "
+               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
+
+    //*******************************************
+    cfg.insert("Ogg/ReplayGain",    "Album");
+
+    QTest::newRow("WavPack Album")
+            << "WV"
+            << cfg
+            << "/opt/wvgain "
+               "-a "
+               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 }
 
 

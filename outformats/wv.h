@@ -24,21 +24,20 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef FLAC_H
-#define FLAC_H
+#ifndef WV_H
+#define WV_H
 
 #include "outformat.h"
 #include "configdialog.h"
-#include "ui_flac_config.h"
+#include "ui_wv_config.h"
 
-class OutFormat_Flac: public OutFormat
+class OutFormat_Wv: public OutFormat
 {
 public:
-    OutFormat_Flac();
-    bool check(QStringList *errors) const;
+    OutFormat_Wv();
 
-    virtual QString encoderProgramName() const { return "flac"; }
-    virtual QString gainProgramName() const { return "metaflac"; }
+    virtual QString encoderProgramName() const { return "wavpack"; }
+    virtual QString gainProgramName() const { return "wvgain"; }
 
     virtual QStringList encoderArgs(Track *track, const QString &outFile) const;
     virtual QStringList gainArgs(const QStringList &files) const;
@@ -48,15 +47,14 @@ public:
 };
 
 
-class ConfigPage_Flac: public EncoderConfigPage, private Ui::ConfigPage_Flac
+class ConfigPage_Wv: public EncoderConfigPage, private Ui::ConfigPage_Wv
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Flac(QWidget *parent = 0);
+    explicit ConfigPage_Wv(QWidget *parent = 0);
 
     virtual void load();
     virtual void write();
-
 };
 
-#endif // FLAC_H
+#endif // WV_H

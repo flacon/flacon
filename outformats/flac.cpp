@@ -71,7 +71,7 @@ QStringList OutFormat_Flac::encoderArgs(Track *track, const QString &outFile) co
 {
     QStringList args;
 
-    args << settings->programName("flac");
+    args << settings->programName(encoderProgramName());
     args << "--force";      // Force overwriting of output files.
     args << "--silent";     // Suppress progress indicator
 
@@ -104,7 +104,7 @@ QStringList OutFormat_Flac::encoderArgs(Track *track, const QString &outFile) co
 QStringList OutFormat_Flac::gainArgs(const QStringList &files) const
 {
     QStringList args;
-    args << settings->programName("metaflac");
+    args << settings->programName(gainProgramName());
     args << "--add-replay-gain";
     args << files;
 

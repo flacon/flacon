@@ -96,7 +96,7 @@ QStringList OutFormat_Ogg::encoderArgs(Track *track, const QString &outFile) con
 QStringList OutFormat_Ogg::gainArgs(const QStringList &files) const
 {
     QStringList args;
-    args << settings->value("Programs/vorbisgain").toString();
+    args <<  args << settings->programName(gainProgramName());
     if (strToGainType(settings->value("Ogg/ReplayGain").toString()) ==  GainAlbum)
         args << "--album";
 

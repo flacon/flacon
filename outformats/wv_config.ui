@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ConfigPage_Flac</class>
- <widget class="QWidget" name="flacConfigPage">
+ <class>ConfigPage_Wv</class>
+ <widget class="QWidget" name="wvConfigPage">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,27 +11,27 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Flac encoding configuration</string>
+   <string>WavPack encoding configuration</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QGridLayout" name="formLayout">
+    <layout class="QGridLayout" name="formLayout_9">
      <item row="0" column="0">
-      <widget class="QLabel" name="flacCompressionLabel">
+      <widget class="QLabel" name="wvCompressionLabel">
        <property name="text">
         <string>Compression:</string>
        </property>
        <property name="buddy">
-        <cstring>flacCompressionSlider</cstring>
+        <cstring>wvCompressionSlider</cstring>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
        <item>
-        <widget class="QSlider" name="flacCompressionSlider">
+        <widget class="QSlider" name="wvCompressionSlider">
          <property name="maximum">
-          <number>8</number>
+          <number>2</number>
          </property>
          <property name="pageStep">
           <number>1</number>
@@ -48,9 +48,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="flacCompressionSpin">
+        <widget class="QSpinBox" name="wvCompressionSpin">
          <property name="maximum">
-          <number>8</number>
+          <number>2</number>
          </property>
         </widget>
        </item>
@@ -59,25 +59,25 @@
     </layout>
    </item>
    <item>
-    <widget class="QGroupBox" name="flacGainGroup">
+    <widget class="QGroupBox" name="wvGainGroup">
      <property name="title">
       <string>ReplayGain</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_8">
+     <layout class="QVBoxLayout" name="verticalLayout_10">
       <item>
-       <layout class="QGridLayout" name="formLayout_7">
+       <layout class="QGridLayout" name="formLayout_10">
         <item row="0" column="0">
-         <widget class="QLabel" name="flacGainLabel">
+         <widget class="QLabel" name="wvGainLabel">
           <property name="text">
            <string>Calculate gain:</string>
           </property>
           <property name="buddy">
-           <cstring>flacGainCbx</cstring>
+           <cstring>wvGainCbx</cstring>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QComboBox" name="flacGainCbx">
+         <widget class="QComboBox" name="wvGainCbx">
           <item>
            <property name="text">
             <string>Disabled</string>
@@ -86,7 +86,7 @@
          </widget>
         </item>
         <item row="0" column="2">
-         <spacer name="horizontalSpacer_3">
+         <spacer name="horizontalSpacer_4">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -104,14 +104,14 @@
     </widget>
    </item>
    <item>
-    <spacer name="verticalSpacer_3">
+    <spacer name="verticalSpacer_6">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>231</height>
+       <height>266</height>
       </size>
      </property>
     </spacer>
@@ -121,34 +121,34 @@
  <resources/>
  <connections>
   <connection>
-   <sender>flacCompressionSlider</sender>
+   <sender>wvCompressionSlider</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>flacCompressionSpin</receiver>
+   <receiver>wvCompressionSpin</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>402</x>
-     <y>55</y>
+     <x>411</x>
+     <y>17</y>
     </hint>
     <hint type="destinationlabel">
-     <x>477</x>
-     <y>58</y>
+     <x>465</x>
+     <y>17</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>flacCompressionSpin</sender>
+   <sender>wvCompressionSpin</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>flacCompressionSlider</receiver>
+   <receiver>wvCompressionSlider</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>481</x>
-     <y>46</y>
+     <x>474</x>
+     <y>26</y>
     </hint>
     <hint type="destinationlabel">
-     <x>435</x>
-     <y>46</y>
+     <x>427</x>
+     <y>26</y>
     </hint>
    </hints>
   </connection>
