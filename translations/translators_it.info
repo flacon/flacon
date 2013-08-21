@@ -1,0 +1,14 @@
+# _help = Don't translate this text, it is only help. I want to thank you in the "About" dialog. So, please fill the following information about yourself. The number does not matter, all the names will be displayed in alphabetical order.
+
+
+# translator_1_nameEnglish = Translator 1. Your name in English.
+translator_1_nameNative  = Simone Sandri
+translator_1_contact     = https://www.transifex.com/accounts/profile/xseris/
+
+# translator_2_nameEnglish = Translator 2. Your name in English.
+translator_2_nameNative  = Giancarlo Bianchi
+translator_2_contact     = ...
+
+# translator_3_nameEnglish = Translator 3. Your name in English.
+translator_3_nameNative  = ...
+translator_3_contact     = ...
