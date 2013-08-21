@@ -1,0 +1,5 @@
+This script will help you to build the binary or source DEB packages.
+
+USAGE
+  Just run the script. Deb packages can be found in the ~/flacon_{VER}_deb directory.
+  See 'makeDeb.sh --help' for more information on an options.

@@ -1,0 +1,25 @@
+This package was debianized by:
+
+    %DEBFULLNAME% <%DEBEMAIL%>
+
+It was downloaded from:
+
+    http://code.google.com/p/flacon/
+
+Upstream Author:
+
+    Alexander Sokolov <sokoloff.a@gmail.com>
+
+Copyright:
+
+    Copyright (C) 2009-2012 Alexander Sokolov <sokoloff.a@gmail.com>
+
+License: GPL-3+
+ On Debian systems the full text of the GNU Library General Public License can
+ be found in the '/usr/share/common-licenses/GPL-3' files.
+
+The Debian packaging is:
+
+    Copyright (C) 2010-2012 %DEBFULLNAME% <%DEBEMAIL%>
+
+and is licensed under the GPL version 3, see above.

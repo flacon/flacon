@@ -1,0 +1,8 @@
+%if DISTRIB Ubuntu
+%NAME% (%VERSION%-1%RELEASE%) %RELEASE%; urgency=low
+%else
+%NAME% (%VERSION%-1) %RELEASE%; urgency=low
+%endif
+  * New program release
+
+ -- %DEBFULLNAME% <%DEBEMAIL%>  %DATE%
