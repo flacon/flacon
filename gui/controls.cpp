@@ -292,7 +292,7 @@ ProgramEdit::ProgramEdit(const QString &programName, QWidget *parent):
 {
     mBtn = new QToolButton(this);
     mBtn->setText("...");
-    mBtn->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open"));
+    mBtn->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open", ":/icons/16/program-edit-btn"));
     mBtn->setStyleSheet("QToolButton { border: none; padding: 0px; }");
     mBtn->setCursor(Qt::ArrowCursor);
 

@@ -36,7 +36,7 @@
 /************************************************
 
  ************************************************/
-QIcon Project::getIcon(const QString &iconName1, const QString &iconName2, const QString &iconName3)
+QIcon Project::getIcon(const QString &iconName1, const QString &iconName2, const QString &iconName3, const QString &iconName4)
 {
     if (QIcon::themeName() == "hicolor")
     {
@@ -61,14 +61,23 @@ QIcon Project::getIcon(const QString &iconName1, const QString &iconName2, const
         }
     }
 
+    QStringList icons;
+    icons << iconName1;
+    icons << iconName2;
+    icons << iconName3;
+    icons << iconName4;
 
-    QIcon res = QIcon::fromTheme(iconName1);
+    QIcon res;
+    foreach(const QString &icon, icons)
+    {
+        if (icon.startsWith(':'))
+            res = QIcon(icon);
+        else
+            res = QIcon::fromTheme(icon);
 
-    if (res.isNull())
-        res = QIcon::fromTheme(iconName2);
-
-    if (res.isNull())
-        res = QIcon::fromTheme(iconName3);
+        if (!res.isNull())
+            return res;
+    }
 
     return res;
 }

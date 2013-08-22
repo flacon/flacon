@@ -76,7 +76,7 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
     connect(pages, SIGNAL(currentChanged(int)), this, SLOT(setPage(int)));
 
-    tmpDirButton->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open"));
+    tmpDirButton->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open", ":/icons/16/select-folder"));
     connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
 
     preGapComboBox->addItem(tr("Extract to separate file"), OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
@@ -109,7 +109,7 @@ void ConfigDialog::pagesListInit()
 
     QListWidgetItem *item = new QListWidgetItem(pagesList);
     item->setText(tr("General"));
-    item->setIcon(Project::getIcon("go-home", "gohome"));
+    item->setIcon(Project::getIcon("go-home", "gohome", ":/icons/32/settings-main"));
     pagesList->addItem(item);
 
     int n = 1;
@@ -127,13 +127,13 @@ void ConfigDialog::pagesListInit()
 
         item = new QListWidgetItem(pagesList);
         item->setText(format->name());
-        item->setIcon(Project::getIcon("audio-x-generic", "sound"));
+        item->setIcon(Project::getIcon("audio-x-generic", "sound", ":/icons/32/settings-encoder"));
         pagesList->addItem(item);
     }
 
     item = new QListWidgetItem(pagesList);
     item->setText(tr("Programs"));
-    item->setIcon(Project::getIcon("applications-system", "gear"));
+    item->setIcon(Project::getIcon("applications-system", "gear", ":/icons/32/settings-programs"));
     pagesList->addItem(item);
 
 

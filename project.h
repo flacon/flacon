@@ -58,7 +58,7 @@ public:
     void emitDownloadingStarted(DataProvider *provider) { emit downloadingStarted(provider); }
     void emitDownloadingFinished(DataProvider *provider) { emit downloadingFinished(provider);}
 
-    static QIcon getIcon(const QString &iconName1, const QString &iconName2="", const QString &iconName3="");
+    static QIcon getIcon(const QString &iconName1, const QString &iconName2="", const QString &iconName3="", const QString &iconName4="");
     static void error(const QString &message);
 
 public slots:

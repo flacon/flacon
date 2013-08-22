@@ -187,11 +187,11 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 
     QAction *act;
 
-    act = new DiskAction(Project::getIcon("document-open", "fileopen"), tr("Select another CUE file"), &menu, disk);
+    act = new DiskAction(Project::getIcon("document-open", "fileopen", ":/icons/16/select-cue-file"), tr("Select another CUE file"), &menu, disk);
     connect(act, SIGNAL(triggered()), this, SLOT(emitSelectCueFile()));
     menu.addAction(act);
 
-    act = new QAction(Project::getIcon("download", "web-browser", "network"), tr("Get data from CDDB"), &menu);
+    act = new QAction(Project::getIcon("download", "web-browser", "network", ":/icons/16/download-track-info"), tr("Get data from CDDB"), &menu);
     connect(act, SIGNAL(triggered()), disk, SLOT(downloadInfo()));
     act->setEnabled(disk->canDownloadInfo());
     menu.addAction(act);
@@ -317,15 +317,15 @@ void TrackView::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
 
 
-    DiskAction *act = new DiskAction(Project::getIcon("document-open", "fileopen"), tr("Select another audio file"), &menu, disk);
+    DiskAction *act = new DiskAction(Project::getIcon("document-open", "fileopen", ":/icons/16/select-audio-file"), tr("Select another audio file"), &menu, disk);
     connect(act, SIGNAL(triggered()), this, SLOT(emitSelectAudioFile()));
     menu.addAction(act);
 
-    act = new DiskAction(Project::getIcon("document-open", "fileopen"), tr("Select another CUE file"), &menu, disk);
+    act = new DiskAction(Project::getIcon("document-open", "fileopen", ":/icons/16/select-cue-file"), tr("Select another CUE file"), &menu, disk);
     connect(act, SIGNAL(triggered()), this, SLOT(emitSelectCueFile()));
     menu.addAction(act);
 
-    act = new DiskAction(Project::getIcon("download", "web-browser", "network"), tr("Get data from CDDB"), &menu, disk);
+    act = new DiskAction(Project::getIcon("download", "web-browser", "network", ":/icons/16/download-track-info"), tr("Get data from CDDB"), &menu, disk);
     connect(act, SIGNAL(triggered()), disk, SLOT(downloadInfo()));
     act->setEnabled(disk->canDownloadInfo());
     menu.addAction(act);

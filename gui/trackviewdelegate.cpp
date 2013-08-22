@@ -126,9 +126,9 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent):
     mNoCoverImg = QImage(":noCover").scaledToHeight(IMG_HEIGHT, Qt::SmoothTransformation);
     mTrackBtnPix = QPixmap(":trackBtn");
     mAudioBtnPix = QPixmap(":audioBtn");
-    mWarnPix = Project::getIcon("dialog-warning", "messagebox_warning").pixmap(MARK_HEIGHT, MARK_HEIGHT);
-    mOkPix = getIcon("dialog-ok", "button_ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
-    mErrorPix = getIcon("dialog-cancel", "button_cancel").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mWarnPix = Project::getIcon("dialog-warning", "messagebox_warning", ":/icons/32/disk-warning").pixmap(MARK_HEIGHT, MARK_HEIGHT);
+    mOkPix = Project::getIcon("dialog-ok", "button_ok", ":/icons/16/track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mErrorPix = Project::getIcon("dialog-cancel", "button_cancel",  ":/icons/16/track-cancel").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
 
     mDownloadMovie.setFileName(":wait");
     connect(project, SIGNAL(downloadingStarted(DataProvider*)), this, SLOT(downloadingStarted(DataProvider*)));
@@ -144,24 +144,6 @@ TrackViewDelegate::~TrackViewDelegate()
 {
     delete mCache;
 }
-
-
-/************************************************
-
- ************************************************/
-QIcon TrackViewDelegate::getIcon(const QString &iconName1, const QString &iconName2, const QString &iconName3) const
-{
-    QIcon res = QIcon::fromTheme(iconName1);
-
-    if (res.isNull())
-        res = QIcon::fromTheme(iconName2);
-
-    if (res.isNull())
-        res = QIcon::fromTheme(iconName3);
-
-    return res;
-}
-
 
 
 /************************************************

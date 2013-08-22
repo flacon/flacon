@@ -75,7 +75,6 @@ private:
     QPixmap mErrorPix;
     QMovie mDownloadMovie;
 
-    QIcon getIcon(const QString &iconName1, const QString &iconName2="", const QString &iconName3="") const;
     void paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, const Track *track) const;
     void paintDisk(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, const Disk *disk) const;
     QRect drawLabel(const QString &text, QRect rect, QPainter *painter) const;

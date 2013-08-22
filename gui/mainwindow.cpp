@@ -704,35 +704,35 @@ void MainWindow::setStartTrackNum()
  ************************************************/
 void MainWindow::initActions()
 {
-    actionAddFile->setIcon(Project::getIcon("document-open", "fileopen"));
+    actionAddFile->setIcon(Project::getIcon("document-open", "fileopen", ":/icons/22/add-file"));
     connect(actionAddFile, SIGNAL(triggered()), this, SLOT(openAddFileDialog()));
 
-    actionRemoveDisc->setIcon(Project::getIcon("edit-delete", "remove"));
+    actionRemoveDisc->setIcon(Project::getIcon("edit-delete", "remove", ":/icons/22/remove-disk"));
     connect(actionRemoveDisc, SIGNAL(triggered()), this, SLOT(removeDisks()));
 
-    actionScan->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open"));
+    actionScan->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open", ":/icons/22/scan"));
     connect(actionScan, SIGNAL(triggered()), this, SLOT(openScanDialog()));
 
-    actionDownloadTrackInfo->setIcon(Project::getIcon("download", "web-browser", "network"));
+    actionDownloadTrackInfo->setIcon(Project::getIcon("download", "web-browser", "network", ":/icons/22/download-track-info"));
     connect(actionDownloadTrackInfo, SIGNAL(triggered()), this, SLOT(downloadInfo()));
 
 
-    actionStartConvert->setIcon(Project::getIcon("dialog-ok", "button_ok"));
+    actionStartConvert->setIcon(Project::getIcon("dialog-ok", "button_ok", ":/icons/22/start-convert"));
     connect(actionStartConvert, SIGNAL(triggered()), this, SLOT(startConvert()));
 
-    actionAbortConvert->setIcon(Project::getIcon("dialog-cancel", "button_cancel"));
+    actionAbortConvert->setIcon(Project::getIcon("dialog-cancel", "button_cancel", ":/icons/22/abort-convert"));
     connect(actionAbortConvert, SIGNAL(triggered()), this, SLOT(stopConvert()));
 
-    actionSelectResultDir->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open"));
+    actionSelectResultDir->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open", ":/icons/22/select-result-dir"));
     connect(actionSelectResultDir, SIGNAL(triggered()), this, SLOT(openOutDirDialog()));
 
-    actionConfigure->setIcon(Project::getIcon("configure", "preferences-system"));
+    actionConfigure->setIcon(Project::getIcon("configure", "preferences-system", ":/icons/22/configure"));
     connect(actionConfigure, SIGNAL(triggered()), this, SLOT(configure()));
 
     actionConfigureEncoder->setIcon(actionConfigure->icon());
     connect(actionConfigureEncoder, SIGNAL(triggered()), this, SLOT(configureEncoder()));
 
-    actionAbout->setIcon(Project::getIcon("help-about", "info"));
+    actionAbout->setIcon(Project::getIcon("help-about", "info", ":/icons/22/about"));
     connect(actionAbout, SIGNAL(triggered()), this,  SLOT(openAboutDialog()));
 }
 
