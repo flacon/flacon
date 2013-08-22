@@ -4,7 +4,8 @@ Priority: extra
 Maintainer: Alexander Sokolov <sokoloff.a@gmail.com>
 Build-Depends: pkg-config, 
     debhelper,
-    cmake, 
+    cmake,
+    libqt4-dev (>= 4.6.0),
     pkg-config, 
     libuchardet-dev
 Standards-Version: 3.9.4
