@@ -90,7 +90,7 @@ QString AboutDialog::titleText() const
  ************************************************/
 QString AboutDialog::descriptionText() const
 {
-    return "Extracts individual tracks from one big audio file containing the entire album.";
+    return tr("Extracts individual tracks from one big audio file containing the entire album.");
 }
 
 
