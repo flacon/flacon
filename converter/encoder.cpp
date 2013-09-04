@@ -46,6 +46,8 @@ Encoder::Encoder(const OutFormat *format, Track *track, QObject *parent):
     mWorkDir = QFileInfo(track->resultFilePath()).dir().absolutePath();
     mOutFile = track->resultFilePath();
     mReadyStart = false;
+
+    mDebug = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_ENCODER");
 }
 
 
@@ -116,6 +118,9 @@ void Encoder::doRun()
 
 
     QStringList args = mFormat->encoderArgs(track(), outFile());
+    if (mDebug)
+        debugArguments(args);
+
     QString prog = args.takeFirst();
 
     mProcess = new QProcess();

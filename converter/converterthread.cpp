@@ -26,6 +26,7 @@
 
 #include "converterthread.h"
 #include <QFile>
+#include <QTextStream>
 
 
 /************************************************
@@ -103,4 +104,26 @@ bool ConverterThread::deleteFile(const QString &fileName)
         return f.remove();
     else
         return true;
+}
+
+
+/************************************************
+
+ ************************************************/
+void ConverterThread::debugArguments(const QStringList &args)
+{
+    QTextStream out(stderr);
+    foreach (QString arg, args)
+    {
+        if (arg.contains(' ') || arg.contains('\t'))
+        {
+            out << "'" << arg << "' ";
+        }
+        else
+        {
+            out << arg << " ";
+        }
+
+    }
+    out << endl;
 }

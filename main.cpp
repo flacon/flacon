@@ -55,6 +55,14 @@ void printHelp()
     out << endl;
     out << "Arguments:" << endl;
     out << "  file                      CUE or Audio file" << endl;
+
+    out << endl;
+    out << "ENVIRONMENT" << endl;
+    out << "  FLACON_DEBUG_ENCODER      If variable is set, flacon print the encoder" << endl;
+    out << "                            program arguments." << endl;
+    out << "  FLACON_DEBUG_GAIN         If variable is set, flacon print the gain" << endl;
+    out << "                            program arguments." << endl;
+
 }
 
 

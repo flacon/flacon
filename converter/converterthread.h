@@ -60,6 +60,7 @@ protected:
     void error(Track *track, const QString &message);
     bool deleteFile(const QString &fileName);
 
+    void debugArguments(const QStringList &args);
 private:
     Disk *mDisk;
 };

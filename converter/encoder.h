@@ -69,6 +69,7 @@ private:
     int mTotal;
     int mReady;
     int mProgress;
+    bool mDebug;
 
     void readInputFile();
     void readInputFile2(FILE *proc);

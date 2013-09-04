@@ -46,6 +46,8 @@ Gain::Gain(const OutFormat *format, Disk *disk, Track *track, QObject *parent):
         for(int i=0; i<disk->count(); ++i)
             mTracks << disk->track(i);
     }
+
+    mDebug = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_GAIN");
 }
 
 
@@ -98,6 +100,9 @@ void Gain::doRun()
     }
 
     QStringList args = mFormat->gainArgs(files);
+    if (mDebug)
+        debugArguments(args);
+
     QString prog = args.takeFirst();
 
     mProcess = new QProcess();

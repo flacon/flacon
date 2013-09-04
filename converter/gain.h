@@ -58,6 +58,7 @@ private:
     QList<Track*> mTracks;
     QHash<Track*, QString> mInputFiles;
     QProcess *mProcess;
+    bool mDebug;
 };
 
 #endif // GAIN_H
