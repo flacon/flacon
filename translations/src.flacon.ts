@@ -445,15 +445,15 @@
 <context>
     <name>Converter</name>
     <message>
-        <source>Can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -479,18 +479,18 @@
 <context>
     <name>Encoder</name>
     <message>
-        <source>Can&apos;t delete file:
-%1
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Encoder error:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Can&apos;t read %1 file</source>
+        <source>I can&apos;t delete file:
+%1
+%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I can&apos;t read %1 file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -539,7 +539,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
 <context>
     <name>Encoder_Wav</name>
     <message>
-        <source>Can&apos;t rename file:
+        <source>I can&apos;t rename file:
 %1 to %2
 %3</source>
         <translation type="unfinished"></translation>
@@ -856,15 +856,15 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Program &lt;b&gt;%1&lt;/b&gt; not found.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
