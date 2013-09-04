@@ -188,14 +188,14 @@ bool Converter::createDirs()
 
         if (! dir.mkpath("."))
         {
-            emit error(tr("Can't create directory \"%1\".").arg(dir.path()));
+            emit error(tr("I can't create directory \"%1\".").arg(dir.path()));
             res = false;
             continue;
         }
 
         if (!QFileInfo(dir.path()).isWritable())
         {
-            emit error(tr("Can't write to directory \"%1\".").arg(dir.path()));
+            emit error(tr("I can't write to directory \"%1\".").arg(dir.path()));
             res = false;
             continue;
         }
@@ -397,7 +397,7 @@ bool Converter::check(OutFormat *format) const
         QString s;
         foreach (QString e, errors)
         {
-            s += QString("<li style='margin-top: 4px;'>%1</li>").arg(e);
+            s += QString("<li style='margin-top: 4px;'> %1</li>").arg(e);
         }
 
         emit error(QString("<html>%1<ul>%2</ul></html>").arg(

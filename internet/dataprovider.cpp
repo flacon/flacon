@@ -329,7 +329,7 @@ void FreeDbProvider::parse(QNetworkReply *reply)
         int n = key.mid(6).toInt(&ok);
         if(!ok)
         {
-            error("Can't parse CDDB result.");
+            error("I can't parse CDDB result.");
             return;
         }
 

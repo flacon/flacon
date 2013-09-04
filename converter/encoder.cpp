@@ -111,7 +111,7 @@ void Encoder::doRun()
 
         if (f.exists() && !f.remove())
         {
-            error(track(), tr("Can't delete file:\n%1\n%2").arg(f.fileName()).arg(f.errorString()));
+            error(track(), tr("I can't delete file:\n%1\n%2").arg(f.fileName()).arg(f.errorString()));
             return;
         }
     }
@@ -155,7 +155,7 @@ void Encoder::readInputFile()
     QFile file(mInputFile);
     if (!file.open(QFile::ReadOnly)) // | QFile::Unbuffered))
     {
-        error(track(), tr("Can't read %1 file").arg(mInputFile));
+        error(track(), tr("I can't read %1 file").arg(mInputFile));
     }
 
     mReady = 0;

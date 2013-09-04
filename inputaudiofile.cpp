@@ -88,7 +88,7 @@ bool InputAudioFile::load()
     if (shntool.isEmpty())
     {
         qWarning() << "Program shntool not found.";
-        mErrorString = QObject::tr("Program <b>%1</b> not found.").arg("shntool");
+        mErrorString = QObject::tr("I can't find program <b>%1</b>.").arg("shntool");
         return false;
     }
 

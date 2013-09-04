@@ -121,7 +121,7 @@ bool OutFormat::checkProgram(const QString &program, QStringList *errors) const
 
     if (!settings->checkProgram(program))
     {
-        *errors << QObject::tr("Program <b>%1</b> not found.").arg(program);
+        *errors << QObject::tr("I can't find program <b>%1</b>.").arg(program);
         return false;
     }
 

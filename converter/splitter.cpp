@@ -201,7 +201,7 @@ void Splitter::parseOut()
 
                 if(trackRe.indexIn(QString::fromLocal8Bit(buf)) == -1)
                 {
-                    qWarning() << "Can't parse" << QString::fromLocal8Bit(buf);
+                    qWarning() << "I can't parse" << QString::fromLocal8Bit(buf);
                     continue;
                 }
 
@@ -412,7 +412,7 @@ bool CueCreator::write()
 {
     if (!mFile.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-        mErrorString = QObject::tr("Can't write CUE file <b>%1</b>:<br>%2").arg(mFile.fileName(), mFile.errorString());
+        mErrorString = QObject::tr("I can't write CUE file <b>%1</b>:<br>%2").arg(mFile.fileName(), mFile.errorString());
         return false;
     }
 

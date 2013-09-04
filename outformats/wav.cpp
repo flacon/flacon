@@ -119,7 +119,7 @@ void Encoder_Wav::doRun()
     if (!res)
     {
         error(track(),
-              tr("Can't rename file:\n%1 to %2\n%3").arg(
+              tr("I can't rename file:\n%1 to %2\n%3").arg(
                   inputFile(),
                   outFile(),
                   srcFile.errorString()));
