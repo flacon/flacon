@@ -7,35 +7,35 @@
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>O programie</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished"/>
+        <translation>Autor</translation>
     </message>
     <message>
         <source>Thanks</source>
-        <translation type="unfinished"/>
+        <translation>Podziękowania</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation type="unfinished"/>
+        <translation>Tłumaczenia</translation>
     </message>
     <message>
         <source>External programs</source>
-        <translation type="unfinished"/>
+        <translation>Programy zewnętrzne</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation type="unfinished"/>
+        <translation>Strona domowa: %1</translation>
     </message>
     <message>
         <source>License: %1</source>
-        <translation type="unfinished"/>
+        <translation>Licencja: %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
-        <translation type="unfinished"/>
+        <translation>Specjalne podziękowania dla:</translation>
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
@@ -43,31 +43,31 @@
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation type="unfinished"/>
+        <translation>Copyright: %1-%2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
-        <translation type="unfinished"/>
+        <translation>Poprawki obsługi WavPack.</translation>
     </message>
     <message>
         <source>Application icon, Packaging</source>
-        <translation type="unfinished"/>
+        <translation>Ikona programu, paczkowanie</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation type="unfinished"/>
+        <translation>Paczkowanie, testowanie.</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
-        <translation type="unfinished"/>
+        <translation>Ulepszenia UI programu.</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon jest tłumaczony na wiele języków, dzięki pracy zespołów tłumaczy z całego świata.</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation type="unfinished"/>
+        <translation>Wyodrębnia pojedyncze utwory z jednego dużego pliku audio, zawierającego cały album.</translation>
     </message>
 </context>
 <context>
@@ -225,57 +225,57 @@
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguracja kodowania AAC</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>Użyj ustawień jakości (zalecane)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Użyj prędkości transmisji</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Prędkość przepływu bitów:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Ustawia docelową prędkość przepływu bitów (w kb/s).</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Flac</name>
     <message>
         <source>Flac encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguracja kodowania FLAC</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation type="unfinished"/>
+        <translation>Kompresja:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>Tryb RaplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Oblicz wzmocnienie:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Nieaktywne</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguracja kodowania MP3</translation>
     </message>
     <message>
         <source>Preset:</source>
-        <translation type="unfinished"/>
+        <translation>Prekonfiguracja:</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -303,141 +303,163 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;Ta prekonfiguracja zapewnia większości osób przyzwoitą jakość muzyki.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;Ta prekonfiguracja zapewnia większości osób dość wysoką jakość muzyki.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;Ta prekonfiguracja zapewnia lepszą jakość, niż tryb normalny, co możesz usłyszeć, jeśli masz bardzo dobry słuch.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;Włącza VBR (zmienną prędkość przepływu bitów) i pozwala ustalać poziom jej jakości.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Włącza nowy, szybki tryb VBR w poszczególnych profilach.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;Jeśli chcesz uzyskać absolutnie najwyższą jakość muzyki, bez względu na wielkość plików, powinienieś wybrać właśnie tę prekonfigurację.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Korzystanie z tej prekonfiguracji, zapewnia zazwyczaj dobrą jakość dla określonych wartości prędkości przepływu bitów (bitrate).&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Korzystanie z tej prekonfiguracji, zapewnia zazwyczaj lepszą jakość, niż Constant BitRate (CBR), dla określonych wartości prędkości przepływu bitów (bitrate).&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Użyj prędkości transmisji</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Prędkość przepływu bitów:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Ustawia docelową prędkość przepływu bitów (w kb/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
-        <translation type="unfinished"/>
+        <translation>Użyj jakości</translation>
     </message>
     <message>
         <source>Quality:</source>
-        <translation type="unfinished"/>
+        <translation>Jakość:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>Tryb RaplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Oblicz wzmocnienie:</translation>
     </message>
     <message>
         <source>VBR medium</source>
-        <translation type="unfinished"/>
+        <translation>VBR medium</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation type="unfinished"/>
+        <translation>VBR standard</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation type="unfinished"/>
+        <translation>VBR standard fast</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation type="unfinished"/>
+        <translation>VBR extreme</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation type="unfinished"/>
+        <translation>VBR extreme fast</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation type="unfinished"/>
+        <translation>VBR quality</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation type="unfinished"/>
+        <translation>CBR insane</translation>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation type="unfinished"/>
+        <translation>CBR kbps</translation>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation type="unfinished"/>
+        <translation>ABR kbps</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguracja kodowania Ogg</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>Użyj ustawień jakości (zalecane)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Użyj prędkości transmisji</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Minimalna prędkość przepływu bitów:</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Ustawia minimalną prędkość przepływu bitów (w kb/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Nominalna prędkość przepływu bitów:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Ustawia docelową prędkość przepływu bitów (w kb/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Maksymalna prędkość przepływu bitów:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Ustawia maksymalną prędkość przepływu bitów (w kb/s).</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>Tryb RaplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Oblicz wzmocnienie:</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguracja kodowania WavPack</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation type="unfinished"/>
+        <translation>Kompresja:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>Tryb RaplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Oblicz wzmocnienie:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Nieaktywne</translation>
     </message>
 </context>
 <context>
@@ -448,11 +470,11 @@
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można utworzyć katalogu &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można zapisywać w katalogu &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -479,24 +501,27 @@
     <message>
         <source>Encoder error:
 </source>
-        <translation>Błąd kodeka:</translation>
+        <translation>Błąd kodeka:
+</translation>
     </message>
     <message>
         <source>I can't delete file:
 %1
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Nie można usunąć pliku:
+%1
+%2</translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
-        <translation type="unfinished"/>
+        <translation>Nie można odczytać pliku %1</translation>
     </message>
 </context>
 <context>
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>Ustawia stopień kompresji, międszy %1 (najniższy) a %2 (najwyższy).</translation>
+        <translation>Ustawia stopień kompresji, między %1 (najniższy) a %2 (najwyższy).</translation>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
@@ -544,7 +569,9 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Nie można zmienić nazwy pliku:
+%1 na %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -552,7 +579,8 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     <message>
         <source>Gain error:
 </source>
-        <translation type="unfinished"/>
+        <translation>Błąd obliczania wzmocnienia:
+</translation>
     </message>
 </context>
 <context>
@@ -609,7 +637,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Tags</source>
-        <translation>tagi</translation>
+        <translation>Tagi</translation>
     </message>
     <message>
         <source>Genre:</source>
@@ -877,11 +905,11 @@ Czy chcesz kontynuować?</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Nie można zapisać pliku CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można znaleźć programu &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
 </context>
 <context>

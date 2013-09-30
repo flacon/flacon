@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation type="unfinished"/>
+        <translation>Vytáhne jednotlivé skladby z jednoho velkého zvukového souboru, který obsahuje celé album.</translation>
     </message>
 </context>
 <context>
@@ -471,11 +471,11 @@
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nelze vytvořit adresář &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nelze zapisovat do adresáře &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -508,11 +508,13 @@
         <source>I can't delete file:
 %1
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Nelze smazat soubor:
+%1
+%2</translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
-        <translation type="unfinished"/>
+        <translation>Nelze přečíst soubor %1</translation>
     </message>
 </context>
 <context>
@@ -567,7 +569,9 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Nelze přejmenovat soubor:⏎
+%1 na %2⏎
+%3</translation>
     </message>
 </context>
 <context>
@@ -900,11 +904,11 @@ Chcete pokračovat?</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Nelze zapisovat soubor CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Nelze najít program &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
 </context>
 <context>

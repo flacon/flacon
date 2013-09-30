@@ -51,7 +51,7 @@
     </message>
     <message>
         <source>Application icon, Packaging</source>
-        <translation>Icônes et mise en forme</translation>
+        <translation>Icône et mise en forme</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
@@ -493,7 +493,7 @@
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; contient plusieurs balises FILE.&lt;br&gt;Ces fichiers CUE ne sont pas encore pris en charge.</translation>
+        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; contient plusieurs étiquettes FILE.&lt;br&gt;Ces fichiers CUE ne sont pas encore pris en charge.</translation>
     </message>
 </context>
 <context>
@@ -635,7 +635,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Tags</source>
-        <translation>Balises</translation>
+        <translation>Étiquettes</translation>
     </message>
     <message>
         <source>Genre:</source>
@@ -907,7 +907,7 @@ Voulez-vous continuer ?</translation>
     </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Je ne peux pas trouver le programme &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
 </context>
 <context>
