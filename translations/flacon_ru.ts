@@ -907,7 +907,14 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Не могу найти программу &lt;b&gt;%1&lt;/b&gt;.</translation>
+    </message>
+</context>
+<context>
+    <name>Splitter</name>
+    <message>
+        <source>The number of tracks more than expected.</source>
+        <translation>Количество треков больше чем я ожидал.</translation>
     </message>
 </context>
 <context>

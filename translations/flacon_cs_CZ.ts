@@ -912,6 +912,13 @@ Chcete pokračovat?</translation>
     </message>
 </context>
 <context>
+    <name>Splitter</name>
+    <message>
+        <source>The number of tracks more than expected.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>TrackView</name>
     <message>
         <source>Select another CUE file</source>
