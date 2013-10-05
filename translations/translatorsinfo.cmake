@@ -34,7 +34,6 @@ FUNCTION(create_translatorsinfo_qrc _qrcFile _DIR)
     file(WRITE ${TRANSLATORS_INFO_FILE} "")
 
     foreach(_file ${IN_FILES})
-        MESSAGE(STATUS "${_DIR}")
         get_filename_component(_name  ${_file} NAME)
         file(APPEND ${TRANSLATORS_INFO_FILE} "[${_name}]\n")
         file(READ ${_file} _content)
