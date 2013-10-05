@@ -48,7 +48,7 @@ public:
     CueIndex(const QString &str = "");
 
     bool isNull() const { return mNull; }
-    QString toString() const;
+    QString toString(bool cdQuality = true) const;
 
     CueIndex operator-(const CueIndex &other) const;
     bool operator==(const CueIndex &other) const;

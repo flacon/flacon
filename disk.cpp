@@ -53,16 +53,30 @@ CueIndex::CueIndex(const QString &str):
 /************************************************
 
  ************************************************/
-QString CueIndex::toString() const
+QString CueIndex::toString(bool cdQuality) const
 {
     int min = mValue / (60 * 75);
     int sec = (mValue - min * 60 * 75) / 75;
     int frm = mValue - (min * 60 + sec) * 75;
 
-    return QString("%1:%2:%3")
-            .arg(min, 2, 10, QChar('0'))
-            .arg(sec, 2, 10, QChar('0'))
-            .arg(frm, 2, 10, QChar('0'));
+
+    if (cdQuality)
+    {
+        return QString("%1:%2:%3")
+                .arg(min, 2, 10, QChar('0'))
+                .arg(sec, 2, 10, QChar('0'))
+                .arg(frm, 2, 10, QChar('0'));
+    }
+    else
+    {
+        int msec = frm * 1000.0 / 75.0;
+
+        return QString("%1:%2.%3")
+                .arg(min,  2, 10, QChar('0'))
+                .arg(sec,  2, 10, QChar('0'))
+                .arg(msec, 3, 10, QChar('0'));
+    }
+
 }
 
 

@@ -638,6 +638,28 @@ void TestFlacon::testConvert()
     }
     //## 5 ################################################
 
+    //## 6 ################################################
+    // Garbage in the CUE
+    {
+        outDir = resultDir + "Test_6";
+        settings->setValue(Settings::PerTrackCue_Create,  false);
+        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
+        settings->setValue(Settings::OutFiles_Directory, outDir);
+
+        ConverterTester conv(
+                    inDir + "06.garbageInTags.cue",
+                    mHdAudioFile,
+                    "",
+                    "01 - Song01.wav;"
+                    "02 - Song02.wav;"
+                    "03 - Song03.wav;"
+                    "04 - Song04.wav;"
+                    );
+
+        conv.run();
+    }
+    //## 6 #################################################
+
 }
 
 

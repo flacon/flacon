@@ -207,6 +207,13 @@ void Splitter::parseOut()
 
                 QString fileName = trackRe.cap(1);
                 int trackNum = trackRe.cap(2).toInt();
+
+                if (trackNum > disk()->count())
+                {
+                    error(disk()->track(0), tr("The number of tracks more than expected."));
+                    return;
+                }
+
                 track = (trackNum == 0) ? disk()->preGapTrack() : disk()->track(trackNum - 1);
                 mPreGapExists = mPreGapExists || (trackNum == 0);
 
@@ -258,6 +265,8 @@ void Splitter::sendCueData()
         if (key == "TRACK")
         {
             trackNum++;
+            mProcess->write(line);
+            continue;
         }
 
         if (key == "INDEX")
@@ -276,19 +285,21 @@ void Splitter::sendCueData()
             }
             else
             {
-                if (cdQuality)
-                {
-                    mProcess->write(line);
-                }
-                else
-                {
-                    int ff = str.section(':', 2, 2).toInt();
-                    mProcess->write(QString("%1.%2\n").arg(str.section(':', 0, 1)).arg(ff*10, 3, 10, QChar('0')).toLatin1());
-                }
+                CueIndex index(str.section(' ', 2));
+                mProcess->write(QString("  INDEX %1 %2\n")
+                                .arg(indexNum, 2, 10, QChar('0'))
+                                .arg(index.toString(cdQuality))
+                                .toLocal8Bit());
             }
             continue;
         }
-        mProcess->write(line);
+
+        if (key == "FILE")
+        {
+            mProcess->write(line);
+            continue;
+        }
+
     }
 
     cue.close();
