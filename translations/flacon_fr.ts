@@ -913,8 +913,8 @@ Voulez-vous continuer ?</translation>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks more than expected.</source>
-        <translation type="unfinished"/>
+        <source>The number of tracks is higher than expected.</source>
+        <translation>Il y a  plus de pistes que prévu.</translation>
     </message>
 </context>
 <context>

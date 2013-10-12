@@ -307,23 +307,23 @@
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Usar bitrate</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Bitrate</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Establecer bitrate objetivo (en kb/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
-        <translation type="unfinished"/>
+        <translation>Usar calidad</translation>
     </message>
     <message>
         <source>Quality:</source>
-        <translation type="unfinished"/>
+        <translation>Calidad:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -331,7 +331,7 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Calcular ganancia:</translation>
     </message>
     <message>
         <source>VBR medium</source>
@@ -873,7 +873,7 @@ Do you want to continue?</source>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks more than expected.</source>
+        <source>The number of tracks is higher than expected.</source>
         <translation type="unfinished"/>
     </message>
 </context>

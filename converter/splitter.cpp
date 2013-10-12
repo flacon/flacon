@@ -210,7 +210,7 @@ void Splitter::parseOut()
 
                 if (trackNum > disk()->count())
                 {
-                    error(disk()->track(0), tr("The number of tracks more than expected."));
+                    error(disk()->track(0), tr("The number of tracks is higher than expected."));
                     return;
                 }
 

@@ -871,7 +871,7 @@ Do you want to continue?</source>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks more than expected.</source>
+        <source>The number of tracks is higher than expected.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
