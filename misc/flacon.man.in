@@ -1,0 +1,49 @@
+.TH flacon "1" "October 2013" "Flacon @FLACON_VERSION@" "Flacon - Audio File Encoder"
+.SH NAME
+flacon \- Extracts audio tracks from an audio CD image to separate tracks.
+.SH SYNOPSIS
+.B flacon
+.RI [ options ]
+.RI [ file ]
+.SH DESCRIPTION
+Flacon extracts individual tracks from one big audio file containing the entire album of music and saves them as separate audio files. To do this, it uses information from the appropriate CUE file.
+Besides, Flacon makes it possible to conveniently revise or specify tags both for all tracks at once or for each tag separately.
+
+.SH OPTIONS
+.
+.TP
+.BR \-s ", " \-\-start
+Start to convert immediately.
+.TP
+\fB\-c\fR \fIfile\fR, \fB\-\-config \fIfile
+Specify an alternative configuration file.
+.TP
+.BR \-h ", " \-\-help
+Show help about options
+.TP
+.BR \\--version
+Show version information
+
+.SH ARGUMENTS
+.
+.TP
+.BR file
+CUE or Audio file
+
+.SH ENVIRONMENT
+.TP
+.BR FLACON_DEBUG_ENCODER
+If variable is set, flacon print the encoder program arguments.
+.TP
+.BR FLACON_DEBUG_GAIN
+If variable is set, flacon print the gain program arguments.
+
+.SH FILES
+.
+.TP
+.I ~/.config/flacon/flacon.conf
+This is the per-user configuration file.
+
+.SH HOMEPAGE
+.
+https://github.com/SokoloffA/flacon

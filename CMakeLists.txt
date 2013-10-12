@@ -157,11 +157,11 @@ set(RESOURCES
 )
 
 # add translations ...
-file (GLOB TS_FILES 
+file (GLOB TS_FILES
     translations/flacon*.ts
 )
 
-set(DATA_DIR 
+set(DATA_DIR
     ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}
 )
 
@@ -225,4 +225,39 @@ else()
     message(STATUS "")
 endif()
 
+# Man page **************************************
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/misc/flacon.man.in
+    ${CMAKE_CURRENT_BINARY_DIR}/flacon.1
+    @ONLY
+)
 
+#add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz
+add_custom_command(TARGET ${PROJECT_NAME}
+    COMMAND gzip -f ${CMAKE_CURRENT_BINARY_DIR}/flacon.1
+)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION share/man/man1)
+
+# Add make dist target **************************
+if(NOT CPACK_PACKAGE_VERSION)
+    SET(CPACK_PACKAGE_VERSION "${FLACON_VERSION}")
+endif()
+
+SET(CPACK_SOURCE_GENERATOR "TBZ2")
+SET(CPACK_SOURCE_PACKAGE_FILE_NAME "${PROJECT_NAME}-${CPACK_PACKAGE_VERSION}")
+if(EXISTS ${PROJECT_SOURCE_DIR}/.gitignore)
+    file(READ .gitignore CPACK_IGNORE_FILES)
+endif()
+
+SET(CPACK_IGNORE_FILES
+    ${CPACK_IGNORE_FILES}
+    \\\\.git
+    build
+    CMakeLists.txt.user
+    \\\\~
+)
+
+SET(CPACK_SOURCE_IGNORE_FILES ${CPACK_IGNORE_FILES})
+INCLUDE(CPack)
+# simulate autotools' "make dist"
+add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
