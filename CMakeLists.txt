@@ -210,9 +210,9 @@ add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${MOC_SOURCES} ${QM_FILES} 
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES} ${QT_LIBRARIES})
 
 install(FILES   misc/${PROJECT_NAME}.desktop DESTINATION "share/applications")
-install(FILES   misc/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps")
-install(FILES   misc/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps")
-install(FILES   misc/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps")
+install(FILES   misc/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps" RENAME "flacon.png")
+install(FILES   misc/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps" RENAME "flacon.png")
+install(FILES   misc/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps" RENAME "flacon.png")
 install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
