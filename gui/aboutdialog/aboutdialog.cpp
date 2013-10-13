@@ -117,7 +117,7 @@ QString AboutDialog::homepageText() const
  ************************************************/
 QString AboutDialog::licenseText() const
 {
-    return "<a href='http://www.gnu.org/licenses/gpl-2.0.html'>GNU General Public License version 2</a>";
+    return "<a href='http://www.gnu.org/licenses/lgpl-2.1.html'>GNU Lesser General Public License version 2.1 or later</a>";
 }
 
 
