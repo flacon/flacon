@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LUPDATE_OPTIONS="-noobsolete"
+LUPDATE_OPTIONS="-no-obsolete"
 LUPDATE_OPTIONS="${LUPDATE_OPTIONS} -locations none "
 TS_FILE="../translations/src.flacon.ts"
 

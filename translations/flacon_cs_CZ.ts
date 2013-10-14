@@ -42,6 +42,10 @@
         <translation>Flacon používá vnější programy. Hodně díků jejich autorům!</translation>
     </message>
     <message>
+        <source>Extracts individual tracks from one big audio file containing the entire album.</source>
+        <translation>Vytáhne jednotlivé skladby z jednoho velkého zvukového souboru, který obsahuje celé album.</translation>
+    </message>
+    <message>
         <source>Copyright: %1-%2 %3</source>
         <translation>Autorské právo: %1-%2 %3</translation>
     </message>
@@ -64,10 +68,6 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
         <translation>Flacon je přeložen do mnoha jazyků díky práci překladatelů z celého světa.</translation>
-    </message>
-    <message>
-        <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Vytáhne jednotlivé skladby z jednoho velkého zvukového souboru, který obsahuje celé album.</translation>
     </message>
 </context>
 <context>
@@ -466,16 +466,16 @@
 <context>
     <name>Converter</name>
     <message>
-        <source>Conversion is not possible:</source>
-        <translation>Převod není možný:</translation>
-    </message>
-    <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
         <translation>Nelze vytvořit adresář &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
         <translation>Nelze zapisovat do adresáře &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Conversion is not possible:</source>
+        <translation>Převod není možný:</translation>
     </message>
 </context>
 <context>
@@ -500,17 +500,17 @@
 <context>
     <name>Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
-        <translation>Chyba kodéru:</translation>
-    </message>
-    <message>
         <source>I can't delete file:
 %1
 %2</source>
         <translation>Nelze smazat soubor:
 %1
 %2</translation>
+    </message>
+    <message>
+        <source>Encoder error:
+</source>
+        <translation>Chyba kodéru:</translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
@@ -597,34 +597,9 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <translation>Adresář:</translation>
     </message>
     <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</source>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Číslo skladby  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Celkový počet skladeb&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Umělec&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název alba&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název skladby&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Rok&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Žánr&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</translation>
+        <source>Result directory</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Pattern:</source>
@@ -633,6 +608,11 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
     <message>
         <source>Format:</source>
         <translation>Formát:</translation>
+    </message>
+    <message>
+        <source>Output format</source>
+        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tags</source>
@@ -847,6 +827,27 @@ Chcete pokračovat?</translation>
         <comment>Error</comment>
         <translation>Flacon</translation>
     </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -895,14 +896,6 @@ Chcete pokračovat?</translation>
 <context>
     <name>QObject</name>
     <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>Vyrovnání hlasitosti nemůžete použít na soubory se vzorkovacím kmitočtem nad 48kHz. Metaflac takové soubory nepodporuje.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Soubor &lt;b&gt;%1&lt;/b&gt; není podporovaným zvukovým souborem. &lt;br&gt;&lt;br&gt;Ověřte, že jsou nainstalovány všechny požadované programy, a že jsou v nastavení.</translation>
-    </message>
-    <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <translation>Nelze zapisovat soubor CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
@@ -910,12 +903,20 @@ Chcete pokračovat?</translation>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Nelze najít program &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
+    <message>
+        <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <translation>Soubor &lt;b&gt;%1&lt;/b&gt; není podporovaným zvukovým souborem. &lt;br&gt;&lt;br&gt;Ověřte, že jsou nainstalovány všechny požadované programy, a že jsou v nastavení.</translation>
+    </message>
+    <message>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <translation>Vyrovnání hlasitosti nemůžete použít na soubory se vzorkovacím kmitočtem nad 48kHz. Metaflac takové soubory nepodporuje.</translation>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
         <source>The number of tracks is higher than expected.</source>
-        <translation type="unfinished"/>
+        <translation>Počet skladeb je vyšší než očekáváno.</translation>
     </message>
 </context>
 <context>

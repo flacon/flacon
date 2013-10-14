@@ -42,6 +42,10 @@
         <translation>Flacon usa programas externos. O noso agradecemento para seus autores!</translation>
     </message>
     <message>
+        <source>Extracts individual tracks from one big audio file containing the entire album.</source>
+        <translation>Extrae pistas individuais a partir dun ficheiro de audio grande que contén un álbum completo.</translation>
+    </message>
+    <message>
         <source>Copyright: %1-%2 %3</source>
         <translation>Dereitos de autoría: %1-%2 %3</translation>
     </message>
@@ -64,10 +68,6 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
         <translation>Flacon está traducido a diversos idiomas grazas ao traballo de equipos de tradución de todo o mundo.</translation>
-    </message>
-    <message>
-        <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Extrae pistas individuais a partir dun ficheiro de audio grande que contén un álbum completo.</translation>
     </message>
 </context>
 <context>
@@ -466,16 +466,16 @@
 <context>
     <name>Converter</name>
     <message>
-        <source>Conversion is not possible:</source>
-        <translation>Non é posíbel realizar a conversión:</translation>
-    </message>
-    <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
         <translation>Non se puido crear o directorio &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
         <translation>Non se puido escribir no directorio &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Conversion is not possible:</source>
+        <translation>Non é posíbel realizar a conversión:</translation>
     </message>
 </context>
 <context>
@@ -500,18 +500,18 @@
 <context>
     <name>Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
-        <translation>Erro do codificador:
-</translation>
-    </message>
-    <message>
         <source>I can't delete file:
 %1
 %2</source>
         <translation>Non se puido eliminar o ficheiro:
 %1
 %2</translation>
+    </message>
+    <message>
+        <source>Encoder error:
+</source>
+        <translation>Erro do codificador:
+</translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
@@ -599,34 +599,9 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
         <translation>Directorio:</translation>
     </message>
     <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</source>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número de pista  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número total de pistas&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artista&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título do álbum&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nome da pista&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Ano&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Xénero&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</translation>
+        <source>Result directory</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Pattern:</source>
@@ -635,6 +610,11 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
     <message>
         <source>Format:</source>
         <translation>Formato:</translation>
+    </message>
+    <message>
+        <source>Output format</source>
+        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tags</source>
@@ -849,6 +829,27 @@ Quere continuar?</translation>
         <comment>Error</comment>
         <translation>Flacon</translation>
     </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -897,20 +898,20 @@ Quere continuar?</translation>
 <context>
     <name>QObject</name>
     <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>Non pode usar ReplayGain nos ficheiros cunha taxa de mostra superior a 48kHz. Metaflac non é compatíbel con este tipo de ficheiros.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>O ficheiro &lt;b&gt;%1&lt;/b&gt; non é un tipo de ficheiro compatíbel. &lt;br&gt;&lt;br&gt;Verifique que todos os programas requiridos están instalados e que estean incluídos nas súas preferencias.</translation>
-    </message>
-    <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <translation>Non se puido escribir o ficheiro CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Non se puido encontrar o programa &lt;b&gt;%1&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <translation>O ficheiro &lt;b&gt;%1&lt;/b&gt; non é un tipo de ficheiro compatíbel. &lt;br&gt;&lt;br&gt;Verifique que todos os programas requiridos están instalados e que estean incluídos nas súas preferencias.</translation>
+    </message>
+    <message>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <translation>Non pode usar ReplayGain nos ficheiros cunha taxa de mostra superior a 48kHz. Metaflac non é compatíbel con este tipo de ficheiros.</translation>
     </message>
 </context>
 <context>

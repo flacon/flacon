@@ -42,6 +42,10 @@
         <translation>Flacon использует внешние программы. Огромное спасибо их авторам!</translation>
     </message>
     <message>
+        <source>Extracts individual tracks from one big audio file containing the entire album.</source>
+        <translation>Извлекает отдельные треки из большого аудио файла, содержащего весь альбом целиком.</translation>
+    </message>
+    <message>
         <source>Copyright: %1-%2 %3</source>
         <translation>Copyright: %1-%2 %3</translation>
     </message>
@@ -64,10 +68,6 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
         <translation>Flacon переведена на множество языков благодаря работе команды переводчиков по всему миру.</translation>
-    </message>
-    <message>
-        <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Извлекает отдельные треки из большого аудио файла, содержащего весь альбом целиком.</translation>
     </message>
 </context>
 <context>
@@ -465,16 +465,16 @@
 <context>
     <name>Converter</name>
     <message>
-        <source>Conversion is not possible:</source>
-        <translation>Конвертация невозможна:</translation>
-    </message>
-    <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
         <translation>Не получается создать директорию &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
         <translation>Не получается писать в директорию &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Conversion is not possible:</source>
+        <translation>Конвертация невозможна:</translation>
     </message>
 </context>
 <context>
@@ -499,17 +499,17 @@
 <context>
     <name>Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
-        <translation>Ошибка кодирования:</translation>
-    </message>
-    <message>
         <source>I can't delete file:
 %1
 %2</source>
         <translation>Не получается удалить файл:
 %1
 %2</translation>
+    </message>
+    <message>
+        <source>Encoder error:
+</source>
+        <translation>Ошибка кодирования:</translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
@@ -596,34 +596,9 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>Директория:</translation>
     </message>
     <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</source>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Номер трека&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Количество треков&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Артист&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название альбома&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название трека&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Год&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Жанр&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</translation>
+        <source>Result directory</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Директория для результирующих файлов</translation>
     </message>
     <message>
         <source>Pattern:</source>
@@ -632,6 +607,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Format:</source>
         <translation>Формат:</translation>
+    </message>
+    <message>
+        <source>Output format</source>
+        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+        <translation>Формат выходных файлов</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -846,6 +826,43 @@ Do you want to continue?</source>
         <comment>Error</comment>
         <translation>Flacon</translation>
     </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Поля начинаются со знака %. Вы можете использовать следующие поля: 
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Номер трека&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Количество треков&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Артист&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название альбома&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название трека&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Год&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Жанр&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Если Вы окружили часть текста фигурными скобками, то эта часть не будет видна, если значения полей будут пустыми.</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -894,20 +911,20 @@ Do you want to continue?</source>
 <context>
     <name>QObject</name>
     <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>Вы не можете использовать &apos;выравнивание громкости&apos; для файлов с частотой дискретизации выше 48 КГц. Metaflac не поддерживает такие файлы.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Формат аудио файла &lt;b&gt;%1&lt;/b&gt; не поддерживается. &lt;br&gt;&lt;br&gt;Проверьте что установлены все нужные програмы и они указаны в настройках.</translation>
-    </message>
-    <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <translation>Не получается записать CUE файл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Не могу найти программу &lt;b&gt;%1&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <translation>Формат аудио файла &lt;b&gt;%1&lt;/b&gt; не поддерживается. &lt;br&gt;&lt;br&gt;Проверьте что установлены все нужные програмы и они указаны в настройках.</translation>
+    </message>
+    <message>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <translation>Вы не можете использовать &apos;выравнивание громкости&apos; для файлов с частотой дискретизации выше 48 КГц. Metaflac не поддерживает такие файлы.</translation>
     </message>
 </context>
 <context>

@@ -44,6 +44,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Extracts individual tracks from one big audio file containing the entire album.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Copyright: %1-%2 %3</source>
         <translation type="unfinished"></translation>
     </message>
@@ -65,10 +69,6 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Extracts individual tracks from one big audio file containing the entire album.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -445,15 +445,15 @@
 <context>
     <name>Converter</name>
     <message>
-        <source>Conversion is not possible:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Conversion is not possible:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -479,14 +479,14 @@
 <context>
     <name>Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>I can&apos;t delete file:
 %1
 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encoder error:
+</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -568,11 +568,21 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Result directory</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Pattern:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Format:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output format</source>
+        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -788,15 +798,11 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Result directory</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
+Tokens start with %. You can use the following tokens:
 &lt;table&gt;
 &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
@@ -810,11 +816,6 @@ Do you want to continue?</source>
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Output format</source>
-        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -865,7 +866,11 @@ If you surround sections of text that contain a token with braces, these section
 <context>
     <name>QObject</name>
     <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -873,11 +878,7 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
