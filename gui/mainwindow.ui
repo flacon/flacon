@@ -75,6 +75,7 @@
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
+Tokens start with %. You can use the following tokens:
 &lt;table&gt;
 &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
