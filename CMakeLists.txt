@@ -234,7 +234,7 @@ configure_file(
 
 #add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz
 add_custom_command(TARGET ${PROJECT_NAME}
-    COMMAND gzip -f ${CMAKE_CURRENT_BINARY_DIR}/flacon.1
+    COMMAND gzip -c ${CMAKE_CURRENT_BINARY_DIR}/flacon.1 > ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz
 )
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION share/man/man1)
 
