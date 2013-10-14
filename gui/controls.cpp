@@ -36,6 +36,9 @@
 #include <QFileDialog>
 
 
+/************************************************
+
+ ************************************************/
 void setPlaceholder(QLineEdit *edit, const QString &text)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)

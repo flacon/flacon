@@ -128,6 +128,8 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowIcon(QIcon::fromTheme("flacon"));
     setAcceptDrops(true);
 
+    outPatternButton->setToolTip(outPatternEdit->toolTip());
+
     // TrackView ...............................................
     trackView->setRootIsDecorated(false);
     trackView->setItemsExpandable(false);
