@@ -127,6 +127,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowIcon(QIcon::fromTheme("flacon"));
     setAcceptDrops(true);
+    setAcceptDrops(true);
 
     outPatternButton->setToolTip(outPatternEdit->toolTip());
 
@@ -219,6 +220,34 @@ void MainWindow::closeEvent(QCloseEvent *)
 {
     mConverter->stop();
     saveSettings();
+}
+
+
+/************************************************
+
+ ************************************************/
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    foreach(QUrl url, event->mimeData()->urls())
+    {
+        if (url.isLocalFile())
+        {
+            event->acceptProposedAction();
+            return;
+        }
+    }
+}
+
+
+/************************************************
+
+ ************************************************/
+void MainWindow::dropEvent(QDropEvent * event)
+{
+    foreach(QUrl url, event->mimeData()->urls())
+    {
+        addFileOrDir(url.toLocalFile());
+    }
 }
 
 

@@ -54,6 +54,8 @@ public slots:
 
 protected:
     void closeEvent(QCloseEvent *);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *event);
 
 private slots:
     void insertOutPattern(const QString &pattern);
