@@ -801,6 +801,7 @@ void Disk::setAudioFile(const QString &fileName)
             delete mAudioFile;
 
         mAudioFile = audio;
+        project->emitDiskChanged(this);
     }
     else
     {

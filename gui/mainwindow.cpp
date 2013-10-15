@@ -200,6 +200,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(project, SIGNAL(layoutChanged()), this, SLOT(refreshEdits()));
     connect(project, SIGNAL(layoutChanged()), this, SLOT(setControlsEnable()));
 
+    connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(refreshEdits()));
+    connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(setControlsEnable()));
+
     refreshEdits();
     setControlsEnable();
 }
