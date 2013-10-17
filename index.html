@@ -1,143 +1,27 @@
-<!DOCTYPE html>
-<html>
-
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Flacon : Audio File Encoder. Extracts audio tracks from an audio CD image to separate tracks." />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Flacon</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/SokoloffA/flacon">View on GitHub</a>
-
-          <h1 id="project_title">Flacon</h1>
-          <h2 id="project_tagline">Audio File Encoder. Extracts audio tracks from an audio CD image to separate tracks.</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/SokoloffA/flacon/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/SokoloffA/flacon/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <p>Flacon extracts individual tracks from one big audio file containing the entire album of music and saves them as separate audio files. To do this, it uses information from the appropriate CUE file. 
-Besides, Flacon makes it possible to conveniently revise or specify tags both for all tracks at once or for each tag separately.</p>
-
-<p>===Interface languages===</p>
-
+---
+layout: index
+title: Flacon - Audio File Encoder
+menuItem: home
+---
+<h2>What is Flacon?</h2>
+<p>Flacon extracts individual tracks from one big audio file containing the entire album of music and saves them as separate audio files.</p>
+<p>To do this, it uses information from the appropriate CUE file. Besides, Flacon makes it possible to conveniently revise or specify tags both for all tracks at once or for each tag separately.</p>
+  
+<p>
+<h2>Features</h2>
+<p>
 <ul>
-<li>Czech</li>
-<li>English</li>
-<li>French</li>
-<li>Polish</li>
-<li>Russian</li>
-<li>Spanish (Mexico)</li>
-<li>Ukrainian</li>
-</ul><p>==Screenshots==
-[<a href="http://wiki.flacon.googlecode.com/hg/imgs/flacon-1.png">http://wiki.flacon.googlecode.com/hg/imgs/flacon-1.png</a> <a href="http://wiki.flacon.googlecode.com/hg/imgs/flacon-1-small.png">http://wiki.flacon.googlecode.com/hg/imgs/flacon-1-small.png</a>]
-<em>Main window</em></p>
+  <li>Supported input formats: WAV, FLAC, APE, WavPack, True Audio (TTA).</li>
+  <li>Supported out formats: FLAC, WAV, WavPack, AAC, OGG or MP3.</li>
+  <li>Replay Gain analysis (album-gain and track-gain modes).</li>
+  <li>Multi-threaded conversion process.</li>
+  <li>Automatic character set detection for CUE files.</li>
+  <li>Generation of the pertrack CUE file in the output dir.</li>
+</ul>
+</p>
 
-<p>[<a href="http://wiki.flacon.googlecode.com/hg/imgs/flacon-2.png">http://wiki.flacon.googlecode.com/hg/imgs/flacon-2.png</a> <a href="http://wiki.flacon.googlecode.com/hg/imgs/flacon-2-small.png">http://wiki.flacon.googlecode.com/hg/imgs/flacon-2-small.png</a>]
-<em>Conversion process</em></p>
-
-<p>[<a href="http://wiki.flacon.googlecode.com/hg/imgs/flacon-3.png">http://wiki.flacon.googlecode.com/hg/imgs/flacon-3.png</a> <a href="http://wiki.flacon.googlecode.com/hg/imgs/flacon-3-small.png">http://wiki.flacon.googlecode.com/hg/imgs/flacon-3-small.png</a>]
-<em>Configure dialog</em></p>
-
-<p>==Requires==</p>
-
-<ul>
-<li>python</li>
-<li>PyQt</li>
-<li>python-chardet</li>
-<li>shntool</li>
-<li>flac (optional, for decoding and encoding FLAC files)</li>
-<li>mac (optional, for decoding APE files)</li>
-<li>wavpack (optional, for decoding WV files)</li>
-<li>ttaenc (optional, for decoding TTA files)</li>
-<li>oggenc (optional, for encoding OGG files)</li>
-<li>lame (optional, for encoding MP3 files)</li>
-<li>faac (optional, for encoding AAC files)</li>
-<li>metaflac (optional, for FLAC replay gain)</li>
-<li>vorbisgain (optional, for OGG replay gain)</li>
-<li>mp3gain (optional, for MP3 replay gain)</li>
-</ul><p>==Installation==
-Written in Python, Flacon uses some external programs (see requires), which is why you’ve got to install these programs. 
-To test the program, just extract the archive and run the file flacon.py.
-To install the program, execute: sudo make install.</p>
-
-<p><em>Ubuntu</em> users can use [<a href="https://launchpad.net/%7Eflacon/+archive/ppa">https://launchpad.net/~flacon/+archive/ppa</a> repository at launchpad], just run the following commands:
-{{{
-  sudo add-apt-repository ppa:flacon
-  sudo apt-get update
-  sudo apt-get install flacon
-}}}</p>
-
-<p><em>OpenSUSE</em> users can download RPM packages from <a href="http://packman.links2linux.org/package/flacon">http://packman.links2linux.org/package/flacon</a>. <em>Thanks to [<a href="http://qt-apps.org/usermanager/search.php?username=LazyKent">http://qt-apps.org/usermanager/search.php?username=LazyKent</a> Kyrill Detinov]</em>.</p>
-
-<h3>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h3>
-
-<p>Supported input formats: WAV, FLAC, APE, WavPack, True Audio (TTA).</p>
-
-<ul>
-<li>Supported out formats: FLAC, WAV, WavPack, AAC, OGG or MP3.</li>
-<li>Replay Gain analysis (album-gain and track-gain modes).</li>
-<li>Multi-threaded conversion process.</li>
-<li>Automatic character set detection for CUE files.</li>
-</ul><h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Flacon maintained by <a href="https://github.com/SokoloffA">SokoloffA</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
-</html>
+<p>
+<h2>Screenshot</h2>
+<p><img src="{{ site.baseurl}}/screenshots/flacon-1-small.png"><br></p>
+<p><a href="{{ site.baseurl}}/screenshots">More screenshots</a></p>
+</p>

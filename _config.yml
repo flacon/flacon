@@ -1,0 +1,11 @@
+name: Flacon
+markdown: redcarpet
+pygments: true
+baseurl: /flacon
+redcarpet:
+  extensions:
+    - hard_wrap
+    - no_intra_emphasis
+    - autolink
+    - strikethrough
+    - fenced_code_blocks

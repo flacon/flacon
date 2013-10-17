@@ -1,0 +1,16 @@
+<ul>
+  {% if page.menuItem == "home" %}<li class="active">{% else %}<li>{% endif %}    
+  <a href="{{ site.baseurl}}/index.html">Home</a></li>
+  
+  {% if page.menuItem == "screenshots" %}<li class="active">{% else %}<li>{% endif %}    
+  <a href="{{ site.baseurl}}/screenshots">Screenshots</a></li>
+
+  
+  {% if page.menuItem == "download" %}<li class="active">{% else %}<li>{% endif %}    
+  <a href="{{ site.baseurl}}/download.html">Download</a></li>
+  
+  <li><a href="https://github.com/SokoloffA/flacon/issues">Bug tracker</a></li>  
+  
+  <!--{% if page.menuItem == "develop" %}<li class="active">{% else %}<li>{% endif %}    
+  <a href="develop.html">Development</a></li>-->
+</ul>

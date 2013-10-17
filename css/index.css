@@ -1,0 +1,13 @@
+html, .main {
+	background:#f1f1f1 url(index-main_bg.gif) top repeat-x;
+}
+
+
+.logo {
+  padding: 30px 0 20px 0;
+}
+
+
+.menu_nav {
+        margin:40px 0 0 0;
+}
