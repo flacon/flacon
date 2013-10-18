@@ -107,6 +107,7 @@ private:
 
     Disk *standardDisk();
 
+    QString mFfmpeg;
     QString mCdAudioFile;
     QString mHdAudioFile;
     const QString mTmpDir;

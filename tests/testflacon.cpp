@@ -76,18 +76,18 @@ void TestFlacon::initTestCase()
     settings->setValue(Settings::Prog_Shntool, shntool);
     settings->sync();
 
-    QString ffmpeg = settings->findProgram("avconv");
-    if (ffmpeg.isEmpty())
-        ffmpeg = settings->findProgram("ffmpeg");
+    mFfmpeg = settings->findProgram("avconv");
+    if (mFfmpeg.isEmpty())
+        mFfmpeg = settings->findProgram("ffmpeg");
 
-    if (ffmpeg.isEmpty())
+    if (mFfmpeg.isEmpty())
         FAIL(QString("Program \"%1\" not found.").arg("avconv/ffmpeg").toLocal8Bit());
 
     mCdAudioFile = mTmpDir + "CD_10Min.wav";
-    createAudioFile(ffmpeg, mCdAudioFile, 600, true);
+    createAudioFile(mFfmpeg, mCdAudioFile, 600, true);
 
     mHdAudioFile = mTmpDir + "HD_10Min.wav";
-    createAudioFile(ffmpeg, mHdAudioFile, 600, false);
+    createAudioFile(mFfmpeg, mHdAudioFile, 600, false);
 }
 
 
@@ -659,6 +659,37 @@ void TestFlacon::testConvert()
         conv.run();
     }
     //## 6 #################################################
+
+
+    //## 7 #################################################
+    // With pregap and HTOA
+    {
+        QString dir = outDir + "07.path(with.symbols and space )";
+        QDir().mkpath(dir);
+        QString audioFile = dir + "CD_10Min.wav";
+        createAudioFile(mFfmpeg, audioFile, 600, true);
+
+
+
+        outDir = resultDir + "Test_7";
+        settings->setValue(Settings::PerTrackCue_Create,  false);
+        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
+        settings->setValue(Settings::OutFiles_Directory,  dir);
+        settings->setValue(Settings::Encoder_TmpDir,      "");
+        ConverterTester conv(
+                    inDir + "07.path(with.symbols and space )/07.path(with.symbols and space ).cue",
+                    audioFile,
+                    "",
+                    "01 - Song01.wav;"
+                    "02 - Song02.wav;"
+                    "03 - Song03.wav;"
+                    "04 - Song04.wav;"
+                    );
+
+        conv.run();
+    }
+    //## 7 #################################################
+
 
 }
 
