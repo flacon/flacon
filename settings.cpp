@@ -43,7 +43,7 @@ Settings *Settings::instance()
     if (!inst)
     {
         if (mFileName.isEmpty())
-            inst = new Settings("flaconng", "flaconng");
+            inst = new Settings("flacon", "flacon");
         else
             inst = new Settings(mFileName);
     }
