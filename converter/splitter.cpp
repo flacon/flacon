@@ -85,7 +85,7 @@ Splitter::Splitter(Disk *disk, QObject *parent):
     else
         mWorkDir = QDir(QString("%1/flacon.%2").arg(tmpDir).arg(QCoreApplication::applicationPid())).absolutePath();
 
-    mFilePrefix = QString("tmp-%1-%2").arg(QCoreApplication::applicationPid()).arg(project->indexOf(disk));
+    mFilePrefix = QString("tmp-%1-%2.").arg(QCoreApplication::applicationPid()).arg(project->indexOf(disk));
 }
 
 
@@ -169,7 +169,6 @@ void Splitter::doRun()
 void Splitter::parseOut()
 {
     Track *track = disk()->track(0);
-    QRegExp   trackRe("(" + mWorkDir + "/" + mFilePrefix + "(\\d{1,4})\\.wav)\\]\\s+\\(\\d{1,2}:\\d{2,2}\\.\\d{1,3}\\)\\s+:\\s*\\d+");
 
     bool deletePregap = !OutFormat::currentFormat()->createCue();
     char c;
@@ -199,14 +198,29 @@ void Splitter::parseOut()
                 if (!ok)
                     continue;
 
-                if(trackRe.indexIn(QString::fromLocal8Bit(buf)) == -1)
+
+                // Splitting [/home/user/inDir/input.wav] (10:00.000) --> [/home/user/outDir/tmp-15196-00000.wav] (0:00.440) : 100% OK
+
+                QString pattern = "[" +  mWorkDir + "/" + mFilePrefix;
+                int n = buf.indexOf(pattern, disk()->audioFileName().length() + 20);
+
+                if (n < 0 && buf.length() < n + pattern.length() + 4)
                 {
                     qWarning() << "I can't parse" << QString::fromLocal8Bit(buf);
                     continue;
                 }
 
-                QString fileName = trackRe.cap(1);
-                int trackNum = trackRe.cap(2).toInt();
+                QString fileName = buf.mid(n + 1, + pattern.length() - 1 + 4 + 4); // -1 for leading "[", 4 for 4 digits tracknum, 4 - file ext ".wav"
+
+                int trackNum = fileName.mid(fileName.length() - 8, 4).toInt(&ok);
+
+                if (!ok)
+                {
+                    qWarning() << "I can't parse" << QString::fromLocal8Bit(buf);
+                    continue;
+                }
+
+
 
                 if (trackNum > disk()->count())
                 {
