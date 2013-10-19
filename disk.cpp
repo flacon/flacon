@@ -864,6 +864,7 @@ void Disk::findAudioFile()
 void Disk::setStartTrackNum(int value)
 {
     mStartTrackNum = value;
+    project->emitDiskChanged(this);
 }
 
 

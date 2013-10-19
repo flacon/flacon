@@ -153,7 +153,7 @@ MainWindow::MainWindow(QWidget *parent) :
     tagDiscIdEdit->setTagName(TAG_DISCID);
 
     connect(tagStartNumEdit, SIGNAL(editingFinished()), this, SLOT(setStartTrackNum()));
-
+    connect(tagStartNumEdit, SIGNAL(valueChanged(int)), this, SLOT(setStartTrackNum()));
 
     initActions();
 

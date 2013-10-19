@@ -268,8 +268,12 @@ void TagSet::setTextCodecName(const QString codecName)
  ************************************************/
 QString TagSet::trackTag(int track, const QString &tagName) const
 {
-    Tag t = d->mTags.value(d->key(track, tagName));
-    return d->decode(t);
+    QString key = d->key(track, tagName);
+
+    if (d->mTags.contains(key))
+        return d->decode(d->mTags.value(key));
+    else
+        return diskTag(tagName);
 }
 
 
@@ -374,5 +378,27 @@ TagSetAction::TagSetAction(const QIcon &icon, const QString &text, QObject *pare
 }
 
 
+/************************************************
 
+ ************************************************/
+QDebug operator<<(QDebug dbg, const TagSet &ts)
+{
+
+    dbg.nospace() << "Tagset " << ts.uri() << " [" << ts.title() << "]" <<"\n";
+    dbg.nospace() << "  DiscId " << ts.diskTag(TAG_DISCID) << "\n";
+    dbg.nospace() << "  Genre  " << ts.diskTag(TAG_GENRE) << "\n";
+    dbg.nospace() << "  Artist " << ts.diskTag(TAG_PERFORMER) << "\n";
+    dbg.nospace() << "  Album  " << ts.diskTag(TAG_ALBUM) << "\n";
+    dbg.nospace() << "  Date   " << ts.diskTag(TAG_DATE) << "\n";
+    for (int i=0; i < ts.tracksCount(); ++i)
+    {
+        dbg.nospace() << "  Track " << i << "-=-=-=-=-" << "\n";
+        dbg.nospace() << "    * Album  " << ts.trackTag(i, TAG_ALBUM) << "\n";
+        dbg.nospace() << "    * Artist " << ts.trackTag(i, TAG_PERFORMER) << "\n";
+        dbg.nospace() << "    * Title  " << ts.trackTag(i, TAG_TITLE) << "\n";
+        dbg.nospace() << "    * Genre  " << ts.trackTag(i, TAG_GENRE) << "\n";
+    }
+
+    return dbg.space();
+}
 

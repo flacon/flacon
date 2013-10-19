@@ -101,4 +101,7 @@ private:
     TagSet *mTagSet;
 };
 
+
+QDebug operator<<(QDebug dbg, const TagSet &ts);
+
 #endif // TAGSET_H

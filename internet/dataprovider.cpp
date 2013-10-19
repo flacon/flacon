@@ -267,6 +267,7 @@ void FreeDbProvider::parse(QNetworkReply *reply)
     QString category = reply->request().attribute(QNetworkRequest::User).toString();
 
     TagSet res(reply->url().toString());
+    res.setDiskTag(TAG_DISCID, disk()->discId(), true);
 
     QString artist;
     QString album;
@@ -289,12 +290,6 @@ void FreeDbProvider::parse(QNetworkReply *reply)
         }
 
         if (key == "DGENRE")
-        {
-            res.setDiskTag(TAG_GENRE, value, false);
-            continue;
-        }
-
-        if (key == "DISCID")
         {
             res.setDiskTag(TAG_GENRE, value, false);
             continue;
