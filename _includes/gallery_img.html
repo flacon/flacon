@@ -1,0 +1,6 @@
+  <div class=galleryImg><a href='{{ include.img }}' class='highslide' onclick='return hs.expand(this, { slideshowGroup: 1 } )'>
+  <img src='{{ include.preview }}' alt='{{ include.description }}Main window' title='Click to enlarge'></a>
+  {% if include.description != none %}
+    <br><div class='highslide-caption'>{{ include.description }}</div>{{ include.description }}
+  {% endif %}
+</div>

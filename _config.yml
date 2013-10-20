@@ -9,3 +9,7 @@ redcarpet:
     - autolink
     - strikethrough
     - fenced_code_blocks
+flacon:
+  release:
+    version: 0.9.1
+    link: https://github.com/SokoloffA/flacon/archive/v0.9.1.tar.gz

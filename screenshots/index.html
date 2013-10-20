@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Flacon - Audio File Encoder
+title: Flacon - Screenshots
 menuItem: screenshots
 
 carousel_images:
@@ -12,38 +12,16 @@ carousel_images:
     description: Conversion process
   - preview:     flacon-3-small.png
     full:        flacon-3.png
-    description: Configure dialog    
+    description: Configure dialog
 ---
-<script type="text/javascript" src="highslide/highslide-with-gallery.js"></script> 
-<script type="text/javascript">
-   hs.allowMultipleInstances = false;
-   hs.wrapperClassName = "img_popup";
-</script>
-<link rel="stylesheet" type="text/css" href="highslide/highslide.css" />
+
 
 
 <p>
 <h2>Screenshots</h2>
 
 {% for img in page.carousel_images %}
-  <div class=galleryImg><a href='{{ img.full }}' class='highslide' onclick='return hs.expand(this, { slideshowGroup: 1 } )'> 
-  <img src='{{ img.preview }}' alt='{{ img.description }}Main window' title='Click to enlarge'></a> 
-  <br>
-  <div class='highslide-caption'>{{ img.description }}</div>{{ img.description }}
-</div>
+    {% include gallery_img.html img=img.full preview=img.preview description=img.description %}
 <p>
 {% endfor %}
 
-<!--
-<div class=galleryImg><a id='2' href='flacon-2.png' class='highslide' onclick='return hs.expand(this, { slideshowGroup: 1 } )'> 
-  <img src='flacon-2-small.png' alt='Main window' title='Click to enlarge' qwidth='100%'> 
-  <br>
-  <div class='highslide-caption'>Main window</div>Main window
-</div>
-
-  
-  <p><img src="flacon-1-small.png"><br><i>Main window</i></p>
-  <p><img src="flacon-2-small.png"><br><i>Conversion process</i></p>
-<p><img src="flacon-3-small.png"><br><i>Configure dialog</i></p>
-</p>
--->

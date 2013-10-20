@@ -1,17 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Devision</title>
+<title>{{ page.title }}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" type="image/png" href="{{ site.baseurl}}/favicon.png" />
 <link href="{{ site.baseurl}}/css/style.css" rel="stylesheet" type="text/css" />
 <link href="{{ site.baseurl}}/css/default.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{{ site.baseurl}}/js/cufon-yui.js"></script>
 <script type="text/javascript" src="{{ site.baseurl}}/js/arial.js"></script>
 <script type="text/javascript" src="{{ site.baseurl}}/js/cuf_run.js"></script>
+
+<script type="text/javascript" src="{{ site.baseurl}}/highslide/highslide-with-gallery.js"></script>
+<script type="text/javascript">
+   hs.allowMultipleInstances = false;
+   hs.wrapperClassName = "img_popup";
+   hs.graphicsDir = '{{ site.baseurl}}/highslide/graphics/';
+</script>
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl}}/highslide/highslide.css" />
+
 </head>
 <body>
 <div class="main">
-  
+
 <div class="header">
   <div class="header_resize">
     <div class="logo">
@@ -23,16 +33,14 @@
     </div>
     <div class="clr"></div>
   </div>
-</div>  
+</div>
 
-  
+
   <div class="clr"></div>
-  
+
   <div class="content">
     <div class="content_resize">
-      <div class="article">
-        {{ content }}      
-      </div>          
+        {{ content }}
       <div class="clr"></div>
     </div>
   </div>
