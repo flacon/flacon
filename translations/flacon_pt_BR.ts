@@ -7,35 +7,35 @@
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Sobre</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished"/>
+        <translation>Autor</translation>
     </message>
     <message>
         <source>Thanks</source>
-        <translation type="unfinished"/>
+        <translation>Agradecimentos</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation type="unfinished"/>
+        <translation>Traduções</translation>
     </message>
     <message>
         <source>External programs</source>
-        <translation type="unfinished"/>
+        <translation>Programas externos</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation type="unfinished"/>
+        <translation>Página principal: %1</translation>
     </message>
     <message>
         <source>License: %1</source>
-        <translation type="unfinished"/>
+        <translation>Licença: %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
-        <translation type="unfinished"/>
+        <translation>Agradecimentos especiais a:</translation>
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
@@ -43,31 +43,31 @@
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation type="unfinished"/>
+        <translation>Extrair faixas individuais de um arquivo de áudio contendo o álbum inteiro.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation type="unfinished"/>
+        <translation>Copyright: %1-%2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
-        <translation type="unfinished"/>
+        <translation>Patch de suporte a WavPack</translation>
     </message>
     <message>
         <source>Application icon, Packaging</source>
-        <translation type="unfinished"/>
+        <translation>ìcone do aplicativo, Empacotando.</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation type="unfinished"/>
+        <translation>Empacotando, testando.</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
-        <translation type="unfinished"/>
+        <translation>Aprimoramentos na interface gráfica.</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon é traduzido em muitos idiomas graças ao trabalho das equipes de tradução ao redor do mundo.</translation>
     </message>
 </context>
 <context>
@@ -75,7 +75,7 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
-        <translation type="unfinished"/>
+        <translation>Detectar automaticamente</translation>
     </message>
     <message>
         <source>Unicode (UTF-8)</source>
@@ -158,124 +158,124 @@
     <name>ConfigDialog</name>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Preferências</translation>
     </message>
     <message>
         <source>General configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurações gerais</translation>
     </message>
     <message>
         <source>Thread count:</source>
-        <translation type="unfinished"/>
+        <translation>Contagem de linhas de execução:</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation type="unfinished"/>
+        <translation>O número de linhas de execução no processo de conversão.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation type="unfinished"/>
+        <translation>Diretório temporário:</translation>
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation type="unfinished"/>
+        <translation>Codificação padrão:</translation>
     </message>
     <message>
         <source>Per track CUE</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo CUE por faixa</translation>
     </message>
     <message>
         <source>Create per track CUE</source>
-        <translation type="unfinished"/>
+        <translation>Criar um arquivo CUE por faixa</translation>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation type="unfinished"/>
+        <translation>Intervalo anterior à primeira faixa:</translation>
     </message>
     <message>
         <source>Rescan</source>
-        <translation type="unfinished"/>
+        <translation>Analisar novamente</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation type="unfinished"/>
+        <translation>Caminho completo dos aplicativos externos</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
-        <translation type="unfinished"/>
+        <translation>Extrair para arquivo separado</translation>
     </message>
     <message>
         <source>Add to first track</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar à primeira faixa</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Geral</translation>
     </message>
     <message>
         <source>Programs</source>
-        <translation type="unfinished"/>
+        <translation>Programas</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation type="unfinished"/>
+        <translation>Selecionar diretório temporário</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurações AAC de codificação</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>Usar configurações de qualidade (recomendado)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Usar taxa de bits</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Taxa de bits:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Defina a taxa de bits do destino (em kb/s).</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Flac</name>
     <message>
         <source>Flac encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurações de codificação Flac</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation type="unfinished"/>
+        <translation>Compressão:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Calcular ganho:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Desabilitado</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurações de codificação MP3</translation>
     </message>
     <message>
         <source>Preset:</source>
-        <translation type="unfinished"/>
+        <translation>Predefinição:</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -303,152 +303,175 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR médio&lt;/dt&gt;
+&lt;dd&gt;Ao usar uma taxa de bits média variável, esta predefinição deve fornecer uma transparência mais próxima da maioria das pessoas e da maioria das músicas.&lt;/dd&gt;
+
+&lt;dt&gt;VBR padrão, VBR padrão rápido&lt;/dt&gt;
+&lt;dd&gt;Ao usar uma taxa de bits média variável, esta predefinição geralmente oferece transparência para a maioria das pessoas na maioria das músicas e é bastante elevada em qualidade.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extremo, VBR extremo rápido&lt;/dt&gt;
+&lt;dd&gt;Ao usar a maior taxa de bits variável, esta predefinição oferece qualidade ligeiramente maior do que o modo padrão caso você tenha audição extremamente apurada ou equipamentos de áudio topo de linha.&lt;/dd&gt;
+
+&lt;dt&gt;VBR com qualidade&lt;/dt&gt;
+&lt;dd&gt;Esta opção de taxa de bits variável lhe permite especificar a qualidade da saída.&lt;/dd&gt;
+
+&lt;dt&gt;opção rápida&lt;/dt&gt;
+&lt;dd&gt;Habilita o novo e ágil VBR para um perfil específico. Ela é recomendada.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insano&lt;/dt&gt;
+&lt;dd&gt;Se você precisa ter a absoluta maior qualidade, sem se importar com o tamanho do arquivo, você irá alcançá-la usando esta taxa de bits constante.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Ao usar esta predefinição de taxa de bits constante, geralmente você obterá boa qualidade à taxas de bits específicas.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Ao usar esta predefinição de taxa de bits média, geralmente você obterá qualidade melhor que a opção de taxa de bits constante à taxas de bits específicas.&lt;/dd&gt;
+</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Usar taxa de bits</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Taxa de bits:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Defina a taxa de bits do destino (em kb/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
-        <translation type="unfinished"/>
+        <translation>Usar qualidade</translation>
     </message>
     <message>
         <source>Quality:</source>
-        <translation type="unfinished"/>
+        <translation>Qualidade:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Calcular ganho:</translation>
     </message>
     <message>
         <source>VBR medium</source>
-        <translation type="unfinished"/>
+        <translation>VBR médio</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation type="unfinished"/>
+        <translation>VBR padrão</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation type="unfinished"/>
+        <translation>VBR padrão rápido</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation type="unfinished"/>
+        <translation>VBR extremo</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation type="unfinished"/>
+        <translation>VBR extremo rápido</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation type="unfinished"/>
+        <translation>VBR com qualidade</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation type="unfinished"/>
+        <translation>CBR insano</translation>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation type="unfinished"/>
+        <translation>kbps CBR</translation>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation type="unfinished"/>
+        <translation>kbps ABR</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurações de codificação Ogg</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>Usar configurações de qualidade (recomendado)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Usar taxa de bits</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Taxa de bits mínima:</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Define a taxa de bits mínima (em kb/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Taxa de bits nominal:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Defina a taxa de bits do destino (em kb/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Taxa de bits máxima:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Define a taxa de bits máxima (em kb/s).</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Calcular ganho:</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurações de codificação WavPack</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation type="unfinished"/>
+        <translation>Compressão:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Calcular ganho:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Desabilitado</translation>
     </message>
 </context>
 <context>
     <name>Converter</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível criar o diretório &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível gravar no diretório &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Conversion is not possible:</source>
@@ -459,19 +482,19 @@
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo de áudio não indicado.</translation>
     </message>
     <message>
         <source>CUE file not set.</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo CUE não indicado.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file.</source>
-        <translation type="unfinished"/>
+        <translation>O arquivo &lt;b&gt;%1&lt;/br&gt; não é um arquivo CUE válido.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation type="unfinished"/>
+        <translation>O arquivo &lt;b&gt;%1&lt;/b&gt; contém várias etiquetas FILE.&lt;br&gt;Não há suporte ainda a estes arquivos CUE.</translation>
     </message>
 </context>
 <context>
@@ -480,16 +503,19 @@
         <source>I can't delete file:
 %1
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível excluir o arquivo:
+%1
+%2</translation>
     </message>
     <message>
         <source>Encoder error:
 </source>
-        <translation type="unfinished"/>
+        <translation>Erro do codificador:
+</translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível ler %1 arquivos</translation>
     </message>
 </context>
 <context>
@@ -506,17 +532,17 @@ This only affects the file size. All settings are lossless.</source>
     <message>
         <source>Disabled</source>
         <comment>ReplayGain type combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Desabilitado</translation>
     </message>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Por faixa</translation>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Por álbum</translation>
     </message>
     <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
@@ -540,7 +566,9 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível renomear o arquivo:
+%1 para %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -548,252 +576,248 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Gain error:
 </source>
-        <translation type="unfinished"/>
+        <translation>Erro de ganho:</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>Result Files</source>
-        <translation type="unfinished"/>
+        <translation>Arquivos finais</translation>
     </message>
     <message>
         <source>Directory:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Result directory</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Diretório:</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation type="unfinished"/>
+        <translation>Padrão:</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation type="unfinished"/>
+        <translation>Formato:</translation>
     </message>
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Formato de saída</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished"/>
+        <translation>Etiquetas</translation>
     </message>
     <message>
         <source>Genre:</source>
-        <translation type="unfinished"/>
+        <translation>Gênero:</translation>
     </message>
     <message>
         <source>Year:</source>
-        <translation type="unfinished"/>
+        <translation>Ano:</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation type="unfinished"/>
+        <translation>Artista:</translation>
     </message>
     <message>
         <source>Album:</source>
-        <translation type="unfinished"/>
+        <translation>Álbum:</translation>
     </message>
     <message>
         <source>Start num:</source>
-        <translation type="unfinished"/>
+        <translation>Número inicial:</translation>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation type="unfinished"/>
+        <translation>ID do disco:</translation>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation type="unfinished"/>
+        <translation>Codificação:</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Arquivo</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>Con&amp;figurações</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>A&amp;juda</translation>
     </message>
     <message>
         <source>Add file</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar arquivo</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation type="unfinished"/>
+        <translation>Adicione arquivo CUE ou áudio</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>Convert</source>
-        <translation type="unfinished"/>
+        <translation>Converter</translation>
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar processo de conversão</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Abort</source>
-        <translation type="unfinished"/>
+        <translation>Interromper</translation>
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation type="unfinished"/>
+        <translation>Interromper processo de conversão</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Sair</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Preferências</translation>
     </message>
     <message>
         <source>Program preferences</source>
-        <translation type="unfinished"/>
+        <translation>Preferências do programa</translation>
     </message>
     <message>
         <source>&amp;About Flacon</source>
-        <translation type="unfinished"/>
+        <translation>So&amp;bre o Flacon</translation>
     </message>
     <message>
         <source>Remove album</source>
-        <translation type="unfinished"/>
+        <translation>Remover álbum</translation>
     </message>
     <message>
         <source>Remove album from project</source>
-        <translation type="unfinished"/>
+        <translation>Remover álbum do projeto</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Del</translation>
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation type="unfinished"/>
+        <translation>Configurar codificador</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <source>Select result directory</source>
-        <translation type="unfinished"/>
+        <translation>Selecione o diretório de destino</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation type="unfinished"/>
+        <translation>Obter do CDDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation type="unfinished"/>
+        <translation>Obter informações do álbum do CDDB</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <source>Scan</source>
-        <translation type="unfinished"/>
+        <translation>Analisar</translation>
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation type="unfinished"/>
+        <translation>Pesquisa recursiva de álbum</translation>
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insira o &quot;Número de faixa&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insira o &quot;Número total de faixas&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insira o &quot;Artista&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insira o &quot;Título do álbum&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insira o &quot;Título da faixa&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insira o &quot;Ano&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insira o &quot;Gênero&quot;</translation>
     </message>
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Selecione o arquivo CUE</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Alguns álbuns não serão convertidos, pois possuem erros.
+Você deseja continuar?</translation>
     </message>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation type="unfinished"/>
+        <translation>%1 arquivos</translation>
     </message>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
-        <translation type="unfinished"/>
+        <translation>Todos os formatos suportados</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation type="unfinished"/>
+        <translation>Todos os arquivos</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Adicione arquivo CUE ou áudio</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Selecionar arquivo de áudio</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation type="unfinished"/>
+        <translation>Selecionar diretório</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -814,6 +838,29 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Os Tokens são iniciados com %. Você pode usar os seguintes tokens: 
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número de faixa  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número total de faixas&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artista&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título do álbum&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título da faixa&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Ano&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Gênero&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Se você estiver entre seções que possuam um token com colchetes, estas seções serão ocultadas caso o token esteja vazio.</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually. 
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -821,36 +868,36 @@ If you surround sections of text that contain a token with braces, these section
     <name>MultiValuesComboBox</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Valores múltiplos</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesLineEdit</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Valores múltiplos</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesSpinBox</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Valores múltiplos</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
         <source>%1 program</source>
-        <translation type="unfinished"/>
+        <translation>%1 programa</translation>
     </message>
     <message>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Todos os arquivos</translation>
     </message>
     <message>
         <source>Select program file</source>
-        <translation type="unfinished"/>
+        <translation>Selecione o arquivo do programa</translation>
     </message>
 </context>
 <context>
@@ -858,99 +905,99 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível gravar arquivo CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível localizar o programa &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation type="unfinished"/>
+        <translation>O arquivo &lt;b&gt;%1&lt;/b&gt; não é um arquivo de áudio suportado. &lt;br&gt;&lt;br&gt;Verifique se todos os programas estão instalados nas suas preferências.</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível usar &apos;ReplayGain&apos; para arquivos com qualidade superior a 48kHz. Metaflac não suporta esses arquivos.</translation>
     </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
         <source>The number of tracks is higher than expected.</source>
-        <translation type="unfinished"/>
+        <translation>O número de faixas é maior do que o esperado.</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
         <source>Select another CUE file</source>
-        <translation type="unfinished"/>
+        <translation>Selecione outro arquivo CUE</translation>
     </message>
     <message>
         <source>Get data from CDDB</source>
-        <translation type="unfinished"/>
+        <translation>Obter dados do CDDB</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"/>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation type="unfinished"/>
+        <translation>Selecione outro arquivo de áudio</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Erro</translation>
     </message>
     <message>
         <source>Aborted</source>
-        <translation type="unfinished"/>
+        <translation>Interrompido</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"/>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Extracting</source>
-        <translation type="unfinished"/>
+        <translation>Extraindo</translation>
     </message>
     <message>
         <source>Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codificando</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished"/>
+        <translation>Na fila</translation>
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation type="unfinished"/>
+        <translation>Calcular ganho</translation>
     </message>
     <message>
         <source>Wait gain</source>
-        <translation type="unfinished"/>
+        <translation>Esperar ganho</translation>
     </message>
     <message>
         <source>Write gain</source>
-        <translation type="unfinished"/>
+        <translation>Escrever ganho</translation>
     </message>
     <message>
         <source>Tracks:</source>
-        <translation type="unfinished"/>
+        <translation>Faixas:</translation>
     </message>
     <message>
         <source>Audio:</source>
-        <translation type="unfinished"/>
+        <translation>Áudio:</translation>
     </message>
 </context>
 <context>
@@ -958,41 +1005,42 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Faixa</translation>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Título</translation>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Artista:</translation>
     </message>
     <message>
         <source>Album</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Álbum</translation>
     </message>
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Commentários</translation>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Arquivo</translation>
     </message>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Valores múltiplos</translation>
     </message>
     <message>
         <source>Conversion is not possible.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Não é possível converter:
+%1</translation>
     </message>
 </context>
 </TS>

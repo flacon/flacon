@@ -596,11 +596,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>Директория:</translation>
     </message>
     <message>
-        <source>Result directory</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Директория для результирующих файлов</translation>
-    </message>
-    <message>
         <source>Pattern:</source>
         <translation>Шаблон:</translation>
     </message>
@@ -862,6 +857,15 @@ If you surround sections of text that contain a token with braces, these section
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 Если Вы окружили часть текста фигурными скобками, то эта часть не будет видна, если значения полей будут пустыми.</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually. 
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Вы можете выбрать директорию для выходных файлов, или указать ее руками.
+
+Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники. </translation>
     </message>
 </context>
 <context>

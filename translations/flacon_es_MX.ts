@@ -570,11 +570,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Result directory</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Pattern:</source>
         <translation type="unfinished"/>
     </message>
@@ -818,6 +813,13 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually. 
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
         <translation type="unfinished"/>
     </message>
 </context>

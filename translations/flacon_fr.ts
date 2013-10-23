@@ -206,7 +206,7 @@
     </message>
     <message>
         <source>Add to first track</source>
-        <translation>Ajouter à la première piste</translation>
+        <translation>Ajoute à la première piste</translation>
     </message>
     <message>
         <source>General</source>
@@ -218,7 +218,7 @@
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Sélectionner le répertoire temporaire</translation>
+        <translation>Sélectionne le répertoire temporaire</translation>
     </message>
 </context>
 <context>
@@ -229,11 +229,11 @@
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Utiliser les réglages de qualité (recommandé)</translation>
+        <translation>Utilise les réglages de qualité (recommandé)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Choisir le débit binaire</translation>
+        <translation>Choisis le débit binaire</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -310,26 +310,26 @@
 &lt;dd&gt;En utilisant un Débit Binaire Variable standard, ces présélections devraient être transparentes pour la plupart des personnes et la plupart des musiques, et donnent déjà des résultats de haute qualité.&lt;/dd&gt;
 
 &lt;dt&gt;DBV extrême, DBV extrême rapide&lt;/dt&gt;
-&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, ces préselections fournissent une qualité légèrement supérieure au mode standard si vous avec une très bonne ouïe et un équipement audio haut de gamme .&lt;/dd&gt;
+&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, ces préselections fournissent une qualité légèrement supérieure au mode standard si tu as une très bonne ouïe et un équipement audio haut de gamme .&lt;/dd&gt;
 
 &lt;dt&gt;DBV qualité&lt;/dt&gt;
-&lt;dd&gt;Cette option à Débit Binaire Variable vous permet de choisir le niveau final de qualité.&lt;/dd&gt;
+&lt;dd&gt;Cette option à Débit Binaire Variable te permet de choisir le niveau final de qualité.&lt;/dd&gt;
 
 &lt;dt&gt;option rapide&lt;/dt&gt;
 &lt;dd&gt;Active la nouvelle option DBV rapide pour un profil donné. Ceci est recommandé.&lt;/dd&gt;
 
 &lt;dt&gt;DBC insensé&lt;/dt&gt;
-&lt;dd&gt;Si vous devez obtenir la plus haute qualité sans vous soucier de la taille du fichier, vous l&apos;obtiendrez en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
+&lt;dd&gt;Si tu dois obtenir la plus haute qualité sans te soucier de la taille du fichier, tu l&apos;obtiendras en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
 
 &lt;dt&gt;DBC kbit/s&lt;/dt&gt;
-&lt;dd&gt;Cette préselection à Débit Binaire Constant vous donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
+&lt;dd&gt;Cette présélection à Débit Binaire Constant te donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
 
 &lt;dt&gt;DBM kbit/s&lt;/dt&gt;
-&lt;dd&gt;Cette présélection à Débit Binaire Moyen vous donnera généralement une meilleure qualité pour un débit donné qu&apos;en utilisant l&apos;option à Débit Binaire Constant.&lt;/dd&gt;</translation>
+&lt;dd&gt;Cette présélection à Débit Binaire Moyen te donnera généralement une meilleure qualité pour un débit donné qu&apos;en utilisant l&apos;option à Débit Binaire Constant.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Choisir le débit binaire</translation>
+        <translation>Choisis le débit binaire</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -341,7 +341,7 @@
     </message>
     <message>
         <source>Use quality</source>
-        <translation>Choisir la qualité</translation>
+        <translation>Choisis la qualité</translation>
     </message>
     <message>
         <source>Quality:</source>
@@ -400,11 +400,11 @@
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Utiliser les réglages de qualité (recommandé)</translation>
+        <translation>Utilise les réglages de qualité (recommandé)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Choisir le débit binaire</translation>
+        <translation>Choisis le débit binaire</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
@@ -596,11 +596,6 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
         <translation>Répertoire :</translation>
     </message>
     <message>
-        <source>Result directory</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Répertoire de destination</translation>
-    </message>
-    <message>
         <source>Pattern:</source>
         <translation>Modèle :</translation>
     </message>
@@ -659,11 +654,11 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Add file</source>
-        <translation>Ajouter un fichier</translation>
+        <translation>Ajoute un fichier</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Ajouter un fichier CUE ou audio</translation>
+        <translation>Ajoute un fichier CUE ou audio</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -675,7 +670,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation>Démarrer la conversion</translation>
+        <translation>Démarre la conversion</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -687,7 +682,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation>Annuler la conversion</translation>
+        <translation>Annule la conversion</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -711,7 +706,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Remove album</source>
-        <translation>Supprimer l&apos;album</translation>
+        <translation>Supprime l&apos;album</translation>
     </message>
     <message>
         <source>Remove album from project</source>
@@ -723,7 +718,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation>Configurer l&apos;encodeur</translation>
+        <translation>Configure l&apos;encodeur</translation>
     </message>
     <message>
         <source>...</source>
@@ -731,15 +726,15 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Select result directory</source>
-        <translation>Sélectionner le répertoire de destination</translation>
+        <translation>Sélectionne le répertoire de destination</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation>Récupérer sur CDDB</translation>
+        <translation>Récupère sur CDDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation>Obtenir les informations de l&apos;album sur CDDB</translation>
+        <translation>Obtiens les informations de l&apos;album sur CDDB</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
@@ -755,42 +750,42 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Insérer le &quot;Numéro de piste&quot;</translation>
+        <translation>Insère le &quot;Numéro de piste&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Insérer le &quot;Nombre total de pistes&quot;</translation>
+        <translation>Insère le &quot;Nombre total de pistes&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Insérer l&apos;&quot;Artiste&quot;</translation>
+        <translation>Insère l&apos;&quot;Artiste&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Insérer le &quot;Titre de l&apos;album&quot;</translation>
+        <translation>Insère le &quot;Titre de l&apos;album&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Insérer le &quot;Titre de la piste&quot;</translation>
+        <translation>Insère le &quot;Titre de la piste&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Insérer l&apos;&quot;Année&quot;</translation>
+        <translation>Insère l&apos;&quot;Année&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Insérer le &quot;Genre&quot;</translation>
+        <translation>Insère le &quot;Genre&quot;</translation>
     </message>
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Sélectionner le fichier CUE</translation>
+        <translation>Sélectionne le fichier CUE</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
         <translation>Certains albums ne seront pas convertis, ils contiennent des erreurs.
-Voulez-vous continuer ?</translation>
+Veux-tu continuer ?</translation>
     </message>
     <message>
         <source>%1 files</source>
@@ -819,7 +814,7 @@ Voulez-vous continuer ?</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Sélectionner un répertoire</translation>
+        <translation>Sélectionne un répertoire</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -845,6 +840,45 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+
+ .term {font-weight: bold;}
+
+ .def { white-space: nowrap; }
+
+ &lt;/style&gt;
+
+ Les marqueurs commencent avec %. Tu peux utiliser les marqueurs suivants :
+
+ &lt;table&gt;
+
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numéro de piste &lt;/td&gt;
+
+ &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nombre total de pistes&lt;/td&gt;&lt;/tr&gt;
+
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artiste&lt;/td&gt;
+
+ &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titre de l&apos;album&lt;/td&gt;&lt;/tr&gt;
+
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titre de la piste&lt;/td&gt;
+
+&lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Année&lt;/td&gt;&lt;/tr&gt;
+
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+
+ &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+
+ &lt;/table&gt;
+
+ &lt;br&gt;&lt;br&gt;
+
+ Si tu entoures avec des accolades les sections de texte qui contiennent un marqueur, ces sections seront cachées si le marqueur est vide.</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually. 
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -881,7 +915,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Select program file</source>
-        <translation>Sélectionner le fichier de programme</translation>
+        <translation>Sélectionne le fichier du programme</translation>
     </message>
 </context>
 <context>
@@ -904,25 +938,25 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier audio pris en charge. &lt;br&gt;&lt;br&gt;Vérifiez que tous les programmes requis sont installés ainsi que vos préférences.</translation>
+        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier audio pris en charge. &lt;br&gt;&lt;br&gt;Vérifie que tous les programmes requis sont installés ainsi que tes préférences.</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>Vous ne pouvez utiliser &quot;ReplayGain&quot; pour des fichiers avec un taux d&apos;échantillonage supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
+        <translation>Tu ne peux pas utiliser &quot;ReplayGain&quot; pour des fichiers avec un taux d’échantillonnage supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
     </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
         <source>The number of tracks is higher than expected.</source>
-        <translation>Il y a  plus de pistes que prévu.</translation>
+        <translation>Il y a plus de pistes que prévu.</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
         <source>Select another CUE file</source>
-        <translation>Sélectionner un autre fichier CUE</translation>
+        <translation>Sélectionne un autre fichier CUE</translation>
     </message>
     <message>
         <source>Get data from CDDB</source>
@@ -934,7 +968,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>Sélectionner un autre fichier audio</translation>
+        <translation>Sélectionne un autre fichier audio</translation>
     </message>
 </context>
 <context>
