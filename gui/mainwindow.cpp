@@ -130,6 +130,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setAcceptDrops(true);
 
     outPatternButton->setToolTip(outPatternEdit->toolTip());
+    outDirEdit->setToolTip(actionSelectResultDir->toolTip());
 
     // TrackView ...............................................
     trackView->setRootIsDecorated(false);
