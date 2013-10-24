@@ -202,21 +202,22 @@ void Splitter::parseOut()
                 // Splitting [/home/user/inDir/input.wav] (10:00.000) --> [/home/user/outDir/tmp-15196-00000.wav] (0:00.440) : 100% OK
 
                 QString pattern = "[" +  mWorkDir + "/" + mFilePrefix;
-                int n = buf.indexOf(pattern, disk()->audioFileName().length() + 20);
+                QString sbuf = QString::fromLocal8Bit(buf);
+                int n = sbuf.indexOf(pattern, disk()->audioFileName().length() + 20);
 
-                if (n < 0 && buf.length() < n + pattern.length() + 4)
+                if (n < 0 && sbuf.length() < n + pattern.length() + 4)
                 {
-                    qWarning() << "I can't parse" << QString::fromLocal8Bit(buf);
+                    qWarning() << "I can't parse" << sbuf;
                     continue;
                 }
 
-                QString fileName = buf.mid(n + 1, + pattern.length() - 1 + 4 + 4); // -1 for leading "[", 4 for 4 digits tracknum, 4 - file ext ".wav"
+                QString fileName = sbuf.mid(n + 1, + pattern.length() - 1 + 4 + 4); // -1 for leading "[", 4 for 4 digits tracknum, 4 - file ext ".wav"
 
                 int trackNum = fileName.mid(fileName.length() - 8, 4).toInt(&ok);
 
                 if (!ok)
                 {
-                    qWarning() << "I can't parse" << QString::fromLocal8Bit(buf);
+                    qWarning() << "I can't parse" << sbuf;
                     continue;
                 }
 

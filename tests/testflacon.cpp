@@ -664,7 +664,7 @@ void TestFlacon::testConvert()
     //## 7 #################################################
     // With pregap and HTOA
     {
-        QString dir = outDir + "07.path(with.symbols and space )";
+        QString dir = resultDir + "Test_07.path(with.symbols and space )";
         QDir().mkpath(dir);
         QString audioFile = dir + "CD_10Min.wav";
         createAudioFile(mFfmpeg, audioFile, 600, true);
@@ -690,6 +690,28 @@ void TestFlacon::testConvert()
     }
     //## 7 #################################################
 
+
+    //## 8 #################################################
+    // With pregap and HTOA
+    {
+        outDir = resultDir + QString::fromUtf8("Test_8/Музыка");
+        settings->setValue(Settings::PerTrackCue_Create,  false);
+        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
+        settings->setValue(Settings::OutFiles_Directory, outDir);
+
+        ConverterTester conv(
+                    inDir + "01.cuecreator.cue",
+                    mHdAudioFile,
+                    "",
+                    "01 - Song01.wav;"
+                    "02 - Song02.wav;"
+                    "03 - Song03.wav;"
+                    "04 - Song04.wav;"
+                    );
+
+        conv.run();
+    }
+    //## 8 #################################################
 
 }
 
