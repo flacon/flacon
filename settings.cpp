@@ -95,7 +95,7 @@ void Settings::init()
     setDefaultValue(Encoder_TmpDir,         "");
 
     // Out Files ********************************
-    setDefaultValue(OutFiles_Pattern,       "%a/%y - %A/%n - %t");
+    setDefaultValue(OutFiles_Pattern,       "%a/{%y - }%A/%n - %t");
 
     QString outDir = QDesktopServices::storageLocation(QDesktopServices::MusicLocation);
     outDir.replace(QDir::homePath(), "~");

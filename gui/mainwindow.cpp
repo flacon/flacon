@@ -429,7 +429,10 @@ void MainWindow::refreshEdits()
     codepageCombo->setMultiValue(codePage);
 
     outDirEdit->setText(settings->value(Settings::OutFiles_Directory).toString());
-    outPatternEdit->setText(settings->value(Settings::OutFiles_Pattern).toString());
+
+    if (outPatternEdit->text() != settings->value(Settings::OutFiles_Pattern).toString())
+        outPatternEdit->setText(settings->value(Settings::OutFiles_Pattern).toString());
+
     int n = outFormatCombo->findData(settings->value(Settings::OutFiles_Format).toString());
     if (n > -1)
         outFormatCombo->setCurrentIndex(n);
