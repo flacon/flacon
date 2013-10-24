@@ -291,6 +291,7 @@ void MainWindow::openOutDirDialog()
     QString outDir = QFileDialog::getExistingDirectory(this, tr("Select result directory"), outDirEdit->text());
     if (!outDir.isEmpty())
     {
+        outDir.replace(QDir::homePath(), "~");
         outDirEdit->setText(outDir);
         setOutDir();
     }

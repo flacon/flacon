@@ -30,6 +30,7 @@
 #include <QDir>
 #include <QDebug>
 #include <QProcessEnvironment>
+#include <QDesktopServices>
 
 QString Settings::mFileName;
 
@@ -86,6 +87,7 @@ Settings::Settings(const QString &fileName):
  ************************************************/
 void Settings::init()
 {
+
     setDefaultValue(Tags_DefaultCodepage,   "AUTODETECT");
 
     // Globals **********************************
@@ -94,7 +96,10 @@ void Settings::init()
 
     // Out Files ********************************
     setDefaultValue(OutFiles_Pattern,       "%a/%y - %A/%n - %t");
-    setDefaultValue(OutFiles_Directory,     "~/music");
+
+    QString outDir = QDesktopServices::storageLocation(QDesktopServices::MusicLocation);
+    outDir.replace(QDir::homePath(), "~");
+    setDefaultValue(OutFiles_Directory,     outDir);
     setDefaultValue(OutFiles_Format,        "FLAC");
 
     // Internet *********************************
