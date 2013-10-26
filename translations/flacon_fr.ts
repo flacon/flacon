@@ -69,6 +69,10 @@
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
         <translation>Flacon est traduit en plusieurs langues grâce au travail des équipes mondiales de traduction.</translation>
     </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>CodePageComboBox</name>
@@ -879,7 +883,9 @@ If you surround sections of text that contain a token with braces, these section
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Tu peux naviguer vers le dossier de destination. Tu peux aussi le saisir manuellement.
+
+Si le chemin est laissé vide ou commence par « . » (point), les fichiers seront placés dans le même dossier que la source.</translation>
     </message>
 </context>
 <context>

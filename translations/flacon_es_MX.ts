@@ -69,6 +69,10 @@
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
         <translation>Flacon es traducido a muchos idiomas gracias al trabajo de los equipos de traducción de alrededor del mundo.</translation>
     </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>CodePageComboBox</name>

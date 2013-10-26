@@ -69,6 +69,10 @@
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
         <translation>Flacon es traducido a muchas lenguas gracias al trabajo del equipo de traducción en todo el mundo.</translation>
     </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>CodePageComboBox</name>
@@ -218,7 +222,7 @@
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Seleccionar un directorio temporal</translation>
+        <translation>Seleccione un directorio temporal</translation>
     </message>
 </context>
 <context>
@@ -241,7 +245,7 @@
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Establece bitrate objetivo (en kb/s)</translation>
+        <translation>Establece el bitrate objetivo (en kb/s)</translation>
     </message>
 </context>
 <context>
@@ -318,7 +322,7 @@
 &lt;dt&gt;opción rápida&lt;/dt&gt;
 &lt;dd&gt;Establece el nuevo VBR rápido para un fichero en particular. Recomendado.&lt;/dd&gt;
 
-&lt;dt&gt;CBR descabellado&lt;/dt&gt;
+&lt;dt&gt;CBR máximo&lt;/dt&gt;
 &lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando este Bitrate Constante.&lt;/dd&gt;
 
 &lt;dt&gt;CBR kbps&lt;/dt&gt;
@@ -382,7 +386,7 @@
     </message>
     <message>
         <source>CBR insane</source>
-        <translation>CBR descabellado</translation>
+        <translation>CBR máximo</translation>
     </message>
     <message>
         <source>CBR kbps</source>
@@ -482,11 +486,11 @@
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation>Archivo de audio no establecido.</translation>
+        <translation>Archivo de audio no seleccionado.</translation>
     </message>
     <message>
         <source>CUE file not set.</source>
-        <translation>Archivo CUE no establecido.</translation>
+        <translation>Archivo CUE no seleccionado.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file.</source>
@@ -522,12 +526,13 @@
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>Establecer la calidad de codificación entre %1 (más bajo) y %2 (más alto).</translation>
+        <translation>Establece la calidad de codificación entre %1 (más bajo) y %2 (más alto).</translation>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>Establecer el nivel de compresión, entre %1 (más rápido) y %2 (más compresión). Esto sólo afectará el tamaño de archivo. Todos los parámetros son sin pérdida.</translation>
+        <translation>Establece el nivel de compresión, entre %1 (más rápido) y %2 (más compresión).
+Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdida.</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -591,7 +596,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Archivos de Destino</translation>
+        <translation>Archivos Procesados</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -781,7 +786,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Seleccionar archivo CUE</translation>
+        <translation>Seleccione archivo CUE</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -802,7 +807,7 @@ Do you want to continue?</source>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Todos los ficheros</translation>
+        <translation>Todos los archivos</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -812,11 +817,11 @@ Do you want to continue?</source>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Seleccionar archivo de audio</translation>
+        <translation>Seleccione archivo de audio</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Seleccionar directorio</translation>
+        <translation>Seleccione directorio</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -858,14 +863,16 @@ Las variables comienzan con %. Puedes usar las siguientes variables:
         &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
-Si usa entre llaves, secciones de texto que contengan una variable, dichas sesiones serán omitidas si el valor de la variable está vacio.</translation>
+Si usa entre llaves secciones de texto que contengan una variable, dichas secciones serán omitidas si el valor de la variable está vacio.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually. 
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Puede navegar al directorio de destino. También puede introducirlo manualmente.
+
+Si la ruta se deja vacía o comienza con &quot;.&quot;(un punto), los archivos procesados serán almacenados en el mismo directorio que los originales.</translation>
     </message>
 </context>
 <context>
@@ -893,11 +900,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>ProgramEdit</name>
     <message>
         <source>%1 program</source>
-        <translation>%1 progama</translation>
+        <translation>%1 programa</translation>
     </message>
     <message>
         <source>All files</source>
-        <translation>Todos los ficheros</translation>
+        <translation>Todos los archivos</translation>
     </message>
     <message>
         <source>Select program file</source>
@@ -942,7 +949,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>TrackView</name>
     <message>
         <source>Select another CUE file</source>
-        <translation>Seleccionar otro archivo CUE</translation>
+        <translation>Seleccione otro archivo CUE</translation>
     </message>
     <message>
         <source>Get data from CDDB</source>
@@ -954,7 +961,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>Seleccionar otro archivo de audio</translation>
+        <translation>Seleccione otro archivo de audio</translation>
     </message>
 </context>
 <context>
@@ -969,7 +976,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>OK</source>
-        <translation>Aceptar</translation>
+        <translation>Correcto</translation>
     </message>
     <message>
         <source>Extracting</source>
