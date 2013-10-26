@@ -2,7 +2,7 @@
  * (c)LGPL2+
  *
  * Flacon - audio File Encoder
- * https://github.com/SokoloffA/flacon
+ * https://github.com/flacon/flacon
  *
  * Copyright: 2012-2013
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
@@ -72,7 +72,7 @@ void printVersion()
     QTextStream out(stdout);
     out << "flacon " << FLACON_VERSION << endl;
     out << "Copyright (c) 2013 Alexander Sokolov" << endl;
-    out << "   https://github.com/SokoloffA/flacon" << endl;
+    out << "   https://github.com/flacon/flacon" << endl;
     out << endl;
     out << "License LGPLv2.1+: GNU GNU Lesser General Public License version 2.1" << endl;
     out << "or later <http://www.gnu.org/licenses/lgpl-2.1.html>." << endl;

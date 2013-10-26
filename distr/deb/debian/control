@@ -9,7 +9,7 @@ Build-Depends: pkg-config,
     pkg-config,
     libuchardet-dev
 Standards-Version: 3.9.4
-Homepage: https://github.com/SokoloffA/flacon
+Homepage: https://github.com/flacon/flacon
 
 Package: flacon
 Architecture: any

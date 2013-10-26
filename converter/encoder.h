@@ -3,7 +3,7 @@
  * (c)LGPL2+
  *
  * Flacon - audio File Encoder
- * https://github.com/SokoloffA/flacon
+ * https://github.com/flacon/flacon
  *
  * Copyright: 2012-2013
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
