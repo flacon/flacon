@@ -170,7 +170,7 @@ AboutInfo AboutDialog::thanksInfo() const
                tr("Improvements in the UI"));
 
     result.add("Taras Sokol",
-               "",
+               "mailto:tsokolp@gmail.com",
                tr("Flacon account on github.com"));
 
     return result;
