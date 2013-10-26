@@ -71,7 +71,7 @@
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation type="unfinished"/>
+        <translation>Dépôt Flacon sur github.com</translation>
     </message>
 </context>
 <context>
