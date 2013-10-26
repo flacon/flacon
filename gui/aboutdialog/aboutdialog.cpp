@@ -64,8 +64,13 @@ AboutDialog::AboutDialog(QWidget *parent) :
                         "<br><br><br>" +
                         copyrightText() +
                         "<hr>" +
+
                         tr("Homepage: %1").arg(homepageText()) +
                         "<p>" +
+
+                        tr("Bug tracker %1", "About dialog, About tab").arg(bugTrackerText()) +
+                        "<p>" +
+
                         tr("License: %1").arg(licenseText()));
 
 
@@ -100,6 +105,15 @@ QString AboutDialog::descriptionText() const
 QString AboutDialog::copyrightText() const
 {
     return tr("Copyright: %1-%2 %3").arg("2012", QDate::currentDate().toString("yyyy"), "Alexander Sokolov");
+}
+
+
+/************************************************
+
+ ************************************************/
+QString AboutDialog::bugTrackerText() const
+{
+    return "<a href='https://github.com/flacon/flacon/issues'>https://github.com/flacon/flacon/issues</a>";
 }
 
 
@@ -154,6 +168,10 @@ AboutInfo AboutDialog::thanksInfo() const
     result.add("Alain-Olivier Breysse",
                "mailto:yahoe.001@gmail.com",
                tr("Improvements in the UI"));
+
+    result.add("Taras Sokol",
+               "",
+               tr("Flacon account on github.com"));
 
     return result;
 }

@@ -59,6 +59,7 @@ private:
     QString titleText() const;
     QString descriptionText() const;
     QString copyrightText() const;
+    QString bugTrackerText() const;
     QString homepageText() const;
     QString licenseText() const;
 
