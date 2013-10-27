@@ -234,11 +234,20 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
     foreach(QUrl url, event->mimeData()->urls())
     {
+#if (QT_VERSION < QT_VERSION_CHECK(4, 8, 0))
+        QString scheme = url.scheme();
+        if (scheme.isEmpty() || scheme == "file")
+        {
+            event->acceptProposedAction();
+            return;
+        }
+#else
         if (url.isLocalFile())
         {
             event->acceptProposedAction();
             return;
         }
+#endif
     }
 }
 
