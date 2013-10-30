@@ -71,7 +71,12 @@
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation>Dépôt Flacon sur github.com</translation>
+        <translation>Compte Flacon sur github.com</translation>
+    </message>
+    <message>
+        <source>Bug tracker %1</source>
+        <comment>About dialog, About tab</comment>
+        <translation>Suiveur de bogues %1</translation>
     </message>
 </context>
 <context>

@@ -75,6 +75,11 @@
         <source>Flacon account on github.com</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Bug tracker %1</source>
+        <comment>About dialog, About tab</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodePageComboBox</name>

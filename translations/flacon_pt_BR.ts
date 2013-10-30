@@ -71,6 +71,11 @@
     </message>
     <message>
         <source>Flacon account on github.com</source>
+        <translation>Conta do Flacon no github.com</translation>
+    </message>
+    <message>
+        <source>Bug tracker %1</source>
+        <comment>About dialog, About tab</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -865,7 +870,9 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Você pode navegar no diretório de destino. Você também pode digitá-lo manualmente. 
+
+Se o caminho for deixado em branco ou inicia com &quot;.&quot; (ponto), os arquivos resultantes serão colocados no mesmo diretório que a fonte.</translation>
     </message>
 </context>
 <context>

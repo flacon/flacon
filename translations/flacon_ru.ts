@@ -73,6 +73,11 @@
         <source>Flacon account on github.com</source>
         <translation>Учетная запись &quot;Flacon&quot; на github.com.</translation>
     </message>
+    <message>
+        <source>Bug tracker %1</source>
+        <comment>About dialog, About tab</comment>
+        <translation>Баг-трекер %1</translation>
+    </message>
 </context>
 <context>
     <name>CodePageComboBox</name>
