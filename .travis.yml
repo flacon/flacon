@@ -1,0 +1,15 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+  
+install:
+  - sudo apt-get update
+  - sudo apt-get install cmake libqt4-dev libuchardet-dev shntool ffmpeg
+
+script: 
+  - mkdir build
+  - cd buid
+  - cmake -DBUILD_TESTS=Yes ..
+  - make
+  - tests/flacon_test
