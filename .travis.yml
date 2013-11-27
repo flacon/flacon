@@ -5,11 +5,11 @@ compiler:
   
 install:
   - sudo apt-get update
-  - sudo apt-get install cmake libqt4-dev libuchardet-dev shntool ffmpeg
+  - sudo apt-get install cmake libqt4-dev libuchardet-dev shntool ffmpeg xvfb
 
 script: 
   - mkdir build
   - cd build
   - cmake -DBUILD_TESTS=Yes ..
   - make
-  - tests/flacon_test
+  - xvfb-run tests/flacon_test
