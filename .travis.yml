@@ -9,7 +9,7 @@ install:
 
 script: 
   - mkdir build
-  - cd buid
+  - cd build
   - cmake -DBUILD_TESTS=Yes ..
   - make
   - tests/flacon_test
