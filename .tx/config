@@ -1,5 +1,6 @@
 [main]
 host = https://www.transifex.com
+minimum_perc = 1
 
 [flacon.flacon]
 file_filter = translations/flacon_<lang>.ts

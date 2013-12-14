@@ -76,7 +76,7 @@
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation type="unfinished"/>
+        <translation>Seguimiento de fallos %1</translation>
     </message>
 </context>
 <context>

@@ -47,7 +47,7 @@
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation>Copyright : %1-%2 %3</translation>
+        <translation>Tous droits réservés : %1-%2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -76,7 +76,7 @@
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation>Suiveur de bogues %1</translation>
+        <translation>Gestionnaire de bogues %1</translation>
     </message>
 </context>
 <context>
@@ -502,7 +502,7 @@
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; contient plusieurs étiquettes FILE.&lt;br&gt;Ces fichiers CUE ne sont pas encore pris en charge.</translation>
+        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; contient plusieurs balisess FILE.&lt;br&gt;Ces fichiers CUE ne sont pas encore pris en charge.</translation>
     </message>
 </context>
 <context>
@@ -619,7 +619,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Tags</source>
-        <translation>Étiquettes</translation>
+        <translation>Balises</translation>
     </message>
     <message>
         <source>Genre:</source>
@@ -675,7 +675,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Convert</source>
-        <translation>Convertir</translation>
+        <translation>Convertion</translation>
     </message>
     <message>
         <source>Start conversion process</source>
@@ -719,7 +719,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Remove album from project</source>
-        <translation>Supprimer l&apos;album du projet</translation>
+        <translation>Supprime l&apos;album du projet</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -814,12 +814,12 @@ Veux-tu continuer ?</translation>
     <message>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Ajouter un fichier CUE ou audio</translation>
+        <translation>Ajoute un fichier CUE ou audio</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Sélectionner le fichier audio</translation>
+        <translation>Sélectionne le fichier audio</translation>
     </message>
     <message>
         <source>Select directory</source>
