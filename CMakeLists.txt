@@ -209,7 +209,42 @@ include_directories(${UCHARDET_INCLUDE_DIRS})
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${MOC_SOURCES} ${QM_FILES} ${QRC_SOURCES} ${UI_HEADERS} ${ENGINES_CPP} ${ENGINES_H} ${TRANSLATORS_INFO_QRC})
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES} ${QT_LIBRARIES})
 
-install(FILES   misc/${PROJECT_NAME}.desktop DESTINATION "share/applications")
+
+function(CREATE_DESKTOP_FILE _IN_FILE _OUT_FILE _TRANSLATIONS_PATTERN)
+    file(GLOB ts_files ${_TRANSLATIONS_PATTERN})
+
+    set(comment_tag "")
+    set(name_tag "")
+    set(genericname_tag "")
+    foreach(f ${ts_files})
+        file(READ ${f} contents)
+        STRING(REGEX REPLACE ";" "\\\\;" contents "${contents}")
+        STRING(REGEX REPLACE "\n" ";" contents "${contents}")
+
+        foreach(l ${contents})
+            if("${l}" MATCHES "^\\s*(Name)\\[.*\\]")
+                set(name_tag "${name_tag}${l}\n")
+            endif()
+
+            if("${l}" MATCHES "^\\s*(Comment)\\[.*\\]")
+                set(comment_tag "${comment_tag}${l}\n")
+            endif()
+
+            if("${l}" MATCHES "^\\s*(GenericName)\\[.*\\]")
+                set(genericname_tag "${genericname_tag}${l}\n")
+            endif()
+        endforeach()
+    endforeach()
+
+    configure_file(${_IN_FILE} ${_OUT_FILE} @ONLY)
+    file(APPEND ${_OUT_FILE} "${name_tag}\n")
+    file(APPEND ${_OUT_FILE} "${comment_tag}\n")
+    file(APPEND ${_OUT_FILE} "${genericname_tag}\n")
+endfunction()
+
+CREATE_DESKTOP_FILE(misc/${PROJECT_NAME}.desktop ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop translations/*.desktop)
+
+install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop DESTINATION "share/applications")
 install(FILES   misc/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps" RENAME "flacon.png")
 install(FILES   misc/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps" RENAME "flacon.png")
 install(FILES   misc/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps" RENAME "flacon.png")
