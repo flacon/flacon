@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Icon[cs]=flacon
-Comment[cs]=Vytahuje zvukové stopy z obrazu zvukového CD do oddělených stop.
-GenericName[cs]=Kodér zvukových souborů
-Name[cs]=Flacon
+Icon[de]=flacon
+Comment[de]=Audiospuren von einem Audio-CD-Abbild werden in getrennte Spuren extrahiert.
+GenericName[de]=Audio File Encoder
+Name[de]=Flacon

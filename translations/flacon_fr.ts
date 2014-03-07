@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>À propos de</translation>
     </message>
     <message>
         <source>Author</source>
@@ -203,7 +203,7 @@
     </message>
     <message>
         <source>Rescan</source>
-        <translation>Rafraîchir</translation>
+        <translation>Balayer de nouveau</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
@@ -211,11 +211,11 @@
     </message>
     <message>
         <source>Extract to separate file</source>
-        <translation>Extraction vers un fichier séparé</translation>
+        <translation>Extraire vers un fichier séparé</translation>
     </message>
     <message>
         <source>Add to first track</source>
-        <translation>Ajoute à la première piste</translation>
+        <translation>Ajouter à la première piste</translation>
     </message>
     <message>
         <source>General</source>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Sélectionne le répertoire temporaire</translation>
+        <translation>Choisir le répertoire temporaire</translation>
     </message>
 </context>
 <context>
@@ -238,11 +238,11 @@
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Utilise les réglages de qualité (recommandé)</translation>
+        <translation>Utiliser les réglages de qualité (recommandé)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Choisis le débit binaire</translation>
+        <translation>Choisir le débit binaire</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -269,7 +269,7 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calcul du gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -338,7 +338,7 @@
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Choisis le débit binaire</translation>
+        <translation>Choisir le débit binaire</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -350,7 +350,7 @@
     </message>
     <message>
         <source>Use quality</source>
-        <translation>Choisis la qualité</translation>
+        <translation>Choisir la qualité</translation>
     </message>
     <message>
         <source>Quality:</source>
@@ -362,7 +362,7 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calcul du gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
     <message>
         <source>VBR medium</source>
@@ -409,11 +409,11 @@
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Utilise les réglages de qualité (recommandé)</translation>
+        <translation>Utiliser les réglages de qualité (recommandé)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Choisis le débit binaire</translation>
+        <translation>Choisir le débit binaire</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
@@ -445,7 +445,7 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calcul du gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
 </context>
 <context>
@@ -464,7 +464,7 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calcul du gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -502,7 +502,7 @@
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; contient plusieurs balisess FILE.&lt;br&gt;Ces fichiers CUE ne sont pas encore pris en charge.</translation>
+        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; contient plusieurs balises FILE.&lt;br&gt;Ces fichiers CUE ne sont pas encore pris en charge.</translation>
     </message>
 </context>
 <context>
@@ -568,7 +568,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Default</source>
-        <translation>Défaut</translation>
+        <translation>Par défaut</translation>
     </message>
 </context>
 <context>
@@ -663,11 +663,11 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Add file</source>
-        <translation>Ajoute un fichier</translation>
+        <translation>Ajouter un fichier</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Ajoute un fichier CUE ou audio</translation>
+        <translation>Ajouter un fichier CUE ou audio</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -675,11 +675,11 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Convert</source>
-        <translation>Convertion</translation>
+        <translation>Convertir</translation>
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation>Démarre la conversion</translation>
+        <translation>Démarrer la conversion</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -691,7 +691,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation>Annule la conversion</translation>
+        <translation>Annuler la conversion</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -715,11 +715,11 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Remove album</source>
-        <translation>Supprime l&apos;album</translation>
+        <translation>Enlever l&apos;album</translation>
     </message>
     <message>
         <source>Remove album from project</source>
-        <translation>Supprime l&apos;album du projet</translation>
+        <translation>Enlever l&apos;album du projet</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -727,7 +727,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation>Configure l&apos;encodeur</translation>
+        <translation>Configurer l&apos;encodeur</translation>
     </message>
     <message>
         <source>...</source>
@@ -735,15 +735,15 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Select result directory</source>
-        <translation>Sélectionne le répertoire de destination</translation>
+        <translation>Choisir le répertoire de destination</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation>Récupère sur CDDB</translation>
+        <translation>Récupèrer sur CDDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation>Obtiens les informations de l&apos;album sur CDDB</translation>
+        <translation>Obtenir les informations de l&apos;album sur CDDB</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
@@ -751,7 +751,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Scan</source>
-        <translation>Explorer</translation>
+        <translation>Balayer</translation>
     </message>
     <message>
         <source>Recursive album search</source>
@@ -759,42 +759,42 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Insère le &quot;Numéro de piste&quot;</translation>
+        <translation>Insèrer le &quot;Numéro de piste&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Insère le &quot;Nombre total de pistes&quot;</translation>
+        <translation>Insèrer le &quot;Nombre total de pistes&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Insère l&apos;&quot;Artiste&quot;</translation>
+        <translation>Insèrer l&apos;&quot;Artiste&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Insère le &quot;Titre de l&apos;album&quot;</translation>
+        <translation>Insèrer le &quot;Titre de l&apos;album&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Insère le &quot;Titre de la piste&quot;</translation>
+        <translation>Insèrer le &quot;Titre de la piste&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Insère l&apos;&quot;Année&quot;</translation>
+        <translation>Insèrer l&apos;&quot;Année&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Insère le &quot;Genre&quot;</translation>
+        <translation>Insèrer le &quot;Genre&quot;</translation>
     </message>
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Sélectionne le fichier CUE</translation>
+        <translation>Choisir le fichier CUE</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
         <translation>Certains albums ne seront pas convertis, ils contiennent des erreurs.
-Veux-tu continuer ?</translation>
+Voulez-vous continuer ?</translation>
     </message>
     <message>
         <source>%1 files</source>
@@ -814,16 +814,16 @@ Veux-tu continuer ?</translation>
     <message>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Ajoute un fichier CUE ou audio</translation>
+        <translation>Ajouter un fichier CUE ou audio</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Sélectionne le fichier audio</translation>
+        <translation>Choisir le fichier audio</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Sélectionne un répertoire</translation>
+        <translation>Choisir un répertoire</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -857,7 +857,7 @@ If you surround sections of text that contain a token with braces, these section
 
  &lt;/style&gt;
 
- Les marqueurs commencent avec %. Tu peux utiliser les marqueurs suivants :
+ Les marqueurs commencent avec %. Vous pouvez utiliser les marqueurs suivants :
 
  &lt;table&gt;
 
@@ -881,14 +881,14 @@ If you surround sections of text that contain a token with braces, these section
 
  &lt;br&gt;&lt;br&gt;
 
- Si tu entoures avec des accolades les sections de texte qui contiennent un marqueur, ces sections seront cachées si le marqueur est vide.</translation>
+ Si vous entourez avec des accolades les sections de texte qui contiennent un marqueur, ces sections seront cachées si le marqueur est vide.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually. 
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Tu peux naviguer vers le dossier de destination. Tu peux aussi le saisir manuellement.
+        <translation>Vous pouvez naviguer vers le dossier de destination. Vous pouvez aussi le saisir manuellement.
 
 Si le chemin est laissé vide ou commence par « . » (point), les fichiers seront placés dans le même dossier que la source.</translation>
     </message>
@@ -926,7 +926,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers sero
     </message>
     <message>
         <source>Select program file</source>
-        <translation>Sélectionne le fichier du programme</translation>
+        <translation>Choisir le fichier du programme</translation>
     </message>
 </context>
 <context>
@@ -949,11 +949,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers sero
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier audio pris en charge. &lt;br&gt;&lt;br&gt;Vérifie que tous les programmes requis sont installés ainsi que tes préférences.</translation>
+        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier audio pris en charge. &lt;br&gt;&lt;br&gt;Vérifier que tous les programmes requis sont installés ainsi que vos préférences.</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>Tu ne peux pas utiliser &quot;ReplayGain&quot; pour des fichiers avec un taux d’échantillonnage supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
+        <translation>Vous ne pouvez pas utiliser &quot;ReplayGain&quot; pour des fichiers avec un taux d’échantillonnage supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
     </message>
 </context>
 <context>
@@ -967,7 +967,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers sero
     <name>TrackView</name>
     <message>
         <source>Select another CUE file</source>
-        <translation>Sélectionne un autre fichier CUE</translation>
+        <translation>Choisir un autre fichier CUE</translation>
     </message>
     <message>
         <source>Get data from CDDB</source>
@@ -975,11 +975,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers sero
     </message>
     <message>
         <source>Edit</source>
-        <translation>Édition</translation>
+        <translation>Éditer</translation>
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>Sélectionne un autre fichier audio</translation>
+        <translation>Choisir un autre fichier audio</translation>
     </message>
 </context>
 <context>
@@ -990,7 +990,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers sero
     </message>
     <message>
         <source>Aborted</source>
-        <translation>Annulé</translation>
+        <translation>Interrompu</translation>
     </message>
     <message>
         <source>OK</source>

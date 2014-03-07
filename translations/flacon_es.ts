@@ -175,7 +175,7 @@
     </message>
     <message>
         <source>Thread count:</source>
-        <translation>Contador de subprocesos:</translation>
+        <translation>Número de subprocesos:</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
@@ -187,7 +187,7 @@
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Código de página predeterminado:</translation>
+        <translation>Página de código predeterminada:</translation>
     </message>
     <message>
         <source>Per track CUE</source>
@@ -650,7 +650,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     </message>
     <message>
         <source>Codepage:</source>
-        <translation>Código de Página:</translation>
+        <translation>Página de códigos:</translation>
     </message>
     <message>
         <source>&amp;File</source>

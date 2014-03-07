@@ -183,7 +183,7 @@
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation type="unfinished"/>
+        <translation>Cartella temporanea:</translation>
     </message>
     <message>
         <source>Default codepage:</source>
@@ -203,69 +203,69 @@
     </message>
     <message>
         <source>Rescan</source>
-        <translation type="unfinished"/>
+        <translation>Cerca nuovamente</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation type="unfinished"/>
+        <translation>Percorso completo alle applicazioni esterne</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
-        <translation type="unfinished"/>
+        <translation>Estrai in un file separato</translation>
     </message>
     <message>
         <source>Add to first track</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi alla prima traccia</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Generale</translation>
     </message>
     <message>
         <source>Programs</source>
-        <translation type="unfinished"/>
+        <translation>Programmi</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona cartella temporanea</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurazione codificatore AAC</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>Usa le impostazioni sulla qualità (raccomandato)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Usa bitrate</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Bitrate:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona il bitrate desiderato (in kb/s).</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Flac</name>
     <message>
         <source>Flac encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurazione codificatore Flac</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation type="unfinished"/>
+        <translation>Compressione:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -273,18 +273,18 @@
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Disattivato</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurazione codificatore MP3</translation>
     </message>
     <message>
         <source>Preset:</source>
-        <translation type="unfinished"/>
+        <translation>Preimpostazione:</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -312,7 +312,8 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
+        <translation>
+</translation>
     </message>
     <message>
         <source>Use bitrate</source>

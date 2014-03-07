@@ -1,13 +1,13 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.0">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Flacon</source>
-        <translation>Sobre o Flacon</translation>
+        <translation>Über Flacon</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Sobre</translation>
+        <translation>Über</translation>
     </message>
     <message>
         <source>Author</source>
@@ -15,35 +15,35 @@
     </message>
     <message>
         <source>Thanks</source>
-        <translation>Agradecimentos</translation>
+        <translation>Dank</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation>Traduções</translation>
+        <translation>Übersetzungen</translation>
     </message>
     <message>
         <source>External programs</source>
-        <translation>Programas externos</translation>
+        <translation>Externe Programme</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation>Página principal: %1</translation>
+        <translation>Homepage: %1</translation>
     </message>
     <message>
         <source>License: %1</source>
-        <translation>Licença: %1</translation>
+        <translation>Lizenz: %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
-        <translation>Agradecimentos especiais a:</translation>
+        <translation>Besonderen Dank an:</translation>
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon usa programas externos. Muito obrigado aos seus autores!</translation>
+        <translation>Flacon verwendet externe Programme. Vielen Dank an deren Autoren!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Extrai faixas individuais de um grande arquivo de áudio contendo o álbum inteiro.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
@@ -51,32 +51,32 @@
     </message>
     <message>
         <source>WavPack support patch</source>
-        <translation>Patch de suporte a WavPack</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Application icon, Packaging</source>
-        <translation>ìcone do aplicativo, Empacotando.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation>Empacotando, testando.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Improvements in the UI</source>
-        <translation>Aprimoramentos na interface gráfica.</translation>
+        <translation>Verbesserungen in der Benutzeroberfläche</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation>Flacon é traduzido em muitos idiomas graças ao trabalho das equipes de tradução ao redor do mundo.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation>Conta do Flacon no github.com</translation>
+        <translation>Flacon-Konto auf github.com</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation>Rastreador de erros %1</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -84,7 +84,7 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
-        <translation>Detectar automaticamente</translation>
+        <translation>Automatische Erkennung</translation>
     </message>
     <message>
         <source>Unicode (UTF-8)</source>
@@ -100,191 +100,191 @@
     </message>
     <message>
         <source>Cyrillic (Win-1251)</source>
-        <translation>Cyrillic (Win-1251)</translation>
+        <translation>Kyrillisch (Win-1251)</translation>
     </message>
     <message>
         <source>Cyrillic (CP-866)</source>
-        <translation>Cyrillic (CP-866)</translation>
+        <translation>Kyrillisch (CP-866)</translation>
     </message>
     <message>
         <source>Latin-1 (ISO-8859-1)</source>
-        <translation>Latin-1 (ISO-8859-1)</translation>
+        <translation>Lateinisch-1 (ISO-8859-1)</translation>
     </message>
     <message>
         <source>Latin-2 (ISO-8859-2)</source>
-        <translation>Latin-2 (ISO-8859-2)</translation>
+        <translation>Lateinisch-2 (ISO-8859-2)</translation>
     </message>
     <message>
         <source>Latin-3 (ISO-8859-3)</source>
-        <translation>Latin-3 (ISO-8859-3)</translation>
+        <translation>Lateinisch-3 (ISO-8859-3)</translation>
     </message>
     <message>
         <source>Latin-4 (ISO-8859-4)</source>
-        <translation>Latin-4 (ISO-8859-4)</translation>
+        <translation>Lateinisch-4 (ISO-8859-4)</translation>
     </message>
     <message>
         <source>Latin-5 (ISO-8859-5)</source>
-        <translation>Latin-5 (ISO-8859-5)</translation>
+        <translation>Lateinisch-5 (ISO-8859-5)</translation>
     </message>
     <message>
         <source>Latin-6 (ISO-8859-6)</source>
-        <translation>Latin-6 (ISO-8859-6)</translation>
+        <translation>Lateinisch-6 (ISO-8859-6)</translation>
     </message>
     <message>
         <source>Latin-7 (ISO-8859-7)</source>
-        <translation>Latin-7 (ISO-8859-7)</translation>
+        <translation>Lateinisch-7 (ISO-8859-7)</translation>
     </message>
     <message>
         <source>Latin-8 (ISO-8859-8)</source>
-        <translation>Latin-8 (ISO-8859-8)</translation>
+        <translation>Lateinisch-8 (ISO-8859-8)</translation>
     </message>
     <message>
         <source>Latin-9 (ISO-8859-9)</source>
-        <translation>Latin-9 (ISO-8859-9)</translation>
+        <translation>Lateinisch-9 (ISO-8859-9)</translation>
     </message>
     <message>
         <source>Latin-10 (ISO-8859-10)</source>
-        <translation>Latin-10 (ISO-8859-10)</translation>
+        <translation>Lateinisch-10 (ISO-8859-10)</translation>
     </message>
     <message>
         <source>Latin-13 (ISO-8859-13)</source>
-        <translation>Latin-13 (ISO-8859-13)</translation>
+        <translation>Lateinisch-13 (ISO-8859-13)</translation>
     </message>
     <message>
         <source>Latin-14 (ISO-8859-14)</source>
-        <translation>Latin-14 (ISO-8859-14)</translation>
+        <translation>Lateinisch-14 (ISO-8859-14)</translation>
     </message>
     <message>
         <source>Latin-15 (ISO-8859-15)</source>
-        <translation>Latin-15 (ISO-8859-15)</translation>
+        <translation>Lateinisch-15 (ISO-8859-15)</translation>
     </message>
     <message>
         <source>Latin-16 (ISO-8859-16)</source>
-        <translation>Latin-16 (ISO-8859-16)</translation>
+        <translation>Lateinisch-16 (ISO-8859-16)</translation>
     </message>
 </context>
 <context>
     <name>ConfigDialog</name>
     <message>
         <source>Preferences</source>
-        <translation>Preferências</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <source>General configuration</source>
-        <translation>Configurações gerais</translation>
+        <translation>Allgemeine Konfiguration</translation>
     </message>
     <message>
         <source>Thread count:</source>
-        <translation>Contagem de linhas de execução:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation>O número de linhas de execução no processo de conversão.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation>Diretório temporário:</translation>
+        <translation>Temporäres Verzeichnis:</translation>
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Codificação padrão:</translation>
+        <translation>Standard-Zeichensatztabelle:</translation>
     </message>
     <message>
         <source>Per track CUE</source>
-        <translation>Arquivo CUE por faixa</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create per track CUE</source>
-        <translation>Criar um arquivo CUE por faixa</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Intervalo anterior à primeira faixa:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rescan</source>
-        <translation>Analisar novamente</translation>
+        <translation>Erneut durchsuchen</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation>Caminho completo dos aplicativos externos</translation>
+        <translation>Vollständiger Pfad der externen Anwendungen</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
-        <translation>Extrair para arquivo separado</translation>
+        <translation>In separate Datei extrahieren</translation>
     </message>
     <message>
         <source>Add to first track</source>
-        <translation>Adicionar à primeira faixa</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>General</source>
-        <translation>Geral</translation>
+        <translation>Allgemein</translation>
     </message>
     <message>
         <source>Programs</source>
-        <translation>Programas</translation>
+        <translation>Programme</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Selecionar diretório temporário</translation>
+        <translation>Temporäres Verzeichnis auswählen</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation>Configurações AAC de codificação</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Usar configurações de qualidade (recomendado)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Usar taxa de bits</translation>
+        <translation>Bitrate anwenden</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Taxa de bits:</translation>
+        <translation>Bitrate:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Defina a taxa de bits do destino (em kb/s).</translation>
+        <translation>Sets target bitrate (in kb/s).</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Flac</name>
     <message>
         <source>Flac encoding configuration</source>
-        <translation>Configurações de codificação Flac</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Compressão:</translation>
+        <translation>Komprimierung:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calcular ganho:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Desabilitado</translation>
+        <translation>Deaktiviert</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation>Configurações de codificação MP3</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Preset:</source>
-        <translation>Predefinição:</translation>
+        <translation>Voreinstellung:</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -312,198 +312,175 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR médio&lt;/dt&gt;
-&lt;dd&gt;Ao usar uma taxa de bits média variável, esta predefinição deve fornecer uma transparência mais próxima da maioria das pessoas e da maioria das músicas.&lt;/dd&gt;
-
-&lt;dt&gt;VBR padrão, VBR padrão rápido&lt;/dt&gt;
-&lt;dd&gt;Ao usar uma taxa de bits média variável, esta predefinição geralmente oferece transparência para a maioria das pessoas na maioria das músicas e é bastante elevada em qualidade.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extremo, VBR extremo rápido&lt;/dt&gt;
-&lt;dd&gt;Ao usar a maior taxa de bits variável, esta predefinição oferece qualidade ligeiramente maior do que o modo padrão caso você tenha audição extremamente apurada ou equipamentos de áudio topo de linha.&lt;/dd&gt;
-
-&lt;dt&gt;VBR com qualidade&lt;/dt&gt;
-&lt;dd&gt;Esta opção de taxa de bits variável lhe permite especificar a qualidade da saída.&lt;/dd&gt;
-
-&lt;dt&gt;opção rápida&lt;/dt&gt;
-&lt;dd&gt;Habilita o novo e ágil VBR para um perfil específico. Ela é recomendada.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insano&lt;/dt&gt;
-&lt;dd&gt;Se você precisa ter a absoluta maior qualidade, sem se importar com o tamanho do arquivo, você irá alcançá-la usando esta taxa de bits constante.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Ao usar esta predefinição de taxa de bits constante, geralmente você obterá boa qualidade à taxas de bits específicas.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Ao usar esta predefinição de taxa de bits média, geralmente você obterá qualidade melhor que a opção de taxa de bits constante à taxas de bits específicas.&lt;/dd&gt;
-</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Usar taxa de bits</translation>
+        <translation>Bitrate anwenden</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Taxa de bits:</translation>
+        <translation>Bitrate:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Defina a taxa de bits do destino (em kb/s).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use quality</source>
-        <translation>Usar qualidade</translation>
+        <translation>Qualität anwenden</translation>
     </message>
     <message>
         <source>Quality:</source>
-        <translation>Qualidade:</translation>
+        <translation>Qualität:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calcular ganho:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR medium</source>
-        <translation>VBR médio</translation>
+        <translation>VBR Mittel</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation>VBR padrão</translation>
+        <translation>VBR Standard</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation>VBR padrão rápido</translation>
+        <translation>VBR Standard schnell</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation>VBR extremo</translation>
+        <translation>VBR extrem</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation>VBR extremo rápido</translation>
+        <translation>VBR extrem schnell</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation>VBR com qualidade</translation>
+        <translation>VBR Qualität</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation>CBR insano</translation>
+        <translation>CBR verrückt</translation>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation>kbps CBR</translation>
+        <translation>CBR kbps</translation>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation>kbps ABR</translation>
+        <translation>ABR kbps</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation>Configurações de codificação Ogg</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Usar configurações de qualidade (recomendado)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Usar taxa de bits</translation>
+        <translation>Bitrate anwenden</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation>Taxa de bits mínima:</translation>
+        <translation>Minimalbitrate:</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Define a taxa de bits mínima (em kb/s).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation>Taxa de bits nominal:</translation>
+        <translation>Nominalbitrate:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Defina a taxa de bits do destino (em kb/s).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Taxa de bits máxima:</translation>
+        <translation>Maximalbitrate:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Define a taxa de bits máxima (em kb/s).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calcular ganho:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation>Configurações de codificação WavPack</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Compressão:</translation>
+        <translation>Komprimierung:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calcular ganho:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Desabilitado</translation>
+        <translation>Deaktiviert</translation>
     </message>
 </context>
 <context>
     <name>Converter</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Não foi possível criar o diretório &quot;%1&quot;.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Não foi possível gravar no diretório &quot;%1&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Conversion is not possible:</source>
-        <translation>Conversão não é possível:</translation>
+        <translation>Konvertierung ist nicht möglich:</translation>
     </message>
 </context>
 <context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation>Arquivo de áudio não indicado.</translation>
+        <translation>Audiodatei nicht festgelegt.</translation>
     </message>
     <message>
         <source>CUE file not set.</source>
-        <translation>Arquivo CUE não indicado.</translation>
+        <translation>CUE-Datei nicht festgelegt.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file.</source>
-        <translation>O arquivo &lt;b&gt;%1&lt;/br&gt; não é um arquivo CUE válido.</translation>
+        <translation>Datei &lt;b&gt;%1&lt;/b&gt; ist keine gültige CUE-Datei.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation>O arquivo &lt;b&gt;%1&lt;/b&gt; contém várias etiquetas FILE.&lt;br&gt;Não há suporte ainda a estes arquivos CUE.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -512,53 +489,51 @@
         <source>I can't delete file:
 %1
 %2</source>
-        <translation>Não foi possível excluir o arquivo:
-%1
-%2</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Encoder error:
 </source>
-        <translation>Erro do codificador:
+        <translation>Kodiererfehler:
 </translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
-        <translation>Não foi possível ler %1 arquivos</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>Ajusta a qualidade de codificação, entre %1 (menor) e %2 (maior).</translation>
+        <translation>Legt die Kodierqualität fest, zwischen %1 (niedrigste) und %2 (höchste).</translation>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>Ajusta o nível de compressão, entre %1 (mais rápido) e %2 (maior compressão). ⏎ Isso afeta somente o tamanho do arquivo. Todas as configurações são sem perda.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disabled</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Desabilitado</translation>
+        <translation>Deaktiviert</translation>
     </message>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Por faixa</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Por álbum</translation>
+        <translation>Pro Album</translation>
     </message>
     <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain é um padrão para normalizar a altura percebida de formatos de áudio digitais. ⏎ ⏎ A análise pode ser feita em faixas individuais, de forma que todas as faixas sejam de volume igual na execução. ⏎ Usar a análise album-gain preservará as diferenças dentro de um álbum.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -566,7 +541,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Default</source>
-        <translation>Padrão</translation>
+        <translation>Standard</translation>
     </message>
 </context>
 <context>
@@ -575,9 +550,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation>Não foi possível renomear o arquivo:
-%1 para %2
-%3</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -585,7 +558,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Gain error:
 </source>
-        <translation>Erro de ganho:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -596,136 +569,136 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Arquivos finais</translation>
+        <translation>Ausgabedateien</translation>
     </message>
     <message>
         <source>Directory:</source>
-        <translation>Diretório:</translation>
+        <translation>Verzeichnis:</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation>Padrão:</translation>
+        <translation>Muster:</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation>Formato:</translation>
+        <translation>Format:</translation>
     </message>
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Formato de saída</translation>
+        <translation>Ausgabeformat</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation>Etiquetas</translation>
+        <translation>Schlagwörter</translation>
     </message>
     <message>
         <source>Genre:</source>
-        <translation>Gênero:</translation>
+        <translation>Genre:</translation>
     </message>
     <message>
         <source>Year:</source>
-        <translation>Ano:</translation>
+        <translation>Jahr:</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation>Artista:</translation>
+        <translation>Interpret:</translation>
     </message>
     <message>
         <source>Album:</source>
-        <translation>Álbum:</translation>
+        <translation>Album:</translation>
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Número inicial:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>ID do disco:</translation>
+        <translation>Disc-Kennung:</translation>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation>Codificação:</translation>
+        <translation>Zeichensatztabelle:</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Arquivo</translation>
+        <translation>&amp;Datei</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>Con&amp;figurações</translation>
+        <translation>&amp;Einstellungen</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>A&amp;juda</translation>
+        <translation>&amp;Hilfe</translation>
     </message>
     <message>
         <source>Add file</source>
-        <translation>Adicionar arquivo</translation>
+        <translation>Datei hinzufügen</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Adicione arquivo CUE ou áudio</translation>
+        <translation>CUE- oder Audiodatei hinzufügen</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation>Strg+O</translation>
     </message>
     <message>
         <source>Convert</source>
-        <translation>Converter</translation>
+        <translation>Konvertieren</translation>
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation>Iniciar processo de conversão</translation>
+        <translation>Konvertierungsprozess starten</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
+        <translation>Strg+W</translation>
     </message>
     <message>
         <source>Abort</source>
-        <translation>Interromper</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation>Interromper processo de conversão</translation>
+        <translation>Konvertierungsprozess abbrechen</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Sair</translation>
+        <translation>Beenden</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation>Strg+Q</translation>
     </message>
     <message>
         <source>&amp;Preferences</source>
-        <translation>&amp;Preferências</translation>
+        <translation>&amp;Einstellungen</translation>
     </message>
     <message>
         <source>Program preferences</source>
-        <translation>Preferências do programa</translation>
+        <translation>Programmeinstellungen</translation>
     </message>
     <message>
         <source>&amp;About Flacon</source>
-        <translation>So&amp;bre o Flacon</translation>
+        <translation>&amp;Über Flacon</translation>
     </message>
     <message>
         <source>Remove album</source>
-        <translation>Remover álbum</translation>
+        <translation>Album entfernen</translation>
     </message>
     <message>
         <source>Remove album from project</source>
-        <translation>Remover álbum do projeto</translation>
+        <translation>Album vom Projekt entfernen</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
-        <translation>Ctrl+Del</translation>
+        <translation>Strg+Entf</translation>
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation>Configurar codificador</translation>
+        <translation>Kodierer konfigurieren</translation>
     </message>
     <message>
         <source>...</source>
@@ -733,95 +706,94 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Select result directory</source>
-        <translation>Selecione o diretório de destino</translation>
+        <translation>Ausgabeverzeichnis festlegen</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation>Obter do CDDB</translation>
+        <translation>Von CDDB abrufen</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation>Obter informações do álbum do CDDB</translation>
+        <translation>Albuminformation von CDDB abrufen</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
-        <translation>Ctrl+I</translation>
+        <translation>Strg+I</translation>
     </message>
     <message>
         <source>Scan</source>
-        <translation>Analisar</translation>
+        <translation>Durchsuchen</translation>
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation>Pesquisa recursiva de álbum</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Insira o &quot;Número de faixa&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Insira o &quot;Número total de faixas&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Insira o &quot;Artista&quot;</translation>
+        <translation>&quot;Interpret&quot; einfügen</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Insira o &quot;Título do álbum&quot;</translation>
+        <translation>&quot;Albumtitel&quot; einfügen</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Insira o &quot;Título da faixa&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Insira o &quot;Ano&quot;</translation>
+        <translation>&quot;Jahr&quot; einfügen</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Insira o &quot;Gênero&quot;</translation>
+        <translation>&quot;Genre&quot; einfügen</translation>
     </message>
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Selecione o arquivo CUE</translation>
+        <translation>CUE-Datei auswählen</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation>Alguns álbuns não serão convertidos, pois possuem erros.
-Você deseja continuar?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>%1 arquivos</translation>
+        <translation>%1 Dateien</translation>
     </message>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
-        <translation>Todos os formatos suportados</translation>
+        <translation>Alle unterstützten Formate</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Todos os arquivos</translation>
+        <translation>Alle Dateien</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Adicione arquivo CUE ou áudio</translation>
+        <translation>CUE- oder Audiodatei hinzufügen</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Selecionar arquivo de áudio</translation>
+        <translation>Audiodatei auswählen</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Selecionar diretório</translation>
+        <translation>Verzeichnis auswählen</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -847,68 +819,50 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Os Tokens são iniciados com %. Você pode usar os seguintes tokens: 
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número de faixa  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número total de faixas&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artista&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título do álbum&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título da faixa&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Ano&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Gênero&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-Se você estiver entre seções que possuam um token com colchetes, estas seções serão ocultadas caso o token esteja vazio.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually. 
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Você pode navegar no diretório de destino. Você também pode digitá-lo manualmente. 
-
-Se o caminho for deixado em branco ou inicia com &quot;.&quot; (ponto), os arquivos resultantes serão colocados no mesmo diretório que a fonte.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Valores múltiplos</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MultiValuesLineEdit</name>
     <message>
         <source>Multiple values</source>
-        <translation>Valores múltiplos</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MultiValuesSpinBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Valores múltiplos</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
         <source>%1 program</source>
-        <translation>%1 programa</translation>
+        <translation>%1 Programm</translation>
     </message>
     <message>
         <source>All files</source>
-        <translation>Todos os arquivos</translation>
+        <translation>Alle Dateien</translation>
     </message>
     <message>
         <source>Select program file</source>
-        <translation>Selecione o arquivo do programa</translation>
+        <translation>Programmdatei auswählen</translation>
     </message>
 </context>
 <context>
@@ -923,56 +877,56 @@ Se o caminho for deixado em branco ou inicia com &quot;.&quot; (ponto), os arqui
     <name>QObject</name>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Não foi possível gravar arquivo CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Não foi possível localizar o programa &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>Ich kann das Programm &lt;b&gt;%1&lt;/b&gt; nicht finden.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>O arquivo &lt;b&gt;%1&lt;/b&gt; não é um arquivo de áudio suportado. &lt;br&gt;&lt;br&gt;Verifique se todos os programas estão instalados nas suas preferências.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>Não foi possível usar &apos;ReplayGain&apos; para arquivos com qualidade superior a 48kHz. Metaflac não suporta esses arquivos.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
         <source>The number of tracks is higher than expected.</source>
-        <translation>O número de faixas é maior do que o esperado.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
         <source>Select another CUE file</source>
-        <translation>Selecione outro arquivo CUE</translation>
+        <translation>Wählen Sie eine andere CUE-Datei aus</translation>
     </message>
     <message>
         <source>Get data from CDDB</source>
-        <translation>Obter dados do CDDB</translation>
+        <translation>Daten von CDDB abrufen</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Editar</translation>
+        <translation>Bearbeiten</translation>
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>Selecione outro arquivo de áudio</translation>
+        <translation>Wählen Sie eine andere Audiodatei aus</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
     <message>
         <source>Error</source>
-        <translation>Erro</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <source>Aborted</source>
-        <translation>Interrompido</translation>
+        <translation>Abgebrochen</translation>
     </message>
     <message>
         <source>OK</source>
@@ -980,35 +934,35 @@ Se o caminho for deixado em branco ou inicia com &quot;.&quot; (ponto), os arqui
     </message>
     <message>
         <source>Extracting</source>
-        <translation>Extraindo</translation>
+        <translation>Extrahieren</translation>
     </message>
     <message>
         <source>Encoding</source>
-        <translation>Codificando</translation>
+        <translation>Kodieren</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation>Na fila</translation>
+        <translation>In die Warteschlange eingereiht</translation>
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation>Calcular ganho</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Wait gain</source>
-        <translation>Esperar ganho</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Write gain</source>
-        <translation>Escrever ganho</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tracks:</source>
-        <translation>Faixas:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Audio:</source>
-        <translation>Áudio:</translation>
+        <translation>Audio:</translation>
     </message>
 </context>
 <context>
@@ -1016,42 +970,41 @@ Se o caminho for deixado em branco ou inicia com &quot;.&quot; (ponto), os arqui
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation>Faixa</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
-        <translation>Título</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
-        <translation>Artista:</translation>
+        <translation>Interpret</translation>
     </message>
     <message>
         <source>Album</source>
         <comment>Table header.</comment>
-        <translation>Álbum</translation>
+        <translation>Album</translation>
     </message>
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
-        <translation>Commentários</translation>
+        <translation>Kommentar</translation>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
-        <translation>Arquivo</translation>
+        <translation>Datei</translation>
     </message>
     <message>
         <source>Multiple values</source>
-        <translation>Valores múltiplos</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Conversion is not possible.
 %1</source>
-        <translation>Não é possível converter:
-%1</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
