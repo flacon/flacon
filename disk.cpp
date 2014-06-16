@@ -220,11 +220,11 @@ QString Track::resultFileName() const
     QHash<QChar, QString> tokens;
     tokens.insert(QChar('N'),   QString("%1").arg(disk()->count(), 2, 10, QChar('0')));
     tokens.insert(QChar('n'),   QString("%1").arg(trackNum(), 2, 10, QChar('0')));
-    tokens.insert(QChar('A'),   this->album());
-    tokens.insert(QChar('t'),   this->title());
-    tokens.insert(QChar('a'),   this->artist());
-    tokens.insert(QChar('g'),   this->genre());
-    tokens.insert(QChar('y'),   this->date());
+    tokens.insert(QChar('A'),   Disk::safeString(this->album()));
+    tokens.insert(QChar('t'),   Disk::safeString(this->title()));
+    tokens.insert(QChar('a'),   Disk::safeString(this->artist()));
+    tokens.insert(QChar('g'),   Disk::safeString(this->genre()));
+    tokens.insert(QChar('y'),   Disk::safeString(this->date()));
 
     QString res = expandPattern(pattern, &tokens, false);
 
