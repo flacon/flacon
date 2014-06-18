@@ -90,8 +90,10 @@ private slots:
     void testTrackSetCodepages_data();
     void testTrackSetCodepages();
 
-    void testConvert();
+    void testCueIndex_data();
+    void testCueIndex();
 
+    void testConvert();
 
 private:
     bool createAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality);

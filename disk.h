@@ -56,7 +56,8 @@ public:
 
 private:
     bool mNull;
-    int mValue;
+    int mCdValue;
+    int mHiValue;
 
     bool parse(const QString &str);
 };

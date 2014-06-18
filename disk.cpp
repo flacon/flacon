@@ -43,7 +43,8 @@
  ************************************************/
 CueIndex::CueIndex(const QString &str):
     mNull(true),
-    mValue(0)
+    mCdValue(0),
+    mHiValue(0)
 {
     if (!str.isEmpty())
         mNull = !parse(str);
@@ -55,13 +56,12 @@ CueIndex::CueIndex(const QString &str):
  ************************************************/
 QString CueIndex::toString(bool cdQuality) const
 {
-    int min = mValue / (60 * 75);
-    int sec = (mValue - min * 60 * 75) / 75;
-    int frm = mValue - (min * 60 + sec) * 75;
-
-
     if (cdQuality)
     {
+        int min =  mCdValue / (60 * 75);
+        int sec = (mCdValue - min * 60 * 75) / 75;
+        int frm =  mCdValue - (min * 60 + sec) * 75;
+
         return QString("%1:%2:%3")
                 .arg(min, 2, 10, QChar('0'))
                 .arg(sec, 2, 10, QChar('0'))
@@ -69,7 +69,9 @@ QString CueIndex::toString(bool cdQuality) const
     }
     else
     {
-        int msec = frm * 1000.0 / 75.0;
+        int min = mHiValue / (60 * 1000);
+        int sec = (mHiValue - min * 60 * 1000) / 1000;
+        int msec = mHiValue - (min * 60 + sec) * 1000;
 
         return QString("%1:%2.%3")
                 .arg(min,  2, 10, QChar('0'))
@@ -86,7 +88,8 @@ QString CueIndex::toString(bool cdQuality) const
 CueIndex CueIndex::operator -(const CueIndex &other) const
 {
     CueIndex res;
-    res.mValue = this->mValue - other.mValue;
+    res.mCdValue = this->mCdValue - other.mCdValue;
+    res.mHiValue = this->mHiValue - other.mHiValue;
     res.mNull = false;
     return res;
 }
@@ -97,7 +100,7 @@ CueIndex CueIndex::operator -(const CueIndex &other) const
  ************************************************/
 bool CueIndex::operator ==(const CueIndex &other) const
 {
-    return this->mValue == other.mValue;
+    return this->mHiValue == other.mHiValue;
 }
 
 
@@ -106,7 +109,7 @@ bool CueIndex::operator ==(const CueIndex &other) const
  ************************************************/
 bool CueIndex::operator !=(const CueIndex &other) const
 {
-    return this->mValue != other.mValue;
+    return this->mHiValue != other.mHiValue;
 }
 
 
@@ -115,20 +118,30 @@ bool CueIndex::operator !=(const CueIndex &other) const
  ************************************************/
 bool CueIndex::parse(const QString &str)
 {
+    QStringList sl = str.split(QRegExp("\\D"), QString::KeepEmptyParts);
+
+    if (sl.length()<3)
+        return false;
+
     bool ok;
-    int min = str.section(":", 0, 0).toInt(&ok);
+    int min = sl[0].toInt(&ok);
     if (!ok)
         return false;
 
-    int sec = str.section(":", 1, 1).toInt(&ok);
+    int sec = sl[1].toInt(&ok);
     if (!ok)
         return false;
 
-    int frm = str.section(":", 2, 2).toInt(&ok);
+    int frm = sl[2].leftJustified(2, '0').toInt(&ok);
     if (!ok)
         return false;
 
-    mValue = (min * 60 + sec) * 75 + frm;
+    int msec = sl[2].leftJustified(3, '0').toInt(&ok);
+    if (!ok)
+        return false;
+
+    mCdValue = (min * 60 + sec) * 75 + frm;
+    mHiValue = (min * 60 + sec) * 1000 + msec;
     return true;
 }
 

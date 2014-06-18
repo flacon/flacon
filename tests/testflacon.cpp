@@ -1567,4 +1567,71 @@ void TestFlacon::testOutFormatGainArgs_data()
 }
 
 
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::testCueIndex()
+{
+    QString string = QTest::currentDataTag();
+    QFETCH(QString, expected);
+
+    bool cdQuality = string.toUpper().startsWith("CD");
+    string = string.mid(2).trimmed();
+
+
+    QString id1Str = string.section("-", 0, 0).trimmed();
+    CueIndex idx1(id1Str);
+
+    QString id2Str = string.section("-", 1, 1).trimmed();
+    if (!id2Str.isEmpty())
+    {
+        CueIndex idx2(id2Str);
+        idx1 = idx1 - idx2;
+    }
+
+    QString result = idx1.toString(cdQuality);
+    QCOMPARE(result, expected);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::testCueIndex_data()
+{
+    QTest::addColumn<QString>("expected");
+
+
+    QTest::newRow("CD")             << "00:00:00";
+    QTest::newRow("HI")             << "00:00.000";
+
+    QTest::newRow("CD 00:00:00")    << "00:00:00";
+    QTest::newRow("HI 00:00:00")    << "00:00.000";
+
+    QTest::newRow("CD 00:00:000")   << "00:00:00";
+    QTest::newRow("HI 00:00:000")   << "00:00.000";
+    QTest::newRow("HI 00:00.000")   << "00:00.000";
+
+    QTest::newRow("CD 1:02:3")      << "01:02:30";
+    QTest::newRow("HI 1:02:3")      << "01:02.300";
+    QTest::newRow("HI 1:02.3")      << "01:02.300";
+
+    QTest::newRow("CD 1:02:03")     << "01:02:03";
+    QTest::newRow("HI 1:02:03")     << "01:02.030";
+    QTest::newRow("HI 1:02.03")     << "01:02.030";
+
+    QTest::newRow("HI 1:02:030")    << "01:02.030";
+    QTest::newRow("HI 1:02.030")    << "01:02.030";
+
+    QTest::newRow("CD 1:02:74")     << "01:02:74";
+    QTest::newRow("HI 1:02:999")    << "01:02.999";
+    QTest::newRow("HI 1:02.999")    << "01:02.999";
+
+    QTest::newRow("CD 40:50:74 - 10:20:30")    << "30:30:44";
+    QTest::newRow("CD 40:20:24 - 10:30:30")    << "29:49:69";
+
+    QTest::newRow("HI 40:50:740 - 10:20:300")  << "30:30.440";
+    QTest::newRow("HI 40:20:240 - 10:30:300")  << "29:49.940";
+}
+
 QTEST_MAIN(TestFlacon)
