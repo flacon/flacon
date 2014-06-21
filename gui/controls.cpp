@@ -34,7 +34,9 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QFileDialog>
-
+#include <QApplication>
+#include <QCompleter>
+#include <QStringListModel>
 
 /************************************************
 
@@ -210,8 +212,13 @@ QString MultiValuesSpinBox::textFromValue(int val) const
  ************************************************/
 MultiValuesLineEdit::MultiValuesLineEdit(QWidget *parent):
     QLineEdit(parent),
-    mMultiState(MultiValuesEmpty)
+    mMultiState(MultiValuesEmpty),
+    mCompleterModel(new QStringListModel(this))
 {
+    setCompleter(new QCompleter(this));
+    completer()->setModel(mCompleterModel);
+    completer()->setCaseSensitivity(Qt::CaseInsensitive);
+    completer()->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
 }
 
 
@@ -225,6 +232,7 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
         mMultiState = MultiValuesEmpty;
         QLineEdit::setText("");
         setPlaceholder(this, "");
+        mCompleterModel->setStringList(QStringList());
     }
 
     else if (value.count() == 1)
@@ -232,6 +240,7 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
         mMultiState = MultiValuesEmpty;
         QLineEdit::setText(*(value.constBegin()));
         setPlaceholder(this, "");
+        mCompleterModel->setStringList(value.toList());
     }
 
     else
@@ -239,6 +248,7 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
         mMultiState = MultiValuesMulti;
         QLineEdit::setText("");
         setPlaceholder(this, tr("Multiple values"));
+        mCompleterModel->setStringList(value.toList());
     }
 }
 
@@ -343,6 +353,56 @@ void ProgramEdit::openDialog()
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select program file"), "/usr/bin/", flt);
     if (!fileName.isEmpty())
         setText(fileName);
+}
+
+
+/************************************************
+
+ ************************************************/
+HistoryComboBox::HistoryComboBox(QWidget *parent):
+    QComboBox(parent)
+{
+    setInsertPolicy(QComboBox::InsertAtTop);
+    setMaxCount(10);
+}
+
+
+/************************************************
+
+ ************************************************/
+QStringList HistoryComboBox::history() const
+{
+    QStringList res;
+    for (int i=0; i<count(); ++i)
+        res << itemText(i);
+
+    return res;
+}
+
+
+/************************************************
+
+ ************************************************/
+void HistoryComboBox::setHistory(const QStringList &value)
+{
+    clear();
+    foreach(QString s, value)
+        addItem(s);
+}
+
+
+/************************************************
+
+ ************************************************/
+void HistoryComboBox::focusOutEvent(QFocusEvent *e)
+{
+    QKeyEvent key_press(QKeyEvent::KeyPress, Qt::Key_Return, Qt::NoModifier, NULL, false, 0 );
+    QApplication::sendEvent(this, &key_press);
+
+    QKeyEvent key_release(QKeyEvent::KeyRelease, Qt::Key_Return, Qt::NoModifier, NULL, false, 0 );
+    QApplication::sendEvent(this, &key_release);
+
+    QComboBox::focusOutEvent(e);
 }
 
 

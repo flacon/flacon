@@ -179,7 +179,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Signals .................................................
     connect(settings, SIGNAL(changed()), trackView->model(), SIGNAL(layoutChanged()));
-    connect(outPatternEdit, SIGNAL(editingFinished()), this, SLOT(setPattern()));
+    connect(outPatternEdit->lineEdit(), SIGNAL(editingFinished()), this, SLOT(setPattern()));
+    connect(outPatternEdit, SIGNAL(currentIndexChanged(int)), this, SLOT(setPattern()));
     connect(outDirEdit,     SIGNAL(editingFinished()), this, SLOT(setOutDir()));
 
     connect(outFormatCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setOutFormat()));
@@ -203,6 +204,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(refreshEdits()));
     connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(setControlsEnable()));
+
+    outPatternEdit->setHistory(settings->value(Settings::OutFiles_PatternHistory).toStringList());
 
     refreshEdits();
     setControlsEnable();
@@ -269,7 +272,7 @@ void MainWindow::dropEvent(QDropEvent * event)
  ************************************************/
 void MainWindow::insertOutPattern(const QString &pattern)
 {
-    outPatternEdit->insert(pattern);
+    outPatternEdit->lineEdit()->insert(pattern);
     setPattern();
 }
 
@@ -279,7 +282,8 @@ void MainWindow::insertOutPattern(const QString &pattern)
  ************************************************/
 void MainWindow::setPattern()
 {
-    settings->setValue(Settings::OutFiles_Pattern, outPatternEdit->text());
+    settings->setValue(Settings::OutFiles_Pattern, outPatternEdit->currentText());
+    settings->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
 }
 
 
@@ -439,8 +443,8 @@ void MainWindow::refreshEdits()
 
     outDirEdit->setText(settings->value(Settings::OutFiles_Directory).toString());
 
-    if (outPatternEdit->text() != settings->value(Settings::OutFiles_Pattern).toString())
-        outPatternEdit->setText(settings->value(Settings::OutFiles_Pattern).toString());
+    if (outPatternEdit->currentText() != settings->value(Settings::OutFiles_Pattern).toString())
+        outPatternEdit->lineEdit()->setText(settings->value(Settings::OutFiles_Pattern).toString());
 
     int n = outFormatCombo->findData(settings->value(Settings::OutFiles_Format).toString());
     if (n > -1)

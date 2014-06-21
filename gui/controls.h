@@ -32,6 +32,7 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <QSet>
+class QStringListModel;
 
 enum MultiValuesState
 {
@@ -99,6 +100,7 @@ public slots:
 
 private:
     MultiValuesState mMultiState;
+    QStringListModel *mCompleterModel;
 };
 
 
@@ -186,5 +188,16 @@ private:
     QToolButton *mBtn;
 };
 
+class HistoryComboBox: public QComboBox
+{
+    Q_OBJECT
+public:
+    explicit HistoryComboBox(QWidget *parent = 0);
+    QStringList history() const;
+    void setHistory(const QStringList &value);
+
+protected:
+    void focusOutEvent(QFocusEvent *e);
+};
 
 #endif // CONTROLS_H

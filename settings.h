@@ -49,6 +49,7 @@ public:
         OutFiles_Pattern,
         OutFiles_Directory,
         OutFiles_Format,
+        OutFiles_PatternHistory,
 
         // Internet *****************************
         Inet_CDDBHost,

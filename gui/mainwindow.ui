@@ -65,7 +65,7 @@
            <item row="1" column="1">
             <layout class="QHBoxLayout" name="horizontalLayout_6">
              <item>
-              <widget class="QLineEdit" name="outPatternEdit">
+              <widget class="HistoryComboBox" name="outPatternEdit">
                <property name="toolTip">
                 <string comment="Main form tooltip for &quot;Pattern&quot; edit">&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
@@ -84,6 +84,9 @@ Tokens start with %. You can use the following tokens:
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</string>
+               </property>
+               <property name="editable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -493,6 +496,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
   <customwidget>
    <class>TagLineEdit</class>
    <extends>QLineEdit</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>HistoryComboBox</class>
+   <extends>QComboBox</extends>
    <header>controls.h</header>
   </customwidget>
  </customwidgets>
