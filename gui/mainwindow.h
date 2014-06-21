@@ -59,6 +59,7 @@ protected:
 
 private slots:
     void insertOutPattern(const QString &pattern);
+    void replaceOutPattern(const QString &pattern);
 
     void setPattern();
     void setOutDir();

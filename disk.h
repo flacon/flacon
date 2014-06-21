@@ -208,6 +208,16 @@ public:
     Status status() const { return mStatus; }
     void setProgress(Status status, int percent = -1);
 
+    static QString calcFileName(const QString &pattern,
+                                int trackCount,
+                                int trackNum,
+                                const QString &album,
+                                const QString &title,
+                                const QString &artist,
+                                const QString &genre,
+                                const QString &date,
+                                const QString &fileExt);
+
 private:
     Disk *mDisk;
     int mIndex;
@@ -216,7 +226,7 @@ private:
     int mProgress;
 
     QString calcResultFilePath() const;
-    QString expandPattern(const QString &pattern, const QHash<QChar,QString> *tokens, bool optional) const;
+    static QString expandPattern(const QString &pattern, const QHash<QChar,QString> *tokens, bool optional);
 };
 
 Q_DECLARE_METATYPE(Track::Status)

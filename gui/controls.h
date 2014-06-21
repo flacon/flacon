@@ -32,6 +32,7 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <QSet>
+
 class QStringListModel;
 
 enum MultiValuesState
@@ -50,13 +51,18 @@ class OutPatternButton: public QToolButton
 public:
     explicit OutPatternButton(QWidget * parent=0);
     void addPattern(const QString &pattern, const QString &title);
+    void addFullPattern(const QString &pattern, const QString &title);
 
 signals:
     void paternSelected(const QString &pattern);
+    void fullPaternSelected(const QString &pattern);
 
 private slots:
     void patternTriggered();
+    void fullPatternTriggered();
 
+private:
+    QAction* mSeparator;
 };
 
 
@@ -187,6 +193,7 @@ private:
     QString mProgramName;
     QToolButton *mBtn;
 };
+
 
 class HistoryComboBox: public QComboBox
 {

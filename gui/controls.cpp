@@ -57,6 +57,7 @@ OutPatternButton::OutPatternButton(QWidget * parent):
 {
     setPopupMode(QToolButton::InstantPopup);
     setMenu(new QMenu(this));
+    mSeparator = menu()->addSeparator();
 }
 
 
@@ -68,6 +69,19 @@ void OutPatternButton::addPattern(const QString &pattern, const QString &title)
     QAction *act = new QAction(title, this);
     act->setData(pattern);
     connect(act, SIGNAL(triggered()), this, SLOT(patternTriggered()));
+    menu()->insertAction(mSeparator, act);
+}
+
+
+/************************************************
+
+ ************************************************/
+void OutPatternButton::addFullPattern(const QString &pattern, const QString &title)
+{
+    QString example = Track::calcFileName(pattern, 14, 13, "Help", "Yesterday", "The Beatles", "Pop", "1965", "flac");
+    QAction *act = new QAction(title + "  ( " + example + " )", this);
+    act->setData(pattern);
+    connect(act, SIGNAL(triggered()), this, SLOT(fullPatternTriggered()));
     menu()->addAction(act);
 }
 
@@ -80,6 +94,17 @@ void OutPatternButton::patternTriggered()
     QAction *act = qobject_cast<QAction*>(sender());
     if (act)
         emit paternSelected(act->data().toString());
+}
+
+
+/************************************************
+
+ ************************************************/
+void OutPatternButton::fullPatternTriggered()
+{
+    QAction *act = qobject_cast<QAction*>(sender());
+    if (act)
+        emit fullPaternSelected(act->data().toString());
 }
 
 

@@ -217,12 +217,8 @@ void Track::setProgress(Track::Status status, int percent)
 }
 
 
-
 /************************************************
-  %N  Number of tracks       %n  Track number
-  %a  Artist                 %A  Album title
-  %y  Year                   %g  Genre
-  %t  Track title
+
  ************************************************/
 QString Track::resultFileName() const
 {
@@ -230,23 +226,52 @@ QString Track::resultFileName() const
     if (pattern.isEmpty())
         pattern = QString("%a/%y - %A/%n - %t");
 
-    QHash<QChar, QString> tokens;
-    tokens.insert(QChar('N'),   QString("%1").arg(disk()->count(), 2, 10, QChar('0')));
-    tokens.insert(QChar('n'),   QString("%1").arg(trackNum(), 2, 10, QChar('0')));
-    tokens.insert(QChar('A'),   Disk::safeString(this->album()));
-    tokens.insert(QChar('t'),   Disk::safeString(this->title()));
-    tokens.insert(QChar('a'),   Disk::safeString(this->artist()));
-    tokens.insert(QChar('g'),   Disk::safeString(this->genre()));
-    tokens.insert(QChar('y'),   Disk::safeString(this->date()));
-
-    QString res = expandPattern(pattern, &tokens, false);
-
-    QString ext = OutFormat::currentFormat()->ext();
-    return res + "." + ext;
+    return calcFileName(pattern,
+                        disk()->count(),
+                        trackNum(),
+                        this->album(),
+                        this->title(),
+                        this->artist(),
+                        this->genre(),
+                        this->date(),
+                        OutFormat::currentFormat()->ext());
 }
 
 
-QString Track::expandPattern(const QString &pattern, const QHash<QChar, QString> *tokens, bool optional) const
+/************************************************
+  %N  Number of tracks       %n  Track number
+  %a  Artist                 %A  Album title
+  %y  Year                   %g  Genre
+  %t  Track title
+ ************************************************/
+QString Track::calcFileName(const QString &pattern,
+                            int trackCount,
+                            int trackNum,
+                            const QString &album,
+                            const QString &title,
+                            const QString &artist,
+                            const QString &genre,
+                            const QString &date,
+                            const QString &fileExt)
+{
+    QHash<QChar, QString> tokens;
+    tokens.insert(QChar('N'),   QString("%1").arg(trackCount, 2, 10, QChar('0')));
+    tokens.insert(QChar('n'),   QString("%1").arg(trackNum, 2, 10, QChar('0')));
+    tokens.insert(QChar('A'),   Disk::safeString(album));
+    tokens.insert(QChar('t'),   Disk::safeString(title));
+    tokens.insert(QChar('a'),   Disk::safeString(artist));
+    tokens.insert(QChar('g'),   Disk::safeString(genre));
+    tokens.insert(QChar('y'),   Disk::safeString(date));
+
+    QString res = expandPattern(pattern, &tokens, false);
+    return res + "." + fileExt;
+}
+
+
+/************************************************
+
+ ************************************************/
+QString Track::expandPattern(const QString &pattern, const QHash<QChar, QString> *tokens, bool optional)
 {
     QString res;
     bool perc = false;

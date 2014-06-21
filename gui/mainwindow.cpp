@@ -169,8 +169,20 @@ MainWindow::MainWindow(QWidget *parent) :
     outPatternButton->addPattern("%t", tr("Insert \"Track title\""));
     outPatternButton->addPattern("%y", tr("Insert \"Year\""));
     outPatternButton->addPattern("%g", tr("Insert \"Genre\""));
+
+    QString pattern;
+
+    pattern = "%a/{%y - }%A/%n - %t";
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"").arg(pattern, "Predefined out file pattern"));
+
+
+
     outPatternButton->setFixedWidth(outDirButton->sizeHint().width());
-    connect(outPatternButton, SIGNAL(paternSelected(QString)), this, SLOT(insertOutPattern(QString)));
+    connect(outPatternButton, SIGNAL(paternSelected(QString)),
+            this, SLOT(insertOutPattern(QString)));
+
+    connect(outPatternButton, SIGNAL(fullPaternSelected(QString)),
+            this, SLOT(replaceOutPattern(QString)));
 
     // Format combo ............................................
     initOutFormatCombo();
@@ -273,6 +285,16 @@ void MainWindow::dropEvent(QDropEvent * event)
 void MainWindow::insertOutPattern(const QString &pattern)
 {
     outPatternEdit->lineEdit()->insert(pattern);
+    setPattern();
+}
+
+
+/************************************************
+
+ ************************************************/
+void MainWindow::replaceOutPattern(const QString &pattern)
+{
+    outPatternEdit->lineEdit()->setText(pattern);
     setPattern();
 }
 
