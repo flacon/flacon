@@ -293,16 +293,19 @@ MultiValuesComboBox::MultiValuesComboBox(QWidget *parent):
  ************************************************/
 void MultiValuesComboBox::setMultiValue(QSet<QString> value)
 {
-    if (value.count() == 0)
+    QSet<QString> v = value;
+    v.remove("");
+
+    if (v.count() == 0)
     {
         mMultiState = MultiValuesEmpty;
         setCurrentIndex(-1);
         setPlaceholder(lineEdit(), "");
     }
 
-    else if (value.count() == 1)
+    else if (v.count() == 1)
     {
-        int n = this->findData(*(value.begin()));
+        int n = this->findData(*(v.begin()));
         setCurrentIndex(n);
         if (n >-1)
             mMultiState = MultiValuesSingle;

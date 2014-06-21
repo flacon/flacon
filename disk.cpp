@@ -911,7 +911,10 @@ void Disk::setStartTrackNum(int value)
  ************************************************/
 QString Disk::textCodecName() const
 {
-    return mTags->textCodecName();
+    if (mTags)
+        return mTags->textCodecName();
+    else
+        return "";
 }
 
 
@@ -920,7 +923,9 @@ QString Disk::textCodecName() const
  ************************************************/
 void Disk::setTextCodecName(const QString codecName)
 {
-    mTags->setTextCodecName(codecName);
+    if (mTags)
+        mTags->setTextCodecName(codecName);
+
     project->emitDiskChanged(this);
 }
 
