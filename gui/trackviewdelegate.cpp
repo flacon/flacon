@@ -121,9 +121,9 @@ TrackViewCacheItem *TrackViewCache::item(const QModelIndex &index)
 TrackViewDelegate::TrackViewDelegate(TrackView *parent):
     QStyledItemDelegate(parent),
     mTrackView(parent),
-    mCache(new TrackViewCache)
+    mCache(new TrackViewCache),
+    mDiskHeightHint(0)
 {
-    mNoCoverImg = QImage(":noCover").scaledToHeight(IMG_HEIGHT, Qt::SmoothTransformation);
     mTrackBtnPix = QPixmap(":trackBtn");
     mAudioBtnPix = QPixmap(":audioBtn");
     mWarnPix = Project::getIcon("dialog-warning", "messagebox_warning", ":/icons/32/disk-warning").pixmap(MARK_HEIGHT, MARK_HEIGHT);
@@ -257,11 +257,8 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     //cache = self.cache(index)
     painter->save();
     painter->setClipRect(option.rect);
-    QFont titleFont = painter->font();
-    titleFont.setPointSize(titleFont.pointSize() + 1);
-    titleFont.setBold(true);
-
-    QFont filesFont = painter->font();
+    QFont titleFont = this->titleFont(painter);
+    QFont filesFont = this->filesFont(painter);
 
 
     int topPadding = index.row() ? TOP_PADDING : 0;
@@ -274,10 +271,16 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
                      option.rect.height() - 2 * MARGIN - topPadding - BOTTOM_PADDING);
 
     // Draw cover image ................................
+    if (mNoCoverImg.height() != windowRect.height())
+    {
+        mNoCoverImg = QImage(":noCover").scaledToHeight(windowRect.height(), Qt::SmoothTransformation);
+    }
+
     QRect imgRect(windowRect.topLeft(), mNoCoverImg.size());
     painter->fillRect(imgRect, mTrackView->palette().base().color());
     painter->fillRect(imgRect, Qt::white);
     painter->drawImage(imgRect, mNoCoverImg);
+
 
     // Rectangle for text drawing ......................
     QRect textRect(windowRect);
@@ -401,7 +404,20 @@ QSize TrackViewDelegate::sizeHint(const QStyleOptionViewItem &option, const QMod
 
     if (!index.parent().isValid())
     {
-        res.rheight() = IMG_HEIGHT + 2 * MARGIN + BOTTOM_PADDING; //For Line
+
+        if (!mDiskHeightHint)
+        {
+            int h = 8;
+            QPainter painter(mTrackView);
+            QFont titleFont = this->titleFont(&painter);
+            QFont filesFont = this->filesFont(&painter);
+            h += QFontMetrics(titleFont).height();
+            h += QFontMetrics(filesFont).height() * 2;
+            mDiskHeightHint = qMax(IMG_HEIGHT, h) + 2 * MARGIN + BOTTOM_PADDING; //For Line
+        }
+
+
+        res.rheight() = mDiskHeightHint;
         if (index.row())
             res.rheight() += TOP_PADDING;
         if (index.column() == 0)
@@ -507,6 +523,28 @@ void TrackViewDelegate::downloadingStarted(DataProvider *provider)
 void TrackViewDelegate::downloadingFinished(DataProvider *provider)
 {
     project->emitDiskChanged(provider->disk());
+}
+
+
+/************************************************
+
+ ************************************************/
+QFont TrackViewDelegate::titleFont(const QPainter *painter) const
+{
+    QFont res = painter->font();
+    res.setPointSize(res.pointSize() + 1);
+    res.setBold(true);
+    return res;
+}
+
+
+/************************************************
+
+ ************************************************/
+QFont TrackViewDelegate::filesFont(const QPainter *painter) const
+{
+    QFont res = painter->font();
+    return res;
 }
 
 
