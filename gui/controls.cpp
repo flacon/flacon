@@ -142,6 +142,17 @@ CodePageComboBox::CodePageComboBox(QWidget *parent)
     addCodecName(tr("Latin-14 (ISO-8859-14)"), "ISO-8859-14");
     addCodecName(tr("Latin-15 (ISO-8859-15)"), "ISO-8859-15");
     addCodecName(tr("Latin-16 (ISO-8859-16)"), "ISO-8859-16");
+
+    insertSeparator(9999);
+    addCodecName(tr("Windows 1250"), "windows-1250");
+    addCodecName(tr("Windows 1252"), "windows-1252");
+    addCodecName(tr("Windows 1253"), "windows-1253");
+    addCodecName(tr("Windows 1254"), "windows-1254");
+    addCodecName(tr("Windows 1255"), "windows-1255");
+    addCodecName(tr("Windows 1256"), "windows-1256");
+    addCodecName(tr("Windows 1257"), "windows-1257");
+    addCodecName(tr("Windows 1258"), "windows-1258");
+
 }
 
 
