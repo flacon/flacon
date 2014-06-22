@@ -1,7 +1,7 @@
-# _help = Don't translate this text, it is only help. I want to thank you in the "About" dialog. So, please fill the following information about yourself. The number does not matter, all the names will be displayed in alphabetical order.
+_help = Don't translate this text, it is only help. I want to thank you in the "About" dialog. So, please fill the following information about yourself. The number does not matter, all the names will be displayed in alphabetical order.
 
 
-# translator_1_nameEnglish = Translator 1. Your name in English.
+translator_1_nameEnglish = Translator 1. Your name in English.
 translator_1_nameNative  = Hillwood Yang
 translator_1_contact     = hillwoodroc@gmail.com
 
@@ -9,6 +9,6 @@ translator_2_nameEnglish = Near
 translator_2_nameNative  = Near
 translator_2_contact     = fengyeat1120@gmail.com
 
-# translator_3_nameEnglish = Translator 3. Your name in English.
-# translator_3_nameNative  = Translator 3. Your name in the native language.
-# translator_3_contact     = Translator 3. Contact information, email or web site address.
+translator_3_nameEnglish = Translator 3. Your name in English.
+translator_3_nameNative  = Translator 3. Your name in the native language.
+translator_3_contact     = Translator 3. Contact information, email or web site address.

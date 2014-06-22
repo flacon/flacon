@@ -71,12 +71,12 @@
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation type="unfinished"/>
+        <translation>Účet Flaconu na github.com</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation type="unfinished"/>
+        <translation>Sledování chyb %1</translation>
     </message>
 </context>
 <context>
@@ -616,7 +616,7 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Výstupní formát</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -850,14 +850,32 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Symboly začínají %. Můžete použít následující symboly:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Číslo skladby  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Celkový počet skladeb&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Umělec&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název alba&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název skladby&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Rok&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Žánr&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually. 
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Můžete procházet cílový adresář. Také jej můžete zadat ručně. 
+
+Pokud je cesta ponechána prázdná nebo začíná na &quot;.&quot; (tečka), budou výsledné soubory umístěny do téhož adresáře, v jakém se nachází zdroj.</translation>
     </message>
 </context>
 <context>

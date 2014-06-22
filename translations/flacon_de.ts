@@ -234,7 +234,7 @@
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>AAC-Kodierungskonfiguration</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
@@ -280,7 +280,7 @@
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>MP3-Kodierungskonfiguration</translation>
     </message>
     <message>
         <source>Preset:</source>
@@ -453,11 +453,11 @@
     <name>Converter</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Ich kann das Verzeichnis &quot;%1&quot; nicht erstellen.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Ich kann nicht in das Verzeichnis &quot;%1&quot; schreiben.</translation>
     </message>
     <message>
         <source>Conversion is not possible:</source>
@@ -489,7 +489,9 @@
         <source>I can't delete file:
 %1
 %2</source>
-        <translation type="unfinished"/>
+        <translation>I can&apos;t delete file:
+%1
+%2</translation>
     </message>
     <message>
         <source>Encoder error:
@@ -499,7 +501,7 @@
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
-        <translation type="unfinished"/>
+        <translation>Ich kann die Datei %1 nicht lesen</translation>
     </message>
 </context>
 <context>
@@ -550,7 +552,9 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Ich kann die Datei nicht umbenennen:
+%1 zu %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -610,7 +614,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Start num:</source>
-        <translation type="unfinished"/>
+        <translation>Startnummer:</translation>
     </message>
     <message>
         <source>Disc ID:</source>
@@ -726,7 +730,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation type="unfinished"/>
+        <translation>Rekursive Albumsuche</translation>
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
@@ -833,21 +837,21 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>MultiValuesComboBox</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Mehrere Werte</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesLineEdit</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Mehrere Werte</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesSpinBox</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Mehrere Werte</translation>
     </message>
 </context>
 <context>
@@ -877,7 +881,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>QObject</name>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Ich kann die CUE-Datei &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 nicht schreiben</translation>
     </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
@@ -999,12 +1003,13 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Mehrere Werte</translation>
     </message>
     <message>
         <source>Conversion is not possible.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Konvertierung ist nicht möglich.
+%1</translation>
     </message>
 </context>
 </TS>

@@ -39,7 +39,7 @@
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon używa programów zewnętrznych. Podziękowania dla ich Autorów!</translation>
+        <translation>Flacon używa programów zewnętrznych. Wielkie podziękowania dla ich Autorów!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
@@ -71,12 +71,12 @@
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation type="unfinished"/>
+        <translation>Konto &quot;Flacon&quot; na github.com</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation type="unfinished"/>
+        <translation>Bugtracker %1</translation>
     </message>
 </context>
 <context>
@@ -617,7 +617,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Format wyjściowy</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -851,14 +851,32 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def { white-space: nowrap; }
+&lt;/style&gt;
+Można użyć następujących, poprzedzonych symbolem %, znaczników:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numer ścieżki &lt;/td&gt;
+&lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Całkowita liczba ścieżek&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Wykonawca&lt;/td&gt;
+&lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tytuł albumu&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tytuł utworu&lt;/td&gt;
+&lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Rok&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Gatunek&lt;/td&gt;
+&lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Otoczenie części tekstu, zawierającej znacznik, klamrami, spowoduje jej ukrycie, jeżeli dany znacznik będzie pusty.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually. 
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Możesz wybrać katalog docelowy albo ręcznie wpisać ścieżkę dostępu.
+
+Jeżeli nie podano ścieżka dostępu lub zaczyna się ona od &quot;.&quot; (kropka), pliki wynikowe zostaną umieszczone w tym samym katalogu, co źródło.</translation>
     </message>
 </context>
 <context>
@@ -928,7 +946,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>Splitter</name>
     <message>
         <source>The number of tracks is higher than expected.</source>
-        <translation type="unfinished"/>
+        <translation>Liczba ścieżek jest większa, niż oczekiwano.</translation>
     </message>
 </context>
 <context>

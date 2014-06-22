@@ -55,11 +55,11 @@
     </message>
     <message>
         <source>Application icon, Packaging</source>
-        <translation>ìcone do aplicativo, Empacotando.</translation>
+        <translation>Ícone do aplicativo, empacotamento.</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation>Empacotando, testando.</translation>
+        <translation>Empacotamento, teste.</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
@@ -536,7 +536,8 @@
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>Ajusta o nível de compressão, entre %1 (mais rápido) e %2 (maior compressão). ⏎ Isso afeta somente o tamanho do arquivo. Todas as configurações são sem perda.</translation>
+        <translation>Ajusta o nível de compressão, entre %1 (mais rápido) e %2 (maior compressão).
+Isso afeta somente o tamanho do arquivo. Todas as configurações são sem perda.</translation>
     </message>
     <message>
         <source>Disabled</source>
