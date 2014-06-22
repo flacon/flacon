@@ -175,6 +175,20 @@ MainWindow::MainWindow(QWidget *parent) :
     pattern = "%a/{%y - }%A/%n - %t";
     outPatternButton->addFullPattern(pattern, tr("Use \"%1\"").arg(pattern, "Predefined out file pattern"));
 
+    pattern = "%a -{ %y }%A/%n - %t";
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"").arg(pattern, "Predefined out file pattern"));
+
+    pattern = "{%y }%A - %a/%n - %t";
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"").arg(pattern, "Predefined out file pattern"));
+
+    pattern = "%a/%A/%n - %t";
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"").arg(pattern, "Predefined out file pattern"));
+
+    pattern = "%a - %A/%n - %t";
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"").arg(pattern, "Predefined out file pattern"));
+
+    pattern = "%A - %a/%n - %t";
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"").arg(pattern, "Predefined out file pattern"));
 
 
     outPatternButton->setFixedWidth(outDirButton->sizeHint().width());
