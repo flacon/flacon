@@ -162,6 +162,38 @@
         <source>Latin-16 (ISO-8859-16)</source>
         <translation>Latin-16 (ISO-8859-16)</translation>
     </message>
+    <message>
+        <source>Windows 1250</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1252</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1253</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1254</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1255</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1256</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1257</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1258</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigDialog</name>
@@ -874,6 +906,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Você pode navegar no diretório de destino. Você também pode digitá-lo manualmente. 
 
 Se o caminho for deixado em branco ou inicia com &quot;.&quot; (ponto), os arquivos resultantes serão colocados no mesmo diretório que a fonte.</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

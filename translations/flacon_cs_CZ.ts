@@ -162,6 +162,38 @@
         <source>Latin-16 (ISO-8859-16)</source>
         <translation>Latin-16 (ISO-8859-16)</translation>
     </message>
+    <message>
+        <source>Windows 1250</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1252</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1253</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1254</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1255</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1256</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1257</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Windows 1258</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigDialog</name>
@@ -876,6 +908,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Můžete procházet cílový adresář. Také jej můžete zadat ručně. 
 
 Pokud je cesta ponechána prázdná nebo začíná na &quot;.&quot; (tečka), budou výsledné soubory umístěny do téhož adresáře, v jakém se nachází zdroj.</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

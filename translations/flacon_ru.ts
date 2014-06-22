@@ -162,6 +162,38 @@
         <source>Latin-16 (ISO-8859-16)</source>
         <translation>Latin-16 (ISO-8859-16)</translation>
     </message>
+    <message>
+        <source>Windows 1250</source>
+        <translation>Windows 1250</translation>
+    </message>
+    <message>
+        <source>Windows 1252</source>
+        <translation>Windows 1252</translation>
+    </message>
+    <message>
+        <source>Windows 1253</source>
+        <translation>Windows 1253</translation>
+    </message>
+    <message>
+        <source>Windows 1254</source>
+        <translation>Windows 1254</translation>
+    </message>
+    <message>
+        <source>Windows 1255</source>
+        <translation>Windows 1255</translation>
+    </message>
+    <message>
+        <source>Windows 1256</source>
+        <translation>Windows 1256</translation>
+    </message>
+    <message>
+        <source>Windows 1257</source>
+        <translation>Windows 1257</translation>
+    </message>
+    <message>
+        <source>Windows 1258</source>
+        <translation>Windows 1258</translation>
+    </message>
 </context>
 <context>
     <name>ConfigDialog</name>
@@ -875,6 +907,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Вы можете выбрать директорию для выходных файлов, или указать ее руками.
 
 Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники. </translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <translation>Использовать &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
