@@ -1,14 +1,14 @@
-_help = Don't translate this text, it is only help. I want to thank you in the "About" dialog. So, please fill the following information about yourself. The number does not matter, all the names will be displayed in alphabetical order.
+_help = -
 
 
 translator_1_nameEnglish = Tomasz "Ludvick" Niedzielski
 translator_1_nameNative  = Tomasz "Ludvick" Niedzielski
 translator_1_contact     = ludvick.play@gmail.com
 
-translator_2_nameEnglish = Translator 2. Your name in English.
-translator_2_nameNative  = Translator 2. Your name in the native language.
-translator_2_contact     = Translator 2. Contact information, email or web site address.
+translator_2_nameEnglish = -
+translator_2_nameNative  = -
+translator_2_contact     = -
 
-translator_3_nameEnglish = Translator 3. Your name in English.
-translator_3_nameNative  = Translator 3. Your name in the native language.
-translator_3_contact     = Translator 3. Contact information, email or web site address.
+translator_3_nameEnglish = -
+translator_3_nameNative  = -
+translator_3_contact     = -

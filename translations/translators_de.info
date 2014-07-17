@@ -2,8 +2,8 @@ _help = -
 
 
 translator_1_nameEnglish = Translator 1. Your name in English.
-translator_1_nameNative  = Wilvert Valdez
-translator_1_contact     = ranmaru.hibikiya@gmail.com
+translator_1_nameNative  = Translator 1. Your name in the native language.
+translator_1_contact     = Translator 1. Contact information, email or web site address.
 
 translator_2_nameEnglish = -
 translator_2_nameNative  = -
