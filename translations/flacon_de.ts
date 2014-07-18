@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>Thread count:</source>
-        <translation type="unfinished"/>
+        <translation>Thread-Anzahl:</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
@@ -415,7 +415,7 @@
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Ogg-Kodierungskonfiguration</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
@@ -990,7 +990,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Wait gain</source>
-        <translation type="unfinished"/>
+        <translation>Wartezeitzunahme</translation>
     </message>
     <message>
         <source>Write gain</source>
