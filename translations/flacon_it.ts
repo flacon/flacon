@@ -891,6 +891,7 @@ Se lasci il percorso vuoto o inizia con il &quot;.&quot; (punto), i file risulta
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern</comment>
         <translation type="unfinished"/>
     </message>
 </context>

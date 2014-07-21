@@ -865,6 +865,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern</comment>
         <translation type="unfinished"/>
     </message>
 </context>

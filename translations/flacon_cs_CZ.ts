@@ -911,6 +911,7 @@ Pokud je cesta ponechána prázdná nebo začíná na &quot;.&quot; (tečka), bu
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern</comment>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -913,6 +913,7 @@ Si la ruta se deja vacía o comienza con &quot;.&quot;(un punto), los archivos p
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern</comment>
         <translation type="unfinished"/>
     </message>
 </context>

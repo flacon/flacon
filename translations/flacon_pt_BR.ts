@@ -909,6 +909,7 @@ Se o caminho for deixado em branco ou inicia com &quot;.&quot; (ponto), os arqui
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern</comment>
         <translation>Use &quot;%1&quot;</translation>
     </message>
 </context>

@@ -912,6 +912,7 @@ Jeżeli nie podano ścieżka dostępu lub zaczyna się ona od &quot;.&quot; (kro
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern</comment>
         <translation type="unfinished"/>
     </message>
 </context>

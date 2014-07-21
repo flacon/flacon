@@ -926,6 +926,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers sero
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern</comment>
         <translation>Utiliser « %1 »</translation>
     </message>
 </context>
