@@ -348,6 +348,18 @@ TranslatorsInfo::TranslatorsInfo()
             QString nameNative = getValue(src, QString("translator_%1_nameNative").arg(i));
             QString contact = getValue(src, QString("translator_%1_contact").arg(i));
 
+            if (nameEnglish.startsWith(QString("Translator %1. ").arg(i)))
+                nameEnglish = "";
+
+            if (nameNative.startsWith(QString("Translator %1. ").arg(i)))
+                nameNative = "";
+
+            if (contact.startsWith(QString("Translator %1. ").arg(i)))
+                contact = "";
+
+            if (nameEnglish.isEmpty())
+                nameEnglish = nameNative;
+
             if (!nameEnglish.isEmpty())
             {
                 process(lang, nameEnglish, nameNative, contact);
