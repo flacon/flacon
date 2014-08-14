@@ -73,6 +73,10 @@ public:
     };
 
     TrackViewCache();
+    ~TrackViewCache()
+    {
+        qDeleteAll(mItems);
+    }
 
     TrackViewCacheItem *item(const QModelIndex &index);
     Keys clickType(const QModelIndex &index, const QPoint &point);

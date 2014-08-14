@@ -15,4 +15,5 @@ ui_*.h
 *.autosave
 CMakeLists.txt.user*
 /build
+/clang_check
 *.kate-swp
