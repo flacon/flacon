@@ -164,35 +164,35 @@
     </message>
     <message>
         <source>Windows 1250</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1250</translation>
     </message>
     <message>
         <source>Windows 1252</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1252</translation>
     </message>
     <message>
         <source>Windows 1253</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1253</translation>
     </message>
     <message>
         <source>Windows 1254</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1254</translation>
     </message>
     <message>
         <source>Windows 1255</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1255</translation>
     </message>
     <message>
         <source>Windows 1256</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1256</translation>
     </message>
     <message>
         <source>Windows 1257</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1257</translation>
     </message>
     <message>
         <source>Windows 1258</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1258</translation>
     </message>
 </context>
 <context>
@@ -892,7 +892,7 @@ Se lasci il percorso vuoto o inizia con il &quot;.&quot; (punto), i file risulta
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern</comment>
-        <translation type="unfinished"/>
+        <translation>Usa &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
