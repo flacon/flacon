@@ -201,7 +201,7 @@ void Splitter::parseOut()
 
                 // Splitting [/home/user/inDir/input.wav] (10:00.000) --> [/home/user/outDir/tmp-15196-00000.wav] (0:00.440) : 100% OK
 
-                QString pattern = "[" +  mWorkDir + "/" + mFilePrefix;
+                QString pattern = "[" +  mWorkDir + QDir::separator() + mFilePrefix;
                 QString sbuf = QString::fromLocal8Bit(buf);
                 int n = sbuf.indexOf(pattern, disk()->audioFileName().length() + 20);
 

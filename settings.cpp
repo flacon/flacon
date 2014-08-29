@@ -32,6 +32,7 @@
 #include <QProcessEnvironment>
 #include <QDesktopServices>
 
+
 QString Settings::mFileName;
 
 /************************************************
@@ -255,7 +256,7 @@ QString Settings::findProgram(const QString &program) const
     QStringList paths = QProcessEnvironment::systemEnvironment().value("PATH").split(":");
     foreach(QString path, paths)
     {
-        QFileInfo fi(path + "/" + program);
+        QFileInfo fi(path + QDir::separator() + program);
         if (fi.exists() && fi.isExecutable())
             return fi.absoluteFilePath();
     }

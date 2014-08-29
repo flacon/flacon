@@ -371,7 +371,7 @@ QString Track::resultFilePath() const
     if (fileName.isEmpty())
         return "";
 
-    return calcResultFilePath() + "/" + fileName;
+    return calcResultFilePath() + QDir::separator() + fileName;
 }
 
 
@@ -394,9 +394,9 @@ QString Track::calcResultFilePath() const
         return fi.absoluteFilePath();
     if (!disk()->audioFileName().isEmpty())
     {
-        return QFileInfo(disk()->audioFileName()).dir().absolutePath() + "/" + settingsDir;
+        return QFileInfo(disk()->audioFileName()).dir().absolutePath() + QDir::separator() + settingsDir;
     }
-    return QFileInfo(QDir::homePath() + "/" + settingsDir).absoluteFilePath();
+    return QFileInfo(QDir::homePath() + QDir::separator() + settingsDir).absoluteFilePath();
 }
 
 
