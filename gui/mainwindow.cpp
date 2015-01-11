@@ -197,6 +197,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(outPatternButton, SIGNAL(fullPaternSelected(QString)),
             this, SLOT(replaceOutPattern(QString)));
+    outPatternEdit->setAutoCompletionCaseSensitivity(Qt::CaseSensitive);
 
     // Format combo ............................................
     initOutFormatCombo();
