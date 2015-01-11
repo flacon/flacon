@@ -106,6 +106,16 @@ If you surround sections of text that contain a token with braces, these section
                </property>
               </widget>
              </item>
+             <item>
+              <widget class="QToolButton" name="outDeletePatternButton">
+               <property name="toolTip">
+                <string>Delete current pattern</string>
+               </property>
+               <property name="text">
+                <string>x</string>
+               </property>
+              </widget>
+             </item>
             </layout>
            </item>
            <item row="2" column="0">
@@ -323,7 +333,7 @@ If you surround sections of text that contain a token with braces, these section
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -486,6 +496,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
  </widget>
  <customwidgets>
   <customwidget>
+   <class>CodePageComboBox</class>
+   <extends>QComboBox</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
    <class>TrackView</class>
    <extends>QTreeView</extends>
    <header>trackview.h</header>
@@ -493,11 +508,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
   <customwidget>
    <class>MultiValuesSpinBox</class>
    <extends>QSpinBox</extends>
-   <header>controls.h</header>
-  </customwidget>
-  <customwidget>
-   <class>CodePageComboBox</class>
-   <extends>QComboBox</extends>
    <header>controls.h</header>
   </customwidget>
   <customwidget>

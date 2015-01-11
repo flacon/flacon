@@ -62,6 +62,7 @@ private slots:
     void replaceOutPattern(const QString &pattern);
 
     void setPattern();
+    void deletePattern();
     void setOutDir();
     void setOutFormat();
     void setCodePage();

@@ -88,6 +88,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagStartNumEdit, SIGNAL(valueChanged(int)), this, SLOT(setStartTrackNum()));
 
     initActions();
+    outDeletePatternButton->setIcon(Project::getIcon("edit-delete", "remove", ":/icons/22/remove-disk"));
 
     // Buttons .................................................
     outDirButton->setDefaultAction(actionSelectResultDir);
@@ -123,6 +124,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     outPatternButton->setFixedWidth(outDirButton->sizeHint().width());
+
+    connect(outDeletePatternButton, SIGNAL(clicked()), this, SLOT(deletePattern()));
+
     connect(outPatternButton, SIGNAL(paternSelected(QString)),
             this, SLOT(insertOutPattern(QString)));
 
@@ -261,6 +265,28 @@ void MainWindow::setPattern()
 {
     settings->setValue(Settings::OutFiles_Pattern, outPatternEdit->currentText());
     settings->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
+}
+
+
+/************************************************
+
+ ************************************************/
+void MainWindow::deletePattern()
+{
+    //settings->setValue(Settings::OutFiles_Pattern, outPatternEdit->currentText());
+    //settings->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
+    QStringList history = settings->value(Settings::OutFiles_PatternHistory).toStringList();
+    QString currentPattern = outPatternEdit->currentText();
+    history.removeOne(currentPattern);
+
+    if (history.isEmpty())
+        currentPattern = "";
+    else
+        currentPattern = history.first();
+    outPatternEdit->lineEdit()->setText(currentPattern);
+    settings->setValue(Settings::OutFiles_Pattern, currentPattern);
+    outPatternEdit->setHistory(history);
+    settings->setValue(Settings::OutFiles_PatternHistory, history);
 }
 
 
