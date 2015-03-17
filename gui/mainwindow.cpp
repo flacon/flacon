@@ -41,6 +41,8 @@
 #include <QTextCodec>
 #include <QQueue>
 #include <QKeyEvent>
+#include <QMimeData>
+
 class DirScanner
 {
 public:

@@ -435,10 +435,10 @@ void HistoryComboBox::setHistory(const QStringList &value)
  ************************************************/
 void HistoryComboBox::focusOutEvent(QFocusEvent *e)
 {
-    QKeyEvent key_press(QKeyEvent::KeyPress, Qt::Key_Return, Qt::NoModifier, NULL, false, 0 );
+    QKeyEvent key_press(QKeyEvent::KeyPress, Qt::Key_Return, Qt::NoModifier, QString(), false, 0 );
     QApplication::sendEvent(this, &key_press);
 
-    QKeyEvent key_release(QKeyEvent::KeyRelease, Qt::Key_Return, Qt::NoModifier, NULL, false, 0 );
+    QKeyEvent key_release(QKeyEvent::KeyRelease, Qt::Key_Return, Qt::NoModifier, QString(), false, 0 );
     QApplication::sendEvent(this, &key_release);
 
     QComboBox::focusOutEvent(e);

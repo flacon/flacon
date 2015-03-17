@@ -260,5 +260,7 @@ private:
     QString mTagName;
 };
 
+QByteArray leftPart(const QByteArray &line, const QChar separator);
+QByteArray rightPart(const QByteArray &line, const QChar separator);
 
 #endif // DISK_H

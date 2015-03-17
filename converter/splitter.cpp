@@ -342,7 +342,7 @@ CueCreator::CueCreator(Disk *disk):
  ************************************************/
 void CueCreator::setTextCodecName(const QString codecName)
 {
-    mTextCodec = QTextCodec::codecForName(codecName.toAscii());
+    mTextCodec = QTextCodec::codecForName(codecName.toLatin1());
     if (!mTextCodec)
         mTextCodec = QTextCodec::codecForName("UTF-8");
 }

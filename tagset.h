@@ -63,7 +63,8 @@ public:
 
     QString uri() const;
     QString title() const;
-    void setTitle(const QString &title, bool encoded);
+    void setTitle(const QString &title);
+    void setTitle(const QByteArray &title, bool encoded);
 
     int tracksCount() const;
 
@@ -72,10 +73,13 @@ public:
 
 
     QString trackTag(int track, const QString &tagName) const;
-    void setTrackTag(int track, const QString &tagName, QString value, bool encoded);
+    void setTrackTag(int track, const QString &tagName, const QString &value);
+    void setTrackTag(int track, const QString &tagName, const QByteArray &value, bool encoded);
+
 
     QString diskTag(const QString &tagName) const;
-    void setDiskTag(const QString &tagName, QString value, bool encoded);
+    void setDiskTag(const QString &tagName, const QString &value);
+    void setDiskTag(const QString &tagName, const QByteArray &value, bool encoded);
 
     int distance(const TagSet &other);
     int distance(const TagSet *other);

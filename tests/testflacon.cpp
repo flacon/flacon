@@ -307,6 +307,77 @@ bool TestFlacon::compareCue(const QString &result, const QString &expected, QStr
 
 /************************************************
 
+ ************************************************/
+void TestFlacon::testByteArraySplit()
+{
+    QFETCH(QByteArray,  inArray);
+    QFETCH(char,        separator);
+    QFETCH(QByteArray,  expectedLeft);
+    QFETCH(QByteArray,  expectedRight);
+
+    QByteArray left = leftPart(inArray, separator);
+    QCOMPARE(left, expectedLeft);
+
+    QByteArray right = rightPart(inArray, separator);
+    QCOMPARE(right, expectedRight);
+}
+
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testByteArraySplit_data()
+{
+    QTest::addColumn<QByteArray>("inArray");
+    QTest::addColumn<char>("separator");
+    QTest::addColumn<QByteArray>("expectedLeft");
+    QTest::addColumn<QByteArray>("expectedRight");
+
+    QTest::newRow("'' split by ' '")
+            << QByteArray()
+            << ' '
+            << QByteArray()
+            << QByteArray();
+
+
+    QTest::newRow("'Test' split by ' '")
+            << QByteArray("Test")
+            << ' '
+            << QByteArray("Test")
+            << QByteArray();
+
+
+    QTest::newRow("'REM GENRE Pop' split by ' '")
+            << QByteArray("REM GENRE Pop")
+            << ' '
+            << QByteArray("REM")
+            << QByteArray("GENRE Pop");
+
+
+    QTest::newRow("'TITLE Рок группа' split by ' '")
+            << QByteArray("TITLE Рок группа")
+            << ' '
+            << QByteArray("TITLE")
+            << QByteArray("Рок группа");
+
+
+    QTest::newRow("'Название Рок группа' split by ' '")
+            << QByteArray("Название Рок группа")
+            << ' '
+            << QByteArray("Название")
+            << QByteArray("Рок группа");
+
+
+    QTest::newRow("'Название=Рок группа' split by '='")
+            << QByteArray("Название=Рок группа")
+            << '='
+            << QByteArray("Название")
+            << QByteArray("Рок группа");
+
+}
+
+
+/************************************************
 
  ************************************************/
 void TestFlacon::testSafeString()

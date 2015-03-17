@@ -73,6 +73,9 @@ private:
 private slots:
     void initTestCase();
 
+    void testByteArraySplit_data();
+    void testByteArraySplit();
+
     void testSafeString();
 
     void testTrackResultFileName_data();

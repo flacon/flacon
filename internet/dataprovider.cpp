@@ -264,24 +264,24 @@ void FreeDbProvider::dataReady(QNetworkReply *reply)
  ************************************************/
 void FreeDbProvider::parse(QNetworkReply *reply)
 {
-    QString category = reply->request().attribute(QNetworkRequest::User).toString();
+    QByteArray category = reply->request().attribute(QNetworkRequest::User).toByteArray();
 
     TagSet res(reply->url().toString());
-    res.setDiskTag(TAG_DISCID, disk()->discId(), true);
+    res.setDiskTag(TAG_DISCID, disk()->discId());
 
-    QString artist;
-    QString album;
-    QStringList tracks;
+    QByteArray artist;
+    QByteArray album;
+    QList<QByteArray> tracks;
 
     while (!reply->atEnd())
     {
-        QString line = QString(reply->readLine());
+        QByteArray line = reply->readLine();
 
         if (line.length() == 0 || line.startsWith('#'))
             continue;
 
-        QString key = line.section('=', 0, 0).toUpper();
-        QString value = line.section('=', 1).trimmed();
+        QByteArray key = leftPart(line, '=').toUpper();
+        QByteArray value = rightPart(line, '=').trimmed();
 
         if (key == "DYEAR")
         {
@@ -299,10 +299,10 @@ void FreeDbProvider::parse(QNetworkReply *reply)
         {
             // The artist and disc title (in that order) separated by a "/" with a
             // single space on either side to separate it from the text.
-            artist = value.section(" / ", 0, 0).trimmed();
+            artist = leftPart(value, '/').trimmed();
             res.setDiskTag(TAG_PERFORMER, artist, false);
 
-            album = value.section(" / ", 1).trimmed();
+            album = rightPart(value, '/').trimmed();
             res.setDiskTag(TAG_ALBUM, album, false);
             continue;
         }
@@ -315,10 +315,10 @@ void FreeDbProvider::parse(QNetworkReply *reply)
 
     }
 
-    foreach (QString line, tracks)
+    foreach (QByteArray line, tracks)
     {
-        QString key = line.section('=', 0, 0).toUpper();
-        QString value = line.section('=', 1).trimmed();
+        QByteArray key = leftPart(line, '=').toUpper();
+        QByteArray value = rightPart(line, '=').trimmed();
 
         bool ok;
         int n = key.mid(6).toInt(&ok);
@@ -335,8 +335,8 @@ void FreeDbProvider::parse(QNetworkReply *reply)
             // track titles, the track artist and the track title (in that order)
             // should be separated by a "/" with a single space on either side
             // to separate it from the text.
-            res.setTrackTag(n, TAG_PERFORMER, value.section(" / ", 0, 0).trimmed(), false);
-            res.setTrackTag(n, TAG_TITLE, value.section(" / ", 1).trimmed(), false);
+            res.setTrackTag(n, TAG_PERFORMER, leftPart(value, '/').trimmed(), false);
+            res.setTrackTag(n, TAG_TITLE, rightPart(value, '/').trimmed(), false);
         }
         else
         {
@@ -346,9 +346,7 @@ void FreeDbProvider::parse(QNetworkReply *reply)
 
     }
 
-    res.setTitle(QString("%2 / %3 [CDDB %1]").
-                 arg(category, artist, album),
-                 false);
+    res.setTitle(category + " / " + artist + " [CDDB " + album + "]", false);
 
     res.setTextCodecName(disk()->textCodecName());
     mResult << res;

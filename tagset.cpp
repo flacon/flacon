@@ -32,18 +32,19 @@
 
 #include <uchardet.h>
 
+#define ENC_CODEC "UTF-8"
+
 class Tag
 {
 public:
-    Tag(const QString &val="", bool enc = false):
+    Tag(const QByteArray &val="", bool enc = false):
         value(val),
         encoded(enc)
     {
     }
 
-    QString value;
+    QByteArray value;
     bool encoded;
-
 };
 
 
@@ -78,7 +79,7 @@ QString TagSetData::key(int track, const QString &tagName) const
 QString TagSetData::decode(const Tag &tag) const
 {
     if (tag.encoded)
-        return tag.value;
+        return QTextCodec::codecForName(ENC_CODEC)->toUnicode(tag.value);
 
     if (!mTextCodec)
     {
@@ -87,11 +88,11 @@ QString TagSetData::decode(const Tag &tag) const
 
         for(int i=0; i<mTrackCount; ++i)
         {
-            QByteArray data = mTags.value(key(i, TAG_PERFORMER)).value.toAscii();
-            uchardet_handle_data(uc, data.data(), data.length());
+            const QByteArray &performer = mTags.value(key(i, TAG_PERFORMER)).value;
+            const QByteArray &title = mTags.value(key(i, TAG_TITLE)).value;
 
-            data = mTags.value(key(i, TAG_TITLE)).value.toAscii();
-            uchardet_handle_data(uc, data.data(), data.length());
+            uchardet_handle_data(uc, performer.data(), performer.length());
+            uchardet_handle_data(uc, title.data(),     title.length());
         }
 
         uchardet_data_end(uc);
@@ -102,8 +103,9 @@ QString TagSetData::decode(const Tag &tag) const
         uchardet_delete(uc);
     }
 
-    return mTextCodec->toUnicode(tag.value.toAscii());
+    return mTextCodec->toUnicode(tag.value);
 }
+
 
 /************************************************
 
@@ -225,7 +227,16 @@ QString TagSet::title() const
 /************************************************
 
  ************************************************/
-void TagSet::setTitle(const QString &title, bool encoded)
+void TagSet::setTitle(const QString &title)
+{
+    setTitle(QTextCodec::codecForName(ENC_CODEC)->fromUnicode(title), true);
+}
+
+
+/************************************************
+
+ ************************************************/
+void TagSet::setTitle(const QByteArray &title, bool encoded)
 {
     setDiskTag("FLACON_TAGSET_TITLE", title, encoded);
 }
@@ -259,7 +270,7 @@ void TagSet::setTextCodecName(const QString codecName)
     if (codecName == CODEC_AUTODETECT)
         d->mTextCodec = 0;
     else
-        d->mTextCodec = QTextCodec::codecForName(codecName.toAscii());
+        d->mTextCodec = QTextCodec::codecForName(codecName.toLatin1());
 }
 
 
@@ -280,7 +291,17 @@ QString TagSet::trackTag(int track, const QString &tagName) const
 /************************************************
 
  ************************************************/
-void TagSet::setTrackTag(int track, const QString &tagName, QString value, bool encoded)
+void TagSet::setTrackTag(int track, const QString &tagName, const QString &value)
+{
+    const QByteArray &data = QTextCodec::codecForName(ENC_CODEC)->fromUnicode(value);
+    setTrackTag(track, tagName, data, true);
+}
+
+
+/************************************************
+
+ ************************************************/
+void TagSet::setTrackTag(int track, const QString &tagName, const QByteArray &value, bool encoded)
 {
     d->mTags.insert(d->key(track, tagName), Tag(value, encoded));
 
@@ -309,10 +330,21 @@ QString TagSet::diskTag(const QString &tagName) const
 }
 
 
+
 /************************************************
 
  ************************************************/
-void TagSet::setDiskTag(const QString &tagName, QString value, bool encoded)
+void TagSet::setDiskTag(const QString &tagName, const QString &value)
+{
+    const QByteArray &data = QTextCodec::codecForName(ENC_CODEC)->fromUnicode(value);
+    setDiskTag(tagName, data, true);
+}
+
+
+/************************************************
+
+ ************************************************/
+void TagSet::setDiskTag(const QString &tagName, const QByteArray &value, bool encoded)
 {
     d->mTags.insert(tagName, Tag(value, encoded));
 }

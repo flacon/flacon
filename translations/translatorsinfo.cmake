@@ -41,6 +41,12 @@ FUNCTION(create_translatorsinfo_qrc _qrcFile _DIR)
     endforeach()
 
     configure_file(${srcDir}/translatorsinfo.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/translatorsinfo.qrc)
-    qt4_add_resources(__qrcFile ${CMAKE_CURRENT_BINARY_DIR}/translatorsinfo.qrc)
+
+    if(USE_QT4)
+        qt4_add_resources(__qrcFile ${CMAKE_CURRENT_BINARY_DIR}/translatorsinfo.qrc)
+    else()
+        qt5_add_resources(__qrcFile ${CMAKE_CURRENT_BINARY_DIR}/translatorsinfo.qrc)
+    endif()
+
     set(${_qrcFile} ${__qrcFile} PARENT_SCOPE)
 ENDFUNCTION()

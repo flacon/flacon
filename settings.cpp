@@ -30,8 +30,11 @@
 #include <QDir>
 #include <QDebug>
 #include <QProcessEnvironment>
-#include <QDesktopServices>
-
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    #include <QDesktopServices>
+#else
+    #include <QStandardPaths>
+#endif
 
 QString Settings::mFileName;
 
@@ -98,7 +101,12 @@ void Settings::init()
     // Out Files ********************************
     setDefaultValue(OutFiles_Pattern,       "%a/{%y - }%A/%n - %t");
 
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     QString outDir = QDesktopServices::storageLocation(QDesktopServices::MusicLocation);
+#else
+    QString outDir = QStandardPaths::standardLocations(QStandardPaths::MusicLocation).first();
+#endif
     outDir.replace(QDir::homePath(), "~");
     setDefaultValue(OutFiles_Directory,     outDir);
     setDefaultValue(OutFiles_Format,        "FLAC");

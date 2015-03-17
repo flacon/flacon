@@ -542,7 +542,7 @@ void Disk::loadFromCue(const QString &cueFile, bool activate)
 
     QFileInfo fi(cueFile);
     TagSet *tags = new TagSet(fi.canonicalFilePath());
-    tags->setTitle(fi.fileName(), true);
+    tags->setTitle(fi.fileName());
 
     QFile file(fi.canonicalFilePath());
     if (!file.open(QIODevice::ReadOnly))
@@ -598,6 +598,31 @@ void Disk::loadFromCue(const QString &cueFile, bool activate)
 
 }
 
+/************************************************
+
+ ************************************************/
+QByteArray leftPart(const QByteArray &line, const QChar separator)
+{
+    int n = line.indexOf(separator);
+    if (n > -1)
+        return line.left(n);
+    else
+        return line;
+}
+
+
+/************************************************
+
+ ************************************************/
+QByteArray rightPart(const QByteArray &line, const QChar separator)
+{
+    int n = line.indexOf(separator);
+    if (n > -1)
+        return line.right(line.length() - n - 1);
+    else
+        return QByteArray();
+}
+
 
 /************************************************
  Complete cue sheet syntax documentation
@@ -607,28 +632,29 @@ bool Disk::parseCue(QFile &file, TagSet *tags)
 {
     Track *track = 0;
     int trackIdx = -1;
-    QString performer;
-    QString album;
-    QString genre;
-    QString date;
-    QString comment;
-    QString songwriter;
+    QByteArray performer;
+    QByteArray album;
+    QByteArray genre;
+    QByteArray date;
+    QByteArray comment;
+    QByteArray songwriter;
 
     while (!file.atEnd())
     {
-        QString line = QString(file.readLine());
 
-        line = line.trimmed();
+        QByteArray line = file.readLine().trimmed();
+
         if (line.isEmpty())
             continue;
 
-        QString tag = line.section(' ', 0, 0).toUpper();
-        QString value = line.section(' ', 1).trimmed();
+        QByteArray tag = leftPart(line, ' ').toUpper();
+        QByteArray value = rightPart(line, ' ').trimmed();
+
 
         if (tag == "REM")
         {
-            tag = value.section(' ', 0, 0).toUpper();
-            value = value.section(' ', 1).trimmed();
+            tag = leftPart(value, ' ').toUpper();
+            value = rightPart(value, ' ').trimmed();
         }
 
         if (value.length() > 2 && (value.at(0) == '"' || value.at(0) == '\''))
@@ -639,7 +665,7 @@ bool Disk::parseCue(QFile &file, TagSet *tags)
         if (tag == "TRACK")
         {
             bool ok;
-            value.section(' ', 0, 0).toInt(&ok);
+            leftPart(value, ' ').toInt(&ok);
             if (!ok)
             {
                 mErrorString = tr("File <b>%1</b> is not a valid CUE file.").arg(file.fileName());
@@ -672,14 +698,14 @@ bool Disk::parseCue(QFile &file, TagSet *tags)
             if (track)
             {
                 bool ok;
-                int num = value.section(' ', 0, 0).toInt(&ok);
+                int num = leftPart(value, ' ').toInt(&ok);
                 if (!ok)
                 {
                     mErrorString = tr("File <b>%1</b> is not a valid CUE file.").arg(file.fileName());
                     return false;
                 }
 
-                QString time = value.section(' ', 1);
+                QString time = rightPart(value, ' ');
                 track->setCueIndex(num, CueIndex(time));
             }
         }
@@ -1064,7 +1090,7 @@ QString Disk::getTag(int track, const QString &tagName)
  ************************************************/
 void Disk::setTag(int track, const QString &tagName, const QString &value)
 {
-    mTags->setTrackTag(track, tagName, value, true);
+    mTags->setTrackTag(track, tagName, value);
     emit trackChanged(track);
     int disk = project->indexOf(this);
     project->emitTrackChanged(disk, track);

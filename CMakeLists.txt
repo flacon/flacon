@@ -189,13 +189,50 @@ include_directories(
 
 #*******************************************
 
-set(QT_USE_QTNETWORK 1)
-find_package(Qt4 REQUIRED)
-include(${QT_USE_FILE})
-qt4_wrap_cpp(MOC_SOURCES ${MOCS})
-qt4_add_resources(QRC_SOURCES ${RESOURCES})
-qt4_wrap_ui(UI_HEADERS ${FORMS})
-qt4_add_translation(QM_FILES ${TS_FILES})
+option(USE_QT5 "Force use the Qt5." $ENV{USE_QT5})
+option(USE_QT4 "Force use the Qt4." $ENV{USE_QT4})
+
+if((USE_QT4 AND USE_QT5) OR
+   (NOT USE_QT4 AND NOT USE_QT5))
+    find_package(Qt4 QUIET)
+    if (QT4_FOUND)
+        set(USE_QT4 ON)
+        set(USE_QT5 OFF)
+    else()
+        set(USE_QT4 OFF)
+        set(USE_QT5 ON)
+    endif()
+endif()
+
+if(USE_QT4)
+    set(QT_USE_QTNETWORK 1)
+    find_package(Qt4 REQUIRED)
+    include(${QT_USE_FILE})
+    qt4_wrap_cpp(MOC_SOURCES ${MOCS})
+    qt4_add_resources(QRC_SOURCES ${RESOURCES})
+    qt4_wrap_ui(UI_HEADERS ${FORMS})
+    qt4_add_translation(QM_FILES ${TS_FILES})
+else()
+    cmake_minimum_required(VERSION 2.8.3)
+    find_package(Qt5Widgets REQUIRED QUIET)
+    include_directories(${Qt5Widgets_INCLUDE_DIRS})
+    add_definitions(${Qt5Widgets_DEFINITIONS})
+    set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Widgets_LIBRARIES})
+
+    find_package(Qt5Network REQUIRED QUIET)
+    include_directories(${Qt5Network_INCLUDE_DIRS})
+    add_definitions(${Qt5Network_DEFINITIONS})
+    set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Network_LIBRARIES})
+
+    find_package(Qt5LinguistTools REQUIRED QUIET)
+
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+
+    qt5_wrap_cpp(MOC_SOURCES ${MOCS})
+    qt5_add_resources(QRC_SOURCES ${RESOURCES})
+    qt5_wrap_ui(UI_HEADERS ${FORMS})
+    qt5_add_translation(QM_FILES ${TS_FILES})
+endif()
 
 include(FindPkgConfig)
 pkg_search_module(UCHARDET REQUIRED uchardet)
@@ -252,13 +289,24 @@ install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
 
+message(STATUS "*****************************************************")
+if(USE_QT4)
+    message(STATUS "Use Qt4, for building with Qt5 use -DUSE_QT5=Yes option.")
+else()
+    message(STATUS "Use Qt5, for building with Qt4 use -DUSE_QT4=Yes option.")
+endif()
+
 if(BUILD_TESTS STREQUAL "Yes")
+    add_definitions(-DBUILD_TESTS)
     add_subdirectory(tests)
 else()
     message(STATUS "")
     message(STATUS "For building tests use -DBUILD_TESTS=Yes option.")
-    message(STATUS "")
 endif()
+
+message(STATUS "")
+message(STATUS "*****************************************************")
+
 
 # Man page **************************************
 configure_file(

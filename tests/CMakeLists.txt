@@ -69,14 +69,22 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-set(QT_USE_QTTEST true)
 
 add_definitions(-Wall)
 
-find_package(Qt4 REQUIRED)
-include(${QT_USE_FILE})
-qt4_wrap_cpp(TEST_MOC_SOURCES ${TEST_MOCS})
-
+if(USE_QT4)
+    set(QT_USE_QTTEST true)
+    find_package(Qt4 REQUIRED)
+    include(${QT_USE_FILE})
+    qt4_wrap_cpp(TEST_MOC_SOURCES ${TEST_MOCS})
+else()
+    cmake_minimum_required(VERSION 2.8.3)
+    find_package(Qt5Test REQUIRED)
+    include_directories(${Qt5Test_INCLUDE_DIRS})
+    add_definitions(${Qt5Test_DEFINITIONS})
+    set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Test_LIBRARIES})
+    qt5_wrap_cpp(TEST_MOC_SOURCES ${TEST_MOCS})
+endif()
 
 add_executable(${PROJECT_NAME} ${TEST_HEADERS} ${TEST_SOURCES} ${TEST_MOC_SOURCES})
 target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES}  ${LIBRARIES})
