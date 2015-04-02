@@ -241,6 +241,7 @@ include(translations/translatorsinfo.cmake)
 create_translatorsinfo_qrc(TRANSLATORS_INFO_QRC translations)
 set(LIBRARIES ${LIBRARIES} ${UCHARDET_LIBRARIES})
 include_directories(${UCHARDET_INCLUDE_DIRS})
+link_directories(${UCHARDET_LIBRARY_DIRS})
 
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${MOC_SOURCES} ${QM_FILES} ${QRC_SOURCES} ${UI_HEADERS} ${ENGINES_CPP} ${ENGINES_H} ${TRANSLATORS_INFO_QRC})
