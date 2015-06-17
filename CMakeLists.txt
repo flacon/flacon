@@ -69,6 +69,7 @@ set(HEADERS
     outformats/ogg.h
     outformats/wav.h
     outformats/wv.h
+    outformats/opus.h
 )
 
 set(SOURCES
@@ -102,6 +103,7 @@ set(SOURCES
     outformats/ogg.cpp
     outformats/wav.cpp
     outformats/wv.cpp
+    outformats/opus.cpp
 )
 
 set (MOCS
@@ -132,6 +134,7 @@ set (MOCS
     outformats/ogg.h
     outformats/wav.h
     outformats/wv.h
+    outformats/opus.h
 )
 
 set (FORMS
@@ -144,6 +147,7 @@ set (FORMS
     outformats/mp3_config.ui
     outformats/ogg_config.ui
     outformats/wv_config.ui
+    outformats/opus_config.ui
 )
 
 set(LIBRARIES

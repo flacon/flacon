@@ -227,6 +227,9 @@ AboutInfo AboutDialog::programsInfo() const
     result.add("FAAC",
                "http://www.audiocoding.com");
 
+    result.add("opusenc",
+               "http://www.xiph.org");
+
     return result;
 }
 

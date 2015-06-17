@@ -105,6 +105,7 @@ public:
     static void loadWidget(const QString &key, QComboBox *widget);
     static void writeWidget(const QString &key, QComboBox *widget);
 
+    static QString toolTipCss();
 };
 
 

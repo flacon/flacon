@@ -508,3 +508,16 @@ void EncoderConfigPage::writeWidget(const QString &key, QComboBox *widget)
     QVariant data = widget->itemData(widget->currentIndex());
     settings->setValue(key, data);
 }
+
+
+/************************************************
+
+ ************************************************/
+QString EncoderConfigPage::toolTipCss()
+{
+    return "<style type='text/css'>\n"
+          "qbody { font-size: 9px; }\n"
+          "dt { font-weight: bold; }\n"
+          "dd { margin-left: 8px; margin-bottom: 8px; }\n"
+          "</style>\n";
+}

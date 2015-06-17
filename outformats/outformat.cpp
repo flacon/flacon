@@ -35,6 +35,7 @@
 #include "mp3.h"
 #include "ogg.h"
 #include "wv.h"
+#include "opus.h"
 
 #include <QDebug>
 
@@ -50,6 +51,7 @@ void initOutFormats(QList<OutFormat*> *formats)
     *formats << new OutFormat_Mp3();
     *formats << new OutFormat_Ogg();
     *formats << new OutFormat_Wv();
+    *formats << new OutFormat_Opus();
 }
 
 
