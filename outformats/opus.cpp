@@ -51,6 +51,8 @@ QStringList OutFormat_Opus::encoderArgs(Track *track, const QString &outFile) co
 
     args << settings->programName(encoderProgramName());
 
+    args << "--quiet";
+
     QString type = settings->value(CONF_OPUS_BITRATETYPE).toString();
     if (type == "VBR")
         args << "--vbr";
@@ -76,7 +78,6 @@ QStringList OutFormat_Opus::encoderArgs(Track *track, const QString &outFile) co
     args << "-";
     args << outFile;
 
-    qDebug() << args;
     return args;
 }
 
@@ -97,7 +98,7 @@ QHash<QString, QVariant> OutFormat_Opus::defaultParameters() const
 {
     QHash<QString, QVariant> res;
     res.insert("Opus/BitrateType",      "VBR");
-    res.insert("Opus/Bitrate",          64);
+    res.insert("Opus/Bitrate",          96);
     return res;
 }
 
