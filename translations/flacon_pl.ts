@@ -164,35 +164,35 @@
     </message>
     <message>
         <source>Windows 1250</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1250</translation>
     </message>
     <message>
         <source>Windows 1252</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1252</translation>
     </message>
     <message>
         <source>Windows 1253</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1253</translation>
     </message>
     <message>
         <source>Windows 1254</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1254</translation>
     </message>
     <message>
         <source>Windows 1255</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1255</translation>
     </message>
     <message>
         <source>Windows 1256</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1256</translation>
     </message>
     <message>
         <source>Windows 1257</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1257</translation>
     </message>
     <message>
         <source>Windows 1258</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1258</translation>
     </message>
 </context>
 <context>
@@ -478,6 +478,55 @@
     <message>
         <source>Calculate gain:</source>
         <translation>Oblicz wzmocnienie:</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigPage_Opus</name>
+    <message>
+        <source>Opus encoding configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bitrate type:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VBR - variable bitrate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CBR - constrained bitrate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sets the target bitrate in kb/s (6-256 per channel).
+&lt;p&gt;
+In VBR mode this set the average rate for a large and diverse collection of audio.
+&lt;p&gt;
+In CBR mode it set the specific output bitrate.
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sets target bitrate in kb/s (6-256 per channel).
+&lt;p&gt;
+In VBR mode this specifies the average rate for a large and diverse collection of audio. 
+&lt;p&gt;
+In CBR mode  it  specifies the specific output bitrate.
+</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -913,7 +962,7 @@ Jeżeli nie podano ścieżka dostępu lub zaczyna się ona od &quot;.&quot; (kro
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern</comment>
-        <translation type="unfinished"/>
+        <translation>Użyj &quot;%1&quot;</translation>
     </message>
 </context>
 <context>

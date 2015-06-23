@@ -164,35 +164,35 @@
     </message>
     <message>
         <source>Windows 1250</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1250</translation>
     </message>
     <message>
         <source>Windows 1252</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1252</translation>
     </message>
     <message>
         <source>Windows 1253</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1253</translation>
     </message>
     <message>
         <source>Windows 1254</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1254</translation>
     </message>
     <message>
         <source>Windows 1255</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1255</translation>
     </message>
     <message>
         <source>Windows 1256</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1256</translation>
     </message>
     <message>
         <source>Windows 1257</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1257</translation>
     </message>
     <message>
         <source>Windows 1258</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1258</translation>
     </message>
 </context>
 <context>
@@ -481,6 +481,60 @@
     </message>
 </context>
 <context>
+    <name>ConfigPage_Opus</name>
+    <message>
+        <source>Opus encoding configuration</source>
+        <translation>Opus 编码配置</translation>
+    </message>
+    <message>
+        <source>Bitrate type:</source>
+        <translation>编码类型：</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation>码率：</translation>
+    </message>
+    <message>
+        <source>VBR - variable bitrate</source>
+        <translation>VBR - 可变码率</translation>
+    </message>
+    <message>
+        <source>CBR - constrained bitrate</source>
+        <translation>CBR - 固定码率</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sets the target bitrate in kb/s (6-256 per channel).
+&lt;p&gt;
+In VBR mode this set the average rate for a large and diverse collection of audio.
+&lt;p&gt;
+In CBR mode it set the specific output bitrate.
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sets target bitrate in kb/s (6-256 per channel).
+&lt;p&gt;
+In VBR mode this specifies the average rate for a large and diverse collection of audio. 
+&lt;p&gt;
+In CBR mode  it  specifies the specific output bitrate.
+</source>
+        <translation>设置目标码率，单位 kb/s（6-256 每个通道）。
+&lt;p&gt;
+VBR 模式下，这指定平均速率，面向较大且多样的音频集合。
+&lt;p&gt;
+CBR 模式下，它指定特定的输出码率。
+</translation>
+    </message>
+</context>
+<context>
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
@@ -684,15 +738,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;文件</translation>
+        <translation>文件(&amp;F) </translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;设置</translation>
+        <translation>设置(&amp;S)</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;帮助</translation>
+        <translation>帮助(&amp;H)</translation>
     </message>
     <message>
         <source>Add file</source>
@@ -736,7 +790,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>&amp;Preferences</source>
-        <translation>&amp;首选项</translation>
+        <translation>首选项(&amp;P)</translation>
     </message>
     <message>
         <source>Program preferences</source>
@@ -744,7 +798,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>&amp;About Flacon</source>
-        <translation>&amp;关于 Flacon </translation>
+        <translation>关于 Flacon (&amp;A)</translation>
     </message>
     <message>
         <source>Remove album</source>
@@ -912,7 +966,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern</comment>
-        <translation type="unfinished"/>
+        <translation>使用“%1”</translation>
     </message>
 </context>
 <context>

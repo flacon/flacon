@@ -1,82 +1,82 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ro_RO" version="2.0">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Flacon</source>
-        <translation>Про Flacon</translation>
+        <translation>Despre Flacon</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Про проґраму</translation>
+        <translation>Despre</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation>Автор</translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <source>Thanks</source>
-        <translation>Подяки</translation>
+        <translation>Mulțumiri</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation>Переклади</translation>
+        <translation>Traducători</translation>
     </message>
     <message>
         <source>External programs</source>
-        <translation>Зовнішні проґрами</translation>
+        <translation>Programe externe</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation>Домашня сторінка: %1</translation>
+        <translation>Site:%1</translation>
     </message>
     <message>
         <source>License: %1</source>
-        <translation>Ліцензія: %1</translation>
+        <translation>Licență: %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
-        <translation>Окремі подяки:</translation>
+        <translation>Mulțumiri speciale:</translation>
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon використовує зовнішні проґрами. Велике дякую їх авторам!</translation>
+        <translation>Flacon utilizează anumite programe externe. Multe mulțumiri autorilor lor!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Витягує окремі доріжки з одного великого аудіофайлу, який містить увесь альбом повністю.</translation>
+        <translation>Extrage piste audio individuale dintr-un fișier audio mare care conține întregul album.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation>Авторське право: %1-%2 %3</translation>
+        <translation>Copyright: %1-%2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
-        <translation>Латка для підтримки WavPack</translation>
+        <translation>Suport WavPack</translation>
     </message>
     <message>
         <source>Application icon, Packaging</source>
-        <translation>Піктограма для проґрами, пакування</translation>
+        <translation>Pictogramă aplicație, </translation>
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation>Пакування, тестування.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Improvements in the UI</source>
-        <translation>Покращення інтерфейсу.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation>Flacon перекладена багатьма мовами завдяки праці команди перекладачів з усього світу.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation>Обліковий запис &quot;Flacon&quot; на github.com.</translation>
+        <translation>Cont Flacon pe github.com</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation>Баг-трекер %1</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -84,83 +84,83 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
-        <translation>Авторозпізнавання</translation>
+        <translation>Detectare automată</translation>
     </message>
     <message>
         <source>Unicode (UTF-8)</source>
-        <translation>Юнікод (UTF-8)</translation>
+        <translation>Unicode (UTF-8)</translation>
     </message>
     <message>
         <source>Unicode (UTF-16LE)</source>
-        <translation>Юнікод (UTF-16LE)</translation>
+        <translation>Unicode (UTF-16LE)</translation>
     </message>
     <message>
         <source>Unicode (UTF-16BE)</source>
-        <translation>Юнікод (UTF-16BE)</translation>
+        <translation>Unicode (UTF-16BE)</translation>
     </message>
     <message>
         <source>Cyrillic (Win-1251)</source>
-        <translation>Кирилиця (Win-1251)</translation>
+        <translation>Chirilic (Win-1251)</translation>
     </message>
     <message>
         <source>Cyrillic (CP-866)</source>
-        <translation>Кирилиця (CP-866)</translation>
+        <translation>Chirilic (CP-866)</translation>
     </message>
     <message>
         <source>Latin-1 (ISO-8859-1)</source>
-        <translation>Латиниця-1 (ISO-8859-1)</translation>
+        <translation>Latin-1 (ISO-8859-1)</translation>
     </message>
     <message>
         <source>Latin-2 (ISO-8859-2)</source>
-        <translation>Латиниця-2 (ISO-8859-2)</translation>
+        <translation>Latin-2 (ISO-8859-2)</translation>
     </message>
     <message>
         <source>Latin-3 (ISO-8859-3)</source>
-        <translation>Латиниця-3 (ISO-8859-3)</translation>
+        <translation>Latin-3 (ISO-8859-3)</translation>
     </message>
     <message>
         <source>Latin-4 (ISO-8859-4)</source>
-        <translation>Латиниця-4 (ISO-8859-4)</translation>
+        <translation>Latin-4 (ISO-8859-4)</translation>
     </message>
     <message>
         <source>Latin-5 (ISO-8859-5)</source>
-        <translation>Латиниця-5 (ISO-8859-5)</translation>
+        <translation>Latin-5 (ISO-8859-5)</translation>
     </message>
     <message>
         <source>Latin-6 (ISO-8859-6)</source>
-        <translation>Латиниця-6 (ISO-8859-6)</translation>
+        <translation>Latin-6 (ISO-8859-6)</translation>
     </message>
     <message>
         <source>Latin-7 (ISO-8859-7)</source>
-        <translation>Латиниця-7 (ISO-8859-7)</translation>
+        <translation>Latin-7 (ISO-8859-7)</translation>
     </message>
     <message>
         <source>Latin-8 (ISO-8859-8)</source>
-        <translation>Латиниця-8 (ISO-8859-8)</translation>
+        <translation>Latin-8 (ISO-8859-8)</translation>
     </message>
     <message>
         <source>Latin-9 (ISO-8859-9)</source>
-        <translation>Латиниця-9 (ISO-8859-9)</translation>
+        <translation>Latin-9 (ISO-8859-9)</translation>
     </message>
     <message>
         <source>Latin-10 (ISO-8859-10)</source>
-        <translation>Латиниця-10 (ISO-8859-10)</translation>
+        <translation>Latin-10 (ISO-8859-10)</translation>
     </message>
     <message>
         <source>Latin-13 (ISO-8859-13)</source>
-        <translation>Латиниця-13 (ISO-8859-13)</translation>
+        <translation>Latin-13 (ISO-8859-13)</translation>
     </message>
     <message>
         <source>Latin-14 (ISO-8859-14)</source>
-        <translation>Латиниця-14 (ISO-8859-14)</translation>
+        <translation>Latin-14 (ISO-8859-14)</translation>
     </message>
     <message>
         <source>Latin-15 (ISO-8859-15)</source>
-        <translation>Латиниця-15 (ISO-8859-15)</translation>
+        <translation>Latin-15 (ISO-8859-15)</translation>
     </message>
     <message>
         <source>Latin-16 (ISO-8859-16)</source>
-        <translation>Латиниця-16 (ISO-8859-16)</translation>
+        <translation>Latin-16 (ISO-8859-16)</translation>
     </message>
     <message>
         <source>Windows 1250</source>
@@ -199,124 +199,124 @@
     <name>ConfigDialog</name>
     <message>
         <source>Preferences</source>
-        <translation>Налаштування</translation>
+        <translation>Preferințe</translation>
     </message>
     <message>
         <source>General configuration</source>
-        <translation>Загальні налаштування</translation>
+        <translation>Configurări generale</translation>
     </message>
     <message>
         <source>Thread count:</source>
-        <translation>Кількість потоків:</translation>
+        <translation>Număr fire de execuție:</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation>Кількість потоків під час конвертації.</translation>
+        <translation>Numărul de fire de execuție în procesul de conversie.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation>Тимчасова тека:</translation>
+        <translation>Dosar temporar:</translation>
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Типове кодування:</translation>
+        <translation>Codare implicită caractere:</translation>
     </message>
     <message>
         <source>Per track CUE</source>
-        <translation>Потрековий CUE</translation>
+        <translation>CUE per pistă</translation>
     </message>
     <message>
         <source>Create per track CUE</source>
-        <translation>Створити потрековий CUE</translation>
+        <translation>Creare CUE per pistă</translation>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Прегап першої доріжки:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rescan</source>
-        <translation>Пересканувати</translation>
+        <translation>Rescanare</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation>Повний шлях до зовнішніх проґрам</translation>
+        <translation>Calea completă către aplicațiile externe</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
-        <translation>Розпаковувати у окремий файл</translation>
+        <translation>Extrage în fișier separat</translation>
     </message>
     <message>
         <source>Add to first track</source>
-        <translation>Додати до першої доріжки</translation>
+        <translation>Adaugă la prima pistă</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Загальне</translation>
+        <translation>General</translation>
     </message>
     <message>
         <source>Programs</source>
-        <translation>Проґрами</translation>
+        <translation>Programe</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Вкажіть тимчасову теку</translation>
+        <translation>Alegere director fișiere temporare</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation>Налаштування кодування AAC</translation>
+        <translation>Configurare codare AAC</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Встановити якість (рекомендовано)</translation>
+        <translation>Utilizare configurare pentru calitatea sunetului (recomandată)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Вказати бітрейт</translation>
+        <translation>Utilizare rată de biți</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Бітрейт:</translation>
+        <translation>Rată de biți:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Потрібний бітрейт (у кб/с).</translation>
+        <translation>Stabilire rata de biți dorită (în kb/s).</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Flac</name>
     <message>
         <source>Flac encoding configuration</source>
-        <translation>Налаштування кодування FLAC</translation>
+        <translation>Configurare codare FLAC</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Стиснення:</translation>
+        <translation>Comprimare:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Вирівнювання гучності</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Розрахунок гучності:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Вимкнено</translation>
+        <translation>Dezactivat</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation>Налаштування кодування в MP3</translation>
+        <translation>Configurare codare MP3</translation>
     </message>
     <message>
         <source>Preset:</source>
-        <translation>Пресет:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -344,164 +344,141 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;При використанні режиму з середнім змінним бітрейтом, більшість людей не почують спотворень на більшості музики.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;При використанні режиму зі страндартним змінним бітрейтом, більшість людей не почують спотворень на більшості музики. Цей режим забезпечує досить високу якість.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;Цей режим дає вищу якість ніж VBR standard. Ви помітите це, якщо в Вас дуже добрий слух, або високоякісна апаратура.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;У цьому режимі Ви можете самі вказати якість звуку, при цьому використовується змінний бітрейт.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Рекомендуємо використовувати режими з &quot;fast option&quot;, вони використовують новий, швидкий алгоритм VBR.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;Якщо Ви бажаєте отримати максимальну якість звуку, а розмір файлу значення не має, використовуйте цей режим з постійним бітрейтом.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Використання цього режиму з постійним бітрейтом, дасть добру якість при фіксованому бітейті.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Зазвичай, цей режим з усередненим бітрейтом дає кращу якість ніж режими з постійним бітрейтом.&lt;/dd&gt;
-</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Вказати бітрейт</translation>
+        <translation>Utilizare rată de biți</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Бітрейт:</translation>
+        <translation>Rată de biți:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Вказує потрібний бітрейт (у кб/с).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use quality</source>
-        <translation>Вказати якість</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Quality:</source>
-        <translation>Якість:</translation>
+        <translation>Calitate:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Вирівнювання гучності</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Розрахунок гучності:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR medium</source>
-        <translation>VBR medium</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation>VBR standard</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation>VBR standard fast</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation>VBR extreme</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation>VBR extreme fast</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation>VBR quality</translation>
+        <translation>Calitate VBR</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation>CBR insane</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation>CBR кбіт/с</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation>ABR кбіт/с</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation>Налаштування кодування Ogg</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Встановити якість (рекомендовано)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Використовувати бітрейт</translation>
+        <translation>Utilizare rată de biți</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation>Мінімальний бітрейт:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Вказує мінімальний бітрейт (у кб/с).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation>Номінальний бітрейт:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Вказує потрібний бітрейт (у кб/с).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Максимальний бітрейт:</translation>
+        <translation>Rată de biți maximă:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Вказує максимальний бітрейт (у кб/с).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Вирівнювання гучності</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Розрахунок гучності:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation>Налаштування кодування в Opus</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation>Режим бітрейту:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Бітрейт:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
-        <translation>VBR - із змінним бітрейтом;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation>CBR - з постійним бітрейтом</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -527,69 +504,64 @@ In VBR mode this specifies the average rate for a large and diverse collection o
 &lt;p&gt;
 In CBR mode  it  specifies the specific output bitrate.
 </source>
-        <translation>Вказує бітрейт у кб/с (6-256 на канал).
-&lt;p&gt;
-Для режиму VBR це усереднений бітрейт.
-&lt;p&gt;
-Для режиму CBR файли будуть мати конкретно цей бітрейт.
-</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation>Налаштування кодування в WavPack</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Стиснення:</translation>
+        <translation>Comprimare:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Вирівнювання гучності</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Розрахунок гучності:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Вимкнено</translation>
+        <translation>Dezactivat(ă)</translation>
     </message>
 </context>
 <context>
     <name>Converter</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Не вдається створити теку &quot;%1&quot;.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Не вдається писати у теку &quot;%1&quot;.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Conversion is not possible:</source>
-        <translation>Конвертація неможлива:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation>Аудіофайл не вказано.</translation>
+        <translation>Fișier audio ne-configurat.</translation>
     </message>
     <message>
         <source>CUE file not set.</source>
-        <translation>CUE-файл не вказано.</translation>
+        <translation>Fișier CUE ne-configurat.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не є правильним CUE файлом.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation>Файл &lt;b&gt;%1&lt;/b&gt; містить декілька тегів FILE.&lt;br&gt;Такі файли поки не підтримуються.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -598,65 +570,59 @@ In CBR mode  it  specifies the specific output bitrate.
         <source>I can't delete file:
 %1
 %2</source>
-        <translation>Не вдається вилучити файл:
-%1
-%2</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Encoder error:
 </source>
-        <translation>Помилка кодування:
+        <translation>Eroare de codare:
 </translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
-        <translation>Не вдається прочитати %1 файл</translation>
+        <translation>Nu se poate citi fișierul %1</translation>
     </message>
 </context>
 <context>
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>Якість кодування, між %1 (найнижча) та %2 (найвища).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>Рівень стиснення, між %1 (найшвидше) й %2 (найсильніше).
-Це впливає лише на розмір файлу. Жодних втрат не відбувається.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disabled</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Вимкнено</translation>
+        <translation>Dezactivat(ă)</translation>
     </message>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>По доріжкам</translation>
+        <translation>Per pistă</translation>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Для усього альбому</translation>
+        <translation>Per album</translation>
     </message>
     <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>Вирівнювання гучності (ReplayGain) є стандартом нормалізації гучності комп’ютерних аудіоформатів.
-
-Можливий аналіз кількох доріжок для відтворення їх усіх з однаковою гучністю.
-Використання аналізу всього альбому зберігає відмінності гучностей.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 kbps</source>
-        <translation>%1 кбіт/с</translation>
+        <translation>%1 kbps</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation>Типово</translation>
+        <translation>Implicit</translation>
     </message>
 </context>
 <context>
@@ -665,9 +631,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation>Не вдається перейменувати файл:
-%1 на %2
-%3</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -675,8 +639,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Gain error:
 </source>
-        <translation>Помилка розрахунку гучності:
-</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -687,76 +650,76 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Файли результату</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Directory:</source>
-        <translation>Тека:</translation>
+        <translation>Dosar:</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation>Шаблон:</translation>
+        <translation>Șablon:</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation>Формат:</translation>
+        <translation>Format:</translation>
     </message>
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Формат файлів результату</translation>
+        <translation>Format ieșire</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation>Теги</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Genre:</source>
-        <translation>Жанр:</translation>
+        <translation>Gen:</translation>
     </message>
     <message>
         <source>Year:</source>
-        <translation>Рік:</translation>
+        <translation>An:</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation>Виконавець:</translation>
+        <translation>Artist:</translation>
     </message>
     <message>
         <source>Album:</source>
-        <translation>Альбом:</translation>
+        <translation>Album:</translation>
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Почати з:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>ID диску:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation>Кодування:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Файл</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Налаштування</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Довідка</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add file</source>
-        <translation>Додати файл</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Додати CUE чи аудіо файл</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -764,11 +727,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Convert</source>
-        <translation>Перетворити</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation>Почати процес конвертації</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -776,15 +739,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Abort</source>
-        <translation>Припинити</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation>Припинити процес конвертації</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Вийти</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -792,23 +755,23 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>&amp;Preferences</source>
-        <translation>&amp;Налаштування</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Program preferences</source>
-        <translation>Налаштування проґрами</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;About Flacon</source>
-        <translation>&amp;Про Flacon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove album</source>
-        <translation>Вилучити альбом</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove album from project</source>
-        <translation>Вилучити альбом з проєкту</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -816,7 +779,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation>Налаштувати кодувальник</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>...</source>
@@ -824,15 +787,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Select result directory</source>
-        <translation>Обрати теку призначення</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation>Отримати з CDDB</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation>Отримати інформацію про альбом із CDDB</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+I</source>
@@ -840,79 +803,78 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Scan</source>
-        <translation>Сканувати</translation>
+        <translation>Scanare</translation>
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation>Рекурсивно шукати альбоми</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Вставити номер доріжки</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Вставити кількість доріжок</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Вставити ім’я виконавця</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Вставити назву альбому</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Вставити назву доріжки</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Вставити рік</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Вставити жанр</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Обрати CUE-файл</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation>Деякі альбоми не вийде конвертувати, вони містять помилки.
-Продовжувати?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>%1 файли</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
-        <translation>Усі підтримувані формати</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Усі файли</translation>
+        <translation>Toate fișierele</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Додати CUE або аудіофайл</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Вибрати аудіофайл</translation>
+        <translation>Alege fișierul audio</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Обрати теку</translation>
+        <translation>Alege dosarul</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -938,73 +900,55 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Поля починаються із знаку %. Ви можете використовувати наступні поля:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Номер доріжки  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Кількість доріжок&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Виконавець&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Назва альбому&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Назва доріжки&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Рік&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Жанр&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-Якщо Ви оточили частину тексту фігурними дужками, то цієї частини не буде видко, якщо значення полів будуть порожніми.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually. 
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Ви можете обрати теку для вихідних файлів, або вказати її руками. 
-
-Якщо залишити поле порожнім, або вказати &quot;.&quot; (крапку), то файли результату будуть створюватися у тій самій теці, щой й початкові. </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern</comment>
-        <translation>Використовувати &quot;%1&quot;</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Декілька значень</translation>
+        <translation>Valori multiple</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesLineEdit</name>
     <message>
         <source>Multiple values</source>
-        <translation>Декілька значень</translation>
+        <translation>Valori multiple</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesSpinBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Декілька значень</translation>
+        <translation>Valori multiple</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
         <source>%1 program</source>
-        <translation>%1 проґрама</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All files</source>
-        <translation>Усі файли</translation>
+        <translation>Toate fișierele</translation>
     </message>
     <message>
         <source>Select program file</source>
-        <translation>Вкажіть файл проґрами</translation>
+        <translation>Alegeți aplicația</translation>
     </message>
 </context>
 <context>
@@ -1019,92 +963,92 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>QObject</name>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Не вдається записати CUE файл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Не можу знайти проґраму &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>Nu găsesc programul &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Формат аудіо файлу &lt;b&gt;%1&lt;/b&gt; не підтримується. &lt;br&gt;&lt;br&gt;Перевірте що встановлені усі потрібні проґрами й вони вказані у налаштуваннях.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>Ви не можете використовувати &apos;вирівнювання гучності&apos; для файлів з частотою дискретизації вище 48 КГц. Metaflac не підтримує такі файли.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
         <source>The number of tracks is higher than expected.</source>
-        <translation>Кількість доріжок більша ніж я очікував.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
         <source>Select another CUE file</source>
-        <translation>Обрати інший CUE-файл</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Get data from CDDB</source>
-        <translation>Отримати дані з CDDB</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Редагувати</translation>
+        <translation>Editare</translation>
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>Обрати інший аудіофайл</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
     <message>
         <source>Error</source>
-        <translation>Збій</translation>
+        <translation>Eroare</translation>
     </message>
     <message>
         <source>Aborted</source>
-        <translation>Припинено</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OK</source>
-        <translation>Гаразд</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Extracting</source>
-        <translation>Витягую...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Encoding</source>
-        <translation>Кодую...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Queued</source>
-        <translation>У черзі</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation>Обчислюється підсилення...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Wait gain</source>
-        <translation>В черзі на підсилення...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Write gain</source>
-        <translation>Запис підсилення...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tracks:</source>
-        <translation>Доріжки:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Audio:</source>
-        <translation>Аудіо:</translation>
+        <translation>Audio:</translation>
     </message>
 </context>
 <context>
@@ -1112,42 +1056,41 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation>Доріжка</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
-        <translation>Назва</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
-        <translation>Виконавець</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Album</source>
         <comment>Table header.</comment>
-        <translation>Альбом</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
-        <translation>Коментар</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
-        <translation>Файл</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Multiple values</source>
-        <translation>Кілька значень</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Conversion is not possible.
 %1</source>
-        <translation>Конвертація неможлива.
-%1</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

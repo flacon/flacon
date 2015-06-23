@@ -481,6 +481,61 @@
     </message>
 </context>
 <context>
+    <name>ConfigPage_Opus</name>
+    <message>
+        <source>Opus encoding configuration</source>
+        <translation>Configuration de l&apos;encodage Opus</translation>
+    </message>
+    <message>
+        <source>Bitrate type:</source>
+        <translation>Type de débit binaire :</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation>Débit binaire :</translation>
+    </message>
+    <message>
+        <source>VBR - variable bitrate</source>
+        <translation>DBV - débit binaire variable</translation>
+    </message>
+    <message>
+        <source>CBR - constrained bitrate</source>
+        <translation>DBC - débit binaire constant</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sets the target bitrate in kb/s (6-256 per channel).
+&lt;p&gt;
+In VBR mode this set the average rate for a large and diverse collection of audio.
+&lt;p&gt;
+In CBR mode it set the specific output bitrate.
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sets target bitrate in kb/s (6-256 per channel).
+&lt;p&gt;
+In VBR mode this specifies the average rate for a large and diverse collection of audio. 
+&lt;p&gt;
+In CBR mode  it  specifies the specific output bitrate.
+</source>
+        <translation>Définit le débit binaire cible en kbit/s (6-256 par canal).
+&lt;p&gt;
+En mode DBV, ceci définit le débit moyen pour une grande collection audio diversifiée. 
+&lt;p&gt;
+En mode DBC, ceci définit le débit binaire spécifique de sortie.
+
+</translation>
+    </message>
+</context>
+<context>
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
@@ -675,7 +730,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>Identifiant du disque :</translation>
+        <translation>ID de disque :</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -990,7 +1045,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers sero
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>Vous ne pouvez pas utiliser &quot;ReplayGain&quot; pour des fichiers avec un taux d’échantillonnage supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
+        <translation>Vous ne pouvez pas utiliser &quot;ReplayGain&quot; pour des fichiers avec un débit d’échantillonnage supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
     </message>
 </context>
 <context>

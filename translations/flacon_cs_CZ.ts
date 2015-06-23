@@ -344,22 +344,22 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;Střední proměnlivý datový tok (VBR)&lt;/dt&gt;
-&lt;dd&gt;Při použití středního proměnlivého datového toku by toto přednastavení mělo většině lidí u většiny hudby poskytnout téměř průhlednost.&lt;/dd&gt;
+        <translation>&lt;dt&gt;Proměnlivý datový tok (VBR) Střední&lt;/dt&gt;
+&lt;dd&gt;Při použití středního proměnlivého datového toku by toto přednastavení mělo většině lidí u většiny hudby poskytnout téměř průzračnost.&lt;/dd&gt;
 
-&lt;dt&gt;Obvyklý proměnlivý datový tok (VBR), obvykle rychlý proměnlivý datový tok (VBR)&lt;/dt&gt;
-&lt;dd&gt;Při použití obvyklého proměnlivého datového toku by toto přednastavení mělo becně pro většinu lidí u většiny hudby být průhledné a je již kvalitou docela vysoký.&lt;/dd&gt;
+&lt;dt&gt;Proměnlivý datový tok (VBR), obvyklý, Proměnlivý datový tok (VBR), obvyklý, rychle&lt;/dt&gt;
+&lt;dd&gt;Při použití obvyklého proměnlivého datového toku by toto přednastavení mělo obecně pro většinu lidí u většiny hudby být průzračné a jakost záznamu je již docela vysoká.&lt;/dd&gt;
 
-&lt;dt&gt;Neobyčejný proměnlivý datový tok (VBR), Neobyčejně rychlý proměnlivý datový tok (VBR)&lt;/dt&gt;
-&lt;dd&gt;Pokud máte hodně dobrý sluch nebo  velice dobré zařízení, toto přednastavení vám poskytne lehce vyšší kvalitu, než jakou obdržíte při běžném režimu.&lt;/dd&gt;
+&lt;dt&gt;Proměnlivý datový tok (VBR), dokonalý, Proměnlivý datový tok (VBR), dokonalý, rychle&lt;/dt&gt;
+&lt;dd&gt;Pokud máte hodně dobrý sluch nebo  velice dobré zařízení, toto přednastavení vám poskytne lehce vyšší jakost, než jakou obdržíte při režimu běžné kvality.&lt;/dd&gt;
 
-&lt;dt&gt;Kvalita proměnlivého datového toku (VBR)&lt;/dt&gt;
-&lt;dd&gt;Tato volba pro proměnlivý datový tok (VBR) vám umožní zadat kvalitu výstupu.&lt;/dd&gt;
+&lt;dt&gt;Proměnlivý datový tok (VBR), jakost&lt;/dt&gt;
+&lt;dd&gt;Tato volba pro proměnlivý datový tok (VBR) vám umožní zadat jakost výstupu.&lt;/dd&gt;
 
 &lt;dt&gt;Rychlá volba&lt;/dt&gt;
-&lt;dd&gt;Povolí nový rychlý proměnlivý datový tok (VBR) prozvláštní profil. Toto se doporučuje.&lt;/dd&gt;
+&lt;dd&gt;Povolí nový rychlý proměnlivý datový tok (VBR) pro zvláštní profil. Toto se doporučuje.&lt;/dd&gt;
 
-&lt;dt&gt;Zázračný stálý datový tok (CBR)&lt;/dt&gt;
+&lt;dt&gt;Stálý datový tok (CBR), zázračný&lt;/dt&gt;
 &lt;dd&gt;Pokud musíte mít naprosto nejvyšší kvalitu bez ohledu na velikost souboru, dosáhnete toho použitím tohoto stálého datového toku.&lt;/dd&gt;
 
 &lt;dt&gt;Kb/s stálého datového toku (CBR )&lt;/dt&gt;
@@ -399,31 +399,31 @@
     </message>
     <message>
         <source>VBR medium</source>
-        <translation>Střední proměnlivý datový tok (VBR)</translation>
+        <translation>Proměnlivý datový tok (VBR), střední</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation>Obvyklý proměnlivý datový tok (VBR)</translation>
+        <translation>Proměnlivý datový tok (VBR), obvyklý</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation>Obvykle rychlý proměnlivý datový tok (VBR)</translation>
+        <translation>Proměnlivý datový tok (VBR), obvyklý, rychle</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation>Neobyčejný proměnlivý datový tok (VBR)</translation>
+        <translation>Proměnlivý datový tok (VBR), dokonalý</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation>Neobyčejně rychlý proměnlivý datový tok (VBR)</translation>
+        <translation>Proměnlivý datový tok (VBR), dokonalý, rychle</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation>Kvalita proměnlivého datového toku (VBR)</translation>
+        <translation>Proměnlivý datový tok (VBR), jakost</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation>Zázračný stálý datový tok (CBR)</translation>
+        <translation>Stálý datový tok (CBR), zázračný</translation>
     </message>
     <message>
         <source>CBR kbps</source>
@@ -479,6 +479,55 @@
     <message>
         <source>Calculate gain:</source>
         <translation>Spočítat zesílení:</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigPage_Opus</name>
+    <message>
+        <source>Opus encoding configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bitrate type:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VBR - variable bitrate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CBR - constrained bitrate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sets the target bitrate in kb/s (6-256 per channel).
+&lt;p&gt;
+In VBR mode this set the average rate for a large and diverse collection of audio.
+&lt;p&gt;
+In CBR mode it set the specific output bitrate.
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sets target bitrate in kb/s (6-256 per channel).
+&lt;p&gt;
+In VBR mode this specifies the average rate for a large and diverse collection of audio. 
+&lt;p&gt;
+In CBR mode  it  specifies the specific output bitrate.
+</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -51,7 +51,7 @@
     </message>
     <message>
         <source>WavPack support patch</source>
-        <translation type="unfinished"/>
+        <translation>Patch für WavPack-Unterstützung</translation>
     </message>
     <message>
         <source>Application icon, Packaging</source>
@@ -223,7 +223,7 @@
     </message>
     <message>
         <source>Per track CUE</source>
-        <translation type="unfinished"/>
+        <translation>CUE pro Stück</translation>
     </message>
     <message>
         <source>Create per track CUE</source>
@@ -247,7 +247,7 @@
     </message>
     <message>
         <source>Add to first track</source>
-        <translation type="unfinished"/>
+        <translation>Zum ersten Stück hinzufügen</translation>
     </message>
     <message>
         <source>General</source>
@@ -270,7 +270,7 @@
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>Qualitätseinstellung verwenden (empfohlen)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
@@ -289,7 +289,7 @@
     <name>ConfigPage_Flac</name>
     <message>
         <source>Flac encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>FLAC-Kodierungskonfiguration</translation>
     </message>
     <message>
         <source>Compression:</source>
@@ -419,7 +419,7 @@
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>Qualitätseinstellung verwenden (empfohlen)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
@@ -455,6 +455,55 @@
     </message>
     <message>
         <source>Calculate gain:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ConfigPage_Opus</name>
+    <message>
+        <source>Opus encoding configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bitrate type:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation>Bitrate:</translation>
+    </message>
+    <message>
+        <source>VBR - variable bitrate</source>
+        <translation>VBR - variable Bitrate</translation>
+    </message>
+    <message>
+        <source>CBR - constrained bitrate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sets the target bitrate in kb/s (6-256 per channel).
+&lt;p&gt;
+In VBR mode this set the average rate for a large and diverse collection of audio.
+&lt;p&gt;
+In CBR mode it set the specific output bitrate.
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Sets target bitrate in kb/s (6-256 per channel).
+&lt;p&gt;
+In VBR mode this specifies the average rate for a large and diverse collection of audio. 
+&lt;p&gt;
+In CBR mode  it  specifies the specific output bitrate.
+</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -555,7 +604,7 @@ This only affects the file size. All settings are lossless.</source>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Pro Stück</translation>
     </message>
     <message>
         <source>Per Album</source>
@@ -766,11 +815,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Stücknummer&quot; einfügen</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Gesamtanzahl an Stücken&quot; einfügen</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -782,7 +831,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Stücktitel&quot; einfügen</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
@@ -937,7 +986,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>Splitter</name>
     <message>
         <source>The number of tracks is higher than expected.</source>
-        <translation type="unfinished"/>
+        <translation>Der Anzahl der Stücke ist höher als erwartet.</translation>
     </message>
 </context>
 <context>
@@ -999,7 +1048,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Tracks:</source>
-        <translation type="unfinished"/>
+        <translation>Stücke:</translation>
     </message>
     <message>
         <source>Audio:</source>
@@ -1011,7 +1060,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Stück</translation>
     </message>
     <message>
         <source>Title</source>

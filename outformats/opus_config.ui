@@ -30,7 +30,7 @@
       <widget class="QComboBox" name="opusBitrateTypeCbx">
        <property name="toolTip">
         <string>&lt;dt&gt;VBR&lt;/dt&gt;
-&lt;dd&gt;Use variable bitrate encoding (recomended). In VBR mode the bitrate may go up and down freely depending on the content to achieve more consistent quality.&lt;/dd&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</string>
@@ -74,11 +74,11 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Sets target bitrate in kb/s (6-256 per channel).
+          <string>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;
-In VBR mode this specifies the average rate for a large and diverse collection of audio. 
+In VBR mode this set the average rate for a large and diverse collection of audio.
 &lt;p&gt;
-In CBR mode  it  specifies the specific output bitrate.
+In CBR mode it set the specific output bitrate.
 </string>
          </property>
          <property name="minimum">
