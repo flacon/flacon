@@ -175,6 +175,26 @@ set(TRANSLATIONS_DIR
 add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
 
+# OS/2 ***************************************
+if(${CMAKE_SYSTEM_NAME} STREQUAL "OS2")
+
+    set(DEF_BINARY_EXT ".exe")
+
+endif()
+# ********************************************
+
+
+macro(setByDefault VAR_NAME VAR_VALUE)
+  if (NOT DEFINED ${VAR_NAME})
+    set (${VAR_NAME} ${VAR_VALUE})
+  endif()
+  add_definitions(-D${VAR_NAME}=\"${VAR_VALUE}\")
+endmacro()
+
+setByDefault(BINARY_EXT "${DEF_BINARY_EXT}")
+
+
+
 ############################################
 if(CMAKE_COMPILER_IS_GNUCXX)
       add_definitions (-Wall -pedantic -Wno-long-long)
@@ -293,6 +313,11 @@ install(FILES   misc/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/a
 install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
+if(BUILD_TESTS STREQUAL "Yes")
+    add_definitions(-DBUILD_TESTS)
+    add_subdirectory(tests)
+endif()
+
 
 message(STATUS "*****************************************************")
 if(USE_QT4)
@@ -301,13 +326,12 @@ else()
     message(STATUS "Use Qt5, for building with Qt4 use -DUSE_QT4=Yes option.")
 endif()
 
-if(BUILD_TESTS STREQUAL "Yes")
-    add_definitions(-DBUILD_TESTS)
-    add_subdirectory(tests)
-else()
+if(NOT BUILD_TESTS STREQUAL "Yes")
     message(STATUS "")
     message(STATUS "For building tests use -DBUILD_TESTS=Yes option.")
 endif()
+
+
 
 message(STATUS "")
 message(STATUS "*****************************************************")

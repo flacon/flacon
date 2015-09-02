@@ -264,7 +264,7 @@ QString Settings::findProgram(const QString &program) const
     QStringList paths = QProcessEnvironment::systemEnvironment().value("PATH").split(":");
     foreach(QString path, paths)
     {
-        QFileInfo fi(path + QDir::separator() + program);
+        QFileInfo fi(path + QDir::separator() + program + BINARY_EXT);
         if (fi.exists() && fi.isExecutable())
             return fi.absoluteFilePath();
     }
