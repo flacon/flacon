@@ -485,7 +485,7 @@
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configuración de codificación Opus</translation>
     </message>
     <message>
         <source>Bitrate type:</source>
@@ -517,15 +517,6 @@
 In VBR mode this set the average rate for a large and diverse collection of audio.
 &lt;p&gt;
 In CBR mode it set the specific output bitrate.
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Sets target bitrate in kb/s (6-256 per channel).
-&lt;p&gt;
-In VBR mode this specifies the average rate for a large and diverse collection of audio. 
-&lt;p&gt;
-In CBR mode  it  specifies the specific output bitrate.
 </source>
         <translation type="unfinished"/>
     </message>

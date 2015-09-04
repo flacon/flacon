@@ -520,20 +520,6 @@ In CBR mode it set the specific output bitrate.
 </source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Sets target bitrate in kb/s (6-256 per channel).
-&lt;p&gt;
-In VBR mode this specifies the average rate for a large and diverse collection of audio. 
-&lt;p&gt;
-In CBR mode  it  specifies the specific output bitrate.
-</source>
-        <translation>Establece el bitrate objetivo en kb/s (6-256 por canal).
-&lt;p&gt;
-En el modo VBR especifica la tasa promedio para una amplia y variada colección de audio. 
-&lt;p&gt;
-En el modo CBR especifica el bitrate concreto de salida.
-</translation>
-    </message>
 </context>
 <context>
     <name>ConfigPage_Wv</name>

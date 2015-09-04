@@ -509,7 +509,11 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Використовується змінний бітрейт (рекомендується). У цьому режимі бітрейт може збільшуватися або зменшуватися у залежності від вмісту, щоб отримати оптимальну якість звуку.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Використовується кодування з постійним бітрейтом. Бітрейт файлу буде дорівнювати вказаному Вами. Цей режим аналогічний режиму CBR у AAC/MP3 та managed mode у кодеках vorbis. Якість буде дещо нижчою ніж у режимі VBR, але бітрейт файлу буде постійним.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -518,16 +522,7 @@ In VBR mode this set the average rate for a large and diverse collection of audi
 &lt;p&gt;
 In CBR mode it set the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Sets target bitrate in kb/s (6-256 per channel).
-&lt;p&gt;
-In VBR mode this specifies the average rate for a large and diverse collection of audio. 
-&lt;p&gt;
-In CBR mode  it  specifies the specific output bitrate.
-</source>
-        <translation>Вказує бітрейт у кб/с (6-256 на канал).
+        <translation>Вказує бітрейт у kb/s (6-256 на канал).
 &lt;p&gt;
 Для режиму VBR це усереднений бітрейт.
 &lt;p&gt;

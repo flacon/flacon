@@ -508,7 +508,11 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;使用可变码率编码（推荐）。在 VBR 模式下，码率可能根据内容而上升或下降以保证质量的稳定性。&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;使用固定码率编码。输出到一个特定的码率。这个模式类似于 AAC/MP3 编码器中的 CBR 和 Vorbis 编码器中的管理模式。这提供了比 VBR 模式更不稳定的质量，但码率更加一贯。&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -516,15 +520,6 @@
 In VBR mode this set the average rate for a large and diverse collection of audio.
 &lt;p&gt;
 In CBR mode it set the specific output bitrate.
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Sets target bitrate in kb/s (6-256 per channel).
-&lt;p&gt;
-In VBR mode this specifies the average rate for a large and diverse collection of audio. 
-&lt;p&gt;
-In CBR mode  it  specifies the specific output bitrate.
 </source>
         <translation>设置目标码率，单位 kb/s（6-256 每个通道）。
 &lt;p&gt;

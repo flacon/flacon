@@ -509,7 +509,11 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Usar codificação com taxa de bits variável (recomendado). No modo VBR, a taxa de bits aumentará e diminuirá livremente, dependendo do conteúdo, para alcançar uma qualidade mais consistente.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Usar codificação com taxa de bits constante. Trabalha com uma taxa de bits específica. Esse modo é análogo ao CBR dos codificadores AAC/MP3 e ao modo gerenciado dos codificadores vorbis. Gera uma qualidade menos consistente que o modo VBR mas uma taxa de bits constante.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -518,18 +522,9 @@ In VBR mode this set the average rate for a large and diverse collection of audi
 &lt;p&gt;
 In CBR mode it set the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Sets target bitrate in kb/s (6-256 per channel).
-&lt;p&gt;
-In VBR mode this specifies the average rate for a large and diverse collection of audio. 
-&lt;p&gt;
-In CBR mode  it  specifies the specific output bitrate.
-</source>
         <translation>Define a taxa de bits desejada em kb/s (6-256 por canal).
 &lt;p&gt;
-No modo VBR, isso especifica a taxa média para uma coleção de áudio extensa e diversificada.
+No modo VBR, isso define a taxa média para uma coleção de áudio extensa e diversificada.
 &lt;p&gt;
 No modo CBR, define a taxa de bits de saída específica.
 </translation>

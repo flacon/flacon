@@ -55,11 +55,11 @@
     </message>
     <message>
         <source>Application icon, Packaging</source>
-        <translation type="unfinished"/>
+        <translation>Anwendungssymbol, Paketierung</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation type="unfinished"/>
+        <translation>Paketierung, Testen</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
@@ -231,7 +231,7 @@
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation type="unfinished"/>
+        <translation>Vorlücke des ersten Stücks:</translation>
     </message>
     <message>
         <source>Rescan</source>
@@ -282,7 +282,7 @@
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Sets target bitrate (in kb/s).</translation>
+        <translation>Legt die Zielbitrate fest (in kb/s).</translation>
     </message>
 </context>
 <context>
@@ -297,11 +297,11 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>Wiedergabe-Verstärkung</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Verstärkung berechnen:</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -356,7 +356,7 @@
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Legt die Zielbitrate fest (in kb/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
@@ -368,11 +368,11 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>Wiedergabe-Verstärkung</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Verstärkung berechnen:</translation>
     </message>
     <message>
         <source>VBR medium</source>
@@ -427,11 +427,11 @@
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation>Minimalbitrate:</translation>
+        <translation>Mindestbitrate:</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Legt die Mindestbitrate fest (in kb/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
@@ -439,34 +439,34 @@
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Legt die Zielbitrate fest (in kb/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Maximalbitrate:</translation>
+        <translation>Höchstbitrate:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Legt die Höchstbitrate fest (in kb/s).</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>Wiedergabe-Verstärkung</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Verstärkung berechnen:</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Opus-Kodierungskonfiguration</translation>
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation type="unfinished"/>
+        <translation>Bitratentyp:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -478,7 +478,7 @@
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation type="unfinished"/>
+        <translation>CBR - beschränkte Bitrate</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -497,21 +497,12 @@ In CBR mode it set the specific output bitrate.
 </source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Sets target bitrate in kb/s (6-256 per channel).
-&lt;p&gt;
-In VBR mode this specifies the average rate for a large and diverse collection of audio. 
-&lt;p&gt;
-In CBR mode  it  specifies the specific output bitrate.
-</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>WavPack-Kodierungskonfiguration</translation>
     </message>
     <message>
         <source>Compression:</source>
@@ -519,11 +510,11 @@ In CBR mode  it  specifies the specific output bitrate.
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>Wiedergabe-Verstärkung</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Verstärkung berechnen:</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -561,7 +552,7 @@ In CBR mode  it  specifies the specific output bitrate.
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation type="unfinished"/>
+        <translation>Datei &lt;b&gt;%1&lt;/b&gt; enthält mehrere FILE-Schlagwörter.&lt;br&gt;Diese CUE-Dateien werden noch nicht unterstützt.</translation>
     </message>
 </context>
 <context>
@@ -643,7 +634,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Gain error:
 </source>
-        <translation type="unfinished"/>
+        <translation>Verstärkungsfehler:
+</translation>
     </message>
 </context>
 <context>
@@ -1036,7 +1028,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation type="unfinished"/>
+        <translation>Verstärkung berechnen</translation>
     </message>
     <message>
         <source>Wait gain</source>
@@ -1044,7 +1036,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Write gain</source>
-        <translation type="unfinished"/>
+        <translation>Schreibverstärkung</translation>
     </message>
     <message>
         <source>Tracks:</source>

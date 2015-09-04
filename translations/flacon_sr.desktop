@@ -1,0 +1,20 @@
+[Desktop Entry]
+Exec=flacon %U
+Icon=flacon
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Qt;AudioVideo;Audio;AudioVideoEditing;
+MimeType=application/x-cue;
+
+Name=Flacon
+GenericName=Audio File Encoder
+Comment=Extracts audio tracks from an audio CD image to separate tracks.
+
+
+
+# Translations
+Icon[sr]=флакон
+Comment[sr]=Извлачи нумере из одраза аудио ЦД-а у посебне стазе.
+GenericName[sr]=Кодер аудио фајлова
+Name[sr]=Флакон

@@ -485,23 +485,23 @@
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Nastavení kódování Opus</translation>
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation type="unfinished"/>
+        <translation>Typ datového toku:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Datový tok:</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
-        <translation type="unfinished"/>
+        <translation>VBR - proměnlivý datový tok</translation>
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation type="unfinished"/>
+        <translation>CBR - stálý datový tok</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -517,15 +517,6 @@
 In VBR mode this set the average rate for a large and diverse collection of audio.
 &lt;p&gt;
 In CBR mode it set the specific output bitrate.
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Sets target bitrate in kb/s (6-256 per channel).
-&lt;p&gt;
-In VBR mode this specifies the average rate for a large and diverse collection of audio. 
-&lt;p&gt;
-In CBR mode  it  specifies the specific output bitrate.
 </source>
         <translation type="unfinished"/>
     </message>

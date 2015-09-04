@@ -508,7 +508,11 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;DBV&lt;/dt&gt;
+&lt;dd&gt;Utiliser un encodage à débit binaire variable (recommandé). En mode DBV, le débit binaire peut fluctuer librement d&apos;après le contenu afin d&apos;assurer une qualité constante.&lt;/dd&gt;
+
+&lt;dt&gt;DBC&lt;/dt&gt;
+&lt;dd&gt;Utiliser un encodage à débit variable contraint. Génère un débit binaire spécifique. Ce mode est semblable au mode DBC des encodeurs AAC/MP3 et au mode géré des encodeurs Vorbis. Le qualité n&apos;est pas aussi constante qu&apos;en mode DBV, mais le débit binaire l&apos;est.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -516,15 +520,6 @@
 In VBR mode this set the average rate for a large and diverse collection of audio.
 &lt;p&gt;
 In CBR mode it set the specific output bitrate.
-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Sets target bitrate in kb/s (6-256 per channel).
-&lt;p&gt;
-In VBR mode this specifies the average rate for a large and diverse collection of audio. 
-&lt;p&gt;
-In CBR mode  it  specifies the specific output bitrate.
 </source>
         <translation>Définit le débit binaire cible en kbit/s (6-256 par canal).
 &lt;p&gt;
