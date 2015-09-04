@@ -261,14 +261,13 @@ QString Settings::programName(const QString &program) const
  ************************************************/
 QString Settings::findProgram(const QString &program) const
 {
-    QStringList paths = QProcessEnvironment::systemEnvironment().value("PATH").split(":");
+    QStringList paths = QProcessEnvironment::systemEnvironment().value("PATH").split(PATH_ENV_SEPARATOR);
     foreach(QString path, paths)
     {
         QFileInfo fi(path + QDir::separator() + program + BINARY_EXT);
         if (fi.exists() && fi.isExecutable())
             return fi.absoluteFilePath();
     }
-
     return "";
 }
 

@@ -175,10 +175,12 @@ set(TRANSLATIONS_DIR
 add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
 
+set(DEF_PATH_ENV_SEPARATOR ":")
 # OS/2 ***************************************
 if(${CMAKE_SYSTEM_NAME} STREQUAL "OS2")
 
     set(DEF_BINARY_EXT ".exe")
+    set(DEF_PATH_ENV_SEPARATOR "\\\\x3B")
 
 endif()
 # ********************************************
@@ -192,7 +194,7 @@ macro(setByDefault VAR_NAME VAR_VALUE)
 endmacro()
 
 setByDefault(BINARY_EXT "${DEF_BINARY_EXT}")
-
+setByDefault(PATH_ENV_SEPARATOR "${DEF_PATH_ENV_SEPARATOR}")
 
 
 ############################################
@@ -330,8 +332,6 @@ if(NOT BUILD_TESTS STREQUAL "Yes")
     message(STATUS "")
     message(STATUS "For building tests use -DBUILD_TESTS=Yes option.")
 endif()
-
-
 
 message(STATUS "")
 message(STATUS "*****************************************************")
