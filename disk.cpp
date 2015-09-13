@@ -465,32 +465,37 @@ void Disk::findCueFile()
     if (!mAudioFile)
         return;
 
-    QStringList exts;
-    exts << "*.cue";
-
     QFileInfo fi(mAudioFile->fileName());
-    QString pattern = fi.completeBaseName();
 
-    QFileInfoList files = fi.dir().entryInfoList(exts, QDir::Files | QDir::Readable);
+    QStringList patterns;
+    QString s = fi.completeBaseName();
+    patterns << s;
+
+    bool found;
+    do {
+        found = false;
+        foreach (InputAudioFormat fmt, InputAudioFormat::allFormats())
+        {
+            if (s.endsWith('.' + fmt.ext()))
+            {
+                s = s.left(s.length() - 4);
+                patterns << s;
+                found = true;
+            }
+        }
+    } while(found);
+
+
+    QFileInfoList files = fi.dir()
+            .entryInfoList(QStringList() << "*.cue", QDir::Files | QDir::Readable);
 
     foreach(QFileInfo f, files)
     {
-/*
-        if (f.fileName().startsWith(pattern))
+        foreach (QString pattern, patterns)
         {
-            try
-            {
-                CueReader cue(f.filePath());
-                cue.load();
-                loadFromCue(cue);
-            }
-            catch(QString e)
-            {
-                // Continue
-            }
+            if (f.fileName().startsWith(pattern))
+                loadFromCue(f.absoluteFilePath());
         }
-            loadFromCue(f.absoluteFilePath());
-*/
     }
 }
 
