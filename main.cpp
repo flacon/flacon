@@ -36,6 +36,10 @@
 #include <QMessageBox>
 #include <QTextStream>
 
+
+/************************************************
+ *
+ ************************************************/
 void printHelp()
 {
     QTextStream out(stdout);
@@ -66,7 +70,9 @@ void printHelp()
 }
 
 
-
+/************************************************
+ *
+ ************************************************/
 void printVersion()
 {
     QTextStream out(stdout);
@@ -80,6 +86,10 @@ void printVersion()
     out << "There is NO WARRANTY, to the extent permitted by law." << endl;
 }
 
+
+/************************************************
+ *
+ ************************************************/
 void translate(QApplication *app)
 {
     QString locale = QLocale::system().name();
@@ -95,6 +105,9 @@ void translate(QApplication *app)
 }
 
 
+/************************************************
+ *
+ ************************************************/
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);

@@ -61,10 +61,12 @@ public:
     static QIcon getIcon(const QString &iconName1, const QString &iconName2="", const QString &iconName3="", const QString &iconName4="");
     static void error(const QString &message);
 
+    bool diskExists(const QString &cueUri);
+
 public slots:
     void clear();
-    void addAudioFile(const QString &fileName);
-    void addCueFile(const QString &fileName);
+    Disk *addAudioFile(const QString &fileName);
+    DiskList addCueFile(const QString &fileName);
 
 signals:
     void diskChanged(Disk *disk);

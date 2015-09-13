@@ -50,6 +50,19 @@ do {\
 
 
 /************************************************
+ *
+ ************************************************/
+Disk *loadFromCue(const QString &cueFile)
+{
+    CueReader cueReader(cueFile);
+    cueReader.load();
+    Disk *res = new Disk();
+    res->loadFromCue(cueReader, 0);
+    return res;
+}
+
+
+/************************************************
 
  ************************************************/
 TestFlacon::TestFlacon(QObject *parent) :
@@ -270,9 +283,7 @@ Disk *TestFlacon::standardDisk()
         cue << "    INDEX 01 12:04:72";
 
         writeTextFile(cueFile, cue);
-
-        mStandardDisk = new Disk(this);
-        mStandardDisk->loadFromCue(cueFile);
+        mStandardDisk = loadFromCue(cueFile);
     }
 
     return mStandardDisk;
@@ -387,7 +398,6 @@ void TestFlacon::testSafeString()
 
 
 
-
 /************************************************
 
  ************************************************/
@@ -465,9 +475,8 @@ ConverterTester::ConverterTester(const QString &cueFile, const QString &audioFil
     mDisk = new Disk();
     project->addDisk(mDisk);
 
-    mDisk->loadFromCue(cueFile);
+    mDisk = loadFromCue(cueFile);
     mDisk->setAudioFile(audioFile);
-
 }
 
 /************************************************
@@ -521,6 +530,7 @@ void ConverterTester::run()
         QFAIL(msg.toLocal8Bit());
 
 }
+
 
 /************************************************
 
@@ -799,10 +809,9 @@ void TestFlacon::testTrackResultFileName()
     settings->setValue(Settings::OutFiles_Pattern, pattern);
     settings->setValue(Settings::OutFiles_Format, "WAV");
 
-    Disk disk;
-    disk.loadFromCue(cueFile);
+    Disk *disk = loadFromCue(cueFile);
 
-    QString result = disk.track(0)->resultFileName();
+    QString result = disk->track(0)->resultFileName();
     //QCOMPARE(result, expected);
 
     if (result != expected)
@@ -813,7 +822,7 @@ void TestFlacon::testTrackResultFileName()
                     expected);
         QFAIL(msg.toLocal8Bit());
     }
-
+    delete disk;
 }
 
 
@@ -929,6 +938,7 @@ void TestFlacon::testTrackResultFileName_data()
 
 }
 
+
 /************************************************
 
  ************************************************/
@@ -944,13 +954,12 @@ void TestFlacon::testTrackResultFilePath()
     settings->setValue(Settings::OutFiles_Pattern, pattern);
     settings->setValue(Settings::OutFiles_Format, "WAV");
 
-    Disk disk;
-    disk.loadFromCue(mDataDir + "simple.cue");
+    Disk *disk = loadFromCue(mDataDir + "simple.cue");
 
     if (!audioFile.isEmpty())
-        disk.setAudioFile(audioFile);
+        disk->setAudioFile(audioFile);
 
-    QString result = disk.track(0)->resultFilePath();
+    QString result = disk->track(0)->resultFilePath();
     if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath())
     {
         QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   AudioFile: %4").arg(
@@ -960,6 +969,7 @@ void TestFlacon::testTrackResultFilePath()
         QFAIL(msg.toLocal8Bit());
     }
     //QCOMPARE(result, expected);
+    delete disk;
 }
 
 
@@ -1016,6 +1026,7 @@ void TestFlacon::testTrackResultFilePath_data()
             << mCdAudioFile;
 }
 
+
 /************************************************
 
  ************************************************/
@@ -1046,17 +1057,15 @@ void TestFlacon::testTrackSetCodepages()
     if (!QFile::copy(testDataDir + cueFile, testCueFile))
         QFAIL(QString("Can't copy file %1 to %2").arg(testDataDir + cueFile, testCueFile).toLocal8Bit().data());
 
-    Disk disk;
-
     if (!codepageBefore.isEmpty())
         settings->setValue(Settings::Tags_DefaultCodepage, codepageBefore);
     else
         settings->setValue(Settings::Tags_DefaultCodepage, "UTF-8");
 
-    disk.loadFromCue(testCueFile);
+    Disk *disk = loadFromCue(testCueFile);
 
     if (!codepageAfter.isEmpty())
-        disk.setTextCodecName(codepageAfter);
+        disk->setTextCodecName(codepageAfter);
 
     QStringList expected = this->readFile(TEST_DATA_DIR + sampleFile);
 
@@ -1064,11 +1073,11 @@ void TestFlacon::testTrackSetCodepages()
     // Result *************************
     //result << "GENRE:" << tracks.genre() << "\n";
     //resultSl << "ALBUM:" << tracks.album() << "\n";
-    result << "DISCID:" << disk.discId() << "\n";
+    result << "DISCID:" << disk->discId() << "\n";
 
-    for(int i=0; i<disk.count(); ++i)
+    for(int i=0; i<disk->count(); ++i)
     {
-        Track *track = disk.track(i);
+        Track *track = disk->track(i);
         result << "Track " << (i + 1) << "\n";
         result << "  " << "INDEX:"    << track->index()       << "\n";
         result << "  " << "TRACKNUM:" << track->trackNum()    << "\n";
@@ -1493,7 +1502,6 @@ void TestFlacon::testOutFormatEncoderArgs_data()
 }
 
 
-
 /************************************************
 
  ************************************************/
@@ -1704,5 +1712,6 @@ void TestFlacon::testCueIndex_data()
     QTest::newRow("HI 40:50:740 - 10:20:300")  << "30:30.440";
     QTest::newRow("HI 40:20:240 - 10:30:300")  << "29:49.940";
 }
+
 
 QTEST_MAIN(TestFlacon)

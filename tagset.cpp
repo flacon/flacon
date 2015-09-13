@@ -304,9 +304,7 @@ void TagSet::setTrackTag(int track, const QString &tagName, const QString &value
 void TagSet::setTrackTag(int track, const QString &tagName, const QByteArray &value, bool encoded)
 {
     d->mTags.insert(d->key(track, tagName), Tag(value, encoded));
-
-    if (track > d->mTrackCount)
-        d->mTrackCount = track;
+    d->mTrackCount = qMax(track + 1, d->mTrackCount);
 
     if (d->mTags.contains(tagName))
     {

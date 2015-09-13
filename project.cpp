@@ -27,6 +27,7 @@
 #include "project.h"
 #include "disk.h"
 #include "settings.h"
+#include "cue.h"
 
 #include <QDebug>
 #include <QApplication>
@@ -88,8 +89,8 @@ QIcon Project::getIcon(const QString &iconName1, const QString &iconName2, const
  ************************************************/
 void Project::error(const QString &message)
 {
-    QMessageBox::critical(0, tr("Flacon", "Error"), message);
     qWarning() << message;
+    QMessageBox::critical(0, tr("Flacon", "Error"), message);
 }
 
 
@@ -194,16 +195,30 @@ int Project::indexOf(const Disk *disk) const
 
 
 /************************************************
+ *
+ ************************************************/
+bool Project::diskExists(const QString &cueUri)
+{
+    foreach (Disk *d, mDisks)
+    {
+        if (!d->tagSets().isEmpty() && d->tagSets().first()->uri() == cueUri)
+            return true;
+    }
+    return false;
+}
+
+
+/************************************************
 
  ************************************************/
-void Project::addAudioFile(const QString &fileName)
+Disk *Project::addAudioFile(const QString &fileName)
 {
     QString canonicalFileName = QFileInfo(fileName).canonicalFilePath();
 
     for(int i=0; i<count(); ++i )
     {
         if (disk(i)->audioFileName() == canonicalFileName)
-            return;
+            return 0;
     }
 
     Disk *disk = new Disk();
@@ -217,50 +232,48 @@ void Project::addAudioFile(const QString &fileName)
     else
     {
         delete disk;
+        disk = 0;
     }
+    return disk;
 }
 
 
 /************************************************
 
  ************************************************/
-void Project::addCueFile(const QString &fileName)
+DiskList Project::addCueFile(const QString &fileName)
 {
-    QString canonicalFileName = QFileInfo(fileName).canonicalFilePath();
-
-    for(int i=0; i<count(); ++i )
+    DiskList res;
+    CueReader cue(fileName);
+    try
     {
-        if (disk(i)->cueFile() == canonicalFileName)
-            return;
+        cue.load();
+        for (int i=0; i<cue.diskCount(); ++i)
+        {
+            if (diskExists(cue.tags(i).uri()))
+                continue;
+
+            Disk *disk = new Disk();
+            disk->loadFromCue(cue, i);
+            disk->findAudioFile();
+            mDisks << disk;
+            res << disk;
+        }
+    }
+    catch (QString e)
+    {        
+        foreach(Disk *d, res)
+        {
+            mDisks.removeAll(d);
+            delete d;
+        }
+
+        emit layoutChanged();
+        throw e;
     }
 
-    Disk *disk = new Disk();
-    disk->loadFromCue(fileName, true);
-    if (!disk->isValid())
-    {
-        error(disk->errorString());
-        delete disk;
-        return;
-    }
-
-    disk->findAudioFile();
-    insertDisk(disk);
-
-#if 0
-    qDebug() << Q_FUNC_INFO << "*****************************";
-    qDebug() << "Audio" << (disk->audioFile() == 0 ? "None" : disk->audioFile()->fileName()) ;
-    qDebug() << "Disk ID" << disk->discId();
-    qDebug() << "Count" << disk->count();
-
-    for (int i=0; i<disk->count(); ++i)
-    {
-        Track *t = disk->track(i);
-        qDebug() << "  * index" << t->index();
-        qDebug() << "  * album" << t->album();
-        qDebug() << "  * title" << t->title();
-        qDebug();
-    }
-#endif
+    emit layoutChanged();
+    return res;
 }
 
 

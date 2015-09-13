@@ -93,6 +93,7 @@ private slots:
     void openAboutDialog();
 
 protected:
+    void showEvent(QShowEvent * event);
     void keyPressEvent(QKeyEvent *event);
 
 private:

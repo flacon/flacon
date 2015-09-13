@@ -40,6 +40,7 @@ add_definitions(-DFLACON_VERSION=\"${FLACON_VERSION}\")
 
 set(HEADERS
     tagset.h
+    cue.h
     disk.h
     project.h
     settings.h
@@ -54,7 +55,7 @@ set(HEADERS
     gui/configdialog/configdialog.h
     gui/aboutdialog/aboutdialog.h
     gui/aboutdialog/translatorsinfo.h
-
+    gui/cuediskselectdialog/cuediskselectdialog.h
 
     converter/converterthread.h
     converter/converter.h
@@ -74,6 +75,7 @@ set(HEADERS
 
 set(SOURCES
     tagset.cpp
+    cue.cpp
     main.cpp
     disk.cpp
     project.cpp
@@ -89,6 +91,7 @@ set(SOURCES
     gui/configdialog/configdialog.cpp
     gui/aboutdialog/aboutdialog.cpp
     gui/aboutdialog/translatorsinfo.cpp
+    gui/cuediskselectdialog/cuediskselectdialog.cpp
 
     converter/converterthread.cpp
     converter/converter.cpp
@@ -121,6 +124,7 @@ set (MOCS
     gui/trackviewdelegate.h
     gui/configdialog/configdialog.h
     gui/aboutdialog/aboutdialog.h
+    gui/cuediskselectdialog/cuediskselectdialog.h
 
     converter/converterthread.h
     converter/converter.h
@@ -141,6 +145,7 @@ set (FORMS
     gui/mainwindow.ui
     gui/configdialog/configdialog.ui
     gui/aboutdialog/aboutdialog.ui
+    gui/cuediskselectdialog/cuediskselectdialog.ui
 
     outformats/flac_config.ui
     outformats/aac_config.ui

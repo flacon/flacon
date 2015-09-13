@@ -28,6 +28,7 @@
 #define DISK_H
 
 #include "tagset.h"
+#include "cue.h"
 
 #include <QObject>
 #include <QList>
@@ -36,32 +37,12 @@
 #include <QHash>
 #include <QChar>
 
+class CueReader;
 class QFile;
 class Disk;
 class Track;
 class InputAudioFile;
 class DataProvider;
-
-class CueIndex
-{
-public:
-    CueIndex(const QString &str = "");
-
-    bool isNull() const { return mNull; }
-    QString toString(bool cdQuality = true) const;
-
-    CueIndex operator-(const CueIndex &other) const;
-    bool operator==(const CueIndex &other) const;
-    bool operator!=(const CueIndex &other) const;
-
-private:
-    bool mNull;
-    int mCdValue;
-    int mHiValue;
-
-    bool parse(const QString &str);
-};
-
 
 
 class Disk: public QObject
@@ -76,7 +57,7 @@ public:
     int count() const { return mCount; }
     Track *preGapTrack() const { return mPreGapTrack; }
 
-    void loadFromCue(const QString &cueFile, bool activate = true);
+    void loadFromCue(const CueReader &cueReader, int diskNum, bool activate = true);
     QString cueFile() const { return mCueFile; }
     void findCueFile();
 
@@ -133,7 +114,7 @@ private slots:
 private:
     QList<TagSet*> mTagSets;
     TagSet *mTags;
-    TagSet *mCueTags;
+
     QList<Track*> mTracks;
     int mStartTrackNum;
     int mCount;
@@ -143,10 +124,9 @@ private:
     InputAudioFile *mAudioFile;
     Track *mPreGapTrack;
     QList<DataProvider*> mDownloads;
-
-    bool parseCue(QFile &file, TagSet *tags);
 };
 
+typedef QList<Disk*> DiskList;
 
 class Track: public QObject
 {

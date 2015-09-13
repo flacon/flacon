@@ -41,115 +41,6 @@
 /************************************************
 
  ************************************************/
-CueIndex::CueIndex(const QString &str):
-    mNull(true),
-    mCdValue(0),
-    mHiValue(0)
-{
-    if (!str.isEmpty())
-        mNull = !parse(str);
-}
-
-
-/************************************************
-
- ************************************************/
-QString CueIndex::toString(bool cdQuality) const
-{
-    if (cdQuality)
-    {
-        int min =  mCdValue / (60 * 75);
-        int sec = (mCdValue - min * 60 * 75) / 75;
-        int frm =  mCdValue - (min * 60 + sec) * 75;
-
-        return QString("%1:%2:%3")
-                .arg(min, 2, 10, QChar('0'))
-                .arg(sec, 2, 10, QChar('0'))
-                .arg(frm, 2, 10, QChar('0'));
-    }
-    else
-    {
-        int min = mHiValue / (60 * 1000);
-        int sec = (mHiValue - min * 60 * 1000) / 1000;
-        int msec = mHiValue - (min * 60 + sec) * 1000;
-
-        return QString("%1:%2.%3")
-                .arg(min,  2, 10, QChar('0'))
-                .arg(sec,  2, 10, QChar('0'))
-                .arg(msec, 3, 10, QChar('0'));
-    }
-
-}
-
-
-/************************************************
-
- ************************************************/
-CueIndex CueIndex::operator -(const CueIndex &other) const
-{
-    CueIndex res;
-    res.mCdValue = this->mCdValue - other.mCdValue;
-    res.mHiValue = this->mHiValue - other.mHiValue;
-    res.mNull = false;
-    return res;
-}
-
-
-/************************************************
-
- ************************************************/
-bool CueIndex::operator ==(const CueIndex &other) const
-{
-    return this->mHiValue == other.mHiValue;
-}
-
-
-/************************************************
-
- ************************************************/
-bool CueIndex::operator !=(const CueIndex &other) const
-{
-    return this->mHiValue != other.mHiValue;
-}
-
-
-/************************************************
-
- ************************************************/
-bool CueIndex::parse(const QString &str)
-{
-    QStringList sl = str.split(QRegExp("\\D"), QString::KeepEmptyParts);
-
-    if (sl.length()<3)
-        return false;
-
-    bool ok;
-    int min = sl[0].toInt(&ok);
-    if (!ok)
-        return false;
-
-    int sec = sl[1].toInt(&ok);
-    if (!ok)
-        return false;
-
-    int frm = sl[2].leftJustified(2, '0').toInt(&ok);
-    if (!ok)
-        return false;
-
-    int msec = sl[2].leftJustified(3, '0').toInt(&ok);
-    if (!ok)
-        return false;
-
-    mCdValue = (min * 60 + sec) * 75 + frm;
-    mHiValue = (min * 60 + sec) * 1000 + msec;
-    return true;
-}
-
-
-
-/************************************************
-
- ************************************************/
 Track::Track(Disk *disk, int index):
     QObject(disk),
     mDisk(disk),
@@ -434,7 +325,6 @@ void Track::setCueIndex(int indexNum, const CueIndex &value)
 Disk::Disk(QObject *parent) :
     QObject(parent),
     mTags(0),
-    mCueTags(0),
     mStartTrackNum(1),
     mCount(0),
     mValid(false),
@@ -461,7 +351,6 @@ Track *Disk::track(int index) const
 {
     return mTracks.at(index);
 }
-
 
 
 /************************************************
@@ -535,283 +424,37 @@ void Disk::downloadFinished()
 /************************************************
 
  ************************************************/
-void Disk::loadFromCue(const QString &cueFile, bool activate)
+void Disk::loadFromCue(const CueReader &cueReader, int diskNum, bool activate)
 {
-    mErrorString.clear();
-    mCount = 0;
+    TagSet tags = cueReader.tags(diskNum);
+    mCount = tags.tracksCount();
 
-    QFileInfo fi(cueFile);
-    TagSet *tags = new TagSet(fi.canonicalFilePath());
-    tags->setTitle(fi.fileName());
+    for (int i=mTracks.count(); i<mCount; ++i)
+        mTracks.append(new Track(this, i));
 
-    QFile file(fi.canonicalFilePath());
-    if (!file.open(QIODevice::ReadOnly))
+    // cueTags always first in mTagSets ....
+    mCueFile = cueReader.fileName();
+    if (mTagSets.count())
     {
-        mErrorString = file.errorString();
+        if (mTags == mTagSets.first())
+            mTags = 0;
+
+        delete mTagSets.first();
+        mTagSets[0] = new TagSet(tags);
+    }
+    else
+    {
+        mTagSets << new TagSet(tags);
     }
 
-    int seek = 0;
-    QByteArray magic = file.read(3);
-
-    if (magic.startsWith("\xEF\xBB\xBF"))
+    if (activate || !mTags)
     {
-        tags->setTextCodecName("UTF-8");
-        seek = 3;
-    }
-
-    else if (magic.startsWith("\xFE\xFF"))
-    {
-        tags->setTextCodecName("UTF-16BE");
-        seek = 2;
-    }
-
-    else if (magic.startsWith("\xFF\xFE"))
-    {
-        tags->setTextCodecName("UTF-16LE");
-        seek = 2;
-    }
-
-    file.seek(seek);
-    mValid = parseCue(file, tags);
-    file.close();
-
-    if (!mValid)
-    {
-        delete tags;
-        return;
-    }
-
-    if (mCueTags)
-    {
-        mTagSets.removeAll(mCueTags);
-        delete mCueTags;
-    }
-
-    mCueFile = cueFile;
-    mCueTags = tags;
-    mTagSets.append(tags);
-    if (!mTags || activate)
-    {
-        mTags = mCueTags;
+        mTags = mTagSets.first();
         project->emitLayoutChanged();
     }
 
 }
 
-/************************************************
-
- ************************************************/
-QByteArray leftPart(const QByteArray &line, const QChar separator)
-{
-    int n = line.indexOf(separator);
-    if (n > -1)
-        return line.left(n);
-    else
-        return line;
-}
-
-
-/************************************************
-
- ************************************************/
-QByteArray rightPart(const QByteArray &line, const QChar separator)
-{
-    int n = line.indexOf(separator);
-    if (n > -1)
-        return line.right(line.length() - n - 1);
-    else
-        return QByteArray();
-}
-
-
-/************************************************
- Complete cue sheet syntax documentation
- http://digitalx.org/cue-sheet/syntax/
- ************************************************/
-bool Disk::parseCue(QFile &file, TagSet *tags)
-{
-    Track *track = 0;
-    int trackIdx = -1;
-    QByteArray performer;
-    QByteArray album;
-    QByteArray genre;
-    QByteArray date;
-    QByteArray comment;
-    QByteArray songwriter;
-
-    while (!file.atEnd())
-    {
-
-        QByteArray line = file.readLine().trimmed();
-
-        if (line.isEmpty())
-            continue;
-
-        QByteArray tag = leftPart(line, ' ').toUpper();
-        QByteArray value = rightPart(line, ' ').trimmed();
-
-
-        if (tag == "REM")
-        {
-            tag = leftPart(value, ' ').toUpper();
-            value = rightPart(value, ' ').trimmed();
-        }
-
-        if (value.length() > 2 && (value.at(0) == '"' || value.at(0) == '\''))
-            value = value.mid(1, value.length() - 2);
-
-
-        //=============================
-        if (tag == "TRACK")
-        {
-            bool ok;
-            leftPart(value, ' ').toInt(&ok);
-            if (!ok)
-            {
-                mErrorString = tr("File <b>%1</b> is not a valid CUE file.").arg(file.fileName());
-                return false;
-            }
-
-            trackIdx++;
-
-            if (trackIdx < mTracks.count())
-            {
-                track = mTracks.at(trackIdx);
-            }
-            else
-            {
-                track = new Track(this, trackIdx);
-                mTracks.append(track);
-            }
-
-            tags->setTrackTag(trackIdx, TAG_PERFORMER,  performer,  false);
-            tags->setTrackTag(trackIdx, TAG_ALBUM,      album,      false);
-            tags->setTrackTag(trackIdx, TAG_GENRE,      genre,      false);
-            tags->setTrackTag(trackIdx, TAG_DATE,       date,       false);
-            tags->setTrackTag(trackIdx, TAG_COMMENT,    comment,    false);
-            tags->setTrackTag(trackIdx, TAG_SONGWRITER, songwriter, false);
-        }
-
-        //=============================
-        else if (tag == "INDEX")
-        {
-            if (track)
-            {
-                bool ok;
-                int num = leftPart(value, ' ').toInt(&ok);
-                if (!ok)
-                {
-                    mErrorString = tr("File <b>%1</b> is not a valid CUE file.").arg(file.fileName());
-                    return false;
-                }
-
-                QString time = rightPart(value, ' ');
-                track->setCueIndex(num, CueIndex(time));
-            }
-        }
-
-        //=============================
-        else if (tag == "DISCID")
-        {
-            tags->setDiskTag(TAG_DISCID, value, true);
-        }
-
-        //=============================
-        else if (tag == "TITLE")
-        {
-            if (trackIdx > -1)
-                tags->setTrackTag(trackIdx, TAG_TITLE, value, false);
-            else
-                album = value;
-        }
-
-        //=============================
-        else if (tag == "CATALOG")
-        {
-            tags->setDiskTag(TAG_CATALOG, value, false);
-        }
-
-        //=============================
-        else if (tag == "CDTEXTFILE")
-        {
-            tags->setDiskTag(TAG_CDTEXTFILE, value, false);
-        }
-
-        //=============================
-        else if (tag == "COMMENT")
-        {
-            if (trackIdx > -1)
-                tags->setTrackTag(trackIdx, TAG_COMMENT, value, false);
-            else
-                comment = value;
-        }
-
-        //=============================
-        else if (tag == "DATE")
-        {
-            if (trackIdx > -1)
-                tags->setTrackTag(trackIdx, TAG_DATE, value, false);
-            else
-                date = value;
-        }
-
-        //=============================
-        else if (tag == "FLAGS")
-        {
-            if (trackIdx > -1)
-                tags->setTrackTag(trackIdx, TAG_FLAGS, value, true);
-        }
-
-        //=============================
-        else if (tag == "GENRE")
-        {
-            if (trackIdx > -1)
-                tags->setTrackTag(trackIdx, TAG_GENRE, value, false);
-            else
-                genre = value;
-        }
-
-        //=============================
-        else if (tag == "ISRC")
-        {
-            if (trackIdx > -1)
-                tags->setTrackTag(trackIdx, TAG_ISRC, value, true);
-        }
-
-        //=============================
-        else if (tag == "PERFORMER")
-        {
-            if (trackIdx > -1)
-                tags->setTrackTag(trackIdx, TAG_PERFORMER, value, false);
-            else
-                performer = value;
-        }
-
-        //=============================
-        else if (tag == "SONGWRITER")
-        {
-            if (trackIdx > -1)
-                tags->setTrackTag(trackIdx, TAG_SONGWRITER, value, false);
-            else
-                songwriter = value;
-        }
-
-        //=============================
-        else if (tag == "FILE")
-        {
-            if (trackIdx > -1)
-            {
-                mErrorString = tr("File <b>%1</b> contains several FILE tags.<br>These CUE files are not supported yet.").arg(tags->uri());
-                return false;
-            }
-            else
-                tags->setDiskTag(TAG_FILE,  value, false);
-        }
-    }
-
-    mCount = trackIdx + 1;
-    return true;
-}
 
 
 /************************************************
@@ -832,8 +475,22 @@ void Disk::findCueFile()
 
     foreach(QFileInfo f, files)
     {
+/*
         if (f.fileName().startsWith(pattern))
+        {
+            try
+            {
+                CueReader cue(f.filePath());
+                cue.load();
+                loadFromCue(cue);
+            }
+            catch(QString e)
+            {
+                // Continue
+            }
+        }
             loadFromCue(f.absoluteFilePath());
+*/
     }
 }
 
@@ -1018,9 +675,10 @@ void Disk::addTagSet(const TagSet &tagSet, bool activate)
     {
         if (t->uri() == tagSet.uri())
         {
-            mTagSets.removeAll(t);
             if (mTags == t)
                 mTags = 0;
+
+            mTagSets.removeAll(t);
             delete t;
         }
     }
@@ -1028,7 +686,7 @@ void Disk::addTagSet(const TagSet &tagSet, bool activate)
     TagSet *newTagSet = new TagSet(tagSet);
     mTagSets << newTagSet;
 
-    if (mTags == 0 || activate)
+    if (activate || mTags == 0)
     {
         mTags = newTagSet;
         project->emitLayoutChanged();

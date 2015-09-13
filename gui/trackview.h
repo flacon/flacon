@@ -59,6 +59,7 @@ public:
 
 public slots:
     void layoutChanged();
+    void selectDisk(const Disk *disk);
 
 signals:
     void selectCueFile(Disk *disk);

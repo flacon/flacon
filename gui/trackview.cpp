@@ -129,6 +129,26 @@ void TrackView::layoutChanged()
 
 
 /************************************************
+ *
+ ************************************************/
+void TrackView::selectDisk(const Disk *disk)
+{
+    for (int i=0; i<this->model()->rowCount(); ++i)
+    {
+        QModelIndex index = this->model()->index(i, 0);
+        QObject *obj = static_cast<QObject*>(index.internalPointer());
+
+        Disk *d =  qobject_cast<Disk*>(obj);
+        if (d && d == disk)
+        {
+            this->selectionModel()->select(index, QItemSelectionModel::Clear | QItemSelectionModel::Select);
+            break;
+        }
+    }
+}
+
+
+/************************************************
 
  ************************************************/
 void TrackView::headerContextMenu(QPoint pos)
