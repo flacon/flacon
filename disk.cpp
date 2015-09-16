@@ -360,6 +360,7 @@ bool Disk::canConvert(QString *description) const
 {
     bool res = true;
     QStringList msg;
+
     if (!mAudioFile || !mAudioFile->isValid())
     {
         msg << tr("Audio file not set.");
@@ -447,6 +448,9 @@ void Disk::loadFromCue(const CueReader &cueReader, int diskNum, bool activate)
         mTagSets << new TagSet(tags);
     }
 
+    if (!mAudioFile)
+        findAudioFile(cueReader, diskNum);
+
     if (activate || !mTags)
     {
         mTags = mTagSets.first();
@@ -455,6 +459,45 @@ void Disk::loadFromCue(const CueReader &cueReader, int diskNum, bool activate)
 
 }
 
+
+/************************************************
+
+ ************************************************/
+QFileInfoList matchedAudioFiles(const CueReader &cue, int diskNum, const QFileInfoList &audioFiles)
+{
+    QFileInfoList res;
+    QFileInfo cueFile(cue.fileName());
+
+    QStringList patterns;
+    if (cue.diskCount() == 1)
+    {
+        patterns << QFileInfo(cue.tags(diskNum).diskTag("FILE")).completeBaseName();
+        patterns << QString("%1.*").arg(cueFile.completeBaseName());
+    }
+    else
+    {
+        patterns << QFileInfo(cue.tags(diskNum).diskTag("FILE")).completeBaseName();
+        patterns << cueFile.completeBaseName() + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(diskNum + 1);
+        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(diskNum + 1);
+    }
+
+    QString audioExt;
+    foreach (InputAudioFormat format, InputAudioFormat::allFormats())
+        audioExt += (audioExt.isEmpty() ? "\\." : "|\\.") + format.ext();
+
+    foreach (const QString &pattern, patterns)
+    {
+        QRegExp re(QString("%1(%2)+").arg(pattern).arg(audioExt), Qt::CaseInsensitive, QRegExp::RegExp2);
+
+        foreach (const QFileInfo &audio, audioFiles)
+        {
+            if (re.exactMatch(audio.fileName()))
+                res << audio;
+        }
+    }
+
+    return res;
+}
 
 
 /************************************************
@@ -465,6 +508,41 @@ void Disk::findCueFile()
     if (!mAudioFile)
         return;
 
+    QFileInfo audio(mAudioFile->fileName());
+    QList<CueReader> cues;
+    QFileInfoList files = audio.dir().entryInfoList(QStringList() << "*.cue", QDir::Files | QDir::Readable);
+    foreach(QFileInfo f, files)
+    {
+        try
+        {
+            CueReader cue(f.absoluteFilePath());
+            cue.load();
+            cues << cue;
+        }
+        catch(QString e)
+        {}
+    }
+
+    if (cues.count() && cues.first().diskCount() == 1)
+    {
+        loadFromCue(cues.first(), 0, true);
+        return;
+    }
+
+
+    foreach (const CueReader &cue, cues)
+    {
+        for (int i=0; i<cue.diskCount(); ++i)
+        {
+            if (!matchedAudioFiles(cue, i, QFileInfoList() << audio).isEmpty())
+            {
+                loadFromCue(cue, i);
+                return;
+            }
+        }
+    }
+
+/*
     QFileInfo fi(mAudioFile->fileName());
 
     QStringList patterns;
@@ -494,9 +572,21 @@ void Disk::findCueFile()
         foreach (QString pattern, patterns)
         {
             if (f.fileName().startsWith(pattern))
-                loadFromCue(f.absoluteFilePath());
+            {
+                CueReader cue(f.absoluteFilePath());
+                try
+                {
+                    cue.load();
+                    loadFromCue(cue, 0);
+                }
+                catch(QString e)
+                {
+
+                }
+            }
         }
     }
+    */
 }
 
 
@@ -518,69 +608,94 @@ QString Disk::audioFileName() const
  ************************************************/
 void Disk::setAudioFile(const QString &fileName)
 {
-    QFileInfo fi(fileName);
-    InputAudioFile *audio = new InputAudioFile(fi.absoluteFilePath());
-
-    if (audio->isValid())
-    {
-        if (mAudioFile)
-            delete mAudioFile;
-
-        mAudioFile = audio;
-        project->emitDiskChanged(this);
-    }
-    else
-    {
-        delete audio;
-    }
+    replaceAudioFile(fileName, true);
+    if (mTagSets.isEmpty())
+        findCueFile();
 }
 
 
 /************************************************
 
  ************************************************/
-void Disk::findAudioFile()
+bool Disk::replaceAudioFile(const QString &fileName, bool force)
 {
+    InputAudioFile *audio = new InputAudioFile(fileName);
+
+    if (!audio->isValid())
+    {
+        delete audio;
+        audio = 0;
+    }
+
+    if (force || audio->isValid())
+    {
+        delete mAudioFile;
+        mAudioFile = audio;
+    }
+
+    return audio != 0;
+}
+
+
+/************************************************
+
+ ************************************************/
+void Disk::findAudioFile(const CueReader &cue, int diskNum)
+{
+    if (mTagSets.isEmpty())
+        return;
+
     QStringList exts;
     foreach (InputAudioFormat format, InputAudioFormat::allFormats())
         exts << QString("*.%1").arg(format.ext());
 
-    QFileInfo fi(mCueFile);
+    QFileInfo cueFile(mCueFile);
+    QFileInfoList files = cueFile.dir().entryInfoList(exts, QDir::Files | QDir::Readable);
 
-    QSet<QString> patterns;
-    patterns << fi.completeBaseName();
-
-    QString ft = fileTag();
-    if (! ft.isEmpty())
-        patterns << QFileInfo(ft).completeBaseName();
-
-
-    QFileInfoList files = fi.dir().entryInfoList(exts, QDir::Files | QDir::Readable);
-    foreach(QFileInfo f, files)
+    if (cue.diskCount() == 1 && files.count() == 1)
     {
-        QSetIterator<QString> i(patterns);
-        while (i.hasNext())
-        {
-            QString pattern = i.next();
-
-            if (f.fileName().startsWith(pattern))
-            {
-                InputAudioFile *audio = new InputAudioFile(f.absoluteFilePath());
-                if (audio->isValid())
-                {
-                    if (mAudioFile)
-                        delete mAudioFile;
-
-                    mAudioFile = audio;
-                    return;
-                }
-                else
-                {
-                    delete audio;
-                }
-            }
-        }
+        replaceAudioFile(files.first().filePath(), false);
+        return;
     }
+
+    QFileInfoList audioFiles = matchedAudioFiles(cue, diskNum, files);
+    foreach (const QFileInfo &audio, audioFiles)
+    {
+        if (replaceAudioFile(audio.filePath(), false))
+            return;
+    }
+
+//    QStringList patterns;
+//    if (CueReader.diskCount() == 1)
+//    {
+//        patterns << QFileInfo(mTagSets.first()->diskTag("FILE")).completeBaseName();
+//        patterns << QString("%1.*").arg(cueFile.completeBaseName());
+//    }
+//    else
+//    {
+//        patterns << QFileInfo(mTagSets.first()->diskTag("FILE")).completeBaseName();
+//        patterns << cueFile.completeBaseName() + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(diskNum + 1);
+//        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(diskNum + 1);
+//    }
+
+
+//    QString audioExt;
+//    foreach (InputAudioFormat format, InputAudioFormat::allFormats())
+//        audioExt += (audioExt.isEmpty() ? "\\." : "|\\.") + format.ext();
+
+//    foreach (const QString &pattern, patterns)
+//    {
+//        QRegExp re(QString("%1(%2)+").arg(pattern).arg(audioExt), Qt::CaseInsensitive, QRegExp::RegExp2);
+
+//        foreach (QFileInfo file, files)
+//        {
+//            if (!re.exactMatch(file.fileName()))
+//                continue;
+
+//            if (replaceAudioFile(file.filePath(), false))
+//                return;
+//        }
+//    }
 }
 
 

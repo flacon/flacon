@@ -98,6 +98,13 @@ void Converter::start()
         return;
     }
 
+    if (mThreads.isEmpty())
+    {
+        qWarning() << "No job for converter";
+        emit finished();
+        return;
+    }
+
     startThread();
 }
 

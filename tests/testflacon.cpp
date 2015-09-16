@@ -472,11 +472,9 @@ ConverterTester::ConverterTester(const QString &cueFile, const QString &audioFil
     mResultFiles = resultFiles.split(';', QString::SkipEmptyParts);
     mExpectedCue = expectedCue;
     project->clear();
-    mDisk = new Disk();
-    project->addDisk(mDisk);
-
     mDisk = loadFromCue(cueFile);
     mDisk->setAudioFile(audioFile);
+    project->addDisk(mDisk);
 }
 
 /************************************************
@@ -488,6 +486,13 @@ void ConverterTester::run()
     QEventLoop loop;
     loop.connect(&conv, SIGNAL(finished()), &loop, SLOT(quit()));
     conv.start();
+    if (!conv.isRunning())
+    {
+        QString msg;
+        mDisk->canConvert(&msg);
+        QFAIL(QString("Can't start converter: \"%1\"").arg(msg).toLocal8Bit());
+    }
+
     loop.exec();
 
     QDir outDir = QFileInfo(mDisk->track(0)->resultFilePath()).dir();
@@ -1712,6 +1717,211 @@ void TestFlacon::testCueIndex_data()
     QTest::newRow("HI 40:50:740 - 10:20:300")  << "30:30.440";
     QTest::newRow("HI 40:20:240 - 10:30:300")  << "29:49.940";
 }
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testFindAudioFile()
+{
+    QFETCH(QString, fileTag);
+    QFETCH(QString, cueFileName);
+    QFETCH(QString, audioFiles);
+    QFETCH(QString, expected);
+
+    static int dirNum = 0;
+    dirNum++;
+    QString dir = QString("%1testFindAudioFile/%2/").arg(mTmpDir).arg(dirNum, 4, 20, QChar('0'));
+    QDir(dir).mkpath(".");
+    clearDir(dir);
+
+
+
+    QStringList fileTags = fileTag.split(",", QString::SkipEmptyParts);
+
+    QString cueFile = dir + cueFileName;
+    {
+        QStringList cue;
+        cue << "REM DATE 2013";
+        cue << "REM DISCID 123456789";
+        cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
+        cue << "PERFORMER \"Artist\"";
+        for (int i=0; i<fileTags.count(); ++i)
+        {
+            cue << "FILE \"" + fileTags[i].trimmed() +"\" WAVE";
+            cue << "  TRACK 01 AUDIO";
+            cue << "    TITLE \"Song01\"";
+            cue << "    INDEX 01 00:00:00";
+        }
+        writeTextFile(cueFile, cue);
+    }
+
+    foreach (QString f, audioFiles.split(","))
+    {
+        QFile(mCdAudioFile).link(dir + f.trimmed());
+    }
+
+
+    QStringList expectedLists = expected.split(",", QString::SkipEmptyParts);
+    CueReader cue(cueFile);
+    cue.load();
+    for (int i=0; i<cue.diskCount(); ++i)
+    {
+        Disk disk;
+        disk.loadFromCue(cue, i);
+        QString expected = expectedLists.at(i).trimmed();
+        if (expected == "''")
+            expected = "";
+        else
+            expected = dir + expected;
+
+        QCOMPARE(disk.audioFileName(), expected);
+
+    }
+}
+
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testFindAudioFile_data()
+{
+    QTest::addColumn<QString>("fileTag");
+    QTest::addColumn<QString>("cueFileName");
+    QTest::addColumn<QString>("audioFiles");
+    QTest::addColumn<QString>("expected");
+
+    QTest::newRow("1")
+            << "Album.wav"
+            << "Album.cue"
+            << "Album.ape"
+            << "Album.ape";
+
+
+    QTest::newRow("2")
+            << "Album.wav"
+            << "Garbage.cue"
+            << "Album.ape, Garbage.ape"
+            << "Album.ape";
+
+
+    QTest::newRow("3")
+            << "Garbage.wav"
+            << "Disk.cue"
+            << "Disk.ape"
+            << "Disk.ape";
+
+    QTest::newRow("Multi disk => CueFile_1.ape]")
+            << "FileTag1.wav, FileTag2.wav"
+            << "CueFile.cue"
+            << "CueFile.ape," "CueFile_1.ape," "CueFile_2.ape"
+            << "CueFile_1.ape," "CueFile_2.ape";
+
+    QTest::newRow("4")
+            << "Garbage1.wav, Garbage2.wav"
+            << "Album.cue"
+            << "Album.ape, Album_Side1.ape, Album_Side2.ape"
+            << "Album_Side1.ape, Album_Side2.ape";
+
+    QTest::newRow("5")
+            << "Garbage1.wav, Garbage2.wav"
+            << "Album.cue"
+            << "Album.ape, Album Side1.ape, Album Side2.ape"
+            << "Album Side1.ape, Album Side2.ape";
+
+    QTest::newRow("6")
+            << "Garbage1.wav, Garbage2.wav"
+            << "Album.cue"
+            << "Album.ape, Album_Disk1.ape, Album_Disk2.ape"
+            << "Album_Disk1.ape, Album_Disk2.ape";
+
+    QTest::newRow("Multi disk => CUE+Disk1")
+            << "Garbage1.wav, Garbage2.wav"
+            << "Album.cue"
+            << "Album.ape, Album Disk1.ape, Album Disk2.ape"
+            << "Album Disk1.ape, Album Disk2.ape";
+
+    QTest::newRow("Multi disk => CUE+[Disk 1]")
+            << "Garbage1.wav, Garbage2.wav"
+            << "Album.cue"
+            << "Album.ape, Album [Disk 1].ape, Album [Disk 2].ape"
+            << "Album [Disk 1].ape, Album [Disk 2].ape";
+
+    QTest::newRow("Multi disk => CUE+[Disk #1]")
+            << "Garbage1.wav, Garbage2.wav"
+            << "Album.cue"
+            << "Album.ape, Album [Disk #1].ape, Album [Disk #2].ape"
+            << "Album [Disk #1].ape, Album [Disk #2].ape";
+
+    QTest::newRow("Multi disk => CUE+[Disk №1]")
+            << "Garbage1.wav, Garbage2.wav"
+            << "Album.cue"
+            << "Album.ape, Album [Disk №1].ape, Album [Disk №2].ape"
+            << "Album [Disk №1].ape, Album [Disk №2].ape";
+
+
+    QTest::newRow("Multi disk => CUE+Disk 001")
+            << "Garbage1.wav,"
+               "Garbage2.wav"
+            << "Album.cue"
+            << "Album.ape,"
+               "Album Disk 001.ape,"
+               "Album Disk 002.ape"
+            << "Album Disk 001.ape,"
+               "Album Disk 002.ape";
+
+    QTest::newRow("")
+            << "FileTag1.wav,"
+               "FileTag2.wav"
+            << "CueFile.cue"
+            << "FileTag1.wav,"
+               "FileTag2.wav,"
+               "CueFile.ape,"
+               "CueFile Disk1.ape,"
+               "CueFile Disk2.ape"
+            << "FileTag1.wav,"
+               "FileTag2.wav";
+
+    QTest::newRow("Not confuse 1 and 11")
+            << "FileTag1.wav,"  "FileTag2.wav"
+            << "CueFile.cue"
+            << "CueFile_11.flac,"  "CueFile_2.flac"
+            << "''," "CueFile_2.flac";
+
+    QTest::newRow("Multi disk => Side 1")
+            << "Garbage1.wav,"
+               "Garbage2.wav"
+            << "Album.cue"
+            << "Album.ape,"
+               "Side 1.flac,"
+               "Side 2.flac"
+            << "Side 1.flac,"
+               "Side 2.flac";
+
+    QTest::newRow("Multi disk => Disk 0001")
+            << "Garbage1.wav,"
+               "Garbage2.wav"
+            << "Album.cue"
+            << "Album.ape,"
+               "Disk 0001.ape,"
+               "Disk 0002.ape"
+            << "Disk 0001.ape,"
+               "Disk 0002.ape";
+
+    QTest::newRow("Multi dot")
+            << "FileTag.wav"
+            << "CueFile.cue"
+            << "CueFile.ape.flac"
+            << "CueFile.ape.flac";
+
+    QTest::newRow("Multi dot")
+            << "FileTag.wav"
+            << "CueFile.cue"
+            << "CueFile_AditionalText.flac"
+            << "CueFile_AditionalText.flac";
+}
+
+
+
 
 
 QTEST_MAIN(TestFlacon)

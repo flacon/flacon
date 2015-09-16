@@ -59,12 +59,11 @@ public:
 
     void loadFromCue(const CueReader &cueReader, int diskNum, bool activate = true);
     QString cueFile() const { return mCueFile; }
-    void findCueFile();
 
     InputAudioFile *audioFile() const { return mAudioFile; }
     QString audioFileName() const;
     void setAudioFile(const QString &fileName);
-    void findAudioFile();
+
 
     int startTrackNum() const { return mStartTrackNum; }
     void setStartTrackNum(int value);
@@ -124,6 +123,10 @@ private:
     InputAudioFile *mAudioFile;
     Track *mPreGapTrack;
     QList<DataProvider*> mDownloads;
+
+    bool replaceAudioFile(const QString &fileName, bool force);
+    void findAudioFile(const CueReader &cue, int diskNum);
+    void findCueFile();
 };
 
 typedef QList<Disk*> DiskList;

@@ -49,6 +49,7 @@ class QTextCodec;
 #define TAG_TITLE       "TITLE"
 #define TAG_DISCID      "DISCID"
 #define TAG_FILE        "FILE"
+#define TAG_DISKNUM     "DISKNUM"
 
 #define CODEC_AUTODETECT "AUTODETECT"
 

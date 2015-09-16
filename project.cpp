@@ -226,7 +226,6 @@ Disk *Project::addAudioFile(const QString &fileName)
 
     if (disk->audioFile())
     {
-        disk->findCueFile();
         addDisk(disk);
     }
     else
@@ -255,7 +254,6 @@ DiskList Project::addCueFile(const QString &fileName)
 
             Disk *disk = new Disk();
             disk->loadFromCue(cue, i);
-            disk->findAudioFile();
             mDisks << disk;
             res << disk;
         }

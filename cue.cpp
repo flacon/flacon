@@ -143,6 +143,18 @@ bool CueIndex::parse(const QString &str)
     return true;
 }
 
+QByteArray unQuote(const QByteArray &line)
+{
+    if (line.length() > 2 &&
+       (line.at(0) == '"' || line.at(0) == '\'') &&
+        line.at(0) == line.at(line.length()-1))
+    {
+        return line.mid(1, line.length() - 2);
+    }
+    return line;
+}
+
+
 /************************************************
 
  ************************************************/
@@ -270,8 +282,7 @@ void parseLine(const QByteArray &line, CueTags &tag, QByteArray &value)
         value = rightPart(value, ' ').trimmed();
     }
 
-    if (value.length() > 2 && (value.at(0) == '"' || value.at(0) == '\''))
-        value = value.mid(1, value.length() - 2);
+    value = unQuote(value);
 
     //=============================
     if      (tagStr == "FILE")       tag = CTAG_FILE;
@@ -301,6 +312,7 @@ void CueReader::parse(QFile &file)
     CueTags tag;
     QByteArray value;
 
+    int diskNum = -1;
     while (!file.atEnd())
     {
         parseLine(file.readLine(), tag, value);
@@ -308,7 +320,8 @@ void CueReader::parse(QFile &file)
         switch (tag)
         {
         case CTAG_FILE:
-            mTagSetList << parseOneDiskTags(file, value);
+            diskNum++;
+            mTagSetList << parseOneDiskTags(file, value, diskNum);
             break;
 
         case CTAG_DISCID:      mDiskId = value;     break;
@@ -332,18 +345,28 @@ void CueReader::parse(QFile &file)
     }
 }
 
+QByteArray extractFileFromFileTag(const QByteArray &value)
+{
+    int n = value.lastIndexOf(' ');
+    if (n>-1)
+        return unQuote(value.left(n));
+
+    return unQuote(value);
+}
 
 /************************************************
  Complete cue sheet syntax documentation
  http://digitalx.org/cue-sheet/syntax/
  ************************************************/
-TagSet CueReader::parseOneDiskTags(QFile &file, QByteArray fileTag)
+TagSet CueReader::parseOneDiskTags(QFile &file, QByteArray fileTag, int diskNum)
 {
     TagSet tagSet(QFileInfo(mFileName).canonicalFilePath() + QString(" [%1]").arg(mTagSetList.count()));
-    tagSet.setDiskTag(TAG_FILE,       fileTag,     false);
+    tagSet.setDiskTag(TAG_FILE, extractFileFromFileTag(fileTag), false);
     tagSet.setDiskTag(TAG_DISCID,     mDiskId,     true);
     tagSet.setDiskTag(TAG_CATALOG,    mCatalog,    false);
     tagSet.setDiskTag(TAG_CDTEXTFILE, mCdTextFile, false);
+    tagSet.setDiskTag(TAG_DISKNUM,    QString("%1").arg(diskNum + 1).toLatin1(), true);
+
 
     int trackIdx = -1;
     CueTags tag;

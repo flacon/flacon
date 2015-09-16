@@ -55,7 +55,7 @@ private:
     QByteArray mCdTextFile;
 
     void parse(QFile &file);
-    TagSet parseOneDiskTags(QFile &file, QByteArray fileTag);
+    TagSet parseOneDiskTags(QFile &file, QByteArray fileTag, int diskNum);
 };
 
 #endif // CUE_H
