@@ -50,13 +50,14 @@ class QTextCodec;
 #define TAG_DISCID      "DISCID"
 #define TAG_FILE        "FILE"
 #define TAG_DISKNUM     "DISKNUM"
+#define TAG_CUE_FILE    "CUE_FILE"
 
 #define CODEC_AUTODETECT "AUTODETECT"
 
 class TagSet
 {
 public:
-    TagSet(const QString &uri);
+    explicit TagSet(const QString &uri);
     TagSet(const TagSet &other);
     ~TagSet();
 

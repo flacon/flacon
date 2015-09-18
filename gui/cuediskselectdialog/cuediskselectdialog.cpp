@@ -20,10 +20,9 @@ CueDiskSelectDialog::CueDiskSelectDialog(const CueReader &cue, int selectedDisk,
 
     for (int d=0; d<cue.diskCount(); d++)
     {
-        TagSet tags = cue.tags(d);
+        CueTagSet tags = cue.disk(d);
         QTreeWidgetItem *diskItem = new QTreeWidgetItem(ui->diskTree);
         diskItem->setText(0, tr("%1 [ disk %2 ]").arg(tags.diskTag("ALBUM")).arg(d+1));
-        //diskItem->setText(0, tr("Disk %1 from album \"%2\"").arg(d+1).arg(tags.diskTag("ALBUM")));
         diskItem->setData(0,Qt::UserRole, d);
         if (d == selectedDisk)
         {

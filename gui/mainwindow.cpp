@@ -388,12 +388,12 @@ void MainWindow::setCueForDisc(Disk *disk)
         cue.load();
 
         int diskNum = 0;
-        if (cue.diskCount() > 1)
+        if (cue.isMultiFileCue())
         {
             int proposal = 0;
             for (int i=0; i<cue.diskCount(); ++i)
             {
-                if (!project->diskExists(cue.tags(i).uri() ))
+                if (!project->diskExists(cue.disk(i).uri()))
                 {
                     proposal = i;
                     break;
@@ -404,7 +404,7 @@ void MainWindow::setCueForDisc(Disk *disk)
             if (diskNum < 0)
                 return;
         }
-        disk->loadFromCue(cue, diskNum, true);
+        disk->loadFromCue(cue.disk(diskNum), true);
     }
     catch (QString e)
     {

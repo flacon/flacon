@@ -57,7 +57,7 @@ public:
     int count() const { return mCount; }
     Track *preGapTrack() const { return mPreGapTrack; }
 
-    void loadFromCue(const CueReader &cueReader, int diskNum, bool activate = true);
+    void loadFromCue(const CueTagSet &cueTags, bool activate = true);
     QString cueFile() const { return mCueFile; }
 
     InputAudioFile *audioFile() const { return mAudioFile; }
@@ -125,7 +125,7 @@ private:
     QList<DataProvider*> mDownloads;
 
     bool replaceAudioFile(const QString &fileName, bool force);
-    void findAudioFile(const CueReader &cue, int diskNum);
+    void findAudioFile(const CueTagSet &cueTags);
     void findCueFile();
 };
 

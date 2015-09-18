@@ -57,7 +57,7 @@ Disk *loadFromCue(const QString &cueFile)
     CueReader cueReader(cueFile);
     cueReader.load();
     Disk *res = new Disk();
-    res->loadFromCue(cueReader, 0);
+    res->loadFromCue(cueReader.disk(0));
     return res;
 }
 
@@ -1767,14 +1767,15 @@ void TestFlacon::testFindAudioFile()
     for (int i=0; i<cue.diskCount(); ++i)
     {
         Disk disk;
-        disk.loadFromCue(cue, i);
+        disk.loadFromCue(cue.disk(i));
         QString expected = expectedLists.at(i).trimmed();
         if (expected == "''")
             expected = "";
         else
             expected = dir + expected;
 
-        QCOMPARE(disk.audioFileName(), expected);
+        QString real = disk.audioFileName();
+        QCOMPARE(real, expected);
 
     }
 }
@@ -1810,7 +1811,7 @@ void TestFlacon::testFindAudioFile_data()
             << "Disk.ape"
             << "Disk.ape";
 
-    QTest::newRow("Multi disk => CueFile_1.ape]")
+    QTest::newRow("Multi disk => CueFile_1.ape")
             << "FileTag1.wav, FileTag2.wav"
             << "CueFile.cue"
             << "CueFile.ape," "CueFile_1.ape," "CueFile_2.ape"

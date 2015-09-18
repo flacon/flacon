@@ -1,3 +1,29 @@
+/* BEGIN_COMMON_COPYRIGHT_HEADER
+ * (c)LGPL2+
+ *
+ * Flacon - audio File Encoder
+ * https://github.com/flacon/flacon
+ *
+ * Copyright: 2012-2015
+ *   Alexander Sokoloff <sokoloff.a@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * END_COMMON_COPYRIGHT_HEADER */
+
+
 #ifndef CUE_H
 #define CUE_H
 
@@ -28,6 +54,20 @@ private:
 };
 
 
+class CueTagSet: public TagSet
+{
+public:
+    explicit CueTagSet(const QString &uri);
+    CueTagSet(const CueTagSet &other);
+
+    QString cueFileName() const;
+    QString fileTag() const;
+    CueIndex index(int track, int indexNum) const;
+    bool isMultiFileCue() const;
+    int diskNumInCue() const;
+};
+
+
 class CueReader
 {
 public:
@@ -35,15 +75,15 @@ public:
 
     void load();
     QString fileName() const { return mFileName; }
-    int diskCount() const { return mTagSetList.count(); }
-    CueIndex cueIndex(int diskNum, int trackNum, int indexNum) const;
-    TagSet tags(int diskNum) const { return mTagSetList.at(diskNum); }
+    CueTagSet disk(int index) const { return mDisks.at(index); }
+    int diskCount() const { return mDisks.count(); }
+    bool isMultiFileCue() const { return mDisks.count() > 1; }
 
 private:
     QString mFileName;
-    QList<TagSet> mTagSetList;
-    QHash<quint64, CueIndex> mIndexes;
+    QList<CueTagSet> mDisks;
 
+    QString mCodecName;
     QByteArray mPerformer;
     QByteArray mAlbum;
     QByteArray mGenre;
@@ -54,8 +94,8 @@ private:
     QByteArray mCatalog;
     QByteArray mCdTextFile;
 
-    void parse(QFile &file);
-    TagSet parseOneDiskTags(QFile &file, QByteArray fileTag, int diskNum);
+    void parse(QFile &file);    
+    void parseOneDiskTags(QFile &file, CueTagSet *tags);
 };
 
 #endif // CUE_H

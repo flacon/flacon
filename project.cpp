@@ -89,7 +89,10 @@ QIcon Project::getIcon(const QString &iconName1, const QString &iconName2, const
  ************************************************/
 void Project::error(const QString &message)
 {
-    qWarning() << message;
+    QString console = message;
+    console.remove("<b>");
+    console.remove("</b>");
+    qWarning() << console;
     QMessageBox::critical(0, tr("Flacon", "Error"), message);
 }
 
@@ -243,17 +246,18 @@ Disk *Project::addAudioFile(const QString &fileName)
 DiskList Project::addCueFile(const QString &fileName)
 {
     DiskList res;
-    CueReader cue(fileName);
+    CueReader cueReader(fileName);
     try
     {
-        cue.load();
-        for (int i=0; i<cue.diskCount(); ++i)
+        cueReader.load();
+
+        for (int i=0; i<cueReader.diskCount(); ++i)
         {
-            if (diskExists(cue.tags(i).uri()))
+            if (diskExists(cueReader.disk(i).uri()))
                 continue;
 
             Disk *disk = new Disk();
-            disk->loadFromCue(cue, i);
+            disk->loadFromCue(cueReader.disk(i));
             mDisks << disk;
             res << disk;
         }
