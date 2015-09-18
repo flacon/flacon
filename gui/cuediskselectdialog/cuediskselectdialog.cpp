@@ -38,7 +38,7 @@ CueDiskSelectDialog::CueDiskSelectDialog(const CueReader &cue, int selectedDisk,
         {
             QTreeWidgetItem *trackItem = new QTreeWidgetItem(diskItem);
             trackItem->setText(0, tags.trackTag(t, "TITLE"));
-            trackItem->setFlags(Qt::NoItemFlags );//| Qt::ItemIsEnabled);
+            trackItem->setFlags(Qt::NoItemFlags );
         }
     }
     ui->diskTree->expandAll();

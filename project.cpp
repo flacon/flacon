@@ -263,7 +263,7 @@ DiskList Project::addCueFile(const QString &fileName)
         }
     }
     catch (QString e)
-    {        
+    {
         foreach(Disk *d, res)
         {
             mDisks.removeAll(d);
