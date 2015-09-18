@@ -577,7 +577,7 @@ bool Disk::replaceAudioFile(const QString &fileName, bool force)
         audio = 0;
     }
 
-    if (force || audio->isValid())
+    if (force || audio)
     {
         delete mAudioFile;
         mAudioFile = audio;
