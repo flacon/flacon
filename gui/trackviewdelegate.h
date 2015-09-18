@@ -76,8 +76,8 @@ private:
     QMovie mDownloadMovie;
     mutable int mDiskHeightHint;
 
-    QFont titleFont(const QPainter *painter) const;
-    QFont filesFont(const QPainter *painter) const;
+    QFont titleFont(const QFont &font) const;
+    QFont filesFont(const QFont &font) const;
     void paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, const Track *track) const;
     void paintDisk(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, const Disk *disk) const;
     QRect drawLabel(const QString &text, QRect rect, QPainter *painter) const;

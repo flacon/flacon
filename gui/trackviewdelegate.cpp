@@ -261,8 +261,8 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     //cache = self.cache(index)
     painter->save();
     painter->setClipRect(option.rect);
-    QFont titleFont = this->titleFont(painter);
-    QFont filesFont = this->filesFont(painter);
+    QFont titleFont = this->titleFont(painter->font());
+    QFont filesFont = this->filesFont(painter->font());
 
 
     int topPadding = index.row() ? TOP_PADDING : 0;
@@ -408,18 +408,16 @@ QSize TrackViewDelegate::sizeHint(const QStyleOptionViewItem &option, const QMod
 
     if (!index.parent().isValid())
     {
-
         if (!mDiskHeightHint)
         {
             int h = 8;
-            QPainter painter(mTrackView);
-            QFont titleFont = this->titleFont(&painter);
-            QFont filesFont = this->filesFont(&painter);
+
+            QFont titleFont = this->titleFont(option.font);
+            QFont filesFont = this->filesFont(option.font);
             h += QFontMetrics(titleFont).height();
             h += QFontMetrics(filesFont).height() * 2;
             mDiskHeightHint = qMax(IMG_HEIGHT, h) + 2 * MARGIN + BOTTOM_PADDING; //For Line
         }
-
 
         res.rheight() = mDiskHeightHint;
         if (index.row())
@@ -533,9 +531,9 @@ void TrackViewDelegate::downloadingFinished(DataProvider *provider)
 /************************************************
 
  ************************************************/
-QFont TrackViewDelegate::titleFont(const QPainter *painter) const
+QFont TrackViewDelegate::titleFont(const QFont &font) const
 {
-    QFont res = painter->font();
+    QFont res = font;
     res.setPointSize(res.pointSize() + 1);
     res.setBold(true);
     return res;
@@ -545,9 +543,9 @@ QFont TrackViewDelegate::titleFont(const QPainter *painter) const
 /************************************************
 
  ************************************************/
-QFont TrackViewDelegate::filesFont(const QPainter *painter) const
+QFont TrackViewDelegate::filesFont(const QFont &font) const
 {
-    QFont res = painter->font();
+    QFont res = font;
     return res;
 }
 
