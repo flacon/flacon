@@ -28,11 +28,14 @@
 #include "disk.h"
 #include "settings.h"
 #include "cue.h"
+#include "inputaudiofile.h"
 
 #include <QDebug>
 #include <QApplication>
 #include <QMessageBox>
 #include <QDir>
+
+static void (*errorHandler)(const QString &msg);
 
 /************************************************
 
@@ -87,19 +90,6 @@ QIcon Project::getIcon(const QString &iconName1, const QString &iconName2, const
 /************************************************
 
  ************************************************/
-void Project::error(const QString &message)
-{
-    QString console = message;
-    console.remove("<b>");
-    console.remove("</b>");
-    qWarning() << console;
-    QMessageBox::critical(0, tr("Flacon", "Error"), message);
-}
-
-
-/************************************************
-
- ************************************************/
 void Project::clear()
 {
     QList<Disk*> disks;
@@ -129,7 +119,6 @@ Project *Project::instance()
 Project::Project(QObject *parent) :
     QObject(parent)
 {
-    connect(settings, SIGNAL(changed()), this, SLOT(settingChanged()));
 }
 
 
@@ -212,10 +201,30 @@ bool Project::diskExists(const QString &cueUri)
 
 
 /************************************************
+ *
+ ************************************************/
+void Project::error(const QString &msg)
+{
+    if (errorHandler)
+        errorHandler(msg);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::installErrorHandler(void (*handler)(const QString &))
+{
+    errorHandler = handler;
+}
+
+
+/************************************************
 
  ************************************************/
-Disk *Project::addAudioFile(const QString &fileName)
+Disk *Project::addAudioFile(const QString &fileName, bool showErrors)
 {
+
     QString canonicalFileName = QFileInfo(fileName).canonicalFilePath();
 
     for(int i=0; i<count(); ++i )
@@ -224,33 +233,33 @@ Disk *Project::addAudioFile(const QString &fileName)
             return 0;
     }
 
-    Disk *disk = new Disk();
-    disk->setAudioFile(canonicalFileName);
+    InputAudioFile audio(canonicalFileName);
+    if (!audio.isValid())
+    {
+        if (showErrors)
+            Project::error(audio.errorString());
 
-    if (disk->audioFile())
-    {
-        addDisk(disk);
+        return 0;
     }
-    else
-    {
-        delete disk;
-        disk = 0;
-    }
+
+    Disk *disk = new Disk();
+    disk->setAudioFile(audio);
+    addDisk(disk);
+
     return disk;
 }
+
 
 
 /************************************************
 
  ************************************************/
-DiskList Project::addCueFile(const QString &fileName)
+DiskList Project::addCueFile(const QString &fileName, bool showErrors)
 {
     DiskList res;
     CueReader cueReader(fileName);
-    try
+    if (cueReader.isValid())
     {
-        cueReader.load();
-
         for (int i=0; i<cueReader.diskCount(); ++i)
         {
             if (diskExists(cueReader.disk(i).uri()))
@@ -261,8 +270,9 @@ DiskList Project::addCueFile(const QString &fileName)
             mDisks << disk;
             res << disk;
         }
+        emit layoutChanged();
     }
-    catch (QString e)
+    else
     {
         foreach(Disk *d, res)
         {
@@ -271,10 +281,10 @@ DiskList Project::addCueFile(const QString &fileName)
         }
 
         emit layoutChanged();
-        throw e;
+        if (showErrors)
+            Project::error(cueReader.errorString());
     }
 
-    emit layoutChanged();
     return res;
 }
 
@@ -313,14 +323,3 @@ void Project::emitLayoutChanged()
 {
     emit layoutChanged();
 }
-
-
-
-/************************************************
-
- ************************************************/
-void Project::settingChanged()
-{
-}
-
-

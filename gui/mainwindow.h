@@ -36,7 +36,7 @@ class MainWindow;
 
 class Project;
 class Converter;
-class DirScanner;
+class Scanner;
 
 class MainWindow : public QMainWindow, private Ui::MainWindow
 {
@@ -98,7 +98,7 @@ protected:
 
 private:
     Converter *mConverter;
-    DirScanner *mScanner;
+    Scanner *mScanner;
     QString getOpenFileFilter(bool includeAudio, bool includeCue);
 
     void initActions();

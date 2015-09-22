@@ -73,12 +73,12 @@ class CueReader
 public:
     explicit CueReader(const QString &fileName);
 
-    void load();
     QString fileName() const { return mFileName; }
     CueTagSet disk(int index) const { return mDisks.at(index); }
     int diskCount() const { return mDisks.count(); }
     bool isMultiFileCue() const { return mDisks.count() > 1; }
-
+    bool isValid() const { return mValid; }
+    QString errorString() const { return mErrorString; }
 private:
     QString mFileName;
     QList<CueTagSet> mDisks;
@@ -94,8 +94,10 @@ private:
     QByteArray mCatalog;
     QByteArray mCdTextFile;
 
-    void parse(QFile &file);    
-    void parseOneDiskTags(QFile &file, CueTagSet *tags);
+    bool parse(QFile &file);
+    bool parseOneDiskTags(QFile &file, CueTagSet *tags);
+    bool mValid;
+    QString mErrorString;
 };
 
 #endif // CUE_H

@@ -101,7 +101,7 @@ void DataProvider::error(const QString &message)
         if (reply->isOpen())
             reply->abort();
     }
-    project->error(message);
+    Project::error(message);
 }
 
 

@@ -49,13 +49,14 @@ private:
 class InputAudioFile
 {
 public:
-    InputAudioFile(const QString &fileName);
+    explicit InputAudioFile(const QString &fileName);
+    InputAudioFile(const InputAudioFile &other);
 
     QString fileName() const { return mFileName; }
     bool isValid() const { return mValid; }
     bool isCdQuality() const { return mCdQuality; }
     int sampleRate() const { return mSampleRate; }
-
+    QString errorString() const { return mErrorString; }
 
 private:
 

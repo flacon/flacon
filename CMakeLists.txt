@@ -46,6 +46,7 @@ set(HEADERS
     settings.h
     inputaudiofile.h
     internet/dataprovider.h
+    scanner.h
 
     gui/mainwindow.h
     gui/controls.h
@@ -82,6 +83,7 @@ set(SOURCES
     settings.cpp
     inputaudiofile.cpp
     internet/dataprovider.cpp
+    scanner.cpp
 
     gui/mainwindow.cpp
     gui/controls.cpp
@@ -114,8 +116,8 @@ set (MOCS
     project.h
     settings.h
     tagset.h
-
     internet/dataprovider.h
+    scanner.h
 
     gui/mainwindow.h
     gui/controls.h

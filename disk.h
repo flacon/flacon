@@ -62,7 +62,7 @@ public:
 
     InputAudioFile *audioFile() const { return mAudioFile; }
     QString audioFileName() const;
-    void setAudioFile(const QString &fileName);
+    void setAudioFile(const InputAudioFile &audio);
 
 
     int startTrackNum() const { return mStartTrackNum; }
@@ -124,7 +124,6 @@ private:
     Track *mPreGapTrack;
     QList<DataProvider*> mDownloads;
 
-    bool replaceAudioFile(const QString &fileName, bool force);
     void findAudioFile(const CueTagSet &cueTags);
     void findCueFile();
 };

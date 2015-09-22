@@ -28,14 +28,15 @@
 #include "mainwindow.h"
 #include "settings.h"
 #include "converter/converter.h"
+#include "project.h"
+
 #include <QString>
 #include <QLocale>
 #include <QTranslator>
 #include <QLibraryInfo>
-
 #include <QMessageBox>
 #include <QTextStream>
-
+#include <QDebug>
 
 /************************************************
  *
@@ -84,6 +85,27 @@ void printVersion()
     out << "or later <http://www.gnu.org/licenses/lgpl-2.1.html>." << endl;
     out << "This is free software: you are free to change and redistribute it." << endl;
     out << "There is NO WARRANTY, to the extent permitted by law." << endl;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void consoleErroHandler(const QString &message)
+{
+    QString msg(message);
+    msg.remove(QRegExp("<[^>]*>"));
+    qWarning() << msg;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void guiErrorHandler(const QString &message)
+{
+    consoleErroHandler(message);
+    QMessageBox::critical(0, QObject::tr("Flacon", "Error"), message);
 }
 
 
@@ -159,6 +181,7 @@ int main(int argc, char *argv[])
 
     if (start)
     {
+        Project::installErrorHandler(consoleErroHandler);
         Converter converter;
         QEventLoop loop;
         loop.connect(&converter, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -166,6 +189,10 @@ int main(int argc, char *argv[])
         converter.start();
         loop.exec();
         return 0;
+    }
+    else
+    {
+        Project::installErrorHandler(guiErrorHandler);
     }
 
     window.show();

@@ -59,14 +59,16 @@ public:
     void emitDownloadingFinished(DataProvider *provider) { emit downloadingFinished(provider);}
 
     static QIcon getIcon(const QString &iconName1, const QString &iconName2="", const QString &iconName3="", const QString &iconName4="");
-    static void error(const QString &message);
 
     bool diskExists(const QString &cueUri);
 
+    static void error(const QString &msg);
+    static void installErrorHandler(void (*handler)(const QString &msg));
+
 public slots:
     void clear();
-    Disk *addAudioFile(const QString &fileName);
-    DiskList addCueFile(const QString &fileName);
+    Disk *addAudioFile(const QString &fileName, bool showErrors);
+    DiskList addCueFile(const QString &fileName, bool showErrors);
 
 signals:
     void diskChanged(Disk *disk);
@@ -77,9 +79,6 @@ signals:
     void afterRemoveDisk();
     void downloadingStarted(DataProvider *provider);
     void downloadingFinished(DataProvider *provider);
-
-private slots:
-    void settingChanged();
 
 private:
     explicit Project(QObject *parent = 0);

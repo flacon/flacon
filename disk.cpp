@@ -509,14 +509,9 @@ void Disk::findCueFile()
     QFileInfoList files = audio.dir().entryInfoList(QStringList() << "*.cue", QDir::Files | QDir::Readable);
     foreach(QFileInfo f, files)
     {
-        try
-        {
-            CueReader c(f.absoluteFilePath());
-            c.load();
+        CueReader c(f.absoluteFilePath());
+        if (c.isValid())
             cueReaders << c;
-        }
-        catch(QString e)
-        {}
     }
 
     if (cueReaders.count() && cueReaders.first().diskCount() == 1)
@@ -556,34 +551,15 @@ QString Disk::audioFileName() const
 /************************************************
 
  ************************************************/
-void Disk::setAudioFile(const QString &fileName)
+void Disk::setAudioFile(const InputAudioFile &audio)
 {
-    replaceAudioFile(fileName, true);
+    if (mAudioFile)
+        delete mAudioFile;
+
+    mAudioFile = new InputAudioFile(audio);
+
     if (mTagSets.isEmpty())
         findCueFile();
-}
-
-
-/************************************************
-
- ************************************************/
-bool Disk::replaceAudioFile(const QString &fileName, bool force)
-{
-    InputAudioFile *audio = new InputAudioFile(fileName);
-
-    if (!audio->isValid())
-    {
-        delete audio;
-        audio = 0;
-    }
-
-    if (force || audio)
-    {
-        delete mAudioFile;
-        mAudioFile = audio;
-    }
-
-    return audio != 0;
 }
 
 
@@ -604,15 +580,21 @@ void Disk::findAudioFile(const CueTagSet &cueTags)
 
     if (!cueTags.isMultiFileCue() && files.count() == 1)
     {
-        replaceAudioFile(files.first().filePath(), false);
+        InputAudioFile audio(files.first().filePath());
+        if (audio.isValid())
+            setAudioFile(audio);
         return;
     }
 
     QFileInfoList audioFiles = matchedAudioFiles(cueTags, files);
-    foreach (const QFileInfo &audio, audioFiles)
+    foreach (const QFileInfo &file, audioFiles)
     {
-        if (replaceAudioFile(audio.filePath(), false))
+        InputAudioFile audio(file.filePath());
+        if (audio.isValid())
+        {
+            setAudioFile(audio);
             return;
+        }
     }
 }
 

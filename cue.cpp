@@ -187,23 +187,22 @@ QByteArray unQuote(const QByteArray &line)
 
  ************************************************/
 CueReader::CueReader(const QString &fileName):
-    mFileName(fileName)
-{
-}
-
-
-/************************************************
-
- ************************************************/
-void CueReader::load()
+    mFileName(fileName),
+    mValid(false)
 {
     QFileInfo fi(mFileName);
     if (!fi.exists())
-        throw QObject::tr("File \"%1\" not exists").arg(mFileName);
+    {
+        mErrorString = QObject::tr("File <b>\"%1\"</b> not exists").arg(mFileName);
+        return;
+    }
 
     QFile file(fi.canonicalFilePath());
     if (!file.open(QIODevice::ReadOnly))
-        throw file.errorString();
+    {
+        mErrorString = file.errorString();
+        return;
+    }
 
     // Detect codepage and skip BOM .............
     QByteArray magic = file.read(3);
@@ -230,25 +229,23 @@ void CueReader::load()
     // Detect codepage and skip BOM .............
 
 
-    try
-    {
-        parse(file);
-    }
-    catch (QString e)
-    {
-        file.close();
-        throw e;
-    }
-
+    mValid = parse(file);
     file.close();
 
     if (mDisks.isEmpty())
-        throw QObject::tr("The <b>%1</b> is not a valid CUE file. Cue has no disks.").arg(mFileName);
+    {
+        mValid = false;
+        mErrorString = QObject::tr("The <b>%1</b> is not a valid CUE file. Cue has no FILE tag.").arg(mFileName);
+    }
 
     for (int i=0; i<mDisks.count(); ++i)
     {
         if (disk(i).tracksCount() == 0)
-            throw QObject::tr("The <b>%1</b> is not a valid CUE file. Disk %2 has no tags.").arg(mFileName).arg(i);
+        {
+            mValid = false;
+            mErrorString = QObject::tr("The <b>%1</b> is not a valid CUE file. Disk %2 has no tags.").arg(mFileName).arg(i);
+            break;
+        }
     }
 }
 
@@ -338,7 +335,7 @@ QByteArray extractFileFromFileTag(const QByteArray &value)
  Complete cue sheet syntax documentation
  http://digitalx.org/cue-sheet/syntax/
  ************************************************/
-void CueReader::parse(QFile &file)
+bool CueReader::parse(QFile &file)
 {
     CueTagId tag;
     QByteArray value;
@@ -364,7 +361,10 @@ void CueReader::parse(QFile &file)
             tags.setDiskTag(TAG_CATALOG,    mCatalog,    false);
             tags.setDiskTag(TAG_CDTEXTFILE, mCdTextFile, false);
 
-            parseOneDiskTags(file, &tags);
+            bool ok = parseOneDiskTags(file, &tags);
+            if (!ok)
+                return false;
+
             mDisks << tags;
         }
             break;
@@ -401,6 +401,8 @@ void CueReader::parse(QFile &file)
             tags.setDiskTag("MULTI_FILE", "1");
         }
     }
+
+    return true;
 }
 
 
@@ -408,7 +410,7 @@ void CueReader::parse(QFile &file)
  Complete cue sheet syntax documentation
  http://digitalx.org/cue-sheet/syntax/
  ************************************************/
-void CueReader::parseOneDiskTags(QFile &file, CueTagSet *tags)
+bool CueReader::parseOneDiskTags(QFile &file, CueTagSet *tags)
 {
     int trackIdx = -1;
     CueTagId tag;
@@ -426,7 +428,7 @@ void CueReader::parseOneDiskTags(QFile &file, CueTagSet *tags)
         {
         case CTAG_FILE:
             file.seek(pos);
-            return;
+            return true;
 
         case CTAG_TRACK:
             trackIdx++;
@@ -459,10 +461,16 @@ void CueReader::parseOneDiskTags(QFile &file, CueTagSet *tags)
             bool ok;
             int num = leftPart(value, ' ').toInt(&ok);
             if (!ok)
-                throw QObject::tr("The <b>%1</b> is not a valid CUE file. Incorrect track Index at %2.").arg(mFileName).arg(pos);
+            {
+                mErrorString = QObject::tr("The <b>%1</b> is not a valid CUE file. Incorrect track Index at %2.").arg(mFileName).arg(pos);
+                return false;
+            }
 
             if (num < 0 || num > 99)
-                throw QObject::tr("The <b>%1</b> is not a valid CUE file. Incorrect track Index at %2.").arg(mFileName).arg(pos);
+            {
+                mErrorString = QObject::tr("The <b>%1</b> is not a valid CUE file. Incorrect track Index at %2.").arg(mFileName).arg(pos);
+                return false;
+            }
 
             tags->setTrackTag(trackIdx, cueIndexTagKey(num), rightPart(value, ' '));
         }
@@ -487,6 +495,8 @@ void CueReader::parseOneDiskTags(QFile &file, CueTagSet *tags)
             break;
         }
     }
+
+    return true;
 }
 
 

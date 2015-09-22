@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2012-2015
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,50 +24,24 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef CONVERTER_H
-#define CONVERTER_H
+#ifndef SCANNER_H
+#define SCANNER_H
 
 #include <QObject>
-#include <QDateTime>
-#include "disk.h"
 
-class OutFormat;
-class ConverterThread;
-class Disk;
-class Track;
-
-class Converter : public QObject
+class Scanner : public QObject
 {
     Q_OBJECT
 public:
-    explicit Converter(QObject *parent = 0);
-
-    bool isRunning();
-    bool canConvert() const;
-
-signals:
-    void finished();
+    explicit Scanner(QObject *parent = 0);
 
 public slots:
-    void start();
+    void start(const QString &startDir);
     void stop();
 
-private slots:
-    void threadError(Track *track, const QString &message);
-    void startThread();
-    void threadFinished();
-    void trackReady(Track *track, const QString &outFileName);
-    void setTrackProgress(Track *track, Track::Status status, int percent);
-
 private:
-    QDateTime mStartTime;
-    int mThreadCount;
-    QList<ConverterThread*> mThreads;
-
-    bool check(OutFormat *format) const;
-    void createDiscThreads(Disk *disk, const OutFormat *format);
-    void createTrackThreads(Track *track, const OutFormat *format, ConverterThread *prevThread, ConverterThread *nextThread);
-    bool createDirs();
+    bool mActive;
+    bool mAbort;
 };
 
-#endif // CONVERTER_H
+#endif // SCANNER_H

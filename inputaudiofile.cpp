@@ -31,7 +31,7 @@
 #include <QByteArray>
 #include <QTextStream>
 #include <QDebug>
-
+#include <QFileInfo>
 
 void initInputAudioFormat(QList<InputAudioFormat> *formats)
 {
@@ -82,8 +82,35 @@ InputAudioFile::InputAudioFile(const QString &fileName):
 /************************************************
 
  ************************************************/
+InputAudioFile::InputAudioFile(const InputAudioFile &other)
+{
+    mFileName    = other.mFileName;
+    mValid       = other.mValid;
+    mErrorString = other.mErrorString;
+    mSampleRate  = other.mSampleRate;
+    mCdQuality   = other.mCdQuality;
+}
+
+
+/************************************************
+
+ ************************************************/
 bool InputAudioFile::load()
 {
+    if (mFileName == "")
+    {
+        qWarning() << "Audio file name is'n set";
+        mErrorString = QObject::tr("Audio file name is'n set");
+        return false;
+    }
+
+    if (!QFileInfo(mFileName).exists())
+    {
+        qWarning() << QString("Audio file <b>\"%1\"</b> not exists").arg(mFileName);
+        mErrorString = QObject::tr("Audio file <b>\"%1\"</b> not exists").arg(mFileName);
+        return false;
+    }
+
     QString shntool = settings->value(Settings::Prog_Shntool).toString();
     if (shntool.isEmpty())
     {
@@ -109,7 +136,7 @@ bool InputAudioFile::load()
     if (proc.exitCode() != 0)
     {
         mErrorString = QObject::tr("File <b>%1</b> is not a supported audio file. <br>"
-                                   "<br>Verify that all required programs are installed and in your preferences.");
+                                   "<br>Verify that all required programs are installed and in your preferences.").arg(mFileName);
         return false;
     }
 

@@ -34,6 +34,7 @@
 #include "configdialog/configdialog.h"
 #include "aboutdialog/aboutdialog.h"
 #include "cuediskselectdialog/cuediskselectdialog.h"
+#include "scanner.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -43,79 +44,6 @@
 #include <QQueue>
 #include <QKeyEvent>
 #include <QMimeData>
-
-class DirScanner
-{
-public:
-    explicit DirScanner();
-    void start(const QString &startDir);
-    void stop() { mAbort = true; }
-
-private:
-    bool mActive;
-    bool mAbort;
-};
-
-/************************************************
-
- ************************************************/
-DirScanner::DirScanner():
-    mActive(false),
-    mAbort(false)
-{
-}
-
-
-/************************************************
-
- ************************************************/
-void DirScanner::start(const QString &startDir)
-{
-    mActive = true;
-    mAbort = false;
-
-    QStringList exts;
-    foreach(InputAudioFormat format, InputAudioFormat::allFormats())
-        exts << QString("*.%1").arg(format.ext());
-
-
-    QQueue<QString> query;
-    query << startDir;
-
-    QSet<QString> processed;
-    while (!query.isEmpty())
-    {
-        QDir dir(query.dequeue());
-
-        QFileInfoList dirs = dir.entryInfoList(QDir::Dirs | QDir::Readable | QDir::NoDotAndDotDot);
-        foreach(QFileInfo d, dirs)
-        {
-            qApp->processEvents();
-            if (mAbort)
-                return;
-
-            if (d.isSymLink())
-                d = QFileInfo(d.symLinkTarget());
-
-            if (!processed.contains(d.absoluteFilePath()))
-            {
-                processed << d.absoluteFilePath();
-                query << d.absoluteFilePath();
-            }
-        }
-
-        QFileInfoList files = dir.entryInfoList(exts, QDir::Files | QDir::Readable);
-        foreach(QFileInfo f, files)
-        {
-            qApp->processEvents();
-            if (mAbort)
-                return;
-
-            project->addAudioFile(f.absoluteFilePath());
-
-        }
-    }
-}
 
 
 /************************************************
@@ -368,7 +296,6 @@ void MainWindow::setCueForDisc(Disk *disk)
     QString flt = getOpenFileFilter(false, true);
 
     QString dir;
-
     if (!disk->audioFileName().isEmpty())
         dir = QFileInfo(disk->audioFileName()).dir().absolutePath();
     else if (! disk->cueFile().isEmpty())
@@ -383,10 +310,8 @@ void MainWindow::setCueForDisc(Disk *disk)
         return;
 
     CueReader cue(fileName);
-    try
+    if (cue.isValid())
     {
-        cue.load();
-
         int diskNum = 0;
         if (cue.isMultiFileCue())
         {
@@ -404,11 +329,12 @@ void MainWindow::setCueForDisc(Disk *disk)
             if (diskNum < 0)
                 return;
         }
+
         disk->loadFromCue(cue.disk(diskNum), true);
     }
-    catch (QString e)
+    else
     {
-        project->error(e);
+        Project::error(cue.errorString());
     }
 }
 
@@ -680,10 +606,7 @@ void MainWindow::openAddFileDialog()
     foreach(const QString &fileName, fileNames)
     {
         settings->setValue(Settings::Misc_LastDir, QFileInfo(fileName).dir().path());
-
-        QApplication::setOverrideCursor(Qt::WaitCursor);
         addFileOrDir(fileName);
-        QApplication::restoreOverrideCursor();
     }
 }
 
@@ -698,25 +621,23 @@ void MainWindow::setAudioForDisk(Disk *disk)
     QString dir;
 
     if (!disk->cueFile().isEmpty())
-    {
         dir = QFileInfo(disk->cueFile()).dir().absolutePath();
-    }
     else if (! disk->audioFileName().isEmpty())
-    {
         dir = QFileInfo(disk->audioFileName()).dir().absolutePath();
-    }
     else
-    {
         dir = settings->value(Settings::Misc_LastDir).toString();
-    }
 
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select audio file", "OpenFile dialog title"), dir, flt);
 
-    if (!fileName.isEmpty())
-    {
-        disk->setAudioFile(fileName);
-    }
+    if (fileName.isEmpty())
+        return;
+
+    InputAudioFile audio(fileName);
+    if (audio.isValid())
+        disk->setAudioFile(audio);
+    else
+        Project::error(audio.errorString());
 }
 
 
@@ -727,34 +648,26 @@ void MainWindow::addFileOrDir(const QString &fileName)
 {
     DiskList addedDisks;
 
-    try
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    QFileInfo fi = QFileInfo(fileName);
+    if (fi.isDir())
     {
-        QApplication::setOverrideCursor(Qt::WaitCursor);
-        QFileInfo fi = QFileInfo(fileName);
-        if (fi.isDir())
-        {
-            mScanner = new DirScanner;
-            setControlsEnable();
-            mScanner->start(fi.absoluteFilePath());
-            delete mScanner;
-            mScanner = 0;
-            setControlsEnable();
-        }
-        else if (fi.size() > 102400)
-        {
-            addedDisks << project->addAudioFile(fileName);
-        }
-        else
-        {
-            addedDisks << project->addCueFile(fileName);
-        }
-        QApplication::restoreOverrideCursor();
+        mScanner = new Scanner;
+        setControlsEnable();
+        mScanner->start(fi.absoluteFilePath());
+        delete mScanner;
+        mScanner = 0;
+        setControlsEnable();
     }
-    catch (QString e)
+    else if (fi.size() > 102400)
     {
-        QApplication::restoreOverrideCursor();
-        project->error(e);
+        addedDisks << project->addAudioFile(fileName, true);
     }
+    else
+    {
+        addedDisks << project->addCueFile(fileName, true);
+    }
+    QApplication::restoreOverrideCursor();
 
     if (!addedDisks.isEmpty())
         this->trackView->selectDisk(addedDisks.first());

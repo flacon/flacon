@@ -55,7 +55,9 @@ do {\
 Disk *loadFromCue(const QString &cueFile)
 {
     CueReader cueReader(cueFile);
-    cueReader.load();
+    if (!cueReader.isValid())
+        FAIL(cueReader.errorString().toLocal8Bit());
+
     Disk *res = new Disk();
     res->loadFromCue(cueReader.disk(0));
     return res;
@@ -473,7 +475,8 @@ ConverterTester::ConverterTester(const QString &cueFile, const QString &audioFil
     mExpectedCue = expectedCue;
     project->clear();
     mDisk = loadFromCue(cueFile);
-    mDisk->setAudioFile(audioFile);
+    InputAudioFile audio(audioFile);
+    mDisk->setAudioFile(audio);
     project->addDisk(mDisk);
 }
 
@@ -962,7 +965,13 @@ void TestFlacon::testTrackResultFilePath()
     Disk *disk = loadFromCue(mDataDir + "simple.cue");
 
     if (!audioFile.isEmpty())
-        disk->setAudioFile(audioFile);
+    {
+        InputAudioFile audio(audioFile);
+        if (!audio.isValid())
+            QFAIL(audio.errorString().toLocal8Bit().data());
+
+        disk->setAudioFile(audio);
+    }
 
     QString result = disk->track(0)->resultFilePath();
     if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath())
@@ -1763,7 +1772,9 @@ void TestFlacon::testFindAudioFile()
 
     QStringList expectedLists = expected.split(",", QString::SkipEmptyParts);
     CueReader cue(cueFile);
-    cue.load();
+    if (!cue.isValid())
+        FAIL("Cue isn't valid:" + cue.errorString().toLocal8Bit());
+
     for (int i=0; i<cue.diskCount(); ++i)
     {
         Disk disk;
