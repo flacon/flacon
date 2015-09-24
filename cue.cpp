@@ -353,7 +353,8 @@ bool CueReader::parse(QFile &file)
             diskNum++;
 
             CueTagSet tags(cueFileInfo.canonicalFilePath() + QString(" [%1]").arg(diskNum));
-            tags.setTextCodecName("UTF-8");
+            if (!mCodecName.isEmpty())
+                tags.setTextCodecName(mCodecName);
             tags.setDiskTag(TAG_CUE_FILE, mFileName);
             tags.setDiskTag(TAG_FILE, extractFileFromFileTag(value), false);
             tags.setDiskTag(TAG_DISKNUM,    QString("%1").arg(diskNum).toLatin1(), true);
