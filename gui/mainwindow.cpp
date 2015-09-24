@@ -144,7 +144,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(codepageCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
 
     connect(mConverter, SIGNAL(finished()), this, SLOT(setControlsEnable()));
-    connect(mConverter, SIGNAL(error(QString)), this, SLOT(showErrorMessage(QString)));
 
     connect(trackView, SIGNAL(selectCueFile(Disk*)), this, SLOT(setCueForDisc(Disk*)));
     connect(trackView, SIGNAL(selectAudioFile(Disk*)), this, SLOT(setAudioForDisk(Disk*)));
