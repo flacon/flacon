@@ -50,6 +50,8 @@ public:
 
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
+    void drawBranch(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
+
 signals:
     void trackButtonClicked(const QModelIndex &index, const QRect &buttonRect);
     void audioButtonClicked(const QModelIndex &index, const QRect &buttonRect);
@@ -82,6 +84,7 @@ private:
     void paintDisk(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, const Disk *disk) const;
     QRect drawLabel(const QString &text, QRect rect, QPainter *painter) const;
     QRect drawFile(const QString &text, QRect rect, QPainter *painter) const;
+    void drawSelectionMark(QPainter *painter, const QRect &rect) const;
 };
 
 #endif // TRACKVIEWDELEGATE_H

@@ -67,6 +67,7 @@ signals:
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
+    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
 
 private slots:
     void headerContextMenu(QPoint pos);

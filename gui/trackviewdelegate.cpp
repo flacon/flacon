@@ -41,6 +41,7 @@
 
 #include <QDebug>
 
+#define SELECTION_MARK      8
 #define MARGIN              6
 #define TOP_PADDING        16
 #define BOTTOM_PADDING      2
@@ -153,13 +154,44 @@ TrackViewDelegate::~TrackViewDelegate()
 /************************************************
 
  ************************************************/
+void TrackViewDelegate::drawSelectionMark(QPainter *painter, const QRect &rect) const
+{
+    QRect r=rect;
+    r.setWidth(SELECTION_MARK);
+    painter->fillRect(r, mTrackView->palette().highlight().color());
+}
+
+
+/************************************************
+
+ ************************************************/
+void TrackViewDelegate::drawBranch(QPainter *painter, const QRect &rect, const QModelIndex &index) const
+{
+    QColor bgColor = index.row() %2 ? mTrackView->palette().base().color() : mTrackView->palette().alternateBase().color();
+    if (rect.isValid())
+        painter->fillRect(rect, bgColor);
+
+    if (mTrackView-> selectionModel()->isSelected(index))
+        drawSelectionMark(painter, rect);
+}
+
+
+/************************************************
+
+ ************************************************/
 void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    QStyleOptionViewItem opt = option;
+    opt.state &= ~QStyle::State_Selected;
+
     QObject *obj = static_cast<QObject*>(index.internalPointer());
     Track *track = qobject_cast<Track*>(obj);
     if (track)
     {
-        paintTrack(painter, option, index, track);
+        QColor bgColor = index.row() %2 ? mTrackView->palette().base().color() : mTrackView->palette().alternateBase().color();
+        painter->fillRect(opt.rect, bgColor);
+
+        paintTrack(painter, opt, index, track);
         return;
     }
 
@@ -168,7 +200,13 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
         Disk *disk = qobject_cast<Disk*>(obj);
         if (disk)
         {
-            paintDisk(painter, option, index, disk);
+            QColor bgColor = mTrackView->palette().base().color();
+            painter->fillRect(opt.rect, bgColor);
+
+            if (mTrackView-> selectionModel()->isSelected(index))
+                drawSelectionMark(painter, opt.rect);
+
+            paintDisk(painter, opt, index, disk);
         }
     }
 }
@@ -251,12 +289,6 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
 {
     QRect paintRect = option.rect;
     paintRect.setLeft(0);
-
-    if (option.state & QStyle::State_Selected)
-        QStyledItemDelegate::paint(painter, option, index);
-    else
-        painter->fillRect(option.rect, mTrackView->palette().base().color());
-
 
     //cache = self.cache(index)
     painter->save();

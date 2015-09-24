@@ -354,6 +354,16 @@ void TrackView::contextMenuEvent(QContextMenuEvent *event)
 }
 
 
+
+/************************************************
+
+ ************************************************/
+void TrackView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
+{
+    mDelegate->drawBranch(painter, rect, index);
+}
+
+
 /************************************************
  Open treeview inline editor
  ************************************************/
