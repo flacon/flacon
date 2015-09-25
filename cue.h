@@ -36,7 +36,7 @@ class QFile;
 class CueIndex
 {
 public:
-    CueIndex(const QString &str = "");
+    explicit CueIndex(const QString &str = "");
 
     bool isNull() const { return mNull; }
     QString toString(bool cdQuality = true) const;

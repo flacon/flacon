@@ -416,11 +416,10 @@ bool CueReader::parseOneDiskTags(QFile &file, CueTagSet *tags)
     int trackIdx = -1;
     CueTagId tag;
     QByteArray value;
-    qint64 pos;
 
     while (!file.atEnd())
     {
-        pos = file.pos();
+        qint64 pos = file.pos();
         QByteArray line = file.readLine();
         parseLine(line, tag, value);
 

@@ -167,7 +167,7 @@ void TrackViewDelegate::drawSelectionMark(QPainter *painter, const QRect &rect) 
  ************************************************/
 void TrackViewDelegate::drawBranch(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
-    QColor bgColor = index.row() %2 ? mTrackView->palette().base().color() : mTrackView->palette().alternateBase().color();
+    QColor bgColor = (index.row() % 2) ? mTrackView->palette().base().color() : mTrackView->palette().alternateBase().color();
     if (rect.isValid())
         painter->fillRect(rect, bgColor);
 
@@ -188,7 +188,7 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
     Track *track = qobject_cast<Track*>(obj);
     if (track)
     {
-        QColor bgColor = index.row() %2 ? mTrackView->palette().base().color() : mTrackView->palette().alternateBase().color();
+        QColor bgColor = (index.row() % 2) ? mTrackView->palette().base().color() : mTrackView->palette().alternateBase().color();
         painter->fillRect(opt.rect, bgColor);
 
         paintTrack(painter, opt, index, track);

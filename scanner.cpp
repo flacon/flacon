@@ -35,11 +35,21 @@
 #include <QApplication>
 
 
-Scanner::Scanner(QObject *parent) : QObject(parent)
+/************************************************
+
+ ************************************************/
+Scanner::Scanner(QObject *parent) :
+    QObject(parent),
+    mActive(false),
+    mAbort(false)
 {
 
 }
 
+
+/************************************************
+
+ ************************************************/
 void Scanner::start(const QString &startDir)
 {
     mActive = true;
@@ -87,6 +97,10 @@ void Scanner::start(const QString &startDir)
     }
 }
 
+
+/************************************************
+
+ ************************************************/
 void Scanner::stop()
 {
     mAbort = true;

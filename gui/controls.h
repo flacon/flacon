@@ -133,7 +133,7 @@ class MultiValuesComboBox: public QComboBox
 {
     Q_OBJECT
 public:
-    MultiValuesComboBox(QWidget *parent = 0);
+    explicit MultiValuesComboBox(QWidget *parent = 0);
     bool multi() const { return mMultiState == MultiValuesMulti; }
 
 public slots:
@@ -152,7 +152,7 @@ class CodePageComboBox: public MultiValuesComboBox
 {
     Q_OBJECT
 public:
-    CodePageComboBox(QWidget *parent = 0);
+    explicit CodePageComboBox(QWidget *parent = 0);
 
 private:
     void addCodecName(const QString &title, const QString &codecName);

@@ -42,7 +42,7 @@
 class CueCreator
 {
 public:
-    CueCreator(Disk *disk);
+    explicit CueCreator(Disk *disk);
     bool write();
 
     QString errorString() const { return mErrorString; }

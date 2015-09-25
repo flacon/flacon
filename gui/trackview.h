@@ -52,7 +52,7 @@ public:
         ColumnCount     = 6
     };
 
-    TrackView(QWidget *parent = 0);
+    explicit TrackView(QWidget *parent = 0);
 
     QList<Track*> selectedTracks() const;
     QList<Disk*> selectedDisks() const;

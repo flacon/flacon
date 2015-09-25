@@ -1116,6 +1116,8 @@ void TestFlacon::testTrackSetCodepages()
         QString cmd = QString("diff %1 %2").arg(expectedFile, resultFile);
         QFAIL((msg + "\n    " + cmd).toLocal8Bit());
     }
+
+    delete disk;
 }
 
 
