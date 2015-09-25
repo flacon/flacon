@@ -54,10 +54,8 @@ TrackView::TrackView(QWidget *parent):
     mModel = new TrackViewModel(this);
     setModel(mModel);
 
-    //self._selectionModel = TrackViewSelectionModel(mModel)
     setSelectionModel(new TrackViewSelectionModel(mModel, this));
 
-    //#self.setMouseTracking(True)
     setUniformRowHeights(false);
 
     // Context menu ....................................
@@ -269,7 +267,11 @@ TrackViewSelectionModel::TrackViewSelectionModel(QAbstractItemModel *model, QObj
  ************************************************/
 void TrackViewSelectionModel::select(const QItemSelection &selection, QItemSelectionModel::SelectionFlags command)
 {
+    if (selection.count() == 0)
+        return;
+
     QItemSelection newSelection = selection;
+
 
     QModelIndexList idxs = selection.indexes();
     foreach (const QModelIndex &index, idxs)
@@ -361,6 +363,54 @@ void TrackView::contextMenuEvent(QContextMenuEvent *event)
 void TrackView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
     mDelegate->drawBranch(painter, rect, index);
+}
+
+
+
+/************************************************
+
+ ************************************************/
+void TrackView::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key())
+    {
+    case Qt::Key_Left:
+    {
+        QModelIndex parent = selectionModel()->currentIndex().parent();
+        int row = selectionModel()->currentIndex().row();
+        for (int i=selectionModel()->currentIndex().column() - 1; i>=0; --i)
+        {
+            QModelIndex idx = model()->index(row, i, parent);
+            if (idx.isValid() && !isColumnHidden(i))
+            {
+                selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+                return;
+            }
+        }
+        break;
+    }
+
+    case Qt::Key_Right:
+    {
+
+        QModelIndex parent = selectionModel()->currentIndex().parent();
+        int cnt = model()->columnCount(parent);
+        int row = selectionModel()->currentIndex().row();
+        for (int i=selectionModel()->currentIndex().column() + 1; i<cnt ; ++i)
+        {
+            QModelIndex idx = model()->index(row, i, parent);
+            if (idx.isValid() && !isColumnHidden(i))
+            {
+                selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+                return;
+            }
+        }
+        break;
+    }
+
+    default:
+        QTreeView::keyPressEvent(event);
+    }
 }
 
 

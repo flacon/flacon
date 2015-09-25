@@ -171,7 +171,7 @@ void TrackViewDelegate::drawBranch(QPainter *painter, const QRect &rect, const Q
     if (rect.isValid())
         painter->fillRect(rect, bgColor);
 
-    if (mTrackView-> selectionModel()->isSelected(index))
+    if (mTrackView-> selectionModel()->isRowSelected(index.row(), index.parent()))
         drawSelectionMark(painter, rect);
 }
 

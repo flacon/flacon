@@ -291,6 +291,9 @@ If you surround sections of text that contain a token with braces, these section
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="tabKeyNavigation">
+        <bool>true</bool>
+       </property>
        <property name="alternatingRowColors">
         <bool>true</bool>
        </property>
@@ -456,7 +459,7 @@ If you surround sections of text that contain a token with braces, these section
     <string>...</string>
    </property>
    <property name="toolTip">
-    <string comment="Main form tooltip for &quot;Directory&quot; edit">You can browse to the destination directory. You can also input it manually. 
+    <string comment="Main form tooltip for &quot;Directory&quot; edit">You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</string>
    </property>
