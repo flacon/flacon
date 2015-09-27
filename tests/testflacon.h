@@ -44,7 +44,7 @@ public:
                     const QString &resultFiles);
 
 
-    void run();
+    void run(const QString &name);
 
     Disk *disk() { return mDisk; }
 

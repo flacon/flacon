@@ -202,8 +202,6 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
         {
             QColor bgColor = mTrackView->palette().base().color();
             painter->fillRect(opt.rect, bgColor);
-            if (index.row())
-               opt.rect.setTop(opt.rect.top() + TOP_PADDING);
 
             if (mTrackView-> selectionModel()->isSelected(index))
                 drawSelectionMark(painter, opt.rect);
@@ -300,10 +298,11 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
 
     painter->translate(option.rect.topLeft());
 
+    int topPadding = index.row() ? TOP_PADDING : 0;
     QRect windowRect(MARGIN + MARGIN,
-                     MARGIN,
+                     MARGIN + topPadding,
                      option.rect.right() - 2 * MARGIN,
-                     option.rect.height() - 2 * MARGIN - BOTTOM_PADDING);
+                     option.rect.height() - 2 * MARGIN - topPadding - BOTTOM_PADDING);
 
     // Draw cover image ................................
     if (mNoCoverImg.height() != windowRect.height())

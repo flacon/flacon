@@ -69,7 +69,9 @@ uint Track::duration() const
     uint start = cueIndex(1).milliseconds();
     uint end = 0;
     if (index() < mDisk->count() - 1)
+    {
         end = mDisk->track(index()+1)->cueIndex(1).milliseconds();
+    }
     else if (mDisk->audioFile())
     {
         end = mDisk->audioFile()->duration();

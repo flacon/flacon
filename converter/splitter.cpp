@@ -39,6 +39,13 @@
 #include <QTextCodec>
 #include <QDebug>
 
+//#define DEBUG_CUE_ON
+
+#ifdef DEBUG_CUE_ON
+#define DEBUG_CUE qDebug()
+#else
+#define DEBUG_CUE QT_NO_QDEBUG_MACRO()
+#endif
 
 class CueCreator
 {
@@ -269,26 +276,34 @@ void Splitter::sendCueData()
 
     QString s = QString("FILE \"%1\" WAVE").arg(disk()->audioFileName());
     mProcess->write(s.toLocal8Bit() + "\n");
+
     for (int t=0; t<disk()->count(); ++t)
     {
         Track *track = disk()->track(t);
+
         QString s = QString("TRACK %1 AUDIO").arg(t + 1);
+        DEBUG_CUE << s;
         mProcess->write(s.toLocal8Bit() + "\n");
 
-        for (int i=0; i<100; ++i)
+        if (fakeIndex && t == 0)
         {
-            if (!track->cueIndex(i).isNull())
+            QString s = cdQuality ? "  INDEX 01 00:00:00" : "  INDEX 01 00:00.000";
+            DEBUG_CUE << s;
+            mProcess->write(s.toLocal8Bit() + "\n");
+        }
+        else
+        {
+
+            for (int i=0; i<100; ++i)
             {
-                QString s = QString("  INDEX %1 %2\n")
-                        .arg(i, 2, 10, QChar('0'))
-                        .arg(track->cueIndex(i).toString(cdQuality));
-
-                if (fakeIndex && i == 1)
+                if (!track->cueIndex(i).isNull())
                 {
-                    s = cdQuality ? "  INDEX 01 00:00:00\n" : "  INDEX 01 00:00.000\n";
-                }
-
+                    QString s = QString("  INDEX %1 %2")
+                            .arg(i, 2, 10, QChar('0'))
+                            .arg(track->cueIndex(i).toString(cdQuality));
+                DEBUG_CUE << s;
                 mProcess->write(s.toLocal8Bit() + "\n");
+                }
             }
         }
     }

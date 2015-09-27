@@ -483,12 +483,13 @@ ConverterTester::ConverterTester(const QString &cueFile, const QString &audioFil
 /************************************************
 
  ************************************************/
-void ConverterTester::run()
+void ConverterTester::run(const QString &name)
 {
     Converter conv;
     QEventLoop loop;
     loop.connect(&conv, SIGNAL(finished()), &loop, SLOT(quit()));
     conv.start();
+
     if (!conv.isRunning())
     {
         QString msg;
@@ -535,7 +536,7 @@ void ConverterTester::run()
     }
 
     if (!msg.isEmpty())
-        QFAIL(msg.toLocal8Bit());
+        QFAIL(name.toLocal8Bit() + "\n" + msg.toLocal8Bit());
 
 }
 
@@ -573,7 +574,7 @@ void TestFlacon::testConvert()
                     "04 - Song04.wav;"
                     );
 
-        conv.run();
+        conv.run("1.1. With pregap and HTOA, w/o cue");
     }
     //## 1.1 ##############################################
 
@@ -597,7 +598,7 @@ void TestFlacon::testConvert()
                     "Artist-Album.cue;"
                     );
 
-        conv.run();
+        conv.run("1.2. With pregap and HTOA, with cue");
     }
     //## 1.2 ##############################################
 
@@ -620,7 +621,7 @@ void TestFlacon::testConvert()
                     "Artist-Album.cue;"
                     );
 
-        conv.run();
+        conv.run("2.1 W/o pregap, w/o HTOA");
     }
     //## 2.1 ##############################################
 
@@ -644,7 +645,7 @@ void TestFlacon::testConvert()
                     "Artist-Album.cue;"
                     );
 
-        conv.run();
+        conv.run("2.2. W/o pregap, w/o HTOA");
     }
     //## 2.2 ##############################################
 
@@ -667,7 +668,7 @@ void TestFlacon::testConvert()
                     "Artist-Album.cue;"
                     );
 
-        conv.run();
+        conv.run("3. With pregap, w/o HTOA");
     }
     //## 3 ################################################
 
@@ -690,7 +691,7 @@ void TestFlacon::testConvert()
                     "Artist-Album.cue;"
                     );
 
-        conv.run();
+        conv.run("4. All tags");
     }
     //## 4 ################################################
 
@@ -723,7 +724,7 @@ void TestFlacon::testConvert()
             track->setDate("2013");
         }
 
-        conv.run();
+        conv.run("5. Cue w/o tags + tags form the separate file");
     }
     //## 5 ################################################
 
@@ -745,7 +746,7 @@ void TestFlacon::testConvert()
                     "04 - Song04.wav;"
                     );
 
-        conv.run();
+        conv.run("6. Garbage in the CUE");
     }
     //## 6 #################################################
 
@@ -775,7 +776,7 @@ void TestFlacon::testConvert()
                     "04 - Song04.wav;"
                     );
 
-        conv.run();
+        conv.run("7. With pregap and HTOA");
     }
     //## 7 #################################################
 
@@ -798,7 +799,7 @@ void TestFlacon::testConvert()
                     "04 - Song04.wav;"
                     );
 
-        conv.run();
+        conv.run("8. With pregap and HTOA");
     }
     //## 8 #################################################
 
