@@ -204,7 +204,12 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
             painter->fillRect(opt.rect, bgColor);
 
             if (mTrackView-> selectionModel()->isSelected(index))
-                drawSelectionMark(painter, opt.rect);
+            {
+                QRect rect = opt.rect;
+                if (index.row() > 0)
+                    rect.setTop(rect.top() + TOP_PADDING);
+                drawSelectionMark(painter, rect);
+            }
 
             paintDisk(painter, opt, index, disk);
         }
