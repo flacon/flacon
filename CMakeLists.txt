@@ -181,6 +181,7 @@ set(TRANSLATIONS_DIR
 )
 add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
+include("tools.cmake")
 
 set(DEF_PATH_ENV_SEPARATOR ":")
 # OS/2 ***************************************
@@ -192,17 +193,8 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "OS2")
 endif()
 # ********************************************
 
-
-macro(setByDefault VAR_NAME VAR_VALUE)
-  if (NOT DEFINED ${VAR_NAME})
-    set (${VAR_NAME} ${VAR_VALUE})
-  endif()
-  add_definitions(-D${VAR_NAME}=\"${VAR_VALUE}\")
-endmacro()
-
 setByDefault(BINARY_EXT "${DEF_BINARY_EXT}")
 setByDefault(PATH_ENV_SEPARATOR "${DEF_PATH_ENV_SEPARATOR}")
-
 
 ############################################
 if(CMAKE_COMPILER_IS_GNUCXX)
@@ -245,6 +237,8 @@ if(USE_QT4)
     qt4_add_resources(QRC_SOURCES ${RESOURCES})
     qt4_wrap_ui(UI_HEADERS ${FORMS})
     qt4_add_translation(QM_FILES ${TS_FILES})
+
+    status_message("Using Qt5, for building with Qt5 use -DUSE_QT5=Yes option.")
 else()
     cmake_minimum_required(VERSION 2.8.3)
     find_package(Qt5Widgets REQUIRED QUIET)
@@ -265,6 +259,8 @@ else()
     qt5_add_resources(QRC_SOURCES ${RESOURCES})
     qt5_wrap_ui(UI_HEADERS ${FORMS})
     qt5_add_translation(QM_FILES ${TS_FILES})
+
+    status_message("Using Qt5, for building with Qt4 use -DUSE_QT4=Yes option.")
 endif()
 
 include(FindPkgConfig)
@@ -325,23 +321,9 @@ install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 if(BUILD_TESTS STREQUAL "Yes")
     add_definitions(-DBUILD_TESTS)
     add_subdirectory(tests)
-endif()
-
-
-message(STATUS "*****************************************************")
-if(USE_QT4)
-    message(STATUS "Use Qt4, for building with Qt5 use -DUSE_QT5=Yes option.")
 else()
-    message(STATUS "Use Qt5, for building with Qt4 use -DUSE_QT4=Yes option.")
+    status_message("For building tests use -DBUILD_TESTS=Yes option.")
 endif()
-
-if(NOT BUILD_TESTS STREQUAL "Yes")
-    message(STATUS "")
-    message(STATUS "For building tests use -DBUILD_TESTS=Yes option.")
-endif()
-
-message(STATUS "")
-message(STATUS "*****************************************************")
 
 
 # Man page **************************************
@@ -380,3 +362,5 @@ SET(CPACK_SOURCE_IGNORE_FILES ${CPACK_IGNORE_FILES})
 INCLUDE(CPack)
 # simulate autotools' "make dist"
 add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
+
+show_status()
