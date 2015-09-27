@@ -179,6 +179,7 @@ public:
     int index() const { return mIndex; }
 
     int trackNum() const;
+    uint duration() const;
 
     CueIndex cueIndex(int indexNum) const;
     void setCueIndex(int indexNum, const CueIndex &value);

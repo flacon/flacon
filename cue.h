@@ -45,6 +45,8 @@ public:
     bool operator==(const CueIndex &other) const;
     bool operator!=(const CueIndex &other) const;
 
+    uint milliseconds() const { return mHiValue; }
+
 private:
     bool mNull;
     int mCdValue;

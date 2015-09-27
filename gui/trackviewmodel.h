@@ -35,6 +35,7 @@ class Disk;
 class Track;
 class TrackView;
 
+
 class TrackViewModel : public QAbstractItemModel
 {
     Q_OBJECT
@@ -74,6 +75,7 @@ private slots:
 private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;
     QVariant diskData(const Disk *disk, const QModelIndex &index, int role) const;
+    QString trackDurationToString(uint milliseconds) const;
 
     TrackView *mView;
 };

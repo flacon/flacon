@@ -57,6 +57,7 @@ public:
     bool isCdQuality() const { return mCdQuality; }
     int sampleRate() const { return mSampleRate; }
     QString errorString() const { return mErrorString; }
+    uint duration() const { return mDuration; }
 
 private:
 
@@ -65,6 +66,7 @@ private:
     QString mErrorString;
     int mSampleRate;
     bool mCdQuality;
+    uint mDuration;
 
     bool load();
 };

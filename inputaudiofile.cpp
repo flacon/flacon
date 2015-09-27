@@ -71,10 +71,12 @@ QList<InputAudioFormat> InputAudioFormat::allFormats()
  ************************************************/
 InputAudioFile::InputAudioFile(const QString &fileName):
     mFileName(fileName),
-    mValid(false)
+    mValid(false),
+    mSampleRate(0),
+    mCdQuality(false),
+    mDuration(0)
+
 {
-    mSampleRate = 0;
-    mCdQuality = false;
     mValid = load();
 }
 
@@ -89,6 +91,7 @@ InputAudioFile::InputAudioFile(const InputAudioFile &other)
     mErrorString = other.mErrorString;
     mSampleRate  = other.mSampleRate;
     mCdQuality   = other.mCdQuality;
+    mDuration    = other.mDuration;
 }
 
 
@@ -159,6 +162,20 @@ bool InputAudioFile::load()
             continue;
         }
 
+
+        if (name == "LENGTH")
+        {
+            // 0h 0m 3s - Length:   0:03.00
+            // 1h 2m 5s - Length:  62:05.00
+            QRegExp re("(\\d+):(\\d+)\\.(\\d+)");
+            if (re.exactMatch(value))
+            {
+                mDuration = re.cap(1).toInt() * 60 * 1000 +
+                            re.cap(2).toInt() * 1000 +
+                            re.cap(3).toInt();
+            }
+            continue;
+        }
     }
 
     return true;

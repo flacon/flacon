@@ -65,6 +65,7 @@ QVariant TrackViewModel::headerData(int section, Qt::Orientation orientation, in
     switch(section)
     {
     case TrackView::ColumnTracknum:   return QVariant(tr("Track",   "Table header."));
+    case TrackView::ColumnDuration:   return QVariant(tr("Length",  "Table header."));
     case TrackView::ColumnTitle:      return QVariant(tr("Title",   "Table header."));
     case TrackView::ColumnArtist:     return QVariant(tr("Artist",  "Table header."));
     case TrackView::ColumnAlbum:      return QVariant(tr("Album",   "Table header."));
@@ -223,6 +224,9 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
         case TrackView::ColumnTracknum:
             return QVariant(QString("%1").arg(track->trackNum(), 2, 10, QChar('0')));
 
+        case TrackView::ColumnDuration:
+            return QVariant(trackDurationToString(track->duration()) + " ");
+
         case TrackView::ColumnTitle:
             return QVariant(track->title());
 
@@ -255,6 +259,18 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
         }
     }
 
+    // TextAlignmen :::::::::::::::::::::::::::::::::::::
+    if (role == Qt::TextAlignmentRole)
+    {
+        switch (index.column())
+        {
+        case TrackView::ColumnDuration:
+            return  Qt::AlignRight + Qt::AlignVCenter;
+        }
+
+        return QVariant();
+
+    }
     // StatusPercent ::::::::::::::::::::::::::::::::::::
 //    if (role == StatusPercentRole)
 //    {
@@ -343,6 +359,31 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
 
     return QVariant();
 
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString TrackViewModel::trackDurationToString(uint milliseconds) const
+{
+    if (milliseconds > 0)
+    {
+        uint l = milliseconds / 1000;
+        uint h = l / 3600;
+        uint m = (l % 3600) / 60;
+        uint s = l % 60;
+
+
+        if (h > 0)
+            return tr("%1:%2:%3", "Track length").arg(h).arg(m, 2, 10, QChar('0')).arg(s, 2, 10, QChar('0'));
+        else
+            return tr("%1:%2", "Track length").arg(m).arg(s, 2, 10, QChar('0'));
+    }
+    else
+    {
+        return "??";
+    }
 }
 
 

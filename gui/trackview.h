@@ -44,12 +44,13 @@ public:
     {
         ColumnPercent   = 0,
         ColumnTracknum  = 0,
-        ColumnTitle     = 1,
-        ColumnArtist    = 2,
-        ColumnAlbum     = 3,
-        ColumnComment   = 4,
-        ColumnFileName  = 5,
-        ColumnCount     = 6
+        ColumnDuration  = 1,
+        ColumnTitle     = 2,
+        ColumnArtist    = 3,
+        ColumnAlbum     = 4,
+        ColumnComment   = 5,
+        ColumnFileName  = 6,
+        ColumnCount     = 7
     };
 
     explicit TrackView(QWidget *parent = 0);
