@@ -51,6 +51,7 @@ class QTextCodec;
 #define TAG_FILE        "FILE"
 #define TAG_DISKNUM     "DISKNUM"
 #define TAG_CUE_FILE    "CUE_FILE"
+#define START_TRACK_NUM "START_TRACK_NUM"
 
 #define CODEC_AUTODETECT "AUTODETECT"
 

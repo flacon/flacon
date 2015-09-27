@@ -39,6 +39,7 @@
 #include <QTextCodec>
 #include <QDebug>
 
+
 class CueCreator
 {
 public:
@@ -266,58 +267,31 @@ void Splitter::sendCueData()
     bool fakeIndex = (format->createCue() and
                       format->preGapType() == OutFormat::PreGapAddToFirstTrack);
 
-    QFile cue(disk()->cueFile());
-    cue.open(QFile::ReadOnly);
-
-    int trackNum = 0;
-    QByteArray line;
-    while (!cue.atEnd())
+    QString s = QString("FILE \"%1\" WAVE").arg(disk()->audioFileName());
+    mProcess->write(s.toLocal8Bit() + "\n");
+    for (int t=0; t<disk()->count(); ++t)
     {
-        line = cue.readLine();
-        QString str = QString(line).trimmed();
-        QString key = str.section(' ', 0, 0).toUpper();
+        Track *track = disk()->track(t);
+        QString s = QString("TRACK %1 AUDIO").arg(t + 1);
+        mProcess->write(s.toLocal8Bit() + "\n");
 
-        if (key == "TRACK")
+        for (int i=0; i<100; ++i)
         {
-            trackNum++;
-            mProcess->write(line);
-            continue;
-        }
-
-        if (key == "INDEX")
-        {
-            int indexNum = str.section(' ', 1, 1).toInt();
-
-            if (fakeIndex && trackNum == 1)
+            if (!track->cueIndex(i).isNull())
             {
-                if (indexNum == 1)
+                QString s = QString("  INDEX %1 %2\n")
+                        .arg(i, 2, 10, QChar('0'))
+                        .arg(track->cueIndex(i).toString(cdQuality));
+
+                if (fakeIndex && i == 1)
                 {
-                    if (cdQuality)
-                        mProcess->write("  INDEX 01 00:00:00\n");
-                    else
-                        mProcess->write("  INDEX 01 00:00.000\n");
+                    s = cdQuality ? "  INDEX 01 00:00:00\n" : "  INDEX 01 00:00.000\n";
                 }
-            }
-            else
-            {
-                CueIndex index(str.section(' ', 2));
-                mProcess->write(QString("  INDEX %1 %2\n")
-                                .arg(indexNum, 2, 10, QChar('0'))
-                                .arg(index.toString(cdQuality))
-                                .toLocal8Bit());
-            }
-            continue;
-        }
 
-        if (key == "FILE")
-        {
-            mProcess->write(line);
-            continue;
+                mProcess->write(s.toLocal8Bit() + "\n");
+            }
         }
-
     }
-
-    cue.close();
 }
 
 

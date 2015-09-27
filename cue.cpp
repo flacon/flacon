@@ -238,6 +238,7 @@ CueReader::CueReader(const QString &fileName):
         mErrorString = QObject::tr("The <b>%1</b> is not a valid CUE file. Cue has no FILE tag.").arg(mFileName);
     }
 
+    int startTrackNum = 1;
     for (int i=0; i<mDisks.count(); ++i)
     {
         if (disk(i).tracksCount() == 0)
@@ -246,6 +247,9 @@ CueReader::CueReader(const QString &fileName):
             mErrorString = QObject::tr("The <b>%1</b> is not a valid CUE file. Disk %2 has no tags.").arg(mFileName).arg(i);
             break;
         }
+
+        mDisks[i].setDiskTag(START_TRACK_NUM, QString("%1").arg(startTrackNum).toLatin1());
+        startTrackNum += disk(i).tracksCount();
     }
 }
 

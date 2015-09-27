@@ -448,6 +448,7 @@ void Disk::loadFromCue(const CueTagSet &cueTags, bool activate)
         delete mTagSets.first();
 
     mTagSets[0] = new TagSet(cueTags);
+    setStartTrackNum(cueTags.diskTag(START_TRACK_NUM).toInt());
 
     if (!mAudioFile)
         findAudioFile(cueTags);
