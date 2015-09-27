@@ -830,7 +830,7 @@ void TestFlacon::testTrackResultFileName()
                     expected);
         QFAIL(msg.toLocal8Bit());
     }
-    delete disk;
+    disk->deleteLater();
 }
 
 
@@ -983,7 +983,7 @@ void TestFlacon::testTrackResultFilePath()
         QFAIL(msg.toLocal8Bit());
     }
     //QCOMPARE(result, expected);
-    delete disk;
+    disk->deleteLater();
 }
 
 
@@ -1117,7 +1117,7 @@ void TestFlacon::testTrackSetCodepages()
         QFAIL((msg + "\n    " + cmd).toLocal8Bit());
     }
 
-    delete disk;
+    disk->deleteLater();
 }
 
 

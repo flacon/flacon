@@ -169,7 +169,8 @@ void Project::removeDisk(const QList<Disk*> *disks)
         Disk *disk = disks->at(i);
         emit beforeRemoveDisk(disk);
         if (mDisks.removeAll(disk))
-            delete disk;
+            disk->deleteLater();
+
         emit afterRemoveDisk();
     }
 
@@ -274,10 +275,10 @@ DiskList Project::addCueFile(const QString &fileName, bool showErrors)
     }
     else
     {
-        foreach(Disk *d, res)
+        foreach(Disk *disk, res)
         {
-            mDisks.removeAll(d);
-            delete d;
+            mDisks.removeAll(disk);
+            disk->deleteLater();
         }
 
         emit layoutChanged();

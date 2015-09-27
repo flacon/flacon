@@ -433,6 +433,9 @@ void Disk::loadFromCue(const CueTagSet &cueTags, bool activate)
     for (int i=mTracks.count(); i<mCount; ++i)
         mTracks.append(new Track(this, i));
 
+    while (mTracks.count() > mCount)
+        mTracks.takeLast()->deleteLater();
+
     for (int t=0; t<cueTags.tracksCount(); ++t)
     {
         for (int idx=0; idx<100; ++idx)
