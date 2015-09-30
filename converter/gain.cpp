@@ -28,6 +28,7 @@
 #include "outformat.h"
 
 #include <QProcess>
+#include <QDir>
 
 /************************************************
 
@@ -96,7 +97,7 @@ void Gain::doRun()
     QHashIterator<Track*, QString> i(mInputFiles);
     while (i.hasNext()) {
         i.next();
-        files << i.value();
+        files << QDir::toNativeSeparators(i.value());
     }
 
     QStringList args = mFormat->gainArgs(files);

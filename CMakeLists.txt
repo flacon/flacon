@@ -183,19 +183,6 @@ add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
 include("tools.cmake")
 
-set(DEF_PATH_ENV_SEPARATOR ":")
-# OS/2 ***************************************
-if(${CMAKE_SYSTEM_NAME} STREQUAL "OS2")
-
-    set(DEF_BINARY_EXT ".exe")
-    set(DEF_PATH_ENV_SEPARATOR "\\\\x3B")
-
-endif()
-# ********************************************
-
-setByDefault(BINARY_EXT "${DEF_BINARY_EXT}")
-setByDefault(PATH_ENV_SEPARATOR "${DEF_PATH_ENV_SEPARATOR}")
-
 ############################################
 if(CMAKE_COMPILER_IS_GNUCXX)
       add_definitions (-Wall -pedantic -Wno-long-long)

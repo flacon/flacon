@@ -32,6 +32,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QFileInfo>
+#include <QDir>
 
 void initInputAudioFormat(QList<InputAudioFormat> *formats)
 {
@@ -114,7 +115,7 @@ bool InputAudioFile::load()
         return false;
     }
 
-    QString shntool = settings->value(Settings::Prog_Shntool).toString();
+    QString shntool = QDir::toNativeSeparators(settings->value(Settings::Prog_Shntool).toString());
     if (shntool.isEmpty())
     {
         qWarning() << "Program shntool not found.";
@@ -126,7 +127,7 @@ bool InputAudioFile::load()
 
     QStringList args;
     args << "info";
-    args << mFileName;
+    args << QDir::toNativeSeparators(mFileName);
 
     proc.start(shntool, args);
 

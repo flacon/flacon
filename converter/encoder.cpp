@@ -117,7 +117,7 @@ void Encoder::doRun()
     }
 
 
-    QStringList args = mFormat->encoderArgs(track(), outFile());
+    QStringList args = mFormat->encoderArgs(track(), QDir::toNativeSeparators(outFile()));
     if (mDebug)
         debugArguments(args);
 
@@ -126,7 +126,7 @@ void Encoder::doRun()
     mProcess = new QProcess();
     connect(mProcess, SIGNAL(bytesWritten(qint64)), this, SLOT(processBytesWritten(qint64)));
 
-    mProcess->start(prog, args);
+    mProcess->start(QDir::toNativeSeparators(prog), args);
     mProcess->waitForStarted();
 
     readInputFile();

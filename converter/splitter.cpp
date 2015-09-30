@@ -141,14 +141,14 @@ void Splitter::doRun()
     args << "-n" << "%04d";
     args << "-t" << mFilePrefix +"%n";
     args << "-d" << mWorkDir;
-    args << disk()->audioFileName();
+    args << QDir::toNativeSeparators(disk()->audioFileName());
     //qDebug() << args;
 
     QString shntool = settings->value(Settings::Prog_Shntool).toString();
     mProcess = new QProcess();
     mProcess->setReadChannel(QProcess::StandardError);
 
-    mProcess->start(shntool, args);
+    mProcess->start(QDir::toNativeSeparators(shntool), args);
     mProcess->waitForStarted();
 
     sendCueData();

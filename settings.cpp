@@ -36,6 +36,22 @@
     #include <QStandardPaths>
 #endif
 
+
+
+#ifdef Q_OS_WIN
+    #define PATH_ENV_SEPARATOR ';'
+    #define BINARY_EXT ".ext"
+
+#elif defined(Q_OS_OS2)
+    #define PATH_ENV_SEPARATOR ';'
+    #define BINARY_EXT ".ext"
+
+#else
+    #define PATH_ENV_SEPARATOR ':'
+    #define BINARY_EXT ""
+
+#endif
+
 QString Settings::mFileName;
 
 /************************************************
