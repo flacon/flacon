@@ -109,9 +109,8 @@ void Gain::doRun()
     mProcess = new QProcess();
 
     mProcess->start(prog, args);
-    mProcess->waitForStarted();
-
     mProcess->waitForFinished(-1);
+
     if (mProcess->exitCode() != 0)
     {
         QString msg = tr("Gain error:\n") +

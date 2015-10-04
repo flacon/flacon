@@ -128,13 +128,7 @@ bool TestFlacon::createAudioFile(const QString &program, const QString &fileName
     //proc.setProcessChannelMode(QProcess::ForwardedChannels);
 
     proc.start(program, args);
-    proc.waitForStarted();
-    if (proc.state() == QProcess::NotRunning)
-    {
-        return false;
-    }
-
-    proc.waitForFinished(-1);
+    proc.waitForFinished(3 * 60 * 10000);
     return proc.exitCode() == 0;
 }
 
