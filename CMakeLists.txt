@@ -225,7 +225,7 @@ if(USE_QT4)
     qt4_wrap_ui(UI_HEADERS ${FORMS})
     qt4_add_translation(QM_FILES ${TS_FILES})
 
-    status_message("Using Qt5, for building with Qt5 use -DUSE_QT5=Yes option.")
+    status_message("Using Qt4, for building with Qt5 use -DUSE_QT5=Yes option.")
 else()
     cmake_minimum_required(VERSION 2.8.3)
     find_package(Qt5Widgets REQUIRED QUIET)
