@@ -102,7 +102,7 @@ private slots:
     void testConvert();
 
 private:
-    bool createAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality);
+    void createAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality);
     void writeTextFile( const QString &fileName, const QString &content);
     void writeTextFile( const QString &fileName, const QStringList &content);
 

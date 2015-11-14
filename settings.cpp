@@ -40,11 +40,11 @@
 
 #ifdef Q_OS_WIN
     #define PATH_ENV_SEPARATOR ';'
-    #define BINARY_EXT ".ext"
+    #define BINARY_EXT ".exe"
 
 #elif defined(Q_OS_OS2)
     #define PATH_ENV_SEPARATOR ';'
-    #define BINARY_EXT ".ext"
+    #define BINARY_EXT ".exe"
 
 #else
     #define PATH_ENV_SEPARATOR ':'

@@ -99,37 +99,38 @@ void TestFlacon::initTestCase()
         FAIL(QString("Program \"%1\" not found.").arg("avconv/ffmpeg").toLocal8Bit());
 
     mCdAudioFile = mTmpDir + "CD_10Min.wav";
-    createAudioFile(mFfmpeg, mCdAudioFile, 600, true);
+    createAudioFile(mFfmpeg, mCdAudioFile, 900, true);
 
     mHdAudioFile = mTmpDir + "HD_10Min.wav";
-    createAudioFile(mFfmpeg, mHdAudioFile, 600, false);
+    createAudioFile(mFfmpeg, mHdAudioFile, 900, false);
 }
 
 
 /************************************************
 
  ************************************************/
-bool TestFlacon::createAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality)
+void TestFlacon::createAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality)
 {
     if (QFileInfo(fileName).exists())
-        return true;
+        return;
 
     QStringList args;
     args << "-y"; //  Overwrite output files."
+    args << "-t" << QString("%1").arg(duration);
+    args << "-f" << "lavfi";
+    args << "-i" << "anullsrc";
     args << "-ar" << (cdQuality ? "44100" : " 48000");
-    args << "-f" << "s16le";
     args << "-acodec" << "pcm_s16le";
     args << "-ac" << "2";
-    args << "-i" << "/dev/urandom";
-    args << "-t" << QString("%1").arg(duration);
-    args << fileName;
+    args << QDir::toNativeSeparators(fileName);
 
     QProcess proc;
     //proc.setProcessChannelMode(QProcess::ForwardedChannels);
 
     proc.start(program, args);
     proc.waitForFinished(3 * 60 * 10000);
-    return proc.exitCode() == 0;
+    if (proc.exitCode() != 0)
+        QFAIL("Can't create audio file");
 }
 
 
@@ -295,11 +296,13 @@ bool TestFlacon::compareCue(const QString &result, const QString &expected, QStr
     resFile.open(QFile::ReadOnly);
     QByteArray resData = resFile.readAll();
     resFile.close();
+    resData.replace("\r\n", "\n");
 
     QFile expFile(expected);
     expFile.open(QFile::ReadOnly);
     QByteArray expData = expFile.readAll();
     expFile.close();
+    expData.replace("\r\n", "\n");
 
     if (resData != expData)
     {
@@ -947,7 +950,6 @@ void TestFlacon::testTrackResultFileName_data()
  ************************************************/
 void TestFlacon::testTrackResultFilePath()
 {
-    //QFETCH(QString, cueFile);
     QFETCH(QString, outDir);
     QFETCH(QString, pattern);
     QFETCH(QString, expected);
@@ -994,41 +996,41 @@ void TestFlacon::testTrackResultFilePath_data()
     QTest::addColumn<QString>("audioFile");
 
 
-    QTest::newRow("1")
+    QTest::newRow("1: /home/user/music")
             << "/home/user/music"
             << "%a/%y - %A/%n - %t"
             << "/home/user/music/Artist/2013 - Album/01 - Song01.wav"
             << "";
 
 
-    QTest::newRow("2")
+    QTest::newRow("2: ~/music")
             << "~/music"
             << "%a/%y - %A/%n - %t"
             << QDir::homePath() + "/music/Artist/2013 - Album/01 - Song01.wav"
             << "";
 
 
-    QTest::newRow("3")
+    QTest::newRow("3: /music")
             << "/music"
             << "%a/%y - %A/%n - %t"
             << "/music/Artist/2013 - Album/01 - Song01.wav"
             << "";
 
 
-    QTest::newRow("4")
+    QTest::newRow("4: empty")
             << ""
             << "%a/%y - %A/%n - %t"
             << QDir::homePath() + "/Artist/2013 - Album/01 - Song01.wav"
             << "";
 
 
-    QTest::newRow("5")
+    QTest::newRow("5: dot (.) with CdAudioFile")
             << "."
             << "%a/%y - %A/%n - %t"
             << mTmpDir + "/Artist/2013 - Album/01 - Song01.wav"
             << mCdAudioFile;
 
-    QTest::newRow("6")
+    QTest::newRow("6. empty with CdAudioFile")
             << ""
             << "%a/%y - %A/%n - %t"
             << mTmpDir + "/Artist/2013 - Album/01 - Song01.wav"
