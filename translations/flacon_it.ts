@@ -538,6 +538,22 @@ In CBR mode it set the specific output bitrate.
     </message>
 </context>
 <context>
+    <name>CueDiskSelectDialog</name>
+    <message>
+        <source>Select disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 [ disk %2 ]</source>
+        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
@@ -546,14 +562,6 @@ In CBR mode it set the specific output bitrate.
     <message>
         <source>CUE file not set.</source>
         <translation>Nessun file CUE selezionato.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file.</source>
-        <translation>Il file &lt;b&gt;%1&lt;/b&gt; non è un formato CUE valido.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation>Il file &lt;b&gt;%1&lt;/b&gt; contiene diversi FILE etichetta. &lt;br&gt; Questi file CUE non sono ancora supportati.</translation>
     </message>
 </context>
 <context>
@@ -921,18 +929,16 @@ I simboli partono da %. Puoi usare i seguenti simboli:
 Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, queste sezioni saranno nascoste se il simbolo è vuoto.</translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually. 
+        <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Puoi sfogliare la cartella di destinazione. Puoi altresì selezionarla manualmente.
-
-Se lasci il percorso vuoto o inizia con il &quot;.&quot; (punto), i file risultanti saranno posti nella stessa cartella di origine. </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern</comment>
-        <translation>Usa &quot;%1&quot;</translation>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -972,14 +978,6 @@ Se lasci il percorso vuoto o inizia con il &quot;.&quot; (punto), i file risulta
     </message>
 </context>
 <context>
-    <name>Project</name>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -996,6 +994,39 @@ Se lasci il percorso vuoto o inizia con il &quot;.&quot; (punto), i file risulta
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <translation>Non puoi usare il &apos;ReplayGain&apos; per file che hanno una frequenza superiore ai 48kHz. Metaflac non supporta questi file.</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> [disk %1]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file name is&apos;n set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1112,6 +1143,21 @@ Se lasci il percorso vuoto o inizia con il &quot;.&quot; (punto), i file risulta
 %1</source>
         <translation>Impossibile convertire.
 %1</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1:%2:%3</source>
+        <comment>Track length, string like '01:02:56'</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1:%2</source>
+        <comment>Track length, string like '02:56'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

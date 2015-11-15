@@ -39,7 +39,7 @@
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon naudoja išorinės programas. Didelis ačiū jų autoriams!</translation>
+        <translation>Flacon naudoja išorines programas. Didelis ačiū jų autoriams!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
@@ -569,6 +569,22 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     </message>
 </context>
 <context>
+    <name>CueDiskSelectDialog</name>
+    <message>
+        <source>Select disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 [ disk %2 ]</source>
+        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
@@ -577,14 +593,6 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>CUE file not set.</source>
         <translation>Nenustatytas CUE failas.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file.</source>
-        <translation>Failas &lt;b&gt;%1&lt;/b&gt; nėra taisyklingas CUE failas.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation>Faile &lt;b&gt;%1&lt;/b&gt; yra kelios FILE žymės.&lt;br&gt;Šie CUE failai kol kas yra nepalaikomi.</translation>
     </message>
 </context>
 <context>
@@ -952,18 +960,16 @@ If you surround sections of text that contain a token with braces, these section
 Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, tuomet, jei ženklas yra tuščias, tos sekcijos bus paslėptos.</translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually. 
+        <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
-
-Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern</comment>
-        <translation>Naudoti &quot;%1&quot;</translation>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1003,14 +1009,6 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     </message>
 </context>
 <context>
-    <name>Project</name>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1027,6 +1025,39 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <translation>jūs negalite naudoti &apos;ReplayGain&apos; failams, kurių skaitmeninimo dažnis yra didesnis nei 48kHz. Metaflac tokių failų nepalaiko.</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> [disk %1]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file name is&apos;n set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1143,6 +1174,21 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
 %1</source>
         <translation>Konvertavimas neįmanomas.
 %1</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1:%2:%3</source>
+        <comment>Track length, string like '01:02:56'</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1:%2</source>
+        <comment>Track length, string like '02:56'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

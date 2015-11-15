@@ -568,6 +568,22 @@ In CBR mode it set the specific output bitrate.
     </message>
 </context>
 <context>
+    <name>CueDiskSelectDialog</name>
+    <message>
+        <source>Select disk</source>
+        <translation>Выберите диск</translation>
+    </message>
+    <message>
+        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
+        <translation>CUE содержит несколько дисков. Какой диск Вы хотите использовать?</translation>
+    </message>
+    <message>
+        <source>%1 [ disk %2 ]</source>
+        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <translation>%1 [ диск %2 ]</translation>
+    </message>
+</context>
+<context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
@@ -576,14 +592,6 @@ In CBR mode it set the specific output bitrate.
     <message>
         <source>CUE file not set.</source>
         <translation>Не задан CUE файл.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation>Файл &lt;b&gt;%1&lt;/b&gt; содержит несколько тегов FILE.&lt;br&gt;Такие файлы пока не поддерживаются.</translation>
     </message>
 </context>
 <context>
@@ -895,7 +903,7 @@ Do you want to continue?</source>
     <message>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Добавить CUE или аудиофайл</translation>
+        <translation>Добавление CUE или аудиофайла</translation>
     </message>
     <message>
         <source>Select audio file</source>
@@ -949,7 +957,7 @@ If you surround sections of text that contain a token with braces, these section
 Если Вы окружили часть текста фигурными скобками, то эта часть не будет видна, если значения полей будут пустыми.</translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually. 
+        <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
@@ -959,7 +967,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern</comment>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <translation>Использовать &quot;%1&quot;</translation>
     </message>
 </context>
@@ -1000,14 +1008,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
 </context>
 <context>
-    <name>Project</name>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1024,6 +1024,39 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <translation>Вы не можете использовать &apos;выравнивание громкости&apos; для файлов с частотой дискретизации выше 48 КГц. Metaflac не поддерживает такие файлы.</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation>Файл &lt;b&gt;%1&lt;/b&gt; не существует.</translation>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Он не содержит тега FILE.</translation>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Диск %2 не содержит тегов.</translation>
+    </message>
+    <message>
+        <source> [disk %1]</source>
+        <translation> [диск %1]</translation>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Некорректный индекс в позиции %2.</translation>
+    </message>
+    <message>
+        <source>Audio file name is&apos;n set</source>
+        <translation>Не задан аудиофайл.</translation>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation>Аудио файл &lt;b&gt;%1&lt;/b&gt; не существует.</translation>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation>Flacon</translation>
     </message>
 </context>
 <context>
@@ -1140,6 +1173,21 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 %1</source>
         <translation>Конвертация невозможна.
 %1</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation>Продолжительность</translation>
+    </message>
+    <message>
+        <source>%1:%2:%3</source>
+        <comment>Track length, string like '01:02:56'</comment>
+        <translation>%1:%2:%3</translation>
+    </message>
+    <message>
+        <source>%1:%2</source>
+        <comment>Track length, string like '02:56'</comment>
+        <translation>%1:%2</translation>
     </message>
 </context>
 </TS>

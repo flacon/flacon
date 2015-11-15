@@ -345,28 +345,28 @@
 </source>
         <extracomment>ererere</extracomment>
         <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
-&lt;dd&gt;Utilizando Tasa de Bits Variable promedio, esta configuración debería ofrece la transparencia suficiente para la mayoría de las personas y la mayoría de la música.&lt;/dd&gt;
+&lt;dd&gt;Utilizando Tasa de Bits Variable promedio, esta configuración ofrece la transparencia suficiente para la mayoría de las personas y la mayoría de la música.&lt;/dd&gt;
 
 &lt;dt&gt;VBR estándar, VBR estándar rápido&lt;/dt&gt;
 &lt;dd&gt;Utilizando Tasa de Bits Variable estándar, esta configuración debería ser en general transparente para la mayoría de las personas y la mayoría de la música y es también bastante alta en calidad.&lt;/dd&gt;
 
 &lt;dt&gt;VBR extremo, VBR extremo rápido&lt;/dt&gt;
-&lt;dd&gt;Utilizando la Tasa de Bits más alta posible, esta configuración ofrece casi tan alta calidad como el modo estándar si tienes un oído extremadamente bueno o un equipo de audio de alta gama.&lt;/dd&gt;
+&lt;dd&gt;Utilizando la Tasa de Bits más alta posible, esta configuración ofrece casi tan alta calidad como el modo estándar si se tiene un oído extremadamente bueno o un equipo de audio de alta gama.&lt;/dd&gt;
 
 &lt;dt&gt;calidad VBR&lt;/dt&gt;
-&lt;dd&gt;Esta opción para Tasa de Bits variable te permite especificar la calidad de salida.&lt;/dd&gt;
+&lt;dd&gt;Esta opción para Tasa de Bits variable le permite especificar la calidad de salida.&lt;/dd&gt;
 
 &lt;dt&gt;opción rápida&lt;/dt&gt;
 &lt;dd&gt;Habilita el nuevo VBR rápido para un perfil en particular. Esta es la opción recomendada.&lt;/dd&gt;
 
 &lt;dt&gt;CBR insano&lt;/dt&gt;
-&lt;dd&gt;Si quieres obtener la más alta calidad sin importar el tamaño del archivo, puedes lograrlo utilizando este modo de Tasa de Bits Constante.&lt;/dd&gt;
+&lt;dd&gt;Si quiere obtener la más alta calidad sin importar el tamaño del archivo, puede lograrlo utilizando este modo de Tasa de Bits Constante.&lt;/dd&gt;
 
 &lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Utilizar esta configuración de Tasa de Bits Constante te dará buena calidad a una tasa de bits específica.&lt;/dd&gt;
+&lt;dd&gt;Utilizar esta configuración de Tasa de Bits Constante le dará buena calidad a una tasa de bits específica.&lt;/dd&gt;
 
 &lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Utilizar esta configuración de Tasa de Bits Promedio te dará por regla general una calidad superior a la opción de Tasa de Bits Constante para una tasa de bits específica.&lt;/dd&gt;
+&lt;dd&gt;Utilizar esta configuración de Tasa de Bits Promedio le dará por regla general una calidad superior a la opción de Tasa de Bits Constante para una tasa de bits específica.&lt;/dd&gt;
 </translation>
     </message>
     <message>
@@ -489,19 +489,19 @@
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation type="unfinished"/>
+        <translation>Tipo de tasa de bits:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Tasa de bits:</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
-        <translation type="unfinished"/>
+        <translation>VBR - tasa de bits variable</translation>
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation type="unfinished"/>
+        <translation>CBR - tasa de bits limitada</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -518,7 +518,12 @@ In VBR mode this set the average rate for a large and diverse collection of audi
 &lt;p&gt;
 In CBR mode it set the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
+        <translation>Establece la tasa de bits de destino en kb / s ( 6-256 por canal) .
+&lt; p&gt; 
+En el modo VBR se establece una tasa promedio para una amplia y variada colección de audio.
+&lt; p&gt;
+En el modo CBR se establece una salida específica de tasa de bits.
+</translation>
     </message>
 </context>
 <context>
@@ -560,6 +565,22 @@ In CBR mode it set the specific output bitrate.
     </message>
 </context>
 <context>
+    <name>CueDiskSelectDialog</name>
+    <message>
+        <source>Select disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 [ disk %2 ]</source>
+        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
@@ -568,14 +589,6 @@ In CBR mode it set the specific output bitrate.
     <message>
         <source>CUE file not set.</source>
         <translation>Archivo CUE no establecido.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file.</source>
-        <translation>El archivo &lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation>El archivo &lt;b&gt;%1&lt;/b&gt; contiene varias etiquetas ARCHIVO.&lt;br&gt; Esos archivos CUE no están soportados aún.</translation>
     </message>
 </context>
 <context>
@@ -942,18 +955,16 @@ Los identificadores inician con %. Puede usar los siguientes identificadores:
 Si la sección de texto que contiene un identificador está rodeado por llaves, estas secciones se ocultarán si el identificador está vacio.</translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually. 
+        <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Puede navegar al directorio destino. Puede además introducirlo manualmente.
-
-Si la ruta está vacia o inicia con &quot;.&quot; (punto), los archivos resultantes serán puestos en el mismo directorio que el origen.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern</comment>
-        <translation>Use &quot;%1&quot;</translation>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -993,14 +1004,6 @@ Si la ruta está vacia o inicia con &quot;.&quot; (punto), los archivos resultan
     </message>
 </context>
 <context>
-    <name>Project</name>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1017,6 +1020,39 @@ Si la ruta está vacia o inicia con &quot;.&quot; (punto), los archivos resultan
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <translation>No puede usar &apos;ReplayGain&apos; para archivos con ratios de muestra por encima de 48Hz. Metaflac no soporta ese tipo de archivos.</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> [disk %1]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file name is&apos;n set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1133,6 +1169,21 @@ Si la ruta está vacia o inicia con &quot;.&quot; (punto), los archivos resultan
 %1</source>
         <translation>La conversión no es posible.
 %1</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1:%2:%3</source>
+        <comment>Track length, string like '01:02:56'</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1:%2</source>
+        <comment>Track length, string like '02:56'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

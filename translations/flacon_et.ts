@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_TW" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="et" version="2.0">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -11,7 +11,7 @@
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished"/>
+        <translation>Autor</translation>
     </message>
     <message>
         <source>Thanks</source>
@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Translations</source>
-        <translation type="unfinished"/>
+        <translation>Tõlked</translation>
     </message>
     <message>
         <source>External programs</source>
@@ -31,7 +31,7 @@
     </message>
     <message>
         <source>License: %1</source>
-        <translation type="unfinished"/>
+        <translation>Litsents: %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
@@ -39,7 +39,7 @@
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon 使用的外掛程式，非常感謝這些程式的開發者！</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
@@ -100,11 +100,11 @@
     </message>
     <message>
         <source>Cyrillic (Win-1251)</source>
-        <translation>西裡爾語 (Win-1251)</translation>
+        <translation>Cyrillic (Win-1251)</translation>
     </message>
     <message>
         <source>Cyrillic (CP-866)</source>
-        <translation>西裡爾語 (CP-866)</translation>
+        <translation>Cyrillic (CP-866)</translation>
     </message>
     <message>
         <source>Latin-1 (ISO-8859-1)</source>
@@ -164,42 +164,42 @@
     </message>
     <message>
         <source>Windows 1250</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1250</translation>
     </message>
     <message>
         <source>Windows 1252</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1252</translation>
     </message>
     <message>
         <source>Windows 1253</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1253</translation>
     </message>
     <message>
         <source>Windows 1254</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1254</translation>
     </message>
     <message>
         <source>Windows 1255</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1255</translation>
     </message>
     <message>
         <source>Windows 1256</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1256</translation>
     </message>
     <message>
         <source>Windows 1257</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1257</translation>
     </message>
     <message>
         <source>Windows 1258</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1258</translation>
     </message>
 </context>
 <context>
     <name>ConfigDialog</name>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Eelistused</translation>
     </message>
     <message>
         <source>General configuration</source>
@@ -255,7 +255,7 @@
     </message>
     <message>
         <source>Programs</source>
-        <translation type="unfinished"/>
+        <translation>Programmid</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
@@ -278,7 +278,7 @@
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Bitikiirus:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
@@ -305,7 +305,7 @@
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Keelatud</translation>
     </message>
 </context>
 <context>
@@ -352,7 +352,7 @@
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Bitikiirus:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
@@ -364,7 +364,7 @@
     </message>
     <message>
         <source>Quality:</source>
-        <translation type="unfinished"/>
+        <translation>Kvaliteet:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -376,39 +376,39 @@
     </message>
     <message>
         <source>VBR medium</source>
-        <translation type="unfinished"/>
+        <translation>VBR medium</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation type="unfinished"/>
+        <translation>VBR standard</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation type="unfinished"/>
+        <translation>VBR standard fast</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation type="unfinished"/>
+        <translation>VBR extreme</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation type="unfinished"/>
+        <translation>VBR extreme fast</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation type="unfinished"/>
+        <translation>VBR quality</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation type="unfinished"/>
+        <translation>CBR insane</translation>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation type="unfinished"/>
+        <translation>CBR kbps</translation>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation type="unfinished"/>
+        <translation>ABR kbps</translation>
     </message>
 </context>
 <context>
@@ -470,7 +470,7 @@
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Bitikiirus:</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -533,7 +533,7 @@ In CBR mode it set the specific output bitrate.
     </message>
     <message>
         <source>Conversion is not possible:</source>
-        <translation>無法轉換：</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -574,7 +574,8 @@ In CBR mode it set the specific output bitrate.
     <message>
         <source>Encoder error:
 </source>
-        <translation type="unfinished"/>
+        <translation>Kodeerija viga:
+</translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
@@ -585,13 +586,12 @@ In CBR mode it set the specific output bitrate.
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>設定編碼品質， 在 %1 (lowest) 和 %2 (highest)之間</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>設定壓縮級別，範圍在 %1 (fastest) 和 %2 (highest compression)之間。
-這個設定僅僅影響檔案的大小。所以設定都是無損的。</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disabled</source>
@@ -613,18 +613,15 @@ This only affects the file size. All settings are lossless.</source>
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>重播增益是用來矯正各種電腦聲訊格式被我們最終感知到的聲響大小的一種標准。
-
-可以通過對每個音軌的解析，使所有的曲目以相衕的音量播放。
-使用專輯增益解析可以保全專輯內部的音量差異。</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 kbps</source>
-        <translation>%1 kbit/s</translation>
+        <translation>%1 kbps</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation>預設</translation>
+        <translation>Vaikimisi</translation>
     </message>
 </context>
 <context>
@@ -648,7 +645,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>Result Files</source>
@@ -656,15 +653,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Directory:</source>
-        <translation type="unfinished"/>
+        <translation>Kataloog:</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation type="unfinished"/>
+        <translation>Muster:</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation type="unfinished"/>
+        <translation>Vorming:</translation>
     </message>
     <message>
         <source>Output format</source>
@@ -681,15 +678,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Year:</source>
-        <translation type="unfinished"/>
+        <translation>Aasta:</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation type="unfinished"/>
+        <translation>Esitaja:</translation>
     </message>
     <message>
         <source>Album:</source>
-        <translation type="unfinished"/>
+        <translation>Album:</translation>
     </message>
     <message>
         <source>Start num:</source>
@@ -705,19 +702,19 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Fail</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sätted</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Abi</translation>
     </message>
     <message>
         <source>Add file</source>
-        <translation type="unfinished"/>
+        <translation>Lisa fail</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -725,7 +722,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>Convert</source>
@@ -737,11 +734,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Abort</source>
-        <translation type="unfinished"/>
+        <translation>Katkesta</translation>
     </message>
     <message>
         <source>Abort conversion process</source>
@@ -749,15 +746,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Välju</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Eelistused</translation>
     </message>
     <message>
         <source>Program preferences</source>
@@ -769,7 +766,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Remove album</source>
-        <translation type="unfinished"/>
+        <translation>Eemalda album</translation>
     </message>
     <message>
         <source>Remove album from project</source>
@@ -777,7 +774,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Ctrl+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Del</translation>
     </message>
     <message>
         <source>Configure encoder</source>
@@ -801,7 +798,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Ctrl+I</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <source>Scan</source>
@@ -821,7 +818,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Lisa &quot;Esitaja&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
@@ -833,11 +830,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Lisa &quot;Aasta&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Lisa &quot;Žanr&quot;</translation>
     </message>
     <message>
         <source>Select CUE file</source>
@@ -862,7 +859,7 @@ Do you want to continue?</source>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation type="unfinished"/>
+        <translation>Kõik failid</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -876,12 +873,12 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Select directory</source>
-        <translation type="unfinished"/>
+        <translation>Vali kataloog</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -946,7 +943,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Kõik failid</translation>
     </message>
     <message>
         <source>Select program file</source>
@@ -1016,66 +1013,66 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>TrackView</name>
     <message>
         <source>Select another CUE file</source>
-        <translation>選取其他 CUE 檔案</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Get data from CDDB</source>
-        <translation>從 CDDB 擷取資料</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Edit</source>
-        <translation>編輯</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>選取其他聲訊檔案</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
     <message>
         <source>Error</source>
-        <translation>錯誤</translation>
+        <translation>Viga</translation>
     </message>
     <message>
         <source>Aborted</source>
-        <translation>終止</translation>
+        <translation>Katkestatud</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>確定</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Extracting</source>
-        <translation>正在擷取</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Encoding</source>
-        <translation>正在編碼</translation>
+        <translation>Kodeerimine</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation>排隊</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation>計算增益</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Wait gain</source>
-        <translation>等待增益</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Write gain</source>
-        <translation>寫入增益</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tracks:</source>
-        <translation>音軌：</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Audio:</source>
-        <translation>聲訊：</translation>
+        <translation>Audio:</translation>
     </message>
 </context>
 <context>
@@ -1083,42 +1080,41 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation>音軌</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
-        <translation>標題</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
-        <translation>藝朮家</translation>
+        <translation>Esitaja</translation>
     </message>
     <message>
         <source>Album</source>
         <comment>Table header.</comment>
-        <translation>專輯</translation>
+        <translation>Album</translation>
     </message>
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
-        <translation>註釋</translation>
+        <translation>Kommentaar</translation>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
-        <translation>檔案</translation>
+        <translation>Fail</translation>
     </message>
     <message>
         <source>Multiple values</source>
-        <translation>多個值</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Conversion is not possible.
 %1</source>
-        <translation>不可能轉換。
-%1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Length</source>

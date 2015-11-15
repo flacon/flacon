@@ -568,6 +568,22 @@ CBR 模式下，它指定特定的输出码率。
     </message>
 </context>
 <context>
+    <name>CueDiskSelectDialog</name>
+    <message>
+        <source>Select disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 [ disk %2 ]</source>
+        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
@@ -576,14 +592,6 @@ CBR 模式下，它指定特定的输出码率。
     <message>
         <source>CUE file not set.</source>
         <translation>未设定 CUE 文件。</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file.</source>
-        <translation> &lt;b&gt;%1&lt;/b&gt; n&apos; 不是一个有效的 CUE 文件。</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation> &lt;b&gt;%1&lt;/b&gt; 包含多个文件标签。&lt;br&gt; 这样的 CUE 文件目前不被支持。</translation>
     </message>
 </context>
 <context>
@@ -950,18 +958,16 @@ If you surround sections of text that contain a token with braces, these section
 如果将标记包含在括号中, 如果标记所指内容为空, 曲目名称中这些部分会被省略.</translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually. 
+        <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>可以通过文件浏览器设定目录, 也可手动输入.  ⏎
-⏎
-如果路径为空或以点号开始 &quot;.&quot; (英文标点句号), 输出文件将被放置在与输入文件相同的目录里(相对路径).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern</comment>
-        <translation>使用“%1”</translation>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1001,14 +1007,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
 </context>
 <context>
-    <name>Project</name>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1025,6 +1023,39 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <translation>采样率高于48kHz的文件无法设置回放增益, Metaflac 不支持。</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> [disk %1]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file name is&apos;n set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1141,6 +1172,21 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 %1</source>
         <translation>不可能转换。
 %1</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1:%2:%3</source>
+        <comment>Track length, string like '01:02:56'</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1:%2</source>
+        <comment>Track length, string like '02:56'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

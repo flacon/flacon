@@ -569,6 +569,22 @@ En mode DBC, ceci définit le débit binaire spécifique de sortie.
     </message>
 </context>
 <context>
+    <name>CueDiskSelectDialog</name>
+    <message>
+        <source>Select disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 [ disk %2 ]</source>
+        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
@@ -577,14 +593,6 @@ En mode DBC, ceci définit le débit binaire spécifique de sortie.
     <message>
         <source>CUE file not set.</source>
         <translation>Fichier CUE non spécifié.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file.</source>
-        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n&apos; est pas un fichier CUE valide.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; contains several FILE tags.&lt;br&gt;These CUE files are not supported yet.</source>
-        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; contient plusieurs balises FILE.&lt;br&gt;Ces fichiers CUE ne sont pas encore pris en charge.</translation>
     </message>
 </context>
 <context>
@@ -966,18 +974,16 @@ If you surround sections of text that contain a token with braces, these section
  Si vous entourez avec des accolades les sections de texte qui contiennent un marqueur, ces sections seront cachées si le marqueur est vide.</translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually. 
+        <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Vous pouvez naviguer vers le dossier de destination. Vous pouvez aussi le saisir manuellement.
-
-Si le chemin est laissé vide ou commence par « . » (point), les fichiers seront placés dans le même dossier que la source.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern</comment>
-        <translation>Utiliser « %1 »</translation>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1017,14 +1023,6 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers sero
     </message>
 </context>
 <context>
-    <name>Project</name>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1041,6 +1039,39 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers sero
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <translation>Vous ne pouvez pas utiliser &quot;ReplayGain&quot; pour des fichiers avec un débit d’échantillonnage supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> [disk %1]</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file name is&apos;n set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1157,6 +1188,21 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers sero
 %1</source>
         <translation>La conversion est impossible.
 %1</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1:%2:%3</source>
+        <comment>Track length, string like '01:02:56'</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1:%2</source>
+        <comment>Track length, string like '02:56'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
