@@ -403,8 +403,8 @@ bool Disk::canConvert(QString *description) const
     if (res)
     {
         uint duration = 0;
-        foreach (Track *t, mTracks)
-            duration += t->duration();
+        for (int i=0; i<mTracks.count()-1; ++i)
+            duration += track(i)->duration();
 
         if (mAudioFile->duration() <= duration)
         {

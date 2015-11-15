@@ -98,10 +98,10 @@ void TestFlacon::initTestCase()
     if (mFfmpeg.isEmpty())
         FAIL(QString("Program \"%1\" not found.").arg("avconv/ffmpeg").toLocal8Bit());
 
-    mCdAudioFile = mTmpDir + "CD_10Min.wav";
+    mCdAudioFile = mTmpDir + "CD.wav";
     createAudioFile(mFfmpeg, mCdAudioFile, 900, true);
 
-    mHdAudioFile = mTmpDir + "HD_10Min.wav";
+    mHdAudioFile = mTmpDir + "HD.wav";
     createAudioFile(mFfmpeg, mHdAudioFile, 900, false);
 }
 
@@ -130,7 +130,10 @@ void TestFlacon::createAudioFile(const QString &program, const QString &fileName
     proc.start(program, args);
     proc.waitForFinished(3 * 60 * 10000);
     if (proc.exitCode() != 0)
-        QFAIL("Can't create audio file");
+    {
+        QString err = proc.readAllStandardError();
+        QFAIL(QString("Can't create audio file: %1").arg(err).toLocal8Bit());
+    }
 }
 
 
