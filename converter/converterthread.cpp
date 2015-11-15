@@ -110,9 +110,10 @@ bool ConverterThread::deleteFile(const QString &fileName)
 /************************************************
 
  ************************************************/
-void ConverterThread::debugArguments(const QStringList &args)
+void ConverterThread::debugArguments(const QString &prog, const QStringList &args)
 {
     QTextStream out(stderr);
+    out << prog << " ";
     foreach (QString arg, args)
     {
         if (arg.contains(' ') || arg.contains('\t'))

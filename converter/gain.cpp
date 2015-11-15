@@ -101,10 +101,10 @@ void Gain::doRun()
     }
 
     QStringList args = mFormat->gainArgs(files);
-    if (mDebug)
-        debugArguments(args);
-
     QString prog = args.takeFirst();
+
+    if (mDebug)
+        debugArguments(prog, args);
 
     mProcess = new QProcess();
 
@@ -113,6 +113,7 @@ void Gain::doRun()
 
     if (mProcess->exitCode() != 0)
     {
+        debugArguments(prog, args);
         QString msg = tr("Gain error:\n") +
                 QString::fromLocal8Bit(mProcess->readAllStandardError());
         error(mTracks.first(), msg);

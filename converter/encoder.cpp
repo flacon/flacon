@@ -118,10 +118,10 @@ void Encoder::doRun()
 
 
     QStringList args = mFormat->encoderArgs(track(), QDir::toNativeSeparators(outFile()));
-    if (mDebug)
-        debugArguments(args);
-
     QString prog = args.takeFirst();
+
+    if (mDebug)
+        debugArguments(prog, args);
 
     mProcess = new QProcess();
     connect(mProcess, SIGNAL(bytesWritten(qint64)), this, SLOT(processBytesWritten(qint64)));
@@ -135,6 +135,7 @@ void Encoder::doRun()
     mProcess->waitForFinished(-1);
     if (mProcess->exitCode() != 0)
     {
+        debugArguments(prog, args);
         QString msg = tr("Encoder error:\n") +
                 QString::fromLocal8Bit(mProcess->readAllStandardError());
         error(track(), msg);
