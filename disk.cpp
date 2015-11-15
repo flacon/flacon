@@ -400,6 +400,20 @@ bool Disk::canConvert(QString *description) const
         res = false;
     }
 
+    if (res)
+    {
+        uint duration = 0;
+        foreach (Track *t, mTracks)
+            duration += t->duration();
+
+        if (mAudioFile->duration() <= duration)
+        {
+            msg << tr("Audio file shorter than CUE.");
+            res = false;
+        }
+
+    }
+
     if (description)
         *description = msg.join("\n");
 
