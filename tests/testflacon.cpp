@@ -48,6 +48,13 @@ do {\
     QTest::qFail(message, __FILE__, __LINE__);\
 } while (0)
 
+#ifdef Q_OS_WIN
+    #define USE_DEV_RANDOM 0
+#elif defined(Q_OS_OS2)
+    #define USE_DEV_RANDOM 0
+#else
+    #define USE_DEV_RANDOM 1
+#endif
 
 /************************************************
  *
@@ -115,6 +122,16 @@ void TestFlacon::createAudioFile(const QString &program, const QString &fileName
         return;
 
     QStringList args;
+# if USE_DEV_RANDOM
+    args << "-y"; //  Overwrite output files."
+    args << "-ar" << (cdQuality ? "44100" : " 48000");
+    args << "-f" << "s16le";
+    args << "-acodec" << "pcm_s16le";
+    args << "-ac" << "2";
+    args << "-i" << "/dev/urandom";
+    args << "-t" << QString("%1").arg(duration);
+    args << fileName;
+#else
     args << "-y"; //  Overwrite output files."
     args << "-t" << QString("%1").arg(duration);
     args << "-f" << "lavfi";
@@ -123,6 +140,7 @@ void TestFlacon::createAudioFile(const QString &program, const QString &fileName
     args << "-acodec" << "pcm_s16le";
     args << "-ac" << "2";
     args << QDir::toNativeSeparators(fileName);
+#endif
 
     QProcess proc;
     //proc.setProcessChannelMode(QProcess::ForwardedChannels);
