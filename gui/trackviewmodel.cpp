@@ -376,9 +376,9 @@ QString TrackViewModel::trackDurationToString(uint milliseconds) const
 
 
         if (h > 0)
-            return tr("%1:%2:%3", "Track length").arg(h).arg(m, 2, 10, QChar('0')).arg(s, 2, 10, QChar('0'));
+            return tr("%1:%2:%3", "Track length, string like '01:02:56'").arg(h).arg(m, 2, 10, QChar('0')).arg(s, 2, 10, QChar('0'));
         else
-            return tr("%1:%2", "Track length").arg(m).arg(s, 2, 10, QChar('0'));
+            return tr("%1:%2", "Track length, string like '02:56'").arg(m).arg(s, 2, 10, QChar('0'));
     }
     else
     {

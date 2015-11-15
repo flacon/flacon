@@ -402,7 +402,7 @@ bool CueReader::parse(QFile &file)
         }
         else
         {
-            tags.setTitle(cueFileInfo.fileName() + QObject::tr(" [disk %1]").arg(diskNum + 1));
+            tags.setTitle(cueFileInfo.fileName() + QObject::tr(" [disk %1]").arg(i + 1));
             tags.setDiskTag("MULTI_FILE", "1");
         }
     }

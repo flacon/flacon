@@ -104,22 +104,22 @@ MainWindow::MainWindow(QWidget *parent) :
     QString pattern;
 
     pattern = "%a/{%y - }%A/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern").arg(pattern));
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
 
     pattern = "%a -{ %y }%A/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern").arg(pattern));
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
 
     pattern = "{%y }%A - %a/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern").arg(pattern));
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
 
     pattern = "%a/%A/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern").arg(pattern));
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
 
     pattern = "%a - %A/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern").arg(pattern));
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
 
     pattern = "%A - %a/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern").arg(pattern));
+    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
 
 
     outPatternButton->setFixedWidth(outDirButton->sizeHint().width());

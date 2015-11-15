@@ -42,13 +42,12 @@ CueDiskSelectDialog::CueDiskSelectDialog(const CueReader &cue, int selectedDisk,
         selectedDisk = 0;
 
     ui->setupUi(this);
-    ui->text->setText(tr("The CUE contains information about multiple discs. What disk you want to use?"));
 
     for (int d=0; d<cue.diskCount(); d++)
     {
         CueTagSet tags = cue.disk(d);
         QTreeWidgetItem *diskItem = new QTreeWidgetItem(ui->diskTree);
-        diskItem->setText(0, tr("%1 [ disk %2 ]").arg(tags.diskTag("ALBUM")).arg(d+1));
+        diskItem->setText(0, tr("%1 [ disk %2 ]", "Cue disk select dialog, string like 'The Wall [disk 1]'").arg(tags.diskTag("ALBUM")).arg(d+1));
         diskItem->setData(0,Qt::UserRole, d);
         if (d == selectedDisk)
         {
