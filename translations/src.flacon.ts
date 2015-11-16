@@ -564,6 +564,10 @@ In CBR mode it set the specific output bitrate.
         <source>CUE file not set.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Audio file shorter than CUE.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Encoder</name>
@@ -990,16 +994,16 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Audio file name is&apos;n set</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Audio file name isn&apos;t set</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
