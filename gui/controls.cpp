@@ -384,10 +384,12 @@ void ProgramEdit::resizeEvent(QResizeEvent *event)
  ************************************************/
 void ProgramEdit::openDialog()
 {
-    QString flt = tr("%1 program").arg(mProgramName)  +
+    QString flt = tr("%1 program",
+                     "This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'"
+                     ).arg(mProgramName)  +
                     QString(" (%1);;").arg(mProgramName) +
-                  tr("All files") +
-                    " (*.*)";
+                  tr("All files", "This is part of filter for 'select program' dialog. 'All files (*)'") +
+                    " (*)";
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select program file"), "/usr/bin/", flt);
     if (!fileName.isEmpty())

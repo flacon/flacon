@@ -205,7 +205,7 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 
     QAction *act;
 
-    act = new DiskAction(Project::getIcon("document-open", "fileopen", ":/icons/16/select-cue-file"), tr("Select another CUE file"), &menu, disk);
+    act = new DiskAction(Project::getIcon("document-open", "fileopen", ":/icons/16/select-cue-file"), tr("Select another cue file"), &menu, disk);
     connect(act, SIGNAL(triggered()), this, SLOT(emitSelectCueFile()));
     menu.addAction(act);
 
@@ -343,7 +343,7 @@ void TrackView::contextMenuEvent(QContextMenuEvent *event)
     connect(act, SIGNAL(triggered()), this, SLOT(emitSelectAudioFile()));
     menu.addAction(act);
 
-    act = new DiskAction(Project::getIcon("document-open", "fileopen", ":/icons/16/select-cue-file"), tr("Select another CUE file"), &menu, disk);
+    act = new DiskAction(Project::getIcon("document-open", "fileopen", ":/icons/16/select-cue-file"), tr("Select another cue file"), &menu, disk);
     connect(act, SIGNAL(triggered()), this, SLOT(emitSelectCueFile()));
     menu.addAction(act);
 

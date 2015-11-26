@@ -432,7 +432,7 @@ bool CueCreator::write()
 {
     if (!mFile.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-        mErrorString = QObject::tr("I can't write CUE file <b>%1</b>:<br>%2").arg(mFile.fileName(), mFile.errorString());
+        mErrorString = QObject::tr("I can't write cue file <b>%1</b>:<br>%2").arg(mFile.fileName(), mFile.errorString());
         return false;
     }
 

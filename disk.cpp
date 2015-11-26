@@ -396,7 +396,7 @@ bool Disk::canConvert(QString *description) const
 
     if (count() < 1)
     {
-        msg << tr("CUE file not set.");
+        msg << tr("Cue file not set.");
         res = false;
     }
 
@@ -408,7 +408,7 @@ bool Disk::canConvert(QString *description) const
 
         if (mAudioFile->duration() <= duration)
         {
-            msg << tr("Audio file shorter than CUE.");
+            msg << tr("Audio file shorter than expected from cue sheet.");
             res = false;
         }
 

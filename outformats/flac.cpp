@@ -53,7 +53,8 @@ bool OutFormat_Flac::check(QStringList *errors) const
         {
             if (project->disk(i)->audioFile()->sampleRate() > 48000)
             {
-                *errors << QObject::tr("you can't use 'ReplayGain' for files with sample rates above 48kHz. Metaflac doesn't support such files.");
+                *errors << QObject::tr("you can't use 'ReplayGain' for files with sample rates above 48kHz. Metaflac doesn't support such files.",
+                                       "This string should begin with a lowercase letter. This is a part of the complex sentence.");
                 res = false;
                 break;
             }

@@ -103,15 +103,15 @@ bool InputAudioFile::load()
 {
     if (mFileName == "")
     {
-        qWarning() << "Audio file name isn't set";
-        mErrorString = QObject::tr("Audio file name isn't set");
+        qWarning() << "The audio file name is not set";
+        mErrorString = QObject::tr("The audio file name is not set");
         return false;
     }
 
     if (!QFileInfo(mFileName).exists())
     {
-        qWarning() << QString("Audio file <b>\"%1\"</b> not exists").arg(mFileName);
-        mErrorString = QObject::tr("Audio file <b>\"%1\"</b> not exists").arg(mFileName);
+        qWarning() << QString("Audio file <b>\"%1\"</b> does not exists").arg(mFileName);
+        mErrorString = QObject::tr("Audio file <b>\"%1\"</b> does not exists").arg(mFileName);
         return false;
     }
 

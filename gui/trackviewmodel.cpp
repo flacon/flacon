@@ -335,7 +335,7 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
     {
         QString s;
         if (!disk->canConvert(&s))
-            return QVariant(tr("Conversion is not possible.\n%1").arg(s));
+            return QVariant(tr("The conversion is not possible.\n%1").arg(s));
         else
             return QVariant();
 

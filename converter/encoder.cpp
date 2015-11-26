@@ -156,7 +156,7 @@ void Encoder::readInputFile()
     QFile file(mInputFile);
     if (!file.open(QFile::ReadOnly)) // | QFile::Unbuffered))
     {
-        error(track(), tr("I can't read %1 file").arg(mInputFile));
+        error(track(), tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mInputFile));
     }
 
     mReady = 0;

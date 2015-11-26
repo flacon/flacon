@@ -193,7 +193,7 @@ CueReader::CueReader(const QString &fileName):
     QFileInfo fi(mFileName);
     if (!fi.exists())
     {
-        mErrorString = QObject::tr("File <b>\"%1\"</b> not exists").arg(mFileName);
+        mErrorString = QObject::tr("File <b>\"%1\"</b> does not exist").arg(mFileName);
         return;
     }
 
@@ -235,7 +235,7 @@ CueReader::CueReader(const QString &fileName):
     if (mDisks.isEmpty())
     {
         mValid = false;
-        mErrorString = QObject::tr("The <b>%1</b> is not a valid CUE file. Cue has no FILE tag.").arg(mFileName);
+        mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Cue has no FILE tag.").arg(mFileName);
     }
 
     int startTrackNum = 1;
@@ -244,7 +244,7 @@ CueReader::CueReader(const QString &fileName):
         if (disk(i).tracksCount() == 0)
         {
             mValid = false;
-            mErrorString = QObject::tr("The <b>%1</b> is not a valid CUE file. Disk %2 has no tags.").arg(mFileName).arg(i);
+            mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Disk %2 has no tags.").arg(mFileName).arg(i);
             break;
         }
 
@@ -466,13 +466,13 @@ bool CueReader::parseOneDiskTags(QFile &file, CueTagSet *tags)
             int num = leftPart(value, ' ').toInt(&ok);
             if (!ok)
             {
-                mErrorString = QObject::tr("The <b>%1</b> is not a valid CUE file. Incorrect track Index at %2.").arg(mFileName).arg(pos);
+                mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track Index at %2.", "Cue parser error. %2 is file position").arg(mFileName).arg(pos);
                 return false;
             }
 
             if (num < 0 || num > 99)
             {
-                mErrorString = QObject::tr("The <b>%1</b> is not a valid CUE file. Incorrect track Index at %2.").arg(mFileName).arg(pos);
+                mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track Index at %2.", "Cue parser error. %2 is file position").arg(mFileName).arg(pos);
                 return false;
             }
 
