@@ -224,14 +224,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Per track CUE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Create per track CUE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>First track pregap:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -261,6 +253,14 @@
     </message>
     <message>
         <source>Select temporary directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Per track cue sheet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create per track cue sheet</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -493,9 +493,9 @@
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;
-In VBR mode this set the average rate for a large and diverse collection of audio.
+In VBR mode, this sets the average rate for a large and diverse collection of audio.
 &lt;p&gt;
-In CBR mode it set the specific output bitrate.
+In CBR mode, it sets the specific output bitrate.
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -545,12 +545,12 @@ In CBR mode it set the specific output bitrate.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
+        <source>%1 [ disk %2 ]</source>
+        <comment>Cue disk select dialog, string like &apos;The Wall [disk 1]&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1 [ disk %2 ]</source>
-        <comment>Cue disk select dialog, string like &apos;The Wall [disk 1]&apos;</comment>
+        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -561,11 +561,11 @@ In CBR mode it set the specific output bitrate.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>CUE file not set.</source>
+        <source>Cue file not set.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Audio file shorter than CUE.</source>
+        <source>Audio file shorter than expected from cue sheet.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -584,6 +584,7 @@ In CBR mode it set the specific output bitrate.
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
+        <comment>Encoder error. %1 is a file name.</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -842,11 +843,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
         <translation type="unfinished"></translation>
@@ -864,11 +860,6 @@ Do you want to continue?</source>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -918,6 +909,16 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>Predefined out file pattern, string like &apos;Use &quot;%a/%A/%n - %t&quot;&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Select cue file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add cue or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -943,24 +944,22 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>ProgramEdit</name>
     <message>
+        <source>Select program file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>%1 program</source>
+        <comment>This is part of filter for &apos;select program&apos; dialog. %1 is a name of required program. Example: &apos;shntool program (shntool)&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select program file</source>
+        <comment>This is part of filter for &apos;select program&apos; dialog. &apos;All files (*)&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
-    <message>
-        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation type="unfinished"></translation>
@@ -970,31 +969,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source> [disk %1]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1003,7 +978,37 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Audio file name isn&apos;t set</source>
+        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The audio file name is not set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1017,10 +1022,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>TrackView</name>
     <message>
-        <source>Select another CUE file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1030,6 +1031,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Select another audio file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select another cue file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1117,11 +1122,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Conversion is not possible.
-%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Length</source>
         <comment>Table header.</comment>
         <translation type="unfinished"></translation>
@@ -1134,6 +1134,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like &apos;02:56&apos;</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The conversion is not possible.
+%1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

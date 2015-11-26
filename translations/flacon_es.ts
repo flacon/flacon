@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>About</source>
-        <translation>Acerca</translation>
+        <translation>Acerca de</translation>
     </message>
     <message>
         <source>Author</source>
@@ -222,14 +222,6 @@
         <translation>Página de código predeterminada:</translation>
     </message>
     <message>
-        <source>Per track CUE</source>
-        <translation>CUE por pistas</translation>
-    </message>
-    <message>
-        <source>Create per track CUE</source>
-        <translation>Crear CUE por pistas</translation>
-    </message>
-    <message>
         <source>First track pregap:</source>
         <translation>Pista pregap:</translation>
     </message>
@@ -261,6 +253,14 @@
         <source>Select temporary directory</source>
         <translation>Seleccione un directorio temporal</translation>
     </message>
+    <message>
+        <source>Per track cue sheet</source>
+        <translation>Hoja CUE por pista</translation>
+    </message>
+    <message>
+        <source>Create per track cue sheet</source>
+        <translation>Crear una hoja CUE por pista</translation>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -278,7 +278,7 @@
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Bitrate:</translation>
+        <translation>Tasa de bits:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
@@ -345,13 +345,13 @@
 </source>
         <extracomment>ererere</extracomment>
         <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
-&lt;dd&gt;Usando un Bitrate Variable medio, este preajuste debe ser casi transparente para la mayoría de gente y la mayoría de música.&lt;/dd&gt;
+&lt;dd&gt;Usando un Tasa de Bits Variable media, este preajuste debe ser casi transparente para la mayoría de gente y la mayoría de música.&lt;/dd&gt;
 
 &lt;dt&gt;VBR estándar, VBR estándar rápido&lt;/dt&gt;
-&lt;dd&gt;Usando un Bitrate Variable estándar, este preajuste debería se transparente para la mayoría de la música y es ya un nivel alto de calidad.&lt;/dd&gt;
+&lt;dd&gt;Usando un Tasa de Bits Variable estándar, este preajuste debería se transparente para la mayoría de la música y es ya un nivel alto de calidad.&lt;/dd&gt;
 
 &lt;dt&gt;VBR extremo, VBR extremo rápido&lt;/dt&gt;
-&lt;dd&gt;Usando el Bitrate Variable más alto, este preajuste ofrece algo más de calidad si usted tiene muy buen oído o un equipo de audio de gama alta.&lt;/dd&gt;
+&lt;dd&gt;Usando el Tasa de Bits Variable más alta, este preajuste ofrece algo más de calidad si usted tiene muy buen oído o un equipo de audio de gama alta.&lt;/dd&gt;
 
 &lt;dt&gt;Calidad VBR&lt;/dt&gt;
 &lt;dd&gt;Este valor le permite establecer la calidad de salida.&lt;/dd&gt;
@@ -360,26 +360,26 @@
 &lt;dd&gt;Establece el nuevo VBR rápido para un fichero en particular. Recomendado.&lt;/dd&gt;
 
 &lt;dt&gt;CBR máximo&lt;/dt&gt;
-&lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando este Bitrate Constante.&lt;/dd&gt;
+&lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando esta Tasa de Bits Constante.&lt;/dd&gt;
 
 &lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Usando este Bitrate Constante, el preajuste le dará una buena calidad al bitrate especificado.&lt;/dd&gt;
+&lt;dd&gt;Usando esta Tasa de Bits Constante, el preajuste le dará una buena calidad al bitrate especificado.&lt;/dd&gt;
 
 &lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Usando este Bitrate Promedio, este preajuste le dará una calidad más alta que el Bitrate Constante para un bitrate específico.&lt;/dd&gt;
+&lt;dd&gt;Usando esta Tasa de Bits Promedio, este preajuste le dará una calidad más alta que la Tasa de Bits Constante para una Tasa de Bits específica.&lt;/dd&gt;
 </translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Usar bitrate</translation>
+        <translation>Usar Tasa de Bits</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Bitrate:</translation>
+        <translation>Tasa de Bits:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Establece un bitrate objetivo (en kb/s).</translation>
+        <translation>Establece una Tasa de Bits objetivo (en kb/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
@@ -446,31 +446,31 @@
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Usar bitrate</translation>
+        <translation>Usar Tasa de Bits</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation>Bitrate mínimo:</translation>
+        <translation>Tasa de Bits mínima:</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Establece el bitrate mínimo (en kb/s).</translation>
+        <translation>Establece la Tasa de Bits mínima (en kb/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation>Bitrate nominal:</translation>
+        <translation>Tasa de Bits nominal:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Establece el bitrate objetivo (en kb/s).</translation>
+        <translation>Establece la Tasa de Bits objetivo (en kb/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Máximo bitrate:</translation>
+        <translation>Máxima Tasa de Bits:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Establece el máximo bitrate (en kb/s).</translation>
+        <translation>Establece la máxima Tasa de Bits (en kb/s).</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -489,19 +489,19 @@
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation>Tipo de Bitrate:</translation>
+        <translation>Tipo de tasa de bits:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Bitrate:</translation>
+        <translation>Tasa de Bits:</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
-        <translation>VBR - bitrate variable</translation>
+        <translation>VBR - Tasa de bits variable</translation>
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation>CBR -  bitrate limitado</translation>
+        <translation>CBR -  Tasa de bits limitada</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -509,14 +509,18 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Usar la codificación de tasa de bits variable (recomendado). En el modo VBR, la tasa de bits puede subir y bajar libremente dependiendo del contenido asegurando la consistencia de la calidad.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Usar la codificación de tasa de bits limitada. La salida se realiza a una tasa específica de bits. Este modo es similar al de los codificadores CBR en AAC/MP3 y se al modo administrado en el codificador vorbis. Consigue una menor calidad lineal, pero más uniformidad en la tasa de bits..&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;
-In VBR mode this set the average rate for a large and diverse collection of audio.
+In VBR mode, this sets the average rate for a large and diverse collection of audio.
 &lt;p&gt;
-In CBR mode it set the specific output bitrate.
+In CBR mode, it sets the specific output bitrate.
 </source>
         <translation type="unfinished"/>
     </message>
@@ -563,15 +567,15 @@ In CBR mode it set the specific output bitrate.
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione disco</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <translation>%1 [ disco %2 ]</translation>
+    </message>
+    <message>
+        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -582,8 +586,12 @@ In CBR mode it set the specific output bitrate.
         <translation>Archivo de audio no seleccionado.</translation>
     </message>
     <message>
-        <source>CUE file not set.</source>
-        <translation>Archivo CUE no seleccionado.</translation>
+        <source>Cue file not set.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from cue sheet.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -604,7 +612,8 @@ In CBR mode it set the specific output bitrate.
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
-        <translation>No puedo leer el archivo %1</translation>
+        <comment>Encoder error. %1 is a file name.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -869,11 +878,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>Insertar &quot;Género&quot;</translation>
     </message>
     <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Seleccione archivo CUE</translation>
-    </message>
-    <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
         <translation>Algunos álbumes no serán convertidos, ya que contienen errores.
@@ -882,7 +886,7 @@ Do you want to continue?</source>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>%1 archivos</translation>
+        <translation>Archivos %1</translation>
     </message>
     <message>
         <source>All supported formats</source>
@@ -893,11 +897,6 @@ Do you want to continue?</source>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
         <translation>Todos los archivos</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Añadir CUE o archivo de audio</translation>
     </message>
     <message>
         <source>Select audio file</source>
@@ -955,11 +954,23 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Puede navegar al directorio de destino. También puede introducirlo manualmente.
+
+Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de salida se guardarán en el mismo directorio que el origen.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>Usar &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Select cue file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add cue or audio file</source>
+        <comment>OpenFile dialog title</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -987,24 +998,22 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>ProgramEdit</name>
     <message>
+        <source>Select program file</source>
+        <translation>Seleccione archivo de programa</translation>
+    </message>
+    <message>
         <source>%1 program</source>
-        <translation>%1 programa</translation>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All files</source>
-        <translation>Todos los archivos</translation>
-    </message>
-    <message>
-        <source>Select program file</source>
-        <translation>Seleccione archivo de programa</translation>
+        <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>QObject</name>
-    <message>
-        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>No puedo escribir el archivo CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>No puedo encontrar el programa &lt;b&gt;%1&lt;/b&gt;.</translation>
@@ -1014,40 +1023,46 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>El archivo &lt;b&gt;%1&lt;/b&gt; no es un formato de audio soportado.&lt;br&gt;&lt;br&gt;Verifique que todos los programas requeridos están instalados en sus preferencias.</translation>
     </message>
     <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>No puede usar &apos;ReplayGain&apos; en archivos con frecuencias de muestreo superiores a 48kHz. Metaflac no soporta estos archivos.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source> [disk %1]</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file name is&apos;n set</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
-        <translation type="unfinished"/>
+        <translation> [disco %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
+        <translation>Flacon</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file name is not set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1061,10 +1076,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>TrackView</name>
     <message>
-        <source>Select another CUE file</source>
-        <translation>Seleccione otro archivo CUE</translation>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
         <translation>Obtener información de CDDB</translation>
     </message>
@@ -1075,6 +1086,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Select another audio file</source>
         <translation>Seleccione otro archivo de audio</translation>
+    </message>
+    <message>
+        <source>Select another cue file</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1161,24 +1176,23 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Múltiples valores</translation>
     </message>
     <message>
-        <source>Conversion is not possible.
-%1</source>
-        <translation>La conversión no es posible
-%1</translation>
-    </message>
-    <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Tamaño</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
+        <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>The conversion is not possible.
+%1</source>
         <translation type="unfinished"/>
     </message>
 </context>

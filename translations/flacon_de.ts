@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon ist dank der Arbeit von Übersetzungsteams auf der ganzen Welt in viele Sprachen übersetzt.</translation>
     </message>
     <message>
         <source>Flacon account on github.com</source>
@@ -211,7 +211,7 @@
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation type="unfinished"/>
+        <translation>Die Anzahl der Threads im Konvertierungsprozess.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -220,14 +220,6 @@
     <message>
         <source>Default codepage:</source>
         <translation>Standard-Zeichensatztabelle:</translation>
-    </message>
-    <message>
-        <source>Per track CUE</source>
-        <translation>CUE pro Stück</translation>
-    </message>
-    <message>
-        <source>Create per track CUE</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -260,6 +252,14 @@
     <message>
         <source>Select temporary directory</source>
         <translation>Temporäres Verzeichnis auswählen</translation>
+    </message>
+    <message>
+        <source>Per track cue sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create per track cue sheet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -491,9 +491,9 @@
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;
-In VBR mode this set the average rate for a large and diverse collection of audio.
+In VBR mode, this sets the average rate for a large and diverse collection of audio.
 &lt;p&gt;
-In CBR mode it set the specific output bitrate.
+In CBR mode, it sets the specific output bitrate.
 </source>
         <translation type="unfinished"/>
     </message>
@@ -540,15 +540,15 @@ In CBR mode it set the specific output bitrate.
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Festplatte auswählen</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <translation>%1 [ Festplatte %2 ]</translation>
+    </message>
+    <message>
+        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -559,8 +559,12 @@ In CBR mode it set the specific output bitrate.
         <translation>Audiodatei nicht festgelegt.</translation>
     </message>
     <message>
-        <source>CUE file not set.</source>
-        <translation>CUE-Datei nicht festgelegt.</translation>
+        <source>Cue file not set.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from cue sheet.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -581,7 +585,8 @@ In CBR mode it set the specific output bitrate.
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
-        <translation>Ich kann die Datei %1 nicht lesen</translation>
+        <comment>Encoder error. %1 is a file name.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -842,14 +847,10 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>&quot;Genre&quot; einfügen</translation>
     </message>
     <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>CUE-Datei auswählen</translation>
-    </message>
-    <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Einige Alben werden nicht konvertiert, weil sie Fehler enthalten.
+Möchten Sie fortsetzen?</translation>
     </message>
     <message>
         <source>%1 files</source>
@@ -865,11 +866,6 @@ Do you want to continue?</source>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
         <translation>Alle Dateien</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>CUE- oder Audiodatei hinzufügen</translation>
     </message>
     <message>
         <source>Select audio file</source>
@@ -916,6 +912,16 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>&quot;%1&quot; verwenden</translation>
+    </message>
+    <message>
+        <source>Select cue file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add cue or audio file</source>
+        <comment>OpenFile dialog title</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -943,24 +949,22 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>ProgramEdit</name>
     <message>
+        <source>Select program file</source>
+        <translation>Programmdatei auswählen</translation>
+    </message>
+    <message>
         <source>%1 program</source>
-        <translation>%1 Programm</translation>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All files</source>
-        <translation>Alle Dateien</translation>
-    </message>
-    <message>
-        <source>Select program file</source>
-        <translation>Programmdatei auswählen</translation>
+        <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>QObject</name>
-    <message>
-        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Ich kann die CUE-Datei &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 nicht schreiben</translation>
-    </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Ich kann das Programm &lt;b&gt;%1&lt;/b&gt; nicht finden.</translation>
@@ -970,40 +974,46 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source> [disk %1]</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file name is&apos;n set</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
-        <translation type="unfinished"/>
+        <translation> [Festplatte %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
+        <translation>Flacon</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file name is not set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1017,10 +1027,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>TrackView</name>
     <message>
-        <source>Select another CUE file</source>
-        <translation>Wählen Sie eine andere CUE-Datei aus</translation>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
         <translation>Daten von CDDB abrufen</translation>
     </message>
@@ -1031,6 +1037,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Select another audio file</source>
         <translation>Wählen Sie eine andere Audiodatei aus</translation>
+    </message>
+    <message>
+        <source>Select another cue file</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1117,24 +1127,23 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Mehrere Werte</translation>
     </message>
     <message>
-        <source>Conversion is not possible.
-%1</source>
-        <translation>Konvertierung ist nicht möglich.
-%1</translation>
-    </message>
-    <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Länge</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
+        <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>The conversion is not possible.
+%1</source>
         <translation type="unfinished"/>
     </message>
 </context>

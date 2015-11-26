@@ -222,14 +222,6 @@
         <translation>默认字符编码</translation>
     </message>
     <message>
-        <source>Per track CUE</source>
-        <translation>每个音轨创建CUE文件</translation>
-    </message>
-    <message>
-        <source>Create per track CUE</source>
-        <translation>每个音轨创建CUE文件</translation>
-    </message>
-    <message>
         <source>First track pregap:</source>
         <translation>第一个音轨的片首留白:</translation>
     </message>
@@ -260,6 +252,14 @@
     <message>
         <source>Select temporary directory</source>
         <translation>选择临时目录</translation>
+    </message>
+    <message>
+        <source>Per track cue sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create per track cue sheet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -517,16 +517,11 @@
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;
-In VBR mode this set the average rate for a large and diverse collection of audio.
+In VBR mode, this sets the average rate for a large and diverse collection of audio.
 &lt;p&gt;
-In CBR mode it set the specific output bitrate.
+In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation>设置目标码率，单位 kb/s（6-256 每个通道）。
-&lt;p&gt;
-VBR 模式下，这指定平均速率，面向较大且多样的音频集合。
-&lt;p&gt;
-CBR 模式下，它指定特定的输出码率。
-</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -571,15 +566,15 @@ CBR 模式下，它指定特定的输出码率。
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>选择磁盘</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <translation>%1 [ 磁盘 %2 ]</translation>
+    </message>
+    <message>
+        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -590,8 +585,12 @@ CBR 模式下，它指定特定的输出码率。
         <translation>未设定音频文件。</translation>
     </message>
     <message>
-        <source>CUE file not set.</source>
-        <translation>未设定 CUE 文件。</translation>
+        <source>Cue file not set.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from cue sheet.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -612,7 +611,8 @@ CBR 模式下，它指定特定的输出码率。
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
-        <translation>无法读取 &quot;%1&quot; 文件</translation>
+        <comment>Encoder error. %1 is a file name.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -876,11 +876,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>插入 &quot;风格&quot;</translation>
     </message>
     <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>选择 CUE 文件</translation>
-    </message>
-    <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
         <translation>由于包含了错误，部分专辑无法转换。⏎
@@ -900,11 +895,6 @@ Do you want to continue?</source>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
         <translation>全部文件</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>添加 CUE 或音频文件</translation>
     </message>
     <message>
         <source>Select audio file</source>
@@ -962,11 +952,23 @@ If you surround sections of text that contain a token with braces, these section
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>您可以浏览来选择目标目录，也可手动输入。
+
+如果路径为空或以点开始 &quot;.&quot; (英文标点句号)，输出文件将被放置在与输入文件相同的目录里（相对路径）。</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>使用“%1”</translation>
+    </message>
+    <message>
+        <source>Select cue file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add cue or audio file</source>
+        <comment>OpenFile dialog title</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -994,24 +996,22 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>ProgramEdit</name>
     <message>
+        <source>Select program file</source>
+        <translation>选择程序文件</translation>
+    </message>
+    <message>
         <source>%1 program</source>
-        <translation>1% 程序</translation>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All files</source>
-        <translation>全部文件</translation>
-    </message>
-    <message>
-        <source>Select program file</source>
-        <translation>选择程序文件</translation>
+        <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>QObject</name>
-    <message>
-        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>无法创建&lt;b&gt;%1&lt;/b&gt;的CUE文件: %2 .</translation>
-    </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>无法找到程序 %1.</translation>
@@ -1021,40 +1021,46 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation> &lt;b&gt;%1&lt;/b&gt; n&apos; 的音频格式不被支持。 &lt;br&gt;&lt;br&gt;请确认已安装所有必要的程序并在首选项中设置妥当。</translation>
     </message>
     <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>采样率高于48kHz的文件无法设置回放增益, Metaflac 不支持。</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source> [disk %1]</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file name is&apos;n set</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
-        <translation type="unfinished"/>
+        <translation> [磁盘 %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
+        <translation>Flacon</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file name is not set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1068,10 +1074,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>TrackView</name>
     <message>
-        <source>Select another CUE file</source>
-        <translation>选择其他 CUE 文件</translation>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
         <translation>从 CDDB 撷取数据</translation>
     </message>
@@ -1082,6 +1084,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Select another audio file</source>
         <translation>选择其他音频文件</translation>
+    </message>
+    <message>
+        <source>Select another cue file</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1168,24 +1174,23 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>多个值</translation>
     </message>
     <message>
-        <source>Conversion is not possible.
-%1</source>
-        <translation>不可能转换。
-%1</translation>
-    </message>
-    <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>长度</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
+        <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>The conversion is not possible.
+%1</source>
         <translation type="unfinished"/>
     </message>
 </context>

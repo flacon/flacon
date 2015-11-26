@@ -63,11 +63,11 @@
     </message>
     <message>
         <source>Improvements in the UI</source>
-        <translation>Améliorations de l&apos;interface utilisateur</translation>
+        <translation>Améliorations de l&apos;IU</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation>Flacon est traduit en plusieurs langues grâce au travail des équipes mondiales de traduction.</translation>
+        <translation>Flacon est traduit en plusieurs langues grâce au travail des équipes internationales de traduction.</translation>
     </message>
     <message>
         <source>Flacon account on github.com</source>
@@ -219,23 +219,15 @@
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Page de code par défaut:</translation>
-    </message>
-    <message>
-        <source>Per track CUE</source>
-        <translation>Fichier CUE par piste</translation>
-    </message>
-    <message>
-        <source>Create per track CUE</source>
-        <translation>Créer un fichier CUE par piste</translation>
+        <translation>Page de code par défaut :</translation>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Silence préliminaire de la première piste : </translation>
+        <translation>Présilence de la première piste : </translation>
     </message>
     <message>
         <source>Rescan</source>
-        <translation>Balayer de nouveau</translation>
+        <translation>Rebalayer</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
@@ -261,6 +253,14 @@
         <source>Select temporary directory</source>
         <translation>Choisir le répertoire temporaire</translation>
     </message>
+    <message>
+        <source>Per track cue sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create per track cue sheet</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -282,7 +282,7 @@
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Spécifie le débit binaire cible (en kbit/s).</translation>
+        <translation>Définit le débit binaire cible (en kbit/s).</translation>
     </message>
 </context>
 <context>
@@ -348,25 +348,25 @@
 &lt;dd&gt;En utilisant un Débit Binaire Variable moyen, cette présélection devrait fournir une quasi transparence à la plupart des personnes pour la plupart des musiques.&lt;/dd&gt;
 
 &lt;dt&gt;DBV standard, DBV standard rapide&lt;/dt&gt;
-&lt;dd&gt;En utilisant un Débit Binaire Variable standard, ces présélections devraient être transparentes pour la plupart des personnes et la plupart des musiques, et donnent déjà des résultats de haute qualité.&lt;/dd&gt;
+&lt;dd&gt;En utilisant un Débit Binaire Variable standard, ces présélections devraient être transparentes pour la plupart des personnes et la plupart des musiques. Elles donnent déjà des résultats de haute qualité.&lt;/dd&gt;
 
 &lt;dt&gt;DBV extrême, DBV extrême rapide&lt;/dt&gt;
-&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, ces préselections fournissent une qualité légèrement supérieure au mode standard si tu as une très bonne ouïe et un équipement audio haut de gamme .&lt;/dd&gt;
+&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, ces présélections fournissent une qualité légèrement supérieure au mode standard si vous avez une très bonne oreille et un équipement audio haut de gamme .&lt;/dd&gt;
 
 &lt;dt&gt;DBV qualité&lt;/dt&gt;
-&lt;dd&gt;Cette option à Débit Binaire Variable te permet de choisir le niveau final de qualité.&lt;/dd&gt;
+&lt;dd&gt;Cette option à Débit Binaire Variable vous permet de choisir la qualité du niveau de sortie.&lt;/dd&gt;
 
 &lt;dt&gt;option rapide&lt;/dt&gt;
-&lt;dd&gt;Active la nouvelle option DBV rapide pour un profil donné. Ceci est recommandé.&lt;/dd&gt;
+&lt;dd&gt;Active la nouvelle option DBV rapide pour un profil donné. Cela est recommandé.&lt;/dd&gt;
 
 &lt;dt&gt;DBC insensé&lt;/dt&gt;
-&lt;dd&gt;Si tu dois obtenir la plus haute qualité sans te soucier de la taille du fichier, tu l&apos;obtiendras en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
+&lt;dd&gt;Si vous devez obtenir la plus haute qualité sans vous soucier de la taille du fichier, vous l&apos;obtiendrezs en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
 
 &lt;dt&gt;DBC kbit/s&lt;/dt&gt;
-&lt;dd&gt;Cette présélection à Débit Binaire Constant te donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
+&lt;dd&gt;Cette présélection à Débit Binaire Constant vous donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
 
 &lt;dt&gt;DBM kbit/s&lt;/dt&gt;
-&lt;dd&gt;Cette présélection à Débit Binaire Moyen te donnera généralement une meilleure qualité pour un débit donné qu&apos;en utilisant l&apos;option à Débit Binaire Constant.&lt;/dd&gt;</translation>
+&lt;dd&gt;Cette présélection à Débit Binaire Moyen vous donnera généralement une meilleure qualité pour un débit donné qu&apos;en utilisant l&apos;option à Débit Binaire Constant.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Use bitrate</source>
@@ -378,7 +378,7 @@
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Spécifie le débit binaire cible (en kbit/s).</translation>
+        <translation>Définit le débit binaire cible (en kbit/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
@@ -453,7 +453,7 @@
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Spécifie le débit binaire minimum (en kbit/s).</translation>
+        <translation>Définit le débit binaire minimum (en kbit/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
@@ -461,7 +461,7 @@
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Spécifie le débit binaire cible (en kbit/s).</translation>
+        <translation>Définit le débit binaire cible (en kbit/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
@@ -469,7 +469,7 @@
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Spécifie le débit binaire maximum (en kbit/s).</translation>
+        <translation>Définit le débit binaire maximum (en kbit/s).</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -509,25 +509,19 @@
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
         <translation>&lt;dt&gt;DBV&lt;/dt&gt;
-&lt;dd&gt;Utiliser un encodage à débit binaire variable (recommandé). En mode DBV, le débit binaire peut fluctuer librement d&apos;après le contenu afin d&apos;assurer une qualité constante.&lt;/dd&gt;
+&lt;dd&gt;Utiliser un encodage à Débit Binaire Variable (recommandé). En mode DBV, le débit binaire peut fluctuer librement d&apos;après le contenu afin d&apos;assurer une qualité constante.&lt;/dd&gt;
 
 &lt;dt&gt;DBC&lt;/dt&gt;
-&lt;dd&gt;Utiliser un encodage à débit variable contraint. Génère un débit binaire spécifique. Ce mode est semblable au mode DBC des encodeurs AAC/MP3 et au mode géré des encodeurs Vorbis. Le qualité n&apos;est pas aussi constante qu&apos;en mode DBV, mais le débit binaire l&apos;est.&lt;/dd&gt;</translation>
+&lt;dd&gt;Utiliser un encodage à Débit Variable Contraint. Génère un débit binaire spécifique. Ce mode est semblable au mode DBC des encodeurs AAC/MP3 et au mode géré des encodeurs Vorbis. Le qualité n&apos;est pas aussi constante qu&apos;en mode DBV, mais le débit binaire l&apos;est.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;
-In VBR mode this set the average rate for a large and diverse collection of audio.
+In VBR mode, this sets the average rate for a large and diverse collection of audio.
 &lt;p&gt;
-In CBR mode it set the specific output bitrate.
+In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation>Définit le débit binaire cible en kbit/s (6-256 par canal).
-&lt;p&gt;
-En mode DBV, ceci définit le débit moyen pour une grande collection audio diversifiée. 
-&lt;p&gt;
-En mode DBC, ceci définit le débit binaire spécifique de sortie.
-
-</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -557,11 +551,11 @@ En mode DBC, ceci définit le débit binaire spécifique de sortie.
     <name>Converter</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas créer le répertoire &quot;%1&quot;.</translation>
+        <translation>Je ne peux pas créer le répertoire « %1 ».</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas écrire vers le répertoire &quot;%1&quot;.</translation>
+        <translation>Je ne peux pas écrire vers le répertoire « %1 ».</translation>
     </message>
     <message>
         <source>Conversion is not possible:</source>
@@ -572,15 +566,15 @@ En mode DBC, ceci définit le débit binaire spécifique de sortie.
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Choisir un disque</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <translation>%1 [ disque %2 ]</translation>
+    </message>
+    <message>
+        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -588,11 +582,15 @@ En mode DBC, ceci définit le débit binaire spécifique de sortie.
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation>Fichier audio non spécifié.</translation>
+        <translation>Fichier audio non défini.</translation>
     </message>
     <message>
-        <source>CUE file not set.</source>
-        <translation>Fichier CUE non spécifié.</translation>
+        <source>Cue file not set.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from cue sheet.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -612,20 +610,21 @@ En mode DBC, ceci définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
-        <translation>Je ne peux pas lire le fichier %1 file</translation>
+        <comment>Encoder error. %1 is a file name.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>Spécifie la qualilté d&apos;encodage entre %1 (la plus basse) et %2 (la plus élevée).</translation>
+        <translation>Définit la qualité d&apos;encodage entre %1 (la plus basse) et %2 (la plus élevée).</translation>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>Spécifie le niveau de compression entre %1 (le plus rapide) et %2 (la plus forte compression).
-Ceci affecte seulement la taille du fichier, toujours sans perte.</translation>
+        <translation>Définit le niveau de compression entre %1 (le plus rapide) et %2 (la plus forte compression).
+Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -647,7 +646,7 @@ Ceci affecte seulement la taille du fichier, toujours sans perte.</translation>
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain est une norme permettant d&apos;égaliser l&apos;intensité perçue du son pour des formats de fichiers audio sur ordinateur.
+        <translation>ReplayGain est une norme permettant d&apos;égaliser l&apos;intensité perçue du son des formats de fichiers audio sur ordinateur.
 
 L&apos;analyse peut être effectuée sur des pistes individuelles de manière à ce que toutes les pistes soient jouées à un volume sonore équivalent.
 L&apos;utilisation de l&apos;analyse par album permet de préserver les différences de volume pour un même album.</translation>
@@ -688,7 +687,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Fichiers de destination</translation>
+        <translation>Fichiers de sortie</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -729,7 +728,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Numéro de départ :</translation>
+        <translation>Numéro de début :</translation>
     </message>
     <message>
         <source>Disc ID:</source>
@@ -757,7 +756,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Ajouter un fichier CUE ou audio</translation>
+        <translation>Ajouter un fichier cue ou audio</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -777,7 +776,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Abort</source>
-        <translation>Annuler</translation>
+        <translation>Interrompre</translation>
     </message>
     <message>
         <source>Abort conversion process</source>
@@ -805,11 +804,11 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Remove album</source>
-        <translation>Enlever l&apos;album</translation>
+        <translation>Retirer l&apos;album</translation>
     </message>
     <message>
         <source>Remove album from project</source>
-        <translation>Enlever l&apos;album du projet</translation>
+        <translation>Retirer l&apos;album du projet</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -829,7 +828,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation>Récupèrer sur CDDB</translation>
+        <translation>Récupérer sur CDDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
@@ -845,40 +844,35 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation>Recherche récursive d&apos;album</translation>
+        <translation>Recherche récursive d&apos;albums</translation>
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Insèrer le &quot;Numéro de piste&quot;</translation>
+        <translation>Insérer le « Numéro de piste »</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Insèrer le &quot;Nombre total de pistes&quot;</translation>
+        <translation>Insérer le « Nombre total de pistes »</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Insèrer l&apos;&quot;Artiste&quot;</translation>
+        <translation>Insérer l&apos;« Artiste »</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Insèrer le &quot;Titre de l&apos;album&quot;</translation>
+        <translation>Insérer le « Titre de l&apos;album »</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Insèrer le &quot;Titre de la piste&quot;</translation>
+        <translation>Insérer le « Titre de la piste »</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Insèrer l&apos;&quot;Année&quot;</translation>
+        <translation>Insérer l&apos;« Année »</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Insèrer le &quot;Genre&quot;</translation>
-    </message>
-    <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Choisir le fichier CUE</translation>
+        <translation>Insérer le « Genre »</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -900,11 +894,6 @@ Voulez-vous continuer ?</translation>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
         <translation>Tous les fichiers</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Ajouter un fichier CUE ou audio</translation>
     </message>
     <message>
         <source>Select audio file</source>
@@ -940,49 +929,45 @@ Tokens start with %. You can use the following tokens:
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
         <translation>&lt;style type=&quot;text/css&quot;&gt;
-
  .term {font-weight: bold;}
-
  .def { white-space: nowrap; }
-
  &lt;/style&gt;
-
- Les marqueurs commencent avec %. Vous pouvez utiliser les marqueurs suivants :
-
+Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants :
  &lt;table&gt;
-
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numéro de piste &lt;/td&gt;
-
  &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nombre total de pistes&lt;/td&gt;&lt;/tr&gt;
-
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artiste&lt;/td&gt;
-
  &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titre de l&apos;album&lt;/td&gt;&lt;/tr&gt;
-
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titre de la piste&lt;/td&gt;
-
 &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Année&lt;/td&gt;&lt;/tr&gt;
-
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-
  &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-
  &lt;/table&gt;
-
  &lt;br&gt;&lt;br&gt;
-
- Si vous entourez avec des accolades les sections de texte qui contiennent un marqueur, ces sections seront cachées si le marqueur est vide.</translation>
+Si vous entourez des sections de texte contenant un marqueur avec des accolades, ces sections seront cachées si le marqueur est vide.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Vous pouvez naviguer vers le répertoire de destination. Vous pouvez aussi le saisir manuellement.
+
+Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même répertoire que la source.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>Utiliser « %1 »</translation>
+    </message>
+    <message>
+        <source>Select cue file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add cue or audio file</source>
+        <comment>OpenFile dialog title</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1010,67 +995,71 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>ProgramEdit</name>
     <message>
+        <source>Select program file</source>
+        <translation>Choisir le fichier de programme</translation>
+    </message>
+    <message>
         <source>%1 program</source>
-        <translation>Programme %1</translation>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All files</source>
-        <translation>Tous les fichiers</translation>
-    </message>
-    <message>
-        <source>Select program file</source>
-        <translation>Choisir le fichier du programme</translation>
+        <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>QObject</name>
-    <message>
-        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Je ne peux pas écrire le fichier CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Je ne peux pas trouver le programme &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier audio pris en charge. &lt;br&gt;&lt;br&gt;Vérifier que tous les programmes requis sont installés ainsi que vos préférences.</translation>
-    </message>
-    <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>Vous ne pouvez pas utiliser &quot;ReplayGain&quot; pour des fichiers avec un débit d’échantillonnage supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier audio pris en charge. &lt;br&gt;&lt;br&gt;Vérifiez que tous les programmes requis sont installés, et vos préférences aussi.</translation>
     </message>
     <message>
         <source> [disk %1]</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file name is&apos;n set</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
-        <translation type="unfinished"/>
+        <translation>[disque %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
+        <translation>Flacon</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file name is not set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1084,20 +1073,20 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>TrackView</name>
     <message>
-        <source>Select another CUE file</source>
-        <translation>Choisir un autre fichier CUE</translation>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
-        <translation>Obtenir les données de CDDB (Base de données de disques compacts)</translation>
+        <translation>Obtenir les données de CDDB</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Éditer</translation>
+        <translation>Modifier</translation>
     </message>
     <message>
         <source>Select another audio file</source>
         <translation>Choisir un autre fichier audio</translation>
+    </message>
+    <message>
+        <source>Select another cue file</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1184,24 +1173,23 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Valeurs multiples</translation>
     </message>
     <message>
-        <source>Conversion is not possible.
-%1</source>
-        <translation>La conversion est impossible.
-%1</translation>
-    </message>
-    <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Durée</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
+        <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>The conversion is not possible.
+%1</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -222,14 +222,6 @@
         <translation>Numatytoji koduotė:</translation>
     </message>
     <message>
-        <source>Per track CUE</source>
-        <translation>Kiekvieno takelio CUE</translation>
-    </message>
-    <message>
-        <source>Create per track CUE</source>
-        <translation>Kurti kiekvieno takelio CUE</translation>
-    </message>
-    <message>
         <source>First track pregap:</source>
         <translation>Pirmo takelio &quot;pregap&quot;:</translation>
     </message>
@@ -260,6 +252,14 @@
     <message>
         <source>Select temporary directory</source>
         <translation>Pasirinkite laikiną katalogą</translation>
+    </message>
+    <message>
+        <source>Per track cue sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create per track cue sheet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -518,16 +518,11 @@
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;
-In VBR mode this set the average rate for a large and diverse collection of audio.
+In VBR mode, this sets the average rate for a large and diverse collection of audio.
 &lt;p&gt;
-In CBR mode it set the specific output bitrate.
+In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation>Nustato galutinį pralaidumą, kb/s (6-256 kiekvienam kanalui).
-&lt;p&gt;
-VBR veiksenoje tai nustato vidutinį pralaidumą, kuris tinka naudoti didelėje, įvairialypėje garso įrašų kolekcijoje.
-&lt;p&gt;
-CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
-</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -572,15 +567,15 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The CUE contains information about multiple discs. What disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkti diską</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <translation>%1 [ diskas %2 ]</translation>
+    </message>
+    <message>
+        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -591,8 +586,12 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
         <translation>Nenustatytas garso failas.</translation>
     </message>
     <message>
-        <source>CUE file not set.</source>
-        <translation>Nenustatytas CUE failas.</translation>
+        <source>Cue file not set.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from cue sheet.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -613,7 +612,8 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
-        <translation>Nepavyksta perskaityti failo %1</translation>
+        <comment>Encoder error. %1 is a file name.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -878,11 +878,6 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <translation>Įterpti &quot;Žanrą&quot;</translation>
     </message>
     <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Pasirinkite CUE failą</translation>
-    </message>
-    <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
         <translation>Kai kurie albumai nebus konvertuojami, juose yra klaidų.
@@ -902,11 +897,6 @@ Ar norite tęsti?</translation>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
         <translation>Visi failai</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Pridėti CUE ar garso failą</translation>
     </message>
     <message>
         <source>Select audio file</source>
@@ -964,11 +954,23 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
+
+Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>Naudoti &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Select cue file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add cue or audio file</source>
+        <comment>OpenFile dialog title</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -996,24 +998,22 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>ProgramEdit</name>
     <message>
+        <source>Select program file</source>
+        <translation>Pasirinkite programos failą</translation>
+    </message>
+    <message>
         <source>%1 program</source>
-        <translation>%1 programa</translation>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All files</source>
-        <translation>Visi failai</translation>
-    </message>
-    <message>
-        <source>Select program file</source>
-        <translation>Pasirinkite programos failą</translation>
+        <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>QObject</name>
-    <message>
-        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Nepavyksta įrašyti CUE failo &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Nepavyksta rasti programos &lt;b&gt;%1&lt;/b&gt;.</translation>
@@ -1023,40 +1023,46 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Failas &lt;b&gt;%1&lt;/b&gt; nėra palaikomas garso failas. &lt;br&gt;&lt;br&gt;Įsitikinkite, kad visos programos yra įdiegtos ir yra jūsų nuostatose.</translation>
     </message>
     <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <translation>jūs negalite naudoti &apos;ReplayGain&apos; failams, kurių skaitmeninimo dažnis yra didesnis nei 48kHz. Metaflac tokių failų nepalaiko.</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Cue has no FILE tag.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source> [disk %1]</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The &lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track Index at %2.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file name is&apos;n set</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; not exists</source>
-        <translation type="unfinished"/>
+        <translation> [diskas %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
+        <translation>Flacon</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file name is not set</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exists</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1070,10 +1076,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 <context>
     <name>TrackView</name>
     <message>
-        <source>Select another CUE file</source>
-        <translation>Pasirinkti kitą CUE failą</translation>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
         <translation>Gauti duomenis iš CDDB</translation>
     </message>
@@ -1084,6 +1086,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Select another audio file</source>
         <translation>Pasirinkti kitą garso failą</translation>
+    </message>
+    <message>
+        <source>Select another cue file</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1170,24 +1176,23 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Kelios reikšmės</translation>
     </message>
     <message>
-        <source>Conversion is not possible.
-%1</source>
-        <translation>Konvertavimas neįmanomas.
-%1</translation>
-    </message>
-    <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Ilgis</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
+        <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>The conversion is not possible.
+%1</source>
         <translation type="unfinished"/>
     </message>
 </context>
