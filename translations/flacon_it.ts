@@ -1029,12 +1029,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exists</source>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>

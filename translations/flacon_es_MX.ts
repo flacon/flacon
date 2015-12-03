@@ -255,11 +255,11 @@
     </message>
     <message>
         <source>Per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>Hoja cue por pista</translation>
     </message>
     <message>
         <source>Create per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>Crear hoja cue por pista</translation>
     </message>
 </context>
 <context>
@@ -572,7 +572,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>El archivo cue contiene información de multiples discos. ¿Cuál disco quiere usar?</translation>
     </message>
 </context>
 <context>
@@ -583,11 +583,11 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation type="unfinished"/>
+        <translation>No se especificó archivo cue.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation type="unfinished"/>
+        <translation>Archivo de audio más corto de lo que se esperaba de la hoja cue.</translation>
     </message>
 </context>
 <context>
@@ -609,7 +609,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation type="unfinished"/>
+        <translation>No se puede leer el archivo %1</translation>
     </message>
 </context>
 <context>
@@ -961,12 +961,12 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Seleccione archivo cue</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Agregue un archivo de audio o cue</translation>
     </message>
 </context>
 <context>
@@ -999,12 +999,12 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation type="unfinished"/>
+        <translation>Programa %1</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation type="unfinished"/>
+        <translation>Todos los archivos</translation>
     </message>
 </context>
 <context>
@@ -1028,36 +1028,36 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>No se puede escribir el archivo cue &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>El archivo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; no existe</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo cue válido. No cuenta con etiqueta archivo.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo válido. Disco %2 no tiene etiquetas.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo válido. Índice de pista incorrecto en %2.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exists</source>
-        <translation type="unfinished"/>
+        <translation>El nombre del archivo de audio no está establecido</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <translation>No puede usar &quot;ReplayGain&quot; para archivos con ratio sobre los 48Hz. Metaflac no soporta dichos archivos.</translation>
+    </message>
+    <message>
+        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1084,7 +1084,7 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione otro archivo cue</translation>
     </message>
 </context>
 <context>
@@ -1183,12 +1183,13 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2</translation>
     </message>
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>La conversión no es posible.
+%1</translation>
     </message>
 </context>
 </TS>

@@ -255,11 +255,11 @@
     </message>
     <message>
         <source>Per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>为每个音轨创建 cue 表</translation>
     </message>
     <message>
         <source>Create per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>为每个音轨创建 cue 表</translation>
     </message>
 </context>
 <context>
@@ -521,7 +521,12 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
+        <translation>设置目标码率，单位 kb/s（6-256 每个通道）。
+&lt;p&gt;
+VBR 模式下，这指定平均速率，面向较大且多样的音频集合。
+&lt;p&gt;
+CBR 模式下，它指定特定的输出码率。
+</translation>
     </message>
 </context>
 <context>
@@ -575,7 +580,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>该 cue 文件包含多个磁盘的信息。您想使用哪个磁盘？</translation>
     </message>
 </context>
 <context>
@@ -586,11 +591,11 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation type="unfinished"/>
+        <translation>未设定 Cue 文件。</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation type="unfinished"/>
+        <translation>音频文件比预期的 cue 表短。</translation>
     </message>
 </context>
 <context>
@@ -612,7 +617,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation type="unfinished"/>
+        <translation>我无法读取 &quot;%1&quot; 文件</translation>
     </message>
 </context>
 <context>
@@ -964,12 +969,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>选择 cue 文件</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>添加 cue 或音频文件</translation>
     </message>
 </context>
 <context>
@@ -1002,12 +1007,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 程序</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation type="unfinished"/>
+        <translation>所有文件</translation>
     </message>
 </context>
 <context>
@@ -1031,36 +1036,36 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>我无法写入 cue 文件 &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>文件 &lt;b&gt;&quot;%1&quot;&lt;/b&gt; 不存在</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; 不是一个有效的 cue 文件。Cue 没有 FILE 标签。</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; 不是一个有效的 cue 文件。磁盘 %2 没有标签。</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; 不是一个有效的 cue 文件。在 %2 有不正确的轨道索引。</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exists</source>
-        <translation type="unfinished"/>
+        <translation>未设定音频文件名</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <translation>你不能将回放增益用于高于 48kHz 的采样率的文件。Metaflac 不支持这些文件。</translation>
+    </message>
+    <message>
+        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1087,7 +1092,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation type="unfinished"/>
+        <translation>选择其他 cue 文件</translation>
     </message>
 </context>
 <context>
@@ -1191,7 +1196,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>不可能转换。
+%1</translation>
     </message>
 </context>
 </TS>

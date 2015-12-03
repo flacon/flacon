@@ -1059,13 +1059,13 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Не задан аудиофайл.</translation>
     </message>
     <message>
-        <source>Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exists</source>
-        <translation>Аудио файл &lt;b&gt;%1&lt;/b&gt; не существует.</translation>
-    </message>
-    <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation>Вы не можете использовать &apos;выравнивание громкости&apos; для файлов с частотой дискретизации выше 48 КГц. Metaflac не поддерживает такие файлы.</translation>
+    </message>
+    <message>
+        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation>Аудио файл &lt;b&gt;%1&lt;/b&gt; не существует.</translation>
     </message>
 </context>
 <context>
