@@ -110,8 +110,8 @@ bool InputAudioFile::load()
 
     if (!QFileInfo(mFileName).exists())
     {
-        qWarning() << QString("The Audio file <b>\"%1\"</b> does not exist").arg(mFileName);
-        mErrorString = QObject::tr("The Audio file <b>\"%1\"</b> does not exist").arg(mFileName);
+        qWarning() << QString("The audio file <b>\"%1\"</b> does not exist").arg(mFileName);
+        mErrorString = QObject::tr("The audio file <b>\"%1\"</b> does not exist").arg(mFileName);
         return false;
     }
 

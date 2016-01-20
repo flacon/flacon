@@ -235,7 +235,7 @@ CueReader::CueReader(const QString &fileName):
     if (mDisks.isEmpty())
     {
         mValid = false;
-        mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Cue has no FILE tag.").arg(mFileName);
+        mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. The cue sheet has no FILE tag.").arg(mFileName);
     }
 
     int startTrackNum = 1;
@@ -466,13 +466,13 @@ bool CueReader::parseOneDiskTags(QFile &file, CueTagSet *tags)
             int num = leftPart(value, ' ').toInt(&ok);
             if (!ok)
             {
-                mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track Index at %2.", "Cue parser error. %2 is file position").arg(mFileName).arg(pos);
+                mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track index at %2.", "Cue parser error. %2 is file position").arg(mFileName).arg(pos);
                 return false;
             }
 
             if (num < 0 || num > 99)
             {
-                mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track Index at %2.", "Cue parser error. %2 is file position").arg(mFileName).arg(pos);
+                mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track index at %2.", "Cue parser error. %2 is file position").arg(mFileName).arg(pos);
                 return false;
             }
 
