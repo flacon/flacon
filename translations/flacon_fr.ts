@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>About</source>
-        <translation>À propos de</translation>
+        <translation>Détails</translation>
     </message>
     <message>
         <source>Author</source>
@@ -231,7 +231,7 @@
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation>Chemin complet vers les applications externes</translation>
+        <translation>Chemin complet des applications externes</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
@@ -345,7 +345,7 @@
 </source>
         <extracomment>ererere</extracomment>
         <translation>&lt;dt&gt;DBV moyen&lt;/dt&gt;
-&lt;dd&gt;En utilisant un Débit Binaire Variable moyen, cette présélection devrait fournir une quasi transparence à la plupart des personnes pour la plupart des musiques.&lt;/dd&gt;
+&lt;dd&gt;En utilisant un Débit Binaire Variable moyen, cette présélection devrait fournir une quasi-transparence à la plupart des personnes pour la plupart des musiques.&lt;/dd&gt;
 
 &lt;dt&gt;DBV standard, DBV standard rapide&lt;/dt&gt;
 &lt;dd&gt;En utilisant un Débit Binaire Variable standard, ces présélections devraient être transparentes pour la plupart des personnes et la plupart des musiques. Elles donnent déjà des résultats de haute qualité.&lt;/dd&gt;
@@ -360,7 +360,7 @@
 &lt;dd&gt;Active la nouvelle option DBV rapide pour un profil donné. Cela est recommandé.&lt;/dd&gt;
 
 &lt;dt&gt;DBC insensé&lt;/dt&gt;
-&lt;dd&gt;Si vous devez obtenir la plus haute qualité sans vous soucier de la taille du fichier, vous l&apos;obtiendrezs en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
+&lt;dd&gt;Si vous devez obtenir la plus haute qualité sans vous soucier de la taille du fichier, vous l&apos;obtiendrez en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
 
 &lt;dt&gt;DBC kbit/s&lt;/dt&gt;
 &lt;dd&gt;Cette présélection à Débit Binaire Constant vous donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
@@ -526,7 +526,6 @@ In CBR mode, it sets the specific output bitrate.
 En mode DBV, cela définit le débit moyen pour une grande collection audio diversifiée. 
 &lt;p&gt;
 En mode DBC, cela définit le débit binaire spécifique de sortie.
-
 </translation>
     </message>
 </context>
@@ -561,7 +560,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas écrire vers le répertoire « %1 ».</translation>
+        <translation>Je ne peux pas écrire dans le répertoire « %1 ».</translation>
     </message>
     <message>
         <source>Conversion is not possible:</source>
@@ -581,7 +580,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>Le fichier cue contient des informations sur plusieurs disques. Quel disque voulez-vous utiliser ?</translation>
+        <translation>Le fichier cue contient des informations concernant plusieurs disques. Quel disque voulez-vous utiliser ?</translation>
     </message>
 </context>
 <context>
@@ -592,7 +591,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>Fichier cue non spécifié.</translation>
+        <translation>Fichier cue non défini.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
@@ -612,7 +611,8 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     <message>
         <source>Encoder error:
 </source>
-        <translation>Erreur de l&apos;encodeur :</translation>
+        <translation>Erreur de l&apos;encodeur :
+</translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
@@ -774,7 +774,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation>Démarrer la conversion</translation>
+        <translation>Démarrer le processus de conversion</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -786,7 +786,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation>Annuler la conversion</translation>
+        <translation>Interrompre le processus de conversion</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1023,7 +1023,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier audio pris en charge. &lt;br&gt;&lt;br&gt;Vérifiez que tous les programmes requis sont installés, et vos préférences aussi.</translation>
+        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier audio pris en charge. &lt;br&gt;&lt;br&gt;Vérifiez que tous les programmes requis sont installés, et vérifiez aussi vos préférences.</translation>
     </message>
     <message>
         <source> [disk %1]</source>
@@ -1043,17 +1043,8 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
         <translation>Le fichier &lt;b&gt;« %1 »&lt;/b&gt; n&apos;existe pas</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier cue valide. Il n&apos;as pas de balise FILE.</translation>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier cue valide. Le disque %2 n&apos;a pas de balise.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier cue valide. Index de piste erroné en %2.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1062,10 +1053,19 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>vous ne pouvez pas utiliser « ReplayGain » pour des fichiers ayant un débit d’échantillonnage supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
+        <translation>vous ne pouvez pas utiliser « ReplayGain » pour des fichiers dont le débit d’échantillonnage est supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
     </message>
     <message>
-        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>

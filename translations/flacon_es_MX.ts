@@ -509,7 +509,11 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Utiliza una tasa de bits variable (recomendado). En el modo VBR, la tasa de bits puede ir hacia arriba o abajo libremente dependiendo del contenido, asegurando una calidad consistente.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Utiliza una codificación a una tasa de bits variable restringida. Entregada a una tasa de bits específica. Este modo es análogo a CBR en codificadores AAC/MP3 y el modo gestionado en codificadores vorbis. Este entrega una calidad menos consistente que el modo VBR pero una tasa de bits consistente.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -518,7 +522,12 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
+        <translation>Establece la tasa de bits destino en kb/s ( 6-256 por canal) .
+&lt; p&gt; 
+En el modo VBR, establece una tasa promedio para una amplia y variada colección de audio.
+&lt; p&gt;
+En el modo CBR, establece la tasa de bits específica de salida.
+</translation>
     </message>
 </context>
 <context>
@@ -1035,17 +1044,8 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
         <translation>El archivo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; no existe</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo cue válido. No cuenta con etiqueta archivo.</translation>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo válido. Disco %2 no tiene etiquetas.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo válido. Índice de pista incorrecto en %2.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1057,7 +1057,16 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
         <translation>No puede usar &quot;ReplayGain&quot; para archivos con ratio sobre los 48Hz. Metaflac no soporta dichos archivos.</translation>
     </message>
     <message>
-        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>

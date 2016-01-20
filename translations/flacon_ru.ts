@@ -1042,17 +1042,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Файл &lt;b&gt;%1&lt;/b&gt; не существует.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Он не содержит тега FILE.</translation>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Диск %2 не содержит тегов.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Некорректный индекс в позиции %2.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1064,7 +1055,16 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Вы не можете использовать &apos;выравнивание громкости&apos; для файлов с частотой дискретизации выше 48 КГц. Metaflac не поддерживает такие файлы.</translation>
     </message>
     <message>
-        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Он не содержит тега FILE.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Некорректный индекс в позиции %2.</translation>
+    </message>
+    <message>
+        <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Аудио файл &lt;b&gt;%1&lt;/b&gt; не существует.</translation>
     </message>
 </context>

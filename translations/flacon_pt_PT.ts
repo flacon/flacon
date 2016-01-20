@@ -1039,16 +1039,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1061,7 +1052,16 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>

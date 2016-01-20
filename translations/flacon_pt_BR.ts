@@ -1041,17 +1041,8 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
         <translation>O arquivo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; não existe</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
-        <translation>O arquivo &lt;b&gt;%1&lt;/b&gt; não é um arquivo cue válido. Não possui a etiqueta FILE.</translation>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
         <translation>O arquivo &lt;b&gt;%1&lt;/b&gt; não é um arquivo cue válido. O disco %2 não possui etiquetas.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>O arquivo &lt;b&gt;%1&lt;/b&gt; não é um arquivo cue válido. Índice de faixas incorreto em %2.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1063,7 +1054,16 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
         <translation>Não é possível usar &apos;ReplayGain&apos; para arquivos com qualidade superior a 48kHz. Metaflac não suporta esses arquivos.</translation>
     </message>
     <message>
-        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -1043,17 +1043,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>文件 &lt;b&gt;&quot;%1&quot;&lt;/b&gt; 不存在</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; 不是一个有效的 cue 文件。Cue 没有 FILE 标签。</translation>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; 不是一个有效的 cue 文件。磁盘 %2 没有标签。</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; 不是一个有效的 cue 文件。在 %2 有不正确的轨道索引。</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1065,7 +1056,16 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>你不能将回放增益用于高于 48kHz 的采样率的文件。Metaflac 不支持这些文件。</translation>
     </message>
     <message>
-        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>

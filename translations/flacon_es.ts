@@ -1045,17 +1045,8 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>El archivo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; no existe</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. El archivo CUE no tiene la etiqueta FILE.</translation>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. El disco %2 no tiene etiquetas.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. Índice de pista incorrecto en %2.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1067,7 +1058,16 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>No puede usar &apos;ReplayGain&apos; en archivos con frecuencias de muestreo superiores a 48kHz. Metaflac no soporta estos archivos.</translation>
     </message>
     <message>
-        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -59,7 +59,7 @@
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation type="unfinished"/>
+        <translation>Creare fișiere binare, testare</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon este tradus în multe limbi datorită eforturilor echipelor de traducere din toată lumea.</translation>
     </message>
     <message>
         <source>Flacon account on github.com</source>
@@ -76,7 +76,7 @@
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation type="unfinished"/>
+        <translation>Raportare erori %1</translation>
     </message>
 </context>
 <context>
@@ -223,7 +223,7 @@
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation type="unfinished"/>
+        <translation>Pauză înainte de prima pistă:</translation>
     </message>
     <message>
         <source>Rescan</source>
@@ -255,11 +255,11 @@
     </message>
     <message>
         <source>Per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>Listă de indexare pentru fiecare track</translation>
     </message>
     <message>
         <source>Create per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>Creare listă de indexare pentru fiecare pistă</translation>
     </message>
 </context>
 <context>
@@ -297,11 +297,11 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>NormalizareSunet</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Calculează normalizare sunet:</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -316,7 +316,7 @@
     </message>
     <message>
         <source>Preset:</source>
-        <translation type="unfinished"/>
+        <translation>Preconfigurare:</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -344,7 +344,30 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;RBV mediu&lt;/dt&gt;
+&lt;dd&gt;Această pre-configurare este potrivită de obicei pentru toate tipurile de fișiere audio. .&lt;/dd&gt;
+
+&lt;dt&gt;RBV standard, RBV standard rapid&lt;dt&gt;
+&lt;dd&gt;Această pre-configurare este potrivită de obicei pentru toate tipurile de fișiere audio, având deja o calitate destul de bună a sunetului&lt;/dd&gt;
+
+&lt;dt&gt;RBV extremă, RBV extremă rapidă&lt;/dt&gt;
+&lt;dd&gt;Este nivelul cel mai înalt al RBV, care oferă o calitate puțin mia bună decât configurarea standard, dacă aveți auz extrem de fin sau echipamente audio de înaltă calitate..&lt;/dd&gt;
+
+&lt;dt&gt;Calitate RBV/dt&gt;
+&lt;dd&gt;Puteți selectat calitatea RBV dorită a fișierului audio rezultat.&lt;/dd&gt;
+
+&lt;dt&gt;rapid&lt;/dt&gt;
+&lt;dd&gt;Permite activarea RBV rapidă pentru un profil. (recomandat)&lt;/dd&gt;
+
+&lt;dt&gt;RBF „nebună”&lt;/dt&gt;
+&lt;dd&gt; utilizați această configurare dacă tot ce vreți este cea mai bună calitate a sunetului și nu vă interesează mărimea fișierului rezultat.&lt;/dd&gt;
+
+&lt;dt&gt;RBF kbps&lt;/dt&gt;
+&lt;dd&gt;Oferă o calitate a sunetului destul de bună la o rată de biți fixă.&lt;/dd&gt;
+
+&lt;dt&gt;RBM kbps&lt;/dt&gt;
+&lt;dd&gt;Oferă de obicei o calitate a sunetului mai bună decât opțiunea RBF pentru o rată de biți specificată.&lt;/dd&gt;
+</translation>
     </message>
     <message>
         <source>Use bitrate</source>
@@ -356,7 +379,7 @@
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Alegeți rata de biți pentru fișierul destinație (în kb/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
@@ -368,58 +391,58 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>NormalizareSunet</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Calculează normalizare sunet:</translation>
     </message>
     <message>
         <source>VBR medium</source>
-        <translation type="unfinished"/>
+        <translation>rată de biți variabilă medie</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation type="unfinished"/>
+        <translation>Rată de biți standard</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation type="unfinished"/>
+        <translation>Rată de biți standard rapidă</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation type="unfinished"/>
+        <translation>Rată de biți extremă</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation type="unfinished"/>
+        <translation>RBV extrem de rapidă</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation>Calitate VBR</translation>
+        <translation>Calitate RBV</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation type="unfinished"/>
+        <translation>RBF nebună</translation>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation type="unfinished"/>
+        <translation>RBF kbps</translation>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation type="unfinished"/>
+        <translation>RBM kbps</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurare pentru codare ogg</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>Utilizați configurarea optimă pentru calitate (recomandat)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
@@ -431,15 +454,15 @@
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Se stabilește rata de biți minimă (în kb/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Rată de biți nominală:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Alegeți rata de biți pentru fișierul destinație (în kb/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
@@ -447,38 +470,38 @@
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Se stabilește rata de biți maximă (în kb/s).</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>NormalizareSunet</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Calculează normalizare sunet:</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurare codare opus</translation>
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation type="unfinished"/>
+        <translation>Tip rată de biți:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>rată de biți:</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
-        <translation type="unfinished"/>
+        <translation>RBV - rată de biți variabilă</translation>
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation type="unfinished"/>
+        <translation>RBF - rată de biți fixă</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -486,7 +509,11 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;RVB&lt;/dt&gt;
+&lt;dd&gt;Utilizați codare cu rată variabilă de biți (recomandat, VBR în engleză). În modul RVB, rata de biți/eșantionare poate varia în funcție de conținut pentru a asigura aceeași calitate a sunetului.&lt;/dd&gt;
+
+&lt;dt&gt;RBF&lt;/dt&gt;
+&lt;dd&gt;Utilizați rata de biți fixă (CBR în engleză) pentru ca fișierul rezultat să aibă o rată de biți fixă, specificată de dvs. Acest mod de condare este identic cu CBR în codarea AAC/MP3 și modul admnistrat (managed mode) în codarea vorbis. Calitatea este mai scăzută decât în cazul utilizării ratei de biți variabile.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -495,14 +522,19 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
+        <translation>Se stabilește rata de biți a fișierului-țintă în kb/s (6-256 per canal).
+&lt;p&gt;
+În modul RBV, această configurare are efect asupra unei colecții vaste și diverse de fișiere audio.
+&lt;p&gt;
+În modul RBF, această configurare stabilește rata de biți dorită.
+</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurare codare cu Wavpack</translation>
     </message>
     <message>
         <source>Compression:</source>
@@ -510,11 +542,11 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>NormalizareSunet</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Calculează normalizare sunet:</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -525,31 +557,31 @@ In CBR mode, it sets the specific output bitrate.
     <name>Converter</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nu se poate crea dosarul „%1”.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nu se poate scrie în dosarul „%1”.</translation>
     </message>
     <message>
         <source>Conversion is not possible:</source>
-        <translation type="unfinished"/>
+        <translation>Conversia nu este posibilă:</translation>
     </message>
 </context>
 <context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation type="unfinished"/>
+        <translation>Selectare disc</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 [ disc %2 ]</translation>
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Lista de indexare conține informații despre mai multe discuri. Alegeți discul dorit.</translation>
     </message>
 </context>
 <context>
@@ -560,11 +592,11 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation type="unfinished"/>
+        <translation>Lista de indexare nu este specificată</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation type="unfinished"/>
+        <translation>Fișierul audio este mai scurt decât era specificat în lista de indexare.</translation>
     </message>
 </context>
 <context>
@@ -573,7 +605,9 @@ In CBR mode, it sets the specific output bitrate.
         <source>I can't delete file:
 %1
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Nu se poate șterge fișierul:
+%1
+%2</translation>
     </message>
     <message>
         <source>Encoder error:
@@ -584,19 +618,20 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation type="unfinished"/>
+        <translation>Nu se poate citi fișierul %1</translation>
     </message>
 </context>
 <context>
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation type="unfinished"/>
+        <translation>Se stabilește calitatea codării, între %1 (minim) și %2 (maxim).</translation>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation type="unfinished"/>
+        <translation>Se stabilește nivelul de comprimare, între %1 (cel mai rapid) și %2 (cea mai mare comprimare).
+Aceasta are efect doar asupra mărimii fișierului rezultat. Calitatea va fi aceeași.</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -618,7 +653,10 @@ This only affects the file size. All settings are lossless.</source>
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain este un standard pentru normalizarea sunetului perceput la redarea de fișiere audio. 
+
+Se pot analiza pistele individuale astfel încât toate pistele să aibă același volum la redare. 
+Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de volum din acel album vor fi păstrate.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -635,7 +673,9 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Nu se poate redenumi fișierul:
+%1 to %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -643,7 +683,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Gain error:
 </source>
-        <translation type="unfinished"/>
+        <translation>Eroare de normalizare sunet:
+</translation>
     </message>
 </context>
 <context>
@@ -654,7 +695,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Result Files</source>
-        <translation type="unfinished"/>
+        <translation>Fișier cu rezultate</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -675,7 +716,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished"/>
+        <translation>Etichete</translation>
     </message>
     <message>
         <source>Genre:</source>
@@ -695,15 +736,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Start num:</source>
-        <translation type="unfinished"/>
+        <translation>Număr început:</translation>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation type="unfinished"/>
+        <translation>ID disc:</translation>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation type="unfinished"/>
+        <translation>Cod de pagină:</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -723,7 +764,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation type="unfinished"/>
+        <translation>Adăugare fișier audio sau listă de indexare</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -747,7 +788,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation type="unfinished"/>
+        <translation>Despre procesul de conversie</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -763,7 +804,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Program preferences</source>
-        <translation type="unfinished"/>
+        <translation>Preferințe program</translation>
     </message>
     <message>
         <source>&amp;About Flacon</source>
@@ -771,11 +812,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Remove album</source>
-        <translation type="unfinished"/>
+        <translation>Eliminați album</translation>
     </message>
     <message>
         <source>Remove album from project</source>
-        <translation type="unfinished"/>
+        <translation>Eliminați toate albumele din proiect</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -783,7 +824,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation type="unfinished"/>
+        <translation>Configurare utilitar codare</translation>
     </message>
     <message>
         <source>...</source>
@@ -791,15 +832,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Select result directory</source>
-        <translation type="unfinished"/>
+        <translation>Alegeți dosarul cu rezultate</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation type="unfinished"/>
+        <translation>Obține din CDDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation type="unfinished"/>
+        <translation>Obține informațiile despre album din CDDB</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
@@ -811,40 +852,41 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation type="unfinished"/>
+        <translation>Căutare în album recursivă</translation>
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Introduceți „Număr pistă”</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Introduceți „Număr total de piste”</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Introduceți „Artist”</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Introduceți „Titlu album”</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Introduceți „Titlu pistă”</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Introduceți „Anul”</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Introduceți „Genul”</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Unele albume nu vor fi convertite, au erori.
+Vreți să continuați?</translation>
     </message>
     <message>
         <source>%1 files</source>
@@ -854,7 +896,7 @@ Do you want to continue?</source>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
-        <translation type="unfinished"/>
+        <translation>Toate formatele suportate</translation>
     </message>
     <message>
         <source>All files</source>
@@ -894,29 +936,47 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Marcajele încep cu %. Puteți folosi următoarele marcaje:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numărul pistei  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Număr total de piste&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titlu album&lt;td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titlu pistă&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - An&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Gen&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Dacă un fragment de text care conține un marcaj este pus între paranteze acolade, fragmentele respective nu vor apărea dacă marcajul este gol. </translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Puteți alege dosarul destinație sau îl puteți scrie direct.
+
+Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișierele rezultate vor fi puse în același dosar cu fișierele sursă.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation type="unfinished"/>
+        <translation>Utilizează &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Alegeți lista de indexare</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Adăugați un fișier audio sau o listă de indexare</translation>
     </message>
 </context>
 <context>
@@ -949,12 +1009,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation type="unfinished"/>
+        <translation>Program(ul) %1</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation type="unfinished"/>
+        <translation>Toate fișierele</translation>
     </message>
 </context>
 <context>
@@ -965,49 +1025,49 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation type="unfinished"/>
+        <translation>Fișierul &lt;b&gt;%1&lt;/b&gt;nu este un fișier audio suportat. &lt;br&gt;&lt;br&gt;Verificați la „Preferințe” dacă ați instalat toate programele necesare. </translation>
     </message>
     <message>
         <source> [disk %1]</source>
-        <translation type="unfinished"/>
+        <translation> [disc %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Nu se poate scrie lista de indexare &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Cue has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>Fișierul  &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nu există</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track Index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; nu este o listă de indexare validă. Discul %2 nu are etichete.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation type="unfinished"/>
+        <translation>Fișierul audio nu are nume</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <translation>Puteți utiliza standardul „ReplayGain” pentru fișierele cu rate de eșantionare mai mari de 48kHz. Metaflac nu poate lucra cu asemenea fișiere.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The Audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
+        <comment>Cue parser error. %2 is file position</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1015,14 +1075,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>Splitter</name>
     <message>
         <source>The number of tracks is higher than expected.</source>
-        <translation type="unfinished"/>
+        <translation>Numărul de piste este mai mare decât cel așteptat.</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
-        <translation type="unfinished"/>
+        <translation>Obțineți date din CDDB (baza de date cu CD-uri)</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -1030,11 +1090,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation type="unfinished"/>
+        <translation>Alegeți alt fișier audio</translation>
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation type="unfinished"/>
+        <translation>Alegeți altă listă de indexare</translation>
     </message>
 </context>
 <context>
@@ -1045,7 +1105,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Aborted</source>
-        <translation type="unfinished"/>
+        <translation>Operațiune întreruptă</translation>
     </message>
     <message>
         <source>OK</source>
@@ -1053,31 +1113,31 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Extracting</source>
-        <translation type="unfinished"/>
+        <translation>Extragere în desfășurare</translation>
     </message>
     <message>
         <source>Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codare în desfășurare</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished"/>
+        <translation>În așteptare</translation>
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation type="unfinished"/>
+        <translation>Calculare normalizare sunet</translation>
     </message>
     <message>
         <source>Wait gain</source>
-        <translation type="unfinished"/>
+        <translation>Normalizare pauză între piese </translation>
     </message>
     <message>
         <source>Write gain</source>
-        <translation type="unfinished"/>
+        <translation>Normalizare piste la scriere</translation>
     </message>
     <message>
         <source>Tracks:</source>
-        <translation type="unfinished"/>
+        <translation>Piste:</translation>
     </message>
     <message>
         <source>Audio:</source>
@@ -1089,56 +1149,57 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Pistă</translation>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Titlu</translation>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Artist</translation>
     </message>
     <message>
         <source>Album</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Album</translation>
     </message>
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Comentariu</translation>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Fișier</translation>
     </message>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Valori multiple</translation>
     </message>
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Lungime</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2</translation>
     </message>
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Conversia nu este posibilă.
+%1</translation>
     </message>
 </context>
 </TS>
