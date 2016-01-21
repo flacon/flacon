@@ -165,7 +165,7 @@ AboutInfo AboutDialog::thanksInfo() const
                "mailto:lazy.kent@opensuse.org",
                tr("Packaging, testing"));
 
-    result.add("Alain-Olivier Breysse",
+    result.add("",
                "mailto:yahoe.001@gmail.com",
                tr("Improvements in the UI"));
 

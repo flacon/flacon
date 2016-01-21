@@ -1057,16 +1057,16 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier cue valide. Il n&apos;as pas de balise FILE.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier cue valide. Index de piste erroné en %2.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Le fichier audio &lt;b&gt;« %1 »&lt;/b&gt; n&apos;existe pas</translation>
     </message>
 </context>
 <context>

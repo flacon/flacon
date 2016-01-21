@@ -1055,16 +1055,16 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; não é um arquivo cue válido. O arquivo cue não possui a etiqueta FILE.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; não é um arquivo cue válido. Índice de faixas incorreto em %2.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>O arquivo de áudio &lt;b&gt;&quot;%1&quot;&lt;/b&gt; não existe</translation>
     </message>
 </context>
 <context>

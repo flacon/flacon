@@ -625,7 +625,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Standard</translation>
     </message>
 </context>
 <context>
@@ -714,7 +714,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Hjelp</translation>
     </message>
     <message>
         <source>Add file</source>
@@ -750,7 +750,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Avslutt</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -786,7 +786,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation> ...</translation>
     </message>
     <message>
         <source>Select result directory</source>
