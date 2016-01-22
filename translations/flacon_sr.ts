@@ -66,10 +66,6 @@
         <translation>Побољшања сучеља</translation>
     </message>
     <message>
-        <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation>Флакон је преведен на многе језике захваљујући раду преводилачких тимова широм света.</translation>
-    </message>
-    <message>
         <source>Flacon account on github.com</source>
         <translation>Флаконов налог на github.com</translation>
     </message>
@@ -77,6 +73,10 @@
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>Буболовац: %1</translation>
+    </message>
+    <message>
+        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

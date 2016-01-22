@@ -66,16 +66,16 @@
         <translation>Melloras na interface gráfica</translation>
     </message>
     <message>
-        <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation>Flacon está traducido a diversos idiomas grazas ao traballo de equipos de tradución de todo o mundo.</translation>
-    </message>
-    <message>
         <source>Flacon account on github.com</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -66,10 +66,6 @@
         <translation>Покращення інтерфейсу.</translation>
     </message>
     <message>
-        <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation>Flacon перекладена багатьма мовами завдяки праці команди перекладачів з усього світу.</translation>
-    </message>
-    <message>
         <source>Flacon account on github.com</source>
         <translation>Обліковий запис &quot;Flacon&quot; на github.com.</translation>
     </message>
@@ -77,6 +73,10 @@
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>Баг-трекер %1</translation>
+    </message>
+    <message>
+        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -66,10 +66,6 @@
         <translation>UI的改进</translation>
     </message>
     <message>
-        <source>Flacon is translated into many languages thanks to the work of the translation teams all over the world.</source>
-        <translation>Flacon在世界各地翻译小组的帮助下有了各种语言的版本。</translation>
-    </message>
-    <message>
         <source>Flacon account on github.com</source>
         <translation>Flacon 在github.com 的网址</translation>
     </message>
@@ -77,6 +73,10 @@
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>出错的曲目 %1</translation>
+    </message>
+    <message>
+        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
