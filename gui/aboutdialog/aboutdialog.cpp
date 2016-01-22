@@ -184,7 +184,8 @@ QString AboutDialog::translationsText() const
 {
     TranslatorsInfo translatorsInfo;
     return QString("%1<p><ul>%2</ul>").arg(
-                tr("Flacon is translated into many languages thanks to the work of the translation teams all over the world."),
+                tr("Flacon is translated into many languages thanks to the work of the Flacon translation teams on <a href='%1'>Transifex</a>.")
+                .arg("https://www.transifex.com/sokoloff/flacon/"),
                 translatorsInfo.asHtml()
                 );
 }
