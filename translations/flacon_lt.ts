@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon vertimo komandų darbo &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt; puslapyje dėka, programa Flacon yra verčiama į daugelį kalbų.</translation>
     </message>
 </context>
 <context>

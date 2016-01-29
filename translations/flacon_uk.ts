@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon перекладена багатьма мовами завдяки праці команди перекладачів на сайті &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;..</translation>
     </message>
 </context>
 <context>
@@ -108,59 +108,59 @@
     </message>
     <message>
         <source>Latin-1 (ISO-8859-1)</source>
-        <translation>Латиниця-1 (ISO-8859-1)</translation>
+        <translation>Латинка-1 (ISO-8859-1)</translation>
     </message>
     <message>
         <source>Latin-2 (ISO-8859-2)</source>
-        <translation>Латиниця-2 (ISO-8859-2)</translation>
+        <translation>Латинка-2 (ISO-8859-2)</translation>
     </message>
     <message>
         <source>Latin-3 (ISO-8859-3)</source>
-        <translation>Латиниця-3 (ISO-8859-3)</translation>
+        <translation>Латинка-3 (ISO-8859-3)</translation>
     </message>
     <message>
         <source>Latin-4 (ISO-8859-4)</source>
-        <translation>Латиниця-4 (ISO-8859-4)</translation>
+        <translation>Латинка-4 (ISO-8859-4)</translation>
     </message>
     <message>
         <source>Latin-5 (ISO-8859-5)</source>
-        <translation>Латиниця-5 (ISO-8859-5)</translation>
+        <translation>Латинка-5 (ISO-8859-5)</translation>
     </message>
     <message>
         <source>Latin-6 (ISO-8859-6)</source>
-        <translation>Латиниця-6 (ISO-8859-6)</translation>
+        <translation>Латинка-6 (ISO-8859-6)</translation>
     </message>
     <message>
         <source>Latin-7 (ISO-8859-7)</source>
-        <translation>Латиниця-7 (ISO-8859-7)</translation>
+        <translation>Латинка-7 (ISO-8859-7)</translation>
     </message>
     <message>
         <source>Latin-8 (ISO-8859-8)</source>
-        <translation>Латиниця-8 (ISO-8859-8)</translation>
+        <translation>Латинка-8 (ISO-8859-8)</translation>
     </message>
     <message>
         <source>Latin-9 (ISO-8859-9)</source>
-        <translation>Латиниця-9 (ISO-8859-9)</translation>
+        <translation>Латинка-9 (ISO-8859-9)</translation>
     </message>
     <message>
         <source>Latin-10 (ISO-8859-10)</source>
-        <translation>Латиниця-10 (ISO-8859-10)</translation>
+        <translation>Латинка-10 (ISO-8859-10)</translation>
     </message>
     <message>
         <source>Latin-13 (ISO-8859-13)</source>
-        <translation>Латиниця-13 (ISO-8859-13)</translation>
+        <translation>Латинка-13 (ISO-8859-13)</translation>
     </message>
     <message>
         <source>Latin-14 (ISO-8859-14)</source>
-        <translation>Латиниця-14 (ISO-8859-14)</translation>
+        <translation>Латинка-14 (ISO-8859-14)</translation>
     </message>
     <message>
         <source>Latin-15 (ISO-8859-15)</source>
-        <translation>Латиниця-15 (ISO-8859-15)</translation>
+        <translation>Латинка-15 (ISO-8859-15)</translation>
     </message>
     <message>
         <source>Latin-16 (ISO-8859-16)</source>
-        <translation>Латиниця-16 (ISO-8859-16)</translation>
+        <translation>Латинка-16 (ISO-8859-16)</translation>
     </message>
     <message>
         <source>Windows 1250</source>
