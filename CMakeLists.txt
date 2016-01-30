@@ -185,7 +185,7 @@ include("tools.cmake")
 
 ############################################
 if(CMAKE_COMPILER_IS_GNUCXX)
-      add_definitions (-Wall -pedantic -Wno-long-long)
+    add_definitions (-Wall -pedantic -Wno-long-long -Werror=format-security)
 endif()
 
 include_directories(
