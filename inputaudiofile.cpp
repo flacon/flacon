@@ -135,7 +135,7 @@ bool InputAudioFile::load()
     {
         qWarning("------------------------------------");
         qWarning() << "Test audio command:" << (shntool + " " + args.join(" "));
-        qWarning() << "shntool info waitForFinished faild";
+        qWarning() << "shntool info waitForFinished failed";
         qWarning() << proc.readAllStandardError();
         qWarning("------------------------------------");
         return false;
