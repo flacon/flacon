@@ -88,7 +88,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagStartNumEdit, SIGNAL(valueChanged(int)), this, SLOT(setStartTrackNum()));
 
     initActions();
-    outDeletePatternButton->setIcon(Project::getIcon("edit-delete", "remove", ":/icons/22/remove-disk"));
 
     // Buttons .................................................
     outDirButton->setDefaultAction(actionSelectResultDir);
@@ -122,11 +121,12 @@ MainWindow::MainWindow(QWidget *parent) :
     pattern = "%A - %a/%n - %t";
     outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
 
+    outPatternButton->menu()->addSeparator();
+    QAction *act = new QAction(tr("Delete current pattern from history"), outPatternButton);
+    connect(act, SIGNAL(triggered()), this, SLOT(deletePattern()));
+    outPatternButton->menu()->addAction(act);
 
     outPatternButton->setFixedWidth(outDirButton->sizeHint().width());
-
-    connect(outDeletePatternButton, SIGNAL(clicked()), this, SLOT(deletePattern()));
-
     connect(outPatternButton, SIGNAL(paternSelected(QString)),
             this, SLOT(insertOutPattern(QString)));
 
