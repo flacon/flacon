@@ -88,6 +88,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagStartNumEdit, SIGNAL(valueChanged(int)), this, SLOT(setStartTrackNum()));
 
     initActions();
+    outDeletePatternButton->setIcon(Project::getIcon("edit-delete", "remove", ":/icons/22/remove-disk"));
 
     // Buttons .................................................
     outDirButton->setDefaultAction(actionSelectResultDir);
@@ -127,6 +128,9 @@ MainWindow::MainWindow(QWidget *parent) :
     outPatternButton->menu()->addAction(act);
 
     outPatternButton->setFixedWidth(outDirButton->sizeHint().width());
+
+    connect(outDeletePatternButton, SIGNAL(clicked()), this, SLOT(deletePattern()));
+
     connect(outPatternButton, SIGNAL(paternSelected(QString)),
             this, SLOT(insertOutPattern(QString)));
 
