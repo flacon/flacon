@@ -1950,6 +1950,26 @@ void TestFlacon::testFindAudioFile_data()
             << "CueFile.cue"
             << "CueFile_AditionalText.flac"
             << "CueFile_AditionalText.flac";
+
+    // Issue #31
+    QTest::newRow("Bush - (1996) Razorblade Suitcase")
+            << "Bush - (1996) Razorblade Suitcase.flac"
+            << "Bush - (1996) Razorblade Suitcase.cue"
+            << "3 Doors Down - (2000) The Better Life.flac,"
+               "Bush - (1996) Razorblade Suitcase.flac"
+            << "Bush - (1996) Razorblade Suitcase.flac";
+
+    QTest::newRow("FileTag(1) and FileTag(2)")
+            << "FileTag(1).wav,"
+               "FileTag(2).wav"
+            << "CueFile.cue"
+            << "FileTag(1).wav,"
+               "FileTag(2).wav,"
+               "CueFile.ape,"
+               "CueFile Disk1.ape,"
+               "CueFile Disk2.ape"
+            << "FileTag(1).wav,"
+               "FileTag(2).wav";
 }
 
 

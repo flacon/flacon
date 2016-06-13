@@ -513,13 +513,13 @@ QFileInfoList matchedAudioFiles(const CueTagSet &cueTags, const QFileInfoList &a
     QStringList patterns;
     if (!cueTags.isMultiFileCue())
     {
-        patterns << QFileInfo(cueTags.diskTag("FILE")).completeBaseName();
-        patterns << QString("%1.*").arg(cueFile.completeBaseName());
+        patterns << QRegExp::escape(QFileInfo(cueTags.diskTag("FILE")).completeBaseName());
+        patterns << QRegExp::escape(cueFile.completeBaseName()) + ".*";
     }
     else
     {
-        patterns << QFileInfo(cueTags.diskTag("FILE")).completeBaseName();
-        patterns << cueFile.completeBaseName() + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueTags.diskNumInCue() + 1);
+        patterns << QRegExp::escape(QFileInfo(cueTags.diskTag("FILE")).completeBaseName());
+        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueTags.diskNumInCue() + 1);
         patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueTags.diskNumInCue() + 1);
     }
 

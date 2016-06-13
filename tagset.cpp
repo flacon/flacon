@@ -415,6 +415,7 @@ QDebug operator<<(QDebug dbg, const TagSet &ts)
 {
 
     dbg.nospace() << "Tagset " << ts.uri() << " [" << ts.title() << "]" <<"\n";
+    dbg.nospace() << "  File   " << ts.diskTag(TAG_FILE) << "\n";
     dbg.nospace() << "  DiscId " << ts.diskTag(TAG_DISCID) << "\n";
     dbg.nospace() << "  Genre  " << ts.diskTag(TAG_GENRE) << "\n";
     dbg.nospace() << "  Artist " << ts.diskTag(TAG_PERFORMER) << "\n";
