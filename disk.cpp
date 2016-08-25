@@ -300,6 +300,9 @@ QString Track::calcResultFilePath() const
 {
     QString settingsDir = settings->value(Settings::OutFiles_Directory).toString();
 
+    if (settingsDir == "~")
+        return QDir::homePath();
+
     if (settingsDir == ".")
         settingsDir = "";
 

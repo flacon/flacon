@@ -1056,6 +1056,13 @@ void TestFlacon::testTrackResultFilePath_data()
             << "%a/%y - %A/%n - %t"
             << mTmpDir + "/Artist/2013 - Album/01 - Song01.wav"
             << mCdAudioFile;
+
+    QTest::newRow("7: ~")
+            << "~"
+            << "%a/%y - %A/%n - %t"
+            << QDir::homePath() + "/Artist/2013 - Album/01 - Song01.wav"
+            << "";
+
 }
 
 
