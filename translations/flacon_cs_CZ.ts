@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon je přeložen do mnoha jazyků díky práci překladatelů z celého světa na &lt;a href=&apos;%1&apos;&gt;Transifexu&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -255,11 +255,11 @@
     </message>
     <message>
         <source>Per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>List CUE u skladby</translation>
     </message>
     <message>
         <source>Create per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>Vytvořit list CUE u skladby</translation>
     </message>
 </context>
 <context>
@@ -509,7 +509,11 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Použít kódování proměnlivého datového toku (doporučeno). V režimu proměnlivého datového toku (PDT; VBR) může jít datový tok volně nahoru a dolů v závislosti v závistlosti na důslednosti zajištění jakosti obsahu.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Použít  kódování vynuceného datového toku. Výstup je prováděn do určitého datového toku. Tento režim je obdobou stálého datového toku v kodérech AAC/MP3 (CBR) a řízenému režimu v kodérech Vorbis. Dává méně stálou jakost než režim proměnlivého datového toku, ale stálý datový tok.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -518,7 +522,11 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
+        <translation>Nastavuje cílový datový tok v kb/s (6-256 na kanál).
+&lt;p&gt;
+V režimu proměnlivého datového toku nastavuje průměrný tok pro rozsáhlé a rozmanité sbírky zvukových záznamů.
+&lt;p&gt;
+V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.</translation>
     </message>
 </context>
 <context>
@@ -563,16 +571,16 @@ In CBR mode, it sets the specific output bitrate.
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat disk</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 [disk %2]</translation>
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Soubor CUE obsahuje údaje o více discích. Který disk chcete použít?</translation>
     </message>
 </context>
 <context>
@@ -583,11 +591,11 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation type="unfinished"/>
+        <translation>Soubor CUE nenastaven.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation type="unfinished"/>
+        <translation>Zvukový soubor je kratší než očekáváno podle listu CUE.</translation>
     </message>
 </context>
 <context>
@@ -608,7 +616,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation type="unfinished"/>
+        <translation>Nelze přečíst soubor %1</translation>
     </message>
 </context>
 <context>
@@ -948,22 +956,24 @@ If you surround sections of text that contain a token with braces, these section
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Můžete procházet adresáři do cílového adresáře. Také jej můžete zadat ručně.
+
+Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výsledné soubory budou umístěny ve stejném adresáři jako zdroj.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation type="unfinished"/>
+        <translation>Použít &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Vybrat soubor CUE</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Přidat soubor CUE nebo zvukový soubor</translation>
     </message>
 </context>
 <context>
@@ -996,12 +1006,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation type="unfinished"/>
+        <translation>Program %1</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation type="unfinished"/>
+        <translation>Všechny soubory</translation>
     </message>
 </context>
 <context>
@@ -1016,46 +1026,46 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source> [disk %1]</source>
-        <translation type="unfinished"/>
+        <translation> [disk %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Nelze zapisovat soubor CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Soubor &lt;b&gt;&quot;%1&quot;&lt;/b&gt; neexistuje</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; není platným souborem CUE. Disk %2 nemá žádné značky.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation type="unfinished"/>
+        <translation>Název zvukového souboru není nastaven</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation type="unfinished"/>
+        <translation>Vyrovnání hlasitosti nemůžete použít na soubory se vzorkovacím kmitočtem nad 48 kHz. Metaflac takové soubory nepodporuje.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; není platným souborem CUE. List CUE nemá žádnou značku SOUBOR (FILE).</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; není platným souborem CUE.Nesprávné číslo skladby na %2.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Zvukový soubor &lt;b&gt;&quot;%1&quot;&lt;/b&gt; neexistuje</translation>
     </message>
 </context>
 <context>
@@ -1081,7 +1091,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat jiný soubor CUE</translation>
     </message>
 </context>
 <context>
@@ -1170,22 +1180,23 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Délka</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2</translation>
     </message>
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Převod není možný.
+%1</translation>
     </message>
 </context>
 </TS>

@@ -641,12 +641,12 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Kiekvienam Takeliui</translation>
+        <translation>Kiekvienam takeliui</translation>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Kiekvienam Albumui</translation>
+        <translation>Kiekvienam albumui</translation>
     </message>
     <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
@@ -695,7 +695,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Galutiniai Failai</translation>
+        <translation>Galutiniai failai</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1183,7 +1183,7 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation>Ilgis</translation>
+        <translation>Trukmė</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
