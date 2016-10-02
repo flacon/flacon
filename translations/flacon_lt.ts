@@ -978,6 +978,10 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <comment>OpenFile dialog title</comment>
         <translation>Pridėti cue ar garso failą</translation>
     </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation>Ištrinti esamą šabloną iš istorijos</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Флакон је преведен на многе језике захваљујући раду преводилаћких тимова на &lt;a href=&apos;%1&apos;&gt;Трансифексу&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -255,11 +255,11 @@
     </message>
     <message>
         <source>Per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>ЦУЕ за сваку нумеру</translation>
     </message>
     <message>
         <source>Create per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>Направи ЦУЕ за сваку нумеру</translation>
     </message>
 </context>
 <context>
@@ -540,16 +540,16 @@ In CBR mode, it sets the specific output bitrate.
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation type="unfinished"/>
+        <translation>Изаберите диск</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 [ диск %2 ]</translation>
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>ЦУЕ фајл саджи податке о више дискова. Који диск желите да користите?</translation>
     </message>
 </context>
 <context>
@@ -560,11 +560,11 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation type="unfinished"/>
+        <translation>ЦУЕ фајл није постављен.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation type="unfinished"/>
+        <translation>Ауди фајл је краћи него што ЦУЕ листа наводи.</translation>
     </message>
 </context>
 <context>
@@ -586,7 +586,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation type="unfinished"/>
+        <translation>Не могу да читам фајл %1</translation>
     </message>
 </context>
 <context>
@@ -621,7 +621,9 @@ This only affects the file size. All settings are lossless.</source>
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation type="unfinished"/>
+        <translation>Поновљиво појачање је стандард за уједначавање очекиване гласноће рачунарских аудио формата.
+Анализа се може вршити према појединачним нумерама, тако да је гласноћа бити уједначена при пуштању.
+Уједначавање према албуму ће сачувати разлике гласноће међу нумерама албума. </translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -912,17 +914,21 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation type="unfinished"/>
+        <translation>Користи „%1“</translation>
     </message>
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Изаберите ЦУЕ фајл</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Додај ЦУЕ или аудио фајл</translation>
+    </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation>Избриши текући образац из историјата</translation>
     </message>
 </context>
 <context>
@@ -955,12 +961,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 програм</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation type="unfinished"/>
+        <translation>Сви фајлови</translation>
     </message>
 </context>
 <context>
@@ -975,28 +981,28 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source> [disk %1]</source>
-        <translation type="unfinished"/>
+        <translation>[ диск %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
-        <translation type="unfinished"/>
+        <translation>Флакон</translation>
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Не могу да упишем ЦУЕ фајл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Фајл &lt;b&gt;„%1“&lt;/b&gt; не постоји</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; није исправан ЦУЕ фајл. Диск %2 нема ознаке.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation type="unfinished"/>
+        <translation>Није задато име аудио фајла</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
@@ -1005,16 +1011,16 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; није исправан ЦУЕ фајл. ЦУЕ листа нема ознаку FILE.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; није исправан ЦУЕ фајл.  Нетачан индекс нумере %2.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Аудио фајл &lt;b&gt;„%1“&lt;/b&gt; не постоји</translation>
     </message>
 </context>
 <context>
@@ -1040,7 +1046,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation type="unfinished"/>
+        <translation>Изаберите додатни ЦУЕ фајл</translation>
     </message>
 </context>
 <context>
@@ -1129,22 +1135,23 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Дужина</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2</translation>
     </message>
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Претварање није могуће.
+%1</translation>
     </message>
 </context>
 </TS>

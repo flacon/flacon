@@ -924,6 +924,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>OpenFile dialog title</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation>Aktuelles Muster aus Chronik löschen</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

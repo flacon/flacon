@@ -43,7 +43,7 @@
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation type="unfinished"/>
+        <translation>Henter ut individuelle spor fra ei stor lydfil som inneholder hele albumet.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
@@ -51,32 +51,32 @@
     </message>
     <message>
         <source>WavPack support patch</source>
-        <translation type="unfinished"/>
+        <translation>Programfiks for WavPack-støtte</translation>
     </message>
     <message>
         <source>Application icon, Packaging</source>
-        <translation type="unfinished"/>
+        <translation>Programikon, pakking</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation type="unfinished"/>
+        <translation>Pakking, testing</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
-        <translation type="unfinished"/>
+        <translation>Forbedringer i grensesnittet</translation>
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation type="unfinished"/>
+        <translation>Kontoen Flacon på github.com</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation type="unfinished"/>
+        <translation>Feilrettingsoversikt %1</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon oversettes til mange språk takket være oversettelseslagene på &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -84,7 +84,7 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
-        <translation type="unfinished"/>
+        <translation>Automatisk oppdaging</translation>
     </message>
     <message>
         <source>Unicode (UTF-8)</source>
@@ -207,11 +207,11 @@
     </message>
     <message>
         <source>Thread count:</source>
-        <translation type="unfinished"/>
+        <translation>Antall tråder:</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation type="unfinished"/>
+        <translation>Antall tråder brukt i konverteringsprosessen.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -219,11 +219,11 @@
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation type="unfinished"/>
+        <translation>Forvalgt kodeside:</translation>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation type="unfinished"/>
+        <translation>Innledningspause før første spor:</translation>
     </message>
     <message>
         <source>Rescan</source>
@@ -231,15 +231,15 @@
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation type="unfinished"/>
+        <translation>Full stil til de eksterne programmene</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
-        <translation type="unfinished"/>
+        <translation>Pakk ut til egen fil</translation>
     </message>
     <message>
         <source>Add to first track</source>
-        <translation type="unfinished"/>
+        <translation>Legg til første spor</translation>
     </message>
     <message>
         <source>General</source>
@@ -251,15 +251,15 @@
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation type="unfinished"/>
+        <translation>Velg midlertidig mappe</translation>
     </message>
     <message>
         <source>Per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>CUE-innholdsfortegnelse per spor</translation>
     </message>
     <message>
         <source>Create per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>Opprett CUE-innholdsfortegnelse per spor</translation>
     </message>
 </context>
 <context>
@@ -297,11 +297,11 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Kalkuler forsterkning</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -344,7 +344,30 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;medium VBR&lt;/dt&gt;
+&lt;dd&gt;Ved bruk av medium variabel bitrate, vil dette forvalget være nesten fullgodt for de fleste og for det meste av musikk.&lt;/dd&gt;
+
+&lt;dt&gt;standard VBR, standard rask VBR&lt;/dt&gt;
+&lt;dd&gt;Ved bruk av standard variabel bitrate, vil dette forvalget i hovedsak være nesten fullgodt for de fleste på mesteparten av musikk og allerede ganske høyt hva angår kvalitet..&lt;/dd&gt;
+
+&lt;dt&gt;ekstrem VBR, ekstrem rask VBR&lt;/dt&gt;
+&lt;dd&gt;Ved å bruke høyeste mulig variable bitrate, vil dette forvalget gi en antydning høyere kvalitet enn standardmoduset hvis du har ekstermt god hørsel eller bra lydutstyr.&lt;/dd&gt;
+
+&lt;dt&gt;kvalitet VBR&lt;/dt&gt;
+&lt;dd&gt;Dette variable bitratevalget lar deg angi utdatakvaliteten.&lt;/dd&gt;
+
+&lt;dt&gt;raskt valg&lt;/dt&gt;
+&lt;dd&gt;Skrur på den nye rask VBR for en spesifikk profil. Dette er anbefalt.&lt;/dd&gt;
+
+&lt;dt&gt;galskap CBR&lt;/dt&gt;
+&lt;dd&gt;Hvis du vil ha den absolutt høyeste kvaliten, uten hensyn til filstørrelse, vil du oppnå dette ved bruk av konstant bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Bruk av forvalget for konstant bitrate vil vanligvis gi deg god kvalitet på en angitt bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;kpbs ABR&lt;/dt&gt;
+&lt;dd&gt;Bruk av forvalget for gjenomsnittlig bitrate vil vanligvis gi deg høyere kvalitet enn valget for konstant bitrate for en spesifikk bitrate.&lt;/dd&gt;
+</translation>
     </message>
     <message>
         <source>Use bitrate</source>
@@ -368,47 +391,47 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Kalkuler forsterkningsnivå:</translation>
     </message>
     <message>
         <source>VBR medium</source>
-        <translation type="unfinished"/>
+        <translation>medium VBR</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation type="unfinished"/>
+        <translation>standard VBR</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation type="unfinished"/>
+        <translation>standard rask VBR</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation type="unfinished"/>
+        <translation>ekstrem VBR</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation type="unfinished"/>
+        <translation>ekstrem rask VBR</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation type="unfinished"/>
+        <translation>kvalitet VBR</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation type="unfinished"/>
+        <translation>galskap CBR</translation>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation type="unfinished"/>
+        <translation>kbps CBR</translation>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation type="unfinished"/>
+        <translation>kbps ABR</translation>
     </message>
 </context>
 <context>
@@ -451,11 +474,11 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Kalkuler forsterkningsnivå:</translation>
     </message>
 </context>
 <context>
@@ -466,7 +489,7 @@
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation type="unfinished"/>
+        <translation>Bitratetype:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -486,7 +509,11 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Bruk variabel bitratekoding (anbefalt). I VBR-modus vil bitraten gå opp og ned fritt avhengig av innholdet for å forsikre gjennomgående kvalitet.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Bruk bundet variabel bitratekoding. Utdata med en gitt bitrate. Dette moduset tilsvarer CBR i AAC/MP3-kodere og administrert modus i vorbis-kodere. Dette gir mindre gjennomgående kvalitet enn VBR-modus men konsistent bitrate.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -495,7 +522,12 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
+        <translation>Setter mål for bitrate i kb/s (6-256 per kanal).
+&lt;p&gt;
+I VBR-modus setter dette gjennomsnittlig rate for en stor og mangfoldig ansamling lyd.
+&lt;p&gt;
+I CBR-modus, setter angitt utdatabitrate.
+</translation>
     </message>
 </context>
 <context>
@@ -510,11 +542,11 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>Kalkuler forsterkningsnivå:</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -525,46 +557,46 @@ In CBR mode, it sets the specific output bitrate.
     <name>Converter</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Jeg kan ikke opprette mappa &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Conversion is not possible:</source>
-        <translation type="unfinished"/>
+        <translation>Konvertering er ikke mulig:</translation>
     </message>
 </context>
 <context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation type="unfinished"/>
+        <translation>Velg disk</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 [ disk %2 ]</translation>
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Cue-fila inneholder informasjon om flere disker. Hvilken disk ønsker du å bruke?</translation>
     </message>
 </context>
 <context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation type="unfinished"/>
+        <translation>Lydfil ikke fastsatt.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation type="unfinished"/>
+        <translation>Cue-fil ikke fastsatt.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation type="unfinished"/>
+        <translation>Lydfil kortere enn forventet fra CUE-innholdsfortegnelse.</translation>
     </message>
 </context>
 <context>
@@ -573,17 +605,20 @@ In CBR mode, it sets the specific output bitrate.
         <source>I can't delete file:
 %1
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Jeg kan ikke slette fila:
+%1
+%2</translation>
     </message>
     <message>
         <source>Encoder error:
 </source>
-        <translation type="unfinished"/>
+        <translation>Kodingsfeil:
+</translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation type="unfinished"/>
+        <translation>Jeg kan ikke lese %1 fil</translation>
     </message>
 </context>
 <context>
@@ -595,7 +630,8 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation type="unfinished"/>
+        <translation>Setter kompresjonsnivå, mellom %1 (raskest) og %2 (høyeste komprimering).
+Dette har bare innvirkning på filstørrelse. Alle innstillinger er tapsfrie.</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -617,11 +653,14 @@ This only affects the file size. All settings are lossless.</source>
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain er en standard for å normalisere opplevd lydstyrkeforsterkning av lyddataformater.
+
+Analysen kan utføres på individuelle spor, slik at alle spor vil ha samme lydstyrkenivå ved avspilling.
+Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer på et album.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 kbps</translation>
     </message>
     <message>
         <source>Default</source>
@@ -634,7 +673,9 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Jeg kan ikke gi fil nytt navn:
+%1 til %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -642,7 +683,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Gain error:
 </source>
-        <translation type="unfinished"/>
+        <translation>Forsterkningsnivåfeil:
+</translation>
     </message>
 </context>
 <context>
@@ -653,7 +695,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Result Files</source>
-        <translation type="unfinished"/>
+        <translation>Resulterende filer</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -670,11 +712,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Utdata-format</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished"/>
+        <translation>Merkelapper</translation>
     </message>
     <message>
         <source>Genre:</source>
@@ -694,15 +736,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Start num:</source>
-        <translation type="unfinished"/>
+        <translation>Startnum:</translation>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation type="unfinished"/>
+        <translation>Disk-ID:</translation>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation type="unfinished"/>
+        <translation>Kodeside:</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -710,7 +752,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Innstillinger</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -722,11 +764,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation type="unfinished"/>
+        <translation>Legg til CUE eller lydfil</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>Convert</source>
@@ -738,7 +780,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Abort</source>
@@ -754,15 +796,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>&amp;Preferences</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Egenskaper</translation>
     </message>
     <message>
         <source>Program preferences</source>
-        <translation type="unfinished"/>
+        <translation>Programegenskaper</translation>
     </message>
     <message>
         <source>&amp;About Flacon</source>
@@ -770,7 +812,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Remove album</source>
-        <translation type="unfinished"/>
+        <translation>Fjern album</translation>
     </message>
     <message>
         <source>Remove album from project</source>
@@ -778,11 +820,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Ctrl+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Del</translation>
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation type="unfinished"/>
+        <translation>Sett opp koder</translation>
     </message>
     <message>
         <source>...</source>
@@ -790,19 +832,19 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Select result directory</source>
-        <translation type="unfinished"/>
+        <translation>Velg endelig mappe</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation type="unfinished"/>
+        <translation>Innhent fra CCDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation type="unfinished"/>
+        <translation>Få albuminformasjon fra CDDB</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <source>Scan</source>
@@ -814,46 +856,47 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sett inn &quot;spornummer&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sett inn &quot;totalt antall spor&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sett inn &quot;artist&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sett inn &quot;albumtittel&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sett inn &quot;låttittel&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sett inn &quot;år&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sett in &quot;sjanger&quot;</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Noen album vil ikke bli konvertert, de inneholder feil.
+Ønsker du å fortsette?</translation>
     </message>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation type="unfinished"/>
+        <translation>%1 filer</translation>
     </message>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
-        <translation type="unfinished"/>
+        <translation>Alle støttede formater</translation>
     </message>
     <message>
         <source>All files</source>
@@ -863,11 +906,11 @@ Do you want to continue?</source>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Velg lydfil</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation type="unfinished"/>
+        <translation>Velg mappe</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -893,135 +936,157 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Redigeringspoletter starter med %. Du kan bruke følgende redigeringspoletter:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Spornummer  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Totalt antall spor&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumtittel&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Låttittel&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - År&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Sjanger&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammeparenteser vil disse delene bli skjult hvis redigeringspoletten er tom.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Du kan velge destinasjonsmappe. Du kan også skrive det inn manuelt.
+
+Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende filer bli plassert i samme mappa som kilden.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation type="unfinished"/>
+        <translation>Bruk &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Velg CUE-fil</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Legg til CUE eller lydfil</translation>
+    </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation>Slett gjeldende mønster fra historikk</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Flerfoldige verdier</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesLineEdit</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Flerfoldige verdier</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesSpinBox</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Flerfoldige verdier</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
         <source>Select program file</source>
-        <translation type="unfinished"/>
+        <translation>Velg programfil</translation>
     </message>
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 program</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation type="unfinished"/>
+        <translation>Alle filer</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Jeg kan ikke finne programmet &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation type="unfinished"/>
+        <translation>Fila &lt;b&gt;%1&lt;/b&gt; er ikke ei støtttet lydfil. &lt;br&gt;&lt;br&gt;Bekreft at alle påkrevde programmer er installert i dine innstillinger.</translation>
     </message>
     <message>
         <source> [disk %1]</source>
-        <translation type="unfinished"/>
+        <translation> [disk %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Jeg kan ikke skrive CUE-fil &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Fila &lt;b&gt; &quot;%1&quot;&lt;/b&gt; finnes ikke</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. Disk %2 har ingen merkelapper..</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation type="unfinished"/>
+        <translation>Lydfilnavnet har ikke blitt angitt</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation type="unfinished"/>
+        <translation>du kan ikke bruke &apos;ReplayGain&apos; for filer med samplingsrate over 48KHz. Metaflac støtter ikke slike filer.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. CUE-innholdsoversikten har ingen FILE-merkelapp..</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. Ugyldig sporindeks på %2.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Lydfila &lt;b&gt; &quot;%1&quot; &lt;/b&gt; finnes ikke</translation>
     </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
         <source>The number of tracks is higher than expected.</source>
-        <translation type="unfinished"/>
+        <translation>Antall spor er høyere enn forventet.</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
-        <translation type="unfinished"/>
+        <translation>Innhent data fra CCDB</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -1029,11 +1094,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation type="unfinished"/>
+        <translation>Velg en annen lydfil</translation>
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation type="unfinished"/>
+        <translation>Velg en annen CUE-fil</translation>
     </message>
 </context>
 <context>
@@ -1052,7 +1117,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Extracting</source>
-        <translation type="unfinished"/>
+        <translation>Pakker ut</translation>
     </message>
     <message>
         <source>Encoding</source>
@@ -1060,19 +1125,19 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished"/>
+        <translation>Satt i kø</translation>
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation type="unfinished"/>
+        <translation>Kalkuler forsterkningsnivå</translation>
     </message>
     <message>
         <source>Wait gain</source>
-        <translation type="unfinished"/>
+        <translation>Vent på forsterkningsnivå</translation>
     </message>
     <message>
         <source>Write gain</source>
-        <translation type="unfinished"/>
+        <translation>Skriv forsterkningsnivå</translation>
     </message>
     <message>
         <source>Tracks:</source>
@@ -1080,7 +1145,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Audio:</source>
-        <translation type="unfinished"/>
+        <translation>Lyd:</translation>
     </message>
 </context>
 <context>
@@ -1117,27 +1182,28 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>Flerfoldige verdier</translation>
     </message>
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Lengde</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2</translation>
     </message>
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Konverteringen er umulig.
+%1</translation>
     </message>
 </context>
 </TS>

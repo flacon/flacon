@@ -976,6 +976,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>OpenFile dialog title</comment>
         <translation>添加 cue 或音频文件</translation>
     </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation>从历史中删除当前范例</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

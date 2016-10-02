@@ -975,6 +975,10 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
         <comment>OpenFile dialog title</comment>
         <translation>Přidat soubor CUE nebo zvukový soubor</translation>
     </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

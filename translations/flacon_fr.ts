@@ -976,6 +976,10 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
         <comment>OpenFile dialog title</comment>
         <translation>Ajoute un fichier cue ou audio</translation>
     </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation>Supprimer le modèle actuel de l&apos;historique</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

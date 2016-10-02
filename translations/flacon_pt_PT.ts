@@ -972,6 +972,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>OpenFile dialog title</comment>
         <translation>Adicione um ficheiro áudio ou cue</translation>
     </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

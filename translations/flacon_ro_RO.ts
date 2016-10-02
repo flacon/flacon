@@ -55,7 +55,7 @@
     </message>
     <message>
         <source>Application icon, Packaging</source>
-        <translation>Pictogramă aplicație, </translation>
+        <translation>Pictogramă aplicație, creare fișiere binare</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
@@ -977,6 +977,10 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
         <translation>Adăugați un fișier audio sau o listă de indexare</translation>
+    </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation>Șterge modelul curent din istoricul activităților</translation>
     </message>
 </context>
 <context>

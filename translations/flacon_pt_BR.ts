@@ -974,6 +974,10 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
         <comment>OpenFile dialog title</comment>
         <translation>Adicione arquivo de áudio ou cue</translation>
     </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation>Apagar o padrão atual do histórico</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

@@ -977,6 +977,10 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
         <comment>OpenFile dialog title</comment>
         <translation>Agregue un archivo de audio o cue</translation>
     </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

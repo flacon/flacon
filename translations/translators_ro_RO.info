@@ -1,9 +1,9 @@
 _help = Don't translate this text, it is only help. I want to thank you in the "About" dialog. So, please fill the following information about yourself. The number does not matter, all the names will be displayed in alphabetical order.
 
 
-translator_1_nameEnglish = Traducător  1. Vlad Paul Paval
-translator_1_nameNative  = Traducător 1. Vlad Paul Paval
-translator_1_contact     = Traducător 1. wladpaul@yahoo.com
+translator_1_nameEnglish = Vlad Paul Paval
+translator_1_nameNative  = Vlad Paul Paval
+translator_1_contact     = https://www.transifex.com/user/profile/wladypauly/
 
 translator_2_nameEnglish = Translator 2. Your name in English.
 translator_2_nameNative  = Translator 2. Your name in the native language.

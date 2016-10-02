@@ -297,11 +297,11 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Вирівнювання гучності</translation>
+        <translation>Вирівнювання гучности</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Розрахунок гучності:</translation>
+        <translation>Розрахунок гучности:</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -345,10 +345,10 @@
 </source>
         <extracomment>ererere</extracomment>
         <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;При використанні режиму з середнім змінним бітрейтом, більшість людей не почують спотворень на більшості музики.&lt;/dd&gt;
+&lt;dd&gt;При використанні режиму з середнім змінним бітрейтом, більшість людей не почують спотворень на більшости музики.&lt;/dd&gt;
 
 &lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;При використанні режиму зі страндартним змінним бітрейтом, більшість людей не почують спотворень на більшості музики. Цей режим забезпечує досить високу якість.&lt;/dd&gt;
+&lt;dd&gt;При використанні режиму зі страндартним змінним бітрейтом, більшість людей не почують спотворень на більшости музики. Цей режим забезпечує досить високу якість.&lt;/dd&gt;
 
 &lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
 &lt;dd&gt;Цей режим дає вищу якість ніж VBR standard. Ви помітите це, якщо в Вас дуже добрий слух, або високоякісна апаратура.&lt;/dd&gt;
@@ -391,11 +391,11 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Вирівнювання гучності</translation>
+        <translation>Вирівнювання гучности</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Розрахунок гучності:</translation>
+        <translation>Розрахунок гучности:</translation>
     </message>
     <message>
         <source>VBR medium</source>
@@ -474,11 +474,11 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Вирівнювання гучності</translation>
+        <translation>Вирівнювання гучности</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Розрахунок гучності:</translation>
+        <translation>Розрахунок гучности:</translation>
     </message>
 </context>
 <context>
@@ -510,7 +510,7 @@
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
         <translation>&lt;dt&gt;VBR&lt;/dt&gt;
-&lt;dd&gt;Використовується змінний бітрейт (рекомендується). У цьому режимі бітрейт може збільшуватися або зменшуватися у залежності від вмісту, щоб отримати оптимальну якість звуку.&lt;/dd&gt;
+&lt;dd&gt;Використовується змінний бітрейт (рекомендується). У цьому режимі бітрейт може збільшуватися або зменшуватися у залежности від вмісту, щоб отримати оптимальну якість звуку.&lt;/dd&gt;
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Використовується кодування з постійним бітрейтом. Бітрейт файлу буде дорівнювати вказаному Вами. Цей режим аналогічний режиму CBR у AAC/MP3 та managed mode у кодеках vorbis. Якість буде дещо нижчою ніж у режимі VBR, але бітрейт файлу буде постійним.&lt;/dd&gt;</translation>
@@ -542,11 +542,11 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Вирівнювання гучності</translation>
+        <translation>Вирівнювання гучности</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Розрахунок гучності:</translation>
+        <translation>Розрахунок гучности:</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -653,10 +653,10 @@ This only affects the file size. All settings are lossless.</source>
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>Вирівнювання гучності (ReplayGain) є стандартом нормалізації гучності комп’ютерних аудіоформатів.
+        <translation>Вирівнювання гучности (ReplayGain) є стандартом нормалізації гучности комп’ютерних аудіоформатів.
 
 Можливий аналіз кількох доріжок для відтворення їх усіх з однаковою гучністю.
-Використання аналізу всього альбому зберігає відмінності гучностей.</translation>
+Використання аналізу всього альбому зберігає відмінности гучностей.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -683,7 +683,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Gain error:
 </source>
-        <translation>Помилка розрахунку гучності:
+        <translation>Помилка розрахунку гучности:
 </translation>
     </message>
 </context>
@@ -703,7 +703,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Pattern:</source>
-        <translation>Шаблон:</translation>
+        <translation>Шабльон:</translation>
     </message>
     <message>
         <source>Format:</source>
@@ -978,6 +978,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>OpenFile dialog title</comment>
         <translation>Додавання CUE або аудіофайлу</translation>
     </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation>Вилучити поточний шабльон з історії.</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -1055,7 +1059,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>Ви не можете використовувати &apos;вирівнювання гучності&apos; для файлів з частотою дискретизації вище 48 КГц. Metaflac не підтримує такі файли.</translation>
+        <translation>Ви не можете використовувати &apos;вирівнювання гучности&apos; для файлів з частотою дискретизації вище 48 КГц. Metaflac не підтримує такі файли.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
@@ -1090,11 +1094,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>Обрати інший аудіофайл</translation>
+        <translation>Обрати иньший аудіофайл</translation>
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation>Вибрати інший CUE файл</translation>
+        <translation>Вибрати иньший CUE файл</translation>
     </message>
 </context>
 <context>

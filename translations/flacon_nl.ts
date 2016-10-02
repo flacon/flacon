@@ -1,82 +1,82 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl_PL" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.0">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Flacon</source>
-        <translation>O programie Flacon</translation>
+        <translation>Over Flacon</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>O programie</translation>
+        <translation>Over</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation>Autor</translation>
+        <translation>Auteur</translation>
     </message>
     <message>
         <source>Thanks</source>
-        <translation>Podziękowania</translation>
+        <translation>Met dank aan</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation>Tłumaczenia</translation>
+        <translation>Vertalingen</translation>
     </message>
     <message>
         <source>External programs</source>
-        <translation>Programy zewnętrzne</translation>
+        <translation>Externe programma&apos;s</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation>Strona domowa: %1</translation>
+        <translation>Startpagina: %1</translation>
     </message>
     <message>
         <source>License: %1</source>
-        <translation>Licencja: %1</translation>
+        <translation>Licentie: %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
-        <translation>Specjalne podziękowania dla:</translation>
+        <translation>Met speciale dank aan:</translation>
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon używa programów zewnętrznych. Wielkie podziękowania dla ich Autorów!</translation>
+        <translation>Flacon gebruikt externe programma&apos;s. Veel dank aan hun auteurs!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Wyodrębnia pojedyncze utwory z jednego dużego pliku audio, zawierającego cały album.</translation>
+        <translation>Pakt individuele nummers uit een groot audiobestand dat het hele album bevat.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation>Copyright: %1-%2 %3</translation>
+        <translation>Auteursrecht: %1-%2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
-        <translation>Poprawki obsługi WavPack.</translation>
+        <translation>WavPack-ondersteuningspatch</translation>
     </message>
     <message>
         <source>Application icon, Packaging</source>
-        <translation>Ikona programu, paczkowanie</translation>
+        <translation>Toepassingspictogram, verpakken</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation>Paczkowanie, testowanie.</translation>
+        <translation>Verpakken, testen</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
-        <translation>Ulepszenia UI programu.</translation>
+        <translation>Verbeteringen in de gebruikersinterface</translation>
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation>Konto &quot;Flacon&quot; na github.com</translation>
+        <translation>Flacon-account op github.com</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation>Bug tracker %1</translation>
+        <translation>Bugtracker %1</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon jest tłumaczony na wiele języków, dzięki pracy zespołom tłumaczy na stronie &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+        <translation>Flacon is vertaald in veel talen dankzij het werk van de Flacon-vertalingsteams op &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -84,7 +84,7 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
-        <translation>Wykryj automatycznie</translation>
+        <translation>Automatisch herkennen</translation>
     </message>
     <message>
         <source>Unicode (UTF-8)</source>
@@ -100,11 +100,11 @@
     </message>
     <message>
         <source>Cyrillic (Win-1251)</source>
-        <translation>Cyrylica (Win-1251)</translation>
+        <translation>Cyrillic (Win-1251)</translation>
     </message>
     <message>
         <source>Cyrillic (CP-866)</source>
-        <translation>Cyrylica (CP-866)</translation>
+        <translation>Cyrillic (CP-866)</translation>
     </message>
     <message>
         <source>Latin-1 (ISO-8859-1)</source>
@@ -199,124 +199,124 @@
     <name>ConfigDialog</name>
     <message>
         <source>Preferences</source>
-        <translation>Ustawienia</translation>
+        <translation>Voorkeuren</translation>
     </message>
     <message>
         <source>General configuration</source>
-        <translation>Konfiguracja ogólna</translation>
+        <translation>Algemene configuratie</translation>
     </message>
     <message>
         <source>Thread count:</source>
-        <translation>Liczba wątków:</translation>
+        <translation>Aantal draden:</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation>Liczba wątków w procesie konwersji.</translation>
+        <translation>Het aantal draden in het conversieproces.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation>Katalog tymczasowy:</translation>
+        <translation>Tijdelijke map:</translation>
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Domyślna strona kodowa</translation>
+        <translation>Standaardcodetabel:</translation>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Obszar Pre-Gap pierwszej ścieżki</translation>
+        <translation>Pregap voor eerste nummer:</translation>
     </message>
     <message>
         <source>Rescan</source>
-        <translation>Skanuj ponownie</translation>
+        <translation>Opnieuw scannen</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation>Pełne ścieżki do aplikacji zewnętrznych</translation>
+        <translation>Volledig pad van de externe toepassingen</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
-        <translation>Wyodrębnij do oddzielnego pliku</translation>
+        <translation>Uitpakken naar apart bestand</translation>
     </message>
     <message>
         <source>Add to first track</source>
-        <translation>Dodaj do pierwszej ścieżki</translation>
+        <translation>Toevoegen aan eerste nummer</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Ogólne</translation>
+        <translation>Algemeen</translation>
     </message>
     <message>
         <source>Programs</source>
-        <translation>Programy</translation>
+        <translation>Programma&apos;s</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Wybierz katalog tymczasowy</translation>
+        <translation>Kies tijdelijke map</translation>
     </message>
     <message>
         <source>Per track cue sheet</source>
-        <translation>Arkusze CUE dla ścieżek</translation>
+        <translation>Cueblad per nummer</translation>
     </message>
     <message>
         <source>Create per track cue sheet</source>
-        <translation>Twórz arkusze CUE dla poszczególnych ścieżek</translation>
+        <translation>Maak cueblad aan per nummer</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation>Konfiguracja kodowania AAC</translation>
+        <translation>AAC-coderingsconfiguratie</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Użyj ustawień jakości (zalecane)</translation>
+        <translation>Gebruik kwaliteitsinstelling (aanbevolen)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Użyj prędkości transmisji</translation>
+        <translation>Gebruik bitsnelheid</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Prędkość transmisji:</translation>
+        <translation>Bitsnelheid:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Ustawia docelową prędkość transmisji (w kb/s).</translation>
+        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Flac</name>
     <message>
         <source>Flac encoding configuration</source>
-        <translation>Konfiguracja kodowania FLAC</translation>
+        <translation>Flac-coderingsconfiguratie</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Kompresja:</translation>
+        <translation>Compressie:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Tryb RaplayGain</translation>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Oblicz wzmocnienie:</translation>
+        <translation>Geluidssterkte berekenen:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Nieaktywne</translation>
+        <translation>Uitgeschakeld</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation>Konfiguracja kodowania MP3</translation>
+        <translation>MP3-coderingsconfiguratie</translation>
     </message>
     <message>
         <source>Preset:</source>
-        <translation>Prekonfiguracja:</translation>
+        <translation>Vooraf ingesteld</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -345,56 +345,57 @@
 </source>
         <extracomment>ererere</extracomment>
         <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;Ta prekonfiguracja zapewnia większości osób przyzwoitą jakość muzyki.&lt;/dd&gt;
+&lt;dd&gt;Deze voorinstelling is voor de meeste mensen en de meeste muziek normaal gezien transparant.&lt;/dd&gt;
 
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;Ta prekonfiguracja zapewnia większości osób dość wysoką jakość muzyki.&lt;/dd&gt;
+&lt;dt&gt;VBR standaard, VBR standaard snel&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling is voor de meeste mensen en de meeste muziek normaal gezien transparant, en is al van vrij hoge kwaliteit.&lt;/dd&gt;
 
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;Ta prekonfiguracja zapewnia lepszą jakość, niż tryb normalny, co możesz usłyszeć, jeśli masz bardzo dobry słuch.&lt;/dd&gt;
+&lt;dt&gt;VBR extreem, VBR extreme snel&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling biedt iets hogere kwaliteit dan de standaardmodus als je een uitzonderlijk goed gehoord of high-end audio-apparatuur hebt.&lt;/dd&gt;
 
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;Włącza VBR (zmienną prędkość transmisji) i pozwala ustalać poziom jej jakości.&lt;/dd&gt;
+&lt;dt&gt;VBR kwaliteit&lt;/dt&gt;
+&lt;dd&gt;Deze optie laat je de uitvoerkwaliteit opgeven.&lt;/dd&gt;
 
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Włącza nowy, szybki tryb VBR w poszczególnych profilach.&lt;/dd&gt;
+&lt;dt&gt;snelle optie&lt;/dt&gt;
+&lt;dd&gt;Schakelt de nieuwe snelle VBR voor een specifiek profiel in. Dit is aanbevolen.&lt;/dd&gt;
 
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;Jeśli chcesz uzyskać absolutnie najwyższą jakość muzyki, bez względu na wielkość plików, powinienieś wybrać właśnie tę prekonfigurację.&lt;/dd&gt;
+&lt;dt&gt;CBR waanzinnig&lt;/dt&gt;
+&lt;dd&gt;Als je absoluut de hoogste kwaliteit nodig hebt ongeacht bestandsgrootte zal je dat met deze constante bitsnelheid bereiken.&lt;/dd&gt;
 
 &lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Korzystanie z tej prekonfiguracji, zapewnia zazwyczaj dobrą jakość dla określonych wartości prędkości transmisji (bitrate).&lt;/dd&gt;
+&lt;dd&gt;Deze voorinstelling geeft je normaal gezien goede kwaliteit voor een vooraf opgegeven bitsnelheid.&lt;/dd&gt;
 
 &lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Korzystanie z tej prekonfiguracji, zapewnia zazwyczaj lepszą jakość, niż Constant BitRate (CBR), dla określonych wartości prędkości transmisji (bitrate).&lt;/dd&gt;</translation>
+&lt;dd&gt;Deze voorinstelling geeft je normaal gezien hogere kwaliteit dan de constante bitsnelheid voor een vooraf opgegeven bitsnelheid.&lt;/dd&gt;
+</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Użyj prędkości transmisji</translation>
+        <translation>Gebruik bitsnelheid</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Prędkość transmisji</translation>
+        <translation>Bitsnelheid:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Ustawia docelową prędkość transmisji (w kb/s).</translation>
+        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
-        <translation>Użyj jakości</translation>
+        <translation>Gebruik kwaliteit</translation>
     </message>
     <message>
         <source>Quality:</source>
-        <translation>Jakość:</translation>
+        <translation>Kwaliteit:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Tryb RaplayGain</translation>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Oblicz wzmocnienie:</translation>
+        <translation>Geluidssterkte berekenen:</translation>
     </message>
     <message>
         <source>VBR medium</source>
@@ -402,27 +403,27 @@
     </message>
     <message>
         <source>VBR standard</source>
-        <translation>VBR standard</translation>
+        <translation>VBR standaard</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation>VBR standard fast</translation>
+        <translation>VBR standaard snel</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation>VBR extreme</translation>
+        <translation>VBR extreem</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation>VBR extreme fast</translation>
+        <translation>VBR extreem snel</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation>VBR quality</translation>
+        <translation>VBR kwaliteit</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation>CBR insane</translation>
+        <translation>CBR waanzinnig</translation>
     </message>
     <message>
         <source>CBR kbps</source>
@@ -437,70 +438,70 @@
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation>Konfiguracja kodowania Ogg</translation>
+        <translation>Ogg-coderingsconfiguratie</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Użyj ustawień jakości (zalecane)</translation>
+        <translation>Gebruik kwaliteitsinstelling (aanbevolen)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Użyj prędkości transmisji</translation>
+        <translation>Bitsnelheid:</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation>Minimalna prędkość transmisji</translation>
+        <translation>Minimale bitsnelheid:</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Ustawia minimalną prędkość transmisji (w kb/s).</translation>
+        <translation>Stelt minimale bitsnelheid in (in kb/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation>Nominalna prędkość transmisji:</translation>
+        <translation>Nominale bitsnelheid:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Ustawia docelową prędkość transmisji (w kb/s).</translation>
+        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Maksymalna prędkość transmisji:</translation>
+        <translation>Maximale bitsnelheid:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Ustawia maksymalną prędkość transmisji (w kb/s).</translation>
+        <translation>Stelt maximale bitsnelheid in (in kb/s).</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Tryb RaplayGain</translation>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Oblicz wzmocnienie:</translation>
+        <translation>Geluidssterkte berekenen:</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation>Konfiguracja kodowania Opus</translation>
+        <translation>Opus-coderingsconfiguratie</translation>
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation>Rodzaj prędkości transmisji</translation>
+        <translation>Type bitsnelheid:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Prędkość transmisji</translation>
+        <translation>Bitsnelheid:</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
-        <translation>VBR - zmienna prędkość transmisji</translation>
+        <translation>VBR - variabele bitsnelheid</translation>
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation>CBR - ograniczona prędkość transmisji</translation>
+        <translation>CBR - beperkte bitrate</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -509,10 +510,10 @@
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
         <translation>&lt;dt&gt;VBR&lt;/dt&gt;
-&lt;dd&gt;Kodowanie o zmiennej prędkości transmisji (zalecane). W tym trybie, prędkość transmisji jest zmienna, zależnie od ilości otrzymywanych danych, by zachować stały poziom jakości.&lt;/dd&gt;
+&lt;dd&gt;Gebruik variabele bitsnelheidscodering (aanbevolen). In VBR-modus kan de bitsnelheid vrij omhoog en omlaag gaan afhankelijk van de inhoud om uniforme kwaliteit te verzekeren.&lt;/dd&gt;
 
 &lt;dt&gt;CBR&lt;/dt&gt;
-&lt;dd&gt;Kodowanie o stałej wartości prędkości transmisji. Podobnie, jak w trybie zarządzanym vorbis lub kodowaniu CBR formatów AAC/MP3, zapewniana jest niższa jakość, w zamian za stałą wartość prędkości transmisji.&lt;/dd&gt;</translation>
+&lt;dd&gt;Gebruik beperkte bitsnelheidscodering. Voert uit naar een specifieke bitsnelheid. Deze modus is analoog aan CBR in AAC/MP3-encoders en beheerde modus in vorbis-encoders. Dit biedt minder uniforme kwaliteit dan VBR-modus, maar wel een uniforme bitsnelheid.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -521,80 +522,81 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation>Ustawia doceolwą prędkość transmisji w kb/s (6-256 na kanał).
+        <translation>Stelt de doelbitsnelheid in in kb/s (6-256 per kanaal).
 &lt;p&gt;
-W trybie VBR, ustawia średni zakres prędkości transmisji dla dużej i zróżnicowanej kolekcji audio.
+In VBR-modus stelt dit de gemiddelde snelheid in voor een grote en diverse audioverzameling.
 &lt;p&gt;
-W trybie CBR, ustawia konkretną wartość wyjściowej prędkości transmisji.</translation>
+In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
+</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation>Konfiguracja kodowania WavPack</translation>
+        <translation>WavPack-coderingsconfiguratie</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Kompresja:</translation>
+        <translation>Compressie:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Tryb RaplayGain</translation>
+        <translation>ReplayGain</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Oblicz wzmocnienie:</translation>
+        <translation>Geluidssterkte berekenen:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Nieaktywne</translation>
+        <translation>Uitgeschakeld</translation>
     </message>
 </context>
 <context>
     <name>Converter</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Nie można utworzyć katalogu &quot;%1&quot;.</translation>
+        <translation>Ik kan de map &quot;%1&quot; niet aanmaken.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Nie można zapisywać w katalogu &quot;%1&quot;.</translation>
+        <translation>Ik kan niet naar de map &quot;%1&quot; schrijven.</translation>
     </message>
     <message>
         <source>Conversion is not possible:</source>
-        <translation>Konwersja nie jest możliwa:</translation>
+        <translation>Conversie is niet mogelijk:</translation>
     </message>
 </context>
 <context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation>Wybierz dysk</translation>
+        <translation>Kies schijf</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [ dysk %2 ]</translation>
+        <translation>%1 [ schijf %2 ]</translation>
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>Plik CUE zawiera informacje o wielu dyskach. Którego z nich chcesz użyć?</translation>
+        <translation>Het cuebestand bevat informatie over meerdere schijven. Welke schijf wil je gebruiken?</translation>
     </message>
 </context>
 <context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation>Nie określono pliku audio.</translation>
+        <translation>Audiobestand niet ingesteld.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>Nie określono pliku CUE.</translation>
+        <translation>Cuebestand niet ingesteld.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation>Plik audio jest krótszy, niż wynika z arkusza CUE</translation>
+        <translation>Audiobestand korter dan verwacht van cuebestand.</translation>
     </message>
 </context>
 <context>
@@ -603,58 +605,58 @@ W trybie CBR, ustawia konkretną wartość wyjściowej prędkości transmisji.</
         <source>I can't delete file:
 %1
 %2</source>
-        <translation>Nie można usunąć pliku:
+        <translation>Ik kan het bestand niet verwijderen:
 %1
 %2</translation>
     </message>
     <message>
         <source>Encoder error:
 </source>
-        <translation>Błąd kodeka:
+        <translation>Coderingsfout:
 </translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation>Nie można odczytać pliku %1</translation>
+        <translation>Ik kan %1 bestand niet lezen</translation>
     </message>
 </context>
 <context>
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>Ustawia stopień kompresji, między %1 (najniższy) a %2 (najwyższy).</translation>
+        <translation>Stelt coderingskwaliteit in, tussen %1 (laagst) en %2 (hoogst).</translation>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>Ustawia stopień kompresji, między %1 (najszybciej) a %2 (najwyższa kompresja).
-Wpływa to wyłącznie na wielkość pliku. Konwersja pozostaje bezstratna.</translation>
+        <translation>Stelt compressieniveau in, tussen %1 (snelst) en %2 (hoogste compressie).
+Dit heeft enkel een invloed op de bestandsgrootte, alle instellingen zijn zonder kwaliteitsverlies.</translation>
     </message>
     <message>
         <source>Disabled</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Nieaktywne</translation>
+        <translation>Uitgeschakeld</translation>
     </message>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Utwór</translation>
+        <translation>Per nummer</translation>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Album</translation>
+        <translation>Per album</translation>
     </message>
     <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain jest standardem normalizacji odczuwanej głośności komputerowych formatów audio.
+        <translation>ReplayGain is een standaard om de waargenomen luidheid van computeraudioformaten te normaliseren.
 
-Analiza może być przeprowadzona dla poszczególnych utworów, dzięki czemu, podczas odtwarzania, wszystkie utwory będą mieć ten sam poziom głośności.
-Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośności wszystkich utworów z albumu.</translation>
+De analyse kan worden uitgevoerd op individuele nummers, zodat alle nummers eenzelfde volume krijgen bij het afspelen.
+De analyse per album zal de verschillen in volume binnen een album bewaren.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -662,7 +664,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Default</source>
-        <translation>Domyślnie</translation>
+        <translation>Standaard</translation>
     </message>
 </context>
 <context>
@@ -671,8 +673,8 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation>Nie można zmienić nazwy pliku:
-%1 na %2
+        <translation>Ik kan het bestand niet hernoemen:
+%1 naar %2
 %3</translation>
     </message>
 </context>
@@ -681,7 +683,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     <message>
         <source>Gain error:
 </source>
-        <translation>Błąd obliczania wzmocnienia:
+        <translation>Geluidssterktefout:
 </translation>
     </message>
 </context>
@@ -693,40 +695,40 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Pliki Wynikowe</translation>
+        <translation>Resultaatbestanden</translation>
     </message>
     <message>
         <source>Directory:</source>
-        <translation>Katalog:</translation>
+        <translation>Map:</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation>Wzorzec:</translation>
+        <translation>Patroon:</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation>Format:</translation>
+        <translation>Formaat:</translation>
     </message>
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Format wyjściowy</translation>
+        <translation>Uitvoerformaat</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation>Tagi</translation>
+        <translation>Tags</translation>
     </message>
     <message>
         <source>Genre:</source>
-        <translation>Gatunek:</translation>
+        <translation>Genre:</translation>
     </message>
     <message>
         <source>Year:</source>
-        <translation>Rok:</translation>
+        <translation>Jaar:</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation>Wykonawca:</translation>
+        <translation>Artiest:</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -734,35 +736,35 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Rozpocznij numerację od:</translation>
+        <translation>Startnummer:</translation>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>ID dysku:</translation>
+        <translation>Schijf-ID:</translation>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation>Strona kodowa:</translation>
+        <translation>Codetabel:</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Plik</translation>
+        <translation>&amp;Bestand</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Ustawienia</translation>
+        <translation>&amp;Instellingen</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Pomoc</translation>
+        <translation>&amp;Hulp</translation>
     </message>
     <message>
         <source>Add file</source>
-        <translation>Dodaj plik</translation>
+        <translation>Bestand toevoegen</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Dodaj plik CUE lub plik audio</translation>
+        <translation>CUE- of audiobestand toevoegen</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -770,11 +772,11 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Convert</source>
-        <translation>Konwertuj</translation>
+        <translation>Converteren</translation>
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation>Rozpocznij proces konwersji</translation>
+        <translation>Conversieproces beginnen</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -782,15 +784,15 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Abort</source>
-        <translation>Przerwij</translation>
+        <translation>Afbreken</translation>
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation>Przerwij proces konwersji</translation>
+        <translation>Conversieproces afbreken</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Wyjście</translation>
+        <translation>Afsluiten</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -798,23 +800,23 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>&amp;Preferences</source>
-        <translation>&amp;Ustawienia</translation>
+        <translation>&amp;Voorkeuren</translation>
     </message>
     <message>
         <source>Program preferences</source>
-        <translation>Ustawienia programu</translation>
+        <translation>Programmavoorkeuren</translation>
     </message>
     <message>
         <source>&amp;About Flacon</source>
-        <translation>&amp;O programie Flacon</translation>
+        <translation>&amp;Over Flacon</translation>
     </message>
     <message>
         <source>Remove album</source>
-        <translation>Usuń album</translation>
+        <translation>Album verwijderen</translation>
     </message>
     <message>
         <source>Remove album from project</source>
-        <translation>Usuń album z projektu</translation>
+        <translation>Album verwijderen van project</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -822,7 +824,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation>Konfiguruj kodek</translation>
+        <translation>Configureer encoder</translation>
     </message>
     <message>
         <source>...</source>
@@ -830,15 +832,15 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Select result directory</source>
-        <translation>Wybierz katalog docelowy</translation>
+        <translation>Kies resultaatmap</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation>Pobierz z CDDB</translation>
+        <translation>Ophalen van CDDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation>Pobierz informacje o albumie z CDDB</translation>
+        <translation>Albuminformatie ophalen van CDDB</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
@@ -846,69 +848,69 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Scan</source>
-        <translation>Skanuj</translation>
+        <translation>Scannen</translation>
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation>Rekurencyjne szukanie albumów</translation>
+        <translation>Recursief albumzoeken</translation>
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Wstaw &quot;Numer ścieżki&quot;</translation>
+        <translation>&quot;Tracknummer&quot; invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Wstaw &quot;Całkowita liczba ścieżek&quot;</translation>
+        <translation>&quot;Totaal aantal nummers&quot; invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Wstaw &quot;Wykonawca&quot;</translation>
+        <translation>&quot;Artiest&quot; invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Wstaw &quot;Tytuł albumu&quot;</translation>
+        <translation>&quot;Albumtitel&quot; invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Wstaw &quot;Tytuł utworu&quot;</translation>
+        <translation>&quot;Nummertitel&quot; invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Wstaw &quot;Rok&quot;</translation>
+        <translation>&quot;Jaar&quot; invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Wstaw &quot;Gatunek&quot;</translation>
+        <translation>&quot;Genre&quot; invoegen</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation>Niektóre albumy nie będą konwertowane, ponieważ zawierają błędy.
-Czy chcesz kontynuować?</translation>
+        <translation>Sommige albums zullen niet worden geconverteerd, ze bevatten fouten.
+Wil je doorgaan?</translation>
     </message>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>Pliki %1</translation>
+        <translation>%1 bestanden</translation>
     </message>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
-        <translation>Wszystkie obsługiwane formaty</translation>
+        <translation>Alle ondersteunde formaten</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Wszystkie pliki</translation>
+        <translation>Alle bestanden</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Wybierz plik audio</translation>
+        <translation>Kies audiobestand</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Wybierz katalog</translation>
+        <translation>Kies map</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -936,102 +938,102 @@ If you surround sections of text that contain a token with braces, these section
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
         <translation>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
-.def { white-space: nowrap; }
+.def  { white-space: nowrap; }
 &lt;/style&gt;
-Można użyć następujących, poprzedzonych symbolem %, znaczników:
+Tokens beginnen met %. Je kan volgende tokens gebruiken:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numer ścieżki &lt;/td&gt;
-&lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Całkowita liczba ścieżek&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Wykonawca&lt;/td&gt;
-&lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tytuł albumu&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tytuł utworu&lt;/td&gt;
-&lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Rok&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Gatunek&lt;/td&gt;
-&lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tracknummer&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Totaal aantal nummers&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artiest&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumtitel&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nummertitel&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Jaar&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
-Otoczenie klamrami części tekstu, zawierającej znacznik, spowoduje jej ukrycie, jeżeli dany znacznik będzie pusty.</translation>
+Als je delen van tekst die een token bevatten met accolades omsluit zullen deze delen worden verborgen als het token leeg is.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Można wybrać katalog docelowy albo ręcznie wprowadzić ścieżkę dostępu.
+        <translation>Je kan naar de doelmap bladeren of ze manueel ingeven.
 
-Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kropka), pliki wynikowe zostaną umieszczone w tym samym katalogu, co źródło.</translation>
+Als het pad leeg wordt gelaten of begint met &quot;.&quot; (punt) zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Użyj &quot;%1&quot;</translation>
+        <translation>Gebruik &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Wybierz plik CUE</translation>
+        <translation>Kies cuebestand</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Dodaj plik CUE lub plik audio</translation>
+        <translation>Cue- of audiobestand toevoegen</translation>
     </message>
     <message>
         <source>Delete current pattern from history</source>
-        <translation>Usuń bieżący wzorzec z historii</translation>
+        <translation>Huidig patroon van geschiedenis verwijderen</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Wartości wielokrotne</translation>
+        <translation>Meerdere waarden</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesLineEdit</name>
     <message>
         <source>Multiple values</source>
-        <translation>Wartości wielokrotne</translation>
+        <translation>Meerdere waarden</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesSpinBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Wartości wielokrotne</translation>
+        <translation>Meerdere waarden</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
         <source>Select program file</source>
-        <translation>Wybierz plik programu</translation>
+        <translation>Kies programmabestand</translation>
     </message>
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>Program %1</translation>
+        <translation>%1 programma</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation>Wszystkie pliki</translation>
+        <translation>Alle bestanden</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Nie można znaleźć programu &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>Ik kan het programma &lt;b&gt;%1&lt;/b&gt; niet vinden.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Plik &lt;b&gt;%1&lt;/b&gt; nie jest obsługiwanym plikiem dźwiękowym. &lt;br&gt;&lt;br&gt;Sprawdź w ustawieniach, czy wszystkie wymagane programy są zainstalowane i skonfigurowane.</translation>
+        <translation>Het bestand &lt;b&gt;%1&lt;/b&gt; is geen ondersteund audiobestand. &lt;br&gt;&lt;br&gt;Controleer dat alle vereiste programma&apos;s zijn geïnstalleerd en ingesteld.</translation>
     </message>
     <message>
         <source> [disk %1]</source>
-        <translation> [dysk %1]</translation>
+        <translation> [schijf %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -1040,106 +1042,106 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Nie można zapisać pliku CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Ik kan niet naar het cuebestand &lt;b&gt;%1&lt;/b&gt; schrijven:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Plik &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nie znaleziony.</translation>
+        <translation>Bestand &lt;b&gt;&quot;%1&quot;&lt;/b&gt; bestaat niet</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation>Plik &lt;b&gt;%1&lt;/b&gt; nie jest właściwym plikiem CUE. Dysk %2 nie posiada tagów.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Schijf %2 heeft geen tags.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation>Nie określono nazwy pliku audio.</translation>
+        <translation>De audiobestandsnaam is niet ingesteld</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>nie można użyć trybu &apos;ReplayGain&apos; dla plików o częstotliwości próbkowania wyższej niż 48kHz. Metaflac nie obsługuje takich plików.</translation>
+        <translation>Je kan ReplayGain niet gebruiken voor bestanden met bemonsteringsfrequenties boven 48kHz. Metaflac ondersteunt zo&apos;n bestanden niet.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation>Plik &lt;b&gt;%1&lt;/b&gt; nie jest właściwym plikiem CUE. Brak tagu FILE w arkuszu CUE .</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Het cueblad heeft geen FILE-tag.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation>Plik &lt;b&gt;%1&lt;/b&gt; nie jest właściwym plikiem CUE. Niepoprawny znacznik w %2.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Verkeerde nummerindex op %2.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Plik audio &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nie znaleziony.</translation>
+        <translation>Het audiobestand &lt;b&gt;&quot;%1&quot;&lt;/b&gt; bestaat niet</translation>
     </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
         <source>The number of tracks is higher than expected.</source>
-        <translation>Liczba ścieżek jest większa niż oczekiwano.</translation>
+        <translation>Het aantal nummers is hoger dan verwacht.</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
-        <translation>Pobierz dane z CDDB</translation>
+        <translation>Gegevens ophalen van CDDB</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Edytuj</translation>
+        <translation>Bewerken</translation>
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>Wybierz inny plik audio</translation>
+        <translation>Kies een ander audiobestand</translation>
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation>Wybierz inny plik CUE</translation>
+        <translation>Kies een ander cuebestand</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
     <message>
         <source>Error</source>
-        <translation>Błąd</translation>
+        <translation>Fout</translation>
     </message>
     <message>
         <source>Aborted</source>
-        <translation>Przerwano</translation>
+        <translation>Afgebroken</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Oké</translation>
     </message>
     <message>
         <source>Extracting</source>
-        <translation>Wyodrębnianie</translation>
+        <translation>Aan het uitpakken</translation>
     </message>
     <message>
         <source>Encoding</source>
-        <translation>Kodowanie</translation>
+        <translation>Aan het coderen</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation>Skolejkowano</translation>
+        <translation>In wachtrij</translation>
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation>Oblicz wzmocnienie</translation>
+        <translation>Geluidssterkte berekenen</translation>
     </message>
     <message>
         <source>Wait gain</source>
-        <translation>Czekaj na ustalenie wzmocnienia</translation>
+        <translation>Geluidssterkte wachten</translation>
     </message>
     <message>
         <source>Write gain</source>
-        <translation>Zapisz wzmocnienie</translation>
+        <translation>Geluidssterkte schrijven</translation>
     </message>
     <message>
         <source>Tracks:</source>
-        <translation>Ścieżki:</translation>
+        <translation>Nummers:</translation>
     </message>
     <message>
         <source>Audio:</source>
@@ -1151,17 +1153,17 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation>Ścieżka</translation>
+        <translation>Nummer</translation>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
-        <translation>Tytuł</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
-        <translation>Wykonawca</translation>
+        <translation>Artiest</translation>
     </message>
     <message>
         <source>Album</source>
@@ -1171,21 +1173,21 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
-        <translation>Komentarz</translation>
+        <translation>Opmerking</translation>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
-        <translation>Plik</translation>
+        <translation>Bestand</translation>
     </message>
     <message>
         <source>Multiple values</source>
-        <translation>Wartości wielokrotne</translation>
+        <translation>Meerdere waarden</translation>
     </message>
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation>Długość</translation>
+        <translation>Duur</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
@@ -1200,7 +1202,7 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation>Konwersja nie jest możliwa.
+        <translation>De conversie is niet mogelijk.
 %1</translation>
     </message>
 </context>

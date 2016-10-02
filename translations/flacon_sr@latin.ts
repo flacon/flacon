@@ -1,13 +1,13 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl_PL" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="sr@latin" version="2.0">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Flacon</source>
-        <translation>O programie Flacon</translation>
+        <translation>O Flaconu</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>O programie</translation>
+        <translation>O</translation>
     </message>
     <message>
         <source>Author</source>
@@ -15,68 +15,68 @@
     </message>
     <message>
         <source>Thanks</source>
-        <translation>Podziękowania</translation>
+        <translation>Zahvalnice</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation>Tłumaczenia</translation>
+        <translation>Prevod</translation>
     </message>
     <message>
         <source>External programs</source>
-        <translation>Programy zewnętrzne</translation>
+        <translation>Spoljni programi</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation>Strona domowa: %1</translation>
+        <translation>Domaća stranica: %1</translation>
     </message>
     <message>
         <source>License: %1</source>
-        <translation>Licencja: %1</translation>
+        <translation>Licenca: %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
-        <translation>Specjalne podziękowania dla:</translation>
+        <translation>Posebno zahvaljujemo:</translation>
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon używa programów zewnętrznych. Wielkie podziękowania dla ich Autorów!</translation>
+        <translation>Flacon koristi spoljne programe. Veliko hvala njihovim autorima!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Wyodrębnia pojedyncze utwory z jednego dużego pliku audio, zawierającego cały album.</translation>
+        <translation>Izvlači pojedinačne staze iz jednog velikog fajla koji sadrži ceo album.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation>Copyright: %1-%2 %3</translation>
+        <translation>© %1 — %2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
-        <translation>Poprawki obsługi WavPack.</translation>
+        <translation>Zakrpa za VavPak podršku</translation>
     </message>
     <message>
         <source>Application icon, Packaging</source>
-        <translation>Ikona programu, paczkowanie</translation>
+        <translation>Ikona programa, pakiranje</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation>Paczkowanie, testowanie.</translation>
+        <translation>Pakiranje, testiranje</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
-        <translation>Ulepszenia UI programu.</translation>
+        <translation>Poboljšanja sučelja</translation>
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation>Konto &quot;Flacon&quot; na github.com</translation>
+        <translation>Flaconov nalog na github.com</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation>Bug tracker %1</translation>
+        <translation>Bubolovac: %1</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon jest tłumaczony na wiele języków, dzięki pracy zespołom tłumaczy na stronie &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+        <translation>Flacon je preveden na mnoge jezike zahvaljujući radu prevodilaćkih timova na &lt;a href=&apos;%1&apos;&gt;Transifexu&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -84,239 +84,239 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
-        <translation>Wykryj automatycznie</translation>
+        <translation>sam otkrij</translation>
     </message>
     <message>
         <source>Unicode (UTF-8)</source>
-        <translation>Unicode (UTF-8)</translation>
+        <translation>unikod (UTF-8)</translation>
     </message>
     <message>
         <source>Unicode (UTF-16LE)</source>
-        <translation>Unicode (UTF-16LE)</translation>
+        <translation>unikod (UTF-16LE)</translation>
     </message>
     <message>
         <source>Unicode (UTF-16BE)</source>
-        <translation>Unicode (UTF-16BE)</translation>
+        <translation>unikod (UTF-16BE)</translation>
     </message>
     <message>
         <source>Cyrillic (Win-1251)</source>
-        <translation>Cyrylica (Win-1251)</translation>
+        <translation>ćirilica (Win-1251)</translation>
     </message>
     <message>
         <source>Cyrillic (CP-866)</source>
-        <translation>Cyrylica (CP-866)</translation>
+        <translation>ćirilica (CP-866)</translation>
     </message>
     <message>
         <source>Latin-1 (ISO-8859-1)</source>
-        <translation>Latin-1 (ISO-8859-1)</translation>
+        <translation>latinica-1 (ISO-8859-1)</translation>
     </message>
     <message>
         <source>Latin-2 (ISO-8859-2)</source>
-        <translation>Latin-2 (ISO-8859-2)</translation>
+        <translation>latinica-2 (ISO-8859-2)</translation>
     </message>
     <message>
         <source>Latin-3 (ISO-8859-3)</source>
-        <translation>Latin-3 (ISO-8859-3)</translation>
+        <translation>latinica-3 (ISO-8859-3)</translation>
     </message>
     <message>
         <source>Latin-4 (ISO-8859-4)</source>
-        <translation>Latin-4 (ISO-8859-4)</translation>
+        <translation>latinica-4 (ISO-8859-4)</translation>
     </message>
     <message>
         <source>Latin-5 (ISO-8859-5)</source>
-        <translation>Latin-5 (ISO-8859-5)</translation>
+        <translation>latinica-5 (ISO-8859-5)</translation>
     </message>
     <message>
         <source>Latin-6 (ISO-8859-6)</source>
-        <translation>Latin-6 (ISO-8859-6)</translation>
+        <translation>latinica-6 (ISO-8859-6)</translation>
     </message>
     <message>
         <source>Latin-7 (ISO-8859-7)</source>
-        <translation>Latin-7 (ISO-8859-7)</translation>
+        <translation>latinica-7 (ISO-8859-7)</translation>
     </message>
     <message>
         <source>Latin-8 (ISO-8859-8)</source>
-        <translation>Latin-8 (ISO-8859-8)</translation>
+        <translation>latinica-8 (ISO-8859-8)</translation>
     </message>
     <message>
         <source>Latin-9 (ISO-8859-9)</source>
-        <translation>Latin-9 (ISO-8859-9)</translation>
+        <translation>latinica-9 (ISO-8859-9)</translation>
     </message>
     <message>
         <source>Latin-10 (ISO-8859-10)</source>
-        <translation>Latin-10 (ISO-8859-10)</translation>
+        <translation>latinica-10 (ISO-8859-10)</translation>
     </message>
     <message>
         <source>Latin-13 (ISO-8859-13)</source>
-        <translation>Latin-13 (ISO-8859-13)</translation>
+        <translation>latinica-13 (ISO-8859-13)</translation>
     </message>
     <message>
         <source>Latin-14 (ISO-8859-14)</source>
-        <translation>Latin-14 (ISO-8859-14)</translation>
+        <translation>latinica-14 (ISO-8859-14)</translation>
     </message>
     <message>
         <source>Latin-15 (ISO-8859-15)</source>
-        <translation>Latin-15 (ISO-8859-15)</translation>
+        <translation>latinica-15 (ISO-8859-15)</translation>
     </message>
     <message>
         <source>Latin-16 (ISO-8859-16)</source>
-        <translation>Latin-16 (ISO-8859-16)</translation>
+        <translation>latinica-16 (ISO-8859-16)</translation>
     </message>
     <message>
         <source>Windows 1250</source>
-        <translation>Windows 1250</translation>
+        <translation>vindouz 1250</translation>
     </message>
     <message>
         <source>Windows 1252</source>
-        <translation>Windows 1252</translation>
+        <translation>vindouz 1252</translation>
     </message>
     <message>
         <source>Windows 1253</source>
-        <translation>Windows 1253</translation>
+        <translation>vindouz 1253</translation>
     </message>
     <message>
         <source>Windows 1254</source>
-        <translation>Windows 1254</translation>
+        <translation>vindouz 1254</translation>
     </message>
     <message>
         <source>Windows 1255</source>
-        <translation>Windows 1255</translation>
+        <translation>vindouz 1255</translation>
     </message>
     <message>
         <source>Windows 1256</source>
-        <translation>Windows 1256</translation>
+        <translation>vindouz 1256</translation>
     </message>
     <message>
         <source>Windows 1257</source>
-        <translation>Windows 1257</translation>
+        <translation>vindouz 1257</translation>
     </message>
     <message>
         <source>Windows 1258</source>
-        <translation>Windows 1258</translation>
+        <translation>vindouz 1258</translation>
     </message>
 </context>
 <context>
     <name>ConfigDialog</name>
     <message>
         <source>Preferences</source>
-        <translation>Ustawienia</translation>
+        <translation>Postavke</translation>
     </message>
     <message>
         <source>General configuration</source>
-        <translation>Konfiguracja ogólna</translation>
+        <translation>Opšte podešavanje</translation>
     </message>
     <message>
         <source>Thread count:</source>
-        <translation>Liczba wątków:</translation>
+        <translation>Broj niti:</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation>Liczba wątków w procesie konwersji.</translation>
+        <translation>Broj niti procesa pretvaranja.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation>Katalog tymczasowy:</translation>
+        <translation>Privremena fascikla:</translation>
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Domyślna strona kodowa</translation>
+        <translation>Podrazumevana kodna stranica:</translation>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Obszar Pre-Gap pierwszej ścieżki</translation>
+        <translation>Predpraznina prve numere:</translation>
     </message>
     <message>
         <source>Rescan</source>
-        <translation>Skanuj ponownie</translation>
+        <translation>Ponovno otkrivanje</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation>Pełne ścieżki do aplikacji zewnętrznych</translation>
+        <translation>Puna putanja spoljašnjih programa</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
-        <translation>Wyodrębnij do oddzielnego pliku</translation>
+        <translation>Izdvoj u poseban fajl</translation>
     </message>
     <message>
         <source>Add to first track</source>
-        <translation>Dodaj do pierwszej ścieżki</translation>
+        <translation>Dodaj prvoj stazi</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Ogólne</translation>
+        <translation>Opšte</translation>
     </message>
     <message>
         <source>Programs</source>
-        <translation>Programy</translation>
+        <translation>Programi</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Wybierz katalog tymczasowy</translation>
+        <translation>Izaberite privremenu fasciklu</translation>
     </message>
     <message>
         <source>Per track cue sheet</source>
-        <translation>Arkusze CUE dla ścieżek</translation>
+        <translation>CUE za svaku numeru</translation>
     </message>
     <message>
         <source>Create per track cue sheet</source>
-        <translation>Twórz arkusze CUE dla poszczególnych ścieżek</translation>
+        <translation>Napravi CUE za svaku numeru</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation>Konfiguracja kodowania AAC</translation>
+        <translation>Podešavanje AAC kodiranja</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Użyj ustawień jakości (zalecane)</translation>
+        <translation>Koristi postavku kvaliteta (preporučeno)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Użyj prędkości transmisji</translation>
+        <translation>Koristi bitski protok</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Prędkość transmisji:</translation>
+        <translation>Bitski protok:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Ustawia docelową prędkość transmisji (w kb/s).</translation>
+        <translation>Postavlja ciljani bitski protok (u kb/s).</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Flac</name>
     <message>
         <source>Flac encoding configuration</source>
-        <translation>Konfiguracja kodowania FLAC</translation>
+        <translation>Podešavanje kodiranja u Flac</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Kompresja:</translation>
+        <translation>Kompresija:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Tryb RaplayGain</translation>
+        <translation>Ponovljivo pojačanje</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Oblicz wzmocnienie:</translation>
+        <translation>Računanje pojačanja:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Nieaktywne</translation>
+        <translation>onemogućeno</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation>Konfiguracja kodowania MP3</translation>
+        <translation>Podešavanje kodiranja u MP3</translation>
     </message>
     <message>
         <source>Preset:</source>
-        <translation>Prekonfiguracja:</translation>
+        <translation>Predpodešavanje:</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -344,163 +344,141 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;Ta prekonfiguracja zapewnia większości osób przyzwoitą jakość muzyki.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;Ta prekonfiguracja zapewnia większości osób dość wysoką jakość muzyki.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;Ta prekonfiguracja zapewnia lepszą jakość, niż tryb normalny, co możesz usłyszeć, jeśli masz bardzo dobry słuch.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;Włącza VBR (zmienną prędkość transmisji) i pozwala ustalać poziom jej jakości.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Włącza nowy, szybki tryb VBR w poszczególnych profilach.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;Jeśli chcesz uzyskać absolutnie najwyższą jakość muzyki, bez względu na wielkość plików, powinienieś wybrać właśnie tę prekonfigurację.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Korzystanie z tej prekonfiguracji, zapewnia zazwyczaj dobrą jakość dla określonych wartości prędkości transmisji (bitrate).&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Korzystanie z tej prekonfiguracji, zapewnia zazwyczaj lepszą jakość, niż Constant BitRate (CBR), dla określonych wartości prędkości transmisji (bitrate).&lt;/dd&gt;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Użyj prędkości transmisji</translation>
+        <translation>Koristi bitski protok</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Prędkość transmisji</translation>
+        <translation>Bitski protok:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Ustawia docelową prędkość transmisji (w kb/s).</translation>
+        <translation>Postavlja ciljani bitski protok (u kb/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
-        <translation>Użyj jakości</translation>
+        <translation>Koristi kvalitet</translation>
     </message>
     <message>
         <source>Quality:</source>
-        <translation>Jakość:</translation>
+        <translation>Kvalitet:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Tryb RaplayGain</translation>
+        <translation>Ponovljivo pojačanje</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Oblicz wzmocnienie:</translation>
+        <translation>Računanje pojačanja:</translation>
     </message>
     <message>
         <source>VBR medium</source>
-        <translation>VBR medium</translation>
+        <translation>srednji PBP</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation>VBR standard</translation>
+        <translation>uobičajen PBP</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation>VBR standard fast</translation>
+        <translation>brz uobičajen PBP</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation>VBR extreme</translation>
+        <translation>ekstreman PBP</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation>VBR extreme fast</translation>
+        <translation>brz ekstreman PBP</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation>VBR quality</translation>
+        <translation>kvalitet PBP</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation>CBR insane</translation>
+        <translation>ludački SBP</translation>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation>CBR kbps</translation>
+        <translation>kb/s SBP-a</translation>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation>ABR kbps</translation>
+        <translation>PrBP</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation>Konfiguracja kodowania Ogg</translation>
+        <translation>Podešavanje kodiranja u OGG</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Użyj ustawień jakości (zalecane)</translation>
+        <translation>Koristi postavku kvaliteta (preporučeno)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Użyj prędkości transmisji</translation>
+        <translation>Koristi bitski protok</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation>Minimalna prędkość transmisji</translation>
+        <translation>Minimalan bitski protok:</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Ustawia minimalną prędkość transmisji (w kb/s).</translation>
+        <translation>Postavlja minimalan bitski protok (u kb/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation>Nominalna prędkość transmisji:</translation>
+        <translation>Početni bitski protok:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Ustawia docelową prędkość transmisji (w kb/s).</translation>
+        <translation>Postavlja ciljani bitski protok (u kb/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Maksymalna prędkość transmisji:</translation>
+        <translation>Maksimalan bitski protok:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Ustawia maksymalną prędkość transmisji (w kb/s).</translation>
+        <translation>Postavlja maksimalan bitski protok (u kb/s).</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Tryb RaplayGain</translation>
+        <translation>Ponovljivo pojačanje</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Oblicz wzmocnienie:</translation>
+        <translation>Računanje pojačanja:</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation>Konfiguracja kodowania Opus</translation>
+        <translation>Podešavanje kodiranja u Opus</translation>
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation>Rodzaj prędkości transmisji</translation>
+        <translation>Tip bitskog protoka:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Prędkość transmisji</translation>
+        <translation>Bitski protok:</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
-        <translation>VBR - zmienna prędkość transmisji</translation>
+        <translation>PBP — promenjivi bitski protok</translation>
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation>CBR - ograniczona prędkość transmisji</translation>
+        <translation>SBP — stalan bitski protok</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -508,11 +486,7 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
-&lt;dd&gt;Kodowanie o zmiennej prędkości transmisji (zalecane). W tym trybie, prędkość transmisji jest zmienna, zależnie od ilości otrzymywanych danych, by zachować stały poziom jakości.&lt;/dd&gt;
-
-&lt;dt&gt;CBR&lt;/dt&gt;
-&lt;dd&gt;Kodowanie o stałej wartości prędkości transmisji. Podobnie, jak w trybie zarządzanym vorbis lub kodowaniu CBR formatów AAC/MP3, zapewniana jest niższa jakość, w zamian za stałą wartość prędkości transmisji.&lt;/dd&gt;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -521,80 +495,76 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation>Ustawia doceolwą prędkość transmisji w kb/s (6-256 na kanał).
-&lt;p&gt;
-W trybie VBR, ustawia średni zakres prędkości transmisji dla dużej i zróżnicowanej kolekcji audio.
-&lt;p&gt;
-W trybie CBR, ustawia konkretną wartość wyjściowej prędkości transmisji.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation>Konfiguracja kodowania WavPack</translation>
+        <translation>Podešavanje kodiranja u VavPak</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Kompresja:</translation>
+        <translation>Kompresija:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>Tryb RaplayGain</translation>
+        <translation>Ponovljivo pojačanje</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Oblicz wzmocnienie:</translation>
+        <translation>Računanje pojačanja:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Nieaktywne</translation>
+        <translation>onemogućeno</translation>
     </message>
 </context>
 <context>
     <name>Converter</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Nie można utworzyć katalogu &quot;%1&quot;.</translation>
+        <translation>Ne mogu da napravim fasciklu „%1“.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Nie można zapisywać w katalogu &quot;%1&quot;.</translation>
+        <translation>Ne mogu da pišem u fasciklu „%1“.</translation>
     </message>
     <message>
         <source>Conversion is not possible:</source>
-        <translation>Konwersja nie jest możliwa:</translation>
+        <translation>Pretvaranje nije poguće:</translation>
     </message>
 </context>
 <context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation>Wybierz dysk</translation>
+        <translation>Izaberite disk</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [ dysk %2 ]</translation>
+        <translation>%1 [ disk %2 ]</translation>
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>Plik CUE zawiera informacje o wielu dyskach. Którego z nich chcesz użyć?</translation>
+        <translation>CUE fajl sadži podatke o više diskova. Koji disk želite da koristite?</translation>
     </message>
 </context>
 <context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation>Nie określono pliku audio.</translation>
+        <translation>Nije zadat audio fajl.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>Nie określono pliku CUE.</translation>
+        <translation>CUE fajl nije postavljen.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation>Plik audio jest krótszy, niż wynika z arkusza CUE</translation>
+        <translation>Audi fajl je kraći nego što CUE lista navodi.</translation>
     </message>
 </context>
 <context>
@@ -603,66 +573,65 @@ W trybie CBR, ustawia konkretną wartość wyjściowej prędkości transmisji.</
         <source>I can't delete file:
 %1
 %2</source>
-        <translation>Nie można usunąć pliku:
-%1
+        <translation>Ne mogu da obrišem fajl:\n
+%1\n
 %2</translation>
     </message>
     <message>
         <source>Encoder error:
 </source>
-        <translation>Błąd kodeka:
+        <translation>Greška kodera:\n
 </translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation>Nie można odczytać pliku %1</translation>
+        <translation>Ne mogu da čitam fajl %1</translation>
     </message>
 </context>
 <context>
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>Ustawia stopień kompresji, między %1 (najniższy) a %2 (najwyższy).</translation>
+        <translation>Postavlja kvalitet kodiranja, između %1 (najniži) i %2 (najviši).</translation>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>Ustawia stopień kompresji, między %1 (najszybciej) a %2 (najwyższa kompresja).
-Wpływa to wyłącznie na wielkość pliku. Konwersja pozostaje bezstratna.</translation>
+        <translation>Postavlja nivo opresije, između %1 (najbrže) i %2 (najveća kompresija).\n
+Ovo utiče samo na veličinu fajla. Sve postavke su bez gubitaka.</translation>
     </message>
     <message>
         <source>Disabled</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Nieaktywne</translation>
+        <translation>onemogućeno</translation>
     </message>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Utwór</translation>
+        <translation>prema stazi</translation>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Album</translation>
+        <translation>prema albumu</translation>
     </message>
     <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain jest standardem normalizacji odczuwanej głośności komputerowych formatów audio.
-
-Analiza może być przeprowadzona dla poszczególnych utworów, dzięki czemu, podczas odtwarzania, wszystkie utwory będą mieć ten sam poziom głośności.
-Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośności wszystkich utworów z albumu.</translation>
+        <translation>Ponovljivo pojačanje je standard za ujednačavanje očekivane glasnoće računarskih audio formata.
+Analiza se može vršiti prema pojedinačnim numerama, tako da je glasnoća biti ujednačena pri puštanju.
+Ujednačavanje prema albumu će sačuvati razlike glasnoće među numerama albuma. </translation>
     </message>
     <message>
         <source>%1 kbps</source>
-        <translation>%1 kbps</translation>
+        <translation>%1 kb/s</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation>Domyślnie</translation>
+        <translation>podrazumevano</translation>
     </message>
 </context>
 <context>
@@ -671,8 +640,8 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation>Nie można zmienić nazwy pliku:
-%1 na %2
+        <translation>Ne mogu da preimenujem fajl:\n
+%1 u %2\n
 %3</translation>
     </message>
 </context>
@@ -681,8 +650,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     <message>
         <source>Gain error:
 </source>
-        <translation>Błąd obliczania wzmocnienia:
-</translation>
+        <translation>Greška pojačanja:\n</translation>
     </message>
 </context>
 <context>
@@ -693,15 +661,15 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Pliki Wynikowe</translation>
+        <translation>Fajlovi rezultata</translation>
     </message>
     <message>
         <source>Directory:</source>
-        <translation>Katalog:</translation>
+        <translation>Fascikla:</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation>Wzorzec:</translation>
+        <translation>Obrazac:</translation>
     </message>
     <message>
         <source>Format:</source>
@@ -710,23 +678,23 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Format wyjściowy</translation>
+        <translation>Izlazni format</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation>Tagi</translation>
+        <translation>Oznake</translation>
     </message>
     <message>
         <source>Genre:</source>
-        <translation>Gatunek:</translation>
+        <translation>Žanr:</translation>
     </message>
     <message>
         <source>Year:</source>
-        <translation>Rok:</translation>
+        <translation>Godina:</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation>Wykonawca:</translation>
+        <translation>Izvođač:</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -734,95 +702,95 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Rozpocznij numerację od:</translation>
+        <translation>Početni br.:</translation>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>ID dysku:</translation>
+        <translation>ID diska:</translation>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation>Strona kodowa:</translation>
+        <translation>Kodna stranica:</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Plik</translation>
+        <translation>&amp;Fajl</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Ustawienia</translation>
+        <translation>&amp;Podešavanja</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Pomoc</translation>
+        <translation>&amp;Pomoć</translation>
     </message>
     <message>
         <source>Add file</source>
-        <translation>Dodaj plik</translation>
+        <translation>Dodaj fajl</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Dodaj plik CUE lub plik audio</translation>
+        <translation>Dodavanje audio ili CUE fajla</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation>ktrl+O</translation>
     </message>
     <message>
         <source>Convert</source>
-        <translation>Konwertuj</translation>
+        <translation>Pretvori</translation>
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation>Rozpocznij proces konwersji</translation>
+        <translation>Pokreće proces pretvaranja</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
+        <translation>ktrl+W</translation>
     </message>
     <message>
         <source>Abort</source>
-        <translation>Przerwij</translation>
+        <translation>Otkaži</translation>
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation>Przerwij proces konwersji</translation>
+        <translation>Otkazuje proces pretvaranja</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Wyjście</translation>
+        <translation>Napusti</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation>ktrl+Q</translation>
     </message>
     <message>
         <source>&amp;Preferences</source>
-        <translation>&amp;Ustawienia</translation>
+        <translation>&amp;Postavke</translation>
     </message>
     <message>
         <source>Program preferences</source>
-        <translation>Ustawienia programu</translation>
+        <translation>Postavke programa</translation>
     </message>
     <message>
         <source>&amp;About Flacon</source>
-        <translation>&amp;O programie Flacon</translation>
+        <translation>&amp;O Flaconu</translation>
     </message>
     <message>
         <source>Remove album</source>
-        <translation>Usuń album</translation>
+        <translation>Ukloni album</translation>
     </message>
     <message>
         <source>Remove album from project</source>
-        <translation>Usuń album z projektu</translation>
+        <translation>Uklanja album iz projekta</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
-        <translation>Ctrl+Del</translation>
+        <translation>ktrl+del</translation>
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation>Konfiguruj kodek</translation>
+        <translation>Podešavanje kodera</translation>
     </message>
     <message>
         <source>...</source>
@@ -830,85 +798,85 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>Select result directory</source>
-        <translation>Wybierz katalog docelowy</translation>
+        <translation>Izaberite fasciklu rezultata</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation>Pobierz z CDDB</translation>
+        <translation>Dobavi as CDDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation>Pobierz informacje o albumie z CDDB</translation>
+        <translation>Dobavlja podatke o albumu sa CDDB</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
-        <translation>Ctrl+I</translation>
+        <translation>ktrl+I</translation>
     </message>
     <message>
         <source>Scan</source>
-        <translation>Skanuj</translation>
+        <translation>Traži</translation>
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation>Rekurencyjne szukanie albumów</translation>
+        <translation>Rekurzivna pretraga albuma</translation>
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Wstaw &quot;Numer ścieżki&quot;</translation>
+        <translation>Ubaci „Broj staze“</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Wstaw &quot;Całkowita liczba ścieżek&quot;</translation>
+        <translation>Ubaci „Ukupan broj staza“</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Wstaw &quot;Wykonawca&quot;</translation>
+        <translation>Ubaci „Izvođač“</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Wstaw &quot;Tytuł albumu&quot;</translation>
+        <translation>Ubaci „Naslov albuma“</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Wstaw &quot;Tytuł utworu&quot;</translation>
+        <translation>Ubaci „Naslov staze“</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Wstaw &quot;Rok&quot;</translation>
+        <translation>Ubaci „Godina“</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Wstaw &quot;Gatunek&quot;</translation>
+        <translation>Ubci „Žanr“</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation>Niektóre albumy nie będą konwertowane, ponieważ zawierają błędy.
-Czy chcesz kontynuować?</translation>
+        <translation>Neki albui neće biti pretvoreni jer sadrže greške.\n
+Želite li da nastavite?</translation>
     </message>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>Pliki %1</translation>
+        <translation>%1 fajl(a)</translation>
     </message>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
-        <translation>Wszystkie obsługiwane formaty</translation>
+        <translation>Svi podržani formati</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Wszystkie pliki</translation>
+        <translation>Svi fajlovi</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Wybierz plik audio</translation>
+        <translation>Izaberite audio fajl</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Wybierz katalog</translation>
+        <translation>Početna fascikla</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -934,104 +902,86 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def { white-space: nowrap; }
-&lt;/style&gt;
-Można użyć następujących, poprzedzonych symbolem %, znaczników:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numer ścieżki &lt;/td&gt;
-&lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Całkowita liczba ścieżek&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Wykonawca&lt;/td&gt;
-&lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tytuł albumu&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tytuł utworu&lt;/td&gt;
-&lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Rok&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Gatunek&lt;/td&gt;
-&lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-Otoczenie klamrami części tekstu, zawierającej znacznik, spowoduje jej ukrycie, jeżeli dany znacznik będzie pusty.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Można wybrać katalog docelowy albo ręcznie wprowadzić ścieżkę dostępu.
-
-Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kropka), pliki wynikowe zostaną umieszczone w tym samym katalogu, co źródło.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Użyj &quot;%1&quot;</translation>
+        <translation>Koristi „%1“</translation>
     </message>
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Wybierz plik CUE</translation>
+        <translation>Izaberite CUE fajl</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Dodaj plik CUE lub plik audio</translation>
+        <translation>Dodaj CUE ili audio fajl</translation>
     </message>
     <message>
         <source>Delete current pattern from history</source>
-        <translation>Usuń bieżący wzorzec z historii</translation>
+        <translation>Izbriši tekući obrazac iz istorijata</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Wartości wielokrotne</translation>
+        <translation>Višestruke vrednosti</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesLineEdit</name>
     <message>
         <source>Multiple values</source>
-        <translation>Wartości wielokrotne</translation>
+        <translation>Višestruke vrednosti</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesSpinBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Wartości wielokrotne</translation>
+        <translation>Višestruke vrednosti</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
         <source>Select program file</source>
-        <translation>Wybierz plik programu</translation>
+        <translation>Izaberite fajl programa</translation>
     </message>
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>Program %1</translation>
+        <translation>%1 program</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation>Wszystkie pliki</translation>
+        <translation>Svi fajlovi</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Nie można znaleźć programu &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>Ne mogu da nađem program &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Plik &lt;b&gt;%1&lt;/b&gt; nie jest obsługiwanym plikiem dźwiękowym. &lt;br&gt;&lt;br&gt;Sprawdź w ustawieniach, czy wszystkie wymagane programy są zainstalowane i skonfigurowane.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; nije podržan audio fajl. &lt;br&gt;&lt;br&gt;Proverite da li su potrebni programi instalirani i u vašim postavkama.</translation>
     </message>
     <message>
         <source> [disk %1]</source>
-        <translation> [dysk %1]</translation>
+        <translation>[ disk %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -1040,106 +990,106 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Nie można zapisać pliku CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Ne mogu da upišem CUE fajl &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Plik &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nie znaleziony.</translation>
+        <translation>Fajl &lt;b&gt;„%1“&lt;/b&gt; ne postoji</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation>Plik &lt;b&gt;%1&lt;/b&gt; nie jest właściwym plikiem CUE. Dysk %2 nie posiada tagów.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; nije ispravan CUE fajl. Disk %2 nema oznake.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation>Nie określono nazwy pliku audio.</translation>
+        <translation>Nije zadato ime audio fajla</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>nie można użyć trybu &apos;ReplayGain&apos; dla plików o częstotliwości próbkowania wyższej niż 48kHz. Metaflac nie obsługuje takich plików.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation>Plik &lt;b&gt;%1&lt;/b&gt; nie jest właściwym plikiem CUE. Brak tagu FILE w arkuszu CUE .</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; nije ispravan CUE fajl. CUE lista nema oznaku FILE.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation>Plik &lt;b&gt;%1&lt;/b&gt; nie jest właściwym plikiem CUE. Niepoprawny znacznik w %2.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; nije ispravan CUE fajl.  Netačan indeks numere %2.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Plik audio &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nie znaleziony.</translation>
+        <translation>Audio fajl &lt;b&gt;„%1“&lt;/b&gt; ne postoji</translation>
     </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
         <source>The number of tracks is higher than expected.</source>
-        <translation>Liczba ścieżek jest większa niż oczekiwano.</translation>
+        <translation>Broj staza je veći od očekivanog.</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
-        <translation>Pobierz dane z CDDB</translation>
+        <translation>Dobavi podatke sa CDDB-a</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Edytuj</translation>
+        <translation>Uređivanje</translation>
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>Wybierz inny plik audio</translation>
+        <translation>Izaberite dodatni audio fajl</translation>
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation>Wybierz inny plik CUE</translation>
+        <translation>Izaberite dodatni CUE fajl</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
     <message>
         <source>Error</source>
-        <translation>Błąd</translation>
+        <translation>Greška</translation>
     </message>
     <message>
         <source>Aborted</source>
-        <translation>Przerwano</translation>
+        <translation>Otkazano</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>U redu</translation>
     </message>
     <message>
         <source>Extracting</source>
-        <translation>Wyodrębnianie</translation>
+        <translation>Izvlačim</translation>
     </message>
     <message>
         <source>Encoding</source>
-        <translation>Kodowanie</translation>
+        <translation>Kodiram</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation>Skolejkowano</translation>
+        <translation>Na redu</translation>
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation>Oblicz wzmocnienie</translation>
+        <translation>Računanje pojačanja</translation>
     </message>
     <message>
         <source>Wait gain</source>
-        <translation>Czekaj na ustalenie wzmocnienia</translation>
+        <translation>Čekaj pojačanje</translation>
     </message>
     <message>
         <source>Write gain</source>
-        <translation>Zapisz wzmocnienie</translation>
+        <translation>Upiši pojačanje</translation>
     </message>
     <message>
         <source>Tracks:</source>
-        <translation>Ścieżki:</translation>
+        <translation>Staze:</translation>
     </message>
     <message>
         <source>Audio:</source>
@@ -1151,17 +1101,17 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation>Ścieżka</translation>
+        <translation>Staza</translation>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
-        <translation>Tytuł</translation>
+        <translation>Naslov</translation>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
-        <translation>Wykonawca</translation>
+        <translation>Izvođač</translation>
     </message>
     <message>
         <source>Album</source>
@@ -1171,21 +1121,21 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
-        <translation>Komentarz</translation>
+        <translation>Komentar</translation>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
-        <translation>Plik</translation>
+        <translation>Fajl</translation>
     </message>
     <message>
         <source>Multiple values</source>
-        <translation>Wartości wielokrotne</translation>
+        <translation>Višestruke vrednosti</translation>
     </message>
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation>Długość</translation>
+        <translation>Dužina</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
@@ -1200,7 +1150,7 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation>Konwersja nie jest możliwa.
+        <translation>Pretvaranje nije moguće.
 %1</translation>
     </message>
 </context>

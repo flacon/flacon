@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Icon[nb]=flacon
-Comment[nb]=Henter ut lydspor fra en avbildning av en audio-CD til individuelle spor.
-GenericName[nb]=Lydfilkoder
-Name[nb]=Flacon
+Icon[sr@latin]=flacon
+Comment[sr@latin]=Izvlači audio staze sa audio CD-a u pojedinačne numere.
+GenericName[sr@latin]=Koder audio fajlova
+Name[sr@latin]=Flacon
