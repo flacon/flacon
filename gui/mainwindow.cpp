@@ -59,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowIcon(QIcon::fromTheme("flacon"));
     setAcceptDrops(true);
     setAcceptDrops(true);
+    this->setContextMenuPolicy(Qt::NoContextMenu);
 
     outPatternButton->setToolTip(outPatternEdit->toolTip());
     outDirEdit->setToolTip(actionSelectResultDir->toolTip());
