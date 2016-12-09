@@ -99,6 +99,10 @@ private slots:
     void testFindAudioFile_data();
     void testFindAudioFile();
 
+    void testFindCueFile_data();
+    void testFindCueFile();
+
+
     void testConvert();
 
 private:

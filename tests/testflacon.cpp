@@ -56,6 +56,7 @@ do {\
     #define USE_DEV_RANDOM 1
 #endif
 
+
 /************************************************
  *
  ************************************************/
@@ -1979,8 +1980,156 @@ void TestFlacon::testFindAudioFile_data()
                "FileTag(2).wav";
 }
 
+struct TestCueFile {
+    QString name;
+    QString fileTag;
+    QString fileTag2;
+};
+Q_DECLARE_METATYPE(TestCueFile)
 
 
+struct TestFindCueFileData {
+    QList<TestCueFile> cueFiles;
+    QStringList audioFiles;
+    QString chekAudioFile;
+    QString expected;
+};
+Q_DECLARE_METATYPE(TestFindCueFileData)
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testFindCueFile()
+{
+    QFETCH(TestFindCueFileData, test);
+
+    static int dirNum = 0;
+    dirNum++;
+    QString dir = QString("%1testFindAudioFile/%2/").arg(mTmpDir).arg(dirNum, 4, 20, QChar('0'));
+    QDir(dir).mkpath(".");
+    clearDir(dir);
 
 
+    foreach (QString f, test.audioFiles)
+    {
+        QFile(mCdAudioFile).link(dir + f.trimmed());
+    }
+
+    foreach (TestCueFile cueFile, test.cueFiles)
+    {
+        QStringList cue;
+        cue << "REM DATE 2013";
+        cue << "REM DISCID 123456789";
+        cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
+        cue << "PERFORMER \"Artist\"";
+        cue << "FILE \"" + cueFile.fileTag.trimmed() +"\" WAVE";
+        cue << "  TRACK 01 AUDIO";
+        cue << "    TITLE \"Song01\"";
+        cue << "    INDEX 01 00:00:00";
+
+        if (!cueFile.fileTag2.isEmpty())
+        {
+            cue << "FILE \"" + cueFile.fileTag2.trimmed() +"\" WAVE";
+            cue << "  TRACK 01 AUDIO";
+            cue << "    TITLE \"Song01\"";
+            cue << "    INDEX 01 00:00:00";
+        }
+        writeTextFile(dir + cueFile.name, cue);
+    }
+
+    InputAudioFile audio(dir + test.chekAudioFile);
+    Disk disk;
+    disk.setAudioFile(audio);
+    QString real = disk.cueFile();
+    QString expected = dir + test.expected;
+    QCOMPARE(real, expected);
+}
+
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testFindCueFile_data()
+{
+
+    QTest::addColumn<TestFindCueFileData>("test");
+    TestFindCueFileData test;
+
+    // -------------------------------------
+    test = TestFindCueFileData();
+    test.cueFiles.append(TestCueFile());
+    test.cueFiles.last().name = "1.cue";
+    test.cueFiles.last().fileTag= "FILE \"1.wav\" WAVE";
+
+    test.audioFiles << "1.wav";
+
+    test.chekAudioFile = "1.wav";
+    test.expected = "1.cue";
+    QTest::newRow("1.cue 1.wav") << test;
+
+    // -------------------------------------
+    test = TestFindCueFileData();
+    test.cueFiles.append(TestCueFile());
+    test.cueFiles.last().name = "1.cue";
+    test.cueFiles.last().fileTag= "FILE \"1.wav\" WAVE";
+
+    test.cueFiles.append(TestCueFile());
+    test.cueFiles.last().name = "2.cue";
+    test.cueFiles.last().fileTag= "FILE \"2.wav\" WAVE";
+
+    test.audioFiles << "1.wav";
+    test.audioFiles << "2.wav";
+
+    test.chekAudioFile = "1.wav";
+    test.expected = "1.cue";
+    QTest::newRow("1.cue 2.cue *1.wav* 2.wav") << test;
+
+
+    // -------------------------------------
+    test = TestFindCueFileData();
+    test.cueFiles.append(TestCueFile());
+    test.cueFiles.last().name = "1.cue";
+    test.cueFiles.last().fileTag= "FILE \"1.wav\" WAVE";
+
+    test.cueFiles.append(TestCueFile());
+    test.cueFiles.last().name = "2.cue";
+    test.cueFiles.last().fileTag= "FILE \"2.wav\" WAVE";
+
+    test.audioFiles << "1.wav";
+    test.audioFiles << "2.wav";
+
+    test.chekAudioFile = "2.wav";
+    test.expected = "2.cue";
+    QTest::newRow("1.cue 2.cue 1.wav *2.wav*") << test;
+
+
+    // -------------------------------------
+    test = TestFindCueFileData();
+    test.cueFiles.append(TestCueFile());
+    test.cueFiles.last().name = "multi.cue";
+    test.cueFiles.last().fileTag = "FILE \"1.wav\" WAVE";
+    test.cueFiles.last().fileTag2= "FILE \"2.wav\" WAVE";
+
+    test.audioFiles << "multi_1.wav";
+    test.audioFiles << "multi_2.wav";
+
+    test.chekAudioFile = "multi_1.wav";
+    test.expected = "multi.cue";
+    QTest::newRow("multi.cue multi_1.wav multi_2.wav") << test;
+
+
+    // -------------------------------------
+    test = TestFindCueFileData();
+    test.cueFiles.append(TestCueFile());
+    test.cueFiles.last().name = "multi.cue";
+    test.cueFiles.last().fileTag = "FILE \"1.wav\" WAVE";
+    test.cueFiles.last().fileTag2= "FILE \"2.wav\" WAVE";
+
+    test.audioFiles << "multi_1.wav";
+    test.audioFiles << "multi_2.wav";
+
+    test.chekAudioFile = "multi_2.wav";
+    test.expected = "multi.cue";
+    QTest::newRow("multi.cue multi_1.wav multi_2.wav") << test;
+}
 QTEST_MAIN(TestFlacon)

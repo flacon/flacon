@@ -562,7 +562,7 @@ void Disk::findCueFile()
             cueReaders << c;
     }
 
-    if (cueReaders.count() && cueReaders.first().diskCount() == 1)
+    if (cueReaders.count() == 1 && cueReaders.first().diskCount() == 1)
     {
         loadFromCue(cueReaders.first().disk(0), true);
         return;
