@@ -17,3 +17,5 @@ CMakeLists.txt.user*
 /build
 /clang_check
 *.kate-swp
+*.pro.user
+*.pro.user.*

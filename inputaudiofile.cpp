@@ -95,6 +95,17 @@ InputAudioFile::InputAudioFile(const InputAudioFile &other)
     mDuration    = other.mDuration;
 }
 
+InputAudioFile &InputAudioFile::operator =(const InputAudioFile &other)
+{
+    mFileName    = other.mFileName;
+    mValid       = other.mValid;
+    mErrorString = other.mErrorString;
+    mSampleRate  = other.mSampleRate;
+    mCdQuality   = other.mCdQuality;
+    mDuration    = other.mDuration;
+    return *this;
+}
+
 
 /************************************************
 

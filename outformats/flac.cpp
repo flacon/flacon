@@ -86,7 +86,7 @@ QStringList OutFormat_Flac::encoderArgs(Track *track, const QString &outFile) co
     if (!track->genre().isEmpty())    args << "--tag" << QString("genre=%1").arg(track->genre());
     if (!track->date().isEmpty())     args << "--tag" << QString("date=%1").arg(track->date());
     if (!track->title().isEmpty())    args << "--tag" << QString("title=%1").arg(track->title());
-    if (!track->title().isEmpty())    args << "--tag" << QString("comment=%1").arg(track->comment());
+    if (!track->comment().isEmpty())  args << "--tag" << QString("comment=%1").arg(track->comment());
     if (!track->disk()->discId().isEmpty())   args << "--tag" << QString("discId=%1").arg(track->disk()->discId());
     args << "--tag" << QString("TRACKNUMBER=%1").arg(track->trackNum());
     args << "--tag" << QString("TOTALTRACKS=%1").arg(track->disk()->count());

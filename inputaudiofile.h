@@ -51,6 +51,7 @@ class InputAudioFile
 public:
     explicit InputAudioFile(const QString &fileName);
     InputAudioFile(const InputAudioFile &other);
+    InputAudioFile &operator =(const InputAudioFile &other);
 
     QString fileName() const { return mFileName; }
     bool isValid() const { return mValid; }

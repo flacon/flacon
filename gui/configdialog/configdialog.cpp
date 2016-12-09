@@ -105,8 +105,6 @@ ConfigDialog::~ConfigDialog()
  ************************************************/
 void ConfigDialog::pagesListInit()
 {
-    QListWidget *pagesList = this->pagesList;
-
     QListWidgetItem *item = new QListWidgetItem(pagesList);
     item->setText(tr("General"));
     item->setIcon(Project::getIcon("go-home", "gohome", ":/icons/32/settings-main"));
