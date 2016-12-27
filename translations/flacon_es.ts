@@ -980,7 +980,7 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     </message>
     <message>
         <source>Delete current pattern from history</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar el patrón actual del historial</translation>
     </message>
 </context>
 <context>
