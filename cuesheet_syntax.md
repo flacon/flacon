@@ -1,4 +1,7 @@
-#Cue-Sheet Syntax
+Cue-Sheet Syntax
+================
+
+
 [CATALOG](#catalog) | [CDTEXTFILE](#cdtextfile) | [FILE](#file) | [FLAGS](#flags) | [INDEX](#index) | [ISRC](#isrc) | [PERFORMER](#performer) | [POSTGAP](#postgap) | [PREGAP](#pregap) | [REM](#rem) | [SONGWRITER](#songwriter) | [TITLE](#title) |  [TRACK](#track)
 
 
