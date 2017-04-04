@@ -337,7 +337,7 @@ QByteArray extractFileFromFileTag(const QByteArray &value)
 
 /************************************************
  Complete cue sheet syntax documentation
- http://digitalx.org/cue-sheet/syntax/
+ https://github.com/flacon/flacon/blob/master/cuesheet_syntax.md
  ************************************************/
 bool CueReader::parse(QFile &file)
 {
@@ -413,7 +413,7 @@ bool CueReader::parse(QFile &file)
 
 /************************************************
  Complete cue sheet syntax documentation
- http://digitalx.org/cue-sheet/syntax/
+ https://github.com/flacon/flacon/blob/master/cuesheet_syntax.md
  ************************************************/
 bool CueReader::parseOneDiskTags(QFile &file, CueTagSet *tags)
 {

@@ -72,6 +72,8 @@ set(HEADERS
     outformats/wav.h
     outformats/wv.h
     outformats/opus.h
+
+    newconverter/newsplitter.h
 )
 
 set(SOURCES
@@ -109,6 +111,8 @@ set(SOURCES
     outformats/wav.cpp
     outformats/wv.cpp
     outformats/opus.cpp
+
+    newconverter/newsplitter.cpp
 )
 
 set (MOCS
@@ -141,6 +145,8 @@ set (MOCS
     outformats/wav.h
     outformats/wv.h
     outformats/opus.h
+
+    newconverter/newsplitter.h
 )
 
 set (FORMS
@@ -305,12 +311,8 @@ install(FILES   misc/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/a
 install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
-if(BUILD_TESTS STREQUAL "Yes")
-    add_definitions(-DBUILD_TESTS)
-    add_subdirectory(tests)
-else()
-    status_message("For building tests use -DBUILD_TESTS=Yes option.")
-endif()
+
+addTests(tests)
 
 
 # Man page **************************************
