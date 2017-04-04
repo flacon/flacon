@@ -46,7 +46,6 @@ public:
     bool operator!=(const CueIndex &other) const;
 
     uint milliseconds() const { return mHiValue; }
-    uint frames() const { return mCdValue; }
 
 private:
     bool mNull;
@@ -56,7 +55,6 @@ private:
     bool parse(const QString &str);
 };
 
-typedef CueIndex CueTime;
 
 class CueTagSet: public TagSet
 {

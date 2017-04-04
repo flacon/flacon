@@ -73,13 +73,6 @@ private:
 private slots:
     void initTestCase();
 
-    void testWavHeader();
-    void testWavHeader_data();
-
-    void testNewSplitter();
-    void testNewSplitter_data();
-
-private:
     void testByteArraySplit_data();
     void testByteArraySplit();
 
