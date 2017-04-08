@@ -29,11 +29,15 @@ cmake_minimum_required( VERSION 2.6 )
 
 
 set(TEST_HEADERS
+    tools.h
     testflacon.h
 )
 
 set(TEST_SOURCES
+    tools.cpp
     testflacon.cpp
+    test_decoder.cpp
+    test_wav.cpp
 )
 
 set(TEST_MOCS

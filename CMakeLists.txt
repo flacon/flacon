@@ -58,6 +58,8 @@ set(HEADERS
     gui/aboutdialog/translatorsinfo.h
     gui/cuediskselectdialog/cuediskselectdialog.h
 
+    converter/wav.h
+    converter/decoder.h
     converter/converterthread.h
     converter/converter.h
     converter/splitter.h
@@ -73,7 +75,7 @@ set(HEADERS
     outformats/wv.h
     outformats/opus.h
 
-    newconverter/newsplitter.h
+    #newconverter/newsplitter.h
 )
 
 set(SOURCES
@@ -97,6 +99,8 @@ set(SOURCES
     gui/aboutdialog/translatorsinfo.cpp
     gui/cuediskselectdialog/cuediskselectdialog.cpp
 
+    converter/wav.cpp
+    converter/decoder.cpp
     converter/converterthread.cpp
     converter/converter.cpp
     converter/splitter.cpp
@@ -111,8 +115,6 @@ set(SOURCES
     outformats/wav.cpp
     outformats/wv.cpp
     outformats/opus.cpp
-
-    newconverter/newsplitter.cpp
 )
 
 set (MOCS
@@ -132,6 +134,7 @@ set (MOCS
     gui/aboutdialog/aboutdialog.h
     gui/cuediskselectdialog/cuediskselectdialog.h
 
+    converter/decoder.h
     converter/converterthread.h
     converter/converter.h
     converter/splitter.h
@@ -145,8 +148,6 @@ set (MOCS
     outformats/wav.h
     outformats/wv.h
     outformats/opus.h
-
-    newconverter/newsplitter.h
 )
 
 set (FORMS

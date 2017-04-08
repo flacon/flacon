@@ -27,6 +27,7 @@
 #ifndef TEST_FLACON_H
 #define TEST_FLACON_H
 
+#include <QTest>
 #include <QObject>
 #include <QStringList>
 #include <QMap>
@@ -76,10 +77,9 @@ private slots:
     void testWavHeader();
     void testWavHeader_data();
 
-    void testNewSplitter();
-    void testNewSplitter_data();
+    void testDecoder();
+    void testDecoder_data();
 
-private:
     void testByteArraySplit_data();
     void testByteArraySplit();
 
@@ -135,5 +135,6 @@ private:
 };
 
 QStringList &operator<<(QStringList &list, int value);
+
 
 #endif // TEST_FLACON_H

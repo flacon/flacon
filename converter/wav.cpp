@@ -1,8 +1,44 @@
-#include "newsplitter.h"
+/* BEGIN_COMMON_COPYRIGHT_HEADER
+ * (c)LGPL2+
+ *
+ * Flacon - audio File Encoder
+ * https://github.com/flacon/flacon
+ *
+ * Copyright: 2012-2013
+ *   Alexander Sokoloff <sokoloff.a@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * END_COMMON_COPYRIGHT_HEADER */
+
+
+#include "wav.h"
+
+#include <QByteArray>
 #include <QIODevice>
-#include <QDebug>
+
+//#include <iostream>
+//#include <QFileInfo>
+//#include <QDir>
+//#include <QCoreApplication>
+//#include <QProcess>
+//#include <QRegExp>
+//#include <QTextCodec>
 #include <QtEndian>
-#include <QString>
+//#include <QDebug>
+//#include <QUuid>
 
 #define WAV_RIFF  "RIFF"
 #define WAV_WAVE  "WAVE"
@@ -17,7 +53,7 @@
 
 #define CANONICAL_HEADER_SIZE 44
 
-#define BUF_SIZE            4096
+
 
 QByteArray readTag(QIODevice *stream)
 {
@@ -28,6 +64,16 @@ QByteArray readTag(QIODevice *stream)
     return res;
 }
 
+struct SplitterError {
+    int        trackNum;
+    QString    msg;
+
+    SplitterError(int num, QString msg):
+        trackNum(num),
+        msg(msg)
+    {
+    }
+};
 
 quint32 readUInt32(QIODevice *stream)
 {
@@ -218,94 +264,4 @@ QByteArray WavHeader::toByteArray() const
 
     return res;
 }
-
-
-void skip(QIODevice *stream, quint64 bytes)
-{
-    quint64 pos = stream->pos();
-    stream->read(bytes);
-    if (stream->pos() - pos != bytes)
-        throw "Can't skip in the stream";
-}
-
-SplitterNew::SplitterNew(QObject *parent) :
-    QObject(parent)
-{
-}
-
-void SplitterNew::setInputStream(QIODevice *inputStream)
-{
-    mInputStream = inputStream;
-}
-
-void SplitterNew::addTrack(SplitterNew::OutTrack track)
-{
-    mOutTracks << track;
-}
-
-void SplitterNew::addTrack(const CueTime &start, const CueTime &end, QIODevice *stream)
-{
-    OutTrack track;
-    track.Start  = start;
-    track.End    = end;
-    track.Stream = stream;
-
-    addTrack(track);
-}
-
-int timeToBytes(CueTime time, WavHeader wav)
-{
-    if (wav.isCdQuality())
-    {
-        return (int)((((double)time.frames() * (double)wav.byteRate()) / 75.0) + 0.5);
-    }
-    else
-    {
-        return (int)((((double)time.milliseconds() * (double)wav.byteRate()) / 1000.0) + 0.5);
-    }
-}
-
-void SplitterNew::run()
-{
-    mHeader.load(mInputStream);
-
-
-    QByteArray buf;
-    for (int i=0; i<mOutTracks.count(); ++i)
-    {
-        OutTrack track = mOutTracks.at(i);
-        quint32 start = timeToBytes(track.Start, mHeader);
-        quint32 end   = timeToBytes(track.End, mHeader);
-
-        track.Stream->write(StdWavHeader(end - start, mHeader).toByteArray());
-
-        skip(mInputStream, mHeader.dataStartPos() + start - mInputStream->pos());
-
-        int remain = end - start;
-        if (remain < 0)
-            throw "Incorrect track start or end";
-
-        while (remain > 0)
-        {
-            int n = qMin(BUF_SIZE, remain);
-            buf = mInputStream->read(n);
-            if (buf.length() != n)
-                throw "Unexpected end of input stream";
-
-            remain -= n;
-            int w = track.Stream->write(buf);
-            if (w != n)
-                throw "Can't write to output stream";
-        }
-    }
-
-    emit finished();
-}
-
-
-
-
-
-
-
 

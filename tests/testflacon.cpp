@@ -25,33 +25,26 @@
 
 
 #include "testflacon.h"
+#include "tools.h"
 #include "../disk.h"
 #include "../settings.h"
 #include "../project.h"
 #include "../inputaudiofile.h"
 #include "converter/converter.h"
+#include "converter/wav.h"
+#include "converter/splitter.h"
 #include "outformat.h"
 
-#include "../newconverter/newsplitter.h"
-
 #include <QTest>
-#include <QFile>
-#include <QFileInfo>
 #include <QDebug>
-#include <QProcessEnvironment>
-#include <QSettings>
-#include <QDir>
 #include <QProcess>
 #include <QBuffer>
-#include <QCryptographicHash>
-
+#include <QFileInfo>
+#include <QDir>
 
 #define protected public;
 
-#define FAIL(message) \
-do {\
-    QTest::qFail(message, __FILE__, __LINE__);\
-} while (0)
+
 
 #ifdef Q_OS_WIN
     #define USE_DEV_RANDOM 0
@@ -1985,16 +1978,16 @@ void TestFlacon::testFindAudioFile_data()
                "FileTag(2).wav";
 }
 
-struct TestCueFile {
+struct TestCueFile_ {
     QString name;
     QString fileTag;
     QString fileTag2;
 };
-Q_DECLARE_METATYPE(TestCueFile)
+Q_DECLARE_METATYPE(TestCueFile_)
 
 
 struct TestFindCueFileData {
-    QList<TestCueFile> cueFiles;
+    QList<TestCueFile_> cueFiles;
     QStringList audioFiles;
     QString chekAudioFile;
     QString expected;
@@ -2020,7 +2013,7 @@ void TestFlacon::testFindCueFile()
         QFile(mCdAudioFile).link(dir + f.trimmed());
     }
 
-    foreach (TestCueFile cueFile, test.cueFiles)
+    foreach (TestCueFile_ cueFile, test.cueFiles)
     {
         QStringList cue;
         cue << "REM DATE 2013";
@@ -2062,7 +2055,7 @@ void TestFlacon::testFindCueFile_data()
 
     // -------------------------------------
     test = TestFindCueFileData();
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "1.cue";
     test.cueFiles.last().fileTag= "FILE \"1.wav\" WAVE";
 
@@ -2074,11 +2067,11 @@ void TestFlacon::testFindCueFile_data()
 
     // -------------------------------------
     test = TestFindCueFileData();
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "1.cue";
     test.cueFiles.last().fileTag= "FILE \"1.wav\" WAVE";
 
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "2.cue";
     test.cueFiles.last().fileTag= "FILE \"2.wav\" WAVE";
 
@@ -2092,11 +2085,11 @@ void TestFlacon::testFindCueFile_data()
 
     // -------------------------------------
     test = TestFindCueFileData();
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "1.cue";
     test.cueFiles.last().fileTag= "FILE \"1.wav\" WAVE";
 
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "2.cue";
     test.cueFiles.last().fileTag= "FILE \"2.wav\" WAVE";
 
@@ -2110,7 +2103,7 @@ void TestFlacon::testFindCueFile_data()
 
     // -------------------------------------
     test = TestFindCueFileData();
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "multi.cue";
     test.cueFiles.last().fileTag = "FILE \"1.wav\" WAVE";
     test.cueFiles.last().fileTag2= "FILE \"2.wav\" WAVE";
@@ -2125,7 +2118,7 @@ void TestFlacon::testFindCueFile_data()
 
     // -------------------------------------
     test = TestFindCueFileData();
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "multi.cue";
     test.cueFiles.last().fileTag = "FILE \"1.wav\" WAVE";
     test.cueFiles.last().fileTag2= "FILE \"2.wav\" WAVE";
@@ -2136,310 +2129,6 @@ void TestFlacon::testFindCueFile_data()
     test.chekAudioFile = "multi_2.wav";
     test.expected = "multi.cue";
     QTest::newRow("multi.cue multi_1.wav multi_2.wav") << test;
-}
-
-
-void writeHexString(const QString &str, QIODevice *out)
-{
-    bool ok;
-    int i =0;
-    while (i<str.length()-1)
-    {
-        if (str.at(i).isSpace())
-        {
-            ++i;
-            continue;
-        }
-
-        union {
-            quint16 n16;
-            char b;
-        };
-        n16 = str.mid(i, 2).toShort(&ok, 16);
-
-        out->write(&b, 1);
-        if (!ok)
-            throw QString("Incorrect HEX data at %1:\n%2").arg(i).arg(str);
-        i+=2;
-    }
-}
-
-void TestFlacon::testWavHeader()
-{
-    QFETCH(QString, testdata);
-    QFETCH(qint32, file_size);
-    QFETCH(qint32, data_size);
-
-    quint32 fileSize = file_size;
-    quint32 dataSize = data_size;
-
-    try
-    {
-        QBuffer data;
-        data.open(QBuffer::ReadWrite);
-        writeHexString(testdata, &data);
-        data.seek(0);
-
-
-        WavHeader header;
-        header.load(&data);
-
-        QCOMPARE(header.fileSize(), fileSize);
-        QCOMPARE(header.dataSize(), dataSize);
-    }
-    catch (char const *err)
-    {
-        QFAIL(err);
-    }
-
-
-}
-
-void TestFlacon::testWavHeader_data()
-{
-    QTest::addColumn<QString>("testdata");
-    QTest::addColumn<qint32>("file_size");
-    QTest::addColumn<qint32>("data_size");
-
-    QTest::newRow("1") <<
-                         "52 49 46 46"  // RIFF
-                         "24 B9 4D 02"  // file size - 8
-                         "57 41 56 45"  // WAVE
-
-                         "66 6D 74 20"  // "fmt "
-                         "10 00 00 00"  // Chunk size
-                         "01 00"        // AudioFormat
-                         "02 00"        // NumChannels
-
-                         "44 AC 00 00"  // mSampleRate
-                         "10 B1 02 00"  // mByteRate
-                         "04 00"        // mBlockAlign
-                         "10 00"        // mBitsPerSample
-
-                         "64 61 74 61"  // data
-                         "00 B9 4D 02"  // data size
-                         "00"
-
-                      << 38648108       // file size
-                      << 38648064       // data size
-                      ;
-
-
-    QTest::newRow("2") <<
-                         "52 49 46 46"  // RIFF
-                         "46 B9 4D 02"  // file size - 8
-                         "57 41 56 45"  // WAVE
-
-                         "66 6D 74 20"  // "fmt "
-                         "10 00 00 00"  // Chunk size
-                         "01 00"        // AudioFormat
-                         "02 00"        // NumChannels
-
-                         "44 AC 00 00"  // mSampleRate
-                         "10 B1 02 00"  // mByteRate
-                         "04 00"        // mBlockAlign
-                         "10 00"        // mBitsPerSample
-
-                         "4C 49 53 54"  // LIST
-                         "1A 00 00 00"  // Chunk size
-                         "49 4E 46 4F"
-                         "49 53 46 54"
-                         "0E 00 00 00"
-                         "4C 61 76 66"
-                         "35 37 2E 34"
-                         "31 2E 31 30"
-                         "30 00 "
-
-                         "64 61 74 61"  // data
-                         "00 B9 4D 02"  // data size
-                         "00"
-
-                      << 38648142       // file size
-                      << 38648064       // data size
-                      ;
-
-}
-
-QString calcAudioHash(const QString &fileName)
-{
-    QFile f(fileName);
-    f.open(QFile::ReadOnly);
-    QByteArray ba = f.read(1024);
-    int n = ba.indexOf("data");
-    f.seek(n + 8);
-
-    QCryptographicHash hash(QCryptographicHash::Md5);
-    while (!f.atEnd())
-    {
-        ba = f.read(1024 * 1024);
-        hash.addData(ba);
-    }
-
-    return hash.result().toHex();
-}
-
-
-void TestFlacon::testNewSplitter()
-{
-    QObject raii;
-    QFETCH(QStringList, data);
-    QString inputFile = data.first();
-
-    QVector<QPair<QString, QString> > tracks;
-    for (int i=1; i < data.count(); i+=2)
-    {
-        QPair<QString, QString> track;
-        track.first  = data.at(i);
-        track.second = data.at(i+1);
-        tracks << track;
-    }
-
-    // Flacon splitter **************************
-    QFile input(inputFile);
-    input.open(QFile::ReadOnly);
-    input.seek(0);
-
-    SplitterNew splitter;
-    splitter.setInputStream(&input);
-
-    QString dir = QDir::cleanPath(QString("%1/testNewSplitter/%2").arg(mTmpDir).arg(QTest::currentDataTag()));
-    QDir().mkpath(dir);
-
-    QList<QFile*> outFiles;
-
-
-    for (int i=0; i < tracks.count(); ++i)
-    {
-        QFile *file = new QFile(QString("%1/%2-flacon.wav").arg(dir).arg(i + 1, 3, 10, QChar('0')), &raii);
-        outFiles << file;
-        file->open(QFile::WriteOnly | QFile::Truncate);
-
-        splitter.addTrack(
-                    CueTime(tracks.at(i).first),
-                    CueTime(tracks.at(i).second),
-                    file);
-    }
-
-    splitter.run();
-
-    foreach (QFile *file, outFiles)
-        file->close();
-    // Flacon splitter **************************
-
-    // Shn splitter *****************************
-    QString cueFile = QString("%1/cue.cue").arg(dir);
-    QFile f(cueFile);
-    f.open(QFile::WriteOnly | QFile::Truncate);
-    QTextStream cue(&f);
-
-    cue << QString("FILE \"%1\" WAVE\n").arg(inputFile);
-    for (int i=0; i < tracks.count(); ++i)
-    {
-        cue << QString("TRACK %1 AUDIO\n").arg(i + 1);
-        cue << QString("  INDEX 01 %1\n").arg(tracks.at(i).first);
-    }
-
-    cue << QString("TRACK %1 AUDIO\n").arg(tracks.count() + 1);
-    cue << QString("  INDEX 01 %1\n").arg(tracks.last().second);
-
-    f.close();
-
-
-    QStringList args;
-    args << "split";
-    args << "-w";
-    args << "-q";
-    args << "-O" << "always";
-    args << "-n" << "%03d";
-    args << "-t" << "%n-shntool";
-    args << "-d" << dir;
-    args << "-f" << QDir::toNativeSeparators(cueFile);
-    args << QDir::toNativeSeparators(inputFile);
-    //qDebug() << args;
-
-    if (QProcess::execute("shntool", args) != 0)
-        QFAIL("snhtool was crashed");
-    // Shn splitter *****************************
-
-    // Checks ***********************************
-    for (int i=0; i < tracks.count(); ++i)
-    {
-        QString file1 = QString("%1/%2-flacon.wav").arg(dir).arg(i + 1, 3, 10, QChar('0'));
-        QString file2 = QString("%1/%2-shntool.wav").arg(dir).arg(i + 1, 3, 10, QChar('0'));
-
-        if (calcAudioHash(file1) != calcAudioHash(file2))
-        {
-            int len = qMax(file1.length(), file2.length());
-            QFAIL(QString("Compared hases are not the same for:\n"
-                         "    %1 [%2]\n"
-                         "    %3 [%4]\n")
-
-                        .arg(file1, -len)
-                        .arg(calcAudioHash(file1))
-
-                        .arg(file2, -len)
-                        .arg(calcAudioHash(file2))
-
-                        .toLocal8Bit());
-        }
-        QCOMPARE(calcAudioHash(file1), calcAudioHash(file2));
-    }
-
-    // Checks ***********************************
-}
-
-
-
-void TestFlacon::testNewSplitter_data()
-{
-    QTest::addColumn<QStringList>("data");
-
-
-    QTest::newRow("001-cd") << (QStringList()
-                                << mCdAudioFile
-                                << "00:00:00"
-                                << "00:30:00"
-
-
-                                << "00:30:00"
-                                << "01:30:00"
-
-                                << "01:30:00"
-                                << "02:30:00"
-
-                                );
-
-
-    QTest::newRow("002-cd") << (QStringList()
-                                << mCdAudioFile
-                                << "00:00:10"
-                                << "00:30:00"
-
-
-                                << "00:30:00"
-                                << "01:30:20"
-
-                                << "01:30:20"
-                                << "02:30:30"
-
-                                );
-
-
-
-    QTest::newRow("003-hd") << (QStringList()
-                                << mHdAudioFile
-                                << "00:00:000"
-                                << "00:30:000"
-
-
-                                << "00:30:000"
-                                << "01:30:000"
-
-                                << "01:30:000"
-                                << "02:30:000"
-
-                                );
-
 }
 
 

@@ -1,13 +1,34 @@
-#ifndef SPLITTER_H
-#define SPLITTER_H
+/* BEGIN_COMMON_COPYRIGHT_HEADER
+ * (c)LGPL2+
+ *
+ * Flacon - audio File Encoder
+ * https://github.com/flacon/flacon
+ *
+ * Copyright: 2012-2013
+ *   Alexander Sokoloff <sokoloff.a@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
 
-#include <QObject>
-#include <QVector>
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
 
-#include "../cue.h"
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * END_COMMON_COPYRIGHT_HEADER */
 
+
+#ifndef WAV_H
+#define WAV_H
+
+#include <QtGlobal>
 class QIODevice;
-
 
 class WavHeader {
 public:
@@ -74,43 +95,5 @@ public:
     StdWavHeader(quint32 dataSize, const WavHeader &base);
 };
 
-class SplitterNew : public QObject
-{
-    Q_OBJECT
 
-public:
-    struct OutTrack {
-        CueTime Start;
-        CueTime End;
-        QIODevice* Stream;
-    };
-
-    explicit SplitterNew(QObject *parent = 0);
-
-    QIODevice* inputStream() const { return mInputStream; }
-    void setInputStream(QIODevice *inputStream);
-
-    int outTracksCount() const { return mOutTracks.count(); }
-    OutTrack outTracks(uint index) const { return mOutTracks[index]; }
-    void addTrack(OutTrack track);
-    void addTrack(const CueTime &start, const CueTime &end, QIODevice *stream);
-
-    void run();
-
-signals:
-    void finished();
-
-private:
-    struct SplitInfo {
-        uint Start;
-        uint End;
-    };
-
-    QIODevice *mInputStream;
-    QVector<OutTrack> mOutTracks;
-    WavHeader mHeader;
-
-
-};
-
-#endif // SPLITTER_H
+#endif // WAV_H
