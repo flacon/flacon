@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,37 +24,39 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef WV_H
-#define WV_H
+#include "ape.h"
 
-#include "outformat.h"
-#include "configdialog.h"
-#include "ui_wv_config.h"
+REGISTER_FORMAT(Format_Ape)
 
-class OutFormat_Wv: public OutFormat
+
+/************************************************
+ *
+ ************************************************/
+QStringList Format_Ape::decoderArgs(const QString &fileName) const
 {
-public:
-    OutFormat_Wv();
+    QStringList args;
+    args << fileName;
+    args << "-";
+    args << "-d";
 
-    virtual QString encoderProgramName() const { return "wavpack"; }
-    virtual QString gainProgramName() const { return "wvgain"; }
-
-    virtual QStringList encoderArgs(Track *track, const QString &outFile) const;
-    virtual QStringList gainArgs(const QStringList &files) const;
-
-    QHash<QString, QVariant> defaultParameters() const;
-    EncoderConfigPage *configPage(QWidget *parent = 0) const;
-};
+    return args;
+}
 
 
-class ConfigPage_Wv: public EncoderConfigPage, private Ui::ConfigPage_Wv
+/************************************************
+ *
+ ************************************************/
+QString Format_Ape::filterDecoderStderr(const QString &stdErr) const
 {
-    Q_OBJECT
-public:
-    explicit ConfigPage_Wv(QWidget *parent = 0);
+    if (stdErr.startsWith("Progress:"))
+        return "";
 
-    virtual void load();
-    virtual void write();
-};
+    if (stdErr.startsWith("-- Monkey's Audio Console Front End"))
+        return "";
 
-#endif // WV_H
+    if (stdErr.startsWith("Decompressing..."))
+        return "";
+
+    return stdErr;
+
+}

@@ -28,6 +28,7 @@
 #define WAV_H
 
 #include "outformat.h"
+#include "format.h"
 #include "encoder.h"
 
 class OutFormat_Wav: public OutFormat
@@ -61,6 +62,18 @@ public:
 protected:
     void doRun();
     virtual QStringList processArgs() const;
+};
+
+class Format_Wav: public Format
+{
+public:
+    virtual QString ext() const { return "wav"; }
+
+    virtual QString decoderProgramName() const { return ""; }
+    virtual QStringList decoderArgs(const QString &fileName) const;
+
+    virtual QByteArray magic() const { return "RIFF"; }
+    virtual uint const magicOffset() const { return 0; }
 };
 
 #endif // WAV_H

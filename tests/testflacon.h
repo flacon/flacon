@@ -74,12 +74,21 @@ private:
 private slots:
     void initTestCase();
 
-    void testWavHeader();
-    void testWavHeader_data();
+    void testReadWavHeader();
+    void testReadWavHeader_data();
+
+    void testFormatWavLast();
+
+    void testFormat();
+    void testFormat_data();
+
+    void testFormatFromFile();
+    void testFormatFromFile_data();
+
 
     void testDecoder();
     void testDecoder_data();
-
+private:
     void testByteArraySplit_data();
     void testByteArraySplit();
 
@@ -113,7 +122,6 @@ private slots:
     void testConvert();
 
 private:
-    void createAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality);
     void writeTextFile( const QString &fileName, const QString &content);
     void writeTextFile( const QString &fileName, const QStringList &content);
 
@@ -127,12 +135,28 @@ private:
     Disk *standardDisk();
 
     QString mFfmpeg;
-    QString mCdAudioFile;
-    QString mHdAudioFile;
+    QString mAudio_cd_wav;
+    QString mAudio_24x96_wav;
+
+    QString mAudio_cd_ape;
+    QString mAudio_24x96_ape;
+
+
+    QString mAudio_cd_flac;
+    QString mAudio_24x96_flac;
+
+    QString mAudio_cd_wv;
+    QString mAudio_24x96_wv;
+
+    QString mAudio_cd_tta;
+    QString mAudio_24x96_tta;
+
     const QString mTmpDir;
     const QString mDataDir;
     Disk *mStandardDisk;
 };
+
+
 
 QStringList &operator<<(QStringList &list, int value);
 

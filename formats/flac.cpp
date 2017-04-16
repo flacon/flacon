@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2012-2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -31,6 +31,28 @@
 
 #include <QDebug>
 
+REGISTER_FORMAT(Format_Flac)
+
+
+/************************************************
+ *
+ ************************************************/
+QStringList Format_Flac::decoderArgs(const QString &fileName) const
+{
+    QStringList args;
+    args << "-c";
+    args << "-d";
+    args << "-s";
+    args << fileName;
+    args << "-";
+
+    return args;
+}
+
+
+/************************************************
+ *
+ ************************************************/
 OutFormat_Flac::OutFormat_Flac()
 {
     mId   = "FLAC";
@@ -166,8 +188,6 @@ void ConfigPage_Flac::write()
     writeWidget("Flac/Compression",  flacCompressionSlider);
     writeWidget("Flac/ReplayGain", flacGainCbx);
 }
-
-
 
 
 

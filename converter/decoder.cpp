@@ -1,11 +1,44 @@
+/* BEGIN_COMMON_COPYRIGHT_HEADER
+ * (c)LGPL2+
+ *
+ * Flacon - audio File Encoder
+ * https://github.com/flacon/flacon
+ *
+ * Copyright: 2017
+ *   Alexander Sokoloff <sokoloff.a@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * END_COMMON_COPYRIGHT_HEADER */
+
+
 #include "decoder.h"
 #include "../cue.h"
 #include <QIODevice>
-#include <QByteArray>
 #include <QFile>
+#include <QProcess>
+#include <QDir>
+#include <QDebug>
 
-#define BUF_SIZE            4096
+#define MAX_BUF_SIZE            4096
 
+
+
+/************************************************
+ *
+ ************************************************/
 int timeToBytes(CueTime time, WavHeader wav)
 {
     if (wav.isCdQuality())
@@ -18,110 +51,188 @@ int timeToBytes(CueTime time, WavHeader wav)
     }
 }
 
-bool skip(QIODevice *stream, quint64 bytes)
-{
-    quint64 pos = stream->pos();
-    stream->read(bytes);
-    return (stream->pos() - pos == bytes);
-}
-
-
-Decoder::Decoder(QObject *parent) :
+Decoder::Decoder(const Format &format, QObject *parent) :
     QObject(parent),
-    mInputDevice(NULL)
+    mFormat(format),
+    mProcess(NULL),
+    mFile(NULL)
 {
 
 }
 
-bool Decoder::open(QIODevice *inputDevice)
+
+/************************************************
+ *
+ ************************************************/
+Decoder::~Decoder()
 {
-    mErrorString = "";
+    close();
+    delete mFile;
+    delete mProcess;
+}
 
-    mInputDevice = inputDevice;
 
-    if (!mInputDevice->isOpen())
+/************************************************
+ *
+ ************************************************/
+bool Decoder::open(const QString fileName)
+{
+    mInputFile = fileName;
+    if (!mFormat.decoderProgramName().isEmpty())
+        return openProcess();
+    else
+        return openFile();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+bool Decoder::openFile()
+{
+    mFile = new QFile(mInputFile, this);
+    if (!mFile->open(QFile::ReadOnly))
     {
-        if (mInputDevice->open(QIODevice::ReadOnly))
-        {
-            mErrorString = mInputDevice->errorString();
-            return false;
-        }
+         mErrorString = mFile->errorString();
+        return false;
     }
 
     try
     {
-        mWavHeader.load(mInputDevice);
+        mWavHeader.load(mFile);
+        mPos = mWavHeader.dataStartPos();
+        return true;
     }
     catch (char const *err)
     {
         mErrorString = err;
         return false;
     }
-
-    return true;
 }
 
-bool Decoder::open(const QString fileName)
+
+/************************************************
+ *
+ ************************************************/
+bool Decoder::openProcess()
 {
-    mInputDevice = new QFile(fileName, this);
-    if (!mInputDevice->open(QFile::ReadOnly))
+    mProcess = new QProcess(this);
+
+    QString program = QDir::toNativeSeparators(mFormat.decoderProgramName());
+    mProcess->setReadChannel(QProcess::StandardOutput);
+    connect(mProcess, SIGNAL(readyReadStandardError()),
+            this, SLOT(readStandardError()));
+
+
+    mProcess->start(program, mFormat.decoderArgs(mInputFile));
+
+    bool res = mProcess->waitForStarted();
+    if(!res)
     {
-        mErrorString = mInputDevice->errorString();
+        mErrorString = QString("[Decoder] Can't start '%1': %2").arg(program, mProcess->errorString());
         return false;
     }
 
-    return open(mInputDevice);
+
+    try
+    {
+        mWavHeader.load(mProcess);
+        mPos = mWavHeader.dataStartPos();
+        return true;
+    }
+    catch (char const *err)
+    {
+        mErrorString = err;
+        return false;
+    }
 }
 
+/************************************************
+ *
+ ************************************************/
 void Decoder::close()
 {
-    if (mInputDevice)
-        mInputDevice->close();
+    if (mFile)
+        mFile->close();
+
+    if (mProcess)
+    {
+        mProcess->terminate();
+        mProcess->waitForFinished();
+    }
 }
 
+
+/************************************************
+ *
+ ************************************************/
 bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDevice)
 {
     try
     {
+        QIODevice *input;
+        if (mProcess)
+            input = mProcess;
+        else
+            input = mFile;
+
         mErrorString = "";
-        quint32 bs = timeToBytes(start, mWavHeader);
-        quint32 be = timeToBytes(end,   mWavHeader);
+
+        quint32 bs = timeToBytes(start, mWavHeader) + mWavHeader.dataStartPos();
+        quint32 be = timeToBytes(end,   mWavHeader) + mWavHeader.dataStartPos();
 
         outDevice->write(StdWavHeader(be - bs, mWavHeader).toByteArray());
 
-        skip(mInputDevice, mWavHeader.dataStartPos() + bs - mInputDevice->pos());
+        int pos = mPos;
 
+        // Skip bytes from current to start of track ......
+        int len = bs - mPos;
+        if (len < 0)
+        {
+            mErrorString = "[Decoder] Incorrect start time.";
+            return false;
+        }
 
-        QByteArray buf;
-        int remain = be - bs;
-        if (remain < 0)
+        if (!mustSkip(input, len))
+        {
+            mErrorString = "[Decoder] Can't skip to start of track.";
+            return false;
+        }
+
+        pos += len;
+        // Skip bytes from current to start of track ......
+
+        // Read bytes from start to end of track ..........
+        len = be - bs;
+        if (len < 0)
         {
             mErrorString = "[Decoder] Incorrect start or end time.";
             return false;
         }
+        pos += len;
 
-        while (remain > 0)
+        char buf[MAX_BUF_SIZE];
+        while (input->bytesAvailable() || input->waitForReadyRead(1000))
         {
-            int n = qMin(BUF_SIZE, remain);
-            buf = mInputDevice->read(n);
-            if (buf.length() != n)
-            {
-                mErrorString = "[Decoder] Unexpected end of input file.";
-                return false;
-            }
+            int n = qMin(MAX_BUF_SIZE, len);
+            n = input->read(buf, n);
+            len -= n;
 
-            remain -= n;
-            if (outDevice->write(buf) != n)
+            if (outDevice->write(buf, n) != n)
             {
                 mErrorString = "[Decoder] " + outDevice->errorString();
                 return false;
             }
 
-
+            if (len == 0)
+                break;
         }
-        return true;
+        // Read bytes from start to end of track ..........
 
+        mPos= pos;
+        return true;
     }
+
     catch (char const *err)
     {
         mErrorString = "[Decoder] " + QString(err);
@@ -129,6 +240,9 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
     }
 }
 
+/************************************************
+ *
+ ************************************************/
 bool Decoder::extract(const CueTime &start, const CueTime &end, const QString &fileName)
 {
     QFile file(fileName);
@@ -142,4 +256,25 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, const QString &f
     file.close();
 
     return res;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Decoder::readStandardError()
+{
+    mErrBuff += mProcess->readAllStandardError();
+
+    QList<QByteArray> lines = mErrBuff.split('\n');
+    int e = (mErrBuff.endsWith('\n')) ? lines.length() : lines.length() - 1;
+    for (int i=0 ; i < e; ++i)
+    {
+        QString s = mFormat.filterDecoderStderr(lines[i]);
+        if (!s.isEmpty())
+            qWarning("[Decoder] %s", s.toLocal8Bit().data());
+    }
+
+    if (!mErrBuff.endsWith('\n'))
+        mErrBuff = lines.last();
 }

@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,115 +24,149 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "wav.h"
+#include "format.h"
+
+#include "flac.h"
+#include <QDebug>
+#include <QIODevice>
+#include <QByteArray>
 #include <QFile>
 
+QList<const Format*> Format::mAllFormats;
+
 
 /************************************************
-
+ *
  ************************************************/
-OutFormat_Wav::OutFormat_Wav()
+bool Format::registerFormat(const Format &f)
 {
-    mId   = "WAV";
-    mExt  = "wav";
-    mName = "WAV";
+    // Some formats can be embedded as a chunk of RIFF stream.
+    // So the WAV format should be last and be checked in the last turn.
+    if (f.ext() == "wav")
+        mAllFormats.append(&f);
+    else
+        mAllFormats.insert(0, &f);
+    return true;
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-QStringList OutFormat_Wav::encoderArgs(Track *track, const QString &outFile) const
+Format::Format()
 {
-    return QStringList();
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-QStringList OutFormat_Wav::gainArgs(const QStringList &files) const
+Format::~Format()
 {
-    return QStringList();
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-Encoder *OutFormat_Wav::createEncoder(Track *track, QObject *parent) const
+const FormatList &Format::allFormats()
 {
-    return new Encoder_Wav(this, track, parent);
+    return mAllFormats;
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-Gain *OutFormat_Wav::createGain(Disk *disk, Track *track, QObject *parent) const
+const FormatList &Format::inputFormats()
 {
-    return 0;
-}
+    static FormatList res;
+    if (res.isEmpty())
+    {
+        foreach (const Format* f, allFormats())
+        {
+            if (f->isInputFormat())
+                res << f;
+        }
+    }
 
-
-/************************************************
-
- ************************************************/
-QHash<QString, QVariant> OutFormat_Wav::defaultParameters() const
-{
-    QHash<QString, QVariant> res;
     return res;
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-EncoderConfigPage *OutFormat_Wav::configPage(QWidget *parent) const
+const FormatList &Format::outFormats()
 {
-    return 0;
-}
-
-
-/************************************************
-
- ************************************************/
-Encoder_Wav::Encoder_Wav(const OutFormat *format, Track *track, QObject *parent):
-    Encoder(format, track, parent)
-{
-}
-
-
-/************************************************
-
- ************************************************/
-void Encoder_Wav::doRun()
-{
-    QFile srcFile(inputFile());
-    QFile destFile(outFile());
-
-    bool res = (!destFile.exists() || destFile.remove());
-
-    if (res)
-        res =  srcFile.rename(outFile());
-
-    if (!res)
+    static FormatList res;
+    if (res.isEmpty())
     {
-        error(track(),
-              tr("I can't rename file:\n%1 to %2\n%3").arg(
-                  inputFile(),
-                  outFile(),
-                  srcFile.errorString()));
+        foreach (const Format* f, allFormats())
+        {
+            if (f->isOutputFormat())
+                res << f;
+        }
     }
+
+    return res;
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-QStringList Encoder_Wav::processArgs() const
+bool Format::checkMagic(const QByteArray &data) const
 {
-    return QStringList();
+    return data.mid(magicOffset(), magic().length()) == magic();
 }
 
+
+/************************************************
+ *
+ ************************************************/
+QString Format::filterDecoderStderr(const QString &stdErr) const
+{
+    return stdErr;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+const Format *Format::formatForFile(QIODevice *device)
+{
+    int bufSize = 0;
+    foreach (const Format *format, allFormats())
+        bufSize = qMax(bufSize, int(format->magicOffset() + format->magic().length()));
+
+    QByteArray buf = device->read(bufSize);
+    if (buf.size() < bufSize)
+        return NULL;
+
+    foreach (const Format *format, allFormats())
+    {
+        if (format->checkMagic(buf))
+            return format;
+    }
+
+    return NULL;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+const Format *Format::formatForFile(const QString &fileName)
+{
+    QFile file(fileName);
+    if (! file.open(QFile::ReadOnly))
+    {
+        return NULL;
+    }
+
+    const Format *res = formatForFile(&file);
+    file.close();
+    return res;
+}
 

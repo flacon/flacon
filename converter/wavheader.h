@@ -24,11 +24,11 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef WAV_H
-#define WAV_H
+#ifndef WAVHEADER_H
+#define WAVHEADER_H
 
 #include <QtGlobal>
-class QIODevice;
+#include <QIODevice>
 
 class WavHeader {
 public:
@@ -92,8 +92,31 @@ private:
 class StdWavHeader: public WavHeader
 {
 public:
+    enum Quality {
+        Quality_Stereo_CD       = 2 * 16 *  44100,
+        Quality_Stereo_24_96    = 2 * 24 *  96000,
+        Quality_Stereo_24_192   = 2 * 24 * 192000
+
+    };
     StdWavHeader(quint32 dataSize, const WavHeader &base);
+
+    /**
+     * dataSize      - This is the number of bytes in the audio data.  NumSamples * NumChannels * BitsPerSample/8
+     * sampleRate    - 8000, 44100, etc.
+     * bitsPerSample - 8 bits = 8, 16 bits = 16, etc.
+     * numChannels   - Mono = 1, Stereo = 2, etc.
+     */
+    explicit StdWavHeader(quint32 dataSize, quint32 sampleRate, quint16 bitsPerSample, quint8 numChannels);
+
+
+    explicit StdWavHeader(quint32 dataSize, Quality quality);
+
+    static quint32 bytesPerSecond(Quality quality);
 };
 
+#define READ_DELAY            1000
+inline bool mustRead(QIODevice *device, char *data, int size, int msecs = READ_DELAY);
+bool mustSkip(QIODevice *device, int size, int msecs = READ_DELAY);
 
-#endif // WAV_H
+
+#endif // WAVHEADER_H

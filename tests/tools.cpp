@@ -1,3 +1,29 @@
+/* BEGIN_COMMON_COPYRIGHT_HEADER
+ * (c)LGPL2+
+ *
+ * Flacon - audio File Encoder
+ * https://github.com/flacon/flacon
+ *
+ * Copyright: 2017
+ *   Alexander Sokoloff <sokoloff.a@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * END_COMMON_COPYRIGHT_HEADER */
+
+
 #include "tools.h"
 
 #include <QTest>
@@ -6,10 +32,14 @@
 #include <QTextStream>
 #include <QProcess>
 #include <QCryptographicHash>
-
+#include <QIODevice>
 #include <QDebug>
+#include "../settings.h"
 
 
+/************************************************
+ *
+ ************************************************/
 QString makeTestDir()
 {
     QString dir = QDir::cleanPath(QString("%1/testDecoder/%2").arg(TEST_OUT_DIR).arg(QTest::currentDataTag()));
@@ -22,6 +52,10 @@ QString makeTestDir()
     return dir;
 }
 
+
+/************************************************
+ *
+ ************************************************/
 QString calcAudioHash(const QString &fileName)
 {
     QFile f(fileName);
@@ -41,26 +75,45 @@ QString calcAudioHash(const QString &fileName)
 }
 
 
+/************************************************
+ *
+ ************************************************/
 TestCueFile::TestCueFile(const QString &fileName):
     mFileName(fileName)
 {
 }
 
+
+/************************************************
+ *
+ ************************************************/
 void TestCueFile::setWavFile(const QString &value)
 {
     mWavFile = value;
 }
 
+
+/************************************************
+ *
+ ************************************************/
 void TestCueFile::addTrack(const QString &index0, const QString &index1)
 {
     mTracks << TestCueTrack(index0, index1);
 }
 
+
+/************************************************
+ *
+ ************************************************/
 void TestCueFile::addTrack(const QString &index1)
 {
     addTrack("", index1);
 }
 
+
+/************************************************
+ *
+ ************************************************/
 void TestCueFile::write()
 {
     QFile f(mFileName);
@@ -86,6 +139,9 @@ void TestCueFile::write()
 }
 
 
+/************************************************
+ *
+ ************************************************/
 QStringList shnSplit(const QString &cueFile, const QString &audioFile)
 {
     QString dir = QFileInfo(cueFile).absoluteDir().absolutePath();
@@ -120,6 +176,9 @@ QStringList shnSplit(const QString &cueFile, const QString &audioFile)
 }
 
 
+/************************************************
+ *
+ ************************************************/
 void compareAudioHash(const QString &file1, const QString &file2)
 {
     if (calcAudioHash(file1) != calcAudioHash(file2))
@@ -138,4 +197,145 @@ void compareAudioHash(const QString &file1, const QString &file2)
                     .toLocal8Bit());
     }
     QCOMPARE(calcAudioHash(file1), calcAudioHash(file2));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void writeHexString(const QString &str, QIODevice *out)
+{
+    bool ok;
+    int i =0;
+    while (i<str.length()-1)
+    {
+        if (str.at(i).isSpace())
+        {
+            ++i;
+            continue;
+        }
+
+        union {
+            quint16 n16;
+            char b;
+        };
+        n16 = str.mid(i, 2).toShort(&ok, 16);
+
+        out->write(&b, 1);
+        if (!ok)
+            throw QString("Incorrect HEX data at %1:\n%2").arg(i).arg(str);
+        i+=2;
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+void createWavFile(const QString &fileName, int duration, StdWavHeader::Quality quality)
+{
+    if (QFileInfo(fileName).exists())
+        return;
+
+    QFile file(fileName);
+        if (!file.open(QFile::WriteOnly | QFile::Truncate))
+            QFAIL(QString("Can't create file '%1': %2").arg(fileName, file.errorString()).toLocal8Bit());
+
+
+        int dataSize = StdWavHeader::bytesPerSecond(quality) * duration;
+    file.write(StdWavHeader(dataSize, quality).toByteArray());
+
+    quint32 x=123456789, y=362436069, z=521288629;
+    union {
+        quint32 t;
+        char    bytes[4];
+    };
+
+    for (uint i=0; i<(dataSize/ sizeof(quint32)); ++i)
+    {
+        // xorshf96 ...................
+        x ^= x << 16;
+        x ^= x >> 5;
+        x ^= x << 1;
+
+        t = x;
+        x = y;
+        y = z;
+        z = t ^ x ^ y;
+        // xorshf96 ...................
+
+        file.write(bytes, 4);
+    }
+
+    file.close();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
+{
+    if (QFileInfo(outFileName).exists())
+        return;
+
+    QString program;
+    QStringList args;
+
+    QString ext = QFileInfo(outFileName).suffix();
+
+    if(ext == "ape")
+    {
+        program = "mac";
+        args << wavFileName;
+        args << outFileName;
+        args << "-c2000";
+
+    }
+
+    else if(ext == "flac")
+    {
+        program = "flac";
+        args << "--silent";
+        args << "--force";
+        args << "-o" << outFileName;
+        args << wavFileName;
+    }
+
+    else if(ext == "wv")
+    {
+        program = "wavpack";
+        args << wavFileName;
+        args << "-y";
+        args << "-q";
+        args << "-o" << outFileName;
+    }
+
+    else if(ext == "tta")
+    {
+        program = "ttaenc";
+        args << "-o" << outFileName;
+        args << "-e";
+        args << wavFileName;
+        args << "/";
+    }
+
+    else
+    {
+        QFAIL(QString("Can't create file '%1': unknown file format").arg(outFileName).toLocal8Bit());
+    }
+
+#if 1
+    QProcess proc;
+    proc.start(program, args);
+    proc.waitForFinished(3 * 60 * 10000);
+    if (proc.exitStatus() != 0)
+        QFAIL(QString("Can't encode to file '%1':").arg(outFileName).toLocal8Bit() + proc.readAllStandardError());
+#else
+    QProcess proc;
+    if (proc.execute(program, args) != 0)
+        QFAIL(QString("Can't encode to file '%1':").arg(outFileName).toLocal8Bit() + proc.readAllStandardError());
+#endif
+
+    if (!QFileInfo(outFileName).isFile())
+        QFAIL(QString("Can't encode to file '%1' (file don't exists'):").arg(outFileName).toLocal8Bit() + proc.readAllStandardError());
 }

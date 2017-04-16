@@ -31,7 +31,7 @@
 #include "../project.h"
 #include "../inputaudiofile.h"
 #include "converter/converter.h"
-#include "converter/wav.h"
+#include "converter/wavheader.h"
 #include "converter/splitter.h"
 #include "outformat.h"
 
@@ -41,6 +41,8 @@
 #include <QBuffer>
 #include <QFileInfo>
 #include <QDir>
+#include <QThreadPool>
+#include <QtConcurrentRun>
 
 #define protected public;
 
@@ -104,53 +106,32 @@ void TestFlacon::initTestCase()
     if (mFfmpeg.isEmpty())
         FAIL(QString("Program \"%1\" not found.").arg("avconv/ffmpeg").toLocal8Bit());
 
-    mCdAudioFile = mTmpDir + "CD.wav";
-    createAudioFile(mFfmpeg, mCdAudioFile, 900, true);
 
-    mHdAudioFile = mTmpDir + "HD.wav";
-    createAudioFile(mFfmpeg, mHdAudioFile, 900, false);
-}
+    mAudio_cd_wav  = mTmpDir + "CD.wav";
+    mAudio_cd_ape  = mTmpDir + "CD.ape";
+    mAudio_cd_flac = mTmpDir + "CD.flac";
+    mAudio_cd_wv   = mTmpDir + "CD.wv";
+    mAudio_cd_tta  = mTmpDir + "CD.tta";
+
+    createWavFile(  mAudio_cd_wav,  900, StdWavHeader::Quality_Stereo_CD);
+    encodeAudioFile(mAudio_cd_wav, mAudio_cd_ape);
+    encodeAudioFile(mAudio_cd_wav, mAudio_cd_flac);
+    encodeAudioFile(mAudio_cd_wav, mAudio_cd_wv);
+    encodeAudioFile(mAudio_cd_wav, mAudio_cd_tta);
 
 
-/************************************************
+    mAudio_24x96_wav  = mTmpDir + "24x96.wav";
+    mAudio_24x96_ape  = mTmpDir + "24x96.ape";
+    mAudio_24x96_flac = mTmpDir + "24x96.flac";
+    mAudio_24x96_wv   = mTmpDir + "24x96.wv";
+    mAudio_24x96_tta  = mTmpDir + "24x96.tta";
 
- ************************************************/
-void TestFlacon::createAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality)
-{
-    if (QFileInfo(fileName).exists())
-        return;
+    createWavFile(  mAudio_24x96_wav,  900, StdWavHeader::Quality_Stereo_24_96);
+    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_ape);
+    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_flac);
+    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_wv);
+    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_tta);
 
-    QStringList args;
-# if USE_DEV_RANDOM
-    args << "-y"; //  Overwrite output files."
-    args << "-ar" << (cdQuality ? "44100" : " 48000");
-    args << "-f" << "s16le";
-    args << "-acodec" << "pcm_s16le";
-    args << "-ac" << "2";
-    args << "-i" << "/dev/urandom";
-    args << "-t" << QString("%1").arg(duration);
-    args << fileName;
-#else
-    args << "-y"; //  Overwrite output files."
-    args << "-t" << QString("%1").arg(duration);
-    args << "-f" << "lavfi";
-    args << "-i" << "anullsrc";
-    args << "-ar" << (cdQuality ? "44100" : " 48000");
-    args << "-acodec" << "pcm_s16le";
-    args << "-ac" << "2";
-    args << QDir::toNativeSeparators(fileName);
-#endif
-
-    QProcess proc;
-    //proc.setProcessChannelMode(QProcess::ForwardedChannels);
-
-    proc.start(program, args);
-    proc.waitForFinished(3 * 60 * 10000);
-    if (proc.exitCode() != 0)
-    {
-        QString err = proc.readAllStandardError();
-        QFAIL(QString("Can't create audio file: %1").arg(err).toLocal8Bit());
-    }
 }
 
 
@@ -583,7 +564,7 @@ void TestFlacon::testConvert()
 
         ConverterTester conv(
                     inDir + "01.cuecreator.cue",
-                    mHdAudioFile,
+                    mAudio_24x96_wav,
                     "",
                     "01 - Song01.wav;"
                     "02 - Song02.wav;"
@@ -605,7 +586,7 @@ void TestFlacon::testConvert()
 
         ConverterTester conv(
                     inDir + "01.cuecreator.cue",
-                    mHdAudioFile,
+                    mAudio_24x96_wav,
                     inDir + "01.expected.cue",
                     "01 - Song01.wav;"
                     "02 - Song02.wav;"
@@ -629,7 +610,7 @@ void TestFlacon::testConvert()
 
         ConverterTester conv(
                     inDir + "02.cuecreator.cue",
-                    mHdAudioFile,
+                    mAudio_24x96_wav,
                     inDir + "02.expected.cue",
                     "01 - Song01.wav;"
                     "02 - Song02.wav;"
@@ -653,7 +634,7 @@ void TestFlacon::testConvert()
 
         ConverterTester conv(
                     inDir + "02.cuecreator.cue",
-                    mHdAudioFile,
+                    mAudio_24x96_wav,
                     inDir + "02.expected.cue",
                     "01 - Song01.wav;"
                     "02 - Song02.wav;"
@@ -676,7 +657,7 @@ void TestFlacon::testConvert()
 
         ConverterTester conv(
                     inDir + "03.cuecreator.cue",
-                    mHdAudioFile,
+                    mAudio_24x96_wav,
                     inDir + "03.expected.cue",
                     "01 - Song01.wav;"
                     "02 - Song02.wav;"
@@ -699,7 +680,7 @@ void TestFlacon::testConvert()
 
         ConverterTester conv(
                     inDir + "04.cuecreator.cue",
-                    mHdAudioFile,
+                    mAudio_24x96_wav,
                     inDir + "04.expected.cue",
                     "01 - Song01.wav;"
                     "02 - Song02.wav;"
@@ -722,7 +703,7 @@ void TestFlacon::testConvert()
 
         ConverterTester conv(
                     inDir + "05.cuecreator.cue",
-                    mHdAudioFile,
+                    mAudio_24x96_wav,
                     inDir + "05.expected.cue",
                     "01 - Song01.wav;"
                     "02 - Song02.wav;"
@@ -755,7 +736,7 @@ void TestFlacon::testConvert()
 
         ConverterTester conv(
                     inDir + "06.garbageInTags.cue",
-                    mHdAudioFile,
+                    mAudio_24x96_wav,
                     "",
                     "01 - Song01.wav;"
                     "02 - Song02.wav;"
@@ -774,7 +755,7 @@ void TestFlacon::testConvert()
         QString dir = resultDir + "Test_07.path(with.symbols and space )";
         QDir().mkpath(dir);
         QString audioFile = dir + "CD_10Min.wav";
-        createAudioFile(mFfmpeg, audioFile, 600, true);
+        createWavFile(audioFile, 600, StdWavHeader::Quality_Stereo_CD);
 
 
 
@@ -808,7 +789,7 @@ void TestFlacon::testConvert()
 
         ConverterTester conv(
                     inDir + "01.cuecreator.cue",
-                    mHdAudioFile,
+                    mAudio_24x96_wav,
                     "",
                     "01 - Song01.wav;"
                     "02 - Song02.wav;"
@@ -1048,13 +1029,13 @@ void TestFlacon::testTrackResultFilePath_data()
             << "."
             << "%a/%y - %A/%n - %t"
             << mTmpDir + "/Artist/2013 - Album/01 - Song01.wav"
-            << mCdAudioFile;
+            << mAudio_cd_wav;
 
     QTest::newRow("6. empty with CdAudioFile")
             << ""
             << "%a/%y - %A/%n - %t"
             << mTmpDir + "/Artist/2013 - Album/01 - Song01.wav"
-            << mCdAudioFile;
+            << mAudio_cd_wav;
 
     QTest::newRow("7: ~")
             << "~"
@@ -1792,7 +1773,7 @@ void TestFlacon::testFindAudioFile()
 
     foreach (QString f, audioFiles.split(","))
     {
-        QFile(mCdAudioFile).link(dir + f.trimmed());
+        QFile(mAudio_cd_wav).link(dir + f.trimmed());
     }
 
 
@@ -1994,6 +1975,7 @@ struct TestFindCueFileData {
 };
 Q_DECLARE_METATYPE(TestFindCueFileData)
 
+
 /************************************************
 
  ************************************************/
@@ -2010,7 +1992,7 @@ void TestFlacon::testFindCueFile()
 
     foreach (QString f, test.audioFiles)
     {
-        QFile(mCdAudioFile).link(dir + f.trimmed());
+        QFile(mAudio_cd_wav).link(dir + f.trimmed());
     }
 
     foreach (TestCueFile_ cueFile, test.cueFiles)

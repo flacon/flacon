@@ -24,21 +24,11 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "wav.h"
+#include "wavheader.h"
 
 #include <QByteArray>
-#include <QIODevice>
-
-//#include <iostream>
-//#include <QFileInfo>
-//#include <QDir>
-//#include <QCoreApplication>
-//#include <QProcess>
-//#include <QRegExp>
-//#include <QTextCodec>
 #include <QtEndian>
-//#include <QDebug>
-//#include <QUuid>
+#include <QDebug>
 
 #define WAV_RIFF  "RIFF"
 #define WAV_WAVE  "WAVE"
@@ -52,17 +42,62 @@
 #define CD_BLOCK_SIZE       2352
 
 #define CANONICAL_HEADER_SIZE 44
+#define BUF_SIZE              4096
 
 
-
-QByteArray readTag(QIODevice *stream)
+/************************************************
+ *
+ ************************************************/
+inline bool mustRead(QIODevice *device, char *data, int size, int msecs)
 {
-    QByteArray res = stream->read(4);
-    if (res.length() != 4)
-        throw "Unexpected end of file";
+    char *d = data;
+    int left = size;
+    while (device->bytesAvailable() || device->waitForReadyRead(msecs))
+    {
+        int n = device->read(d, left);
 
-    return res;
+        if (n==left)
+            return true;
+
+        d+=n;
+        left-=n;
+    }
+
+    return false;
 }
+
+
+/************************************************
+ *
+ ************************************************/
+bool mustSkip(QIODevice *device, int size, int msecs)
+{
+    if (size == 0)
+        return true;
+
+    char buf[BUF_SIZE];
+    int left = size;
+    while (device->bytesAvailable() || device->waitForReadyRead(msecs))
+    {
+        left -= device->read(buf, qMin(left, BUF_SIZE));
+
+        if (!left)
+            return true;
+    }
+
+    return false;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+bool readTag(QIODevice *device, char tag[5])
+{
+    tag[4] = '\0';
+    return mustRead(device, tag, 4);
+}
+
 
 struct SplitterError {
     int        trackNum;
@@ -75,6 +110,10 @@ struct SplitterError {
     }
 };
 
+
+/************************************************
+ *
+ ************************************************/
 quint32 readUInt32(QIODevice *stream)
 {
     quint32 n;
@@ -83,6 +122,10 @@ quint32 readUInt32(QIODevice *stream)
     return qFromLittleEndian(n);
 }
 
+
+/************************************************
+ *
+ ************************************************/
 quint16 readUInt16(QIODevice *stream)
 {
     quint16 n;
@@ -92,6 +135,9 @@ quint16 readUInt16(QIODevice *stream)
 }
 
 
+/************************************************
+ *
+ ************************************************/
 WavHeader::WavHeader():
     mFileSize(0),
     mFormat(WavHeader::Format_Unknown),
@@ -105,6 +151,10 @@ WavHeader::WavHeader():
 {
 }
 
+
+/************************************************
+ *
+ ************************************************/
 bool WavHeader::isCdQuality() const
 {
     return mNumChannels   == CD_NUM_CHANNELS &&
@@ -114,6 +164,9 @@ bool WavHeader::isCdQuality() const
 }
 
 
+/************************************************
+ *
+ ************************************************/
 StdWavHeader::StdWavHeader(quint32 dataSize, const WavHeader &base):
     WavHeader()
 {
@@ -129,6 +182,78 @@ StdWavHeader::StdWavHeader(quint32 dataSize, const WavHeader &base):
 }
 
 
+/************************************************
+ *
+ ************************************************/
+StdWavHeader::StdWavHeader(quint32 dataSize, quint32 sampleRate, quint16 bitsPerSample, quint8 numChannels):
+    WavHeader()
+{
+    mDataSize      = dataSize;
+    mNumChannels   = numChannels;
+    mSampleRate    = sampleRate;
+    mBitsPerSample = bitsPerSample;
+
+    mDataStartPos  = CANONICAL_HEADER_SIZE;
+    mFileSize      = mDataStartPos + mDataSize;
+    mFormat        = Format_PCM;
+    mByteRate      = mSampleRate * mNumChannels * mBitsPerSample / 8;
+    mBlockAlign    =               mNumChannels * mBitsPerSample / 8;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+StdWavHeader::StdWavHeader(quint32 dataSize, StdWavHeader::Quality quality)
+{
+    mDataSize      = dataSize;
+
+    switch (quality)
+    {
+    case Quality_Stereo_CD:
+        mNumChannels   = 2;
+        mBitsPerSample = 16;
+        mSampleRate    = 44100;
+        break;
+
+
+    case Quality_Stereo_24_96:
+        mNumChannels   = 2;
+        mBitsPerSample = 24;
+        mSampleRate    = 96000;
+        break;
+
+    case Quality_Stereo_24_192:
+        mNumChannels   = 2;
+        mBitsPerSample = 24;
+        mSampleRate    = 192000;
+        break;
+
+    }
+
+    mDataStartPos  = CANONICAL_HEADER_SIZE;
+    mFileSize      = mDataStartPos + mDataSize;
+    mFormat        = Format_PCM;
+    mByteRate      = mSampleRate * mNumChannels * mBitsPerSample / 8;
+    mBlockAlign    =               mNumChannels * mBitsPerSample / 8;
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
+quint32 StdWavHeader::bytesPerSecond(StdWavHeader::Quality quality)
+{
+    switch (quality)
+    {
+    case Quality_Stereo_CD:     return 2 * 16 *  44100 / 8;
+    case Quality_Stereo_24_96:  return 2 * 24 *  96000 / 8;
+    case Quality_Stereo_24_192: return 2 * 24 * 192000 / 8;
+    }
+    return 0;
+}
+
 
 /************************************************
  * See WAV specoification
@@ -137,26 +262,32 @@ StdWavHeader::StdWavHeader(quint32 dataSize, const WavHeader &base):
  ************************************************/
 void WavHeader::load(QIODevice *stream)
 {
+    char tag[5] = { '\0' };
     // look for "RIFF" in header
-    if (readTag(stream) != WAV_RIFF)
+    if (!readTag(stream, tag) || strcmp(tag, WAV_RIFF) != 0)
         throw "WAVE header is missing RIFF tag while processing file";
 
     this->mFileSize = readUInt32(stream) + 8;
 
-    if (readTag(stream) != WAV_WAVE)
+    if (!readTag(stream, tag) || strcmp(tag, WAV_WAVE) != 0)
         throw "WAVE header is missing WAVE tag while processing file";
 
-    QByteArray chunkID;
-    quint32    chunkSize;
 
+    char    chunkID[4];
+    quint32 chunkSize;
+    quint64 pos=12;
     while (!stream->atEnd())
     {
-        chunkID   = readTag(stream);
+        if (!readTag(stream, chunkID))
+            throw "[WAV] can't read chunk ID";
+
         chunkSize = readUInt32(stream);
+        pos+=8;
         //qDebug()<< QString("found chunk: [%1] with length %2").arg(chunkID.data()).arg(chunkSize);
 
-        if (chunkID == WAV_FMT)
+        if (strcmp(chunkID, WAV_FMT) == 0)
         {
+            pos+=chunkSize;
             if (chunkSize < 16)
                 throw "fmt chunk in WAVE header was too short";
 
@@ -172,29 +303,37 @@ void WavHeader::load(QIODevice *stream)
 
         }
 
-        else if (chunkID == WAV_DATA)
+        else if (strcmp(chunkID, WAV_DATA) == 0)
         {
             this->mDataSize = chunkSize;
-            this->mDataStartPos = stream->pos();
+            this->mDataStartPos = pos;
             return;
         }
 
         else
         {
-            //qDebug() << "  skip chunk";
-            stream->seek(stream->pos() + chunkSize);
+            pos+=chunkSize;
+            mustSkip(stream, chunkSize);
         }
     }
 
     throw "data chunk not found";
 }
 
+
+/************************************************
+ *
+ ************************************************/
 QByteArray& operator<<(QByteArray& out, const char val[4])
 {
     out += val;
     return out;
 }
 
+
+/************************************************
+ *
+ ************************************************/
 QByteArray& operator<<(QByteArray& out, quint32 val)
 {
     union {
@@ -211,6 +350,10 @@ QByteArray& operator<<(QByteArray& out, quint32 val)
     return out;
 }
 
+
+/************************************************
+ *
+ ************************************************/
 QByteArray& operator<<(QByteArray& out, quint16 val)
 {
     union {
@@ -264,4 +407,3 @@ QByteArray WavHeader::toByteArray() const
 
     return res;
 }
-

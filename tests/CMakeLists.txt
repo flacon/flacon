@@ -37,7 +37,8 @@ set(TEST_SOURCES
     tools.cpp
     testflacon.cpp
     test_decoder.cpp
-    test_wav.cpp
+    test_wavheader.cpp
+    test_format.cpp
 )
 
 set(TEST_MOCS

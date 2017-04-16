@@ -28,6 +28,33 @@
 #include "settings.h"
 #include <QDebug>
 
+REGISTER_FORMAT(Format_Wv)
+
+/************************************************
+ * As I understand WavPack can be embedded as a chunk of a RIFF stream.
+ * I have not such a file, if anyone has one, please send me.
+ ************************************************/
+bool Format_Wv::checkMagic(const QByteArray &data) const
+{
+    return data.contains(magic());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QStringList Format_Wv::decoderArgs(const QString &fileName) const
+{
+    QStringList args;
+    args << "-q";
+    args << "-y";
+    args << fileName;
+    args << "-o" << "-";
+
+    return args;
+}
+
+
 /************************************************
 
  ************************************************/
@@ -140,5 +167,3 @@ void ConfigPage_Wv::write()
     writeWidget("WV/Compression", wvCompressionSlider);
     writeWidget("WV/ReplayGain",  wvGainCbx);
 }
-
-

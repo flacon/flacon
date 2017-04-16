@@ -1,143 +1,50 @@
+/* BEGIN_COMMON_COPYRIGHT_HEADER
+ * (c)LGPL2+
+ *
+ * Flacon - audio File Encoder
+ * https://github.com/flacon/flacon
+ *
+ * Copyright: 2017
+ *   Alexander Sokoloff <sokoloff.a@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * END_COMMON_COPYRIGHT_HEADER */
+
+
 #include "testflacon.h"
 #include "tools.h"
 #include "../converter/decoder.h"
-
+#include "../formats/wav.h"
+#include "../formats/flac.h"
 
 #include <QTest>
-#include <QFile>
-#include <QByteArray>
-#include <QFileInfo>
-#include <QProcess>
-#include <QTextStream>
-#include <QDir>
 #include <QVector>
-
-
-//void createCue(const QString &inputFile, const QString &start, const QString &end, const QString &cueFile)
-//{
-//    QFile f(cueFile);
-//    f.open(QFile::WriteOnly | QFile::Truncate);
-//    QTextStream cue(&f);
-
-//    cue << QString("FILE \"%1\" WAVE\n").arg(inputFile);
-
-//    cue << QString("TRACK 1 AUDIO\n");
-//    cue << QString("  INDEX 01 %1\n").arg(start);
-
-//    cue << QString("TRACK 2 AUDIO\n");
-//    cue << QString("  INDEX 01 %1\n").arg(end);
-
-//    f.close();
-//}
-
-//QString shnSplit(const QString &cueFile, const QString &audioFile)
-//{
-//    QString dir = QFileInfo(cueFile).absoluteDir().absolutePath();
-
-//    QStringList args;
-//    args << "split";
-//    args << "-w";
-//    args << "-q";
-//    args << "-O" << "always";
-//    args << "-n" << "%03d";
-//    args << "-t" << "%n-shntool";
-//    args << "-x" << "1";            // -x list only extract tracks in list (comma-separated, may contain ranges)
-//    args << "-d" << dir;
-//    args << "-f" << QDir::toNativeSeparators(cueFile);
-//    args << QDir::toNativeSeparators(audioFile);
-//    //qDebug() << args;
-
-//    if (QProcess::execute("shntool", args) != 0)
-//        FAIL("snhtool was crashed");
-
-//    return QString("%1/001-shntool.wav").arg(dir);
-//}
-
-
-
-#if 0
-void TestFlacon::testDecoder()
-{
-    QFETCH(QString, inputFile);
-    QFETCH(QString, start);
-    QFETCH(QString, end);
-
-    QString dir = QDir::cleanPath(QString("%1/testDecoder/%2").arg(mTmpDir).arg(QTest::currentDataTag()));
-    QDir().mkpath(dir);
-
-
-    // Flacon decoder ***************************
-    Decoder decoder;
-    if (!decoder.open(inputFile))
-        QFAIL(QString("Can't open input file '%1': %2").arg(inputFile, decoder.errorString()).toLocal8Bit());
-
-    QString flaconFile = QString("%1/001-flacon.wav").arg(dir);
-
-    if (!decoder.extract(CueTime(start), CueTime(end), flaconFile))
-        QFAIL(QString("Can't extract file '%1' [%2-%3]: %4").arg(inputFile, start, end, decoder.errorString()).toLocal8Bit());
-
-
-    // Flacon decoder ***************************
-    QString cueFile = QString("%1/cue.cue").arg(dir);
-    createCue(inputFile, start, end, cueFile);
-    QString shnFile = shnSplit(cueFile, inputFile);
-
-
-    // Checks ***********************************
-    if (calcAudioHash(flaconFile) != calcAudioHash(shnFile))
-    {
-        int len = qMax(flaconFile.length(), shnFile.length());
-        QFAIL(QString("Compared hases are not the same for:\n"
-                     "    %1 [%2]\n"
-                     "    %3 [%4]\n")
-
-                    .arg(flaconFile, - len)
-                    .arg(calcAudioHash(flaconFile))
-
-                    .arg(shnFile, - len)
-                    .arg(calcAudioHash(shnFile))
-
-                    .toLocal8Bit());
-    }
-}
-
-void TestFlacon::testDecoder_data()
-{
-
-    QTest::addColumn<QString>("inputFile");
-    QTest::addColumn<QString>("start");
-    QTest::addColumn<QString>("end");
-
-
-    QTest::newRow("001-cd") << mCdAudioFile
-                            << "00:00:00"
-                            << "00:30:00";
-
-
-    QTest::newRow("002-cd") << mCdAudioFile
-                            << "00:30:00"
-                            << "01:30:20";
-
-
-    QTest::newRow("003-hd") << mHdAudioFile
-                            << "00:00:000"
-                            << "00:30:000";
-
-    QTest::newRow("003-hd") << mHdAudioFile
-                            << "00:30:000"
-                            << "01:30:000";
-}
-#else
-
+#include <QDebug>
 
 struct TestTrack {
     QString start;
     QString end;
 };
 
+
+/************************************************
+ *
+ ************************************************/
 void TestFlacon::testDecoder()
 {
-
     QString dir = makeTestDir();
 
     QFETCH(QStringList, data);
@@ -151,8 +58,12 @@ void TestFlacon::testDecoder()
     }
 
 
-    // Flacon decoder ***************************
-    Decoder decoder;
+    // Flacon decoder ___________________________
+    const Format *format = Format::formatForFile(inputFile);
+    if (!format)
+        QFAIL("Unknown format");
+
+    Decoder decoder(*format);
     if (!decoder.open(inputFile))
         QFAIL(QString("Can't open input file '%1': %2").arg(inputFile, decoder.errorString()).toLocal8Bit());
 
@@ -166,16 +77,17 @@ void TestFlacon::testDecoder()
                     CueTime(track.start),
                     CueTime(track.end),
                     flaconFile);
+
         if (!res)
             QFAIL(QString("Can't extract file '%1' [%2-%3]: %4")
                   .arg(inputFile)
                   .arg(track.start, track.end)
                   .arg(decoder.errorString()).toLocal8Bit());
     }
-    // Flacon decoder ***************************
+    decoder.close();
 
 
-    // ShnSplitter ******************************
+    // ShnSplitter ______________________________
     TestCueFile cueFile(QString("%1/cue.cue").arg(dir));
     cueFile.setWavFile(inputFile);
 
@@ -188,10 +100,10 @@ void TestFlacon::testDecoder()
     cueFile.write();
 
     QStringList shnFiles = shnSplit(cueFile.fileName(), inputFile);
-    // ShnSplitter ******************************
 
 
-    // Checks ***********************************
+
+    // Checks ___________________________________
     if (shnFiles.length() < tracks.count())
         QFAIL("Not all files was extracted.");
 
@@ -201,59 +113,148 @@ void TestFlacon::testDecoder()
                     QString("%1/%2-flacon.wav").arg(dir).arg(i + 1, 3, 10, QChar('0')),
                     shnFiles.at(i));
     }
-    // Checks ***********************************
+
 
 }
 
+
+/************************************************
+ *
+ ************************************************/
 void TestFlacon::testDecoder_data()
 {
     QTest::addColumn<QStringList>("data");
 
-    QTest::newRow("001-cd") << (QStringList()
-                                << mCdAudioFile
-                                << "00:00:00"
-                                << "00:30:00"
+
+    // Wav ______________________________________
+    QTest::newRow("WAV 001 cd")
+            << (QStringList()
+                << mAudio_cd_wav
+                << "00:00:00" << "00:30:00"
+                << "00:30:00" << "01:30:00"
+                << "01:30:00" << "02:30:00"
+                );
+
+    QTest::newRow("WAV 002 cd")
+            << (QStringList()
+                << mAudio_cd_wav
+                << "00:00:10" << "00:30:00"
+                << "00:30:00" << "01:30:20"
+                << "01:30:20" << "02:30:30"
+                );
+
+    QTest::newRow("WAV 003 24x96")
+            << (QStringList()
+                << mAudio_24x96_wav
+                << "00:00:000" << "00:30:000"
+                << "00:30:000" << "01:30:000"
+                << "01:30:000" << "02:30:000"
+                );
 
 
-                                << "00:30:00"
-                                << "01:30:00"
+    // Flac _____________________________________
+    QTest::newRow("FLAC 001 cd")
+            << (QStringList()
+                << mAudio_cd_flac
+                << "00:00:00" << "00:30:00"
+                << "00:30:00" << "01:30:00"
+                << "01:30:00" << "02:30:00"
+                );
 
-                                << "01:30:00"
-                                << "02:30:00"
+    QTest::newRow("FLAC 002 cd")
+            << (QStringList()
+                << mAudio_cd_flac
+                << "00:00:10" << "00:30:00"
+                << "00:30:00" << "01:30:20"
+                << "01:30:20" << "02:30:30"
+                );
 
-                                );
-
-    QTest::newRow("002-cd") << (QStringList()
-                                << mCdAudioFile
-                                << "00:00:10"
-                                << "00:30:00"
-
-
-                                << "00:30:00"
-                                << "01:30:20"
-
-                                << "01:30:20"
-                                << "02:30:30"
-
-                                );
-
-
-
-    QTest::newRow("003-hd") << (QStringList()
-                                << mHdAudioFile
-                                << "00:00:000"
-                                << "00:30:000"
+    QTest::newRow("FLAC 003 24x96")
+            << (QStringList()
+                << mAudio_24x96_flac
+                << "00:00:000" << "00:30:000"
+                << "00:30:000" << "01:30:000"
+                << "01:30:000" << "02:30:000"
+                );
 
 
-                                << "00:30:000"
-                                << "01:30:000"
+    // APE ______________________________________
+    QTest::newRow("APE 001 cd")
+            << (QStringList()
+                << mAudio_cd_ape
+                << "00:00:00" << "00:30:00"
+                << "00:30:00" << "01:30:00"
+                << "01:30:00" << "02:30:00"
+                );
 
-                                << "01:30:000"
-                                << "02:30:000"
+    QTest::newRow("APE 002 cd")
+            << (QStringList()
+                << mAudio_cd_ape
+                << "00:00:10" << "00:30:00"
+                << "00:30:00" << "01:30:20"
+                << "01:30:20" << "02:30:30"
+                );
 
-                                );
+    QTest::newRow("APE 003 24x96")
+            << (QStringList()
+                << mAudio_24x96_ape
+                << "00:00:000" << "00:30:000"
+                << "00:30:000" << "01:30:000"
+                << "01:30:000" << "02:30:000"
+                );
+
+
+    // TTA ______________________________________
+    QTest::newRow("TTA 001 cd")
+            << (QStringList()
+                << mAudio_cd_tta
+                << "00:00:00" << "00:30:00"
+                << "00:30:00" << "01:30:00"
+                << "01:30:00" << "02:30:00"
+                );
+
+    QTest::newRow("TTA 002 cd")
+            << (QStringList()
+                << mAudio_cd_tta
+                << "00:00:10" << "00:30:00"
+                << "00:30:00" << "01:30:20"
+                << "01:30:20" << "02:30:30"
+                );
+
+    QTest::newRow("TTA 003 24x96")
+            << (QStringList()
+                << mAudio_24x96_tta
+                << "00:00:000" << "00:30:000"
+                << "00:30:000" << "01:30:000"
+                << "01:30:000" << "02:30:000"
+                );
+
+
+    // WV ______________________________________
+    QTest::newRow("WV 001 cd")
+            << (QStringList()
+                << mAudio_cd_wv
+                << "00:00:00" << "00:30:00"
+                << "00:30:00" << "01:30:00"
+                << "01:30:00" << "02:30:00"
+                );
+
+    QTest::newRow("WV 002 cd")
+            << (QStringList()
+                << mAudio_cd_wv
+                << "00:00:10" << "00:30:00"
+                << "00:30:00" << "01:30:20"
+                << "01:30:20" << "02:30:30"
+                );
+
+    QTest::newRow("WV 003 24x96")
+            << (QStringList()
+                << mAudio_24x96_wv
+                << "00:00:000" << "00:30:000"
+                << "00:30:000" << "01:30:000"
+                << "01:30:000" << "02:30:000"
+                );
+
 }
 
-
-#endif
 

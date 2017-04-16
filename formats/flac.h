@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2012-2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -28,6 +28,7 @@
 #define FLAC_H
 
 #include "outformat.h"
+#include "format.h"
 #include "configdialog.h"
 #include "ui_flac_config.h"
 
@@ -47,6 +48,19 @@ public:
     EncoderConfigPage *configPage(QWidget *parent = 0) const;
 };
 
+class Format_Flac: public Format
+{
+public:
+    virtual QString ext() const { return "flac"; }
+
+    virtual QString decoderProgramName() const { return "flac"; }
+    virtual QStringList decoderArgs(const QString &fileName) const;
+    virtual bool isOutputFormat() const { return true; }
+
+    virtual QByteArray magic() const { return "fLaC"; }
+    virtual uint const magicOffset() const { return 0; }
+};
+
 
 class ConfigPage_Flac: public EncoderConfigPage, private Ui::ConfigPage_Flac
 {
@@ -58,5 +72,6 @@ public:
     virtual void write();
 
 };
+
 
 #endif // FLAC_H

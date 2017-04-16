@@ -1,36 +1,41 @@
-#include "../converter/wav.h"
+/* BEGIN_COMMON_COPYRIGHT_HEADER
+ * (c)LGPL2+
+ *
+ * Flacon - audio File Encoder
+ * https://github.com/flacon/flacon
+ *
+ * Copyright: 2017
+ *   Alexander Sokoloff <sokoloff.a@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * END_COMMON_COPYRIGHT_HEADER */
+
+
+#include "../converter/wavheader.h"
 #include "testflacon.h"
+#include "tools.h"
 #include <QTest>
 #include <QString>
 #include<QBuffer>
 
 
-void writeHexString(const QString &str, QIODevice *out)
-{
-    bool ok;
-    int i =0;
-    while (i<str.length()-1)
-    {
-        if (str.at(i).isSpace())
-        {
-            ++i;
-            continue;
-        }
-
-        union {
-            quint16 n16;
-            char b;
-        };
-        n16 = str.mid(i, 2).toShort(&ok, 16);
-
-        out->write(&b, 1);
-        if (!ok)
-            throw QString("Incorrect HEX data at %1:\n%2").arg(i).arg(str);
-        i+=2;
-    }
-}
-
-void TestFlacon::testWavHeader()
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::testReadWavHeader()
 {
     QFETCH(QString, testdata);
     QFETCH(qint32, file_size);
@@ -61,7 +66,11 @@ void TestFlacon::testWavHeader()
 
 }
 
-void TestFlacon::testWavHeader_data()
+
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::testReadWavHeader_data()
 {
     QTest::addColumn<QString>("testdata");
     QTest::addColumn<qint32>("file_size");
@@ -125,3 +134,7 @@ void TestFlacon::testWavHeader_data()
                       ;
 
 }
+
+
+
+

@@ -58,7 +58,7 @@ set(HEADERS
     gui/aboutdialog/translatorsinfo.h
     gui/cuediskselectdialog/cuediskselectdialog.h
 
-    converter/wav.h
+    converter/wavheader.h
     converter/decoder.h
     converter/converterthread.h
     converter/converter.h
@@ -66,16 +66,17 @@ set(HEADERS
     converter/encoder.h
     converter/gain.h
 
-    outformats/outformat.h
-    outformats/aac.h
-    outformats/flac.h
-    outformats/mp3.h
-    outformats/ogg.h
-    outformats/wav.h
-    outformats/wv.h
-    outformats/opus.h
-
-    #newconverter/newsplitter.h
+    formats/format.h
+    formats/outformat.h
+    formats/aac.h
+    formats/flac.h
+    formats/mp3.h
+    formats/ogg.h
+    formats/wav.h
+    formats/wv.h
+    formats/opus.h
+    formats/ape.h
+    formats/tta.h
 )
 
 set(SOURCES
@@ -99,7 +100,7 @@ set(SOURCES
     gui/aboutdialog/translatorsinfo.cpp
     gui/cuediskselectdialog/cuediskselectdialog.cpp
 
-    converter/wav.cpp
+    converter/wavheader.cpp
     converter/decoder.cpp
     converter/converterthread.cpp
     converter/converter.cpp
@@ -107,14 +108,17 @@ set(SOURCES
     converter/encoder.cpp
     converter/gain.cpp
 
-    outformats/outformat.cpp
-    outformats/aac.cpp
-    outformats/flac.cpp
-    outformats/mp3.cpp
-    outformats/ogg.cpp
-    outformats/wav.cpp
-    outformats/wv.cpp
-    outformats/opus.cpp
+    formats/format.cpp
+    formats/outformat.cpp
+    formats/aac.cpp
+    formats/flac.cpp
+    formats/mp3.cpp
+    formats/ogg.cpp
+    formats/wav.cpp
+    formats/wv.cpp
+    formats/opus.cpp
+    formats/ape.cpp
+    formats/tta.cpp
 )
 
 set (MOCS
@@ -141,13 +145,13 @@ set (MOCS
     converter/encoder.h
     converter/gain.h
 
-    outformats/aac.h
-    outformats/flac.h
-    outformats/mp3.h
-    outformats/ogg.h
-    outformats/wav.h
-    outformats/wv.h
-    outformats/opus.h
+    formats/aac.h
+    formats/flac.h
+    formats/mp3.h
+    formats/ogg.h
+    formats/wav.h
+    formats/wv.h
+    formats/opus.h
 )
 
 set (FORMS
@@ -156,12 +160,12 @@ set (FORMS
     gui/aboutdialog/aboutdialog.ui
     gui/cuediskselectdialog/cuediskselectdialog.ui
 
-    outformats/flac_config.ui
-    outformats/aac_config.ui
-    outformats/mp3_config.ui
-    outformats/ogg_config.ui
-    outformats/wv_config.ui
-    outformats/opus_config.ui
+    formats/flac_config.ui
+    formats/aac_config.ui
+    formats/mp3_config.ui
+    formats/ogg_config.ui
+    formats/wv_config.ui
+    formats/opus_config.ui
 )
 
 set(LIBRARIES
@@ -199,7 +203,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}
-    outformats
+    formats
     converter
     gui
     gui/configdialog
