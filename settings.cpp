@@ -53,14 +53,13 @@
 #endif
 
 QString Settings::mFileName;
+static Settings *inst = NULL;
 
 /************************************************
 
  ************************************************/
 Settings *Settings::instance()
 {
-    static Settings *inst = 0;
-
     if (!inst)
     {
         if (mFileName.isEmpty())
@@ -79,6 +78,8 @@ Settings *Settings::instance()
 void Settings::setFileName(const QString &fileName)
 {
     mFileName = fileName;
+    delete inst;
+    inst = 0;
 }
 
 

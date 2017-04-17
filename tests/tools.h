@@ -84,10 +84,16 @@ private:
     QVector<TestCueTrack> mTracks;
 };
 
-QString makeTestDir();
+
+
+QString makeTestDirName(const QString &testName);
+#ifndef makeTestDir
+#define makeTestDir() makeTestDirName(__FUNCTION__)
+#endif
+
 QStringList shnSplit(const QString &cueFile, const QString &audioFile);
 QString calcAudioHash(const QString &fileName);
-void  compareAudioHash(const QString &file1, const QString &file2);
+void  compareAudioHash(const QString &file1, const QString &expected);
 void writeHexString(const QString &str, QIODevice *out);
 void createWavFile(const QString &fileName, int duration, StdWavHeader::Quality quality);
 void encodeAudioFile(const QString &wavFileName, const QString &outFileName);

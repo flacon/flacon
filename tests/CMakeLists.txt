@@ -35,6 +35,7 @@ set(TEST_HEADERS
 
 set(TEST_SOURCES
     tools.cpp
+    inittestcase.cpp
     testflacon.cpp
     test_decoder.cpp
     test_wavheader.cpp

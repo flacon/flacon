@@ -42,7 +42,6 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QThreadPool>
-#include <QtConcurrentRun>
 
 #define protected public;
 
@@ -83,56 +82,6 @@ TestFlacon::TestFlacon(QObject *parent) :
 {
 }
 
-
-/************************************************
-
- ************************************************/
-void TestFlacon::initTestCase()
-{
-    QSettings::setPath(QSettings::IniFormat,    QSettings::UserScope, QString::fromLocal8Bit(TEST_OUT_DIR));
-    QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QString::fromLocal8Bit(TEST_OUT_DIR));
-
-    QString shntool = settings->findProgram("shntool");
-    if (shntool.isEmpty())
-        FAIL(QString("Program \"%1\" not found.").arg("shntool").toLocal8Bit());
-
-    settings->setValue(Settings::Prog_Shntool, shntool);
-    settings->sync();
-
-    mFfmpeg = settings->findProgram("avconv");
-    if (mFfmpeg.isEmpty())
-        mFfmpeg = settings->findProgram("ffmpeg");
-
-    if (mFfmpeg.isEmpty())
-        FAIL(QString("Program \"%1\" not found.").arg("avconv/ffmpeg").toLocal8Bit());
-
-
-    mAudio_cd_wav  = mTmpDir + "CD.wav";
-    mAudio_cd_ape  = mTmpDir + "CD.ape";
-    mAudio_cd_flac = mTmpDir + "CD.flac";
-    mAudio_cd_wv   = mTmpDir + "CD.wv";
-    mAudio_cd_tta  = mTmpDir + "CD.tta";
-
-    createWavFile(  mAudio_cd_wav,  900, StdWavHeader::Quality_Stereo_CD);
-    encodeAudioFile(mAudio_cd_wav, mAudio_cd_ape);
-    encodeAudioFile(mAudio_cd_wav, mAudio_cd_flac);
-    encodeAudioFile(mAudio_cd_wav, mAudio_cd_wv);
-    encodeAudioFile(mAudio_cd_wav, mAudio_cd_tta);
-
-
-    mAudio_24x96_wav  = mTmpDir + "24x96.wav";
-    mAudio_24x96_ape  = mTmpDir + "24x96.ape";
-    mAudio_24x96_flac = mTmpDir + "24x96.flac";
-    mAudio_24x96_wv   = mTmpDir + "24x96.wv";
-    mAudio_24x96_tta  = mTmpDir + "24x96.tta";
-
-    createWavFile(  mAudio_24x96_wav,  900, StdWavHeader::Quality_Stereo_24_96);
-    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_ape);
-    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_flac);
-    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_wv);
-    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_tta);
-
-}
 
 
 /************************************************

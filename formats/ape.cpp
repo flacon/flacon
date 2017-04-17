@@ -51,7 +51,7 @@ QString Format_Ape::filterDecoderStderr(const QString &stdErr) const
     if (stdErr.startsWith("Progress:"))
         return "";
 
-    if (stdErr.startsWith("-- Monkey's Audio Console Front End"))
+    if (stdErr.contains("-- Monkey's Audio Console Front End"))
         return "";
 
     if (stdErr.startsWith("Decompressing..."))

@@ -29,11 +29,12 @@
 #include "../formats/format.h"
 #include "../formats/wav.h"
 #include "../formats/flac.h"
+#include "../settings.h"
 
 #include <QTest>
 #include <QString>
 #include <QBuffer>
-
+#include <QDebug>
 
 /************************************************
  *
@@ -52,7 +53,6 @@ void TestFlacon::testFormatWavLast()
  ************************************************/
 void TestFlacon::testFormat()
 {
-
     QFETCH(QString, testdata);
     QFETCH(QString, ext);
 

@@ -40,9 +40,19 @@
 /************************************************
  *
  ************************************************/
-QString makeTestDir()
+QString makeTestDirName(const QString &testName)
 {
-    QString dir = QDir::cleanPath(QString("%1/testDecoder/%2").arg(TEST_OUT_DIR).arg(QTest::currentDataTag()));
+    QString cdt = QTest::currentDataTag();
+    cdt = cdt.replace(' ', '_');
+    cdt = cdt.replace('\t', '_');
+    cdt = cdt.replace('\n', '_');
+
+    QString tn = testName;
+    if (tn.endsWith("_data"))
+        tn = testName.left(testName.length() - 5);
+
+    QString dir = QDir::cleanPath(QString("%1/%2/%3").arg(TEST_OUT_DIR, tn, cdt));
+
     if (!QDir().mkpath(dir))
     {
         QTest::qFail(QString("Can't create directory '%1'").arg(dir).toLocal8Bit(), __FILE__, __LINE__);
@@ -162,8 +172,13 @@ QStringList shnSplit(const QString &cueFile, const QString &audioFile)
     args << QDir::toNativeSeparators(audioFile);
     //qDebug() << args;
 
-    if (QProcess::execute("shntool", args) != 0)
-        FAIL("snhtool was crashed");
+    QProcess proc;
+
+    if (proc.execute("shntool", args) != 0)
+    {
+
+        FAIL("snhtool was crashed: " + proc.readAllStandardError());
+    }
 
     QStringList res;
     foreach (QFileInfo file, QDir(dir).entryInfoList(QStringList() << "*-shntool.wav"))
@@ -179,24 +194,23 @@ QStringList shnSplit(const QString &cueFile, const QString &audioFile)
 /************************************************
  *
  ************************************************/
-void compareAudioHash(const QString &file1, const QString &file2)
+void compareAudioHash(const QString &file1, const QString &expected)
 {
-    if (calcAudioHash(file1) != calcAudioHash(file2))
+    if (calcAudioHash(file1) != expected)
     {
-        int len = qMax(file1.length(), file2.length());
         QFAIL(QString("Compared hases are not the same for:\n"
-                     "    %1 [%2]\n"
-                     "    %3 [%4]\n")
+                     "    [%1] %2\n"
+                     "    [%3] %4\n")
 
-                    .arg(file1, -len)
                     .arg(calcAudioHash(file1))
+                    .arg(file1)
 
-                    .arg(file2, -len)
-                    .arg(calcAudioHash(file2))
+                    .arg(expected)
+                    .arg("expected")
 
                     .toLocal8Bit());
     }
-    QCOMPARE(calcAudioHash(file1), calcAudioHash(file2));
+    //QCOMPARE(calcAudioHash(file1), calcAudioHash(file2));
 }
 
 

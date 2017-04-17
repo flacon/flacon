@@ -26,6 +26,8 @@
 
 #include "decoder.h"
 #include "../cue.h"
+#include "../settings.h"
+
 #include <QIODevice>
 #include <QFile>
 #include <QProcess>
@@ -118,14 +120,13 @@ bool Decoder::openProcess()
 {
     mProcess = new QProcess(this);
 
-    QString program = QDir::toNativeSeparators(mFormat.decoderProgramName());
+    QString program = settings->programName(mFormat.decoderProgramName());
     mProcess->setReadChannel(QProcess::StandardOutput);
     connect(mProcess, SIGNAL(readyReadStandardError()),
             this, SLOT(readStandardError()));
 
 
-    mProcess->start(program, mFormat.decoderArgs(mInputFile));
-
+    mProcess->start(QDir::toNativeSeparators(program), mFormat.decoderArgs(mInputFile));
     bool res = mProcess->waitForStarted();
     if(!res)
     {
