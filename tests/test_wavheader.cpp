@@ -42,8 +42,8 @@ void TestFlacon::testReadWavHeader()
     QFETCH(QString, data_size);
     QFETCH(QString, duration);
 
-    quint64 fileSize = file_size.toLongLong();
-    quint64 dataSize = data_size.toLongLong();
+    quint32 fileSize = file_size.toLongLong();
+    quint32 dataSize = data_size.toLongLong();
     quint64 uduration = duration.toLongLong();
 
     try

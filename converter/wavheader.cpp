@@ -297,7 +297,7 @@ void WavHeader::load(QIODevice *stream)
         throw "WAVE header is missing WAVE tag while processing file";
 
 
-    char    chunkID[4];
+    char    chunkID[5];
     quint32 chunkSize;
     quint64 pos=12;
     while (!stream->atEnd())
