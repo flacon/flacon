@@ -41,6 +41,7 @@ class Decoder : public QObject
 {
     Q_OBJECT
 public:
+    explicit Decoder(QObject *parent = 0);
     explicit Decoder(const AudioFormat &format, QObject *parent = 0);
     virtual ~Decoder();
 
@@ -67,7 +68,7 @@ private slots:
 
 
 private:
-    const AudioFormat &mFormat;
+    const AudioFormat *mFormat;
     QProcess  *mProcess;
     QString    mInputFile;
     QFile     *mFile;

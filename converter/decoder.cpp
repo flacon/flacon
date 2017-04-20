@@ -57,11 +57,26 @@ int timeToBytes(CueTime time, WavHeader wav)
 /************************************************
  *
  ************************************************/
+Decoder::Decoder(QObject *parent) :
+    QObject(parent),
+    mFormat(NULL),
+    mProcess(NULL),
+    mFile(NULL),
+    mPos(0)
+{
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
 Decoder::Decoder(const AudioFormat &format, QObject *parent) :
     QObject(parent),
-    mFormat(format),
+    mFormat(&format),
     mProcess(NULL),
-    mFile(NULL)
+    mFile(NULL),
+    mPos(0)
 {
 
 }
@@ -84,7 +99,16 @@ Decoder::~Decoder()
 bool Decoder::open(const QString fileName)
 {
     mInputFile = fileName;
-    if (!mFormat.decoderProgramName().isEmpty())
+    if (!mFormat)
+        mFormat = AudioFormat::formatForFile(fileName);
+
+    if (!mFormat)
+    {
+        mErrorString = "Unknown format";
+        return false;
+    }
+
+    if (!mFormat->decoderProgramName().isEmpty())
         return openProcess();
     else
         return openFile();
@@ -124,13 +148,13 @@ bool Decoder::openProcess()
 {
     mProcess = new QProcess(this);
 
-    QString program = settings->programName(mFormat.decoderProgramName());
+    QString program = settings->programName(mFormat->decoderProgramName());
     mProcess->setReadChannel(QProcess::StandardOutput);
     connect(mProcess, SIGNAL(readyReadStandardError()),
             this, SLOT(readStandardError()));
 
 
-    mProcess->start(QDir::toNativeSeparators(program), mFormat.decoderArgs(mInputFile));
+    mProcess->start(QDir::toNativeSeparators(program), mFormat->decoderArgs(mInputFile));
     bool res = mProcess->waitForStarted();
     if(!res)
     {
@@ -275,7 +299,7 @@ void Decoder::readStandardError()
     int e = (mErrBuff.endsWith('\n')) ? lines.length() : lines.length() - 1;
     for (int i=0 ; i < e; ++i)
     {
-        QString s = mFormat.filterDecoderStderr(lines[i]);
+        QString s = mFormat->filterDecoderStderr(lines[i]);
         if (!s.isEmpty())
             qWarning("[Decoder] %s", s.toLocal8Bit().data());
     }
