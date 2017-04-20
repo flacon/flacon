@@ -460,15 +460,15 @@ QDebug operator<<(QDebug dbg, const WavHeader &header)
     }
 
 
-    dbg.noquote() << "file size:       " << header.fileSize() << "\n";
-    dbg.noquote() << "format:          " << format << "\n";
-    dbg.noquote() << "num channels:    " << header.numChannels() << "\n";
-    dbg.noquote() << "sample rate:     " << header.sampleRate() << "\n";
-    dbg.noquote() << "byte rate:       " << header.byteRate() << "\n";
-    dbg.noquote() << "block align:     " << header.blockAlign() << "\n";
-    dbg.noquote() << "bits per sample: " << header.bitsPerSample() << "\n";
-    dbg.noquote() << "data size:       " << header.dataSize() << "\n";
-    dbg.noquote() << "data start pos:  " << header.dataStartPos() << "\n";
+    dbg.nospace() << "file size:       " << header.fileSize() << "\n";
+    dbg.nospace() << "format:          " << format << "\n";
+    dbg.nospace() << "num channels:    " << header.numChannels() << "\n";
+    dbg.nospace() << "sample rate:     " << header.sampleRate() << "\n";
+    dbg.nospace() << "byte rate:       " << header.byteRate() << "\n";
+    dbg.nospace() << "block align:     " << header.blockAlign() << "\n";
+    dbg.nospace() << "bits per sample: " << header.bitsPerSample() << "\n";
+    dbg.nospace() << "data size:       " << header.dataSize() << "\n";
+    dbg.nospace() << "data start pos:  " << header.dataStartPos() << "\n";
 
     return dbg.space();
 }
