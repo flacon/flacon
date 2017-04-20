@@ -53,7 +53,11 @@ int timeToBytes(CueTime time, WavHeader wav)
     }
 }
 
-Decoder::Decoder(const Format &format, QObject *parent) :
+
+/************************************************
+ *
+ ************************************************/
+Decoder::Decoder(const AudioFormat &format, QObject *parent) :
     QObject(parent),
     mFormat(format),
     mProcess(NULL),

@@ -136,7 +136,22 @@ quint16 readUInt16(QIODevice *stream)
 
 
 /************************************************
+ * 52 49 46 46      RIFF
+ * 24 B9 4D 02      file size - 8
+ * 57 41 56 45      WAVE
  *
+ * // Chanks
+ *   66 6D 74 20    SubchunkID      "fmt "
+ *   10 00 00 00    SubchunkSize        16
+ *         01 00      AudioFormat      PCM
+ *         02 00	  NumChannels        2
+ *   44 AC 00 00      SampleRate     44100
+ *   10 B1 02 00      ByteRate      176400
+ *         04 00      BlockAlign         4
+ *         10 00      BitsPerSample     16
+ * // Data
+ *   64 61 74 61 	SubchunkID 		"data"
+ *   00 B9 4D 02 	SubchunkSize
  ************************************************/
 WavHeader::WavHeader():
     mFileSize(0),
@@ -161,6 +176,15 @@ bool WavHeader::isCdQuality() const
            mBitsPerSample == CD_BITS_PER_SAMPLE &&
            mSampleRate    == CD_SAMPLE_RATE &&
            mByteRate      == CD_BYTE_RATE;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+quint64 WavHeader::duration() const
+{
+    return (mDataSize * 1000ull) / mByteRate;
 }
 
 
@@ -406,4 +430,45 @@ QByteArray WavHeader::toByteArray() const
     res << mDataSize;
 
     return res;
+}
+
+QDebug operator<<(QDebug dbg, const WavHeader &header)
+{
+    QString format;
+    switch (header.format())
+    {
+    case WavHeader::Format_Unknown:             format = "Unknown";            break;
+    case WavHeader::Format_PCM:                 format = "PCM";                break;
+    case WavHeader::Format_ADPCM:               format = "ADPCM";              break;
+    case WavHeader::Format_IEEE_FLOAT:          format = "IEEE_FLOAT";         break;
+    case WavHeader::Format_ALAW:                format = "ALAW";               break;
+    case WavHeader::Format_MULAW:               format = "MULAW";              break;
+    case WavHeader::Format_OKI_ADPCM:           format = "OKI_ADPCM";          break;
+    case WavHeader::Format_IMA_ADPCM:           format = "IMA_ADPCM";          break;
+    case WavHeader::Format_DIGISTD:             format = "DIGISTD";            break;
+    case WavHeader::Format_DIGIFIX:             format = "DIGIFIX";            break;
+    case WavHeader::Format_DOLBY_AC2:           format = "DOLBY_AC2";          break;
+    case WavHeader::Format_GSM610:              format = "Unknown";            break;
+    case WavHeader::Format_ROCKWELL_ADPCM:      format = "ROCKWELL_ADPCM";     break;
+    case WavHeader::Format_ROCKWELL_DIGITALK:   format = "ROCKWELL_DIGITALK";  break;
+    case WavHeader::Format_G721_ADPCM:          format = "G721_ADPCM";         break;
+    case WavHeader::Format_G728_CELP:           format = "G728_CELP";          break;
+    case WavHeader::Format_MPEG:                format = "MPEG";               break;
+    case WavHeader::Format_MPEGLAYER3:          format = "MPEGLAYER3";         break;
+    case WavHeader::Format_G726_ADPCM:          format = "G726_ADPCM";         break;
+    case WavHeader::Format_G722_ADPCM:          format = "Unknown";            break;
+    }
+
+
+    dbg.noquote() << "file size:       " << header.fileSize() << "\n";
+    dbg.noquote() << "format:          " << format << "\n";
+    dbg.noquote() << "num channels:    " << header.numChannels() << "\n";
+    dbg.noquote() << "sample rate:     " << header.sampleRate() << "\n";
+    dbg.noquote() << "byte rate:       " << header.byteRate() << "\n";
+    dbg.noquote() << "block align:     " << header.blockAlign() << "\n";
+    dbg.noquote() << "bits per sample: " << header.bitsPerSample() << "\n";
+    dbg.noquote() << "data size:       " << header.dataSize() << "\n";
+    dbg.noquote() << "data start pos:  " << header.dataStartPos() << "\n";
+
+    return dbg.space();
 }

@@ -25,7 +25,9 @@
 
 
 #include "scanner.h"
+#include "formats/format.h"
 #include "inputaudiofile.h"
+
 #include "project.h"
 
 #include <QStringList>
@@ -56,9 +58,10 @@ void Scanner::start(const QString &startDir)
     mAbort = false;
 
     QStringList exts;
-    foreach(InputAudioFormat format, InputAudioFormat::allFormats())
-        exts << QString("*.%1").arg(format.ext());
-
+    foreach(const AudioFormat *format, AudioFormat::inputFormats())
+    {
+        exts << QString("*.%1").arg(format->ext());
+    }
 
     QQueue<QString> query;
     query << startDir;

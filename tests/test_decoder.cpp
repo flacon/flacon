@@ -60,7 +60,7 @@ void TestFlacon::testDecoder()
 
 
     // Flacon decoder ___________________________
-    const Format *format = Format::formatForFile(inputFile);
+    const AudioFormat *format = AudioFormat::formatForFile(inputFile);
     if (!format)
         QFAIL("Unknown format");
 

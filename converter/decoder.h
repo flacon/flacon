@@ -41,7 +41,7 @@ class Decoder : public QObject
 {
     Q_OBJECT
 public:
-    explicit Decoder(const Format &format, QObject *parent = 0);
+    explicit Decoder(const AudioFormat &format, QObject *parent = 0);
     virtual ~Decoder();
 
     bool open(const QString fileName);
@@ -50,7 +50,12 @@ public:
     bool extract(const CueTime &start, const CueTime &end, QIODevice *outDevice);
     bool extract(const CueTime &start, const CueTime &end, const QString &fileName);
 
+    // Duration of audio in milliseconds.
+    uint duration() const { return mWavHeader.duration(); }
+
     QString errorString() const { return mErrorString; }
+
+    WavHeader wavHeader() const { return mWavHeader; }
 
 signals:
 
@@ -62,7 +67,7 @@ private slots:
 
 
 private:
-    const Format &mFormat;
+    const AudioFormat &mFormat;
     QProcess  *mProcess;
     QString    mInputFile;
     QFile     *mFile;

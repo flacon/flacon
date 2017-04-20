@@ -70,6 +70,9 @@ public:
     quint32     dataStartPos() const  { return mDataStartPos; }
     bool        isCdQuality() const;
 
+    /// Duration of audio in milliseconds.
+    quint64 duration() const;
+
     void load(QIODevice* stream);
 
     QByteArray toByteArray() const;
@@ -88,6 +91,8 @@ protected:
 private:
 
 };
+
+QDebug operator<<(QDebug dbg, const WavHeader &header);
 
 class StdWavHeader: public WavHeader
 {

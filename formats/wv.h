@@ -48,15 +48,16 @@ public:
 
 };
 
-class Format_Wv: public Format
+class Format_Wv: public AudioFormat
 {
 public:
+    virtual QString name() const { return "WavPack"; }
     virtual QString ext() const { return "wv"; }
     virtual QByteArray magic() const { return "wvpk"; }
     virtual uint const magicOffset() const { return 0; }
 
 
-    virtual bool isInputFormat() const { return false; }
+    virtual bool isInputFormat() const { return true; }
     virtual QString decoderProgramName() const { return "wvunpack"; }
     virtual QStringList decoderArgs(const QString &fileName) const;
 

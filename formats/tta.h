@@ -29,15 +29,16 @@
 
 #include "format.h"
 
-class Format_Tta: public Format
+class Format_Tta: public AudioFormat
 {
 public:
+    virtual QString name() const { return "TTA"; }
     virtual QString ext() const { return "tta"; }
     virtual QByteArray magic() const { return "TTA1"; }
     virtual uint const magicOffset() const { return 0; }
 
 
-    virtual bool isInputFormat() const { return false; }
+    virtual bool isInputFormat() const { return true; }
     virtual QString decoderProgramName() const { return "ttaenc"; }
     virtual QStringList decoderArgs(const QString &fileName) const;
     virtual QString filterDecoderStderr(const QString &stdErr) const;

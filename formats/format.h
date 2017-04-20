@@ -32,15 +32,16 @@
 #include <QByteArray>
 class QIODevice;
 
-class Format;
-typedef QList<const Format*> FormatList;
+class AudioFormat;
+typedef QList<const AudioFormat*> AudioFormatList;
 
-class Format
+class AudioFormat
 {
 public:
-    Format();
-    virtual ~Format();
+    AudioFormat();
+    virtual ~AudioFormat();
 
+    virtual QString name() const = 0;
     virtual QString ext() const = 0;
 
     virtual bool isInputFormat() const { return false; }
@@ -54,27 +55,30 @@ public:
     // Out format
     virtual bool isOutputFormat() const { return false; }
 
-    static const FormatList &allFormats();
-    static const FormatList &inputFormats();
-    static const FormatList &outFormats();
-    static const Format *formatForFile(QIODevice *device);
-    static const Format *formatForFile(const QString &fileName);
+    static const AudioFormatList &allFormats();
+    static const AudioFormatList &inputFormats();
+    static const AudioFormatList &outFormats();
 
-    static bool registerFormat(const Format &f);
+    static const AudioFormat *formatForFile(QIODevice *device);
+    static const AudioFormat *formatForFile(const QString &fileName);
+
+    static bool registerFormat(const AudioFormat &f);
 
     virtual QString filterDecoderStderr(const QString &stdErr) const;
+
 
 protected:
     virtual bool checkMagic(const QByteArray &data) const;
 
 private:
-    static QList<const Format*> mAllFormats;
+    static QList<const AudioFormat*> mAllFormats;
 };
 
 
-//bool RegisterFormat(const Format &f);
+
+
 #define REGISTER_FORMAT(FORMAT) \
     static FORMAT static_##FORMAT##_Instance; \
-    static bool b = Format::registerFormat(static_##FORMAT##_Instance);
+    static bool b = AudioFormat::registerFormat(static_##FORMAT##_Instance);
 
 #endif // FORMAT_H

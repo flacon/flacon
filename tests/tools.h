@@ -97,10 +97,11 @@ void  compareAudioHash(const QString &file1, const QString &expected);
 void writeHexString(const QString &str, QIODevice *out);
 void createWavFile(const QString &fileName, int duration, StdWavHeader::Quality quality);
 void encodeAudioFile(const QString &wavFileName, const QString &outFileName);
+void testFail(const QString &message, const char *file, int line);
 
 #define FAIL(message) \
 do {\
-    QTest::qFail(message, __FILE__, __LINE__);\
+    testFail(message, __FILE__, __LINE__); \
 } while (0)
 
 

@@ -38,11 +38,13 @@
 void TestFlacon::testReadWavHeader()
 {
     QFETCH(QString, testdata);
-    QFETCH(qint32, file_size);
-    QFETCH(qint32, data_size);
+    QFETCH(QString, file_size);
+    QFETCH(QString, data_size);
+    QFETCH(QString, duration);
 
-    quint32 fileSize = file_size;
-    quint32 dataSize = data_size;
+    quint64 fileSize = file_size.toLongLong();
+    quint64 dataSize = data_size.toLongLong();
+    quint64 uduration = duration.toLongLong();
 
     try
     {
@@ -57,6 +59,7 @@ void TestFlacon::testReadWavHeader()
 
         QCOMPARE(header.fileSize(), fileSize);
         QCOMPARE(header.dataSize(), dataSize);
+        QCOMPARE(header.duration(), uduration);
     }
     catch (char const *err)
     {
@@ -73,8 +76,9 @@ void TestFlacon::testReadWavHeader()
 void TestFlacon::testReadWavHeader_data()
 {
     QTest::addColumn<QString>("testdata");
-    QTest::addColumn<qint32>("file_size");
-    QTest::addColumn<qint32>("data_size");
+    QTest::addColumn<QString>("file_size");
+    QTest::addColumn<QString>("data_size");
+    QTest::addColumn<QString>("duration");
 
     QTest::newRow("1") <<
                          "52 49 46 46"  // RIFF
@@ -95,8 +99,9 @@ void TestFlacon::testReadWavHeader_data()
                          "00 B9 4D 02"  // data size
                          "00"
 
-                      << 38648108       // file size
-                      << 38648064       // data size
+                      << "38648108"     // file size
+                      << "38648064"     // data size
+                      << "219093"       // duration   3 min 39 s 93 ms
                       ;
 
 
@@ -129,9 +134,34 @@ void TestFlacon::testReadWavHeader_data()
                          "00 B9 4D 02"  // data size
                          "00"
 
-                      << 38648142       // file size
-                      << 38648064       // data size
+                      << "38648142"     // file size
+                      << "38648064"     // data size
+                      << "219093"       // duration   3 min 39 s 93 ms
                       ;
+
+
+    QTest::newRow("3") <<
+                          "52 49 46 46" // RIFF
+                          "24 A3 23 A8" // file size - 8
+                          "57 41 56 45" // WAVE
+
+                          "66 6D 74 20" // "fmt "
+                          "10 00 00 00" // Chunk size
+                          "01 00"       // AudioFormat
+                          "02 00"       // NumChannels
+
+                          "00 EE 02 00" // mSampleRate
+                          "00 94 11 00" // mByteRate
+                          "06 00"       // mBlockAlign
+                          "18 00"       // mBitsPerSample
+
+                          "64 61 74 61" // data
+                          "00 A3 23 A8" // data size
+
+                       << "2820907820"  // file size
+                       << "2820907776"  // data size
+                       << "2448704"     // duration   40 min 48 s 704 ms
+                          ;
 
 }
 

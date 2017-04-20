@@ -48,14 +48,15 @@ public:
     EncoderConfigPage *configPage(QWidget *parent = 0) const;
 };
 
-class Format_Flac: public Format
+class Format_Flac: public AudioFormat
 {
 public:
+    virtual QString name() const { return "FLAC"; }
     virtual QString ext() const { return "flac"; }
+    virtual bool isInputFormat() const { return true; }
 
     virtual QString decoderProgramName() const { return "flac"; }
     virtual QStringList decoderArgs(const QString &fileName) const;
-    virtual bool isOutputFormat() const { return true; }
 
     virtual QByteArray magic() const { return "fLaC"; }
     virtual uint const magicOffset() const { return 0; }

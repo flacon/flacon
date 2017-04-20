@@ -29,15 +29,17 @@
 
 #include "format.h"
 
-class Format_Ape: public Format
+class Format_Ape: public AudioFormat
 {
 public:
+    virtual QString name() const { return "APE"; }
     virtual QString ext() const { return "ape"; }
+    virtual bool isInputFormat() const { return true; }
+
     virtual QByteArray magic() const { return "MAC "; }
     virtual uint const magicOffset() const { return 0; }
 
 
-    virtual bool isInputFormat() const { return false; }
     virtual QString decoderProgramName() const { return "mac"; }
     virtual QStringList decoderArgs(const QString &fileName) const;
     virtual QString filterDecoderStderr(const QString &stdErr) const;

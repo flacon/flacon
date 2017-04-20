@@ -24,6 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
+#include "formats/format.h"
 #include "settings.h"
 #include "inputaudiofile.h"
 #include "outformat.h"
@@ -160,9 +161,9 @@ void Settings::init()
     }
 
 
-    foreach (InputAudioFormat format, InputAudioFormat::allFormats())
+    foreach (const AudioFormat *format, AudioFormat::inputFormats())
     {
-        mPrograms << format.program();
+        mPrograms << format->decoderProgramName();
     }
 
     mPrograms.remove("");

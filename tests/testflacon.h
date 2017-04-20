@@ -85,6 +85,8 @@ private slots:
     void testFormatFromFile();
     void testFormatFromFile_data();
 
+    void testInputAudioFile();
+    void testInputAudioFile_data();
 
     void testDecoder();
     void testDecoder_data();

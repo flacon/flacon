@@ -353,3 +353,8 @@ void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
     if (!QFileInfo(outFileName).isFile())
         QFAIL(QString("Can't encode to file '%1' (file don't exists'):").arg(outFileName).toLocal8Bit() + proc.readAllStandardError());
 }
+
+void testFail(const QString &message, const char *file, int line)
+{
+    QTest::qFail(message.toLocal8Bit().data(), file, line);
+}

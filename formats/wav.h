@@ -64,10 +64,12 @@ protected:
     virtual QStringList processArgs() const;
 };
 
-class Format_Wav: public Format
+class Format_Wav: public AudioFormat
 {
 public:
+    virtual QString name() const { return "WAV"; }
     virtual QString ext() const { return "wav"; }
+    virtual bool isInputFormat() const { return true; }
 
     virtual QString decoderProgramName() const { return ""; }
     virtual QStringList decoderArgs(const QString &fileName) const;

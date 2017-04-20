@@ -32,13 +32,13 @@
 #include <QByteArray>
 #include <QFile>
 
-QList<const Format*> Format::mAllFormats;
+AudioFormatList AudioFormat::mAllFormats;
 
 
 /************************************************
  *
  ************************************************/
-bool Format::registerFormat(const Format &f)
+bool AudioFormat::registerFormat(const AudioFormat &f)
 {
     // Some formats can be embedded as a chunk of RIFF stream.
     // So the WAV format should be last and be checked in the last turn.
@@ -53,7 +53,7 @@ bool Format::registerFormat(const Format &f)
 /************************************************
  *
  ************************************************/
-Format::Format()
+AudioFormat::AudioFormat()
 {
 }
 
@@ -61,7 +61,7 @@ Format::Format()
 /************************************************
  *
  ************************************************/
-Format::~Format()
+AudioFormat::~AudioFormat()
 {
 }
 
@@ -69,7 +69,7 @@ Format::~Format()
 /************************************************
  *
  ************************************************/
-const FormatList &Format::allFormats()
+const AudioFormatList &AudioFormat::allFormats()
 {
     return mAllFormats;
 }
@@ -78,12 +78,12 @@ const FormatList &Format::allFormats()
 /************************************************
  *
  ************************************************/
-const FormatList &Format::inputFormats()
+const AudioFormatList &AudioFormat::inputFormats()
 {
-    static FormatList res;
+    static AudioFormatList res;
     if (res.isEmpty())
     {
-        foreach (const Format* f, allFormats())
+        foreach (const AudioFormat* f, allFormats())
         {
             if (f->isInputFormat())
                 res << f;
@@ -97,12 +97,12 @@ const FormatList &Format::inputFormats()
 /************************************************
  *
  ************************************************/
-const FormatList &Format::outFormats()
+const AudioFormatList &AudioFormat::outFormats()
 {
-    static FormatList res;
+    static AudioFormatList res;
     if (res.isEmpty())
     {
-        foreach (const Format* f, allFormats())
+        foreach (const AudioFormat* f, allFormats())
         {
             if (f->isOutputFormat())
                 res << f;
@@ -116,7 +116,7 @@ const FormatList &Format::outFormats()
 /************************************************
  *
  ************************************************/
-bool Format::checkMagic(const QByteArray &data) const
+bool AudioFormat::checkMagic(const QByteArray &data) const
 {
     return data.mid(magicOffset(), magic().length()) == magic();
 }
@@ -125,7 +125,7 @@ bool Format::checkMagic(const QByteArray &data) const
 /************************************************
  *
  ************************************************/
-QString Format::filterDecoderStderr(const QString &stdErr) const
+QString AudioFormat::filterDecoderStderr(const QString &stdErr) const
 {
     return stdErr;
 }
@@ -134,17 +134,17 @@ QString Format::filterDecoderStderr(const QString &stdErr) const
 /************************************************
  *
  ************************************************/
-const Format *Format::formatForFile(QIODevice *device)
+const AudioFormat *AudioFormat::formatForFile(QIODevice *device)
 {
     int bufSize = 0;
-    foreach (const Format *format, allFormats())
+    foreach (const AudioFormat *format, allFormats())
         bufSize = qMax(bufSize, int(format->magicOffset() + format->magic().length()));
 
     QByteArray buf = device->read(bufSize);
     if (buf.size() < bufSize)
         return NULL;
 
-    foreach (const Format *format, allFormats())
+    foreach (const AudioFormat *format, allFormats())
     {
         if (format->checkMagic(buf))
             return format;
@@ -157,7 +157,7 @@ const Format *Format::formatForFile(QIODevice *device)
 /************************************************
  *
  ************************************************/
-const Format *Format::formatForFile(const QString &fileName)
+const AudioFormat *AudioFormat::formatForFile(const QString &fileName)
 {
     QFile file(fileName);
     if (! file.open(QFile::ReadOnly))
@@ -165,7 +165,7 @@ const Format *Format::formatForFile(const QString &fileName)
         return NULL;
     }
 
-    const Format *res = formatForFile(&file);
+    const AudioFormat *res = formatForFile(&file);
     file.close();
     return res;
 }
