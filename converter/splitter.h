@@ -50,14 +50,16 @@ protected:
     void doRun();
     void doStop();
 
+private slots:
+    void decoderProgress(double percent);
+
 private:
     QString mWorkDir;
     QString mFilePrefix;
     QProcess *mProcess;
     bool mPreGapExists;
 
-    void parseOut();
-    void sendCueData();
+    Track *mTrack;
 };
 
 #endif // SPLITTER_H

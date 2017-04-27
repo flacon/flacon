@@ -199,6 +199,8 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
 {
     try
     {
+        emit progress(0);
+
         QIODevice *input;
         if (mProcess)
             input = mProcess;
@@ -208,7 +210,12 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         mErrorString = "";
 
         quint32 bs = timeToBytes(start, mWavHeader) + mWavHeader.dataStartPos();
-        quint32 be = timeToBytes(end,   mWavHeader) + mWavHeader.dataStartPos();
+        quint32 be = 0;
+
+        if (end.isNull())
+            be = mWavHeader.dataStartPos() + mWavHeader.dataSize();
+        else
+            be = timeToBytes(end,   mWavHeader) + mWavHeader.dataStartPos();
 
         outDevice->write(StdWavHeader(be - bs, mWavHeader).toByteArray());
 
@@ -238,14 +245,18 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
             mErrorString = "[Decoder] Incorrect start or end time.";
             return false;
         }
+
+
         pos += len;
+        int remains = len;
+        int percent = 0;
 
         char buf[MAX_BUF_SIZE];
         while (input->bytesAvailable() || input->waitForReadyRead(1000))
         {
-            int n = qMin(MAX_BUF_SIZE, len);
+            int n = qMin(MAX_BUF_SIZE, remains);
             n = input->read(buf, n);
-            len -= n;
+            remains -= n;
 
             if (outDevice->write(buf, n) != n)
             {
@@ -253,11 +264,24 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
                 return false;
             }
 
-            if (len == 0)
+
+
+            if (remains == 0)
+            {
+                emit progress(100.0);
                 break;
+            }
+            else
+            {
+                int prev = percent;
+                percent = (len - remains) *10000.0 / len;
+                if (percent != prev)
+                {
+                    emit progress(percent / 100.0);
+                }
+            }
         }
         // Read bytes from start to end of track ..........
-
         mPos= pos;
         return true;
     }
@@ -272,9 +296,9 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
 /************************************************
  *
  ************************************************/
-bool Decoder::extract(const CueTime &start, const CueTime &end, const QString &fileName)
+bool Decoder::extract(const CueTime &start, const CueTime &end, const QString &outFileName)
 {
-    QFile file(fileName);
+    QFile file(outFileName);
     if (! file.open(QFile::WriteOnly | QFile::Truncate))
     {
         mErrorString = file.errorString();

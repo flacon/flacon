@@ -49,7 +49,7 @@ public:
     void close();
 
     bool extract(const CueTime &start, const CueTime &end, QIODevice *outDevice);
-    bool extract(const CueTime &start, const CueTime &end, const QString &fileName);
+    bool extract(const CueTime &start, const CueTime &end, const QString &outFileName);
 
     // Duration of audio in milliseconds.
     uint duration() const { return mWavHeader.duration(); }
@@ -59,13 +59,10 @@ public:
     WavHeader wavHeader() const { return mWavHeader; }
 
 signals:
-
-public slots:
+    void progress(double percent);
 
 private slots:
     void readStandardError();
-
-
 
 private:
     const AudioFormat *mFormat;
