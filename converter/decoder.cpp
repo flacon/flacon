@@ -268,16 +268,16 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
 
             if (remains == 0)
             {
-                emit progress(100.0);
+                emit progress(100);
                 break;
             }
             else
             {
                 int prev = percent;
-                percent = (len - remains) *10000.0 / len;
+                percent = (len - remains) * 100.0 / len;
                 if (percent != prev)
                 {
-                    emit progress(percent / 100.0);
+                    emit progress(percent);
                 }
             }
         }

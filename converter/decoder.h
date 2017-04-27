@@ -59,7 +59,7 @@ public:
     WavHeader wavHeader() const { return mWavHeader; }
 
 signals:
-    void progress(double percent);
+    void progress(int percent);
 
 private slots:
     void readStandardError();

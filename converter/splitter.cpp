@@ -137,13 +137,14 @@ void Splitter::doStop()
  ************************************************/
 void Splitter::doRun()
 {
+    mTrack = disk()->track(0);
     Decoder decoder;
-    connect(&decoder, SIGNAL(progress(double)),
-            this, SLOT(decoderProgress(double)));
+    connect(&decoder, SIGNAL(progress(int)),
+            this, SLOT(decoderProgress(int)));
 
     if (!decoder.open(disk()->audioFileName()))
     {
-        error(disk()->track(0),
+        error(mTrack,
               tr("I can't read <b>%1</b>:<br>%2",
                  "Splitter error. %1 is a file name, %2 is a system error text.")
               .arg(disk()->audioFileName())
@@ -195,7 +196,7 @@ void Splitter::doRun()
 /************************************************
  *
  ***********************************************/
-void Splitter::decoderProgress(double percent)
+void Splitter::decoderProgress(int percent)
 {
     emit trackProgress(mTrack, Track::Splitting, percent);
 }

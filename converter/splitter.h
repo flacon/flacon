@@ -51,7 +51,7 @@ protected:
     void doStop();
 
 private slots:
-    void decoderProgress(double percent);
+    void decoderProgress(int percent);
 
 private:
     QString mWorkDir;
