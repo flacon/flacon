@@ -24,43 +24,58 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef WAV_H
-#define WAV_H
+#ifndef WV_H
+#define WV_H
 
+#include "format.h"
 #include "outformat.h"
-#include "encoder.h"
+#include "configdialog.h"
+#include "ui_wv_config.h"
 
-class OutFormat_Wav: public OutFormat
+class OutFormat_Wv: public OutFormat
 {
 public:
-    OutFormat_Wav();
+    OutFormat_Wv();
 
-    virtual QString encoderProgramName() const { return ""; }
-    virtual QString gainProgramName() const { return ""; }
+    virtual QString encoderProgramName() const { return "wavpack"; }
+    virtual QString gainProgramName() const { return "wvgain"; }
 
     virtual QStringList encoderArgs(Track *track, const QString &outFile) const;
     virtual QStringList gainArgs(const QStringList &files) const;
 
-
     QHash<QString, QVariant> defaultParameters() const;
     EncoderConfigPage *configPage(QWidget *parent = 0) const;
 
-    virtual bool hasConfigPage() const { return false; }
-
-    virtual Encoder *createEncoder(Track *track, QObject *parent = 0) const;
-    virtual Gain *createGain(Disk *disk, Track *track, QObject *parent = 0) const;
 };
 
+class Format_Wv: public AudioFormat
+{
+public:
+    virtual QString name() const { return "WavPack"; }
+    virtual QString ext() const { return "wv"; }
+    virtual QByteArray magic() const { return "wvpk"; }
+    virtual uint const magicOffset() const { return 0; }
 
-class Encoder_Wav: public Encoder
+
+    virtual bool isInputFormat() const { return true; }
+    virtual QString decoderProgramName() const { return "wvunpack"; }
+    virtual QStringList decoderArgs(const QString &fileName) const;
+
+    virtual bool isOutputFormat() const { return false; }
+
+protected:
+    virtual bool checkMagic(const QByteArray &data) const;
+
+};
+
+class ConfigPage_Wv: public EncoderConfigPage, private Ui::ConfigPage_Wv
 {
     Q_OBJECT
 public:
-    explicit Encoder_Wav(const OutFormat *format, Track *track, QObject *parent = 0);
+    explicit ConfigPage_Wv(QWidget *parent = 0);
 
-protected:
-    void doRun();
-    virtual QStringList processArgs() const;
+    virtual void load();
+    virtual void write();
 };
 
-#endif // WAV_H
+#endif // WV_H

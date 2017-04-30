@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,39 +24,29 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef SPLITTER_H
-#define SPLITTER_H
+#ifndef APE_H
+#define APE_H
 
-#include "outformat.h"
-#include "converterthread.h"
+#include "format.h"
 
-class Disk;
-class Track;
-class QProcess;
-
-class Splitter: public ConverterThread
+class Format_Ape: public AudioFormat
 {
-    Q_OBJECT
 public:
-    Splitter(Disk *disk, const OutFormat *format, QObject *parent = 0);
+    virtual QString name() const { return "APE"; }
+    virtual QString ext() const { return "ape"; }
+    virtual bool isInputFormat() const { return true; }
 
-    bool isReadyStart() const;
-    QString workDir() const { return mWorkDir; }
+    virtual QByteArray magic() const { return "MAC "; }
+    virtual uint const magicOffset() const { return 0; }
 
-public slots:
-    void inputDataReady(Track *track, const QString &fileName);
 
-protected:
-    void doRun();
-    void doStop();
+    virtual QString decoderProgramName() const { return "mac"; }
+    virtual QStringList decoderArgs(const QString &fileName) const;
+    virtual QString filterDecoderStderr(const QString &stdErr) const;
 
-private slots:
-    void decoderProgress(int percent);
+    virtual bool isOutputFormat() const { return false; }
 
-private:
-    QString mWorkDir;
-    QProcess *mProcess;
-    Track *mTrack;
+
 };
 
-#endif // SPLITTER_H
+#endif // APE_H

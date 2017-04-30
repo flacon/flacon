@@ -25,28 +25,27 @@
 
 
 #include "testflacon.h"
+#include "tools.h"
 #include "../disk.h"
 #include "../settings.h"
 #include "../project.h"
 #include "../inputaudiofile.h"
 #include "converter/converter.h"
+#include "converter/wavheader.h"
+#include "converter/splitter.h"
 #include "outformat.h"
 
 #include <QTest>
-#include <QFile>
-#include <QFileInfo>
 #include <QDebug>
-#include <QProcessEnvironment>
-#include <QSettings>
-#include <QDir>
 #include <QProcess>
+#include <QBuffer>
+#include <QFileInfo>
+#include <QDir>
+#include <QThreadPool>
 
 #define protected public;
 
-#define FAIL(message) \
-do {\
-    QTest::qFail(message, __FILE__, __LINE__);\
-} while (0)
+
 
 #ifdef Q_OS_WIN
     #define USE_DEV_RANDOM 0
@@ -56,20 +55,8 @@ do {\
     #define USE_DEV_RANDOM 1
 #endif
 
+int TestFlacon::mTestNum = -1;
 
-/************************************************
- *
- ************************************************/
-Disk *loadFromCue(const QString &cueFile)
-{
-    CueReader cueReader(cueFile);
-    if (!cueReader.isValid())
-        FAIL(cueReader.errorString().toLocal8Bit());
-
-    Disk *res = new Disk();
-    res->loadFromCue(cueReader.disk(0));
-    return res;
-}
 
 
 /************************************************
@@ -83,77 +70,6 @@ TestFlacon::TestFlacon(QObject *parent) :
 {
 }
 
-
-/************************************************
-
- ************************************************/
-void TestFlacon::initTestCase()
-{
-    QSettings::setPath(QSettings::IniFormat,    QSettings::UserScope, QString::fromLocal8Bit(TEST_OUT_DIR));
-    QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QString::fromLocal8Bit(TEST_OUT_DIR));
-
-    QString shntool = settings->findProgram("shntool");
-    if (shntool.isEmpty())
-        FAIL(QString("Program \"%1\" not found.").arg("shntool").toLocal8Bit());
-
-    settings->setValue(Settings::Prog_Shntool, shntool);
-    settings->sync();
-
-    mFfmpeg = settings->findProgram("avconv");
-    if (mFfmpeg.isEmpty())
-        mFfmpeg = settings->findProgram("ffmpeg");
-
-    if (mFfmpeg.isEmpty())
-        FAIL(QString("Program \"%1\" not found.").arg("avconv/ffmpeg").toLocal8Bit());
-
-    mCdAudioFile = mTmpDir + "CD.wav";
-    createAudioFile(mFfmpeg, mCdAudioFile, 900, true);
-
-    mHdAudioFile = mTmpDir + "HD.wav";
-    createAudioFile(mFfmpeg, mHdAudioFile, 900, false);
-}
-
-
-/************************************************
-
- ************************************************/
-void TestFlacon::createAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality)
-{
-    if (QFileInfo(fileName).exists())
-        return;
-
-    QStringList args;
-# if USE_DEV_RANDOM
-    args << "-y"; //  Overwrite output files."
-    args << "-ar" << (cdQuality ? "44100" : " 48000");
-    args << "-f" << "s16le";
-    args << "-acodec" << "pcm_s16le";
-    args << "-ac" << "2";
-    args << "-i" << "/dev/urandom";
-    args << "-t" << QString("%1").arg(duration);
-    args << fileName;
-#else
-    args << "-y"; //  Overwrite output files."
-    args << "-t" << QString("%1").arg(duration);
-    args << "-f" << "lavfi";
-    args << "-i" << "anullsrc";
-    args << "-ar" << (cdQuality ? "44100" : " 48000");
-    args << "-acodec" << "pcm_s16le";
-    args << "-ac" << "2";
-    args << QDir::toNativeSeparators(fileName);
-#endif
-
-    QProcess proc;
-    //proc.setProcessChannelMode(QProcess::ForwardedChannels);
-
-    proc.start(program, args);
-    proc.waitForFinished(3 * 60 * 10000);
-    if (proc.exitCode() != 0)
-    {
-        QString err = proc.readAllStandardError();
-        QFAIL(QString("Can't create audio file: %1").arg(err).toLocal8Bit());
-    }
-}
 
 
 /************************************************
@@ -271,6 +187,8 @@ void TestFlacon::applySettings(const SettingsValues &config)
 }
 
 
+
+
 /************************************************
 
  ************************************************/
@@ -278,7 +196,7 @@ Disk *TestFlacon::standardDisk()
 {
     if (mStandardDisk == 0)
     {
-        QString cueFile = mTmpDir + "testTrackResultFileName.cue";
+        QString cueFile = dir() + "testTrackResultFileName.cue";
 
         QStringList cue;
         cue << "REM GENRE \"Genre\"";
@@ -485,344 +403,9 @@ QStringList &operator<<(QStringList &list, int value)
 }
 
 
-/************************************************
-
- ************************************************/
-ConverterTester::ConverterTester(const QString &cueFile, const QString &audioFile, const QString &expectedCue, const QString &resultFiles)
-{
-    mResultFiles = resultFiles.split(';', QString::SkipEmptyParts);
-    mExpectedCue = expectedCue;
-    project->clear();
-    mDisk = loadFromCue(cueFile);
-    InputAudioFile audio(audioFile);
-    mDisk->setAudioFile(audio);
-    project->addDisk(mDisk);
-}
-
-/************************************************
-
- ************************************************/
-void ConverterTester::run(const QString &name)
-{
-    Converter conv;
-    QEventLoop loop;
-    loop.connect(&conv, SIGNAL(finished()), &loop, SLOT(quit()));
-    conv.start();
-
-    if (!conv.isRunning())
-    {
-        QString msg;
-        mDisk->canConvert(&msg);
-        QFAIL(QString("Can't start converter: \"%1\"").arg(msg).toLocal8Bit());
-    }
-
-    loop.exec();
-
-    QDir outDir = QFileInfo(mDisk->track(0)->resultFilePath()).dir();
-    QStringList files = outDir.entryList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::Files);
-    project->clear();
-
-    QStringList missing;
-    foreach(QString f, mResultFiles)
-    {
-        if (files.removeAll(f) == 0)
-            missing << f;
-    }
-
-
-    QString msg = "";
-    if (!missing.isEmpty())
-        msg += QString("\nFiles not exists:\n  *%1").arg(missing.join("\n  *"));
-
-    if (!files.isEmpty())
-        msg += QString("\nFiles exists:\n  *%1").arg(files.join("\n  *"));
-
-
-    if (!mExpectedCue.isEmpty())
-    {
-        QString resCueFile;
-        files = outDir.entryList(QStringList() << "*.cue", QDir::Files);
-        if (files.isEmpty())
-        {
-            msg += "\nResult CUE file not found.";
-        }
-        else
-        {
-            QString err;
-            if (!TestFlacon::compareCue(outDir.absoluteFilePath(files.first()), mExpectedCue, &err))
-                msg += "\n" + err;
-        }
-    }
-
-    if (!msg.isEmpty())
-        QFAIL(name.toLocal8Bit() + "\n" + msg.toLocal8Bit());
-
-}
-
-
-/************************************************
-
- ************************************************/
-void TestFlacon::testConvert()
-{
-    QString resultDir = mTmpDir + QString("/converted/");
-    clearDir(resultDir);
-
-    settings->setValue(Settings::OutFiles_Directory, resultDir);
-    settings->setValue(Settings::OutFiles_Pattern, "%a/%n - %t");
-    settings->setValue(Settings::OutFiles_Format,  "WAV");
-    settings->setValue(Settings::PerTrackCue_FlaconTags, false);
-
-    QString inDir = mDataDir + "/testConvert/";
-    QString outDir;
-    //## 1.1 ##############################################
-    // With pregap and HTOA
-    {
-        outDir = resultDir + "Test_1.1";
-        settings->setValue(Settings::PerTrackCue_Create,  false);
-        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
-        settings->setValue(Settings::OutFiles_Directory, outDir);
-
-        ConverterTester conv(
-                    inDir + "01.cuecreator.cue",
-                    mHdAudioFile,
-                    "",
-                    "01 - Song01.wav;"
-                    "02 - Song02.wav;"
-                    "03 - Song03.wav;"
-                    "04 - Song04.wav;"
-                    );
-
-        conv.run("1.1. With pregap and HTOA, w/o cue");
-    }
-    //## 1.1 ##############################################
-
-    //## 1.2 ##############################################
-    // With pregap and HTOA
-    {
-        outDir = resultDir + "Test_1.2";
-        settings->setValue(Settings::PerTrackCue_Create,  true);
-        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
-        settings->setValue(Settings::OutFiles_Directory, outDir);
-
-        ConverterTester conv(
-                    inDir + "01.cuecreator.cue",
-                    mHdAudioFile,
-                    inDir + "01.expected.cue",
-                    "01 - Song01.wav;"
-                    "02 - Song02.wav;"
-                    "03 - Song03.wav;"
-                    "04 - Song04.wav;"
-                    "00 - (HTOA).wav;"
-                    "Artist-Album.cue;"
-                    );
-
-        conv.run("1.2. With pregap and HTOA, with cue");
-    }
-    //## 1.2 ##############################################
-
-    //## 2.1 ##############################################
-    // W/o pregap, w/o HTOA
-    {
-        outDir = resultDir + "Test_2.1";
-        settings->setValue(Settings::PerTrackCue_Create,  true);
-        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapAddToFirstTrack));
-        settings->setValue(Settings::OutFiles_Directory, outDir);
-
-        ConverterTester conv(
-                    inDir + "02.cuecreator.cue",
-                    mHdAudioFile,
-                    inDir + "02.expected.cue",
-                    "01 - Song01.wav;"
-                    "02 - Song02.wav;"
-                    "03 - Song03.wav;"
-                    "04 - Song04.wav;"
-                    "Artist-Album.cue;"
-                    );
-
-        conv.run("2.1 W/o pregap, w/o HTOA");
-    }
-    //## 2.1 ##############################################
-
-    //## 2.2 ##############################################
-    // W/o pregap, w/o HTOA
-    {
-        outDir = resultDir + "Test_2.2";
-        settings->setValue(Settings::PerTrackCue_Create,  true);
-        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
-        settings->setValue(Settings::OutFiles_Directory, outDir);
-
-
-        ConverterTester conv(
-                    inDir + "02.cuecreator.cue",
-                    mHdAudioFile,
-                    inDir + "02.expected.cue",
-                    "01 - Song01.wav;"
-                    "02 - Song02.wav;"
-                    "03 - Song03.wav;"
-                    "04 - Song04.wav;"
-                    "Artist-Album.cue;"
-                    );
-
-        conv.run("2.2. W/o pregap, w/o HTOA");
-    }
-    //## 2.2 ##############################################
-
-    //## 3 ################################################
-    // With pregap, w/o HTOA
-    {
-        outDir = resultDir + "Test_3";
-        settings->setValue(Settings::PerTrackCue_Create,  true);
-        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapAddToFirstTrack));
-        settings->setValue(Settings::OutFiles_Directory, outDir);
-
-        ConverterTester conv(
-                    inDir + "03.cuecreator.cue",
-                    mHdAudioFile,
-                    inDir + "03.expected.cue",
-                    "01 - Song01.wav;"
-                    "02 - Song02.wav;"
-                    "03 - Song03.wav;"
-                    "04 - Song04.wav;"
-                    "Artist-Album.cue;"
-                    );
-
-        conv.run("3. With pregap, w/o HTOA");
-    }
-    //## 3 ################################################
-
-    //## 4 ################################################
-    // All tags
-    {
-        outDir = resultDir + "Test_4";
-        settings->setValue(Settings::PerTrackCue_Create,  true);
-        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapAddToFirstTrack));
-        settings->setValue(Settings::OutFiles_Directory, outDir);
-
-        ConverterTester conv(
-                    inDir + "04.cuecreator.cue",
-                    mHdAudioFile,
-                    inDir + "04.expected.cue",
-                    "01 - Song01.wav;"
-                    "02 - Song02.wav;"
-                    "03 - Song03.wav;"
-                    "04 - Song04.wav;"
-                    "Artist-Album.cue;"
-                    );
-
-        conv.run("4. All tags");
-    }
-    //## 4 ################################################
-
-    //## 5 ################################################
-    // Cue w/o tags + tags form the separate file
-    {
-        outDir = resultDir + "Test_5";
-        settings->setValue(Settings::PerTrackCue_Create,  true);
-        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapAddToFirstTrack));
-        settings->setValue(Settings::OutFiles_Directory, outDir);
-
-        ConverterTester conv(
-                    inDir + "05.cuecreator.cue",
-                    mHdAudioFile,
-                    inDir + "05.expected.cue",
-                    "01 - Song01.wav;"
-                    "02 - Song02.wav;"
-                    "03 - Song03.wav;"
-                    "04 - Song04.wav;"
-                    "Artist-Album.cue;"
-                    );
-
-        for (int i=0; i<conv.disk()->count(); ++i)
-        {
-            Track *track = conv.disk()->track(i);
-            track->setArtist("Artist");
-            track->setAlbum("Album");
-            track->setTitle(QString("Song%1").arg(i+1, 2, 10, QChar('0')));
-            track->setGenre("Genre");
-            track->setDate("2013");
-        }
-
-        conv.run("5. Cue w/o tags + tags form the separate file");
-    }
-    //## 5 ################################################
-
-    //## 6 ################################################
-    // Garbage in the CUE
-    {
-        outDir = resultDir + "Test_6";
-        settings->setValue(Settings::PerTrackCue_Create,  false);
-        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
-        settings->setValue(Settings::OutFiles_Directory, outDir);
-
-        ConverterTester conv(
-                    inDir + "06.garbageInTags.cue",
-                    mHdAudioFile,
-                    "",
-                    "01 - Song01.wav;"
-                    "02 - Song02.wav;"
-                    "03 - Song03.wav;"
-                    "04 - Song04.wav;"
-                    );
-
-        conv.run("6. Garbage in the CUE");
-    }
-    //## 6 #################################################
-
-
-    //## 7 #################################################
-    // With pregap and HTOA
-    {
-        QString dir = resultDir + "Test_07.path(with.symbols and space )";
-        QDir().mkpath(dir);
-        QString audioFile = dir + "CD_10Min.wav";
-        createAudioFile(mFfmpeg, audioFile, 600, true);
 
 
 
-        outDir = resultDir + "Test_7";
-        settings->setValue(Settings::PerTrackCue_Create,  false);
-        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
-        settings->setValue(Settings::OutFiles_Directory,  dir);
-        settings->setValue(Settings::Encoder_TmpDir,      "");
-        ConverterTester conv(
-                    inDir + "07.path(with.symbols and space )/07.path(with.symbols and space ).cue",
-                    audioFile,
-                    "",
-                    "01 - Song01.wav;"
-                    "02 - Song02.wav;"
-                    "03 - Song03.wav;"
-                    "04 - Song04.wav;"
-                    );
-
-        conv.run("7. With pregap and HTOA");
-    }
-    //## 7 #################################################
-
-
-    //## 8 #################################################
-    // With pregap and HTOA
-    {
-        outDir = resultDir + QString::fromUtf8("Test_8/Музыка");
-        settings->setValue(Settings::PerTrackCue_Create,  false);
-        settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
-        settings->setValue(Settings::OutFiles_Directory, outDir);
-
-        ConverterTester conv(
-                    inDir + "01.cuecreator.cue",
-                    mHdAudioFile,
-                    "",
-                    "01 - Song01.wav;"
-                    "02 - Song02.wav;"
-                    "03 - Song03.wav;"
-                    "04 - Song04.wav;"
-                    );
-
-        conv.run("8. With pregap and HTOA");
-    }
-    //## 8 #################################################
-
-}
 
 
 /************************************************
@@ -830,12 +413,16 @@ void TestFlacon::testConvert()
  ************************************************/
 void TestFlacon::testTrackResultFileName()
 {
-    QFETCH(QString, cueFile);
+    QFETCH(QString, cue);
     QFETCH(QString, pattern);
     QFETCH(QString, expected);
 
     settings->setValue(Settings::OutFiles_Pattern, pattern);
     settings->setValue(Settings::OutFiles_Format, "WAV");
+
+
+    QString cueFile = dir() + "/input.cue";
+    writeTextFile(cueFile, cue);
 
     Disk *disk = loadFromCue(cueFile);
 
@@ -859,108 +446,220 @@ void TestFlacon::testTrackResultFileName()
  ************************************************/
 void TestFlacon::testTrackResultFileName_data()
 {
-    QTest::addColumn<QString>("cueFile");
+    QTest::addColumn<QString>("cue");
     QTest::addColumn<QString>("pattern");
     QTest::addColumn<QString>("expected");
 
-    QString cueFile = mTmpDir + "testTrackResultFileName.cue";
 
-    {
-        QStringList cue;
-        cue << "REM GENRE \"Genre\"";
-        cue << "REM DATE 2013";
-        cue << "REM DISCID 123456789";
-        cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
-        cue << "PERFORMER \"Artist\"";
-        cue << "TITLE \"Album\"";
-        cue << "FILE \"en.wav\" WAVE";
-        cue << "  TRACK 01 AUDIO";
-        cue << "    TITLE \"Song01\"";
-        cue << "    INDEX 01 00:00:00";
-        cue << "  TRACK 02 AUDIO";
-        cue << "    TITLE \"Song02\"";
-        cue << "    INDEX 01 03:39:10";
-        cue << "  TRACK 03 AUDIO";
-        cue << "    TITLE \"Song03\"";
-        cue << "    INDEX 01 07:25:42";
-        cue << "  TRACK 04 AUDIO";
-        cue << "    TITLE \"Song04\"";
-        cue << "    INDEX 01 12:04:72";
-
-        writeTextFile(cueFile, cue);
-    }
-
-
-    QTest::newRow("1")
-            << cueFile
+    QTest::newRow("1.1")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
             << "%a/%y - %A/%n - %t"
             << "Artist/2013 - Album/01 - Song01.wav";
 
-    QTest::newRow("2")
-            << cueFile
+    QTest::newRow("1.2")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "N/n/A/a/t/y/g"
             << "N/n/A/a/t/y/g.wav";
 
-    QTest::newRow("3")
-            << cueFile
+    QTest::newRow("1.3")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "N/n/A/a/t/y/g"
             << "N/n/A/a/t/y/g.wav";
 
-    QTest::newRow("4")
-            << cueFile
+    QTest::newRow("1.4")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "/%%/%Q/%N/%n/%A/%a/%t/%y/%g/%%"
             << "/%/%Q/04/01/Album/Artist/Song01/2013/Genre/%.wav";
 
 
-    QTest::newRow("5")
-            << cueFile
+    QTest::newRow("1.5")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "%%Q/%%N/%%n/%%A/%%a/%%t/%%y/%%g"
             << "%Q/%N/%n/%A/%a/%t/%y/%g.wav";
 
-    QTest::newRow("6")
-            << cueFile
+    QTest::newRow("1.6")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "%%%Q/%%%N/%%%n/%%%A/%%%a/%%%t/%%%y/%%%g/%%%"
             << "%%Q/%04/%01/%Album/%Artist/%Song01/%2013/%Genre/%%.wav";
 
-    cueFile = TEST_OUT_DIR "testTrackResultFileName2.cue";
-    {
-        QStringList cue;
-        cue << "REM DATE 2013";
-        cue << "REM DISCID 123456789";
-        cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
-        cue << "PERFORMER \"Artist\"";
-        cue << "FILE \"en.wav\" WAVE";
-        cue << "  TRACK 01 AUDIO";
-        cue << "    TITLE \"Song01\"";
-        cue << "    INDEX 01 00:00:00";
-        cue << "  TRACK 02 AUDIO";
-        cue << "    TITLE \"Song02\"";
-        cue << "    INDEX 01 03:39:10";
-        cue << "  TRACK 03 AUDIO";
-        cue << "    TITLE \"Song03\"";
-        cue << "    INDEX 01 07:25:42";
-        cue << "  TRACK 04 AUDIO";
-        cue << "    TITLE \"Song04\"";
-        cue << "    INDEX 01 12:04:72";
+    QTest::newRow("2.1")
+            <<  "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
 
-        writeTextFile(cueFile, cue);
-    }
-
-
-    QTest::newRow("1")
-            << cueFile
             << "{}/{Text}/{%n}/{%n Text}/{%A}/{%A Text}"
             << "{}/{Text}/01/01 Text//.wav";
 
 
-    QTest::newRow("2")
-            << cueFile
+    QTest::newRow("2.2")
+            <<  "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "Test{Text/{%n}/{%n Text}/{%A}/{%A Text}"
             << "Test{Text/01/01 Text//.wav";
 
 
-    QTest::newRow("3")
-            << cueFile
+    QTest::newRow("2.3")
+            <<  "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "Text}/{%n}/{%n Text}/{%A}/{%A Text}"
             << "Text}/01/01 Text//.wav";
 
@@ -1050,13 +749,13 @@ void TestFlacon::testTrackResultFilePath_data()
             << "."
             << "%a/%y - %A/%n - %t"
             << mTmpDir + "/Artist/2013 - Album/01 - Song01.wav"
-            << mCdAudioFile;
+            << mAudio_cd_wav;
 
     QTest::newRow("6. empty with CdAudioFile")
             << ""
             << "%a/%y - %A/%n - %t"
             << mTmpDir + "/Artist/2013 - Album/01 - Song01.wav"
-            << mCdAudioFile;
+            << mAudio_cd_wav;
 
     QTest::newRow("7: ~")
             << "~"
@@ -1080,16 +779,11 @@ void TestFlacon::testTrackSetCodepages()
     QFETCH(QString, codepageBefore);
     QFETCH(QString, codepageAfter);
 
-    QString outFilePattern = QString("%1%2.%3.%4")
-            .arg(TEST_OUT_DIR)
-            .arg(count, 2, 10, QChar('0'))
-            .arg(QTest::currentDataTag());
-
     QString testDataDir = TEST_DATA_DIR;
 
-    QString testCueFile = outFilePattern.arg("cue");
-    QString expectedFile = outFilePattern.arg("expected");
-    QString resultFile = outFilePattern.arg("result");
+    QString testCueFile  = dir() + "/input.cue";
+    QString expectedFile = dir() + "/expected.cue";
+    QString resultFile   = dir() + "/result.cue";
 
     if (QFileInfo(testCueFile).exists())
         QFile(testCueFile).remove();
@@ -1794,7 +1488,7 @@ void TestFlacon::testFindAudioFile()
 
     foreach (QString f, audioFiles.split(","))
     {
-        QFile(mCdAudioFile).link(dir + f.trimmed());
+        QFile(mAudio_cd_wav).link(dir + f.trimmed());
     }
 
 
@@ -1980,21 +1674,22 @@ void TestFlacon::testFindAudioFile_data()
                "FileTag(2).wav";
 }
 
-struct TestCueFile {
+struct TestCueFile_ {
     QString name;
     QString fileTag;
     QString fileTag2;
 };
-Q_DECLARE_METATYPE(TestCueFile)
+Q_DECLARE_METATYPE(TestCueFile_)
 
 
 struct TestFindCueFileData {
-    QList<TestCueFile> cueFiles;
+    QList<TestCueFile_> cueFiles;
     QStringList audioFiles;
     QString chekAudioFile;
     QString expected;
 };
 Q_DECLARE_METATYPE(TestFindCueFileData)
+
 
 /************************************************
 
@@ -2012,10 +1707,10 @@ void TestFlacon::testFindCueFile()
 
     foreach (QString f, test.audioFiles)
     {
-        QFile(mCdAudioFile).link(dir + f.trimmed());
+        QFile(mAudio_cd_wav).link(dir + f.trimmed());
     }
 
-    foreach (TestCueFile cueFile, test.cueFiles)
+    foreach (TestCueFile_ cueFile, test.cueFiles)
     {
         QStringList cue;
         cue << "REM DATE 2013";
@@ -2057,7 +1752,7 @@ void TestFlacon::testFindCueFile_data()
 
     // -------------------------------------
     test = TestFindCueFileData();
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "1.cue";
     test.cueFiles.last().fileTag= "FILE \"1.wav\" WAVE";
 
@@ -2069,11 +1764,11 @@ void TestFlacon::testFindCueFile_data()
 
     // -------------------------------------
     test = TestFindCueFileData();
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "1.cue";
     test.cueFiles.last().fileTag= "FILE \"1.wav\" WAVE";
 
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "2.cue";
     test.cueFiles.last().fileTag= "FILE \"2.wav\" WAVE";
 
@@ -2087,11 +1782,11 @@ void TestFlacon::testFindCueFile_data()
 
     // -------------------------------------
     test = TestFindCueFileData();
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "1.cue";
     test.cueFiles.last().fileTag= "FILE \"1.wav\" WAVE";
 
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "2.cue";
     test.cueFiles.last().fileTag= "FILE \"2.wav\" WAVE";
 
@@ -2105,7 +1800,7 @@ void TestFlacon::testFindCueFile_data()
 
     // -------------------------------------
     test = TestFindCueFileData();
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "multi.cue";
     test.cueFiles.last().fileTag = "FILE \"1.wav\" WAVE";
     test.cueFiles.last().fileTag2= "FILE \"2.wav\" WAVE";
@@ -2120,7 +1815,7 @@ void TestFlacon::testFindCueFile_data()
 
     // -------------------------------------
     test = TestFindCueFileData();
-    test.cueFiles.append(TestCueFile());
+    test.cueFiles.append(TestCueFile_());
     test.cueFiles.last().name = "multi.cue";
     test.cueFiles.last().fileTag = "FILE \"1.wav\" WAVE";
     test.cueFiles.last().fileTag2= "FILE \"2.wav\" WAVE";
@@ -2132,4 +1827,6 @@ void TestFlacon::testFindCueFile_data()
     test.expected = "multi.cue";
     QTest::newRow("multi.cue multi_1.wav multi_2.wav") << test;
 }
+
+
 QTEST_MAIN(TestFlacon)

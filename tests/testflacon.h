@@ -27,6 +27,7 @@
 #ifndef TEST_FLACON_H
 #define TEST_FLACON_H
 
+#include <QTest>
 #include <QObject>
 #include <QStringList>
 #include <QMap>
@@ -34,27 +35,6 @@
 class Disk;
 
 #define SettingsValues QMap<QString, QVariant>
-
-class ConverterTester
-{
-public:
-    ConverterTester(const QString &cueFile,
-                    const QString &audioFile,
-                    const QString &expectedCue,
-                    const QString &resultFiles);
-
-
-    void run(const QString &name);
-
-    Disk *disk() { return mDisk; }
-
-private:
-    Disk *mDisk;
-    QStringList mResultFiles;
-    QString mExpectedCue;
-
-    ConverterTester(const ConverterTester &other) {}
-};
 
 class TestFlacon : public QObject
 {
@@ -72,6 +52,24 @@ private:
 
 private slots:
     void initTestCase();
+    void init();
+
+    void testReadWavHeader();
+    void testReadWavHeader_data();
+
+    void testFormatWavLast();
+
+    void testFormat();
+    void testFormat_data();
+
+    void testFormatFromFile();
+    void testFormatFromFile_data();
+
+    void testInputAudioFile();
+    void testInputAudioFile_data();
+
+    void testDecoder();
+    void testDecoder_data();
 
     void testByteArraySplit_data();
     void testByteArraySplit();
@@ -102,11 +100,10 @@ private slots:
     void testFindCueFile_data();
     void testFindCueFile();
 
-
     void testConvert();
+    void testConvert_data();
 
 private:
-    void createAudioFile(const QString &program, const QString &fileName, int duration, bool cdQuality);
     void writeTextFile( const QString &fileName, const QString &content);
     void writeTextFile( const QString &fileName, const QStringList &content);
 
@@ -116,17 +113,37 @@ private:
     void checkFileNotExists(const QString &fileName);
 
     void applySettings(const SettingsValues &config);
+    QString dir();
 
     Disk *standardDisk();
 
     QString mFfmpeg;
-    QString mCdAudioFile;
-    QString mHdAudioFile;
+    QString mAudio_cd_wav;
+    QString mAudio_24x96_wav;
+
+    QString mAudio_cd_ape;
+    QString mAudio_24x96_ape;
+
+
+    QString mAudio_cd_flac;
+    QString mAudio_24x96_flac;
+
+    QString mAudio_cd_wv;
+    QString mAudio_24x96_wv;
+
+    QString mAudio_cd_tta;
+    QString mAudio_24x96_tta;
+
     const QString mTmpDir;
     const QString mDataDir;
     Disk *mStandardDisk;
+
+    static int mTestNum;
 };
 
+
+
 QStringList &operator<<(QStringList &list, int value);
+
 
 #endif // TEST_FLACON_H

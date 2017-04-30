@@ -31,6 +31,7 @@
 #include "converter/converter.h"
 #include "outformat.h"
 #include "inputaudiofile.h"
+#include "formats/format.h"
 #include "configdialog/configdialog.h"
 #include "aboutdialog/aboutdialog.h"
 #include "cuediskselectdialog/cuediskselectdialog.h"
@@ -597,10 +598,10 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
 
     if (includeAudio)
     {
-        foreach(InputAudioFormat format, InputAudioFormat::allFormats())
+        foreach(const AudioFormat *format, AudioFormat::inputFormats())
         {
-            allFlt << QString(" *.%1").arg(format.ext());
-            flt << fltPattern.arg(format.name(), format.ext());
+            allFlt << QString(" *.%1").arg(format->ext());
+            flt << fltPattern.arg(format->name(), format->ext());
         }
     }
 

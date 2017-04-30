@@ -24,6 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
+#include "formats/format.h"
 #include "settings.h"
 #include "inputaudiofile.h"
 #include "outformat.h"
@@ -53,14 +54,13 @@
 #endif
 
 QString Settings::mFileName;
+static Settings *inst = NULL;
 
 /************************************************
 
  ************************************************/
 Settings *Settings::instance()
 {
-    static Settings *inst = 0;
-
     if (!inst)
     {
         if (mFileName.isEmpty())
@@ -79,6 +79,8 @@ Settings *Settings::instance()
 void Settings::setFileName(const QString &fileName)
 {
     mFileName = fileName;
+    delete inst;
+    inst = 0;
 }
 
 
@@ -159,9 +161,9 @@ void Settings::init()
     }
 
 
-    foreach (InputAudioFormat format, InputAudioFormat::allFormats())
+    foreach (const AudioFormat *format, AudioFormat::inputFormats())
     {
-        mPrograms << format.program();
+        mPrograms << format->decoderProgramName();
     }
 
     mPrograms.remove("");

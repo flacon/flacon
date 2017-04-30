@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,39 +24,35 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef SPLITTER_H
-#define SPLITTER_H
+#include "tta.h"
+#include <QDebug>
 
-#include "outformat.h"
-#include "converterthread.h"
+REGISTER_FORMAT(Format_Tta)
 
-class Disk;
-class Track;
-class QProcess;
 
-class Splitter: public ConverterThread
+/************************************************
+ *
+ ************************************************/
+QStringList Format_Tta::decoderArgs(const QString &fileName) const
 {
-    Q_OBJECT
-public:
-    Splitter(Disk *disk, const OutFormat *format, QObject *parent = 0);
+    QStringList args;
+    args << fileName;
+    args << "-";
+    args << "-d";
 
-    bool isReadyStart() const;
-    QString workDir() const { return mWorkDir; }
+    return args;
+}
 
-public slots:
-    void inputDataReady(Track *track, const QString &fileName);
 
-protected:
-    void doRun();
-    void doStop();
+/************************************************
+ *
+ ************************************************/
+QString Format_Tta::filterDecoderStderr(const QString &stdErr) const
+{
 
-private slots:
-    void decoderProgress(int percent);
+    int pos = stdErr.indexOf("Error:");
+    if (pos>-1)
+        return stdErr.mid(pos + 6).trimmed();
 
-private:
-    QString mWorkDir;
-    QProcess *mProcess;
-    Track *mTrack;
-};
-
-#endif // SPLITTER_H
+    return "";
+}

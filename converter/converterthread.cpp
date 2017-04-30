@@ -32,9 +32,10 @@
 /************************************************
 
  ************************************************/
-ConverterThread::ConverterThread(Disk *disk, QObject *parent):
+ConverterThread::ConverterThread(Disk *disk, const OutFormat *format, QObject *parent):
     QThread(parent),
-    mDisk(disk)
+    mDisk(disk),
+    mFormat(format)
 {
 }
 

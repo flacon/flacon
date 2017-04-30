@@ -24,37 +24,58 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef WV_H
-#define WV_H
+#ifndef WAV_H
+#define WAV_H
 
 #include "outformat.h"
-#include "configdialog.h"
-#include "ui_wv_config.h"
+#include "format.h"
+#include "encoder.h"
 
-class OutFormat_Wv: public OutFormat
+class OutFormat_Wav: public OutFormat
 {
 public:
-    OutFormat_Wv();
+    OutFormat_Wav();
 
-    virtual QString encoderProgramName() const { return "wavpack"; }
-    virtual QString gainProgramName() const { return "wvgain"; }
+    virtual QString encoderProgramName() const { return ""; }
+    virtual QString gainProgramName() const { return ""; }
 
     virtual QStringList encoderArgs(Track *track, const QString &outFile) const;
     virtual QStringList gainArgs(const QStringList &files) const;
 
+
     QHash<QString, QVariant> defaultParameters() const;
     EncoderConfigPage *configPage(QWidget *parent = 0) const;
+
+    virtual bool hasConfigPage() const { return false; }
+
+    virtual Encoder *createEncoder(Track *track, QObject *parent = 0) const;
+    virtual Gain *createGain(Disk *disk, Track *track, QObject *parent = 0) const;
 };
 
 
-class ConfigPage_Wv: public EncoderConfigPage, private Ui::ConfigPage_Wv
+class Encoder_Wav: public Encoder
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Wv(QWidget *parent = 0);
+    explicit Encoder_Wav(const OutFormat *format, Track *track, QObject *parent = 0);
 
-    virtual void load();
-    virtual void write();
+protected:
+    void doRun();
+    virtual QStringList processArgs() const;
 };
 
-#endif // WV_H
+class Format_Wav: public AudioFormat
+{
+public:
+    virtual QString name() const { return "WAV"; }
+    virtual QString ext() const { return "wav"; }
+    virtual bool isInputFormat() const { return true; }
+
+    virtual QString decoderProgramName() const { return ""; }
+    virtual QStringList decoderArgs(const QString &fileName) const;
+
+    virtual QByteArray magic() const { return "RIFF"; }
+    virtual uint const magicOffset() const { return 0; }
+};
+
+#endif // WAV_H

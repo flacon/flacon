@@ -28,6 +28,7 @@
 #include "settings.h"
 #include "project.h"
 #include "inputaudiofile.h"
+#include "formats/format.h"
 #include "outformat.h"
 #include "internet/dataprovider.h"
 
@@ -527,8 +528,8 @@ QFileInfoList matchedAudioFiles(const CueTagSet &cueTags, const QFileInfoList &a
     }
 
     QString audioExt;
-    foreach (InputAudioFormat format, InputAudioFormat::allFormats())
-        audioExt += (audioExt.isEmpty() ? "\\." : "|\\.") + format.ext();
+    foreach (const AudioFormat *format, AudioFormat::inputFormats())
+        audioExt += (audioExt.isEmpty() ? "\\." : "|\\.") + format->ext();
 
     foreach (const QString &pattern, patterns)
     {
@@ -620,8 +621,8 @@ void Disk::findAudioFile(const CueTagSet &cueTags)
         return;
 
     QStringList exts;
-    foreach (InputAudioFormat format, InputAudioFormat::allFormats())
-        exts << QString("*.%1").arg(format.ext());
+    foreach (const AudioFormat *format, AudioFormat::inputFormats())
+        exts << QString("*.%1").arg(format->ext());
 
     QFileInfo cueFile(mCueFile);
     QFileInfoList files = cueFile.dir().entryInfoList(exts, QDir::Files | QDir::Readable);

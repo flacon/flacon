@@ -29,6 +29,7 @@
 #include "project.h"
 #include "disk.h"
 #include "inputaudiofile.h"
+#include "decoder.h"
 
 #include <iostream>
 #include <QFileInfo>
@@ -37,6 +38,7 @@
 #include <QProcess>
 #include <QRegExp>
 #include <QTextCodec>
+#include <QUuid>
 #include <QDebug>
 
 //#define DEBUG_CUE_ON
@@ -81,10 +83,10 @@ private:
 /************************************************
 
  ************************************************/
-Splitter::Splitter(Disk *disk, QObject *parent):
-    ConverterThread(disk, parent),
+Splitter::Splitter(Disk *disk, const OutFormat *format, QObject *parent):
+    ConverterThread(disk, format, parent),
     mProcess(0),
-    mPreGapExists(false)
+    mTrack(NULL)
 {    
     QString tmpDir = settings->value(Settings::Encoder_TmpDir).toString();
 
@@ -92,8 +94,6 @@ Splitter::Splitter(Disk *disk, QObject *parent):
         mWorkDir = QFileInfo(disk->track(0)->resultFilePath()).dir().absolutePath();
     else
         mWorkDir = QDir(QString("%1/flacon.%2").arg(tmpDir).arg(QCoreApplication::applicationPid())).absolutePath();
-
-    mFilePrefix = QString("tmp-%1-%2.").arg(QCoreApplication::applicationPid()).arg(project->indexOf(disk));
 }
 
 
@@ -128,190 +128,105 @@ void Splitter::doStop()
     }
 }
 
+struct SplitterRequest {
+    CueTime start;
+    CueTime end;
+    QString outFileName;
+    Track *track;
+};
 
 /************************************************
  Split audio file to temporary dir
  ************************************************/
 void Splitter::doRun()
 {
-    QStringList args;
-    args << "split";
-    args << "-w";
-    args << "-O" << "always";
-    args << "-n" << "%04d";
-    args << "-t" << mFilePrefix +"%n";
-    args << "-d" << mWorkDir;
-    args << QDir::toNativeSeparators(disk()->audioFileName());
-    //qDebug() << args;
+    mTrack = disk()->track(0);
+    Decoder decoder;
+    connect(&decoder, SIGNAL(progress(int)),
+            this, SLOT(decoderProgress(int)));
 
-    QString shntool = settings->value(Settings::Prog_Shntool).toString();
-    mProcess = new QProcess();
-    mProcess->setReadChannel(QProcess::StandardError);
+    if (!decoder.open(disk()->audioFileName()))
+    {
+        error(mTrack,
+              tr("I can't read <b>%1</b>:<br>%2",
+                 "Splitter error. %1 is a file name, %2 is a system error text.")
+              .arg(disk()->audioFileName())
+              .arg(decoder.errorString()));
+        return;
+    }
 
-    mProcess->start(QDir::toNativeSeparators(shntool), args);
-    mProcess->waitForStarted();
+    bool separatePregap = format()->createCue() &&
+                          disk()->track(0)->cueIndex(1).milliseconds() > 0 &&
+                          OutFormat::currentFormat()->preGapType() == OutFormat::PreGapExtractToFile;
 
-    sendCueData();
-    mProcess->closeWriteChannel();
 
-    parseOut();
-    mProcess->waitForFinished(-1);
+    bool embededPregap  = format()->createCue() &&
+                          disk()->track(0)->cueIndex(1).milliseconds() > 0 &&
+                          OutFormat::currentFormat()->preGapType() == OutFormat::PreGapAddToFirstTrack;
 
-    QProcess *proc = mProcess;
-    mProcess = 0;
-    delete proc;
+    QList<SplitterRequest> requests;
+
+
+    // Extract pregap to separate file ....................
+    if (separatePregap)
+    {
+        SplitterRequest req;
+        req.track = disk()->preGapTrack();
+        req.outFileName = QDir::toNativeSeparators(QString("%1/flacon_%2_%3.wav").arg(mWorkDir).arg("00").arg(QUuid::createUuid().toString().mid(1, 36)));
+        req.start = disk()->track(0)->cueIndex(0);
+        req.end   = disk()->track(0)->cueIndex(1);
+        requests << req;
+    }
+    // Extract pregap to separate file ....................
+
+    for (int i=0; i<disk()->count(); ++i)
+    {
+        SplitterRequest req;
+        req.track = disk()->track(i);
+        req.outFileName = QDir::toNativeSeparators(QString("%1/flacon_%2_%3.wav").arg(mWorkDir).arg(i, 2, 10, QChar('0')).arg(QUuid::createUuid().toString().mid(1, 36)));
+
+        if (i==0 && embededPregap)
+            req.start = CueTime("00:00:00");
+        else
+            req.start = disk()->track(i)->cueIndex(1);
+
+        if (i<disk()->count()-1)
+            req.end = disk()->track(i+1)->cueIndex(01);
+
+        requests << req;
+    }
+
+    foreach (SplitterRequest req, requests)
+    {
+        mTrack = req.track;
+        bool ret = decoder.extract(req.start, req.end, req.outFileName);
+        if (!ret)
+        {
+            qWarning() << "Splitter error for track " << req.track->index() << ": " <<  decoder.errorString();
+            deleteFile(req.outFileName);
+            error(mTrack, decoder.errorString());
+            return;
+        }
+
+        emit trackReady(req.track, req.outFileName);
+    }
+
 
     if (OutFormat::currentFormat()->createCue())
     {
         CueCreator cue(disk());
-        cue.setHasPregapFile(mPreGapExists);
+        cue.setHasPregapFile(separatePregap);
         if (!cue.write())
             error(disk()->track(0), cue.errorString());
     }
 }
 
 /************************************************
-
- ************************************************/
-
-void Splitter::parseOut()
+ *
+ ***********************************************/
+void Splitter::decoderProgress(int percent)
 {
-    Track *track = disk()->track(0);
-
-    bool deletePregap = !OutFormat::currentFormat()->createCue();
-    char c;
-    QByteArray buf;
-
-    while(mProcess->waitForReadyRead(-1))
-    {
-        while (mProcess->read(&c, 1))
-        {
-            // .......................................
-            if (c == '\n')
-            {
-                if (buf.contains(": error:"))
-                {
-                    error(track, QString::fromLocal8Bit(buf.mid(17)));
-                    return;
-                }
-                buf = "";
-            }
-
-
-            // .......................................
-            else if (c == '%')
-            {
-                bool ok;
-                int percent = buf.right(3).trimmed().toInt(&ok);
-                if (!ok)
-                    continue;
-
-
-                // Splitting [/home/user/inDir/input.wav] (10:00.000) --> [/home/user/outDir/tmp-15196-00000.wav] (0:00.440) : 100% OK
-
-                QString pattern = "[" +  mWorkDir + QDir::separator() + mFilePrefix;
-                pattern.replace('\\', '/');
-                QString sbuf = QString::fromLocal8Bit(buf);
-                int n = sbuf.indexOf(pattern, disk()->audioFileName().length() + 20);
-
-                if (n < 0 && sbuf.length() < n + pattern.length() + 4)
-                {
-                    qWarning() << "I can't parse" << sbuf;
-                    continue;
-                }
-
-                QString fileName = sbuf.mid(n + 1, + pattern.length() - 1 + 4 + 4); // -1 for leading "[", 4 for 4 digits tracknum, 4 - file ext ".wav"
-
-                int trackNum = fileName.mid(fileName.length() - 8, 4).toInt(&ok);
-
-                if (!ok)
-                {
-                    qWarning() << "I can't parse" << sbuf;
-                    continue;
-                }
-
-
-
-                if (trackNum > disk()->count())
-                {
-                    error(disk()->track(0), tr("The number of tracks is higher than expected."));
-                    return;
-                }
-
-                track = (trackNum == 0) ? disk()->preGapTrack() : disk()->track(trackNum - 1);
-                mPreGapExists = mPreGapExists || (trackNum == 0);
-
-                emit trackProgress(track, Track::Splitting, percent);
-
-                if (percent == 100)
-                {
-                    if (trackNum == 0 && deletePregap)
-                        deleteFile(fileName);
-                    else
-                        emit trackReady(track, fileName);
-                }
-            }
-            // .......................................
-            else if (c == '\\')
-            {
-                buf += '/';
-            }
-            // .......................................
-            else
-            {
-                buf += c;
-            }
-
-            //std::cerr << c;
-        }
-    }
-}
-
-
-/************************************************
-
- ************************************************/
-void Splitter::sendCueData()
-{
-    bool cdQuality = disk()->audioFile()->isCdQuality();
-    OutFormat *format = OutFormat::currentFormat();
-
-    bool fakeIndex = (format->createCue() and
-                      format->preGapType() == OutFormat::PreGapAddToFirstTrack);
-
-    QString s = QString("FILE \"%1\" WAVE").arg(disk()->audioFileName());
-    mProcess->write(s.toLocal8Bit() + "\n");
-
-    for (int t=0; t<disk()->count(); ++t)
-    {
-        Track *track = disk()->track(t);
-
-        QString s = QString("TRACK %1 AUDIO").arg(t + 1);
-        DEBUG_CUE << s;
-        mProcess->write(s.toLocal8Bit() + "\n");
-
-        if (fakeIndex && t == 0)
-        {
-            QString s = cdQuality ? "  INDEX 01 00:00:00" : "  INDEX 01 00:00.000";
-            DEBUG_CUE << s;
-            mProcess->write(s.toLocal8Bit() + "\n");
-        }
-        else
-        {
-
-            for (int i=0; i<100; ++i)
-            {
-                if (!track->cueIndex(i).isNull())
-                {
-                    QString s = QString("  INDEX %1 %2")
-                            .arg(i, 2, 10, QChar('0'))
-                            .arg(track->cueIndex(i).toString(cdQuality));
-                DEBUG_CUE << s;
-                mProcess->write(s.toLocal8Bit() + "\n");
-                }
-            }
-        }
-    }
+    emit trackProgress(mTrack, Track::Splitting, percent);
 }
 
 

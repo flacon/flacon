@@ -58,7 +58,6 @@ private slots:
     void processBytesWritten(qint64 bytes);
 
 private:
-    const OutFormat *mFormat;
     Track *mTrack;
     QString mWorkDir;
     QString mInputFile;

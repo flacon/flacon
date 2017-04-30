@@ -27,6 +27,16 @@
 #include "wav.h"
 #include <QFile>
 
+REGISTER_FORMAT(Format_Wav)
+
+/************************************************
+ *
+ ************************************************/
+QStringList Format_Wav::decoderArgs(const QString &fileName) const
+{
+    return QStringList();
+}
+
 
 /************************************************
 
@@ -134,5 +144,8 @@ QStringList Encoder_Wav::processArgs() const
 {
     return QStringList();
 }
+
+
+
 
 

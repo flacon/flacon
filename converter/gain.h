@@ -54,7 +54,6 @@ protected:
     void doStop();
 
 private:
-    const OutFormat *mFormat;
     QList<Track*> mTracks;
     QHash<Track*, QString> mInputFiles;
     QProcess *mProcess;

@@ -30,21 +30,7 @@
 #include <QString>
 #include <QList>
 
-class InputAudioFormat
-{
-public:
-    InputAudioFormat(const QString &name, const QString &ext, const QString &program);
-
-    QString name() const { return mName; }
-    QString ext() const { return mExt; }
-    QString program() const { return mProgram; }
-
-    static QList<InputAudioFormat> allFormats();
-private:
-    QString mName;
-    QString mExt;
-    QString mProgram;
-};
+class AudioFormat;
 
 class InputAudioFile
 {
@@ -60,6 +46,7 @@ public:
     QString errorString() const { return mErrorString; }
     uint duration() const { return mDuration; }
 
+    const AudioFormat *format() const { return mFormat; }
 private:
 
     QString mFileName;
@@ -68,6 +55,7 @@ private:
     int mSampleRate;
     bool mCdQuality;
     uint mDuration;
+    const AudioFormat *mFormat;
 
     bool load();
 };
