@@ -83,10 +83,9 @@ private:
 /************************************************
 
  ************************************************/
-Splitter::Splitter(Disk *disk, QObject *parent):
-    ConverterThread(disk, parent),
+Splitter::Splitter(Disk *disk, const OutFormat *format, QObject *parent):
+    ConverterThread(disk, format, parent),
     mProcess(0),
-    mPreGapExists(false),
     mTrack(NULL)
 {    
     QString tmpDir = settings->value(Settings::Encoder_TmpDir).toString();
@@ -95,8 +94,6 @@ Splitter::Splitter(Disk *disk, QObject *parent):
         mWorkDir = QFileInfo(disk->track(0)->resultFilePath()).dir().absolutePath();
     else
         mWorkDir = QDir(QString("%1/flacon.%2").arg(tmpDir).arg(QCoreApplication::applicationPid())).absolutePath();
-
-    mFilePrefix = QString("tmp-%1-%2.").arg(QCoreApplication::applicationPid()).arg(project->indexOf(disk));
 }
 
 
@@ -131,6 +128,12 @@ void Splitter::doStop()
     }
 }
 
+struct SplitterRequest {
+    CueTime start;
+    CueTime end;
+    QString outFileName;
+    Track *track;
+};
 
 /************************************************
  Split audio file to temporary dir
@@ -152,42 +155,67 @@ void Splitter::doRun()
         return;
     }
 
-    bool ret;
+    bool separatePregap = format()->createCue() &&
+                          disk()->track(0)->cueIndex(1).milliseconds() > 0 &&
+                          OutFormat::currentFormat()->preGapType() == OutFormat::PreGapExtractToFile;
+
+
+    bool embededPregap  = format()->createCue() &&
+                          disk()->track(0)->cueIndex(1).milliseconds() > 0 &&
+                          OutFormat::currentFormat()->preGapType() == OutFormat::PreGapAddToFirstTrack;
+
+    QList<SplitterRequest> requests;
+
+
+    // Extract pregap to separate file ....................
+    if (separatePregap)
+    {
+        SplitterRequest req;
+        req.track = disk()->preGapTrack();
+        req.outFileName = QDir::toNativeSeparators(QString("%1/flacon_%2_%3.wav").arg(mWorkDir).arg("00").arg(QUuid::createUuid().toString().mid(1, 36)));
+        req.start = disk()->track(0)->cueIndex(0);
+        req.end   = disk()->track(0)->cueIndex(1);
+        requests << req;
+    }
+    // Extract pregap to separate file ....................
 
     for (int i=0; i<disk()->count(); ++i)
     {
-        mTrack = disk()->track(i);
+        SplitterRequest req;
+        req.track = disk()->track(i);
+        req.outFileName = QDir::toNativeSeparators(QString("%1/flacon_%2_%3.wav").arg(mWorkDir).arg(i, 2, 10, QChar('0')).arg(QUuid::createUuid().toString().mid(1, 36)));
 
+        if (i==0 && embededPregap)
+            req.start = CueTime("00:00:00");
+        else
+            req.start = disk()->track(i)->cueIndex(1);
 
-        QString outFileName = QDir::toNativeSeparators(mWorkDir + "/flacon_" + QUuid::createUuid().toString().mid(1, 36) + ".wav");
-
-        CueTime start = disk()->track(i)->cueIndex(01);
-        CueTime end;
         if (i<disk()->count()-1)
-        {
-            //            if (!disk()->track(i+1)->cueIndex(00).isNull())
-            //                end = disk()->track(i+1)->cueIndex(00);
-            //            else
-            end = disk()->track(i+1)->cueIndex(01);
-        }
+            req.end = disk()->track(i+1)->cueIndex(01);
 
-        ret = decoder.extract(start, end, outFileName);
+        requests << req;
+    }
 
+    foreach (SplitterRequest req, requests)
+    {
+        mTrack = req.track;
+        bool ret = decoder.extract(req.start, req.end, req.outFileName);
         if (!ret)
         {
-            deleteFile(outFileName);
+            qWarning() << "Splitter error for track " << req.track->index() << ": " <<  decoder.errorString();
+            deleteFile(req.outFileName);
             error(mTrack, decoder.errorString());
             return;
         }
 
-        emit trackReady(mTrack, outFileName);
+        emit trackReady(req.track, req.outFileName);
     }
 
 
     if (OutFormat::currentFormat()->createCue())
     {
         CueCreator cue(disk());
-        cue.setHasPregapFile(mPreGapExists);
+        cue.setHasPregapFile(separatePregap);
         if (!cue.write())
             error(disk()->track(0), cue.errorString());
     }

@@ -31,11 +31,13 @@
 #include <QThread>
 #include <QString>
 
+class OutFormat;
+
 class ConverterThread: public QThread
 {
     Q_OBJECT
 public:
-    explicit ConverterThread(Disk *disk, QObject *parent = 0);
+    explicit ConverterThread(Disk *disk, const OutFormat *format, QObject *parent = 0);
     virtual ~ConverterThread();
 
     Disk *disk() const { return mDisk; }
@@ -61,8 +63,11 @@ protected:
     bool deleteFile(const QString &fileName);
 
     void debugArguments(const QString &prog, const QStringList &args);
+    const OutFormat *format() const { return mFormat; }
+
 private:
     Disk *mDisk;
+    const OutFormat *mFormat;
 };
 
 #endif // CONVERTERTHREAD_H

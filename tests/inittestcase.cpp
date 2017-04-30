@@ -34,7 +34,6 @@
 #include <QDir>
 #include <QDebug>
 
-
 #ifdef Q_OS_WIN
     #define PATH_ENV_SEPARATOR ';'
     #define BINARY_EXT ".exe"
@@ -93,6 +92,9 @@ void TestFlacon::initTestCase()
     if (findProgram("wavpack").isEmpty())  QFAIL("wavpack program not found");
     if (findProgram("ttaenc").isEmpty())   QFAIL("ttaenc program not found");
 
+    if (!QDir().mkpath(mTmpDir))
+        QTest::qFail(QString("Can't create directory '%1'").arg(mTmpDir).toLocal8Bit(), __FILE__, __LINE__);
+
 
     mAudio_cd_wav  = mTmpDir + "CD.wav";
     mAudio_cd_ape  = mTmpDir + "CD.ape";
@@ -120,3 +122,81 @@ void TestFlacon::initTestCase()
     encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_tta);
 
 }
+
+QString safePath(const QString &path)
+{
+    QString res = path;
+    res = res.replace(' ', '_');
+    res = res.replace('\t', '_');
+    res = res.replace('\n', '_');
+    res = res.replace('/', '_');
+    return res;
+}
+
+
+QString TestFlacon::dir()
+{
+    QString test    = QString::fromLocal8Bit(QTest::currentTestFunction());
+    QString subtest = QString::fromLocal8Bit(QTest::currentDataTag());
+
+
+    return QDir::cleanPath(QString("%1/%2/%3")
+                    .arg(TEST_OUT_DIR)
+                    .arg(safePath(test))
+                    .arg(safePath(subtest)));
+
+}
+
+
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+bool removeRecursively(QString dirName)
+{
+    bool result = true;
+    QDir dir(dirName);
+
+    if (dir.exists(dirName))
+    {
+        foreach(QFileInfo fi, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files, QDir::DirsFirst))
+        {
+            if (fi.isDir())
+                result = removeRecursively(fi.absoluteFilePath());
+            else
+                result = QFile::remove(fi.absoluteFilePath());
+
+            if (!result)
+                return result;
+        }
+
+        result = dir.rmdir(dirName);
+    }
+
+    return result;
+}
+
+#endif
+
+void TestFlacon::init()
+{
+    static QString prevTestFunction;
+    if (prevTestFunction != QTest::currentTestFunction())
+    {
+        prevTestFunction = QTest::currentTestFunction();
+        mTestNum++;
+    }
+
+    QString dir = this->dir();
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    removeRecursively(dir);
+#else
+    QDir(dir).removeRecursively();
+#endif
+    if (!QDir().mkpath(dir))
+    {
+        QTest::qFail(QString("Can't create directory '%1'").arg(dir).toLocal8Bit(), __FILE__, __LINE__);
+    }
+
+    Settings::setFileName(dir + "/flacon.conf");
+}
+

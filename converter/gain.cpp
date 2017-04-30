@@ -34,8 +34,7 @@
 
  ************************************************/
 Gain::Gain(const OutFormat *format, Disk *disk, Track *track, QObject *parent):
-    ConverterThread(disk, parent),
-    mFormat(format),
+    ConverterThread(disk, format, parent),
     mProcess(0)
 {
     if (track)
@@ -100,7 +99,7 @@ void Gain::doRun()
         files << QDir::toNativeSeparators(i.value());
     }
 
-    QStringList args = mFormat->gainArgs(files);
+    QStringList args = format()->gainArgs(files);
     QString prog = args.takeFirst();
 
     if (mDebug)

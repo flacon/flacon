@@ -122,7 +122,7 @@ void Converter::start()
  ************************************************/
 void Converter::createDiscThreads(Disk *disk, const OutFormat *format)
 {
-    Splitter *splitter = new Splitter(disk);
+    Splitter *splitter = new Splitter(disk, format);
     mThreads << splitter;
 
     Gain *albumGain = 0;

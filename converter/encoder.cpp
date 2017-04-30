@@ -35,8 +35,7 @@
 
  ************************************************/
 Encoder::Encoder(const OutFormat *format, Track *track, QObject *parent):
-    ConverterThread(track->disk(), parent),
-    mFormat(format),
+    ConverterThread(track->disk(), format, parent),
     mTrack(track),
     mProcess(0),
     mTotal(0),
@@ -117,7 +116,7 @@ void Encoder::doRun()
     }
 
 
-    QStringList args = mFormat->encoderArgs(track(), QDir::toNativeSeparators(outFile()));
+    QStringList args = format()->encoderArgs(track(), QDir::toNativeSeparators(outFile()));
     QString prog = args.takeFirst();
 
     if (mDebug)

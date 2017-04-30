@@ -35,32 +35,8 @@
 #include <QIODevice>
 #include <QDebug>
 #include "../settings.h"
-
-
-/************************************************
- *
- ************************************************/
-QString makeTestDirName(const QString &testName)
-{
-    QString cdt = QTest::currentDataTag();
-    cdt = cdt.replace(' ', '_');
-    cdt = cdt.replace('\t', '_');
-    cdt = cdt.replace('\n', '_');
-
-    QString tn = testName;
-    if (tn.endsWith("_data"))
-        tn = testName.left(testName.length() - 5);
-
-    QString dir = QDir::cleanPath(QString("%1/%2/%3").arg(TEST_OUT_DIR, tn, cdt));
-
-    if (!QDir().mkpath(dir))
-    {
-        QTest::qFail(QString("Can't create directory '%1'").arg(dir).toLocal8Bit(), __FILE__, __LINE__);
-        return "";
-    }
-
-    return dir;
-}
+#include "../cue.h"
+#include "../disk.h"
 
 
 /************************************************
@@ -354,7 +330,26 @@ void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
         QFAIL(QString("Can't encode to file '%1' (file don't exists'):").arg(outFileName).toLocal8Bit() + proc.readAllStandardError());
 }
 
+
+/************************************************
+ *
+ ************************************************/
 void testFail(const QString &message, const char *file, int line)
 {
     QTest::qFail(message.toLocal8Bit().data(), file, line);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+Disk *loadFromCue(const QString &cueFile)
+{
+    CueReader cueReader(cueFile);
+    if (!cueReader.isValid())
+        FAIL(cueReader.errorString().toLocal8Bit());
+
+    Disk *res = new Disk();
+    res->loadFromCue(cueReader.disk(0));
+    return res;
 }

@@ -41,6 +41,7 @@ set(TEST_SOURCES
     test_wavheader.cpp
     test_format.cpp
     test_inputaudiofile.cpp
+    test_convert.cpp
 )
 
 set(TEST_MOCS

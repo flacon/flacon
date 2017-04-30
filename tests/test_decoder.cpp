@@ -46,8 +46,6 @@ struct TestTrack {
  ************************************************/
 void TestFlacon::testDecoder()
 {
-    QString dir = makeTestDir();
-
     QFETCH(QStringList, data);
     QString inputFile = data.first();
 
@@ -72,7 +70,7 @@ void TestFlacon::testDecoder()
     {
         TestTrack track = tracks.at(i);
 
-        QString flaconFile = QString("%1/%2-flacon.wav").arg(dir).arg(i + 1, 3, 10, QChar('0'));
+        QString flaconFile = QString("%1/%2-flacon.wav").arg(dir()).arg(i + 1, 3, 10, QChar('0'));
 
         bool res = decoder.extract(
                     CueTime(track.start),
@@ -92,7 +90,7 @@ void TestFlacon::testDecoder()
     for (int i=0; i < tracks.count(); ++i)
     {
         compareAudioHash(
-                    QString("%1/%2-flacon.wav").arg(dir).arg(i + 1, 3, 10, QChar('0')),
+                    QString("%1/%2-flacon.wav").arg(dir()).arg(i + 1, 3, 10, QChar('0')),
                     tracks.at(i).hash);
     }
 

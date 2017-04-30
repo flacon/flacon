@@ -38,7 +38,7 @@ class Splitter: public ConverterThread
 {
     Q_OBJECT
 public:
-    Splitter(Disk *disk, QObject *parent = 0);
+    Splitter(Disk *disk, const OutFormat *format, QObject *parent = 0);
 
     bool isReadyStart() const;
     QString workDir() const { return mWorkDir; }
@@ -55,10 +55,7 @@ private slots:
 
 private:
     QString mWorkDir;
-    QString mFilePrefix;
     QProcess *mProcess;
-    bool mPreGapExists;
-
     Track *mTrack;
 };
 

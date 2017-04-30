@@ -36,27 +36,6 @@ class Disk;
 
 #define SettingsValues QMap<QString, QVariant>
 
-class ConverterTester
-{
-public:
-    ConverterTester(const QString &cueFile,
-                    const QString &audioFile,
-                    const QString &expectedCue,
-                    const QString &resultFiles);
-
-
-    void run(const QString &name);
-
-    Disk *disk() { return mDisk; }
-
-private:
-    Disk *mDisk;
-    QStringList mResultFiles;
-    QString mExpectedCue;
-
-    ConverterTester(const ConverterTester &other) {}
-};
-
 class TestFlacon : public QObject
 {
     Q_OBJECT
@@ -73,6 +52,7 @@ private:
 
 private slots:
     void initTestCase();
+    void init();
 
     void testReadWavHeader();
     void testReadWavHeader_data();
@@ -90,7 +70,7 @@ private slots:
 
     void testDecoder();
     void testDecoder_data();
-private:
+
     void testByteArraySplit_data();
     void testByteArraySplit();
 
@@ -120,8 +100,8 @@ private:
     void testFindCueFile_data();
     void testFindCueFile();
 
-
     void testConvert();
+    void testConvert_data();
 
 private:
     void writeTextFile( const QString &fileName, const QString &content);
@@ -133,6 +113,7 @@ private:
     void checkFileNotExists(const QString &fileName);
 
     void applySettings(const SettingsValues &config);
+    QString dir();
 
     Disk *standardDisk();
 
@@ -156,6 +137,8 @@ private:
     const QString mTmpDir;
     const QString mDataDir;
     Disk *mStandardDisk;
+
+    static int mTestNum;
 };
 
 

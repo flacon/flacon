@@ -33,7 +33,7 @@
 #include "wavheader.h"
 
 class QIODevice;
-
+class Disk;
 
 
 class TestCueFile
@@ -85,12 +85,6 @@ private:
 };
 
 
-
-QString makeTestDirName(const QString &testName);
-#ifndef makeTestDir
-#define makeTestDir() makeTestDirName(__FUNCTION__)
-#endif
-
 QStringList shnSplit(const QString &cueFile, const QString &audioFile);
 QString calcAudioHash(const QString &fileName);
 void  compareAudioHash(const QString &file1, const QString &expected);
@@ -104,5 +98,6 @@ do {\
     testFail(message, __FILE__, __LINE__); \
 } while (0)
 
+Disk *loadFromCue(const QString &cueFile);
 
 #endif // TOOLS_H
