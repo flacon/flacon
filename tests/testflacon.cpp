@@ -413,12 +413,16 @@ QStringList &operator<<(QStringList &list, int value)
  ************************************************/
 void TestFlacon::testTrackResultFileName()
 {
-    QFETCH(QString, cueFile);
+    QFETCH(QString, cue);
     QFETCH(QString, pattern);
     QFETCH(QString, expected);
 
     settings->setValue(Settings::OutFiles_Pattern, pattern);
     settings->setValue(Settings::OutFiles_Format, "WAV");
+
+
+    QString cueFile = dir() + "/input.cue";
+    writeTextFile(cueFile, cue);
 
     Disk *disk = loadFromCue(cueFile);
 
@@ -442,108 +446,220 @@ void TestFlacon::testTrackResultFileName()
  ************************************************/
 void TestFlacon::testTrackResultFileName_data()
 {
-    QTest::addColumn<QString>("cueFile");
+    QTest::addColumn<QString>("cue");
     QTest::addColumn<QString>("pattern");
     QTest::addColumn<QString>("expected");
 
-    QString cueFile = dir() + "/testTrackResultFileName.cue";
 
-    {
-        QStringList cue;
-        cue << "REM GENRE \"Genre\"";
-        cue << "REM DATE 2013";
-        cue << "REM DISCID 123456789";
-        cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
-        cue << "PERFORMER \"Artist\"";
-        cue << "TITLE \"Album\"";
-        cue << "FILE \"en.wav\" WAVE";
-        cue << "  TRACK 01 AUDIO";
-        cue << "    TITLE \"Song01\"";
-        cue << "    INDEX 01 00:00:00";
-        cue << "  TRACK 02 AUDIO";
-        cue << "    TITLE \"Song02\"";
-        cue << "    INDEX 01 03:39:10";
-        cue << "  TRACK 03 AUDIO";
-        cue << "    TITLE \"Song03\"";
-        cue << "    INDEX 01 07:25:42";
-        cue << "  TRACK 04 AUDIO";
-        cue << "    TITLE \"Song04\"";
-        cue << "    INDEX 01 12:04:72";
-
-        writeTextFile(cueFile, cue);
-    }
-
-
-    QTest::newRow("1")
-            << cueFile
+    QTest::newRow("1.1")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
             << "%a/%y - %A/%n - %t"
             << "Artist/2013 - Album/01 - Song01.wav";
 
-    QTest::newRow("2")
-            << cueFile
+    QTest::newRow("1.2")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "N/n/A/a/t/y/g"
             << "N/n/A/a/t/y/g.wav";
 
-    QTest::newRow("3")
-            << cueFile
+    QTest::newRow("1.3")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "N/n/A/a/t/y/g"
             << "N/n/A/a/t/y/g.wav";
 
-    QTest::newRow("4")
-            << cueFile
+    QTest::newRow("1.4")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "/%%/%Q/%N/%n/%A/%a/%t/%y/%g/%%"
             << "/%/%Q/04/01/Album/Artist/Song01/2013/Genre/%.wav";
 
 
-    QTest::newRow("5")
-            << cueFile
+    QTest::newRow("1.5")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "%%Q/%%N/%%n/%%A/%%a/%%t/%%y/%%g"
             << "%Q/%N/%n/%A/%a/%t/%y/%g.wav";
 
-    QTest::newRow("6")
-            << cueFile
+    QTest::newRow("1.6")
+            <<  "REM GENRE \"Genre\"\n"
+                "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "TITLE \"Album\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "%%%Q/%%%N/%%%n/%%%A/%%%a/%%%t/%%%y/%%%g/%%%"
             << "%%Q/%04/%01/%Album/%Artist/%Song01/%2013/%Genre/%%.wav";
 
-    cueFile = dir() + "/testTrackResultFileName2.cue";
-    {
-        QStringList cue;
-        cue << "REM DATE 2013";
-        cue << "REM DISCID 123456789";
-        cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
-        cue << "PERFORMER \"Artist\"";
-        cue << "FILE \"en.wav\" WAVE";
-        cue << "  TRACK 01 AUDIO";
-        cue << "    TITLE \"Song01\"";
-        cue << "    INDEX 01 00:00:00";
-        cue << "  TRACK 02 AUDIO";
-        cue << "    TITLE \"Song02\"";
-        cue << "    INDEX 01 03:39:10";
-        cue << "  TRACK 03 AUDIO";
-        cue << "    TITLE \"Song03\"";
-        cue << "    INDEX 01 07:25:42";
-        cue << "  TRACK 04 AUDIO";
-        cue << "    TITLE \"Song04\"";
-        cue << "    INDEX 01 12:04:72";
+    QTest::newRow("2.1")
+            <<  "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
 
-        writeTextFile(cueFile, cue);
-    }
-
-
-    QTest::newRow("1")
-            << cueFile
             << "{}/{Text}/{%n}/{%n Text}/{%A}/{%A Text}"
             << "{}/{Text}/01/01 Text//.wav";
 
 
-    QTest::newRow("2")
-            << cueFile
+    QTest::newRow("2.2")
+            <<  "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "Test{Text/{%n}/{%n Text}/{%A}/{%A Text}"
             << "Test{Text/01/01 Text//.wav";
 
 
-    QTest::newRow("3")
-            << cueFile
+    QTest::newRow("2.3")
+            <<  "REM DATE 2013\n"
+                "REM DISCID 123456789\n"
+                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+                "PERFORMER \"Artist\"\n"
+                "FILE \"en.wav\" WAVE\n"
+                "  TRACK 01 AUDIO\n"
+                "    TITLE \"Song01\"\n"
+                "    INDEX 01 00:00:00\n"
+                "  TRACK 02 AUDIO\n"
+                "    TITLE \"Song02\"\n"
+                "    INDEX 01 03:39:10\n"
+                "  TRACK 03 AUDIO\n"
+                "    TITLE \"Song03\"\n"
+                "    INDEX 01 07:25:42\n"
+                "  TRACK 04 AUDIO\n"
+                "    TITLE \"Song04\"\n"
+                "    INDEX 01 12:04:72\n"
+
             << "Text}/{%n}/{%n Text}/{%A}/{%A Text}"
             << "Text}/01/01 Text//.wav";
 
