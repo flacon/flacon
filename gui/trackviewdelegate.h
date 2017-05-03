@@ -33,8 +33,6 @@
 #include <QRect>
 #include <QMovie>
 
-class Track;
-class Disk;
 class TrackView;
 class TrackViewCache;
 class DataProvider;
@@ -80,8 +78,8 @@ private:
 
     QFont titleFont(const QFont &font) const;
     QFont filesFont(const QFont &font) const;
-    void paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, const Track *track) const;
-    void paintDisk(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, const Disk *disk) const;
+    void paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void paintDisk(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     QRect drawLabel(const QString &text, QRect rect, QPainter *painter) const;
     QRect drawFile(const QString &text, QRect rect, QPainter *painter) const;
     void drawSelectionMark(QPainter *painter, const QRect &rect) const;

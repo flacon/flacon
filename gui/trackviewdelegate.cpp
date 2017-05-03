@@ -27,7 +27,6 @@
 #include "trackviewdelegate.h"
 #include "trackview.h"
 #include "trackviewmodel.h"
-#include "disk.h"
 #include "project.h"
 #include "internet/dataprovider.h"
 
@@ -184,35 +183,32 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
     QStyleOptionViewItem opt = option;
     opt.state &= ~QStyle::State_Selected;
 
-    QObject *obj = static_cast<QObject*>(index.internalPointer());
-    Track *track = qobject_cast<Track*>(obj);
-    if (track)
+    TrackViewModel::ItemType type = TrackViewModel::ItemType(index.data(TrackViewModel::RoleItemType).toInt());
+
+    if (type == TrackViewModel::TrackItem)
     {
         QColor bgColor = (index.row() % 2) ? mTrackView->palette().base().color() : mTrackView->palette().alternateBase().color();
         painter->fillRect(opt.rect, bgColor);
-
-        paintTrack(painter, opt, index, track);
+        paintTrack(painter, opt, index);
         return;
     }
 
-    if (index.column() == 0)
+
+    if (type == TrackViewModel::DiskItem && index.column() == 0)
     {
-        Disk *disk = qobject_cast<Disk*>(obj);
-        if (disk)
+        QColor bgColor = mTrackView->palette().base().color();
+        painter->fillRect(opt.rect, bgColor);
+
+        if (mTrackView-> selectionModel()->isSelected(index))
         {
-            QColor bgColor = mTrackView->palette().base().color();
-            painter->fillRect(opt.rect, bgColor);
-
-            if (mTrackView-> selectionModel()->isSelected(index))
-            {
-                QRect rect = opt.rect;
-                if (index.row() > 0)
-                    rect.setTop(rect.top() + TOP_PADDING);
-                drawSelectionMark(painter, rect);
-            }
-
-            paintDisk(painter, opt, index, disk);
+            QRect rect = opt.rect;
+            if (index.row() > 0)
+                rect.setTop(rect.top() + TOP_PADDING);
+            drawSelectionMark(painter, rect);
         }
+
+        paintDisk(painter, opt, index);
+        return;
     }
 }
 
@@ -220,7 +216,7 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
 /************************************************
 
  ************************************************/
-void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, const Track *track) const
+void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QStyledItemDelegate::paint(painter, option, index);
 
@@ -229,9 +225,9 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
 
     const QPixmap *icon = 0;
     QString txt;
-    int progress = track->progress();
+    int progress = index.data(TrackViewModel::RolePercent).toInt();
 
-    switch (track->status())
+    switch (index.data(TrackViewModel::RoleStatus).toInt())
     {
     case Track::NotRunning: txt = "";               progress = -1;      break;
     case Track::Canceled:   txt = "";                                   break;
@@ -290,7 +286,7 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
 /************************************************
 
  ************************************************/
-void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, const Disk *disk) const
+void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QRect paintRect = option.rect;
     paintRect.setLeft(0);
@@ -350,8 +346,8 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     QRect tFileRect(l, tTop, windowRect.width(), th);
     QRect aFileRect(l, aTop, windowRect.width(), th);
 
-    tFileRect = drawFile(disk->tagsTitle(), tFileRect, painter);
-    QFileInfo fi(disk->audioFileName());
+    tFileRect = drawFile(index.data(TrackViewModel::RoleTitle).toString(), tFileRect, painter);
+    QFileInfo fi(index.data(TrackViewModel::RoleAudioFileName).toString());
     aFileRect = drawFile(fi.fileName(), aFileRect, painter);
 
 
@@ -384,10 +380,10 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
 
     // Draw warning mark ...............................
     QRect markRect(imgRect.right() - MARK_HEIGHT, imgRect.bottom() - MARK_HEIGHT, MARK_HEIGHT, MARK_HEIGHT);
-    if (!disk->canConvert())
+    if (!index.data(TrackViewModel::RoleCanConvert).toBool())
         painter->drawPixmap(markRect, mWarnPix);
 
-    cache->isWaiting = disk->isDownloads();
+    cache->isWaiting = index.data(TrackViewModel::RoleIsDownloads).toBool();
     if (cache->isWaiting)
     {
         painter->drawPixmap(markRect, mDownloadMovie.currentPixmap());

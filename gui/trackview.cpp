@@ -75,8 +75,7 @@ QList<Track*> TrackView::selectedTracks() const
     QModelIndexList idxs = selectionModel()->selectedIndexes();
     foreach(QModelIndex index, idxs)
     {
-        QObject *obj = static_cast<QObject*>(index.internalPointer());
-        Track *track = qobject_cast<Track*>(obj);
+        Track *track = mModel->trackByIndex(index);
         if (track)
             res << track;
     }
@@ -94,12 +93,7 @@ QList<Disk*> TrackView::selectedDisks() const
     QModelIndexList idxs = selectionModel()->selectedIndexes();
     foreach(QModelIndex index, idxs)
     {
-        QObject *obj = static_cast<QObject*>(index.internalPointer());
-        Track *track = qobject_cast<Track*>(obj);
-        if (track)
-            set << track->disk();
-
-        Disk *disk =  qobject_cast<Disk*>(obj);
+        Disk *disk =  mModel->diskByIndex(index);
         if (disk)
             set << disk;
     }
@@ -134,9 +128,8 @@ void TrackView::selectDisk(const Disk *disk)
     for (int i=0; i<this->model()->rowCount(); ++i)
     {
         QModelIndex index = this->model()->index(i, 0);
-        QObject *obj = static_cast<QObject*>(index.internalPointer());
 
-        Disk *d =  qobject_cast<Disk*>(obj);
+        Disk *d =  mModel->diskByIndex(index);
         if (d && d == disk)
         {
             this->selectionModel()->select(index, QItemSelectionModel::Clear | QItemSelectionModel::Select);
@@ -184,8 +177,7 @@ void TrackView::showHideColumn(bool show)
  ************************************************/
 void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 {
-    QObject *obj = static_cast<QObject*>(index.internalPointer());
-    Disk *disk = qobject_cast<Disk*>(obj);
+    Disk *disk = mModel->diskByIndex(index);
     if(!disk)
         return;
 

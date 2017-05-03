@@ -38,14 +38,14 @@ class TrackView;
 
 class TrackViewModel : public QAbstractItemModel
 {
+    friend class TrackView;
+    friend class TrackViewDelegate;
     Q_OBJECT
 public:
     explicit TrackViewModel(TrackView *parent = 0);
     
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     QModelIndex index(int row, int column, const QModelIndex &parent) const;
-    QModelIndex index(const Disk *disk, int col = 0) const;
-    QModelIndex index(const Track *track, int col = 0) const;
     QModelIndex parent(const QModelIndex &child) const;
 
     QVariant data(const QModelIndex &index, int role) const;
@@ -57,25 +57,47 @@ public:
 
     TrackView *view() const { return mView; }
 
-    static Disk *diskByIndex(const QModelIndex &index);
-    static Track *trackByIndex(const QModelIndex &index);
-
-
 
 public slots:
 
+protected:
+    enum ItemType {
+        TrackItem = 1,
+        DiskItem = 2
+    };
+
+    enum Roles{
+        RoleItemType   = Qt::UserRole + 1,
+        RolePercent,
+        RoleStatus,
+        RoleTracknum,
+        RoleDuration,
+        RoleTitle,
+        RoleArtist,
+        RoleAlbum,
+        RoleComment,
+        RoleFileName,
+        RoleAudioFileName,
+        RoleCanConvert,
+        RoleIsDownloads,
+        RoleItemID,
+        RoleTrack
+    };
+
+    Disk *diskByIndex(const QModelIndex &index);
+    Track *trackByIndex(const QModelIndex &index);
 
 private slots:
     void diskDataChanged(Disk *disk);
     void trackDataChanged(int disk, int track);
-    void beforeRemoveDisk(Disk *disk);
-    void afterRemoveDisk();
     void trackProgressChanged(const Track *track);
 
 private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;
     QVariant diskData(const Disk *disk, const QModelIndex &index, int role) const;
     QString trackDurationToString(uint milliseconds) const;
+    QModelIndex index(const Disk *disk, int col = 0) const;
+    QModelIndex index(const Track *track, int col = 0) const;
 
     TrackView *mView;
 };

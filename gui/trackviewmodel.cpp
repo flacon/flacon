@@ -33,6 +33,63 @@
 #include <QDebug>
 #include <QSet>
 
+class IndexData
+{
+public:
+    explicit IndexData(const QModelIndex &index)
+    {
+        mDiskId  = (quint32(index.internalId()) & 0xFFFFFF);
+        mTrackId = (quint32(index.internalId()) >> 16);
+    }
+
+    explicit IndexData(quint16 diskNum, quint16 trackNum)
+    {
+        mDiskId  = diskNum  + 1;
+        mTrackId = trackNum + 1;
+    }
+
+    explicit IndexData(quint16 diskNum)
+    {
+        mDiskId  = diskNum + 1;
+        mTrackId = 0;
+    }
+
+    quintptr asPtr()
+    {
+        return quintptr((mTrackId << 16) |  mDiskId);
+    }
+
+
+    bool isDisk()  const { return mDiskId  > 0; }
+    bool isTrack() const { return mTrackId > 0; }
+
+    int diskNum()  const { return mDiskId  - 1; }
+    int trackNum() const { return mTrackId - 1; }
+
+    Disk *disk() const
+    {
+        if (mDiskId && mDiskId-1 < project->count())
+            return project->disk(mDiskId - 1);
+
+        return NULL;
+    }
+
+    Track *track() const
+    {
+        if (mTrackId)
+        {
+            Disk *disk = this->disk();
+            if (disk && mTrackId -1 < disk->count())
+                return disk->track(mTrackId - 1);
+        }
+        return NULL;
+    }
+
+private:
+    quint16 mDiskId;
+    quint16 mTrackId;
+};
+
 
 /************************************************
 
@@ -44,13 +101,9 @@ TrackViewModel::TrackViewModel(TrackView *parent) :
     connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(diskDataChanged(Disk*)));
     connect(project, SIGNAL(trackChanged(int,int)), this, SLOT(trackDataChanged(int,int)));
     connect(project, SIGNAL(layoutChanged()), this, SIGNAL(layoutChanged()));
-    connect(project, SIGNAL(beforeRemoveDisk(Disk*)), this, SLOT(beforeRemoveDisk(Disk*)));
-    connect(project, SIGNAL(afterRemoveDisk()), this, SLOT(afterRemoveDisk()));
+    connect(project, SIGNAL(afterRemoveDisk()), this, SIGNAL(layoutChanged()));
 
     connect(project, SIGNAL(trackProgress(const Track*)), this, SLOT(trackProgressChanged(const Track*)));
-
-    //connect(project, SIGNAL("downloadStarted(int)"), self._downloadStarted)
-    //self.connect(project, SIGNAL("downloadFinished(int)"), self._downloadFinished)
 }
 
 
@@ -76,8 +129,6 @@ QVariant TrackViewModel::headerData(int section, Qt::Orientation orientation, in
 }
 
 
-
-
 /************************************************
 
  ************************************************/
@@ -87,18 +138,13 @@ QModelIndex TrackViewModel::index(int row, int column, const QModelIndex &parent
         return QModelIndex();
 
 
-    if (parent.internalPointer() == project)
-        return createIndex(row, column, project->disk(row));
+    if (IndexData(parent).isTrack())
+        return QModelIndex();
 
-    QObject *obj = static_cast<QObject*>(parent.internalPointer());
-    Disk *disk = qobject_cast<Disk*>(obj);
-    if(disk)
-        return createIndex(row, column, disk->track(row));
+    if (IndexData(parent).isDisk())
+        return createIndex(row, column, IndexData(parent.row(), row).asPtr());
     else
-        return createIndex(row, column, project->disk(row));
-
-
-    return QModelIndex();
+        return createIndex(row, column, IndexData(row).asPtr());
 }
 
 
@@ -140,13 +186,9 @@ QModelIndex TrackViewModel::parent(const QModelIndex &child) const
     if (!child.isValid())
         return QModelIndex();
 
-    QObject *obj = static_cast<QObject*>(child.internalPointer());
-    Track *track = qobject_cast<Track*>(obj);
-    if (track)
-    {
-        int row = project->indexOf(track->disk());
-        return index(row, 0, QModelIndex());
-    }
+    IndexData data(child);
+    if (data.isTrack())
+        return index(data.diskNum(), 0, QModelIndex());
 
     return QModelIndex();
 }
@@ -160,11 +202,13 @@ QVariant TrackViewModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    Track *track = trackByIndex(index);
+    IndexData indexData(index);
+
+    Track *track = indexData.track();
     if (track)
         return trackData(track, index, role);
 
-    Disk *disk = diskByIndex(index);
+    Disk *disk = indexData.disk();
     if(disk)
         return diskData(disk, index, role);
 
@@ -271,17 +315,21 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
         return QVariant();
 
     }
-    // StatusPercent ::::::::::::::::::::::::::::::::::::
-//    if (role == StatusPercentRole)
-//    {
-//     //   return track.progress()
-//    }
 
-//    // Status :::::::::::::::::::::::::::::::::::::::::::
-//    if (role == StatusRole)
-//    {
-//    //    return track.status();
-//    }
+    switch (role)
+    {
+    case RoleItemType:  return TrackItem;
+    case RolePercent:   return track->progress();
+    case RoleStatus:    return track->status();
+    case RoleTracknum:  return track->trackNum();
+    case RoleDuration:  return track->duration();
+    case RoleTitle:     return track->title();
+    case RoleArtist:    return track->artist();
+    case RoleAlbum:     return track->album();
+    case RoleComment:   return track->album();
+    case RoleFileName:  return track->resultFileName();
+    default:            return QVariant();
+    }
 
     return QVariant();
 }
@@ -341,24 +389,17 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
 
     }
 
-//# StatusPercent ::::::::::::::::::::::::::::::::::::
-//elif (role == self.StatusPercentRole):
-//    try:
-//        return QVariant(self._downloadsStates[index.row()])
-//    except KeyError:
-//        return QVariant()
-
-//# Download pixmap ::::::::::::::::::::::::::::::::::
-//elif role == self.DownloadPxmapRole:
-//    try:
-//        self._downloadsStates[index.row()]
-//        return QVariant(self._downloadMovie.currentPixmap())
-//    except KeyError:
-//        return QVariant()
-
+    switch (role)
+    {
+    case RoleItemType:      return DiskItem;
+    case RoleTitle:         return disk->tagsTitle();
+    case RoleAudioFileName: return disk->audioFileName();
+    case RoleCanConvert:    return disk->canConvert();
+    case RoleIsDownloads:   return disk->isDownloads();
+    default:                return QVariant();
+    }
 
     return QVariant();
-
 }
 
 
@@ -404,8 +445,7 @@ int TrackViewModel::rowCount(const QModelIndex &parent) const
     if (!parent.isValid())
         return project->count();
 
-    QObject *obj = static_cast<QObject*>(parent.internalPointer());
-    Disk *disk = qobject_cast<Disk*>(obj);
+    Disk *disk = IndexData(parent).disk();
     if(disk)
         return disk->count();
 
@@ -423,9 +463,7 @@ Qt::ItemFlags TrackViewModel::flags(const QModelIndex &index) const
 
     Qt::ItemFlags res = Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 
-    QObject *obj = static_cast<QObject*>(index.internalPointer());
-    Track *track = qobject_cast<Track*>(obj);
-    if (track)
+    if (IndexData(index).isTrack())
     {
         switch (index.column())
         {
@@ -443,13 +481,13 @@ Qt::ItemFlags TrackViewModel::flags(const QModelIndex &index) const
 }
 
 
+
 /************************************************
 
  ************************************************/
 Disk *TrackViewModel::diskByIndex(const QModelIndex &index)
 {
-    QObject *obj = static_cast<QObject*>(index.internalPointer());
-    return qobject_cast<Disk*>(obj);
+    return IndexData(index).disk();
 }
 
 
@@ -458,8 +496,7 @@ Disk *TrackViewModel::diskByIndex(const QModelIndex &index)
  ************************************************/
 Track *TrackViewModel::trackByIndex(const QModelIndex &index)
 {
-    QObject *obj = static_cast<QObject*>(index.internalPointer());
-    return qobject_cast<Track*>(obj);
+    return IndexData(index).track();
 }
 
 
@@ -493,25 +530,6 @@ void TrackViewModel::trackDataChanged(int disk, int track)
     QModelIndex index1 = index(track, 0, diskIndex);
     QModelIndex index2 = index(track, TrackView::ColumnCount, diskIndex);
     emit dataChanged(index1, index2);
-}
-
-
-/************************************************
-
- ************************************************/
-void TrackViewModel::beforeRemoveDisk(Disk *disk)
-{
-    int n = project->indexOf(disk);
-    beginRemoveRows(QModelIndex(), n, n);
-}
-
-
-/************************************************
-
- ************************************************/
-void TrackViewModel::afterRemoveDisk()
-{
-    endRemoveRows();
 }
 
 
