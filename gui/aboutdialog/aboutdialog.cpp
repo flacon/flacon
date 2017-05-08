@@ -198,9 +198,6 @@ AboutInfo AboutDialog::programsInfo() const
 {
     AboutInfo result;
 
-    result.add("shntool",
-               "http://etree.org/shnutils/shntool");
-
     result.add("flac and metaflac",
                "http://flac.sourceforge.net");
 

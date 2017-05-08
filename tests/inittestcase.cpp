@@ -73,20 +73,6 @@ void TestFlacon::initTestCase()
 {
     Settings::setFileName(TEST_OUT_DIR "/flacon.conf");
 
-//    QString shntool = settings->findProgram("shntool");
-//    if (shntool.isEmpty())
-//        FAIL(QString("Program \"%1\" not found.").arg("shntool").toLocal8Bit());
-
-//    settings->setValue(Settings::Prog_Shntool, shntool);
-//    settings->sync();
-
-//    mFfmpeg = settings->findProgram("avconv");
-//    if (mFfmpeg.isEmpty())
-//        mFfmpeg = settings->findProgram("ffmpeg");
-
-//    if (mFfmpeg.isEmpty())
-//        FAIL(QString("Program \"%1\" not found.").arg("avconv/ffmpeg").toLocal8Bit());
-
     if (findProgram("mac").isEmpty())      QFAIL("mac program not found");
     if (findProgram("flac").isEmpty())     QFAIL("flac program not found");
     if (findProgram("wavpack").isEmpty())  QFAIL("wavpack program not found");

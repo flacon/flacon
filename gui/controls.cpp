@@ -385,7 +385,7 @@ void ProgramEdit::resizeEvent(QResizeEvent *event)
 void ProgramEdit::openDialog()
 {
     QString flt = tr("%1 program",
-                     "This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'"
+                     "This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'"
                      ).arg(mProgramName)  +
                     QString(" (%1);;").arg(mProgramName) +
                   tr("All files", "This is part of filter for 'select program' dialog. 'All files (*)'") +

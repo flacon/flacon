@@ -54,9 +54,6 @@ public:
         // Internet *****************************
         Inet_CDDBHost,
 
-        // Programs *****************************
-        Prog_Shntool,
-
         // Misc *********************************
         Misc_LastDir,
 

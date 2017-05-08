@@ -145,8 +145,6 @@ void Settings::init()
     setDefaultValue(ConfigureDialog_Height, 425);
 
 
-    mPrograms << "shntool";
-
     foreach(OutFormat *format, OutFormat::allFormats())
     {
         QHashIterator<QString, QVariant> i(format->defaultParameters());
@@ -201,9 +199,6 @@ QString Settings::keyToString(Settings::Key key) const
 
     // Internet ****************************
     case Inet_CDDBHost:         return "Inet/CDDBHost";
-
-    // Programs ****************************
-    case Prog_Shntool:          return "Programs/shntool";
 
 
     // Misc *********************************
