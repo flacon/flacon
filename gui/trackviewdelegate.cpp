@@ -187,11 +187,17 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
 
     if (type == TrackViewModel::TrackItem)
     {
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+        if (index.row() % 2)
+            painter->fillRect(option.rect, mTrackView->palette().base().color());
+        else
+            painter->fillRect(option.rect, mTrackView->palette().alternateBase().color());
+#else
         if (index.row() % 2)
             opt.features &= ~QStyleOptionViewItemV2::Alternate;
         else
             opt.features |= QStyleOptionViewItemV2::Alternate;
-
+#endif
         paintTrack(painter, opt, index);
         return;
     }
@@ -378,7 +384,7 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     // Draw bottom line ................................
     painter->setPen(mTrackView->palette().dark().color());
     int y = option.rect.height() - BOTTOM_PADDING - 2;
-    painter->drawLine(MARGIN, y, windowRect.right(), y);
+    painter->drawLine(MARGIN * 2, y, windowRect.right(), y);
 
     // Draw warning mark ...............................
     QRect markRect(imgRect.right() - MARK_HEIGHT, imgRect.bottom() - MARK_HEIGHT, MARK_HEIGHT, MARK_HEIGHT);
