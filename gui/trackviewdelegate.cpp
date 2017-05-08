@@ -166,7 +166,7 @@ void TrackViewDelegate::drawSelectionMark(QPainter *painter, const QRect &rect) 
  ************************************************/
 void TrackViewDelegate::drawBranch(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
-    QColor bgColor = (index.row() % 2) ? mTrackView->palette().base().color() : mTrackView->palette().alternateBase().color();
+    QColor bgColor = mTrackView->palette().base().color();
     if (rect.isValid())
         painter->fillRect(rect, bgColor);
 
@@ -187,8 +187,11 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
 
     if (type == TrackViewModel::TrackItem)
     {
-        QColor bgColor = (index.row() % 2) ? mTrackView->palette().base().color() : mTrackView->palette().alternateBase().color();
-        painter->fillRect(opt.rect, bgColor);
+        if (index.row() % 2)
+            opt.features &= ~QStyleOptionViewItemV2::Alternate;
+        else
+            opt.features |= QStyleOptionViewItemV2::Alternate;
+
         paintTrack(painter, opt, index);
         return;
     }
@@ -242,7 +245,6 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
     case Track::WriteGain:  txt = tr("Write gain");                     break;
 
     }
-
 
 
     painter->save();

@@ -445,7 +445,12 @@ int TrackViewModel::rowCount(const QModelIndex &parent) const
     if (!parent.isValid())
         return project->count();
 
-    Disk *disk = IndexData(parent).disk();
+    IndexData data(parent);
+    if (data.isTrack())
+        return 0;
+
+
+    Disk *disk = data.disk();
     if(disk)
         return disk->count();
 
