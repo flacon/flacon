@@ -168,7 +168,7 @@ void Settings::init()
 
     foreach(QString program, mPrograms)
     {
-        if (value("Programs/" + program).toString().isEmpty())
+        if (!checkProgram(program))
             setValue("Programs/" + program, findProgram(program));
     }
 }
