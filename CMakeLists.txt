@@ -217,15 +217,16 @@ option(USE_QT4 "Force use the Qt4." $ENV{USE_QT4})
 
 if((USE_QT4 AND USE_QT5) OR
    (NOT USE_QT4 AND NOT USE_QT5))
-    find_package(Qt4 QUIET)
-    if (QT4_FOUND)
-        set(USE_QT4 ON)
-        set(USE_QT5 OFF)
-    else()
+    find_package(Qt5Core QUIET)
+    if (Qt5Core_FOUND)
         set(USE_QT4 OFF)
         set(USE_QT5 ON)
+    else()
+        set(USE_QT4 ON)
+        set(USE_QT5 OFF)
     endif()
 endif()
+
 
 if(USE_QT4)
     set(QT_USE_QTNETWORK 1)
