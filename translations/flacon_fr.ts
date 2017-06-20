@@ -734,7 +734,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Numéro de début :</translation>
+        <translation>Premier numéro :</translation>
     </message>
     <message>
         <source>Disc ID:</source>
@@ -810,11 +810,11 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Remove album</source>
-        <translation>Retirer l&apos;album</translation>
+        <translation>Enlever l&apos;album</translation>
     </message>
     <message>
         <source>Remove album from project</source>
-        <translation>Retirer l&apos;album du projet</translation>
+        <translation>Enlever l&apos;album du projet</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>

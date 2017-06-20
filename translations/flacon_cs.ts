@@ -977,7 +977,7 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     </message>
     <message>
         <source>Delete current pattern from history</source>
-        <translation type="unfinished"/>
+        <translation>Smazat nynější vzor z historie</translation>
     </message>
 </context>
 <context>

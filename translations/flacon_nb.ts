@@ -736,7 +736,7 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkeniv√•er p√
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Startnum:</translation>
+        <translation>Startnummer:</translation>
     </message>
     <message>
         <source>Disc ID:</source>
