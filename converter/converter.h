@@ -45,6 +45,9 @@ public:
     bool isRunning();
     bool canConvert() const;
 
+    bool showStatistic() const { return mShowStatistic; }
+    void setShowStatistic(bool value);
+
 signals:
     void finished();
 
@@ -63,6 +66,7 @@ private:
     QDateTime mStartTime;
     int mThreadCount;
     QList<ConverterThread*> mThreads;
+    bool mShowStatistic;
 
     bool check(OutFormat *format) const;
     void createDiscThreads(Disk *disk, const OutFormat *format);

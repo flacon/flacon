@@ -46,7 +46,8 @@
  ************************************************/
 Converter::Converter(QObject *parent) :
     QObject(parent),
-    mThreadCount(0)
+    mThreadCount(0),
+    mShowStatistic(true)
 {
 }
 
@@ -246,6 +247,15 @@ bool Converter::canConvert() const
 /************************************************
 
  ************************************************/
+void Converter::setShowStatistic(bool value)
+{
+    mShowStatistic = value;
+}
+
+
+/************************************************
+
+ ************************************************/
 void Converter::stop()
 {
     if (!isRunning())
@@ -345,24 +355,27 @@ void Converter::threadFinished()
     {
         emit finished();
 
-        int duration = QDateTime::currentDateTime().toTime_t() - mStartTime.toTime_t();
-        if (!duration)
-            duration = 1;
+        if (mShowStatistic)
+        {
+            int duration = QDateTime::currentDateTime().toTime_t() - mStartTime.toTime_t();
+            if (!duration)
+                duration = 1;
 
-        int h = duration / 3600;
-        int m = (duration - (h * 3600)) / 60;
-        int s =  duration - (h * 3600) - (m * 60);
+            int h = duration / 3600;
+            int m = (duration - (h * 3600)) / 60;
+            int s =  duration - (h * 3600) - (m * 60);
 
-        QString str;
+            QString str;
 
-        if (h)
-            str = QString("Encoding time %4h %3m %2s [%1 sec]").arg(duration).arg(s).arg(m).arg(h);
-        else if (m)
-            str = QString("Encoding time %3m %2s [%1 sec]").arg(duration).arg(s).arg(m);
-        else
-            str = QString("Encoding time %1 sec").arg(duration);
+            if (h)
+                str = QString("Encoding time %4h %3m %2s [%1 sec]").arg(duration).arg(s).arg(m).arg(h);
+            else if (m)
+                str = QString("Encoding time %3m %2s [%1 sec]").arg(duration).arg(s).arg(m);
+            else
+                str = QString("Encoding time %1 sec").arg(duration);
 
-        std::cout << str.toLocal8Bit().constData() << std::endl;
+            std::cout << str.toLocal8Bit().constData() << std::endl;
+        }
 
         qDeleteAll(mThreads);
         mThreads.clear();

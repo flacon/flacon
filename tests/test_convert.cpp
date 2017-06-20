@@ -81,6 +81,7 @@ ConverterTester::ConverterTester(const QString &cueFile, const QString &audioFil
 void ConverterTester::run(const QString &name)
 {
     Converter conv;
+    conv.setShowStatistic(false);
     QEventLoop loop;
     loop.connect(&conv, SIGNAL(finished()), &loop, SLOT(quit()));
     conv.start();
