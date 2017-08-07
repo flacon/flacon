@@ -120,8 +120,8 @@ public:
 };
 
 #define READ_DELAY            1000
-inline bool mustRead(QIODevice *device, char *data, int size, int msecs = READ_DELAY);
-bool mustSkip(QIODevice *device, int size, int msecs = READ_DELAY);
+inline bool mustRead(QIODevice *device, char *data, qint64 size, int msecs = READ_DELAY);
+bool mustSkip(QIODevice *device, qint64 size, int msecs = READ_DELAY);
 
 
 #endif // WAVHEADER_H

@@ -41,15 +41,15 @@
 /************************************************
  *
  ************************************************/
-int timeToBytes(CueTime time, WavHeader wav)
+qint64 timeToBytes(CueTime time, WavHeader wav)
 {
     if (wav.isCdQuality())
     {
-        return (int)((((double)time.frames() * (double)wav.byteRate()) / 75.0) + 0.5);
+        return (qint64)((((double)time.frames() * (double)wav.byteRate()) / 75.0) + 0.5);
     }
     else
     {
-        return (int)((((double)time.milliseconds() * (double)wav.byteRate()) / 1000.0) + 0.5);
+        return (qint64)((((double)time.milliseconds() * (double)wav.byteRate()) / 1000.0) + 0.5);
     }
 }
 
@@ -209,8 +209,8 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
 
         mErrorString = "";
 
-        quint32 bs = timeToBytes(start, mWavHeader) + mWavHeader.dataStartPos();
-        quint32 be = 0;
+        quint64 bs = timeToBytes(start, mWavHeader) + mWavHeader.dataStartPos();
+        quint64 be = 0;
 
         if (end.isNull())
             be = mWavHeader.dataStartPos() + mWavHeader.dataSize();
@@ -219,10 +219,10 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
 
         outDevice->write(StdWavHeader(be - bs, mWavHeader).toByteArray());
 
-        int pos = mPos;
+        qint64 pos = mPos;
 
         // Skip bytes from current to start of track ......
-        int len = bs - mPos;
+        qint64 len = bs - mPos;
         if (len < 0)
         {
             mErrorString = "[Decoder] Incorrect start time.";
@@ -248,13 +248,15 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
 
 
         pos += len;
-        int remains = len;
+        qint64 remains = len;
         int percent = 0;
 
         char buf[MAX_BUF_SIZE];
-        while (input->bytesAvailable() || input->waitForReadyRead(1000))
+        while (remains > 0)// input->bytesAvailable() || input->waitForReadyRead(1000))
         {
-            int n = qMin(MAX_BUF_SIZE, remains);
+            input->bytesAvailable() || input->waitForReadyRead(1000);
+
+            int n = qMin(qint64(MAX_BUF_SIZE), remains);
             n = input->read(buf, n);
             remains -= n;
 
