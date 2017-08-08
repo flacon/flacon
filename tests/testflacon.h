@@ -117,7 +117,6 @@ private:
 
     Disk *standardDisk();
 
-    QString mFfmpeg;
     QString mAudio_cd_wav;
     QString mAudio_24x96_wav;
 
