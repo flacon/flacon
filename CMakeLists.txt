@@ -28,7 +28,7 @@ cmake_minimum_required(VERSION 2.6)
 project(flacon)
 
 set(MAJOR_VERSION 3)
-set(MINOR_VERSION 0)
+set(MINOR_VERSION 1)
 set(PATCH_VERSION 0)
 set(FLACON_VERSION ${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION})
 
