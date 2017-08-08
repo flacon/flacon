@@ -923,7 +923,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Cue vagy audio-fájl hozzáadása</translation>
     </message>
     <message>
         <source>Delete current pattern from history</source>
@@ -989,7 +989,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Nem lehetett írni az &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1010,16 +1010,16 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt;  nem egy valódi cue-fájl. A cue mező nem tartalmaz FÁJL cimkét.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt;  nem egy valódi cue-fájl. Érvénytelen sáv-index ebben: %2</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; audio-fájl nem létezik</translation>
     </message>
 </context>
 <context>

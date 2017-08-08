@@ -43,7 +43,7 @@
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation type="unfinished"/>
+        <translation>Einzelne Audiodateien aus einer großen Audiodatei extrahieren die ein ganzes Album enthält.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
@@ -72,11 +72,11 @@
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation type="unfinished"/>
+        <translation>Bug Tracker %1</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon wird dank der Hilfe der Flacon Übersetzer Teams auf &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt; in viele Sprachen übersetzt.</translation>
     </message>
 </context>
 <context>
@@ -255,11 +255,11 @@
     </message>
     <message>
         <source>Per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>Cue-Datei pro Stück</translation>
     </message>
     <message>
         <source>Create per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>Cue-Datei pro Stück erstellen</translation>
     </message>
 </context>
 <context>
@@ -495,7 +495,12 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
+        <translation>Legt die Ziel Bitrate in kb/s (6-256 pro Audikanal) fest.
+&lt;p&gt;
+Im VBR Modus bestimmt diese die durchschnittliche Bitrate für eine große und weitläufige Audiosammlung.
+&lt;p&gt;
+Im CBR Modus bestimmt diese die tatsächliche Bitrate.
+</translation>
     </message>
 </context>
 <context>
@@ -549,7 +554,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Das Cue Sheet enthält Informationen über mehrere Disks. Welche Disk soll verwendet werden?</translation>
     </message>
 </context>
 <context>
@@ -560,11 +565,11 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation type="unfinished"/>
+        <translation>Kein Cue Sheet ausgewählt. </translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation type="unfinished"/>
+        <translation>Audio Datei ist kürzer als im Cue Sheet angegeben.</translation>
     </message>
 </context>
 <context>
@@ -586,7 +591,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation type="unfinished"/>
+        <translation>Ich kann die Datei %1 nicht lesen</translation>
     </message>
 </context>
 <context>
@@ -598,7 +603,8 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation type="unfinished"/>
+        <translation>Kompressionsstärke angeben, zwischen %1 (am schnellsten) und %2 (höchste Kompression).
+Diese Einstellung wirkt sich nur auf die Dateigröße aus. Alle Einstellungen sind verlustfrei.</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -620,7 +626,10 @@ This only affects the file size. All settings are lossless.</source>
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain ist ein Standard zur Anpassung der gehörten Lautstärke bei Computer Audioformaten.
+
+Die Analyse kann bei einzelnen Audiodateien durchgeführt werden, so dass diese anschließend mit gleicher Lautstärke wiedergegeben werden.
+Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Albums dabei bei.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -907,7 +916,9 @@ If you surround sections of text that contain a token with braces, these section
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Sie können das Zielverzeichnis auswählen. Sie können das Zielverzeichnis auch manuell angeben.
+
+Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), werden die erzeugten Dateien im Quellverzeichnis gespeichert.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
@@ -917,12 +928,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Cue Sheet auswählen</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Cue- oder Audiodatei hinzufügen</translation>
     </message>
     <message>
         <source>Delete current pattern from history</source>
@@ -959,12 +970,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 Programm</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation type="unfinished"/>
+        <translation>Alle Dateien</translation>
     </message>
 </context>
 <context>
@@ -975,7 +986,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation type="unfinished"/>
+        <translation>Datei &lt;b&gt;%1&lt;/b&gt; ist keine unterstützte Audiodatei. &lt;br&gt;&lt;br&gt; überprüfen Sie, dass alle benötigten Programme installiert und konfiguriert sind.</translation>
     </message>
     <message>
         <source> [disk %1]</source>
@@ -988,37 +999,37 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Ich kann die Cue-Datei &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 nicht schreiben</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Datei &lt;b&gt;&quot;%1&quot;&lt;/b&gt; ist nicht vorhanden</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; ist keine gültige Cue-Datei. Disk %2 hat keine Tags.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation type="unfinished"/>
+        <translation>Audiodateiname ist nicht festgelegt</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation type="unfinished"/>
+        <translation>&apos;ReplayGain&apos; kann für Dateien mit einer Samplerate über 48kHz nicht verwendet werden, da Metaflac diese Dateien nicht unterstützt.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; ist keine gültige Cue-Datei. Die Cue-Datei hat keinen FILE Tag.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; ist keine gültige Cue-Datei. Falscher Track-Index bei %2.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Audiodatei &lt;b&gt;&quot;%1&quot;&lt;/b&gt; ist nicht vorhanden</translation>
     </message>
 </context>
 <context>
@@ -1044,7 +1055,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation type="unfinished"/>
+        <translation>Wählen Sie eine andere Cue-Datei aus</translation>
     </message>
 </context>
 <context>
@@ -1148,7 +1159,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Die Konvertierung ist nicht möglich.
+%1</translation>
     </message>
 </context>
 </TS>
