@@ -32,7 +32,14 @@
 #include <QByteArray>
 #include <QFile>
 
-AudioFormatList AudioFormat::mAllFormats;
+/************************************************
+ *
+ ************************************************/
+AudioFormatList &formatList()
+{
+    static AudioFormatList *afl = new AudioFormatList();
+    return *afl;
+}
 
 
 /************************************************
@@ -43,9 +50,9 @@ bool AudioFormat::registerFormat(const AudioFormat &f)
     // Some formats can be embedded as a chunk of RIFF stream.
     // So the WAV format should be last and be checked in the last turn.
     if (f.ext() == "wav")
-        mAllFormats.append(&f);
+        formatList().append(&f);
     else
-        mAllFormats.insert(0, &f);
+        formatList().insert(0, &f);
     return true;
 }
 
@@ -71,7 +78,7 @@ AudioFormat::~AudioFormat()
  ************************************************/
 const AudioFormatList &AudioFormat::allFormats()
 {
-    return mAllFormats;
+    return formatList();
 }
 
 
