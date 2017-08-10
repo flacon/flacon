@@ -70,8 +70,6 @@ public:
 protected:
     virtual bool checkMagic(const QByteArray &data) const;
 
-private:
-    static QList<const AudioFormat*> mAllFormats;
 };
 
 
@@ -79,6 +77,6 @@ private:
 
 #define REGISTER_FORMAT(FORMAT) \
     static FORMAT static_##FORMAT##_Instance; \
-    static bool  is_##FORMAT##_loaded = AudioFormat::registerFormat(static_##FORMAT##_Instance);
+    static bool is_##FORMAT##_loaded = AudioFormat::registerFormat(static_##FORMAT##_Instance);
 
 #endif // FORMAT_H
