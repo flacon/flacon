@@ -218,7 +218,7 @@ void TestFlacon::testConvert_data()
 
     QString inDir = mDataDir + "/testConvert/";
     QString name;
-/*
+
     //=====================================================
     name ="01.1 With pregap and HTOA, w.o cue";
     requests.clear();
@@ -440,7 +440,6 @@ void TestFlacon::testConvert_data()
             << int(OutFormat::PreGapExtractToFile)
             << requests;
     //=====================================================
-*/
 
 
     //=====================================================
