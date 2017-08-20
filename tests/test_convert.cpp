@@ -54,7 +54,17 @@ struct TestConvertRequest {
     }
 };
 Q_DECLARE_METATYPE(TestConvertRequest)
+Q_DECLARE_METATYPE(QList<TestConvertRequest>)
 
+/************************************************
+ *
+ ************************************************/
+void consoleErroHandler(const QString &message)
+{
+    QString msg(message);
+    msg.remove(QRegExp("<[^>]*>"));
+    qWarning() << "Converter error:" << msg;
+}
 
 /************************************************
  *
@@ -74,12 +84,13 @@ void TestFlacon::testConvert()
     settings->setValue(Settings::OutFiles_Directory, dir());
     settings->setValue(Settings::Encoder_TmpDir,      "");
 
-
+    Project::installErrorHandler(consoleErroHandler);
     project->clear();
     foreach (TestConvertRequest req, requests)
     {
         QString srcAudioFile  = req.audioFile.section(':', 0, 0);
         QString destAudioFile = req.audioFile.section(':', 1);
+
         if (!destAudioFile.isEmpty())
         {
             destAudioFile = dir() + "/" + destAudioFile;
@@ -133,6 +144,7 @@ void TestFlacon::testConvert()
 
     loop.exec();
 
+    // Checks __________________________________________________
     for (int i=0; i<project->count(); i++)
     {
         TestConvertRequest req = requests.at(i);
@@ -170,7 +182,6 @@ void TestFlacon::testConvert()
 
         if (!req.expectedCue.isEmpty())
         {
-            //QString resCueFile;
             files = outDir.entryList(QStringList() << "*.cue", QDir::Files);
             if (files.isEmpty())
             {
@@ -207,7 +218,7 @@ void TestFlacon::testConvert_data()
 
     QString inDir = mDataDir + "/testConvert/";
     QString name;
-
+/*
     //=====================================================
     name ="01.1 With pregap and HTOA, w.o cue";
     requests.clear();
@@ -429,7 +440,7 @@ void TestFlacon::testConvert_data()
             << int(OutFormat::PreGapExtractToFile)
             << requests;
     //=====================================================
-
+*/
 
 
     //=====================================================

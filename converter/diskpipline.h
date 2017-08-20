@@ -47,6 +47,7 @@ public:
 signals:
     void readyStart();
     void threadFinished();
+    void finished();
     void threadQuit();
 
 private slots:

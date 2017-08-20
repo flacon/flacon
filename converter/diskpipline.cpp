@@ -180,7 +180,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
     }
     else if (mData->env.format->gainType() == OutFormat::GainAlbum)
     {
-        if (mData->gainRequests.count() == mData->tracks.count())
+        if (*count > 0 && mData->gainRequests.count() == mData->tracks.count())
         {
             mData->startAlbumGainThread(mData->gainRequests);
             mData->gainRequests.clear();
@@ -335,7 +335,11 @@ void DiskPipeline::trackDone(const Track *track)
 {
     mData->trackStatuses.insert(track, Track::OK);
     const_cast<Track*>(track)->setProgress(Track::OK);
-    emit readyStart();
+
+    emit threadFinished();
+
+    if (!isRunning())
+        emit finished();
 }
 
 
@@ -383,6 +387,8 @@ void DiskPipeline::stop()
     mData->interrupt(Track::Aborted);
     emit threadQuit();
     emit threadFinished();
+
+    emit finished();
 }
 
 
@@ -394,9 +400,10 @@ void DiskPipeline::trackError(const Track *track, const QString &message)
     mData->trackStatuses.insert(track, Track::Error);
     const_cast<Track*>(track)->setProgress(Track::Error);
     mData->interrupt(Track::Aborted);
-
     emit threadQuit();
     emit threadFinished();
+
+    emit finished();
     Project::error(message);
 }
 

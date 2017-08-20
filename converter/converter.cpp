@@ -214,11 +214,15 @@ void Converter::startThread()
             break;
     }
 
-    // No process was started
-    if (count == mThreadCount)
-        emit finished();
-}
 
+    foreach (DiskPipeline *pipe, mDiskPiplines)
+    {
+        if (pipe->isRunning())
+            return;
+    }
+
+    emit finished();
+}
 
 
 /************************************************
