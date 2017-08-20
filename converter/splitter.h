@@ -28,7 +28,6 @@
 #define SPLITTER_H
 
 #include "outformat.h"
-#include "converterthread.h"
 #include "worker.h"
 
 class Decoder;

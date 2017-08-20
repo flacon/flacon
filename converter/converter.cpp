@@ -28,7 +28,6 @@
 #include <QDebug>
 
 #include "converter.h"
-#include "converterthread.h"
 #include "project.h"
 #include "settings.h"
 #include "outformat.h"

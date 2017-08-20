@@ -29,7 +29,6 @@
 
 #include <QProcess>
 
-#include "converterthread.h"
 #include "worker.h"
 #include "converterenv.h"
 

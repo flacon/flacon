@@ -61,7 +61,6 @@ set(HEADERS
 
     converter/wavheader.h
     converter/decoder.h
-    converter/converterthread.h
     converter/converter.h
     converter/splitter.h
     converter/encoder.h
@@ -108,7 +107,6 @@ set(SOURCES
 
     converter/wavheader.cpp
     converter/decoder.cpp
-    converter/converterthread.cpp
     converter/converter.cpp
     converter/splitter.cpp
     converter/encoder.cpp
@@ -149,7 +147,6 @@ set (MOCS
     gui/cuediskselectdialog/cuediskselectdialog.h
 
     converter/decoder.h
-    converter/converterthread.h
     converter/converter.h
     converter/splitter.h
     converter/encoder.h

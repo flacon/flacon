@@ -27,7 +27,6 @@
 #ifndef GAIN_H
 #define GAIN_H
 
-#include "converterthread.h"
 #include "converterenv.h"
 #include "worker.h"
 #include <QList>
