@@ -61,9 +61,6 @@ public:
 signals:
     void progress(int percent);
 
-public slots:
-    void stop();
-
 private slots:
     void readStandardError();
 
@@ -76,7 +73,6 @@ private:
     QString    mErrorString;
     quint64    mPos;
     QByteArray mErrBuff;
-    bool       mInterrupted;
 
     bool openFile();
     bool openProcess();

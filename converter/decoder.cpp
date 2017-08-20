@@ -62,8 +62,7 @@ Decoder::Decoder(QObject *parent) :
     mFormat(NULL),
     mProcess(NULL),
     mFile(NULL),
-    mPos(0),
-    mInterrupted(false)
+    mPos(0)
 {
 
 }
@@ -77,8 +76,7 @@ Decoder::Decoder(const AudioFormat &format, QObject *parent) :
     mFormat(&format),
     mProcess(NULL),
     mFile(NULL),
-    mPos(0),
-    mInterrupted(false)
+    mPos(0)
 {
 
 }
@@ -198,15 +196,6 @@ void Decoder::close()
 /************************************************
  *
  ************************************************/
-void Decoder::stop()
-{
-    mInterrupted = true;
-}
-
-
-/************************************************
- *
- ************************************************/
 bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDevice)
 {
     try
@@ -241,7 +230,6 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         if (!mustSkip(input, len))
             throw "Can't skip to start of track.";
 
-
         pos += len;
         // Skip bytes from current to start of track ......
 
@@ -257,9 +245,6 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         char buf[MAX_BUF_SIZE];
         while (remains > 0)
         {
-            if (mInterrupted)
-                return true;
-
             input->bytesAvailable() || input->waitForReadyRead(1000);
 
             int n = qMin(qint64(MAX_BUF_SIZE), remains);

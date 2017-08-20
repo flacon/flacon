@@ -39,7 +39,7 @@ class Encoder: public Worker
 {
     Q_OBJECT
 public:
-    Encoder(const Track *track, const QString &inFile, const ConverterEnv &env, QObject *parent = 0);
+    Encoder(const WorkerRequest request, const ConverterEnv &env, QObject *parent = 0);
     virtual ~Encoder();
 
     QString outFile() const { return mOutFile; }
@@ -55,8 +55,7 @@ private slots:
 
 
 private:
-    const Track *mTrack;
-    QString mInputFile;
+    const WorkerRequest mRequest;
     const ConverterEnv mEnv;
     QString mOutFile;
     int mTotal;

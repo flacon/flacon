@@ -229,7 +229,7 @@ void DiskPipeline::Data::startSplitterThread()
  ************************************************/
 void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
 {
-    Encoder *worker = new Encoder(req.track(), req.fileName(), env);
+    Encoder *worker = new Encoder(req, env);
     QThread *thread = new WorkerThread(worker);
 
     connect(pipeline, SIGNAL(threadQuit()),
