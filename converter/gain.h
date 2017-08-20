@@ -43,6 +43,7 @@ class Gain: public Worker
     Q_OBJECT
 public:
     explicit Gain(const WorkerRequest request, const ConverterEnv &env, QObject *parent = 0);
+    explicit Gain(const QList<WorkerRequest> &requests, const ConverterEnv &env, QObject *parent = 0);
     virtual ~Gain();
 
     void run() override;
@@ -53,29 +54,5 @@ private:
     const ConverterEnv mEnv;
 };
 
-//class Gain: public ConverterThread
-//{
-//    Q_OBJECT
-//public:
-//    explicit Gain(const OutFormat *format, Disk *disk, Track *track, QObject *parent = 0);
-//    virtual ~Gain();
-
-//    bool isReadyStart() const;
-
-//    QList<Track*> tracks() const { return mTracks; }
-
-//public slots:
-//    void inputDataReady(Track *track, const QString &fileName);
-
-//protected:
-//    void doRun();
-//    void doStop();
-
-//private:
-//    QList<Track*> mTracks;
-//    QHash<Track*, QString> mInputFiles;
-//    QProcess *mProcess;
-//    bool mDebug;
-//};
 
 #endif // GAIN_H

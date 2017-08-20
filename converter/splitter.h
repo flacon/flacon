@@ -57,6 +57,7 @@ public:
 
     PreGapType pregapType() const { return mPreGapType; }
     void setPregapType(PreGapType value) { mPreGapType = value; }
+    const QList<const Track*> tracks() const;
 
 private slots:
     void decoderProgress(int percent);

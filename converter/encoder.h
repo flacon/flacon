@@ -34,7 +34,7 @@
 #include "converterenv.h"
 
 
-class OutFormat;
+class QProcess;
 
 class Encoder: public Worker
 {
@@ -57,7 +57,6 @@ private slots:
 
 private:
     const Track *mTrack;
-    QProcess *mProcess;
     QString mInputFile;
     const ConverterEnv mEnv;
     QString mOutFile;
@@ -65,7 +64,7 @@ private:
     int mReady;
     int mProgress;
 
-    void readInputFile();
+    void readInputFile(QProcess *process);
     void runWav();
 };
 

@@ -33,10 +33,12 @@
 
 
 
+/************************************************
+ *
+ ************************************************/
 Encoder::Encoder(const Track *track, const QString &inFile, const ConverterEnv &env, QObject *parent):
     Worker(parent),
     mTrack(track),
-    mProcess(NULL),
     mInputFile(inFile),
     mEnv(env),
     mTotal(0),
@@ -80,36 +82,34 @@ void Encoder::run()
         return;
     }
 
-    mProcess = new QProcess();
+    QProcess process;
     QStringList args = mEnv.format->encoderArgs(mTrack, QDir::toNativeSeparators(outFile()));
     QString prog = args.takeFirst();
 
     if (debug)
         debugArguments(prog, args);
 
-    connect(mProcess, SIGNAL(bytesWritten(qint64)),
+    connect(&process, SIGNAL(bytesWritten(qint64)),
             this, SLOT(processBytesWritten(qint64)));
 
-    mProcess->start(QDir::toNativeSeparators(prog), args);
-    mProcess->waitForStarted();
+    process.start(QDir::toNativeSeparators(prog), args);
+    process.waitForStarted();
 
-    readInputFile();
-    mProcess->closeWriteChannel();
+    readInputFile(&process);
+    process.closeWriteChannel();
 
-    mProcess->waitForFinished(-1);
-    if (mProcess->exitCode() != 0)
+    process.waitForFinished(-1);
+    if (process.exitCode() != 0)
     {
         debugArguments(prog, args);
         QString msg = tr("QQEncoder error:\n") +
-                QString::fromLocal8Bit(mProcess->readAllStandardError());
+                QString::fromLocal8Bit(process.readAllStandardError());
         error(mTrack, msg);
     }
 
     deleteFile(mInputFile);
 
     emit trackReady(mTrack, mOutFile);
-    delete mProcess;
-    mProcess = NULL;
 }
 
 
@@ -123,7 +123,7 @@ void Encoder::processBytesWritten(qint64 bytes)
     if (p != mProgress)
     {
         mProgress = p;
-        emit trackProgress(mTrack, mProgress);
+        emit trackProgress(mTrack, Track::Encoding, mProgress);
     }
 }
 
@@ -131,7 +131,7 @@ void Encoder::processBytesWritten(qint64 bytes)
 /************************************************
 
  ************************************************/
-void Encoder::readInputFile()
+void Encoder::readInputFile(QProcess *process)
 {
     QFile file(mInputFile);
     if (!file.open(QFile::ReadOnly))
@@ -148,7 +148,7 @@ void Encoder::readInputFile()
     while (!file.atEnd())
     {
         buf = file.read(bufSize);
-        mProcess->write(buf);
+        process->write(buf);
     }
 }
 
@@ -170,6 +170,6 @@ void Encoder::runWav()
                   srcFile.errorString()));
     }
 
-    emit trackProgress(mTrack, 100);
+    emit trackProgress(mTrack, Track::Encoding, 100);
     emit trackReady(mTrack, mOutFile);
 }

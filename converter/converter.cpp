@@ -208,15 +208,15 @@ void Converter::startThread()
     int count = mThreadCount;
     int splitterCount = qMax(1.0, ceil(count / 2.0));
 
-    int running = 0;
     foreach (DiskPipeline *pipe, mDiskPiplines)
     {
-        running += pipe->startWorker(&splitterCount, &count);
+        pipe->startWorker(&splitterCount, &count);
         if (count <= 0)
             break;
     }
 
-    if (running == 0)
+    // No process was started
+    if (count == mThreadCount)
         emit finished();
 }
 

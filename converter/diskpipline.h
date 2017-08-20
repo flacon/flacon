@@ -40,7 +40,7 @@ public:
     explicit DiskPipeline(const Disk *disk, const ConverterEnv &env,  QObject *parent = 0);
     virtual ~DiskPipeline();
 
-    int startWorker(int *splitterCount, int *count);
+    void startWorker(int *splitterCount, int *count);
     void stop();
     bool isRunning() const;
 
@@ -50,11 +50,12 @@ signals:
     void threadQuit();
 
 private slots:
-    void trackProgress(const Track *track, int percent);
-    void splitterError(const Track *track, const QString &message);
-    void splitterTrackReady(const Track *track, const QString &outFileName);
+    void trackProgress(const Track *track, Track::Status status, int percent);
+    void trackError(const Track *track, const QString &message);
 
-    void encoderTrackReady(const Track *track, const QString &outFileName);
+    void addEncoderRequest(const Track *track, const QString &fileName);
+    void addGainRequest(const Track *track, const QString &fileName);
+    void trackDone(const Track *track);
 
 private:
     class Data;

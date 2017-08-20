@@ -43,18 +43,10 @@
 #include <QUuid>
 #include <QDebug>
 
-//#define DEBUG_CUE_ON
 
-#ifdef DEBUG_CUE_ON
-#define DEBUG_CUE qDebug()
-#else
-#define DEBUG_CUE QT_NO_QDEBUG_MACRO()
-#endif
-
-
-
-
-
+/************************************************
+ *
+ ************************************************/
 Splitter::Splitter(const Disk *disk, const ConverterEnv &env,QObject *parent):
     Worker(parent),
     mDecoder(NULL),
@@ -72,6 +64,9 @@ Splitter::Splitter(const Disk *disk, const ConverterEnv &env,QObject *parent):
 }
 
 
+/************************************************
+ *
+ ************************************************/
 void Splitter::run()
 {
     mCurrentTrack = 0;
@@ -96,7 +91,6 @@ void Splitter::run()
         CueIndex start = mDisk->track(0)->cueIndex(0);
         CueIndex end   = mDisk->track(0)->cueIndex(1);
         QString outFileName = QDir::toNativeSeparators(QString("%1/flacon_%2_%3.wav").arg(mWorkDir).arg("00").arg(QUuid::createUuid().toString().mid(1, 36)));
-        //extractTrack(mDisk->track(0)->cueIndex(0), mDisk->track(0)->cueIndex(1), outFileName);
 
         try
         {
@@ -160,9 +154,28 @@ void Splitter::run()
 }
 
 
+/************************************************
+ *
+ ************************************************/
+const QList<const Track *> Splitter::tracks() const
+{
+    QList<const Track *> res;
+    if (mPreGapType == PreGapExtractToFile)
+        res << mDisk->preGapTrack();
+
+    for (int i=0; i<mDisk->count(); ++i)
+        res << mDisk->track(i);
+
+    return res;
+}
+
+
+/************************************************
+ *
+ ************************************************/
 void Splitter::decoderProgress(int percent)
 {
-    emit trackProgress(mCurrentTrack, percent);
+    emit trackProgress(mCurrentTrack, Track::Splitting, percent);
 }
 
 

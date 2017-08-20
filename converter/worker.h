@@ -28,10 +28,11 @@
 #define WORKER_H
 
 #include <QObject>
+#include "track.h"
 
 class OutFormat;
 class Disk;
-class Track;
+
 
 
 class WorkerRequest {
@@ -61,7 +62,7 @@ public:
 
 signals:
     void trackReady(const Track *track, const QString &outFileName);
-    void trackProgress(const Track *track, int percent);
+    void trackProgress(const Track *track, Track::Status status, int percent);
     void error(const Track *track, const QString &message);
     void progress(const Track *track, int percent);
 
