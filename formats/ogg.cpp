@@ -25,6 +25,7 @@
 
 
 #include "ogg.h"
+#include "disk.h"
 #include "settings.h"
 #include <QDebug>
 #include <math.h>
@@ -43,7 +44,7 @@ OutFormat_Ogg::OutFormat_Ogg()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Ogg::encoderArgs(Track *track, const QString &outFile) const
+QStringList OutFormat_Ogg::encoderArgs(const Track *track, const QString &outFile) const
 {
     QStringList args;
 

@@ -205,27 +205,6 @@ OutFormat::PreGapType OutFormat::strToPreGapType(const QString &str)
 }
 
 
-/************************************************
-
- ************************************************/
-Encoder *OutFormat::createEncoder(Track *track, QObject *parent) const
-{
-    return new Encoder(this, track, parent);
-}
-
-
-/************************************************
-
- ************************************************/
-Gain *OutFormat::createGain(Disk *disk, Track *track, QObject *parent) const
-{
-    if (!gainProgramName().isEmpty())
-        return new Gain(this, disk, track, parent);
-    else
-        return 0;
-}
-
-
 
 
 

@@ -39,7 +39,7 @@ public:
     virtual QString encoderProgramName() const { return "oggenc"; }
     virtual QString gainProgramName() const { return "vorbisgain"; }
 
-    virtual QStringList encoderArgs(Track *track, const QString &outFile) const;
+    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const;
     virtual QStringList gainArgs(const QStringList &files) const;
 
     QHash<QString, QVariant> defaultParameters() const;

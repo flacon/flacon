@@ -35,6 +35,7 @@ class OutFormat;
 class ConverterThread;
 class Disk;
 class Track;
+class DiskPipeline;
 
 class Converter : public QObject
 {
@@ -56,21 +57,16 @@ public slots:
     void stop();
 
 private slots:
-    void threadError(Track *track, const QString &message);
     void startThread();
-    void threadFinished();
-    void trackReady(Track *track, const QString &outFileName);
-    void setTrackProgress(Track *track, Track::Status status, int percent);
 
 private:
     QDateTime mStartTime;
     int mThreadCount;
-    QList<ConverterThread*> mThreads;
+    QVector<DiskPipeline*> mDiskPiplines;
+
     bool mShowStatistic;
 
     bool check(OutFormat *format) const;
-    void createDiscThreads(Disk *disk, const OutFormat *format);
-    void createTrackThreads(Track *track, const OutFormat *format, ConverterThread *prevThread, ConverterThread *nextThread);
     bool createDirs();
 };
 

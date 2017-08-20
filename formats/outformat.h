@@ -23,14 +23,15 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef OUTFORMAT_H
 #define OUTFORMAT_H
 
 #include <QStringList>
 #include <QHash>
-#include "disk.h"
+#include <QVariant>
+#include "track.h"
 
+//class Track;
 class Encoder;
 class Gain;
 class EncoderConfigPage;
@@ -60,7 +61,7 @@ public:
     bool createCue() const;
 
     virtual QString encoderProgramName() const = 0;
-    virtual QStringList encoderArgs(Track *track, const QString &outFile) const = 0;
+    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const = 0;
 
 
     virtual QString gainProgramName() const = 0;
@@ -78,9 +79,6 @@ public:
 
     static QString preGapTypeToString(PreGapType type);
     static PreGapType strToPreGapType(const QString &str);
-
-    virtual Encoder *createEncoder(Track *track, QObject *parent = 0) const;
-    virtual Gain *createGain(Disk *disk, Track *track, QObject *parent = 0) const;
 
 protected:
     QString mId;

@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,53 +24,53 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef SPLITTER_H
-#define SPLITTER_H
+#ifndef WORKER_H
+#define WORKER_H
 
-#include "outformat.h"
-#include "converterthread.h"
-#include "worker.h"
+#include <QObject>
 
-class Decoder;
+class OutFormat;
 class Disk;
 class Track;
-class ConverterEnv;
 
 
-class Splitter: public Worker
-{
-    Q_OBJECT
+class WorkerRequest {
 public:
-    enum PreGapType {
-        PreGapSkip,
-        PreGapExtractToFile,
-        PreGapAddToFirstTrack
-    };
+    WorkerRequest(const Track *track, const QString &fileName):
+        mTrack(track),
+        mFileName(fileName)
+    {
+    }
 
-    Splitter(const Disk *disk, const ConverterEnv &env, QObject *parent = NULL);
-
-public slots:
-    void run() override;
-
-public:
-    QString workDir() const { return mWorkDir; }
-
-    PreGapType pregapType() const { return mPreGapType; }
-    void setPregapType(PreGapType value) { mPreGapType = value; }
-
-private slots:
-    void decoderProgress(int percent);
+    const Track* track() const { return mTrack; }
+    QString fileName() const { return mFileName; }
 
 private:
-    Decoder *mDecoder;
-    QString mWorkDir;
-    const Disk *mDisk;
-    const ConverterEnv &mEnv;
-    PreGapType mPreGapType;
-    const Track *mCurrentTrack;
-
+    const Track *mTrack;
+    QString mFileName;
 };
 
 
+class Worker : public QObject
+{
+    Q_OBJECT
+public:
+    explicit Worker(QObject *parent = 0);
+    virtual ~Worker();
+    virtual void run() = 0;
 
-#endif // SPLITTER_H
+signals:
+    void trackReady(const Track *track, const QString &outFileName);
+    void trackProgress(const Track *track, int percent);
+    void error(const Track *track, const QString &message);
+    void progress(const Track *track, int percent);
+
+protected:
+    bool createDir(const QString &dirName) const;
+    bool deleteFile(const QString &fileName) const;
+
+    void debugArguments(const QString &prog, const QStringList &args);
+};
+
+
+#endif // WORKER_H

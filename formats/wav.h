@@ -39,7 +39,7 @@ public:
     virtual QString encoderProgramName() const { return ""; }
     virtual QString gainProgramName() const { return ""; }
 
-    virtual QStringList encoderArgs(Track *track, const QString &outFile) const;
+    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const;
     virtual QStringList gainArgs(const QStringList &files) const;
 
 
@@ -48,21 +48,9 @@ public:
 
     virtual bool hasConfigPage() const { return false; }
 
-    virtual Encoder *createEncoder(Track *track, QObject *parent = 0) const;
     virtual Gain *createGain(Disk *disk, Track *track, QObject *parent = 0) const;
 };
 
-
-class Encoder_Wav: public Encoder
-{
-    Q_OBJECT
-public:
-    explicit Encoder_Wav(const OutFormat *format, Track *track, QObject *parent = 0);
-
-protected:
-    void doRun();
-    virtual QStringList processArgs() const;
-};
 
 class Format_Wav: public AudioFormat
 {

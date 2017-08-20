@@ -26,6 +26,7 @@
 
 #include "mp3.h"
 #include "settings.h"
+#include "disk.h"
 #include <QDebug>
 
 
@@ -43,7 +44,7 @@ OutFormat_Mp3::OutFormat_Mp3()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Mp3::encoderArgs(Track *track, const QString &outFile) const
+QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFile) const
 {
     QStringList args;
 

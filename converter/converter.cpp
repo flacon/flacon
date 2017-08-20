@@ -35,11 +35,14 @@
 #include "splitter.h"
 #include "encoder.h"
 #include "gain.h"
+#include "diskpipline.h"
+#include "converterenv.h"
 
 #include <iostream>
 #include <math.h>
 #include <QFileInfo>
 #include <QDir>
+
 
 /************************************************
 
@@ -57,6 +60,13 @@ Converter::Converter(QObject *parent) :
  ************************************************/
 void Converter::start()
 {
+    OutFormat *format = OutFormat::currentFormat();
+    if (!check(format))
+    {
+        emit finished();
+        return;
+    }
+
     mStartTime = QDateTime::currentDateTime();
 
     bool ok;
@@ -64,117 +74,39 @@ void Converter::start()
     if (!ok || mThreadCount < 1)
         mThreadCount = qMax(6, QThread::idealThreadCount());
 
-
-    OutFormat *format = OutFormat::currentFormat();
-    //Gain::GainType gainType = OutputFormat::currentGainType();
-
-
-    if (!check(format))
-    {
-        emit finished();
-        return;
-    }
-
+    QString tmpDir = settings->value(Settings::Encoder_TmpDir).toString();
     for (int i=0; i<project->count(); ++i)
     {
-        Disk *disk = project->disk(i);
-        if (disk->canConvert())
-            createDiscThreads(disk, format);
-    }
+        ConverterEnv env;
+        env.format      = format;
+        env.tmpDir      = tmpDir;
+        env.createCue   = format->createCue();
 
+        DiskPipeline * pipeline = new DiskPipeline(project->disk(i), env, this);
 
-    foreach(ConverterThread* thread, mThreads)
-    {
-        connect(thread, SIGNAL(trackError(Track*,QString)), this, SLOT(threadError(Track*,QString)));
-        connect(thread, SIGNAL(readyStart()), this, SLOT(startThread()));
-        connect(thread, SIGNAL(finished()), this, SLOT(threadFinished()));
-        connect(thread, SIGNAL(trackProgress(Track*,Track::Status,int)), this, SLOT(setTrackProgress(Track*,Track::Status,int)));
+        connect(pipeline, SIGNAL(readyStart()),
+                this, SLOT(startThread()));
+
+        connect(pipeline, SIGNAL(threadFinished()),
+                this, SLOT(startThread()));
+
+        mDiskPiplines << pipeline;
+
     }
 
     if (!createDirs())
     {
-        qDeleteAll(mThreads);
-        mThreads.clear();
+        qDeleteAll(mDiskPiplines);
+        mDiskPiplines.clear();
         emit finished();
         return;
     }
 
-    if (mThreads.isEmpty())
-    {
-        qWarning() << "No job for converter";
-        emit finished();
-        return;
-    }
 
     startThread();
 }
 
 
-/************************************************
- CREATE THREADS CHAINS
- ************************************************
-         SIGNAL(trackReady) --> SLOT(inputDataReady)
-
-              +--> Encoder ---> Track gain -->+
-   Splitter ->+            ...                +-> Album gain --> this
-              +--> Encoder ---> Track gain -->+
-
-                                optional step    optional step
- ************************************************/
-void Converter::createDiscThreads(Disk *disk, const OutFormat *format)
-{
-    Splitter *splitter = new Splitter(disk, format);
-    mThreads << splitter;
-
-    Gain *albumGain = 0;
-    if (format->gainType() == OutFormat::GainAlbum)
-    {
-        albumGain = format->createGain(disk, 0);
-    }
-
-    if (albumGain)
-    {
-        mThreads << albumGain;
-        connect(albumGain, SIGNAL(trackReady(Track*,QString)), this, SLOT(trackReady(Track*,QString)));
-    }
-
-
-    createTrackThreads(disk->preGapTrack(), format, splitter, albumGain);
-
-    for (int i=0; i<disk->count(); ++i)
-    {
-        createTrackThreads(disk->track(i), format, splitter, albumGain);
-    }
-}
-
-
-/************************************************
-
- ************************************************/
-void Converter::createTrackThreads(Track *track, const OutFormat *format, ConverterThread *prevThread, ConverterThread *nextThread)
-{
-    Encoder *encoder = format->createEncoder(track);
-    mThreads << encoder;
-    connect(prevThread, SIGNAL(trackReady(Track*,QString)), encoder, SLOT(inputDataReady(Track*,QString)));
-    ConverterThread *last = encoder;
-
-    Gain *gain = 0;
-    if (format->gainType() == OutFormat::GainTrack)
-        gain = format->createGain(track->disk(), track);
-
-    if (gain)
-    {
-        last = gain;
-        mThreads << gain;
-        connect(encoder, SIGNAL(trackReady(Track*,QString)), gain, SLOT(inputDataReady(Track*,QString)));
-    }
-
-
-    if (nextThread)
-        connect(last, SIGNAL(trackReady(Track*,QString)), nextThread, SLOT(inputDataReady(Track*,QString)));
-    else
-        connect(last, SIGNAL(trackReady(Track*,QString)), this, SLOT(trackReady(Track*,QString)));
-}
 
 
 /************************************************
@@ -184,11 +116,11 @@ bool Converter::createDirs()
 {
     bool res = true;
     QSet<QString> dirs;
-    foreach(ConverterThread *thread, mThreads)
-    {
-        if (!thread->workDir().isEmpty())
-            dirs << thread->workDir();
-    }
+    //foreach(ConverterThread *thread, mThreads)
+    //{
+    //    if (!thread->workDir().isEmpty())
+    //        dirs << thread->workDir();
+    //}
 
     foreach(QString dirName, dirs)
     {
@@ -219,9 +151,9 @@ bool Converter::createDirs()
  ************************************************/
 bool Converter::isRunning()
 {
-    foreach (QThread *thread, mThreads)
+    foreach (DiskPipeline *pipe, mDiskPiplines)
     {
-        if (thread->isRunning())
+        if (pipe->isRunning())
             return true;
     }
 
@@ -261,23 +193,10 @@ void Converter::stop()
     if (!isRunning())
         return;
 
-    foreach(ConverterThread *thread, mThreads)
-        thread->stop();
-}
-
-
-/************************************************
-
- ************************************************/
-void Converter::threadError(Track *track, const QString &message)
-{
-    foreach(ConverterThread *thread, mThreads)
+    foreach (DiskPipeline *pipe, mDiskPiplines)
     {
-        if (thread->disk() == track->disk())
-            thread->stop();
+        pipe->stop();
     }
-
-    Project::error(message);
 }
 
 
@@ -287,120 +206,19 @@ void Converter::threadError(Track *track, const QString &message)
 void Converter::startThread()
 {
     int count = mThreadCount;
-
     int splitterCount = qMax(1.0, ceil(count / 2.0));
 
-    foreach(ConverterThread *thread, mThreads)
+    int running = 0;
+    foreach (DiskPipeline *pipe, mDiskPiplines)
     {
-        if (count == 0)
+        running += pipe->startWorker(&splitterCount, &count);
+        if (count <= 0)
             break;
-
-        if (thread->isFinished())
-            continue;
-
-        Splitter *splitter = qobject_cast<Splitter*>(thread);
-        if (splitter)
-        {
-            if (thread->isRunning())
-            {
-                count--;
-                splitterCount--;
-            }
-            else
-            {
-                if (thread->isReadyStart() and splitterCount > 0)
-                {
-                    thread->start();
-                    count--;
-                    splitterCount--;
-                }
-            }
-        }
-
-        else
-        {
-            if (thread->isRunning())
-            {
-                count--;
-            }
-            else
-            {
-                if (thread->isReadyStart())
-                {
-                    thread->start();
-                    count--;
-                }
-            }
-        }
-
     }
-}
 
-
-/************************************************
-
- ************************************************/
-void Converter::threadFinished()
-{
-    ConverterThread *thread = qobject_cast<ConverterThread*>(sender());
-    if (!thread)
-        return;
-
-    mThreads.removeAll(thread);
-    thread->deleteLater();
-
-    startThread();
-
-    if (!isRunning())
-    {
+    if (running == 0)
         emit finished();
-
-        if (mShowStatistic)
-        {
-            int duration = QDateTime::currentDateTime().toTime_t() - mStartTime.toTime_t();
-            if (!duration)
-                duration = 1;
-
-            int h = duration / 3600;
-            int m = (duration - (h * 3600)) / 60;
-            int s =  duration - (h * 3600) - (m * 60);
-
-            QString str;
-
-            if (h)
-                str = QString("Encoding time %4h %3m %2s [%1 sec]").arg(duration).arg(s).arg(m).arg(h);
-            else if (m)
-                str = QString("Encoding time %3m %2s [%1 sec]").arg(duration).arg(s).arg(m);
-            else
-                str = QString("Encoding time %1 sec").arg(duration);
-
-            std::cout << str.toLocal8Bit().constData() << std::endl;
-        }
-
-        qDeleteAll(mThreads);
-        mThreads.clear();
-    }
 }
-
-
-/************************************************
-
- ************************************************/
-void Converter::trackReady(Track *track, const QString &outFileName)
-{
-    setTrackProgress(track, Track::OK, -1);
-}
-
-
-/************************************************
-
- ************************************************/
-void Converter::setTrackProgress(Track *track, Track::Status status, int percent)
-{
-    if (track)
-        track->setProgress(status, percent);
-}
-
 
 
 

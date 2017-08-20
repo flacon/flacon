@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,38 +24,19 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef AAC_H
-#define AAC_H
+#ifndef CONVERTERENV_H
+#define CONVERTERENV_H
 
-#include "outformat.h"
-#include "configdialog.h"
-#include "ui_aac_config.h"
+#include <QString>
 
-class OutFormat_Aac: public OutFormat
+class OutFormat;
+
+
+struct ConverterEnv
 {
-public:
-    OutFormat_Aac();
-
-    virtual QString encoderProgramName() const { return "faac"; }
-    virtual QString gainProgramName() const { return ""; }
-
-    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const;
-    virtual QStringList gainArgs(const QStringList &files) const;
-
-    QHash<QString, QVariant> defaultParameters() const;
-    EncoderConfigPage *configPage(QWidget *parent = 0) const;
+    OutFormat *format;
+    QString tmpDir;
+    bool createCue;
 };
 
-
-class ConfigPage_Acc: public EncoderConfigPage, private Ui::ConfigPage_Aac
-{
-    Q_OBJECT
-public:
-    explicit ConfigPage_Acc(QWidget *parent = 0);
-
-    virtual void load();
-    virtual void write();
-
-};
-
-#endif // AAC_H
+#endif // CONVERTERENV_H

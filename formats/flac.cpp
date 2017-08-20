@@ -90,7 +90,7 @@ bool OutFormat_Flac::check(QStringList *errors) const
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Flac::encoderArgs(Track *track, const QString &outFile) const
+QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFile) const
 {
     QStringList args;
 

@@ -25,6 +25,7 @@
 
 
 #include "wv.h"
+#include "disk.h"
 #include "settings.h"
 #include <QDebug>
 
@@ -69,7 +70,7 @@ OutFormat_Wv::OutFormat_Wv()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wv::encoderArgs(Track *track, const QString &outFile) const
+QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile) const
 {
     QStringList args;
 

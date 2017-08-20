@@ -62,7 +62,8 @@ Decoder::Decoder(QObject *parent) :
     mFormat(NULL),
     mProcess(NULL),
     mFile(NULL),
-    mPos(0)
+    mPos(0),
+    mInterrupted(false)
 {
 
 }
@@ -76,7 +77,8 @@ Decoder::Decoder(const AudioFormat &format, QObject *parent) :
     mFormat(&format),
     mProcess(NULL),
     mFile(NULL),
-    mPos(0)
+    mPos(0),
+    mInterrupted(false)
 {
 
 }
@@ -188,7 +190,17 @@ void Decoder::close()
     {
         mProcess->terminate();
         mProcess->waitForFinished();
+        mProcess->close();
     }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Decoder::stop()
+{
+    mInterrupted = true;
 }
 
 
@@ -224,16 +236,11 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         // Skip bytes from current to start of track ......
         qint64 len = bs - mPos;
         if (len < 0)
-        {
-            mErrorString = "[Decoder] Incorrect start time.";
-            return false;
-        }
+            throw "Incorrect start time.";
 
         if (!mustSkip(input, len))
-        {
-            mErrorString = "[Decoder] Can't skip to start of track.";
-            return false;
-        }
+            throw "Can't skip to start of track.";
+
 
         pos += len;
         // Skip bytes from current to start of track ......
@@ -241,32 +248,29 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         // Read bytes from start to end of track ..........
         len = be - bs;
         if (len < 0)
-        {
-            mErrorString = "[Decoder] Incorrect start or end time.";
-            return false;
-        }
-
+            throw "Incorrect start or end time.";
 
         pos += len;
         qint64 remains = len;
         int percent = 0;
 
         char buf[MAX_BUF_SIZE];
-        while (remains > 0)// input->bytesAvailable() || input->waitForReadyRead(1000))
+        while (remains > 0)
         {
+            if (mInterrupted)
+                return true;
+
             input->bytesAvailable() || input->waitForReadyRead(1000);
 
             int n = qMin(qint64(MAX_BUF_SIZE), remains);
             n = input->read(buf, n);
+            if (n<0)
+                throw QString("Can't read %1 bytes").arg(remains);
+
             remains -= n;
 
             if (outDevice->write(buf, n) != n)
-            {
-                mErrorString = "[Decoder] " + outDevice->errorString();
-                return false;
-            }
-
-
+                throw outDevice->errorString();
 
             if (remains == 0)
             {
@@ -286,6 +290,12 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         // Read bytes from start to end of track ..........
         mPos= pos;
         return true;
+    }
+
+    catch (QString &err)
+    {
+        mErrorString = "[Decoder] " + QString(err);
+        return false;
     }
 
     catch (char const *err)

@@ -25,6 +25,7 @@
 
 
 #include "opus.h"
+#include "disk.h"
 #include "settings.h"
 #include <QDebug>
 
@@ -45,7 +46,7 @@ OutFormat_Opus::OutFormat_Opus()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Opus::encoderArgs(Track *track, const QString &outFile) const
+QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFile) const
 {
     QStringList args;
 

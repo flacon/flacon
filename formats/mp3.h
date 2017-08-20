@@ -39,7 +39,7 @@ public:
     virtual QString encoderProgramName() const { return "lame"; }
     virtual QString gainProgramName() const { return "mp3gain"; }
 
-    virtual QStringList encoderArgs(Track *track, const QString &outFile) const;
+    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const;
     virtual QStringList gainArgs(const QStringList &files) const;
 
     QHash<QString, QVariant> defaultParameters() const;

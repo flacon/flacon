@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,53 +24,45 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef SPLITTER_H
-#define SPLITTER_H
+#ifndef CUECREATOR_H
+#define CUECREATOR_H
 
-#include "outformat.h"
-#include "converterthread.h"
-#include "worker.h"
+#include <QFile>
+#include <QString>
+#include <QHash>
 
-class Decoder;
 class Disk;
 class Track;
-class ConverterEnv;
 
-
-class Splitter: public Worker
+class CueCreator
 {
-    Q_OBJECT
 public:
-    enum PreGapType {
-        PreGapSkip,
-        PreGapExtractToFile,
-        PreGapAddToFirstTrack
-    };
+    explicit CueCreator(const Disk *disk);
+    bool write();
 
-    Splitter(const Disk *disk, const ConverterEnv &env, QObject *parent = NULL);
+    QString errorString() const { return mErrorString; }
 
-public slots:
-    void run() override;
+    QTextCodec *textCodec() const { return mTextCodec; }
+    void setTextCodecName(const QString codecName);
+    void setTextCodecMib(int mib);
 
-public:
-    QString workDir() const { return mWorkDir; }
-
-    PreGapType pregapType() const { return mPreGapType; }
-    void setPregapType(PreGapType value) { mPreGapType = value; }
-
-private slots:
-    void decoderProgress(int percent);
+    bool hasPreGapFile() const { return mHasPreGapFile; }
+    void setHasPregapFile(bool value) { mHasPreGapFile = value; }
 
 private:
-    Decoder *mDecoder;
-    QString mWorkDir;
     const Disk *mDisk;
-    const ConverterEnv &mEnv;
-    PreGapType mPreGapType;
-    const Track *mCurrentTrack;
+    QFile mFile;
+    bool mHasPreGapFile;
+    QString mErrorString;
+    QTextCodec *mTextCodec;
+    QHash<QString, QString>mGlobalTags;
+
+    void initGlobalTags();
+    void writeLine(const QString &text);
+    void writeDiskTag(const QString &format, const QString &tagName);
+    void writeGlobalTag(const QString &format, const QString &tagName);
+    void writeTrackTag(const Track *track, const QString &prefix, const QString &tagName);
 
 };
 
-
-
-#endif // SPLITTER_H
+#endif // CUECREATOR_H

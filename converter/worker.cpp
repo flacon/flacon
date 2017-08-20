@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,79 +24,86 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "wav.h"
+#include "worker.h"
+
+#include <QDebug>
 #include <QFile>
+#include <QDir>
+#include "project.h"
 
-REGISTER_FORMAT(Format_Wav)
 
 /************************************************
- *
+
  ************************************************/
-QStringList Format_Wav::decoderArgs(const QString &fileName) const
+Worker::Worker(QObject *parent) : QObject(parent)
 {
-    return QStringList();
+
 }
 
 
 /************************************************
 
  ************************************************/
-OutFormat_Wav::OutFormat_Wav()
+Worker::~Worker()
 {
-    mId   = "WAV";
-    mExt  = "wav";
-    mName = "WAV";
+
 }
 
 
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wav::encoderArgs(const Track *track, const QString &outFile) const
+bool Worker::createDir(const QString &dirName) const
 {
-    return QStringList();
+    QDir dir(dirName);
+
+    if (! dir.mkpath("."))
+    {
+        Project::error(tr("I can't create directory \"%1\".").arg(dir.path()));
+        return false;
+    }
+
+    if (!QFileInfo(dir.path()).isWritable())
+    {
+        Project::error(tr("I can't write to directory \"%1\".").arg(dir.path()));
+        return false;
+    }
+
+    return true;
 }
 
 
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wav::gainArgs(const QStringList &files) const
+bool Worker::deleteFile(const QString &fileName) const
 {
-    return QStringList();
-}
-
-
-
-/************************************************
-
- ************************************************/
-Gain *OutFormat_Wav::createGain(Disk *disk, Track *track, QObject *parent) const
-{
-    return 0;
+    QFile f(fileName);
+    if (f.exists())
+        return f.remove();
+    else
+        return true;
 }
 
 
 /************************************************
 
  ************************************************/
-QHash<QString, QVariant> OutFormat_Wav::defaultParameters() const
+void Worker::debugArguments(const QString &prog, const QStringList &args)
 {
-    QHash<QString, QVariant> res;
-    return res;
+    QTextStream out(stderr);
+    out << prog << " ";
+    foreach (QString arg, args)
+    {
+        if (arg.contains(' ') || arg.contains('\t'))
+        {
+            out << "'" << arg << "' ";
+        }
+        else
+        {
+            out << arg << " ";
+        }
+
+    }
+    out << endl;
 }
-
-
-/************************************************
-
- ************************************************/
-EncoderConfigPage *OutFormat_Wav::configPage(QWidget *parent) const
-{
-    return 0;
-}
-
-
-
-
-
-
