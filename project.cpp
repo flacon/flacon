@@ -146,7 +146,7 @@ int Project::count() const
 int Project::insertDisk(Disk *disk, int index)
 {
     if (index < 0)
-        index = mDisks.count() -1;
+        index = mDisks.count();
 
     mDisks.insert(index, disk);
 
