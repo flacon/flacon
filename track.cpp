@@ -49,11 +49,6 @@ Track::Track(Disk *disk, int index):
     qRegisterMetaType<Track::Status>("Track::Status");
 }
 
-Track::Track(const Track &other)
-{
-
-}
-
 
 /************************************************
 

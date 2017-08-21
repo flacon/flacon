@@ -45,15 +45,17 @@ public:
         mWorker(worker)
     {
         worker->moveToThread(this);
+        connect(this, SIGNAL(finished()),
+                this, SLOT(deleteLater()));
     }
 
     virtual ~WorkerThread(){
         delete mWorker;
     }
 
-    void run() {
+    void run()
+    {
         mWorker->run();
-        this->deleteLater();
     }
 
 
@@ -69,6 +71,7 @@ class DiskPipeline::Data
 {
 public:
     Data():
+        pipeline(nullptr),
         disk(nullptr),
         needStartSplitter(true),
         interrupted(false)

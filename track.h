@@ -53,7 +53,6 @@ public:
     };
 
     explicit Track(Disk *disk, int index);
-    explicit Track(const Track &other);
     ~Track();
 
     QString artist() const            { return tag("PERFORMER"); }
