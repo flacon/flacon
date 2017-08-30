@@ -35,7 +35,6 @@
 #include "encoder.h"
 #include "gain.h"
 #include "diskpipline.h"
-#include "converterenv.h"
 
 #include <iostream>
 #include <math.h>
@@ -59,8 +58,7 @@ Converter::Converter(QObject *parent) :
  ************************************************/
 void Converter::start()
 {
-    OutFormat *format = OutFormat::currentFormat();
-    if (!check(format))
+    if (!check(project->outFormat()))
     {
         emit finished();
         return;
@@ -73,15 +71,9 @@ void Converter::start()
     if (!ok || mThreadCount < 1)
         mThreadCount = qMax(6, QThread::idealThreadCount());
 
-    QString tmpDir = settings->value(Settings::Encoder_TmpDir).toString();
     for (int i=0; i<project->count(); ++i)
     {
-        ConverterEnv env;
-        env.format      = format;
-        env.tmpDir      = tmpDir;
-        env.createCue   = format->createCue();
-
-        DiskPipeline * pipeline = new DiskPipeline(project->disk(i), env, this);
+        DiskPipeline * pipeline = new DiskPipeline(project->disk(i), this);
 
         connect(pipeline, SIGNAL(readyStart()),
                 this, SLOT(startThread()));
@@ -91,58 +83,17 @@ void Converter::start()
 
         mDiskPiplines << pipeline;
 
+        if (!pipeline->init())
+        {
+            qDeleteAll(mDiskPiplines);
+            mDiskPiplines.clear();
+            emit finished();
+            return;
+        }
     }
-
-    if (!createDirs())
-    {
-        qDeleteAll(mDiskPiplines);
-        mDiskPiplines.clear();
-        emit finished();
-        return;
-    }
-
 
     startThread();
 }
-
-
-
-
-/************************************************
-
- ************************************************/
-bool Converter::createDirs()
-{
-    bool res = true;
-    QSet<QString> dirs;
-    //foreach(ConverterThread *thread, mThreads)
-    //{
-    //    if (!thread->workDir().isEmpty())
-    //        dirs << thread->workDir();
-    //}
-
-    foreach(QString dirName, dirs)
-    {
-        QDir dir(dirName);
-
-        if (! dir.mkpath("."))
-        {
-            Project::error(tr("I can't create directory \"%1\".").arg(dir.path()));
-            res = false;
-            continue;
-        }
-
-        if (!QFileInfo(dir.path()).isWritable())
-        {
-            Project::error(tr("I can't write to directory \"%1\".").arg(dir.path()));
-            res = false;
-            continue;
-        }
-    }
-
-    return res;
-}
-
 
 
 /************************************************

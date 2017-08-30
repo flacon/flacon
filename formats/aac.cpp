@@ -26,9 +26,8 @@
 
 #include "aac.h"
 #include "settings.h"
-#include "project.h"
 #include "inputaudiofile.h"
-
+#include "disk.h"
 
 /************************************************
 

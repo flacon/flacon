@@ -34,10 +34,9 @@
 /************************************************
  *
  ************************************************/
-Gain::Gain(const WorkerRequest request, const ConverterEnv &env, QObject *parent):
+Gain::Gain(const WorkerRequest request, const OutFormat *format, QObject *parent):
     Worker(parent),
-    mProcess(nullptr),
-    mEnv(env)
+    mFormat(format)
 {
     mRequests << request;
 }
@@ -46,21 +45,11 @@ Gain::Gain(const WorkerRequest request, const ConverterEnv &env, QObject *parent
 /************************************************
  *
  ************************************************/
-Gain::Gain(const QList<WorkerRequest> &requests, const ConverterEnv &env, QObject *parent):
+Gain::Gain(const QList<WorkerRequest> &requests, const OutFormat *format, QObject *parent):
     Worker(parent),
-    mProcess(nullptr),
-    mEnv(env)
+    mFormat(format)
 {
     mRequests << requests;
-}
-
-
-/************************************************
- *
- ************************************************/
-Gain::~Gain()
-{
-
 }
 
 
@@ -79,28 +68,24 @@ void Gain::run()
     foreach (WorkerRequest req, mRequests)
         files << QDir::toNativeSeparators(req.fileName());
 
-    QStringList args = mEnv.format->gainArgs(files);
+    QStringList args = mFormat->gainArgs(files);
     QString prog = args.takeFirst();
 
     if (debug)
         debugArguments(prog, args);
 
-    mProcess = new QProcess();
+    QProcess process;
 
-    mProcess->start(prog, args);
-    mProcess->waitForFinished(-1);
+    process.start(prog, args);
+    process.waitForFinished(-1);
 
-    if (mProcess->exitCode() != 0)
+    if (process.exitCode() != 0)
     {
         debugArguments(prog, args);
         QString msg = tr("Gain error:\n") +
-                QString::fromLocal8Bit(mProcess->readAllStandardError());
+                QString::fromLocal8Bit(process.readAllStandardError());
         error(mRequests.first().track(), msg);
     }
-
-    QProcess *proc = mProcess;
-    mProcess = 0;
-    delete proc;
 
     foreach (WorkerRequest req, mRequests)
     {

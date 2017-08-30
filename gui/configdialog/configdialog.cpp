@@ -26,7 +26,7 @@
 
 #include "configdialog.h"
 #include "outformat.h"
-
+#include "../types.h"
 #include "settings.h"
 #include "project.h"
 #include "../controls.h"
@@ -35,6 +35,46 @@
 #include <QSet>
 #include <QFileDialog>
 #include <QDebug>
+#include <QCheckBox>
+#include <QComboBox>
+#include <QLineEdit>
+
+
+/************************************************
+ *
+ ************************************************/
+void loadWidget(QLineEdit *widget, const QString &value)
+{
+    widget->setText(value);
+}
+
+
+/************************************************
+
+ ************************************************/
+void loadWidget(QComboBox *widget, const QVariant &data)
+{
+    int n = qMax(0, widget->findData(data));
+    widget->setCurrentIndex(n);
+}
+
+
+/************************************************
+
+ ************************************************/
+void loadWidget(QCheckBox *widget, bool value)
+{
+    widget->setChecked(value);
+}
+
+
+/************************************************
+
+ ************************************************/
+void loadWidget(QSpinBox *widget, int value)
+{
+    widget->setValue(value);
+}
 
 
 /************************************************
@@ -79,8 +119,8 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     tmpDirButton->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open", ":/icons/16/select-folder"));
     connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
 
-    preGapComboBox->addItem(tr("Extract to separate file"), OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
-    preGapComboBox->addItem(tr("Add to first track"), OutFormat::preGapTypeToString(OutFormat::PreGapAddToFirstTrack));
+    preGapComboBox->addItem(tr("Extract to separate file"), preGapTypeToString(PreGapType::ExtractToFile));
+    preGapComboBox->addItem(tr("Add to first track"),       preGapTypeToString(PreGapType::AddToFirstTrack));
 
     pagesListInit();
     programsInit();
@@ -241,11 +281,12 @@ void ConfigDialog::tmpDirShowDialog()
  ************************************************/
 void ConfigDialog::load()
 {
-    EncoderConfigPage::loadWidget("Tags/DefaultCodepage",  codePageComboBox);
-    EncoderConfigPage::loadWidget("Encoder/ThreadCount",   threadsCountSpin);
-    EncoderConfigPage::loadWidget("Encoder/TmpDir",        tmpDirEdit);
-    EncoderConfigPage::loadWidget("PerTrackCue/Create",    perTrackCueCheck);
-    EncoderConfigPage::loadWidget("PerTrackCue/Pregap",    preGapComboBox);
+    loadWidget(codePageComboBox,    project->defaultCodepage());
+    loadWidget(tmpDirEdit,          project->tmpDir());
+    loadWidget(perTrackCueCheck,    project->createCue());
+    loadWidget(preGapComboBox,      preGapTypeToString(project->preGapType()));
+    loadWidget(threadsCountSpin,    project->threadsCount());
+
 
     foreach(EncoderConfigPage *page, mEncodersPages)
         page->load();
@@ -260,17 +301,27 @@ void ConfigDialog::load()
  ************************************************/
 void ConfigDialog::write()
 {
-    EncoderConfigPage::writeWidget("Tags/DefaultCodepage",  codePageComboBox);
-    EncoderConfigPage::writeWidget("Encoder/ThreadCount",   threadsCountSpin);
-    EncoderConfigPage::writeWidget("Encoder/TmpDir",        tmpDirEdit);
-    EncoderConfigPage::writeWidget("PerTrackCue/Create",    perTrackCueCheck);
-    EncoderConfigPage::writeWidget("PerTrackCue/Pregap",    preGapComboBox);
+    QVariant v;
+
+    //
+    v = codePageComboBox->itemData(codePageComboBox->currentIndex());
+    project->setDefaultCodepage(v.toString());
+
+    v = preGapComboBox->itemData(preGapComboBox->currentIndex());
+    project->setPregapType(strToPreGapType(v.toString()));
+
+    project->setThreadsCount(threadsCountSpin->value());
+    project->setTmpDir(tmpDirEdit->text());
+    project->setCreateCue(perTrackCueCheck->isChecked());
+
 
     foreach(EncoderConfigPage *page, mEncodersPages)
         page->write();
 
     foreach(ProgramEdit *edit, mProgramEdits)
         settings->setValue("Programs/" + edit->programName(), edit->text());
+
+    project->saveSettings();
 }
 
 
@@ -465,6 +516,7 @@ void EncoderConfigPage::writeWidget(const QString &key, QSpinBox *widget)
 {
     settings->setValue(key, widget->value());
 }
+
 
 /************************************************
 

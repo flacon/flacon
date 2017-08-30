@@ -29,17 +29,18 @@
 
 #include <QObject>
 #include "track.h"
-#include "converterenv.h"
 
 class Disk;
+class Project;
 
 class DiskPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiskPipeline(const Disk *disk, const ConverterEnv &env,  QObject *parent = 0);
+    explicit DiskPipeline(const Disk *disk, QObject *parent = 0);
     virtual ~DiskPipeline();
 
+    bool init();
     void startWorker(int *splitterCount, int *count);
     void stop();
     bool isRunning() const;

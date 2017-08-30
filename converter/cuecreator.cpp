@@ -26,7 +26,6 @@
 
 #include "cuecreator.h"
 #include "disk.h"
-#include "settings.h"
 
 #include <QFileInfo>
 #include <QTextCodec>
@@ -35,9 +34,9 @@
 /************************************************
 
  ************************************************/
-CueCreator::CueCreator(const Disk *disk):
+CueCreator::CueCreator(const Disk *disk, PreGapType preGapType):
     mDisk(disk),
-    mHasPreGapFile(false)
+    mPreGapType(preGapType)
 {
     Track *track = mDisk->track(0);
     QString fileName = QFileInfo(track->resultFilePath()).dir().absolutePath() + QDir::separator() +
@@ -147,6 +146,10 @@ void CueCreator::writeTrackTag(const Track *track, const QString &prefix, const 
  ************************************************/
 bool CueCreator::write()
 {
+    // If the first track starts with zero second, doesn't make sense to create pregap track.
+    bool createPreGapFile = mPreGapType == PreGapType::ExtractToFile &&
+                            mDisk->track(0)->cueIndex(1).milliseconds() > 0;
+
     if (!mFile.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         mErrorString = QObject::tr("I can't write cue file <b>%1</b>:<br>%2").arg(mFile.fileName(), mFile.errorString());
@@ -161,15 +164,12 @@ bool CueCreator::write()
     writeGlobalTag("REM GENRE \"%1\"",  TAG_GENRE);
     writeGlobalTag("REM DATE %1",       TAG_DATE);
     writeDiskTag("REM DISCID %1",       TAG_DISCID);
-
-    if (settings->value(Settings::PerTrackCue_FlaconTags).toBool())
-        writeLine(QString("REM COMMENT \"Flacon v%1\"").arg(FLACON_VERSION));
-
+    writeLine(QString("REM COMMENT \"Flacon v%1\"").arg(FLACON_VERSION));
     writeGlobalTag("PERFORMER \"%1\"",  TAG_PERFORMER);
     writeGlobalTag("SONGWRITER \"%1\"", TAG_SONGWRITER);
     writeGlobalTag("TITLE \"%1\"",      TAG_ALBUM);
 
-    if (mHasPreGapFile)
+    if (createPreGapFile)
         writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisk->preGapTrack()->resultFilePath()).fileName()));
     else
         writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisk->track(0)->resultFilePath()).fileName()));
@@ -190,7 +190,7 @@ bool CueCreator::write()
 
         if( i == 0)
         {
-            if (mHasPreGapFile)
+            if (createPreGapFile)
             {
                 writeLine(QString("    INDEX 00 %1").arg("00:00:00"));
                 writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));

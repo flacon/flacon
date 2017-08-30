@@ -30,17 +30,15 @@
 #include <QProcess>
 
 #include "worker.h"
-#include "converterenv.h"
-
 
 class QProcess;
+class OutFormat;
 
 class Encoder: public Worker
 {
     Q_OBJECT
 public:
-    Encoder(const WorkerRequest request, const ConverterEnv &env, QObject *parent = 0);
-    virtual ~Encoder();
+    Encoder(const WorkerRequest request, const OutFormat *format, QObject *parent = 0);
 
     QString outFile() const { return mOutFile; }
 
@@ -56,7 +54,7 @@ private slots:
 
 private:
     const WorkerRequest mRequest;
-    const ConverterEnv mEnv;
+    const OutFormat *mFormat;
     QString mOutFile;
     int mTotal;
     int mReady;

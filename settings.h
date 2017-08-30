@@ -30,6 +30,8 @@
 #include <QSettings>
 #include <QSet>
 
+class OutFormat;
+
 class Settings : public QSettings
 {
     Q_OBJECT
@@ -60,7 +62,6 @@ public:
         // PerTrackCue **************************
         PerTrackCue_Create,
         PerTrackCue_Pregap,
-        PerTrackCue_FlaconTags,
 
         // ConfigureDialog **********************
         ConfigureDialog_Width,
@@ -82,6 +83,8 @@ public:
     QSet<QString> programs() const { return mPrograms; }
     QString findProgram(const QString &program) const;
 
+    OutFormat *outFormat() const;
+
 signals:
     void changed();
 
@@ -95,6 +98,7 @@ private:
     void setDefaultValue(const QString &key, const QVariant &defaultValue);
     void setDefaultValue(Key key, const QVariant &defaultValue);
     QString keyToString(Key key) const;
+
     QSet<QString> mPrograms;
     static QString mFileName;
 };

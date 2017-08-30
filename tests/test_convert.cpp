@@ -24,6 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "testflacon.h"
+#include "types.h"
 #include "../settings.h"
 #include "outformat.h"
 #include "../converter/wavheader.h"
@@ -73,16 +74,15 @@ void TestFlacon::testConvert()
 {
     QFETCH(bool, createCue);
     QFETCH(int, preGapType);
+    QFETCH(QString, tmpDir);
     QFETCH(QList<TestConvertRequest>, requests);
 
-    settings->setValue(Settings::OutFiles_Directory, dir());
-    settings->setValue(Settings::OutFiles_Pattern, "%a/%n - %t");
-    settings->setValue(Settings::OutFiles_Format,  "WAV");
-    settings->setValue(Settings::PerTrackCue_FlaconTags, false);
-    settings->setValue(Settings::PerTrackCue_Create,  createCue);
-    settings->setValue(Settings::PerTrackCue_Pregap,  OutFormat::preGapTypeToString(OutFormat::PreGapType(preGapType)));
-    settings->setValue(Settings::OutFiles_Directory, dir());
-    settings->setValue(Settings::Encoder_TmpDir,      "");
+    project->setOutFormat("WAV");
+    project->setCreateCue(createCue);
+    project->setPregapType(PreGapType(preGapType));
+    project->setTmpDir(tmpDir);
+    project->setOutFileDir(dir());
+    project->setOutFilePattern("%a/%n - %t");
 
     Project::installErrorHandler(consoleErroHandler);
     project->clear();
@@ -174,11 +174,14 @@ void TestFlacon::testConvert()
 
         QString msg = "";
         if (!missing.isEmpty())
-            msg += QString("\nFiles not exists:\n  *%1").arg(missing.join("\n  *"));
+            msg += QString("\nFiles not exists in %1:\n  *%2")
+                    .arg(outDir.absolutePath())
+                    .arg(missing.join("\n  *"));
 
         if (!files.isEmpty())
-            msg += QString("\nFiles exists:\n  *%1").arg(files.join("\n  *"));
-
+            msg += QString("\nFiles exists in %1:\n  *%2")
+                    .arg(outDir.absolutePath())
+                    .arg(files.join("\n  *"));
 
         if (!req.expectedCue.isEmpty())
         {
@@ -210,6 +213,7 @@ void TestFlacon::testConvert_data()
 {
     QTest::addColumn<bool>("createCue");
     QTest::addColumn<int>("preGapType");
+    QTest::addColumn<QString>("tmpDir");
     QTest::addColumn<QList<TestConvertRequest> >("requests");
 
     TestConvertRequest req;
@@ -220,7 +224,7 @@ void TestFlacon::testConvert_data()
     QString name;
 
     //=====================================================
-    name ="01.1 With pregap and HTOA, w.o cue";
+    name ="01.1 With pregap and HTOA, without cue";
     requests.clear();
 
     req.clear();
@@ -235,7 +239,8 @@ void TestFlacon::testConvert_data()
 
     QTest::newRow(name.toLocal8Bit())
             << false
-            << int(OutFormat::PreGapExtractToFile)
+            << int(PreGapType::ExtractToFile)
+            << ""
             << requests;
     //=====================================================
 
@@ -258,13 +263,14 @@ void TestFlacon::testConvert_data()
 
     QTest::newRow(name.toLocal8Bit())
             << true
-            << int(OutFormat::PreGapExtractToFile)
+            << int(PreGapType::ExtractToFile)
+            << ""
             << requests;
     //=====================================================
 
 
     //=====================================================
-    name = "02.1 W.o pregap, w.o HTOA";
+    name = "02.1 Without pregap, without HTOA";
     requests.clear();
 
     req.clear();
@@ -280,13 +286,14 @@ void TestFlacon::testConvert_data()
 
     QTest::newRow(name.toLocal8Bit())
             << true
-            << int(OutFormat::PreGapAddToFirstTrack)
+            << int(PreGapType::AddToFirstTrack)
+            << ""
             << requests;
     //=====================================================
 
 
     //=====================================================
-    name = "02.2 W.o pregap, w.o HTOA";
+    name = "02.2 Without pregap, without HTOA";
     requests.clear();
 
     req.clear();
@@ -302,13 +309,14 @@ void TestFlacon::testConvert_data()
 
     QTest::newRow(name.toLocal8Bit())
             << true
-            << int(OutFormat::PreGapExtractToFile)
+            << int(PreGapType::ExtractToFile)
+            << ""
             << requests;
     //=====================================================
 
 
     //=====================================================
-    name = "03.1 With pregap, w.o HTOA";
+    name = "03.1 With pregap, without HTOA";
     requests.clear();
 
     req.clear();
@@ -324,7 +332,8 @@ void TestFlacon::testConvert_data()
 
     QTest::newRow(name.toLocal8Bit())
             << true
-            << int(OutFormat::PreGapAddToFirstTrack)
+            << int(PreGapType::AddToFirstTrack)
+            << ""
             << requests;
     //=====================================================
 
@@ -346,13 +355,14 @@ void TestFlacon::testConvert_data()
 
     QTest::newRow(name.toLocal8Bit())
             << true
-            << int(OutFormat::PreGapAddToFirstTrack)
+            << int(PreGapType::AddToFirstTrack)
+            << ""
             << requests;
     //=====================================================
 
 
     //=====================================================
-    name = "05.1 Cue w.o tags + tags form the separate file";
+    name = "05.1 Cue without tags + tags form the separate file";
     requests.clear();
 
     req.clear();
@@ -372,7 +382,8 @@ void TestFlacon::testConvert_data()
 
     QTest::newRow(name.toLocal8Bit())
             << true
-            << int(OutFormat::PreGapAddToFirstTrack)
+            << int(PreGapType::AddToFirstTrack)
+            << ""
             << requests;
     //=====================================================
 
@@ -394,7 +405,8 @@ void TestFlacon::testConvert_data()
     requests << req;
     QTest::newRow(name.toLocal8Bit())
             << false
-            << int(OutFormat::PreGapExtractToFile)
+            << int(PreGapType::ExtractToFile)
+            << ""
             << requests;
     //=====================================================
 
@@ -416,7 +428,8 @@ void TestFlacon::testConvert_data()
     requests << req;
     QTest::newRow(name.toLocal8Bit())
             << false
-            << int(OutFormat::PreGapExtractToFile)
+            << int(PreGapType::ExtractToFile)
+            << ""
             << requests;
     //=====================================================
 
@@ -437,7 +450,8 @@ void TestFlacon::testConvert_data()
     requests << req;
     QTest::newRow(name.toLocal8Bit())
             << false
-            << int(OutFormat::PreGapExtractToFile)
+            << int(PreGapType::ExtractToFile)
+            << ""
             << requests;
     //=====================================================
 
@@ -470,8 +484,30 @@ void TestFlacon::testConvert_data()
 
     QTest::newRow(name.toLocal8Bit())
             << false
-            << int(OutFormat::PreGapAddToFirstTrack)
+            << int(PreGapType::AddToFirstTrack)
+            << ""
             << requests;
     //=====================================================
 
+
+    //=====================================================
+    name ="10.1 Temporary dir";
+    requests.clear();
+
+    req.clear();
+    req.cueFile     = inDir + "01.cuecreator.cue";
+    req.audioFile   = mAudio_24x96_wav;
+    req.expectedCue = "";
+    req.resultFiles << "01 - Song01.wav : a86e2d59bf1e272b5ab7e9a16009455d"
+                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
+                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
+                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
+    requests << req;
+
+    QTest::newRow(name.toLocal8Bit())
+            << false
+            << int(PreGapType::ExtractToFile)
+            << mTmpDir + "/tmp/tmp/really_tmp"
+            << requests;
+    //=====================================================
 }

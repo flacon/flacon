@@ -27,9 +27,11 @@
 #ifndef CUECREATOR_H
 #define CUECREATOR_H
 
+#include "types.h"
 #include <QFile>
 #include <QString>
 #include <QHash>
+
 
 class Disk;
 class Track;
@@ -37,7 +39,7 @@ class Track;
 class CueCreator
 {
 public:
-    explicit CueCreator(const Disk *disk);
+    explicit CueCreator(const Disk *disk, PreGapType preGapType);
     bool write();
 
     QString errorString() const { return mErrorString; }
@@ -46,13 +48,10 @@ public:
     void setTextCodecName(const QString codecName);
     void setTextCodecMib(int mib);
 
-    bool hasPreGapFile() const { return mHasPreGapFile; }
-    void setHasPregapFile(bool value) { mHasPreGapFile = value; }
-
 private:
     const Disk *mDisk;
+    const PreGapType mPreGapType;
     QFile mFile;
-    bool mHasPreGapFile;
     QString mErrorString;
     QTextCodec *mTextCodec;
     QHash<QString, QString>mGlobalTags;

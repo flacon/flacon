@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -23,47 +23,18 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
+#ifndef TYPES_H
+#define TYPES_H
 
-#ifndef CONVERTER_H
-#define CONVERTER_H
+#include <QString>
 
-#include <QObject>
-#include <QDateTime>
-#include <QVector>
-
-class DiskPipeline;
-class OutFormat;
-
-class Converter : public QObject
-{
-    Q_OBJECT
-public:
-    explicit Converter(QObject *parent = 0);
-
-    bool isRunning();
-    bool canConvert() const;
-
-    bool showStatistic() const { return mShowStatistic; }
-    void setShowStatistic(bool value);
-
-signals:
-    void finished();
-
-public slots:
-    void start();
-    void stop();
-
-private slots:
-    void startThread();
-
-private:
-    QDateTime mStartTime;
-    int mThreadCount;
-    QVector<DiskPipeline*> mDiskPiplines;
-
-    bool mShowStatistic;
-
-    bool check(OutFormat *format) const;
+enum class PreGapType {
+    Skip,
+    ExtractToFile,
+    AddToFirstTrack
 };
 
-#endif // CONVERTER_H
+QString preGapTypeToString(PreGapType type);
+PreGapType strToPreGapType(const QString &str);
+
+#endif // TYPES_H

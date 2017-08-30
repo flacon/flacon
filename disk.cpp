@@ -26,7 +26,6 @@
 
 #include "disk.h"
 #include "track.h"
-#include "settings.h"
 #include "project.h"
 #include "inputaudiofile.h"
 #include "formats/format.h"

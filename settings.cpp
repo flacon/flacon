@@ -24,6 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
+#include "types.h"
 #include "formats/format.h"
 #include "settings.h"
 #include "inputaudiofile.h"
@@ -137,8 +138,7 @@ void Settings::init()
 
     // PerTrackCue **************************
     setDefaultValue(PerTrackCue_Create,     false);
-    setDefaultValue(PerTrackCue_Pregap,     OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
-    setDefaultValue(PerTrackCue_FlaconTags, true);
+    setDefaultValue(PerTrackCue_Pregap,     preGapTypeToString(PreGapType::ExtractToFile));
 
     // ConfigureDialog **********************
     setDefaultValue(ConfigureDialog_Width,  645);
@@ -208,7 +208,6 @@ QString Settings::keyToString(Settings::Key key) const
     // PerTrackCue **************************
     case PerTrackCue_Create:    return "PerTrackCue/Create";
     case PerTrackCue_Pregap:    return "PerTrackCue/Pregap";
-    case PerTrackCue_FlaconTags:return "PerTrackCue/InsertCreatorTag";
 
     // ConfigureDialog **********************
     case ConfigureDialog_Width:     return "ConfigureDialog/Width";
@@ -217,6 +216,7 @@ QString Settings::keyToString(Settings::Key key) const
 
     return "";
 }
+
 
 /************************************************
 
@@ -282,6 +282,22 @@ QString Settings::findProgram(const QString &program) const
             return fi.absoluteFilePath();
     }
     return "";
+}
+
+
+/************************************************
+ *
+ ************************************************/
+OutFormat *Settings::outFormat() const
+{
+    QString formatId = value(OutFiles_Format).toString();
+    foreach (OutFormat *format, OutFormat::allFormats())
+    {
+        if (format->id() == formatId)
+            return format;
+    }
+
+    return OutFormat::allFormats().first();
 }
 
 

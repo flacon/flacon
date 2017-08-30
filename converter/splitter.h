@@ -27,35 +27,26 @@
 #ifndef SPLITTER_H
 #define SPLITTER_H
 
-#include "outformat.h"
 #include "worker.h"
+#include "types.h"
 
 class Decoder;
 class Disk;
 class Track;
-class ConverterEnv;
+class Project;
 
 
 class Splitter: public Worker
 {
     Q_OBJECT
 public:
-    enum PreGapType {
-        PreGapSkip,
-        PreGapExtractToFile,
-        PreGapAddToFirstTrack
-    };
-
-    Splitter(const Disk *disk, const ConverterEnv &env, QObject *parent = NULL);
+    Splitter(const Disk *disk, const QString &workDir, PreGapType preGapType, QObject *parent = NULL);
 
 public slots:
     void run() override;
 
 public:
     QString workDir() const { return mWorkDir; }
-
-    PreGapType pregapType() const { return mPreGapType; }
-    void setPregapType(PreGapType value) { mPreGapType = value; }
     const QList<const Track*> tracks() const;
 
 private slots:
@@ -63,10 +54,9 @@ private slots:
 
 private:
     Decoder *mDecoder;
-    QString mWorkDir;
     const Disk *mDisk;
-    const ConverterEnv &mEnv;
-    PreGapType mPreGapType;
+    const QString mWorkDir;
+    const PreGapType mPreGapType;
     const Track *mCurrentTrack;
 
 };

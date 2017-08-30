@@ -29,7 +29,6 @@
 #include "disk.h"
 #include "inputaudiofile.h"
 #include "project.h"
-#include "settings.h"
 #include "outformat.h"
 
 #include <QDir>
@@ -104,27 +103,9 @@ void Track::setTag(const QString &tagName, const QString &value)
  ************************************************/
 void Track::setProgress(Track::Status status, int percent)
 {
-//    bool status2status [] = {
-//        // NoRun   Cancel Error  Abort   OK   Process |_____________
-//            0,     1,     1,     1,     1,     1,    // # NoRun    |
-//            1,     0,     0,     0,     0,     0,    // # Cancel   |
-//            1,     0,     0,     0,     0,     0,    // # Error    | Current
-//            1,     0,     1,     0,     0,     0,    // # Aborted  | statuses
-//            1,     0,     1,     0,     0,     0,    // # OK       |
-//            1,     0,     1,     1,     1,     1,    // # Process  |
-
-//    };
-//    int len = 6;
-//    int processStatus = 5;
-    // Process is some is Splitting, Encoding, Queued  etc.
-
-//    if (status2status[qMin(processStatus, int(mStatus)) * len +
-//                      qMin(processStatus, int(status))])
-    {
-        mStatus = status;
-        mProgress = percent;
-        project->emitTrackProgress(this);
-    }
+    mStatus = status;
+    mProgress = percent;
+    project->emitTrackProgress(this);
 }
 
 
@@ -133,7 +114,7 @@ void Track::setProgress(Track::Status status, int percent)
  ************************************************/
 QString Track::resultFileName() const
 {
-    QString pattern = settings->value(Settings::OutFiles_Pattern).toString();
+    QString pattern = project->outFilePattern();
     if (pattern.isEmpty())
         pattern = QString("%a/%y - %A/%n - %t");
 
@@ -145,7 +126,7 @@ QString Track::resultFileName() const
                         this->artist(),
                         this->genre(),
                         this->date(),
-                        OutFormat::currentFormat()->ext());
+                        project->outFormat()->ext());
 }
 
 
@@ -295,26 +276,26 @@ QString Track::resultFilePath() const
  ************************************************/
 QString Track::calcResultFilePath() const
 {
-    QString settingsDir = settings->value(Settings::OutFiles_Directory).toString();
+    QString dir = project->outFileDir();
 
-    if (settingsDir == "~")
+    if (dir == "~")
         return QDir::homePath();
 
-    if (settingsDir == ".")
-        settingsDir = "";
+    if (dir == ".")
+        dir = "";
 
-    if (settingsDir.startsWith("~/"))
-        return settingsDir.replace(0, 1, QDir::homePath());
+    if (dir.startsWith("~/"))
+        return dir.replace(0, 1, QDir::homePath());
 
-    QFileInfo fi(settingsDir);
+    QFileInfo fi(dir);
 
     if (fi.isAbsolute())
         return fi.absoluteFilePath();
 
     if (!disk()->audioFileName().isEmpty())
-        return QFileInfo(disk()->audioFileName()).dir().absolutePath() + QDir::separator() + settingsDir;
+        return QFileInfo(disk()->audioFileName()).dir().absolutePath() + QDir::separator() + dir;
 
-    return QFileInfo(QDir::homePath() + QDir::separator() + settingsDir).absoluteFilePath();
+    return QFileInfo(QDir::homePath() + QDir::separator() + dir).absoluteFilePath();
 }
 
 

@@ -25,10 +25,10 @@
 
 
 #include "project.h"
-#include "disk.h"
 #include "settings.h"
 #include "cue.h"
 #include "inputaudiofile.h"
+#include "formats/outformat.h"
 
 #include <QDebug>
 #include <QApplication>
@@ -36,6 +36,19 @@
 #include <QDir>
 
 static void (*errorHandler)(const QString &msg);
+
+struct Project::Data
+{
+public:
+    OutFormat *format     = nullptr;
+    QString tmpDir;
+    bool createCue        = false;
+    PreGapType preGapType = PreGapType::Skip;
+    QString outFilePattern;
+    QString outFileDir;
+    QString defaultCodepage;
+    int threadsCount;
+};
 
 /************************************************
 
@@ -117,8 +130,14 @@ Project *Project::instance()
 
  ************************************************/
 Project::Project(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    mData(new Data())
 {
+}
+
+Project::~Project()
+{
+    delete mData;
 }
 
 
@@ -221,6 +240,193 @@ void Project::installErrorHandler(void (*handler)(const QString &))
 
 
 /************************************************
+ *
+ ************************************************/
+OutFormat *Project::outFormat() const
+{
+    return mData->format;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::setOutFormat(OutFormat *value)
+{
+    mData->format = value;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::setOutFormat(const QString &formatId)
+{
+    setOutFormat(OutFormat::formatForId(formatId));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Project::tmpDir() const
+{
+    return mData->tmpDir;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::setTmpDir(const QString &value)
+{
+    mData->tmpDir = value;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+bool Project::createCue() const
+{
+    return mData->createCue;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::setCreateCue(bool value)
+{
+    mData->createCue = value;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+PreGapType Project::preGapType() const
+{
+    return mData->preGapType;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::setPregapType(PreGapType value)
+{
+    mData->preGapType = value;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Project::outFilePattern() const
+{
+    return mData->outFilePattern;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::setOutFilePattern(const QString &value)
+{
+    mData->outFilePattern = value;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Project::outFileDir() const
+{
+    return mData->outFileDir;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::setOutFileDir(const QString &value)
+{
+    mData->outFileDir = value;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Project::defaultCodepage() const
+{
+    return mData->defaultCodepage;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::setDefaultCodepage(const QString &value)
+{
+    mData->defaultCodepage = value;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+int Project::threadsCount() const
+{
+    return mData->threadsCount;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::setThreadsCount(int value)
+{
+    mData->threadsCount = value;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::loadSettings()
+{
+    setOutFormat(OutFormat::formatForId(settings->value(Settings::OutFiles_Format).toString()));
+    if (!outFormat())
+        setOutFormat(OutFormat::allFormats().first());
+
+    setTmpDir(         settings->value(Settings::Encoder_TmpDir         ).toString());
+    setCreateCue(      settings->value(Settings::PerTrackCue_Create     ).toBool());
+    setOutFilePattern( settings->value(Settings::OutFiles_Pattern       ).toString());
+    setOutFileDir(     settings->value(Settings::OutFiles_Directory     ).toString());
+    setDefaultCodepage(settings->value(Settings::Tags_DefaultCodepage   ).toString());
+    setThreadsCount(  settings->value(Settings::Encoder_ThreadCount     ).toInt());
+    setPregapType(strToPreGapType(settings->value(Settings::PerTrackCue_Pregap).toString()));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::saveSettings() const
+{
+    settings->setValue(Settings::OutFiles_Format,       outFormat()->id());
+    settings->setValue(Settings::Encoder_TmpDir,        tmpDir());
+    settings->setValue(Settings::PerTrackCue_Create,    createCue());
+    settings->setValue(Settings::PerTrackCue_Pregap,    preGapTypeToString(preGapType()));
+    settings->setValue(Settings::OutFiles_Pattern,      outFilePattern());
+    settings->setValue(Settings::OutFiles_Directory,    outFileDir());
+    settings->setValue(Settings::Tags_DefaultCodepage,  defaultCodepage());
+    settings->setValue(Settings::Encoder_ThreadCount,   threadsCount());
+}
+
+/************************************************
 
  ************************************************/
 Disk *Project::addAudioFile(const QString &fileName, bool showErrors)
@@ -293,7 +499,7 @@ DiskList Project::addCueFile(const QString &fileName, bool showErrors)
 /************************************************
 
  ************************************************/
-void Project::emitDiskChanged(Disk *disk)
+void Project::emitDiskChanged(Disk *disk) const
 {
     emit diskChanged(disk);
 }
@@ -302,7 +508,7 @@ void Project::emitDiskChanged(Disk *disk)
 /************************************************
 
  ************************************************/
-void Project::emitTrackChanged(int disk, int track)
+void Project::emitTrackChanged(int disk, int track) const
 {
     emit trackChanged(disk, track);
 }
@@ -311,7 +517,7 @@ void Project::emitTrackChanged(int disk, int track)
 /************************************************
 
  ************************************************/
-void Project::emitTrackProgress(const Track *track)
+void Project::emitTrackProgress(const Track *track) const
 {
     emit trackProgress(track);
 }
@@ -320,7 +526,25 @@ void Project::emitTrackProgress(const Track *track)
 /************************************************
 
  ************************************************/
-void Project::emitLayoutChanged()
+void Project::emitLayoutChanged() const
 {
     emit layoutChanged();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::emitDownloadingStarted(DataProvider *provider) const
+{
+    emit downloadingStarted(provider);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::emitDownloadingFinished(DataProvider *provider) const
+{
+    emit downloadingFinished(provider);
 }

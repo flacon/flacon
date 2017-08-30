@@ -28,11 +28,15 @@
 #include "splitter.h"
 #include "encoder.h"
 #include "gain.h"
+#include "cuecreator.h"
 #include "project.h"
+#include "outformat.h"
 
 #include <QThread>
 #include <QDebug>
-
+#include <QDir>
+#include <QFileInfo>
+#include <QCoreApplication>
 
 /************************************************
  *
@@ -74,67 +78,81 @@ public:
         pipeline(nullptr),
         disk(nullptr),
         needStartSplitter(true),
-        interrupted(false)
+        interrupted(false),
+        preGapType(PreGapType::Skip)
     {
     }
 
     DiskPipeline *pipeline;
     const Disk *disk;
-    ConverterEnv env;
     QList<const Track*> tracks;
     bool needStartSplitter;
     QHash<const Track*, Track::Status> trackStatuses;
     QList<WorkerRequest> encoderRequests;
     QList<WorkerRequest> gainRequests;
     bool interrupted;
+    QString workDir;
+    PreGapType preGapType;
+
 
     void interrupt(Track::Status status);
-    Splitter::PreGapType preGapType();
     void startSplitterThread();
     void startEncoderThread(const WorkerRequest &req);
     void startTrackGainThread(const WorkerRequest &req);
     void startAlbumGainThread(QList<WorkerRequest> &reqs);
-
+    bool createDir(const QString &dirName) const;
+    bool createCue() const;
 };
 
 
+
 /************************************************
  *
  ************************************************/
-Splitter::PreGapType DiskPipeline::Data::preGapType()
+bool DiskPipeline::Data::createDir(const QString &dirName) const
 {
-    if (env.createCue && disk->track(0)->cueIndex(1).milliseconds() > 0)
+    QDir dir(dirName);
+
+    if (! dir.mkpath("."))
     {
-        if (env.format->preGapType() == OutFormat::PreGapExtractToFile)
-            return Splitter::PreGapExtractToFile;
-        else
-            return Splitter::PreGapAddToFirstTrack;
+        Project::error(QObject::tr("I can't create directory \"%1\".").arg(dir.path()));
+        return false;
     }
 
-    return Splitter::PreGapSkip;
+    if (!QFileInfo(dir.path()).isWritable())
+    {
+        Project::error(QObject::tr("I can't write to directory \"%1\".").arg(dir.path()));
+        return false;
+    }
+
+    return true;
 }
 
 
-
 /************************************************
  *
  ************************************************/
-DiskPipeline::DiskPipeline(const Disk *disk, const ConverterEnv &env, QObject *parent) :
+DiskPipeline::DiskPipeline(const Disk *disk, QObject *parent) :
     QObject(parent),
     mData(new Data())
 {  
     mData->pipeline = this;
     mData->disk = disk;
-    mData->env  = env;
+    mData->preGapType =  project->createCue() ? project->preGapType() : PreGapType::Skip;
 
-    Splitter splitter(mData->disk, mData->env);
-    splitter.setPregapType(mData->preGapType());
+    if (!project->tmpDir().isEmpty())
+        mData->workDir = QDir(QString("%1/flacon.%2").arg(project->tmpDir()).arg(QCoreApplication::applicationPid())).absolutePath();
+    else
+        mData->workDir = QFileInfo(disk->track(0)->resultFilePath()).dir().absolutePath();
+
+    Splitter splitter(mData->disk, mData->workDir, mData->preGapType);
     mData->tracks = splitter.tracks();
 
     foreach (const Track *track, mData->tracks)
     {
         mData->trackStatuses.insert(track, Track::NotRunning);
     }
+
 }
 
 
@@ -144,6 +162,24 @@ DiskPipeline::DiskPipeline(const Disk *disk, const ConverterEnv &env, QObject *p
 DiskPipeline::~DiskPipeline()
 {
     delete mData;
+}
+
+/************************************************
+ *
+ ************************************************/
+bool DiskPipeline::init()
+{
+    if (!mData->createDir(mData->workDir))
+        return false;
+
+    foreach (const Track *track, mData->tracks)
+    {
+        QString dir = QFileInfo(track->resultFilePath()).absoluteDir().path();
+        if (!mData->createDir(dir))
+            return false;
+    }
+
+    return true;
 }
 
 
@@ -173,7 +209,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
         return;
     }
 
-    if (mData->env.format->gainType() == OutFormat::GainTrack)
+    if (project->outFormat()->gainType() == OutFormat::GainTrack)
     {
         while (*count > 0 && !mData->gainRequests.isEmpty())
         {
@@ -181,7 +217,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
             --(*count);
         }
     }
-    else if (mData->env.format->gainType() == OutFormat::GainAlbum)
+    else if (project->outFormat()->gainType() == OutFormat::GainAlbum)
     {
         if (*count > 0 && mData->gainRequests.count() == mData->tracks.count())
         {
@@ -202,10 +238,27 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
 /************************************************
  *
  ************************************************/
+bool DiskPipeline::Data::createCue() const
+{
+    if (!project->createCue())
+        return true;
+
+    CueCreator cue(disk, preGapType);
+    if (!cue.write())
+    {
+        pipeline->trackError(tracks.first(), cue.errorString());
+        return false;
+    }
+
+    return true;
+}
+
+/************************************************
+ *
+ ************************************************/
 void DiskPipeline::Data::startSplitterThread()
 {
-    Splitter *worker = new Splitter(disk, env);
-    worker->setPregapType(preGapType());
+    Splitter *worker = new Splitter(disk, workDir, preGapType);
 
     WorkerThread *thread = new WorkerThread(worker);
 
@@ -224,6 +277,8 @@ void DiskPipeline::Data::startSplitterThread()
     thread->start();
     needStartSplitter = false;
     trackStatuses.insert(disk->track(0), Track::Splitting);
+
+    createCue();
 }
 
 
@@ -232,7 +287,7 @@ void DiskPipeline::Data::startSplitterThread()
  ************************************************/
 void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
 {
-    Encoder *worker = new Encoder(req, env);
+    Encoder *worker = new Encoder(req, project->outFormat());
     QThread *thread = new WorkerThread(worker);
 
     connect(pipeline, SIGNAL(threadQuit()),
@@ -244,7 +299,7 @@ void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
     connect(worker, SIGNAL(error(const Track*,QString)),
             pipeline, SLOT(trackError(const Track*,QString)));
 
-    if (env.format->gainType() == OutFormat::GainDisable)
+    if (project->outFormat()->gainType() == OutFormat::GainDisable)
     {
         connect(worker, SIGNAL(trackReady(const Track*,QString)),
                 pipeline, SLOT(trackDone(const Track*)));
@@ -264,7 +319,7 @@ void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
  ************************************************/
 void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
 {
-    Gain *worker = new Gain(req, env);
+    Gain *worker = new Gain(req, project->outFormat());
     QThread *thread = new WorkerThread(worker);
 
     connect(pipeline, SIGNAL(threadQuit()),
@@ -288,7 +343,7 @@ void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
  ************************************************/
 void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
 {
-    Gain *worker = new Gain(reqs, env);
+    Gain *worker = new Gain(reqs, project->outFormat());
     QThread *thread = new WorkerThread(worker);
 
     connect(pipeline, SIGNAL(threadQuit()),
@@ -322,7 +377,7 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &fileName
  ************************************************/
 void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
 {
-    if (mData->env.format->gainType() == OutFormat::GainAlbum)
+    if (project->outFormat()->gainType() == OutFormat::GainAlbum)
     {
         const_cast<Track*>(track)->setProgress(Track::WaitGain);
     }

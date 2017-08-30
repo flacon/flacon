@@ -27,30 +27,25 @@
 #ifndef GAIN_H
 #define GAIN_H
 
-#include "converterenv.h"
 #include "worker.h"
 #include <QList>
 
 class Disk;
 class Track;
 class OutFormat;
-class QProcess;
-class ConverterEnv;
 
 class Gain: public Worker
 {
     Q_OBJECT
 public:
-    explicit Gain(const WorkerRequest request, const ConverterEnv &env, QObject *parent = 0);
-    explicit Gain(const QList<WorkerRequest> &requests, const ConverterEnv &env, QObject *parent = 0);
-    virtual ~Gain();
+    explicit Gain(const WorkerRequest request, const OutFormat *format, QObject *parent = 0);
+    explicit Gain(const QList<WorkerRequest> &requests, const OutFormat *format, QObject *parent = 0);
 
     void run() override;
 
 private:
     QList<WorkerRequest> mRequests;
-    QProcess *mProcess;
-    const ConverterEnv mEnv;
+    const OutFormat *mFormat;
 };
 
 

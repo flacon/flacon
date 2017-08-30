@@ -41,6 +41,7 @@ class OutFormat
 public:
     static QList<OutFormat*> allFormats();
     static OutFormat *currentFormat();
+    static OutFormat * formatForId(const QString &id);
 
     enum GainType {
         GainDisable,
@@ -48,16 +49,10 @@ public:
         GainAlbum
     };
 
-    enum PreGapType {
-        PreGapExtractToFile,
-        PreGapAddToFirstTrack
-    };
-
     QString id() const { return mId; }
     QString name() const { return mName; }
     QString ext() const {return mExt; }
     GainType gainType() const;
-    PreGapType preGapType() const;
     bool createCue() const;
 
     virtual QString encoderProgramName() const = 0;
@@ -76,9 +71,6 @@ public:
 
     static QString gainTypeToString(GainType type);
     static GainType strToGainType(const QString &str);
-
-    static QString preGapTypeToString(PreGapType type);
-    static PreGapType strToPreGapType(const QString &str);
 
 protected:
     QString mId;

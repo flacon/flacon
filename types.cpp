@@ -24,19 +24,29 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef CONVERTERENV_H
-#define CONVERTERENV_H
-
-#include <QString>
-
-class OutFormat;
+#include "types.h"
 
 
-struct ConverterEnv
+
+/************************************************
+ *
+ ************************************************/
+QString preGapTypeToString(PreGapType type)
 {
-    OutFormat *format;
-    QString tmpDir;
-    bool createCue;
-};
+    switch(type)
+    {
+    case PreGapType::ExtractToFile:   return "Extract";
+    case PreGapType::AddToFirstTrack: return "AddToFirst";
+    default:                          return "Disable";
+    }
+}
 
-#endif // CONVERTERENV_H
+PreGapType strToPreGapType(const QString &str)
+{
+    QString s = str.toUpper();
+
+    if (s == "EXTRACT")     return PreGapType::ExtractToFile;
+    if (s == "ADDTOFIRST")  return PreGapType::AddToFirstTrack;
+
+    return PreGapType::AddToFirstTrack;
+}

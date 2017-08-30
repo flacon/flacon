@@ -25,21 +25,10 @@
 
 
 #include "splitter.h"
-#include "settings.h"
-#include "project.h"
 #include "disk.h"
-#include "inputaudiofile.h"
 #include "decoder.h"
-#include "converterenv.h"
-#include "cuecreator.h"
 
-#include <iostream>
-#include <QFileInfo>
 #include <QDir>
-#include <QCoreApplication>
-#include <QProcess>
-#include <QRegExp>
-#include <QTextCodec>
 #include <QUuid>
 #include <QDebug>
 
@@ -47,20 +36,14 @@
 /************************************************
  *
  ************************************************/
-Splitter::Splitter(const Disk *disk, const ConverterEnv &env,QObject *parent):
+Splitter::Splitter(const Disk *disk, const QString &workDir, PreGapType preGapType, QObject *parent):
     Worker(parent),
     mDecoder(NULL),
     mDisk(disk),
-    mEnv(env),
-    mPreGapType(PreGapSkip),
+    mWorkDir(workDir),
+    mPreGapType(preGapType),
     mCurrentTrack(NULL)
 {
-    if (env.tmpDir.isEmpty())
-        mWorkDir = QFileInfo(mDisk->track(0)->resultFilePath()).dir().absolutePath();
-    else
-        mWorkDir = QDir(QString("%1/flacon.%2").arg(env.tmpDir).arg(QCoreApplication::applicationPid())).absolutePath();
-
-    createDir(mWorkDir);
 }
 
 
@@ -85,7 +68,8 @@ void Splitter::run()
 
 
     // Extract pregap to separate file ....................
-    if (mPreGapType == PreGapExtractToFile)
+    // If the first track starts with zero second, doesn't make sense to create pregap track.
+    if (mPreGapType == PreGapType::ExtractToFile && mDisk->track(0)->cueIndex(1).milliseconds() > 0)
     {
         mCurrentTrack = mDisk->preGapTrack();
         CueIndex start = mDisk->track(0)->cueIndex(0);
@@ -120,7 +104,7 @@ void Splitter::run()
         QString outFileName = QDir::toNativeSeparators(QString("%1/flacon_%2_%3.wav").arg(mWorkDir).arg(i, 2, 10, QChar('0')).arg(QUuid::createUuid().toString().mid(1, 36)));
 
         CueIndex start, end;
-        if (i==0 && mPreGapType == PreGapAddToFirstTrack)
+        if (i==0 && mPreGapType == PreGapType::AddToFirstTrack)
             start = CueTime("00:00:00");
         else
             start = mDisk->track(i)->cueIndex(1);
@@ -142,14 +126,6 @@ void Splitter::run()
         emit trackReady(mCurrentTrack, outFileName);
     }
 
-
-    if (OutFormat::currentFormat()->createCue())
-    {
-        CueCreator cue(mDisk);
-        cue.setHasPregapFile(mPreGapType == PreGapExtractToFile);
-        if (!cue.write())
-            error(0, cue.errorString());
-    }
     mDecoder = nullptr;
 }
 
@@ -160,7 +136,7 @@ void Splitter::run()
 const QList<const Track *> Splitter::tracks() const
 {
     QList<const Track *> res;
-    if (mPreGapType == PreGapExtractToFile)
+    if (mPreGapType == PreGapType::ExtractToFile)
         res << mDisk->preGapTrack();
 
     for (int i=0; i<mDisk->count(); ++i)

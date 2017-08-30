@@ -36,24 +36,15 @@
 /************************************************
  *
  ************************************************/
-Encoder::Encoder(const WorkerRequest request, const ConverterEnv &env, QObject *parent):
+Encoder::Encoder(const WorkerRequest request, const OutFormat *format, QObject *parent):
     Worker(parent),
     mRequest(request),
-    mEnv(env),
+    mFormat(format),
     mTotal(0),
     mReady(0),
     mProgress(0)
 {
     mOutFile = mRequest.track()->resultFilePath();
-}
-
-
-/************************************************
-
- ************************************************/
-Encoder::~Encoder()
-{
-
 }
 
 
@@ -75,14 +66,14 @@ void Encoder::run()
     }
 
     // Input file already WAV, so for WAV output format we just rename file.
-    if (mEnv.format->id() == "WAV")
+    if (mFormat->id() == "WAV")
     {
         runWav();
         return;
     }
 
     QProcess process;
-    QStringList args = mEnv.format->encoderArgs(mRequest.track(), QDir::toNativeSeparators(outFile()));
+    QStringList args = mFormat->encoderArgs(mRequest.track(), QDir::toNativeSeparators(outFile()));
     QString prog = args.takeFirst();
 
     if (debug)
@@ -101,7 +92,7 @@ void Encoder::run()
     if (process.exitCode() != 0)
     {
         debugArguments(prog, args);
-        QString msg = tr("QQEncoder error:\n") +
+        QString msg = tr("Encoder error:\n") +
                 QString::fromLocal8Bit(process.readAllStandardError());
         error(mRequest.track(), msg);
     }

@@ -39,6 +39,7 @@ add_definitions(-DFLACON_VERSION=\"${FLACON_VERSION}\")
 
 
 set(HEADERS
+    types.h
     tagset.h
     cue.h
     track.h
@@ -67,7 +68,6 @@ set(HEADERS
     converter/gain.h
     converter/worker.h
     converter/diskpipline.h
-    converter/converterenv.h
     converter/cuecreator.h
 
     formats/format.h
@@ -84,6 +84,7 @@ set(HEADERS
 )
 
 set(SOURCES
+    types.cpp
     tagset.cpp
     cue.cpp
     main.cpp
