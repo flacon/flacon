@@ -41,6 +41,10 @@ QString preGapTypeToString(PreGapType type)
     }
 }
 
+
+/************************************************
+
+ ************************************************/
 PreGapType strToPreGapType(const QString &str)
 {
     QString s = str.toUpper();
@@ -49,4 +53,35 @@ PreGapType strToPreGapType(const QString &str)
     if (s == "ADDTOFIRST")  return PreGapType::AddToFirstTrack;
 
     return PreGapType::AddToFirstTrack;
+}
+
+
+
+/************************************************
+
+ ************************************************/
+QString gainTypeToString(GainType type)
+{
+    switch(type)
+    {
+    case GainType::Disable: return "Disable";
+    case GainType::Track:   return "Track";
+    case GainType::Album:   return "Album";
+    }
+
+    return "Disable";
+}
+
+
+/************************************************
+
+ ************************************************/
+GainType strToGainType(const QString &str)
+{
+    QString s = str.toUpper();
+
+    if (s == "TRACK")   return GainType::Track;
+    if (s == "ALBUM")   return GainType::Album;
+
+    return GainType::Disable;
 }

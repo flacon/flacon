@@ -37,4 +37,14 @@ enum class PreGapType {
 QString preGapTypeToString(PreGapType type);
 PreGapType strToPreGapType(const QString &str);
 
+
+enum class GainType {
+    Disable,
+    Track,
+    Album
+};
+
+QString gainTypeToString(GainType type);
+GainType strToGainType(const QString &str);
+
 #endif // TYPES_H

@@ -48,7 +48,6 @@ public:
 
     virtual bool hasConfigPage() const { return false; }
 
-    virtual Gain *createGain(Disk *disk, Track *track, QObject *parent = 0) const;
 };
 
 

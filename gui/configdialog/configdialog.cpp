@@ -416,9 +416,9 @@ void EncoderConfigPage::setLosslessToolTip(QSpinBox *widget)
 void EncoderConfigPage::fillReplayGainComboBox(QComboBox *comboBox)
 {
     comboBox->clear();
-    comboBox->addItem(tr("Disabled",  "ReplayGain type combobox"), OutFormat::gainTypeToString(OutFormat::GainDisable));
-    comboBox->addItem(tr("Per Track", "ReplayGain type combobox"), OutFormat::gainTypeToString(OutFormat::GainTrack));
-    comboBox->addItem(tr("Per Album", "ReplayGain type combobox"), OutFormat::gainTypeToString(OutFormat::GainAlbum));
+    comboBox->addItem(tr("Disabled",  "ReplayGain type combobox"), gainTypeToString(GainType::Disable));
+    comboBox->addItem(tr("Per Track", "ReplayGain type combobox"), gainTypeToString(GainType::Track));
+    comboBox->addItem(tr("Per Album", "ReplayGain type combobox"), gainTypeToString(GainType::Album));
     comboBox->setToolTip(tr("ReplayGain is a standard to normalize the perceived loudness of computer audio formats. \n\n"
                             "The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. \n"
                             "Using the album-gain analysis will preserve the volume differences within an album."));

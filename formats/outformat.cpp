@@ -102,7 +102,7 @@ OutFormat *OutFormat::formatForId(const QString &id)
 /************************************************
 
  ************************************************/
-OutFormat::GainType OutFormat::gainType() const
+GainType OutFormat::gainType() const
 {
     QString s = settings->value(id() + "/ReplayGain").toString();
     return strToGainType(s);
@@ -144,41 +144,13 @@ bool OutFormat::check(QStringList *errors) const
 {
     bool res = checkProgram(encoderProgramName(), errors);
 
-    if (gainType() != GainDisable)
+    if (gainType() != GainType::Disable)
         checkProgram(gainProgramName(), errors);
 
     return res;
 }
 
 
-/************************************************
-
- ************************************************/
-QString OutFormat::gainTypeToString(OutFormat::GainType type)
-{
-    switch(type)
-    {
-    case GainDisable: return "Disable";
-    case GainTrack:   return "Track";
-    case GainAlbum:   return "Album";
-    }
-
-    return "Disable";
-}
-
-
-/************************************************
-
- ************************************************/
-OutFormat::GainType OutFormat::strToGainType(const QString &str)
-{
-    QString s = str.toUpper();
-
-    if (s == "TRACK")   return GainTrack;
-    if (s == "ALBUM")   return GainAlbum;
-
-    return GainDisable;
-}
 
 
 

@@ -30,10 +30,8 @@
 #include <QHash>
 #include <QVariant>
 #include "track.h"
+#include "types.h"
 
-//class Track;
-class Encoder;
-class Gain;
 class EncoderConfigPage;
 
 class OutFormat
@@ -42,12 +40,6 @@ public:
     static QList<OutFormat*> allFormats();
     static OutFormat *currentFormat();
     static OutFormat * formatForId(const QString &id);
-
-    enum GainType {
-        GainDisable,
-        GainTrack,
-        GainAlbum
-    };
 
     QString id() const { return mId; }
     QString name() const { return mName; }
@@ -69,8 +61,6 @@ public:
     virtual EncoderConfigPage *configPage(QWidget *parent = 0) const = 0;
     virtual bool hasConfigPage() const { return true; }
 
-    static QString gainTypeToString(GainType type);
-    static GainType strToGainType(const QString &str);
 
 protected:
     QString mId;

@@ -122,7 +122,7 @@ QHash<QString, QVariant> OutFormat_Wv::defaultParameters() const
 {
     QHash<QString, QVariant> res;
     res.insert("WV/Compression",       1);
-    res.insert("WV/ReplayGain",        gainTypeToString(GainDisable));
+    res.insert("WV/ReplayGain",        gainTypeToString(GainType::Disable));
     return res;
 }
 

@@ -98,7 +98,7 @@ QStringList OutFormat_Ogg::gainArgs(const QStringList &files) const
 {
     QStringList args;
     args <<  args << settings->programName(gainProgramName());
-    if (strToGainType(settings->value("Ogg/ReplayGain").toString()) ==  GainAlbum)
+    if (strToGainType(settings->value("Ogg/ReplayGain").toString()) ==  GainType::Album)
         args << "--album";
 
     args << files;
@@ -118,7 +118,7 @@ QHash<QString, QVariant> OutFormat_Ogg::defaultParameters() const
     res.insert("Ogg/MinBitrate",       "");
     res.insert("Ogg/NormBitrate",      "");
     res.insert("Ogg/MaxBitrate",       "");
-    res.insert("Ogg/ReplayGain",       gainTypeToString(GainDisable));
+    res.insert("Ogg/ReplayGain",       gainTypeToString(GainType::Disable));
     return res;
 }
 

@@ -71,15 +71,6 @@ QStringList OutFormat_Wav::gainArgs(const QStringList &files) const
 /************************************************
 
  ************************************************/
-Gain *OutFormat_Wav::createGain(Disk *disk, Track *track, QObject *parent) const
-{
-    return 0;
-}
-
-
-/************************************************
-
- ************************************************/
 QHash<QString, QVariant> OutFormat_Wav::defaultParameters() const
 {
     QHash<QString, QVariant> res;

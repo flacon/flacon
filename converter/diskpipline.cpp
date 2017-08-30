@@ -209,7 +209,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
         return;
     }
 
-    if (project->outFormat()->gainType() == OutFormat::GainTrack)
+    if (project->outFormat()->gainType() == GainType::Track)
     {
         while (*count > 0 && !mData->gainRequests.isEmpty())
         {
@@ -217,7 +217,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
             --(*count);
         }
     }
-    else if (project->outFormat()->gainType() == OutFormat::GainAlbum)
+    else if (project->outFormat()->gainType() == GainType::Album)
     {
         if (*count > 0 && mData->gainRequests.count() == mData->tracks.count())
         {
@@ -299,7 +299,7 @@ void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
     connect(worker, SIGNAL(error(const Track*,QString)),
             pipeline, SLOT(trackError(const Track*,QString)));
 
-    if (project->outFormat()->gainType() == OutFormat::GainDisable)
+    if (project->outFormat()->gainType() == GainType::Disable)
     {
         connect(worker, SIGNAL(trackReady(const Track*,QString)),
                 pipeline, SLOT(trackDone(const Track*)));
@@ -377,7 +377,7 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &fileName
  ************************************************/
 void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
 {
-    if (project->outFormat()->gainType() == OutFormat::GainAlbum)
+    if (project->outFormat()->gainType() == GainType::Album)
     {
         const_cast<Track*>(track)->setProgress(Track::WaitGain);
     }

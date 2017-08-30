@@ -101,7 +101,7 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
     }
 
     // ReplayGain ...............................................
-    if (settings->value("Mp3/ReplayGain") != this->gainTypeToString(this->GainTrack))
+    if (strToGainType(settings->value("Mp3/ReplayGain").toString()) != GainType::Track)
     {
         args << "--noreplaygain";
     }
@@ -151,7 +151,7 @@ QHash<QString, QVariant> OutFormat_Mp3::defaultParameters() const
     res.insert("Mp3/Preset",           "vbrStandardFast");
     res.insert("Mp3/Bitrate",          320);
     res.insert("Mp3/Quality",          4);
-    res.insert("Mp3/ReplayGain",       gainTypeToString(GainDisable));
+    res.insert("Mp3/ReplayGain",       gainTypeToString(GainType::Disable));
     return res;
 }
 
