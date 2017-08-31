@@ -237,7 +237,7 @@ void TestFlacon::testConvert_data()
                     << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
     requests << req;
 
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << false
             << int(PreGapType::ExtractToFile)
             << ""
@@ -261,7 +261,7 @@ void TestFlacon::testConvert_data()
                     << "Artist_01-Album.cue";
     requests << req;
 
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << true
             << int(PreGapType::ExtractToFile)
             << ""
@@ -284,7 +284,7 @@ void TestFlacon::testConvert_data()
                     << "Artist_02-Album.cue";
     requests << req;
 
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << true
             << int(PreGapType::AddToFirstTrack)
             << ""
@@ -307,7 +307,7 @@ void TestFlacon::testConvert_data()
                     << "Artist_02-Album.cue";
     requests << req;
 
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << true
             << int(PreGapType::ExtractToFile)
             << ""
@@ -330,7 +330,7 @@ void TestFlacon::testConvert_data()
                     << "Artist_03-Album.cue";
     requests << req;
 
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << true
             << int(PreGapType::AddToFirstTrack)
             << ""
@@ -353,7 +353,7 @@ void TestFlacon::testConvert_data()
                     << "Artist_04-Album.cue";
     requests << req;
 
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << true
             << int(PreGapType::AddToFirstTrack)
             << ""
@@ -380,7 +380,7 @@ void TestFlacon::testConvert_data()
                     << "04 PERFORMER: Artist_05, ALBUM: Album, GENRE: Genre, DATE: 2013, TITLE: Song Title 04";
     requests << req;
 
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << true
             << int(PreGapType::AddToFirstTrack)
             << ""
@@ -403,7 +403,7 @@ void TestFlacon::testConvert_data()
                     << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
 
     requests << req;
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << false
             << int(PreGapType::ExtractToFile)
             << ""
@@ -426,7 +426,7 @@ void TestFlacon::testConvert_data()
                     << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
 
     requests << req;
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << false
             << int(PreGapType::ExtractToFile)
             << ""
@@ -448,7 +448,7 @@ void TestFlacon::testConvert_data()
                     << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
 
     requests << req;
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << false
             << int(PreGapType::ExtractToFile)
             << ""
@@ -482,7 +482,7 @@ void TestFlacon::testConvert_data()
     requests << req;
 
 
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << false
             << int(PreGapType::AddToFirstTrack)
             << ""
@@ -504,7 +504,7 @@ void TestFlacon::testConvert_data()
                     << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
     requests << req;
 
-    QTest::newRow(name.toLocal8Bit())
+    QTest::newRow(name.toUtf8())
             << false
             << int(PreGapType::ExtractToFile)
             << mTmpDir + "/tmp/tmp/really_tmp"
