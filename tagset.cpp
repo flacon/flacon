@@ -25,7 +25,7 @@
 
 
 #include "tagset.h"
-#include "project.h"
+#include "settings.h"
 #include <QTextCodec>
 #include <QSharedData>
 #include <QDebug>
@@ -175,7 +175,7 @@ TagSet::TagSet(const QString &uri):
     d(new TagSetData)
 {
     d->mUri = uri;
-    setTextCodecName(project->defaultCodepage());
+    setTextCodecName(settings->value(Settings::Tags_DefaultCodepage).toString());
 }
 
 

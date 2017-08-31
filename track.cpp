@@ -29,6 +29,7 @@
 #include "disk.h"
 #include "inputaudiofile.h"
 #include "project.h"
+#include "settings.h"
 #include "outformat.h"
 
 #include <QDir>
@@ -114,7 +115,7 @@ void Track::setProgress(Track::Status status, int percent)
  ************************************************/
 QString Track::resultFileName() const
 {
-    QString pattern = project->outFilePattern();
+    QString pattern = settings->outFilePattern();
     if (pattern.isEmpty())
         pattern = QString("%a/%y - %A/%n - %t");
 
@@ -126,7 +127,7 @@ QString Track::resultFileName() const
                         this->artist(),
                         this->genre(),
                         this->date(),
-                        project->outFormat()->ext());
+                        settings->outFormat()->ext());
 }
 
 
@@ -276,7 +277,7 @@ QString Track::resultFilePath() const
  ************************************************/
 QString Track::calcResultFilePath() const
 {
-    QString dir = project->outFileDir();
+    QString dir = settings->outFileDir();
 
     if (dir == "~")
         return QDir::homePath();

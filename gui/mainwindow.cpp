@@ -265,8 +265,7 @@ void MainWindow::replaceOutPattern(const QString &pattern)
  ************************************************/
 void MainWindow::setPattern()
 {
-    project->setOutFilePattern(outPatternEdit->currentText());
-    settings->setValue(Settings::OutFiles_Pattern, project->outFilePattern());
+    settings->setValue(Settings::OutFiles_Pattern, outPatternEdit->currentText());
     settings->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
 }
 
@@ -284,11 +283,8 @@ void MainWindow::deletePattern()
         currentPattern = "";
     else
         currentPattern = history.first();
-
     outPatternEdit->lineEdit()->setText(currentPattern);
-    project->setOutFilePattern(currentPattern);
     settings->setValue(Settings::OutFiles_Pattern, currentPattern);
-
     outPatternEdit->setHistory(history);
     settings->setValue(Settings::OutFiles_PatternHistory, history);
 }
@@ -299,8 +295,7 @@ void MainWindow::deletePattern()
  ************************************************/
 void MainWindow::setOutDir()
 {
-    project->setOutFileDir(outDirEdit->text());
-    settings->setValue(Settings::OutFiles_Directory, project->outFileDir());
+    settings->setValue(Settings::OutFiles_Directory, outDirEdit->text());
 }
 
 
@@ -378,8 +373,7 @@ void MainWindow::setOutFormat()
     int n = outFormatCombo->currentIndex();
     if (n > -1)
     {
-        project->setOutFormat(outFormatCombo->itemData(n).toString());
-        settings->setValue(Settings::OutFiles_Format, project->outFormat()->id());
+        settings->setValue(Settings::OutFiles_Format, outFormatCombo->itemData(n));
     }
 }
 
@@ -469,12 +463,12 @@ void MainWindow::refreshEdits()
     tagDiscIdEdit->setMultiValue(diskId);
     codepageCombo->setMultiValue(codePage);
 
-    outDirEdit->setText(project->outFileDir());
+    outDirEdit->setText(settings->value(Settings::OutFiles_Directory).toString());
 
-    if (outPatternEdit->currentText() != project->outFilePattern())
-        outPatternEdit->lineEdit()->setText(project->outFilePattern());
+    if (outPatternEdit->currentText() != settings->value(Settings::OutFiles_Pattern).toString())
+        outPatternEdit->lineEdit()->setText(settings->value(Settings::OutFiles_Pattern).toString());
 
-    int n = outFormatCombo->findData(project->outFormat()->id());
+    int n = outFormatCombo->findData(settings->value(Settings::OutFiles_Format).toString());
     if (n > -1)
         outFormatCombo->setCurrentIndex(n);
     else
@@ -496,8 +490,7 @@ void MainWindow::setCodePage()
         foreach(Disk *disk, disks)
             disk->setTextCodecName(codepage);
 
-        project->setDefaultCodepage(codepage);
-        project->saveSettings();
+        settings->setValue(Settings::Tags_DefaultCodepage, codepage);
     }
 }
 
@@ -842,9 +835,6 @@ void MainWindow::loadSettings()
 
     splitter->restoreState(settings->value("MainWindow/Splitter").toByteArray());
     trackView->header()->restoreState(settings->value("MainWindow/TrackView").toByteArray());
-
-    project->loadSettings();
-    refreshEdits();
 }
 
 
@@ -857,8 +847,6 @@ void MainWindow::saveSettings()
      settings->setValue("MainWindow/Height",    QVariant(size().height()));
      settings->setValue("MainWindow/Splitter",  QVariant(splitter->saveState()));
      settings->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
-
-     project->saveSettings();
 }
 
 

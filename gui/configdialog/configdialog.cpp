@@ -41,43 +41,6 @@
 
 
 /************************************************
- *
- ************************************************/
-void loadWidget(QLineEdit *widget, const QString &value)
-{
-    widget->setText(value);
-}
-
-
-/************************************************
-
- ************************************************/
-void loadWidget(QComboBox *widget, const QVariant &data)
-{
-    int n = qMax(0, widget->findData(data));
-    widget->setCurrentIndex(n);
-}
-
-
-/************************************************
-
- ************************************************/
-void loadWidget(QCheckBox *widget, bool value)
-{
-    widget->setChecked(value);
-}
-
-
-/************************************************
-
- ************************************************/
-void loadWidget(QSpinBox *widget, int value)
-{
-    widget->setValue(value);
-}
-
-
-/************************************************
 
  ************************************************/
 ConfigDialog *ConfigDialog::createAndShow(const OutFormat *format, QWidget *parent)
@@ -281,12 +244,11 @@ void ConfigDialog::tmpDirShowDialog()
  ************************************************/
 void ConfigDialog::load()
 {
-    loadWidget(codePageComboBox,    project->defaultCodepage());
-    loadWidget(tmpDirEdit,          project->tmpDir());
-    loadWidget(perTrackCueCheck,    project->createCue());
-    loadWidget(preGapComboBox,      preGapTypeToString(project->preGapType()));
-    loadWidget(threadsCountSpin,    project->threadsCount());
-
+    EncoderConfigPage::loadWidget("Tags/DefaultCodepage",  codePageComboBox);
+    EncoderConfigPage::loadWidget("Encoder/ThreadCount",   threadsCountSpin);
+    EncoderConfigPage::loadWidget("Encoder/TmpDir",        tmpDirEdit);
+    EncoderConfigPage::loadWidget("PerTrackCue/Create",    perTrackCueCheck);
+    EncoderConfigPage::loadWidget("PerTrackCue/Pregap",    preGapComboBox);
 
     foreach(EncoderConfigPage *page, mEncodersPages)
         page->load();
@@ -301,27 +263,17 @@ void ConfigDialog::load()
  ************************************************/
 void ConfigDialog::write()
 {
-    QVariant v;
-
-    //
-    v = codePageComboBox->itemData(codePageComboBox->currentIndex());
-    project->setDefaultCodepage(v.toString());
-
-    v = preGapComboBox->itemData(preGapComboBox->currentIndex());
-    project->setPregapType(strToPreGapType(v.toString()));
-
-    project->setThreadsCount(threadsCountSpin->value());
-    project->setTmpDir(tmpDirEdit->text());
-    project->setCreateCue(perTrackCueCheck->isChecked());
-
+    EncoderConfigPage::writeWidget("Tags/DefaultCodepage",  codePageComboBox);
+    EncoderConfigPage::writeWidget("Encoder/ThreadCount",   threadsCountSpin);
+    EncoderConfigPage::writeWidget("Encoder/TmpDir",        tmpDirEdit);
+    EncoderConfigPage::writeWidget("PerTrackCue/Create",    perTrackCueCheck);
+    EncoderConfigPage::writeWidget("PerTrackCue/Pregap",    preGapComboBox);
 
     foreach(EncoderConfigPage *page, mEncodersPages)
         page->write();
 
     foreach(ProgramEdit *edit, mProgramEdits)
         settings->setValue("Programs/" + edit->programName(), edit->text());
-
-    project->saveSettings();
 }
 
 

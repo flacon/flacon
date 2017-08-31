@@ -401,9 +401,11 @@ void TestFlacon::testTrackResultFileName()
     QFETCH(QString, pattern);
     QFETCH(QString, expected);
 
+
+    settings->setOutFilePattern(pattern);
+    settings->setOutFormat("WAV");
+
     project->clear();
-    project->setOutFilePattern(pattern);
-    project->setOutFormat("WAV");
 
     QString cueFile = dir() + "/input.cue";
     writeTextFile(cueFile, cue);
@@ -660,9 +662,9 @@ void TestFlacon::testTrackResultFilePath()
     QFETCH(QString, expected);
     QFETCH(QString, audioFile);
 
-    project->setOutFileDir(outDir);
-    project->setOutFilePattern(pattern);
-    project->setOutFormat("WAV");
+    settings->setOutFileDir(outDir);
+    settings->setOutFilePattern(pattern);
+    settings->setOutFormat("WAV");
 
     Disk *disk = loadFromCue(mDataDir + "simple.cue");
 

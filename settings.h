@@ -29,6 +29,7 @@
 
 #include <QSettings>
 #include <QSet>
+#include "types.h"
 
 class OutFormat;
 
@@ -84,6 +85,24 @@ public:
     QString findProgram(const QString &program) const;
 
     OutFormat *outFormat() const;
+    void setOutFormat(const OutFormat *format);
+    void setOutFormat(const QString &formatId);
+
+    QString tmpDir() const;
+    void setTmpDir(const QString &value);
+
+    bool createCue() const;
+    void setCreateCue(bool value);
+
+    PreGapType preGapType() const;
+    void setPregapType(PreGapType value);
+
+    QString outFilePattern() const;
+    void setOutFilePattern(const QString &value);
+
+    QString outFileDir() const;
+    void setOutFileDir(const QString &value);
+
 
 signals:
     void changed();

@@ -77,12 +77,12 @@ void TestFlacon::testConvert()
     QFETCH(QString, tmpDir);
     QFETCH(QList<TestConvertRequest>, requests);
 
-    project->setOutFormat("WAV");
-    project->setCreateCue(createCue);
-    project->setPregapType(PreGapType(preGapType));
-    project->setTmpDir(tmpDir);
-    project->setOutFileDir(dir());
-    project->setOutFilePattern("%a/%n - %t");
+    settings->setOutFormat("WAV");
+    settings->setCreateCue(createCue);
+    settings->setPregapType(PreGapType(preGapType));
+    settings->setTmpDir(tmpDir);
+    settings->setOutFileDir(dir());
+    settings->setOutFilePattern("%a/%n - %t");
 
     Project::installErrorHandler(consoleErroHandler);
     project->clear();

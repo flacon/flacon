@@ -30,6 +30,7 @@
 #include "gain.h"
 #include "cuecreator.h"
 #include "project.h"
+#include "settings.h"
 #include "outformat.h"
 
 #include <QThread>
@@ -138,10 +139,10 @@ DiskPipeline::DiskPipeline(const Disk *disk, QObject *parent) :
 {  
     mData->pipeline = this;
     mData->disk = disk;
-    mData->preGapType =  project->createCue() ? project->preGapType() : PreGapType::Skip;
+    mData->preGapType =  settings->createCue() ? settings->preGapType() : PreGapType::Skip;
 
-    if (!project->tmpDir().isEmpty())
-        mData->workDir = QDir(QString("%1/flacon.%2").arg(project->tmpDir()).arg(QCoreApplication::applicationPid())).absolutePath();
+    if (!settings->tmpDir().isEmpty())
+        mData->workDir = QDir(QString("%1/flacon.%2").arg(settings->tmpDir()).arg(QCoreApplication::applicationPid())).absolutePath();
     else
         mData->workDir = QFileInfo(disk->track(0)->resultFilePath()).dir().absolutePath();
 
@@ -209,7 +210,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
         return;
     }
 
-    if (project->outFormat()->gainType() == GainType::Track)
+    if (settings->outFormat()->gainType() == GainType::Track)
     {
         while (*count > 0 && !mData->gainRequests.isEmpty())
         {
@@ -217,7 +218,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
             --(*count);
         }
     }
-    else if (project->outFormat()->gainType() == GainType::Album)
+    else if (settings->outFormat()->gainType() == GainType::Album)
     {
         if (*count > 0 && mData->gainRequests.count() == mData->tracks.count())
         {
@@ -240,7 +241,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
  ************************************************/
 bool DiskPipeline::Data::createCue() const
 {
-    if (!project->createCue())
+    if (!settings->createCue())
         return true;
 
     CueCreator cue(disk, preGapType);
@@ -287,7 +288,7 @@ void DiskPipeline::Data::startSplitterThread()
  ************************************************/
 void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
 {
-    Encoder *worker = new Encoder(req, project->outFormat());
+    Encoder *worker = new Encoder(req, settings->outFormat());
     QThread *thread = new WorkerThread(worker);
 
     connect(pipeline, SIGNAL(threadQuit()),
@@ -299,7 +300,7 @@ void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
     connect(worker, SIGNAL(error(const Track*,QString)),
             pipeline, SLOT(trackError(const Track*,QString)));
 
-    if (project->outFormat()->gainType() == GainType::Disable)
+    if (settings->outFormat()->gainType() == GainType::Disable)
     {
         connect(worker, SIGNAL(trackReady(const Track*,QString)),
                 pipeline, SLOT(trackDone(const Track*)));
@@ -319,7 +320,7 @@ void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
  ************************************************/
 void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
 {
-    Gain *worker = new Gain(req, project->outFormat());
+    Gain *worker = new Gain(req, settings->outFormat());
     QThread *thread = new WorkerThread(worker);
 
     connect(pipeline, SIGNAL(threadQuit()),
@@ -343,7 +344,7 @@ void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
  ************************************************/
 void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
 {
-    Gain *worker = new Gain(reqs, project->outFormat());
+    Gain *worker = new Gain(reqs, settings->outFormat());
     QThread *thread = new WorkerThread(worker);
 
     connect(pipeline, SIGNAL(threadQuit()),
@@ -377,7 +378,7 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &fileName
  ************************************************/
 void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
 {
-    if (project->outFormat()->gainType() == GainType::Album)
+    if (settings->outFormat()->gainType() == GainType::Album)
     {
         const_cast<Track*>(track)->setProgress(Track::WaitGain);
     }

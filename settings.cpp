@@ -290,14 +290,119 @@ QString Settings::findProgram(const QString &program) const
  ************************************************/
 OutFormat *Settings::outFormat() const
 {
-    QString formatId = value(OutFiles_Format).toString();
-    foreach (OutFormat *format, OutFormat::allFormats())
-    {
-        if (format->id() == formatId)
-            return format;
-    }
+    OutFormat *format = OutFormat::formatForId(value(OutFiles_Format).toString());
+    if (format)
+        return format;
 
     return OutFormat::allFormats().first();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setOutFormat(const OutFormat *format)
+{
+    setOutFormat(format->id());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setOutFormat(const QString &formatId)
+{
+    setValue(OutFiles_Format, formatId);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Settings::tmpDir() const
+{
+    return value(Encoder_TmpDir).toString();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setTmpDir(const QString &value)
+{
+    setValue(Encoder_TmpDir, value);
+}
+
+
+/************************************************
+
+ ************************************************/
+bool Settings::createCue() const
+{
+    return value(PerTrackCue_Create).toBool();
+}
+
+
+/************************************************
+
+ ************************************************/
+void Settings::setCreateCue(bool value)
+{
+    setValue(PerTrackCue_Create, value);
+}
+
+
+/************************************************
+
+ ************************************************/
+PreGapType Settings::preGapType() const
+{
+    return strToPreGapType(value(Settings::PerTrackCue_Pregap).toString());
+}
+
+
+/************************************************
+
+ ************************************************/
+void Settings::setPregapType(PreGapType value)
+{
+    setValue(Settings::PerTrackCue_Pregap, preGapTypeToString(value));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Settings::outFilePattern() const
+{
+    return value(OutFiles_Pattern).toString();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setOutFilePattern(const QString &value)
+{
+    setValue(OutFiles_Pattern, value);
+}
+
+
+/************************************************
+
+ ************************************************/
+QString Settings::outFileDir() const
+{
+    return value(OutFiles_Directory).toString();
+}
+
+
+/************************************************
+
+ ************************************************/
+void Settings::setOutFileDir(const QString &value)
+{
+    setValue(OutFiles_Directory, value);
 }
 
 

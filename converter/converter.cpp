@@ -58,7 +58,7 @@ Converter::Converter(QObject *parent) :
  ************************************************/
 void Converter::start()
 {
-    if (!check(project->outFormat()))
+    if (!check(settings->outFormat()))
     {
         emit finished();
         return;
