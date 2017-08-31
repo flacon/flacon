@@ -37,34 +37,34 @@ class OutFormat_Wv: public OutFormat
 public:
     OutFormat_Wv();
 
-    virtual QString encoderProgramName() const { return "wavpack"; }
-    virtual QString gainProgramName() const { return "wvgain"; }
+    virtual QString encoderProgramName() const override { return "wavpack"; }
+    virtual QString gainProgramName() const override { return "wvgain"; }
 
-    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const;
-    virtual QStringList gainArgs(const QStringList &files) const;
+    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
+    virtual QStringList gainArgs(const QStringList &files) const override;
 
-    QHash<QString, QVariant> defaultParameters() const;
-    EncoderConfigPage *configPage(QWidget *parent = 0) const;
+    QHash<QString, QVariant> defaultParameters() const override;
+    EncoderConfigPage *configPage(QWidget *parent = 0) const override;
 
 };
 
 class Format_Wv: public AudioFormat
 {
 public:
-    virtual QString name() const { return "WavPack"; }
-    virtual QString ext() const { return "wv"; }
-    virtual QByteArray magic() const { return "wvpk"; }
-    virtual uint const magicOffset() const { return 0; }
+    virtual QString name() const override { return "WavPack"; }
+    virtual QString ext() const override { return "wv"; }
+    virtual QByteArray magic() const override { return "wvpk"; }
+    virtual uint const magicOffset() const override { return 0; }
 
 
-    virtual bool isInputFormat() const { return true; }
-    virtual QString decoderProgramName() const { return "wvunpack"; }
-    virtual QStringList decoderArgs(const QString &fileName) const;
+    virtual bool isInputFormat() const override { return true; }
+    virtual QString decoderProgramName() const override { return "wvunpack"; }
+    virtual QStringList decoderArgs(const QString &fileName) const override;
 
-    virtual bool isOutputFormat() const { return false; }
+    virtual bool isOutputFormat() const override { return false; }
 
 protected:
-    virtual bool checkMagic(const QByteArray &data) const;
+    virtual bool checkMagic(const QByteArray &data) const override;
 
 };
 
@@ -74,8 +74,8 @@ class ConfigPage_Wv: public EncoderConfigPage, private Ui::ConfigPage_Wv
 public:
     explicit ConfigPage_Wv(QWidget *parent = 0);
 
-    virtual void load();
-    virtual void write();
+    virtual void load() override;
+    virtual void write() override;
 };
 
 #endif // WV_H

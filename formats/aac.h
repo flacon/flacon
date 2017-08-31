@@ -36,14 +36,14 @@ class OutFormat_Aac: public OutFormat
 public:
     OutFormat_Aac();
 
-    virtual QString encoderProgramName() const { return "faac"; }
-    virtual QString gainProgramName() const { return ""; }
+    virtual QString encoderProgramName() const override { return "faac"; }
+    virtual QString gainProgramName() const override { return ""; }
 
-    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const;
-    virtual QStringList gainArgs(const QStringList &files) const;
+    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
+    virtual QStringList gainArgs(const QStringList &files) const override;
 
-    QHash<QString, QVariant> defaultParameters() const;
-    EncoderConfigPage *configPage(QWidget *parent = 0) const;
+    QHash<QString, QVariant> defaultParameters() const override;
+    EncoderConfigPage *configPage(QWidget *parent = 0) const override;
 };
 
 
@@ -53,8 +53,8 @@ class ConfigPage_Acc: public EncoderConfigPage, private Ui::ConfigPage_Aac
 public:
     explicit ConfigPage_Acc(QWidget *parent = 0);
 
-    virtual void load();
-    virtual void write();
+    virtual void load() override;
+    virtual void write() override;
 
 };
 

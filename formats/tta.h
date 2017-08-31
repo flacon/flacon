@@ -32,18 +32,18 @@
 class Format_Tta: public AudioFormat
 {
 public:
-    virtual QString name() const { return "TTA"; }
-    virtual QString ext() const { return "tta"; }
-    virtual QByteArray magic() const { return "TTA1"; }
-    virtual uint const magicOffset() const { return 0; }
+    virtual QString name() const override { return "TTA"; }
+    virtual QString ext() const override { return "tta"; }
+    virtual QByteArray magic() const override { return "TTA1"; }
+    virtual uint const magicOffset() const override { return 0; }
 
 
-    virtual bool isInputFormat() const { return true; }
-    virtual QString decoderProgramName() const { return "ttaenc"; }
-    virtual QStringList decoderArgs(const QString &fileName) const;
-    virtual QString filterDecoderStderr(const QString &stdErr) const;
+    virtual bool isInputFormat() const override { return true; }
+    virtual QString decoderProgramName() const override { return "ttaenc"; }
+    virtual QStringList decoderArgs(const QString &fileName) const override;
+    virtual QString filterDecoderStderr(const QString &stdErr) const override;
 
-    virtual bool isOutputFormat() const { return false; }
+    virtual bool isOutputFormat() const override { return false; }
 
 
 };

@@ -36,30 +36,30 @@ class OutFormat_Flac: public OutFormat
 {
 public:
     OutFormat_Flac();
-    bool check(QStringList *errors) const;
+    bool check(QStringList *errors) const override;
 
-    virtual QString encoderProgramName() const { return "flac"; }
-    virtual QString gainProgramName() const { return "metaflac"; }
+    virtual QString encoderProgramName() const override { return "flac"; }
+    virtual QString gainProgramName() const override { return "metaflac"; }
 
-    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const;
-    virtual QStringList gainArgs(const QStringList &files) const;
+    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
+    virtual QStringList gainArgs(const QStringList &files) const override;
 
-    QHash<QString, QVariant> defaultParameters() const;
-    EncoderConfigPage *configPage(QWidget *parent = 0) const;
+    QHash<QString, QVariant> defaultParameters() const override;
+    EncoderConfigPage *configPage(QWidget *parent = 0) const override;
 };
 
 class Format_Flac: public AudioFormat
 {
 public:
-    virtual QString name() const { return "FLAC"; }
-    virtual QString ext() const { return "flac"; }
-    virtual bool isInputFormat() const { return true; }
+    virtual QString name() const override { return "FLAC"; }
+    virtual QString ext() const override { return "flac"; }
+    virtual bool isInputFormat() const override { return true; }
 
-    virtual QString decoderProgramName() const { return "flac"; }
-    virtual QStringList decoderArgs(const QString &fileName) const;
+    virtual QString decoderProgramName() const override { return "flac"; }
+    virtual QStringList decoderArgs(const QString &fileName) const override;
 
-    virtual QByteArray magic() const { return "fLaC"; }
-    virtual uint const magicOffset() const { return 0; }
+    virtual QByteArray magic() const override { return "fLaC"; }
+    virtual uint const magicOffset() const override { return 0; }
 };
 
 
@@ -69,8 +69,8 @@ class ConfigPage_Flac: public EncoderConfigPage, private Ui::ConfigPage_Flac
 public:
     explicit ConfigPage_Flac(QWidget *parent = 0);
 
-    virtual void load();
-    virtual void write();
+    virtual void load() override;
+    virtual void write() override;
 
 };
 

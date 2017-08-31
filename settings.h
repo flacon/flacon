@@ -103,6 +103,9 @@ public:
     QString outFileDir() const;
     void setOutFileDir(const QString &value);
 
+    QString defaultCodepage() const;
+    void setDefaultCodepage(const QString &value);
+
 
 signals:
     void changed();

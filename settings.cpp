@@ -409,6 +409,24 @@ void Settings::setOutFileDir(const QString &value)
 /************************************************
 
  ************************************************/
+QString Settings::defaultCodepage() const
+{
+    return value(Tags_DefaultCodepage).toString();
+}
+
+
+/************************************************
+
+ ************************************************/
+void Settings::setDefaultCodepage(const QString &value)
+{
+    setValue(Tags_DefaultCodepage, value);
+}
+
+
+/************************************************
+
+ ************************************************/
 void Settings::setValue(Settings::Key key, const QVariant &value)
 {
     setValue(keyToString(key), value);
