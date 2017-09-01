@@ -46,17 +46,7 @@
 #define protected public;
 
 
-
-#ifdef Q_OS_WIN
-    #define USE_DEV_RANDOM 0
-#elif defined(Q_OS_OS2)
-    #define USE_DEV_RANDOM 0
-#else
-    #define USE_DEV_RANDOM 1
-#endif
-
 int TestFlacon::mTestNum = -1;
-
 
 
 /************************************************
@@ -69,7 +59,6 @@ TestFlacon::TestFlacon(QObject *parent) :
     mStandardDisk(0)
 {
 }
-
 
 
 /************************************************
@@ -403,11 +392,6 @@ QStringList &operator<<(QStringList &list, int value)
 }
 
 
-
-
-
-
-
 /************************************************
 
  ************************************************/
@@ -417,9 +401,11 @@ void TestFlacon::testTrackResultFileName()
     QFETCH(QString, pattern);
     QFETCH(QString, expected);
 
-    settings->setValue(Settings::OutFiles_Pattern, pattern);
-    settings->setValue(Settings::OutFiles_Format, "WAV");
 
+    settings->setOutFilePattern(pattern);
+    settings->setOutFormat("WAV");
+
+    project->clear();
 
     QString cueFile = dir() + "/input.cue";
     writeTextFile(cueFile, cue);
@@ -676,9 +662,9 @@ void TestFlacon::testTrackResultFilePath()
     QFETCH(QString, expected);
     QFETCH(QString, audioFile);
 
-    settings->setValue(Settings::OutFiles_Directory, outDir);
-    settings->setValue(Settings::OutFiles_Pattern, pattern);
-    settings->setValue(Settings::OutFiles_Format, "WAV");
+    settings->setOutFileDir(outDir);
+    settings->setOutFilePattern(pattern);
+    settings->setOutFormat("WAV");
 
     Disk *disk = loadFromCue(mDataDir + "simple.cue");
 
@@ -1733,6 +1719,7 @@ void TestFlacon::testFindCueFile()
     }
 
     InputAudioFile audio(dir + test.chekAudioFile);
+
     Disk disk;
     disk.setAudioFile(audio);
     QString real = disk.cueFile();
@@ -1827,6 +1814,5 @@ void TestFlacon::testFindCueFile_data()
     test.expected = "multi.cue";
     QTest::newRow("multi.cue multi_1.wav multi_2.wav") << test;
 }
-
 
 QTEST_MAIN(TestFlacon)

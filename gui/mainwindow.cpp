@@ -275,8 +275,6 @@ void MainWindow::setPattern()
  ************************************************/
 void MainWindow::deletePattern()
 {
-    //settings->setValue(Settings::OutFiles_Pattern, outPatternEdit->currentText());
-    //settings->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
     QStringList history = settings->value(Settings::OutFiles_PatternHistory).toStringList();
     QString currentPattern = outPatternEdit->currentText();
     history.removeOne(currentPattern);

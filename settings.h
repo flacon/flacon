@@ -29,6 +29,9 @@
 
 #include <QSettings>
 #include <QSet>
+#include "types.h"
+
+class OutFormat;
 
 class Settings : public QSettings
 {
@@ -60,7 +63,6 @@ public:
         // PerTrackCue **************************
         PerTrackCue_Create,
         PerTrackCue_Pregap,
-        PerTrackCue_FlaconTags,
 
         // ConfigureDialog **********************
         ConfigureDialog_Width,
@@ -82,6 +84,29 @@ public:
     QSet<QString> programs() const { return mPrograms; }
     QString findProgram(const QString &program) const;
 
+    OutFormat *outFormat() const;
+    void setOutFormat(const OutFormat *format);
+    void setOutFormat(const QString &formatId);
+
+    QString tmpDir() const;
+    void setTmpDir(const QString &value);
+
+    bool createCue() const;
+    void setCreateCue(bool value);
+
+    PreGapType preGapType() const;
+    void setPregapType(PreGapType value);
+
+    QString outFilePattern() const;
+    void setOutFilePattern(const QString &value);
+
+    QString outFileDir() const;
+    void setOutFileDir(const QString &value);
+
+    QString defaultCodepage() const;
+    void setDefaultCodepage(const QString &value);
+
+
 signals:
     void changed();
 
@@ -95,6 +120,7 @@ private:
     void setDefaultValue(const QString &key, const QVariant &defaultValue);
     void setDefaultValue(Key key, const QVariant &defaultValue);
     QString keyToString(Key key) const;
+
     QSet<QString> mPrograms;
     static QString mFileName;
 };

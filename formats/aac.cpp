@@ -26,9 +26,8 @@
 
 #include "aac.h"
 #include "settings.h"
-#include "project.h"
 #include "inputaudiofile.h"
-
+#include "disk.h"
 
 /************************************************
 
@@ -44,7 +43,7 @@ OutFormat_Aac::OutFormat_Aac()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Aac::encoderArgs(Track *track, const QString &outFile) const
+QStringList OutFormat_Aac::encoderArgs(const Track *track, const QString &outFile) const
 {
     QStringList args;
 

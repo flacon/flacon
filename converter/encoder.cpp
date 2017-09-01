@@ -29,63 +29,22 @@
 
 #include <QFileInfo>
 #include <QDir>
-#include <QProcess>
+#include <QDebug>
+
+
 
 /************************************************
-
+ *
  ************************************************/
-Encoder::Encoder(const OutFormat *format, Track *track, QObject *parent):
-    ConverterThread(track->disk(), format, parent),
-    mTrack(track),
-    mProcess(0),
+Encoder::Encoder(const WorkerRequest request, const OutFormat *format, QObject *parent):
+    Worker(parent),
+    mRequest(request),
+    mFormat(format),
     mTotal(0),
     mReady(0),
     mProgress(0)
 {
-    mWorkDir = QFileInfo(track->resultFilePath()).dir().absolutePath();
-    mOutFile = track->resultFilePath();
-    mReadyStart = false;
-
-    mDebug = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_ENCODER");
-}
-
-
-/************************************************
-
- ************************************************/
-Encoder::~Encoder()
-{
-}
-
-
-/************************************************
-
- ************************************************/
-void Encoder::inputDataReady(Track *track, const QString &fileName)
-{
-    if (track != this->track())
-        return;
-
-    mReadyStart = true;
-    mInputFile = fileName;
-
-    emit trackProgress(track, Track::Queued);
-    emit readyStart();
-}
-
-
-/************************************************
-
- ************************************************/
-void Encoder::doStop()
-{
-    if (mProcess)
-    {
-        mProcess->closeReadChannel(QProcess::StandardError);
-        mProcess->closeReadChannel(QProcess::StandardOutput);
-        mProcess->closeWriteChannel();
-        mProcess->terminate();
-    }
+    mOutFile = mRequest.track()->resultFilePath();
 }
 
 
@@ -94,83 +53,55 @@ void Encoder::doStop()
  ************************************************/
 void Encoder::run()
 {
-    ConverterThread::run();
-    emit trackReady(mTrack, mOutFile);
-}
+    bool debug  = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_ENCODER");
 
-
-
-/************************************************
-
- ************************************************/
-void Encoder::doRun()
-{
     {
         QFile f(outFile());
 
         if (f.exists() && !f.remove())
         {
-            error(track(), tr("I can't delete file:\n%1\n%2").arg(f.fileName()).arg(f.errorString()));
+            error(mRequest.track(), tr("I can't delete file:\n%1\n%2").arg(f.fileName()).arg(f.errorString()));
             return;
         }
     }
 
+    // Input file already WAV, so for WAV output format we just rename file.
+    if (mFormat->id() == "WAV")
+    {
+        runWav();
+        return;
+    }
 
-    QStringList args = format()->encoderArgs(track(), QDir::toNativeSeparators(outFile()));
+    QProcess process;
+    QStringList args = mFormat->encoderArgs(mRequest.track(), QDir::toNativeSeparators(outFile()));
     QString prog = args.takeFirst();
 
-    if (mDebug)
+    if (debug)
         debugArguments(prog, args);
 
-    mProcess = new QProcess();
-    connect(mProcess, SIGNAL(bytesWritten(qint64)), this, SLOT(processBytesWritten(qint64)));
+    connect(&process, SIGNAL(bytesWritten(qint64)),
+            this, SLOT(processBytesWritten(qint64)));
 
-    mProcess->start(QDir::toNativeSeparators(prog), args);
-    mProcess->waitForStarted();
+    process.start(QDir::toNativeSeparators(prog), args);
+    process.waitForStarted();
 
-    readInputFile();
-    mProcess->closeWriteChannel();
+    readInputFile(&process);
+    process.closeWriteChannel();
 
-    mProcess->waitForFinished(-1);
-    if (mProcess->exitCode() != 0)
+    process.waitForFinished(-1);
+    if (process.exitCode() != 0)
     {
         debugArguments(prog, args);
         QString msg = tr("Encoder error:\n") +
-                QString::fromLocal8Bit(mProcess->readAllStandardError());
-        error(track(), msg);
+                QString::fromLocal8Bit(process.readAllStandardError());
+        error(mRequest.track(), msg);
     }
 
-    QProcess *proc = mProcess;
-    mProcess = 0;
-    delete proc;
+    deleteFile(mRequest.fileName());
 
-    deleteFile(inputFile());
+    emit trackReady(mRequest.track(), mOutFile);
 }
 
-/************************************************
-
- ************************************************/
-void Encoder::readInputFile()
-{
-    QFile file(mInputFile);
-    if (!file.open(QFile::ReadOnly)) // | QFile::Unbuffered))
-    {
-        error(track(), tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mInputFile));
-    }
-
-    mReady = 0;
-    mProgress = -1;
-    mTotal = file.size();
-
-    int bufSize = int(mTotal / 200);
-    QByteArray buf;
-
-    while (!file.atEnd())
-    {
-        buf = file.read(bufSize);
-        mProcess->write(buf);
-    }
-}
 
 /************************************************
 
@@ -182,6 +113,53 @@ void Encoder::processBytesWritten(qint64 bytes)
     if (p != mProgress)
     {
         mProgress = p;
-        emit trackProgress(track(), Track::Encoding, mProgress);
+        emit trackProgress(mRequest.track(), Track::Encoding, mProgress);
     }
+}
+
+
+/************************************************
+
+ ************************************************/
+void Encoder::readInputFile(QProcess *process)
+{
+    QFile file(mRequest.fileName());
+    if (!file.open(QFile::ReadOnly))
+    {
+        error(mRequest.track(), tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mRequest.fileName()));
+    }
+
+    mProgress = -1;
+    mTotal = file.size();
+
+    int bufSize = int(mTotal / 200);
+    QByteArray buf;
+
+    while (!file.atEnd())
+    {
+        buf = file.read(bufSize);
+        process->write(buf);
+    }
+}
+
+
+/************************************************
+
+ ************************************************/
+void Encoder::runWav()
+{
+    QFile srcFile(mRequest.fileName());
+    bool res =  srcFile.rename(mOutFile);
+
+    if (!res)
+    {
+        error(mRequest.track(),
+              tr("I can't rename file:\n%1 to %2\n%3").arg(
+                  mRequest.fileName(),
+                  mOutFile,
+                  srcFile.errorString()));
+    }
+
+    emit trackProgress(mRequest.track(), Track::Encoding, 100);
+    emit trackReady(mRequest.track(), mOutFile);
 }

@@ -52,18 +52,18 @@ inline bool mustRead(QIODevice *device, char *data, qint64 size, int msecs)
 {
     char *d = data;
     qint64 left = size;
-    while (device->bytesAvailable() || device->waitForReadyRead(msecs))
+    while (left > 0)
     {
+        device->bytesAvailable() || device->waitForReadyRead(msecs);
         qint64 n = device->read(d, left);
+        if (n<0)
+            return false;
 
-        if (n==left)
-            return true;
-
-        d+=n;
-        left-=n;
+        d += n;
+        left -= n;
     }
 
-    return false;
+    return true;
 }
 
 
@@ -77,15 +77,17 @@ bool mustSkip(QIODevice *device, qint64 size, int msecs)
 
     char buf[BUF_SIZE];
     qint64 left = size;
-    while (device->bytesAvailable() || device->waitForReadyRead(msecs))
+    while (left > 0)
     {
-        left -= device->read(buf, qMin(left, qint64(BUF_SIZE)));
+        device->bytesAvailable() || device->waitForReadyRead(msecs);
+        qint64 n = device->read(buf, qMin(qint64(BUF_SIZE), left));
+        if (n<0)
+            return false;
 
-        if (!left)
-            return true;
+        left -= n;
     }
 
-    return false;
+    return true;
 }
 
 

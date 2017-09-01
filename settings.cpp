@@ -24,6 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
+#include "types.h"
 #include "formats/format.h"
 #include "settings.h"
 #include "inputaudiofile.h"
@@ -137,8 +138,7 @@ void Settings::init()
 
     // PerTrackCue **************************
     setDefaultValue(PerTrackCue_Create,     false);
-    setDefaultValue(PerTrackCue_Pregap,     OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
-    setDefaultValue(PerTrackCue_FlaconTags, true);
+    setDefaultValue(PerTrackCue_Pregap,     preGapTypeToString(PreGapType::ExtractToFile));
 
     // ConfigureDialog **********************
     setDefaultValue(ConfigureDialog_Width,  645);
@@ -208,7 +208,6 @@ QString Settings::keyToString(Settings::Key key) const
     // PerTrackCue **************************
     case PerTrackCue_Create:    return "PerTrackCue/Create";
     case PerTrackCue_Pregap:    return "PerTrackCue/Pregap";
-    case PerTrackCue_FlaconTags:return "PerTrackCue/InsertCreatorTag";
 
     // ConfigureDialog **********************
     case ConfigureDialog_Width:     return "ConfigureDialog/Width";
@@ -217,6 +216,7 @@ QString Settings::keyToString(Settings::Key key) const
 
     return "";
 }
+
 
 /************************************************
 
@@ -282,6 +282,145 @@ QString Settings::findProgram(const QString &program) const
             return fi.absoluteFilePath();
     }
     return "";
+}
+
+
+/************************************************
+ *
+ ************************************************/
+OutFormat *Settings::outFormat() const
+{
+    OutFormat *format = OutFormat::formatForId(value(OutFiles_Format).toString());
+    if (format)
+        return format;
+
+    return OutFormat::allFormats().first();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setOutFormat(const OutFormat *format)
+{
+    setOutFormat(format->id());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setOutFormat(const QString &formatId)
+{
+    setValue(OutFiles_Format, formatId);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Settings::tmpDir() const
+{
+    return value(Encoder_TmpDir).toString();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setTmpDir(const QString &value)
+{
+    setValue(Encoder_TmpDir, value);
+}
+
+
+/************************************************
+
+ ************************************************/
+bool Settings::createCue() const
+{
+    return value(PerTrackCue_Create).toBool();
+}
+
+
+/************************************************
+
+ ************************************************/
+void Settings::setCreateCue(bool value)
+{
+    setValue(PerTrackCue_Create, value);
+}
+
+
+/************************************************
+
+ ************************************************/
+PreGapType Settings::preGapType() const
+{
+    return strToPreGapType(value(Settings::PerTrackCue_Pregap).toString());
+}
+
+
+/************************************************
+
+ ************************************************/
+void Settings::setPregapType(PreGapType value)
+{
+    setValue(Settings::PerTrackCue_Pregap, preGapTypeToString(value));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Settings::outFilePattern() const
+{
+    return value(OutFiles_Pattern).toString();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setOutFilePattern(const QString &value)
+{
+    setValue(OutFiles_Pattern, value);
+}
+
+
+/************************************************
+
+ ************************************************/
+QString Settings::outFileDir() const
+{
+    return value(OutFiles_Directory).toString();
+}
+
+
+/************************************************
+
+ ************************************************/
+void Settings::setOutFileDir(const QString &value)
+{
+    setValue(OutFiles_Directory, value);
+}
+
+
+/************************************************
+
+ ************************************************/
+QString Settings::defaultCodepage() const
+{
+    return value(Tags_DefaultCodepage).toString();
+}
+
+
+/************************************************
+
+ ************************************************/
+void Settings::setDefaultCodepage(const QString &value)
+{
+    setValue(Tags_DefaultCodepage, value);
 }
 
 

@@ -27,37 +27,26 @@
 #ifndef GAIN_H
 #define GAIN_H
 
-#include "converterthread.h"
+#include "worker.h"
 #include <QList>
 
 class Disk;
 class Track;
 class OutFormat;
-class QProcess;
 
-class Gain: public ConverterThread
+class Gain: public Worker
 {
     Q_OBJECT
 public:
-    explicit Gain(const OutFormat *format, Disk *disk, Track *track, QObject *parent = 0);
-    virtual ~Gain();
+    explicit Gain(const WorkerRequest request, const OutFormat *format, QObject *parent = 0);
+    explicit Gain(const QList<WorkerRequest> &requests, const OutFormat *format, QObject *parent = 0);
 
-    bool isReadyStart() const;
-
-    QList<Track*> tracks() const { return mTracks; }
-
-public slots:
-    void inputDataReady(Track *track, const QString &fileName);
-
-protected:
-    void doRun();
-    void doStop();
+    void run() override;
 
 private:
-    QList<Track*> mTracks;
-    QHash<Track*, QString> mInputFiles;
-    QProcess *mProcess;
-    bool mDebug;
+    QList<WorkerRequest> mRequests;
+    const OutFormat *mFormat;
 };
+
 
 #endif // GAIN_H

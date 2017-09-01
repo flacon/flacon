@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,46 +24,44 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef CONVERTER_H
-#define CONVERTER_H
+#ifndef DISKPIPLINE_H
+#define DISKPIPLINE_H
 
 #include <QObject>
-#include <QDateTime>
-#include <QVector>
+#include "track.h"
 
-class DiskPipeline;
-class OutFormat;
+class Disk;
+class Project;
 
-class Converter : public QObject
+class DiskPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit Converter(QObject *parent = 0);
+    explicit DiskPipeline(const Disk *disk, QObject *parent = 0);
+    virtual ~DiskPipeline();
 
-    bool isRunning();
-    bool canConvert() const;
-
-    bool showStatistic() const { return mShowStatistic; }
-    void setShowStatistic(bool value);
+    bool init();
+    void startWorker(int *splitterCount, int *count);
+    void stop();
+    bool isRunning() const;
 
 signals:
+    void readyStart();
+    void threadFinished();
     void finished();
-
-public slots:
-    void start();
-    void stop();
+    void threadQuit();
 
 private slots:
-    void startThread();
+    void trackProgress(const Track *track, Track::Status status, int percent);
+    void trackError(const Track *track, const QString &message);
+
+    void addEncoderRequest(const Track *track, const QString &fileName);
+    void addGainRequest(const Track *track, const QString &fileName);
+    void trackDone(const Track *track);
 
 private:
-    QDateTime mStartTime;
-    int mThreadCount;
-    QVector<DiskPipeline*> mDiskPiplines;
-
-    bool mShowStatistic;
-
-    bool check(OutFormat *format) const;
+    class Data;
+    Data *mData;
 };
 
-#endif // CONVERTER_H
+#endif // DISKPIPLINE_H

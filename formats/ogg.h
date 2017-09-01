@@ -36,14 +36,14 @@ class OutFormat_Ogg: public OutFormat
 public:
     OutFormat_Ogg();
 
-    virtual QString encoderProgramName() const { return "oggenc"; }
-    virtual QString gainProgramName() const { return "vorbisgain"; }
+    virtual QString encoderProgramName() const override { return "oggenc"; }
+    virtual QString gainProgramName() const override { return "vorbisgain"; }
 
-    virtual QStringList encoderArgs(Track *track, const QString &outFile) const;
-    virtual QStringList gainArgs(const QStringList &files) const;
+    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
+    virtual QStringList gainArgs(const QStringList &files) const override;
 
-    QHash<QString, QVariant> defaultParameters() const;
-    EncoderConfigPage *configPage(QWidget *parent = 0) const;
+    QHash<QString, QVariant> defaultParameters() const override;
+    EncoderConfigPage *configPage(QWidget *parent = 0) const override;
 };
 
 
@@ -53,8 +53,8 @@ class ConfigPage_Ogg: public EncoderConfigPage, private Ui::ConfigPage_Ogg
 public:
     explicit ConfigPage_Ogg(QWidget *parent = 0);
 
-    virtual void load();
-    virtual void write();
+    virtual void load() override;
+    virtual void write() override;
 
 private slots:
     void oggQualitySliderChanged(int value);

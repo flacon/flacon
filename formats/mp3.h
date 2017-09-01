@@ -36,14 +36,14 @@ class OutFormat_Mp3: public OutFormat
 public:
     OutFormat_Mp3();
 
-    virtual QString encoderProgramName() const { return "lame"; }
-    virtual QString gainProgramName() const { return "mp3gain"; }
+    virtual QString encoderProgramName() const override { return "lame"; }
+    virtual QString gainProgramName() const override { return "mp3gain"; }
 
-    virtual QStringList encoderArgs(Track *track, const QString &outFile) const;
-    virtual QStringList gainArgs(const QStringList &files) const;
+    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
+    virtual QStringList gainArgs(const QStringList &files) const override;
 
-    QHash<QString, QVariant> defaultParameters() const;
-    EncoderConfigPage *configPage(QWidget *parent = 0) const;
+    QHash<QString, QVariant> defaultParameters() const override;
+    EncoderConfigPage *configPage(QWidget *parent = 0) const override;
 };
 
 
@@ -53,8 +53,8 @@ class ConfigPage_Mp3: public EncoderConfigPage, private Ui::ConfigPage_Mp3
 public:
     explicit ConfigPage_Mp3(QWidget *parent = 0);
 
-    virtual void load();
-    virtual void write();
+    virtual void load() override;
+    virtual void write() override;
 
 private slots:
     void mp3PresetCbxCanged(int index);

@@ -163,8 +163,8 @@ QModelIndex TrackViewModel::index(const Disk *disk, int col) const
     const int diskNum = project->indexOf(disk);
     if (diskNum > -1 && diskNum < rowCount(QModelIndex()))
         return index(diskNum, col, QModelIndex());
-    else
-        return QModelIndex();
+
+    return QModelIndex();
 }
 
 

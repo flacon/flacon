@@ -26,7 +26,7 @@
 
 #include "configdialog.h"
 #include "outformat.h"
-
+#include "../types.h"
 #include "settings.h"
 #include "project.h"
 #include "../controls.h"
@@ -35,6 +35,9 @@
 #include <QSet>
 #include <QFileDialog>
 #include <QDebug>
+#include <QCheckBox>
+#include <QComboBox>
+#include <QLineEdit>
 
 
 /************************************************
@@ -79,8 +82,8 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     tmpDirButton->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open", ":/icons/16/select-folder"));
     connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
 
-    preGapComboBox->addItem(tr("Extract to separate file"), OutFormat::preGapTypeToString(OutFormat::PreGapExtractToFile));
-    preGapComboBox->addItem(tr("Add to first track"), OutFormat::preGapTypeToString(OutFormat::PreGapAddToFirstTrack));
+    preGapComboBox->addItem(tr("Extract to separate file"), preGapTypeToString(PreGapType::ExtractToFile));
+    preGapComboBox->addItem(tr("Add to first track"),       preGapTypeToString(PreGapType::AddToFirstTrack));
 
     pagesListInit();
     programsInit();
@@ -365,9 +368,9 @@ void EncoderConfigPage::setLosslessToolTip(QSpinBox *widget)
 void EncoderConfigPage::fillReplayGainComboBox(QComboBox *comboBox)
 {
     comboBox->clear();
-    comboBox->addItem(tr("Disabled",  "ReplayGain type combobox"), OutFormat::gainTypeToString(OutFormat::GainDisable));
-    comboBox->addItem(tr("Per Track", "ReplayGain type combobox"), OutFormat::gainTypeToString(OutFormat::GainTrack));
-    comboBox->addItem(tr("Per Album", "ReplayGain type combobox"), OutFormat::gainTypeToString(OutFormat::GainAlbum));
+    comboBox->addItem(tr("Disabled",  "ReplayGain type combobox"), gainTypeToString(GainType::Disable));
+    comboBox->addItem(tr("Per Track", "ReplayGain type combobox"), gainTypeToString(GainType::Track));
+    comboBox->addItem(tr("Per Album", "ReplayGain type combobox"), gainTypeToString(GainType::Album));
     comboBox->setToolTip(tr("ReplayGain is a standard to normalize the perceived loudness of computer audio formats. \n\n"
                             "The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. \n"
                             "Using the album-gain analysis will preserve the volume differences within an album."));
@@ -465,6 +468,7 @@ void EncoderConfigPage::writeWidget(const QString &key, QSpinBox *widget)
 {
     settings->setValue(key, widget->value());
 }
+
 
 /************************************************
 

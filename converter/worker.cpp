@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,81 +24,59 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "converterthread.h"
+#include "worker.h"
+
+#include <QDebug>
 #include <QFile>
-#include <QTextStream>
+#include <QDir>
+#include "project.h"
 
 
 /************************************************
 
  ************************************************/
-ConverterThread::ConverterThread(Disk *disk, const OutFormat *format, QObject *parent):
-    QThread(parent),
-    mDisk(disk),
-    mFormat(format)
+Worker::Worker(QObject *parent) : QObject(parent)
 {
+
 }
 
 
 /************************************************
 
  ************************************************/
-ConverterThread::~ConverterThread()
+Worker::~Worker()
 {
+
 }
 
 
 /************************************************
 
  ************************************************/
-void ConverterThread::run()
+bool Worker::createDir(const QString &dirName) const
 {
-    doRun();
-}
+    QDir dir(dirName);
 
-
-/************************************************
-
- ************************************************/
-void ConverterThread::error(Track *track, const QString &message)
-{
-    stop();
-    emit trackError(track, message);
-}
-
-
-/************************************************
-
- ************************************************/
-void ConverterThread::stop()
-{
-    doStop();
-    for (int i=0; i<disk()->count(); ++i)
+    if (! dir.mkpath("."))
     {
-        Track *track = disk()->track(i);
-
-        switch (track->status())
-        {
-        case Track::Error:
-        case Track::OK:
-            break;
-
-        case Track::NotRunning:
-            emit trackProgress(track, Track::Canceled);
-            break;
-
-        default:
-            emit trackProgress(track, Track::Aborted);
-            break;
-        }
+        Project::error(tr("I can't create directory \"%1\".").arg(dir.path()));
+        return false;
     }
+
+    if (!QFileInfo(dir.path()).isWritable())
+    {
+        Project::error(tr("I can't write to directory \"%1\".").arg(dir.path()));
+        return false;
+    }
+
+    return true;
 }
 
 
 /************************************************
 
  ************************************************/
-bool ConverterThread::deleteFile(const QString &fileName)
+bool Worker::deleteFile(const QString &fileName) const
 {
     QFile f(fileName);
     if (f.exists())
@@ -111,7 +89,7 @@ bool ConverterThread::deleteFile(const QString &fileName)
 /************************************************
 
  ************************************************/
-void ConverterThread::debugArguments(const QString &prog, const QStringList &args)
+void Worker::debugArguments(const QString &prog, const QStringList &args)
 {
     QTextStream out(stderr);
     out << prog << " ";

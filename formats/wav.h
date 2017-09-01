@@ -36,46 +36,33 @@ class OutFormat_Wav: public OutFormat
 public:
     OutFormat_Wav();
 
-    virtual QString encoderProgramName() const { return ""; }
-    virtual QString gainProgramName() const { return ""; }
+    virtual QString encoderProgramName() const override { return ""; }
+    virtual QString gainProgramName() const override { return ""; }
 
-    virtual QStringList encoderArgs(Track *track, const QString &outFile) const;
-    virtual QStringList gainArgs(const QStringList &files) const;
+    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
+    virtual QStringList gainArgs(const QStringList &files) const override;
 
 
-    QHash<QString, QVariant> defaultParameters() const;
-    EncoderConfigPage *configPage(QWidget *parent = 0) const;
+    QHash<QString, QVariant> defaultParameters() const override;
+    EncoderConfigPage *configPage(QWidget *parent = 0) const override;
 
-    virtual bool hasConfigPage() const { return false; }
+    virtual bool hasConfigPage() const override { return false; }
 
-    virtual Encoder *createEncoder(Track *track, QObject *parent = 0) const;
-    virtual Gain *createGain(Disk *disk, Track *track, QObject *parent = 0) const;
 };
 
-
-class Encoder_Wav: public Encoder
-{
-    Q_OBJECT
-public:
-    explicit Encoder_Wav(const OutFormat *format, Track *track, QObject *parent = 0);
-
-protected:
-    void doRun();
-    virtual QStringList processArgs() const;
-};
 
 class Format_Wav: public AudioFormat
 {
 public:
-    virtual QString name() const { return "WAV"; }
-    virtual QString ext() const { return "wav"; }
-    virtual bool isInputFormat() const { return true; }
+    virtual QString name() const override { return "WAV"; }
+    virtual QString ext() const override { return "wav"; }
+    virtual bool isInputFormat() const override { return true; }
 
-    virtual QString decoderProgramName() const { return ""; }
-    virtual QStringList decoderArgs(const QString &fileName) const;
+    virtual QString decoderProgramName() const override { return ""; }
+    virtual QStringList decoderArgs(const QString &fileName) const override;
 
-    virtual QByteArray magic() const { return "RIFF"; }
-    virtual uint const magicOffset() const { return 0; }
+    virtual QByteArray magic() const override { return "RIFF"; }
+    virtual uint const magicOffset() const override { return 0; }
 };
 
 #endif // WAV_H

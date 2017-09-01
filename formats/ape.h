@@ -32,19 +32,19 @@
 class Format_Ape: public AudioFormat
 {
 public:
-    virtual QString name() const { return "APE"; }
-    virtual QString ext() const { return "ape"; }
-    virtual bool isInputFormat() const { return true; }
+    virtual QString name() const override { return "APE"; }
+    virtual QString ext() const override { return "ape"; }
+    virtual bool isInputFormat() const override { return true; }
 
-    virtual QByteArray magic() const { return "MAC "; }
-    virtual uint const magicOffset() const { return 0; }
+    virtual QByteArray magic() const override { return "MAC "; }
+    virtual uint const magicOffset() const override { return 0; }
 
 
-    virtual QString decoderProgramName() const { return "mac"; }
-    virtual QStringList decoderArgs(const QString &fileName) const;
-    virtual QString filterDecoderStderr(const QString &stdErr) const;
+    virtual QString decoderProgramName() const override { return "mac"; }
+    virtual QStringList decoderArgs(const QString &fileName) const override;
+    virtual QString filterDecoderStderr(const QString &stdErr) const override;
 
-    virtual bool isOutputFormat() const { return false; }
+    virtual bool isOutputFormat() const override { return false; }
 
 
 };

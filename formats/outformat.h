@@ -23,16 +23,15 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef OUTFORMAT_H
 #define OUTFORMAT_H
 
 #include <QStringList>
 #include <QHash>
-#include "disk.h"
+#include <QVariant>
+#include "track.h"
+#include "types.h"
 
-class Encoder;
-class Gain;
 class EncoderConfigPage;
 
 class OutFormat
@@ -40,27 +39,16 @@ class OutFormat
 public:
     static QList<OutFormat*> allFormats();
     static OutFormat *currentFormat();
-
-    enum GainType {
-        GainDisable,
-        GainTrack,
-        GainAlbum
-    };
-
-    enum PreGapType {
-        PreGapExtractToFile,
-        PreGapAddToFirstTrack
-    };
+    static OutFormat * formatForId(const QString &id);
 
     QString id() const { return mId; }
     QString name() const { return mName; }
     QString ext() const {return mExt; }
     GainType gainType() const;
-    PreGapType preGapType() const;
     bool createCue() const;
 
     virtual QString encoderProgramName() const = 0;
-    virtual QStringList encoderArgs(Track *track, const QString &outFile) const = 0;
+    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const = 0;
 
 
     virtual QString gainProgramName() const = 0;
@@ -73,14 +61,6 @@ public:
     virtual EncoderConfigPage *configPage(QWidget *parent = 0) const = 0;
     virtual bool hasConfigPage() const { return true; }
 
-    static QString gainTypeToString(GainType type);
-    static GainType strToGainType(const QString &str);
-
-    static QString preGapTypeToString(PreGapType type);
-    static PreGapType strToPreGapType(const QString &str);
-
-    virtual Encoder *createEncoder(Track *track, QObject *parent = 0) const;
-    virtual Gain *createGain(Disk *disk, Track *track, QObject *parent = 0) const;
 
 protected:
     QString mId;

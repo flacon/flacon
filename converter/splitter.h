@@ -27,36 +27,40 @@
 #ifndef SPLITTER_H
 #define SPLITTER_H
 
-#include "outformat.h"
-#include "converterthread.h"
+#include "worker.h"
+#include "types.h"
 
+class Decoder;
 class Disk;
 class Track;
-class QProcess;
+class Project;
 
-class Splitter: public ConverterThread
+
+class Splitter: public Worker
 {
     Q_OBJECT
 public:
-    Splitter(Disk *disk, const OutFormat *format, QObject *parent = 0);
-
-    bool isReadyStart() const;
-    QString workDir() const { return mWorkDir; }
+    Splitter(const Disk *disk, const QString &workDir, PreGapType preGapType, QObject *parent = NULL);
 
 public slots:
-    void inputDataReady(Track *track, const QString &fileName);
+    void run() override;
 
-protected:
-    void doRun();
-    void doStop();
+public:
+    QString workDir() const { return mWorkDir; }
+    const QList<const Track*> tracks() const;
 
 private slots:
     void decoderProgress(int percent);
 
 private:
-    QString mWorkDir;
-    QProcess *mProcess;
-    Track *mTrack;
+    Decoder *mDecoder;
+    const Disk *mDisk;
+    const QString mWorkDir;
+    const PreGapType mPreGapType;
+    const Track *mCurrentTrack;
+
 };
+
+
 
 #endif // SPLITTER_H

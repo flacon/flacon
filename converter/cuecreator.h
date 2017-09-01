@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,46 +24,44 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef CONVERTER_H
-#define CONVERTER_H
+#ifndef CUECREATOR_H
+#define CUECREATOR_H
 
-#include <QObject>
-#include <QDateTime>
-#include <QVector>
+#include "types.h"
+#include <QFile>
+#include <QString>
+#include <QHash>
 
-class DiskPipeline;
-class OutFormat;
 
-class Converter : public QObject
+class Disk;
+class Track;
+
+class CueCreator
 {
-    Q_OBJECT
 public:
-    explicit Converter(QObject *parent = 0);
+    explicit CueCreator(const Disk *disk, PreGapType preGapType);
+    bool write();
 
-    bool isRunning();
-    bool canConvert() const;
+    QString errorString() const { return mErrorString; }
 
-    bool showStatistic() const { return mShowStatistic; }
-    void setShowStatistic(bool value);
-
-signals:
-    void finished();
-
-public slots:
-    void start();
-    void stop();
-
-private slots:
-    void startThread();
+    QTextCodec *textCodec() const { return mTextCodec; }
+    void setTextCodecName(const QString codecName);
+    void setTextCodecMib(int mib);
 
 private:
-    QDateTime mStartTime;
-    int mThreadCount;
-    QVector<DiskPipeline*> mDiskPiplines;
+    const Disk *mDisk;
+    const PreGapType mPreGapType;
+    QFile mFile;
+    QString mErrorString;
+    QTextCodec *mTextCodec;
+    QHash<QString, QString>mGlobalTags;
 
-    bool mShowStatistic;
+    void initGlobalTags();
+    void writeLine(const QString &text);
+    void writeDiskTag(const QString &format, const QString &tagName);
+    void writeGlobalTag(const QString &format, const QString &tagName);
+    void writeTrackTag(const Track *track, const QString &prefix, const QString &tagName);
 
-    bool check(OutFormat *format) const;
 };
 
-#endif // CONVERTER_H
+#endif // CUECREATOR_H

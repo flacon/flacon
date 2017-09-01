@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,46 +24,35 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "wav.h"
-#include <QFile>
+#include "types.h"
 
-REGISTER_FORMAT(Format_Wav)
+
 
 /************************************************
  *
  ************************************************/
-QStringList Format_Wav::decoderArgs(const QString &fileName) const
+QString preGapTypeToString(PreGapType type)
 {
-    return QStringList();
+    switch(type)
+    {
+    case PreGapType::ExtractToFile:   return "Extract";
+    case PreGapType::AddToFirstTrack: return "AddToFirst";
+    default:                          return "Disable";
+    }
 }
 
 
 /************************************************
 
  ************************************************/
-OutFormat_Wav::OutFormat_Wav()
+PreGapType strToPreGapType(const QString &str)
 {
-    mId   = "WAV";
-    mExt  = "wav";
-    mName = "WAV";
-}
+    QString s = str.toUpper();
 
+    if (s == "EXTRACT")     return PreGapType::ExtractToFile;
+    if (s == "ADDTOFIRST")  return PreGapType::AddToFirstTrack;
 
-/************************************************
-
- ************************************************/
-QStringList OutFormat_Wav::encoderArgs(const Track *track, const QString &outFile) const
-{
-    return QStringList();
-}
-
-
-/************************************************
-
- ************************************************/
-QStringList OutFormat_Wav::gainArgs(const QStringList &files) const
-{
-    return QStringList();
+    return PreGapType::AddToFirstTrack;
 }
 
 
@@ -71,23 +60,28 @@ QStringList OutFormat_Wav::gainArgs(const QStringList &files) const
 /************************************************
 
  ************************************************/
-QHash<QString, QVariant> OutFormat_Wav::defaultParameters() const
+QString gainTypeToString(GainType type)
 {
-    QHash<QString, QVariant> res;
-    return res;
+    switch(type)
+    {
+    case GainType::Disable: return "Disable";
+    case GainType::Track:   return "Track";
+    case GainType::Album:   return "Album";
+    }
+
+    return "Disable";
 }
 
 
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Wav::configPage(QWidget *parent) const
+GainType strToGainType(const QString &str)
 {
-    return 0;
+    QString s = str.toUpper();
+
+    if (s == "TRACK")   return GainType::Track;
+    if (s == "ALBUM")   return GainType::Album;
+
+    return GainType::Disable;
 }
-
-
-
-
-
-

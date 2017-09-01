@@ -69,7 +69,7 @@ bool OutFormat_Flac::check(QStringList *errors) const
 {
     bool res = OutFormat::check(errors);
 
-    if (gainType() != OutFormat::GainDisable)
+    if (gainType() != GainType::Disable)
     {
         for (int i=0; i<project->count(); ++i)
         {
@@ -90,7 +90,7 @@ bool OutFormat_Flac::check(QStringList *errors) const
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Flac::encoderArgs(Track *track, const QString &outFile) const
+QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -142,7 +142,7 @@ QHash<QString, QVariant> OutFormat_Flac::defaultParameters() const
 {
     QHash<QString, QVariant> res;
     res.insert("Flac/Compression",  5);
-    res.insert("Flac/ReplayGain",   gainTypeToString(GainDisable));
+    res.insert("Flac/ReplayGain",   gainTypeToString(GainType::Disable));
     return res;
 }
 

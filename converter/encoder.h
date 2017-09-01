@@ -27,51 +27,41 @@
 
 #define ENCODER_H
 
-#include "converterthread.h"
+#include <QProcess>
 
-class OutFormat;
+#include "worker.h"
+
 class QProcess;
+class OutFormat;
 
-class Encoder: public ConverterThread
+class Encoder: public Worker
 {
     Q_OBJECT
 public:
-    explicit Encoder(const OutFormat *format, Track *track, QObject *parent = 0);
-    virtual ~Encoder();
+    Encoder(const WorkerRequest request, const OutFormat *format, QObject *parent = 0);
 
-    QString workDir() const { return mWorkDir; }
-    Track *track() const  { return mTrack; }
-    QString inputFile() const { return mInputFile; }
     QString outFile() const { return mOutFile; }
 
-    bool isReadyStart() const { return mReadyStart; }
-
 public slots:
-    void inputDataReady(Track *track, const QString &fileName);
+    void run() override;
 
-protected:
-    void run();
-    void doRun();
-    void doStop();
+signals:
+
 
 private slots:
     void processBytesWritten(qint64 bytes);
 
-private:
-    Track *mTrack;
-    QString mWorkDir;
-    QString mInputFile;
-    QString mOutFile;
-    bool mReadyStart;
-    QProcess *mProcess;
 
+private:
+    const WorkerRequest mRequest;
+    const OutFormat *mFormat;
+    QString mOutFile;
     int mTotal;
     int mReady;
     int mProgress;
-    bool mDebug;
 
-    void readInputFile();
-    void readInputFile2(FILE *proc);
+    void readInputFile(QProcess *process);
+    void runWav();
 };
 
 #endif // ENCODER_H

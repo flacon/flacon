@@ -25,7 +25,7 @@
 
 
 #include "project.h"
-#include "disk.h"
+//#include "disk.h"
 #include "settings.h"
 #include "cue.h"
 #include "inputaudiofile.h"
@@ -146,7 +146,7 @@ int Project::count() const
 int Project::insertDisk(Disk *disk, int index)
 {
     if (index < 0)
-        index = mDisks.count() -1;
+        index = mDisks.count();
 
     mDisks.insert(index, disk);
 
@@ -293,7 +293,7 @@ DiskList Project::addCueFile(const QString &fileName, bool showErrors)
 /************************************************
 
  ************************************************/
-void Project::emitDiskChanged(Disk *disk)
+void Project::emitDiskChanged(Disk *disk) const
 {
     emit diskChanged(disk);
 }
@@ -302,7 +302,7 @@ void Project::emitDiskChanged(Disk *disk)
 /************************************************
 
  ************************************************/
-void Project::emitTrackChanged(int disk, int track)
+void Project::emitTrackChanged(int disk, int track) const
 {
     emit trackChanged(disk, track);
 }
@@ -311,7 +311,7 @@ void Project::emitTrackChanged(int disk, int track)
 /************************************************
 
  ************************************************/
-void Project::emitTrackProgress(const Track *track)
+void Project::emitTrackProgress(const Track *track) const
 {
     emit trackProgress(track);
 }
@@ -320,7 +320,25 @@ void Project::emitTrackProgress(const Track *track)
 /************************************************
 
  ************************************************/
-void Project::emitLayoutChanged()
+void Project::emitLayoutChanged() const
 {
     emit layoutChanged();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::emitDownloadingStarted(DataProvider *provider) const
+{
+    emit downloadingStarted(provider);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Project::emitDownloadingFinished(DataProvider *provider) const
+{
+    emit downloadingFinished(provider);
 }

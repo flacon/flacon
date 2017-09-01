@@ -39,8 +39,10 @@ add_definitions(-DFLACON_VERSION=\"${FLACON_VERSION}\")
 
 
 set(HEADERS
+    types.h
     tagset.h
     cue.h
+    track.h
     disk.h
     project.h
     settings.h
@@ -60,11 +62,13 @@ set(HEADERS
 
     converter/wavheader.h
     converter/decoder.h
-    converter/converterthread.h
     converter/converter.h
     converter/splitter.h
     converter/encoder.h
     converter/gain.h
+    converter/worker.h
+    converter/diskpipline.h
+    converter/cuecreator.h
 
     formats/format.h
     formats/outformat.h
@@ -80,9 +84,11 @@ set(HEADERS
 )
 
 set(SOURCES
+    types.cpp
     tagset.cpp
     cue.cpp
     main.cpp
+    track.cpp
     disk.cpp
     project.cpp
     settings.cpp
@@ -102,11 +108,13 @@ set(SOURCES
 
     converter/wavheader.cpp
     converter/decoder.cpp
-    converter/converterthread.cpp
     converter/converter.cpp
     converter/splitter.cpp
     converter/encoder.cpp
     converter/gain.cpp
+    converter/worker.cpp
+    converter/diskpipline.cpp
+    converter/cuecreator.cpp
 
     formats/format.cpp
     formats/outformat.cpp
@@ -122,6 +130,7 @@ set(SOURCES
 )
 
 set (MOCS
+    track.h
     disk.h
     project.h
     settings.h
@@ -139,17 +148,17 @@ set (MOCS
     gui/cuediskselectdialog/cuediskselectdialog.h
 
     converter/decoder.h
-    converter/converterthread.h
     converter/converter.h
     converter/splitter.h
     converter/encoder.h
     converter/gain.h
+    converter/worker.h
+    converter/diskpipline.h
 
     formats/aac.h
     formats/flac.h
     formats/mp3.h
     formats/ogg.h
-    formats/wav.h
     formats/wv.h
     formats/opus.h
 )
@@ -192,6 +201,7 @@ set(TRANSLATIONS_DIR
 )
 add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
+set (CMAKE_CXX_STANDARD 11)
 include("tools.cmake")
 
 ############################################

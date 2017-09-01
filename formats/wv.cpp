@@ -25,6 +25,7 @@
 
 
 #include "wv.h"
+#include "disk.h"
 #include "settings.h"
 #include <QDebug>
 
@@ -69,7 +70,7 @@ OutFormat_Wv::OutFormat_Wv()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wv::encoderArgs(Track *track, const QString &outFile) const
+QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -121,7 +122,7 @@ QHash<QString, QVariant> OutFormat_Wv::defaultParameters() const
 {
     QHash<QString, QVariant> res;
     res.insert("WV/Compression",       1);
-    res.insert("WV/ReplayGain",        gainTypeToString(GainDisable));
+    res.insert("WV/ReplayGain",        gainTypeToString(GainType::Disable));
     return res;
 }
 

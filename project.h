@@ -51,12 +51,12 @@ public:
     int insertDisk(Disk *disk, int index=-1);
     void removeDisk(const QList<Disk*> *disks);
 
-    void emitDiskChanged(Disk *disk);
-    void emitTrackChanged(int disk, int track);
-    void emitTrackProgress(const Track *track);
-    void emitLayoutChanged();
-    void emitDownloadingStarted(DataProvider *provider) { emit downloadingStarted(provider); }
-    void emitDownloadingFinished(DataProvider *provider) { emit downloadingFinished(provider);}
+    void emitDiskChanged(Disk *disk) const;
+    void emitTrackChanged(int disk, int track) const;
+    void emitTrackProgress(const Track *track) const;
+    void emitLayoutChanged() const;
+    void emitDownloadingStarted(DataProvider *provider) const;
+    void emitDownloadingFinished(DataProvider *provider) const;
 
     static QIcon getIcon(const QString &iconName1, const QString &iconName2="", const QString &iconName3="", const QString &iconName4="");
 
@@ -71,14 +71,14 @@ public slots:
     DiskList addCueFile(const QString &fileName, bool showErrors);
 
 signals:
-    void diskChanged(Disk *disk);
-    void trackChanged(int disk, int track);
-    void trackProgress(const Track *track);
-    void layoutChanged();
+    void diskChanged(Disk *disk) const;
+    void trackChanged(int disk, int track) const;
+    void trackProgress(const Track *track) const;
+    void layoutChanged() const;
     void beforeRemoveDisk(Disk *disk);
     void afterRemoveDisk();
-    void downloadingStarted(DataProvider *provider);
-    void downloadingFinished(DataProvider *provider);
+    void downloadingStarted(DataProvider *provider) const;
+    void downloadingFinished(DataProvider *provider) const;
 
 private:
     explicit Project(QObject *parent = 0);

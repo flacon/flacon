@@ -85,22 +85,27 @@ OutFormat *OutFormat::currentFormat()
 
 
 /************************************************
-
+ *
  ************************************************/
-OutFormat::GainType OutFormat::gainType() const
+OutFormat *OutFormat::formatForId(const QString &id)
 {
-    QString s = settings->value(id() + "/ReplayGain").toString();
-    return strToGainType(s);
+    foreach (OutFormat *format, allFormats())
+    {
+        if (format->id() == id)
+            return format;
+    }
+
+    return nullptr;
 }
 
 
 /************************************************
 
  ************************************************/
-OutFormat::PreGapType OutFormat::preGapType() const
+GainType OutFormat::gainType() const
 {
-    QString s = settings->value(Settings::PerTrackCue_Pregap).toString();
-    return strToPreGapType(s);
+    QString s = settings->value(id() + "/ReplayGain").toString();
+    return strToGainType(s);
 }
 
 
@@ -139,91 +144,13 @@ bool OutFormat::check(QStringList *errors) const
 {
     bool res = checkProgram(encoderProgramName(), errors);
 
-    if (gainType() != GainDisable)
+    if (gainType() != GainType::Disable)
         checkProgram(gainProgramName(), errors);
 
     return res;
 }
 
 
-/************************************************
-
- ************************************************/
-QString OutFormat::gainTypeToString(OutFormat::GainType type)
-{
-    switch(type)
-    {
-    case GainDisable: return "Disable";
-    case GainTrack:   return "Track";
-    case GainAlbum:   return "Album";
-    }
-
-    return "Disable";
-}
-
-
-/************************************************
-
- ************************************************/
-OutFormat::GainType OutFormat::strToGainType(const QString &str)
-{
-    QString s = str.toUpper();
-
-    if (s == "TRACK")   return GainTrack;
-    if (s == "ALBUM")   return GainAlbum;
-
-    return GainDisable;
-}
-
-
-/************************************************
-
- ************************************************/
-QString OutFormat::preGapTypeToString(OutFormat::PreGapType type)
-{
-    switch(type)
-    {
-    case PreGapExtractToFile:   return "Extract";
-    case PreGapAddToFirstTrack: return "AddToFirst";
-    }
-
-    return "Disable";
-}
-
-
-/************************************************
-
- ************************************************/
-OutFormat::PreGapType OutFormat::strToPreGapType(const QString &str)
-{
-    QString s = str.toUpper();
-
-    if (s == "EXTRACT")     return PreGapExtractToFile;
-    if (s == "ADDTOFIRST")  return PreGapAddToFirstTrack;
-
-    return PreGapAddToFirstTrack;
-}
-
-
-/************************************************
-
- ************************************************/
-Encoder *OutFormat::createEncoder(Track *track, QObject *parent) const
-{
-    return new Encoder(this, track, parent);
-}
-
-
-/************************************************
-
- ************************************************/
-Gain *OutFormat::createGain(Disk *disk, Track *track, QObject *parent) const
-{
-    if (!gainProgramName().isEmpty())
-        return new Gain(this, disk, track, parent);
-    else
-        return 0;
-}
 
 
 
