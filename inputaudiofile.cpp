@@ -36,37 +36,6 @@
 #include <QFileInfo>
 #include <QDir>
 
-//void initInputAudioFormat(QList<InputAudioFormat> *formats)
-//{
-//    *formats << InputAudioFormat("APE",     "ape",  "mac");
-//    *formats << InputAudioFormat("FLAC",    "flac", "flac");
-//    *formats << InputAudioFormat("WavPack", "wv",   "wvunpack");
-//    *formats << InputAudioFormat("TTA",     "tta",  "ttaenc");
-//    *formats << InputAudioFormat("WAV",     "wav",  "");
-//}
-
-///************************************************
-
-// ************************************************/
-//InputAudioFormat::InputAudioFormat(const QString &name, const QString &ext, const QString &program):
-//    mName(name),
-//    mExt(ext),
-//    mProgram(program)
-//{
-//}
-
-
-///************************************************
-
-// ************************************************/
-//QList<InputAudioFormat> InputAudioFormat::allFormats()
-//{
-//    QList<InputAudioFormat> formats;
-//    if (formats.count() == 0)
-//        initInputAudioFormat(&formats);
-
-//    return formats;
-//}
 
 
 /************************************************

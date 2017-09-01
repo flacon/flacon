@@ -44,6 +44,7 @@ public:
     QString id() const { return mId; }
     QString name() const { return mName; }
     QString ext() const {return mExt; }
+    QString settingsGroup() const { return mSettingsGroup; }
     GainType gainType() const;
     bool createCue() const;
 
@@ -66,6 +67,7 @@ protected:
     QString mId;
     QString mName;
     QString mExt;
+    QString mSettingsGroup;
 
     bool checkProgram(const QString &program, QStringList *errors) const;
 };

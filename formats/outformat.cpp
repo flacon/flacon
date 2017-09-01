@@ -104,7 +104,7 @@ OutFormat *OutFormat::formatForId(const QString &id)
  ************************************************/
 GainType OutFormat::gainType() const
 {
-    QString s = settings->value(id() + "/ReplayGain").toString();
+    QString s = settings->value(settingsGroup() + "/ReplayGain").toString();
     return strToGainType(s);
 }
 

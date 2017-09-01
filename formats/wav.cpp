@@ -46,6 +46,7 @@ OutFormat_Wav::OutFormat_Wav()
     mId   = "WAV";
     mExt  = "wav";
     mName = "WAV";
+    mSettingsGroup = "Wav";
 }
 
 
