@@ -204,6 +204,12 @@ add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 set (CMAKE_CXX_STANDARD 11)
 include("tools.cmake")
 
+git_version(GIT_BRANCH GIT_COMMIT_HASH)
+if (NOT "${GIT_COMMIT_HASH}" STREQUAL "")
+    add_definitions(-DGIT_COMMIT_HASH=\"${GIT_COMMIT_HASH}\")
+    add_definitions(-DGIT_BRANCH=\"${GIT_BRANCH}\")
+endif()
+
 ############################################
 if(CMAKE_COMPILER_IS_GNUCXX)
     add_definitions (-Wall -pedantic -Wno-long-long -Werror=format-security)

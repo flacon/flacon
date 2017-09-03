@@ -28,7 +28,7 @@
 #include "translatorsinfo.h"
 #include <QDate>
 #include <QList>
-
+#include <QDebug>
 
 /************************************************
 
@@ -86,7 +86,17 @@ AboutDialog::AboutDialog(QWidget *parent) :
  ************************************************/
 QString AboutDialog::titleText() const
 {
+#ifdef GIT_BRANCH
+//https://github.com/flacon/flacon/commit/8f81f61ff2a160a504338c71207d0b33ed174751
+    return QString("<div class=name>Flacon</div> developer version."
+                   "<div class=ver>%1 + git %2</b> "
+                   "<a href='https://github.com/flacon/flacon/commit/%3'>%3</a></div>")
+            .arg(FLACON_VERSION)
+            .arg(GIT_BRANCH)
+            .arg(GIT_COMMIT_HASH);
+#else
     return QString("<div class=name>Flacon</div><div class=ver>%1</div>").arg(FLACON_VERSION);
+#endif
 }
 
 
