@@ -59,6 +59,7 @@ struct TrackViewCacheItem
     QRect trackBtn;
     QRect audioBtn;
     QRect markBtn;
+    QRect coverRect;
     bool isWaiting;
 };
 
@@ -133,6 +134,7 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent):
     mWarnPix = Project::getIcon("dialog-warning", "messagebox_warning", ":/icons/32/disk-warning").pixmap(MARK_HEIGHT, MARK_HEIGHT);
     mOkPix = Project::getIcon("dialog-ok", "button_ok", ":/icons/16/track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
     mErrorPix = Project::getIcon("dialog-cancel", "button_cancel",  ":/icons/16/track-cancel").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mNoCoverImg = QImage(":noCover");
 
     mDownloadMovie.setFileName(":wait");
     connect(project, SIGNAL(downloadingStarted(DataProvider*)), this, SLOT(downloadingStarted(DataProvider*)));
@@ -313,17 +315,22 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
                      option.rect.right() - 2 * MARGIN,
                      option.rect.height() - 2 * MARGIN - topPadding - BOTTOM_PADDING);
 
-    // Draw cover image ................................
-    if (mNoCoverImg.height() != windowRect.height())
-    {
-        mNoCoverImg = QImage(":noCover").scaledToHeight(windowRect.height(), Qt::SmoothTransformation);
-    }
 
-    QRect imgRect(windowRect.topLeft(), mNoCoverImg.size());
+    TrackViewCacheItem *cache = mCache->item(index);
+
+    // Draw cover image ................................
+    QImage img = index.data(TrackViewModel::RoleCoverImg).value<QImage>();
+    if (img.isNull())
+        img = mNoCoverImg;
+
+    if (img.height() != windowRect.height())
+        img = img.scaledToHeight(windowRect.height(), Qt::SmoothTransformation);
+
+    QRect imgRect(windowRect.topLeft(), img.size());
     painter->fillRect(imgRect, mTrackView->palette().base().color());
     painter->fillRect(imgRect, Qt::white);
-    painter->drawImage(imgRect, mNoCoverImg);
-
+    painter->drawImage(imgRect, img);
+    cache->coverRect = imgRect;
 
     // Rectangle for text drawing ......................
     QRect textRect(windowRect);
@@ -372,7 +379,7 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     aBtnRect.moveLeft(l);
     painter->drawPixmap(aBtnRect, mAudioBtnPix);
 
-    TrackViewCacheItem *cache = mCache->item(index);
+
     QRect tClickRect = tBtnRect.united(tLabelRect).adjusted(0, -3, 4, 1);
     cache->trackBtn = tClickRect;
     //painter->drawRect(tClickRect);
@@ -395,9 +402,14 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     if (cache->isWaiting)
     {
         painter->drawPixmap(markRect, mDownloadMovie.currentPixmap());
+        cache->markBtn = markRect;
+    }
+    else
+    {
+        cache->markBtn = QRect();
     }
 
-    cache->markBtn = markRect;
+
 
     painter->restore();    
 }
@@ -513,6 +525,14 @@ bool TrackViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, co
         {
             if (event->type() == QEvent::MouseButtonRelease)
                 emit markClicked(index, cache->markBtn);
+
+            return true;
+        }
+
+        if (cache->coverRect.contains(m))
+        {
+            if (event->type() == QEvent::MouseButtonRelease)
+                emit coverImageClicked(index);
 
             return true;
         }

@@ -81,7 +81,9 @@ protected:
         RoleCanConvert,
         RoleIsDownloads,
         RoleItemID,
-        RoleTrack
+        RoleTrack,
+        RoleCoverFile,
+        RoleCoverImg,
     };
 
     Disk *diskByIndex(const QModelIndex &index);

@@ -42,6 +42,7 @@ set(TEST_SOURCES
     test_format.cpp
     test_inputaudiofile.cpp
     test_convert.cpp
+    test_searchcoverimage.cpp
 )
 
 set(TEST_MOCS

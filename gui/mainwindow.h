@@ -75,7 +75,7 @@ private slots:
     void openOutDirDialog();
     void setCueForDisc(Disk *disk);
     void setAudioForDisk(Disk *disk);
-
+    void setCoverImage(Disk *disk);
 
     void removeDisks();
 

@@ -36,9 +36,11 @@
 #include <QFileInfo>
 #include <QStringList>
 #include <QDir>
+#include <QQueue>
+#include <QtAlgorithms>
 #include <QDebug>
 
-
+#define COVER_PREVIEW_SIZE 500
 
 /************************************************
 
@@ -193,6 +195,9 @@ void Disk::loadFromCue(const CueTagSet &cueTags, bool activate)
         mTags = mTagSets.first();
         project->emitLayoutChanged();
     }
+
+    mCoverImagePreview = QImage();
+    mCoverImageFile = searchCoverImage(QFileInfo(mCueFile).dir().absolutePath());
 }
 
 
@@ -487,6 +492,140 @@ int Disk::distance(const TagSet *other)
         return mTags->distance(other);
     else
         return 999999;
+}
+
+
+/************************************************
+
+ ************************************************/
+void Disk::setCoverImageFile(const QString &fileName)
+{
+    mCoverImageFile = fileName;
+    mCoverImagePreview = QImage();
+}
+
+
+/************************************************
+
+ ************************************************/
+QImage Disk::coverImagePreview() const
+{
+    if (!mCoverImageFile.isEmpty() && mCoverImagePreview.isNull())
+    {
+        mCoverImagePreview = coverImage();
+        if (!mCoverImagePreview.isNull())
+        {
+            mCoverImagePreview.scaled(COVER_PREVIEW_SIZE, COVER_PREVIEW_SIZE, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        }
+    }
+
+    return mCoverImagePreview;
+}
+
+
+/************************************************
+
+ ************************************************/
+QImage Disk::coverImage() const
+{
+    if (mCoverImageFile.isEmpty())
+        return QImage();
+
+    return QImage(mCoverImageFile);
+}
+
+
+/************************************************
+
+ ************************************************/
+bool compareCoverImages(const QFileInfo &f1, const QFileInfo &f2)
+{
+    static QStringList order(QStringList()
+            << "COVER"
+            << "FRONT"
+            << "FOLDER");
+
+    int n1 = order.indexOf(f1.baseName().toUpper());
+    if (n1 < 0)
+        n1 = 9999;
+
+    int n2 = order.indexOf(f2.baseName().toUpper());
+    if (n2 < 0)
+        n2 = 9999;
+
+    if (n1 != n2)
+        return n1 < n2;
+
+    // If we have 2 files with same name but in different directories,
+    // we choose the nearest (with the shorter path).
+    int l1 = f1.absoluteFilePath().length();
+    int l2 = f2.absoluteFilePath().length();
+    if (l1 != l2)
+        return l1<l2;
+
+    return f1.absoluteFilePath() < f2.absoluteFilePath();
+}
+
+
+/************************************************
+
+ ************************************************/
+QStringList Disk::searchCoverImages(const QString &startDir)
+{
+    QFileInfoList files;
+
+    QStringList exts;
+    exts << "*.jpg";
+    exts << "*.jpeg";
+    exts << "*.png";
+    exts << "*.bmp";
+    exts << "*.tiff";
+
+
+    QQueue<QString> query;
+    query << startDir;
+
+    QSet<QString> processed;
+    while (!query.isEmpty())
+    {
+        QDir dir(query.dequeue());
+
+        QFileInfoList dirs = dir.entryInfoList(QDir::Dirs | QDir::Readable | QDir::NoDotAndDotDot);
+        foreach(QFileInfo d, dirs)
+        {
+            if (d.isSymLink())
+                d = QFileInfo(d.symLinkTarget());
+
+            if (!processed.contains(d.absoluteFilePath()))
+            {
+                processed << d.absoluteFilePath();
+                query << d.absoluteFilePath();
+            }
+        }
+
+        files << dir.entryInfoList(exts, QDir::Files | QDir::Readable);
+    }
+
+    qStableSort(files.begin(), files.end(), compareCoverImages);
+
+    QStringList res;
+    foreach (QFileInfo f, files)
+        res << f.absoluteFilePath();
+
+    return res;
+}
+
+
+/************************************************
+
+ ************************************************/
+QString Disk::searchCoverImage(const QString &startDir)
+{
+    QStringList l = searchCoverImages(startDir);
+    if (l.isEmpty())
+        return "";
+    else
+        return l.first();
 }
 
 
