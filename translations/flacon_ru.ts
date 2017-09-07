@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -555,14 +555,6 @@ In CBR mode, it sets the specific output bitrate.
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Не получается создать директорию &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Не получается писать в директорию &quot;%1&quot;.</translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
         <translation>Конвертация невозможна:</translation>
     </message>
@@ -579,7 +571,7 @@ In CBR mode, it sets the specific output bitrate.
         <translation>%1 [ диск %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
         <translation>CUE содержит несколько дисков. Какой диск Вы хотите использовать?</translation>
     </message>
 </context>
@@ -617,6 +609,14 @@ In CBR mode, it sets the specific output bitrate.
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Не получается прочитать &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Не получается переименовать файл:
+%1 в %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -663,17 +663,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Default</source>
         <translation>По умолчанию</translation>
-    </message>
-</context>
-<context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation>Не получается переименовать файл:
-%1 в %2
-%3</translation>
     </message>
 </context>
 <context>
@@ -1008,14 +997,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Укажите файл программы</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>программа %1</translation>
-    </message>
-    <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation>Все файлы</translation>
+    </message>
+    <message>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>программа %1</translation>
     </message>
 </context>
 <context>
@@ -1071,12 +1060,21 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Аудио файл &lt;b&gt;%1&lt;/b&gt; не существует.</translation>
     </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Не получается создать директорию &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Не получается писать в директорию &quot;%1&quot;.</translation>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
-        <translation>Количество треков больше чем я ожидал.</translation>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation>Не получается прочитать &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1201,6 +1199,17 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 %1</source>
         <translation>Конвертация невозможна.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Не получается создать директорию &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Не получается писать в директорию &quot;%1&quot;.</translation>
     </message>
 </context>
 </TS>

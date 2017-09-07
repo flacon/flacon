@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -27,27 +27,27 @@
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation>Page d&apos;accueil : %1</translation>
+        <translation>Page d&apos;accueil : %1</translation>
     </message>
     <message>
         <source>License: %1</source>
-        <translation>Licence : %1</translation>
+        <translation>Licence : %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
-        <translation>Un grand merci à :</translation>
+        <translation>Un grand merci à :</translation>
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon utilise des programmes externes. Merci mille fois à leurs auteurs !</translation>
+        <translation>Flacon utilise des programmes externes. Nous tenons à remercier leurs auteurs !</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Extrait individuellement les pistes d&apos;un gros fichier audio contenant l&apos;album entier.</translation>
+        <translation>Extrait individuellement les pistes d&apos;un fichier audio volumineux contenant l&apos;album entier.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation>Tous droits réservés : %1-%2 %3</translation>
+        <translation>Tous droits réservés : %1-%2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -72,7 +72,7 @@
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation>Gestionnaire de bogues : %1</translation>
+        <translation>Gestionnaire de bogues : %1</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>Thread count:</source>
-        <translation>Nombre de fils :</translation>
+        <translation>Nombre de fils :</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
@@ -215,19 +215,19 @@
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation>Répertoire temporaire :</translation>
+        <translation>Répertoire temporaire :</translation>
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Page de code par défaut :</translation>
+        <translation>Page de code par défaut :</translation>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Présilence de la première piste : </translation>
+        <translation>Présilence de la première piste : </translation>
     </message>
     <message>
         <source>Rescan</source>
-        <translation>Rebalayer</translation>
+        <translation>Réanalyser</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Choisir le répertoire temporaire</translation>
+        <translation>Choisir un répertoire temporaire</translation>
     </message>
     <message>
         <source>Per track cue sheet</source>
@@ -278,7 +278,7 @@
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Débit binaire :</translation>
+        <translation>Débit binaire :</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
@@ -293,7 +293,7 @@
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Compression :</translation>
+        <translation>Compression :</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -301,7 +301,7 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calculer le gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -316,7 +316,7 @@
     </message>
     <message>
         <source>Preset:</source>
-        <translation>Préréglage :</translation>
+        <translation>Préréglage :</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -374,7 +374,7 @@
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Débit binaire :</translation>
+        <translation>Débit binaire :</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
@@ -386,7 +386,7 @@
     </message>
     <message>
         <source>Quality:</source>
-        <translation>Qualité :</translation>
+        <translation>Qualité :</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -394,7 +394,7 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calculer le gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
     <message>
         <source>VBR medium</source>
@@ -449,7 +449,7 @@
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation>Débit binaire minimum :</translation>
+        <translation>Débit binaire minimum :</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
@@ -457,7 +457,7 @@
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation>Débit binaire nominal :</translation>
+        <translation>Débit binaire nominal :</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
@@ -465,7 +465,7 @@
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Débit binaire maximum :</translation>
+        <translation>Débit binaire maximum :</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
@@ -477,7 +477,7 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calculer le gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
 </context>
 <context>
@@ -488,11 +488,11 @@
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation>Type de débit binaire :</translation>
+        <translation>Type de débit binaire :</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Débit binaire :</translation>
+        <translation>Débit binaire :</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -512,7 +512,7 @@
 &lt;dd&gt;Utiliser un encodage à Débit Binaire Variable (recommandé). En mode DBV, le débit binaire peut fluctuer librement d&apos;après le contenu afin d&apos;assurer une qualité constante.&lt;/dd&gt;
 
 &lt;dt&gt;DBC&lt;/dt&gt;
-&lt;dd&gt;Utiliser un encodage à Débit Variable Contraint. Génère un débit binaire spécifique. Ce mode est semblable au mode DBC des encodeurs AAC/MP3 et au mode géré des encodeurs Vorbis. Le qualité n&apos;est pas aussi constante qu&apos;en mode DBV, mais le débit binaire l&apos;est.&lt;/dd&gt;</translation>
+&lt;dd&gt;Utiliser un encodage à Débit Variable Contraint. Génère un débit binaire spécifique. Ce mode est semblable au mode DBC des encodeurs AAC/MP3 et au mode géré des encodeurs Vorbis. La qualité n&apos;est pas aussi constante qu&apos;en mode DBV, mais le débit binaire l&apos;est.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -537,7 +537,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Compression :</translation>
+        <translation>Compression :</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -545,7 +545,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calculer le gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -555,16 +555,8 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas créer le répertoire « %1 ».</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas écrire dans le répertoire « %1 ».</translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
-        <translation>La conversion est impossible :</translation>
+        <translation>La conversion est impossible :</translation>
     </message>
 </context>
 <context>
@@ -579,19 +571,19 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
         <translation>%1 [ disque %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>Le fichier cue contient des informations concernant plusieurs disques. Quel disque voulez-vous utiliser ?</translation>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation>Fichier audio non défini.</translation>
+        <translation>Le fichier audio n&apos;est pas défini.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>Fichier cue non défini.</translation>
+        <translation>Le fichier cue n&apos;est pas défini.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
@@ -604,20 +596,28 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
         <source>I can't delete file:
 %1
 %2</source>
-        <translation>Je ne peux pas supprimer le fichier :
+        <translation>Je ne peux pas supprimer le fichier :
 %1
 %2</translation>
     </message>
     <message>
         <source>Encoder error:
 </source>
-        <translation>Erreur de l&apos;encodeur :
+        <translation>Erreur d&apos;encodeur :
 </translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Je ne peux pas lire le fichier %1</translation>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Je ne peux pas renommer le fichier :
+%1 en %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -667,22 +667,11 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
 </context>
 <context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation>Je ne peux pas renommer le fichier :
- %1 en %2
- %3</translation>
-    </message>
-</context>
-<context>
     <name>Gain</name>
     <message>
         <source>Gain error:
 </source>
-        <translation>Erreur de gain :</translation>
+        <translation>Erreur de gain :</translation>
     </message>
 </context>
 <context>
@@ -697,15 +686,15 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Directory:</source>
-        <translation>Répertoire :</translation>
+        <translation>Répertoire :</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation>Modèle :</translation>
+        <translation>Modèle :</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation>Format :</translation>
+        <translation>Format :</translation>
     </message>
     <message>
         <source>Output format</source>
@@ -718,31 +707,31 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Genre:</source>
-        <translation>Genre :</translation>
+        <translation>Genre :</translation>
     </message>
     <message>
         <source>Year:</source>
-        <translation>Année :</translation>
+        <translation>Année :</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation>Artiste :</translation>
+        <translation>Artiste :</translation>
     </message>
     <message>
         <source>Album:</source>
-        <translation>Album :</translation>
+        <translation>Album :</translation>
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Premier numéro :</translation>
+        <translation>Premier numéro :</translation>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>ID de disque :</translation>
+        <translation>ID de disque :</translation>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation>Page de codes :</translation>
+        <translation>Page de codes :</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -810,11 +799,11 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Remove album</source>
-        <translation>Enlever l&apos;album</translation>
+        <translation>Retirer l&apos;album</translation>
     </message>
     <message>
         <source>Remove album from project</source>
-        <translation>Enlever l&apos;album du projet</translation>
+        <translation>Retirer l&apos;album du projet</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -826,7 +815,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation>…</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -834,7 +823,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation>Récupérer sur CDDB</translation>
+        <translation>Obtenir sur CDDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
@@ -846,7 +835,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Scan</source>
-        <translation>Balayer</translation>
+        <translation>Analyser</translation>
     </message>
     <message>
         <source>Recursive album search</source>
@@ -854,37 +843,37 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Insérer le « Numéro de piste »</translation>
+        <translation>Insérer le « Numéro de piste »</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Insérer le « Nombre total de pistes »</translation>
+        <translation>Insérer le « Nombre total de pistes »</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Insérer l&apos;« Artiste »</translation>
+        <translation>Insérer l&apos;« Artiste »</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Insérer le « Titre de l&apos;album »</translation>
+        <translation>Insérer le « Titre de l&apos;album »</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Insérer le « Titre de la piste »</translation>
+        <translation>Insérer le « Titre de la piste »</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Insérer l&apos;« Année »</translation>
+        <translation>Insérer l&apos;« Année »</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Insérer le « Genre »</translation>
+        <translation>Insérer le « Genre »</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
         <translation>Certains albums ne seront pas convertis, ils contiennent des erreurs.
-Voulez-vous continuer ?</translation>
+Voulez-vous continuer ?</translation>
     </message>
     <message>
         <source>%1 files</source>
@@ -938,7 +927,7 @@ If you surround sections of text that contain a token with braces, these section
  .term {font-weight: bold;}
  .def { white-space: nowrap; }
  &lt;/style&gt;
-Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants :
+Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants :
  &lt;table&gt;
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numéro de piste &lt;/td&gt;
  &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nombre total de pistes&lt;/td&gt;&lt;/tr&gt;
@@ -959,12 +948,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
         <translation>Vous pouvez naviguer vers le répertoire de destination. Vous pouvez aussi le saisir manuellement.
 
-Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même répertoire que la source.</translation>
+Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même répertoire que la source.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Utiliser « %1 »</translation>
+        <translation>Utiliser « %1 »</translation>
     </message>
     <message>
         <source>Select cue file</source>
@@ -974,7 +963,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Ajoute un fichier cue ou audio</translation>
+        <translation>Ajouter un fichier cue ou audio</translation>
     </message>
     <message>
         <source>Delete current pattern from history</source>
@@ -1009,14 +998,14 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
         <translation>Choisir le fichier de programme</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>Programme %1</translation>
-    </message>
-    <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation>Tous les fichiers</translation>
+    </message>
+    <message>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>programme %1</translation>
     </message>
 </context>
 <context>
@@ -1040,11 +1029,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Je ne peux pas écrire le fichier cue &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2.</translation>
+        <translation>Je ne peux pas écrire le fichier cue &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Le fichier &lt;b&gt;« %1 »&lt;/b&gt; n&apos;existe pas</translation>
+        <translation>Le fichier &lt;b&gt;« %1 »&lt;/b&gt; n&apos;existe pas</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
@@ -1057,11 +1046,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>vous ne pouvez pas utiliser « ReplayGain » pour des fichiers dont le débit d’échantillonnage est supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
+        <translation>vous ne pouvez pas utiliser « ReplayGain » pour les fichiers dont le débit d’échantillonnage est supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier cue valide. Il n&apos;as pas de balise FILE.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier cue valide. Il n&apos;a pas de balise FILE.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
@@ -1070,14 +1059,23 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Le fichier audio &lt;b&gt;« %1 »&lt;/b&gt; n&apos;existe pas</translation>
+        <translation>Le fichier audio &lt;b&gt;« %1 »&lt;/b&gt; n&apos;existe pas</translation>
+    </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Je ne peux pas créer le répertoire « %1 ».</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Je ne peux pas écrire dans le répertoire « %1 ».</translation>
     </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
-        <translation>Il y a plus de pistes que prévu.</translation>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation>Je ne peux pas lire &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1131,7 +1129,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     </message>
     <message>
         <source>Wait gain</source>
-        <translation>Attente du gain</translation>
+        <translation>En attente du gain</translation>
     </message>
     <message>
         <source>Write gain</source>
@@ -1139,11 +1137,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     </message>
     <message>
         <source>Tracks:</source>
-        <translation>Pistes :</translation>
+        <translation>Pistes :</translation>
     </message>
     <message>
         <source>Audio:</source>
-        <translation>Audio :</translation>
+        <translation>Audio :</translation>
     </message>
 </context>
 <context>
@@ -1202,6 +1200,17 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
 %1</source>
         <translation>La conversion est impossible.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Je ne peux pas créer le répertoire « %1 ».</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Je ne peux pas écrire dans le répertoire « %1 ».</translation>
     </message>
 </context>
 </TS>

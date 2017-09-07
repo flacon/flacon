@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="lt" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="lt" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -556,14 +556,6 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Nepavyksta sukurti katalogo &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Nepavyksta rašyti į katalogą &quot;%1&quot;.</translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
         <translation>Konvertavimas neįmanomas:</translation>
     </message>
@@ -580,8 +572,8 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
         <translation>%1 [ diskas %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>Cue faile yra informacijos apie kelis diskus. Kurį diską norėtumėte naudoti?</translation>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -619,6 +611,14 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Nepavyksta perskaityti failo %1</translation>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Nepavyksta pervadinti failo:
+%1 į %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -665,17 +665,6 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Default</source>
         <translation>Numatytasis</translation>
-    </message>
-</context>
-<context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation>Nepavyksta pervadinti failo:
-%1 į %2
-%3</translation>
     </message>
 </context>
 <context>
@@ -1011,14 +1000,14 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>Pasirinkite programos failą</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>%1 programa</translation>
-    </message>
-    <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation>Visi failai</translation>
+    </message>
+    <message>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>%1 programa</translation>
     </message>
 </context>
 <context>
@@ -1074,12 +1063,21 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Garso failo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nėra</translation>
     </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Nepavyksta sukurti katalogo &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Nepavyksta rašyti į katalogą &quot;%1&quot;.</translation>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
-        <translation>Takelių skaičius yra didesnis nei buvo tikėtasi.</translation>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation>Nepavyksta perskaityti &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1204,6 +1202,17 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
 %1</source>
         <translation>Konvertavimas neįmanomas.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Nepavyksta sukurti katalogo &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Nepavyksta rašyti į katalogą &quot;%1&quot;.</translation>
     </message>
 </context>
 </TS>

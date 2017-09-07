@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="text">
      <property name="text">
-      <string>The cue file contains information about multiple disks. Which disk you want to use?</string>
+      <string>The cue file contains information about multiple disks. Which disk do you want to use?</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -529,14 +529,6 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Ich kann das Verzeichnis &quot;%1&quot; nicht erstellen.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Ich kann nicht in das Verzeichnis &quot;%1&quot; schreiben.</translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
         <translation>Konvertierung ist nicht möglich:</translation>
     </message>
@@ -553,8 +545,8 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
         <translation>%1 [ Festplatte %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>Das Cue Sheet enthält Informationen über mehrere Disks. Welche Disk soll verwendet werden?</translation>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -592,6 +584,14 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Ich kann die Datei %1 nicht lesen</translation>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Datei kann nicht umbenannt werden:
+%1 zu %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -638,17 +638,6 @@ Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Album
     <message>
         <source>Default</source>
         <translation>Standard</translation>
-    </message>
-</context>
-<context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation>Ich kann die Datei nicht umbenennen:
-%1 zu %2
-%3</translation>
     </message>
 </context>
 <context>
@@ -928,7 +917,7 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Cue Sheet auswählen</translation>
+        <translation>CUE Sheet auswählen</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
@@ -968,14 +957,14 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
         <translation>Programmdatei auswählen</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>%1 Programm</translation>
-    </message>
-    <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation>Alle Dateien</translation>
+    </message>
+    <message>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>%1 Programm</translation>
     </message>
 </context>
 <context>
@@ -1031,12 +1020,21 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Audiodatei &lt;b&gt;&quot;%1&quot;&lt;/b&gt; ist nicht vorhanden</translation>
     </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Verzeichnis &quot;%1&quot; kann nicht erstellt werden.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>In Verzeichnis &quot;%1&quot; kann nicht gespeichert werden.</translation>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
-        <translation>Der Anzahl der Stücke ist höher als erwartet.</translation>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation>&lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 kann nicht gelesen werden</translation>
     </message>
 </context>
 <context>
@@ -1161,6 +1159,17 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
 %1</source>
         <translation>Die Konvertierung ist nicht möglich.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Verzeichnis &quot;%1&quot; kann nicht erstellt werden.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>In Verzeichnis &quot;%1&quot; kann nicht gespeichert werden.</translation>
     </message>
 </context>
 </TS>

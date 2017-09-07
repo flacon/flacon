@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -524,14 +524,6 @@ In CBR mode, it sets the specific output bitrate.
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
         <translation type="unfinished"/>
     </message>
@@ -548,7 +540,7 @@ In CBR mode, it sets the specific output bitrate.
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -583,6 +575,12 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -625,15 +623,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -950,13 +939,13 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
+        <source>All files</source>
+        <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>All files</source>
-        <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1013,11 +1002,20 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1141,6 +1139,17 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>The conversion is not possible.
 %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
         <translation type="unfinished"/>
     </message>
 </context>

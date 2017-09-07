@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sr" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="sr" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -524,14 +524,6 @@ In CBR mode, it sets the specific output bitrate.
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Не могу да направим фасциклу „%1“.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Не могу да пишем у фасциклу „%1“.</translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
         <translation>Претварање није погуће:</translation>
     </message>
@@ -548,8 +540,8 @@ In CBR mode, it sets the specific output bitrate.
         <translation>%1 [ диск %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>ЦУЕ фајл саджи податке о више дискова. Који диск желите да користите?</translation>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -587,6 +579,12 @@ In CBR mode, it sets the specific output bitrate.
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Не могу да читам фајл %1</translation>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -632,17 +630,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Default</source>
         <translation>подразумевано</translation>
-    </message>
-</context>
-<context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation>Не могу да преименујем фајл:\n
-%1 у %2\n
-%3</translation>
     </message>
 </context>
 <context>
@@ -959,14 +946,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Изаберите фајл програма</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>%1 програм</translation>
-    </message>
-    <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation>Сви фајлови</translation>
+    </message>
+    <message>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1022,12 +1009,21 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Аудио фајл &lt;b&gt;„%1“&lt;/b&gt; не постоји</translation>
     </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
-        <translation>Број стаза је већи од очекиваног.</translation>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1152,6 +1148,17 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 %1</source>
         <translation>Претварање није могуће.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

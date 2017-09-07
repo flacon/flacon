@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_MX" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_MX" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -556,14 +556,6 @@ En el modo CBR, establece la tasa de bits específica de salida.
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>No pude crear el directorio &quot;%1&quot;;</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>No pude escribir al directorio &quot;%1&quot;.</translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
         <translation>La conversión no es posible:</translation>
     </message>
@@ -580,8 +572,8 @@ En el modo CBR, establece la tasa de bits específica de salida.
         <translation>%1 [disco %2]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>El archivo cue contiene información de multiples discos. ¿Cuál disco quiere usar?</translation>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -619,6 +611,12 @@ En el modo CBR, establece la tasa de bits específica de salida.
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>No se puede leer el archivo %1</translation>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -665,17 +663,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>Default</source>
         <translation>Predefinido</translation>
-    </message>
-</context>
-<context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation>No pude renombrar el archivo:
-%1 a %2
-%3</translation>
     </message>
 </context>
 <context>
@@ -1010,14 +997,14 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
         <translation>Seleccionar un archivo de programa</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>Programa %1</translation>
-    </message>
-    <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation>Todos los archivos</translation>
+    </message>
+    <message>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1073,12 +1060,21 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>El archivo de audio &lt;b&gt;&quot;%1&quot;&lt;/b&gt; no existe</translation>
     </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
-        <translation>El número de tracks es mayor al esperado.</translation>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1203,6 +1199,17 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
 %1</source>
         <translation>La conversión no es posible.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

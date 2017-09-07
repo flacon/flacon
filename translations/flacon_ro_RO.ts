@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ro_RO" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ro_RO" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -556,14 +556,6 @@ In CBR mode, it sets the specific output bitrate.
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Nu se poate crea dosarul „%1”.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Nu se poate scrie în dosarul „%1”.</translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
         <translation>Conversia nu este posibilă:</translation>
     </message>
@@ -580,8 +572,8 @@ In CBR mode, it sets the specific output bitrate.
         <translation>%1 [ disc %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>Lista de indexare conține informații despre mai multe discuri. Alegeți discul dorit.</translation>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -619,6 +611,12 @@ In CBR mode, it sets the specific output bitrate.
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Nu se poate citi fișierul %1</translation>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -665,17 +663,6 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
     <message>
         <source>Default</source>
         <translation>Implicit</translation>
-    </message>
-</context>
-<context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation>Nu se poate redenumi fișierul:
-%1 to %2
-%3</translation>
     </message>
 </context>
 <context>
@@ -1011,14 +998,14 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation>Alegeți aplicația</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>Program(ul) %1</translation>
-    </message>
-    <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation>Toate fișierele</translation>
+    </message>
+    <message>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1074,12 +1061,21 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Fișierul audio &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nu există</translation>
     </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
-        <translation>Numărul de piste este mai mare decât cel așteptat.</translation>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1204,6 +1200,17 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
 %1</source>
         <translation>Conversia nu este posibilă.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

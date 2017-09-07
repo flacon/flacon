@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -39,7 +39,7 @@
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon gebruikt externe programma&apos;s. Veel dank aan hun auteurs!</translation>
+        <translation>Flacon gebruikt externe programma’s. Veel dank aan hun auteurs!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
@@ -556,14 +556,6 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Ik kan de map &quot;%1&quot; niet aanmaken.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Ik kan niet naar de map &quot;%1&quot; schrijven.</translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
         <translation>Conversie is niet mogelijk:</translation>
     </message>
@@ -580,8 +572,8 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <translation>%1 [ schijf %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>Het cuebestand bevat informatie over meerdere schijven. Welke schijf wil je gebruiken?</translation>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -619,6 +611,14 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Ik kan %1 bestand niet lezen</translation>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Ik kan het bestand niet hernoemen:
+%1 naar %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -665,17 +665,6 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     <message>
         <source>Default</source>
         <translation>Standaard</translation>
-    </message>
-</context>
-<context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation>Ik kan het bestand niet hernoemen:
-%1 naar %2
-%3</translation>
     </message>
 </context>
 <context>
@@ -856,31 +845,31 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>&quot;Tracknummer&quot; invoegen</translation>
+        <translation>‘Tracknummer’ invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>&quot;Totaal aantal nummers&quot; invoegen</translation>
+        <translation>‘Totaal aantal nummers’ invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>&quot;Artiest&quot; invoegen</translation>
+        <translation>‘Artiest’ invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>&quot;Albumtitel&quot; invoegen</translation>
+        <translation>‘Albumtitel’ invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>&quot;Nummertitel&quot; invoegen</translation>
+        <translation>‘Nummertitel’ invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>&quot;Jaar&quot; invoegen</translation>
+        <translation>‘Jaar’ invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>&quot;Genre&quot; invoegen</translation>
+        <translation>‘Genre’ invoegen</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -961,12 +950,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
         <translation>Je kan naar de doelmap bladeren of ze manueel ingeven.
 
-Als het pad leeg wordt gelaten of begint met &quot;.&quot; (punt) zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
+Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Gebruik &quot;%1&quot;</translation>
+        <translation>Gebruik ‘%1’</translation>
     </message>
     <message>
         <source>Select cue file</source>
@@ -1011,14 +1000,14 @@ Als het pad leeg wordt gelaten of begint met &quot;.&quot; (punt) zullen de resu
         <translation>Kies programmabestand</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>%1 programma</translation>
-    </message>
-    <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation>Alle bestanden</translation>
+    </message>
+    <message>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>%1 programma</translation>
     </message>
 </context>
 <context>
@@ -1072,14 +1061,23 @@ Als het pad leeg wordt gelaten of begint met &quot;.&quot; (punt) zullen de resu
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Het audiobestand &lt;b&gt;&quot;%1&quot;&lt;/b&gt; bestaat niet</translation>
+        <translation>Het audiobestand &lt;b&gt;‘%1’&lt;/b&gt; bestaat niet</translation>
+    </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Ik kan de map ‘%1’ niet aanmaken.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Ik kan niet naar de map ‘%1’ schrijven.</translation>
     </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
-        <translation>Het aantal nummers is hoger dan verwacht.</translation>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation>Ik kan het bestand &lt;b&gt;%1&lt;/b&gt; niet lezen:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1204,6 +1202,17 @@ Als het pad leeg wordt gelaten of begint met &quot;.&quot; (punt) zullen de resu
 %1</source>
         <translation>De conversie is niet mogelijk.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Ik kan de map ‘%1’ niet aanmaken.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Ik kan niet naar de map ‘%1’ schrijven.</translation>
     </message>
 </context>
 </TS>
