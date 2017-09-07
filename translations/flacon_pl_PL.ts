@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl_PL" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl_PL" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -554,14 +554,6 @@ W trybie CBR, ustawia konkretną wartość wyjściowej prędkości transmisji.</
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Nie można utworzyć katalogu &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Nie można zapisywać w katalogu &quot;%1&quot;.</translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
         <translation>Konwersja nie jest możliwa:</translation>
     </message>
@@ -578,8 +570,8 @@ W trybie CBR, ustawia konkretną wartość wyjściowej prędkości transmisji.</
         <translation>%1 [ dysk %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>Plik CUE zawiera informacje o wielu dyskach. Którego z nich chcesz użyć?</translation>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -617,6 +609,12 @@ W trybie CBR, ustawia konkretną wartość wyjściowej prędkości transmisji.</
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Nie można odczytać pliku %1</translation>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -663,17 +661,6 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     <message>
         <source>Default</source>
         <translation>Domyślnie</translation>
-    </message>
-</context>
-<context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation>Nie można zmienić nazwy pliku:
-%1 na %2
-%3</translation>
     </message>
 </context>
 <context>
@@ -1009,14 +996,14 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
         <translation>Wybierz plik programu</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>Program %1</translation>
-    </message>
-    <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation>Wszystkie pliki</translation>
+    </message>
+    <message>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1072,12 +1059,21 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Plik audio &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nie znaleziony.</translation>
     </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
-        <translation>Liczba ścieżek jest większa niż oczekiwano.</translation>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1202,6 +1198,17 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
 %1</source>
         <translation>Konwersja nie jest możliwa.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

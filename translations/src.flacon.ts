@@ -542,7 +542,7 @@ In CBR mode, it sets the specific output bitrate.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

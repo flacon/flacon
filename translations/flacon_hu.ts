@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -524,14 +524,6 @@ In CBR mode, it sets the specific output bitrate.
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>&quot;%1&quot; könyvtár nem hozható létre.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>&quot;%1&quot; könyvtárba nem lehet írni.</translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
         <translation>Átalakítása nem lehetséges:</translation>
     </message>
@@ -548,7 +540,7 @@ In CBR mode, it sets the specific output bitrate.
         <translation>%1 [ lemez %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -587,6 +579,12 @@ In CBR mode, it sets the specific output bitrate.
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Nem tudtam olvasni a %1 fájlt</translation>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -630,17 +628,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Default</source>
         <translation>Alapértelmezés</translation>
-    </message>
-</context>
-<context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation>Nem tudtam átnevezni:
-%1 to %2
-%3</translation>
     </message>
 </context>
 <context>
@@ -958,14 +945,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Programfájl kiválasztása</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>%1 program</translation>
-    </message>
-    <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation>Minden fájl</translation>
+    </message>
+    <message>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1021,11 +1008,20 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; audio-fájl nem létezik</translation>
     </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1151,6 +1147,17 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 %1</source>
         <translation>Átalakítása nem lehetséges.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

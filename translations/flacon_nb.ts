@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nb" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="nb" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -556,14 +556,6 @@ I CBR-modus, setter angitt utdatabitrate.
 <context>
     <name>Converter</name>
     <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke opprette mappa &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
-    </message>
-    <message>
         <source>Conversion is not possible:</source>
         <translation>Konvertering er ikke mulig:</translation>
     </message>
@@ -580,8 +572,8 @@ I CBR-modus, setter angitt utdatabitrate.
         <translation>%1 [ disk %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk you want to use?</source>
-        <translation>Cue-fila inneholder informasjon om flere disker. Hvilken disk ønsker du å bruke?</translation>
+        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -619,6 +611,14 @@ I CBR-modus, setter angitt utdatabitrate.
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Jeg kan ikke lese %1 fil</translation>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Jeg kan ikke gi fil nytt navn:
+%1 til %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -665,17 +665,6 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     <message>
         <source>Default</source>
         <translation>Standard</translation>
-    </message>
-</context>
-<context>
-    <name>Encoder_Wav</name>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation>Jeg kan ikke gi fil nytt navn:
-%1 til %2
-%3</translation>
     </message>
 </context>
 <context>
@@ -1011,14 +1000,14 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation>Velg programfil</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'shntool program (shntool)'</comment>
-        <translation>%1 program</translation>
-    </message>
-    <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
         <translation>Alle filer</translation>
+    </message>
+    <message>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>%1 program</translation>
     </message>
 </context>
 <context>
@@ -1074,12 +1063,21 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Lydfila &lt;b&gt; &quot;%1&quot; &lt;/b&gt; finnes ikke</translation>
     </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Jeg kan ikke opprette mappa &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
     <message>
-        <source>The number of tracks is higher than expected.</source>
-        <translation>Antall spor er høyere enn forventet.</translation>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation>Jeg kan ikke lese &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1204,6 +1202,17 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
 %1</source>
         <translation>Konverteringen er umulig.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>Worker</name>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Jeg kan ikke opprette mappa &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
     </message>
 </context>
 </TS>
