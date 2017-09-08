@@ -247,15 +247,22 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         {
             input->bytesAvailable() || input->waitForReadyRead(1000);
 
-            int n = qMin(qint64(MAX_BUF_SIZE), remains);
+            qint64 n = qMin(qint64(MAX_BUF_SIZE), remains);
             n = input->read(buf, n);
             if (n<0)
                 throw QString("Can't read %1 bytes").arg(remains);
 
             remains -= n;
 
-            if (outDevice->write(buf, n) != n)
-                throw outDevice->errorString();
+            // Write to OutDevice .........................
+            while (n > 0)
+            {
+                qint64 w = outDevice->write(buf, n);
+                if (w < 0)
+                    throw outDevice->errorString();
+                n -= w;
+            }
+            // Write to OutDevice .........................
 
             if (remains == 0)
             {
