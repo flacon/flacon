@@ -80,7 +80,7 @@ void TestFlacon::testConvert()
     settings->setOutFormat("WAV");
     settings->setCreateCue(createCue);
     settings->setPregapType(PreGapType(preGapType));
-    settings->setTmpDir(tmpDir);
+    settings->setTmpDir(tmpDir.isEmpty() ? "" : (dir() + "/" + tmpDir));
     settings->setOutFileDir(dir());
     settings->setOutFilePattern("%a/%n - %t");
 
@@ -507,7 +507,7 @@ void TestFlacon::testConvert_data()
     QTest::newRow(name.toUtf8())
             << false
             << int(PreGapType::ExtractToFile)
-            << mTmpDir + "/tmp/tmp/really_tmp"
+            << "/tmp/tmp/really_tmp"
             << requests;
     //=====================================================
 }

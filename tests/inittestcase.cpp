@@ -33,6 +33,12 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QDebug>
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+#include <QFuture>
+#include <QtConcurrentRun>
+#else
+#include <QtConcurrent/QtConcurrent>
+#endif
 
 #ifdef Q_OS_WIN
     #define PATH_ENV_SEPARATOR ';'
@@ -89,10 +95,10 @@ void TestFlacon::initTestCase()
     mAudio_cd_tta  = mTmpDir + "CD.tta";
 
     createWavFile(  mAudio_cd_wav,  900, StdWavHeader::Quality_Stereo_CD);
-    encodeAudioFile(mAudio_cd_wav, mAudio_cd_ape);
-    encodeAudioFile(mAudio_cd_wav, mAudio_cd_flac);
-    encodeAudioFile(mAudio_cd_wav, mAudio_cd_wv);
-    encodeAudioFile(mAudio_cd_wav, mAudio_cd_tta);
+    auto wait_cd_ape  = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_ape);
+    auto wait_cd_flac = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_flac);
+    auto wait_cd_wv   = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_wv);
+    auto wait_cd_tta  = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_tta);
 
 
     mAudio_24x96_wav  = mTmpDir + "24x96.wav";
@@ -102,10 +108,21 @@ void TestFlacon::initTestCase()
     mAudio_24x96_tta  = mTmpDir + "24x96.tta";
 
     createWavFile(  mAudio_24x96_wav,  900, StdWavHeader::Quality_Stereo_24_96);
-    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_ape);
-    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_flac);
-    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_wv);
-    encodeAudioFile(mAudio_24x96_wav, mAudio_24x96_tta);
+    auto wait_24x96_ape  = QtConcurrent::run(encodeAudioFile, mAudio_24x96_wav, mAudio_24x96_ape);
+    auto wait_24x96_flac = QtConcurrent::run(encodeAudioFile, mAudio_24x96_wav, mAudio_24x96_flac);
+    auto wait_24x96_wv   = QtConcurrent::run(encodeAudioFile, mAudio_24x96_wav, mAudio_24x96_wv);
+    auto wait_24x96_tta  = QtConcurrent::run(encodeAudioFile, mAudio_24x96_wav, mAudio_24x96_tta);
+
+
+    wait_cd_ape.waitForFinished();
+    wait_cd_flac.waitForFinished();
+    wait_cd_wv.waitForFinished();
+    wait_cd_tta.waitForFinished();
+
+    wait_24x96_ape.waitForFinished();
+    wait_24x96_flac.waitForFinished();
+    wait_24x96_wv.waitForFinished();
+    wait_24x96_tta.waitForFinished();
 
 }
 
