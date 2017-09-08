@@ -319,56 +319,6 @@
         <translation>Préréglage :</translation>
     </message>
     <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment .&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;DBV moyen&lt;/dt&gt;
-&lt;dd&gt;En utilisant un Débit Binaire Variable moyen, cette présélection devrait fournir une quasi-transparence à la plupart des personnes pour la plupart des musiques.&lt;/dd&gt;
-
-&lt;dt&gt;DBV standard, DBV standard rapide&lt;/dt&gt;
-&lt;dd&gt;En utilisant un Débit Binaire Variable standard, ces présélections devraient être transparentes pour la plupart des personnes et la plupart des musiques. Elles donnent déjà des résultats de haute qualité.&lt;/dd&gt;
-
-&lt;dt&gt;DBV extrême, DBV extrême rapide&lt;/dt&gt;
-&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, ces présélections fournissent une qualité légèrement supérieure au mode standard si vous avez une très bonne oreille et un équipement audio haut de gamme .&lt;/dd&gt;
-
-&lt;dt&gt;DBV qualité&lt;/dt&gt;
-&lt;dd&gt;Cette option à Débit Binaire Variable vous permet de choisir la qualité du niveau de sortie.&lt;/dd&gt;
-
-&lt;dt&gt;option rapide&lt;/dt&gt;
-&lt;dd&gt;Active la nouvelle option DBV rapide pour un profil donné. Cela est recommandé.&lt;/dd&gt;
-
-&lt;dt&gt;DBC insensé&lt;/dt&gt;
-&lt;dd&gt;Si vous devez obtenir la plus haute qualité sans vous soucier de la taille du fichier, vous l&apos;obtiendrez en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
-
-&lt;dt&gt;DBC kbit/s&lt;/dt&gt;
-&lt;dd&gt;Cette présélection à Débit Binaire Constant vous donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
-
-&lt;dt&gt;DBM kbit/s&lt;/dt&gt;
-&lt;dd&gt;Cette présélection à Débit Binaire Moyen vous donnera généralement une meilleure qualité pour un débit donné qu&apos;en utilisant l&apos;option à Débit Binaire Constant.&lt;/dd&gt;</translation>
-    </message>
-    <message>
         <source>Use bitrate</source>
         <translation>Choisir le débit binaire</translation>
     </message>
@@ -431,6 +381,34 @@
     <message>
         <source>ABR kbps</source>
         <translation>DBM kbit/s</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+</source>
+        <extracomment>ererere</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -572,7 +550,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Le fichier cue contient des informations concernant plusieurs disques. Quel disque voulez-vous utiliser ?</translation>
     </message>
 </context>
 <context>
@@ -843,31 +821,31 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Insérer le « Numéro de piste »</translation>
+        <translation>Insérer le « Numéro de piste »</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Insérer le « Nombre total de pistes »</translation>
+        <translation>Insérer le « Nombre total de pistes »</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Insérer l&apos;« Artiste »</translation>
+        <translation>Insérer l&apos;« Artiste »</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Insérer le « Titre de l&apos;album »</translation>
+        <translation>Insérer le « Titre de l&apos;album »</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Insérer le « Titre de la piste »</translation>
+        <translation>Insérer le « Titre de la piste »</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Insérer l&apos;« Année »</translation>
+        <translation>Insérer l&apos;« Année »</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Insérer le « Genre »</translation>
+        <translation>Insérer le « Genre »</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -948,12 +926,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
         <translation>Vous pouvez naviguer vers le répertoire de destination. Vous pouvez aussi le saisir manuellement.
 
-Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même répertoire que la source.</translation>
+Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même répertoire que la source.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Utiliser « %1 »</translation>
+        <translation>Utiliser « %1 »</translation>
     </message>
     <message>
         <source>Select cue file</source>
@@ -1033,7 +1011,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers 
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Le fichier &lt;b&gt;« %1 »&lt;/b&gt; n&apos;existe pas</translation>
+        <translation>Le fichier &lt;b&gt;« %1 »&lt;/b&gt; n&apos;existe pas</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
@@ -1046,7 +1024,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers 
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>vous ne pouvez pas utiliser « ReplayGain » pour les fichiers dont le débit d’échantillonnage est supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
+        <translation>vous ne pouvez pas utiliser « ReplayGain » pour les fichiers dont le débit d’échantillonnage est supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
@@ -1059,15 +1037,15 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers 
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Le fichier audio &lt;b&gt;« %1 »&lt;/b&gt; n&apos;existe pas</translation>
+        <translation>Le fichier audio &lt;b&gt;« %1 »&lt;/b&gt; n&apos;existe pas</translation>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas créer le répertoire « %1 ».</translation>
+        <translation>Je ne peux pas créer le répertoire « %1 ».</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas écrire dans le répertoire « %1 ».</translation>
+        <translation>Je ne peux pas écrire dans le répertoire « %1 ».</translation>
     </message>
 </context>
 <context>
@@ -1206,11 +1184,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers 
     <name>Worker</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas créer le répertoire « %1 ».</translation>
+        <translation>Je ne peux pas créer le répertoire « %1 ».</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas écrire dans le répertoire « %1 ».</translation>
+        <translation>Je ne peux pas écrire dans le répertoire « %1 ».</translation>
     </message>
 </context>
 </TS>

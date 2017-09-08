@@ -319,34 +319,6 @@
         <translation>Voreinstellung:</translation>
     </message>
     <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment .&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Use bitrate</source>
         <translation>Bitrate anwenden</translation>
     </message>
@@ -409,6 +381,57 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+</source>
+        <extracomment>ererere</extracomment>
+        <translation>&lt;dt&gt;VBR Mittel&lt;/dt&gt;
+&lt;dd&gt;Durch die Verwendung einer mittleren variablen Bitrate sollte diese Voreinstellung für die meisten Menschen und die meisten Musikstücke nahezu glasklar sein.&lt;/dd&gt;
+
+&lt;dt&gt;VBR Standard, VBR Standard schnell&lt;/dt&gt;
+&lt;dd&gt;Durch die Verwendung einer Standard-variablen Bitrate sollte diese Voreinstellung für die meisten Menschen bei den meisten Musikstücken im Allgemeinen glasklar sein und ist bereits recht hochwertig.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extrem, VBR extrem schnell&lt;/dt&gt;
+&lt;dd&gt;Durch die Verwendung der höchstmöglichen variablen Bitrate bietet diese Voreinstellung eine etwas höhere Qualität als der Standardmodus, wenn Sie über ein extrem gutes Hörvermögen oder auch ein hochwertiges Audiosystem verfügen.&lt;/dd&gt;
+
+&lt;dt&gt;VBR Qualität&lt;/dt&gt;
+&lt;dd&gt;Diese Option Variable Bitrate ermöglicht es Ihnen, die Ausgabequalität festzulegen.&lt;/dd&gt;
+
+&lt;dt&gt;schnelle Option&lt;/dt&gt;
+&lt;dd&gt;Ermöglicht den neuen schnellen VBR für ein bestimmtes Profil. Dies wird empfohlen.&lt;/dd&gt;
+
+&lt;dt&gt;CBR verrückt&lt;/dt&gt;
+&lt;dd&gt;Wenn Sie die absolut höchste Qualität ohne Rücksicht auf die Dateigröße haben möchten, erreichen Sie das mit dieser konstanten Bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbit/s&lt;/dt&gt;
+&lt;dd&gt;Wenn Sie diese Voreinstellung für konstante Bitrate verwenden, erhalten Sie in der Regel gute Qualität bei einer bestimmten Bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbit/s&lt;/dt&gt;
+&lt;dd&gt;Wenn Sie diese Voreinstellung für die Durchschnittsbitrate verwenden, erhalten Sie in der Regel eine höhere Qualität als die Option Konstante Bitrate für eine bestimmte Bitrate.&lt;/dd&gt;
+</translation>
     </message>
 </context>
 <context>
@@ -486,7 +509,11 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Variable Bitratenkodierung verwenden (empfohlen). Im VBR-Modus kann die Bitrate je nach Inhalt frei nach oben und unten gehen, um die Qualitätskonstanz zu gewährleisten.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Benutzen Sie die Bitratenkodierung mit eingeschränkten Variablen. Gibt eine bestimmte Bitrate aus. Dieser Modus ist analog zu CBR bei AAC/MP3-Kodierern und verwalteter Modus bei Vorbis-Kodierern. Dies liefert weniger konstante Qualität als der VBR-Modus, dafür aber eine konstante Bitrate.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -546,7 +573,7 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Die CUE-Datei enthält Informationen über mehrere Disks. Welche Disk soll verwendet werden?</translation>
     </message>
 </context>
 <context>
@@ -898,7 +925,23 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens starten mit %. Sie können folgende Tokens verwenden:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Stücknummer  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Gesamtzahl der Stücke&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Interpret&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumtitel&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Stücktitel&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Jahr&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werden diese Abschnitte ausgeblendet, wenn das Token leer ist.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.

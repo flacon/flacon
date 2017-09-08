@@ -319,57 +319,6 @@
         <translation>Preajuste:</translation>
     </message>
     <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment .&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
-&lt;dd&gt;Usando un Tasa de Bits Variable media, este preajuste debe ser casi transparente para la mayoría de gente y la mayoría de música.&lt;/dd&gt;
-
-&lt;dt&gt;VBR estándar, VBR estándar rápido&lt;/dt&gt;
-&lt;dd&gt;Usando un Tasa de Bits Variable estándar, este preajuste debería se transparente para la mayoría de la música y es ya un nivel alto de calidad.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extremo, VBR extremo rápido&lt;/dt&gt;
-&lt;dd&gt;Usando el Tasa de Bits Variable más alta, este preajuste ofrece algo más de calidad si usted tiene muy buen oído o un equipo de audio de gama alta.&lt;/dd&gt;
-
-&lt;dt&gt;Calidad VBR&lt;/dt&gt;
-&lt;dd&gt;Este valor le permite establecer la calidad de salida.&lt;/dd&gt;
-
-&lt;dt&gt;opción rápida&lt;/dt&gt;
-&lt;dd&gt;Establece el nuevo VBR rápido para un fichero en particular. Recomendado.&lt;/dd&gt;
-
-&lt;dt&gt;CBR máximo&lt;/dt&gt;
-&lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando esta Tasa de Bits Constante.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Usando esta Tasa de Bits Constante, el preajuste le dará una buena calidad al bitrate especificado.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Usando esta Tasa de Bits Promedio, este preajuste le dará una calidad más alta que la Tasa de Bits Constante para una Tasa de Bits específica.&lt;/dd&gt;
-</translation>
-    </message>
-    <message>
         <source>Use bitrate</source>
         <translation>Usar Tasa de Bits</translation>
     </message>
@@ -432,6 +381,34 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+</source>
+        <extracomment>ererere</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
