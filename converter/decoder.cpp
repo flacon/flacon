@@ -193,6 +193,24 @@ void Decoder::close()
 }
 
 
+
+/************************************************
+ *
+ ************************************************/
+void mustWrite(const char *buf, qint64 maxSize, QIODevice *outDevice)
+{
+    qint64 done = 0;
+    while (done < maxSize)
+    {
+        qint64 n = outDevice->write(buf + done, maxSize - done);
+        if (n < 0)
+            throw outDevice->errorString();
+
+        done += n;
+    }
+}
+
+
 /************************************************
  *
  ************************************************/
@@ -255,15 +273,10 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
             remains -= n;
 
             // Write to OutDevice .........................
-            while (n > 0)
-            {
-                qint64 w = outDevice->write(buf, n);
-                if (w < 0)
-                    throw outDevice->errorString();
-                n -= w;
-            }
-            // Write to OutDevice .........................
+            mustWrite(buf, n, outDevice);
 
+
+            // Calc progrress .............................
             if (remains == 0)
             {
                 emit progress(100);
