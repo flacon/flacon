@@ -202,9 +202,11 @@ void mustWrite(const char *buf, qint64 maxSize, QIODevice *outDevice)
     qint64 done = 0;
     while (done < maxSize)
     {
+        outDevice->waitForBytesWritten(10000);
         qint64 n = outDevice->write(buf + done, maxSize - done);
-        if (n < 0)
-            throw outDevice->errorString();
+        qWarning() << "maxSize:" << maxSize << "done:" << done << "n:" << n;
+         if (n < 0)
+            throw QString("Can't write %1 bytes. %2").arg(maxSize - done).arg(outDevice->errorString());
 
         done += n;
     }
@@ -263,7 +265,7 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         char buf[MAX_BUF_SIZE];
         while (remains > 0)
         {
-            input->bytesAvailable() || input->waitForReadyRead(1000);
+            input->bytesAvailable() || input->waitForReadyRead(10000);
 
             qint64 n = qMin(qint64(MAX_BUF_SIZE), remains);
             n = input->read(buf, n);
