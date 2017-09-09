@@ -16,4 +16,4 @@ script:
   - cd build
   - cmake -DBUILD_TESTS=Yes ..
   - make
-  - xvfb-run tests/flacon_test
+  - xvfb-run tests/flacon_test -maxwarnings 0

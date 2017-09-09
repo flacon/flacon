@@ -167,8 +167,11 @@ void TestFlacon::testConvert()
 
             if (!hash.isEmpty() && QFileInfo(outDir.absoluteFilePath(file)).exists())
             {
-               compareAudioHash(outDir.absoluteFilePath(file), hash);
+               if (compareAudioHash(outDir.absoluteFilePath(file), hash))
+                    QFile::remove(outDir.absoluteFilePath(file));
             }
+
+
         }
 
 

@@ -87,7 +87,7 @@ private:
 
 QStringList shnSplit(const QString &cueFile, const QString &audioFile);
 QString calcAudioHash(const QString &fileName);
-void  compareAudioHash(const QString &file1, const QString &expected);
+bool  compareAudioHash(const QString &file1, const QString &expected);
 void writeHexString(const QString &str, QIODevice *out);
 void createWavFile(const QString &fileName, int duration, StdWavHeader::Quality quality);
 void encodeAudioFile(const QString &wavFileName, const QString &outFileName);

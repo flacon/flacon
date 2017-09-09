@@ -170,11 +170,11 @@ QStringList shnSplit(const QString &cueFile, const QString &audioFile)
 /************************************************
  *
  ************************************************/
-void compareAudioHash(const QString &file1, const QString &expected)
+bool compareAudioHash(const QString &file1, const QString &expected)
 {
     if (calcAudioHash(file1) != expected)
     {
-        QFAIL(QString("Compared hases are not the same for:\n"
+        FAIL(QString("Compared hases are not the same for:\n"
                      "    [%1] %2\n"
                      "    [%3] %4\n")
 
@@ -185,8 +185,9 @@ void compareAudioHash(const QString &file1, const QString &expected)
                     .arg("expected")
 
                     .toLocal8Bit());
+        return false;
     }
-    //QCOMPARE(calcAudioHash(file1), calcAudioHash(file2));
+    return true;
 }
 
 
