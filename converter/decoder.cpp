@@ -204,8 +204,7 @@ void mustWrite(const char *buf, qint64 maxSize, QIODevice *outDevice)
     {
         outDevice->waitForBytesWritten(10000);
         qint64 n = outDevice->write(buf + done, maxSize - done);
-        qWarning() << "maxSize:" << maxSize << "done:" << done << "n:" << n;
-         if (n < 0)
+        if (n < 0)
             throw QString("Can't write %1 bytes. %2").arg(maxSize - done).arg(outDevice->errorString());
 
         done += n;
