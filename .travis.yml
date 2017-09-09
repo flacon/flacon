@@ -4,6 +4,7 @@ compiler:
   - clang
   
 install:
+  - df
   - sudo apt-get -y update
   - sudo apt-get -y install cmake libqt4-dev libuchardet-dev shntool xvfb python-software-properties
   - sudo add-apt-repository -y ppa:flacon
