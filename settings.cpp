@@ -140,6 +140,10 @@ void Settings::init()
     setDefaultValue(PerTrackCue_Create,     false);
     setDefaultValue(PerTrackCue_Pregap,     preGapTypeToString(PreGapType::ExtractToFile));
 
+    // Cover image **************************
+    setDefaultValue(Cover_Mode,             coverModeToString(CoverMode::Scale));
+    setDefaultValue(Cover_ResizeSize,       500);
+
     // ConfigureDialog **********************
     setDefaultValue(ConfigureDialog_Width,  645);
     setDefaultValue(ConfigureDialog_Height, 425);
@@ -212,6 +216,11 @@ QString Settings::keyToString(Settings::Key key) const
     // ConfigureDialog **********************
     case ConfigureDialog_Width:     return "ConfigureDialog/Width";
     case ConfigureDialog_Height:    return "ConfigureDialog/Height";
+
+
+    // Cover image **************************
+    case Cover_Mode:                return "Cover/Mode";
+    case Cover_ResizeSize:          return "Cover/Size";
     }
 
     return "";
@@ -421,6 +430,24 @@ QString Settings::defaultCodepage() const
 void Settings::setDefaultCodepage(const QString &value)
 {
     setValue(Tags_DefaultCodepage, value);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+CoverMode Settings::coverMode() const
+{
+    return strToCoverMode(value(Cover_Mode).toString());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+int Settings::coverImageSize() const
+{
+    return value(Cover_ResizeSize).toInt();
 }
 
 

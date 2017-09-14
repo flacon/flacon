@@ -71,6 +71,7 @@ set(HEADERS
     converter/worker.h
     converter/diskpipline.h
     converter/cuecreator.h
+    converter/copycover.h
 
     formats/format.h
     formats/outformat.h
@@ -119,6 +120,7 @@ set(SOURCES
     converter/worker.cpp
     converter/diskpipline.cpp
     converter/cuecreator.cpp
+    converter/copycover.cpp
 
     formats/format.cpp
     formats/outformat.cpp

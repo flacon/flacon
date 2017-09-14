@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>646</width>
-    <height>425</height>
+    <height>450</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -151,7 +151,7 @@
              <item row="1" column="0">
               <widget class="QLabel" name="tmpDirLabel">
                <property name="text">
-                <string>Temporary directory:</string>
+                <string>Te&amp;mporary directory:</string>
                </property>
                <property name="buddy">
                 <cstring>tmpDirEdit</cstring>
@@ -175,7 +175,7 @@
              <item row="2" column="0">
               <widget class="QLabel" name="codePageLabel">
                <property name="text">
-                <string>Default codepage:</string>
+                <string>Defau&amp;lt codepage:</string>
                </property>
                <property name="buddy">
                 <cstring>codePageComboBox</cstring>
@@ -225,6 +225,65 @@
                     <width>0</width>
                     <height>0</height>
                    </size>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="coverGroupBox">
+             <property name="title">
+              <string>Co&amp;ver image</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+               <layout class="QGridLayout" name="gridLayout_2">
+                <item row="0" column="0" colspan="2">
+                 <widget class="QRadioButton" name="coverDisableButton">
+                  <property name="text">
+                   <string>Do &amp;not copy image</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" colspan="2">
+                 <widget class="QRadioButton" name="coverKeepSizeButton">
+                  <property name="text">
+                   <string>&amp;Keep original image size</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QRadioButton" name="coverScaleButton">
+                  <property name="text">
+                   <string>Resi&amp;ze if image size greater than</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QSpinBox" name="coverResizeSpinBox">
+                  <property name="specialValueText">
+                   <string/>
+                  </property>
+                  <property name="suffix">
+                   <string> px</string>
+                  </property>
+                  <property name="minimum">
+                   <number>50</number>
+                  </property>
+                  <property name="maximum">
+                   <number>100000</number>
+                  </property>
+                  <property name="singleStep">
+                   <number>50</number>
+                  </property>
+                  <property name="value">
+                   <number>1024</number>
                   </property>
                  </widget>
                 </item>
@@ -364,8 +423,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>262</x>
-     <y>420</y>
+     <x>271</x>
+     <y>415</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -380,8 +439,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>330</x>
-     <y>420</y>
+     <x>339</x>
+     <y>415</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
@@ -412,12 +471,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>289</x>
-     <y>172</y>
+     <x>443</x>
+     <y>201</y>
     </hint>
     <hint type="destinationlabel">
-     <x>295</x>
-     <y>192</y>
+     <x>576</x>
+     <y>233</y>
     </hint>
    </hints>
   </connection>

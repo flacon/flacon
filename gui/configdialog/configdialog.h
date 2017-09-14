@@ -29,6 +29,7 @@
 
 #include <QDialog>
 #include "ui_configdialog.h"
+#include "types.h"
 
 class OutFormat;
 class EncoderConfigPage;
@@ -58,6 +59,10 @@ private:
 
     void load();
     void write();
+
+    CoverMode coverMode() const;
+    void setCoverMode(CoverMode mode);
+
 
     QList<EncoderConfigPage*> mEncodersPages;
     QList<ProgramEdit*> mProgramEdits;
