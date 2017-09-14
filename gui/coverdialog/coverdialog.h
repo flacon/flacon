@@ -23,42 +23,46 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef TYPES_H
-#define TYPES_H
 
-#include <QString>
+#ifndef COVERDIALOG_H
+#define COVERDIALOG_H
 
-enum class PreGapType
+#include <QDialog>
+#include <QIcon>
+
+class Disk;
+
+namespace Ui
 {
-    Skip,
-    ExtractToFile,
-    AddToFirstTrack
+    class CoverDialog;
+}
+
+
+class CoverDialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    static CoverDialog *createAndShow(Disk *disk, QWidget *parent = 0);
+    ~CoverDialog() override;
+
+    Disk *disk() const { return mDisk; }
+
+public slots:
+    void setDisk(Disk *disk);
+
+private slots:
+    void apply();
+
+private:
+    explicit CoverDialog(QWidget *parent = 0);
+
+
+    void scan(const QString &startDir);
+
+    Ui::CoverDialog *ui;
+    Disk *mDisk;
+    QIcon mEmptyIcon;
 };
 
-QString preGapTypeToString(PreGapType type);
-PreGapType strToPreGapType(const QString &str);
-
-
-enum class GainType
-{
-    Disable,
-    Track,
-    Album
-};
-
-QString gainTypeToString(GainType type);
-GainType strToGainType(const QString &str);
-
-
-enum class CoverMode
-{
-    Disable,
-    OrigSize,
-    Scale
-};
-
-QString coverModeToString(CoverMode mode);
-CoverMode strToCoverMode(const QString &str);
-
-
-#endif // TYPES_H
+#endif // COVERDIALOG_H

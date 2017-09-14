@@ -65,6 +65,7 @@ public slots:
 signals:
     void selectCueFile(Disk *disk);
     void selectAudioFile(Disk *disk);
+    void selectCoverImage(Disk *disk);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
@@ -79,6 +80,7 @@ private slots:
     void emitSelectCueFile();
     void emitSelectAudioFile(const QModelIndex &index, const QRect &buttonRect);
     void emitSelectAudioFile();
+    void emitSelectCoverImage(const QModelIndex &index);
 
     void openEditor();
     void activateTrackSet();

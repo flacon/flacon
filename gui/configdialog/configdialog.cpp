@@ -38,7 +38,7 @@
 #include <QCheckBox>
 #include <QComboBox>
 #include <QLineEdit>
-
+#include <QSpinBox>
 
 /************************************************
 
@@ -81,6 +81,11 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
     tmpDirButton->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open", ":/icons/16/select-folder"));
     connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
+
+
+    connect(coverDisableButton,  &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Disable);  });
+    connect(coverKeepSizeButton, &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::OrigSize); });
+    connect(coverScaleButton,    &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Scale);    });
 
     preGapComboBox->addItem(tr("Extract to separate file"), preGapTypeToString(PreGapType::ExtractToFile));
     preGapComboBox->addItem(tr("Add to first track"),       preGapTypeToString(PreGapType::AddToFirstTrack));
@@ -239,6 +244,53 @@ void ConfigDialog::tmpDirShowDialog()
 }
 
 
+
+/************************************************
+ *
+ ************************************************/
+void ConfigDialog::setCoverMode(CoverMode mode)
+{
+    switch (mode)
+    {
+    case CoverMode::Disable:
+        coverDisableButton->setChecked(true);
+        coverResizeSpinBox->setEnabled(false);
+        break;
+
+    case CoverMode::OrigSize:
+        coverKeepSizeButton->setChecked(true);
+        coverResizeSpinBox->setEnabled(false);
+        break;
+
+    case CoverMode::Scale:
+        coverScaleButton->setChecked(true);
+        coverResizeSpinBox->setEnabled(true);
+        break;
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void loadWidget(Settings::Key key, QCheckBox *widget)
+{
+    widget->setChecked(settings->value(key).toBool());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void loadWidget(Settings::Key key, QSpinBox *widget)
+{
+    bool ok;
+    int value = settings->value(key).toInt(&ok);
+    if (ok)
+        widget->setValue(value);
+}
+
+
 /************************************************
 
  ************************************************/
@@ -250,11 +302,32 @@ void ConfigDialog::load()
     EncoderConfigPage::loadWidget("PerTrackCue/Create",    perTrackCueCheck);
     EncoderConfigPage::loadWidget("PerTrackCue/Pregap",    preGapComboBox);
 
+    setCoverMode(settings->coverMode());
+    loadWidget(Settings::Cover_ResizeSize,   coverResizeSpinBox);
+
     foreach(EncoderConfigPage *page, mEncodersPages)
         page->load();
 
     foreach(ProgramEdit *edit, mProgramEdits)
         edit->setText(settings->value("Programs/" + edit->programName()).toString());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void writeWidget(Settings::Key key, QCheckBox *widget)
+{
+    settings->setValue(key, widget->isChecked());
+}
+
+
+/************************************************
+
+ ************************************************/
+void writeWidget(Settings::Key key, QSpinBox *widget)
+{
+    settings->setValue(key, widget->value());
 }
 
 
@@ -269,6 +342,9 @@ void ConfigDialog::write()
     EncoderConfigPage::writeWidget("PerTrackCue/Create",    perTrackCueCheck);
     EncoderConfigPage::writeWidget("PerTrackCue/Pregap",    preGapComboBox);
 
+    settings->setValue(Settings::Cover_Mode, coverModeToString(coverMode()));
+    writeWidget(Settings::Cover_ResizeSize,   coverResizeSpinBox);
+
     foreach(EncoderConfigPage *page, mEncodersPages)
         page->write();
 
@@ -276,6 +352,19 @@ void ConfigDialog::write()
         settings->setValue("Programs/" + edit->programName(), edit->text());
 }
 
+
+
+/************************************************
+
+ ************************************************/
+CoverMode ConfigDialog::coverMode() const
+{
+    if (coverDisableButton->isChecked())  return CoverMode::Disable;
+    if (coverKeepSizeButton->isChecked()) return CoverMode::OrigSize;
+    if (coverScaleButton->isChecked())    return CoverMode::Scale;
+
+    return CoverMode::Disable;
+}
 
 
 /************************************************

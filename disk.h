@@ -36,6 +36,7 @@
 #include <QAction>
 #include <QHash>
 #include <QChar>
+#include <QImage>
 
 class CueReader;
 class QFile;
@@ -96,6 +97,15 @@ public:
     int distance(const TagSet &other);
     int distance(const TagSet *other);
 
+    QString coverImageFile() const { return mCoverImageFile; }
+    void setCoverImageFile(const QString &fileName);
+    QImage coverImagePreview() const;
+    QImage coverImage() const;
+
+    static QStringList searchCoverImages(const QString &startDir);
+    static QString searchCoverImage(const QString &startDir);
+
+
 public slots:
     void downloadInfo();
 
@@ -122,6 +132,9 @@ private:
     InputAudioFile *mAudioFile;
     Track *mPreGapTrack;
     QList<DataProvider*> mDownloads;
+
+    QString mCoverImageFile;
+    mutable QImage  mCoverImagePreview;
 
     void findAudioFile(const CueTagSet &cueTags);
     void findCueFile();

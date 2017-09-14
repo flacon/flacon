@@ -54,6 +54,10 @@ private slots:
     void initTestCase();
     void init();
 
+    void testSearchCoverImage();
+    void testSearchCoverImage_data();
+
+
     void testReadWavHeader();
     void testReadWavHeader_data();
 

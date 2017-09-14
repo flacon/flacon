@@ -85,3 +85,27 @@ GainType strToGainType(const QString &str)
 
     return GainType::Disable;
 }
+
+
+QString coverModeToString(CoverMode mode)
+{
+    switch(mode)
+    {
+    case CoverMode::Disable:  return "Disable";
+    case CoverMode::OrigSize: return "OrigSize";
+    case CoverMode::Scale:    return "Scale";
+    }
+
+    return "Disable";
+
+}
+
+CoverMode strToCoverMode(const QString &str)
+{
+    QString s = str.toUpper();
+
+    if (s == "ORIGSIZE") return CoverMode::OrigSize;
+    if (s == "SCALE")    return CoverMode::Scale;
+
+    return CoverMode::Disable;
+}

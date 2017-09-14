@@ -23,42 +23,34 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef TYPES_H
-#define TYPES_H
 
-#include <QString>
+#ifndef ASYNCLISTWIDGETITEM_H
+#define ASYNCLISTWIDGETITEM_H
 
-enum class PreGapType
+#include <QListWidgetItem>
+#include <QtConcurrent/QtConcurrent>
+
+
+class AsyncListWidgetItem: public QObject, public QListWidgetItem
 {
-    Skip,
-    ExtractToFile,
-    AddToFirstTrack
+    Q_OBJECT
+public:
+    explicit AsyncListWidgetItem(QListWidget *view = Q_NULLPTR, int type = Type);
+    explicit AsyncListWidgetItem(const QString &text, QListWidget *view = Q_NULLPTR, int type = Type);
+    AsyncListWidgetItem(const AsyncListWidgetItem &other);
+    virtual ~AsyncListWidgetItem();
+
+    void setIconAsync(const QString &fileName);
+
+
+private slots:
+    void imageReady();
+
+private:
+    QFutureWatcher<QImage*> *mWatcher;
 };
 
-QString preGapTypeToString(PreGapType type);
-PreGapType strToPreGapType(const QString &str);
+
+#endif // ASYNCLISTWIDGETITEM_H
 
 
-enum class GainType
-{
-    Disable,
-    Track,
-    Album
-};
-
-QString gainTypeToString(GainType type);
-GainType strToGainType(const QString &str);
-
-
-enum class CoverMode
-{
-    Disable,
-    OrigSize,
-    Scale
-};
-
-QString coverModeToString(CoverMode mode);
-CoverMode strToCoverMode(const QString &str);
-
-
-#endif // TYPES_H

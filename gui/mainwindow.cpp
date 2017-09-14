@@ -36,6 +36,7 @@
 #include "aboutdialog/aboutdialog.h"
 #include "cuediskselectdialog/cuediskselectdialog.h"
 #include "scanner.h"
+#include "gui/coverdialog/coverdialog.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -154,6 +155,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(trackView, SIGNAL(selectCueFile(Disk*)), this, SLOT(setCueForDisc(Disk*)));
     connect(trackView, SIGNAL(selectAudioFile(Disk*)), this, SLOT(setAudioForDisk(Disk*)));
+    connect(trackView, SIGNAL(selectCoverImage(Disk*)),
+            this, SLOT(setCoverImage(Disk*)));
 
     connect(trackView->model(), SIGNAL(layoutChanged()), this, SLOT(refreshEdits()));
     connect(trackView->model(), SIGNAL(layoutChanged()), this, SLOT(setControlsEnable()));
@@ -664,6 +667,15 @@ void MainWindow::setAudioForDisk(Disk *disk)
         disk->setAudioFile(audio);
     else
         Project::error(audio.errorString());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::setCoverImage(Disk *disk)
+{
+    CoverDialog::createAndShow(disk, this);
 }
 
 

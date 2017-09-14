@@ -59,6 +59,8 @@ set(HEADERS
     gui/aboutdialog/aboutdialog.h
     gui/aboutdialog/translatorsinfo.h
     gui/cuediskselectdialog/cuediskselectdialog.h
+    gui/coverdialog/coverdialog.h
+    gui/coverdialog/asynclistwidgetitem.h
 
     converter/wavheader.h
     converter/decoder.h
@@ -69,6 +71,7 @@ set(HEADERS
     converter/worker.h
     converter/diskpipline.h
     converter/cuecreator.h
+    converter/copycover.h
 
     formats/format.h
     formats/outformat.h
@@ -105,6 +108,8 @@ set(SOURCES
     gui/aboutdialog/aboutdialog.cpp
     gui/aboutdialog/translatorsinfo.cpp
     gui/cuediskselectdialog/cuediskselectdialog.cpp
+    gui/coverdialog/coverdialog.cpp
+    gui/coverdialog/asynclistwidgetitem.cpp
 
     converter/wavheader.cpp
     converter/decoder.cpp
@@ -115,6 +120,7 @@ set(SOURCES
     converter/worker.cpp
     converter/diskpipline.cpp
     converter/cuecreator.cpp
+    converter/copycover.cpp
 
     formats/format.cpp
     formats/outformat.cpp
@@ -146,6 +152,8 @@ set (MOCS
     gui/configdialog/configdialog.h
     gui/aboutdialog/aboutdialog.h
     gui/cuediskselectdialog/cuediskselectdialog.h
+    gui/coverdialog/coverdialog.h
+    gui/coverdialog/asynclistwidgetitem.h
 
     converter/decoder.h
     converter/converter.h
@@ -168,6 +176,7 @@ set (FORMS
     gui/configdialog/configdialog.ui
     gui/aboutdialog/aboutdialog.ui
     gui/cuediskselectdialog/cuediskselectdialog.ui
+    gui/coverdialog/coverdialog.ui
 
     formats/flac_config.ui
     formats/aac_config.ui

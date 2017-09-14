@@ -48,8 +48,14 @@ TrackView::TrackView(QWidget *parent):
     mDelegate = new TrackViewDelegate(this);
     setItemDelegate(mDelegate);
 
-    connect(mDelegate, SIGNAL(trackButtonClicked(QModelIndex,QRect)), this, SLOT(showTrackMenu(QModelIndex,QRect)));
-    connect(mDelegate, SIGNAL(audioButtonClicked(QModelIndex,QRect)), this, SLOT(emitSelectAudioFile(QModelIndex, QRect)));
+    connect(mDelegate, SIGNAL(trackButtonClicked(QModelIndex,QRect)),
+            this, SLOT(showTrackMenu(QModelIndex,QRect)));
+
+    connect(mDelegate, SIGNAL(audioButtonClicked(QModelIndex,QRect)),
+            this, SLOT(emitSelectAudioFile(QModelIndex, QRect)));
+
+    connect(mDelegate, SIGNAL(coverImageClicked(QModelIndex)),
+            this, SLOT(emitSelectCoverImage(QModelIndex)));
 
     mModel = new TrackViewModel(this);
     setModel(mModel);
@@ -242,6 +248,17 @@ void TrackView::emitSelectAudioFile()
     DiskAction *act = qobject_cast<DiskAction*>(sender());
     if (act && act->disk())
         emit selectAudioFile(act->disk());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void TrackView::emitSelectCoverImage(const QModelIndex &index)
+{
+    Disk *disk = mModel->diskByIndex(index);
+    if (disk)
+        emit selectCoverImage(disk);
 }
 
 

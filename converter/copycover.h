@@ -23,42 +23,30 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef TYPES_H
-#define TYPES_H
+
+#ifndef COPYCOVER_H
+#define COPYCOVER_H
 
 #include <QString>
+class Disk;
 
-enum class PreGapType
+class CopyCover
 {
-    Skip,
-    ExtractToFile,
-    AddToFirstTrack
+public:
+    CopyCover(const Disk *disk, const QString &outDir, const QString &outBaseName, int newSize);
+    bool run();
+
+    QString errorString() const { return mErrorString; }
+
+private:
+    const Disk *mDisk;
+    const int mSize;
+    const QString mDir;
+    const QString mBaseName;
+    QString mErrorString;
+
+    bool copyImage(const QString &outFileName);
+    bool resizeImage(const QString &outFileName);
 };
 
-QString preGapTypeToString(PreGapType type);
-PreGapType strToPreGapType(const QString &str);
-
-
-enum class GainType
-{
-    Disable,
-    Track,
-    Album
-};
-
-QString gainTypeToString(GainType type);
-GainType strToGainType(const QString &str);
-
-
-enum class CoverMode
-{
-    Disable,
-    OrigSize,
-    Scale
-};
-
-QString coverModeToString(CoverMode mode);
-CoverMode strToCoverMode(const QString &str);
-
-
-#endif // TYPES_H
+#endif // COPYCOVER_H

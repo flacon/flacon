@@ -29,9 +29,11 @@
 #include "encoder.h"
 #include "gain.h"
 #include "cuecreator.h"
+#include "copycover.h"
 #include "project.h"
 #include "settings.h"
 #include "outformat.h"
+
 
 #include <QThread>
 #include <QDebug>
@@ -103,6 +105,7 @@ public:
     void startAlbumGainThread(QList<WorkerRequest> &reqs);
     bool createDir(const QString &dirName) const;
     bool createCue() const;
+    bool copyCoverImage() const;
 };
 
 
@@ -164,6 +167,7 @@ DiskPipeline::~DiskPipeline()
 {
     delete mData;
 }
+
 
 /************************************************
  *
@@ -254,6 +258,33 @@ bool DiskPipeline::Data::createCue() const
     return true;
 }
 
+
+/************************************************
+ *
+ ************************************************/
+bool DiskPipeline::Data::copyCoverImage() const
+{
+    CoverMode mode = settings->coverMode();
+
+    if (mode == CoverMode::Disable)
+        return true;
+
+    int size = 0;
+    if (mode == CoverMode::Scale)
+        size = settings->coverImageSize();
+
+    QString dir = QFileInfo(disk->track(0)->resultFilePath()).dir().absolutePath();
+
+    CopyCover copyCover(disk, dir, "cover", size);
+    bool res = copyCover.run();
+
+    if (!res)
+        Project::error(copyCover.errorString());
+
+    return res;
+}
+
+
 /************************************************
  *
  ************************************************/
@@ -280,6 +311,7 @@ void DiskPipeline::Data::startSplitterThread()
     trackStatuses.insert(disk->track(0), Track::Splitting);
 
     createCue();
+    copyCoverImage();
 }
 
 

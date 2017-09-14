@@ -37,6 +37,7 @@ class Settings : public QSettings
 {
     Q_OBJECT
 public:
+
     enum Key{
         Tags_DefaultCodepage,
 
@@ -66,7 +67,11 @@ public:
 
         // ConfigureDialog **********************
         ConfigureDialog_Width,
-        ConfigureDialog_Height
+        ConfigureDialog_Height,
+
+        // Cover image **************************
+        Cover_Mode,
+        Cover_ResizeSize
     };
 
     static Settings *instance();
@@ -106,6 +111,8 @@ public:
     QString defaultCodepage() const;
     void setDefaultCodepage(const QString &value);
 
+    CoverMode coverMode() const;
+    int coverImageSize() const;
 
 signals:
     void changed();
