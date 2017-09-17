@@ -36,9 +36,9 @@ REGISTER_FORMAT(Format_Tta)
 QStringList Format_Tta::decoderArgs(const QString &fileName) const
 {
     QStringList args;
-    args << fileName;
-    args << "-";
     args << "-d";
+    args << fileName;
+    args << "-o" << "-";
 
     return args;
 }
