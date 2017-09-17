@@ -9,11 +9,11 @@ install:
   - sudo add-apt-repository -y ppa:flacon
   - sudo apt-get -y update
   - sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev
-  - sudo apt-get -y install xvfb flac mac vorbis-tools wavpack lame vorbisgain mp3gain ttaenc
+  - sudo apt-get -y install flac mac vorbis-tools wavpack lame vorbisgain mp3gain ttaenc
 
 script: 
   - mkdir build
   - cd build
   - cmake -DBUILD_TESTS=Yes ..
   - make
-  - xvfb-run tests/flacon_test -maxwarnings 0
+  - tests/flacon_test -maxwarnings 0

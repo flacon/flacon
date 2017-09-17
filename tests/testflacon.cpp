@@ -1815,4 +1815,4 @@ void TestFlacon::testFindCueFile_data()
     QTest::newRow("multi.cue multi_1.wav multi_2.wav") << test;
 }
 
-QTEST_MAIN(TestFlacon)
+QTEST_GUILESS_MAIN(TestFlacon)
