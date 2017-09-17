@@ -173,6 +173,9 @@ void Converter::startThread()
     }
 
     emit finished();
+
+    if (mShowStatistic)
+        printStatistic();
 }
 
 
@@ -197,4 +200,30 @@ bool Converter::check(OutFormat *format) const
     }
 
     return ok;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Converter::printStatistic()
+{
+    int duration = QDateTime::currentDateTime().toTime_t() - mStartTime.toTime_t();
+    if (!duration)
+        duration = 1;
+
+    int h = duration / 3600;
+    int m = (duration - (h * 3600)) / 60;
+    int s =  duration - (h * 3600) - (m * 60);
+
+    QString str;
+
+    if (h)
+        str = QString("Encoding time %4h %3m %2s [%1 sec]").arg(duration).arg(s).arg(m).arg(h);
+    else if (m)
+        str = QString("Encoding time %3m %2s [%1 sec]").arg(duration).arg(s).arg(m);
+    else
+        str = QString("Encoding time %1 sec").arg(duration);
+
+    std::cout << str.toLocal8Bit().constData() << std::endl;
 }

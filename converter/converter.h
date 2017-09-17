@@ -64,6 +64,7 @@ private:
     bool mShowStatistic;
 
     bool check(OutFormat *format) const;
+    void printStatistic();
 };
 
 #endif // CONVERTER_H
