@@ -85,7 +85,6 @@ private:
 };
 
 
-QStringList shnSplit(const QString &cueFile, const QString &audioFile);
 QString calcAudioHash(const QString &fileName);
 bool  compareAudioHash(const QString &file1, const QString &expected);
 void writeHexString(const QString &str, QIODevice *out);

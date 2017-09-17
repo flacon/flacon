@@ -23,7 +23,7 @@
  #
  # END_COMMON_COPYRIGHT_HEADER
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.3)
 
 project(flacon)
 
@@ -237,55 +237,26 @@ include_directories(
 
 #*******************************************
 
-option(USE_QT5 "Force use the Qt5." $ENV{USE_QT5})
-option(USE_QT4 "Force use the Qt4." $ENV{USE_QT4})
 
-if((USE_QT4 AND USE_QT5) OR
-   (NOT USE_QT4 AND NOT USE_QT5))
-    find_package(Qt5Core QUIET)
-    if (Qt5Core_FOUND)
-        set(USE_QT4 OFF)
-        set(USE_QT5 ON)
-    else()
-        set(USE_QT4 ON)
-        set(USE_QT5 OFF)
-    endif()
-endif()
+find_package(Qt5Widgets REQUIRED QUIET)
+include_directories(${Qt5Widgets_INCLUDE_DIRS})
+add_definitions(${Qt5Widgets_DEFINITIONS})
+set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Widgets_LIBRARIES})
 
+find_package(Qt5Network REQUIRED QUIET)
+include_directories(${Qt5Network_INCLUDE_DIRS})
+add_definitions(${Qt5Network_DEFINITIONS})
+set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Network_LIBRARIES})
 
-if(USE_QT4)
-    set(QT_USE_QTNETWORK 1)
-    find_package(Qt4 REQUIRED)
-    include(${QT_USE_FILE})
-    qt4_wrap_cpp(MOC_SOURCES ${MOCS})
-    qt4_add_resources(QRC_SOURCES ${RESOURCES})
-    qt4_wrap_ui(UI_HEADERS ${FORMS})
-    qt4_add_translation(QM_FILES ${TS_FILES})
+find_package(Qt5LinguistTools REQUIRED QUIET)
 
-    status_message("Using Qt4, for building with Qt5 use -DUSE_QT5=Yes option.")
-else()
-    cmake_minimum_required(VERSION 2.8.3)
-    find_package(Qt5Widgets REQUIRED QUIET)
-    include_directories(${Qt5Widgets_INCLUDE_DIRS})
-    add_definitions(${Qt5Widgets_DEFINITIONS})
-    set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Widgets_LIBRARIES})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
-    find_package(Qt5Network REQUIRED QUIET)
-    include_directories(${Qt5Network_INCLUDE_DIRS})
-    add_definitions(${Qt5Network_DEFINITIONS})
-    set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Network_LIBRARIES})
+qt5_wrap_cpp(MOC_SOURCES ${MOCS})
+qt5_add_resources(QRC_SOURCES ${RESOURCES})
+qt5_wrap_ui(UI_HEADERS ${FORMS})
+qt5_add_translation(QM_FILES ${TS_FILES})
 
-    find_package(Qt5LinguistTools REQUIRED QUIET)
-
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
-
-    qt5_wrap_cpp(MOC_SOURCES ${MOCS})
-    qt5_add_resources(QRC_SOURCES ${RESOURCES})
-    qt5_wrap_ui(UI_HEADERS ${FORMS})
-    qt5_add_translation(QM_FILES ${TS_FILES})
-
-    status_message("Using Qt5, for building with Qt4 use -DUSE_QT4=Yes option.")
-endif()
 
 include(FindPkgConfig)
 pkg_search_module(UCHARDET REQUIRED uchardet)

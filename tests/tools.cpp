@@ -128,48 +128,6 @@ void TestCueFile::write()
 /************************************************
  *
  ************************************************/
-QStringList shnSplit(const QString &cueFile, const QString &audioFile)
-{
-    QString dir = QFileInfo(cueFile).absoluteDir().absolutePath();
-    foreach (QFileInfo file, QDir(dir).entryInfoList(QStringList() << "*-shntool.wav"))
-    {
-        QFile::remove(file.absoluteFilePath());
-    }
-
-    QStringList args;
-    args << "split";
-    args << "-w";
-    args << "-q";
-    args << "-O" << "always";
-    args << "-n" << "%03d";
-    args << "-t" << "%n-shntool";
-    args << "-d" << dir;
-    args << "-f" << QDir::toNativeSeparators(cueFile);
-    args << QDir::toNativeSeparators(audioFile);
-    //qDebug() << args;
-
-    QProcess proc;
-
-    if (proc.execute("shntool", args) != 0)
-    {
-
-        FAIL("snhtool was crashed: " + proc.readAllStandardError());
-    }
-
-    QStringList res;
-    foreach (QFileInfo file, QDir(dir).entryInfoList(QStringList() << "*-shntool.wav"))
-    {
-        if (!file.absoluteFilePath().endsWith("000-shntool.wav"))
-            res << file.absoluteFilePath();
-    }
-
-    return res;
-}
-
-
-/************************************************
- *
- ************************************************/
 bool compareAudioHash(const QString &file1, const QString &expected)
 {
     if (calcAudioHash(file1) != expected)

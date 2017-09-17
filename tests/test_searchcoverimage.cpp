@@ -29,6 +29,7 @@
 #include <QStringList>
 #include <QFileInfo>
 #include <QFile>
+#include <QDir>
 #include "../disk.h"
 
 
