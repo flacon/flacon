@@ -24,11 +24,13 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
+#include <QCommandLineParser>
 #include <QApplication>
 #include "mainwindow.h"
 #include "settings.h"
 #include "converter/converter.h"
 #include "project.h"
+#include "scanner.h"
 
 #include <QString>
 #include <QLocale>
@@ -37,6 +39,8 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <QDebug>
+#include <QFileInfo>
+
 
 /************************************************
  *
@@ -45,7 +49,6 @@ void printHelp()
 {
     QTextStream out(stdout);
     out << "Usage: flacon [options] [file]" << endl;
-    out << endl;
     out << "Flacon extracts individual tracks from one big audio file" << endl;
     out << endl;
 
@@ -95,7 +98,8 @@ void consoleErroHandler(const QString &message)
 {
     QString msg(message);
     msg.remove(QRegExp("<[^>]*>"));
-    qWarning() << msg;
+    msg.replace("\\n", "\n");
+    QTextStream(stderr) << msg.toLocal8Bit() << endl;
 }
 
 
@@ -130,71 +134,115 @@ void translate(QApplication *app)
 /************************************************
  *
  ************************************************/
-int main(int argc, char *argv[])
+int runConsole(int argc, char *argv[], const QStringList &files)
+{
+    QCoreApplication app(argc, argv);
+    Project::installErrorHandler(consoleErroHandler);
+
+    foreach(QString file, files)
+    {
+        QFileInfo fi = QFileInfo(file);
+        if (fi.isDir())
+        {
+            Scanner scanner;
+            scanner.start(fi.absoluteFilePath());
+        }
+        else if (fi.size() > 102400)
+        {
+            project->addAudioFile(file, false);
+        }
+        else
+        {
+            project->addCueFile(file, false);
+        }
+    }
+
+
+    if (project->count() == 0)
+        return 10;
+
+    Converter converter;
+    app.connect(&converter, SIGNAL(finished()),
+                &app, SLOT(quit()));
+
+
+    converter.start();
+    if (!converter.isRunning())
+        return 11;
+
+    return app.exec();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+int runGui(int argc, char *argv[], const QStringList &files)
 {
     QApplication app(argc, argv);
     translate(&app);
-
-
-    bool start = false;
-    QStringList files;
-    QStringList args = app.arguments();
-    for (int i=1; i < args.count(); ++i)
-    {
-        QString arg = args.at(i);
-
-        if (arg == "--help" || arg == "-h")
-        {
-            printHelp();
-            return 0;
-        }
-
-        if (arg == "--version")
-        {
-            printVersion();
-            return 0;
-        }
-
-        if (arg == "--start" || arg == "-s")
-        {
-            start = true;
-            continue;
-        }
-
-        if (arg == "--config" || arg == "-c")
-        {
-            i++;
-            if (i<args.count())
-                Settings::setFileName(args.at(i));
-
-            continue;
-        }
-
-        files << arg;
-
-    }
 
     MainWindow window;
 
     foreach(QString file, files)
         window.addFileOrDir(file);
 
-    if (start)
-    {
-        Project::installErrorHandler(consoleErroHandler);
-        Converter converter;
-        QEventLoop loop;
-        loop.connect(&converter, SIGNAL(finished()), &loop, SLOT(quit()));
-
-        converter.start();
-        loop.exec();
-        return 0;
-    }
-    else
-    {
-        Project::installErrorHandler(guiErrorHandler);
-    }
+    Project::installErrorHandler(guiErrorHandler);
 
     window.show();
     return app.exec();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+int main(int argc, char *argv[])
+{
+
+    QCommandLineParser parser;
+
+    parser.addPositionalArgument("file", QCoreApplication::translate("main", "CUE or Audio file."));
+    parser.addOptions({
+        {{"h", "help"   }, "Show help about options."},
+        {      "version" , "Show version information."},
+
+        {{"s", "start"  }, "Start to convert immediately."},
+        {{"c", "config" }, "Specify an alternative configuration file.", "config file"}
+    });
+
+
+    QStringList args;
+    for (int i=0; i<argc; ++i)
+        args << QString::fromLocal8Bit(argv[i]);
+
+    if (!parser.parse(args))
+    {
+        QTextStream(stderr) << parser.errorText() << endl << endl;
+        printHelp();
+        return 1;
+    }
+
+    if (parser.isSet("help"))
+    {
+        printHelp();
+        return 0;
+    }
+
+    if (parser.isSet("version"))
+    {
+        printVersion();
+        return 0;
+    }
+
+    if (!parser.value("config").isEmpty())
+    {
+        Settings::setFileName(parser.value("config"));
+    }
+
+
+    if (parser.isSet("start"))
+        return runConsole(argc, argv, parser.positionalArguments());
+    else
+        return runGui(argc, argv, parser.positionalArguments());
 }
