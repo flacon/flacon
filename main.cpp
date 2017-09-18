@@ -209,11 +209,10 @@ int main(int argc, char *argv[])
 
     parser.addPositionalArgument("file", QCoreApplication::translate("main", "CUE or Audio file."));
 
-    parser.addOption({{"h", "help"   }, "Show help about options."});
-    parser.addOption({      "version" , "Show version information."});
-
-    parser.addOption({{"s", "start"  }, "Start to convert immediately."});
-    parser.addOption({{"c", "config" }, "Specify an alternative configuration file.", "config file"});
+    parser.addOption(QCommandLineOption(QStringList() << "h" << "help"   , "Show help about options."));
+    parser.addOption(QCommandLineOption(                        "version", "Show version information."));
+    parser.addOption(QCommandLineOption(QStringList() << "s" << "start"  , "Start to convert immediately."));
+    parser.addOption(QCommandLineOption(QStringList() << "c" << "config" , "Specify an alternative configuration file.", "config file"));
 
     QStringList args;
     for (int i=0; i<argc; ++i)
