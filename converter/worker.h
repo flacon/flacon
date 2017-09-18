@@ -37,18 +37,21 @@ class Disk;
 
 class WorkerRequest {
 public:
-    WorkerRequest(const Track *track, const QString &fileName):
+    WorkerRequest(const Track *track, const QString &inputFile, const QString &outFile):
         mTrack(track),
-        mFileName(fileName)
+        mInputFile(inputFile),
+        mOutFile(outFile)
     {
     }
 
     const Track* track() const { return mTrack; }
-    QString fileName() const { return mFileName; }
+    QString inputFile() const { return mInputFile; }
+    QString outFile() const { return mOutFile; }
 
 private:
     const Track *mTrack;
-    QString mFileName;
+    QString mInputFile;
+    QString mOutFile;
 };
 
 
@@ -58,6 +61,8 @@ class Worker : public QObject
 public:
     explicit Worker(QObject *parent = 0);
     virtual ~Worker();
+
+public slots:
     virtual void run() = 0;
 
 signals:

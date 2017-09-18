@@ -55,9 +55,9 @@ private slots:
     void trackProgress(const Track *track, Track::Status status, int percent);
     void trackError(const Track *track, const QString &message);
 
-    void addEncoderRequest(const Track *track, const QString &fileName);
+    void addEncoderRequest(const Track *track, const QString &inputFile);
     void addGainRequest(const Track *track, const QString &fileName);
-    void trackDone(const Track *track);
+    void trackDone(const Track *track, const QString &outFileName);
 
 private:
     class Data;

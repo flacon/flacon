@@ -335,7 +335,7 @@ void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
     if (settings->outFormat()->gainType() == GainType::Disable)
     {
         connect(worker, SIGNAL(trackReady(const Track*,QString)),
-                pipeline, SLOT(trackDone(const Track*)));
+                pipeline, SLOT(trackDone(const Track*,QString)));
     }
     else
     {
@@ -365,7 +365,7 @@ void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
             pipeline, SLOT(trackError(const Track*,QString)));
 
     connect(worker,   SIGNAL(trackReady(const Track*,QString)),
-            pipeline, SLOT(trackDone(const Track*)));
+            pipeline, SLOT(trackDone(const Track*,QString)));
 
     thread->start();
 }
@@ -389,7 +389,7 @@ void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
             pipeline, SLOT(trackError(const Track*,QString)));
 
     connect(worker,   SIGNAL(trackReady(const Track*,QString)),
-            pipeline, SLOT(trackDone(const Track*)));
+            pipeline, SLOT(trackDone(const Track*,QString)));
 
     thread->start();
 }
@@ -398,9 +398,15 @@ void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
 /************************************************
  *
  ************************************************/
-void DiskPipeline::addEncoderRequest(const Track *track, const QString &fileName)
+void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFile)
 {
-    mData->encoderRequests << WorkerRequest(track, fileName);
+    QFileInfo trackFile(track->resultFilePath());
+    QString outFile = trackFile.dir().filePath(
+                QFileInfo(inputFile).baseName() +
+                ".encoded." +
+                trackFile.suffix());
+
+    mData->encoderRequests << WorkerRequest(track, inputFile, outFile);
     emit readyStart();
 }
 
@@ -414,7 +420,7 @@ void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
     {
         const_cast<Track*>(track)->setProgress(Track::WaitGain);
     }
-    mData->gainRequests << WorkerRequest(track, fileName);
+    mData->gainRequests << WorkerRequest(track, fileName, fileName);
     emit readyStart();
 }
 
@@ -422,8 +428,13 @@ void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
 /************************************************
  *
  ************************************************/
-void DiskPipeline::trackDone(const Track *track)
+void DiskPipeline::trackDone(const Track *track, const QString &outFileName)
 {
+    // Track is ready, rename the file to the final name.
+    QFile::remove(track->resultFilePath());
+    QFile(outFileName).rename(track->resultFilePath());
+
+
     mData->trackStatuses.insert(track, Track::OK);
     const_cast<Track*>(track)->setProgress(Track::OK);
 
@@ -544,4 +555,3 @@ void DiskPipeline::trackProgress(const Track *track, Track::Status status, int p
     mData->trackStatuses.insert(track, status);
     const_cast<Track*>(track)->setProgress(status, percent);
 }
-

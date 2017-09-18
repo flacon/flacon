@@ -32,7 +32,6 @@
 #include <QDebug>
 
 
-
 /************************************************
  *
  ************************************************/
@@ -44,7 +43,7 @@ Encoder::Encoder(const WorkerRequest request, const OutFormat *format, QObject *
     mReady(0),
     mProgress(0)
 {
-    mOutFile = mRequest.track()->resultFilePath();
+
 }
 
 
@@ -55,16 +54,6 @@ void Encoder::run()
 {
     bool debug  = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_ENCODER");
 
-    {
-        QFile f(outFile());
-
-        if (f.exists() && !f.remove())
-        {
-            error(mRequest.track(), tr("I can't delete file:\n%1\n%2").arg(f.fileName()).arg(f.errorString()));
-            return;
-        }
-    }
-
     // Input file already WAV, so for WAV output format we just rename file.
     if (mFormat->id() == "WAV")
     {
@@ -73,7 +62,7 @@ void Encoder::run()
     }
 
     QProcess process;
-    QStringList args = mFormat->encoderArgs(mRequest.track(), QDir::toNativeSeparators(outFile()));
+    QStringList args = mFormat->encoderArgs(mRequest.track(), QDir::toNativeSeparators(mRequest.outFile()));
     QString prog = args.takeFirst();
 
     if (debug)
@@ -91,15 +80,16 @@ void Encoder::run()
     process.waitForFinished(-1);
     if (process.exitCode() != 0)
     {
+        QTextStream(stderr) << "Encoder command: ";
         debugArguments(prog, args);
         QString msg = tr("Encoder error:\n") +
                 QString::fromLocal8Bit(process.readAllStandardError());
         error(mRequest.track(), msg);
     }
 
-    deleteFile(mRequest.fileName());
+    deleteFile(mRequest.inputFile());
 
-    emit trackReady(mRequest.track(), mOutFile);
+    emit trackReady(mRequest.track(), mRequest.outFile());
 }
 
 
@@ -123,10 +113,10 @@ void Encoder::processBytesWritten(qint64 bytes)
  ************************************************/
 void Encoder::readInputFile(QProcess *process)
 {
-    QFile file(mRequest.fileName());
+    QFile file(mRequest.inputFile());
     if (!file.open(QFile::ReadOnly))
     {
-        error(mRequest.track(), tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mRequest.fileName()));
+        error(mRequest.track(), tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mRequest.inputFile()));
     }
 
     mProgress = -1;
@@ -148,18 +138,18 @@ void Encoder::readInputFile(QProcess *process)
  ************************************************/
 void Encoder::runWav()
 {
-    QFile srcFile(mRequest.fileName());
-    bool res =  srcFile.rename(mOutFile);
+    QFile srcFile(mRequest.inputFile());
+    bool res =  srcFile.rename(mRequest.outFile());
 
     if (!res)
     {
         error(mRequest.track(),
               tr("I can't rename file:\n%1 to %2\n%3").arg(
-                  mRequest.fileName(),
-                  mOutFile,
+                  mRequest.inputFile(),
+                  mRequest.outFile(),
                   srcFile.errorString()));
     }
 
     emit trackProgress(mRequest.track(), Track::Encoding, 100);
-    emit trackReady(mRequest.track(), mOutFile);
+    emit trackReady(mRequest.track(), mRequest.outFile());
 }

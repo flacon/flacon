@@ -30,7 +30,6 @@
 #include "worker.h"
 #include "types.h"
 
-class Decoder;
 class Disk;
 class Track;
 class Project;
@@ -53,11 +52,11 @@ private slots:
     void decoderProgress(int percent);
 
 private:
-    Decoder *mDecoder;
     const Disk *mDisk;
     const QString mWorkDir;
     const PreGapType mPreGapType;
     const Track *mCurrentTrack;
+    QString tmpFileName(const QString &dir, int trackNum);
 
 };
 

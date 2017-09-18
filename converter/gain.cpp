@@ -29,7 +29,8 @@
 
 #include <QProcess>
 #include <QDir>
-
+#include <QTextStream>
+#include <QDebug>
 
 /************************************************
  *
@@ -66,7 +67,7 @@ void Gain::run()
 
     QStringList files;
     foreach (WorkerRequest req, mRequests)
-        files << QDir::toNativeSeparators(req.fileName());
+        files << QDir::toNativeSeparators(req.inputFile());
 
     QStringList args = mFormat->gainArgs(files);
     QString prog = args.takeFirst();
@@ -81,6 +82,7 @@ void Gain::run()
 
     if (process.exitCode() != 0)
     {
+        QTextStream(stderr) << "Gain command: ";
         debugArguments(prog, args);
         QString msg = tr("Gain error:\n") +
                 QString::fromLocal8Bit(process.readAllStandardError());
@@ -90,6 +92,6 @@ void Gain::run()
     foreach (WorkerRequest req, mRequests)
     {
         emit trackProgress(req.track(), Track::WriteGain, 100);
-        emit trackReady(req.track(), req.fileName());
+        emit trackReady(req.track(), req.inputFile());
     }
 }

@@ -38,7 +38,6 @@
  ************************************************/
 Splitter::Splitter(const Disk *disk, const QString &workDir, PreGapType preGapType, QObject *parent):
     Worker(parent),
-    mDecoder(NULL),
     mDisk(disk),
     mWorkDir(workDir),
     mPreGapType(preGapType),
@@ -54,7 +53,6 @@ void Splitter::run()
 {
     mCurrentTrack = 0;
     Decoder decoder;
-    mDecoder = &decoder;
 
     if (!decoder.open(mDisk->audioFileName()))
     {
@@ -74,7 +72,7 @@ void Splitter::run()
         mCurrentTrack = mDisk->preGapTrack();
         CueIndex start = mDisk->track(0)->cueIndex(0);
         CueIndex end   = mDisk->track(0)->cueIndex(1);
-        QString outFileName = QDir::toNativeSeparators(QString("%1/flacon_%2_%3.wav").arg(mWorkDir).arg("00").arg(QUuid::createUuid().toString().mid(1, 36)));
+        QString outFileName = tmpFileName(mWorkDir, 0);
 
         try
         {
@@ -101,7 +99,7 @@ void Splitter::run()
     for (int i=0; i<mDisk->count(); ++i)
     {
         mCurrentTrack = mDisk->track(i);
-        QString outFileName = QDir::toNativeSeparators(QString("%1/flacon_%2_%3.wav").arg(mWorkDir).arg(i, 2, 10, QChar('0')).arg(QUuid::createUuid().toString().mid(1, 36)));
+        QString outFileName = tmpFileName(mWorkDir, i + 1);
 
         CueIndex start, end;
         if (i==0 && mPreGapType == PreGapType::AddToFirstTrack)
@@ -125,8 +123,6 @@ void Splitter::run()
 
         emit trackReady(mCurrentTrack, outFileName);
     }
-
-    mDecoder = nullptr;
 }
 
 
@@ -152,6 +148,18 @@ const QList<const Track *> Splitter::tracks() const
 void Splitter::decoderProgress(int percent)
 {
     emit trackProgress(mCurrentTrack, Track::Splitting, percent);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Splitter::tmpFileName(const QString &dir, int trackNum)
+{
+    return QDir::toNativeSeparators(QString("%1/flacon_%2_[%3].wav")
+                                    .arg(dir)
+                                    .arg(trackNum, 2, 10, QChar('0'))
+                                    .arg(QUuid::createUuid().toString().mid(1, 36)));
 }
 
 
