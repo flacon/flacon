@@ -80,8 +80,13 @@ void printHelp()
 void printVersion()
 {
     QTextStream out(stdout);
+
+#ifndef GIT_BRANCH
     out << "flacon " << FLACON_VERSION << endl;
-    out << "Copyright (c) 2013 Alexander Sokolov" << endl;
+#else
+    out << "flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " "  << GIT_COMMIT_HASH << endl;
+#endif
+    out << "Copyright (c) 2013-" << QDate::currentDate().year() << " Alexander Sokolov" << endl;
     out << "   https://github.com/flacon/flacon" << endl;
     out << endl;
     out << "License LGPLv2.1+: GNU GNU Lesser General Public License version 2.1" << endl;
@@ -203,14 +208,12 @@ int main(int argc, char *argv[])
     QCommandLineParser parser;
 
     parser.addPositionalArgument("file", QCoreApplication::translate("main", "CUE or Audio file."));
-    parser.addOptions({
-        {{"h", "help"   }, "Show help about options."},
-        {      "version" , "Show version information."},
 
-        {{"s", "start"  }, "Start to convert immediately."},
-        {{"c", "config" }, "Specify an alternative configuration file.", "config file"}
-    });
+    parser.addOption({{"h", "help"   }, "Show help about options."});
+    parser.addOption({      "version" , "Show version information."});
 
+    parser.addOption({{"s", "start"  }, "Start to convert immediately."});
+    parser.addOption({{"c", "config" }, "Specify an alternative configuration file.", "config file"});
 
     QStringList args;
     for (int i=0; i<argc; ++i)

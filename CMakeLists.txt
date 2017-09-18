@@ -238,12 +238,12 @@ include_directories(
 #*******************************************
 
 
-find_package(Qt5Widgets REQUIRED QUIET)
+find_package(Qt5Widgets REQUIRED)
 include_directories(${Qt5Widgets_INCLUDE_DIRS})
 add_definitions(${Qt5Widgets_DEFINITIONS})
 set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Widgets_LIBRARIES})
 
-find_package(Qt5Network REQUIRED QUIET)
+find_package(Qt5Network REQUIRED)
 include_directories(${Qt5Network_INCLUDE_DIRS})
 add_definitions(${Qt5Network_DEFINITIONS})
 set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Network_LIBRARIES})
