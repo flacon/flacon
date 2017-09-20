@@ -405,6 +405,8 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
     case RoleIsDownloads:   return disk->isDownloads();
     case RoleCoverFile:     return disk->coverImageFile();
     case RoleCoverImg:      return disk->coverImagePreview();
+    case RoleCueFilePath:   return disk->cueFile();
+    case RoleAudioFilePath: return disk->audioFileName();
 
     default:                return QVariant();
     }

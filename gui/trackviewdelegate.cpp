@@ -37,6 +37,7 @@
 #include <QEvent>
 #include <QMouseEvent>
 #include <QApplication>
+#include <QToolTip>
 
 #include <QDebug>
 
@@ -57,7 +58,9 @@ struct TrackViewCacheItem
     }
 
     QRect trackBtn;
+    QRect trackLbl;
     QRect audioBtn;
+    QRect audioLbl;
     QRect markBtn;
     QRect coverRect;
     bool isWaiting;
@@ -388,6 +391,10 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     cache->audioBtn = aClickRect;
     //painter->drawRect(aClickRect);
 
+    cache->trackLbl = QRect(tFileRect.topLeft(), tBtnRect.bottomLeft());
+    cache->audioLbl = QRect(aFileRect.topLeft(), aBtnRect.bottomLeft());
+
+
     // Draw bottom line ................................
     painter->setPen(mTrackView->palette().dark().color());
     int y = option.rect.height() - BOTTOM_PADDING - 2;
@@ -541,6 +548,40 @@ bool TrackViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, co
     }
 
     return true;
+}
+
+
+
+bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index)
+{
+    if (index.parent().isValid())
+        return QStyledItemDelegate::helpEvent(event, view, option, index);
+
+
+    QPoint m = event->pos() - option.rect.topLeft();
+
+    TrackViewCacheItem *cache = mCache->item(index);
+
+    if (cache->trackLbl.contains(m))
+    {
+        QToolTip::showText(
+                    event->globalPos(),
+                    view->model()->data(index, TrackViewModel::RoleCueFilePath).toString(),
+                    view);
+        return true;
+    }
+
+
+    if (cache->audioLbl.contains(m))
+    {
+        QToolTip::showText(
+                    event->globalPos(),
+                    view->model()->data(index, TrackViewModel::RoleAudioFilePath).toString(),
+                    view);
+        return true;
+    }
+
+    return false;
 }
 
 

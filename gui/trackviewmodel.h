@@ -84,6 +84,8 @@ protected:
         RoleTrack,
         RoleCoverFile,
         RoleCoverImg,
+        RoleCueFilePath,
+        RoleAudioFilePath,
     };
 
     Disk *diskByIndex(const QModelIndex &index);
