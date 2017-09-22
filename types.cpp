@@ -25,7 +25,7 @@
 
 
 #include "types.h"
-
+#include <QVector>
 
 
 /************************************************
@@ -87,6 +87,9 @@ GainType strToGainType(const QString &str)
 }
 
 
+/************************************************
+
+ ************************************************/
 QString coverModeToString(CoverMode mode)
 {
     switch(mode)
@@ -100,6 +103,10 @@ QString coverModeToString(CoverMode mode)
 
 }
 
+
+/************************************************
+
+ ************************************************/
 CoverMode strToCoverMode(const QString &str)
 {
     QString s = str.toUpper();
@@ -108,4 +115,27 @@ CoverMode strToCoverMode(const QString &str)
     if (s == "SCALE")    return CoverMode::Scale;
 
     return CoverMode::Disable;
+}
+
+
+/************************************************
+
+ ************************************************/
+unsigned int levenshteinDistance(const QString &s1, const QString & s2)
+{
+    const size_t len1 = s1.size(), len2 = s2.size();
+    QVector<unsigned int> col(len2+1), prevCol(len2+1);
+
+    for (int i = 0; i < prevCol.size(); i++)
+        prevCol[i] = i;
+
+    for (unsigned int i = 0; i < len1; i++)
+    {
+        col[0] = i+1;
+        for (unsigned int j = 0; j < len2; j++)
+            col[j+1] = qMin( qMin( 1 + col[j], 1 + prevCol[1 + j]),
+                            prevCol[j] + (s1[i]==s2[j] ? 0 : 1) );
+        col.swap(prevCol);
+    }
+    return prevCol[len2];
 }

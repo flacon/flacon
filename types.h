@@ -61,4 +61,6 @@ QString coverModeToString(CoverMode mode);
 CoverMode strToCoverMode(const QString &str);
 
 
+unsigned int levenshteinDistance(const QString &s1, const QString & s2);
+
 #endif // TYPES_H

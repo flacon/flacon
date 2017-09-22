@@ -110,57 +110,6 @@ QString TagSetData::decode(const Tag &tag) const
 /************************************************
 
  ************************************************/
-#if (QT_VERSION < QT_VERSION_CHECK(4, 8, 0))
-
-template<class T>
-unsigned int levenshteinDistance(const T &s1, const T & s2)
-{
-    const size_t len1 = s1.size(), len2 = s2.size();
-    QVector<unsigned int> col(len2+1), prevCol(len2+1);
-    QVector<unsigned int> &c = col;
-    QVector<unsigned int> &p = prevCol;
-
-    for (int i = 0; i < p.size(); i++)
-        p[i] = i;
-
-    for (unsigned int i = 0; i < len1; i++)
-    {
-        c[0] = i+1;
-        for (unsigned int j = 0; j < len2; j++)
-            c[j+1] = qMin( qMin( 1 + c[j], 1 + p[1 + j]),
-                            p[j] + (s1[i]==s2[j] ? 0 : 1) );
-
-        p = col;
-        c = prevCol;
-    }
-    return p[len2];
-}
-#else
-template<class T>
-unsigned int levenshteinDistance(const T &s1, const T & s2)
-{
-    const size_t len1 = s1.size(), len2 = s2.size();
-    QVector<unsigned int> col(len2+1), prevCol(len2+1);
-
-    for (int i = 0; i < prevCol.size(); i++)
-        prevCol[i] = i;
-
-    for (unsigned int i = 0; i < len1; i++)
-    {
-        col[0] = i+1;
-        for (unsigned int j = 0; j < len2; j++)
-            col[j+1] = qMin( qMin( 1 + col[j], 1 + prevCol[1 + j]),
-                            prevCol[j] + (s1[i]==s2[j] ? 0 : 1) );
-        col.swap(prevCol);
-    }
-    return prevCol[len2];
-}
-#endif
-
-
-/************************************************
-
- ************************************************/
 TagSetData::TagSetData():
     mTrackCount(0),
     mTextCodec(0)

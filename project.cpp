@@ -234,7 +234,7 @@ Disk *Project::addAudioFile(const QString &fileName, bool showErrors)
             return 0;
     }
 
-    InputAudioFile audio(canonicalFileName);
+    InputAudioFile audio(QFileInfo(fileName).absoluteFilePath());
     if (!audio.isValid())
     {
         if (showErrors)

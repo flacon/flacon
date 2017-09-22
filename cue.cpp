@@ -356,7 +356,7 @@ bool CueReader::parse(QFile &file)
         {
             diskNum++;
 
-            CueTagSet tags(cueFileInfo.canonicalFilePath() + QString(" [%1]").arg(diskNum));
+            CueTagSet tags(cueFileInfo.absoluteFilePath() + QString(" [%1]").arg(diskNum));
             if (!mCodecName.isEmpty())
                 tags.setTextCodecName(mCodecName);
             tags.setDiskTag(TAG_CUE_FILE, mFileName);

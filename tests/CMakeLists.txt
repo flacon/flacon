@@ -43,6 +43,9 @@ set(TEST_SOURCES
     test_inputaudiofile.cpp
     test_convert.cpp
     test_searchcoverimage.cpp
+    test_findcuefile.cpp
+    test_findaudiofile.cpp
+    test_outformatencoderargs.cpp
 )
 
 set(TEST_MOCS

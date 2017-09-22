@@ -80,7 +80,7 @@ void TestFlacon::testReadWavHeader_data()
     QTest::addColumn<QString>("data_size");
     QTest::addColumn<QString>("duration");
 
-    QTest::newRow("1") <<
+    QTest::newRow("01") <<
                          "52 49 46 46"  // RIFF
                          "24 B9 4D 02"  // file size - 8
                          "57 41 56 45"  // WAVE
@@ -105,7 +105,7 @@ void TestFlacon::testReadWavHeader_data()
                       ;
 
 
-    QTest::newRow("2") <<
+    QTest::newRow("02") <<
                          "52 49 46 46"  // RIFF
                          "46 B9 4D 02"  // file size - 8
                          "57 41 56 45"  // WAVE
@@ -140,7 +140,7 @@ void TestFlacon::testReadWavHeader_data()
                       ;
 
 
-    QTest::newRow("3") <<
+    QTest::newRow("03") <<
                           "52 49 46 46" // RIFF
                           "24 A3 23 A8" // file size - 8
                           "57 41 56 45" // WAVE

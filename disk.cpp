@@ -226,6 +226,7 @@ QFileInfoList matchedAudioFiles(const CueTagSet &cueTags, const QFileInfoList &a
     foreach (const AudioFormat *format, AudioFormat::inputFormats())
         audioExt += (audioExt.isEmpty() ? "\\." : "|\\.") + format->ext();
 
+
     foreach (const QString &pattern, patterns)
     {
         QRegExp re(QString("%1(%2)+").arg(pattern).arg(audioExt), Qt::CaseInsensitive, QRegExp::RegExp2);      
@@ -264,6 +265,8 @@ void Disk::findCueFile()
         return;
     }
 
+    unsigned int bestWeight = 99999;
+    CueTagSet bestDisk("");
 
     foreach (const CueReader &cue, cueReaders)
     {
@@ -271,11 +274,18 @@ void Disk::findCueFile()
         {
             if (!matchedAudioFiles(cue.disk(i), QFileInfoList() << audio).isEmpty())
             {
-                loadFromCue(cue.disk(i), i);
-                return;
+                unsigned int weight = levenshteinDistance(QFileInfo(cue.fileName()).baseName(), audio.baseName());
+                if (weight < bestWeight)
+                {
+                    bestWeight = weight;
+                    bestDisk = cue.disk(i);
+                }
             }
         }
     }
+
+    if (!bestDisk.uri().isEmpty())
+        loadFromCue(bestDisk);
 }
 
 
