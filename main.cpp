@@ -207,7 +207,7 @@ int main(int argc, char *argv[])
 
     QCommandLineParser parser;
 
-    parser.addPositionalArgument("file", QCoreApplication::translate("main", "CUE or Audio file."));
+    parser.addPositionalArgument("file", "CUE or Audio file.");
 
     parser.addOption(QCommandLineOption(QStringList() << "h" << "help"   , "Show help about options."));
     parser.addOption(QCommandLineOption(                        "version", "Show version information."));

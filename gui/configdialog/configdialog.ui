@@ -151,7 +151,10 @@
              <item row="1" column="0">
               <widget class="QLabel" name="tmpDirLabel">
                <property name="text">
-                <string>Te&amp;mporary directory:</string>
+                <string>Temporary directory:</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::PlainText</enum>
                </property>
                <property name="buddy">
                 <cstring>tmpDirEdit</cstring>
@@ -175,7 +178,7 @@
              <item row="2" column="0">
               <widget class="QLabel" name="codePageLabel">
                <property name="text">
-                <string>Defau&amp;lt codepage:</string>
+                <string>Default codepage:</string>
                </property>
                <property name="buddy">
                 <cstring>codePageComboBox</cstring>
@@ -236,7 +239,7 @@
            <item>
             <widget class="QGroupBox" name="coverGroupBox">
              <property name="title">
-              <string>Co&amp;ver image</string>
+              <string>Cover image</string>
              </property>
              <property name="checkable">
               <bool>false</bool>
@@ -247,21 +250,21 @@
                 <item row="0" column="0" colspan="2">
                  <widget class="QRadioButton" name="coverDisableButton">
                   <property name="text">
-                   <string>Do &amp;not copy image</string>
+                   <string>Do not copy image</string>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="0" colspan="2">
                  <widget class="QRadioButton" name="coverKeepSizeButton">
                   <property name="text">
-                   <string>&amp;Keep original image size</string>
+                   <string>Keep original image size</string>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="0">
                  <widget class="QRadioButton" name="coverScaleButton">
                   <property name="text">
-                   <string>Resi&amp;ze if image size greater than</string>
+                   <string>Resize if image size greater than</string>
                   </property>
                  </widget>
                 </item>

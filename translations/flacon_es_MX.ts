@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon es traducido a muchos idiomas gracias al trabajo de los equipos de traducción de Flacon en &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -214,14 +214,6 @@
         <translation>El número de subprocesos en el proceso de conversión.</translation>
     </message>
     <message>
-        <source>Temporary directory:</source>
-        <translation>Directorio temporal:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Código de página predeterminado:</translation>
-    </message>
-    <message>
         <source>First track pregap:</source>
         <translation>Primera pista pregap:</translation>
     </message>
@@ -260,6 +252,34 @@
     <message>
         <source>Create per track cue sheet</source>
         <translation>Crear hoja cue por pista</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Directorio temporal:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Código de página predeterminado:</translation>
+    </message>
+    <message>
+        <source>Cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do not copy image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Keep original image size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -538,10 +558,17 @@ En el modo CBR, establece la tasa de bits específica de salida.
     </message>
 </context>
 <context>
+    <name>CoverDialog</name>
+    <message>
+        <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation>Seleccionar disco</translation>
+        <translation>Seleccione disco</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
@@ -550,7 +577,7 @@ En el modo CBR, establece la tasa de bits específica de salida.
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>El archivo cue contiene información de multiples discos. ¿Cuál de ellos quiere usar?</translation>
     </message>
 </context>
 <context>
@@ -571,14 +598,6 @@ En el modo CBR, establece la tasa de bits específica de salida.
 <context>
     <name>Encoder</name>
     <message>
-        <source>I can't delete file:
-%1
-%2</source>
-        <translation>No pude borrar el archivo:
-%1
-%2</translation>
-    </message>
-    <message>
         <source>Encoder error:
 </source>
         <translation>Error de codificador:
@@ -587,13 +606,15 @@ En el modo CBR, establece la tasa de bits específica de salida.
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation>No se puede leer el archivo %1</translation>
+        <translation>No puedo leer el archivo %1</translation>
     </message>
     <message>
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>No puedo renombrar el archivo
+%1 a %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -922,7 +943,7 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Puede navegar al directorio destino. Puede además escribirla manualmente.
+        <translation>Puede navegar al directorio destino. Puede además escribirlo manualmente.
 
 Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultante será colocado en el mismo directorio que el archivo fuente.</translation>
     </message>
@@ -943,7 +964,7 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     </message>
     <message>
         <source>Delete current pattern from history</source>
-        <translation type="unfinished"/>
+        <translation>Borrado el patrón actual del historial</translation>
     </message>
 </context>
 <context>
@@ -981,7 +1002,7 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation type="unfinished"/>
+        <translation>Programa %1</translation>
     </message>
 </context>
 <context>
@@ -1013,7 +1034,7 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo válido. Disco %2 no tiene etiquetas.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo cue válido. Disco %2 no tiene etiquetas.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1039,10 +1060,24 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>No puedo crear el directorio &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>No puedo escribir en el directorio &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:2</source>
+        <comment>%1 - is a file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write cover imege &lt;b&gt;%1&lt;/b&gt;</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1051,7 +1086,7 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-        <translation type="unfinished"/>
+        <translation>No puedo leer &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1182,11 +1217,11 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     <name>Worker</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>No puedo crear el directorio &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>No puedo escribir el en directorio &quot;%1&quot;.</translation>
     </message>
 </context>
 </TS>

@@ -214,14 +214,6 @@
         <translation>Broj niti procesa pretvaranja.</translation>
     </message>
     <message>
-        <source>Temporary directory:</source>
-        <translation>Privremena fascikla:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Podrazumevana kodna stranica:</translation>
-    </message>
-    <message>
         <source>First track pregap:</source>
         <translation>Predpraznina prve numere:</translation>
     </message>
@@ -260,6 +252,34 @@
     <message>
         <source>Create per track cue sheet</source>
         <translation>Napravi CUE za svaku numeru</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Privremena fascikla:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Podrazumevana kodna stranica:</translation>
+    </message>
+    <message>
+        <source>Cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do not copy image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Keep original image size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -529,6 +549,13 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
+    <name>CoverDialog</name>
+    <message>
+        <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
@@ -561,14 +588,6 @@ In CBR mode, it sets the specific output bitrate.
 </context>
 <context>
     <name>Encoder</name>
-    <message>
-        <source>I can't delete file:
-%1
-%2</source>
-        <translation>Ne mogu da obrišem fajl:\n
-%1\n
-%2</translation>
-    </message>
     <message>
         <source>Encoder error:
 </source>
@@ -1015,6 +1034,20 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:2</source>
+        <comment>%1 - is a file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write cover imege &lt;b&gt;%1&lt;/b&gt;</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
 </context>

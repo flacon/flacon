@@ -214,14 +214,6 @@
         <translation>Antall tråder brukt i konverteringsprosessen.</translation>
     </message>
     <message>
-        <source>Temporary directory:</source>
-        <translation>Midlertidig katalog:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Forvalgt kodeside:</translation>
-    </message>
-    <message>
         <source>First track pregap:</source>
         <translation>Innledningspause før første spor:</translation>
     </message>
@@ -260,6 +252,34 @@
     <message>
         <source>Create per track cue sheet</source>
         <translation>Opprett CUE-innholdsfortegnelse per spor</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Midlertidig katalog:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Forvalgt kodeside:</translation>
+    </message>
+    <message>
+        <source>Cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do not copy image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Keep original image size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -561,6 +581,13 @@ I CBR-modus, setter angitt utdatabitrate.
     </message>
 </context>
 <context>
+    <name>CoverDialog</name>
+    <message>
+        <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
@@ -593,14 +620,6 @@ I CBR-modus, setter angitt utdatabitrate.
 </context>
 <context>
     <name>Encoder</name>
-    <message>
-        <source>I can't delete file:
-%1
-%2</source>
-        <translation>Jeg kan ikke slette fila:
-%1
-%2</translation>
-    </message>
     <message>
         <source>Encoder error:
 </source>
@@ -1070,6 +1089,20 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
         <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:2</source>
+        <comment>%1 - is a file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write cover imege &lt;b&gt;%1&lt;/b&gt;</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

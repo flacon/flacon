@@ -214,14 +214,6 @@
         <translation>Количество потоков в процессе конвертации.</translation>
     </message>
     <message>
-        <source>Temporary directory:</source>
-        <translation>Временная директория:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Кодировка по умолчанию:</translation>
-    </message>
-    <message>
         <source>First track pregap:</source>
         <translation>Прегап первого трека:</translation>
     </message>
@@ -260,6 +252,34 @@
     <message>
         <source>Create per track cue sheet</source>
         <translation>Создавать потрековый CUE</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation>px</translation>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Временная директория:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Кодировка по умолчанию:</translation>
+    </message>
+    <message>
+        <source>Cover image</source>
+        <translation>Обложка</translation>
+    </message>
+    <message>
+        <source>Do not copy image</source>
+        <translation>Не копировать</translation>
+    </message>
+    <message>
+        <source>Keep original image size</source>
+        <translation>В оригинальном размере</translation>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <translation>Масштабировать если картинка больше чем</translation>
     </message>
 </context>
 <context>
@@ -560,6 +580,13 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
+    <name>CoverDialog</name>
+    <message>
+        <source>Select cover image</source>
+        <translation>Обложка диска</translation>
+    </message>
+</context>
+<context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
@@ -592,14 +619,6 @@ In CBR mode, it sets the specific output bitrate.
 </context>
 <context>
     <name>Encoder</name>
-    <message>
-        <source>I can't delete file:
-%1
-%2</source>
-        <translation>Не получается удалить файл:
-%1
-%2</translation>
-    </message>
     <message>
         <source>Encoder error:
 </source>
@@ -1067,6 +1086,20 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
         <translation>Не получается писать в директорию &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation>Не получается скопировать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:2</source>
+        <comment>%1 - is a file name, %2 - an error text</comment>
+        <translation>Не получается прочитать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write cover imege &lt;b&gt;%1&lt;/b&gt;</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation>Не получается записать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>

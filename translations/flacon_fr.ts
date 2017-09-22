@@ -214,14 +214,6 @@
         <translation>Nombre de fils d&apos;exécution dans le processus de conversion.</translation>
     </message>
     <message>
-        <source>Temporary directory:</source>
-        <translation>Répertoire temporaire :</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Page de code par défaut :</translation>
-    </message>
-    <message>
         <source>First track pregap:</source>
         <translation>Présilence de la première piste : </translation>
     </message>
@@ -260,6 +252,34 @@
     <message>
         <source>Create per track cue sheet</source>
         <translation>Créer un fichier cue par piste</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Répertoire temporaire :</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Page de code par défaut :</translation>
+    </message>
+    <message>
+        <source>Cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do not copy image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Keep original image size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -408,7 +428,29 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;DBV moyen&lt;/dt&gt;
+&lt;dd&gt;En utilisant un Débit Binaire Variable moyen, cette présélection devrait fournir une quasi transparence à la plupart des personnes pour la plupart des musiques.&lt;/dd&gt;
+
+&lt;dt&gt;DBV standard, DBV standard rapide&lt;/dt&gt;
+&lt;dd&gt;En utilisant un Débit Binaire Variable standard, ces présélections devraient être transparentes pour la plupart des personnes et la plupart des musiques, et donnent déjà des résultats de haute qualité.&lt;/dd&gt;
+
+&lt;dt&gt;DBV extrême, DBV extrême rapide&lt;/dt&gt;
+&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, ces préselections fournissent une qualité légèrement supérieure au mode standard si vous avec une très bonne ouïe et un équipement audio haut de gamme.&lt;/dd&gt;
+
+&lt;dt&gt;DBV qualité&lt;/dt&gt;
+&lt;dd&gt;Cette option à Débit Binaire Variable vous permet de choisir le niveau final de qualité.&lt;/dd&gt;
+
+&lt;dt&gt;option rapide&lt;/dt&gt;
+&lt;dd&gt;Active la nouvelle option DBV rapide pour un profil donné. Ceci est recommandé.&lt;/dd&gt;
+
+&lt;dt&gt;DBC insensé&lt;/dt&gt;
+&lt;dd&gt;Si vous devez obtenir la plus haute qualité sans vous soucier de la taille du fichier, vous l&apos;obtiendrez en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
+
+&lt;dt&gt;DBC kbit/s&lt;/dt&gt;
+&lt;dd&gt;Cette préselection à Débit Binaire Constant vous donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
+
+&lt;dt&gt;&gt;DBM kbit&lt;/dt&gt;
+&lt;dd&gt;Cette présélection à Débit Binaire Moyen vous donnera généralement une meilleure qualité pour un débit donné qu&apos;en utilisant l&apos;option à Débit Binaire Constant.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -538,6 +580,13 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
 </context>
 <context>
+    <name>CoverDialog</name>
+    <message>
+        <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
@@ -570,14 +619,6 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
 </context>
 <context>
     <name>Encoder</name>
-    <message>
-        <source>I can't delete file:
-%1
-%2</source>
-        <translation>Je ne peux pas supprimer le fichier :
-%1
-%2</translation>
-    </message>
     <message>
         <source>Encoder error:
 </source>
@@ -1046,6 +1087,20 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
         <translation>Je ne peux pas écrire dans le répertoire « %1 ».</translation>
+    </message>
+    <message>
+        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:2</source>
+        <comment>%1 - is a file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write cover imege &lt;b&gt;%1&lt;/b&gt;</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

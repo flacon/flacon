@@ -214,14 +214,6 @@
         <translation>Die Anzahl der Threads im Konvertierungsprozess.</translation>
     </message>
     <message>
-        <source>Temporary directory:</source>
-        <translation>Temporäres Verzeichnis:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Standard-Zeichensatztabelle:</translation>
-    </message>
-    <message>
         <source>First track pregap:</source>
         <translation>Vorlücke des ersten Stücks:</translation>
     </message>
@@ -260,6 +252,34 @@
     <message>
         <source>Create per track cue sheet</source>
         <translation>Cue-Datei pro Stück erstellen</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Temporäres Verzeichnis:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Standard-Zeichensatztabelle:</translation>
+    </message>
+    <message>
+        <source>Cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do not copy image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Keep original image size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -561,15 +581,22 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     </message>
 </context>
 <context>
+    <name>CoverDialog</name>
+    <message>
+        <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation>Festplatte auswählen</translation>
+        <translation>Disk auswählen</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [ Festplatte %2 ]</translation>
+        <translation>%1 [ Disk %2 ]</translation>
     </message>
     <message>
         <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
@@ -593,14 +620,6 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
 </context>
 <context>
     <name>Encoder</name>
-    <message>
-        <source>I can't delete file:
-%1
-%2</source>
-        <translation>I can&apos;t delete file:
-%1
-%2</translation>
-    </message>
     <message>
         <source>Encoder error:
 </source>
@@ -1022,7 +1041,7 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     </message>
     <message>
         <source> [disk %1]</source>
-        <translation> [Festplatte %1]</translation>
+        <translation> [Disk %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -1070,6 +1089,20 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
         <translation>In Verzeichnis &quot;%1&quot; kann nicht gespeichert werden.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:2</source>
+        <comment>%1 - is a file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write cover imege &lt;b&gt;%1&lt;/b&gt;</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
