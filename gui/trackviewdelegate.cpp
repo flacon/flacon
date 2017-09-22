@@ -404,19 +404,13 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     QRect markRect(imgRect.right() - MARK_HEIGHT, imgRect.bottom() - MARK_HEIGHT, MARK_HEIGHT, MARK_HEIGHT);
     if (!index.data(TrackViewModel::RoleCanConvert).toBool())
         painter->drawPixmap(markRect, mWarnPix);
+    cache->markBtn = markRect;
 
     cache->isWaiting = index.data(TrackViewModel::RoleIsDownloads).toBool();
     if (cache->isWaiting)
     {
         painter->drawPixmap(markRect, mDownloadMovie.currentPixmap());
-        cache->markBtn = markRect;
     }
-    else
-    {
-        cache->markBtn = QRect();
-    }
-
-
 
     painter->restore();    
 }
@@ -581,6 +575,14 @@ bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, co
         return true;
     }
 
+    if (cache->markBtn.contains(m))
+    {
+        QToolTip::showText(
+                    event->globalPos(),
+                    view->model()->data(index, TrackViewModel::RoleDiskWarning).toString(),
+                    view);
+        return true;
+    }
     return false;
 }
 

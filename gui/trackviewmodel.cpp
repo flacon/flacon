@@ -385,16 +385,6 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
         return QVariant();
     }
 
-    // ToolTip ::::::::::::::::::::::::::::::::::::::::::
-    if (role == Qt::ToolTipRole)
-    {
-        QString s;
-        if (!disk->canConvert(&s))
-            return QVariant(tr("The conversion is not possible.\n%1").arg(s));
-        else
-            return QVariant();
-
-    }
 
     switch (role)
     {
@@ -407,6 +397,14 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
     case RoleCoverImg:      return disk->coverImagePreview();
     case RoleCueFilePath:   return disk->cueFile();
     case RoleAudioFilePath: return disk->audioFileName();
+    case RoleDiskWarning:
+                        {
+                            QString s;
+                            if (!disk->canConvert(&s))
+                                return QVariant(tr("The conversion is not possible.\n%1").arg(s));
+                            else
+                                return QVariant();
+                        }
 
     default:                return QVariant();
     }
