@@ -599,7 +599,7 @@ In CBR mode, it sets the specific output bitrate.
         <translation>%1 [ disc %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1093,12 +1093,12 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:2</source>
+        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write cover imege &lt;b&gt;%1&lt;/b&gt;</source>
+        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>

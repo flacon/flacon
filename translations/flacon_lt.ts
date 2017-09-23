@@ -599,8 +599,8 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
         <translation>%1 [ diskas %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation>Cue faile yra informacijos apie kelis diskus. Kurį diską norėtumėte naudoti?</translation>
+        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1095,12 +1095,12 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:2</source>
+        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write cover imege &lt;b&gt;%1&lt;/b&gt;</source>
+        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>

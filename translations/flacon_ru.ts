@@ -598,7 +598,7 @@ In CBR mode, it sets the specific output bitrate.
         <translation>%1 [ диск %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
         <translation>CUE содержит несколько дисков. Какой диск Вы хотите использовать?</translation>
     </message>
 </context>
@@ -1092,12 +1092,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Не получается скопировать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:2</source>
+        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Не получается прочитать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>I can&apos;t write cover imege &lt;b&gt;%1&lt;/b&gt;</source>
+        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation>Не получается записать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>

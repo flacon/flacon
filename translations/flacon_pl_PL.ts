@@ -575,7 +575,7 @@ W trybie CBR, ustawia konkretną wartość wyjściowej prędkości transmisji.</
         <translation>%1 [ dysk %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
+        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1069,12 +1069,12 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:2</source>
+        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write cover imege &lt;b&gt;%1&lt;/b&gt;</source>
+        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>

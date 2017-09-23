@@ -27,15 +27,15 @@
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation>Page d&apos;accueil : %1</translation>
+        <translation>Page d&apos;accueil  : %1</translation>
     </message>
     <message>
         <source>License: %1</source>
-        <translation>Licence : %1</translation>
+        <translation>Licence : %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
-        <translation>Un grand merci à :</translation>
+        <translation>Un grand merci à :</translation>
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
@@ -47,7 +47,7 @@
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation>Tous droits réservés : %1-%2 %3</translation>
+        <translation>Tous droits réservés : %1-%2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>Thread count:</source>
-        <translation>Nombre de fils :</translation>
+        <translation>Nombre de fils :</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
@@ -215,7 +215,7 @@
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Présilence de la première piste : </translation>
+        <translation>Présilence de la première piste : </translation>
     </message>
     <message>
         <source>Rescan</source>
@@ -243,7 +243,7 @@
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Choisir un répertoire temporaire</translation>
+        <translation>Sélectionner un répertoire temporaire</translation>
     </message>
     <message>
         <source>Per track cue sheet</source>
@@ -255,31 +255,31 @@
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation>Répertoire temporaire :</translation>
+        <translation>Répertoire temporaire :</translation>
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Page de code par défaut :</translation>
+        <translation>Page de code par défaut :</translation>
     </message>
     <message>
         <source>Cover image</source>
-        <translation type="unfinished"/>
+        <translation>Image de couverture</translation>
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation type="unfinished"/>
+        <translation>Ne pas copier l&apos;image</translation>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation type="unfinished"/>
+        <translation>Garder la taille originale de l&apos;image</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation type="unfinished"/>
+        <translation>Redimensionner si la taille de l&apos;image est supérieure à</translation>
     </message>
 </context>
 <context>
@@ -298,7 +298,7 @@
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Débit binaire :</translation>
+        <translation>Débit binaire :</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
@@ -313,7 +313,7 @@
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Compression :</translation>
+        <translation>Compression :</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -321,7 +321,7 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calculer le gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -336,7 +336,7 @@
     </message>
     <message>
         <source>Preset:</source>
-        <translation>Préréglage :</translation>
+        <translation>Préréglage :</translation>
     </message>
     <message>
         <source>Use bitrate</source>
@@ -344,7 +344,7 @@
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Débit binaire :</translation>
+        <translation>Débit binaire :</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
@@ -356,7 +356,7 @@
     </message>
     <message>
         <source>Quality:</source>
-        <translation>Qualité :</translation>
+        <translation>Qualité :</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -364,7 +364,7 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calculer le gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
     <message>
         <source>VBR medium</source>
@@ -469,7 +469,7 @@
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation>Débit binaire minimum :</translation>
+        <translation>Débit binaire minimum :</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
@@ -477,7 +477,7 @@
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation>Débit binaire nominal :</translation>
+        <translation>Débit binaire nominal :</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
@@ -485,7 +485,7 @@
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Débit binaire maximum :</translation>
+        <translation>Débit binaire maximum :</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
@@ -497,7 +497,7 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calculer le gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
 </context>
 <context>
@@ -508,11 +508,11 @@
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation>Type de débit binaire :</translation>
+        <translation>Type de débit binaire :</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Débit binaire :</translation>
+        <translation>Débit binaire :</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -557,7 +557,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Compression :</translation>
+        <translation>Compression :</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -565,7 +565,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Calculer le gain :</translation>
+        <translation>Calculer le gain :</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -576,21 +576,21 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     <name>Converter</name>
     <message>
         <source>Conversion is not possible:</source>
-        <translation>La conversion est impossible :</translation>
+        <translation>La conversion est impossible :</translation>
     </message>
 </context>
 <context>
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Sélectionner l&apos;image de couverture</translation>
     </message>
 </context>
 <context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation>Choisir un disque</translation>
+        <translation>Sélectionner un disque</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
@@ -598,8 +598,8 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
         <translation>%1 [ disque %2 ]</translation>
     </message>
     <message>
-        <source>The cue file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation>Le fichier cue contient des informations concernant plusieurs disques. Quel disque voulez-vous utiliser ?</translation>
+        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -622,7 +622,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     <message>
         <source>Encoder error:
 </source>
-        <translation>Erreur d&apos;encodeur :
+        <translation>Erreur d&apos;encodeur :
 </translation>
     </message>
     <message>
@@ -634,7 +634,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation>Je ne peux pas renommer le fichier :
+        <translation>Je ne peux pas renommer le fichier :
 %1 en %2
 %3</translation>
     </message>
@@ -690,7 +690,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     <message>
         <source>Gain error:
 </source>
-        <translation>Erreur de gain :</translation>
+        <translation>Erreur de gain :</translation>
     </message>
 </context>
 <context>
@@ -705,15 +705,15 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Directory:</source>
-        <translation>Répertoire :</translation>
+        <translation>Répertoire :</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation>Modèle :</translation>
+        <translation>Modèle :</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation>Format :</translation>
+        <translation>Format :</translation>
     </message>
     <message>
         <source>Output format</source>
@@ -726,31 +726,31 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Genre:</source>
-        <translation>Genre :</translation>
+        <translation>Genre :</translation>
     </message>
     <message>
         <source>Year:</source>
-        <translation>Année :</translation>
+        <translation>Année :</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation>Artiste :</translation>
+        <translation>Artiste :</translation>
     </message>
     <message>
         <source>Album:</source>
-        <translation>Album :</translation>
+        <translation>Album :</translation>
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Premier numéro :</translation>
+        <translation>Premier numéro :</translation>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>ID de disque :</translation>
+        <translation>ID de disque :</translation>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation>Page de codes :</translation>
+        <translation>Page de codes :</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -838,7 +838,7 @@ L&apos;utilisation de l&apos;analyse par album permet de préserver les différe
     </message>
     <message>
         <source>Select result directory</source>
-        <translation>Choisir le répertoire de destination</translation>
+        <translation>Sélectionner le répertoire de destination</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
@@ -912,11 +912,11 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Choisir le fichier audio</translation>
+        <translation>Sélectionner le fichier audio</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Choisir un répertoire</translation>
+        <translation>Sélectionner un répertoire</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -1014,7 +1014,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     <name>ProgramEdit</name>
     <message>
         <source>Select program file</source>
-        <translation>Choisir le fichier de programme</translation>
+        <translation>Sélectionner le fichier de programme</translation>
     </message>
     <message>
         <source>All files</source>
@@ -1031,7 +1031,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     <name>QObject</name>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Je ne peux pas trouver le programme &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>Je ne peux pas trouver le programme &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
@@ -1048,7 +1048,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Je ne peux pas écrire le fichier cue &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2.</translation>
+        <translation>Je ne peux pas écrire le fichier cue &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1082,23 +1082,23 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas créer le répertoire « %1 ».</translation>
+        <translation>Je ne peux pas créer le répertoire « %1 »</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas écrire dans le répertoire « %1 ».</translation>
+        <translation>Je ne peux pas écrire dans le répertoire « %1 »</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Je ne peux pas copier le fichier de la couverture &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:2</source>
+        <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write cover imege &lt;b&gt;%1&lt;/b&gt;</source>
+        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
@@ -1108,7 +1108,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-        <translation>Je ne peux pas lire &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2</translation>
+        <translation>Je ne peux pas lire &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1123,11 +1123,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>Choisir un autre fichier audio</translation>
+        <translation>Sélectionner un autre fichier audio</translation>
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation>Choisir un autre fichier cue</translation>
+        <translation>Sélectionner un autre fichier cue</translation>
     </message>
 </context>
 <context>
@@ -1170,11 +1170,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     </message>
     <message>
         <source>Tracks:</source>
-        <translation>Pistes :</translation>
+        <translation>Pistes :</translation>
     </message>
     <message>
         <source>Audio:</source>
-        <translation>Audio :</translation>
+        <translation>Audio :</translation>
     </message>
 </context>
 <context>
@@ -1239,11 +1239,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de s
     <name>Worker</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas créer le répertoire « %1 ».</translation>
+        <translation>Je ne peux pas créer le répertoire « %1 »</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas écrire dans le répertoire « %1 ».</translation>
+        <translation>Je ne peux pas écrire dans le répertoire « %1 »</translation>
     </message>
 </context>
 </TS>
