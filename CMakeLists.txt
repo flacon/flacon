@@ -236,7 +236,7 @@ include_directories(
 )
 
 #*******************************************
-
+add_homebrew_qt_prefix_path()
 
 find_package(Qt5Widgets REQUIRED)
 include_directories(${Qt5Widgets_INCLUDE_DIRS})

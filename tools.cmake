@@ -83,3 +83,12 @@ function(git_version GIT_BRANCH GIT_COMMIT_HASH)
     SET(${GIT_COMMIT_HASH} ${hash} PARENT_SCOPE)
 
 endfunction()
+
+
+# Homebrew has issues, fix it
+macro(add_homebrew_qt_prefix_path)
+    if (APPLE)
+        file (GLOB dirs  /usr/local/Cellar/qt/*)
+        list(APPEND CMAKE_PREFIX_PATH ${dirs})
+    endif()
+endmacro()
