@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Flac encoding configuration</string>
+   <string>FLAC encoding configuration</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
