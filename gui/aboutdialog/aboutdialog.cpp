@@ -166,10 +166,6 @@ AboutInfo AboutDialog::thanksInfo() const
                "mailto:h31mail@yandex.ru",
                tr("WavPack support patch"));
 
-    result.add("Charles Barcza",
-               "mailto:kbarcza@blackpanther.hu",
-               tr("Application icon, Packaging"));
-
     result.add("Kyrill Detinov",
                "mailto:lazy.kent@opensuse.org",
                tr("Packaging, testing"));
@@ -182,6 +178,9 @@ AboutInfo AboutDialog::thanksInfo() const
                "mailto:tsokolp@gmail.com",
                tr("Flacon account on github.com"));
 
+    result.add("FlatIcon",
+               "https://www.flaticon.com",
+               "Icon for application");
     return result;
 }
 
