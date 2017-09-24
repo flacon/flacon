@@ -545,16 +545,19 @@ bool TrackViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, co
 }
 
 
+/************************************************
 
+ ************************************************/
 bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
     if (index.parent().isValid())
         return QStyledItemDelegate::helpEvent(event, view, option, index);
 
+    TrackViewCacheItem *cache = mCache->item(index);
+    if (cache == nullptr)
+        return true;
 
     QPoint m = event->pos() - option.rect.topLeft();
-
-    TrackViewCacheItem *cache = mCache->item(index);
 
     if (cache->trackLbl.contains(m))
     {
