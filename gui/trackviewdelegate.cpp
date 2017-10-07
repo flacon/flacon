@@ -401,16 +401,23 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     int y = option.rect.height() - BOTTOM_PADDING - 2;
     painter->drawLine(MARGIN * 2, y, windowRect.right(), y);
 
-    // Draw warning mark ...............................
+    // Draw download and warning mark ...............................
     QRect markRect(imgRect.right() - MARK_HEIGHT, imgRect.bottom() - MARK_HEIGHT, MARK_HEIGHT, MARK_HEIGHT);
-    if (!index.data(TrackViewModel::RoleCanConvert).toBool())
-        painter->drawPixmap(markRect, mWarnPix);
-    cache->markBtn = markRect;
-
     cache->isWaiting = index.data(TrackViewModel::RoleIsDownloads).toBool();
+
     if (cache->isWaiting)
     {
         painter->drawPixmap(markRect, mDownloadMovie.currentPixmap());
+        cache->markBtn = markRect;
+    }
+    else if (!index.data(TrackViewModel::RoleCanConvert).toBool())
+    {
+        painter->drawPixmap(markRect, mWarnPix);
+        cache->markBtn = markRect;
+    }
+    else
+    {
+        cache->markBtn = QRect();
     }
 
     painter->restore();    
