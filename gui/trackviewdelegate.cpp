@@ -86,6 +86,7 @@ public:
     Keys clickType(const QModelIndex &index, const QPoint &point);
 
 private:
+    TrackViewCacheItem nullItemCache;
     QHash<QModelIndex, TrackViewCacheItem*> mItems;
     QModelIndex currentIndex;
     TrackViewCacheItem *currentItem;
@@ -97,7 +98,7 @@ private:
  ************************************************/
 TrackViewCache::TrackViewCache():
     currentIndex(QModelIndex()),
-    currentItem(0)
+    currentItem(&nullItemCache)
 {
 }
 
