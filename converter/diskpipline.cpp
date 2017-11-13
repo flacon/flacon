@@ -57,7 +57,7 @@ public:
     }
 
     virtual ~WorkerThread(){
-        delete mWorker;
+        mWorker->deleteLater();
     }
 
     void run()
