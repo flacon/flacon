@@ -308,13 +308,14 @@ CREATE_DESKTOP_FILE(misc/${PROJECT_NAME}.desktop ${CMAKE_CURRENT_BINARY_DIR}/${P
 CREATE_PLIST_FILE(misc/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist translations/*.desktop)
 
 install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop DESTINATION "share/applications")
-install(FILES   misc/icon/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps"   RENAME "flacon.png")
-install(FILES   misc/icon/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps"   RENAME "flacon.png")
-install(FILES   misc/icon/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps"   RENAME "flacon.png")
-install(FILES   misc/icon/flacon-64x64.png   DESTINATION "share/icons/hicolor/64x64/apps"   RENAME "flacon.png")
-install(FILES   misc/icon/flacon-128x128.png DESTINATION "share/icons/hicolor/128x128/apps" RENAME "flacon.png")
-install(FILES   misc/icon/flacon-256x256.png DESTINATION "share/icons/hicolor/256x256/apps" RENAME "flacon.png")
-install(FILES   misc/icon/flacon-512x512.png DESTINATION "share/icons/hicolor/512x512/apps" RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps"    RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps"    RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps"    RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-64x64.png   DESTINATION "share/icons/hicolor/64x64/apps"    RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-128x128.png DESTINATION "share/icons/hicolor/128x128/apps"  RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-256x256.png DESTINATION "share/icons/hicolor/256x256/apps"  RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-512x512.png DESTINATION "share/icons/hicolor/512x512/apps"  RENAME "flacon.png")
+install(FILES   images/mainicon/flacon.svg         DESTINATION "share/icons/hicolor/scalable/apps" RENAME "flacon.svg")
 
 
 install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
