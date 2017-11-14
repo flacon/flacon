@@ -41,13 +41,14 @@
 
 #include <QDebug>
 
-#define SELECTION_MARK      8
+#define SELECTION_MARK      4
 #define MARGIN              6
 #define TOP_PADDING        16
 #define BOTTOM_PADDING      2
 #define IMG_HEIGHT         60
 #define MARK_HEIGHT        32
 #define LINE_MARK_HEIGHT   22
+#define BUTTON_SIZE        10
 
 
 struct TrackViewCacheItem
@@ -132,12 +133,12 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent):
     mCache(new TrackViewCache),
     mDiskHeightHint(0)
 {
-    mTrackBtnPix = QPixmap(":trackBtn");
-    mAudioBtnPix = QPixmap(":audioBtn");
-    mWarnPix = Project::getIcon("dialog-warning", "messagebox_warning", ":/icons/32/disk-warning").pixmap(MARK_HEIGHT, MARK_HEIGHT);
-    mOkPix = Project::getIcon("dialog-ok", "button_ok", ":/icons/16/track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
-    mErrorPix = Project::getIcon("dialog-cancel", "button_cancel",  ":/icons/16/track-cancel").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
-    mNoCoverImg = QImage(":noCover");
+    mTrackBtnPix = QIcon(":cue-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
+    mAudioBtnPix = QIcon(":audio-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
+    mWarnPix     = QIcon(":warning").pixmap(MARK_HEIGHT, MARK_HEIGHT);
+    mOkPix       = QIcon(":track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mErrorPix    = QIcon(":track-cancel").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mNoCoverImg  = QImage(":noCover");
 
     mDownloadMovie.setFileName(":wait");
     connect(project, SIGNAL(downloadingStarted(DataProvider*)), this, SLOT(downloadingStarted(DataProvider*)));
@@ -162,7 +163,11 @@ void TrackViewDelegate::drawSelectionMark(QPainter *painter, const QRect &rect) 
 {
     QRect r=rect;
     r.setWidth(SELECTION_MARK);
+#ifdef Q_OS_MAC
+    painter->fillRect(r, QColor(117,182, 247));
+#else
     painter->fillRect(r, mTrackView->palette().highlight().color());
+#endif
 }
 
 
@@ -232,8 +237,11 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
  ************************************************/
 void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    QStyledItemDelegate::paint(painter, option, index);
 
+    if (!(index.row() % 2))
+        painter->fillRect(option.rect, QColor(245, 245, 245));
+
+    QStyledItemDelegate::paint(painter, option, index);
     if (index.column() != TrackView::ColumnPercent)
         return;
 
@@ -313,7 +321,7 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     painter->translate(option.rect.topLeft());
 
     int topPadding = index.row() ? TOP_PADDING : 0;
-    QRect windowRect(MARGIN + MARGIN,
+    QRect windowRect(MARGIN,
                      MARGIN + topPadding,
                      option.rect.right() - 2 * MARGIN,
                      option.rect.height() - 2 * MARGIN - topPadding - BOTTOM_PADDING);

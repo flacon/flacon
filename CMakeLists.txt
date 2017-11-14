@@ -193,7 +193,6 @@ set(LIBRARIES
 
 set(RESOURCES
     images/images.qrc
-    images/oxygen/icons.qrc
 )
 
 # add translations ...
@@ -212,6 +211,7 @@ add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
 set (CMAKE_CXX_STANDARD 11)
 include("tools.cmake")
+include("cmake/macos.cmake")
 
 git_version(GIT_BRANCH GIT_COMMIT_HASH)
 if (NOT "${GIT_COMMIT_HASH}" STREQUAL "")
@@ -305,6 +305,7 @@ function(CREATE_DESKTOP_FILE _IN_FILE _OUT_FILE _TRANSLATIONS_PATTERN)
 endfunction()
 
 CREATE_DESKTOP_FILE(misc/${PROJECT_NAME}.desktop ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop translations/*.desktop)
+CREATE_PLIST_FILE(misc/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist translations/*.desktop)
 
 install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop DESTINATION "share/applications")
 install(FILES   misc/icon/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps"   RENAME "flacon.png")

@@ -52,10 +52,6 @@ public slots:
     void startConvert();
     void stopConvert();
 
-protected:
-    void closeEvent(QCloseEvent *);
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dropEvent(QDropEvent *event);
 
 private slots:
     void insertOutPattern(const QString &pattern);
@@ -94,8 +90,12 @@ private slots:
     void openAboutDialog();
 
 protected:
-    void showEvent(QShowEvent * event);
-    void keyPressEvent(QKeyEvent *event);
+    void closeEvent(QCloseEvent *) override;
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
+    void showEvent(QShowEvent * event) override;
+    void keyPressEvent(QKeyEvent *event) override;
+    bool event(QEvent *event) override;
 
 private:
     Converter *mConverter;

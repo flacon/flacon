@@ -46,6 +46,9 @@
 #include <QQueue>
 #include <QKeyEvent>
 #include <QMimeData>
+#include <QStyleFactory>
+#include <QToolBar>
+#include <QToolButton>
 
 
 /************************************************
@@ -58,7 +61,16 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     setupUi(this);
 
-    setWindowIcon(QIcon::fromTheme("flacon"));
+    qApp->setWindowIcon(Project::getIcon("flacon", ":logo"));
+    toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    toolBar->setIconSize(QSize(24,24));
+    qApp->setAttribute(Qt::AA_DontShowIconsInMenus, true);
+
+#ifdef Q_OS_MAC
+    this->setUnifiedTitleAndToolBarOnMac(true);
+    setWindowIcon(QIcon());
+#endif
+
     setAcceptDrops(true);
     setAcceptDrops(true);
     this->setContextMenuPolicy(Qt::NoContextMenu);
@@ -70,7 +82,7 @@ MainWindow::MainWindow(QWidget *parent) :
     trackView->setRootIsDecorated(false);
     trackView->setItemsExpandable(false);
     trackView->hideColumn((int)TrackView::ColumnComment);
-
+    trackView->setAlternatingRowColors(false);
 
     // Tag edits ...............................................
     tagGenreEdit->setTagName(TAG_GENRE);
@@ -94,7 +106,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Buttons .................................................
     outDirButton->setDefaultAction(actionSelectResultDir);
+    outDirButton->setAutoRaise(true);
+
     configureEncoderBtn->setDefaultAction(actionConfigureEncoder);
+    configureEncoderBtn->setAutoRaise(true);
 
     outPatternButton->addPattern("%n", tr("Insert \"Track number\""));
     outPatternButton->addPattern("%N", tr("Insert \"Total number of tracks\""));
@@ -103,6 +118,7 @@ MainWindow::MainWindow(QWidget *parent) :
     outPatternButton->addPattern("%t", tr("Insert \"Track title\""));
     outPatternButton->addPattern("%y", tr("Insert \"Year\""));
     outPatternButton->addPattern("%g", tr("Insert \"Genre\""));
+    outPatternButton->setAutoRaise(true);
 
     QString pattern;
 
@@ -136,6 +152,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(outPatternButton, SIGNAL(fullPaternSelected(QString)),
             this, SLOT(replaceOutPattern(QString)));
     outPatternEdit->setAutoCompletionCaseSensitivity(Qt::CaseSensitive);
+
 
     // Format combo ............................................
     initOutFormatCombo();
@@ -395,8 +412,8 @@ void MainWindow::setControlsEnable()
 
         actionAddFile->setEnabled(false);
         actionRemoveDisc->setEnabled(false);
-        actionStartConvert->setEnabled(false);
-        actionAbortConvert->setEnabled(true);
+        actionStartConvert->setVisible(false);
+        actionAbortConvert->setVisible(true);
         actionDownloadTrackInfo->setEnabled(false);
         actionScan->setEnabled(false);
         actionConfigure->setEnabled(false);
@@ -413,8 +430,8 @@ void MainWindow::setControlsEnable()
 
         actionAddFile->setEnabled(true);
         actionRemoveDisc->setEnabled(discsSelected);
-        actionStartConvert->setEnabled(canConvert);
-        actionAbortConvert->setEnabled(running);
+        actionStartConvert->setVisible(canConvert);
+        actionAbortConvert->setVisible(running);
         actionDownloadTrackInfo->setEnabled(tracksSelected);
         actionScan->setEnabled(!mScanner);
         actionConfigure->setEnabled(true);
@@ -765,6 +782,29 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 /************************************************
 
  ************************************************/
+bool MainWindow::event(QEvent *event)
+{
+    switch (event->type())
+    {
+#ifdef Q_OS_MAC
+    case QEvent::WindowActivate:
+        toolBar->setEnabled(true);
+        break;
+
+    case QEvent::WindowDeactivate:
+        toolBar->setEnabled(false);
+        break;
+#endif
+    default:
+        break;
+    }
+    return QMainWindow::event(event);
+}
+
+
+/************************************************
+
+ ************************************************/
 void MainWindow::showErrorMessage(const QString &message)
 {
     QMessageBox::critical(this, tr("Flacon", "Error"), message);
@@ -789,36 +829,42 @@ void MainWindow::setStartTrackNum()
  ************************************************/
 void MainWindow::initActions()
 {
-    actionAddFile->setIcon(Project::getIcon("document-open", "fileopen", ":/icons/22/add-file"));
+    actionAddFile->setIcon(QIcon(":toolbar/add-disk"));
     connect(actionAddFile, SIGNAL(triggered()), this, SLOT(openAddFileDialog()));
 
-    actionRemoveDisc->setIcon(Project::getIcon("edit-delete", "remove", ":/icons/22/remove-disk"));
+    actionRemoveDisc->setIcon(QIcon(":toolbar/remove-disk"));
     connect(actionRemoveDisc, SIGNAL(triggered()), this, SLOT(removeDisks()));
 
-    actionScan->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open", ":/icons/22/scan"));
+    actionScan->setIcon(QIcon(":toolbar/scan"));
     connect(actionScan, SIGNAL(triggered()), this, SLOT(openScanDialog()));
 
-    actionDownloadTrackInfo->setIcon(Project::getIcon("download", "web-browser", "network", ":/icons/22/download-track-info"));
+    actionDownloadTrackInfo->setIcon(QIcon(":toolbar/download-info"));
     connect(actionDownloadTrackInfo, SIGNAL(triggered()), this, SLOT(downloadInfo()));
 
 
-    actionStartConvert->setIcon(Project::getIcon("dialog-ok", "button_ok", ":/icons/22/start-convert"));
+    actionStartConvert->setIcon(QIcon(":toolbar/start-convert"));
     connect(actionStartConvert, SIGNAL(triggered()), this, SLOT(startConvert()));
 
-    actionAbortConvert->setIcon(Project::getIcon("dialog-cancel", "button_cancel", ":/icons/22/abort-convert"));
+    actionAbortConvert->setIcon(QIcon(":toolbar/abort-convert"));
     connect(actionAbortConvert, SIGNAL(triggered()), this, SLOT(stopConvert()));
 
-    actionSelectResultDir->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open", ":/icons/22/select-result-dir"));
+    int w = qMax(toolBar->widgetForAction(actionStartConvert)->sizeHint().width(),
+                 toolBar->widgetForAction(actionAbortConvert)->sizeHint().width());
+
+    toolBar->widgetForAction(actionStartConvert)->setMinimumWidth(w);
+    toolBar->widgetForAction(actionAbortConvert)->setMinimumWidth(w);
+
+    actionSelectResultDir->setIcon(QIcon(":folder"));
     connect(actionSelectResultDir, SIGNAL(triggered()), this, SLOT(openOutDirDialog()));
 
-    actionConfigure->setIcon(Project::getIcon("configure", "preferences-system", ":/icons/22/configure"));
+    actionConfigure->setIcon(QIcon(":configure"));
     connect(actionConfigure, SIGNAL(triggered()), this, SLOT(configure()));
 
     actionConfigureEncoder->setIcon(actionConfigure->icon());
     connect(actionConfigureEncoder, SIGNAL(triggered()), this, SLOT(configureEncoder()));
 
-    actionAbout->setIcon(Project::getIcon("help-about", "info", ":/icons/22/about"));
     connect(actionAbout, SIGNAL(triggered()), this,  SLOT(openAboutDialog()));
+
 }
 
 

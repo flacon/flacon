@@ -54,7 +54,7 @@ private:
     explicit ConfigDialog(QWidget *parent = 0);
     ~ConfigDialog();
 
-    void pagesListInit();
+    void tabPagesInit();
     void programsInit();
 
     void load();

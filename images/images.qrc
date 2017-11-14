@@ -1,9 +1,23 @@
 <RCC>
+    <qresource prefix="toolbar">
+        <file alias="add-disk">add-disk.svg</file>
+        <file alias="remove-disk">remove-disk.svg</file>
+        <file alias="scan">scan.svg</file>
+        <file alias="download-info">download-info.svg</file>
+        <file alias="start-convert">start-convert.svg</file>
+        <file alias="abort-convert">abort-convert.svg</file>
+    </qresource>
+
     <qresource prefix="/">
-        <file alias="trackBtn">trackBtn.png</file>
         <file alias="noCover">nocover.png</file>
-        <file alias="audioBtn">audioBtn.png</file>
         <file alias="wait">wait.mng</file>
-        <file alias="logo">../misc/icon/flacon-48x48.png</file>
+        <file alias="warning">warning.svg</file>
+        <file alias="folder">folder.svg</file>
+        <file alias="cue-button">cue-button.svg</file>
+        <file alias="audio-button">audio-button.svg</file>
+        <file alias="configure">configure.svg</file>
+        <file alias="track-cancel">track-cancel.svg</file>
+        <file alias="track-ok">track-ok.svg</file>
     </qresource>
 </RCC>
+

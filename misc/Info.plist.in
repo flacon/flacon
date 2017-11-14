@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleExecutable</key>
+  	<string>flacon</string>
+
+  	<key>CFBundleIconFile</key> 	
+  	<string>flacon</string>
+
+  	<key>CFBundleIdentifier</key>
+  	<string>io.github.flacon</string>
+
+	<key>CFBundleShortVersionString</key>
+	<string>@FLACON_VERSION@</string>
+
+	<key>CFBundleVersion</key>
+	<string>@FLACON_VERSION@</string>
+
+	<key>NSHumanReadableCopyright</key>
+	<string>LGPL v2+</string>
+
+	<key>LSHasLocalizedDisplayName</key>
+	<true/>
+
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+
+	
+	<key>CFBundleSignature</key>
+	<string>????</string>
+
+</dict>
+</plist>
