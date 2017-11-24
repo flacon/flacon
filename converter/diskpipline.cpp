@@ -40,6 +40,8 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QCoreApplication>
+#include <QAtomicInt>
+
 
 /************************************************
  *
@@ -47,17 +49,20 @@
 class WorkerThread: public QThread
 {
 public:
-    explicit WorkerThread(Worker *worker):
+    explicit WorkerThread(Worker *worker, QAtomicInt *runningCount):
         QThread(),
-        mWorker(worker)
+        mWorker(worker),
+        mRunningCount(runningCount)
     {
         worker->moveToThread(this);
         connect(this, SIGNAL(finished()),
                 this, SLOT(deleteLater()));
+        ++(*mRunningCount);
     }
 
     virtual ~WorkerThread(){
         mWorker->deleteLater();
+        --(*mRunningCount);
     }
 
     void run()
@@ -68,6 +73,7 @@ public:
 
 private:
     Worker *mWorker;
+    QAtomicInt *mRunningCount;
 };
 
 
@@ -96,6 +102,7 @@ public:
     bool interrupted;
     QString workDir;
     PreGapType preGapType;
+    QAtomicInt runningCount;
 
 
     void interrupt(Track::Status status);
@@ -203,7 +210,9 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
     if (mData->interrupted)
         return;
 
-    if (*count < 0)
+    (*count) -= mData->runningCount;
+
+    if (*count <= 0)
         return;
 
     if (*splitterCount > 0 && mData->needStartSplitter)
@@ -292,7 +301,7 @@ void DiskPipeline::Data::startSplitterThread()
 {
     Splitter *worker = new Splitter(disk, workDir, preGapType);
 
-    WorkerThread *thread = new WorkerThread(worker);
+    WorkerThread *thread = new WorkerThread(worker, &runningCount);
 
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
@@ -306,7 +315,12 @@ void DiskPipeline::Data::startSplitterThread()
     connect(worker,   SIGNAL(trackReady(const Track*,QString)),
             pipeline, SLOT(addEncoderRequest(const Track*,QString)));
 
+    connect(thread,   SIGNAL(finished()),
+            pipeline, SIGNAL(threadFinished()));
+
+
     thread->start();
+
     needStartSplitter = false;
     trackStatuses.insert(disk->track(0), Track::Splitting);
 
@@ -321,7 +335,7 @@ void DiskPipeline::Data::startSplitterThread()
 void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
 {
     Encoder *worker = new Encoder(req, settings->outFormat());
-    QThread *thread = new WorkerThread(worker);
+    QThread *thread = new WorkerThread(worker, &runningCount);
 
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
@@ -343,6 +357,10 @@ void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
                 pipeline, SLOT(addGainRequest(const Track*,QString)));
     }
 
+    connect(thread,   SIGNAL(finished()),
+            pipeline, SIGNAL(threadFinished()));
+
+
     thread->start();
 }
 
@@ -353,7 +371,7 @@ void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
 void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
 {
     Gain *worker = new Gain(req, settings->outFormat());
-    QThread *thread = new WorkerThread(worker);
+    QThread *thread = new WorkerThread(worker, &runningCount);
 
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
@@ -366,6 +384,10 @@ void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
 
     connect(worker,   SIGNAL(trackReady(const Track*,QString)),
             pipeline, SLOT(trackDone(const Track*,QString)));
+
+    connect(thread,   SIGNAL(finished()),
+            pipeline, SIGNAL(threadFinished()));
+
 
     thread->start();
 }
@@ -377,7 +399,7 @@ void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
 void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
 {
     Gain *worker = new Gain(reqs, settings->outFormat());
-    QThread *thread = new WorkerThread(worker);
+    QThread *thread = new WorkerThread(worker, &runningCount);
 
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
@@ -390,6 +412,10 @@ void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
 
     connect(worker,   SIGNAL(trackReady(const Track*,QString)),
             pipeline, SLOT(trackDone(const Track*,QString)));
+
+    connect(thread,   SIGNAL(finished()),
+            pipeline, SIGNAL(threadFinished()));
+
 
     thread->start();
 }
