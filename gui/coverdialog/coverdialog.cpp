@@ -34,7 +34,7 @@
 #include "asynclistwidgetitem.h"
 
 
-#define FileNameRole Qt::UserRole + 1
+#define FileNameRole (Qt::UserRole + 1)
 
 /************************************************
  *

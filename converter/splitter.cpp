@@ -43,6 +43,8 @@ Splitter::Splitter(const Disk *disk, const QString &workDir, PreGapType preGapTy
     mPreGapType(preGapType),
     mCurrentTrack(NULL)
 {
+    // If the first track starts with zero second, doesn't make sense to create pregap track.
+    mExtractPregapTrack = (mPreGapType == PreGapType::ExtractToFile && mDisk->track(0)->cueIndex(1).milliseconds() > 0);
 }
 
 
@@ -67,7 +69,7 @@ void Splitter::run()
 
     // Extract pregap to separate file ....................
     // If the first track starts with zero second, doesn't make sense to create pregap track.
-    if (mPreGapType == PreGapType::ExtractToFile && mDisk->track(0)->cueIndex(1).milliseconds() > 0)
+    if (mExtractPregapTrack)
     {
         mCurrentTrack = mDisk->preGapTrack();
         CueIndex start = mDisk->track(0)->cueIndex(0);
@@ -132,7 +134,7 @@ void Splitter::run()
 const QList<const Track *> Splitter::tracks() const
 {
     QList<const Track *> res;
-    if (mPreGapType == PreGapType::ExtractToFile)
+    if (mExtractPregapTrack)
         res << mDisk->preGapTrack();
 
     for (int i=0; i<mDisk->count(); ++i)
