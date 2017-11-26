@@ -241,21 +241,57 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
     const QPixmap *icon = 0;
     QString txt;
     int progress = index.data(TrackViewModel::RolePercent).toInt();
+    bool showProgress = false;
 
     switch (index.data(TrackViewModel::RoleStatus).toInt())
     {
-    case Track::NotRunning: txt = "";               progress = -1;      break;
-    case Track::Canceled:   txt = "";                                   break;
-    case Track::Error:      txt = tr("Error");      icon = &mErrorPix;  break;
-    case Track::Aborted:    txt = tr("Aborted");                        break;
-    case Track::OK:         txt = tr("OK");         icon = &mOkPix;     break;
-    case Track::Splitting:  txt = tr("Extracting");                     break;
-    case Track::Encoding:   txt = tr("Encoding");                       break;
-    case Track::Queued:     txt = tr("Queued");                         break;
-    case Track::CalcGain:   txt = tr("Calculate gain");                 break;
-    case Track::WaitGain:   txt = tr("Wait gain");                      break;
-    case Track::WriteGain:  txt = tr("Write gain");                     break;
+    case Track::NotRunning:
+        txt = "";
+        break;
 
+    case Track::Canceled:
+        txt = "";
+        break;
+
+    case Track::Error:
+        txt = tr("Error");
+        icon = &mErrorPix;
+        break;
+
+    case Track::Aborted:
+        txt = tr("Aborted");
+        break;
+
+    case Track::OK:
+        txt = tr("OK");
+        icon = &mOkPix;
+        break;
+
+    case Track::Splitting:
+        txt = tr("Extracting");
+        showProgress = true;
+        break;
+
+    case Track::Encoding:
+        txt = tr("Encoding");
+        showProgress = true;
+        break;
+
+    case Track::Queued:
+        txt = tr("Queued");
+        break;
+
+    case Track::CalcGain:
+        txt = tr("Calculate gain");
+        break;
+
+    case Track::WaitGain:
+        txt = tr("Wait gain");
+        break;
+
+    case Track::WriteGain:
+        txt = tr("Write gain");
+        break;
     }
 
 
@@ -264,7 +300,7 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
     QRect windowRect(0, 0, option.rect.width() - 31, option.rect.height());
     painter->setClipRect(windowRect);
 
-    if (progress > -1)
+    if (showProgress)
     {
         QStyleOptionProgressBar opt;
         opt.rect = windowRect.adjusted(4, 3, -4, -3);

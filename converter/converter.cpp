@@ -54,6 +54,16 @@ Converter::Converter(QObject *parent) :
 
 
 /************************************************
+ *
+ ************************************************/
+Converter::~Converter()
+{
+    if (mShowStatistic)
+        printStatistic();
+}
+
+
+/************************************************
 
  ************************************************/
 void Converter::start()
@@ -120,7 +130,7 @@ bool Converter::isRunning()
 /************************************************
 
  ************************************************/
-bool Converter::canConvert() const
+bool Converter::canConvert()
 {
     for(int i=0; i<project->count(); ++i)
     {
@@ -165,6 +175,9 @@ void Converter::startThread()
     int splitterCount = qMax(1.0, ceil(count / 2.0));
 
     foreach (DiskPipeline *pipe, mDiskPiplines)
+        count-=pipe->runningThreadCount();
+
+    foreach (DiskPipeline *pipe, mDiskPiplines)
     {
         pipe->startWorker(&splitterCount, &count);
         if (count <= 0)
@@ -177,11 +190,8 @@ void Converter::startThread()
         if (pipe->isRunning())
             return;
     }
-
     emit finished();
 
-    if (mShowStatistic)
-        printStatistic();
 }
 
 

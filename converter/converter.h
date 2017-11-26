@@ -39,9 +39,10 @@ class Converter : public QObject
     Q_OBJECT
 public:
     explicit Converter(QObject *parent = 0);
+    virtual ~Converter();
 
     bool isRunning();
-    bool canConvert() const;
+    static bool canConvert();
 
     bool showStatistic() const { return mShowStatistic; }
     void setShowStatistic(bool value);

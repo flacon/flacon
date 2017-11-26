@@ -53,8 +53,7 @@
  ************************************************/
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    mConverter(new Converter(this)),
-    mScanner(0)
+    mScanner(nullptr)
 {
     setupUi(this);
 
@@ -151,8 +150,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(outFormatCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setOutFormat()));
     connect(codepageCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
 
-    connect(mConverter, SIGNAL(finished()), this, SLOT(setControlsEnable()));
-
     connect(trackView, SIGNAL(selectCueFile(Disk*)), this, SLOT(setCueForDisc(Disk*)));
     connect(trackView, SIGNAL(selectAudioFile(Disk*)), this, SLOT(setAudioForDisk(Disk*)));
     connect(trackView, SIGNAL(selectCoverImage(Disk*)),
@@ -201,7 +198,8 @@ MainWindow::~MainWindow()
  ************************************************/
 void MainWindow::closeEvent(QCloseEvent *)
 {
-    mConverter->stop();
+    if (mConverter)
+        mConverter->stop();
     saveSettings();
 }
 
@@ -386,7 +384,7 @@ void MainWindow::setOutFormat()
  ************************************************/
 void MainWindow::setControlsEnable()
 {
-    bool running = mConverter->isRunning();
+    bool running = mConverter && mConverter->isRunning();
 
     if (running)
     {
@@ -406,7 +404,7 @@ void MainWindow::setControlsEnable()
     {
         bool tracksSelected = trackView->selectedTracks().count() > 0;
         bool discsSelected  = trackView->selectedDisks().count() > 0;
-        bool canConvert = mConverter->canConvert();
+        bool canConvert = Converter::canConvert();
 
         outFilesBox->setEnabled(true);
         tagsBox->setEnabled(tracksSelected);
@@ -544,6 +542,13 @@ void MainWindow::startConvert()
     }
 
     trackView->setColumnWidth(TrackView::ColumnPercent, 200);
+    mConverter = new Converter();
+    connect(mConverter, SIGNAL(finished()),
+            this, SLOT(setControlsEnable()));
+
+    connect(mConverter, SIGNAL(finished()),
+            mConverter, SLOT(deleteLater()));
+
     mConverter->start();
     setControlsEnable();
 }
@@ -554,7 +559,8 @@ void MainWindow::startConvert()
  ************************************************/
 void MainWindow::stopConvert()
 {
-    mConverter->stop();
+    if (mConverter)
+        mConverter->stop();
     setControlsEnable();
 }
 
