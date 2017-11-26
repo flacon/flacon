@@ -635,6 +635,14 @@ QStringList Disk::searchCoverImages(const QString &startDir)
 QString Disk::searchCoverImage(const QString &startDir)
 {
     QStringList l = searchCoverImages(startDir);
+    foreach (QString file, l)
+    {
+        QImage img(file);
+        if (!img.isNull())
+            return file;
+    }
+    return "";
+
     if (l.isEmpty())
         return "";
     else
