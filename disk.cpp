@@ -122,6 +122,9 @@ bool Disk::canConvert(QString *description) const
  ************************************************/
 void Disk::downloadInfo()
 {
+    if (discId().isEmpty())
+        return;
+
     DataProvider *provider = new FreeDbProvider(this);
     connect(provider, SIGNAL(finished()), this, SLOT(downloadFinished()));
     mDownloads << provider;

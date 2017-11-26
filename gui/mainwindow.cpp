@@ -402,9 +402,14 @@ void MainWindow::setControlsEnable()
     }
     else
     {
+        QList<Disk*> selectedDisks = trackView->selectedDisks();
+
         bool tracksSelected = trackView->selectedTracks().count() > 0;
         bool discsSelected  = trackView->selectedDisks().count() > 0;
         bool canConvert = Converter::canConvert();
+        bool canDownload = false;
+        foreach (const Disk *disk, selectedDisks)
+            canDownload = canDownload || !disk->discId().isEmpty();
 
         outFilesBox->setEnabled(true);
         tagsBox->setEnabled(tracksSelected);
@@ -413,7 +418,7 @@ void MainWindow::setControlsEnable()
         actionRemoveDisc->setEnabled(discsSelected);
         actionStartConvert->setEnabled(canConvert);
         actionAbortConvert->setEnabled(running);
-        actionDownloadTrackInfo->setEnabled(tracksSelected);
+        actionDownloadTrackInfo->setEnabled(canDownload);
         actionScan->setEnabled(!mScanner);
         actionConfigure->setEnabled(true);
         actionConfigureEncoder->setEnabled(OutFormat::currentFormat()->hasConfigPage());
