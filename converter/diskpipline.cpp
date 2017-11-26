@@ -138,14 +138,19 @@ bool DiskPipeline::Data::createDir(const QString &dirName) const
  ************************************************/
 DiskPipeline::DiskPipeline(const Disk *disk, QObject *parent) :
     QObject(parent),
-    mData(new Data())
+    mData(new Data()),
+    mTmpDir(nullptr)
 {
     mData->pipeline = this;
     mData->disk = disk;
     mData->preGapType =  settings->createCue() ? settings->preGapType() : PreGapType::Skip;
 
     if (!settings->tmpDir().isEmpty())
-        mData->workDir = QDir(QString("%1/flacon.%2").arg(settings->tmpDir()).arg(QCoreApplication::applicationPid())).absolutePath();
+    {
+        mTmpDir = new QTemporaryDir(QString("%1/flacon.").arg(settings->tmpDir()));
+        mTmpDir->setAutoRemove(true);
+        mData->workDir = mTmpDir->path(); //QDir(QString("%1/flacon.%2").arg(settings->tmpDir()).arg(QCoreApplication::applicationPid())).absolutePath();
+    }
     else
         mData->workDir = QFileInfo(disk->track(0)->resultFilePath()).dir().absolutePath();
 
@@ -166,6 +171,7 @@ DiskPipeline::DiskPipeline(const Disk *disk, QObject *parent) :
 DiskPipeline::~DiskPipeline()
 {
     delete mData;
+    delete mTmpDir;
 }
 
 

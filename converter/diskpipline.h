@@ -28,6 +28,7 @@
 #define DISKPIPLINE_H
 
 #include <QObject>
+#include <QTemporaryDir>
 #include "track.h"
 
 class Disk;
@@ -64,6 +65,7 @@ private slots:
 private:
     class Data;
     Data *mData;
+    QTemporaryDir *mTmpDir;
     QVector<WorkerThread*> mThreads;
 };
 
