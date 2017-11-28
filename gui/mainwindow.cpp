@@ -391,7 +391,7 @@ void MainWindow::setControlsEnable()
         outFilesBox->setEnabled(false);
         tagsBox->setEnabled(false);
 
-        actionAddFile->setEnabled(false);
+        actionAddDisk->setEnabled(false);
         actionRemoveDisc->setEnabled(false);
         actionStartConvert->setEnabled(false);
         actionAbortConvert->setEnabled(true);
@@ -414,7 +414,7 @@ void MainWindow::setControlsEnable()
         outFilesBox->setEnabled(true);
         tagsBox->setEnabled(tracksSelected);
 
-        actionAddFile->setEnabled(true);
+        actionAddDisk->setEnabled(true);
         actionRemoveDisc->setEnabled(discsSelected);
         actionStartConvert->setEnabled(canConvert);
         actionAbortConvert->setEnabled(running);
@@ -800,8 +800,8 @@ void MainWindow::setStartTrackNum()
  ************************************************/
 void MainWindow::initActions()
 {
-    actionAddFile->setIcon(Project::getIcon("document-open", "fileopen", ":/icons/22/add-file"));
-    connect(actionAddFile, SIGNAL(triggered()), this, SLOT(openAddFileDialog()));
+    actionAddDisk->setIcon(Project::getIcon("document-open", "fileopen", ":/icons/22/add-file"));
+    connect(actionAddDisk, SIGNAL(triggered()), this, SLOT(openAddFileDialog()));
 
     actionRemoveDisc->setIcon(Project::getIcon("edit-delete", "remove", ":/icons/22/remove-disk"));
     connect(actionRemoveDisc, SIGNAL(triggered()), this, SLOT(removeDisks()));
