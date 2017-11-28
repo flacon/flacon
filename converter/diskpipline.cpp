@@ -57,6 +57,14 @@ public:
 
     virtual ~WorkerThread()
     {
+        quit();
+        if (!wait(3000))
+        {
+            qWarning() << "Can't quit from thread" << mWorker;
+            terminate();
+            if (!wait(3000))
+                qWarning() << "Can't terminate from thread" << mWorker;
+        }
         mWorker->deleteLater();
     }
 
