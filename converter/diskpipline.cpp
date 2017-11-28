@@ -153,22 +153,7 @@ DiskPipeline::DiskPipeline(const Disk *disk, QObject *parent) :
     mData->disk = disk;
     mData->preGapType =  settings->createCue() ? settings->preGapType() : PreGapType::Skip;
 
-    if (!settings->tmpDir().isEmpty())
-    {
-        mTmpDir = new QTemporaryDir(QString("%1/flacon.").arg(settings->tmpDir()));
-        mTmpDir->setAutoRemove(true);
-        mData->workDir = mTmpDir->path(); //QDir(QString("%1/flacon.%2").arg(settings->tmpDir()).arg(QCoreApplication::applicationPid())).absolutePath();
-    }
-    else
-        mData->workDir = QFileInfo(disk->track(0)->resultFilePath()).dir().absolutePath();
 
-    Splitter splitter(mData->disk, mData->workDir, mData->preGapType);
-    mData->tracks = splitter.tracks();
-
-    foreach (const Track *track, mData->tracks)
-    {
-        mData->trackStatuses.insert(track, Track::NotRunning);
-    }
 
 }
 
@@ -188,6 +173,25 @@ DiskPipeline::~DiskPipeline()
  ************************************************/
 bool DiskPipeline::init()
 {
+    if (!settings->tmpDir().isEmpty())
+    {
+        if (!mData->createDir(settings->tmpDir()))
+            return false;
+        mTmpDir = new QTemporaryDir(QString("%1/flacon.").arg(settings->tmpDir()));
+        mTmpDir->setAutoRemove(true);
+        mData->workDir = mTmpDir->path();
+    }
+    else
+        mData->workDir = QFileInfo(mData->disk->track(0)->resultFilePath()).dir().absolutePath();
+
+    Splitter splitter(mData->disk, mData->workDir, mData->preGapType);
+    mData->tracks = splitter.tracks();
+
+    foreach (const Track *track, mData->tracks)
+    {
+        mData->trackStatuses.insert(track, Track::NotRunning);
+    }
+
     if (!mData->createDir(mData->workDir))
         return false;
 
