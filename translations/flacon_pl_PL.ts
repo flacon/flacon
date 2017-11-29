@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Konfiguracja kodowania FLAC</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Kompresja:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>Nieaktywne</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -741,10 +741,6 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <translation>&amp;Pomoc</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>Dodaj plik</translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation>Dodaj plik CUE lub plik audio</translation>
     </message>
@@ -963,6 +959,10 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
     <message>
         <source>Delete current pattern from history</source>
         <translation>Usuń bieżący wzorzec z historii</translation>
+    </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

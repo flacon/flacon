@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Подешавање кодирања у Флац</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Компресија:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>онемогућено</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -731,10 +731,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>&amp;Помоћ</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>Додај фајл</translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation>Додавање аудио или ЦУЕ фајла</translation>
     </message>
@@ -935,6 +931,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Delete current pattern from history</source>
         <translation>Избриши текући образац из историјата</translation>
+    </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -255,7 +255,7 @@
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> piks.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -267,19 +267,19 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation type="unfinished"/>
+        <translation>Viršelio paveikslas</translation>
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation type="unfinished"/>
+        <translation>Nekopijuoti paveikslo</translation>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation type="unfinished"/>
+        <translation>Palikti pradinį paveikslo dydį</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation type="unfinished"/>
+        <translation>Keisti dydį, jei paveikslo dydis didesnis nei</translation>
     </message>
 </context>
 <context>
@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Flac kodavimo konfigūracija</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Glaudinimas:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>Išjungta</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -584,7 +584,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite viršelio paveikslą</translation>
     </message>
 </context>
 <context>
@@ -600,7 +600,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>CUE faile yra informacija apie kelis diskus. Kurį diską norėtumėte naudoti?</translation>
     </message>
 </context>
 <context>
@@ -765,10 +765,6 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>&amp;Help</source>
         <translation>&amp;Pagalba</translation>
-    </message>
-    <message>
-        <source>Add file</source>
-        <translation>Pridėti failą</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -990,6 +986,10 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <source>Delete current pattern from history</source>
         <translation>Ištrinti esamą šabloną iš istorijos</translation>
     </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -1092,17 +1092,17 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyksta nukopijuoti viršelio failo &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Nepavyksta perskaityti viršelio failo &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Nepavyksta įrašyti viršelio paveikslą &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>

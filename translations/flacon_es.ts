@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Configuración de la codificación Flac</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Compresión:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>Deshabilitado</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -742,10 +742,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>Ay&amp;uda</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>Agregar archivo</translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation>Agregar CUE o archivo de audio</translation>
     </message>
@@ -964,6 +960,10 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>Delete current pattern from history</source>
         <translation>Eliminar el patrón actual del historial</translation>
+    </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

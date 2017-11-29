@@ -255,7 +255,7 @@
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation>px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -267,19 +267,19 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation type="unfinished"/>
+        <translation>Albumhoes</translation>
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation type="unfinished"/>
+        <translation>Afbeelding niet kopiëren</translation>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation type="unfinished"/>
+        <translation>Oorspronkelijke afbeeldingsgrootte behouden</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation type="unfinished"/>
+        <translation>Schalen indien afbeelding groter is dan</translation>
     </message>
 </context>
 <context>
@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Flac-coderingsconfiguratie</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Compressie:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>Uitgeschakeld</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -584,7 +584,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Albumhoes selecteren</translation>
     </message>
 </context>
 <context>
@@ -600,7 +600,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Het CUE-bestand bevat informatie over meerdere schijven. Welke schijf wil je gebruiken?</translation>
     </message>
 </context>
 <context>
@@ -765,10 +765,6 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     <message>
         <source>&amp;Help</source>
         <translation>&amp;Hulp</translation>
-    </message>
-    <message>
-        <source>Add file</source>
-        <translation>Bestand toevoegen</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -990,6 +986,10 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
         <source>Delete current pattern from history</source>
         <translation>Huidig patroon van geschiedenis verwijderen</translation>
     </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -1092,17 +1092,17 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Ik kan het albumhoesbestand &lt;b&gt;%1&lt;/b&gt; niet kopiëren:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Ik kan het albumhoesbestand &lt;b&gt;%1&lt;/b&gt; niet lezen:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Ik kan niet naar het albumhoesbestand &lt;b&gt;%1&lt;/b&gt; schrijven:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>

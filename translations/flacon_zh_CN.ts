@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Flac 编码设置</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>压缩：</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>禁用</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -743,10 +743,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>添加文件</translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation>添加 CUE 或音频文件</translation>
     </message>
@@ -965,6 +961,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Delete current pattern from history</source>
         <translation>从历史中删除当前范例</translation>
+    </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

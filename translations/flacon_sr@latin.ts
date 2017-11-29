@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Podešavanje kodiranja u Flac</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Kompresija:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>onemogućeno</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -731,10 +731,6 @@ Ujednačavanje prema albumu će sačuvati razlike glasnoće među numerama album
         <translation>&amp;Pomoć</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>Dodaj fajl</translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation>Dodavanje audio ili CUE fajla</translation>
     </message>
@@ -935,6 +931,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Delete current pattern from history</source>
         <translation>Izbriši tekući obrazac iz istorijata</translation>
+    </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
