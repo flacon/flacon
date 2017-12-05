@@ -1,4 +1,4 @@
-Flacon  [![Build Status](https://api.travis-ci.org/flacon/flacon.svg)](https://api.travis-ci.org/flacon/flacon.svg)  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XVRVWTQL5WERG)
+Flacon  [![Build Status](https://api.travis-ci.org/flacon/flacon.svg)](https://travis-ci.org/flacon/flacon)  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XVRVWTQL5WERG)
 ======
 
 Audio File Encoder.
