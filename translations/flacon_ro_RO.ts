@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Configurare codare FLAC</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Comprimare:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>Dezactivat</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -765,10 +765,6 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
         <translation>&amp;Ajutor</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>Adaugă fișier</translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation>Adăugare fișier audio sau listă de indexare</translation>
     </message>
@@ -987,6 +983,10 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
     <message>
         <source>Delete current pattern from history</source>
         <translation>Șterge modelul curent din istoricul activităților</translation>
+    </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Configurazione codificatore Flac</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Compressione:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>Disattivato</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -756,10 +756,6 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
         <translation>&amp;Aiuto</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>Aggiungi file</translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation>Aggiungi un file CUE o audio</translation>
     </message>
@@ -975,6 +971,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Delete current pattern from history</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disk</source>
         <translation type="unfinished"/>
     </message>
 </context>

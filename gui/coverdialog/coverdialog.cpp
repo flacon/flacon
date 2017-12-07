@@ -34,7 +34,7 @@
 #include "asynclistwidgetitem.h"
 
 
-#define FileNameRole Qt::UserRole + 1
+#define FileNameRole (Qt::UserRole + 1)
 
 /************************************************
  *
@@ -72,6 +72,9 @@ CoverDialog::CoverDialog(QWidget *parent) :
 
     connect(this, SIGNAL(accepted()),
             this, SLOT(apply()));
+
+    connect(ui->coverView, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
+            this, SLOT(accept()));
 }
 
 
@@ -96,6 +99,10 @@ void CoverDialog::setDisk(Disk *disk)
 
 }
 
+
+/************************************************
+ *
+ ************************************************/
 void CoverDialog::apply()
 {
     QListWidgetItem *item = ui->coverView->currentItem();

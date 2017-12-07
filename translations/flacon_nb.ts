@@ -203,7 +203,7 @@
     </message>
     <message>
         <source>General configuration</source>
-        <translation>Generell konfigurasjon</translation>
+        <translation>Generelt oppsett</translation>
     </message>
     <message>
         <source>Thread count:</source>
@@ -286,7 +286,7 @@
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation>Konfigurasjon for AAC-koding</translation>
+        <translation>Oppsett for AAC-koding</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Konfigurasjon for Flac-koding</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Komprimering:</translation>
     </message>
@@ -325,14 +321,18 @@
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Deaktivert</translation>
+        <translation>Avskrudd</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation>Konfigurasjon for MP3-koding</translation>
+        <translation>Oppsett for MP3-koding</translation>
     </message>
     <message>
         <source>Preset:</source>
@@ -348,7 +348,7 @@
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Stiller bithastighetsmål (i kb/s).</translation>
+        <translation>Setter bithastighetsmål (i kb/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
@@ -434,7 +434,7 @@
 &lt;dt&gt;standard VBR, standard rask VBR&lt;/dt&gt;
 &lt;dd&gt;Ved bruk av standard variabel bitrate, vil dette forvalget i hovedsak være nesten fullgodt for de fleste på mesteparten av musikk og allerede ganske høyt hva angår kvalitet..&lt;/dd&gt;
 
-&lt;dt&gt;ekstrem VBR, ekstrem rask VBR&lt;/dt&gt;
+&lt;dt&gt;ekstrem VBR, ekstremt rask VBR&lt;/dt&gt;
 &lt;dd&gt;Ved å bruke høyeste mulig variable bitrate, vil dette forvalget gi en antydning høyere kvalitet enn standardmoduset hvis du har ekstermt god hørsel eller bra lydutstyr.&lt;/dd&gt;
 
 &lt;dt&gt;kvalitet VBR&lt;/dt&gt;
@@ -458,7 +458,7 @@
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation>Konfigurasjon for Ogg-koding</translation>
+        <translation>Oppsett for Ogg-koding</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
@@ -505,7 +505,7 @@
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation>Konfigurasjon for Opus-koding</translation>
+        <translation>Oppsett for Opus-koding</translation>
     </message>
     <message>
         <source>Bitrate type:</source>
@@ -554,7 +554,7 @@ I CBR-modus, setter angitt utdatabitrate.
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation>Konfigurasjon for WavPack-koding</translation>
+        <translation>Oppsett for WavPack-koding</translation>
     </message>
     <message>
         <source>Compression:</source>
@@ -570,7 +570,7 @@ I CBR-modus, setter angitt utdatabitrate.
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Deaktivert</translation>
+        <translation>Avskrudd</translation>
     </message>
 </context>
 <context>
@@ -600,7 +600,7 @@ I CBR-modus, setter angitt utdatabitrate.
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>CUE-fila inneholder informasjon om flere disker. Hvilken av dem ønsker du å bruke?</translation>
     </message>
 </context>
 <context>
@@ -655,7 +655,7 @@ Dette har bare innvirkning på filstørrelse. Alle innstillinger er tapsfrie.</t
     <message>
         <source>Disabled</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Deaktivert</translation>
+        <translation>Avskrudd</translation>
     </message>
     <message>
         <source>Per Track</source>
@@ -683,7 +683,7 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Default</source>
-        <translation>Standard</translation>
+        <translation>Forvalg</translation>
     </message>
 </context>
 <context>
@@ -767,10 +767,6 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
         <translation>&amp;Hjelp</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>Legg til fil</translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation>Legg til CUE eller lydfil</translation>
     </message>
@@ -780,7 +776,7 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Convert</source>
-        <translation>Konvertere</translation>
+        <translation>Konverter</translation>
     </message>
     <message>
         <source>Start conversion process</source>
@@ -836,7 +832,7 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>...</source>
-        <translation> ...</translation>
+        <translation> …</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -990,6 +986,10 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <source>Delete current pattern from history</source>
         <translation>Slett gjeldende mønster fra historikk</translation>
     </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -1097,12 +1097,12 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Jeg kan ikke lese omslagsbildet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Jeg kan lagre omslagsbildet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>

@@ -255,7 +255,7 @@
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -267,19 +267,19 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation type="unfinished"/>
+        <translation>Imagem da capa</translation>
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation type="unfinished"/>
+        <translation>Não copiar a imagem</translation>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation type="unfinished"/>
+        <translation>Manter o tamanho original da imagem</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation type="unfinished"/>
+        <translation>Diminuir se o tamanho da imagem for maior que</translation>
     </message>
 </context>
 <context>
@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Configurações de codificação Flac</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Compressão:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>Desabilitado</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -584,7 +584,7 @@ No modo CBR, define a taxa de bits de saída específica.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Selecione a imagem da capa</translation>
     </message>
 </context>
 <context>
@@ -600,7 +600,7 @@ No modo CBR, define a taxa de bits de saída específica.
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>O arquivo CUE contém informações de vários discos. Qual disco deseja usar?</translation>
     </message>
 </context>
 <context>
@@ -761,10 +761,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>&amp;Help</source>
         <translation>A&amp;juda</translation>
-    </message>
-    <message>
-        <source>Add file</source>
-        <translation>Adicionar arquivo</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -986,6 +982,10 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
         <source>Delete current pattern from history</source>
         <translation>Apagar o padrão atual do histórico</translation>
     </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -1088,17 +1088,17 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível copiar a imagem da capa &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Não foi possível ler a imagem da capa &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Não foi possível salvar a imagem da capa &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>

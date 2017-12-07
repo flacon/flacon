@@ -255,7 +255,7 @@
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -271,15 +271,15 @@
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation type="unfinished"/>
+        <translation>Bild nicht kopieren</translation>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation type="unfinished"/>
+        <translation>Originalbildgröße beibehalten</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation type="unfinished"/>
+        <translation>Größe ändern, wenn Bildgröße größer als</translation>
     </message>
 </context>
 <context>
@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>FLAC-Kodierungskonfiguration</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Komprimierung:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>Deaktiviert</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -767,10 +767,6 @@ Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Album
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>Datei hinzufügen</translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation>CUE- oder Audiodatei hinzufügen</translation>
     </message>
@@ -989,6 +985,10 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     <message>
         <source>Delete current pattern from history</source>
         <translation>Aktuelles Muster aus Chronik löschen</translation>
+    </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

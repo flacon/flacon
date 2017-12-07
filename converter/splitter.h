@@ -56,6 +56,7 @@ private:
     const QString mWorkDir;
     const PreGapType mPreGapType;
     const Track *mCurrentTrack;
+    bool mExtractPregapTrack;
     QString tmpFileName(const QString &dir, int trackNum);
 
 };

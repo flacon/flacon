@@ -28,10 +28,12 @@
 #define DISKPIPLINE_H
 
 #include <QObject>
+#include <QTemporaryDir>
 #include "track.h"
 
 class Disk;
 class Project;
+class WorkerThread;
 
 class DiskPipeline : public QObject
 {
@@ -44,6 +46,7 @@ public:
     void startWorker(int *splitterCount, int *count);
     void stop();
     bool isRunning() const;
+    int runningThreadCount() const;
 
 signals:
     void readyStart();
@@ -62,6 +65,8 @@ private slots:
 private:
     class Data;
     Data *mData;
+    QTemporaryDir *mTmpDir;
+    QVector<WorkerThread*> mThreads;
 };
 
 #endif // DISKPIPLINE_H

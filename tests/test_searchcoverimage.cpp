@@ -30,6 +30,7 @@
 #include <QFileInfo>
 #include <QFile>
 #include <QDir>
+#include <QImage>
 #include "../disk.h"
 
 
@@ -58,10 +59,8 @@ void TestFlacon::testSearchCoverImage()
     foreach (QString f, test.imgFiles)
     {
         QFileInfo( dir() + "/" + f).dir().mkpath(".");
-        QFile file(dir() + "/" + f);
-        file.open(QIODevice::WriteOnly);
-        file.write("\xFF" "\xD8");
-        file.close();
+        QImage img(QSize(1,1), QImage::Format_RGB32);
+        img.save(dir() + "/" + f);
     }
 
     QString result   = Disk::searchCoverImage(dir());

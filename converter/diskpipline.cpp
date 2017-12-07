@@ -41,23 +41,31 @@
 #include <QFileInfo>
 #include <QCoreApplication>
 
+
 /************************************************
  *
  ************************************************/
 class WorkerThread: public QThread
 {
 public:
-    explicit WorkerThread(Worker *worker):
-        QThread(),
+    explicit WorkerThread(Worker *worker, QObject *parent = nullptr):
+        QThread(parent),
         mWorker(worker)
     {
         worker->moveToThread(this);
-        connect(this, SIGNAL(finished()),
-                this, SLOT(deleteLater()));
     }
 
-    virtual ~WorkerThread(){
-        delete mWorker;
+    virtual ~WorkerThread()
+    {
+        quit();
+        if (!wait(3000))
+        {
+            qWarning() << "Can't quit from thread" << mWorker;
+            terminate();
+            if (!wait(3000))
+                qWarning() << "Can't terminate from thread" << mWorker;
+        }
+        mWorker->deleteLater();
     }
 
     void run()
@@ -138,24 +146,14 @@ bool DiskPipeline::Data::createDir(const QString &dirName) const
  ************************************************/
 DiskPipeline::DiskPipeline(const Disk *disk, QObject *parent) :
     QObject(parent),
-    mData(new Data())
-{  
+    mData(new Data()),
+    mTmpDir(nullptr)
+{
     mData->pipeline = this;
     mData->disk = disk;
     mData->preGapType =  settings->createCue() ? settings->preGapType() : PreGapType::Skip;
 
-    if (!settings->tmpDir().isEmpty())
-        mData->workDir = QDir(QString("%1/flacon.%2").arg(settings->tmpDir()).arg(QCoreApplication::applicationPid())).absolutePath();
-    else
-        mData->workDir = QFileInfo(disk->track(0)->resultFilePath()).dir().absolutePath();
 
-    Splitter splitter(mData->disk, mData->workDir, mData->preGapType);
-    mData->tracks = splitter.tracks();
-
-    foreach (const Track *track, mData->tracks)
-    {
-        mData->trackStatuses.insert(track, Track::NotRunning);
-    }
 
 }
 
@@ -166,6 +164,7 @@ DiskPipeline::DiskPipeline(const Disk *disk, QObject *parent) :
 DiskPipeline::~DiskPipeline()
 {
     delete mData;
+    delete mTmpDir;
 }
 
 
@@ -174,6 +173,25 @@ DiskPipeline::~DiskPipeline()
  ************************************************/
 bool DiskPipeline::init()
 {
+    if (!settings->tmpDir().isEmpty())
+    {
+        if (!mData->createDir(settings->tmpDir()))
+            return false;
+        mTmpDir = new QTemporaryDir(QString("%1/flacon.").arg(settings->tmpDir()));
+        mTmpDir->setAutoRemove(true);
+        mData->workDir = mTmpDir->path();
+    }
+    else
+        mData->workDir = QFileInfo(mData->disk->track(0)->resultFilePath()).dir().absolutePath();
+
+    Splitter splitter(mData->disk, mData->workDir, mData->preGapType);
+    mData->tracks = splitter.tracks();
+
+    foreach (const Track *track, mData->tracks)
+    {
+        mData->trackStatuses.insert(track, Track::NotRunning);
+    }
+
     if (!mData->createDir(mData->workDir))
         return false;
 
@@ -203,7 +221,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
     if (mData->interrupted)
         return;
 
-    if (*count < 0)
+    if (*count <= 0)
         return;
 
     if (*splitterCount > 0 && mData->needStartSplitter)
@@ -292,7 +310,7 @@ void DiskPipeline::Data::startSplitterThread()
 {
     Splitter *worker = new Splitter(disk, workDir, preGapType);
 
-    WorkerThread *thread = new WorkerThread(worker);
+    WorkerThread *thread = new WorkerThread(worker, pipeline);
 
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
@@ -306,7 +324,12 @@ void DiskPipeline::Data::startSplitterThread()
     connect(worker,   SIGNAL(trackReady(const Track*,QString)),
             pipeline, SLOT(addEncoderRequest(const Track*,QString)));
 
+    connect(thread,   SIGNAL(finished()),
+            pipeline, SIGNAL(threadFinished()));
+
+    pipeline->mThreads << thread;
     thread->start();
+
     needStartSplitter = false;
     trackStatuses.insert(disk->track(0), Track::Splitting);
 
@@ -321,7 +344,7 @@ void DiskPipeline::Data::startSplitterThread()
 void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
 {
     Encoder *worker = new Encoder(req, settings->outFormat());
-    QThread *thread = new WorkerThread(worker);
+    WorkerThread *thread = new WorkerThread(worker, pipeline);
 
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
@@ -343,6 +366,10 @@ void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
                 pipeline, SLOT(addGainRequest(const Track*,QString)));
     }
 
+    connect(thread,   SIGNAL(finished()),
+            pipeline, SIGNAL(threadFinished()));
+
+    pipeline->mThreads << thread;
     thread->start();
 }
 
@@ -353,7 +380,7 @@ void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
 void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
 {
     Gain *worker = new Gain(req, settings->outFormat());
-    QThread *thread = new WorkerThread(worker);
+    WorkerThread *thread = new WorkerThread(worker, pipeline);
 
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
@@ -367,6 +394,10 @@ void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
     connect(worker,   SIGNAL(trackReady(const Track*,QString)),
             pipeline, SLOT(trackDone(const Track*,QString)));
 
+    connect(thread,   SIGNAL(finished()),
+            pipeline, SIGNAL(threadFinished()));
+
+    pipeline->mThreads << thread;
     thread->start();
 }
 
@@ -377,7 +408,7 @@ void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
 void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
 {
     Gain *worker = new Gain(reqs, settings->outFormat());
-    QThread *thread = new WorkerThread(worker);
+    WorkerThread *thread = new WorkerThread(worker, pipeline);
 
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
@@ -391,6 +422,10 @@ void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
     connect(worker,   SIGNAL(trackReady(const Track*,QString)),
             pipeline, SLOT(trackDone(const Track*,QString)));
 
+    connect(thread,   SIGNAL(finished()),
+            pipeline, SIGNAL(threadFinished()));
+
+    pipeline->mThreads << thread;
     thread->start();
 }
 
@@ -400,6 +435,7 @@ void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
  ************************************************/
 void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFile)
 {
+    trackProgress(track, Track::Queued, 0);
     QFileInfo trackFile(track->resultFilePath());
     QString outFile = trackFile.dir().filePath(
                 QFileInfo(inputFile).baseName() +
@@ -417,9 +453,10 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFil
 void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
 {
     if (settings->outFormat()->gainType() == GainType::Album)
-    {
-        const_cast<Track*>(track)->setProgress(Track::WaitGain);
-    }
+        trackProgress(track, Track::WaitGain, 0);
+    else
+        trackProgress(track, Track::Queued, 0);
+
     mData->gainRequests << WorkerRequest(track, fileName, fileName);
     emit readyStart();
 }
@@ -443,7 +480,6 @@ void DiskPipeline::trackDone(const Track *track, const QString &outFileName)
     if (!isRunning())
         emit finished();
 }
-
 
 
 /************************************************
@@ -538,6 +574,21 @@ bool DiskPipeline::isRunning() const
     }
 
     return false;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+int DiskPipeline::runningThreadCount() const
+{
+    int res = 0;
+    foreach (WorkerThread *thread, mThreads)
+    {
+        if (thread->isRunning())
+            ++res;
+    }
+    return res;
 }
 
 

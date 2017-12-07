@@ -330,7 +330,7 @@ If you surround sections of text that contain a token with braces, these section
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionAddFile"/>
+    <addaction name="actionAddDisk"/>
     <addaction name="actionRemoveDisc"/>
     <addaction name="separator"/>
     <addaction name="actionStartConvert"/>
@@ -374,7 +374,7 @@ If you surround sections of text that contain a token with braces, these section
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionAddFile"/>
+   <addaction name="actionAddDisk"/>
    <addaction name="actionRemoveDisc"/>
    <addaction name="separator"/>
    <addaction name="actionScan"/>
@@ -384,9 +384,9 @@ If you surround sections of text that contain a token with braces, these section
    <addaction name="actionStartConvert"/>
    <addaction name="actionAbortConvert"/>
   </widget>
-  <action name="actionAddFile">
+  <action name="actionAddDisk">
    <property name="text">
-    <string>Add file</string>
+    <string>Add disk</string>
    </property>
    <property name="toolTip">
     <string>Add CUE or audio file</string>

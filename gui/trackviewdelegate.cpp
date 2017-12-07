@@ -87,6 +87,7 @@ public:
     Keys clickType(const QModelIndex &index, const QPoint &point);
 
 private:
+    TrackViewCacheItem nullItemCache;
     QHash<QModelIndex, TrackViewCacheItem*> mItems;
     QModelIndex currentIndex;
     TrackViewCacheItem *currentItem;
@@ -98,7 +99,7 @@ private:
  ************************************************/
 TrackViewCache::TrackViewCache():
     currentIndex(QModelIndex()),
-    currentItem(0)
+    currentItem(&nullItemCache)
 {
 }
 
@@ -248,21 +249,57 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
     const QPixmap *icon = 0;
     QString txt;
     int progress = index.data(TrackViewModel::RolePercent).toInt();
+    bool showProgress = false;
 
     switch (index.data(TrackViewModel::RoleStatus).toInt())
     {
-    case Track::NotRunning: txt = "";               progress = -1;      break;
-    case Track::Canceled:   txt = "";                                   break;
-    case Track::Error:      txt = tr("Error");      icon = &mErrorPix;  break;
-    case Track::Aborted:    txt = tr("Aborted");                        break;
-    case Track::OK:         txt = tr("OK");         icon = &mOkPix;     break;
-    case Track::Splitting:  txt = tr("Extracting");                     break;
-    case Track::Encoding:   txt = tr("Encoding");                       break;
-    case Track::Queued:     txt = tr("Queued");                         break;
-    case Track::CalcGain:   txt = tr("Calculate gain");                 break;
-    case Track::WaitGain:   txt = tr("Wait gain");                      break;
-    case Track::WriteGain:  txt = tr("Write gain");                     break;
+    case Track::NotRunning:
+        txt = "";
+        break;
 
+    case Track::Canceled:
+        txt = "";
+        break;
+
+    case Track::Error:
+        txt = tr("Error");
+        icon = &mErrorPix;
+        break;
+
+    case Track::Aborted:
+        txt = tr("Aborted");
+        break;
+
+    case Track::OK:
+        txt = tr("OK");
+        icon = &mOkPix;
+        break;
+
+    case Track::Splitting:
+        txt = tr("Extracting");
+        showProgress = true;
+        break;
+
+    case Track::Encoding:
+        txt = tr("Encoding");
+        showProgress = true;
+        break;
+
+    case Track::Queued:
+        txt = tr("Queued");
+        break;
+
+    case Track::CalcGain:
+        txt = tr("Calculate gain");
+        break;
+
+    case Track::WaitGain:
+        txt = tr("Wait gain");
+        break;
+
+    case Track::WriteGain:
+        txt = tr("Write gain");
+        break;
     }
 
 
@@ -271,7 +308,7 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
     QRect windowRect(0, 0, option.rect.width() - 31, option.rect.height());
     painter->setClipRect(windowRect);
 
-    if (progress > -1)
+    if (showProgress)
     {
         QStyleOptionProgressBar opt;
         opt.rect = windowRect.adjusted(4, 3, -4, -3);
@@ -408,16 +445,23 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     int y = option.rect.height() - BOTTOM_PADDING - 2;
     painter->drawLine(MARGIN * 2, y, windowRect.right(), y);
 
-    // Draw warning mark ...............................
+    // Draw download and warning mark ...............................
     QRect markRect(imgRect.right() - MARK_HEIGHT, imgRect.bottom() - MARK_HEIGHT, MARK_HEIGHT, MARK_HEIGHT);
-    if (!index.data(TrackViewModel::RoleCanConvert).toBool())
-        painter->drawPixmap(markRect, mWarnPix);
-    cache->markBtn = markRect;
-
     cache->isWaiting = index.data(TrackViewModel::RoleIsDownloads).toBool();
+
     if (cache->isWaiting)
     {
         painter->drawPixmap(markRect, mDownloadMovie.currentPixmap());
+        cache->markBtn = markRect;
+    }
+    else if (!index.data(TrackViewModel::RoleCanConvert).toBool())
+    {
+        painter->drawPixmap(markRect, mWarnPix);
+        cache->markBtn = markRect;
+    }
+    else
+    {
+        cache->markBtn = QRect();
     }
 
     painter->restore();    

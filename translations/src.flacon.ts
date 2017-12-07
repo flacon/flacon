@@ -310,10 +310,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -327,6 +323,10 @@
     </message>
     <message>
         <source>Disabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -729,10 +729,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -931,6 +927,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Delete current pattern from history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add disk</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

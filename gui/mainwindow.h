@@ -29,6 +29,7 @@
 
 #include <QMainWindow>
 #include "ui_mainwindow.h"
+#include <QPointer>
 
 namespace Ui {
 class MainWindow;
@@ -98,7 +99,7 @@ protected:
     bool event(QEvent *event) override;
 
 private:
-    Converter *mConverter;
+    QPointer<Converter> mConverter;
     Scanner *mScanner;
     QString getOpenFileFilter(bool includeAudio, bool includeCue);
 

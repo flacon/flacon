@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Nastavení kódování FLAC</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Zhuštění:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>Zakázáno</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -739,10 +739,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <translation>&amp;Nápověda</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>Přidat soubor</translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation>Přidat soubor CUE nebo zvukový soubor</translation>
     </message>
@@ -961,6 +957,10 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>Delete current pattern from history</source>
         <translation>Smazat nynější vzor z historie</translation>
+    </message>
+    <message>
+        <source>Add disk</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

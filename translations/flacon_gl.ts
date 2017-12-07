@@ -308,10 +308,6 @@
 <context>
     <name>ConfigPage_Flac</name>
     <message>
-        <source>Flac encoding configuration</source>
-        <translation>Configuración da codificación FLAC</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Compresión:</translation>
     </message>
@@ -326,6 +322,10 @@
     <message>
         <source>Disabled</source>
         <translation>Desactivado</translation>
+    </message>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -756,10 +756,6 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
         <translation>&amp;Axuda</translation>
     </message>
     <message>
-        <source>Add file</source>
-        <translation>Engadir un ficheiro</translation>
-    </message>
-    <message>
         <source>Add CUE or audio file</source>
         <translation>Engadir un ficheiro de audio ou CUE</translation>
     </message>
@@ -959,6 +955,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Delete current pattern from history</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disk</source>
         <translation type="unfinished"/>
     </message>
 </context>
