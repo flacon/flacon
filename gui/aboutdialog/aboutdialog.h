@@ -51,10 +51,9 @@ class AboutDialog : public QDialog, private Ui::AboutDialog
 public:
     explicit AboutDialog(QWidget *parent = 0);
 
-signals:
-    
-public slots:
-    
+protected:
+    void paintEvent(QPaintEvent *event) override;
+
 private:
     QString titleText() const;
     QString descriptionText() const;

@@ -79,7 +79,7 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
     connect(pages, SIGNAL(currentChanged(int)), this, SLOT(setPage(int)));
 
-    tmpDirButton->setIcon(Project::getIcon("document-open-folder", "document-open", "folder_open", ":/icons/16/select-folder"));
+    tmpDirButton->setIcon(loadIcon("folder"));
     connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
 
 
@@ -90,8 +90,13 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     preGapComboBox->addItem(tr("Extract to separate file"), preGapTypeToString(PreGapType::ExtractToFile));
     preGapComboBox->addItem(tr("Add to first track"),       preGapTypeToString(PreGapType::AddToFirstTrack));
 
-    pagesListInit();
+    tabPagesInit();
+#ifdef Q_OS_MAC
+    pages->removeTab(pages->indexOf(programsPage));
+#else
     programsInit();
+#endif
+
     pages->setCurrentIndex(0);
     load();
 
@@ -111,13 +116,8 @@ ConfigDialog::~ConfigDialog()
 /************************************************
 
  ************************************************/
-void ConfigDialog::pagesListInit()
+void ConfigDialog::tabPagesInit()
 {
-    QListWidgetItem *item = new QListWidgetItem(pagesList);
-    item->setText(tr("General"));
-    item->setIcon(Project::getIcon("go-home", "gohome", ":/icons/32/settings-main"));
-    pagesList->addItem(item);
-
     int n = 1;
     foreach(OutFormat *format, OutFormat::allFormats())
     {
@@ -128,39 +128,9 @@ void ConfigDialog::pagesListInit()
         mEncodersPages << page;
 
         page->setObjectName(format->id());
-        pages->insertWidget(n, page);
+        pages->insertTab(n, page, format->name());
         n++;
-
-        item = new QListWidgetItem(pagesList);
-        item->setText(format->name());
-        item->setIcon(Project::getIcon("audio-x-generic", "sound", ":/icons/32/settings-encoder"));
-        pagesList->addItem(item);
     }
-
-    item = new QListWidgetItem(pagesList);
-    item->setText(tr("Programs"));
-    item->setIcon(Project::getIcon("applications-system", "gear", ":/icons/32/settings-programs"));
-    pagesList->addItem(item);
-
-
-    // Set item width ........................
-    int width = 0;
-    for(int i=0; i<pagesList->count(); ++i)
-    {
-        item = pagesList->item(i);
-        width = qMax(width, pagesList->fontMetrics().width(item->text()));
-    }
-
-    width += 42;
-
-    for(int i=0; i<pagesList->count(); ++i)
-    {
-        item = pagesList->item(i);
-        int h = pagesList->height() + pagesList->fontMetrics().height() + 8;
-        item->setSizeHint(QSize(width, h));
-    }
-
-    pagesList->setMaximumWidth(width + 2 * pagesList->frameWidth());
 }
 
 
@@ -211,7 +181,7 @@ void ConfigDialog::setPage(const OutFormat *format)
 void ConfigDialog::setPage(int pageIndex)
 {
     pageTitle->setText(pages->currentWidget()->windowTitle());
-    pagesList->setCurrentRow(pageIndex);
+    pages->setCurrentIndex(pageIndex);
 }
 
 

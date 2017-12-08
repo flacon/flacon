@@ -193,7 +193,7 @@ set(LIBRARIES
 
 set(RESOURCES
     images/images.qrc
-    images/oxygen/icons.qrc
+    images/icons.qrc
 )
 
 # add translations ...
@@ -212,6 +212,7 @@ add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
 set (CMAKE_CXX_STANDARD 11)
 include("tools.cmake")
+include("cmake/macos.cmake")
 
 git_version(GIT_BRANCH GIT_COMMIT_HASH)
 if (NOT "${GIT_COMMIT_HASH}" STREQUAL "")
@@ -236,7 +237,7 @@ include_directories(
 )
 
 #*******************************************
-
+add_homebrew_qt_prefix_path()
 
 find_package(Qt5Widgets REQUIRED)
 include_directories(${Qt5Widgets_INCLUDE_DIRS})
@@ -305,11 +306,19 @@ function(CREATE_DESKTOP_FILE _IN_FILE _OUT_FILE _TRANSLATIONS_PATTERN)
 endfunction()
 
 CREATE_DESKTOP_FILE(misc/${PROJECT_NAME}.desktop ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop translations/*.desktop)
+CREATE_PLIST_FILE(misc/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist translations/*.desktop)
 
 install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop DESTINATION "share/applications")
-install(FILES   misc/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps" RENAME "flacon.png")
-install(FILES   misc/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps" RENAME "flacon.png")
-install(FILES   misc/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps" RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps"    RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps"    RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps"    RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-64x64.png   DESTINATION "share/icons/hicolor/64x64/apps"    RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-128x128.png DESTINATION "share/icons/hicolor/128x128/apps"  RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-256x256.png DESTINATION "share/icons/hicolor/256x256/apps"  RENAME "flacon.png")
+install(FILES   images/mainicon/flacon-512x512.png DESTINATION "share/icons/hicolor/512x512/apps"  RENAME "flacon.png")
+install(FILES   images/mainicon/flacon.svg         DESTINATION "share/icons/hicolor/scalable/apps" RENAME "flacon.svg")
+
+
 install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 

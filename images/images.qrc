@@ -1,9 +1,29 @@
 <RCC>
-    <qresource prefix="/">
-        <file alias="trackBtn">trackBtn.png</file>
+    <qresource prefix="">
         <file alias="noCover">nocover.png</file>
-        <file alias="audioBtn">audioBtn.png</file>
         <file alias="wait">wait.mng</file>
-        <file alias="logo">../misc/flacon-48x48.png</file>
+    </qresource>
+
+    <qresource prefix="16">
+        <file alias="mainicon">mainicon/flacon-16x16.png</file>
+    </qresource>
+    <qresource prefix="32">
+        <file alias="mainicon">mainicon/flacon-32x32.png</file>
+    </qresource>
+    <qresource prefix="48">
+        <file alias="mainicon">mainicon/flacon-48x48.png</file>
+    </qresource>
+    <qresource prefix="64">
+        <file alias="mainicon">mainicon/flacon-64x64.png</file>
+    </qresource>
+    <qresource prefix="128">
+        <file alias="mainicon">mainicon/flacon-128x128.png</file>
+    </qresource>
+    <qresource prefix="256">
+        <file alias="mainicon">mainicon/flacon-256x256.png</file>
+    </qresource>
+    <qresource prefix="512">
+        <file alias="mainicon">mainicon/flacon-512x512.png</file>
     </qresource>
 </RCC>
+

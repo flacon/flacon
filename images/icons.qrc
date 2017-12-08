@@ -1,0 +1,235 @@
+<!-- Generated from icons2png.sh do not edit by hand. -->
+<RCC>
+    <qresource prefix="16">
+        <file alias="add-disk">icons/16/add-disk.png</file>
+        <file alias="remove-disk">icons/16/remove-disk.png</file>
+        <file alias="scan">icons/16/scan.png</file>
+        <file alias="download-info">icons/16/download-info.png</file>
+        <file alias="abort-convert">icons/16/abort-convert.png</file>
+        <file alias="start-convert">icons/16/start-convert.png</file>
+        <file alias="folder">icons/16/folder.png</file>
+        <file alias="configure">icons/16/configure.png</file>
+        <file alias="track-ok">icons/16/track-ok.png</file>
+        <file alias="audio-button">icons/16/audio-button.png</file>
+        <file alias="cue-button">icons/16/cue-button.png</file>
+
+        <file alias="add-disk_disable">icons/16/add-disk_disable.png</file>
+        <file alias="remove-disk_disable">icons/16/remove-disk_disable.png</file>
+        <file alias="scan_disable">icons/16/scan_disable.png</file>
+        <file alias="download-info_disable">icons/16/download-info_disable.png</file>
+        <file alias="abort-convert_disable">icons/16/abort-convert_disable.png</file>
+        <file alias="start-convert_disable">icons/16/start-convert_disable.png</file>
+        <file alias="folder_disable">icons/16/folder_disable.png</file>
+        <file alias="configure_disable">icons/16/configure_disable.png</file>
+        <file alias="track-ok_disable">icons/16/track-ok_disable.png</file>
+        <file alias="audio-button_disable">icons/16/audio-button_disable.png</file>
+        <file alias="cue-button_disable">icons/16/cue-button_disable.png</file>
+
+        <file alias="track-cancel">icons/16/track-cancel.png</file>
+        <file alias="warning">icons/16/warning.png</file>
+    </qresource>
+
+    <qresource prefix="22">
+        <file alias="add-disk">icons/22/add-disk.png</file>
+        <file alias="remove-disk">icons/22/remove-disk.png</file>
+        <file alias="scan">icons/22/scan.png</file>
+        <file alias="download-info">icons/22/download-info.png</file>
+        <file alias="abort-convert">icons/22/abort-convert.png</file>
+        <file alias="start-convert">icons/22/start-convert.png</file>
+        <file alias="folder">icons/22/folder.png</file>
+        <file alias="configure">icons/22/configure.png</file>
+        <file alias="track-ok">icons/22/track-ok.png</file>
+        <file alias="audio-button">icons/22/audio-button.png</file>
+        <file alias="cue-button">icons/22/cue-button.png</file>
+
+        <file alias="add-disk_disable">icons/22/add-disk_disable.png</file>
+        <file alias="remove-disk_disable">icons/22/remove-disk_disable.png</file>
+        <file alias="scan_disable">icons/22/scan_disable.png</file>
+        <file alias="download-info_disable">icons/22/download-info_disable.png</file>
+        <file alias="abort-convert_disable">icons/22/abort-convert_disable.png</file>
+        <file alias="start-convert_disable">icons/22/start-convert_disable.png</file>
+        <file alias="folder_disable">icons/22/folder_disable.png</file>
+        <file alias="configure_disable">icons/22/configure_disable.png</file>
+        <file alias="track-ok_disable">icons/22/track-ok_disable.png</file>
+        <file alias="audio-button_disable">icons/22/audio-button_disable.png</file>
+        <file alias="cue-button_disable">icons/22/cue-button_disable.png</file>
+
+        <file alias="track-cancel">icons/22/track-cancel.png</file>
+        <file alias="warning">icons/22/warning.png</file>
+    </qresource>
+
+    <qresource prefix="32">
+        <file alias="add-disk">icons/32/add-disk.png</file>
+        <file alias="remove-disk">icons/32/remove-disk.png</file>
+        <file alias="scan">icons/32/scan.png</file>
+        <file alias="download-info">icons/32/download-info.png</file>
+        <file alias="abort-convert">icons/32/abort-convert.png</file>
+        <file alias="start-convert">icons/32/start-convert.png</file>
+        <file alias="folder">icons/32/folder.png</file>
+        <file alias="configure">icons/32/configure.png</file>
+        <file alias="track-ok">icons/32/track-ok.png</file>
+        <file alias="audio-button">icons/32/audio-button.png</file>
+        <file alias="cue-button">icons/32/cue-button.png</file>
+
+        <file alias="add-disk_disable">icons/32/add-disk_disable.png</file>
+        <file alias="remove-disk_disable">icons/32/remove-disk_disable.png</file>
+        <file alias="scan_disable">icons/32/scan_disable.png</file>
+        <file alias="download-info_disable">icons/32/download-info_disable.png</file>
+        <file alias="abort-convert_disable">icons/32/abort-convert_disable.png</file>
+        <file alias="start-convert_disable">icons/32/start-convert_disable.png</file>
+        <file alias="folder_disable">icons/32/folder_disable.png</file>
+        <file alias="configure_disable">icons/32/configure_disable.png</file>
+        <file alias="track-ok_disable">icons/32/track-ok_disable.png</file>
+        <file alias="audio-button_disable">icons/32/audio-button_disable.png</file>
+        <file alias="cue-button_disable">icons/32/cue-button_disable.png</file>
+
+        <file alias="track-cancel">icons/32/track-cancel.png</file>
+        <file alias="warning">icons/32/warning.png</file>
+    </qresource>
+
+    <qresource prefix="48">
+        <file alias="add-disk">icons/48/add-disk.png</file>
+        <file alias="remove-disk">icons/48/remove-disk.png</file>
+        <file alias="scan">icons/48/scan.png</file>
+        <file alias="download-info">icons/48/download-info.png</file>
+        <file alias="abort-convert">icons/48/abort-convert.png</file>
+        <file alias="start-convert">icons/48/start-convert.png</file>
+        <file alias="folder">icons/48/folder.png</file>
+        <file alias="configure">icons/48/configure.png</file>
+        <file alias="track-ok">icons/48/track-ok.png</file>
+        <file alias="audio-button">icons/48/audio-button.png</file>
+        <file alias="cue-button">icons/48/cue-button.png</file>
+
+        <file alias="add-disk_disable">icons/48/add-disk_disable.png</file>
+        <file alias="remove-disk_disable">icons/48/remove-disk_disable.png</file>
+        <file alias="scan_disable">icons/48/scan_disable.png</file>
+        <file alias="download-info_disable">icons/48/download-info_disable.png</file>
+        <file alias="abort-convert_disable">icons/48/abort-convert_disable.png</file>
+        <file alias="start-convert_disable">icons/48/start-convert_disable.png</file>
+        <file alias="folder_disable">icons/48/folder_disable.png</file>
+        <file alias="configure_disable">icons/48/configure_disable.png</file>
+        <file alias="track-ok_disable">icons/48/track-ok_disable.png</file>
+        <file alias="audio-button_disable">icons/48/audio-button_disable.png</file>
+        <file alias="cue-button_disable">icons/48/cue-button_disable.png</file>
+
+        <file alias="track-cancel">icons/48/track-cancel.png</file>
+        <file alias="warning">icons/48/warning.png</file>
+    </qresource>
+
+    <qresource prefix="64">
+        <file alias="add-disk">icons/64/add-disk.png</file>
+        <file alias="remove-disk">icons/64/remove-disk.png</file>
+        <file alias="scan">icons/64/scan.png</file>
+        <file alias="download-info">icons/64/download-info.png</file>
+        <file alias="abort-convert">icons/64/abort-convert.png</file>
+        <file alias="start-convert">icons/64/start-convert.png</file>
+        <file alias="folder">icons/64/folder.png</file>
+        <file alias="configure">icons/64/configure.png</file>
+        <file alias="track-ok">icons/64/track-ok.png</file>
+        <file alias="audio-button">icons/64/audio-button.png</file>
+        <file alias="cue-button">icons/64/cue-button.png</file>
+
+        <file alias="add-disk_disable">icons/64/add-disk_disable.png</file>
+        <file alias="remove-disk_disable">icons/64/remove-disk_disable.png</file>
+        <file alias="scan_disable">icons/64/scan_disable.png</file>
+        <file alias="download-info_disable">icons/64/download-info_disable.png</file>
+        <file alias="abort-convert_disable">icons/64/abort-convert_disable.png</file>
+        <file alias="start-convert_disable">icons/64/start-convert_disable.png</file>
+        <file alias="folder_disable">icons/64/folder_disable.png</file>
+        <file alias="configure_disable">icons/64/configure_disable.png</file>
+        <file alias="track-ok_disable">icons/64/track-ok_disable.png</file>
+        <file alias="audio-button_disable">icons/64/audio-button_disable.png</file>
+        <file alias="cue-button_disable">icons/64/cue-button_disable.png</file>
+
+        <file alias="track-cancel">icons/64/track-cancel.png</file>
+        <file alias="warning">icons/64/warning.png</file>
+    </qresource>
+
+    <qresource prefix="128">
+        <file alias="add-disk">icons/128/add-disk.png</file>
+        <file alias="remove-disk">icons/128/remove-disk.png</file>
+        <file alias="scan">icons/128/scan.png</file>
+        <file alias="download-info">icons/128/download-info.png</file>
+        <file alias="abort-convert">icons/128/abort-convert.png</file>
+        <file alias="start-convert">icons/128/start-convert.png</file>
+        <file alias="folder">icons/128/folder.png</file>
+        <file alias="configure">icons/128/configure.png</file>
+        <file alias="track-ok">icons/128/track-ok.png</file>
+        <file alias="audio-button">icons/128/audio-button.png</file>
+        <file alias="cue-button">icons/128/cue-button.png</file>
+
+        <file alias="add-disk_disable">icons/128/add-disk_disable.png</file>
+        <file alias="remove-disk_disable">icons/128/remove-disk_disable.png</file>
+        <file alias="scan_disable">icons/128/scan_disable.png</file>
+        <file alias="download-info_disable">icons/128/download-info_disable.png</file>
+        <file alias="abort-convert_disable">icons/128/abort-convert_disable.png</file>
+        <file alias="start-convert_disable">icons/128/start-convert_disable.png</file>
+        <file alias="folder_disable">icons/128/folder_disable.png</file>
+        <file alias="configure_disable">icons/128/configure_disable.png</file>
+        <file alias="track-ok_disable">icons/128/track-ok_disable.png</file>
+        <file alias="audio-button_disable">icons/128/audio-button_disable.png</file>
+        <file alias="cue-button_disable">icons/128/cue-button_disable.png</file>
+
+        <file alias="track-cancel">icons/128/track-cancel.png</file>
+        <file alias="warning">icons/128/warning.png</file>
+    </qresource>
+
+    <qresource prefix="256">
+        <file alias="add-disk">icons/256/add-disk.png</file>
+        <file alias="remove-disk">icons/256/remove-disk.png</file>
+        <file alias="scan">icons/256/scan.png</file>
+        <file alias="download-info">icons/256/download-info.png</file>
+        <file alias="abort-convert">icons/256/abort-convert.png</file>
+        <file alias="start-convert">icons/256/start-convert.png</file>
+        <file alias="folder">icons/256/folder.png</file>
+        <file alias="configure">icons/256/configure.png</file>
+        <file alias="track-ok">icons/256/track-ok.png</file>
+        <file alias="audio-button">icons/256/audio-button.png</file>
+        <file alias="cue-button">icons/256/cue-button.png</file>
+
+        <file alias="add-disk_disable">icons/256/add-disk_disable.png</file>
+        <file alias="remove-disk_disable">icons/256/remove-disk_disable.png</file>
+        <file alias="scan_disable">icons/256/scan_disable.png</file>
+        <file alias="download-info_disable">icons/256/download-info_disable.png</file>
+        <file alias="abort-convert_disable">icons/256/abort-convert_disable.png</file>
+        <file alias="start-convert_disable">icons/256/start-convert_disable.png</file>
+        <file alias="folder_disable">icons/256/folder_disable.png</file>
+        <file alias="configure_disable">icons/256/configure_disable.png</file>
+        <file alias="track-ok_disable">icons/256/track-ok_disable.png</file>
+        <file alias="audio-button_disable">icons/256/audio-button_disable.png</file>
+        <file alias="cue-button_disable">icons/256/cue-button_disable.png</file>
+
+        <file alias="track-cancel">icons/256/track-cancel.png</file>
+        <file alias="warning">icons/256/warning.png</file>
+    </qresource>
+
+    <qresource prefix="512">
+        <file alias="add-disk">icons/512/add-disk.png</file>
+        <file alias="remove-disk">icons/512/remove-disk.png</file>
+        <file alias="scan">icons/512/scan.png</file>
+        <file alias="download-info">icons/512/download-info.png</file>
+        <file alias="abort-convert">icons/512/abort-convert.png</file>
+        <file alias="start-convert">icons/512/start-convert.png</file>
+        <file alias="folder">icons/512/folder.png</file>
+        <file alias="configure">icons/512/configure.png</file>
+        <file alias="track-ok">icons/512/track-ok.png</file>
+        <file alias="audio-button">icons/512/audio-button.png</file>
+        <file alias="cue-button">icons/512/cue-button.png</file>
+
+        <file alias="add-disk_disable">icons/512/add-disk_disable.png</file>
+        <file alias="remove-disk_disable">icons/512/remove-disk_disable.png</file>
+        <file alias="scan_disable">icons/512/scan_disable.png</file>
+        <file alias="download-info_disable">icons/512/download-info_disable.png</file>
+        <file alias="abort-convert_disable">icons/512/abort-convert_disable.png</file>
+        <file alias="start-convert_disable">icons/512/start-convert_disable.png</file>
+        <file alias="folder_disable">icons/512/folder_disable.png</file>
+        <file alias="configure_disable">icons/512/configure_disable.png</file>
+        <file alias="track-ok_disable">icons/512/track-ok_disable.png</file>
+        <file alias="audio-button_disable">icons/512/audio-button_disable.png</file>
+        <file alias="cue-button_disable">icons/512/cue-button_disable.png</file>
+
+        <file alias="track-cancel">icons/512/track-cancel.png</file>
+        <file alias="warning">icons/512/warning.png</file>
+    </qresource>
+
+</RCC>
