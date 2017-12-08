@@ -54,10 +54,6 @@
         <translation>Parche de soporte de Wavpack</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Icono de aplicación, Empaquetado</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Empaquetado,  pruebas</translation>
     </message>
@@ -561,6 +557,10 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Without cover image</source>
         <translation type="unfinished"/>
     </message>
 </context>

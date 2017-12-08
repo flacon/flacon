@@ -54,10 +54,6 @@
         <translation>WavPack-ondersteuningspatch</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Toepassingspictogram, verpakken</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Verpakken, testen</translation>
     </message>
@@ -325,7 +321,7 @@
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>FLAC-coderingsconfiguratie</translation>
     </message>
 </context>
 <context>
@@ -585,6 +581,10 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     <message>
         <source>Select cover image</source>
         <translation>Albumhoes selecteren</translation>
+    </message>
+    <message>
+        <source>Without cover image</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -988,7 +988,7 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     </message>
     <message>
         <source>Add disk</source>
-        <translation type="unfinished"/>
+        <translation>Schijf toevoegen</translation>
     </message>
 </context>
 <context>

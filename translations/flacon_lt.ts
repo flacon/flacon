@@ -54,10 +54,6 @@
         <translation>WavPack palaikymo pataisa</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Programos piktograma, Pakavimas</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Pakavimas, testavimas</translation>
     </message>
@@ -325,7 +321,7 @@
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>FLAC kodavimo konfigūracija</translation>
     </message>
 </context>
 <context>
@@ -585,6 +581,10 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>Select cover image</source>
         <translation>Pasirinkite viršelio paveikslą</translation>
+    </message>
+    <message>
+        <source>Without cover image</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -988,7 +988,7 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     </message>
     <message>
         <source>Add disk</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti diską</translation>
     </message>
 </context>
 <context>

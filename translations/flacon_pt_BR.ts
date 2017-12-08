@@ -54,10 +54,6 @@
         <translation>Patch de suporte a WavPack</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Ícone do aplicativo, empacotamento.</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Empacotamento, teste.</translation>
     </message>
@@ -325,7 +321,7 @@
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configuração da codificação FLAC</translation>
     </message>
 </context>
 <context>
@@ -585,6 +581,10 @@ No modo CBR, define a taxa de bits de saída específica.
     <message>
         <source>Select cover image</source>
         <translation>Selecione a imagem da capa</translation>
+    </message>
+    <message>
+        <source>Without cover image</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -984,7 +984,7 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     </message>
     <message>
         <source>Add disk</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar disco</translation>
     </message>
 </context>
 <context>

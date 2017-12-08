@@ -54,10 +54,6 @@
         <translation>Patch für WavPack-Unterstützung</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Anwendungssymbol, Paketierung</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Paketierung, Testen</translation>
     </message>
@@ -584,6 +580,10 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Without cover image</source>
         <translation type="unfinished"/>
     </message>
 </context>

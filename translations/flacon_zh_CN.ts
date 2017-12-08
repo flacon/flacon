@@ -54,10 +54,6 @@
         <translation>WavPach 支持补丁</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>应用程序图标，程序打包。</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>打包和测试。</translation>
     </message>
@@ -561,6 +557,10 @@ CBR 模式下，它指定特定的输出码率。
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Without cover image</source>
         <translation type="unfinished"/>
     </message>
 </context>

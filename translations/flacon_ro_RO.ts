@@ -54,10 +54,6 @@
         <translation>Suport WavPack</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Pictogramă aplicație, creare fișiere binare</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Creare fișiere binare, testare</translation>
     </message>
@@ -584,6 +580,10 @@ In CBR mode, it sets the specific output bitrate.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Without cover image</source>
         <translation type="unfinished"/>
     </message>
 </context>

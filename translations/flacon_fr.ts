@@ -54,10 +54,6 @@
         <translation>Correctif de prise en charge WavPack</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Icône et mise en forme</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Mise en forme et tests</translation>
     </message>
@@ -325,7 +321,7 @@
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configuration de l’encodage FLAC</translation>
     </message>
 </context>
 <context>
@@ -584,6 +580,10 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     <message>
         <source>Select cover image</source>
         <translation>Sélectionner l’image de couverture</translation>
+    </message>
+    <message>
+        <source>Without cover image</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -986,7 +986,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>Add disk</source>
-        <translation type="unfinished"/>
+        <translation>Ajouter un disque</translation>
     </message>
 </context>
 <context>

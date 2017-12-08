@@ -54,10 +54,6 @@
         <translation>Патч для поддержки WavPack</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Иконка для программы, пакетирование</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Пакетирование, тестирование</translation>
     </message>
@@ -584,6 +580,10 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Select cover image</source>
         <translation>Обложка диска</translation>
+    </message>
+    <message>
+        <source>Without cover image</source>
+        <translation>Без обложки</translation>
     </message>
 </context>
 <context>

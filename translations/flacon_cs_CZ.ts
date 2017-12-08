@@ -54,10 +54,6 @@
         <translation>Záplata s podporou pro WavPack</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Ikona programu, balení</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Balení, zkouška</translation>
     </message>
@@ -560,6 +556,10 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Without cover image</source>
         <translation type="unfinished"/>
     </message>
 </context>

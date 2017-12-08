@@ -54,10 +54,6 @@
         <translation>Programfiks for WavPack-støtte</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Programikon, pakking</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Pakking, testing</translation>
     </message>
@@ -585,6 +581,10 @@ I CBR-modus, setter angitt utdatabitrate.
     <message>
         <source>Select cover image</source>
         <translation>Velg omslagsbilde</translation>
+    </message>
+    <message>
+        <source>Without cover image</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

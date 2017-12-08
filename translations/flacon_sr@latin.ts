@@ -54,10 +54,6 @@
         <translation>Zakrpa za VavPak podršku</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Ikona programa, pakiranje</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Pakiranje, testiranje</translation>
     </message>
@@ -552,6 +548,10 @@ In CBR mode, it sets the specific output bitrate.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Without cover image</source>
         <translation type="unfinished"/>
     </message>
 </context>

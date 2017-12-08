@@ -54,10 +54,6 @@
         <translation>Poprawki obsługi WavPack.</translation>
     </message>
     <message>
-        <source>Application icon, Packaging</source>
-        <translation>Ikona programu, paczkowanie</translation>
-    </message>
-    <message>
         <source>Packaging, testing</source>
         <translation>Paczkowanie, testowanie.</translation>
     </message>
@@ -560,6 +556,10 @@ W trybie CBR, ustawia konkretną wartość wyjściowej prędkości transmisji.</
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Without cover image</source>
         <translation type="unfinished"/>
     </message>
 </context>
