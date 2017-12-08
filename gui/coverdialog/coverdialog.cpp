@@ -94,6 +94,7 @@ void CoverDialog::setDisk(Disk *disk)
 {
     mDisk = disk;
     ui->coverView->clear();
+    new QListWidgetItem(mEmptyIcon, tr("Without cover image"), ui->coverView);
     scan(QFileInfo(disk->cueFile()).absoluteDir().absolutePath());
     ui->coverView->setGridSize(QSize(140, 160));
 

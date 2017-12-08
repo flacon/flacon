@@ -140,7 +140,7 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent):
     mWarnPix     = loadIcon("warning", false).pixmap(MARK_HEIGHT, MARK_HEIGHT);
     mOkPix       = loadIcon("track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
     mErrorPix    = loadIcon("track-cancel", false).pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
-    mNoCoverImg  = QImage("noCover");
+    mNoCoverImg  = QImage(":noCover");
 
     mDownloadMovie.setFileName(":wait");
     connect(project, SIGNAL(downloadingStarted(DataProvider*)), this, SLOT(downloadingStarted(DataProvider*)));
