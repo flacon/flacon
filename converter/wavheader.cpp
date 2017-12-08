@@ -325,7 +325,7 @@ void WavHeader::load(QIODevice *stream)
             this->mBitsPerSample = readUInt16(stream);
 
             if (chunkSize > 16)
-                stream->seek(stream->pos() + chunkSize - 16);
+                mustSkip(stream, chunkSize - 16);
 
         }
 
