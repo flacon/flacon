@@ -859,12 +859,6 @@ void MainWindow::initActions()
     actionAbortConvert->setIcon(loadIcon("abort-convert"));
     connect(actionAbortConvert, SIGNAL(triggered()), this, SLOT(stopConvert()));
 
-    int w = qMax(toolBar->widgetForAction(actionStartConvert)->sizeHint().width(),
-                 toolBar->widgetForAction(actionAbortConvert)->sizeHint().width());
-
-    toolBar->widgetForAction(actionStartConvert)->setMinimumWidth(w);
-    toolBar->widgetForAction(actionAbortConvert)->setMinimumWidth(w);
-
     actionSelectResultDir->setIcon(loadIcon("folder"));
     connect(actionSelectResultDir, SIGNAL(triggered()), this, SLOT(openOutDirDialog()));
 
@@ -875,6 +869,21 @@ void MainWindow::initActions()
     connect(actionConfigureEncoder, SIGNAL(triggered()), this, SLOT(configureEncoder()));
 
     connect(actionAbout, SIGNAL(triggered()), this,  SLOT(openAboutDialog()));
+
+    int w = 0;
+    foreach (QAction *act, toolBar->actions())
+    {
+        QToolButton *btn = qobject_cast<QToolButton*>(toolBar->widgetForAction(act));
+        if (btn)
+            w = qMax(w, btn->sizeHint().width());
+    }
+
+    foreach (QAction *act, toolBar->actions())
+    {
+        QToolButton *btn = qobject_cast<QToolButton*>(toolBar->widgetForAction(act));
+        if (btn)
+            btn->setMinimumWidth(w);
+    }
 
 }
 
