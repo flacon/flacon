@@ -29,6 +29,7 @@
 #include "trackviewmodel.h"
 #include "project.h"
 #include "internet/dataprovider.h"
+#include "types.h"
 
 #include <QImage>
 #include <QPixmap>
@@ -134,12 +135,12 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent):
     mCache(new TrackViewCache),
     mDiskHeightHint(0)
 {
-    mTrackBtnPix = QIcon(":cue-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
-    mAudioBtnPix = QIcon(":audio-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
-    mWarnPix     = QIcon(":warning").pixmap(MARK_HEIGHT, MARK_HEIGHT);
-    mOkPix       = QIcon(":track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
-    mErrorPix    = QIcon(":track-cancel").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
-    mNoCoverImg  = QImage(":noCover");
+    mTrackBtnPix = loadIcon("cue-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
+    mAudioBtnPix = loadIcon("audio-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
+    mWarnPix     = loadIcon("warning", false).pixmap(MARK_HEIGHT, MARK_HEIGHT);
+    mOkPix       = loadIcon("track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mErrorPix    = loadIcon("track-cancel", false).pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mNoCoverImg  = QImage("noCover");
 
     mDownloadMovie.setFileName(":wait");
     connect(project, SIGNAL(downloadingStarted(DataProvider*)), this, SLOT(downloadingStarted(DataProvider*)));

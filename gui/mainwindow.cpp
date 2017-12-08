@@ -60,12 +60,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     setupUi(this);
 
-    qApp->setWindowIcon(Project::getIcon("flacon", ":logo"));
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolBar->setIconSize(QSize(24,24));
     qApp->setAttribute(Qt::AA_DontShowIconsInMenus, true);
 
 #ifdef Q_OS_MAC
+    qApp->setWindowIcon(loadIcon("mainicon", false));
     this->setUnifiedTitleAndToolBarOnMac(true);
     setWindowIcon(QIcon());
 #endif
@@ -840,23 +840,23 @@ void MainWindow::setStartTrackNum()
  ************************************************/
 void MainWindow::initActions()
 {
-    actionAddDisk->setIcon(QIcon(":toolbar/add-disk"));
+    actionAddDisk->setIcon(loadIcon("add-disk"));
     connect(actionAddDisk, SIGNAL(triggered()), this, SLOT(openAddFileDialog()));
 
-    actionRemoveDisc->setIcon(QIcon(":toolbar/remove-disk"));
+    actionRemoveDisc->setIcon(loadIcon("remove-disk"));
     connect(actionRemoveDisc, SIGNAL(triggered()), this, SLOT(removeDisks()));
 
-    actionScan->setIcon(QIcon(":toolbar/scan"));
+    actionScan->setIcon(loadIcon("scan"));
     connect(actionScan, SIGNAL(triggered()), this, SLOT(openScanDialog()));
 
-    actionDownloadTrackInfo->setIcon(QIcon(":toolbar/download-info"));
+    actionDownloadTrackInfo->setIcon(loadIcon("download-info"));
     connect(actionDownloadTrackInfo, SIGNAL(triggered()), this, SLOT(downloadInfo()));
 
 
-    actionStartConvert->setIcon(QIcon(":toolbar/start-convert"));
+    actionStartConvert->setIcon(loadIcon("start-convert"));
     connect(actionStartConvert, SIGNAL(triggered()), this, SLOT(startConvert()));
 
-    actionAbortConvert->setIcon(QIcon(":toolbar/abort-convert"));
+    actionAbortConvert->setIcon(loadIcon("abort-convert"));
     connect(actionAbortConvert, SIGNAL(triggered()), this, SLOT(stopConvert()));
 
     int w = qMax(toolBar->widgetForAction(actionStartConvert)->sizeHint().width(),
@@ -865,10 +865,10 @@ void MainWindow::initActions()
     toolBar->widgetForAction(actionStartConvert)->setMinimumWidth(w);
     toolBar->widgetForAction(actionAbortConvert)->setMinimumWidth(w);
 
-    actionSelectResultDir->setIcon(QIcon(":folder"));
+    actionSelectResultDir->setIcon(loadIcon("folder"));
     connect(actionSelectResultDir, SIGNAL(triggered()), this, SLOT(openOutDirDialog()));
 
-    actionConfigure->setIcon(QIcon(":configure"));
+    actionConfigure->setIcon(loadIcon("configure"));
     connect(actionConfigure, SIGNAL(triggered()), this, SLOT(configure()));
 
     actionConfigureEncoder->setIcon(actionConfigure->icon());

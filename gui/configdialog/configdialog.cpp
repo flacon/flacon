@@ -79,7 +79,7 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
     connect(pages, SIGNAL(currentChanged(int)), this, SLOT(setPage(int)));
 
-    tmpDirButton->setIcon(QIcon(":folder"));
+    tmpDirButton->setIcon(loadIcon("folder"));
     connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
 
 

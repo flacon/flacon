@@ -58,7 +58,6 @@ public:
     void emitDownloadingStarted(DataProvider *provider) const;
     void emitDownloadingFinished(DataProvider *provider) const;
 
-    static QIcon getIcon(const QString &iconName1, const QString &iconName2="", const QString &iconName3="", const QString &iconName4="");
 
     bool diskExists(const QString &cueUri);
 

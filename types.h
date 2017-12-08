@@ -27,6 +27,7 @@
 #define TYPES_H
 
 #include <QString>
+#include <QIcon>
 
 enum class PreGapType
 {
@@ -62,5 +63,6 @@ CoverMode strToCoverMode(const QString &str);
 
 
 unsigned int levenshteinDistance(const QString &s1, const QString & s2);
+QIcon loadIcon(const QString &iconName, bool loadDisable = true);
 
 #endif // TYPES_H

@@ -37,55 +37,6 @@
 
 static void (*errorHandler)(const QString &msg);
 
-/************************************************
-
- ************************************************/
-QIcon Project::getIcon(const QString &iconName1, const QString &iconName2, const QString &iconName3, const QString &iconName4)
-{
-    if (QIcon::themeName() == "hicolor")
-    {
-        QStringList failback;
-        failback << "oxygen";
-        failback << "Tango";
-        failback << "Prudence-icon";
-        failback << "Humanity";
-        failback << "elementary";
-        failback << "gnome";
-
-
-        QDir usrDir("/usr/share/icons/");
-        QDir usrLocalDir("/usr/local/share/icons/");
-        foreach (QString s, failback)
-        {
-            if (usrDir.exists(s) || usrLocalDir.exists(s))
-            {
-                QIcon::setThemeName(s);
-                break;
-            }
-        }
-    }
-
-    QStringList icons;
-    icons << iconName1;
-    icons << iconName2;
-    icons << iconName3;
-    icons << iconName4;
-
-    QIcon res;
-    foreach(const QString &icon, icons)
-    {
-        if (icon.startsWith(':'))
-            res = QIcon(icon);
-        else
-            res = QIcon::fromTheme(icon);
-
-        if (!res.isNull())
-            return res;
-    }
-
-    return res;
-}
-
 
 /************************************************
 

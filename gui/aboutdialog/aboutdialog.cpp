@@ -26,9 +26,12 @@
 
 #include "aboutdialog.h"
 #include "translatorsinfo.h"
+#include "types.h"
 #include <QDate>
 #include <QList>
 #include <QDebug>
+#include <QPaintEvent>
+#include <QPainter>
 
 /************************************************
 
@@ -39,9 +42,11 @@ AboutDialog::AboutDialog(QWidget *parent) :
     setupUi(this);
     setWindowTitle(tr("About Flacon"));
 
+    this->layout()->setSpacing(10);
     logoLabel->setFixedSize(48, 48);
     logoLabel->setScaledContents(true);
-    logoLabel->setPixmap(QPixmap(":logo"));
+    logoLabel->setPixmap(loadIcon("mainicon", false).pixmap(logoLabel->size()));
+    titleLabel->setStyleSheet("color: #FFFFFF;");
 
     authorsEdit->viewport()->setAutoFillBackground(false);
     thanksEdit->viewport()->setAutoFillBackground(false);
@@ -78,6 +83,13 @@ AboutDialog::AboutDialog(QWidget *parent) :
     thanksEdit->setHtml(css + tr("Special thanks to:") + thanksInfo().asString());
     translationsEdit->setHtml(css + translationsText());
     programsEdit->setHtml(css + tr("Flacon uses external programs. Many thanks to their authors!") + programsInfo().asString());
+}
+
+void AboutDialog::paintEvent(QPaintEvent *)
+{
+    QRect rect(0, 0, this->width(), tabWidget->pos().y() - 4);
+    QPainter painter(this);
+    painter.fillRect(rect, QColor::fromRgb(0x404040));
 }
 
 

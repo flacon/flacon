@@ -193,6 +193,7 @@ set(LIBRARIES
 
 set(RESOURCES
     images/images.qrc
+    images/icons.qrc
 )
 
 # add translations ...

@@ -344,7 +344,7 @@ ProgramEdit::ProgramEdit(const QString &programName, QWidget *parent):
 {
     mBtn = new QToolButton(this);
     mBtn->setText("...");
-    mBtn->setIcon(QIcon(":folder"));
+    mBtn->setIcon(loadIcon("folder"));
     mBtn->setStyleSheet("QToolButton { border: none; padding: 0px; }");
     mBtn->setCursor(Qt::ArrowCursor);
 
