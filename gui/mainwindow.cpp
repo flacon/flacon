@@ -433,8 +433,9 @@ void MainWindow::setControlsEnable()
 
         actionAddDisk->setEnabled(true);
         actionRemoveDisc->setEnabled(discsSelected);
-        actionStartConvert->setVisible(canConvert);
-        actionAbortConvert->setVisible(running);
+        actionStartConvert->setVisible(true);
+        actionAbortConvert->setVisible(false);
+        actionStartConvert->setEnabled(canConvert);
         actionDownloadTrackInfo->setEnabled(canDownload);
         actionScan->setEnabled(!mScanner);
         actionConfigure->setEnabled(true);
@@ -926,6 +927,3 @@ void MainWindow::saveSettings()
      settings->setValue("MainWindow/Splitter",  QVariant(splitter->saveState()));
      settings->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
 }
-
-
-
