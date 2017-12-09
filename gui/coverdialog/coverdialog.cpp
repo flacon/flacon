@@ -29,6 +29,8 @@
 
 #include <QListWidget>
 #include <QDebug>
+#include <QDialogButtonBox>
+#include <QPushButton>
 
 #include "disk.h"
 #include "asynclistwidgetitem.h"
@@ -64,17 +66,18 @@ CoverDialog::CoverDialog(QWidget *parent) :
     ui(new Ui::CoverDialog)
 {
     ui->setupUi(this);
+    ui->buttonBox->button(QDialogButtonBox::Reset)->setText(tr("Without cover image"));
 
     mEmptyIcon = QIcon(QPixmap::fromImage(QImage(":noCover").scaled(
                                               ui->coverView->iconSize(),
                                               Qt::KeepAspectRatio,
                                               Qt::SmoothTransformation)));
 
-    connect(this, SIGNAL(accepted()),
-            this, SLOT(apply()));
-
     connect(ui->coverView, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
-            this, SLOT(accept()));
+            this,          SLOT(coverDoubleClicked(QListWidgetItem*)));
+
+    connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)),
+            this,          SLOT(buttonClicked(QAbstractButton*)));
 }
 
 
@@ -94,23 +97,42 @@ void CoverDialog::setDisk(Disk *disk)
 {
     mDisk = disk;
     ui->coverView->clear();
-    new QListWidgetItem(mEmptyIcon, tr("Without cover image"), ui->coverView);
     scan(QFileInfo(disk->cueFile()).absoluteDir().absolutePath());
     ui->coverView->setGridSize(QSize(140, 160));
-
 }
 
 
 /************************************************
  *
  ************************************************/
-void CoverDialog::apply()
+void CoverDialog::coverDoubleClicked(QListWidgetItem *)
 {
-    QListWidgetItem *item = ui->coverView->currentItem();
-    if (!item)
-        return;
+    buttonClicked(ui->buttonBox->button(QDialogButtonBox::Ok));
+}
 
-    mDisk->setCoverImageFile(item->data(FileNameRole).toString());
+
+/************************************************
+ *
+ ************************************************/
+void CoverDialog::buttonClicked(QAbstractButton *button)
+{
+    if (button == ui->buttonBox->button(QDialogButtonBox::Ok))
+    {
+        QListWidgetItem *item = ui->coverView->currentItem();
+        if (!item)
+            return;
+        mDisk->setCoverImageFile(item->data(FileNameRole).toString());
+        this->accept();
+        return;
+    }
+
+
+    if (button == ui->buttonBox->button(QDialogButtonBox::Reset))
+    {
+        mDisk->setCoverImageFile("");
+        this->accept();
+        return;
+    }
 }
 
 

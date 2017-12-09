@@ -31,6 +31,8 @@
 #include <QIcon>
 
 class Disk;
+class QAbstractButton;
+class QListWidgetItem;
 
 namespace Ui
 {
@@ -52,7 +54,8 @@ public slots:
     void setDisk(Disk *disk);
 
 private slots:
-    void apply();
+    void coverDoubleClicked(QListWidgetItem *item);
+    void buttonClicked(QAbstractButton *button);
 
 private:
     explicit CoverDialog(QWidget *parent = 0);
