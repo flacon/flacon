@@ -62,7 +62,7 @@ public:
     virtual QStringList decoderArgs(const QString &fileName) const override;
 
     virtual QByteArray magic() const override { return "RIFF"; }
-    virtual uint const magicOffset() const override { return 0; }
+    virtual uint magicOffset() const override { return 0; }
 };
 
 #endif // WAV_H

@@ -47,9 +47,9 @@ public:
     virtual bool isInputFormat() const { return false; }
 
     virtual QString decoderProgramName() const { return ""; }
-    virtual QStringList decoderArgs(const QString &fileName) const { return QStringList(); }
+    virtual QStringList decoderArgs(const QString &fileName) const { Q_UNUSED(fileName); return QStringList(); }
     virtual QByteArray magic() const = 0;
-    virtual uint  const magicOffset() const { return 0; }
+    virtual uint magicOffset() const { return 0; }
 
 
     // Out format

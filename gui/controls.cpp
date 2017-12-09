@@ -111,7 +111,8 @@ void OutPatternButton::fullPatternTriggered()
 /************************************************
 
  ************************************************/
-CodePageComboBox::CodePageComboBox(QWidget *parent)
+CodePageComboBox::CodePageComboBox(QWidget *parent):
+    MultiValuesComboBox(parent)
 {
     addItem(tr("Auto detect", "Codepage auto detection"),  CODEC_AUTODETECT);
     insertSeparator(9999);
@@ -365,7 +366,7 @@ void ProgramEdit::find()
 /************************************************
 
  ************************************************/
-void ProgramEdit::resizeEvent(QResizeEvent *event)
+void ProgramEdit::resizeEvent(QResizeEvent *)
 {
     int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
     QRect btnRect = QRect(QPoint(0,0), QSize(rect().height(), rect().height()));

@@ -34,6 +34,7 @@ REGISTER_FORMAT(Format_Wav)
  ************************************************/
 QStringList Format_Wav::decoderArgs(const QString &fileName) const
 {
+    Q_UNUSED(fileName);
     return QStringList();
 }
 
@@ -55,6 +56,8 @@ OutFormat_Wav::OutFormat_Wav()
  ************************************************/
 QStringList OutFormat_Wav::encoderArgs(const Track *track, const QString &outFile) const
 {
+    Q_UNUSED(track);
+    Q_UNUSED(outFile);
     return QStringList();
 }
 
@@ -64,6 +67,7 @@ QStringList OutFormat_Wav::encoderArgs(const Track *track, const QString &outFil
  ************************************************/
 QStringList OutFormat_Wav::gainArgs(const QStringList &files) const
 {
+    Q_UNUSED(files);
     return QStringList();
 }
 
@@ -84,7 +88,8 @@ QHash<QString, QVariant> OutFormat_Wav::defaultParameters() const
  ************************************************/
 EncoderConfigPage *OutFormat_Wav::configPage(QWidget *parent) const
 {
-    return 0;
+    Q_UNUSED(parent);
+    return nullptr;
 }
 
 

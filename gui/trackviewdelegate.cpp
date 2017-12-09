@@ -671,7 +671,7 @@ void TrackViewDelegate::movieUpdated()
 /************************************************
 
  ************************************************/
-void TrackViewDelegate::downloadingStarted(DataProvider *provider)
+void TrackViewDelegate::downloadingStarted(DataProvider *)
 {
     mDownloadMovie.start();
 }

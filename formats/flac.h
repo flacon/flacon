@@ -59,7 +59,7 @@ public:
     virtual QStringList decoderArgs(const QString &fileName) const override;
 
     virtual QByteArray magic() const override { return "fLaC"; }
-    virtual uint const magicOffset() const override { return 0; }
+    virtual uint magicOffset() const override { return 0; }
 };
 
 

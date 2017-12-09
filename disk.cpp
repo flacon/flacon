@@ -642,11 +642,6 @@ QString Disk::searchCoverImage(const QString &startDir)
             return file;
     }
     return "";
-
-    if (l.isEmpty())
-        return "";
-    else
-        return l.first();
 }
 
 
@@ -740,6 +735,8 @@ QString PreGapTrack::tag(const QString &tagName) const
  ************************************************/
 void PreGapTrack::setTag(const QString &tagName, const QString &value)
 {
+    Q_UNUSED(tagName);
+    Q_UNUSED(value);
 }
 
 

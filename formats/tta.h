@@ -35,7 +35,7 @@ public:
     virtual QString name() const override { return "TTA"; }
     virtual QString ext() const override { return "tta"; }
     virtual QByteArray magic() const override { return "TTA1"; }
-    virtual uint const magicOffset() const override { return 0; }
+    virtual uint magicOffset() const override { return 0; }
 
 
     virtual bool isInputFormat() const override { return true; }

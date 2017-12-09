@@ -111,6 +111,7 @@ QStringList OutFormat_Aac::encoderArgs(const Track *track, const QString &outFil
  ************************************************/
 QStringList OutFormat_Aac::gainArgs(const QStringList &files) const
 {
+    Q_UNUSED(files);
     return QStringList();
 }
 

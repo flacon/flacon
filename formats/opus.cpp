@@ -88,7 +88,8 @@ QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFi
  ************************************************/
 QStringList OutFormat_Opus::gainArgs(const QStringList &files) const
 {
-  return QStringList();
+    Q_UNUSED(files);
+    return QStringList();
 }
 
 

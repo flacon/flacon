@@ -54,7 +54,7 @@ public:
     virtual QString name() const override { return "WavPack"; }
     virtual QString ext() const override { return "wv"; }
     virtual QByteArray magic() const override { return "wvpk"; }
-    virtual uint const magicOffset() const override { return 0; }
+    virtual uint magicOffset() const override { return 0; }
 
 
     virtual bool isInputFormat() const override { return true; }

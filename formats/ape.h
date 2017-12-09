@@ -37,7 +37,7 @@ public:
     virtual bool isInputFormat() const override { return true; }
 
     virtual QByteArray magic() const override { return "MAC "; }
-    virtual uint const magicOffset() const override { return 0; }
+    virtual uint magicOffset() const override { return 0; }
 
 
     virtual QString decoderProgramName() const override { return "mac"; }

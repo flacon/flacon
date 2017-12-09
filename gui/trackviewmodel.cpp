@@ -443,6 +443,7 @@ QString TrackViewModel::trackDurationToString(uint milliseconds) const
  ************************************************/
 int TrackViewModel::columnCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return TrackView::ColumnCount;
 }
 

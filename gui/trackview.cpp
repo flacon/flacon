@@ -235,6 +235,7 @@ void TrackView::emitSelectCueFile()
  ************************************************/
 void TrackView::emitSelectAudioFile(const QModelIndex &index, const QRect &buttonRect)
 {
+    Q_UNUSED(buttonRect);
     Disk *disk = mModel->diskByIndex(index);
     if (disk)
         emit selectAudioFile(disk);

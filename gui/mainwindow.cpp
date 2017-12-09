@@ -195,7 +195,7 @@ MainWindow::MainWindow(QWidget *parent) :
 /************************************************
  *
  ************************************************/
-void MainWindow::showEvent(QShowEvent *event)
+void MainWindow::showEvent(QShowEvent *)
 {
     if (project->count())
         trackView->selectDisk(project->disk(0));
