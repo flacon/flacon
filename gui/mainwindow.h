@@ -108,6 +108,8 @@ private:
 
     void loadSettings();
     void saveSettings();
+
+    QIcon loadMainIcon();
 };
 
 #endif // MAINWINDOW_H

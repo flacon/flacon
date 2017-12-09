@@ -60,12 +60,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     setupUi(this);
 
+    qApp->setWindowIcon(loadMainIcon());
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolBar->setIconSize(QSize(24,24));
     qApp->setAttribute(Qt::AA_DontShowIconsInMenus, true);
 
 #ifdef Q_OS_MAC
-    qApp->setWindowIcon(loadIcon("mainicon", false));
     this->setUnifiedTitleAndToolBarOnMac(true);
     setWindowIcon(QIcon());
 #endif
@@ -926,4 +926,36 @@ void MainWindow::saveSettings()
      settings->setValue("MainWindow/Height",    QVariant(size().height()));
      settings->setValue("MainWindow/Splitter",  QVariant(splitter->saveState()));
      settings->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QIcon MainWindow::loadMainIcon()
+{
+    if (QIcon::themeName() == "hicolor")
+    {
+        QStringList failback;
+        failback << "oxygen";
+        failback << "Tango";
+        failback << "Prudence-icon";
+        failback << "Humanity";
+        failback << "elementary";
+        failback << "gnome";
+
+
+        QDir usrDir("/usr/share/icons/");
+        QDir usrLocalDir("/usr/local/share/icons/");
+        foreach (QString s, failback)
+        {
+            if (usrDir.exists(s) || usrLocalDir.exists(s))
+            {
+                QIcon::setThemeName(s);
+                break;
+            }
+        }
+    }
+
+    return QIcon::fromTheme("flacon", loadIcon("mainicon", false));
 }
