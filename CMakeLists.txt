@@ -23,7 +23,8 @@
  #
  # END_COMMON_COPYRIGHT_HEADER
 
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.0)
+cmake_policy(SET CMP0028 NEW)
 
 project(flacon)
 
@@ -139,41 +140,6 @@ set(SOURCES
     formats/tta.cpp
 )
 
-set (MOCS
-    track.h
-    disk.h
-    project.h
-    settings.h
-    tagset.h
-    internet/dataprovider.h
-    scanner.h
-
-    gui/mainwindow.h
-    gui/controls.h
-    gui/trackview.h
-    gui/trackviewmodel.h
-    gui/trackviewdelegate.h
-    gui/configdialog/configdialog.h
-    gui/aboutdialog/aboutdialog.h
-    gui/cuediskselectdialog/cuediskselectdialog.h
-    gui/coverdialog/coverdialog.h
-    gui/coverdialog/asynclistwidgetitem.h
-
-    converter/decoder.h
-    converter/converter.h
-    converter/splitter.h
-    converter/encoder.h
-    converter/gain.h
-    converter/worker.h
-    converter/diskpipline.h
-
-    formats/aac.h
-    formats/flac.h
-    formats/mp3.h
-    formats/ogg.h
-    formats/wv.h
-    formats/opus.h
-)
 
 set (FORMS
     gui/mainwindow.ui
@@ -235,24 +201,18 @@ include_directories(
 include("cmake/macos.cmake")
 add_homebrew_qt_prefix_path()
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+find_package(Qt5 REQUIRED
+    Core
+    Widgets
+    Network
+    LinguistTools
+)
 
-find_package(Qt5Widgets REQUIRED)
-include_directories(${Qt5Widgets_INCLUDE_DIRS})
-add_definitions(${Qt5Widgets_DEFINITIONS})
-set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Widgets_LIBRARIES})
 
-find_package(Qt5Network REQUIRED)
-include_directories(${Qt5Network_INCLUDE_DIRS})
-add_definitions(${Qt5Network_DEFINITIONS})
-set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Network_LIBRARIES})
-
-find_package(Qt5LinguistTools REQUIRED QUIET)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
-
-qt5_wrap_cpp(MOC_SOURCES ${MOCS})
-qt5_add_resources(QRC_SOURCES ${RESOURCES})
-qt5_wrap_ui(UI_HEADERS ${FORMS})
 qt5_add_translation(QM_FILES ${TS_FILES})
 
 
@@ -266,8 +226,8 @@ include_directories(${UCHARDET_INCLUDE_DIRS})
 link_directories(${UCHARDET_LIBRARY_DIRS})
 
 
-add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${MOC_SOURCES} ${QM_FILES} ${QRC_SOURCES} ${UI_HEADERS} ${ENGINES_CPP} ${ENGINES_H} ${TRANSLATORS_INFO_QRC})
-target_link_libraries(${PROJECT_NAME} ${LIBRARIES} ${QT_LIBRARIES})
+add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${QM_FILES} ${QRC_SOURCES} ${ENGINES_CPP} ${ENGINES_H} ${TRANSLATORS_INFO_QRC})
+target_link_libraries(${PROJECT_NAME} ${LIBRARIES} ${QT_LIBRARIES} Qt5::Widgets Qt5::Network)
 
 
 function(CREATE_DESKTOP_FILE _IN_FILE _OUT_FILE _TRANSLATIONS_PATTERN)
@@ -331,7 +291,6 @@ configure_file(
     @ONLY
 )
 
-#add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz
 add_custom_command(TARGET ${PROJECT_NAME}
     COMMAND gzip -c -n ${CMAKE_CURRENT_BINARY_DIR}/flacon.1 > ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz
 )

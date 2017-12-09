@@ -25,8 +25,8 @@
 
 
 project(flacon_test)
-cmake_minimum_required( VERSION 2.6 )
-
+cmake_minimum_required( VERSION 3.0.0 )
+cmake_policy(SET CMP0028 NEW)
 
 set(TEST_HEADERS
     tools.h
@@ -48,9 +48,6 @@ set(TEST_SOURCES
     test_outformatencoderargs.cpp
 )
 
-set(TEST_MOCS
-    testflacon.h
-)
 
 foreach(FILE ${SOURCES})
     if(NOT FILE STREQUAL "main.cpp")
@@ -63,10 +60,6 @@ foreach(FILE ${HEADERS})
     set(TEST_HEADERS ${TEST_HEADERS} "../${FILE}")
 endforeach()
 
-
-foreach(FILE ${MOCS})
-    set(TEST_MOCS ${TEST_MOCS} "../${FILE}")
-endforeach()
 
 
 add_definitions(-DTEST_DATA_DIR=\"${CMAKE_CURRENT_SOURCE_DIR}/data/\")
@@ -84,23 +77,13 @@ include_directories(
 
 add_definitions(-Wall)
 
-if(USE_QT4)
-    set(QT_USE_QTTEST true)
-    find_package(Qt4 REQUIRED)
-    include(${QT_USE_FILE})
-    qt4_wrap_cpp(TEST_MOC_SOURCES ${TEST_MOCS})
-else()
-    cmake_minimum_required(VERSION 2.8.3)
-    find_package(Qt5Test REQUIRED)
-    include_directories(${Qt5Test_INCLUDE_DIRS})
-    add_definitions(${Qt5Test_DEFINITIONS})
-    set(QT_LIBRARIES ${QT_LIBRARIES} ${Qt5Test_LIBRARIES})
-    qt5_wrap_cpp(TEST_MOC_SOURCES ${TEST_MOCS})
-endif()
+find_package(Qt5 REQUIRED
+    Core
+    Test
+    Widgets
+    Network
+)
 
-add_executable(${PROJECT_NAME} ${TEST_HEADERS} ${TEST_SOURCES} ${TEST_MOC_SOURCES})
-target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES}  ${LIBRARIES})
 
-#add_dependencies(${PROJECT_NAME} razorqt)
-#install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
-
+add_executable(${PROJECT_NAME} ${TEST_HEADERS} ${TEST_SOURCES})
+target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES}  ${LIBRARIES} Qt5::Core Qt5::Test Qt5::Widgets Qt5::Network)
