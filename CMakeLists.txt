@@ -4,7 +4,7 @@
  # Flacon - audio File Encoder
  # https://github.com/flacon/flacon
  #
- # Copyright: 2012-2013
+ # Copyright: 2012-2017
  #   Alexander Sokoloff <sokoloff.a@gmail.com>
  #
  # This library is free software; you can redistribute it and/or
@@ -36,6 +36,10 @@ add_definitions(-DFLACON_MAJOR_VERSION=\"${MAJOR_VERSION}\")
 add_definitions(-DFLACON_MINOR_VERSION=\"${MINOR_VERSION}\")
 add_definitions(-DFLACON_PATCH_VERSION=\"${PATCH_VERSION}\")
 add_definitions(-DFLACON_VERSION=\"${FLACON_VERSION}\")
+
+include("cmake/status_message.cmake")
+status_message("${PROJECT_NAME} ver. ${FLACON_VERSION}")
+status_message(" ")
 
 
 set(HEADERS
@@ -211,19 +215,10 @@ set(TRANSLATIONS_DIR
 add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
 set (CMAKE_CXX_STANDARD 11)
-include("tools.cmake")
-include("cmake/macos.cmake")
+include("cmake/cxx_standard.cmake")
+include("cmake/git_version.cmake")
+include("cmake/build_type.cmake")
 
-git_version(GIT_BRANCH GIT_COMMIT_HASH)
-if (NOT "${GIT_COMMIT_HASH}" STREQUAL "")
-    add_definitions(-DGIT_COMMIT_HASH=\"${GIT_COMMIT_HASH}\")
-    add_definitions(-DGIT_BRANCH=\"${GIT_BRANCH}\")
-endif()
-
-############################################
-if(CMAKE_COMPILER_IS_GNUCXX)
-    add_definitions (-Wall -pedantic -Wno-long-long -Werror=format-security)
-endif()
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
@@ -237,7 +232,9 @@ include_directories(
 )
 
 #*******************************************
+include("cmake/macos.cmake")
 add_homebrew_qt_prefix_path()
+
 
 find_package(Qt5Widgets REQUIRED)
 include_directories(${Qt5Widgets_INCLUDE_DIRS})
@@ -323,7 +320,8 @@ install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
 
-addTests(tests)
+include("cmake/tests.cmake")
+add_tests(tests)
 
 
 # Man page **************************************

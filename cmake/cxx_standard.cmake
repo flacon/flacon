@@ -23,18 +23,11 @@
  #
  # END_COMMON_COPYRIGHT_HEADER
 
-function(CREATE_PLIST_FILE _IN_FILE _OUT_FILE _TRANSLATIONS_PATTERN)   
-    configure_file(${_IN_FILE} ${_OUT_FILE} @ONLY)
-    file(APPEND ${_OUT_FILE} "${name_tag}\n")
-    file(APPEND ${_OUT_FILE} "${comment_tag}\n")
-    file(APPEND ${_OUT_FILE} "${genericname_tag}\n")
-endfunction()
-
-
-# Homebrew has issues, fix it
-macro(add_homebrew_qt_prefix_path)
-    if (APPLE)
-        file (GLOB dirs  /usr/local/Cellar/qt/*)
-        list(APPEND CMAKE_PREFIX_PATH ${dirs})
+# C++ standard version for CMake less 3.1
+if (CMAKE_VERSION VERSION_LESS "3.1")
+    if (CMAKE_CXX_STANDARD EQUAL 11)
+        set (CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+    elseif (CMAKE_CXX_STANDARD EQUAL 14)
+        set (CMAKE_CXX_FLAGS "-std=c++14 ${CMAKE_CXX_FLAGS}")
     endif()
-endmacro()
+endif()

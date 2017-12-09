@@ -23,18 +23,32 @@
  #
  # END_COMMON_COPYRIGHT_HEADER
 
-function(CREATE_PLIST_FILE _IN_FILE _OUT_FILE _TRANSLATIONS_PATTERN)   
-    configure_file(${_IN_FILE} ${_OUT_FILE} @ONLY)
-    file(APPEND ${_OUT_FILE} "${name_tag}\n")
-    file(APPEND ${_OUT_FILE} "${comment_tag}\n")
-    file(APPEND ${_OUT_FILE} "${genericname_tag}\n")
+function(git_version GIT_BRANCH GIT_COMMIT_HASH)
+
+    # Get the current working branch
+    execute_process(
+        COMMAND git rev-parse --abbrev-ref HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE branch
+        ERROR_QUIET
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    SET(${GIT_BRANCH} ${branch} PARENT_SCOPE)
+
+    # Get the latest abbreviated commit hash of the working branch
+    execute_process(
+        COMMAND git log -1 --format=%H
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE hash
+        ERROR_QUIET
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    SET(${GIT_COMMIT_HASH} ${hash} PARENT_SCOPE)
+
 endfunction()
 
-
-# Homebrew has issues, fix it
-macro(add_homebrew_qt_prefix_path)
-    if (APPLE)
-        file (GLOB dirs  /usr/local/Cellar/qt/*)
-        list(APPEND CMAKE_PREFIX_PATH ${dirs})
-    endif()
-endmacro()
+git_version(GIT_BRANCH GIT_COMMIT_HASH)
+if (NOT "${GIT_COMMIT_HASH}" STREQUAL "")
+    add_definitions(-DGIT_COMMIT_HASH=\"${GIT_COMMIT_HASH}\")
+    add_definitions(-DGIT_BRANCH=\"${GIT_BRANCH}\")
+endif()
