@@ -202,7 +202,7 @@ void TestFlacon::testConvert()
         }
 
         if (!msg.isEmpty())
-            QFAIL(QTest::currentDataTag() + '\n' + msg.toLocal8Bit());
+            QFAIL(QString("%1\n%2").arg(QTest::currentDataTag()).arg(msg).toLocal8Bit().data());
     }
     project->clear();
 }
