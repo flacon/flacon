@@ -31,9 +31,8 @@
 #include <QtConcurrent/QtConcurrent>
 
 
-class AsyncListWidgetItem: public QObject, public QListWidgetItem
+class AsyncListWidgetItem: public QListWidgetItem
 {
-    Q_OBJECT
 public:
     explicit AsyncListWidgetItem(QListWidget *view = Q_NULLPTR, int type = Type);
     explicit AsyncListWidgetItem(const QString &text, QListWidget *view = Q_NULLPTR, int type = Type);
@@ -42,12 +41,9 @@ public:
 
     void setIconAsync(const QString &fileName);
 
-
-private slots:
-    void imageReady();
-
 private:
     QFutureWatcher<QImage*> *mWatcher;
+    void imageReady();
 };
 
 

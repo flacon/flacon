@@ -119,7 +119,7 @@ AsyncListWidgetItem::~AsyncListWidgetItem()
 {
     if (mWatcher)
     {
-        disconnect(mWatcher);
+        QObject::disconnect(mWatcher, 0, 0, 0);
         mWatcher->deleteLater();
     }
 }
@@ -132,13 +132,14 @@ void AsyncListWidgetItem::setIconAsync(const QString &fileName)
 {
     if (mWatcher)
     {
-        disconnect(mWatcher);
+        QObject::disconnect(mWatcher, 0, 0, 0);
         mWatcher->deleteLater();
     }
 
     mWatcher = new QFutureWatcher<QImage*>;
-    connect(mWatcher, SIGNAL(finished()),
-                this, SLOT(imageReady()));
+
+    mWatcher->connect(mWatcher, &QFutureWatcher<QImage*>::finished,
+                     [this](){this->imageReady();});
 
     mWatcher->setFuture(QtConcurrent::run(
                             loadImage,
