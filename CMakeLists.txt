@@ -25,7 +25,9 @@
 
 cmake_minimum_required(VERSION 3.0.0)
 cmake_policy(SET CMP0028 NEW)
-cmake_policy(SET CMP0071 NEW)
+if (POLICY CMP0071) 
+    cmake_policy(SET CMP0071 NEW) 
+endif()
 
 project(flacon)
 
