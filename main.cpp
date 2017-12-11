@@ -127,14 +127,12 @@ void translate(QApplication *app)
 
     QTranslator *qtTranslator = new QTranslator(app);
     qtTranslator->load("qt_" + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    qWarning() << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
     app->installTranslator(qtTranslator);
 
     QTranslator *appTranslator = new QTranslator(app);
     appTranslator->load(QString("flacon_%2.qm").arg(locale)) ||
             appTranslator->load(QString("%1/flacon_%2.qm").arg(TRANSLATIONS_DIR, locale));
     app->installTranslator(appTranslator);
-    qWarning() << TRANSLATIONS_DIR;
 }
 
 
