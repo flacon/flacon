@@ -199,17 +199,11 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
 
     if (type == TrackViewModel::TrackItem)
     {
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
         if (index.row() % 2)
-            painter->fillRect(option.rect, mTrackView->palette().base().color());
+            opt.features &= ~QStyleOptionViewItem::Alternate;
         else
-            painter->fillRect(option.rect, mTrackView->palette().alternateBase().color());
-#else
-        if (index.row() % 2)
-            opt.features &= ~QStyleOptionViewItemV2::Alternate;
-        else
-            opt.features |= QStyleOptionViewItemV2::Alternate;
-#endif
+            opt.features |= QStyleOptionViewItem::Alternate;
+
         paintTrack(painter, opt, index);
         return;
     }
