@@ -32,13 +32,9 @@
 #include <QDir>
 #include <QDebug>
 #include <QProcessEnvironment>
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
-    #include <QDesktopServices>
-#else
-    #include <QStandardPaths>
-#endif
-
-
+#include <QDir>
+#include <QStandardPaths>
+#include <QCoreApplication>
 
 #ifdef Q_OS_WIN
     #define PATH_ENV_SEPARATOR ';'
@@ -120,12 +116,8 @@ void Settings::init()
     // Out Files ********************************
     setDefaultValue(OutFiles_Pattern,       "%a/{%y - }%A/%n - %t");
 
-
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
-    QString outDir = QDesktopServices::storageLocation(QDesktopServices::MusicLocation);
-#else
     QString outDir = QStandardPaths::standardLocations(QStandardPaths::MusicLocation).first();
-#endif
+
     outDir.replace(QDir::homePath(), "~");
     setDefaultValue(OutFiles_Directory,     outDir);
     setDefaultValue(OutFiles_Format,        "FLAC");
@@ -274,7 +266,11 @@ bool Settings::checkProgram(const QString &program) const
  ************************************************/
 QString Settings::programName(const QString &program) const
 {
+#ifdef MAC_BUNDLE
+    return QDir(qApp->applicationDirPath()).absoluteFilePath(program);
+#else
     return value("Programs/" + program).toString();
+#endif
 }
 
 

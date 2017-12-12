@@ -40,6 +40,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QFileInfo>
+#include <QDir>
 
 
 /************************************************
@@ -123,15 +124,21 @@ void guiErrorHandler(const QString &message)
  ************************************************/
 void translate(QApplication *app)
 {
+#ifdef MAC_BUNDLE
+    QString appDir = QFileInfo(qApp->applicationDirPath()).dir().absolutePath() + "/Resources/";
+    QString sysDir = appDir;
+#else
+    QString appDir = TRANSLATIONS_DIR;
+    QString sysDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#endif
     QString locale = QLocale::system().name();
 
     QTranslator *qtTranslator = new QTranslator(app);
-    qtTranslator->load("qt_" + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    qtTranslator->load("qt_" + locale, sysDir);
     app->installTranslator(qtTranslator);
-
     QTranslator *appTranslator = new QTranslator(app);
     appTranslator->load(QString("flacon_%2.qm").arg(locale)) ||
-            appTranslator->load(QString("%1/flacon_%2.qm").arg(TRANSLATIONS_DIR, locale));
+            appTranslator->load(QString("%1/flacon_%2.qm").arg(appDir, locale));
     app->installTranslator(appTranslator);
 }
 
