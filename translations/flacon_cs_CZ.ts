@@ -787,14 +787,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <translation>&amp;O programu Flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Odstranit album</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Odstranit album z projektu</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Delete</translation>
     </message>
@@ -960,6 +952,14 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     </message>
     <message>
         <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
         <translation type="unfinished"/>
     </message>
 </context>

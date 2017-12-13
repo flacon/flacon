@@ -789,14 +789,6 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <translation>&amp;O programie Flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Usuń album</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Usuń album z projektu</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Del</translation>
     </message>
@@ -962,6 +954,14 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
     </message>
     <message>
         <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
         <translation type="unfinished"/>
     </message>
 </context>

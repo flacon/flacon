@@ -790,14 +790,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>&amp;Acerca de Flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Quitar álbum</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Quitar el álbum del proyecto</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Supr</translation>
     </message>
@@ -963,6 +955,14 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     </message>
     <message>
         <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
         <translation type="unfinished"/>
     </message>
 </context>

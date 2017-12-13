@@ -815,14 +815,6 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
         <translation>&amp;Om Flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Fjern album</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Fjern album fra prosjekt</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Del</translation>
     </message>
@@ -988,6 +980,14 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     </message>
     <message>
         <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
         <translation type="unfinished"/>
     </message>
 </context>

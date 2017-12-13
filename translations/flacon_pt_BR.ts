@@ -584,7 +584,7 @@ No modo CBR, define a taxa de bits de saída específica.
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Sem imagem da capa</translation>
     </message>
 </context>
 <context>
@@ -811,14 +811,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>So&amp;bre o Flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Remover álbum</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Remover álbum do projeto</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Del</translation>
     </message>
@@ -985,6 +977,14 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     <message>
         <source>Add disk</source>
         <translation>Adicionar disco</translation>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
