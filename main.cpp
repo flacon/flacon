@@ -125,16 +125,14 @@ void guiErrorHandler(const QString &message)
 void translate(QApplication *app)
 {
 #ifdef MAC_BUNDLE
-    QString appDir = QFileInfo(qApp->applicationDirPath()).dir().absolutePath() + "/Resources/";
-    QString sysDir = appDir;
+    QString appDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #else
     QString appDir = TRANSLATIONS_DIR;
-    QString sysDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #endif
     QString locale = QLocale::system().name();
 
     QTranslator *qtTranslator = new QTranslator(app);
-    qtTranslator->load("qt_" + locale, sysDir);
+    qtTranslator->load("qt_" + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     app->installTranslator(qtTranslator);
     QTranslator *appTranslator = new QTranslator(app);
     appTranslator->load(QString("flacon_%2.qm").arg(locale)) ||
