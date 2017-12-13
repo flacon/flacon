@@ -437,10 +437,10 @@ If you surround sections of text that contain a token with braces, these section
   </action>
   <action name="actionRemoveDisc">
    <property name="text">
-    <string>Remove album</string>
+    <string>Remove disk</string>
    </property>
    <property name="toolTip">
-    <string>Remove album from project</string>
+    <string>Remove disk from project</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Del</string>
