@@ -43,9 +43,6 @@ AboutDialog::AboutDialog(QWidget *parent) :
     setWindowTitle(tr("About Flacon"));
 
     this->layout()->setSpacing(10);
-    logoLabel->setFixedSize(48, 48);
-    logoLabel->setScaledContents(true);
-    logoLabel->setPixmap(loadIcon("mainicon", false).pixmap(logoLabel->size()));
     titleLabel->setStyleSheet("color: #FFFFFF;");
 
     authorsEdit->viewport()->setAutoFillBackground(false);
@@ -85,9 +82,13 @@ AboutDialog::AboutDialog(QWidget *parent) :
     programsEdit->setHtml(css + tr("Flacon uses external programs. Many thanks to their authors!") + programsInfo().asString());
 }
 
+
+/************************************************
+ *
+ ************************************************/
 void AboutDialog::paintEvent(QPaintEvent *)
 {
-    QRect rect(0, 0, this->width(), tabWidget->pos().y() - 4);
+    QRect rect(0, 0, this->width(), titleLabel->pos().y() + titleLabel->height());
     QPainter painter(this);
     painter.fillRect(rect, QColor::fromRgb(0x404040));
 }
@@ -98,16 +99,21 @@ void AboutDialog::paintEvent(QPaintEvent *)
  ************************************************/
 QString AboutDialog::titleText() const
 {
+    return
+        "<table style='width:100%' border=0><tr>"
+        "<td style='padding:8px 8px;'><img src=':/48/mainicon' style='margin:8 px;'></td>"
+        "<td style='padding:8px 8px;'>" +
 #ifdef GIT_BRANCH
-    return QString("<div class=name>Flacon</div> developer version."
-                   "<div class=ver>%1 + git %2</b> "
-                   "<a href='https://github.com/flacon/flacon/commit/%3'>%3</a></div>")
+        QString("<div class=name>Flacon</div> developer version."
+                "<div class=ver>%1 + git %2</b> "
+                "<a href='https://github.com/flacon/flacon/commit/%3'>%3</a></div>")
             .arg(FLACON_VERSION)
             .arg(GIT_BRANCH)
-            .arg(GIT_COMMIT_HASH);
+            .arg(GIT_COMMIT_HASH) +
 #else
-    return QString("<div class=name>Flacon</div><div class=ver>%1</div>").arg(FLACON_VERSION);
+        QString("<div class=name>Flacon</div><div class=ver>Version %1</div>").arg(FLACON_VERSION) +
 #endif
+        "</td></tr></table>";
 }
 
 
