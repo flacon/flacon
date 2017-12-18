@@ -984,11 +984,11 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     </message>
     <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>Šalinti diską</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
-        <translation type="unfinished"/>
+        <translation>Šalinti diską iš projekto</translation>
     </message>
 </context>
 <context>

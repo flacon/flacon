@@ -984,11 +984,11 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     </message>
     <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>Schijf verwijderen</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
-        <translation type="unfinished"/>
+        <translation>Schijf verwijderen van project</translation>
     </message>
 </context>
 <context>

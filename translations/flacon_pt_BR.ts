@@ -980,11 +980,11 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     </message>
     <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>Remover  disco</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
-        <translation type="unfinished"/>
+        <translation>Remover disco do projeto</translation>
     </message>
 </context>
 <context>

@@ -982,11 +982,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>Supprimer le disque</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
-        <translation type="unfinished"/>
+        <translation>Supprimer le disque du projet</translation>
     </message>
 </context>
 <context>
