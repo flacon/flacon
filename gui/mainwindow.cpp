@@ -68,6 +68,9 @@ MainWindow::MainWindow(QWidget *parent) :
 #ifdef Q_OS_MAC
     this->setUnifiedTitleAndToolBarOnMac(true);
     setWindowIcon(QIcon());
+
+    trackView->setFrameShape(QFrame::NoFrame);
+    splitter->setStyleSheet("::handle{ border-right: 1px solid #b6b6b6;}");
 #endif
 
     setAcceptDrops(true);
