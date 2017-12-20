@@ -63,7 +63,8 @@ CoverDialog *CoverDialog::createAndShow(Disk *disk, QWidget *parent)
  ************************************************/
 CoverDialog::CoverDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CoverDialog)
+    ui(new Ui::CoverDialog),
+    mDisk(nullptr)
 {
     ui->setupUi(this);
     ui->buttonBox->button(QDialogButtonBox::Reset)->setText(tr("Without cover image"));

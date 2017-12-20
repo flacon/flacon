@@ -812,14 +812,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>О &amp;flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Удалить альбом</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Удалить альбом из проекта</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Del</translation>
     </message>
@@ -986,6 +978,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Add disk</source>
         <translation>Добавить диск</translation>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation>Удалить диск</translation>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
+        <translation>Удалить диск из проекта</translation>
     </message>
 </context>
 <context>

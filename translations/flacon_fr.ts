@@ -583,7 +583,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Sans image de couverture</translation>
     </message>
 </context>
 <context>
@@ -813,14 +813,6 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <translation>&amp;À propos de Flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Retirer l’album</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Retirer l’album du projet</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Suppr</translation>
     </message>
@@ -987,6 +979,14 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>Add disk</source>
         <translation>Ajouter un disque</translation>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation>Supprimer le disque</translation>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
+        <translation>Supprimer le disque du projet</translation>
     </message>
 </context>
 <context>

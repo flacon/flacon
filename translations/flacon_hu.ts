@@ -778,14 +778,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>Flacon &amp;névjegye</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Album eltávolítása</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Album eltávolítása a projektből</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Del</translation>
     </message>
@@ -933,6 +925,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -584,7 +584,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Be viršelio paveikslo</translation>
     </message>
 </context>
 <context>
@@ -815,14 +815,6 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <translation>&amp;Apie Flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Šalinti albumą</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Šalinti albumą iš projekto</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Del</translation>
     </message>
@@ -989,6 +981,14 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     <message>
         <source>Add disk</source>
         <translation>Pridėti diską</translation>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation>Šalinti diską</translation>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
+        <translation>Šalinti diską iš projekto</translation>
     </message>
 </context>
 <context>

@@ -815,14 +815,6 @@ Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Album
         <translation>&amp;Über Flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Album entfernen</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Album vom Projekt entfernen</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Strg+Entf</translation>
     </message>
@@ -988,6 +980,14 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     </message>
     <message>
         <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
         <translation type="unfinished"/>
     </message>
 </context>

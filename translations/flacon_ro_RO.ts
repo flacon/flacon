@@ -813,14 +813,6 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
         <translation>&amp;Despre Flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Eliminați album</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Eliminați toate albumele din proiect</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Del</translation>
     </message>
@@ -986,6 +978,14 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
     </message>
     <message>
         <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
         <translation type="unfinished"/>
     </message>
 </context>

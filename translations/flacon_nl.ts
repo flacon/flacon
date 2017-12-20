@@ -584,7 +584,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Zonder albumhoes</translation>
     </message>
 </context>
 <context>
@@ -815,14 +815,6 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <translation>&amp;Over Flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Album verwijderen</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Album verwijderen van project</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Del</translation>
     </message>
@@ -989,6 +981,14 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>Add disk</source>
         <translation>Schijf toevoegen</translation>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation>Schijf verwijderen</translation>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
+        <translation>Schijf verwijderen van project</translation>
     </message>
 </context>
 <context>

@@ -804,14 +804,6 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
         <translation>&amp;Informazioni su Flacon</translation>
     </message>
     <message>
-        <source>Remove album</source>
-        <translation>Rimuovi album</translation>
-    </message>
-    <message>
-        <source>Remove album from project</source>
-        <translation>Rimuovi album dal progetto</translation>
-    </message>
-    <message>
         <source>Ctrl+Del</source>
         <translation>Ctrl+Del</translation>
     </message>
@@ -975,6 +967,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Add disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disk from project</source>
         <translation type="unfinished"/>
     </message>
 </context>
