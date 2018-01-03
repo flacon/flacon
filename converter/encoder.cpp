@@ -52,6 +52,7 @@ Encoder::Encoder(const WorkerRequest request, const OutFormat *format, QObject *
  ************************************************/
 void Encoder::run()
 {
+    emit trackProgress(mRequest.track(), Track::Encoding, 0);
     bool debug  = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_ENCODER");
 
     // Input file already WAV, so for WAV output format we just rename file.
@@ -82,8 +83,9 @@ void Encoder::run()
     {
         QTextStream(stderr) << "Encoder command: ";
         debugArguments(prog, args);
-        QString msg = tr("Encoder error:\n") +
-                QString::fromLocal8Bit(process.readAllStandardError());
+        QString msg = tr("Encoder error:\n") + "<pre>" +
+                QString::fromLocal8Bit(process.readAllStandardError()) +
+                "</pre>";
         error(mRequest.track(), msg);
     }
 

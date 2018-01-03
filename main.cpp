@@ -115,7 +115,10 @@ void consoleErroHandler(const QString &message)
 void guiErrorHandler(const QString &message)
 {
     consoleErroHandler(message);
-    QMessageBox::critical(0, QObject::tr("Flacon", "Error"), message);
+    QString msg(message);
+    msg.replace("\n", "<br>");
+    msg.replace(" ", "&nbsp;");
+    QMessageBox::critical(0, QObject::tr("Flacon", "Error"), msg);
 }
 
 

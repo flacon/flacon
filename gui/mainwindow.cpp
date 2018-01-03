@@ -820,15 +820,6 @@ bool MainWindow::event(QEvent *event)
 /************************************************
 
  ************************************************/
-void MainWindow::showErrorMessage(const QString &message)
-{
-    QMessageBox::critical(this, tr("Flacon", "Error"), message);
-}
-
-
-/************************************************
-
- ************************************************/
 void MainWindow::setStartTrackNum()
 {
     QList<Disk*> disks = trackView->selectedDisks();

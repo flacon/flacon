@@ -76,8 +76,6 @@ private slots:
 
     void removeDisks();
 
-    void showErrorMessage(const QString &message);
-
     void setStartTrackNum();
     void setTrackTag();
 
