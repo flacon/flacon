@@ -174,13 +174,17 @@ file (GLOB TS_FILES
     translations/flacon*.ts
 )
 
-set(DATA_DIR
-    ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}
-)
+if(NOT DEFINED DATA_DIR)
+    set(DATA_DIR
+        ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}
+    )
+endif(NOT DEFINED DATA_DIR)
 
-set(TRANSLATIONS_DIR
-    "${DATA_DIR}/translations"
-)
+if(NOT DEFINED TRANSLATIONS_DIR)
+    set(TRANSLATIONS_DIR
+        "${DATA_DIR}/translations"
+    )
+endif(NOT DEFINED TRANSLATIONS_DIR)
 add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
 set (CMAKE_CXX_STANDARD 11)
@@ -269,22 +273,30 @@ function(CREATE_DESKTOP_FILE _IN_FILE _OUT_FILE _TRANSLATIONS_PATTERN)
     file(APPEND ${_OUT_FILE} "${genericname_tag}\n")
 endfunction()
 
-CREATE_DESKTOP_FILE(misc/${PROJECT_NAME}.desktop ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop translations/*.desktop)
-CREATE_PLIST_FILE(misc/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist translations/*.desktop)
+if(NOT HAIKU)
+	CREATE_DESKTOP_FILE(misc/${PROJECT_NAME}.desktop ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop translations/*.desktop)
+	CREATE_PLIST_FILE(misc/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist translations/*.desktop)
 
-install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop DESTINATION "share/applications")
-install(FILES   images/mainicon/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps"    RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps"    RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps"    RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-64x64.png   DESTINATION "share/icons/hicolor/64x64/apps"    RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-128x128.png DESTINATION "share/icons/hicolor/128x128/apps"  RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-256x256.png DESTINATION "share/icons/hicolor/256x256/apps"  RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-512x512.png DESTINATION "share/icons/hicolor/512x512/apps"  RENAME "flacon.png")
-install(FILES   images/mainicon/flacon.svg         DESTINATION "share/icons/hicolor/scalable/apps" RENAME "flacon.svg")
-
+	install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop DESTINATION "share/applications")
+	install(FILES   images/mainicon/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps"    RENAME "flacon.png")
+	install(FILES   images/mainicon/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps"    RENAME "flacon.png")
+	install(FILES   images/mainicon/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps"    RENAME "flacon.png")
+	install(FILES   images/mainicon/flacon-64x64.png   DESTINATION "share/icons/hicolor/64x64/apps"    RENAME "flacon.png")
+	install(FILES   images/mainicon/flacon-128x128.png DESTINATION "share/icons/hicolor/128x128/apps"  RENAME "flacon.png")
+	install(FILES   images/mainicon/flacon-256x256.png DESTINATION "share/icons/hicolor/256x256/apps"  RENAME "flacon.png")
+	install(FILES   images/mainicon/flacon-512x512.png DESTINATION "share/icons/hicolor/512x512/apps"  RENAME "flacon.png")
+	install(FILES   images/mainicon/flacon.svg         DESTINATION "share/icons/hicolor/scalable/apps" RENAME "flacon.svg")
+endif(NOT HAIKU)
 
 install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
-install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
+
+if(NOT DEFINED BIN_DIR)
+    set(MAN_DIR
+        ${CMAKE_INSTALL_PREFIX}/share/man/man1
+    )
+endif(NOT DEFINED BIN_DIR)
+
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${BIN_DIR})
 
 
 include("cmake/tests.cmake")
@@ -301,7 +313,14 @@ configure_file(
 add_custom_command(TARGET ${PROJECT_NAME}
     COMMAND gzip -c -n ${CMAKE_CURRENT_BINARY_DIR}/flacon.1 > ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz
 )
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION share/man/man1)
+
+if(NOT DEFINED MAN_DIR)
+    set(MAN_DIR
+        ${CMAKE_INSTALL_PREFIX}/share/man/man1
+    )
+endif(NOT DEFINED MAN_DIR)
+
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION ${MAN_DIR})
 
 # Add make dist target **************************
 if(NOT CPACK_PACKAGE_VERSION)
