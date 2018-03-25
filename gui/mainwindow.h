@@ -47,9 +47,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void addFileOrDir(const QString &fileName);
-
 public slots:
+    void addFileOrDir(const QString &fileName);
     void startConvert();
     void stopConvert();
 

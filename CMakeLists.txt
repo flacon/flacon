@@ -47,6 +47,7 @@ status_message(" ")
 
 
 set(HEADERS
+    application.h
     types.h
     tagset.h
     cue.h
@@ -95,6 +96,7 @@ set(HEADERS
 )
 
 set(SOURCES
+    application.cpp
     types.cpp
     tagset.cpp
     cue.cpp
