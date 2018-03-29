@@ -86,6 +86,7 @@ private slots:
     void openScanDialog();
 
     void openAboutDialog();
+    void checkUpdates();
 
 protected:
     void closeEvent(QCloseEvent *) override;

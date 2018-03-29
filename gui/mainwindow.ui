@@ -323,7 +323,7 @@ If you surround sections of text that contain a token with braces, these section
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -342,6 +342,7 @@ If you surround sections of text that contain a token with braces, these section
     <property name="title">
      <string>&amp;Settings</string>
     </property>
+    <addaction name="actionUpdates"/>
     <addaction name="actionConfigure"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
@@ -481,6 +482,17 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
    </property>
    <property name="toolTip">
     <string>Recursive album search</string>
+   </property>
+  </action>
+  <action name="actionUpdates">
+   <property name="text">
+    <string>Check for Updates...</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::ApplicationSpecificRole</enum>
    </property>
   </action>
  </widget>

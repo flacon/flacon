@@ -6,7 +6,7 @@
 	<string>flacon</string>
 
 	<key>CFBundleIconFile</key> 	
-	<string>Flacon</string>
+	<string>flacon</string>
 
 	<key>CFBundleIdentifier</key>
 	<string>io.github.flacon</string>
@@ -76,6 +76,9 @@
 		</dict>
 
 	</array>
+
+	<key>SUFeedURL</key>
+	<string>https://flacon.github.io/download/feed.xml</string>
 
 </dict>
 </plist>

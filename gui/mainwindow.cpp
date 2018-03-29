@@ -50,6 +50,9 @@
 #include <QToolBar>
 #include <QToolButton>
 
+#ifdef Q_OS_MAC
+#include "updater/updater.h"
+#endif
 
 /************************************************
 
@@ -784,6 +787,17 @@ void MainWindow::openAboutDialog()
 /************************************************
 
  ************************************************/
+void MainWindow::checkUpdates()
+{
+#ifdef Q_OS_MAC
+    Updater::sharedUpdater().checkForUpdatesInBackground();
+#endif
+}
+
+
+/************************************************
+
+ ************************************************/
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Escape)
@@ -879,7 +893,13 @@ void MainWindow::initActions()
         if (btn)
             btn->setMinimumWidth(w);
     }
-
+#ifdef Q_OS_MAC
+    actionUpdates->setVisible(true);
+    connect(actionUpdates, SIGNAL(triggered(bool)),
+            this, SLOT(checkUpdates()));
+#else
+    actionUpdates->setVisible(false);
+#endif
 }
 
 

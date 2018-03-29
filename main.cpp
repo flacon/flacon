@@ -43,6 +43,9 @@
 #include <QFileInfo>
 #include <QDir>
 
+#ifdef Q_OS_MAC
+    #include "updater/updater.h"
+#endif
 
 /************************************************
  *
@@ -207,6 +210,9 @@ int runGui(int argc, char *argv[], const QStringList &files)
 
 
     window.show();
+#ifdef Q_OS_MAC
+    Updater::sharedUpdater().checkForUpdatesInBackground();
+#endif
     return app.exec();
 }
 
