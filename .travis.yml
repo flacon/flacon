@@ -1,19 +1,31 @@
 language: cpp
+
+os:
+  - linux
+  - osx
+
 compiler:
   - gcc
   - clang
   
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then  sudo apt-get -y update ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then  sudo apt-get -y install python-software-properties ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then  sudo add-apt-repository -y ppa:flacon ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then  sudo apt-get -y update ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then  sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then  sudo apt-get -y install flac mac vorbis-tools wavpack lame vorbisgain mp3gain ttaenc ; fi
+
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then  brew update ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install qt5 uchardet ; fi
+  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install flac mac vorbis-tools wavpack lame vorbisgain mp3gain ttaenc ; fi
+
 install:
-  - sudo apt-get -y update
-  - sudo apt-get -y install python-software-properties
-  - sudo add-apt-repository -y ppa:flacon
-  - sudo apt-get -y update
-  - sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev
-  - sudo apt-get -y install flac mac vorbis-tools wavpack lame vorbisgain mp3gain ttaenc
+  - true
 
 script: 
   - mkdir build
   - cd build
   - cmake -DBUILD_TESTS=Yes ..
   - make
-  - tests/flacon_test -maxwarnings 0
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then  tests/flacon_test  ; fi
