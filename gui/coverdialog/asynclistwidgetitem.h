@@ -36,12 +36,13 @@ class AsyncListWidgetItem: public QListWidgetItem
 public:
     explicit AsyncListWidgetItem(QListWidget *view = Q_NULLPTR, int type = Type);
     explicit AsyncListWidgetItem(const QString &text, QListWidget *view = Q_NULLPTR, int type = Type);
-    AsyncListWidgetItem(const AsyncListWidgetItem &other);
     virtual ~AsyncListWidgetItem();
 
     void setIconAsync(const QString &fileName);
 
 private:
+    AsyncListWidgetItem(const AsyncListWidgetItem &other) = delete;
+
     QFutureWatcher<QImage*> *mWatcher;
     void imageReady();
 };

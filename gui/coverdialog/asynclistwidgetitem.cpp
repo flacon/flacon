@@ -104,17 +104,6 @@ AsyncListWidgetItem::AsyncListWidgetItem(const QString &text, QListWidget *view,
 /************************************************
  *
  ************************************************/
-AsyncListWidgetItem::AsyncListWidgetItem(const AsyncListWidgetItem &other):
-    QListWidgetItem(other),
-    mWatcher(other.mWatcher)
-{
-
-}
-
-
-/************************************************
- *
- ************************************************/
 AsyncListWidgetItem::~AsyncListWidgetItem()
 {
     if (mWatcher)

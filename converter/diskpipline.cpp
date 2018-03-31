@@ -61,7 +61,7 @@ public:
         if (!wait(3000))
         {
             qWarning() << "Can't quit from thread" << mWorker;
-            terminate();
+            this->terminate();
             if (!wait(3000))
                 qWarning() << "Can't terminate from thread" << mWorker;
         }

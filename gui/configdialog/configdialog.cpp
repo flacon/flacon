@@ -40,7 +40,7 @@
 #include <QLineEdit>
 #include <QSpinBox>
 
-#ifdef MAC_BUNDLE
+#ifdef MAC_UPDATER
 #include "updater/updater.h"
 #endif
 
@@ -98,9 +98,13 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
 #ifdef MAC_BUNDLE
     pages->removeTab(pages->indexOf(programsPage));
-    initUpdatePage();
 #else
     initPrograms();
+#endif
+
+#ifdef MAC_UPDATER
+    initUpdatePage();
+#else
     pages->removeTab(pages->indexOf(updatePage));
 #endif
 
@@ -170,7 +174,7 @@ void ConfigDialog::initPrograms()
  ************************************************/
 void ConfigDialog::initUpdatePage()
 {
-#ifdef MAC_BUNDLE
+#ifdef MAC_UPDATER
     connect(updateNowBtn, &QPushButton::clicked,
             [this]() {
                 Updater::sharedUpdater().checkForUpdatesInBackground();
@@ -178,7 +182,6 @@ void ConfigDialog::initUpdatePage()
             });
 
     updateLastUpdateLbl();
-
 
 #endif
 }
@@ -271,6 +274,7 @@ void ConfigDialog::setCoverMode(CoverMode mode)
  ************************************************/
 void ConfigDialog::updateLastUpdateLbl()
 {
+#ifdef MAC_UPDATER
     QDateTime date = Updater::sharedUpdater().lastUpdateCheckDate();
     QString s;
     if (!date.isNull())
@@ -280,6 +284,7 @@ void ConfigDialog::updateLastUpdateLbl()
         s = tr("Never checked", "Information about last update");
 
     lastUpdateLbl->setText(s);
+#endif
 }
 
 
@@ -342,7 +347,7 @@ void ConfigDialog::load()
     foreach(ProgramEdit *edit, mProgramEdits)
         edit->setText(settings->value("Programs/" + edit->programName()).toString());
 
-#ifdef MAC_BUNDLE
+#ifdef MAC_UPDATER
    autoUpdateCbk->setChecked(Updater::sharedUpdater().automaticallyChecksForUpdates());
 #endif
 }
@@ -368,7 +373,7 @@ void ConfigDialog::write()
     foreach(ProgramEdit *edit, mProgramEdits)
         settings->setValue("Programs/" + edit->programName(), edit->text());
 
-#ifdef MAC_BUNDLE
+#ifdef MAC_UPDATER
     Updater::sharedUpdater().setAutomaticallyChecksForUpdates(
         autoUpdateCbk->isChecked());
 #endif

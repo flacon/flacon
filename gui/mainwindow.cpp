@@ -50,7 +50,7 @@
 #include <QToolBar>
 #include <QToolButton>
 
-#ifdef Q_OS_MAC
+#ifdef MAC_UPDATER
 #include "updater/updater.h"
 #endif
 
@@ -789,7 +789,7 @@ void MainWindow::openAboutDialog()
  ************************************************/
 void MainWindow::checkUpdates()
 {
-#ifdef Q_OS_MAC
+#ifdef MAC_UPDATER
     Updater::sharedUpdater().checkForUpdatesInBackground();
 #endif
 }
@@ -895,7 +895,7 @@ void MainWindow::initActions()
             btn->setMinimumWidth(w);
     }
 
-#ifdef MAC_BUNDLE
+#ifdef MAC_UPDATER
     actionUpdates->setVisible(true);
     actionUpdates->setMenuRole(QAction::ApplicationSpecificRole);
 

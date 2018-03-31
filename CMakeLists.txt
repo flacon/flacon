@@ -233,9 +233,8 @@ link_directories(${UCHARDET_LIBRARY_DIRS})
 
 if ( MAC_BUNDLE )
     add_definitions(-DMAC_BUNDLE=Yes)
-endif()
+    add_definitions(-DMAC_UPDATER=Yes)
 
-if (APPLE)
     set(HEADERS ${HEADERS}
         updater/updater.h
     )

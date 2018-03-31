@@ -27,6 +27,7 @@
 #ifndef UPDATER_H
 #define UPDATER_H
 
+#ifdef MAC_UPDATER
 
 #include <QObject>
 #include <QUrl>
@@ -111,4 +112,5 @@ private:
         Private* d;
 };
 
+#endif
 #endif // UPDATER_H

@@ -25,7 +25,7 @@
 
 #include "updater.h"
 
-#ifdef Q_OS_MAC
+#ifdef MAC_UPDATER
 
 #include <AppKit/AppKit.h>
 #include <Cocoa/Cocoa.h>
