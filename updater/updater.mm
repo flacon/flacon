@@ -23,9 +23,9 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifdef Q_OS_MAC
-
 #include "updater.h"
+
+#ifdef Q_OS_MAC
 
 #include <AppKit/AppKit.h>
 #include <Cocoa/Cocoa.h>
