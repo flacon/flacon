@@ -44,7 +44,7 @@
 #include <QDir>
 
 #ifdef Q_OS_MAC
-    #include "updater/updater.h"
+#include "updater/updater.h"
 #endif
 
 /************************************************
@@ -208,11 +208,13 @@ int runGui(int argc, char *argv[], const QStringList &files)
     QObject::connect(&app, SIGNAL(openFile(QString)),
             &window, SLOT(addFileOrDir(QString)));
 
-
     window.show();
-#ifdef Q_OS_MAC
-    Updater::sharedUpdater().checkForUpdatesInBackground();
+#ifdef MAC_BUNDLE
+    Updater &updater = Updater::sharedUpdater();
+    if (updater.automaticallyChecksForUpdates())
+        updater.checkForUpdatesInBackground();
 #endif
+
     return app.exec();
 }
 

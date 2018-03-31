@@ -30,6 +30,8 @@
 #include <AppKit/AppKit.h>
 #include <Cocoa/Cocoa.h>
 #include <Sparkle.h>
+#include <QDate>
+#include <QDebug>
 
 class Updater::Private {
 public:
@@ -56,9 +58,10 @@ Updater &Updater::sharedUpdater()
 /************************************************
  *
  ************************************************/
-Updater::Updater()
+Updater::Updater():
+    QObject(),
+    d(new Updater::Private())
 {
-    d = new Updater::Private();
     NSApplicationLoad();
     d->mAutoReleasePool = [[NSAutoreleasePool alloc] init];
 
@@ -116,6 +119,36 @@ void Updater::setFeedURL(const QUrl &url)
 void Updater::setFeedURL(const char *url)
 {
     setFeedURL(QString::fromLocal8Bit(url));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+bool Updater::automaticallyChecksForUpdates() const
+{
+    return [d->mUpdater automaticallyChecksForUpdates];
+}
+
+/************************************************
+ *
+ ************************************************/
+void Updater::setAutomaticallyChecksForUpdates(bool enable)
+{
+    [d->mUpdater setAutomaticallyChecksForUpdates: enable];
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QDateTime Updater::lastUpdateCheckDate() const
+{
+    NSDate *date = [d->mUpdater lastUpdateCheckDate];
+    if (date)
+        return QDateTime::fromNSDate(date);
+
+    return QDateTime();
 }
 
 

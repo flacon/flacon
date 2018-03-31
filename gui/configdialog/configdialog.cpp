@@ -40,6 +40,10 @@
 #include <QLineEdit>
 #include <QSpinBox>
 
+#ifdef MAC_BUNDLE
+#include "updater/updater.h"
+#endif
+
 /************************************************
 
  ************************************************/
@@ -90,11 +94,14 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     preGapComboBox->addItem(tr("Extract to separate file"), preGapTypeToString(PreGapType::ExtractToFile));
     preGapComboBox->addItem(tr("Add to first track"),       preGapTypeToString(PreGapType::AddToFirstTrack));
 
-    tabPagesInit();
-#ifdef Q_OS_MAC
+    initTabPages();
+
+#ifdef MAC_BUNDLE
     pages->removeTab(pages->indexOf(programsPage));
+    initUpdatePage();
 #else
-    programsInit();
+    initPrograms();
+    pages->removeTab(pages->indexOf(updatePage));
 #endif
 
     pages->setCurrentIndex(0);
@@ -116,7 +123,7 @@ ConfigDialog::~ConfigDialog()
 /************************************************
 
  ************************************************/
-void ConfigDialog::tabPagesInit()
+void ConfigDialog::initTabPages()
 {
     int n = 1;
     foreach(OutFormat *format, OutFormat::allFormats())
@@ -137,7 +144,7 @@ void ConfigDialog::tabPagesInit()
 /************************************************
 
  ************************************************/
-void ConfigDialog::programsInit()
+void ConfigDialog::initPrograms()
 {
     QStringList progs = QStringList::fromSet(settings->programs());
     progs.sort();
@@ -155,6 +162,25 @@ void ConfigDialog::programsInit()
         connect(progScanButton, SIGNAL(clicked()), edit, SLOT(find()));
         row++;
     }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ConfigDialog::initUpdatePage()
+{
+#ifdef MAC_BUNDLE
+    connect(updateNowBtn, &QPushButton::clicked,
+            [this]() {
+                Updater::sharedUpdater().checkForUpdatesInBackground();
+                updateLastUpdateLbl();
+            });
+
+    updateLastUpdateLbl();
+
+
+#endif
 }
 
 
@@ -243,6 +269,23 @@ void ConfigDialog::setCoverMode(CoverMode mode)
 /************************************************
  *
  ************************************************/
+void ConfigDialog::updateLastUpdateLbl()
+{
+    QDateTime date = Updater::sharedUpdater().lastUpdateCheckDate();
+    QString s;
+    if (!date.isNull())
+        s = tr("Last check was %1", "Information about last update")
+                .arg(date.toString(Qt::DefaultLocaleLongDate));
+    else
+        s = tr("Never checked", "Information about last update");
+
+    lastUpdateLbl->setText(s);
+}
+
+
+/************************************************
+ *
+ ************************************************/
 void loadWidget(Settings::Key key, QCheckBox *widget)
 {
     widget->setChecked(settings->value(key).toBool());
@@ -258,28 +301,6 @@ void loadWidget(Settings::Key key, QSpinBox *widget)
     int value = settings->value(key).toInt(&ok);
     if (ok)
         widget->setValue(value);
-}
-
-
-/************************************************
-
- ************************************************/
-void ConfigDialog::load()
-{
-    EncoderConfigPage::loadWidget("Tags/DefaultCodepage",  codePageComboBox);
-    EncoderConfigPage::loadWidget("Encoder/ThreadCount",   threadsCountSpin);
-    EncoderConfigPage::loadWidget("Encoder/TmpDir",        tmpDirEdit);
-    EncoderConfigPage::loadWidget("PerTrackCue/Create",    perTrackCueCheck);
-    EncoderConfigPage::loadWidget("PerTrackCue/Pregap",    preGapComboBox);
-
-    setCoverMode(settings->coverMode());
-    loadWidget(Settings::Cover_ResizeSize,   coverResizeSpinBox);
-
-    foreach(EncoderConfigPage *page, mEncodersPages)
-        page->load();
-
-    foreach(ProgramEdit *edit, mProgramEdits)
-        edit->setText(settings->value("Programs/" + edit->programName()).toString());
 }
 
 
@@ -304,6 +325,32 @@ void writeWidget(Settings::Key key, QSpinBox *widget)
 /************************************************
 
  ************************************************/
+void ConfigDialog::load()
+{
+    EncoderConfigPage::loadWidget("Tags/DefaultCodepage",  codePageComboBox);
+    EncoderConfigPage::loadWidget("Encoder/ThreadCount",   threadsCountSpin);
+    EncoderConfigPage::loadWidget("Encoder/TmpDir",        tmpDirEdit);
+    EncoderConfigPage::loadWidget("PerTrackCue/Create",    perTrackCueCheck);
+    EncoderConfigPage::loadWidget("PerTrackCue/Pregap",    preGapComboBox);
+
+    setCoverMode(settings->coverMode());
+    loadWidget(Settings::Cover_ResizeSize,   coverResizeSpinBox);
+
+    foreach(EncoderConfigPage *page, mEncodersPages)
+        page->load();
+
+    foreach(ProgramEdit *edit, mProgramEdits)
+        edit->setText(settings->value("Programs/" + edit->programName()).toString());
+
+#ifdef MAC_BUNDLE
+   autoUpdateCbk->setChecked(Updater::sharedUpdater().automaticallyChecksForUpdates());
+#endif
+}
+
+
+/************************************************
+
+ ************************************************/
 void ConfigDialog::write()
 {
     EncoderConfigPage::writeWidget("Tags/DefaultCodepage",  codePageComboBox);
@@ -320,6 +367,11 @@ void ConfigDialog::write()
 
     foreach(ProgramEdit *edit, mProgramEdits)
         settings->setValue("Programs/" + edit->programName(), edit->text());
+
+#ifdef MAC_BUNDLE
+    Updater::sharedUpdater().setAutomaticallyChecksForUpdates(
+        autoUpdateCbk->isChecked());
+#endif
 }
 
 

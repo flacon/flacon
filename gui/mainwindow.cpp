@@ -878,6 +878,7 @@ void MainWindow::initActions()
     connect(actionConfigureEncoder, SIGNAL(triggered()), this, SLOT(configureEncoder()));
 
     connect(actionAbout, SIGNAL(triggered()), this,  SLOT(openAboutDialog()));
+    actionAbout->setMenuRole(QAction::AboutRole);
 
     int w = 0;
     foreach (QAction *act, toolBar->actions())
@@ -893,10 +894,13 @@ void MainWindow::initActions()
         if (btn)
             btn->setMinimumWidth(w);
     }
-#ifdef Q_OS_MAC
+
+#ifdef MAC_BUNDLE
     actionUpdates->setVisible(true);
-    connect(actionUpdates, SIGNAL(triggered(bool)),
-            this, SLOT(checkUpdates()));
+    actionUpdates->setMenuRole(QAction::ApplicationSpecificRole);
+
+    connect(actionUpdates, &QAction::triggered,
+            &Updater::sharedUpdater(), &Updater::checkForUpdatesInBackground);
 #else
     actionUpdates->setVisible(false);
 #endif

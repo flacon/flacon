@@ -27,13 +27,45 @@
 #ifndef UPDATER_H
 #define UPDATER_H
 
+
+#include <QObject>
 #include <QUrl>
-#ifdef Q_OS_MAC
-class Updater
+#include <QDateTime>
+
+class Updater: public QObject
 {
+    Q_OBJECT
 public:
     static Updater &sharedUpdater();
 
+    /*!
+     The URL of the appcast used to download update information.
+
+     Setting this property will persist in the host bundle's user defaults.
+     If you don't want persistence, you may want to consider instead implementing
+     SUUpdaterDelegate::feedURLStringForUpdater: or SUUpdaterDelegate::feedParametersForUpdater:sendingSystemProfile:
+
+     This property must be called on the main thread.
+     */
+    QUrl feedURL() const;
+
+    /*!
+     A property indicating whether or not to check for updates automatically.
+
+     Setting this property will persist in the host bundle's user defaults.
+     The update schedule cycle will be reset in a short delay after the property's new value is set.
+     This is to allow reverting this property without kicking off a schedule change immediately
+     */
+    bool automaticallyChecksForUpdates() const;
+
+    /*!
+        Returns the date of last update check.
+
+        \returns \c Null date if no check has been performed.
+     */
+    QDateTime lastUpdateCheckDate() const;
+
+public slots:
     /*!
      Checks for updates, but does not display any UI unless an update is found.
 
@@ -58,9 +90,17 @@ public:
 
      This property must be called on the main thread.
      */
-    QUrl feedURL() const;
     void setFeedURL(const QUrl &url);
     void setFeedURL(const char *url);
+
+    /*!
+     A property indicating whether or not to check for updates automatically.
+
+     Setting this property will persist in the host bundle's user defaults.
+     The update schedule cycle will be reset in a short delay after the property's new value is set.
+     This is to allow reverting this property without kicking off a schedule change immediately
+     */
+    void setAutomaticallyChecksForUpdates(bool enable);
 
 protected:
     Updater();
@@ -71,5 +111,4 @@ private:
         Private* d;
 };
 
-#endif
 #endif // UPDATER_H
