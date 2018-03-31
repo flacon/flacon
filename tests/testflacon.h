@@ -27,7 +27,6 @@
 #ifndef TEST_FLACON_H
 #define TEST_FLACON_H
 
-#include <QTest>
 #include <QObject>
 #include <QStringList>
 #include <QMap>

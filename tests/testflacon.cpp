@@ -24,6 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
+#include <QTest>
 #include "testflacon.h"
 #include "tools.h"
 #include "../disk.h"
@@ -35,7 +36,6 @@
 #include "converter/splitter.h"
 #include "outformat.h"
 
-#include <QTest>
 #include <QDebug>
 #include <QProcess>
 #include <QBuffer>

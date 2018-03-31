@@ -23,6 +23,7 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
+#include <QTest>
 #include "testflacon.h"
 #include "types.h"
 #include "../settings.h"
