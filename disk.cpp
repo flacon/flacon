@@ -50,7 +50,6 @@ Disk::Disk(QObject *parent) :
     mTags(0),
     mStartTrackNum(1),
     mCount(0),
-    mValid(false),
     mAudioFile(0)
 {
     mPreGapTrack = new PreGapTrack(this);

@@ -31,6 +31,8 @@
 #include <QDir>
 #include <QDebug>
 
+const quint64 MIN_BUF_SIZE = 4 * 1024;
+const quint64 MAX_BUF_SIZE = 1024 * 1024;
 
 /************************************************
  *
@@ -124,7 +126,7 @@ void Encoder::readInputFile(QProcess *process)
     mProgress = -1;
     mTotal = file.size();
 
-    int bufSize = int(mTotal / 200);
+    quint64 bufSize = qBound(MIN_BUF_SIZE, mTotal / 200, MAX_BUF_SIZE);
     QByteArray buf;
 
     while (!file.atEnd())

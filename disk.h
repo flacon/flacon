@@ -80,10 +80,6 @@ public:
 
     QString tag(const QString tagName) const;
 
-
-    bool isValid() const { return mValid; }
-    QString errorString() const { return mErrorString; }
-
     QList<TagSet*> tagSets() const { return mTagSets; }
 
     bool canConvert(QString *description = 0) const;
@@ -126,8 +122,6 @@ private:
     QList<Track*> mTracks;
     int mStartTrackNum;
     int mCount;
-    bool mValid;
-    QString mErrorString;
     QString mCueFile;
     InputAudioFile *mAudioFile;
     Track *mPreGapTrack;

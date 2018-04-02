@@ -56,8 +56,8 @@ private:
     const WorkerRequest mRequest;
     const OutFormat *mFormat;
     QString mOutFile;
-    int mTotal;
-    int mReady;
+    quint64 mTotal;
+    quint64 mReady;
     int mProgress;
 
     void readInputFile(QProcess *process);

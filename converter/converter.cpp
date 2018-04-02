@@ -89,22 +89,25 @@ void Converter::start()
 
     for (int i=0; i<project->count(); ++i)
     {
-        DiskPipeline * pipeline = new DiskPipeline(project->disk(i), this);
-
-        connect(pipeline, SIGNAL(readyStart()),
-                this, SLOT(startThread()));
-
-        connect(pipeline, SIGNAL(threadFinished()),
-                this, SLOT(startThread()));
-
-        mDiskPiplines << pipeline;
-
-        if (!pipeline->init())
+        if (project->disk(i)->canConvert())
         {
-            qDeleteAll(mDiskPiplines);
-            mDiskPiplines.clear();
-            emit finished();
-            return;
+            DiskPipeline * pipeline = new DiskPipeline(project->disk(i), this);
+
+            connect(pipeline, SIGNAL(readyStart()),
+                    this, SLOT(startThread()));
+
+            connect(pipeline, SIGNAL(threadFinished()),
+                    this, SLOT(startThread()));
+
+            mDiskPiplines << pipeline;
+
+            if (!pipeline->init())
+            {
+                qDeleteAll(mDiskPiplines);
+                mDiskPiplines.clear();
+                emit finished();
+                return;
+            }
         }
     }
 
