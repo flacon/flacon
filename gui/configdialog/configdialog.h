@@ -54,8 +54,9 @@ private:
     explicit ConfigDialog(QWidget *parent = 0);
     ~ConfigDialog();
 
-    void tabPagesInit();
-    void programsInit();
+    void initTabPages();
+    void initPrograms();
+    void initUpdatePage();
 
     void load();
     void write();
@@ -63,6 +64,8 @@ private:
     CoverMode coverMode() const;
     void setCoverMode(CoverMode mode);
 
+
+    void updateLastUpdateLbl();
 
     QList<EncoderConfigPage*> mEncodersPages;
     QList<ProgramEdit*> mProgramEdits;

@@ -47,6 +47,7 @@ status_message(" ")
 
 
 set(HEADERS
+    application.h
     types.h
     tagset.h
     cue.h
@@ -95,6 +96,7 @@ set(HEADERS
 )
 
 set(SOURCES
+    application.cpp
     types.cpp
     tagset.cpp
     cue.cpp
@@ -231,6 +233,23 @@ link_directories(${UCHARDET_LIBRARY_DIRS})
 
 if ( MAC_BUNDLE )
     add_definitions(-DMAC_BUNDLE=Yes)
+    add_definitions(-DMAC_UPDATER=Yes)
+
+    set(HEADERS ${HEADERS}
+        updater/updater.h
+    )
+
+    set(SOURCES ${SOURCES}
+        updater/updater.mm
+    )
+
+    SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+    find_package(Sparkle REQUIRED)
+    include_directories(${SPARKLE_INCLUDE_DIR})
+    set(LIBRARIES ${LIBRARIES} ${SPARKLE_LIBRARY})
+
+    FIND_LIBRARY(COCOA_LIBRARY Cocoa)
+    set(LIBRARIES ${LIBRARIES} ${COCOA_LIBRARY})
 endif()
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${QM_FILES} ${QRC_SOURCES} ${ENGINES_CPP} ${ENGINES_H} ${RESOURCES} ${TRANSLATORS_INFO_QRC})

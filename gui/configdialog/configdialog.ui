@@ -256,8 +256,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>579</width>
-              <height>311</height>
+              <width>98</width>
+              <height>36</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -308,6 +308,64 @@
             </widget>
            </item>
           </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="updatePage">
+        <attribute name="title">
+         <string>Update</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QCheckBox" name="autoUpdateCbk">
+           <property name="text">
+            <string>Automatically check for updates</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="lastUpdateLbl">
+             <property name="text">
+              <string notr="true">Last check was %1</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="updateNowBtn">
+             <property name="text">
+              <string>Check now</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>277</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>

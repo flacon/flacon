@@ -50,6 +50,9 @@
 #include <QToolBar>
 #include <QToolButton>
 
+#ifdef MAC_UPDATER
+#include "updater/updater.h"
+#endif
 
 /************************************************
 
@@ -784,6 +787,17 @@ void MainWindow::openAboutDialog()
 /************************************************
 
  ************************************************/
+void MainWindow::checkUpdates()
+{
+#ifdef MAC_UPDATER
+    Updater::sharedUpdater().checkForUpdatesInBackground();
+#endif
+}
+
+
+/************************************************
+
+ ************************************************/
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Escape)
@@ -864,6 +878,7 @@ void MainWindow::initActions()
     connect(actionConfigureEncoder, SIGNAL(triggered()), this, SLOT(configureEncoder()));
 
     connect(actionAbout, SIGNAL(triggered()), this,  SLOT(openAboutDialog()));
+    actionAbout->setMenuRole(QAction::AboutRole);
 
     int w = 0;
     foreach (QAction *act, toolBar->actions())
@@ -880,6 +895,15 @@ void MainWindow::initActions()
             btn->setMinimumWidth(w);
     }
 
+#ifdef MAC_UPDATER
+    actionUpdates->setVisible(true);
+    actionUpdates->setMenuRole(QAction::ApplicationSpecificRole);
+
+    connect(actionUpdates, &QAction::triggered,
+            &Updater::sharedUpdater(), &Updater::checkForUpdatesInBackground);
+#else
+    actionUpdates->setVisible(false);
+#endif
 }
 
 

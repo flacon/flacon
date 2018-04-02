@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2017
+ * Copyright: 2012-2018
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,30 +24,24 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef ASYNCLISTWIDGETITEM_H
-#define ASYNCLISTWIDGETITEM_H
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
-#include <QListWidgetItem>
-#include <QtConcurrent/QtConcurrent>
+#include <QApplication>
 
-
-class AsyncListWidgetItem: public QListWidgetItem
+class Application : public QApplication
 {
+    Q_OBJECT
 public:
-    explicit AsyncListWidgetItem(QListWidget *view = Q_NULLPTR, int type = Type);
-    explicit AsyncListWidgetItem(const QString &text, QListWidget *view = Q_NULLPTR, int type = Type);
-    virtual ~AsyncListWidgetItem();
+    explicit Application(int &argc, char **argv);
 
-    void setIconAsync(const QString &fileName);
+protected:
+    bool event(QEvent *event);
 
-private:
-    AsyncListWidgetItem(const AsyncListWidgetItem &other) = delete;
+signals:
+    void openFile(const QString &fileName);
 
-    QFutureWatcher<QImage*> *mWatcher;
-    void imageReady();
+public slots:
 };
 
-
-#endif // ASYNCLISTWIDGETITEM_H
-
-
+#endif // APPLICATION_H

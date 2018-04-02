@@ -26,6 +26,7 @@
 
 #include <QCommandLineParser>
 #include <QApplication>
+#include <application.h>
 #include "mainwindow.h"
 #include "settings.h"
 #include "converter/converter.h"
@@ -42,6 +43,9 @@
 #include <QFileInfo>
 #include <QDir>
 
+#ifdef MAC_UPDATER
+#include "updater/updater.h"
+#endif
 
 /************************************************
  *
@@ -128,16 +132,14 @@ void guiErrorHandler(const QString &message)
 void translate(QApplication *app)
 {
 #ifdef MAC_BUNDLE
-    QString appDir = QFileInfo(qApp->applicationDirPath()).dir().absolutePath() + "/Resources/";
-    QString sysDir = appDir;
+    QString appDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #else
     QString appDir = TRANSLATIONS_DIR;
-    QString sysDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #endif
     QString locale = QLocale::system().name();
 
     QTranslator *qtTranslator = new QTranslator(app);
-    qtTranslator->load("qt_" + locale, sysDir);
+    qtTranslator->load("qt_" + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     app->installTranslator(qtTranslator);
     QTranslator *appTranslator = new QTranslator(app);
     appTranslator->load(QString("flacon_%2.qm").arg(locale)) ||
@@ -194,7 +196,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
  ************************************************/
 int runGui(int argc, char *argv[], const QStringList &files)
 {
-    QApplication app(argc, argv);
+    Application app(argc, argv);
     translate(&app);
 
     MainWindow window;
@@ -203,8 +205,17 @@ int runGui(int argc, char *argv[], const QStringList &files)
         window.addFileOrDir(file);
 
     Project::installErrorHandler(guiErrorHandler);
+    QObject::connect(&app, SIGNAL(openFile(QString)),
+            &window, SLOT(addFileOrDir(QString)));
 
     window.show();
+
+#ifdef MAC_UPDATER
+    Updater &updater = Updater::sharedUpdater();
+    if (updater.automaticallyChecksForUpdates())
+        updater.checkForUpdatesInBackground();
+#endif
+
     return app.exec();
 }
 

@@ -38,7 +38,7 @@ echo "<!-- Generated from icons2png.sh do not edit by hand. -->" > ${RC_FILE}
 echo "<RCC>" >> ${RC_FILE}
 
 
-for size in 16 22 32 48 64 128 256 512 ; do
+for size in 16 22 24 32 48 64 128 256 512 ; do
 	echo "    <qresource prefix=\"${size}\">" >> ${RC_FILE}	
 
 	for color in "$ENABLE" "$DISABLE"; do 

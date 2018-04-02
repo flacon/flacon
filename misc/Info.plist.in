@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleExecutable</key>
-  	<string>flacon</string>
+	<string>flacon</string>
 
-  	<key>CFBundleIconFile</key> 	
-  	<string>flacon</string>
+	<key>CFBundleIconFile</key> 	
+	<string>flacon</string>
 
-  	<key>CFBundleIdentifier</key>
-  	<string>io.github.flacon</string>
+	<key>CFBundleIdentifier</key>
+	<string>io.github.flacon</string>
 
 	<key>CFBundleShortVersionString</key>
 	<string>@FLACON_VERSION@</string>
@@ -29,6 +29,56 @@
 	
 	<key>CFBundleSignature</key>
 	<string>????</string>
+
+	
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key><array><string>cue</string></array>
+			<key>CFBundleTypeIconFile</key><string>flacon.icns</string>
+			<key>CFBundleTypeName</key><string>CUE file</string>
+			<key>CFBundleTypeRole</key><string>Viewer</string>
+		</dict>
+
+		<dict>
+			<key>CFBundleTypeExtensions</key><array><string>ape</string></array>		
+			<key>CFBundleTypeIconFile</key><string>flacon.icns</string>
+			<key>CFBundleTypeName</key><string>Monkey's Audio Lossless Audio Compression</string>
+			<key>CFBundleTypeRole</key><string>Viewer</string>
+		</dict>
+
+		<dict>
+			<key>CFBundleTypeExtensions</key><array><string>flac</string></array>
+			<key>CFBundleTypeIconFile</key><string>flacon.icns</string>
+			<key>CFBundleTypeName</key><string>FLAC Audio File</string>
+			<key>CFBundleTypeRole</key><string>Viewer</string>
+		</dict>
+
+		<dict>
+			<key>CFBundleTypeExtensions</key><array><string>tta</string></array>
+			<key>CFBundleTypeIconFile</key><string>flacon.icns</string>
+			<key>CFBundleTypeName</key><string>True Audio Free Lossless Audio</string>
+			<key>CFBundleTypeRole</key><string>Viewer</string>
+		</dict>
+
+		<dict>
+			<key>CFBundleTypeExtensions</key><array><string>wav</string></array>
+			<key>CFBundleTypeIconFile</key><string>flacon.icns</string>
+			<key>CFBundleTypeName</key><string>WAVE Audio File</string>
+			<key>CFBundleTypeRole</key><string>Viewer</string>
+		</dict>
+
+			<dict>
+			<key>CFBundleTypeExtensions</key><array><string>wv</string></array>
+			<key>CFBundleTypeIconFile</key><string>flacon.icns</string>
+			<key>CFBundleTypeName</key><string>WavePack Audio File</string>
+			<key>CFBundleTypeRole</key><string>Viewer</string>
+		</dict>
+
+	</array>
+
+	<key>SUFeedURL</key>
+	<string>https://flacon.github.io/download/feed.xml</string>
 
 </dict>
 </plist>
