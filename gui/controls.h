@@ -32,6 +32,7 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <QSet>
+#include <QMenu>
 
 class QStringListModel;
 
@@ -53,6 +54,8 @@ public:
     void addPattern(const QString &pattern, const QString &title);
     void addFullPattern(const QString &pattern, const QString &title);
 
+    QMenu *menu()  { return &mMenu; }
+
 signals:
     void paternSelected(const QString &pattern);
     void fullPaternSelected(const QString &pattern);
@@ -60,9 +63,11 @@ signals:
 private slots:
     void patternTriggered();
     void fullPatternTriggered();
+    void popupMenu();
 
 private:
     QAction* mSeparator;
+    QMenu mMenu;
 };
 
 

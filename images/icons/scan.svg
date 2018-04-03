@@ -1,16 +1,2 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-<g id="FOLDER__x2F__OK_2_" enable-background="new    ">
-	<g id="FOLDER__x2F__OK_1_">
-		<g>
-			<path style='fill:#656565' d="M60,49h-3v-3c0-1.657-1.343-3-3-3s-3,1.343-3,3v3h-3c-1.657,0-3,1.343-3,3s1.343,3,3,3h3v3c0,1.657,1.343,3,3,3
-				s3-1.343,3-3v-3h3c1.657,0,3-1.343,3-3S61.657,49,60,49z M0,51c0,1.657,1.343,3,3,3h39.367C42.145,53.372,42,52.705,42,52
-				c0-3.314,2.686-6,6-6c0-3.314,2.686-6,6-6s6,2.686,6,6c1.544,0,2.938,0.6,4,1.557V19H0V51z M61,10H23.982L18,4H3
-				C1.343,4,0,5.343,0,7v9h64v-3C64,11.343,62.657,10,61,10z"/>
-		</g>
-	</g>
-</g>
-</svg>
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 252 252" width="100px" height="100px"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,252v-252h252v252z" fill="none"/><g id="original-icon" fill="#000000" opacity="0" visibility="hidden"><path d="M33.6,25.2c-9.282,0 -16.8,7.518 -16.8,16.8v25.2h92.4h126v-8.4c0,-9.282 -7.518,-16.8 -16.8,-16.8h-124.32656l-5.18438,-8.64609c-3.0324,-5.0568 -8.49949,-8.15391 -14.40469,-8.15391zM25.2,84c-4.6368,0 -8.4,3.7632 -8.4,8.4v100.8c0,9.282 7.518,16.8 16.8,16.8h184.8c9.282,0 16.8,-7.518 16.8,-16.8v-100.8c0,-4.6368 -3.7632,-8.4 -8.4,-8.4z"/></g><g id="subtracted-icon" fill="#000000"><path d="M74.48438,25.2c5.9052,0 11.37229,3.09711 14.40469,8.15391l5.18438,8.64609h124.32656c9.282,0 16.8,7.518 16.8,16.8v8.4h-218.4v-25.2c0,-9.282 7.518,-16.8 16.8,-16.8zM226.8,84c4.6368,0 8.4,3.7632 8.4,8.4v37.92857c-12.0124,-8.04002 -26.4581,-12.72857 -42,-12.72857c-41.7564,0 -75.6,33.8436 -75.6,75.6c0,5.77416 0.64716,11.39702 1.8729,16.8h-85.8729c-9.282,0 -16.8,-7.518 -16.8,-16.8v-100.8c0,-4.6368 3.7632,-8.4 8.4,-8.4z"/></g><g fill="#000000"><g id="Layer_1"><path d="M193.2,134.4c-32.4744,0 -58.8,26.3256 -58.8,58.8c0,32.4744 26.3256,58.8 58.8,58.8c32.4744,0 58.8,-26.3256 58.8,-58.8c0,-32.4744 -26.3256,-58.8 -58.8,-58.8zM218.4,201.6h-16.8v16.8c0,4.6452 -3.7632,8.4 -8.4,8.4c-4.6368,0 -8.4,-3.7548 -8.4,-8.4v-16.8h-16.8c-4.6368,0 -8.4,-3.7548 -8.4,-8.4c0,-4.6452 3.7632,-8.4 8.4,-8.4h16.8v-16.8c0,-4.6452 3.7632,-8.4 8.4,-8.4c4.6368,0 8.4,3.7548 8.4,8.4v16.8h16.8c4.6368,0 8.4,3.7548 8.4,8.4c0,4.6452 -3.7632,8.4 -8.4,8.4z"/></g></g></g></svg>

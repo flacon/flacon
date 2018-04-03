@@ -199,6 +199,11 @@ AboutInfo AboutDialog::thanksInfo() const
     result.add("FlatIcon",
                "https://www.flaticon.com",
                "Icon for application");
+
+    result.add("Icons8",
+               "https://icons8.com",
+               "icons for application");
+
     return result;
 }
 

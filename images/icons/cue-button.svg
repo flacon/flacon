@@ -1,3 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8">
-  <path style='fill:#656565' d="M0 0l4 4 4-4h-8z" transform="translate(0 2)" />
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" version="1.1" width="50px" height="50px">
+<g id="surface1">
+<path fill="#000000" style=" " d="M 4 17 L 25 39 L 46 17 Z "/>
+</g>
 </svg>

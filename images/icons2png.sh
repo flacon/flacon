@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SRC_COLOR="#656565"
+SRC_COLOR="#000000"
 
 ENABLE="#656565"
 DISABLE="#a1a1a1"
@@ -26,7 +26,7 @@ function conv()
 
 	sed -e "s/${SRC_COLOR}/${color}/g" icons/${svgFile} > icons/_tmp.svg
 	mkdir -p icons/${size}
-	#inkscape -z -e icons/${size}/${pngFile} -w ${size} -h ${size} icons/_tmp.svg
+	inkscape -z -e icons/${size}/${pngFile} -w ${size} -h ${size} icons/_tmp.svg
 	rm icons/_tmp.svg
 
 	name=${svgFile/.svg/${postfix}}
@@ -53,6 +53,7 @@ for size in 16 22 24 32 48 64 128 256 512 ; do
 		
 		conv folder.svg $size $color
 		conv configure.svg $size $color
+		conv pattern-button.svg $size $color		
 		conv track-ok.svg $size $color
 		conv audio-button.svg $size $color
 		conv cue-button.svg $size $color

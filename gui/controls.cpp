@@ -55,9 +55,9 @@ void setPlaceholder(QLineEdit *edit, const QString &text)
 OutPatternButton::OutPatternButton(QWidget * parent):
     QToolButton(parent)
 {
-    setPopupMode(QToolButton::InstantPopup);
-    setMenu(new QMenu(this));
-    mSeparator = menu()->addSeparator();
+    mSeparator = mMenu.addSeparator();
+    connect(this, SIGNAL(clicked(bool)),
+            this, SLOT(popupMenu()));
 }
 
 
@@ -69,7 +69,7 @@ void OutPatternButton::addPattern(const QString &pattern, const QString &title)
     QAction *act = new QAction(title, this);
     act->setData(pattern);
     connect(act, SIGNAL(triggered()), this, SLOT(patternTriggered()));
-    menu()->insertAction(mSeparator, act);
+    mMenu.insertAction(mSeparator, act);
 }
 
 
@@ -82,7 +82,7 @@ void OutPatternButton::addFullPattern(const QString &pattern, const QString &tit
     QAction *act = new QAction(title + "  ( " + example + " )", this);
     act->setData(pattern);
     connect(act, SIGNAL(triggered()), this, SLOT(fullPatternTriggered()));
-    menu()->addAction(act);
+    mMenu.addAction(act);
 }
 
 
@@ -105,6 +105,17 @@ void OutPatternButton::fullPatternTriggered()
     QAction *act = qobject_cast<QAction*>(sender());
     if (act)
         emit fullPaternSelected(act->data().toString());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void OutPatternButton::popupMenu()
+{
+    QPoint p = parentWidget()->mapToGlobal(this->pos());
+    p.ry() += height();
+    mMenu.popup(p);
 }
 
 

@@ -112,9 +112,11 @@ MainWindow::MainWindow(QWidget *parent) :
     // Buttons .................................................
     outDirButton->setDefaultAction(actionSelectResultDir);
     outDirButton->setAutoRaise(true);
+    outDirButton->setStyleSheet("border: none;");
 
     configureEncoderBtn->setDefaultAction(actionConfigureEncoder);
     configureEncoderBtn->setAutoRaise(true);
+    configureEncoderBtn->setStyleSheet("border: none;");
 
     outPatternButton->addPattern("%n", tr("Insert \"Track number\""));
     outPatternButton->addPattern("%N", tr("Insert \"Total number of tracks\""));
@@ -124,6 +126,7 @@ MainWindow::MainWindow(QWidget *parent) :
     outPatternButton->addPattern("%y", tr("Insert \"Year\""));
     outPatternButton->addPattern("%g", tr("Insert \"Genre\""));
     outPatternButton->setAutoRaise(true);
+    outPatternButton->setStyleSheet("border: none;");
 
     QString pattern;
 
@@ -158,6 +161,7 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(replaceOutPattern(QString)));
     outPatternEdit->setAutoCompletionCaseSensitivity(Qt::CaseSensitive);
 
+    outPatternButton->setIcon(loadIcon("pattern-button"));
 
     // Format combo ............................................
     initOutFormatCombo();
