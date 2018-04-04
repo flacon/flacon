@@ -1,78 +1,78 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nb" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="el" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Flacon</source>
-        <translation>Om Flacon</translation>
+        <translation>Σχετκά με το Flacon</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation>Σχετκά με</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation>Utvikler</translation>
+        <translation>Δημιουργός</translation>
     </message>
     <message>
         <source>Thanks</source>
-        <translation>Takk</translation>
+        <translation>Ευχαριστίες</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation>Oversettelser</translation>
+        <translation>Μεταφράσεις</translation>
     </message>
     <message>
         <source>External programs</source>
-        <translation>Eksterne programmer</translation>
+        <translation>Εξωτερικά προγράμματα</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation>Hjemmeside: %1</translation>
+        <translation>Ιστοσελίδα: %1</translation>
     </message>
     <message>
         <source>License: %1</source>
-        <translation>Lisens: %1</translation>
+        <translation>Αδεια χρήσης: %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
-        <translation>Spesielt takk til:</translation>
+        <translation>Ιδιαίτερες ευχαριστίες προς:</translation>
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon benytter eksterne programmer. Mange takk til utviklerne av disse!</translation>
+        <translation>Το Flacon χρησιμοποιεί εξωτερικά προγράμματα. Πολλά ευχαριστώ στούς δημιουργούς τους!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Henter ut individuelle spor fra ei stor lydfil som inneholder hele albumet.</translation>
+        <translation>Εξαγωγή μεμονωμένων κομμάτιων από ένα μεγάλο αρχείο ήχου που περιέχει ολόκληρο το άλμπουμ.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation>Kopirett: %1-%2 %3</translation>
+        <translation>Πνευματικά δικαιώματα: %1-%2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
-        <translation>Programfiks for WavPack-støtte</translation>
+        <translation>WavPack patch υποστήριξης</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation>Pakking, testing</translation>
+        <translation>Συσκευασία, δοκιμή</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
-        <translation>Forbedringer i grensesnittet</translation>
+        <translation>Βελτιώσεις στο UI</translation>
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation>Kontoen Flacon på github.com</translation>
+        <translation>Flacon λογαριασμός στο github.com</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation>Feilrettingsoversikt %1</translation>
+        <translation>Ιχνηλάτης σφαλμάτων %1</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon oversettes til mange språk takket være oversettelseslagene på &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+        <translation>Το Flacon έχει μεταφραστεί σε πολλές γλώσσες, χάρη στο έργο των ομάδων μετάφρασης του Flacon στο &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -80,7 +80,7 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
-        <translation>Automatisk oppdaging</translation>
+        <translation>Αυτόματη αναγνώριση</translation>
     </message>
     <message>
         <source>Unicode (UTF-8)</source>
@@ -96,11 +96,11 @@
     </message>
     <message>
         <source>Cyrillic (Win-1251)</source>
-        <translation>Kyrillisk (Win-1251)</translation>
+        <translation>Κυριλλικά (Win-1251)</translation>
     </message>
     <message>
         <source>Cyrillic (CP-866)</source>
-        <translation>Kyrillisk (CP-866)</translation>
+        <translation>Κυριλλικά (CP-866)</translation>
     </message>
     <message>
         <source>Latin-1 (ISO-8859-1)</source>
@@ -195,79 +195,79 @@
     <name>ConfigDialog</name>
     <message>
         <source>Preferences</source>
-        <translation>Innstillinger</translation>
+        <translation>Ρυθμίσεις</translation>
     </message>
     <message>
         <source>General configuration</source>
-        <translation>Generelt oppsett</translation>
+        <translation>Γενική διαμόρφωση</translation>
     </message>
     <message>
         <source>Thread count:</source>
-        <translation>Antall tråder:</translation>
+        <translation>Αρίθμηση νημάτων:</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation>Antall tråder brukt i konverteringsprosessen.</translation>
+        <translation>Ο αριθμός των νημάτων κατά τη διαδικασία μετατροπής.</translation>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Innledningspause før første spor:</translation>
+        <translation>Πρώτο κομμάτι pregap:</translation>
     </message>
     <message>
         <source>Rescan</source>
-        <translation>Søk på nytt</translation>
+        <translation>Εκ νέου σάρωση</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation>Full stil til de eksterne programmene</translation>
+        <translation>Πλήρης διαδρομή των εξωτερικών εφαρμογών</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
-        <translation>Pakk ut til egen fil</translation>
+        <translation>Εξαγωγή σε ξεχωριστό αρχείο</translation>
     </message>
     <message>
         <source>Add to first track</source>
-        <translation>Legg til første spor</translation>
+        <translation>Προσθήκη στο πρώτο κομμάτι</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Generelt</translation>
+        <translation>Γενικά</translation>
     </message>
     <message>
         <source>Programs</source>
-        <translation>Programmer</translation>
+        <translation>Προγράμματα</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Velg midlertidig mappe</translation>
+        <translation>Επιλογή προσωρινού καταλόγου</translation>
     </message>
     <message>
         <source>Per track cue sheet</source>
-        <translation>CUE-innholdsfortegnelse per spor</translation>
+        <translation>Αναδιαμόρφωση ανά κομμάτι</translation>
     </message>
     <message>
         <source>Create per track cue sheet</source>
-        <translation>Opprett CUE-innholdsfortegnelse per spor</translation>
+        <translation>Δημιουργία ανά κομμάτι</translation>
     </message>
     <message>
         <source> px</source>
-        <translation>px</translation>
+        <translation>πχ</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation>Midlertidig katalog:</translation>
+        <translation>Προσωρινός κατάλογος:</translation>
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Forvalgt kodeside:</translation>
+        <translation>Προεπιλεγμένη κωδικοσελίδα:</translation>
     </message>
     <message>
         <source>Cover image</source>
-        <translation>Omslagsbilde</translation>
+        <translation>Εικόνα εξώφυλλου</translation>
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation>Ikke kopier bilde</translation>
+        <translation>Καμμία αντιγραφή εικόνας</translation>
     </message>
     <message>
         <source>Update</source>
@@ -294,41 +294,41 @@
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation>Behold opprinnelig billedstørrelse</translation>
+        <translation> Διατήρηση αρχικού μεγέθους της εικόνας</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation>Endre oppløsning på bilde hvis større enn</translation>
+        <translation>Αλλαγή μεγέθους, αν το μέγεθος της εικόνας είναι μεγαλύτερο από</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation>Oppsett for AAC-koding</translation>
+        <translation>AAC ρύθμιση παραμέτρων κωδικοποίησης</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Bruk kvalitetoppsett (anbefalt)</translation>
+        <translation>Χρήση της ρύθμισης ποιότητας (συνιστάται)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Bruk bithastighet</translation>
+        <translation>Χρήση bitrate</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Bithastighet:</translation>
+        <translation>Bitrate:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Stiller bithastighetsmål (i kb/s).</translation>
+        <translation>Ορισμός στόχου bitrate (σε kb/δευ).</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Flac</name>
     <message>
         <source>Compression:</source>
-        <translation>Komprimering:</translation>
+        <translation>Συμπίεση:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -336,46 +336,46 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Kalkuler forsterkning</translation>
+        <translation>Υπολογισμός:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Avskrudd</translation>
+        <translation>Απενεργοποιήθηκε</translation>
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>FLAC παράμετροι κωδικοποίησης</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation>Oppsett for MP3-koding</translation>
+        <translation>MP3 παράμετροι κωδικοποίησης</translation>
     </message>
     <message>
         <source>Preset:</source>
-        <translation>Forvalg:</translation>
+        <translation>Προρυθμίσεις:</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Bruk bithastighet</translation>
+        <translation>Χρήση bitrate</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Bithastighet:</translation>
+        <translation>Bitrate:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Setter bithastighetsmål (i kb/s).</translation>
+        <translation>Ορισμός στόχου bitrate (σε kb/δευ).</translation>
     </message>
     <message>
         <source>Use quality</source>
-        <translation>Bruk kvalitet</translation>
+        <translation>Χρήση ποιότητας</translation>
     </message>
     <message>
         <source>Quality:</source>
-        <translation>Kvalitet:</translation>
+        <translation>Ποιότητα:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -383,43 +383,43 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Kalkuler forsterkningsnivå:</translation>
+        <translation>Υπολογισμός:</translation>
     </message>
     <message>
         <source>VBR medium</source>
-        <translation>medium VBR</translation>
+        <translation>VBR μεσαίο</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation>standard VBR</translation>
+        <translation>VBR κανονικά</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation>standard rask VBR</translation>
+        <translation>VBR κανονικά γρήγορα</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation>ekstrem VBR</translation>
+        <translation>VBR έντονα</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation>ekstrem rask VBR</translation>
+        <translation>VBR έντονα γρήγορα</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation>kvalitet VBR</translation>
+        <translation>VBR ποιότητα</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation>galskap CBR</translation>
+        <translation>CBR τρελά</translation>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation>kbps CBR</translation>
+        <translation>CBR kbps</translation>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation>kbps ABR</translation>
+        <translation>ABR kbps</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -447,29 +447,29 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;medium VBR&lt;/dt&gt;
-&lt;dd&gt;Ved bruk av medium variabel bitrate, vil dette forvalget være nesten fullgodt for de fleste og for det meste av musikk.&lt;/dd&gt;
+        <translation>&lt;dt&gt;VBR πολυμέσα&lt;/dt&gt;
+&lt;dd&gt;Χρησιμοποιώντας μιά μέση μεταβλητή BitRate, αυτή η προκαθορισμένη ρύθμιση θα πρέπει να παρέχει διαφάνεια για τους περισσότερους ανθρώπους και τα περισσότερα είδη μουσικής.&lt;/dd&gt;
 
-&lt;dt&gt;standard VBR, standard rask VBR&lt;/dt&gt;
-&lt;dd&gt;Ved bruk av standard variabel bitrate, vil dette forvalget i hovedsak være nesten fullgodt for de fleste på mesteparten av musikk og allerede ganske høyt hva angår kvalitet..&lt;/dd&gt;
+&lt;dt&gt;Κανονικό VBR, γρήγορο VBR&lt;/dt&gt; 
+&lt;dd&gt;Χρησιμοποιώντας μιά μεταβλητή BitRate, αυτή η προκαθορισμένη ρύθμιση θα πρέπει, γενικά, να είναι διαφανής για τους περισσότερους ανθρώπους και να είναι αρκετά υψηλής ποιότητας.&lt;/dd&gt;
 
-&lt;dt&gt;ekstrem VBR, ekstremt rask VBR&lt;/dt&gt;
-&lt;dd&gt;Ved å bruke høyeste mulig variable bitrate, vil dette forvalget gi en antydning høyere kvalitet enn standardmoduset hvis du har ekstermt god hørsel eller bra lydutstyr.&lt;/dd&gt;
+&lt;dt&gt;Εντονο VBR, έντονο και γρήγορο VBR&lt;/dt&gt;
+&lt;dd&gt;Χρησιμοποιώντας την υψηλότερη δυνατή μεταβλητή BitRate, παρέχει ελαφρώς υψηλότερη ποιότητα από την τυπική λειτουργία, αν έχετε εξαιρετικά καλή ακοή η έναν υψηλής ποιότητας εξοπλισμό ήχου.&lt;/dd&gt;
 
-&lt;dt&gt;kvalitet VBR&lt;/dt&gt;
-&lt;dd&gt;Dette variable bitratevalget lar deg angi utdatakvaliteten.&lt;/dd&gt;
+&lt;dt&gt;VBR ποιότητα&lt;/dt&gt;
+&lt;dd&gt;Αυτή η μεταβλητή BitRate επιλογή, σας επιτρέπει να καθορίσετε την ποιότητα εξόδου.&lt;/dd&gt;
 
-&lt;dt&gt;raskt valg&lt;/dt&gt;
-&lt;dd&gt;Skrur på den nye rask VBR for en spesifikk profil. Dette er anbefalt.&lt;/dd&gt;
+&lt;dt&gt;γρήγορη επιλογή&lt;/dt&gt;
+&lt;dd&gt;Ενεργοποίηση τού νέου γρήγορου VBR για συγκεκριμένα προφίλ. Αυτό συνιστάται.&lt;/dd&gt;
 
-&lt;dt&gt;galskap CBR&lt;/dt&gt;
-&lt;dd&gt;Hvis du vil ha den absolutt høyeste kvaliten, uten hensyn til filstørrelse, vil du oppnå dette ved bruk av konstant bitrate.&lt;/dd&gt;
+Εντονο CBR &lt;dt&gt;
+&lt;dd&gt;Αν θέλετε να έχετε την απόλυτη υψηλότερη ποιότητα όσον αφορά το μέγεθος του αρχείου, θα το πετύχετε χρησιμοποιώντας αυτή την σταθερή BitRate.&lt;/dd&gt;
 
 &lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Bruk av forvalget for konstant bitrate vil vanligvis gi deg god kvalitet på en angitt bitrate.&lt;/dd&gt;
+&lt;dd&gt;Χρησιμοποιώντας αυτό το προκαθορισμένο σταθερό BitRate, είναι συνήθως καλής ποιότητας.&lt;/dd&gt;
 
-&lt;dt&gt;kpbs ABR&lt;/dt&gt;
-&lt;dd&gt;Bruk av forvalget for gjenomsnittlig bitrate vil vanligvis gi deg høyere kvalitet enn valget for konstant bitrate for en spesifikk bitrate.&lt;/dd&gt;
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Χρησιμοποιώντας αυτή την μέση προκαθορισμένη BitRate, είναι συνήθως υψηλότερης ποιότητας από την σταθερή BitRate επιλογή.&lt;/dd&gt;
 </translation>
     </message>
 </context>
@@ -477,39 +477,39 @@
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation>Oppsett for Ogg-koding</translation>
+        <translation>Παράμετροι κωδικοποίησης Ogg</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Bruk kvalitetoppsett (anbefalt)</translation>
+        <translation>Χρήση της ρύθμισης ποιότητας (συνιστάται)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Bruk bithastighet</translation>
+        <translation>Χρήση bitrate</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation>Minste bithastighet:</translation>
+        <translation>Ελάχιστο bitrate:</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Stiller minste bithastighet (i kb/s).</translation>
+        <translation>Ορισμός τού ελάχιστου bitrate (σε kb/δευ).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation>Nominell bithastighet:</translation>
+        <translation>Συμβολικό bitrate:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Stiller bithastighetsmål (i kb/s).</translation>
+        <translation>Ορισμός στόχου bitrate (σε kb/δευ).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Maksimal bithastighet:</translation>
+        <translation>Μέγιστο bitrate:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Stiller maksimal bithastighet (i kb/s).</translation>
+        <translation>Ορισμός τού μέγιστου bitrate (σε kb/δευ).</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -517,30 +517,30 @@
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Kalkuler forsterkningsnivå:</translation>
+        <translation>Υπολογισμός:</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation>Oppsett for Opus-koding</translation>
+        <translation>Παράμετροι κωδικοποίησης Opus</translation>
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation>Bitratetype:</translation>
+        <translation>Τύπος Bitrate:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Bithastighet:</translation>
+        <translation>Bitrate:</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
-        <translation>VBR - variabel bithastighet</translation>
+        <translation>VBR - μεταβλητό bitrate</translation>
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation>CBR - avgrenset bithastighet</translation>
+        <translation>CBR περιορισμένο bitrate</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -549,10 +549,10 @@
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
         <translation>&lt;dt&gt;VBR&lt;/dt&gt;
-&lt;dd&gt;Bruk variabel bitratekoding (anbefalt). I VBR-modus vil bitraten gå opp og ned fritt avhengig av innholdet for å forsikre gjennomgående kvalitet.&lt;/dd&gt;
+&lt;dd&gt;Χρήση μεταβλητού bitrate κωδικοποίησης (συνιστάται). Στην λειτουργία μεταβλητού VBR, το bitrate μπορεί να πάει πάνω και κάτω ελεύθερα ανάλογα με το περιεχόμενο εξασφαλίζοντας την συνέπεια της ποιότητας.&lt;/dd&gt;
 
 &lt;dt&gt;CBR&lt;/dt&gt;
-&lt;dd&gt;Bruk bundet variabel bitratekoding. Utdata med en gitt bitrate. Dette moduset tilsvarer CBR i AAC/MP3-kodere og administrert modus i vorbis-kodere. Dette gir mindre gjennomgående kvalitet enn VBR-modus men konsistent bitrate.&lt;/dd&gt;</translation>
+&lt;dd&gt;Χρήση περιορισμένου μεταβλητού bitrate κωδικοποίησης. Αυτή η λειτουργία είναι ανάλογη με το CBR σε AAC/MP3 κωδικοποιητές και σε vorbis προγραμματιστές. Αυτό προσφέρει λιγότερο σταθερή ποιότητα αλλά σταθερό bitrate.&lt;/dd&gt; </translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -561,11 +561,11 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation>Setter mål for bitrate i kb/s (6-256 per kanal).
+        <translation>Ορισμός τού στοχικού bitrate σε kb/s (6-256 ανά κανάλι).
 &lt;p&gt;
-I VBR-modus setter dette gjennomsnittlig rate for en stor og mangfoldig ansamling lyd.
+Στην λειτουργία VBR καθορίζετε το μέσο επιτόκιο για μια μεγάλη και ποικίλη συλλογή ήχου.
 &lt;p&gt;
-I CBR-modus, setter angitt utdatabitrate.
+Στην CBR λειτουργία, ορίζει ένα συγκεκριμένο bitrate εξαγωγής.
 </translation>
     </message>
 </context>
@@ -573,11 +573,11 @@ I CBR-modus, setter angitt utdatabitrate.
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation>Oppsett for WavPack-koding</translation>
+        <translation>Παράμετροι κωδικοποίησης WavPack</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Komprimering:</translation>
+        <translation>Συμπίεση:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -585,60 +585,60 @@ I CBR-modus, setter angitt utdatabitrate.
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Kalkuler forsterkningsnivå:</translation>
+        <translation>Υπολογισμός:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Avskrudd</translation>
+        <translation>Απενεργοποιήθηκε</translation>
     </message>
 </context>
 <context>
     <name>Converter</name>
     <message>
         <source>Conversion is not possible:</source>
-        <translation>Konvertering er ikke mulig:</translation>
+        <translation>Αδυναμία μετατροπής:</translation>
     </message>
 </context>
 <context>
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation>Velg omslagsbilde</translation>
+        <translation>Επιλογή εικόνας εξώφυλλου</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Χωρίς εικόνα εξώφυλλου</translation>
     </message>
 </context>
 <context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation>Velg disk</translation>
+        <translation>Επιλογή δίσκου</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [ disk %2 ]</translation>
+        <translation>%1 [ δίσκος %2 ]</translation>
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation>CUE-fila inneholder informasjon om flere disker. Hvilken av dem ønsker du å bruke?</translation>
+        <translation>Το αρχείο CUE περιέχει πληροφορίες σχετικά με πολλούς δίσκους. Ποιον δίσκος θέλετε να χρησιμοποιήσετε;</translation>
     </message>
 </context>
 <context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation>Lydfil ikke fastsatt.</translation>
+        <translation>Το αρχείο ήχου δεν έχει οριστεί.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>Cue-fil ikke fastsatt.</translation>
+        <translation>Το αρχείο Cue δεν έχει οριστεί.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation>Lydfil kortere enn forventet fra CUE-innholdsfortegnelse.</translation>
+        <translation>Το αρχείο ήχου είναι μικρότερο από το φύλλο cue.</translation>
     </message>
 </context>
 <context>
@@ -646,20 +646,20 @@ I CBR-modus, setter angitt utdatabitrate.
     <message>
         <source>Encoder error:
 </source>
-        <translation>Kodingsfeil:
+        <translation>Σφάλμα κωδικοποιητή:
 </translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation>Jeg kan ikke lese %1 fil</translation>
+        <translation>Αδυναμία ανάγνωσης τού αρχείου %1</translation>
     </message>
     <message>
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation>Jeg kan ikke gi fil nytt navn:
-%1 til %2
+        <translation>Αδυναμία μετονομασίας τού αρχείου:
+%1 σε %2
 %3</translation>
     </message>
 </context>
@@ -667,38 +667,38 @@ I CBR-modus, setter angitt utdatabitrate.
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>Stiller kodingkvalitet, mellom %1 (lavest) og %2 (høyest).</translation>
+        <translation>Ορισμός κωδικοποίησης ποιότητας, μεταξύ %1 (χαμηλότερη) και %2 (υψηλότερη).</translation>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>Setter kompresjonsnivå, mellom %1 (raskest) og %2 (høyeste komprimering).
-Dette har bare innvirkning på filstørrelse. Alle innstillinger er tapsfrie.</translation>
+        <translation>Σύνολα επιπέδου συμπίεσης, μεταξύ %1 (ταχύτερη) και %2 (υψηλότερη συμπίεση).
+Αυτό επηρεάζει μόνο το μέγεθος του αρχείου. Όλες οι ρυθμίσεις είναι χωρίς απώλειες.</translation>
     </message>
     <message>
         <source>Disabled</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Avskrudd</translation>
+        <translation>Απενεργοποιήθηκε</translation>
     </message>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Per spor</translation>
+        <translation>Ανα κομμάτι</translation>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Per album</translation>
+        <translation>Ανα Άλμπουμ</translation>
     </message>
     <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain er en standard for å normalisere opplevd lydstyrkeforsterkning av lyddataformater.
+        <translation>ReplayGain είναι ένα πρότυπο ομαλοποιήσεις της αντιληπτής έντασης ήχου του υπολογιστή.
 
-Analysen kan utføres på individuelle spor, slik at alle spor vil ha samme lydstyrkenivå ved avspilling.
-Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer på et album.</translation>
+Η ανάλυση μπορεί να εκτελεστεί σε μεμονωμένα κομμάτια, έτσι ώστε όλα τα κομμάτια θα είναι ίσης έντασης ήχου κατά την αναπαραγωγή.
+Χρησιμοποιώντας την ανάλυση θα διατηρηθεί η διαφορά ήχου μέσα σε ένα άλμπουμ.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -706,7 +706,7 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Default</source>
-        <translation>Forvalg</translation>
+        <translation>Προεπιλογή</translation>
     </message>
 </context>
 <context>
@@ -714,7 +714,7 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     <message>
         <source>Gain error:
 </source>
-        <translation>Forsterkningsnivåfeil:
+        <translation>Σφάλμα Gain:
 </translation>
     </message>
 </context>
@@ -726,72 +726,72 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Resulterende filer</translation>
+        <translation>Αποτέλεσμα Αρχείων</translation>
     </message>
     <message>
         <source>Directory:</source>
-        <translation>Katalog:</translation>
+        <translation>Κατάλογος:</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation>Mønster:</translation>
+        <translation>Πρότυπο:</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation>Format:</translation>
+        <translation>Μορφή:</translation>
     </message>
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Utdata-format</translation>
+        <translation>Μορφή εξόδου</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation>Merkelapper</translation>
+        <translation>Ετικέτες</translation>
     </message>
     <message>
         <source>Genre:</source>
-        <translation>Sjanger:</translation>
+        <translation>Είδος:</translation>
     </message>
     <message>
         <source>Year:</source>
-        <translation>År:</translation>
+        <translation>Έτος:</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation>Artist:</translation>
+        <translation>Καλλιτέχνης:</translation>
     </message>
     <message>
         <source>Album:</source>
-        <translation>Album:</translation>
+        <translation>Άλμπουμ:</translation>
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Startnummer:</translation>
+        <translation>Αριθμός έναρξης:</translation>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>Disk-ID:</translation>
+        <translation>Αναγνωριστικό δίσκου:</translation>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation>Kodeside:</translation>
+        <translation>Κωδικοσελίδα:</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Fil</translation>
+        <translation>&amp;Αρχείο</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Innstillinger</translation>
+        <translation>&amp;Ρυθμίσεις</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Hjelp</translation>
+        <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Legg til CUE eller lydfil</translation>
+        <translation>Προσθήκη CUE η αρχείου ήχου</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -799,11 +799,11 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Convert</source>
-        <translation>Konverter</translation>
+        <translation>Μετατροπή</translation>
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation>Start konverteringsprosess</translation>
+        <translation>Εναρξη διαδικασίας μετατροπής</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -811,15 +811,15 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Abort</source>
-        <translation>Avbryt</translation>
+        <translation>Ματαίωση</translation>
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation>Avbryt konverteringsprosess</translation>
+        <translation>Ματαίωση διαδικασίας μετατροπής</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Avslutt</translation>
+        <translation>Έξοδος</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -827,15 +827,15 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>&amp;Preferences</source>
-        <translation>&amp;Egenskaper</translation>
+        <translation>&amp;Προτιμήσεις</translation>
     </message>
     <message>
         <source>Program preferences</source>
-        <translation>Programegenskaper</translation>
+        <translation>Προτιμήσεις προγράμματος</translation>
     </message>
     <message>
         <source>&amp;About Flacon</source>
-        <translation>&amp;Om Flacon</translation>
+        <translation>&amp;Σχετικά με το Flacon</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -843,23 +843,23 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation>Sett opp koder</translation>
+        <translation>Ρύθμιση κωδικοποιητή</translation>
     </message>
     <message>
         <source>...</source>
-        <translation> …</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Select result directory</source>
-        <translation>Velg endelig mappe</translation>
+        <translation>Επιλέξτε το αποτέλεσμα directory</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation>Innhent fra CCDB</translation>
+        <translation>Παροχή από το CDDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation>Få albuminformasjon fra CDDB</translation>
+        <translation>Παροχή πληροφοριών άλμπουμ από το  CDDB</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
@@ -867,69 +867,69 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Scan</source>
-        <translation>Søk</translation>
+        <translation>Σάρωση</translation>
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation>Rekursivt albumsøk</translation>
+        <translation>Αναδρομική αναζήτηση άλμπουμ</translation>
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Sett inn &quot;spornummer&quot;</translation>
+        <translation>Εισαγωγή &quot;Αριθμός κομματιού&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Sett inn &quot;totalt antall spor&quot;</translation>
+        <translation>Εισαγωγή &quot;Συνολικός αριθμός κομματιών&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Sett inn &quot;artist&quot;</translation>
+        <translation>Εισαγωγή &quot;Καλλιτέχνης&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Sett inn &quot;albumtittel&quot;</translation>
+        <translation>Εισαγωγή &quot;Τίτλος άλμπουμ&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Sett inn &quot;låttittel&quot;</translation>
+        <translation>Εισαγωγή &quot;Τίτλος κομματιού&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Sett inn &quot;år&quot;</translation>
+        <translation>Εισαγωγή &quot;Έτος&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Sett in &quot;sjanger&quot;</translation>
+        <translation>Εισαγωγή &quot;Είδος&quot;</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation>Noen album vil ikke bli konvertert, de inneholder feil.
-Ønsker du å fortsette?</translation>
+        <translation>Κάποια άλμπουμ δεν μετατρέπονται, περιέχουν σφάλματα.
+Θέλετε να συνεχίσετε;</translation>
     </message>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>%1 filer</translation>
+        <translation>%1 αρχεία</translation>
     </message>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
-        <translation>Alle støttede formater</translation>
+        <translation>Όλες οι υποστηριζόμενες μορφές</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Alle filer</translation>
+        <translation>Όλα τα αρχεία</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Velg lydfil</translation>
+        <translation>Επιλογή αρχείου ήχου</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Velg mappe</translation>
+        <translation>Επιλογή καταλόγου</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -952,61 +952,61 @@ If you surround sections of text that contain a token with braces, these section
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
         <translation>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
-.def  { white-space: nowrap; }
+.def { white-space: nowrap; }
 &lt;/style&gt;
-Redigeringspoletter starter med %. Du kan bruke følgende redigeringspoletter:
+Μάρκες που ξεκινούν με %. Μπορείτε να χρησιμοποιήσετε τις ακόλουθες μάρκες:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Spornummer  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Totalt antall spor&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumtittel&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Låttittel&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - År&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Sjanger&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Αριθμός κομματιού&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Συνολικός αριθμός κομματιών&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Καλλιτέχνης&lt;/td&gt;
+         &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;-Τίτλος Αλμπουμ&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Τίτλος κομματιού&lt;/td&gt;
+         &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Έτος&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Είδος&lt;/td&gt;
+         &lt;td class=&quot;term&quot;&gt;&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
-Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammeparenteser vil disse delene bli skjult hvis redigeringspoletten er tom.</translation>
+Αν τα περιβάλλοντα τμήματα του κειμένου περιέχουν ένα κουπόνι με τα σιδεράκια, τα τμήματα αυτά θα είναι κρυμμένα, άρα το δείγμα είναι άδειο.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Du kan velge destinasjonsmappe. Du kan også skrive det inn manuelt.
+        <translation>Μπορείτε να περιηγηθείτε στον κατάλογο προορισμού. Μπορείτε επίσης να εισάγετε χειροκίνητα.
 
-Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende filer bli plassert i samme mappa som kilden.</translation>
+Εάν η διαδρομή είναι κενή η ξεκινά με &quot;.&quot; (dot), τα αποτελέσματα θα τοποθετούνται στον ίδιο κατάλογο με την πηγή.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Bruk &quot;%1&quot;</translation>
+        <translation>Χρήση τού &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Velg CUE-fil</translation>
+        <translation>Επιλογή αρχείου cue</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Legg til CUE eller lydfil</translation>
+        <translation>Προσθήκη CUE η αρχείου ήχου</translation>
     </message>
     <message>
         <source>Delete current pattern from history</source>
-        <translation>Slett gjeldende mønster fra historikk</translation>
+        <translation>Διαγραφή τού τρέχον σχεδίου από το ιστορικό</translation>
     </message>
     <message>
         <source>Add disk</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη δίσκου</translation>
     </message>
     <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση δίσκου</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση δίσκου από το έργο</translation>
     </message>
     <message>
         <source>Check for Updates...</source>
@@ -1017,53 +1017,53 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <name>MultiValuesComboBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Flerfoldige verdier</translation>
+        <translation>Πολλαπλές τιμές</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesLineEdit</name>
     <message>
         <source>Multiple values</source>
-        <translation>Flerfoldige verdier</translation>
+        <translation>Πολλαπλές τιμές</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesSpinBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Flerfoldige verdier</translation>
+        <translation>Πολλαπλές τιμές</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
         <source>Select program file</source>
-        <translation>Velg programfil</translation>
+        <translation>Επιλογή αρχείου προγράμματος</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation>Alle filer</translation>
+        <translation>Όλα τα αρχεία</translation>
     </message>
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation>%1 program</translation>
+        <translation>%1  προγράμμα</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Jeg kan ikke finne programmet &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>Αδυναμία έυρεσης τού προγράμματος &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Fila &lt;b&gt;%1&lt;/b&gt; er ikke ei støtttet lydfil. &lt;br&gt;&lt;br&gt;Bekreft at alle påkrevde programmer er installert i dine innstillinger.</translation>
+        <translation>Το αρχείο &lt;b&gt;%1&lt;/b&gt;είναι ένα αρχείο πού δεν υποστηρίζεται. &lt;br&gt;&lt;br&gt;Βεβαιωθείτε ότι όλα τα απαιτούμενα προγράμματα είναι εγκατεστημένα. </translation>
     </message>
     <message>
         <source> [disk %1]</source>
-        <translation> [disk %1]</translation>
+        <translation> [δίσκος %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -1072,59 +1072,59 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Jeg kan ikke skrive CUE-fil &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Αδυναμία εγγραφής αρχείου cue &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Fila &lt;b&gt; &quot;%1&quot;&lt;/b&gt; finnes ikke</translation>
+        <translation>Το αρχείο &lt;b&gt;&quot;%1&quot;&lt;/b&gt; δεν υπάρχει</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. Disk %2 har ingen merkelapper..</translation>
+        <translation>Το αρχείο &lt;b&gt;%1&lt;/b&gt;δεν είναι ένα έγκυρο αρχείο cue. Ο δίσκος %2 δεν έχει ετικέτες.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation>Lydfilnavnet har ikke blitt angitt</translation>
+        <translation>Το όνομα τού αρχείου ήχου δεν έχει οριστεί</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>du kan ikke bruke &apos;ReplayGain&apos; for filer med samplingsrate over 48KHz. Metaflac støtter ikke slike filer.</translation>
+        <translation>δεν μπορείτε να χρησιμοποιήσετε το &quot;ReplayGain&quot; για αρχεία με ποσοστά δείγματος πάνω από 48kHz. Το Metaflac δεν υποστηρίζει τέτοιου είδους αρχεία.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. CUE-innholdsoversikten har ingen FILE-merkelapp..</translation>
+        <translation>Το αρχείο &lt;b&gt;%1&lt;/b&gt;δεν είναι ένα έγκυρο αρχείο cue. Ο δίσκος %2 δεν έχει ετικέτες.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. Ugyldig sporindeks på %2.</translation>
+        <translation>Το αρχείο &lt;b&gt;%1&lt;/b&gt;δεν είναι ένα έγκυρο αρχείο cue. Λανθασμένη ένδειξη τραγουδιού στο %2.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Lydfila &lt;b&gt; &quot;%1&quot; &lt;/b&gt; finnes ikke</translation>
+        <translation>Το αρχείο ήχου &lt;b&gt;&quot;%1&quot;&lt;/b&gt; δεν υπάρχει</translation>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke opprette mappa &quot;%1&quot;.</translation>
+        <translation>Αδυναμία δημιουργίας τού καταλόγου &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
+        <translation>Αδυναμία εγγραφής τού καταλόγου &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Jeg kan ikke kopier omslagsfila &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Αδυναμία εγγραφής αρχείου εξωφύλλου &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation>Jeg kan ikke lese omslagsbildet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Αδυναμία ανάγνωσης εικόνας εξωφύλλου &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>Jeg kan lagre omslagsbildet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Αδυναμία εγγραφης εικόνας εξωφύλλου &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1132,37 +1132,37 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-        <translation>Jeg kan ikke lese &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Αδυναμία ανάγνωσης &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
-        <translation>Innhent data fra CCDB</translation>
+        <translation>Παροχή από το CDDB</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Rediger</translation>
+        <translation>Επεξεργασία</translation>
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>Velg en annen lydfil</translation>
+        <translation>Επιλογή άλλου αρχείου ήχου</translation>
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation>Velg en annen CUE-fil</translation>
+        <translation>Επιλογή άλλου αρχείου cue</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
     <message>
         <source>Error</source>
-        <translation>Feil</translation>
+        <translation>Σφάλμα</translation>
     </message>
     <message>
         <source>Aborted</source>
-        <translation>Avbrutt</translation>
+        <translation>Ματαίωση</translation>
     </message>
     <message>
         <source>OK</source>
@@ -1170,35 +1170,35 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     </message>
     <message>
         <source>Extracting</source>
-        <translation>Pakker ut</translation>
+        <translation>Εξαγωγή</translation>
     </message>
     <message>
         <source>Encoding</source>
-        <translation>Koding</translation>
+        <translation>Κωδικοποίηση</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation>Satt i kø</translation>
+        <translation>Αναμονή</translation>
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation>Kalkuler forsterkningsnivå</translation>
+        <translation>Υπολογισμός</translation>
     </message>
     <message>
         <source>Wait gain</source>
-        <translation>Vent på forsterkningsnivå</translation>
+        <translation>Αναμονή</translation>
     </message>
     <message>
         <source>Write gain</source>
-        <translation>Skriv forsterkningsnivå</translation>
+        <translation>Εγγραφή</translation>
     </message>
     <message>
         <source>Tracks:</source>
-        <translation>Spor:</translation>
+        <translation>Κομμάτια:</translation>
     </message>
     <message>
         <source>Audio:</source>
-        <translation>Lyd:</translation>
+        <translation>Ήχος:</translation>
     </message>
 </context>
 <context>
@@ -1206,41 +1206,41 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation>Spor</translation>
+        <translation>Κομμάτι</translation>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
-        <translation>Tittel</translation>
+        <translation>Τίτλος</translation>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
-        <translation>Artist</translation>
+        <translation>Καλλιτέχνης</translation>
     </message>
     <message>
         <source>Album</source>
         <comment>Table header.</comment>
-        <translation>Album</translation>
+        <translation>Άλμπουμ</translation>
     </message>
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
-        <translation>Kommentar</translation>
+        <translation>Σχόλιο</translation>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
-        <translation>Fil</translation>
+        <translation>Αρχείο</translation>
     </message>
     <message>
         <source>Multiple values</source>
-        <translation>Flerfoldige verdier</translation>
+        <translation>Πολλαπλές τιμές</translation>
     </message>
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation>Lengde</translation>
+        <translation>Μήκος</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
@@ -1255,7 +1255,7 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation>Konverteringen er umulig.
+        <translation>Αδυναμία μετατροπής.
 %1</translation>
     </message>
 </context>
@@ -1263,11 +1263,11 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <name>Worker</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke opprette mappa &quot;%1&quot;.</translation>
+        <translation>Αδυναμία δημιουργίας τού καταλόγου &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
+        <translation>Αδυναμία εγγραφής τού καταλόγου &quot;%1&quot;.</translation>
     </message>
 </context>
 </TS>

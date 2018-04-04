@@ -1,78 +1,78 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nb" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ms_MY" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Flacon</source>
-        <translation>Om Flacon</translation>
+        <translation>Perihal Flacon</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation>Perihal</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation>Utvikler</translation>
+        <translation>Pengarang</translation>
     </message>
     <message>
         <source>Thanks</source>
-        <translation>Takk</translation>
+        <translation>Terima Kasih</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation>Oversettelser</translation>
+        <translation>Terjemahan</translation>
     </message>
     <message>
         <source>External programs</source>
-        <translation>Eksterne programmer</translation>
+        <translation>Program luar</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation>Hjemmeside: %1</translation>
+        <translation>Laman Sesawang: %1</translation>
     </message>
     <message>
         <source>License: %1</source>
-        <translation>Lisens: %1</translation>
+        <translation>Lesen: %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
-        <translation>Spesielt takk til:</translation>
+        <translation>Ucapan khas buat:</translation>
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon benytter eksterne programmer. Mange takk til utviklerne av disse!</translation>
+        <translation>Flacon menggunakan program luar. Terima kasih buat pengarang-pengarang mereka!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Henter ut individuelle spor fra ei stor lydfil som inneholder hele albumet.</translation>
+        <translation>Ektrak treks secara individu dari satu fail audio besar yang mengandungi keseluruhan album</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation>Kopirett: %1-%2 %3</translation>
+        <translation>Hakcipta: %1-%2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
-        <translation>Programfiks for WavPack-støtte</translation>
+        <translation>Tampalang sokongan WavPack</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation>Pakking, testing</translation>
+        <translation>Mempakej, menguji</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
-        <translation>Forbedringer i grensesnittet</translation>
+        <translation>Penambahbaikan dalam UI</translation>
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation>Kontoen Flacon på github.com</translation>
+        <translation>Akaun Flacon dalam github.com</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation>Feilrettingsoversikt %1</translation>
+        <translation>Penjejak pepijat  %1</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon oversettes til mange språk takket være oversettelseslagene på &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+        <translation>Flacon telah diterjemahkan kepada banyak bahasa, terima kasih kepada pasukan terjemahan Flacon di &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -80,27 +80,27 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
-        <translation>Automatisk oppdaging</translation>
+        <translation>Auto kesan</translation>
     </message>
     <message>
         <source>Unicode (UTF-8)</source>
-        <translation>Unicode (UTF-8)</translation>
+        <translation>Unikod (UTF-8)</translation>
     </message>
     <message>
         <source>Unicode (UTF-16LE)</source>
-        <translation>Unicode (UTF-16LE)</translation>
+        <translation>Unikod (UTF-16LE)</translation>
     </message>
     <message>
         <source>Unicode (UTF-16BE)</source>
-        <translation>Unicode (UTF-16BE)</translation>
+        <translation>Unikod (UTF-16BE)</translation>
     </message>
     <message>
         <source>Cyrillic (Win-1251)</source>
-        <translation>Kyrillisk (Win-1251)</translation>
+        <translation>Cyril (Win-1251)</translation>
     </message>
     <message>
         <source>Cyrillic (CP-866)</source>
-        <translation>Kyrillisk (CP-866)</translation>
+        <translation>Cyril (CP-866)</translation>
     </message>
     <message>
         <source>Latin-1 (ISO-8859-1)</source>
@@ -195,59 +195,59 @@
     <name>ConfigDialog</name>
     <message>
         <source>Preferences</source>
-        <translation>Innstillinger</translation>
+        <translation>Keutamaan</translation>
     </message>
     <message>
         <source>General configuration</source>
-        <translation>Generelt oppsett</translation>
+        <translation>Konfigurasi am</translation>
     </message>
     <message>
         <source>Thread count:</source>
-        <translation>Antall tråder:</translation>
+        <translation>Kiraan bebenang:</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation>Antall tråder brukt i konverteringsprosessen.</translation>
+        <translation>Bilangan bebenang dalam proses penukaran.</translation>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Innledningspause før første spor:</translation>
+        <translation>Prasela trek pertama:</translation>
     </message>
     <message>
         <source>Rescan</source>
-        <translation>Søk på nytt</translation>
+        <translation>Imbas semula</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation>Full stil til de eksterne programmene</translation>
+        <translation>Laluan penuh ke aplikasi luar</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
-        <translation>Pakk ut til egen fil</translation>
+        <translation>Ekstrak menjadi fail berasingan</translation>
     </message>
     <message>
         <source>Add to first track</source>
-        <translation>Legg til første spor</translation>
+        <translation>Tambah ke trek pertama</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Generelt</translation>
+        <translation>Am</translation>
     </message>
     <message>
         <source>Programs</source>
-        <translation>Programmer</translation>
+        <translation>Program</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Velg midlertidig mappe</translation>
+        <translation>Pilih direktori sementara</translation>
     </message>
     <message>
         <source>Per track cue sheet</source>
-        <translation>CUE-innholdsfortegnelse per spor</translation>
+        <translation>Per lembar kiu trek</translation>
     </message>
     <message>
         <source>Create per track cue sheet</source>
-        <translation>Opprett CUE-innholdsfortegnelse per spor</translation>
+        <translation>Cipta per lembar kiu trek</translation>
     </message>
     <message>
         <source> px</source>
@@ -255,19 +255,19 @@
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation>Midlertidig katalog:</translation>
+        <translation>Direktori sementara:</translation>
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Forvalgt kodeside:</translation>
+        <translation>Laman kod lalai:</translation>
     </message>
     <message>
         <source>Cover image</source>
-        <translation>Omslagsbilde</translation>
+        <translation>Imej kulit hadapan</translation>
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation>Ikke kopier bilde</translation>
+        <translation>Jangan salin imej</translation>
     </message>
     <message>
         <source>Update</source>
@@ -294,132 +294,132 @@
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation>Behold opprinnelig billedstørrelse</translation>
+        <translation>Kekalkan saiz imej asal</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation>Endre oppløsning på bilde hvis større enn</translation>
+        <translation>Saiz semula jika saiz imej lebih besar</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation>Oppsett for AAC-koding</translation>
+        <translation>Konfigurasi pengekodan AAC</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Bruk kvalitetoppsett (anbefalt)</translation>
+        <translation>Guna tetapan kualiti (disarankan)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Bruk bithastighet</translation>
+        <translation>Guna kadar bit</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Bithastighet:</translation>
+        <translation>Kadar bit:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Stiller bithastighetsmål (i kb/s).</translation>
+        <translation>Tetapkan kadar bit sasaran (dalam kb/s).</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Flac</name>
     <message>
         <source>Compression:</source>
-        <translation>Komprimering:</translation>
+        <translation>Pemampatan:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation>GandaanUlangSemula</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Kalkuler forsterkning</translation>
+        <translation>Kiran gandaan:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Avskrudd</translation>
+        <translation>Dilumpuhkan</translation>
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi pengekodan FLAC</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation>Oppsett for MP3-koding</translation>
+        <translation>Konfigurasi pengekodan MP3</translation>
     </message>
     <message>
         <source>Preset:</source>
-        <translation>Forvalg:</translation>
+        <translation>Praset:</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Bruk bithastighet</translation>
+        <translation>Guna kadar bit</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Bithastighet:</translation>
+        <translation>Kadar bit:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Setter bithastighetsmål (i kb/s).</translation>
+        <translation>Tetapkan kadar bit sasaran (dalam kb/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
-        <translation>Bruk kvalitet</translation>
+        <translation>Guna kualiti</translation>
     </message>
     <message>
         <source>Quality:</source>
-        <translation>Kvalitet:</translation>
+        <translation>Kualiti:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation>GandaanUlangSemula</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Kalkuler forsterkningsnivå:</translation>
+        <translation>Kiran gandaan:</translation>
     </message>
     <message>
         <source>VBR medium</source>
-        <translation>medium VBR</translation>
+        <translation>VBR medium</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation>standard VBR</translation>
+        <translation>VBR piawai</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation>standard rask VBR</translation>
+        <translation>VBR piawai pantas</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation>ekstrem VBR</translation>
+        <translation>VBR ekstrim</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation>ekstrem rask VBR</translation>
+        <translation>VBR ekstrim pantas</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation>kvalitet VBR</translation>
+        <translation>Kualiti VBR</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation>galskap CBR</translation>
+        <translation>CBR gila</translation>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation>kbps CBR</translation>
+        <translation>CBR kbps</translation>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation>kbps ABR</translation>
+        <translation>ABR kbps</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -447,29 +447,29 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;medium VBR&lt;/dt&gt;
-&lt;dd&gt;Ved bruk av medium variabel bitrate, vil dette forvalget være nesten fullgodt for de fleste og for det meste av musikk.&lt;/dd&gt;
+        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;Dengan menggunakan Kadar Bit Pembolehubah medium, praset ini dapat hasilkan ketelusan pada kebanyakan pendengar dan muzik.&lt;/dd&gt;
 
-&lt;dt&gt;standard VBR, standard rask VBR&lt;/dt&gt;
-&lt;dd&gt;Ved bruk av standard variabel bitrate, vil dette forvalget i hovedsak være nesten fullgodt for de fleste på mesteparten av musikk og allerede ganske høyt hva angår kvalitet..&lt;/dd&gt;
+&lt;dt&gt;VBR piawai, VBR piawai pantas&lt;/dt&gt;
+&lt;dd&gt;Dengan menggunakan Kadar Bit Pembolehubah medium, praset  amnya menjadi telus pada kebanyakan pendengar dengan kebanyakan muzik dan berkualiti tinggi.&lt;/dd&gt;
 
-&lt;dt&gt;ekstrem VBR, ekstremt rask VBR&lt;/dt&gt;
-&lt;dd&gt;Ved å bruke høyeste mulig variable bitrate, vil dette forvalget gi en antydning høyere kvalitet enn standardmoduset hvis du har ekstermt god hørsel eller bra lydutstyr.&lt;/dd&gt;
+&lt;dt&gt;VBR ekstrim, VBR esktrim pantas&lt;/dt&gt;
+&lt;dd&gt;Dengan menggunakan Kadar Bit Pembolehubah medium, praset ini dapat menghasilkan kualiti lebih tinggi berbanding mod piawai jika anda memiliki pendengaran terbaik atau peralatan audio berprestasi-tinggi.&lt;/dd&gt;
 
-&lt;dt&gt;kvalitet VBR&lt;/dt&gt;
-&lt;dd&gt;Dette variable bitratevalget lar deg angi utdatakvaliteten.&lt;/dd&gt;
+&lt;dt&gt;Kualiti VBR&lt;/dt&gt;
+&lt;dd&gt;Pilihan Kadar Bit Pembolehubah ini membiarkan anda tentukan kualiti output.&lt;/dd&gt;
 
-&lt;dt&gt;raskt valg&lt;/dt&gt;
-&lt;dd&gt;Skrur på den nye rask VBR for en spesifikk profil. Dette er anbefalt.&lt;/dd&gt;
+&lt;dt&gt;pilihan pantas&lt;/dt&gt;
+&lt;dd&gt;Benarkan VBR pantas baharu untuk profil tertentu. Disarankan.&lt;/dd&gt;
 
-&lt;dt&gt;galskap CBR&lt;/dt&gt;
-&lt;dd&gt;Hvis du vil ha den absolutt høyeste kvaliten, uten hensyn til filstørrelse, vil du oppnå dette ved bruk av konstant bitrate.&lt;/dd&gt;
+&lt;dt&gt;CBR gila&lt;/dt&gt;
+&lt;dd&gt;Jika anda mahu kualiti terbaik gila tanpa mengira saiz fail, dapat dicapai dengan menggunakan Kadar Bit Malar ini.&lt;/dd&gt;
 
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Bruk av forvalget for konstant bitrate vil vanligvis gi deg god kvalitet på en angitt bitrate.&lt;/dd&gt;
+&lt;dt&gt;kbps CBR&lt;/dt&gt;
+&lt;dd&gt;Dengan menggunakan Kadar Bit Malar, praset ini dapat hasilkan kualiti terbaik pada kadar bit yang ditentukan.&lt;/dd&gt;
 
-&lt;dt&gt;kpbs ABR&lt;/dt&gt;
-&lt;dd&gt;Bruk av forvalget for gjenomsnittlig bitrate vil vanligvis gi deg høyere kvalitet enn valget for konstant bitrate for en spesifikk bitrate.&lt;/dd&gt;
+&lt;dt&gt;kbps ABR&lt;/dt&gt;
+&lt;dd&gt;Dengan menggunakan Kadar Bit Purata, praset ini dapat hasilkan kualiti lebih tinggi berbanding pilihan Kadar Bit Malar bagi kadar bit yang ditentukan.&lt;/dd&gt;
 </translation>
     </message>
 </context>
@@ -477,70 +477,70 @@
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation>Oppsett for Ogg-koding</translation>
+        <translation>Konfigurasi pengekodan Ogg</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Bruk kvalitetoppsett (anbefalt)</translation>
+        <translation>Guna tetapan kualiti (disarankan)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Bruk bithastighet</translation>
+        <translation>Guna kadar bit</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation>Minste bithastighet:</translation>
+        <translation>Kadar bit minimum:</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Stiller minste bithastighet (i kb/s).</translation>
+        <translation>Tetapkan kadar bit minimum (dalam kb/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation>Nominell bithastighet:</translation>
+        <translation>Kadar bit nominal:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Stiller bithastighetsmål (i kb/s).</translation>
+        <translation>Tetapkan kadar bit sasaran (dalam kb/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Maksimal bithastighet:</translation>
+        <translation>Kadar bit maksimum:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Stiller maksimal bithastighet (i kb/s).</translation>
+        <translation>Tetapkan kadar bit maksimum (dalam kb/s).</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation>GandaanUlangSemula</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Kalkuler forsterkningsnivå:</translation>
+        <translation>Kiran gandaan:</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation>Oppsett for Opus-koding</translation>
+        <translation>Konfigurasi pengekodan Opus</translation>
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation>Bitratetype:</translation>
+        <translation>Jenis kadar bit:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Bithastighet:</translation>
+        <translation>Kadar bit:</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
-        <translation>VBR - variabel bithastighet</translation>
+        <translation>VBR - kadar bit pembolehubah</translation>
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation>CBR - avgrenset bithastighet</translation>
+        <translation>CBR - kadar bit terkekang</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -549,10 +549,10 @@
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
         <translation>&lt;dt&gt;VBR&lt;/dt&gt;
-&lt;dd&gt;Bruk variabel bitratekoding (anbefalt). I VBR-modus vil bitraten gå opp og ned fritt avhengig av innholdet for å forsikre gjennomgående kvalitet.&lt;/dd&gt;
+&lt;dd&gt;Guna pengekodan kadar bit pembolehubah (disarankan). Dalam mod VBR, kadar bit boleh jadi naik atau turun secara bebas tetapi bergantung pada ketekalan kualiti kandungan.&lt;/dd&gt;
 
 &lt;dt&gt;CBR&lt;/dt&gt;
-&lt;dd&gt;Bruk bundet variabel bitratekoding. Utdata med en gitt bitrate. Dette moduset tilsvarer CBR i AAC/MP3-kodere og administrert modus i vorbis-kodere. Dette gir mindre gjennomgående kvalitet enn VBR-modus men konsistent bitrate.&lt;/dd&gt;</translation>
+&lt;dd&gt;Guna pengekodan kadar bit pembolehubah terkekang. Output ke kadar bit tertentu. Mod ini adalah analog pada CBR dalam pengekod AAC/MP3 dan mod terurus dalam coder vorbis. Tetapi menghasilkan kualiti kurang tekal berbanding mod VBR tetapi kadar bit menjadi seragam.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -561,11 +561,11 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation>Setter mål for bitrate i kb/s (6-256 per kanal).
+        <translation>Tetapkan kadar bit sasaran dalam kb/s (6-256 per saluran).
 &lt;p&gt;
-I VBR-modus setter dette gjennomsnittlig rate for en stor og mangfoldig ansamling lyd.
+Dalam mod VBR, ia tetapkan kadar purata bagi koleksi audio yang banyak dan pelbagai.
 &lt;p&gt;
-I CBR-modus, setter angitt utdatabitrate.
+Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
 </translation>
     </message>
 </context>
@@ -573,72 +573,72 @@ I CBR-modus, setter angitt utdatabitrate.
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation>Oppsett for WavPack-koding</translation>
+        <translation>Konfigurasi pengekodan WavPack</translation>
     </message>
     <message>
         <source>Compression:</source>
-        <translation>Komprimering:</translation>
+        <translation>Pemampatan:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation>GandaanUlangSemula</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation>Kalkuler forsterkningsnivå:</translation>
+        <translation>Kiran gandaan:</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Avskrudd</translation>
+        <translation>Dilumpuhkan</translation>
     </message>
 </context>
 <context>
     <name>Converter</name>
     <message>
         <source>Conversion is not possible:</source>
-        <translation>Konvertering er ikke mulig:</translation>
+        <translation>Penukaran adalah mustahil:</translation>
     </message>
 </context>
 <context>
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation>Velg omslagsbilde</translation>
+        <translation>Pilih imej kulit hadapan</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Tanpa imej kulit hadapan</translation>
     </message>
 </context>
 <context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation>Velg disk</translation>
+        <translation>Pilih cakera</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [ disk %2 ]</translation>
+        <translation>%1 [ cakera %2 ]</translation>
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation>CUE-fila inneholder informasjon om flere disker. Hvilken av dem ønsker du å bruke?</translation>
+        <translation>Fail CUE mengandungi maklumat berkenaan cakera berbilang. Cakera yang manakah mahu digunakan?</translation>
     </message>
 </context>
 <context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation>Lydfil ikke fastsatt.</translation>
+        <translation>Fail audio tidak ditetapkan</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>Cue-fil ikke fastsatt.</translation>
+        <translation>Fail cue tidak ditetapkan.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation>Lydfil kortere enn forventet fra CUE-innholdsfortegnelse.</translation>
+        <translation>Fail audio lebih pendek berbanding dijangka dari lembar cue.</translation>
     </message>
 </context>
 <context>
@@ -646,20 +646,20 @@ I CBR-modus, setter angitt utdatabitrate.
     <message>
         <source>Encoder error:
 </source>
-        <translation>Kodingsfeil:
+        <translation>Ralat pengekod:
 </translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation>Jeg kan ikke lese %1 fil</translation>
+        <translation>Tidak dapat baca fail %1</translation>
     </message>
     <message>
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation>Jeg kan ikke gi fil nytt navn:
-%1 til %2
+        <translation>Tidak dapat namakan semula fail:
+%1 menjadi %2
 %3</translation>
     </message>
 </context>
@@ -667,38 +667,39 @@ I CBR-modus, setter angitt utdatabitrate.
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>Stiller kodingkvalitet, mellom %1 (lavest) og %2 (høyest).</translation>
+        <translation>Tetapkan kualiti pengekodan, diantara %1 (paling rendah) hingga %2 (paling tinggi).</translation>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>Setter kompresjonsnivå, mellom %1 (raskest) og %2 (høyeste komprimering).
-Dette har bare innvirkning på filstørrelse. Alle innstillinger er tapsfrie.</translation>
+        <translation>Tetapkan aras pemampatan, diantara %1 (terpantas) hingga %2 (pemampatan tertinggi).
+Ia hanya memberi kesan pada saiz fail. Semua tetapan adalah tak hilang.</translation>
     </message>
     <message>
         <source>Disabled</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Avskrudd</translation>
+        <translation>Dilumpuhkan</translation>
     </message>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Per spor</translation>
+        <translation>Per Trek</translation>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Per album</translation>
+        <translation>Per Albu</translation>
     </message>
     <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain er en standard for å normalisere opplevd lydstyrkeforsterkning av lyddataformater.
+        <translation>GandaanUlangSemula atau ReplayGain merupakan piawaian untuk normalkan kelantangan diterima bagi format audio komputer.
 
-Analysen kan utføres på individuelle spor, slik at alle spor vil ha samme lydstyrkenivå ved avspilling.
-Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer på et album.</translation>
+Analisis boleh dilakukan pada trek secara individu, supaya semua trek akan mempunyai volum yang setara ketika mainbalik.
+
+Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam sesebuah album.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -706,7 +707,7 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Default</source>
-        <translation>Forvalg</translation>
+        <translation>Lalai</translation>
     </message>
 </context>
 <context>
@@ -714,7 +715,7 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     <message>
         <source>Gain error:
 </source>
-        <translation>Forsterkningsnivåfeil:
+        <translation>Ralat gandaan:
 </translation>
     </message>
 </context>
@@ -726,15 +727,15 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Resulterende filer</translation>
+        <translation>Hasil Fail</translation>
     </message>
     <message>
         <source>Directory:</source>
-        <translation>Katalog:</translation>
+        <translation>DIrektori:</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation>Mønster:</translation>
+        <translation>Pola:</translation>
     </message>
     <message>
         <source>Format:</source>
@@ -743,23 +744,23 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Utdata-format</translation>
+        <translation>Format Output</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation>Merkelapper</translation>
+        <translation>Tag:</translation>
     </message>
     <message>
         <source>Genre:</source>
-        <translation>Sjanger:</translation>
+        <translation>Genre:</translation>
     </message>
     <message>
         <source>Year:</source>
-        <translation>År:</translation>
+        <translation>Tahun:</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation>Artist:</translation>
+        <translation>Artis:</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -767,31 +768,31 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Startnummer:</translation>
+        <translation>Bil. mula:</translation>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>Disk-ID:</translation>
+        <translation>ID cakera:</translation>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation>Kodeside:</translation>
+        <translation>Laman kod:</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Fil</translation>
+        <translation>&amp;Fail</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Innstillinger</translation>
+        <translation>&amp;Tetapan</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Hjelp</translation>
+        <translation>&amp;Bantuan</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Legg til CUE eller lydfil</translation>
+        <translation>Tambah fail CUE atau audio</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -799,11 +800,11 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Convert</source>
-        <translation>Konverter</translation>
+        <translation>Tukar Format</translation>
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation>Start konverteringsprosess</translation>
+        <translation>Mulakan proses penukaran</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -811,15 +812,15 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Abort</source>
-        <translation>Avbryt</translation>
+        <translation>Henti Paksa</translation>
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation>Avbryt konverteringsprosess</translation>
+        <translation>Henti paksa proses penukaran</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Avslutt</translation>
+        <translation>Keluar</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -827,15 +828,15 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>&amp;Preferences</source>
-        <translation>&amp;Egenskaper</translation>
+        <translation>&amp;Keutamaan</translation>
     </message>
     <message>
         <source>Program preferences</source>
-        <translation>Programegenskaper</translation>
+        <translation>Keutamaan program</translation>
     </message>
     <message>
         <source>&amp;About Flacon</source>
-        <translation>&amp;Om Flacon</translation>
+        <translation>&amp;Perihal Flacon</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -843,23 +844,23 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation>Sett opp koder</translation>
+        <translation>Konfigur pengekod</translation>
     </message>
     <message>
         <source>...</source>
-        <translation> …</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Select result directory</source>
-        <translation>Velg endelig mappe</translation>
+        <translation>Pilih direktori hasil</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation>Innhent fra CCDB</translation>
+        <translation>Dapatkan dari CDDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation>Få albuminformasjon fra CDDB</translation>
+        <translation>Dapatkan maklumat album dari CDDB</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
@@ -867,69 +868,69 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>Scan</source>
-        <translation>Søk</translation>
+        <translation>Imbas</translation>
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation>Rekursivt albumsøk</translation>
+        <translation>Gelintar album secara rekursif</translation>
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Sett inn &quot;spornummer&quot;</translation>
+        <translation>Sisip &quot;Nombor trek&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Sett inn &quot;totalt antall spor&quot;</translation>
+        <translation>Sisip &quot;Jumlah bilangan trek&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Sett inn &quot;artist&quot;</translation>
+        <translation>Sisip &quot;Artis&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Sett inn &quot;albumtittel&quot;</translation>
+        <translation>Sisip &quot;Tajuk album&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Sett inn &quot;låttittel&quot;</translation>
+        <translation>Sisip &quot;Tajuk trek&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Sett inn &quot;år&quot;</translation>
+        <translation>Sisip &quot;Tahun&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Sett in &quot;sjanger&quot;</translation>
+        <translation>Sisip &quot;Genre&quot;</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation>Noen album vil ikke bli konvertert, de inneholder feil.
-Ønsker du å fortsette?</translation>
+        <translation>Sesetengah album tidak akan ditukarkan formatnya, kerana ada ralat.
+Mahu diteruskan?</translation>
     </message>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>%1 filer</translation>
+        <translation>%1 fail</translation>
     </message>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
-        <translation>Alle støttede formater</translation>
+        <translation>Semua format disokong</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Alle filer</translation>
+        <translation>Semua fail</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Velg lydfil</translation>
+        <translation>Pilih fail audio</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Velg mappe</translation>
+        <translation>Pilih direktori</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -954,59 +955,59 @@ If you surround sections of text that contain a token with braces, these section
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
-Redigeringspoletter starter med %. Du kan bruke følgende redigeringspoletter:
+Token bermula dengan %. Anda boleh guna token berikut:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Spornummer  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Totalt antall spor&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumtittel&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Låttittel&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - År&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Sjanger&lt;/td&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Bilangan trek  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Jumlah bilangan trek&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artis&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tajuk album&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tajuk trek&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tahun&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
-Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammeparenteser vil disse delene bli skjult hvis redigeringspoletten er tom.</translation>
+Jika anda terkurung teks seksyen yang mengandungi token dengan tanda kurungan, seksyen ini akan disembunyikan jika token tiada.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Du kan velge destinasjonsmappe. Du kan også skrive det inn manuelt.
+        <translation>Anda boleh layari direktori destinasi. Anda juga boleh menginputnya secara manual.
 
-Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende filer bli plassert i samme mappa som kilden.</translation>
+Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), fail hasil akan diganti dengan direktori yang sama sebagai sumber.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Bruk &quot;%1&quot;</translation>
+        <translation>Guna &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Select cue file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Velg CUE-fil</translation>
+        <translation>Pilih fail cue</translation>
     </message>
     <message>
         <source>Add cue or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Legg til CUE eller lydfil</translation>
+        <translation>Tambah fail cue atau audio</translation>
     </message>
     <message>
         <source>Delete current pattern from history</source>
-        <translation>Slett gjeldende mønster fra historikk</translation>
+        <translation>Padam pola semasa dari sejarah</translation>
     </message>
     <message>
         <source>Add disk</source>
-        <translation type="unfinished"/>
+        <translation>Tambah cakera</translation>
     </message>
     <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>Tanggalkan cakera</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
-        <translation type="unfinished"/>
+        <translation>Tanggalkan cakera dari projek</translation>
     </message>
     <message>
         <source>Check for Updates...</source>
@@ -1017,53 +1018,53 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <name>MultiValuesComboBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Flerfoldige verdier</translation>
+        <translation>Nilai berbilang</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesLineEdit</name>
     <message>
         <source>Multiple values</source>
-        <translation>Flerfoldige verdier</translation>
+        <translation>Nilai berbilang</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesSpinBox</name>
     <message>
         <source>Multiple values</source>
-        <translation>Flerfoldige verdier</translation>
+        <translation>Nilai berbilang</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
         <source>Select program file</source>
-        <translation>Velg programfil</translation>
+        <translation>Pilih fail program</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation>Alle filer</translation>
+        <translation>Semua fail</translation>
     </message>
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation>%1 program</translation>
+        <translation>Program %1</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Jeg kan ikke finne programmet &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>Saya tidak menemui program &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Fila &lt;b&gt;%1&lt;/b&gt; er ikke ei støtttet lydfil. &lt;br&gt;&lt;br&gt;Bekreft at alle påkrevde programmer er installert i dine innstillinger.</translation>
+        <translation>Fail &lt;b&gt;%1&lt;/b&gt; bukanlah fail audio yang disokong. &lt;br&gt;&lt;br&gt;Sahkan sama ada semua program yang diperlukan telah dipasang dan berada dalam keutamaan anda.</translation>
     </message>
     <message>
         <source> [disk %1]</source>
-        <translation> [disk %1]</translation>
+        <translation> [cakera %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -1072,59 +1073,59 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Jeg kan ikke skrive CUE-fil &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Tidak dapat tulis fail cue &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Fila &lt;b&gt; &quot;%1&quot;&lt;/b&gt; finnes ikke</translation>
+        <translation>Fail &lt;b&gt;&quot;%1&quot;&lt;/b&gt; tidak wujud</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. Disk %2 har ingen merkelapper..</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; bukanlah fail cue yang sah. Cakera %2 tidak mempunyai tag.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation>Lydfilnavnet har ikke blitt angitt</translation>
+        <translation>Nama fail audio tidak ditetapkan</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>du kan ikke bruke &apos;ReplayGain&apos; for filer med samplingsrate over 48KHz. Metaflac støtter ikke slike filer.</translation>
+        <translation>anda tidak boleh guna &apos;GandaanUlangSemula&apos; bagi fail dengan kadar sampel di atas 48kHz. Metaflac tidak menyokong fail sebegitu.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. CUE-innholdsoversikten har ingen FILE-merkelapp..</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; bukanlah fail cue yang sah. Lembar cue tidak mempunyai tag FILE.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
         <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. Ugyldig sporindeks på %2.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; bukanlah fail cue yang sah. Indeks trek salah pada %2.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Lydfila &lt;b&gt; &quot;%1&quot; &lt;/b&gt; finnes ikke</translation>
+        <translation>Fail audio &lt;b&gt;&quot;%1&quot;&lt;/b&gt; tidak wujud</translation>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke opprette mappa &quot;%1&quot;.</translation>
+        <translation>Tidak dapat cipta direktori &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
+        <translation>Tidak dapat tulis  ke direktori &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Jeg kan ikke kopier omslagsfila &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Tidak dapat salin fail kulit hadapan &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation>Jeg kan ikke lese omslagsbildet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Tidak dapat baca imej kulit hadapan &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>Jeg kan lagre omslagsbildet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Tidak dapat tulis imej kulit hadapan &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1132,37 +1133,37 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-        <translation>Jeg kan ikke lese &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Tidak dapat baca &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
-        <translation>Innhent data fra CCDB</translation>
+        <translation>Dapatkan data dari CDDB</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation>Rediger</translation>
+        <translation>Sunting</translation>
     </message>
     <message>
         <source>Select another audio file</source>
-        <translation>Velg en annen lydfil</translation>
+        <translation>Pilih fail audio yang lain</translation>
     </message>
     <message>
         <source>Select another cue file</source>
-        <translation>Velg en annen CUE-fil</translation>
+        <translation>Pilih fail cue yang lain</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
     <message>
         <source>Error</source>
-        <translation>Feil</translation>
+        <translation>Ralat</translation>
     </message>
     <message>
         <source>Aborted</source>
-        <translation>Avbrutt</translation>
+        <translation>Dihenti Paksa</translation>
     </message>
     <message>
         <source>OK</source>
@@ -1170,35 +1171,35 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     </message>
     <message>
         <source>Extracting</source>
-        <translation>Pakker ut</translation>
+        <translation>Mengekstrak</translation>
     </message>
     <message>
         <source>Encoding</source>
-        <translation>Koding</translation>
+        <translation>Mengekod</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation>Satt i kø</translation>
+        <translation>Dibaris gilir</translation>
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation>Kalkuler forsterkningsnivå</translation>
+        <translation>Kira gandaan</translation>
     </message>
     <message>
         <source>Wait gain</source>
-        <translation>Vent på forsterkningsnivå</translation>
+        <translation>Tunggu gandaan</translation>
     </message>
     <message>
         <source>Write gain</source>
-        <translation>Skriv forsterkningsnivå</translation>
+        <translation>Tulis gandaan</translation>
     </message>
     <message>
         <source>Tracks:</source>
-        <translation>Spor:</translation>
+        <translation>Trek:</translation>
     </message>
     <message>
         <source>Audio:</source>
-        <translation>Lyd:</translation>
+        <translation>Audio:</translation>
     </message>
 </context>
 <context>
@@ -1206,17 +1207,17 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation>Spor</translation>
+        <translation>Trek</translation>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
-        <translation>Tittel</translation>
+        <translation>Tajuk</translation>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
-        <translation>Artist</translation>
+        <translation>Artis</translation>
     </message>
     <message>
         <source>Album</source>
@@ -1226,21 +1227,21 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
-        <translation>Kommentar</translation>
+        <translation>Ulasan</translation>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
-        <translation>Fil</translation>
+        <translation>Fail</translation>
     </message>
     <message>
         <source>Multiple values</source>
-        <translation>Flerfoldige verdier</translation>
+        <translation>Nilai berbilang</translation>
     </message>
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation>Lengde</translation>
+        <translation>Tempoh</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
@@ -1255,7 +1256,7 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation>Konverteringen er umulig.
+        <translation>Penukaran adalah mustahil.
 %1</translation>
     </message>
 </context>
@@ -1263,11 +1264,11 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <name>Worker</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke opprette mappa &quot;%1&quot;.</translation>
+        <translation>Tidak dapat cipta direktori &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
+        <translation>Tidak dapat tulis  ke direktori &quot;%1&quot;.</translation>
     </message>
 </context>
 </TS>

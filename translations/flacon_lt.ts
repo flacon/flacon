@@ -270,6 +270,29 @@
         <translation>Nekopijuoti paveikslo</translation>
     </message>
     <message>
+        <source>Update</source>
+        <extracomment>Preferences tab title </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Keep original image size</source>
         <translation>Palikti pradinį paveikslo dydį</translation>
     </message>
@@ -909,11 +932,6 @@ Ar norite tęsti?</translation>
         <translation>Pasirinkite katalogą</translation>
     </message>
     <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
@@ -989,6 +1007,10 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     <message>
         <source>Remove disk from project</source>
         <translation>Šalinti diską iš projekto</translation>
+    </message>
+    <message>
+        <source>Check for Updates...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

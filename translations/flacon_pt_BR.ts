@@ -270,6 +270,29 @@
         <translation>Não copiar a imagem</translation>
     </message>
     <message>
+        <source>Update</source>
+        <extracomment>Preferences tab title </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Keep original image size</source>
         <translation>Manter o tamanho original da imagem</translation>
     </message>
@@ -905,11 +928,6 @@ Você deseja continuar?</translation>
         <translation>Selecionar diretório</translation>
     </message>
     <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
@@ -985,6 +1003,10 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     <message>
         <source>Remove disk from project</source>
         <translation>Remover disco do projeto</translation>
+    </message>
+    <message>
+        <source>Check for Updates...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

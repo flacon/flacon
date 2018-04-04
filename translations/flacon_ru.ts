@@ -270,6 +270,29 @@
         <translation>Не копировать</translation>
     </message>
     <message>
+        <source>Update</source>
+        <extracomment>Preferences tab title </extracomment>
+        <translation>Обновления</translation>
+    </message>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation>Проверять автоматически</translation>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation>Пороверить</translation>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation>Последнее обновление было %1</translation>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation>Никогда не проверяли</translation>
+    </message>
+    <message>
         <source>Keep original image size</source>
         <translation>В оригинальном размере</translation>
     </message>
@@ -906,11 +929,6 @@ Do you want to continue?</source>
         <translation>Выбрать директорию</translation>
     </message>
     <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
@@ -986,6 +1004,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Remove disk from project</source>
         <translation>Удалить диск из проекта</translation>
+    </message>
+    <message>
+        <source>Check for Updates...</source>
+        <translation>Проверить обновления...</translation>
     </message>
 </context>
 <context>

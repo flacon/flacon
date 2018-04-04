@@ -263,11 +263,34 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation type="unfinished"/>
+        <translation>Cover</translation>
     </message>
     <message>
         <source>Do not copy image</source>
         <translation>Bild nicht kopieren</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <extracomment>Preferences tab title </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Keep original image size</source>
@@ -321,7 +344,7 @@
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>FLAC-Kodierungskonfiguration</translation>
     </message>
 </context>
 <context>
@@ -580,11 +603,11 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Cover auswählen</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Ohne Cover</translation>
     </message>
 </context>
 <context>
@@ -600,7 +623,7 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Die CUE-Datei enthält Informationen über mehrere Disks. Welche Disk soll verwendet werden?</translation>
     </message>
 </context>
 <context>
@@ -909,11 +932,6 @@ Möchten Sie fortsetzen?</translation>
         <translation>Verzeichnis auswählen</translation>
     </message>
     <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
@@ -980,14 +998,18 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     </message>
     <message>
         <source>Add disk</source>
-        <translation type="unfinished"/>
+        <translation>Disk hinzufügen</translation>
     </message>
     <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>Disk entfernen</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
+        <translation>Disk aus Projekt entfernen</translation>
+    </message>
+    <message>
+        <source>Check for Updates...</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1092,17 +1114,17 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Ich kann die Cover-Datei &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 nicht kopieren</translation>
     </message>
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 kann nicht gelesen werden</translation>
     </message>
     <message>
         <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Ich kann die Cover-Bilddatei &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 nicht schreiben</translation>
     </message>
 </context>
 <context>

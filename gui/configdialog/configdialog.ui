@@ -262,8 +262,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>98</width>
-              <height>36</height>
+              <width>601</width>
+              <height>334</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -319,7 +319,7 @@
        </widget>
        <widget class="QWidget" name="updatePage">
         <attribute name="title">
-         <string>Update</string>
+         <string extracomment="Preferences tab title ">Update</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_7">
          <item>

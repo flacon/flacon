@@ -270,6 +270,29 @@
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Update</source>
+        <extracomment>Preferences tab title </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Keep original image size</source>
         <translation type="unfinished"/>
     </message>
@@ -907,11 +930,6 @@ Vreți să continuați?</translation>
         <translation>Alege dosarul</translation>
     </message>
     <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
@@ -986,6 +1004,10 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
     </message>
     <message>
         <source>Remove disk from project</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for Updates...</source>
         <translation type="unfinished"/>
     </message>
 </context>

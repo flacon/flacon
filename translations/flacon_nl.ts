@@ -23,7 +23,7 @@
     </message>
     <message>
         <source>External programs</source>
-        <translation>Externe programma&apos;s</translation>
+        <translation>Externe programma’s</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
@@ -235,7 +235,7 @@
     </message>
     <message>
         <source>Programs</source>
-        <translation>Programma&apos;s</translation>
+        <translation>Programma’s</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
@@ -268,6 +268,29 @@
     <message>
         <source>Do not copy image</source>
         <translation>Afbeelding niet kopiëren</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <extracomment>Preferences tab title </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Keep original image size</source>
@@ -431,22 +454,22 @@
 &lt;dd&gt;Deze voorinstelling is voor de meeste mensen en de meeste muziek normaal gezien transparant, en is al van vrij hoge kwaliteit.&lt;/dd&gt;
 
 &lt;dt&gt;VBR extreem, VBR extreme snel&lt;/dt&gt;
-&lt;dd&gt;Deze voorinstelling biedt iets hogere kwaliteit dan de standaardmodus als je een uitzonderlijk goed gehoord of high-end audio-apparatuur hebt.&lt;/dd&gt;
+&lt;dd&gt;Deze voorinstelling biedt iets hogere kwaliteit dan de standaardmodus als u een uitzonderlijk goed gehoor of high-end audio-apparatuur hebt.&lt;/dd&gt;
 
 &lt;dt&gt;VBR kwaliteit&lt;/dt&gt;
-&lt;dd&gt;Deze optie laat je de uitvoerkwaliteit opgeven.&lt;/dd&gt;
+&lt;dd&gt;Deze optie laat u de uitvoerkwaliteit opgeven.&lt;/dd&gt;
 
 &lt;dt&gt;snelle optie&lt;/dt&gt;
 &lt;dd&gt;Schakelt de nieuwe snelle VBR voor een specifiek profiel in. Dit is aanbevolen.&lt;/dd&gt;
 
 &lt;dt&gt;CBR waanzinnig&lt;/dt&gt;
-&lt;dd&gt;Als je absoluut de hoogste kwaliteit nodig hebt ongeacht bestandsgrootte zal je dat met deze constante bitsnelheid bereiken.&lt;/dd&gt;
+&lt;dd&gt;Als u absoluut de hoogste kwaliteit nodig hebt ongeacht bestandsgrootte, zal u dat met deze constante bitsnelheid bereiken.&lt;/dd&gt;
 
 &lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Deze voorinstelling geeft je normaal gezien goede kwaliteit voor een vooraf opgegeven bitsnelheid.&lt;/dd&gt;
+&lt;dd&gt;Deze voorinstelling geeft u normaal gezien goede kwaliteit voor een vooraf opgegeven bitsnelheid.&lt;/dd&gt;
 
 &lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Deze voorinstelling geeft je normaal gezien hogere kwaliteit dan de constante bitsnelheid voor een vooraf opgegeven bitsnelheid.&lt;/dd&gt;
+&lt;dd&gt;Deze voorinstelling geeft u normaal gezien hogere kwaliteit dan de constante bitsnelheid voor een vooraf opgegeven bitsnelheid.&lt;/dd&gt;
 </translation>
     </message>
 </context>
@@ -600,7 +623,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation>Het CUE-bestand bevat informatie over meerdere schijven. Welke schijf wil je gebruiken?</translation>
+        <translation>Het CUE-bestand bevat informatie over meerdere schijven. Welke schijf wil u gebruiken?</translation>
     </message>
 </context>
 <context>
@@ -882,7 +905,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
         <translation>Sommige albums zullen niet worden geconverteerd, ze bevatten fouten.
-Wil je doorgaan?</translation>
+Wil u doorgaan?</translation>
     </message>
     <message>
         <source>%1 files</source>
@@ -909,11 +932,6 @@ Wil je doorgaan?</translation>
         <translation>Kies map</translation>
     </message>
     <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
@@ -936,7 +954,7 @@ If you surround sections of text that contain a token with braces, these section
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
-Tokens beginnen met %. Je kan volgende tokens gebruiken:
+Tokens beginnen met %. U kan volgende tokens gebruiken:
 &lt;table&gt;
 &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tracknummer&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Totaal aantal nummers&lt;/td&gt;&lt;/tr&gt;
@@ -948,14 +966,14 @@ Tokens beginnen met %. Je kan volgende tokens gebruiken:
         &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
-Als je delen van tekst die een token bevatten met accolades omsluit zullen deze delen worden verborgen als het token leeg is.</translation>
+Als u delen van tekst die een token bevatten met accolades omsluit zullen deze delen worden verborgen als het token leeg is.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Je kan naar de doelmap bladeren of ze manueel ingeven.
+        <translation>U kan naar de doelmap bladeren of ze manueel ingeven.
 
 Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
     </message>
@@ -989,6 +1007,10 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>Remove disk from project</source>
         <translation>Schijf verwijderen van project</translation>
+    </message>
+    <message>
+        <source>Check for Updates...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1037,7 +1059,7 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Het bestand &lt;b&gt;%1&lt;/b&gt; is geen ondersteund audiobestand. &lt;br&gt;&lt;br&gt;Controleer dat alle vereiste programma&apos;s zijn geïnstalleerd en ingesteld.</translation>
+        <translation>Het bestand &lt;b&gt;%1&lt;/b&gt; is geen ondersteund audiobestand. &lt;br&gt;&lt;br&gt;Controleer dat alle vereiste programma’s zijn geïnstalleerd en ingesteld.</translation>
     </message>
     <message>
         <source> [disk %1]</source>
@@ -1067,7 +1089,7 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>Je kan ReplayGain niet gebruiken voor bestanden met bemonsteringsfrequenties boven 48kHz. Metaflac ondersteunt zo&apos;n bestanden niet.</translation>
+        <translation>U kan ReplayGain niet gebruiken voor bestanden met bemonsteringsfrequenties boven 48kHz. Metaflac ondersteunt zo’n bestanden niet.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>

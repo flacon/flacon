@@ -43,7 +43,7 @@
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation type="unfinished"/>
+        <translation>Egyéni sávok kibontása egy nagy hangfájlból, amely tartalmazza a teljes albumot.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
@@ -72,7 +72,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>A flakon több nyelvre is le lett lefordítva, köszönhetően a Falcon fordító csapat munkájának a &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;-en.</translation>
     </message>
 </context>
 <context>
@@ -251,7 +251,7 @@
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation>px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -263,19 +263,42 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation type="unfinished"/>
+        <translation>Borítókép</translation>
     </message>
     <message>
         <source>Do not copy image</source>
+        <translation>Ne másolja a képfájlt</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <extracomment>Preferences tab title </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation type="unfinished"/>
+        <translation>Tartsa meg az eredeti képfájl méretet</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation type="unfinished"/>
+        <translation>Átméretezés, ha a képfájl mérete nagyobb, mint</translation>
     </message>
 </context>
 <context>
@@ -321,7 +344,7 @@
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>FLAC átalakító beállítása</translation>
     </message>
 </context>
 <context>
@@ -548,11 +571,11 @@ In CBR mode, it sets the specific output bitrate.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Borítókép kiválasztása</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Borítókép nélkül</translation>
     </message>
 </context>
 <context>
@@ -568,7 +591,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>A CUE fájl információkat tartalmaz több lemezről. Melyik lemezt akarod használni?</translation>
     </message>
 </context>
 <context>
@@ -583,7 +606,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
-        <translation type="unfinished"/>
+        <translation>Az audio fájl rövidebb, mint a rendezői példányból elvárt.</translation>
     </message>
 </context>
 <context>
@@ -603,7 +626,9 @@ In CBR mode, it sets the specific output bitrate.
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Nem tudtam átnevezni:
+%1 erre %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -638,7 +663,10 @@ Ez csak a fájl méretet befolyásolja. Minden beállítás veszteségmentes.</t
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation type="unfinished"/>
+        <translation>A ReplayGain egy olyan szabvány, amely normalizálhatja a számítógépes hangformátumok észlelt hangosságát. 
+
+Az elemzést egyedi sávokon lehet végrehajtani, így minden sáv ugyanolyan hangerővel fog rendelkezni a lejátszás során. 
+Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő eltéréseket.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -872,11 +900,6 @@ Biztosan folytatni akarod?</translation>
         <translation>Válassza ki a könyvtárat</translation>
     </message>
     <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
@@ -895,14 +918,32 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+A token-ek %.jellel kezdődnek. A következő tokeneket használhatod:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Sáv száma  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Sávok teljes száma&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Előadó&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album címe&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Sáv címe&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Év&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Műfaj&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, ha a token üres.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Böngészni tudsz a célkönyvtárba. Manuálisan is beírhatod
+
+Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredményfájlok ugyanabba a könyvtárba kerülnek, mint a forrás.</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
@@ -921,18 +962,22 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Delete current pattern from history</source>
-        <translation type="unfinished"/>
+        <translation>Az aktuális minta törlése az előzményekből</translation>
     </message>
     <message>
         <source>Add disk</source>
-        <translation type="unfinished"/>
+        <translation>Lemez hozzáadása</translation>
     </message>
     <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>Lemez eltávolítása</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
+        <translation>Lemez eltávolítása a projektből</translation>
+    </message>
+    <message>
+        <source>Check for Updates...</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -971,7 +1016,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 program</translation>
     </message>
 </context>
 <context>
@@ -1012,7 +1057,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation type="unfinished"/>
+        <translation>Nem használhatsz &quot;ReplayGain&quot;-t olyan fájlok esetében, amelyek 48 kHz fölötti mintavételi gyakorisággal rendelkeznek. A Metaflac nem támogatja az ilyen fájlokat.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
@@ -1029,25 +1074,25 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; könyvtár nem hozható létre.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; könyvtárba nem lehet írni.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Nem lehetett másolni &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Nem lehetett olvasni a borítóképet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Nem lehetett írni a borítóképet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1055,7 +1100,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-        <translation type="unfinished"/>
+        <translation>Nem lehetett olvasni  &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1186,11 +1231,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>Worker</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; könyvtár nem hozható létre.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; könyvtárba nem lehet írni.</translation>
     </message>
 </context>
 </TS>
