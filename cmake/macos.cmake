@@ -23,7 +23,7 @@
  #
  # END_COMMON_COPYRIGHT_HEADER
 
-function(CREATE_PLIST_FILE _IN_FILE _OUT_FILE _TRANSLATIONS_PATTERN)   
+function(CREATE_PLIST_FILE _IN_FILE _OUT_FILE)
     configure_file(${_IN_FILE} ${_OUT_FILE} @ONLY)
     file(APPEND ${_OUT_FILE} "${name_tag}\n")
     file(APPEND ${_OUT_FILE} "${comment_tag}\n")
