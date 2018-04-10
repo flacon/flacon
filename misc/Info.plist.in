@@ -6,7 +6,7 @@
 	<string>flacon</string>
 
 	<key>CFBundleIconFile</key> 	
-	<string>flacon</string>
+	<string>Flacon</string>
 
 	<key>CFBundleIdentifier</key>
 	<string>io.github.flacon</string>

@@ -291,25 +291,6 @@ endfunction()
 CREATE_DESKTOP_FILE(misc/${PROJECT_NAME}.desktop ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop translations/*.desktop)
 CREATE_PLIST_FILE(misc/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
 
-install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop DESTINATION "share/applications")
-install(FILES   images/mainicon/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps"    RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps"    RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps"    RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-64x64.png   DESTINATION "share/icons/hicolor/64x64/apps"    RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-128x128.png DESTINATION "share/icons/hicolor/128x128/apps"  RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-256x256.png DESTINATION "share/icons/hicolor/256x256/apps"  RENAME "flacon.png")
-install(FILES   images/mainicon/flacon-512x512.png DESTINATION "share/icons/hicolor/512x512/apps"  RENAME "flacon.png")
-install(FILES   images/mainicon/flacon.svg         DESTINATION "share/icons/hicolor/scalable/apps" RENAME "flacon.svg")
-
-
-install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
-install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
-
-
-include("cmake/tests.cmake")
-add_tests(tests)
-
-
 # Man page **************************************
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/misc/flacon.man.in
@@ -320,7 +301,35 @@ configure_file(
 add_custom_command(TARGET ${PROJECT_NAME}
     COMMAND gzip -c -n ${CMAKE_CURRENT_BINARY_DIR}/flacon.1 > ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz
 )
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION share/man/man1)
+
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    install(TARGETS ${PROJECT_NAME} RUNTIME                 DESTINATION Flacon.app/Contents/MacOS)
+    install(FILES   ${QM_FILES}                             DESTINATION Flacon.app/Contents/translations)
+    install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION Flacon.app/Contents/Resources)
+    install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/Info.plist  DESTINATION Flacon.app/Contents)
+    install(FILES   images/mainicon/Flacon.icns             DESTINATION Flacon.app/Contents/Resources)
+
+else()
+    install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
+    install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION share/man/man1)
+
+    install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop DESTINATION "share/applications")
+    install(FILES   images/mainicon/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps"    RENAME "flacon.png")
+    install(FILES   images/mainicon/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps"    RENAME "flacon.png")
+    install(FILES   images/mainicon/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps"    RENAME "flacon.png")
+    install(FILES   images/mainicon/flacon-64x64.png   DESTINATION "share/icons/hicolor/64x64/apps"    RENAME "flacon.png")
+    install(FILES   images/mainicon/flacon-128x128.png DESTINATION "share/icons/hicolor/128x128/apps"  RENAME "flacon.png")
+    install(FILES   images/mainicon/flacon-256x256.png DESTINATION "share/icons/hicolor/256x256/apps"  RENAME "flacon.png")
+    install(FILES   images/mainicon/flacon-512x512.png DESTINATION "share/icons/hicolor/512x512/apps"  RENAME "flacon.png")
+    install(FILES   images/mainicon/flacon.svg         DESTINATION "share/icons/hicolor/scalable/apps" RENAME "flacon.svg")
+
+endif()
+
+include("cmake/tests.cmake")
+add_tests(tests)
+
 
 # Add make dist target **************************
 if(NOT CPACK_PACKAGE_VERSION)
