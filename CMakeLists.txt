@@ -304,6 +304,7 @@ add_custom_command(TARGET ${PROJECT_NAME}
 
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Flacon")
     install(TARGETS ${PROJECT_NAME} RUNTIME                 DESTINATION Flacon.app/Contents/MacOS)
     install(FILES   ${QM_FILES}                             DESTINATION Flacon.app/Contents/translations)
     install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION Flacon.app/Contents/Resources)

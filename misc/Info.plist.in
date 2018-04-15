@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleExecutable</key>
-	<string>flacon</string>
+	<string>Flacon</string>
 
 	<key>CFBundleIconFile</key> 	
 	<string>Flacon</string>

@@ -877,6 +877,7 @@ void MainWindow::initActions()
 
     actionConfigure->setIcon(loadIcon("configure"));
     connect(actionConfigure, SIGNAL(triggered()), this, SLOT(configure()));
+    actionConfigure->setMenuRole(QAction::PreferencesRole);
 
     actionConfigureEncoder->setIcon(actionConfigure->icon());
     connect(actionConfigureEncoder, SIGNAL(triggered()), this, SLOT(configureEncoder()));
