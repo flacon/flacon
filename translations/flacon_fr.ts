@@ -272,25 +272,25 @@
     <message>
         <source>Update</source>
         <extracomment>Preferences tab title </extracomment>
-        <translation type="unfinished"/>
+        <translation>Mise à jour</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Vérifier les mises à jour automatiquement</translation>
     </message>
     <message>
         <source>Check now</source>
-        <translation type="unfinished"/>
+        <translation>Vérifier maintenant</translation>
     </message>
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>La dernière vérification a été effectuée le %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>N’a jamais été vérifiée</translation>
     </message>
     <message>
         <source>Keep original image size</source>
@@ -1008,7 +1008,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Vérification des mises à jour…</translation>
     </message>
 </context>
 <context>

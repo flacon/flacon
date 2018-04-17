@@ -251,7 +251,7 @@
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -263,42 +263,42 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation type="unfinished"/>
+        <translation>封面图片</translation>
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation type="unfinished"/>
+        <translation>不复制图像</translation>
     </message>
     <message>
         <source>Update</source>
         <extracomment>Preferences tab title </extracomment>
-        <translation type="unfinished"/>
+        <translation>更新</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>自动检查更新</translation>
     </message>
     <message>
         <source>Check now</source>
-        <translation type="unfinished"/>
+        <translation>立即检查</translation>
     </message>
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>上次检查时间: %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>从未检查</translation>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation type="unfinished"/>
+        <translation>保持原图像尺寸</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation type="unfinished"/>
+        <translation>调整尺寸，如果图像尺寸大于</translation>
     </message>
 </context>
 <context>
@@ -344,7 +344,7 @@
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>FLAC 编码配置</translation>
     </message>
 </context>
 <context>
@@ -580,11 +580,11 @@ CBR 模式下，它指定特定的输出码率。
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>选择封面图片</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>无封面图片</translation>
     </message>
 </context>
 <context>
@@ -600,7 +600,7 @@ CBR 模式下，它指定特定的输出码率。
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>该 CUE 文件包含有多个磁盘的信息。您想使用哪个磁盘？</translation>
     </message>
 </context>
 <context>
@@ -974,19 +974,19 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Add disk</source>
-        <translation type="unfinished"/>
+        <translation>添加磁盘</translation>
     </message>
     <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>移除磁盘</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
-        <translation type="unfinished"/>
+        <translation>从项目中移除磁盘</translation>
     </message>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>检查更新...</translation>
     </message>
 </context>
 <context>

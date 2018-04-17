@@ -272,25 +272,25 @@
     <message>
         <source>Update</source>
         <extracomment>Preferences tab title </extracomment>
-        <translation type="unfinished"/>
+        <translation>Bijwerken</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Automatisch controleren op updates</translation>
     </message>
     <message>
         <source>Check now</source>
-        <translation type="unfinished"/>
+        <translation>Nu controleren</translation>
     </message>
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Laatst gecontroleerd op %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Nooit gecontroleerd</translation>
     </message>
     <message>
         <source>Keep original image size</source>
@@ -1010,7 +1010,7 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     </message>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Bezig met controleren op updates…</translation>
     </message>
 </context>
 <context>
@@ -1076,7 +1076,7 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Bestand &lt;b&gt;&quot;%1&quot;&lt;/b&gt; bestaat niet</translation>
+        <translation>Bestand &lt;b&gt;‘%1’&lt;/b&gt; bestaat niet</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
@@ -1170,11 +1170,11 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     </message>
     <message>
         <source>Extracting</source>
-        <translation>Aan het uitpakken</translation>
+        <translation>Bezig met uitpakken</translation>
     </message>
     <message>
         <source>Encoding</source>
-        <translation>Aan het coderen</translation>
+        <translation>Bezig met coderen</translation>
     </message>
     <message>
         <source>Queued</source>

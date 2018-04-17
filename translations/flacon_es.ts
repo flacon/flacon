@@ -251,7 +251,7 @@
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation>px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -263,42 +263,42 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation type="unfinished"/>
+        <translation>Imagen de portada</translation>
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation type="unfinished"/>
+        <translation>No copie la imagen</translation>
     </message>
     <message>
         <source>Update</source>
         <extracomment>Preferences tab title </extracomment>
-        <translation type="unfinished"/>
+        <translation>Actualizar</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Comprobar actualizaciones automáticamente</translation>
     </message>
     <message>
         <source>Check now</source>
-        <translation type="unfinished"/>
+        <translation>Comprobar ahora</translation>
     </message>
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>La última comprobación fue el %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Nunca se ha comprobado</translation>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation type="unfinished"/>
+        <translation>Conservar el tamaño original de la imagen</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation type="unfinished"/>
+        <translation>Ajustar tamaño si la imagen es mayor de</translation>
     </message>
 </context>
 <context>
@@ -344,7 +344,7 @@
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configuración de la codificación Flac</translation>
     </message>
 </context>
 <context>
@@ -447,7 +447,30 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
+&lt;dd&gt;Usando un Bitrate Variable medio, este preajuste debe ser casi transparente para la mayoría de gente y la mayoría de música.&lt;/dd&gt;
+
+&lt;dt&gt;VBR estándar, VBR estándar rápido&lt;/dt&gt;
+&lt;dd&gt;Usando un Bitrate Variable estándar, este preajuste debería se transparente para la mayoría de la música y es ya un nivel alto de calidad.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extremo, VBR extremo rápido&lt;/dt&gt;
+&lt;dd&gt;Usando el Bitrate Variable más alto, este preajuste ofrece algo más de calidad si usted tiene muy buen oído o un equipo de audio de gama alta.&lt;/dd&gt;
+
+&lt;dt&gt;Calidad VBR&lt;/dt&gt;
+&lt;dd&gt;Este valor le permite establecer la calidad de salida.&lt;/dd&gt;
+
+&lt;dt&gt;opción rápida&lt;/dt&gt;
+&lt;dd&gt;Establece el nuevo VBR rápido para un fichero en particular. Recomendado.&lt;/dd&gt;
+
+&lt;dt&gt;CBR máximo&lt;/dt&gt;
+&lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando este Bitrate Constante.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Usando este Bitrate Constante, el preajuste le dará una buena calidad al bitrate especificado.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Usando este Bitrate Promedio, este preajuste le dará una calidad más alta que el Bitrate Constante para un bitrate específico.&lt;/dd&gt;
+</translation>
     </message>
 </context>
 <context>
@@ -580,11 +603,11 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione imagen de portada</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Sin imagen de portada</translation>
     </message>
 </context>
 <context>
@@ -600,7 +623,7 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>El archivo CUE contiene información de multiples discos. ¿Cuál quiere usar?</translation>
     </message>
 </context>
 <context>
@@ -635,7 +658,9 @@ En el modo CBR, se establece la tasa de bits específica de salida.
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>No puedo renombrar el fichero:
+%1 como %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -973,19 +998,19 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     </message>
     <message>
         <source>Add disk</source>
-        <translation type="unfinished"/>
+        <translation>Agregar disco</translation>
     </message>
     <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar disco</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar disco del proyecto</translation>
     </message>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Comprobar actualizaciones...</translation>
     </message>
 </context>
 <context>
@@ -1023,7 +1048,7 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation type="unfinished"/>
+        <translation>Programa %1</translation>
     </message>
 </context>
 <context>
@@ -1081,25 +1106,25 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>No puedo crear el directorio &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>No puedo escribir en el directorio &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>No puedo copiar el archivo de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>No puedo leer la imagen de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>No puedo escribir la imagen de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1107,7 +1132,7 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-        <translation type="unfinished"/>
+        <translation>No puedo leer &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1238,11 +1263,11 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <name>Worker</name>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>No puedo crear el directorio &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>No puedo escribir en el directorio &quot;%1&quot;.</translation>
     </message>
 </context>
 </TS>
