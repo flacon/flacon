@@ -41,7 +41,7 @@
 /************************************************
  *
  ************************************************/
-qint64 timeToBytes(CueTime time, WavHeader wav)
+qint64 timeToBytes(CueTime time, const WavHeader &wav)
 {
     if (wav.isCdQuality())
     {

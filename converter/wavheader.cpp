@@ -300,14 +300,13 @@ void WavHeader::load(QIODevice *stream)
 
 
     char    chunkID[5];
-    quint32 chunkSize;
     quint64 pos=12;
     while (!stream->atEnd())
     {
         if (!readTag(stream, chunkID))
             throw "[WAV] can't read chunk ID";
 
-        chunkSize = readUInt32(stream);
+        quint32 chunkSize = readUInt32(stream);
         pos+=8;
         //qDebug()<< QString("found chunk: [%1] with length %2").arg(chunkID.data()).arg(chunkSize);
 

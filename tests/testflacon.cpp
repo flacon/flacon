@@ -757,9 +757,6 @@ void TestFlacon::testTrackResultFilePath_data()
  ************************************************/
 void TestFlacon::testTrackSetCodepages()
 {
-    static int count = 0;
-    count++;
-
     QFETCH(QString, cueFile);
     QFETCH(QString, sampleFile);
     QFETCH(QString, codepageBefore);
