@@ -417,6 +417,10 @@ HistoryComboBox::HistoryComboBox(QWidget *parent):
 {
     setInsertPolicy(QComboBox::InsertAtTop);
     setMaxCount(10);
+    setAutoCompletionCaseSensitivity(Qt::CaseSensitive);
+
+    connect(&mDeleteItemAct, &QAction::triggered,
+            this, &HistoryComboBox::deleteItem);
 }
 
 
@@ -456,6 +460,23 @@ void HistoryComboBox::focusOutEvent(QFocusEvent *e)
     QApplication::sendEvent(this, &key_release);
 
     QComboBox::focusOutEvent(e);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void HistoryComboBox::deleteItem()
+{
+    QStringList hist = this->history();
+    QString s = currentText();
+    hist.removeOne(s);
+
+    lineEdit()->setText(hist.isEmpty() ? "" : hist.first());
+    setHistory(hist);
+
+    emit currentIndexChanged(currentText());
+    emit currentIndexChanged(currentIndex());
 }
 
 

@@ -149,9 +149,9 @@ MainWindow::MainWindow(QWidget *parent) :
     outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
 
     outPatternButton->menu()->addSeparator();
-    QAction *act = new QAction(tr("Delete current pattern from history"), outPatternButton);
-    connect(act, SIGNAL(triggered()), this, SLOT(deletePattern()));
-    outPatternButton->menu()->addAction(act);
+
+    outPatternEdit->deleteItemAction()->setText(tr("Delete current pattern from history"));
+    outPatternButton->menu()->addAction(outPatternEdit->deleteItemAction());
 
     outPatternButton->setFixedWidth(outDirButton->sizeHint().width());
     connect(outPatternButton, SIGNAL(paternSelected(QString)),
@@ -159,7 +159,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(outPatternButton, SIGNAL(fullPaternSelected(QString)),
             this, SLOT(replaceOutPattern(QString)));
-    outPatternEdit->setAutoCompletionCaseSensitivity(Qt::CaseSensitive);
 
     outPatternButton->setIcon(loadIcon("pattern-button"));
 
@@ -170,9 +169,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Signals .................................................
     connect(settings, SIGNAL(changed()), trackView->model(), SIGNAL(layoutChanged()));
+
     connect(outPatternEdit->lineEdit(), SIGNAL(editingFinished()), this, SLOT(setPattern()));
     connect(outPatternEdit, SIGNAL(currentIndexChanged(int)), this, SLOT(setPattern()));
-    connect(outDirEdit,     SIGNAL(editingFinished()), this, SLOT(setOutDir()));
+
+    connect(outDirEdit->lineEdit(),     SIGNAL(editingFinished()), this, SLOT(setOutDir()));
+    connect(outDirEdit,     SIGNAL(currentIndexChanged(int)), this, SLOT(setOutDir()));
 
     connect(outFormatCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setOutFormat()));
     connect(codepageCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
@@ -195,6 +197,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(refreshEdits()));
     connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(setControlsEnable()));
 
+    outDirEdit->setHistory(settings->value(Settings::OutFiles_DirectoryHistory).toStringList());
     outPatternEdit->setHistory(settings->value(Settings::OutFiles_PatternHistory).toStringList());
 
     refreshEdits();
@@ -301,29 +304,10 @@ void MainWindow::setPattern()
 /************************************************
 
  ************************************************/
-void MainWindow::deletePattern()
-{
-    QStringList history = settings->value(Settings::OutFiles_PatternHistory).toStringList();
-    QString currentPattern = outPatternEdit->currentText();
-    history.removeOne(currentPattern);
-
-    if (history.isEmpty())
-        currentPattern = "";
-    else
-        currentPattern = history.first();
-    outPatternEdit->lineEdit()->setText(currentPattern);
-    settings->setValue(Settings::OutFiles_Pattern, currentPattern);
-    outPatternEdit->setHistory(history);
-    settings->setValue(Settings::OutFiles_PatternHistory, history);
-}
-
-
-/************************************************
-
- ************************************************/
 void MainWindow::setOutDir()
 {
-    settings->setValue(Settings::OutFiles_Directory, outDirEdit->text());
+    settings->setValue(Settings::OutFiles_Directory, outDirEdit->currentText());
+    settings->setValue(Settings::OutFiles_DirectoryHistory, outDirEdit->history());
 }
 
 
@@ -332,11 +316,11 @@ void MainWindow::setOutDir()
  ************************************************/
 void MainWindow::openOutDirDialog()
 {
-    QString outDir = QFileDialog::getExistingDirectory(this, tr("Select result directory"), outDirEdit->text());
+    QString outDir = QFileDialog::getExistingDirectory(this, tr("Select result directory"), outDirEdit->currentText());
     if (!outDir.isEmpty())
     {
         outDir.replace(QDir::homePath(), "~");
-        outDirEdit->setText(outDir);
+        outDirEdit->setCurrentText(outDir);
         setOutDir();
     }
 }
@@ -497,7 +481,8 @@ void MainWindow::refreshEdits()
     tagDiscIdEdit->setMultiValue(diskId);
     codepageCombo->setMultiValue(codePage);
 
-    outDirEdit->setText(settings->value(Settings::OutFiles_Directory).toString());
+    if (outDirEdit->currentText() != settings->value(Settings::OutFiles_Directory).toString())
+        outDirEdit->lineEdit()->setText(settings->value(Settings::OutFiles_Directory).toString());
 
     if (outPatternEdit->currentText() != settings->value(Settings::OutFiles_Pattern).toString())
         outPatternEdit->lineEdit()->setText(settings->value(Settings::OutFiles_Pattern).toString());

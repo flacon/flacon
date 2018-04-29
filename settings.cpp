@@ -191,7 +191,8 @@ QString Settings::keyToString(Settings::Key key) const
     case OutFiles_Pattern:      return "OutFiles/Pattern";
     case OutFiles_Directory:    return "OutFiles/Directory";
     case OutFiles_Format:       return "OutFiles/Format";
-    case OutFiles_PatternHistory: return "OutFiles/PatternHistory";
+    case OutFiles_PatternHistory:   return "OutFiles/PatternHistory";
+    case OutFiles_DirectoryHistory: return "OutFiles/DirectoryHistory";
 
     // Internet ****************************
     case Inet_CDDBHost:         return "Inet/CDDBHost";

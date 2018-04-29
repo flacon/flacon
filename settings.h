@@ -52,6 +52,7 @@ public:
         // Out Files ****************************
         OutFiles_Pattern,
         OutFiles_Directory,
+        OutFiles_DirectoryHistory,
         OutFiles_Format,
         OutFiles_PatternHistory,
 

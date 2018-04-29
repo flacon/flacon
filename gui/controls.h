@@ -208,8 +208,16 @@ public:
     QStringList history() const;
     void setHistory(const QStringList &value);
 
+    QAction * deleteItemAction() { return &mDeleteItemAct; }
+
 protected:
     void focusOutEvent(QFocusEvent *e);
+
+private slots:
+    void deleteItem();
+
+private:
+    QAction mDeleteItemAct;
 };
 
 #endif // CONTROLS_H
