@@ -71,7 +71,20 @@ private:
 };
 
 
+class ActionsButton: public QToolButton
+{
+    Q_OBJECT
+public:
+    explicit ActionsButton(QWidget * parent=0);
+    QMenu *menu()  { return &mMenu; }
 
+private slots:
+    void popupMenu();
+
+private:
+
+    QMenu mMenu;
+};
 
 /************************************************
 
@@ -130,6 +143,7 @@ public:
 private:
     QString mTagName;
 };
+
 
 /************************************************
 
@@ -200,6 +214,10 @@ private:
 };
 
 
+
+/************************************************
+ *
+ ************************************************/
 class HistoryComboBox: public QComboBox
 {
     Q_OBJECT
@@ -218,6 +236,17 @@ private slots:
 
 private:
     QAction mDeleteItemAct;
+};
+
+
+/************************************************
+ *
+ ************************************************/
+class OutDirComboBox : public HistoryComboBox
+{
+    Q_OBJECT
+public:
+    OutDirComboBox(QWidget *parent = 0);
 };
 
 #endif // CONTROLS_H

@@ -49,6 +49,7 @@
 #include <QStyleFactory>
 #include <QToolBar>
 #include <QToolButton>
+#include <QStandardPaths>
 
 #ifdef MAC_UPDATER
 #include "updater/updater.h"
@@ -110,9 +111,9 @@ MainWindow::MainWindow(QWidget *parent) :
     initActions();
 
     // Buttons .................................................
-    outDirButton->setDefaultAction(actionSelectResultDir);
     outDirButton->setAutoRaise(true);
     outDirButton->setStyleSheet("border: none;");
+    initOutDirButton();
 
     configureEncoderBtn->setDefaultAction(actionConfigureEncoder);
     configureEncoderBtn->setAutoRaise(true);
@@ -644,6 +645,54 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
     flt << tr("All files", "OpenFile dialog filter line like \"All files\"") + " (*)";
 
     return flt.join(";;");
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::initOutDirButton()
+{
+    outDirButton->setIcon(loadIcon("pattern-button"));
+    QMenu *menu = outDirButton->menu();
+
+    menu->addAction(actionSelectResultDir);
+    menu->addSeparator();
+
+    {
+        QString dir = QStandardPaths::writableLocation(QStandardPaths::MusicLocation);
+        if (!dir.isEmpty())
+        {
+            QAction *act = new QAction(menu);
+            act->setText(tr("Standard music location", "Menu item for output direcory button"));
+            connect(act, &QAction::triggered, [this, dir](){ outDirEdit->setCurrentText(dir);});
+            menu->addAction(act);
+        }
+    }
+
+    {
+        QString dir = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+        if (!dir.isEmpty())
+        {
+            QAction *act = new QAction(menu);
+            act->setText(tr("Desktop", "Menu item for output direcory button"));
+            connect(act, &QAction::triggered, [this, dir](){ outDirEdit->setCurrentText(dir);});
+            menu->addAction(act);
+        }
+    }
+
+    {
+        QString s = tr("Same directory as CUE file", "Menu item for output direcory button");
+        QAction *act = new QAction(s, menu);
+        outDirEdit->lineEdit()->setPlaceholderText(s);
+        connect(act, &QAction::triggered, [this](){ outDirEdit->setCurrentText("");});
+        menu->addAction(act);
+    }
+
+    menu->addSeparator();
+    QAction * act = outDirEdit->deleteItemAction();
+    act->setText(tr("Remove current directory from history"));
+    menu->addAction(act);
 }
 
 

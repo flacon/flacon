@@ -480,3 +480,34 @@ void HistoryComboBox::deleteItem()
 }
 
 
+/************************************************
+ *
+ ************************************************/
+ActionsButton::ActionsButton(QWidget *parent):
+    QToolButton(parent)
+{
+    connect(this, &QToolButton::clicked,
+            this, &ActionsButton::popupMenu);
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ActionsButton::popupMenu()
+{
+    QPoint p = parentWidget()->mapToGlobal(this->pos());
+    p.ry() += height();
+    mMenu.popup(p);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+OutDirComboBox::OutDirComboBox(QWidget *parent):
+    HistoryComboBox(parent)
+{
+
+}

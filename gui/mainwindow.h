@@ -100,6 +100,7 @@ private:
     Scanner *mScanner;
     QString getOpenFileFilter(bool includeAudio, bool includeCue);
 
+    void initOutDirButton();
     void initActions();
     void initOutFormatCombo();
 
