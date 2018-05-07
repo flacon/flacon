@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -43,7 +45,7 @@
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Extrae pistas individuales de un fichero grande de audio que contenga el álbum completo.</translation>
+        <translation>Extrae pistas individuales de un archivo grande de audio que contenga el álbum completo.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
@@ -55,7 +57,7 @@
     </message>
     <message>
         <source>Packaging, testing</source>
-        <translation>Empaquetado,  pruebas</translation>
+        <translation>Empaquetado, pruebas</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
@@ -72,7 +74,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon es traducido a muchos lenguajes gracias al trabajo del equipo de traductores en &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;</translation>
+        <translation>Flacon es traducido a muchos lenguajes gracias al trabajo del equipo de traductores en &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -80,7 +82,7 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
-        <translation>Detección Automática</translation>
+        <translation>Detección automática</translation>
     </message>
     <message>
         <source>Unicode (UTF-8)</source>
@@ -211,15 +213,15 @@
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Pista pregap:</translation>
+        <translation>Previo de la primera pista:</translation>
     </message>
     <message>
         <source>Rescan</source>
-        <translation>Volver a explorar:</translation>
+        <translation>Volver a explorar</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation>Ruta completa de las aplicaciones externas:</translation>
+        <translation>Ruta completa de las aplicaciones externas</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
@@ -251,7 +253,7 @@
     </message>
     <message>
         <source> px</source>
-        <translation>px</translation>
+        <translation> px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -259,7 +261,7 @@
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Página de código predeterminada:</translation>
+        <translation>Página de códigos predeterminada:</translation>
     </message>
     <message>
         <source>Cover image</source>
@@ -267,7 +269,7 @@
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation>No copie la imagen</translation>
+        <translation>No copiar la imagen</translation>
     </message>
     <message>
         <source>Update</source>
@@ -276,7 +278,7 @@
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation>Comprobar actualizaciones automáticamente</translation>
+        <translation>Buscar actualizaciones automáticamente</translation>
     </message>
     <message>
         <source>Check now</source>
@@ -309,11 +311,11 @@
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Usar ajustes por calidad (recomendado)</translation>
+        <translation>Usar la configuración de calidad (recomendado)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Usar bitrate</translation>
+        <translation>Usar la tasa de bits</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -321,7 +323,7 @@
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Establece el bitrate objetivo (en kb/s)</translation>
+        <translation>Establece la tasa de bits de destino (en kb/s).</translation>
     </message>
 </context>
 <context>
@@ -344,7 +346,7 @@
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation>Configuración de la codificación Flac</translation>
+        <translation>Configuración de la codificación FLAC</translation>
     </message>
 </context>
 <context>
@@ -359,15 +361,15 @@
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Usar Tasa de Bits</translation>
+        <translation>Usar la tasa de bits</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Tasa de Bits:</translation>
+        <translation>Tasa de bits:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Establece una Tasa de Bits objetivo (en kb/s).</translation>
+        <translation>Establece la tasa de bits de destino (en kb/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
@@ -411,7 +413,7 @@
     </message>
     <message>
         <source>CBR insane</source>
-        <translation>CBR máximo</translation>
+        <translation>CBR demencial</translation>
     </message>
     <message>
         <source>CBR kbps</source>
@@ -438,7 +440,7 @@
 &lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
 
 &lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you&apos;ll achieve it by using this Constant BitRate.&lt;/dd&gt;
 
 &lt;dt&gt;CBR kbps&lt;/dt&gt;
 &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
@@ -460,7 +462,7 @@
 &lt;dd&gt;Este valor le permite establecer la calidad de salida.&lt;/dd&gt;
 
 &lt;dt&gt;opción rápida&lt;/dt&gt;
-&lt;dd&gt;Establece el nuevo VBR rápido para un fichero en particular. Recomendado.&lt;/dd&gt;
+&lt;dd&gt;Establece el nuevo VBR rápido para un archivo en particular. Recomendado.&lt;/dd&gt;
 
 &lt;dt&gt;CBR máximo&lt;/dt&gt;
 &lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando este Bitrate Constante.&lt;/dd&gt;
@@ -485,31 +487,31 @@
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation>Usar Tasa de Bits</translation>
+        <translation>Usar la tasa de bits</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation>Tasa de Bits mínima:</translation>
+        <translation>Tasa de bits mínima:</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Establece la Tasa de Bits mínima (en kb/s).</translation>
+        <translation>Establece la tasa de bits mínima (en kb/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation>Tasa de Bits nominal:</translation>
+        <translation>Tasa de bits nominal:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Establece la Tasa de Bits objetivo (en kb/s).</translation>
+        <translation>Establece la tasa de bits de destino (en kb/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Máxima Tasa de Bits:</translation>
+        <translation>Tasa de bits máxima:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Establece la máxima Tasa de Bits (en kb/s).</translation>
+        <translation>Establece la tasa de bits máxima (en kb/s).</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -532,7 +534,7 @@
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation>Tasa de Bits:</translation>
+        <translation>Tasa de bits:</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -603,7 +605,7 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation>Seleccione imagen de portada</translation>
+        <translation>Seleccione la imagen de portada</translation>
     </message>
     <message>
         <source>Without cover image</source>
@@ -618,7 +620,7 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
-        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
+        <comment>Cue disk select dialog, string like &apos;The Wall [disk 1]&apos;</comment>
         <translation>%1 [ disco %2 ]</translation>
     </message>
     <message>
@@ -634,7 +636,7 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>El fichero CUE no se ha establecido.</translation>
+        <translation>El archivo CUE no se ha establecido.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
@@ -646,7 +648,7 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     <message>
         <source>Encoder error:
 </source>
-        <translation>Error de Codificador:
+        <translation>Error del codificador:
 </translation>
     </message>
     <message>
@@ -655,10 +657,10 @@ En el modo CBR, se establece la tasa de bits específica de salida.
         <translation>No puedo leer el archivo %1</translation>
     </message>
     <message>
-        <source>I can't rename file:
+        <source>I can&apos;t rename file:
 %1 to %2
 %3</source>
-        <translation>No puedo renombrar el fichero:
+        <translation>No puedo renombrar el archivo:
 %1 como %2
 %3</translation>
     </message>
@@ -683,12 +685,12 @@ Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdi
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Por Pista</translation>
+        <translation>Por pista</translation>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Por Álbum</translation>
+        <translation>Por álbum</translation>
     </message>
     <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
@@ -726,7 +728,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Archivos Procesados</translation>
+        <translation>Archivos procesados</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -771,7 +773,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>ID de Disco:</translation>
+        <translation>ID del disco:</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -831,7 +833,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     </message>
     <message>
         <source>Program preferences</source>
-        <translation>Preferencias de programa</translation>
+        <translation>Preferencias del programa</translation>
     </message>
     <message>
         <source>&amp;About Flacon</source>
@@ -871,7 +873,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation>Búsqueda recursiva de álbum</translation>
+        <translation>Búsqueda recursiva de álbumes</translation>
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
@@ -887,11 +889,11 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Insertar &quot;Título de álbum&quot;</translation>
+        <translation>Insertar &quot;Título del álbum&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Insertar &quot;Título de pista&quot;</translation>
+        <translation>Insertar &quot;Título de la pista&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
@@ -960,7 +962,7 @@ Las variables comienzan con %. Puedes usar las siguientes variables:
         &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número total de pistas&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artista&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título del álbum&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título de Pista&lt;/td&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título de la pista&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Año&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Género&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
@@ -979,7 +981,7 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <comment>Predefined out file pattern, string like &apos;Use &quot;%a/%A/%n - %t&quot;&apos;</comment>
         <translation>Usar &quot;%1&quot;</translation>
     </message>
     <message>
@@ -1010,7 +1012,7 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     </message>
     <message>
         <source>Check for Updates...</source>
-        <translation>Comprobar actualizaciones...</translation>
+        <translation>Buscar actualizaciones...</translation>
     </message>
 </context>
 <context>
@@ -1038,16 +1040,16 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <name>ProgramEdit</name>
     <message>
         <source>Select program file</source>
-        <translation>Seleccione archivo de programa</translation>
+        <translation>Seleccione un archivo de programa</translation>
     </message>
     <message>
         <source>All files</source>
-        <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
+        <comment>This is part of filter for &apos;select program&apos; dialog. &apos;All files (*)&apos;</comment>
         <translation>Todos los archivos</translation>
     </message>
     <message>
         <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <comment>This is part of filter for &apos;select program&apos; dialog. %1 is a name of required program. Example: &apos;flac program (flac)&apos;</comment>
         <translation>Programa %1</translation>
     </message>
 </context>
@@ -1240,16 +1242,16 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation>Tamaño</translation>
+        <translation>Duración</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
-        <comment>Track length, string like '01:02:56'</comment>
+        <comment>Track length, string like &apos;01:02:56&apos;</comment>
         <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
-        <comment>Track length, string like '02:56'</comment>
+        <comment>Track length, string like &apos;02:56&apos;</comment>
         <translation>%1:%2</translation>
     </message>
     <message>
