@@ -413,7 +413,8 @@ void ProgramEdit::openDialog()
 
  ************************************************/
 HistoryComboBox::HistoryComboBox(QWidget *parent):
-    QComboBox(parent)
+    QComboBox(parent),
+    mDeleteItemAct(nullptr)
 {
     setInsertPolicy(QComboBox::InsertAtTop);
     setMaxCount(10);
