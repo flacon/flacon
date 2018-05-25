@@ -665,7 +665,7 @@ void MainWindow::initOutDirButton()
         {
             QAction *act = new QAction(menu);
             act->setText(tr("Standard music location", "Menu item for output direcory button"));
-            connect(act, &QAction::triggered, [this, dir](){ outDirEdit->setCurrentText(dir);});
+            connect(act, &QAction::triggered, [this, dir](){ outDirEdit->setEditText(dir); setOutDir();});
             menu->addAction(act);
         }
     }
@@ -676,7 +676,7 @@ void MainWindow::initOutDirButton()
         {
             QAction *act = new QAction(menu);
             act->setText(tr("Desktop", "Menu item for output direcory button"));
-            connect(act, &QAction::triggered, [this, dir](){ outDirEdit->setCurrentText(dir);});
+            connect(act, &QAction::triggered, [this, dir](){ outDirEdit->setCurrentText(dir); setOutDir();});
             menu->addAction(act);
         }
     }
@@ -685,7 +685,8 @@ void MainWindow::initOutDirButton()
         QString s = tr("Same directory as CUE file", "Menu item for output direcory button");
         QAction *act = new QAction(s, menu);
         outDirEdit->lineEdit()->setPlaceholderText(s);
-        connect(act, &QAction::triggered, [this](){ outDirEdit->setCurrentText("");});
+        connect(act, &QAction::triggered, [this](){ outDirEdit->setCurrentText(""); setOutDir();});
+        outDirEdit->lineEdit()->editingFinished();
         menu->addAction(act);
     }
 
