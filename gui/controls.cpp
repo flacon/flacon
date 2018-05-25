@@ -266,7 +266,7 @@ MultiValuesLineEdit::MultiValuesLineEdit(QWidget *parent):
     setCompleter(new QCompleter(this));
     completer()->setModel(mCompleterModel);
     completer()->setCaseSensitivity(Qt::CaseInsensitive);
-    completer()->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+    completer()->setCompletionMode(QCompleter::PopupCompletion);
 }
 
 
