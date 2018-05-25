@@ -661,7 +661,7 @@ void MainWindow::initOutDirButton()
 
     {
         QString dir = QStandardPaths::writableLocation(QStandardPaths::MusicLocation);
-        if (!dir.isEmpty())
+        if (!dir.isEmpty() && dir != QDir::homePath())
         {
             QAction *act = new QAction(menu);
             act->setText(tr("Standard music location", "Menu item for output direcory button"));
