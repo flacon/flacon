@@ -168,6 +168,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     loadSettings();
 
+    outDirEdit->setHistory(settings->value(Settings::OutFiles_DirectoryHistory).toStringList());
+    outDirEdit->setCurrentText(settings->value(Settings::OutFiles_Directory).toString());
+
+    outPatternEdit->setHistory(settings->value(Settings::OutFiles_PatternHistory).toStringList());
+
     // Signals .................................................
     connect(settings, SIGNAL(changed()), trackView->model(), SIGNAL(layoutChanged()));
 
@@ -198,8 +203,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(refreshEdits()));
     connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(setControlsEnable()));
 
-    outDirEdit->setHistory(settings->value(Settings::OutFiles_DirectoryHistory).toStringList());
-    outPatternEdit->setHistory(settings->value(Settings::OutFiles_PatternHistory).toStringList());
 
     refreshEdits();
     setControlsEnable();
