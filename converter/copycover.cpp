@@ -78,6 +78,15 @@ bool CopyCover::copyImage(const QString &outFileName)
     if (!res)
         mErrorString = QObject::tr("I can't copy cover file <b>%1</b>:<br>%2").arg(outFileName, f.errorString());
 
+    const QFileDevice::Permissions perm = QFileDevice::ReadOwner | QFileDevice::WriteOwner |
+                                          QFileDevice::ReadUser  | QFileDevice::WriteUser  |
+                                          QFileDevice::ReadGroup | QFileDevice::WriteGroup |
+                                          QFileDevice::ReadOther ;
+
+    res = QFile::setPermissions(outFileName, perm);
+    if (!res)
+        mErrorString = QObject::tr("I can't copy cover file <b>%1</b>:<br>%2").arg(outFileName, f.errorString());
+
     return res;
 }
 
