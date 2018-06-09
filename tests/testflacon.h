@@ -41,7 +41,7 @@ class TestFlacon : public QObject
 public:
     explicit TestFlacon(QObject *parent = 0);
 
-    static bool compareCue(const QString &result, const QString &expected, QString *error);
+    static bool compareCue(const QString &result, const QString &expected, QString *error, bool skipEmptyLines = false);
 
     
 private:
@@ -52,6 +52,8 @@ private:
 private slots:
     void initTestCase();
     void init();
+
+    void testCueReader();
 
     void testSearchCoverImage();
     void testSearchCoverImage_data();

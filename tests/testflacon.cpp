@@ -216,22 +216,39 @@ Disk *TestFlacon::standardDisk()
 }
 
 
+void removeEmptyLines(QByteArray &data)
+{
+    data = data.trimmed();
+    while (true)
+    {
+        int n = data.length();
+        data.replace("\n\n", "\n");
+        if (n == data.length())
+            break;
+    }
+}
+
 /************************************************
 
  ************************************************/
-bool TestFlacon::compareCue(const QString &result, const QString &expected, QString *error)
+bool TestFlacon::compareCue(const QString &result, const QString &expected, QString *error, bool skipEmptyLines)
 {
     QFile resFile(result);
     resFile.open(QFile::ReadOnly);
     QByteArray resData = resFile.readAll();
     resFile.close();
     resData.replace("\r\n", "\n");
+    if (skipEmptyLines)
+        removeEmptyLines(resData);
+
 
     QFile expFile(expected);
     expFile.open(QFile::ReadOnly);
     QByteArray expData = expFile.readAll();
     expFile.close();
     expData.replace("\r\n", "\n");
+    if (skipEmptyLines)
+        removeEmptyLines(expData);
 
     if (resData != expData)
     {

@@ -88,18 +88,7 @@ private:
     QList<CueTagSet> mDisks;
 
     QString mCodecName;
-    QByteArray mPerformer;
-    QByteArray mAlbum;
-    QByteArray mGenre;
-    QByteArray mDate;
-    QByteArray mComment;
-    QByteArray mSongwriter;
-    QByteArray mDiskId;
-    QByteArray mCatalog;
-    QByteArray mCdTextFile;
-
-    bool parse(QFile &file);
-    bool parseOneDiskTags(QFile &file, CueTagSet *tags);
+    bool parse(const QByteArrayList &data);
     bool mValid;
     QString mErrorString;
 };
