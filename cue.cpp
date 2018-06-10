@@ -259,8 +259,20 @@ CueReader::CueReader(const QString &fileName):
             break;
         }
 
-        mDisks[i].setDiskTag(START_TRACK_NUM, QString("%1").arg(startTrackNum).toLatin1());
+        CueTagSet &tags = mDisks[i];
+        tags.setDiskTag(START_TRACK_NUM, QString("%1").arg(startTrackNum).toLatin1());
         startTrackNum += disk(i).tracksCount();
+
+        if (mDisks.count() == 1)
+        {
+            tags.setTitle(QFileInfo(mFileName).fileName());
+        }
+        else
+        {
+            tags.setTitle(QFileInfo(mFileName).fileName() + QObject::tr(" [disk %1]").arg(i + 1));
+            tags.setDiskTag("MULTI_FILE", "1");
+        }
+
     }
 }
 
@@ -393,6 +405,13 @@ bool CueReader::parse(const QByteArrayList &data)
             tags = --(mDisks.end());
             if (!mCodecName.isEmpty())
                 tags->setTextCodecName(mCodecName);
+
+            tags->setDiskTag(TAG_CUE_FILE,   mFileName);
+            tags->setDiskTag(TAG_FILE,       extractFileFromFileTag(value), false);
+            tags->setDiskTag(TAG_DISKNUM,    QString("%1").arg(diskNum).toLatin1(), true);
+            tags->setDiskTag(TAG_DISCID,     diskId,     true);
+            tags->setDiskTag(TAG_CATALOG,    catalog,    false);
+            tags->setDiskTag(TAG_CDTEXTFILE, cdTextFile, false);
 
             mode = Mode::Global;
             continue;

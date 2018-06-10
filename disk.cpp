@@ -220,8 +220,8 @@ QFileInfoList matchedAudioFiles(const CueTagSet &cueTags, const QFileInfoList &a
     else
     {
         patterns << QRegExp::escape(QFileInfo(cueTags.diskTag("FILE")).completeBaseName());
-        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueTags.diskNumInCue() + 1);
-        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueTags.diskNumInCue() + 1);
+        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueTags.diskNumInCue());
+        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueTags.diskNumInCue());
     }
 
     QString audioExt;
