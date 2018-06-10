@@ -29,6 +29,7 @@
 #include "../cue.h"
 #include "tools.h"
 #include <QDebug>
+#include <QDir>
 
 
 /************************************************
