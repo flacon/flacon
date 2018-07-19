@@ -71,14 +71,20 @@ void TestFlacon::testFindAudioFile()
 
 
     QStringList expectedLists = expected.split(",", QString::SkipEmptyParts);
-    CueReader cue(cueFile);
-    if (!cue.isValid())
-        FAIL("Cue isn't valid:" + cue.errorString().toLocal8Bit());
+    QVector<CueDisk> cue;
+    try
+    {
+        cue = CueReader().load(cueFile);
+    }
+    catch (FlaconError &err)
+    {
+        FAIL(QString("Cue isn't valid: %1").arg(err.what()).toLocal8Bit());
+    }
 
-    for (int i=0; i<cue.diskCount(); ++i)
+    for (int i=0; i<cue.count(); ++i)
     {
         Disk disk;
-        disk.loadFromCue(cue.disk(i));
+        disk.loadFromCue(cue.at(i), true);
         QString expected = expectedLists.at(i).trimmed();
         if (expected == "''")
             expected = "";

@@ -136,6 +136,19 @@ TagSet::TagSet(const TagSet &other):
 {
 }
 
+TagSet::TagSet(const QString &uri, const Tracks &tracks):
+    d(new TagSetData)
+{
+    d->mUri = uri;
+    d->mTrackCount = tracks.count();
+    //d->mFileTag
+    //setTextCodecName(mutable QTextCodec *mTextCodec;
+    //QString mTextCodecName;
+
+    //d->mTags;
+
+}
+
 
 /************************************************
 

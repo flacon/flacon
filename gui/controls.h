@@ -33,6 +33,7 @@
 #include <QLineEdit>
 #include <QSet>
 #include <QMenu>
+#include "tags.h"
 
 class QStringListModel;
 
@@ -135,13 +136,13 @@ class TagLineEdit: public MultiValuesLineEdit
 {
     Q_OBJECT
 public:
-    explicit TagLineEdit(QWidget *parent = 0): MultiValuesLineEdit(parent) {}
+    explicit TagLineEdit(QWidget *parent = 0);
 
-    QString tagName() const { return mTagName; }
-    void setTagName(const QString &tagName) { mTagName = tagName; }
+    TagId tagId() const { return mTagId; }
+    void setTagId(TagId tagId) { mTagId = tagId; }
 
 private:
-    QString mTagName;
+    TagId   mTagId;
 };
 
 

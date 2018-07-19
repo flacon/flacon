@@ -30,7 +30,7 @@
 #include "types.h"
 #include <QFile>
 #include <QString>
-#include <QHash>
+#include "tags.h"
 
 
 class Disk;
@@ -54,13 +54,12 @@ private:
     QFile mFile;
     QString mErrorString;
     QTextCodec *mTextCodec;
-    QHash<QString, QString>mGlobalTags;
+    TrackTags mGlobalTags;
 
     void initGlobalTags();
     void writeLine(const QString &text);
-    void writeDiskTag(const QString &format, const QString &tagName);
-    void writeGlobalTag(const QString &format, const QString &tagName);
-    void writeTrackTag(const Track *track, const QString &prefix, const QString &tagName);
+    void writeGlobalTag(const QString &format, TagId tagId);
+    void writeTrackTag(const Track *track, const QString &prefix, TagId tagId);
 
 };
 

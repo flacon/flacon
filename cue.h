@@ -29,34 +29,13 @@
 
 #include <QString>
 #include <QList>
+#include "types.h"
 #include "tagset.h"
+#include "track.h"
 
 class QFile;
 
-class CueIndex
-{
-public:
-    explicit CueIndex(const QString &str = "");
 
-    bool isNull() const { return mNull; }
-    QString toString(bool cdQuality = true) const;
-
-    CueIndex operator-(const CueIndex &other) const;
-    bool operator==(const CueIndex &other) const;
-    bool operator!=(const CueIndex &other) const;
-
-    uint milliseconds() const { return mHiValue; }
-    uint frames() const { return mCdValue; }
-
-private:
-    bool mNull;
-    int mCdValue;
-    int mHiValue;
-
-    bool parse(const QString &str);
-};
-
-typedef CueIndex CueTime;
 
 class CueTagSet: public TagSet
 {
@@ -71,29 +50,40 @@ public:
     int diskNumInCue() const;
 };
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 4, 0))
-typedef QList<QByteArray> QByteArrayList;
-#endif
+class CueDisk
+{
+    friend class CueReader;
+public:
+    CueDisk();
+    QString fileName() const { return mFileName; }
+    const Tracks &tracks()   const { return mTracks; }
+    Tracks &tracks()  { return mTracks; }
+    DiskNum diskCount() const { return mDiskCount; }
+    DiskNum diskNum() const { return mDiskNum; }
+    QString uri() const { return mUri; }
+
+private:
+    QString mFileName;
+    QString mUri;
+    Tracks mTracks;
+    DiskNum mDiskCount;
+    DiskNum mDiskNum;
+};
+
+typedef QVector<CueDisk> Cue;
 
 class CueReader
 {
 public:
-    explicit CueReader(const QString &fileName);
+    CueReader();
+    QVector<CueDisk> load(const QString &fileName) noexcept(false);
+};
 
-    QString fileName() const { return mFileName; }
-    CueTagSet disk(int index) const { return mDisks.at(index); }
-    int diskCount() const { return mDisks.count(); }
-    bool isMultiFileCue() const { return mDisks.count() > 1; }
-    bool isValid() const { return mValid; }
-    QString errorString() const { return mErrorString; }
-private:
-    QString mFileName;
-    QList<CueTagSet> mDisks;
 
-    QString mCodecName;
-    bool parse(const QByteArrayList &data);
-    bool mValid;
-    QString mErrorString;
+class CueReaderError: public FlaconError
+{
+public:
+    CueReaderError(const QString &msg): FlaconError(msg) {}
 };
 
 #endif // CUE_H

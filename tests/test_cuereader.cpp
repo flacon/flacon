@@ -54,32 +54,33 @@ QFile &operator<<(QFile &file, const int &value)
 /************************************************
  *
  ************************************************/
-static void write(const CueReader &reader, const QString &fileName)
+static void write(const QVector<CueDisk> &cue, const QString &fileName)
 {
     QFile f(fileName);
     f.open(QFile::WriteOnly | QFile::Truncate);
 
-    for (int d=0; d<reader.diskCount(); ++d)
+    for (int d=0; d<cue.count(); ++d)
     {
-        auto disk = reader.disk(d);
-        for (int t=0; t<disk.tracksCount(); ++t)
+        auto disk = cue.at(d);
+
+        int t = -1;
+        foreach (const Track &track, disk.tracks())
         {
+            t++;
+
             if (t != 0)
                 f << "\n";
 
             QString trackTxt = QString("DISK.%1 TRACK.%2 ").arg(d+1, 2, 10, QChar('0')).arg(t+1, 2, 10, QChar('0'));
-
-            f << trackTxt << "FILE: "       << disk.fileTag() << "\n";
-            f << trackTxt << "INDEX 00: "   << disk.index(t, 0).toString(true) << "\n";
-            f << trackTxt << "INDEX 01: "   << disk.index(t, 1).toString(true) << "\n";
-            f << trackTxt << "TITLE: "      << disk.trackTag(t, TAG_TITLE) << "\n";
-            f << trackTxt << "ALBUM: "      << disk.trackTag(t, TAG_ALBUM) << "\n";
-            f << trackTxt << "PERFORMER: "  << disk.trackTag(t, TAG_PERFORMER) << "\n";
-            f << trackTxt << "DATE: "       << disk.trackTag(t, TAG_DATE) << "\n";
-            f << trackTxt << "DISKID: "     << disk.trackTag(t, TAG_DISCID) << "\n";
+            f << trackTxt << "FILE: "       << track.tag(TagId::File)           << "\n";
+            f << trackTxt << "INDEX 00: "   << track.cueIndex(0).toString(true) << "\n";
+            f << trackTxt << "INDEX 01: "   << track.cueIndex(1).toString(true) << "\n";
+            f << trackTxt << "TITLE: "      << track.tag(TagId::Title)          << "\n";
+            f << trackTxt << "ALBUM: "      << track.tag(TagId::Album)          << "\n";
+            f << trackTxt << "PERFORMER: "  << track.tag(TagId::Performer)      << "\n";
+            f << trackTxt << "DATE: "       << track.tag(TagId::Date)           << "\n";
+            f << trackTxt << "DISKID: "     << track.tag(TagId::DiscId)         << "\n";
         }
-
-
     }
 
     f.close();
@@ -103,13 +104,20 @@ void TestFlacon::testCueReader()
         QFile::copy(srcDir + "/" + f, cueFile);
         QFile::copy(srcDir + "/" + f + ".expected", expectedFile);
 
-        CueReader reader(cueFile);
-        write(reader, resultFile);
+        try
+        {
+            CueReader reader;
+            auto cue = reader.load(cueFile);
+            write(cue, resultFile);
 
-
-        QString err;
-        if (!TestFlacon::compareCue(resultFile, expectedFile, &err, true))
-            FAIL(err.toLocal8Bit());
+            QString err;
+            if (!TestFlacon::compareCue(resultFile, expectedFile, &err, true))
+                FAIL(err.toLocal8Bit());
+        }
+        catch (FlaconError &err)
+        {
+            FAIL(err.message());
+        }
     }
 
 }

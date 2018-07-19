@@ -26,10 +26,15 @@
 
 #include "cue.h"
 #include "types.h"
+#include "tags.h"
 #include <QFile>
 #include <QFileInfo>
 #include <QObject>
 #include <QDebug>
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 4, 0))
+typedef QList<QByteArray> QByteArrayList;
+#endif
 
 
 enum CueTagId
@@ -53,119 +58,22 @@ enum CueTagId
 
 
 /************************************************
+ *
+ ************************************************/
+CueDisk::CueDisk():
+    mDiskCount(0),
+    mDiskNum(0)
+{
+
+}
+
+
+/************************************************
 
  ************************************************/
 QString cueIndexTagKey(int indexNum)
 {
     return QString("CUE_INDEX:%1").arg(indexNum);
-}
-
-
-/************************************************
-
- ************************************************/
-CueIndex::CueIndex(const QString &str):
-    mNull(true),
-    mCdValue(0),
-    mHiValue(0)
-{
-    if (!str.isEmpty())
-        mNull = !parse(str);
-}
-
-
-/************************************************
-
- ************************************************/
-QString CueIndex::toString(bool cdQuality) const
-{
-    if (cdQuality)
-    {
-        int min =  mCdValue / (60 * 75);
-        int sec = (mCdValue - min * 60 * 75) / 75;
-        int frm =  mCdValue - (min * 60 + sec) * 75;
-
-        return QString("%1:%2:%3")
-                .arg(min, 2, 10, QChar('0'))
-                .arg(sec, 2, 10, QChar('0'))
-                .arg(frm, 2, 10, QChar('0'));
-    }
-    else
-    {
-        int min = mHiValue / (60 * 1000);
-        int sec = (mHiValue - min * 60 * 1000) / 1000;
-        int msec = mHiValue - (min * 60 + sec) * 1000;
-
-        return QString("%1:%2.%3")
-                .arg(min,  2, 10, QChar('0'))
-                .arg(sec,  2, 10, QChar('0'))
-                .arg(msec, 3, 10, QChar('0'));
-    }
-
-}
-
-
-/************************************************
-
- ************************************************/
-CueIndex CueIndex::operator -(const CueIndex &other) const
-{
-    CueIndex res;
-    res.mCdValue = this->mCdValue - other.mCdValue;
-    res.mHiValue = this->mHiValue - other.mHiValue;
-    res.mNull = false;
-    return res;
-}
-
-
-/************************************************
-
- ************************************************/
-bool CueIndex::operator ==(const CueIndex &other) const
-{
-    return this->mHiValue == other.mHiValue;
-}
-
-
-/************************************************
-
- ************************************************/
-bool CueIndex::operator !=(const CueIndex &other) const
-{
-    return this->mHiValue != other.mHiValue;
-}
-
-
-/************************************************
-
- ************************************************/
-bool CueIndex::parse(const QString &str)
-{
-    QStringList sl = str.split(QRegExp("\\D"), QString::KeepEmptyParts);
-
-    if (sl.length()<3)
-        return false;
-
-    bool ok;
-    int min = sl[0].toInt(&ok);
-    if (!ok)
-        return false;
-
-    int sec = sl[1].toInt(&ok);
-    if (!ok)
-        return false;
-
-    int frm = sl[2].leftJustified(2, '0').toInt(&ok);
-    if (!ok)
-        return false;
-
-    int msec = sl[2].leftJustified(3, '0').toInt(&ok);
-    if (!ok)
-        return false;
-
-    mCdValue = (min * 60 + sec) * 75 + frm;
-    mHiValue = (min * 60 + sec) * 1000 + msec;
-    return true;
 }
 
 
@@ -185,122 +93,29 @@ QByteArray unQuote(const QByteArray &line)
 
 
 /************************************************
-
+ *
  ************************************************/
-CueReader::CueReader(const QString &fileName):
-    mFileName(fileName),
-    mValid(false)
+CueReader::CueReader()
 {
-    QFileInfo fi(mFileName);
-    if (!fi.exists())
-    {
-        mErrorString = QObject::tr("File <b>\"%1\"</b> does not exist").arg(mFileName);
-        return;
-    }
 
-    QFile file(fi.canonicalFilePath());
-    if (!file.open(QIODevice::ReadOnly))
-    {
-        mErrorString = file.errorString();
-        return;
-    }
-
-    // Detect codepage and skip BOM .............
-    QByteArray magic = file.read(3);
-    int seek = 0;
-    if (magic.startsWith("\xEF\xBB\xBF"))
-    {
-        mCodecName = "UTF-8";
-        seek = 3;
-    }
-
-    else if (magic.startsWith("\xFE\xFF"))
-    {
-        mCodecName = "UTF-16BE";
-        seek = 2;
-    }
-
-    else if (magic.startsWith("\xFF\xFE"))
-    {
-        mCodecName = "UTF-16LE";
-        seek = 2;
-    }
-
-    file.seek(seek);
-    // Detect codepage and skip BOM .............
-
-    QByteArrayList data;
-
-    while (!file.atEnd())
-    {
-        QByteArray line = file.readLine().trimmed();
-        if (line.isEmpty())
-            continue;
-
-        data << line;
-    }
-    file.close();
-
-    mValid = parse(data);
-
-    if (mDisks.isEmpty())
-    {
-        mValid = false;
-        mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. The cue sheet has no FILE tag.").arg(mFileName);
-    }
-
-    int startTrackNum = 1;
-    for (int i=0; i<mDisks.count(); ++i)
-    {
-        if (disk(i).tracksCount() == 0)
-        {
-            mValid = false;
-            mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Disk %2 has no tags.").arg(mFileName).arg(i);
-            break;
-        }
-
-        CueTagSet &tags = mDisks[i];
-        tags.setDiskTag(START_TRACK_NUM, QString("%1").arg(startTrackNum).toLatin1());
-        startTrackNum += disk(i).tracksCount();
-
-        if (mDisks.count() == 1)
-        {
-            tags.setTitle(QFileInfo(mFileName).fileName());
-        }
-        else
-        {
-            tags.setTitle(QFileInfo(mFileName).fileName() + QObject::tr(" [disk %1]").arg(i + 1));
-            tags.setDiskTag("MULTI_FILE", "1");
-        }
-
-    }
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-QByteArray leftPart(const QByteArray &line, const QChar separator)
+struct ParserTrack
 {
-    int n = line.indexOf(separator);
-    if (n > -1)
-        return line.left(n);
-    else
-        return line;
-}
+    ParserTrack(DiskNum diskNum, Track tags):
+        diskNum(diskNum),
+        tags(tags)
+    {
+    }
 
+    DiskNum   diskNum;
+    Track     tags;
+};
 
-/************************************************
-
- ************************************************/
-QByteArray rightPart(const QByteArray &line, const QChar separator)
-{
-    int n = line.indexOf(separator);
-    if (n > -1)
-        return line.right(line.length() - n - 1);
-    else
-        return QByteArray();
-}
 
 
 /************************************************
@@ -358,34 +173,81 @@ QByteArray extractFileFromFileTag(const QByteArray &value)
 }
 
 
+
+/************************************************
+ *
+ ************************************************/
+void readData(const QString &fileName, QByteArrayList *data,  QString *codecName)
+{
+    QFileInfo fi(fileName);
+    if (!fi.exists())
+        throw CueReaderError(QObject::tr("File <b>\"%1\"</b> does not exist").arg(fileName));
+
+    QFile file(fi.canonicalFilePath());
+    if (!file.open(QIODevice::ReadOnly))
+        throw CueReaderError(file.errorString());
+
+    // Detect codepage and skip BOM .............
+    QByteArray magic = file.read(3);
+    int seek = 0;
+    if (magic.startsWith("\xEF\xBB\xBF"))
+    {
+        *codecName = "UTF-8";
+        seek = 3;
+    }
+
+    else if (magic.startsWith("\xFE\xFF"))
+    {
+        *codecName = "UTF-16BE";
+        seek = 2;
+    }
+
+    else if (magic.startsWith("\xFF\xFE"))
+    {
+        *codecName = "UTF-16LE";
+        seek = 2;
+    }
+
+    file.seek(seek);
+
+    // Detect codepage and skip BOM .............
+    while (!file.atEnd())
+    {
+        QByteArray line = file.readLine().trimmed();
+        if (line.isEmpty())
+            continue;
+
+        *data << line;
+    }
+    file.close();
+}
+
+
 /************************************************
  Complete cue sheet syntax documentation
  https://github.com/flacon/flacon/blob/master/cuesheet_syntax.md
  ************************************************/
-bool CueReader::parse(const QByteArrayList &data)
+QVector<CueDisk> CueReader::load(const QString &fileName)
 {
-    QByteArray performer;
-    QByteArray album;
-    QByteArray genre;
-    QByteArray date;
-    QByteArray comment;
-    QByteArray songWriter;
-    QByteArray diskId;
-    QByteArray catalog;
-    QByteArray cdTextFile;
-    QByteArray file;
+    QByteArrayList data;
+    QString codecName;
+    QString fullPath = QFileInfo(fileName).absoluteFilePath();
+    readData(fullPath, &data, &codecName);
+
+
+    Track globalTags;
+    //TODO:            if (!mCodecName.isEmpty())
+    //TODO:                tags->setTextCodecName(mCodecName);
 
     enum class Mode {
         Global,
         Track
     };
-
     Mode mode = Mode::Global;
 
-    DiskNum  diskNum = 0;
-    int trackNum = 0;
-    QList<CueTagSet>::iterator tags;
-
+    int diskNum = -1;
+    QList<ParserTrack*> tracks;
+    ParserTrack *track = nullptr;
 
     int lineNum = 0;
     auto i = data.begin();
@@ -396,42 +258,19 @@ bool CueReader::parse(const QByteArrayList &data)
         QByteArray value;
         parseLine((*i), tag, value);
 
+
         if (tag == CTAG_FILE)
         {
+            globalTags.setTag(TagId::File, extractFileFromFileTag(value));
             ++diskNum;
-            trackNum = 0;
-            file = extractFileFromFileTag(value);
-            mDisks << CueTagSet(QFileInfo(mFileName).absoluteFilePath() + QString(" [%1]").arg(diskNum));
-            tags = --(mDisks.end());
-            if (!mCodecName.isEmpty())
-                tags->setTextCodecName(mCodecName);
-
-            tags->setDiskTag(TAG_CUE_FILE,   mFileName);
-            tags->setDiskTag(TAG_FILE,       extractFileFromFileTag(value), false);
-            tags->setDiskTag(TAG_DISKNUM,    QString("%1").arg(diskNum).toLatin1(), true);
-            tags->setDiskTag(TAG_DISCID,     diskId,     true);
-            tags->setDiskTag(TAG_CATALOG,    catalog,    false);
-            tags->setDiskTag(TAG_CDTEXTFILE, cdTextFile, false);
-
             mode = Mode::Global;
             continue;
         }
 
         if (tag == CTAG_TRACK)
         {
-            trackNum++;
-
-            // Set default values;
-            tags->setTrackTag(trackNum-1, TAG_FILE,       file,       false);
-            tags->setTrackTag(trackNum-1, TAG_PERFORMER,  performer,  false);
-            tags->setTrackTag(trackNum-1, TAG_ALBUM,      album,      false);
-            tags->setTrackTag(trackNum-1, TAG_GENRE,      genre,      false);
-            tags->setTrackTag(trackNum-1, TAG_DATE,       date,       false);
-            tags->setTrackTag(trackNum-1, TAG_COMMENT,    comment,    false);
-            tags->setTrackTag(trackNum-1, TAG_SONGWRITER, songWriter, false);
-            tags->setDiskTag(TAG_DISCID,     diskId,     true);
-            tags->setDiskTag(TAG_CATALOG,    catalog,    true);
-            tags->setDiskTag(TAG_CDTEXTFILE, cdTextFile, true);
+            track = new ParserTrack(diskNum, globalTags);
+            tracks << track;
             mode = Mode::Track;
             continue;
         }
@@ -440,27 +279,26 @@ bool CueReader::parse(const QByteArrayList &data)
         {
             switch(tag)
             {
-            case CTAG_DISCID:      diskId = value;     break;
-            case CTAG_CATALOG:     catalog = value;    break;
-            case CTAG_CDTEXTFILE:  cdTextFile = value; break;
-            case CTAG_TITLE:       album = value;      break;
-            case CTAG_COMMENT:     comment = value;    break;
-            case CTAG_DATE:        date = value;       break;
-            case CTAG_GENRE:       genre = value;      break;
-            case CTAG_PERFORMER:   performer = value;  break;
-            case CTAG_SONGWRITER:  songWriter = value; break;
+            case CTAG_DISCID:      globalTags.setTag(TagId::DiscId,     value); break;
+            case CTAG_CATALOG:     globalTags.setTag(TagId::Catalog,    value); break;
+            case CTAG_CDTEXTFILE:  globalTags.setTag(TagId::CDTextfile, value); break;
+            case CTAG_TITLE:       globalTags.setTag(TagId::Album,      value); break;
+            case CTAG_COMMENT:     globalTags.setTag(TagId::Comment,    value); break;
+            case CTAG_DATE:        globalTags.setTag(TagId::Date,       value); break;
+            case CTAG_GENRE:       globalTags.setTag(TagId::Genre,      value); break;
+            case CTAG_PERFORMER:   globalTags.setTag(TagId::Performer,  value); break;
+            case CTAG_SONGWRITER:  globalTags.setTag(TagId::SongWriter, value); break;
             default: break;
             }
             continue;
         }
         else // Per track tags ............................
         {
+            if (diskNum < 0)
+                throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. The cue sheet has no FILE tag.").arg(fileName));
 
-            if (trackNum < 1)
-            {
-                mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track index on line %2.", "Cue parser error.").arg(mFileName).arg(lineNum);
-                return false;
-            }
+            if (!track)
+                throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track index on line %2.", "Cue parser error.").arg(fileName).arg(lineNum));
 
             switch (tag)
             {
@@ -469,35 +307,30 @@ bool CueReader::parse(const QByteArrayList &data)
                 bool ok;
                 int num = leftPart(value, ' ').toInt(&ok);
                 if (!ok)
-                {
-                    mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track index on line %2.", "Cue parser error.").arg(mFileName).arg(lineNum);
-                    return false;
-                }
+                    throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track index on line %2.", "Cue parser error.").arg(fileName).arg(lineNum));
 
                 if (num < 0 || num > 99)
-                {
-                    mErrorString = QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track index on line %2.", "Cue parser error.").arg(mFileName).arg(lineNum);
-                    return false;
-                }
+                    throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track index on line %2.", "Cue parser error.").arg(fileName).arg(lineNum));
 
-                tags->setTrackTag(trackNum-1, cueIndexTagKey(num), rightPart(value, ' '));
+                track->tags.setCueIndex(num, CueIndex(rightPart(value, ' ')));
+
                 break;
             }
 
 
 
-            case CTAG_DISCID:      tags->setDiskTag(TAG_DISCID,     value, true); break;
-            case CTAG_CATALOG:     tags->setDiskTag(TAG_CATALOG,    value, true); break;
-            case CTAG_CDTEXTFILE:  tags->setDiskTag(TAG_CDTEXTFILE, value, true); break;
+            case CTAG_DISCID:      track->tags.setTag(TagId::DiscId,     value); break;
+            case CTAG_CATALOG:     track->tags.setTag(TagId::Catalog,    value); break;
+            case CTAG_CDTEXTFILE:  track->tags.setTag(TagId::CDTextfile, value); break;
 
-            case CTAG_TITLE:       tags->setTrackTag(trackNum-1, TAG_TITLE,      value, false); break;
-            case CTAG_COMMENT:     tags->setTrackTag(trackNum-1, TAG_COMMENT,    value, false); break;
-            case CTAG_DATE:        tags->setTrackTag(trackNum-1, TAG_DATE,       value, false); break;
-            case CTAG_GENRE:       tags->setTrackTag(trackNum-1, TAG_GENRE,      value, false); break;
-            case CTAG_PERFORMER:   tags->setTrackTag(trackNum-1, TAG_PERFORMER,  value, false); break;
-            case CTAG_SONGWRITER:  tags->setTrackTag(trackNum-1, TAG_SONGWRITER, value, false); break;
-            case CTAG_ISRC:        tags->setTrackTag(trackNum-1, TAG_ISRC,       value, true);  break;
-            case CTAG_FLAGS:       tags->setTrackTag(trackNum-1, TAG_FLAGS,      value, true);  break;
+            case CTAG_TITLE:       track->tags.setTag(TagId::Title,      value); break;
+            case CTAG_COMMENT:     track->tags.setTag(TagId::Comment,    value); break;
+            case CTAG_DATE:        track->tags.setTag(TagId::Date,       value); break;
+            case CTAG_GENRE:       track->tags.setTag(TagId::Genre,      value); break;
+            case CTAG_PERFORMER:   track->tags.setTag(TagId::Performer,  value); break;
+            case CTAG_SONGWRITER:  track->tags.setTag(TagId::SongWriter, value); break;
+            case CTAG_ISRC:        track->tags.setTag(TagId::ISRC,       value); break;
+            case CTAG_FLAGS:       track->tags.setTag(TagId::Flags,      value); break;
 
             case CTAG_FILE:
             case CTAG_TRACK:
@@ -507,7 +340,63 @@ bool CueReader::parse(const QByteArrayList &data)
         }
     }
 
-    return true;
+    if (tracks.isEmpty())
+        throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. The cue sheet has no FILE tag.").arg(fileName));
+
+    // Auto detect codepage :::::::::::::::::::::::::::::::
+    if (codecName.isEmpty())
+    {
+        UcharDet charDet;
+        foreach (ParserTrack *track, tracks)
+            charDet << track->tags;
+
+        codecName = charDet.textCodecName();
+    }
+
+
+
+    QVector<CueDisk> res;
+    TrackNum n =0;
+
+    foreach (ParserTrack *track, tracks)
+    {
+        ++n;
+        if (track->diskNum >= res.count())
+        {
+            CueDisk disk = CueDisk();
+            disk.mDiskNum   = res.count() + 1;
+            disk.mDiskCount = diskNum + 1;
+            disk.mFileName  = fullPath;
+            disk.mUri       = fullPath + QString(" [%1]").arg(n);
+            res << disk;
+        }
+
+        track->tags.mCueFileName = fullPath;
+        track->tags.setTrackNum(n);
+        track->tags.setTrackCount(diskNum);
+        track->tags.setCodecName(codecName);
+        res.last().tracks() << Track(track->tags);
+    }
+
+    qDeleteAll(tracks);
+
+
+    // Check and set some tags ::::::::::::::::::::::::::::
+
+    //int startTrackNum = 1;
+    for (int i=0; i<res.count(); ++i)
+    {
+        if (res.at(i).tracks().count() == 0)
+        {
+            throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Disk %2 has no tags.").arg(fileName).arg(i));
+            break;
+        }
+
+        //TODO: mDisks[i].setDiskTag(START_TRACK_NUM, QString("%1").arg(startTrackNum).toLatin1());
+        //startTrackNum += disk(i).count();
+    }
+
+    return res;
 }
 
 
@@ -572,5 +461,3 @@ int CueTagSet::diskNumInCue() const
 {
     return diskTag(TAG_DISKNUM).toInt();
 }
-
-

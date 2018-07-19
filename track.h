@@ -27,14 +27,15 @@
 #ifndef TRACK_H
 #define TRACK_H
 
-#include <QObject>
-#include "cue.h"
+#include "types.h"
+#include "tags.h"
 
 class Disk;
 
-class Track: public QObject
+class Track: public TrackTags
 {
-    Q_OBJECT
+    friend class Disk;
+    friend class CueReader;
 public:
 
     enum Status
@@ -52,42 +53,21 @@ public:
         WriteGain   = 10
     };
 
-    explicit Track(Disk *disk, int index);
+    Track();
+    Track(const TrackTags &tags);
+    Track(const Track &other);
+    Track &operator =(const Track &other);
     ~Track();
 
-    QString artist() const            { return tag("PERFORMER"); }
-    void setArtist(const QString &value)  { setTag("PERFORMER", value); }
-
-    QString album() const             { return tag("ALBUM"); }
-    void setAlbum(const QString &value)   { setTag("ALBUM", value); }
-
-    QString comment() const           { return tag("COMMENT") ;}
-    void setComment(const QString &value)   { setTag("COMMENT", value); }
-
-    QString title() const             { return tag("TITLE") ;}
-    void setTitle(const QString &value)   { setTag("TITLE", value); }
-
-    QString genre() const             { return tag("GENRE") ;}
-    void setGenre(const QString &value)   { setTag("GENRE", value); }
-
-    QString date() const              { return tag("DATE") ;}
-    void setDate(const QString &value)    { setTag("DATE", value); }
 
 
     QString resultFileName() const;
     QString resultFilePath() const;
 
-    Disk *disk() const { return mDisk; }
-    int index() const { return mIndex; }
-
-    int trackNum() const;
-    uint duration() const;
+    Duration duration() const { return mDuration; }
 
     CueIndex cueIndex(int indexNum) const;
     void setCueIndex(int indexNum, const CueIndex &value);
-
-    virtual QString tag(const QString &tagName) const;
-    virtual void setTag(const QString &tagName, const QString &value);
 
     int progress() const { return mProgress; }
     Status status() const { return mStatus; }
@@ -103,12 +83,20 @@ public:
                                 const QString &date,
                                 const QString &fileExt);
 
+    TrackNum trackNum() const { return mTrackNum; }
+    void setTrackNum(TrackNum value) { mTrackNum = value; }
+
+    TrackNum trackCount() const { return mTrackCount; }
+    void setTrackCount(TrackNum value) { mTrackCount = value; }
+
 private:
-    Disk *mDisk;
-    int mIndex;
     QVector<CueIndex> mCueIndexes;
     Status mStatus;
     int mProgress;
+    TrackNum mTrackNum;
+    TrackNum mTrackCount;
+    Duration mDuration;
+    QString mCueFileName;
 
     QString calcResultFilePath() const;
     static QString expandPattern(const QString &pattern, const QHash<QChar,QString> *tokens, bool optional);
@@ -116,14 +104,6 @@ private:
 
 Q_DECLARE_METATYPE(Track::Status)
 
-
-class PreGapTrack: public Track
-{
-public:
-    explicit PreGapTrack(Disk *disk);
-
-    virtual QString tag(const QString &tagName) const;
-    virtual void setTag(const QString &tagName, const QString &value);
-};
+typedef QVector<Track> Tracks;
 
 #endif // TRACK_H

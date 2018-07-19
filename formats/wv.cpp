@@ -91,9 +91,9 @@ QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile
     if (!track->genre().isEmpty())   args << "-w" << QString("Genre=%1").arg(track->genre());
     if (!track->date().isEmpty())    args << "-w" << QString("Year=%1").arg(track->date());
     if (!track->title().isEmpty())   args << "-w" << QString("Title=%1").arg(track->title());
-    if (!track->disk()->discId().isEmpty())  args << "-w" << QString("DiscId=%1").arg(track->disk()->discId());
+    if (!track->diskId().isEmpty())  args << "-w" << QString("DiscId=%1").arg(track->diskId());
     if (!track->comment().isEmpty()) args << "-w" << QString("Comment=%1").arg(track->comment());
-    args << "-w" << QString("Track=%1/%2").arg(track->trackNum()).arg(track->disk()->count());
+    args << "-w" << QString("Track=%1/%2").arg(track->trackNum()).arg(track->trackCount());
 
     args << "-";
     args << "-o" << outFile;

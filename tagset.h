@@ -32,6 +32,7 @@
 #include <QList>
 #include <QHash>
 #include <QAction>
+#include "track.h"
 
 class TagSetData;
 class QTextCodec;
@@ -55,11 +56,13 @@ class QTextCodec;
 
 #define CODEC_AUTODETECT "AUTODETECT"
 
+
 class TagSet
 {
 public:
     explicit TagSet(const QString &uri);
     TagSet(const TagSet &other);
+    TagSet(const QString &uri, const Tracks &tracks);
     ~TagSet();
 
     TagSet &operator=(const TagSet &other);

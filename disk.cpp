@@ -42,6 +42,7 @@
 
 #define COVER_PREVIEW_SIZE 500
 
+
 /************************************************
 
  ************************************************/
@@ -52,7 +53,7 @@ Disk::Disk(QObject *parent) :
     mCount(0),
     mAudioFile(0)
 {
-    mPreGapTrack = new PreGapTrack(this);
+
 }
 
 
@@ -164,21 +165,29 @@ void Disk::downloadFinished()
 /************************************************
 
  ************************************************/
-void Disk::loadFromCue(const CueTagSet &cueTags, bool activate)
+void Disk::loadFromCue(const CueDisk &cueDisk, bool activate)
 {
-    mCount = cueTags.tracksCount();
-    mCueFile = cueTags.cueFileName();
+    mCount = cueDisk.tracks().count();
+    mCueFile = cueDisk.fileName();
+
 
     for (int i=mTracks.count(); i<mCount; ++i)
-        mTracks.append(new Track(this, i));
+        mTracks.append(new Track());
 
     while (mTracks.count() > mCount)
-        mTracks.takeLast()->deleteLater();
+        delete mTracks.takeLast();
+        //mTracks.takeLast()->deleteLater();
 
-    for (int t=0; t<cueTags.tracksCount(); ++t)
+    for (int t=0; t<mCount; ++t)
     {
-        for (int idx=0; idx<100; ++idx)
-            mTracks[t]->setCueIndex(idx, cueTags.index(t, idx));
+        *mTracks[t] = cueDisk.tracks().at(t);
+    }
+
+    for (int i=0; i<mCount; ++i)
+    {
+        Track *track = mTracks[i];
+        track->setTrackCount(mCount);
+        track->mDuration = this->trackDuration(i);
     }
 
     if (mTagSets.isEmpty())
@@ -186,11 +195,14 @@ void Disk::loadFromCue(const CueTagSet &cueTags, bool activate)
     else
         delete mTagSets.first();
 
-    mTagSets[0] = new TagSet(cueTags);
-    setStartTrackNum(cueTags.diskTag(START_TRACK_NUM).toInt());
+    mTagSets[0] = new TagSet(cueDisk.fileName() + QString(" [%1]").arg(cueDisk.diskCount()), cueDisk.tracks());
+    setStartTrackNum(cueDisk.tracks().first().trackNum());
+    mPreGapTrack = *mTracks.first();
+    mPreGapTrack.setTrackNum(0);
+    mPreGapTrack.setTitle("(HTOA)");
 
     if (!mAudioFile)
-        findAudioFile(cueTags);
+        findAudioFile(cueDisk);
 
     if (activate || !mTags)
     {
@@ -200,28 +212,29 @@ void Disk::loadFromCue(const CueTagSet &cueTags, bool activate)
 
     mCoverImagePreview = QImage();
     mCoverImageFile = searchCoverImage(QFileInfo(mCueFile).dir().absolutePath());
+
 }
 
 
 /************************************************
 
  ************************************************/
-QFileInfoList matchedAudioFiles(const CueTagSet &cueTags, const QFileInfoList &audioFiles)
+QFileInfoList matchedAudioFiles(const CueDisk &cueDisk, const QFileInfoList &audioFiles)
 {
     QFileInfoList res;
-    QFileInfo cueFile(cueTags.cueFileName());
+    QFileInfo cueFile(cueDisk.fileName());
 
     QStringList patterns;
-    if (!cueTags.isMultiFileCue())
+    if (cueDisk.diskCount() > 1)
     {
-        patterns << QRegExp::escape(QFileInfo(cueTags.diskTag("FILE")).completeBaseName());
-        patterns << QRegExp::escape(cueFile.completeBaseName()) + ".*";
+        patterns << QRegExp::escape(QFileInfo(cueDisk.tracks().first().tag(TagId::File)).completeBaseName());
+        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisk.diskNum());
+        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisk.diskNum());
     }
     else
     {
-        patterns << QRegExp::escape(QFileInfo(cueTags.diskTag("FILE")).completeBaseName());
-        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueTags.diskNumInCue());
-        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueTags.diskNumInCue());
+        patterns << QRegExp::escape(QFileInfo(cueDisk.tracks().first().tag(TagId::File)).completeBaseName());
+        patterns << QRegExp::escape(cueFile.completeBaseName()) + ".*";
     }
 
     QString audioExt;
@@ -252,35 +265,40 @@ void Disk::findCueFile()
         return;
 
     QFileInfo audio(mAudioFile->fileName());
-    QList<CueReader> cueReaders;
+    QList<Cue> cues;
     QFileInfoList files = audio.dir().entryInfoList(QStringList() << "*.cue", QDir::Files | QDir::Readable);
     foreach(QFileInfo f, files)
     {
-        CueReader c(f.absoluteFilePath());
-        if (c.isValid())
-            cueReaders << c;
+        try
+        {
+            CueReader c;
+            cues << c.load(f.absoluteFilePath());
+        }
+        catch (FlaconError)
+        {
+        }
     }
 
-    if (cueReaders.count() == 1 && cueReaders.first().diskCount() == 1)
+    if (cues.count() == 1 && cues.first().count() == 1)
     {
-        loadFromCue(cueReaders.first().disk(0), true);
+        loadFromCue(cues.first().first(), true);
         return;
     }
 
     unsigned int bestWeight = 99999;
-    CueTagSet bestDisk("");
+    CueDisk bestDisk;
 
-    foreach (const CueReader &cue, cueReaders)
+    foreach (const Cue &cue, cues)
     {
-        for (int i=0; i<cue.diskCount(); ++i)
+        foreach (const CueDisk &cueDisk, cue)
         {
-            if (!matchedAudioFiles(cue.disk(i), QFileInfoList() << audio).isEmpty())
+            if (!matchedAudioFiles(cueDisk, QFileInfoList() << audio).isEmpty())
             {
-                unsigned int weight = levenshteinDistance(QFileInfo(cue.fileName()).baseName(), audio.baseName());
+                unsigned int weight = levenshteinDistance(QFileInfo(cueDisk.fileName()).baseName(), audio.baseName());
                 if (weight < bestWeight)
                 {
                     bestWeight = weight;
-                    bestDisk = cue.disk(i);
+                    bestDisk   = cueDisk;
                 }
             }
         }
@@ -288,6 +306,28 @@ void Disk::findCueFile()
 
     if (!bestDisk.uri().isEmpty())
         loadFromCue(bestDisk);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+Duration Disk::trackDuration(TrackNum trackNum) const
+{
+    const Track *track = mTracks[trackNum];
+    uint start = track->cueIndex(1).milliseconds();
+    uint end = 0;
+
+    if (trackNum < mTracks.count() - 1)
+    {
+        end = mTracks.at(trackNum+1)->cueIndex(1).milliseconds();
+    }
+    else if (audioFile() != nullptr)
+    {
+        end   = audioFile()->duration();
+    }
+
+    return end > start ? end - start : 0;
 }
 
 
@@ -316,15 +356,18 @@ void Disk::setAudioFile(const InputAudioFile &audio)
 
     if (mTagSets.isEmpty())
         findCueFile();
+
+    if (!mTracks.isEmpty())
+        mTracks.last()->mDuration = trackDuration(mTracks.count() - 1);
 }
 
 
 /************************************************
 
  ************************************************/
-void Disk::findAudioFile(const CueTagSet &cueTags)
+void Disk::findAudioFile(const CueDisk &cueDisk)
 {
-    if (mTagSets.isEmpty())
+    if (cueDisk.tracks().isEmpty())
         return;
 
     QStringList exts;
@@ -334,7 +377,7 @@ void Disk::findAudioFile(const CueTagSet &cueTags)
     QFileInfo cueFile(mCueFile);
     QFileInfoList files = cueFile.dir().entryInfoList(exts, QDir::Files | QDir::Readable);
 
-    if (!cueTags.isMultiFileCue() && files.count() == 1)
+    if (cueDisk.diskCount() == 1 && files.count() == 1)
     {
         InputAudioFile audio(files.first().filePath());
         if (audio.isValid())
@@ -342,7 +385,7 @@ void Disk::findAudioFile(const CueTagSet &cueTags)
         return;
     }
 
-    QFileInfoList audioFiles = matchedAudioFiles(cueTags, files);
+    QFileInfoList audioFiles = matchedAudioFiles(cueDisk, files);
     foreach (const QFileInfo &file, audioFiles)
     {
         InputAudioFile audio(file.filePath());
@@ -382,8 +425,26 @@ QString Disk::textCodecName() const
  ************************************************/
 void Disk::setTextCodecName(const QString codecName)
 {
-    if (mTags)
-        mTags->setTextCodecName(codecName);
+
+    QString codec = codecName;
+
+    if (codecName == CODEC_AUTODETECT)
+    {
+        UcharDet charDet;
+        foreach (auto track, mTracks)
+            charDet << *track;
+
+        codec = charDet.textCodecName();
+    }
+
+
+    foreach (auto track, mTracks)
+    {
+        track->setCodecName(codec);
+    }
+
+    //if (mTags)
+    //    mTags->setTextCodecName(codecName);
 
     project->emitDiskChanged(this);
 }
@@ -430,15 +491,39 @@ QString Disk::tagsUri() const
 
 
 /************************************************
-
+ *
  ************************************************/
-QString Disk::tag(const QString tagName) const
+QString Disk::discId() const
 {
-    if (mTags)
-        return mTags->diskTag(tagName);
-    else
-        return "";
+    if (!mTracks.isEmpty())
+        return mTracks.first()->tag(TagId::DiscId);
+
+    return "";
 }
+
+
+/************************************************
+ *
+ ************************************************/
+QString Disk::fileTag() const
+{
+    if (!mTracks.isEmpty())
+        return mTracks.first()->tag(TagId::File);
+
+    return "";
+}
+
+
+///************************************************
+
+// ************************************************/
+//QString Disk::tag(const QString tagName) const
+//{
+//    if (mTags)
+//        return mTags->diskTag(tagName);
+//    else
+//        return "";
+//}
 
 
 /************************************************
@@ -659,13 +744,13 @@ QString Disk::getTag(int track, const QString &tagName)
 /************************************************
 
  ************************************************/
-void Disk::setTag(int track, const QString &tagName, const QString &value)
-{
-    mTags->setTrackTag(track, tagName, value);
-    emit trackChanged(track);
-    int disk = project->indexOf(this);
-    project->emitTrackChanged(disk, track);
-}
+//void Disk::setTag(int track, const QString &tagName, const QString &value)
+//{
+//    mTags->setTrackTag(track, tagName, value);
+//    emit trackChanged(track);
+//    int disk = project->indexOf(this);
+//    project->emitTrackChanged(disk, track);
+//}
 
 
 /************************************************
@@ -702,42 +787,3 @@ DiskAction::DiskAction(const QIcon &icon, const QString &text, QObject *parent, 
     mTagName(tagName)
 {
 }
-
-
-
-/************************************************
-
- ************************************************/
-PreGapTrack::PreGapTrack(Disk *disk):
-    Track(disk, -1)
-{
-}
-
-
-/************************************************
-
- ************************************************/
-QString PreGapTrack::tag(const QString &tagName) const
-{
-    if (tagName == TAG_TITLE)
-        return "(HTOA)";
-
-    if (disk()->count())
-        return disk()->track(0)->tag(tagName);
-
-    return "";
-}
-
-
-/************************************************
-
- ************************************************/
-void PreGapTrack::setTag(const QString &tagName, const QString &value)
-{
-    Q_UNUSED(tagName);
-    Q_UNUSED(value);
-}
-
-
-
-

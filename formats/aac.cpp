@@ -27,7 +27,7 @@
 #include "aac.h"
 #include "settings.h"
 #include "inputaudiofile.h"
-#include "disk.h"
+
 
 /************************************************
 
@@ -83,7 +83,7 @@ QStringList OutFormat_Aac::encoderArgs(const Track *track, const QString &outFil
 
     // --track track
     //     Set track to track in the format “number/total”
-    args << "--track" << QString("%1/%2").arg(track->trackNum()).arg(track->disk()->count());
+    args << "--track" << QString("%1/%2").arg(track->trackNum()).arg(track->trackCount());
 
     // --disc disc
     //     Set disc to disc in the format “number/total”

@@ -209,32 +209,27 @@ Disk *Project::addAudioFile(const QString &fileName, bool showErrors)
 DiskList Project::addCueFile(const QString &fileName, bool showErrors)
 {
     DiskList res;
-    CueReader cueReader(fileName);
-    if (cueReader.isValid())
+    try
     {
-        for (int i=0; i<cueReader.diskCount(); ++i)
+        QVector<CueDisk> disks = CueReader().load(fileName);
+
+        for (int i=0; i<disks.count(); ++i)
         {
-            if (diskExists(cueReader.disk(i).uri()))
+            if (diskExists(disks.at(i).uri()))
                 continue;
 
             Disk *disk = new Disk();
-            disk->loadFromCue(cueReader.disk(i));
+            disk->loadFromCue(disks.at(i));
             mDisks << disk;
             res << disk;
         }
         emit layoutChanged();
     }
-    else
+    catch (FlaconError &err)
     {
-        foreach(Disk *disk, res)
-        {
-            mDisks.removeAll(disk);
-            disk->deleteLater();
-        }
-
         emit layoutChanged();
         if (showErrors)
-            Project::error(cueReader.errorString());
+            Project::error(err.message());
     }
 
     return res;

@@ -38,16 +38,67 @@
 /************************************************
 
  ************************************************/
-Track::Track(Disk *disk, int index):
-    QObject(disk),
-    mDisk(disk),
-    mIndex(index),
-    mCueIndexes(100),
+Track::Track():
+    TrackTags(),
     mStatus(NotRunning),
-    mProgress(0)
+    mProgress(0),
+    mTrackNum(0),
+    mTrackCount(0),
+    mDuration(0)
 {
     qRegisterMetaType<Track::Status>("Track::Status");
 }
+
+
+/************************************************
+ *
+ ************************************************/
+Track::Track(const TrackTags &tags):
+    TrackTags(tags),
+    mStatus(NotRunning),
+    mProgress(0),
+    mTrackNum(0),
+    mTrackCount(0),
+    mDuration(0)
+{
+    qRegisterMetaType<Track::Status>("Track::Status");
+}
+
+
+/************************************************
+ *
+ ************************************************/
+Track::Track(const Track &other):
+    TrackTags(other),
+    mCueIndexes(other.mCueIndexes),
+    mStatus(other.mStatus),
+    mProgress(other.mProgress),
+    mTrackNum(other.mTrackNum),
+    mTrackCount(other.mTrackCount),
+    mDuration(other.mDuration),
+    mCueFileName(other.mCueFileName)
+{
+    qRegisterMetaType<Track::Status>("Track::Status");
+}
+
+
+/************************************************
+ *
+ ************************************************/
+Track &Track::operator =(const Track &other)
+{
+    TrackTags::operator =(other);
+    mCueIndexes = other.mCueIndexes;
+    mStatus     = other.mStatus;
+    mProgress   = other.mProgress;
+    //mTags       = other.mTags;
+    mTrackNum   = other.mTrackNum;
+    mTrackCount = other.mTrackCount;
+    mDuration   = other.mDuration;
+    mCueFileName= other.mCueFileName;
+    return *this;
+}
+
 
 
 /************************************************
@@ -55,47 +106,6 @@ Track::Track(Disk *disk, int index):
  ************************************************/
 Track::~Track()
 {
-}
-
-
-/************************************************
- *
- ************************************************/
-uint Track::duration() const
-{
-    uint start = cueIndex(1).milliseconds();
-    uint end = 0;
-    if (index() < mDisk->count() - 1)
-    {
-        end = mDisk->track(index()+1)->cueIndex(1).milliseconds();
-    }
-    else if (mDisk->audioFile())
-    {
-        end = mDisk->audioFile()->duration();
-    }
-
-    if (start > end)
-        return 0;
-
-    return end - start;
-}
-
-
-/************************************************
-
- ************************************************/
-QString Track::tag(const QString &tagName) const
-{
-    return mDisk->getTag(mIndex, tagName);
-}
-
-
-/************************************************
-
- ************************************************/
-void Track::setTag(const QString &tagName, const QString &value)
-{
-    mDisk->setTag(mIndex, tagName, value);
 }
 
 
@@ -120,8 +130,8 @@ QString Track::resultFileName() const
         pattern = QString("%a/%y - %A/%n - %t");
 
     return calcFileName(pattern,
-                        disk()->count(),
-                        trackNum(),
+                        this->trackCount(),
+                        this->trackNum(),
                         this->album(),
                         this->title(),
                         this->artist(),
@@ -279,7 +289,7 @@ QString Track::calcResultFilePath() const
 {
     QString dir = settings->outFileDir();
 
-    if (dir == "~")
+    if (dir == "~" || dir == "~//")
         return QDir::homePath();
 
     if (dir == ".")
@@ -293,19 +303,7 @@ QString Track::calcResultFilePath() const
     if (fi.isAbsolute())
         return fi.absoluteFilePath();
 
-    if (!disk()->audioFileName().isEmpty())
-        return QFileInfo(disk()->audioFileName()).dir().absolutePath() + QDir::separator() + dir;
-
-    return QFileInfo(QDir::homePath() + QDir::separator() + dir).absoluteFilePath();
-}
-
-
-/************************************************
-
- ************************************************/
-int Track::trackNum() const
-{
-    return mDisk->startTrackNum() + mIndex;
+    return QFileInfo(mCueFileName).dir().absolutePath() + QDir::separator() + dir;
 }
 
 
@@ -314,7 +312,10 @@ int Track::trackNum() const
  ************************************************/
 CueIndex Track::cueIndex(int indexNum) const
 {
-    return mCueIndexes.at(indexNum);
+    if (indexNum < mCueIndexes.length())
+        return mCueIndexes.at(indexNum);
+
+    return CueIndex();
 }
 
 
@@ -323,6 +324,9 @@ CueIndex Track::cueIndex(int indexNum) const
  ************************************************/
 void Track::setCueIndex(int indexNum, const CueIndex &value)
 {
+    if (indexNum >= mCueIndexes.length())
+        mCueIndexes.resize(indexNum+1);
+
     mCueIndexes[indexNum] = value;
 }
 

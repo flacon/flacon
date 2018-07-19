@@ -91,19 +91,19 @@ MainWindow::MainWindow(QWidget *parent) :
     trackView->setAlternatingRowColors(false);
 
     // Tag edits ...............................................
-    tagGenreEdit->setTagName(TAG_GENRE);
+    tagGenreEdit->setTagId(TagId::Genre);
     connect(tagGenreEdit, SIGNAL(editingFinished()), this, SLOT(setTrackTag()));
 
-    tagYearEdit->setTagName(TAG_DATE);
+    tagYearEdit->setTagId(TagId::Date);
     connect(tagYearEdit, SIGNAL(editingFinished()), this, SLOT(setTrackTag()));
 
-    tagArtistEdit->setTagName(TAG_PERFORMER);
+    tagArtistEdit->setTagId(TagId::Performer);
     connect(tagArtistEdit, SIGNAL(editingFinished()), this, SLOT(setTrackTag()));
 
-    tagAlbumEdit->setTagName(TAG_ALBUM);
+    tagAlbumEdit->setTagId(TagId::Album);
     connect(tagAlbumEdit, SIGNAL(editingFinished()), this, SLOT(setTrackTag()));
 
-    tagDiscIdEdit->setTagName(TAG_DISCID);
+    tagDiscIdEdit->setTagId(TagId::DiscId);
 
     connect(tagStartNumEdit, SIGNAL(editingFinished()), this, SLOT(setStartTrackNum()));
     connect(tagStartNumEdit, SIGNAL(valueChanged(int)), this, SLOT(setStartTrackNum()));
@@ -335,6 +335,7 @@ void MainWindow::openOutDirDialog()
  ************************************************/
 void MainWindow::setCueForDisc(Disk *disk)
 {
+/*TODO:
     QString flt = getOpenFileFilter(false, true);
 
     QString dir;
@@ -377,7 +378,7 @@ void MainWindow::setCueForDisc(Disk *disk)
     else
     {
         Project::error(cue.errorString());
-    }
+    }*/
 }
 
 
@@ -529,7 +530,7 @@ void MainWindow::setTrackTag()
 
     QList<Track*> tracks = trackView->selectedTracks();
     foreach(Track *track, tracks)
-        track->setTag(edit->tagName(), edit->text());
+        track->setTag(edit->tagId(), edit->text());
 }
 
 

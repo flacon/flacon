@@ -72,26 +72,34 @@ void CueCreator::setTextCodecMib(int mib)
  ************************************************/
 void CueCreator::initGlobalTags()
 {
-    QStringList tagNames;
-    tagNames << TAG_GENRE;
-    tagNames << TAG_DATE;
-    tagNames << TAG_PERFORMER;
-    tagNames << TAG_SONGWRITER;
-    tagNames << TAG_ALBUM;
+    static TagId tags[] = {
+        TagId::Genre,
+        TagId::Date,
+        TagId::Performer,
+        TagId::SongWriter,
+        TagId::Album,
+        TagId::Catalog,
+        TagId::CDTextfile,
+        TagId::DiscId
+    };
 
     Track *firstTrack = mDisk->track(0);
-
-    foreach(QString tagName, tagNames)
+    for (uint t=0; t<sizeof(tags)/sizeof(TagId); ++t)
     {
-        QString value = firstTrack->tag(tagName);
+        TagId tagId = tags[t];
+        QString value = firstTrack->tag(tagId);
 
         for (int i=1; i<mDisk->count(); ++i)
         {
-            if (mDisk->track(i)->tag(tagName) != value)
+            if (mDisk->track(i)->tag(tagId) != value)
+            {
                 value = "";
+                break;
+            }
         }
 
-        mGlobalTags.insert(tagName, value);
+        if (!value.isEmpty())
+            mGlobalTags.setTag(tagId, value);
     }
 }
 
@@ -106,12 +114,13 @@ void CueCreator::writeLine(const QString &text)
 }
 
 
+
 /************************************************
 
  ************************************************/
-void CueCreator::writeDiskTag(const QString &format, const QString &tagName)
+void CueCreator::writeGlobalTag(const QString &format, TagId tagId)
 {
-    QString value = mDisk->tag(tagName);
+    QString value = mGlobalTags.tag(tagId);
 
     if (!value.isEmpty())
         writeLine(format.arg(value));
@@ -121,23 +130,11 @@ void CueCreator::writeDiskTag(const QString &format, const QString &tagName)
 /************************************************
 
  ************************************************/
-void CueCreator::writeGlobalTag(const QString &format, const QString &tagName)
+void CueCreator::writeTrackTag(const Track *track, const QString &prefix, TagId tagId)
 {
-    QString value = mGlobalTags.value(tagName);
+    QString value = track->tag(tagId);
 
-    if (!value.isEmpty())
-        writeLine(format.arg(value));
-}
-
-
-/************************************************
-
- ************************************************/
-void CueCreator::writeTrackTag(const Track *track, const QString &prefix, const QString &tagName)
-{
-    QString value = track->tag(tagName);
-
-    if (!value.isEmpty() && value != mGlobalTags.value(tagName))
+    if (!value.isEmpty() && value != mGlobalTags.tag(tagId))
         writeLine(prefix.arg(value));
 }
 
@@ -159,15 +156,15 @@ bool CueCreator::write()
     initGlobalTags();
 
     // Common ...........................
-    writeDiskTag("CATALOG %1",          TAG_CATALOG);
-    writeDiskTag("CDTEXTFILE \"%1\"",   TAG_CDTEXTFILE);
-    writeGlobalTag("REM GENRE \"%1\"",  TAG_GENRE);
-    writeGlobalTag("REM DATE %1",       TAG_DATE);
-    writeDiskTag("REM DISCID %1",       TAG_DISCID);
+    writeGlobalTag("CATALOG %1",        TagId::Catalog);
+    writeGlobalTag("CDTEXTFILE \"%1\"", TagId::CDTextfile);
+    writeGlobalTag("REM GENRE \"%1\"",  TagId::Genre);
+    writeGlobalTag("REM DATE %1",       TagId::Date);
+    writeGlobalTag("REM DISCID %1",     TagId::DiscId);
     writeLine(QString("REM COMMENT \"Flacon v%1\"").arg(FLACON_VERSION));
-    writeGlobalTag("PERFORMER \"%1\"",  TAG_PERFORMER);
-    writeGlobalTag("SONGWRITER \"%1\"", TAG_SONGWRITER);
-    writeGlobalTag("TITLE \"%1\"",      TAG_ALBUM);
+    writeGlobalTag("PERFORMER \"%1\"",  TagId::Performer);
+    writeGlobalTag("SONGWRITER \"%1\"", TagId::SongWriter);
+    writeGlobalTag("TITLE \"%1\"",      TagId::Album);
 
     if (createPreGapFile)
         writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisk->preGapTrack()->resultFilePath()).fileName()));
@@ -184,9 +181,9 @@ bool CueCreator::write()
 
         writeLine(QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
 
-        writeTrackTag(track, "    FLAGS %1",     TAG_FLAGS);
-        writeTrackTag(track, "    ISRC %1",      TAG_ISRC);
-        writeTrackTag(track, "    TITLE \"%1\"", TAG_TITLE);
+        writeTrackTag(track, "    FLAGS %1",     TagId::Flags);
+        writeTrackTag(track, "    ISRC %1",      TagId::ISRC);
+        writeTrackTag(track, "    TITLE \"%1\"", TagId::Title);
 
         if( i == 0)
         {
@@ -213,10 +210,10 @@ bool CueCreator::write()
 
         }
 
-        writeTrackTag(track, "    REM GENRE \"%1\"",  TAG_GENRE);
-        writeTrackTag(track, "    REM DATE %1",       TAG_DATE);
-        writeTrackTag(track, "    PERFORMER \"%1\"",  TAG_PERFORMER);
-        writeTrackTag(track, "    SONGWRITER \"%1\"", TAG_SONGWRITER);
+        writeTrackTag(track, "    REM GENRE \"%1\"",  TagId::Genre);
+        writeTrackTag(track, "    REM DATE %1",       TagId::Date);
+        writeTrackTag(track, "    PERFORMER \"%1\"",  TagId::Performer);
+        writeTrackTag(track, "    SONGWRITER \"%1\"", TagId::SongWriter);
     }
 
     mFile.close();

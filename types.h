@@ -29,6 +29,10 @@
 #include <QString>
 #include <QIcon>
 
+typedef quint16 DiskNum;
+typedef quint16 TrackNum;
+typedef uint    Duration;
+
 enum class PreGapType
 {
     Skip,
@@ -66,5 +70,57 @@ typedef quint16 TrackNum;
 
 unsigned int levenshteinDistance(const QString &s1, const QString & s2);
 QIcon loadIcon(const QString &iconName, bool loadDisable = true);
+
+class FlaconError: public std::exception
+{
+public:
+    FlaconError(const QString &msg):
+        std::exception(),
+        mMsg(msg)
+    {
+    }
+
+    const char* what() const noexcept
+    {
+        return mMsg.toLocal8Bit().constData();
+    }
+
+    QString message()  const noexcept
+    {
+        return mMsg;
+    }
+
+protected:
+    QString mMsg;
+};
+
+
+class CueIndex
+{
+public:
+    explicit CueIndex(const QString &str = "");
+
+    bool isNull() const { return mNull; }
+    QString toString(bool cdQuality = true) const;
+
+    CueIndex operator-(const CueIndex &other) const;
+    bool operator==(const CueIndex &other) const;
+    bool operator!=(const CueIndex &other) const;
+
+    uint milliseconds() const { return mHiValue; }
+    uint frames() const { return mCdValue; }
+
+private:
+    bool mNull;
+    int mCdValue;
+    int mHiValue;
+
+    bool parse(const QString &str);
+};
+
+typedef CueIndex CueTime;
+
+QByteArray leftPart(const QByteArray &line, const QChar separator);
+QByteArray rightPart(const QByteArray &line, const QChar separator);
 
 #endif // TYPES_H

@@ -95,14 +95,14 @@ protected:
 private slots:
     void diskDataChanged(Disk *disk);
     void trackDataChanged(int disk, int track);
-    void trackProgressChanged(const Track *track);
+    //TODO:void trackProgressChanged(const Track *track);
 
 private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;
     QVariant diskData(const Disk *disk, const QModelIndex &index, int role) const;
     QString trackDurationToString(uint milliseconds) const;
     QModelIndex index(const Disk *disk, int col = 0) const;
-    QModelIndex index(const Track *track, int col = 0) const;
+    //QModelIndex index(const Disk *disk, const Track *track, int col = 0) const;
 
     TrackView *mView;
 };

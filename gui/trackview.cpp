@@ -204,9 +204,13 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 
     QAction *act;
 
-    act = new DiskAction(tr("Select another cue file"), &menu, disk);
-    connect(act, SIGNAL(triggered()), this, SLOT(emitSelectCueFile()));
+    act = new QAction(tr("Select another cue file"), &menu);
+    connect(act, &QAction::triggered, [this, disk] { this->selectCueFile(disk);});
     menu.addAction(act);
+
+//    act = new DiskAction(tr("Select another cue file"), &menu, disk);
+//    connect(act, SIGNAL(triggered()), this, SLOT(emitSelectCueFile()));
+//    menu.addAction(act);
 
     act = new QAction(tr("Get data from CDDB"), &menu);
     connect(act, SIGNAL(triggered()), disk, SLOT(downloadInfo()));
@@ -310,25 +314,12 @@ void TrackView::contextMenuEvent(QContextMenuEvent *event)
     if (!index.isValid())
         return;
 
-    Disk *disk = 0;
-    QModelIndex diskIndex;
 
-    Track *track = mModel->trackByIndex(index);
-    if (track)
-    {
-        disk = track->disk();
-        diskIndex = index.parent();
-    }
-    else
-    {
-        disk = mModel->diskByIndex(index);
-        if (disk)
-            diskIndex = index;
-    }
-
+    Disk *disk = mModel->diskByIndex(index);
     if (!disk)
         return;
 
+    QModelIndex diskIndex = (mModel->trackByIndex(index)) ? index.parent() : index;
 
     QMenu menu;
     QMenu editMenu(tr("Edit"), &menu);

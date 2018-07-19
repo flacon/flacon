@@ -49,6 +49,7 @@ status_message(" ")
 set(HEADERS
     application.h
     types.h
+    tags.h
     tagset.h
     cue.h
     track.h
@@ -98,6 +99,7 @@ set(HEADERS
 set(SOURCES
     application.cpp
     types.cpp
+    tags.cpp
     tagset.cpp
     cue.cpp
     main.cpp

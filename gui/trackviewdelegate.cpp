@@ -208,8 +208,8 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
         return;
     }
 
-
-    if (type == TrackViewModel::DiskItem && index.column() == 0)
+    // TrackViewModel::DiskItem
+    if (index.column() == 0)
     {
         QColor bgColor = mTrackView->palette().base().color();
         painter->fillRect(opt.rect, bgColor);

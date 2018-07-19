@@ -33,6 +33,7 @@
 #include "project.h"
 #include "../inputaudiofile.h"
 #include "../converter/converter.h"
+#include "tags.h"
 
 #include <QDir>
 #include <QDebug>
@@ -66,6 +67,33 @@ void consoleErroHandler(const QString &message)
     QString msg(message);
     msg.remove(QRegExp("<[^>]*>"));
     qWarning() << "Converter error:" << msg;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+TagId tagNameToId(const QString &tagName)
+{
+    if (tagName.toUpper() == "ALBUM")         return TagId::Album;
+    if (tagName.toUpper() == "CATALOG")       return TagId::Catalog;
+    if (tagName.toUpper() == "CDTEXTFILE")    return TagId::CDTextfile;
+    if (tagName.toUpper() == "COMMENT")       return TagId::Comment;
+    if (tagName.toUpper() == "DATE")          return TagId::Date;
+    if (tagName.toUpper() == "FLAGS")         return TagId::Flags;
+    if (tagName.toUpper() == "GENRE")         return TagId::Genre;
+    if (tagName.toUpper() == "ISRC")          return TagId::ISRC;
+    if (tagName.toUpper() == "PERFORMER")     return TagId::Performer;
+    if (tagName.toUpper() == "SONGWRITER")    return TagId::SongWriter;
+    if (tagName.toUpper() == "TITLE")         return TagId::Title;
+    if (tagName.toUpper() == "DISCId")        return TagId::DiscId;
+    if (tagName.toUpper() == "FILE")          return TagId::File;
+    if (tagName.toUpper() == "DISKNUM")       return TagId::Disknum;
+    if (tagName.toUpper() == "CUEFILE")       return TagId::CueFile;
+    if (tagName.toUpper() == "STARTTRACKNUM") return TagId::StartTrackNum;
+
+    FAIL("Unknown TAG: \"" + tagName +"\"");
+    return TagId(0);
 }
 
 /************************************************
@@ -119,7 +147,8 @@ void TestFlacon::testConvert()
 
             foreach (QString s, line.section(' ', 1).split(','))
             {
-                track->setTag(s.section(':', 0, 0).trimmed(), s.section(':', 1).trimmed());
+                TagId tagId = tagNameToId(s.section(':', 0, 0).trimmed());
+                track->setTag(tagId, s.section(':', 1).trimmed());
             }
         }
     }

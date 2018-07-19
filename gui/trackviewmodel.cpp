@@ -110,7 +110,7 @@ TrackViewModel::TrackViewModel(TrackView *parent) :
     connect(project, SIGNAL(layoutChanged()), this, SIGNAL(layoutChanged()));
     connect(project, SIGNAL(afterRemoveDisk()), this, SIGNAL(layoutChanged()));
 
-    connect(project, SIGNAL(trackProgress(const Track*)), this, SLOT(trackProgressChanged(const Track*)));
+    //TODO: connect(project, SIGNAL(trackProgress(const Track*)), this, SLOT(trackProgressChanged(const Track*)));
 }
 
 
@@ -171,19 +171,20 @@ QModelIndex TrackViewModel::index(const Disk *disk, int col) const
 /************************************************
 
  ************************************************/
-QModelIndex TrackViewModel::index(const Track *track, int col) const
+/*TODO:
+QModelIndex TrackViewModel::index(const Disk *disk, const Track *track, int col) const
 {
-    QModelIndex diskIndex = index(track->disk());
+    QModelIndex diskIndex = index(disk);
     if (!diskIndex.isValid())
         return QModelIndex();
 
-    int trackNum = track->index();
+    int trackNum = track->trackNum() -1;
     if (trackNum > -1 && trackNum < rowCount(diskIndex))
         return index(trackNum, col, diskIndex);
     else
         return QModelIndex();
 }
-
+*/
 
 /************************************************
 
@@ -519,12 +520,13 @@ Track *TrackViewModel::trackByIndex(const QModelIndex &index)
 /************************************************
 
  ************************************************/
+/*TODO:
 void TrackViewModel::trackProgressChanged(const Track *track)
 {
     QModelIndex id = index(track, TrackView::ColumnPercent);
     emit dataChanged(id, id);
 }
-
+*/
 
 /************************************************
 

@@ -138,10 +138,10 @@ QString safePath(const QString &path)
 }
 
 
-QString TestFlacon::dir()
+QString TestFlacon::dir(const QString &subTest)
 {
     QString test    = QString::fromLocal8Bit(QTest::currentTestFunction());
-    QString subtest = QString::fromLocal8Bit(QTest::currentDataTag());
+    QString subtest = subTest.isEmpty() ? QString::fromLocal8Bit(QTest::currentDataTag()) : subTest;
 
 
     return QDir::cleanPath(QString("%1/%2/%3")

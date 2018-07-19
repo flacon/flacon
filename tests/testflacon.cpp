@@ -677,30 +677,27 @@ void TestFlacon::testTrackResultFilePath()
     QFETCH(QString, outDir);
     QFETCH(QString, pattern);
     QFETCH(QString, expected);
-    QFETCH(QString, audioFile);
+    QFETCH(QString, cueFile);
 
     settings->setOutFileDir(outDir);
     settings->setOutFilePattern(pattern);
     settings->setOutFormat("WAV");
 
-    Disk *disk = loadFromCue(mDataDir + "simple.cue");
 
-    if (!audioFile.isEmpty())
-    {
-        InputAudioFile audio(audioFile);
-        if (!audio.isValid())
-            QFAIL(audio.errorString().toLocal8Bit().data());
+    if (!cueFile.isEmpty())
+        QFile::copy(mDataDir + "simple.cue", cueFile);
+    else
+        cueFile = mDataDir + "simple.cue";
 
-        disk->setAudioFile(audio);
-    }
+    Disk *disk = loadFromCue(cueFile);
 
     QString result = disk->track(0)->resultFilePath();
     if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath())
     {
-        QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   AudioFile: %4").arg(
+        QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   CueFile: %4").arg(
                     QFileInfo(result).absoluteFilePath(), result,
                     expected,
-                    audioFile);
+                    cueFile);
         QFAIL(msg.toLocal8Bit());
     }
     //QCOMPARE(result, expected);
@@ -717,7 +714,7 @@ void TestFlacon::testTrackResultFilePath_data()
     QTest::addColumn<QString>("outDir");
     QTest::addColumn<QString>("pattern");
     QTest::addColumn<QString>("expected");
-    QTest::addColumn<QString>("audioFile");
+    QTest::addColumn<QString>("cueFile");
 
 
     QTest::newRow("1: /home/user/music")
@@ -744,21 +741,23 @@ void TestFlacon::testTrackResultFilePath_data()
     QTest::newRow("4: empty")
             << ""
             << "%a/%y - %A/%n - %t"
-            << QDir::homePath() + "/Artist/2013 - Album/01 - Song01.wav"
+            << mDataDir + "/Artist/2013 - Album/01 - Song01.wav"
             << "";
 
 
     QTest::newRow("5: dot (.) with CdAudioFile")
             << "."
             << "%a/%y - %A/%n - %t"
-            << mTmpDir + "/Artist/2013 - Album/01 - Song01.wav"
-            << mAudio_cd_wav;
+            << dir("5: dot (.) with CdAudioFile") + "/Artist/2013 - Album/01 - Song01.wav"
+            << dir("5: dot (.) with CdAudioFile") + "/simple.cue";
+
 
     QTest::newRow("6. empty with CdAudioFile")
             << ""
             << "%a/%y - %A/%n - %t"
-            << mTmpDir + "/Artist/2013 - Album/01 - Song01.wav"
-            << mAudio_cd_wav;
+            << dir("6. empty with CdAudioFile") + "/Artist/2013 - Album/01 - Song01.wav"
+            << dir("6. empty with CdAudioFile") + "/simple.cue";
+
 
     QTest::newRow("7: ~")
             << "~"
@@ -813,13 +812,13 @@ void TestFlacon::testTrackSetCodepages()
     {
         Track *track = disk->track(i);
         result << "Track " << (i + 1) << "\n";
-        result << "  " << "INDEX:"    << track->index()       << "\n";
-        result << "  " << "TRACKNUM:" << track->trackNum()    << "\n";
-        result << "  " << "ALBUM:"    << track->album()       << "\n";
-        result << "  " << "TITLE:"    << track->title()       << "\n";
-        result << "  " << "ARTIST:"   << track->artist()      << "\n";
-        result << "  " << "GENRE:"    << track->genre()       << "\n";
-        result << "  " << "YEAR:"     << track->date()        << "\n";
+        result << "  " << "INDEX:"    << i                  << "\n";
+        result << "  " << "TRACKNUM:" << track->trackNum()  << "\n";
+        result << "  " << "ALBUM:"    << track->album()     << "\n";
+        result << "  " << "TITLE:"    << track->title()     << "\n";
+        result << "  " << "ARTIST:"   << track->artist()    << "\n";
+        result << "  " << "GENRE:"    << track->genre()     << "\n";
+        result << "  " << "YEAR:"     << track->date()      << "\n";
     }
 
     // Result *************************
@@ -852,13 +851,13 @@ void TestFlacon::testTrackSetCodepages_data()
     QTest::addColumn<QString>("codepageAfter");
 
 
-    QTest::newRow("TrackSet_UTF-8")
+    QTest::newRow("01 TrackSet_UTF-8")
             << "ru_utf8.cue"    << "ru.result"  << "Big5"   << "UTF-8";
 
-    QTest::newRow("TrackSet_UTF-8_BOM")
+    QTest::newRow("02 TrackSet_UTF-8_BOM")
             << "ru_utf8_BOM.cue"<< "ru.result"  << "Big5"   << "";
 
-    QTest::newRow("TrackSet_CP1251")
+    QTest::newRow("03 TrackSet_CP1251")
             << "ru_cp1251.cue"  << "ru.result"  << "UTF-8"  << "Windows-1251";
 }
 

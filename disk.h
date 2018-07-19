@@ -55,9 +55,9 @@ public:
 
     Track *track(int index) const;
     int count() const { return mCount; }
-    Track *preGapTrack() const { return mPreGapTrack; }
+    const Track *preGapTrack() const { return &mPreGapTrack; }
 
-    void loadFromCue(const CueTagSet &cueTags, bool activate = true);
+    void loadFromCue(const CueDisk &cueDisk, bool activate = true);
     QString cueFile() const { return mCueFile; }
 
     InputAudioFile *audioFile() const { return mAudioFile; }
@@ -75,10 +75,10 @@ public:
 
     QString tagsTitle() const;
     QString tagsUri() const;
-    QString discId() const  { return tag(TAG_DISCID); }
-    QString fileTag() const { return tag(TAG_FILE); }
+    QString discId() const;
+    QString fileTag() const;
 
-    QString tag(const QString tagName) const;
+    //QString tag(const QString tagName) const;
 
     QList<TagSet*> tagSets() const { return mTagSets; }
 
@@ -110,7 +110,7 @@ signals:
 
 protected:
     QString getTag(int track, const QString &tagName);
-    void setTag(int track, const QString &tagName, const QString &value);
+    //void setTag(int track, const QString &tagName, const QString &value);
 
 private slots:
     void downloadFinished();
@@ -124,14 +124,15 @@ private:
     int mCount;
     QString mCueFile;
     InputAudioFile *mAudioFile;
-    Track *mPreGapTrack;
+    Track mPreGapTrack;
     QList<DataProvider*> mDownloads;
 
     QString mCoverImageFile;
     mutable QImage  mCoverImagePreview;
 
-    void findAudioFile(const CueTagSet &cueTags);
+    void findAudioFile(const CueDisk &cueDisk);
     void findCueFile();
+    Duration trackDuration(TrackNum trackNum) const;
 };
 
 typedef QList<Disk*> DiskList;
@@ -155,7 +156,5 @@ private:
     QString mTagName;
 };
 
-QByteArray leftPart(const QByteArray &line, const QChar separator);
-QByteArray rightPart(const QByteArray &line, const QChar separator);
 
 #endif // DISK_H

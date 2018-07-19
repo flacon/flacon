@@ -300,6 +300,16 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
     }
 }
 
+/************************************************
+ *
+ ************************************************/
+
+TagLineEdit::TagLineEdit(QWidget *parent):
+    MultiValuesLineEdit(parent),
+    mTagId(TagId())
+{
+}
+
 
 /************************************************
 

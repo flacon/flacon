@@ -71,9 +71,9 @@ QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFi
     if (!track->date().isEmpty())    args << "--date"    << track->date();
     if (!track->title().isEmpty())   args << "--title"   << track->title();
     if (!track->comment().isEmpty()) args << "--comment" << QString("COMMENT=%1").arg(track->comment());
-    if (!track->disk()->discId().isEmpty())  args << "--comment" << QString("DISCID=%1").arg(track->disk()->discId());
+    if (!track->diskId().isEmpty())  args << "--comment" << QString("DISCID=%1").arg(track->diskId());
     args << "--comment" << QString("TRACKNUMBER=%1").arg(track->trackNum());
-    args << "--comment" << QString("TRACKTOTAL=%1").arg(track->disk()->count());
+    args << "--comment" << QString("TRACKTOTAL=%1").arg(track->trackCount());
 
     // Files ....................................................
     args << "-";

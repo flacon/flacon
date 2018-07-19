@@ -26,7 +26,6 @@
 
 #include "mp3.h"
 #include "settings.h"
-#include "disk.h"
 #include <QDebug>
 
 
@@ -116,7 +115,7 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
     if (!track->date().isEmpty())    args << "--ty" << track->date();
     if (!track->title().isEmpty())   args << "--tt" << track->title();
     if (!track->comment().isEmpty()) args << "--tc" << track->comment();
-    args << "--tn" << QString("%1/%2").arg(track->trackNum()).arg(track->disk()->count());
+    args << "--tn" << QString("%1/%2").arg(track->trackNum()).arg(track->trackCount());
 
 
     // Files ....................................................

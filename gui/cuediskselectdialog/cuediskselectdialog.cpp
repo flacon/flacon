@@ -38,6 +38,7 @@ CueDiskSelectDialog::CueDiskSelectDialog(const CueReader &cue, int selectedDisk,
     ui(new Ui::CueDiskSelectDialog),
     mCue(cue)
 {
+/*TODO:
     if (selectedDisk < 0 || selectedDisk >= cue.diskCount())
         selectedDisk = 0;
 
@@ -71,6 +72,7 @@ CueDiskSelectDialog::CueDiskSelectDialog(const CueReader &cue, int selectedDisk,
 
     connect(ui->diskTree, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(treeDoubleClicked(QModelIndex)));
+*/
 }
 
 

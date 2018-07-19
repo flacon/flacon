@@ -304,11 +304,16 @@ void testFail(const QString &message, const char *file, int line)
  ************************************************/
 Disk *loadFromCue(const QString &cueFile)
 {
-    CueReader cueReader(cueFile);
-    if (!cueReader.isValid())
-        FAIL(cueReader.errorString().toLocal8Bit());
-
-    Disk *res = new Disk();
-    res->loadFromCue(cueReader.disk(0));
-    return res;
+    try
+    {
+        QVector<CueDisk> cue = CueReader().load(cueFile);
+        Disk *res = new Disk();
+        res->loadFromCue(cue.first(), true);
+        return res;
+    }
+    catch (FlaconError &err)
+    {
+        FAIL(err.what());
+    }
+    return nullptr;
 }

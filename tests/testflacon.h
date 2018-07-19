@@ -118,7 +118,7 @@ private:
     void checkFileNotExists(const QString &fileName);
 
     void applySettings(const SettingsValues &config);
-    QString dir();
+    QString dir(const QString &subTest = "");
 
     Disk *standardDisk();
 
