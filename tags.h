@@ -113,7 +113,6 @@ private:
 
 
 
-struct uchardet;
 
 class UcharDet
 {
@@ -130,8 +129,8 @@ public:
     QTextCodec* textCodec() const;
 
 private:
-
-    uchardet *mUchcharDet;
+    struct Data;
+    Data *mData;
 };
 
 QTextCodec *determineTextCodec(const QVector<TrackTags*> tracks);

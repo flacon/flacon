@@ -181,12 +181,24 @@ QTextCodec *determineTextCodec(const QVector<TrackTags*> tracks)
 }
 
 
+
 /************************************************
  *
  ************************************************/
-UcharDet::UcharDet()
+struct UcharDet::Data
 {
-    mUchcharDet = uchardet_new();
+    uchardet_t mUchcharDet;
+
+};
+
+
+/************************************************
+ *
+ ************************************************/
+UcharDet::UcharDet():
+    mData(new Data())
+{
+    mData->mUchcharDet = uchardet_new();
 }
 
 
@@ -195,7 +207,8 @@ UcharDet::UcharDet()
  ************************************************/
 UcharDet::~UcharDet()
 {
-    uchardet_delete(mUchcharDet);
+    uchardet_delete(mData->mUchcharDet);
+    delete mData;
 }
 
 
@@ -207,12 +220,16 @@ UcharDet &UcharDet::operator<<(const TrackTags &track)
     const QByteArray &performer = track.tagData(TagId::Performer);
     const QByteArray &title     = track.tagData(TagId::Title);
 
-    uchardet_handle_data(mUchcharDet, performer.data(), performer.length());
-    uchardet_handle_data(mUchcharDet, title.data(),     title.length());
+    uchardet_handle_data(mData->mUchcharDet, performer.data(), performer.length());
+    uchardet_handle_data(mData->mUchcharDet, title.data(),     title.length());
 
     return *this;
 }
 
+
+/************************************************
+ *
+ ************************************************/
 QString UcharDet::textCodecName() const
 {
     return textCodec()->name();
@@ -224,8 +241,8 @@ QString UcharDet::textCodecName() const
  ************************************************/
 QTextCodec *UcharDet::textCodec() const
 {
-    uchardet_data_end(mUchcharDet);
-    QTextCodec *res = QTextCodec::codecForName(uchardet_get_charset(mUchcharDet));
+    uchardet_data_end(mData->mUchcharDet);
+    QTextCodec *res = QTextCodec::codecForName(uchardet_get_charset(mData->mUchcharDet));
     if (!res)
         res = QTextCodec::codecForName("UTF-8");
 
