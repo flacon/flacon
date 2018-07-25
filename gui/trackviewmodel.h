@@ -28,6 +28,7 @@
 #define TRACKVIEWMODEL_H
 
 #include <QAbstractItemModel>
+#include <QSet>
 
 #include "disk.h"
 class Project;
@@ -78,6 +79,7 @@ protected:
         RoleComment,
         RoleFileName,
         RoleAudioFileName,
+        RoleTagSetTitle,
         RoleCanConvert,
         RoleIsDownloads,
         RoleItemID,
@@ -86,14 +88,19 @@ protected:
         RoleCoverImg,
         RoleCueFilePath,
         RoleAudioFilePath,
-        RoleDiskWarning,
+        RoleDiskWarning
     };
 
     Disk *diskByIndex(const QModelIndex &index);
     Track *trackByIndex(const QModelIndex &index);
 
+public slots:
+    void downloadStarted(const Disk &disk);
+    void downloadFinished(const Disk &disk);
+
+
 private slots:
-    void diskDataChanged(Disk *disk);
+    void diskDataChanged(const Disk *disk);
     void trackDataChanged(int disk, int track);
     //TODO:void trackProgressChanged(const Track *track);
 
@@ -104,6 +111,7 @@ private:
     QModelIndex index(const Disk *disk, int col = 0) const;
     //QModelIndex index(const Disk *disk, const Track *track, int col = 0) const;
 
+    QSet<DiskNum> mDownloadedDisks;
     TrackView *mView;
 };
 

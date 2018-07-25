@@ -54,9 +54,9 @@ public:
     };
 
     Track();
-    Track(const TrackTags &tags);
     Track(const Track &other);
     Track &operator =(const Track &other);
+    void setTags(const TrackTags &tags);
     ~Track();
 
 
@@ -104,6 +104,25 @@ private:
 
 Q_DECLARE_METATYPE(Track::Status)
 
-typedef QVector<Track> Tracks;
+
+class Tracks: public QVector<Track>
+{
+public:
+    Tracks();
+    explicit Tracks(int size);
+    Tracks(const Tracks &other);
+    Tracks &operator=(const Tracks &other);
+    virtual ~Tracks();
+
+    QString uri() const { return mUri; }
+    void setUri(const QString &value) { mUri = value ;}
+
+    QString title() const { return mTitle; }
+    void setTitle(const QString &value) { mTitle = value; }
+
+private:
+    QString mUri;
+    QString mTitle;
+};
 
 #endif // TRACK_H

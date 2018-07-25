@@ -798,7 +798,7 @@ void TestFlacon::testTrackSetCodepages()
     Disk *disk = loadFromCue(testCueFile);
 
     if (!codepageAfter.isEmpty())
-        disk->setTextCodecName(codepageAfter);
+        disk->setCodecName(codepageAfter);
 
     QStringList expected = this->readFile(TEST_DATA_DIR + sampleFile);
 

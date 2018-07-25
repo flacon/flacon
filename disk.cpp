@@ -30,8 +30,8 @@
 #include "inputaudiofile.h"
 #include "formats/format.h"
 #include "outformat.h"
-#include "internet/dataprovider.h"
 
+#include "assert.h"
 #include <QTextCodec>
 #include <QFileInfo>
 #include <QStringList>
@@ -48,7 +48,6 @@
  ************************************************/
 Disk::Disk(QObject *parent) :
     QObject(parent),
-    mTags(0),
     mStartTrackNum(1),
     mCount(0),
     mAudioFile(0)
@@ -63,7 +62,6 @@ Disk::Disk(QObject *parent) :
 Disk::~Disk()
 {
     delete mAudioFile;
-    qDeleteAll(mTagSets);
 }
 
 
@@ -117,26 +115,11 @@ bool Disk::canConvert(QString *description) const
 }
 
 
-/************************************************
-
- ************************************************/
-void Disk::downloadInfo()
-{
-    if (discId().isEmpty())
-        return;
-
-    DataProvider *provider = new FreeDbProvider(this);
-    connect(provider, SIGNAL(finished()), this, SLOT(downloadFinished()));
-    mDownloads << provider;
-    provider->start();
-    project->emitDiskChanged(this);
-}
-
 
 /************************************************
 
  ************************************************/
-bool Disk::canDownloadInfo()
+bool Disk::canDownloadInfo() const
 {
     return !discId().isEmpty();
 }
@@ -145,58 +128,54 @@ bool Disk::canDownloadInfo()
 /************************************************
 
  ************************************************/
-bool Disk::isDownloads() const
+void Disk::loadFromCue(const CueDisk &cueDisk)
 {
-    return mDownloads.count() > 0;
-}
+    QString oldDir = QFileInfo(mCueFile).dir().absolutePath();
 
+    // If the tracks contain tags from the Internet and the
+    // tags have been changed, we must save the changes.
+    syncTagsFromTracks(mCurrentTagsUri);
+    mTagSets.remove(mCueFile);
 
-/************************************************
-
- ************************************************/
-void Disk::downloadFinished()
-{
-    DataProvider *provider = qobject_cast<DataProvider*>(sender());
-    mDownloads.removeAll(provider);
-    provider->deleteLater();
-}
-
-
-/************************************************
-
- ************************************************/
-void Disk::loadFromCue(const CueDisk &cueDisk, bool activate)
-{
-    mCount = cueDisk.tracks().count();
+    mCount = cueDisk.count();
     mCueFile = cueDisk.fileName();
 
+    // Remove all tags if number of tracks differ from loaded CUE.
+    for(auto it = mTagSets.begin(); it != mTagSets.end();)
+    {
+        if (it.value().count() != mCount)
+            it = mTagSets.erase(it);
+        else
+            ++it;
+    }
 
+
+    // Sync count of tracks
     for (int i=mTracks.count(); i<mCount; ++i)
         mTracks.append(new Track());
 
     while (mTracks.count() > mCount)
         delete mTracks.takeLast();
-        //mTracks.takeLast()->deleteLater();
+
 
     for (int t=0; t<mCount; ++t)
-    {
-        *mTracks[t] = cueDisk.tracks().at(t);
-    }
+        *mTracks[t] = cueDisk.at(t);
 
     for (int i=0; i<mCount; ++i)
     {
         Track *track = mTracks[i];
         track->setTrackCount(mCount);
+        track->setTrackNum(mStartTrackNum + i);
         track->mDuration = this->trackDuration(i);
+
+
     }
 
-    if (mTagSets.isEmpty())
-        mTagSets << 0;
-    else
-        delete mTagSets.first();
+    mCurrentTagsUri = mCueFile;
+    syncTagsFromTracks(mCurrentTagsUri);
+    mTagSets[mCurrentTagsUri].setTitle(cueDisk.title());
 
-    mTagSets[0] = new TagSet(cueDisk.fileName() + QString(" [%1]").arg(cueDisk.diskCount()), cueDisk.tracks());
-    setStartTrackNum(cueDisk.tracks().first().trackNum());
+
     mPreGapTrack = *mTracks.first();
     mPreGapTrack.setTrackNum(0);
     mPreGapTrack.setTitle("(HTOA)");
@@ -204,15 +183,15 @@ void Disk::loadFromCue(const CueDisk &cueDisk, bool activate)
     if (!mAudioFile)
         findAudioFile(cueDisk);
 
-    if (activate || !mTags)
+
+    QString dir = QFileInfo(mCueFile).dir().absolutePath();
+    if (dir != oldDir)
     {
-        mTags = mTagSets.first();
-        project->emitLayoutChanged();
+        mCoverImagePreview = QImage();
+        mCoverImageFile = searchCoverImage(dir);
     }
 
-    mCoverImagePreview = QImage();
-    mCoverImageFile = searchCoverImage(QFileInfo(mCueFile).dir().absolutePath());
-
+    project->emitLayoutChanged();
 }
 
 
@@ -227,13 +206,13 @@ QFileInfoList matchedAudioFiles(const CueDisk &cueDisk, const QFileInfoList &aud
     QStringList patterns;
     if (cueDisk.diskCount() > 1)
     {
-        patterns << QRegExp::escape(QFileInfo(cueDisk.tracks().first().tag(TagId::File)).completeBaseName());
+        patterns << QRegExp::escape(QFileInfo(cueDisk.first().tag(TagId::File)).completeBaseName());
         patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisk.diskNum());
         patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisk.diskNum());
     }
     else
     {
-        patterns << QRegExp::escape(QFileInfo(cueDisk.tracks().first().tag(TagId::File)).completeBaseName());
+        patterns << QRegExp::escape(QFileInfo(cueDisk.first().tag(TagId::File)).completeBaseName());
         patterns << QRegExp::escape(cueFile.completeBaseName()) + ".*";
     }
 
@@ -281,7 +260,7 @@ void Disk::findCueFile()
 
     if (cues.count() == 1 && cues.first().count() == 1)
     {
-        loadFromCue(cues.first().first(), true);
+        loadFromCue(cues.first().first());
         return;
     }
 
@@ -331,6 +310,61 @@ Duration Disk::trackDuration(TrackNum trackNum) const
 }
 
 
+/************************************************
+ *
+ ************************************************/
+void Disk::syncTagsFromTracks(const QString &uri)
+{
+    DiskTags &tags = mTagSets[uri];
+    if (tags.isEmpty())
+        tags.resize(mTracks.count());
+
+    tags.setUri(uri);
+
+    for (int i=0; i<qMin(tags.count(), mTracks.count()); ++i)
+    {
+        tags[i] = *(mTracks.at(i));
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Disk::syncTagsToTracks(const QString &uri)
+{
+    DiskTags &tags = mTagSets[uri];
+    assert(tags.count() == mTracks.count());
+
+    for (int i=0; i<mTracks.count(); ++i)
+    {
+        mTracks[i]->setTags(tags.at(i));
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+int Disk::distance(const DiskTags &other)
+{
+    if (mTracks.isEmpty() || other.empty())
+        return std::numeric_limits<int>::max();
+
+    int res = 0;
+
+    QString str1 = mTracks.first()->performer().toUpper().replace("THE ", "");
+    QString str2 = other.first().performer().toUpper().replace("THE ", "");
+    res += levenshteinDistance(str1, str2) * 3;
+
+    str1 = mTracks.first()->album().toUpper().replace("THE ", "");
+    str2 = other.first().album().toUpper().replace("THE ", "");
+    res += levenshteinDistance(str1, str2);
+
+    return res;
+}
+
+
 
 /************************************************
 
@@ -354,7 +388,7 @@ void Disk::setAudioFile(const InputAudioFile &audio)
 
     mAudioFile = new InputAudioFile(audio);
 
-    if (mTagSets.isEmpty())
+    if (mTracks.isEmpty())
         findCueFile();
 
     if (!mTracks.isEmpty())
@@ -367,7 +401,7 @@ void Disk::setAudioFile(const InputAudioFile &audio)
  ************************************************/
 void Disk::findAudioFile(const CueDisk &cueDisk)
 {
-    if (cueDisk.tracks().isEmpty())
+    if (cueDisk.isEmpty())
         return;
 
     QStringList exts;
@@ -404,6 +438,9 @@ void Disk::findAudioFile(const CueDisk &cueDisk)
 void Disk::setStartTrackNum(int value)
 {
     mStartTrackNum = value;
+    foreach (auto track, mTracks)
+        track->setTrackNum(value++);
+
     project->emitDiskChanged(this);
 }
 
@@ -411,19 +448,19 @@ void Disk::setStartTrackNum(int value)
 /************************************************
 
  ************************************************/
-QString Disk::textCodecName() const
+QString Disk::codecName() const
 {
-    if (mTags)
-        return mTags->textCodecName();
-    else
-        return "";
+    if (!mTracks.isEmpty())
+        return mTracks.first()->codecName();
+
+    return "";
 }
 
 
 /************************************************
 
  ************************************************/
-void Disk::setTextCodecName(const QString codecName)
+void Disk::setCodecName(const QString codecName)
 {
 
     QString codec = codecName;
@@ -442,9 +479,6 @@ void Disk::setTextCodecName(const QString codecName)
     {
         track->setCodecName(codec);
     }
-
-    //if (mTags)
-    //    mTags->setTextCodecName(codecName);
 
     project->emitDiskChanged(this);
 }
@@ -469,12 +503,11 @@ QString Disk::safeString(const QString &str)
 /************************************************
 
  ************************************************/
-QString Disk::tagsTitle() const
+QString Disk::tagSetTitle() const
 {
-    if (mTags)
-        return mTags->title();
-    else
+    if (mCurrentTagsUri.isEmpty())
         return "";
+    return mTagSets[mCurrentTagsUri].title();
 }
 
 
@@ -483,10 +516,7 @@ QString Disk::tagsTitle() const
  ************************************************/
 QString Disk::tagsUri() const
 {
-    if (mTags)
-        return mTags->uri();
-    else
-        return "";
+    return mCurrentTagsUri;
 }
 
 
@@ -514,81 +544,77 @@ QString Disk::fileTag() const
 }
 
 
-///************************************************
+/************************************************
+ *
+ ************************************************/
+QList<DiskTags> Disk::tagSets() const
+{
+    QList<DiskTags> res;
+    const_cast<Disk*>(this)->syncTagsFromTracks(mCueFile);
 
-// ************************************************/
-//QString Disk::tag(const QString tagName) const
-//{
-//    if (mTags)
-//        return mTags->diskTag(tagName);
-//    else
-//        return "";
-//}
+    res << mTagSets[mCueFile];
+
+    QStringList keys = mTagSets.keys();
+    keys.removeAll(mCueFile);
+    qSort(keys);
+
+    foreach (const QString &key, keys)
+        res << mTagSets[key];
+
+    return res;
+}
 
 
 /************************************************
-
+ *
  ************************************************/
-void Disk::addTagSet(const TagSet &tagSet, bool activate)
+void Disk::addTagSet(const DiskTags &tags, bool activate)
 {
-    // Remove old doublicates
-    foreach (TagSet *t, mTagSets)
-    {
-        if (t->uri() == tagSet.uri())
-        {
-            if (mTags == t)
-                mTags = 0;
+    mTagSets[tags.uri()] = tags;
 
-            mTagSets.removeAll(t);
-            delete t;
+    if (activate)
+        activateTagSet(tags);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Disk::addTagSets(const QVector<DiskTags> &disks)
+{
+    if (disks.isEmpty())
+        return;
+
+    int minDist = std::numeric_limits<int>::max();
+    int bestDisk = 0;
+    for (int i=0; i<disks.count(); ++i)
+    {
+        const DiskTags &disk = disks.at(i);
+        addTagSet(disk, false);
+        int n = distance(disk);
+        if (n<minDist)
+        {
+            minDist  = n;
+            bestDisk = i;
         }
     }
 
-    TagSet *newTagSet = new TagSet(tagSet);
-    mTagSets << newTagSet;
-
-    if (activate || mTags == 0)
-    {
-        mTags = newTagSet;
-        project->emitLayoutChanged();
-    }
+    activateTagSet(disks.at(bestDisk));
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-void Disk::activateTagSet(const TagSet *tagSet)
+void Disk::activateTagSet(const DiskTags &tags)
 {
-    foreach (TagSet *t, mTagSets)
-    {
-        if (t->uri() == tagSet->uri())
-        {
-            mTags = t;
-            project->emitLayoutChanged();
-        }
-    }
-}
+    if (!mTagSets.contains(tags.uri()))
+        return;
 
-
-/************************************************
-
- ************************************************/
-int Disk::distance(const TagSet &other)
-{
-    return distance(&other);
-}
-
-
-/************************************************
-
- ************************************************/
-int Disk::distance(const TagSet *other)
-{
-    if (mTags)
-        return mTags->distance(other);
-    else
-        return 999999;
+    syncTagsFromTracks(mCurrentTagsUri);
+    mCurrentTagsUri = tags.uri();
+    syncTagsToTracks(mCurrentTagsUri);
+    project->emitLayoutChanged();
 }
 
 
@@ -726,64 +752,4 @@ QString Disk::searchCoverImage(const QString &startDir)
             return file;
     }
     return "";
-}
-
-
-/************************************************
-
- ************************************************/
-QString Disk::getTag(int track, const QString &tagName)
-{
-    if (mTags)
-        return mTags->trackTag(track, tagName);
-    else
-        return "";
-}
-
-
-/************************************************
-
- ************************************************/
-//void Disk::setTag(int track, const QString &tagName, const QString &value)
-//{
-//    mTags->setTrackTag(track, tagName, value);
-//    emit trackChanged(track);
-//    int disk = project->indexOf(this);
-//    project->emitTrackChanged(disk, track);
-//}
-
-
-/************************************************
-
- ************************************************/
-DiskAction::DiskAction(QObject *parent, Disk *disk, Track *track, const QString tagName):
-    QAction(parent),
-    mDisk(disk),
-    mTrack(track),
-    mTagName(tagName)
-{
-}
-
-
-/************************************************
-
- ************************************************/
-DiskAction::DiskAction(const QString &text, QObject *parent, Disk *disk, Track *track, const QString tagName):
-    QAction(text, parent),
-    mDisk(disk),
-    mTrack(track),
-    mTagName(tagName)
-{
-}
-
-
-/************************************************
-
- ************************************************/
-DiskAction::DiskAction(const QIcon &icon, const QString &text, QObject *parent, Disk *disk, Track *track, const QString tagName):
-    QAction(icon, text, parent),
-    mDisk(disk),
-    mTrack(track),
-    mTagName(tagName)
-{
 }

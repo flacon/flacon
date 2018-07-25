@@ -31,7 +31,7 @@
 #include <QList>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
-#include "../tagset.h"
+#include "tags.h"
 
 class Disk;
 class QNetworkAccessManager;
@@ -41,10 +41,10 @@ class DataProvider : public QObject
 {
     Q_OBJECT
 public:
-    explicit DataProvider(Disk *disk);
+    explicit DataProvider(const Disk &disk);
     virtual ~DataProvider();
 
-    Disk *disk() const { return mDisk; }
+    const Disk &disk() const { return mDisk; }
 
     bool isFinished() const;
 
@@ -55,19 +55,21 @@ public slots:
 
 signals:
     void finished();
+    void ready(const QVector<DiskTags> result);
 
 protected:
     void get(const QNetworkRequest &request);
     void error(const QString &message);
-    virtual void dataReady(QNetworkReply *reply) = 0;
+    virtual QVector<DiskTags> dataReady(QNetworkReply *reply) = 0;
 
 private slots:
     void replayFinished();
 
 private:
     QNetworkAccessManager *networkAccessManager() const;
-    Disk *mDisk;
+    const Disk &mDisk;
     QList<QNetworkReply*> mReplies;
+    QVector<DiskTags> mResult;
 
     void addReply(QNetworkReply* reply);
 };
@@ -76,15 +78,14 @@ private:
 class FreeDbProvider: public DataProvider
 {
 public:
-    explicit FreeDbProvider(Disk *disk);
+    explicit FreeDbProvider(const Disk &disk);
 
     void start();
 protected:
-    void dataReady(QNetworkReply *reply);
+    QVector<DiskTags> dataReady(QNetworkReply *reply) override;
 
 private:
-    void parse(QNetworkReply *reply);
-    QList<TagSet> mResult;
+    DiskTags parse(QNetworkReply *reply);
 };
 
 #endif // DATAPROVIDER_H

@@ -25,7 +25,6 @@
 
 
 #include "project.h"
-//#include "disk.h"
 #include "settings.h"
 #include "cue.h"
 #include "inputaudiofile.h"
@@ -101,11 +100,7 @@ int Project::insertDisk(Disk *disk, int index)
 
     mDisks.insert(index, disk);
 
-    //disc.setProject(self)
-    //self.connect(disc, SIGNAL("downloadStarted()"), self._discDownlaodStarted)
-    //self.connect(disc, SIGNAL("downloadFinished()"), self._discDownlaodFinished)
     emit layoutChanged();
-
     return index;
 }
 
@@ -124,8 +119,6 @@ void Project::removeDisk(const QList<Disk*> *disks)
 
         emit afterRemoveDisk();
     }
-
-    //emit layoutChanged();
 }
 
 
@@ -143,9 +136,9 @@ int Project::indexOf(const Disk *disk) const
  ************************************************/
 bool Project::diskExists(const QString &cueUri)
 {
-    foreach (Disk *d, mDisks)
+    foreach (const Disk *d, mDisks)
     {
-        if (!d->tagSets().isEmpty() && d->tagSets().first()->uri() == cueUri)
+        if (d->cueFile() == cueUri)
             return true;
     }
     return false;
@@ -269,22 +262,4 @@ void Project::emitTrackProgress(const Track *track) const
 void Project::emitLayoutChanged() const
 {
     emit layoutChanged();
-}
-
-
-/************************************************
- *
- ************************************************/
-void Project::emitDownloadingStarted(DataProvider *provider) const
-{
-    emit downloadingStarted(provider);
-}
-
-
-/************************************************
- *
- ************************************************/
-void Project::emitDownloadingFinished(DataProvider *provider) const
-{
-    emit downloadingFinished(provider);
 }

@@ -29,21 +29,18 @@
 #include "../disk.h"
 #include <QtNetwork/QNetworkAccessManager>
 
-//--------
 #include "settings.h"
 #include "project.h"
 
-
 #include <QStringList>
-
 #include <QDebug>
 #include <QTextCodec>
 
 /************************************************
 
  ************************************************/
-DataProvider::DataProvider(Disk *disk) :
-    QObject(disk),
+DataProvider::DataProvider(const Disk &disk) :
+    QObject(),
     mDisk(disk)
 {
 }
@@ -87,7 +84,8 @@ void DataProvider::stop()
 void DataProvider::get(const QNetworkRequest &request)
 {
     QNetworkReply *reply = networkAccessManager()->get(request);
-    addReply(reply);
+    mReplies << reply;
+    connect(reply, SIGNAL(finished()), this, SLOT(replayFinished()));
 }
 
 
@@ -117,7 +115,10 @@ void DataProvider::replayFinished()
         switch (reply->error())
         {
         case QNetworkReply::NoError:
-            dataReady(reply);
+            mResult << dataReady(reply);
+            if (isFinished())
+                emit ready(mResult);
+
             break;
 
         case QNetworkReply::OperationCanceledError:
@@ -149,17 +150,7 @@ QNetworkAccessManager *DataProvider::networkAccessManager() const
 /************************************************
 
  ************************************************/
-void DataProvider::addReply(QNetworkReply *reply)
-{
-    mReplies << reply;
-    connect(reply, SIGNAL(finished()), this, SLOT(replayFinished()));
-}
-
-
-/************************************************
-
- ************************************************/
-FreeDbProvider::FreeDbProvider(Disk *disk):
+FreeDbProvider::FreeDbProvider(const Disk &disk):
     DataProvider(disk)
 {
 }
@@ -193,7 +184,7 @@ void FreeDbProvider::start()
         request.setUrl(mask.arg(
                            host,
                            category,
-                           disk()->discId(),
+                           disk().discId(),
                            "anonimous",     // Hello user
                            "127.0.0.1",     // Hello host
                            "flacon",        //Hello client name
@@ -202,14 +193,13 @@ void FreeDbProvider::start()
         request.setAttribute(QNetworkRequest::User, category);
         get(request);
     }
-    project->emitDownloadingStarted(this);
 }
 
 
 /************************************************
 
  ************************************************/
-void FreeDbProvider::dataReady(QNetworkReply *reply)
+QVector<DiskTags> FreeDbProvider::dataReady(QNetworkReply *reply)
 {
     QString statusLine = reply->readLine();
     int status = statusLine.section(' ', 0, 0).toInt();
@@ -218,7 +208,7 @@ void FreeDbProvider::dataReady(QNetworkReply *reply)
     switch(status)
     {
     case 210:   // OK
-        parse(reply);
+        return QVector<DiskTags>() << parse(reply);
         break;
 
     case 401:   // No such CD entry in database, skip.
@@ -228,49 +218,24 @@ void FreeDbProvider::dataReady(QNetworkReply *reply)
         error(statusLine);
     }
 
-
-    project->emitDownloadingFinished(this);
-
-    if (!isFinished())
-        return;
-
-    if (mResult.count() == 0)
-        return;
-
-
-    int minDist = disk()->distance(mResult.at(0));
-    int bestTagSet = 0;
-
-    for (int i=1; i<mResult.count(); ++i)
-    {
-        int n = disk()->distance(mResult.at(i));
-        if (n<minDist)
-        {
-            minDist = n;
-            bestTagSet = i;
-        }
-    }
-
-    for (int i=0; i<mResult.count(); ++i)
-    {
-        disk()->addTagSet(mResult.at(i), i == bestTagSet);
-    }
-
+    return QVector<DiskTags>();
 }
 
 
 /************************************************
 
  ************************************************/
-void FreeDbProvider::parse(QNetworkReply *reply)
+DiskTags FreeDbProvider::parse(QNetworkReply *reply)
 {
     QByteArray category = reply->request().attribute(QNetworkRequest::User).toByteArray();
 
-    TagSet res(reply->url().toString());
-    res.setDiskTag(TAG_DISCID, disk()->discId());
+    DiskTags res;
+    res.setUri(reply->url().toString());
 
-    QByteArray artist;
     QByteArray album;
+    QByteArray year;
+    QByteArray genre;
+    QByteArray performer;
     QList<QByteArray> tracks;
 
     while (!reply->atEnd())
@@ -285,13 +250,13 @@ void FreeDbProvider::parse(QNetworkReply *reply)
 
         if (key == "DYEAR")
         {
-            res.setDiskTag(TAG_DATE, value, false);
+            year = value;
             continue;
         }
 
         if (key == "DGENRE")
         {
-            res.setDiskTag(TAG_GENRE, value, false);
+            genre = value;
             continue;
         }
 
@@ -299,11 +264,8 @@ void FreeDbProvider::parse(QNetworkReply *reply)
         {
             // The artist and disc title (in that order) separated by a "/" with a
             // single space on either side to separate it from the text.
-            artist = leftPart(value, '/').trimmed();
-            res.setDiskTag(TAG_PERFORMER, artist, false);
-
-            album = rightPart(value, '/').trimmed();
-            res.setDiskTag(TAG_ALBUM, album, false);
+            performer = leftPart(value, '/').trimmed();
+            album     = rightPart(value, '/').trimmed();
             continue;
         }
 
@@ -315,19 +277,18 @@ void FreeDbProvider::parse(QNetworkReply *reply)
 
     }
 
+    int n = 0;
+    res.resize(tracks.count());
     foreach (QByteArray line, tracks)
     {
-        QByteArray key = leftPart(line, '=').toUpper();
+        TrackTags &track = res[n++];
+        track.setCodecName(disk().codecName());
+        track.setTag(TagId::DiscId, disk().discId());
+        track.setTag(TagId::Date, year);
+        track.setTag(TagId::Genre, genre);
+        track.setTag(TagId::Album, album);
+
         QByteArray value = rightPart(line, '=').trimmed();
-
-        bool ok;
-        int n = key.mid(6).toInt(&ok);
-        if(!ok)
-        {
-            error("I can't parse CDDB result.");
-            return;
-        }
-
 
         if (value.contains('/'))
         {
@@ -335,19 +296,17 @@ void FreeDbProvider::parse(QNetworkReply *reply)
             // track titles, the track artist and the track title (in that order)
             // should be separated by a "/" with a single space on either side
             // to separate it from the text.
-            res.setTrackTag(n, TAG_PERFORMER, leftPart(value, '/').trimmed(), false);
-            res.setTrackTag(n, TAG_TITLE, rightPart(value, '/').trimmed(), false);
+            track.setTag(TagId::Performer, leftPart(value,  '/').trimmed());
+            track.setTag(TagId::Title,     rightPart(value, '/').trimmed());
         }
         else
         {
-            res.setTrackTag(n, TAG_PERFORMER, artist, false);
-            res.setTrackTag(n, TAG_TITLE, value, false);
+            track.setTag(TagId::Performer, performer.trimmed());
+            track.setTag(TagId::Title,     value);
         }
 
     }
 
-    res.setTitle(category + " / " + artist + " [CDDB " + album + "]", false);
-
-    res.setTextCodecName(disk()->textCodecName());
-    mResult << res;
+    res.setTitle(category + " / " + performer + " [CDDB " + album + "]");
+    return res;
 }

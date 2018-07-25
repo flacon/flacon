@@ -61,6 +61,7 @@ enum CueTagId
  *
  ************************************************/
 CueDisk::CueDisk():
+    Tracks(),
     mDiskCount(0),
     mDiskNum(0)
 {
@@ -234,10 +235,7 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
     QString fullPath = QFileInfo(fileName).absoluteFilePath();
     readData(fullPath, &data, &codecName);
 
-
     Track globalTags;
-    //TODO:            if (!mCodecName.isEmpty())
-    //TODO:                tags->setTextCodecName(mCodecName);
 
     enum class Mode {
         Global,
@@ -357,6 +355,7 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
 
     QVector<CueDisk> res;
     TrackNum n =0;
+    QFileInfo cueFileInfo(fileName);
 
     foreach (ParserTrack *track, tracks)
     {
@@ -364,10 +363,11 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
         if (track->diskNum >= res.count())
         {
             CueDisk disk = CueDisk();
+            disk.setTitle(cueFileInfo.fileName());
             disk.mDiskNum   = res.count() + 1;
             disk.mDiskCount = diskNum + 1;
             disk.mFileName  = fullPath;
-            disk.mUri       = fullPath + QString(" [%1]").arg(n);
+            disk.setUri(fullPath + QString(" [%1]").arg(n));
             res << disk;
         }
 
@@ -375,89 +375,20 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
         track->tags.setTrackNum(n);
         track->tags.setTrackCount(diskNum);
         track->tags.setCodecName(codecName);
-        res.last().tracks() << Track(track->tags);
+        res.last() << Track(track->tags);
     }
 
     qDeleteAll(tracks);
 
 
-    // Check and set some tags ::::::::::::::::::::::::::::
-
-    //int startTrackNum = 1;
     for (int i=0; i<res.count(); ++i)
     {
-        if (res.at(i).tracks().count() == 0)
+        if (res.at(i).count() == 0)
         {
             throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Disk %2 has no tags.").arg(fileName).arg(i));
             break;
         }
-
-        //TODO: mDisks[i].setDiskTag(START_TRACK_NUM, QString("%1").arg(startTrackNum).toLatin1());
-        //startTrackNum += disk(i).count();
     }
 
     return res;
-}
-
-
-/************************************************
-
- ************************************************/
-CueTagSet::CueTagSet(const QString &uri):
-    TagSet(uri)
-{
-}
-
-
-/************************************************
-
- ************************************************/
-CueTagSet::CueTagSet(const CueTagSet &other):
-    TagSet(other)
-{
-}
-
-
-/************************************************
-
- ************************************************/
-QString CueTagSet::cueFileName() const
-{
-    return diskTag(TAG_CUE_FILE);
-}
-
-
-/************************************************
-
- ************************************************/
-QString CueTagSet::fileTag() const
-{
-    return diskTag(TAG_FILE);
-}
-
-
-/************************************************
-
- ************************************************/
-CueIndex CueTagSet::index(int track, int indexNum) const
-{
-    return CueIndex(trackTag(track, cueIndexTagKey(indexNum)));
-}
-
-
-/************************************************
-
- ************************************************/
-bool CueTagSet::isMultiFileCue() const
-{
-    return (diskTag("MULTI_FILE") != "");
-}
-
-
-/************************************************
-
- ************************************************/
-int CueTagSet::diskNumInCue() const
-{
-    return diskTag(TAG_DISKNUM).toInt();
 }

@@ -61,11 +61,14 @@ public:
 public slots:
     void layoutChanged();
     void selectDisk(const Disk *disk);
+    void downloadStarted(const Disk &disk);
+    void downloadFinished(const Disk &disk);
 
 signals:
     void selectCueFile(Disk *disk);
     void selectAudioFile(Disk *disk);
     void selectCoverImage(Disk *disk);
+    void downloadInfo(Disk *disk);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
@@ -77,13 +80,10 @@ private slots:
     void showHideColumn(bool show);
 
     void showTrackMenu(const QModelIndex &index, const QRect &buttonRect);
-    void emitSelectCueFile();
     void emitSelectAudioFile(const QModelIndex &index, const QRect &buttonRect);
-    void emitSelectAudioFile();
     void emitSelectCoverImage(const QModelIndex &index);
 
     void openEditor();
-    void activateTrackSet();
 
 private:
     TrackViewModel *mModel;

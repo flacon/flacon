@@ -53,21 +53,6 @@ Track::Track():
 /************************************************
  *
  ************************************************/
-Track::Track(const TrackTags &tags):
-    TrackTags(tags),
-    mStatus(NotRunning),
-    mProgress(0),
-    mTrackNum(0),
-    mTrackCount(0),
-    mDuration(0)
-{
-    qRegisterMetaType<Track::Status>("Track::Status");
-}
-
-
-/************************************************
- *
- ************************************************/
 Track::Track(const Track &other):
     TrackTags(other),
     mCueIndexes(other.mCueIndexes),
@@ -91,12 +76,20 @@ Track &Track::operator =(const Track &other)
     mCueIndexes = other.mCueIndexes;
     mStatus     = other.mStatus;
     mProgress   = other.mProgress;
-    //mTags       = other.mTags;
     mTrackNum   = other.mTrackNum;
     mTrackCount = other.mTrackCount;
     mDuration   = other.mDuration;
     mCueFileName= other.mCueFileName;
     return *this;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Track::setTags(const TrackTags &tags)
+{
+    TrackTags::operator =(tags);
 }
 
 
@@ -330,3 +323,56 @@ void Track::setCueIndex(int indexNum, const CueIndex &value)
     mCueIndexes[indexNum] = value;
 }
 
+
+
+/************************************************
+ *
+ ************************************************/
+Tracks::Tracks():
+    QVector<Track>()
+{
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
+Tracks::Tracks(int size):
+    QVector<Track>(size)
+{
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
+Tracks::Tracks(const Tracks &other):
+    QVector<Track>(other),
+    mUri(other.mUri),
+    mTitle(other.mTitle)
+{
+
+}
+
+/************************************************
+ *
+ ************************************************/
+Tracks& Tracks::operator=(const Tracks &other)
+{
+    QVector<Track>::operator =(other);
+    mUri   = other.mUri;
+    mTitle = other.mTitle;
+
+    return *this;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+Tracks::~Tracks()
+{
+
+}

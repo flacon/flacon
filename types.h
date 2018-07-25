@@ -29,6 +29,8 @@
 #include <QString>
 #include <QIcon>
 
+#define CODEC_AUTODETECT "AUTODETECT"
+
 typedef quint16 DiskNum;
 typedef quint16 TrackNum;
 typedef uint    Duration;

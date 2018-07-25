@@ -27,28 +27,29 @@
 #include "cuediskselectdialog.h"
 #include "ui_cuediskselectdialog.h"
 
+#include <assert.h>
 #include "../cue.h"
 
 
 /************************************************
  *
  ************************************************/
-CueDiskSelectDialog::CueDiskSelectDialog(const CueReader &cue, int selectedDisk, QWidget *parent) :
+CueDiskSelectDialog::CueDiskSelectDialog(const QVector<CueDisk> &cue, int selectedDisk, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CueDiskSelectDialog),
     mCue(cue)
 {
-/*TODO:
-    if (selectedDisk < 0 || selectedDisk >= cue.diskCount())
+    if (selectedDisk < 0 || selectedDisk >= cue.count())
         selectedDisk = 0;
 
     ui->setupUi(this);
 
-    for (int d=0; d<cue.diskCount(); d++)
+    for (int d=0; d<cue.count(); d++)
     {
-        CueTagSet tags = cue.disk(d);
+        CueDisk tags = cue.at(d);
         QTreeWidgetItem *diskItem = new QTreeWidgetItem(ui->diskTree);
-        diskItem->setText(0, tr("%1 [ disk %2 ]", "Cue disk select dialog, string like 'The Wall [disk 1]'").arg(tags.diskTag("ALBUM")).arg(d+1));
+        assert(!tags.isEmpty());
+        diskItem->setText(0, tr("%1 [ disk %2 ]", "Cue disk select dialog, string like 'The Wall [disk 1]'").arg(tags.first().album()).arg(d+1));
         diskItem->setData(0,Qt::UserRole, d);
         if (d == selectedDisk)
         {
@@ -60,10 +61,10 @@ CueDiskSelectDialog::CueDiskSelectDialog(const CueReader &cue, int selectedDisk,
         font.setBold(true);
         diskItem->setFont(0, font);
 
-        for (int t=0; t<tags.tracksCount(); ++t)
+        for (int t=0; t<tags.count(); ++t)
         {
             QTreeWidgetItem *trackItem = new QTreeWidgetItem(diskItem);
-            trackItem->setText(0, tags.trackTag(t, "TITLE"));
+            trackItem->setText(0, tags.at(t).title());
             trackItem->setFlags(Qt::NoItemFlags );
         }
     }
@@ -72,7 +73,6 @@ CueDiskSelectDialog::CueDiskSelectDialog(const CueReader &cue, int selectedDisk,
 
     connect(ui->diskTree, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(treeDoubleClicked(QModelIndex)));
-*/
 }
 
 
@@ -107,7 +107,7 @@ void CueDiskSelectDialog::treeDoubleClicked(const QModelIndex &index)
 /************************************************
  *
  ************************************************/
-int CueDiskSelectDialog::getDiskNumber(const CueReader &cue, int selectedDisk)
+int CueDiskSelectDialog::getDiskNumber(const QVector<CueDisk> &cue, int selectedDisk)
 {
     CueDiskSelectDialog dialog(cue, selectedDisk);
 

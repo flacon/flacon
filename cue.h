@@ -30,45 +30,25 @@
 #include <QString>
 #include <QList>
 #include "types.h"
-#include "tagset.h"
 #include "track.h"
 
 class QFile;
 
-
-
-class CueTagSet: public TagSet
-{
-public:
-    explicit CueTagSet(const QString &uri);
-    CueTagSet(const CueTagSet &other);
-
-    QString cueFileName() const;
-    QString fileTag() const;
-    CueIndex index(int track, int indexNum) const;
-    bool isMultiFileCue() const;
-    int diskNumInCue() const;
-};
-
-class CueDisk
+class CueDisk: public Tracks
 {
     friend class CueReader;
 public:
     CueDisk();
     QString fileName() const { return mFileName; }
-    const Tracks &tracks()   const { return mTracks; }
-    Tracks &tracks()  { return mTracks; }
     DiskNum diskCount() const { return mDiskCount; }
     DiskNum diskNum() const { return mDiskNum; }
-    QString uri() const { return mUri; }
 
 private:
     QString mFileName;
-    QString mUri;
-    Tracks mTracks;
     DiskNum mDiskCount;
     DiskNum mDiskNum;
 };
+
 
 typedef QVector<CueDisk> Cue;
 

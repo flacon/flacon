@@ -37,6 +37,7 @@
 #include "cuediskselectdialog/cuediskselectdialog.h"
 #include "scanner.h"
 #include "gui/coverdialog/coverdialog.h"
+#include "internet/dataprovider.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -185,10 +186,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(outFormatCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setOutFormat()));
     connect(codepageCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
 
-    connect(trackView, SIGNAL(selectCueFile(Disk*)), this, SLOT(setCueForDisc(Disk*)));
-    connect(trackView, SIGNAL(selectAudioFile(Disk*)), this, SLOT(setAudioForDisk(Disk*)));
-    connect(trackView, SIGNAL(selectCoverImage(Disk*)),
-            this, SLOT(setCoverImage(Disk*)));
+    connect(trackView, SIGNAL(selectCueFile(Disk*)),     this, SLOT(setCueForDisc(Disk*)));
+    connect(trackView, SIGNAL(selectAudioFile(Disk*)),   this, SLOT(setAudioForDisk(Disk*)));
+    connect(trackView, SIGNAL(selectCoverImage(Disk*)),  this, SLOT(setCoverImage(Disk*)));
+    connect(trackView, SIGNAL(downloadInfo(Disk*)),      this, SLOT(downloadDiskInfo(Disk*)));
 
     connect(trackView->model(), SIGNAL(layoutChanged()), this, SLOT(refreshEdits()));
     connect(trackView->model(), SIGNAL(layoutChanged()), this, SLOT(setControlsEnable()));
@@ -335,14 +336,13 @@ void MainWindow::openOutDirDialog()
  ************************************************/
 void MainWindow::setCueForDisc(Disk *disk)
 {
-/*TODO:
     QString flt = getOpenFileFilter(false, true);
 
     QString dir;
     if (!disk->audioFileName().isEmpty())
         dir = QFileInfo(disk->audioFileName()).dir().absolutePath();
     else if (! disk->cueFile().isEmpty())
-        dir = QFileInfo(disk->cueFile()).dir().absolutePath();  
+        dir = QFileInfo(disk->cueFile()).dir().absolutePath();
     else
         dir = settings->value(Settings::Misc_LastDir).toString();
 
@@ -352,16 +352,18 @@ void MainWindow::setCueForDisc(Disk *disk)
     if (fileName.isEmpty())
         return;
 
-    CueReader cue(fileName);
-    if (cue.isValid())
+    try
     {
+        CueReader reader;
+        QVector<CueDisk> cue = reader.load(fileName);
+
         int diskNum = 0;
-        if (cue.isMultiFileCue())
+        if (cue.count() > 1)
         {
             int proposal = 0;
-            for (int i=0; i<cue.diskCount(); ++i)
+            for (int i=0; i<cue.count(); ++i)
             {
-                if (!project->diskExists(cue.disk(i).uri()))
+                if (!project->diskExists(cue.at(i).uri()))
                 {
                     proposal = i;
                     break;
@@ -373,12 +375,12 @@ void MainWindow::setCueForDisc(Disk *disk)
                 return;
         }
 
-        disk->loadFromCue(cue.disk(diskNum), true);
+        disk->loadFromCue(cue.at(diskNum));
     }
-    else
+    catch (FlaconError &err)
     {
-        Project::error(cue.errorString());
-    }*/
+        Project::error(err.message());
+    }
 }
 
 
@@ -460,7 +462,7 @@ void MainWindow::refreshEdits()
     {
         startNums << disk->startTrackNum();
         diskId << disk->discId();
-        codePage << disk->textCodecName();
+        codePage << disk->codecName();
     }
 
     // Tracks ..............................
@@ -512,7 +514,7 @@ void MainWindow::setCodePage()
 
         QList<Disk*> disks = trackView->selectedDisks();
         foreach(Disk *disk, disks)
-            disk->setTextCodecName(codepage);
+            disk->setCodecName(codepage);
 
         settings->setValue(Settings::Tags_DefaultCodepage, codepage);
     }
@@ -613,7 +615,9 @@ void MainWindow::downloadInfo()
 {
     QList<Disk*> disks = trackView->selectedDisks();
     foreach(Disk *disk, disks)
-        disk->downloadInfo();
+    {
+        this->downloadDiskInfo(disk);
+    }
 }
 
 
@@ -754,6 +758,27 @@ void MainWindow::setAudioForDisk(Disk *disk)
 void MainWindow::setCoverImage(Disk *disk)
 {
     CoverDialog::createAndShow(disk, this);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::downloadDiskInfo(Disk *disk)
+{
+    if (!disk->canDownloadInfo())
+        return;
+
+    DataProvider *provider = new FreeDbProvider(*disk);
+    connect(provider, SIGNAL(finished()), provider, SLOT(deleteLater()));
+    connect(provider, &DataProvider::finished,
+            [disk, this]() { trackView->downloadFinished(*disk); });
+
+    connect(provider, &DataProvider::ready,
+            [disk](const QVector<DiskTags> data) { disk->addTagSets(data); });
+
+    provider->start();
+    trackView->downloadStarted(*disk);
 }
 
 

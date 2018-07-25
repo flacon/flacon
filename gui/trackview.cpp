@@ -147,6 +147,24 @@ void TrackView::selectDisk(const Disk *disk)
 
 
 /************************************************
+ *
+ ************************************************/
+void TrackView::downloadStarted(const Disk &disk)
+{
+    mModel->downloadStarted(disk);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void TrackView::downloadFinished(const Disk &disk)
+{
+    mModel->downloadFinished(disk);
+}
+
+
+/************************************************
 
  ************************************************/
 void TrackView::headerContextMenu(QPoint pos)
@@ -190,13 +208,12 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 
 
     QMenu menu;
-
-    foreach(TagSet *tags, disk->tagSets())
+    foreach (const DiskTags &tags, disk->tagSets())
     {
-        TagSetAction *act = new TagSetAction(tags->title(), &menu, disk, tags);
+        QAction *act = new QAction(tags.title(), &menu);
         act->setCheckable(true);
-        act->setChecked(tags->uri() == disk->tagsUri());
-        connect(act, SIGNAL(triggered()), this, SLOT(activateTrackSet()));
+        act->setChecked(tags.uri() == disk->tagsUri());
+        connect(act, &QAction::triggered, [disk, tags](){ disk->activateTagSet(tags); });
         menu.addAction(act);
     }
 
@@ -208,29 +225,14 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
     connect(act, &QAction::triggered, [this, disk] { this->selectCueFile(disk);});
     menu.addAction(act);
 
-//    act = new DiskAction(tr("Select another cue file"), &menu, disk);
-//    connect(act, SIGNAL(triggered()), this, SLOT(emitSelectCueFile()));
-//    menu.addAction(act);
-
     act = new QAction(tr("Get data from CDDB"), &menu);
-    connect(act, SIGNAL(triggered()), disk, SLOT(downloadInfo()));
     act->setEnabled(disk->canDownloadInfo());
+    connect(act, &QAction::triggered, [this, disk](){ emit downloadInfo(disk);});
     menu.addAction(act);
 
     QPoint vpPos = viewport()->pos() + visualRect(index).topLeft();
     QPoint p = buttonRect.bottomLeft() + vpPos + QPoint(0, 2);
     menu.exec(mapToGlobal(p));
-}
-
-
-/************************************************
-
- ************************************************/
-void TrackView::emitSelectCueFile()
-{
-    DiskAction *act = qobject_cast<DiskAction*>(sender());
-    if (act && act->disk())
-        emit selectCueFile(act->disk());
 }
 
 
@@ -243,17 +245,6 @@ void TrackView::emitSelectAudioFile(const QModelIndex &index, const QRect &butto
     Disk *disk = mModel->diskByIndex(index);
     if (disk)
         emit selectAudioFile(disk);
-}
-
-
-/************************************************
-
- ************************************************/
-void TrackView::emitSelectAudioFile()
-{
-    DiskAction *act = qobject_cast<DiskAction*>(sender());
-    if (act && act->disk())
-        emit selectAudioFile(act->disk());
 }
 
 
@@ -341,22 +332,24 @@ void TrackView::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
 
 
-    DiskAction *act = new DiskAction(tr("Select another audio file"), &menu, disk);
-    connect(act, SIGNAL(triggered()), this, SLOT(emitSelectAudioFile()));
+    QAction *act;
+
+    act = new QAction(tr("Select another audio file"), &menu);
+    connect(act, &QAction::triggered, [this, disk](){ emit selectAudioFile(disk); });
     menu.addAction(act);
 
-    act = new DiskAction(tr("Select another cue file"), &menu, disk);
-    connect(act, SIGNAL(triggered()), this, SLOT(emitSelectCueFile()));
+
+    act = new QAction(tr("Select another cue file"), &menu);
+    connect(act, &QAction::triggered, [this, disk](){ emit selectCueFile(disk); });
     menu.addAction(act);
 
-    act = new DiskAction(tr("Get data from CDDB"), &menu, disk);
-    connect(act, SIGNAL(triggered()), disk, SLOT(downloadInfo()));
+    act = new QAction(tr("Get data from CDDB"), &menu);
     act->setEnabled(disk->canDownloadInfo());
+    connect(act, &QAction::triggered, [this, disk](){ emit downloadInfo(disk);});
     menu.addAction(act);
 
     menu.exec(event->globalPos());
 }
-
 
 
 /************************************************
@@ -441,15 +434,4 @@ void TrackView::openEditor()
 }
 
 
-/************************************************
-
- ************************************************/
-void TrackView::activateTrackSet()
-{
-    TagSetAction *act = qobject_cast<TagSetAction*>(sender());
-    if (!act)
-        return;
-
-    act->disk()->activateTagSet(act->tagSet());
-}
 

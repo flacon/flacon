@@ -83,6 +83,8 @@ void CueCreator::initGlobalTags()
         TagId::DiscId
     };
 
+    mGlobalTags.setCodecName(mTextCodec->name());
+
     Track *firstTrack = mDisk->track(0);
     for (uint t=0; t<sizeof(tags)/sizeof(TagId); ++t)
     {

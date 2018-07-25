@@ -55,9 +55,6 @@ public:
     void emitTrackChanged(int disk, int track) const;
     void emitTrackProgress(const Track *track) const;
     void emitLayoutChanged() const;
-    void emitDownloadingStarted(DataProvider *provider) const;
-    void emitDownloadingFinished(DataProvider *provider) const;
-
 
     bool diskExists(const QString &cueUri);
 
@@ -76,8 +73,6 @@ signals:
     void layoutChanged() const;
     void beforeRemoveDisk(Disk *disk);
     void afterRemoveDisk();
-    void downloadingStarted(DataProvider *provider) const;
-    void downloadingFinished(DataProvider *provider) const;
 
 private:
     explicit Project(QObject *parent = 0);

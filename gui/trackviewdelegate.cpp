@@ -143,8 +143,6 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent):
     mNoCoverImg  = QImage(":noCover");
 
     mDownloadMovie.setFileName(":wait");
-    connect(project, SIGNAL(downloadingStarted(DataProvider*)), this, SLOT(downloadingStarted(DataProvider*)));
-    connect(project, SIGNAL(downloadingFinished(DataProvider*)), this, SLOT(downloadingFinished(DataProvider*)));
     connect(&mDownloadMovie, SIGNAL(updated(QRect)), this, SLOT(movieUpdated()));
 }
 
@@ -404,7 +402,7 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     QRect tFileRect(l, tTop, windowRect.width(), th);
     QRect aFileRect(l, aTop, windowRect.width(), th);
 
-    tFileRect = drawFile(index.data(TrackViewModel::RoleTitle).toString(), tFileRect, painter);
+    tFileRect = drawFile(index.data(TrackViewModel::RoleTagSetTitle).toString(), tFileRect, painter);
     QFileInfo fi(index.data(TrackViewModel::RoleAudioFileName).toString());
     aFileRect = drawFile(fi.fileName(), aFileRect, painter);
 
@@ -446,6 +444,7 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
 
     if (cache->isWaiting)
     {
+        mDownloadMovie.start();
         painter->drawPixmap(markRect, mDownloadMovie.currentPixmap());
         cache->markBtn = markRect;
     }
@@ -659,24 +658,6 @@ void TrackViewDelegate::movieUpdated()
 
     if (!active)
         mDownloadMovie.stop();
-}
-
-
-/************************************************
-
- ************************************************/
-void TrackViewDelegate::downloadingStarted(DataProvider *)
-{
-    mDownloadMovie.start();
-}
-
-
-/************************************************
-
- ************************************************/
-void TrackViewDelegate::downloadingFinished(DataProvider *provider)
-{
-    project->emitDiskChanged(provider->disk());
 }
 
 

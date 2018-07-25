@@ -105,7 +105,7 @@ TrackViewModel::TrackViewModel(TrackView *parent) :
     QAbstractItemModel(parent),
     mView(parent)
 {
-    connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(diskDataChanged(Disk*)));
+    connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(diskDataChanged(const Disk*)));
     connect(project, SIGNAL(trackChanged(int,int)), this, SLOT(trackDataChanged(int,int)));
     connect(project, SIGNAL(layoutChanged()), this, SIGNAL(layoutChanged()));
     connect(project, SIGNAL(afterRemoveDisk()), this, SIGNAL(layoutChanged()));
@@ -390,10 +390,10 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
     switch (role)
     {
     case RoleItemType:      return DiskItem;
-    case RoleTitle:         return disk->tagsTitle();
+    case RoleTagSetTitle:   return disk->tagSetTitle();
     case RoleAudioFileName: return disk->audioFileName();
     case RoleCanConvert:    return disk->canConvert();
-    case RoleIsDownloads:   return disk->isDownloads();
+    case RoleIsDownloads:   return mDownloadedDisks.contains(index.row());
     case RoleCoverFile:     return disk->coverImageFile();
     case RoleCoverImg:      return disk->coverImagePreview();
     case RoleCueFilePath:   return disk->cueFile();
@@ -498,7 +498,6 @@ Qt::ItemFlags TrackViewModel::flags(const QModelIndex &index) const
 }
 
 
-
 /************************************************
 
  ************************************************/
@@ -518,6 +517,26 @@ Track *TrackViewModel::trackByIndex(const QModelIndex &index)
 
 
 /************************************************
+ *
+ ************************************************/
+void TrackViewModel::downloadStarted(const Disk &disk)
+{
+    mDownloadedDisks << index(&disk).row();
+    diskDataChanged(&disk);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void TrackViewModel::downloadFinished(const Disk &disk)
+{
+    mDownloadedDisks.remove(index(&disk).row());
+    diskDataChanged(&disk);
+}
+
+
+/************************************************
 
  ************************************************/
 /*TODO:
@@ -531,7 +550,7 @@ void TrackViewModel::trackProgressChanged(const Track *track)
 /************************************************
 
  ************************************************/
-void TrackViewModel::diskDataChanged(Disk *disk)
+void TrackViewModel::diskDataChanged(const Disk *disk)
 {
     QModelIndex index1 = index(disk, 0);
     QModelIndex index2 = index(disk, TrackView::ColumnCount);

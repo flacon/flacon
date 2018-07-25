@@ -308,7 +308,7 @@ Disk *loadFromCue(const QString &cueFile)
     {
         QVector<CueDisk> cue = CueReader().load(cueFile);
         Disk *res = new Disk();
-        res->loadFromCue(cue.first(), true);
+        res->loadFromCue(cue.first());
         return res;
     }
     catch (FlaconError &err)

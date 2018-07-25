@@ -30,6 +30,7 @@
 #include <QByteArray>
 #include <QString>
 #include <QHash>
+#include <QVector>
 
 class QTextCodec;
 
@@ -65,6 +66,10 @@ public:
     QString artist() const            { return tag(TagId::Performer); }
     void setArtist(const QString &value)  { setTag(TagId::Performer, value); }
 
+    QString performer() const            { return tag(TagId::Performer); }
+    void setPerformer(const QString &value)  { setTag(TagId::Performer, value); }
+
+
     QString album() const             { return tag(TagId::Album); }
     void setAlbum(const QString &value)   { setTag(TagId::Album, value); }
 
@@ -97,9 +102,14 @@ private:
     struct TagValue
     {
     public:
-        TagValue(const QByteArray &val="", bool enc = false):
+        TagValue():
+            encoded(false)
+        {
+        }
+
+        TagValue(const QByteArray &val, bool encoded):
             value(val),
-            encoded(enc)
+            encoded(encoded)
         {
         }
 
@@ -112,6 +122,24 @@ private:
 };
 
 
+class DiskTags: public QVector<TrackTags>
+{
+public:
+    DiskTags();
+    explicit DiskTags(int size);
+    DiskTags(const DiskTags &other);
+    DiskTags& operator=(const DiskTags &other);
+
+    QString uri() const { return mUri; }
+    void setUri(const QString &value) { mUri = value; }
+
+    QString title() const { return mTitle; }
+    void setTitle(const QString &value) { mTitle = value; }
+
+private:
+    QString mUri;
+    QString mTitle;
+};
 
 
 class UcharDet

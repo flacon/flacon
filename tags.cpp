@@ -24,6 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
+#include "types.h"
 #include "tags.h"
 
 #include <assert.h>
@@ -89,7 +90,7 @@ TrackTags::~TrackTags()
  ************************************************/
 QString TrackTags::tag(const TagId &tagID) const
 {
-    TagValue value = mTags.value(static_cast<int>(tagID)).value;
+    TagValue value = mTags.value(static_cast<int>(tagID));
     if (value.encoded)
         return encCodec()->toUnicode(value.value);
 
@@ -247,4 +248,48 @@ QTextCodec *UcharDet::textCodec() const
         res = QTextCodec::codecForName("UTF-8");
 
     return res;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+DiskTags::DiskTags():
+    QVector<TrackTags>()
+{
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
+DiskTags::DiskTags(int size):
+    QVector<TrackTags>(size)
+{
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
+DiskTags::DiskTags(const DiskTags &other):
+    QVector<TrackTags>(other),
+    mUri(other.mUri),
+    mTitle(other.mTitle)
+{
+
+}
+
+/************************************************
+ *
+ ************************************************/
+DiskTags& DiskTags::operator=(const DiskTags &other)
+{
+    QVector<TrackTags>::operator =(other);
+    mUri   = other.mUri;
+    mTitle = other.mTitle;
+
+    return *this;
 }

@@ -50,7 +50,6 @@ set(HEADERS
     application.h
     types.h
     tags.h
-    tagset.h
     cue.h
     track.h
     disk.h
@@ -100,7 +99,6 @@ set(SOURCES
     application.cpp
     types.cpp
     tags.cpp
-    tagset.cpp
     cue.cpp
     main.cpp
     track.cpp

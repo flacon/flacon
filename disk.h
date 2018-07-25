@@ -31,18 +31,11 @@
 #include "cue.h"
 
 #include <QObject>
-#include <QList>
-#include <QVector>
-#include <QAction>
-#include <QHash>
-#include <QChar>
 #include <QImage>
 
-class CueReader;
 class QFile;
 class Disk;
 class InputAudioFile;
-class DataProvider;
 
 
 class Disk: public QObject
@@ -57,7 +50,7 @@ public:
     int count() const { return mCount; }
     const Track *preGapTrack() const { return &mPreGapTrack; }
 
-    void loadFromCue(const CueDisk &cueDisk, bool activate = true);
+    void loadFromCue(const CueDisk &cueDisk);
     QString cueFile() const { return mCueFile; }
 
     InputAudioFile *audioFile() const { return mAudioFile; }
@@ -68,30 +61,24 @@ public:
     int startTrackNum() const { return mStartTrackNum; }
     void setStartTrackNum(int value);
 
-    QString textCodecName() const;
-    void setTextCodecName(const QString codecName);
+    QString codecName() const;
+    void setCodecName(const QString codecName);
 
     static QString safeString(const QString &str);
 
-    QString tagsTitle() const;
+    QString tagSetTitle() const;
     QString tagsUri() const;
     QString discId() const;
     QString fileTag() const;
 
-    //QString tag(const QString tagName) const;
-
-    QList<TagSet*> tagSets() const { return mTagSets; }
+    QList<DiskTags> tagSets() const;
 
     bool canConvert(QString *description = 0) const;
+    bool canDownloadInfo() const;
 
-    bool canDownloadInfo();
-    bool isDownloads() const;
-
-    void addTagSet(const TagSet &tagSet, bool activate);
-    void activateTagSet(const TagSet *tagSet);
-
-    int distance(const TagSet &other);
-    int distance(const TagSet *other);
+    void addTagSet(const DiskTags &tags, bool activate);
+    void addTagSets(const QVector<DiskTags> &disks);
+    void activateTagSet(const DiskTags &tags);
 
     QString coverImageFile() const { return mCoverImageFile; }
     void setCoverImageFile(const QString &fileName);
@@ -101,31 +88,20 @@ public:
     static QStringList searchCoverImages(const QString &startDir);
     static QString searchCoverImage(const QString &startDir);
 
-
-public slots:
-    void downloadInfo();
-
 signals:
     void trackChanged(int track);
 
-protected:
-    QString getTag(int track, const QString &tagName);
-    //void setTag(int track, const QString &tagName, const QString &value);
-
-private slots:
-    void downloadFinished();
-
 private:
-    QList<TagSet*> mTagSets;
-    TagSet *mTags;
+    QHash<QString, DiskTags> mTagSets;
 
     QList<Track*> mTracks;
-    int mStartTrackNum;
-    int mCount;
-    QString mCueFile;
+    int           mStartTrackNum;
+    int           mCount;
+    QString       mCueFile;
+    QString       mCurrentTagsUri;
+
     InputAudioFile *mAudioFile;
     Track mPreGapTrack;
-    QList<DataProvider*> mDownloads;
 
     QString mCoverImageFile;
     mutable QImage  mCoverImagePreview;
@@ -133,28 +109,13 @@ private:
     void findAudioFile(const CueDisk &cueDisk);
     void findCueFile();
     Duration trackDuration(TrackNum trackNum) const;
+    void syncTagsFromTracks(const QString &uri);
+    void syncTagsToTracks(const QString &uri);
+
+    int distance(const DiskTags &other);
 };
 
 typedef QList<Disk*> DiskList;
-
-
-class DiskAction: public QAction
-{
-    Q_OBJECT
-public:
-    DiskAction(QObject* parent, Disk *disk, Track *track = 0, const QString tagName ="");
-    DiskAction(const QString &text, QObject* parent, Disk *disk, Track *track = 0, const QString tagName ="");
-    DiskAction(const QIcon &icon, const QString &text, QObject* parent, Disk *disk, Track *track = 0, const QString tagName ="");
-
-    Disk *disk() const { return mDisk; }
-    Track *track() const { return mTrack; }
-    QString tagName() const { return mTagName; }
-
-private:
-    Disk *mDisk;
-    Track *mTrack;
-    QString mTagName;
-};
 
 
 #endif // DISK_H

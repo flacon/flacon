@@ -52,6 +52,9 @@ public slots:
     void startConvert();
     void stopConvert();
 
+signals:
+    void downloadStarted(Disk *disk);
+    void downloadFinished(Disk *disk);
 
 private slots:
     void insertOutPattern(const QString &pattern);
@@ -71,6 +74,7 @@ private slots:
     void setCueForDisc(Disk *disk);
     void setAudioForDisk(Disk *disk);
     void setCoverImage(Disk *disk);
+    void downloadDiskInfo(Disk *disk);
 
     void removeDisks();
 

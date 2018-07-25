@@ -64,7 +64,7 @@ static void write(const QVector<CueDisk> &cue, const QString &fileName)
         auto disk = cue.at(d);
 
         int t = -1;
-        foreach (const Track &track, disk.tracks())
+        foreach (const Track &track, disk)
         {
             t++;
 

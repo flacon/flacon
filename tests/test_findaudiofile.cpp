@@ -84,7 +84,7 @@ void TestFlacon::testFindAudioFile()
     for (int i=0; i<cue.count(); ++i)
     {
         Disk disk;
-        disk.loadFromCue(cue.at(i), true);
+        disk.loadFromCue(cue.at(i));
         QString expected = expectedLists.at(i).trimmed();
         if (expected == "''")
             expected = "";

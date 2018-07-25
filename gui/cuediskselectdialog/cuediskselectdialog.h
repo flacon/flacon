@@ -28,7 +28,8 @@
 #define CUEDISKSELECTDIALOG_H
 
 #include <QDialog>
-class CueReader;
+#include "cue.h"
+
 class QModelIndex;
 
 namespace Ui {
@@ -40,18 +41,19 @@ class CueDiskSelectDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit CueDiskSelectDialog(const CueReader &cue, int selectedDisk = 0, QWidget *parent = 0);
+    explicit CueDiskSelectDialog(const QVector<CueDisk> &cue, int selectedDisk = 0, QWidget *parent = 0);
     ~CueDiskSelectDialog();
 
-    static int getDiskNumber(const CueReader &cue, int selectedDisk = 0);
+    static int getDiskNumber(const QVector<CueDisk> &cue, int selectedDisk = 0);
 
     int diskNumber();
+
 private slots:
     void treeDoubleClicked(const QModelIndex &index);
 
 private:
     Ui::CueDiskSelectDialog *ui;
-    const CueReader &mCue;
+    const QVector<CueDisk> &mCue;
 };
 
 #endif // CUEDISKSELECTDIALOG_H

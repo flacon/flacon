@@ -62,8 +62,6 @@ protected:
 
 private slots:
     void movieUpdated();
-    void downloadingStarted(DataProvider *provider);
-    void downloadingFinished(DataProvider *provider);
 
 private:
     TrackView *mTrackView;
@@ -75,7 +73,7 @@ private:
     QPixmap mWarnPix;
     QPixmap mOkPix;
     QPixmap mErrorPix;
-    QMovie mDownloadMovie;
+    mutable QMovie mDownloadMovie;
     mutable int mDiskHeightHint;
 
     QFont titleFont(const QFont &font) const;
