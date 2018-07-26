@@ -71,11 +71,10 @@ public:
     QString discId() const;
     QString fileTag() const;
 
-    QList<DiskTags> tagSets() const;
-
     bool canConvert(QString *description = 0) const;
     bool canDownloadInfo() const;
 
+    QList<DiskTags> tagSets() const;
     void addTagSet(const DiskTags &tags, bool activate);
     void addTagSets(const QVector<DiskTags> &disks);
     void activateTagSet(const DiskTags &tags);
@@ -109,8 +108,8 @@ private:
     void findAudioFile(const CueDisk &cueDisk);
     void findCueFile();
     Duration trackDuration(TrackNum trackNum) const;
-    void syncTagsFromTracks(const QString &uri);
-    void syncTagsToTracks(const QString &uri);
+    void syncTagsFromTracks();
+    void syncTagsToTracks();
 
     int distance(const DiskTags &other);
 };

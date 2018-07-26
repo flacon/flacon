@@ -134,7 +134,7 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
 
     // If the tracks contain tags from the Internet and the
     // tags have been changed, we must save the changes.
-    syncTagsFromTracks(mCurrentTagsUri);
+    syncTagsFromTracks();
     mTagSets.remove(mCueFile);
 
     mCount = cueDisk.count();
@@ -172,7 +172,7 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
     }
 
     mCurrentTagsUri = mCueFile;
-    syncTagsFromTracks(mCurrentTagsUri);
+    syncTagsFromTracks();
     mTagSets[mCurrentTagsUri].setTitle(cueDisk.title());
 
 
@@ -313,13 +313,14 @@ Duration Disk::trackDuration(TrackNum trackNum) const
 /************************************************
  *
  ************************************************/
-void Disk::syncTagsFromTracks(const QString &uri)
+void Disk::syncTagsFromTracks()
 {
-    DiskTags &tags = mTagSets[uri];
+    DiskTags &tags = mTagSets[mCurrentTagsUri];
     if (tags.isEmpty())
+    {
         tags.resize(mTracks.count());
-
-    tags.setUri(uri);
+        tags.setUri(mCurrentTagsUri);
+    }
 
     for (int i=0; i<qMin(tags.count(), mTracks.count()); ++i)
     {
@@ -331,9 +332,9 @@ void Disk::syncTagsFromTracks(const QString &uri)
 /************************************************
  *
  ************************************************/
-void Disk::syncTagsToTracks(const QString &uri)
+void Disk::syncTagsToTracks()
 {
-    DiskTags &tags = mTagSets[uri];
+    DiskTags &tags = mTagSets[mCurrentTagsUri];
     assert(tags.count() == mTracks.count());
 
     for (int i=0; i<mTracks.count(); ++i)
@@ -480,6 +481,7 @@ void Disk::setCodecName(const QString codecName)
         track->setCodecName(codec);
     }
 
+
     project->emitDiskChanged(this);
 }
 
@@ -507,6 +509,8 @@ QString Disk::tagSetTitle() const
 {
     if (mCurrentTagsUri.isEmpty())
         return "";
+
+    const_cast<Disk*>(this)->syncTagsFromTracks();
     return mTagSets[mCurrentTagsUri].title();
 }
 
@@ -550,7 +554,7 @@ QString Disk::fileTag() const
 QList<DiskTags> Disk::tagSets() const
 {
     QList<DiskTags> res;
-    const_cast<Disk*>(this)->syncTagsFromTracks(mCueFile);
+    const_cast<Disk*>(this)->syncTagsFromTracks();
 
     res << mTagSets[mCueFile];
 
@@ -559,7 +563,9 @@ QList<DiskTags> Disk::tagSets() const
     qSort(keys);
 
     foreach (const QString &key, keys)
+    {
         res << mTagSets[key];
+    }
 
     return res;
 }
@@ -611,9 +617,9 @@ void Disk::activateTagSet(const DiskTags &tags)
     if (!mTagSets.contains(tags.uri()))
         return;
 
-    syncTagsFromTracks(mCurrentTagsUri);
+    syncTagsFromTracks();
     mCurrentTagsUri = tags.uri();
-    syncTagsToTracks(mCurrentTagsUri);
+    syncTagsToTracks();
     project->emitLayoutChanged();
 }
 

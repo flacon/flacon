@@ -46,6 +46,43 @@ static QTextCodec *encCodec()
 }
 
 
+
+/************************************************
+ *
+ ************************************************/
+QString TagValue::asString(const QTextCodec *codec) const
+{
+    if (mEncoded)
+        return encCodec()->toUnicode(mValue);
+
+    assert(codec != nullptr);
+    if (codec)
+        return codec->toUnicode(mValue);
+
+    return codec->toUnicode(mValue);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void TagValue::setValue(const QByteArray &value)
+{
+    mValue   = value;
+    mEncoded = false;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void TagValue::setValue(const QString &value)
+{
+    mValue   = encCodec()->fromUnicode(value);
+    mEncoded = true;
+}
+
+
 /************************************************
  *
  ************************************************/
@@ -90,15 +127,7 @@ TrackTags::~TrackTags()
  ************************************************/
 QString TrackTags::tag(const TagId &tagID) const
 {
-    TagValue value = mTags.value(static_cast<int>(tagID));
-    if (value.encoded)
-        return encCodec()->toUnicode(value.value);
-
-    assert(mTextCodec != nullptr);
-    if (mTextCodec)
-        return mTextCodec->toUnicode(value.value);
-
-    return encCodec()->toUnicode(value.value);
+    return mTags.value(static_cast<int>(tagID)).asString(mTextCodec);
 }
 
 
@@ -107,7 +136,7 @@ QString TrackTags::tag(const TagId &tagID) const
  ************************************************/
 QByteArray TrackTags::tagData(const TagId &tagID) const
 {
-    return mTags.value(static_cast<int>(tagID)).value;
+    return mTags.value(static_cast<int>(tagID)).value();
 }
 
 
@@ -292,4 +321,33 @@ DiskTags& DiskTags::operator=(const DiskTags &other)
     mTitle = other.mTitle;
 
     return *this;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString DiskTags::title() const
+{
+    assert(!isEmpty());
+
+    return mTitle.asString(first().codec());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void DiskTags::setTitle(const QByteArray &value)
+{
+    mTitle.setValue(value);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void DiskTags::setTitle(const QString &value)
+{
+    mTitle.setValue(value);
 }

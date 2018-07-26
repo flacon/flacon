@@ -59,8 +59,6 @@ public:
     void setTags(const TrackTags &tags);
     ~Track();
 
-
-
     QString resultFileName() const;
     QString resultFilePath() const;
 
@@ -117,12 +115,13 @@ public:
     QString uri() const { return mUri; }
     void setUri(const QString &value) { mUri = value ;}
 
-    QString title() const { return mTitle; }
-    void setTitle(const QString &value) { mTitle = value; }
+    QString title() const;
+    void setTitle(const QByteArray &value);
+    void setTitle(const QString &value);
 
 private:
     QString mUri;
-    QString mTitle;
+    TagValue mTitle;
 };
 
 #endif // TRACK_H

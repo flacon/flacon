@@ -55,6 +55,32 @@ enum class TagId
 };
 
 
+class TagValue
+{
+public:
+    TagValue():
+        mEncoded(false)
+    {
+    }
+
+    TagValue(const QByteArray &val, bool encoded):
+        mValue(val),
+        mEncoded(encoded)
+    {
+    }
+
+    bool encoded() const { return mEncoded; }
+    QString asString(const QTextCodec *codec) const;
+
+    const QByteArray &value() const { return mValue; }
+    void setValue(const QByteArray &value);
+    void setValue(const QString &value);
+
+private:
+    QByteArray mValue;
+    bool mEncoded;
+};
+
 class TrackTags
 {
 public:
@@ -94,29 +120,9 @@ public:
 
     QString codecName() const;
     void setCodecName(const QString &value);
-
-protected:
-
+    const QTextCodec *codec() const { return mTextCodec; }
 
 private:
-    struct TagValue
-    {
-    public:
-        TagValue():
-            encoded(false)
-        {
-        }
-
-        TagValue(const QByteArray &val, bool encoded):
-            value(val),
-            encoded(encoded)
-        {
-        }
-
-        QByteArray value;
-        bool encoded;
-    };
-
     QHash<int, TagValue> mTags;
     QTextCodec *mTextCodec;
 };
@@ -133,12 +139,14 @@ public:
     QString uri() const { return mUri; }
     void setUri(const QString &value) { mUri = value; }
 
-    QString title() const { return mTitle; }
-    void setTitle(const QString &value) { mTitle = value; }
+    QString title() const;
+    void setTitle(const QByteArray &value);
+    void setTitle(const QString &value);
 
 private:
+public:
     QString mUri;
-    QString mTitle;
+    TagValue mTitle;
 };
 
 

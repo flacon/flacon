@@ -26,6 +26,8 @@
 
 #include "track.h"
 
+#include <assert.h>
+
 #include "disk.h"
 #include "inputaudiofile.h"
 #include "project.h"
@@ -375,4 +377,32 @@ Tracks& Tracks::operator=(const Tracks &other)
 Tracks::~Tracks()
 {
 
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Tracks::title() const
+{
+    assert(!isEmpty());
+    return mTitle.asString(first().codec());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Tracks::setTitle(const QByteArray &value)
+{
+    mTitle.setValue(value);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Tracks::setTitle(const QString &value)
+{
+    mTitle.setValue(value);
 }
