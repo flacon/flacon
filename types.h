@@ -138,6 +138,8 @@ enum class TrackState
     WriteGain   = 10
 };
 
+Q_DECLARE_METATYPE(TrackState)
+
 typedef quint8 Percent;
 typedef quint64 TrackId;
 
