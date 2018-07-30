@@ -78,6 +78,7 @@ QString findProgram(const QString &program)
  ************************************************/
 void TestFlacon::initTestCase()
 {
+    initTypes();
     Settings::setFileName(TEST_OUT_DIR "/flacon.conf");
 
     if (findProgram("mac").isEmpty())      QFAIL("mac program not found");

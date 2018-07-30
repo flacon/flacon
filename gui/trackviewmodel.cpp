@@ -33,6 +33,31 @@
 #include <QDebug>
 #include <QSet>
 
+struct CacheTrackData
+{
+    CacheTrackData():
+        state(TrackState::NotRunning),
+        percent(0),
+        diskNum(-1)
+    {
+    }
+
+    TrackState state;
+    Percent percent;
+    DiskNum diskNum;
+    TrackNum trackNum;
+};
+
+
+class TrackViewModel::Cache
+{
+public:
+   Cache()  {}
+   QSet<DiskNum> downloadedDisks;
+   QHash<Track, CacheTrackData> tracks;
+};
+
+
 class IndexData
 {
 public:
@@ -53,6 +78,7 @@ public:
         mDiskId  = diskNum + 1;
         mTrackId = 0;
     }
+
 
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     quint32 asPtr()
@@ -99,18 +125,36 @@ private:
 
 
 /************************************************
+ *
+ ************************************************/
+inline uint qHash(const Track &track, uint seed) {
+    return qHash(QPair<int, QString>(track.trackNum(), track.cueFileName()), seed);
+}
+
+
+/************************************************
 
  ************************************************/
 TrackViewModel::TrackViewModel(TrackView *parent) :
     QAbstractItemModel(parent),
+    mCache(new Cache()),
     mView(parent)
 {
-    connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(diskDataChanged(const Disk*)));
+    connect(project, &Project::diskChanged,
+            this, &TrackViewModel::diskDataChanged);
+
     connect(project, SIGNAL(trackChanged(int,int)), this, SLOT(trackDataChanged(int,int)));
     connect(project, SIGNAL(layoutChanged()), this, SIGNAL(layoutChanged()));
     connect(project, SIGNAL(afterRemoveDisk()), this, SIGNAL(layoutChanged()));
+}
 
-    //TODO: connect(project, SIGNAL(trackProgress(const Track*)), this, SLOT(trackProgressChanged(const Track*)));
+
+/************************************************
+ *
+ ************************************************/
+TrackViewModel::~TrackViewModel()
+{
+    delete mCache;
 }
 
 
@@ -169,22 +213,37 @@ QModelIndex TrackViewModel::index(const Disk *disk, int col) const
 
 
 /************************************************
-
+ *
  ************************************************/
-/*TODO:
-QModelIndex TrackViewModel::index(const Disk *disk, const Track *track, int col) const
+QModelIndex TrackViewModel::index(const Track track, int col) const
 {
-    QModelIndex diskIndex = index(disk);
-    if (!diskIndex.isValid())
-        return QModelIndex();
+    CacheTrackData &cache = mCache->tracks[track];
 
-    int trackNum = track->trackNum() -1;
-    if (trackNum > -1 && trackNum < rowCount(diskIndex))
-        return index(trackNum, col, diskIndex);
-    else
-        return QModelIndex();
+    const IndexData indexData(cache.diskNum, cache.trackNum);
+    if (indexData.track() && *indexData.track() == track)
+    {
+        return index(cache.trackNum, col, index(cache.diskNum, 0));
+    }
+
+    // Update cache
+    for (int d=0; d<rowCount(); ++d)
+    {
+        QModelIndex diskIndex = index(d, 0);
+        for (int t=0; t<rowCount(diskIndex); ++t)
+        {
+            IndexData indexData(d, t);
+            if (*indexData.track() == track)
+            {
+                cache.diskNum  = d;
+                cache.trackNum = t;
+                return index(cache.trackNum, col, diskIndex);
+            }
+        }
+    }
+
+    return QModelIndex();
 }
-*/
+
 
 /************************************************
 
@@ -324,11 +383,12 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
 
     }
 
+
     switch (role)
     {
     case RoleItemType:  return TrackItem;
-    case RolePercent:   return track->progress();
-    case RoleStatus:    return track->status();
+    case RolePercent:   return     mCache->tracks[*track].percent;
+    case RoleStatus:    return int(mCache->tracks[*track].state);
     case RoleTracknum:  return track->trackNum();
     case RoleDuration:  return track->duration();
     case RoleTitle:     return track->title();
@@ -393,7 +453,7 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
     case RoleTagSetTitle:   return disk->tagSetTitle();
     case RoleAudioFileName: return disk->audioFileName();
     case RoleCanConvert:    return disk->canConvert();
-    case RoleIsDownloads:   return mDownloadedDisks.contains(index.row());
+    case RoleIsDownloads:   return mCache->downloadedDisks.contains(index.row());
     case RoleCoverFile:     return disk->coverImageFile();
     case RoleCoverImg:      return disk->coverImagePreview();
     case RoleCueFilePath:   return disk->cueFile();
@@ -521,7 +581,7 @@ Track *TrackViewModel::trackByIndex(const QModelIndex &index)
  ************************************************/
 void TrackViewModel::downloadStarted(const Disk &disk)
 {
-    mDownloadedDisks << index(&disk).row();
+    mCache->downloadedDisks << index(&disk).row();
     diskDataChanged(&disk);
 }
 
@@ -531,21 +591,24 @@ void TrackViewModel::downloadStarted(const Disk &disk)
  ************************************************/
 void TrackViewModel::downloadFinished(const Disk &disk)
 {
-    mDownloadedDisks.remove(index(&disk).row());
+    mCache->downloadedDisks.remove(index(&disk).row());
     diskDataChanged(&disk);
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-/*TODO:
-void TrackViewModel::trackProgressChanged(const Track *track)
+void TrackViewModel::trackProgressChanged(const Track &track, TrackState state, Percent percent)
 {
-    QModelIndex id = index(track, TrackView::ColumnPercent);
-    emit dataChanged(id, id);
+    CacheTrackData &cache = mCache->tracks[track];
+    cache.state   = state;
+    cache.percent = percent;
+
+    QModelIndex idx = index(track, TrackView::ColumnPercent);
+    emit dataChanged(idx, idx);
 }
-*/
+
 
 /************************************************
 
@@ -568,5 +631,3 @@ void TrackViewModel::trackDataChanged(int disk, int track)
     QModelIndex index2 = index(track, TrackView::ColumnCount, diskIndex);
     emit dataChanged(index1, index2);
 }
-
-

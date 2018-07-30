@@ -98,7 +98,7 @@ public:
     const Disk *disk;
     QList<const Track*> tracks;
     bool needStartSplitter;
-    QHash<const Track*, Track::Status> trackStatuses;
+    QHash<const Track*, TrackState> trackStates;
     QList<WorkerRequest> encoderRequests;
     QList<WorkerRequest> gainRequests;
     bool interrupted;
@@ -106,7 +106,7 @@ public:
     PreGapType preGapType;
 
 
-    void interrupt(Track::Status status);
+    void interrupt(TrackState state);
     void startSplitterThread();
     void startEncoderThread(const WorkerRequest &req);
     void startTrackGainThread(const WorkerRequest &req);
@@ -152,9 +152,6 @@ DiskPipeline::DiskPipeline(const Disk *disk, QObject *parent) :
     mData->pipeline = this;
     mData->disk = disk;
     mData->preGapType =  settings->createCue() ? settings->preGapType() : PreGapType::Skip;
-
-
-
 }
 
 
@@ -189,7 +186,7 @@ bool DiskPipeline::init()
 
     foreach (const Track *track, mData->tracks)
     {
-        mData->trackStatuses.insert(track, Track::NotRunning);
+        mData->trackStates.insert(track, TrackState::NotRunning);
     }
 
     if (!mData->createDir(mData->workDir))
@@ -315,8 +312,8 @@ void DiskPipeline::Data::startSplitterThread()
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
 
-    connect(worker,   SIGNAL(trackProgress(const Track*,Track::Status,int)),
-            pipeline, SLOT(trackProgress(const Track*,Track::Status,int)));
+    connect(worker,   SIGNAL(trackProgress(const Track*,TrackState,int)),
+            pipeline, SLOT(trackProgress(const Track*,TrackState,int)));
 
     connect(worker,   SIGNAL(error(const Track*,QString)),
             pipeline, SLOT(trackError(const Track*,QString)));
@@ -331,7 +328,7 @@ void DiskPipeline::Data::startSplitterThread()
     thread->start();
 
     needStartSplitter = false;
-    trackStatuses.insert(disk->track(0), Track::Splitting);
+    trackStates.insert(disk->track(0), TrackState::Splitting);
 
     createCue();
     copyCoverImage();
@@ -349,8 +346,8 @@ void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
 
-    connect(worker,   SIGNAL(trackProgress(const Track*,Track::Status,int)),
-            pipeline, SLOT(trackProgress(const Track*,Track::Status,int)));
+    connect(worker,   SIGNAL(trackProgress(const Track*,TrackState,int)),
+            pipeline, SLOT(trackProgress(const Track*,TrackState,int)));
 
     connect(worker, SIGNAL(error(const Track*,QString)),
             pipeline, SLOT(trackError(const Track*,QString)));
@@ -385,8 +382,8 @@ void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
 
-    connect(worker,   SIGNAL(trackProgress(const Track*,Track::Status,int)),
-            pipeline, SLOT(trackProgress(const Track*,Track::Status,int)));
+    connect(worker,   SIGNAL(trackProgress(const Track*,TrackState,int)),
+            pipeline, SLOT(trackProgress(const Track*,TrackState,int)));
 
     connect(worker,   SIGNAL(error(const Track*,QString)),
             pipeline, SLOT(trackError(const Track*,QString)));
@@ -413,8 +410,8 @@ void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
 
-    connect(worker,   SIGNAL(trackProgress(const Track*,Track::Status,int)),
-            pipeline, SLOT(trackProgress(const Track*,Track::Status,int)));
+    connect(worker,   SIGNAL(trackProgress(const Track*,TrackState,int)),
+            pipeline, SLOT(trackProgress(const Track*,TrackState,int)));
 
     connect(worker,   SIGNAL(error(const Track*,QString)),
             pipeline, SLOT(trackError(const Track*,QString)));
@@ -435,7 +432,7 @@ void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
  ************************************************/
 void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFile)
 {
-    trackProgress(track, Track::Queued, 0);
+    trackProgress(track, TrackState::Queued, 0);
     QFileInfo trackFile(track->resultFilePath());
     QString outFile = trackFile.dir().filePath(
                 QFileInfo(inputFile).baseName() +
@@ -453,9 +450,9 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFil
 void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
 {
     if (settings->outFormat()->gainType() == GainType::Album)
-        trackProgress(track, Track::WaitGain, 0);
+        trackProgress(track, TrackState::WaitGain, 0);
     else
-        trackProgress(track, Track::Queued, 0);
+        trackProgress(track, TrackState::Queued, 0);
 
     mData->gainRequests << WorkerRequest(track, fileName, fileName);
     emit readyStart();
@@ -472,9 +469,8 @@ void DiskPipeline::trackDone(const Track *track, const QString &outFileName)
     QFile(outFileName).rename(track->resultFilePath());
 
 
-    mData->trackStatuses.insert(track, Track::OK);
-    const_cast<Track*>(track)->setProgress(Track::OK);
-
+    mData->trackStates.insert(track, TrackState::OK);
+    emit trackProgressChanged(*track, TrackState::OK, 0);
     emit threadFinished();
 
     if (!isRunning())
@@ -485,32 +481,32 @@ void DiskPipeline::trackDone(const Track *track, const QString &outFileName)
 /************************************************
 
  ************************************************/
-void DiskPipeline::Data::interrupt(Track::Status status)
+void DiskPipeline::Data::interrupt(TrackState state)
 {
     interrupted = true;
     encoderRequests.clear();
 
-    QHash<const Track*, Track::Status>::iterator it;
-    for (it = trackStatuses.begin(); it != trackStatuses.end(); ++it)
+    QHash<const Track*, TrackState>::iterator it;
+    for (it = trackStates.begin(); it != trackStates.end(); ++it)
     {
         switch (it.value())
         {
-        case Track::Splitting:
-        case Track::Encoding:
-        case Track::Queued:
-        case Track::WaitGain:
-        case Track::CalcGain:
-        case Track::WriteGain:
-        case Track::NotRunning:
-            it.value() = status;
-            const_cast<Track*>(it.key())->setProgress(status);
+        case TrackState::Splitting:
+        case TrackState::Encoding:
+        case TrackState::Queued:
+        case TrackState::WaitGain:
+        case TrackState::CalcGain:
+        case TrackState::WriteGain:
+        case TrackState::NotRunning:
+            it.value() = state;
+            emit pipeline->trackProgressChanged(*(it.key()), state, 0);
             break;
 
 
-        case Track::Canceled:
-        case Track::Error:
-        case Track::Aborted:
-        case Track::OK:
+        case TrackState::Canceled:
+        case TrackState::Error:
+        case TrackState::Aborted:
+        case TrackState::OK:
             break;
         }
     }
@@ -522,7 +518,7 @@ void DiskPipeline::Data::interrupt(Track::Status status)
  ************************************************/
 void DiskPipeline::stop()
 {
-    mData->interrupt(Track::Aborted);
+    mData->interrupt(TrackState::Aborted);
     emit threadQuit();
     emit threadFinished();
 
@@ -535,9 +531,9 @@ void DiskPipeline::stop()
  ************************************************/
 void DiskPipeline::trackError(const Track *track, const QString &message)
 {
-    mData->trackStatuses.insert(track, Track::Error);
-    const_cast<Track*>(track)->setProgress(Track::Error);
-    mData->interrupt(Track::Aborted);
+    mData->trackStates.insert(track, TrackState::Error);
+    emit trackProgressChanged(*track, TrackState::Error, 0);
+    mData->interrupt(TrackState::Aborted);
     emit threadQuit();
     emit threadFinished();
 
@@ -551,24 +547,24 @@ void DiskPipeline::trackError(const Track *track, const QString &message)
  ************************************************/
 bool DiskPipeline::isRunning() const
 {
-    QHash<const Track*, Track::Status>::const_iterator it;
-    for (it = mData->trackStatuses.begin(); it != mData->trackStatuses.end(); ++it)
+    QHash<const Track*, TrackState>::const_iterator it;
+    for (it = mData->trackStates.begin(); it != mData->trackStates.end(); ++it)
     {
         switch (it.value())
         {
-        case Track::Splitting:
-        case Track::Encoding:
-        case Track::Queued:
-        case Track::WaitGain:
-        case Track::CalcGain:
-        case Track::WriteGain:
+        case TrackState::Splitting:
+        case TrackState::Encoding:
+        case TrackState::Queued:
+        case TrackState::WaitGain:
+        case TrackState::CalcGain:
+        case TrackState::WriteGain:
             return true;
 
-        case Track::NotRunning:
-        case Track::Canceled:
-        case Track::Error:
-        case Track::Aborted:
-        case Track::OK:
+        case TrackState::NotRunning:
+        case TrackState::Canceled:
+        case TrackState::Error:
+        case TrackState::Aborted:
+        case TrackState::OK:
             break;
         }
     }
@@ -595,7 +591,7 @@ int DiskPipeline::runningThreadCount() const
 /************************************************
 
  ************************************************/
-void DiskPipeline::trackProgress(const Track *track, Track::Status status, int percent)
+void DiskPipeline::trackProgress(const Track *track, TrackState state, int percent)
 {
     if (mData->interrupted)
         return;
@@ -603,6 +599,6 @@ void DiskPipeline::trackProgress(const Track *track, Track::Status status, int p
     if (!track)
         return;
 
-    mData->trackStatuses.insert(track, status);
-    const_cast<Track*>(track)->setProgress(status, percent);
+    mData->trackStates.insert(track, state);
+    emit trackProgressChanged(*track, state, percent);
 }

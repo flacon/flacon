@@ -149,7 +149,7 @@ const QList<const Track *> Splitter::tracks() const
  ************************************************/
 void Splitter::decoderProgress(int percent)
 {
-    emit trackProgress(mCurrentTrack, Track::Splitting, percent);
+    emit trackProgress(mCurrentTrack, TrackState::Splitting, percent);
 }
 
 

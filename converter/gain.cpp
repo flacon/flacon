@@ -62,7 +62,7 @@ void Gain::run()
     bool debug = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_GAIN");
 
     foreach (WorkerRequest req, mRequests)
-        emit trackProgress(req.track(), Track::CalcGain, 0);
+        emit trackProgress(req.track(), TrackState::CalcGain, 0);
 
 
     QStringList files;
@@ -91,7 +91,7 @@ void Gain::run()
 
     foreach (WorkerRequest req, mRequests)
     {
-        emit trackProgress(req.track(), Track::WriteGain, 100);
+        emit trackProgress(req.track(), TrackState::WriteGain, 100);
         emit trackReady(req.track(), req.inputFile());
     }
 }

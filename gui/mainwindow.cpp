@@ -38,6 +38,7 @@
 #include "scanner.h"
 #include "gui/coverdialog/coverdialog.h"
 #include "internet/dataprovider.h"
+#include "gui/trackviewmodel.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -559,11 +560,11 @@ void MainWindow::startConvert()
             return;
     }
 
-    for(int i=0; i<project->count(); ++i)
+    for(int d=0; d<project->count(); ++d)
     {
-        Disk *disk = project->disk(i);
-        for (int j=0; j<disk->count(); ++j)
-            disk->track(j)->setProgress(Track::NotRunning, -1);
+        Disk *disk = project->disk(d);
+        for (int t=0; t<disk->count(); ++t)
+            trackView->model()->trackProgressChanged(*disk->track(t), TrackState::NotRunning, 0);
     }
 
     trackView->setColumnWidth(TrackView::ColumnPercent, 200);
@@ -574,6 +575,12 @@ void MainWindow::startConvert()
     connect(mConverter, SIGNAL(finished()),
             mConverter, SLOT(deleteLater()));
 
+    connect(mConverter,         &Converter::trackProgress,
+            trackView->model(), &TrackViewModel::trackProgressChanged);
+
+
+    connect(mConverter, &Converter::trackProgress,
+            trackView->model(), &TrackViewModel::trackProgressChanged);
     mConverter->start();
     setControlsEnable();
 }

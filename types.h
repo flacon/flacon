@@ -122,7 +122,27 @@ private:
 
 typedef CueIndex CueTime;
 
+
+enum class TrackState
+{
+    NotRunning  = 0,
+    Canceled    = 1,
+    Error       = 2,
+    Aborted     = 3,
+    OK          = 4,
+    Splitting   = 5,
+    Encoding    = 6,
+    Queued      = 7,
+    WaitGain    = 8,
+    CalcGain    = 9,
+    WriteGain   = 10
+};
+
+typedef quint8 Percent;
+typedef quint64 TrackId;
+
 QByteArray leftPart(const QByteArray &line, const QChar separator);
 QByteArray rightPart(const QByteArray &line, const QChar separator);
+void initTypes();
 
 #endif // TYPES_H

@@ -37,22 +37,6 @@ class Track: public TrackTags
     friend class Disk;
     friend class CueReader;
 public:
-
-    enum Status
-    {
-        NotRunning  = 0,
-        Canceled    = 1,
-        Error       = 2,
-        Aborted     = 3,
-        OK          = 4,
-        Splitting   = 5,
-        Encoding    = 6,
-        Queued      = 7,
-        WaitGain    = 8,
-        CalcGain    = 9,
-        WriteGain   = 10
-    };
-
     Track();
     Track(const Track &other);
     Track &operator =(const Track &other);
@@ -67,9 +51,6 @@ public:
     CueIndex cueIndex(int indexNum) const;
     void setCueIndex(int indexNum, const CueIndex &value);
 
-    int progress() const { return mProgress; }
-    Status status() const { return mStatus; }
-    void setProgress(Status status, int percent = -1);
 
     static QString calcFileName(const QString &pattern,
                                 int trackCount,
@@ -87,10 +68,12 @@ public:
     TrackNum trackCount() const { return mTrackCount; }
     void setTrackCount(TrackNum value) { mTrackCount = value; }
 
+    bool operator ==(const Track &other) const;
+
+    QString cueFileName() const { return mCueFileName; }
+
 private:
     QVector<CueIndex> mCueIndexes;
-    Status mStatus;
-    int mProgress;
     TrackNum mTrackNum;
     TrackNum mTrackCount;
     Duration mDuration;
@@ -99,8 +82,6 @@ private:
     QString calcResultFilePath() const;
     static QString expandPattern(const QString &pattern, const QHash<QChar,QString> *tokens, bool optional);
 };
-
-Q_DECLARE_METATYPE(Track::Status)
 
 
 class Tracks: public QVector<Track>

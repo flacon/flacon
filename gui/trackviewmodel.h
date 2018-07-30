@@ -44,17 +44,18 @@ class TrackViewModel : public QAbstractItemModel
     Q_OBJECT
 public:
     explicit TrackViewModel(TrackView *parent = 0);
-    
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-    QModelIndex index(int row, int column, const QModelIndex &parent) const;
-    QModelIndex parent(const QModelIndex &child) const;
+    virtual ~TrackViewModel();
 
-    QVariant data(const QModelIndex &index, int role) const;
-    bool setData( const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
+    QModelIndex parent(const QModelIndex &child) const override;
 
-    int columnCount(const QModelIndex &parent) const;
-    int rowCount(const QModelIndex &parent) const;
-    Qt::ItemFlags flags(const QModelIndex &index) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    bool setData( const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
+
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
 
     TrackView *view() const { return mView; }
 
@@ -98,20 +99,20 @@ public slots:
     void downloadStarted(const Disk &disk);
     void downloadFinished(const Disk &disk);
 
+    void trackProgressChanged(const Track &track, TrackState state, Percent percent);
 
 private slots:
     void diskDataChanged(const Disk *disk);
     void trackDataChanged(int disk, int track);
-    //TODO:void trackProgressChanged(const Track *track);
 
 private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;
     QVariant diskData(const Disk *disk, const QModelIndex &index, int role) const;
     QString trackDurationToString(uint milliseconds) const;
     QModelIndex index(const Disk *disk, int col = 0) const;
-    //QModelIndex index(const Disk *disk, const Track *track, int col = 0) const;
-
-    QSet<DiskNum> mDownloadedDisks;
+    QModelIndex index(const Track track, int col) const;
+    class Cache;
+    mutable Cache *mCache;
     TrackView *mView;
 };
 

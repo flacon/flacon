@@ -54,7 +54,7 @@ Encoder::Encoder(const WorkerRequest request, const OutFormat *format, QObject *
  ************************************************/
 void Encoder::run()
 {
-    emit trackProgress(mRequest.track(), Track::Encoding, 0);
+    emit trackProgress(mRequest.track(), TrackState::Encoding, 0);
     bool debug  = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_ENCODER");
 
     // Input file already WAV, so for WAV output format we just rename file.
@@ -107,7 +107,7 @@ void Encoder::processBytesWritten(qint64 bytes)
     if (p != mProgress)
     {
         mProgress = p;
-        emit trackProgress(mRequest.track(), Track::Encoding, mProgress);
+        emit trackProgress(mRequest.track(), TrackState::Encoding, mProgress);
     }
 }
 
@@ -154,6 +154,6 @@ void Encoder::runWav()
                   srcFile.errorString()));
     }
 
-    emit trackProgress(mRequest.track(), Track::Encoding, 100);
+    emit trackProgress(mRequest.track(), TrackState::Encoding, 100);
     emit trackReady(mRequest.track(), mRequest.outFile());
 }

@@ -227,7 +227,7 @@ int runGui(int argc, char *argv[], const QStringList &files)
  ************************************************/
 int main(int argc, char *argv[])
 {
-
+    initTypes();
     QCommandLineParser parser;
 
     parser.addPositionalArgument("file", "CUE or Audio file.");

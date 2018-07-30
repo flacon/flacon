@@ -44,6 +44,9 @@ public:
     {
     }
 
+    WorkerRequest(const WorkerRequest &other);
+    WorkerRequest &operator=(const WorkerRequest &other);
+
     const Track* track() const { return mTrack; }
     QString inputFile() const { return mInputFile; }
     QString outFile() const { return mOutFile; }
@@ -67,7 +70,7 @@ public slots:
 
 signals:
     void trackReady(const Track *track, const QString &outFileName);
-    void trackProgress(const Track *track, Track::Status status, int percent);
+    void trackProgress(const Track *track, TrackState state, int percent);
     void error(const Track *track, const QString &message);
     void progress(const Track *track, int percent);
 

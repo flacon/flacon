@@ -86,6 +86,16 @@ void TagValue::setValue(const QString &value)
 /************************************************
  *
  ************************************************/
+bool TagValue::operator ==(const TagValue &other) const
+{
+    return this->mEncoded == other.mEncoded &&
+           this->mValue   == other.mValue;
+}
+
+
+/************************************************
+ *
+ ************************************************/
 TrackTags::TrackTags():
     mTextCodec(nullptr)
 {
@@ -109,6 +119,7 @@ TrackTags &TrackTags::operator=(const TrackTags &other)
 {
     mTags      = other.mTags;
     mTextCodec = other.mTextCodec;
+
     return *this;
 }
 
@@ -181,6 +192,14 @@ void TrackTags::setCodecName(const QString &value)
         mTextCodec = nullptr;
 }
 
+
+/************************************************
+ *
+ ************************************************/
+bool TrackTags::operator ==(const TrackTags &other) const
+{
+    return this->mTags == other.mTags;
+}
 
 
 /************************************************

@@ -37,18 +37,16 @@
 #include <QDir>
 #include <QDebug>
 
+
 /************************************************
 
  ************************************************/
 Track::Track():
     TrackTags(),
-    mStatus(NotRunning),
-    mProgress(0),
     mTrackNum(0),
     mTrackCount(0),
     mDuration(0)
 {
-    qRegisterMetaType<Track::Status>("Track::Status");
 }
 
 
@@ -58,14 +56,11 @@ Track::Track():
 Track::Track(const Track &other):
     TrackTags(other),
     mCueIndexes(other.mCueIndexes),
-    mStatus(other.mStatus),
-    mProgress(other.mProgress),
     mTrackNum(other.mTrackNum),
     mTrackCount(other.mTrackCount),
     mDuration(other.mDuration),
     mCueFileName(other.mCueFileName)
 {
-    qRegisterMetaType<Track::Status>("Track::Status");
 }
 
 
@@ -76,8 +71,6 @@ Track &Track::operator =(const Track &other)
 {
     TrackTags::operator =(other);
     mCueIndexes = other.mCueIndexes;
-    mStatus     = other.mStatus;
-    mProgress   = other.mProgress;
     mTrackNum   = other.mTrackNum;
     mTrackCount = other.mTrackCount;
     mDuration   = other.mDuration;
@@ -101,17 +94,6 @@ void Track::setTags(const TrackTags &tags)
  ************************************************/
 Track::~Track()
 {
-}
-
-
-/************************************************
-
- ************************************************/
-void Track::setProgress(Track::Status status, int percent)
-{
-    mStatus = status;
-    mProgress = percent;
-    project->emitTrackProgress(this);
 }
 
 
@@ -163,6 +145,18 @@ QString Track::calcFileName(const QString &pattern,
 
     QString res = expandPattern(pattern, &tokens, false);
     return res + "." + fileExt;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+bool Track::operator ==(const Track &other) const
+{
+    if (this->mCueFileName != other.mCueFileName)
+        return false;
+
+    return TrackTags::operator ==(other);
 }
 
 

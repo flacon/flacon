@@ -53,9 +53,11 @@ signals:
     void threadFinished();
     void finished();
     void threadQuit();
+    void trackProgressChanged(const Track &track, TrackState status, Percent percent);
+
 
 private slots:
-    void trackProgress(const Track *track, Track::Status status, int percent);
+    void trackProgress(const Track *track, TrackState state, int percent);
     void trackError(const Track *track, const QString &message);
 
     void addEncoderRequest(const Track *track, const QString &inputFile);

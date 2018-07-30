@@ -27,12 +27,14 @@
 #ifndef CONVERTER_H
 #define CONVERTER_H
 
+#include "types.h"
 #include <QObject>
 #include <QDateTime>
 #include <QVector>
 
 class DiskPipeline;
 class OutFormat;
+class Track;
 
 class Converter : public QObject
 {
@@ -49,6 +51,7 @@ public:
 
 signals:
     void finished();
+    void trackProgress(const Track &track, TrackState state, Percent percent);
 
 public slots:
     void start();

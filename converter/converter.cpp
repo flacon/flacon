@@ -99,6 +99,9 @@ void Converter::start()
             connect(pipeline, SIGNAL(threadFinished()),
                     this, SLOT(startThread()));
 
+            connect(pipeline, &DiskPipeline::trackProgressChanged,
+                    this, &Converter::trackProgress);
+
             mDiskPiplines << pipeline;
 
             if (!pipeline->init())

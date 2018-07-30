@@ -27,6 +27,7 @@
 #ifndef TAGS_H
 #define TAGS_H
 
+#include "types.h"
 #include <QByteArray>
 #include <QString>
 #include <QHash>
@@ -76,6 +77,8 @@ public:
     void setValue(const QByteArray &value);
     void setValue(const QString &value);
 
+    bool operator ==(const TagValue &other) const;
+
 private:
     QByteArray mValue;
     bool mEncoded;
@@ -121,6 +124,8 @@ public:
     QString codecName() const;
     void setCodecName(const QString &value);
     const QTextCodec *codec() const { return mTextCodec; }
+
+    bool operator ==(const TrackTags &other) const;
 
 private:
     QHash<int, TagValue> mTags;

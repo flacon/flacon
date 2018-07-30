@@ -244,53 +244,53 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
     int progress = index.data(TrackViewModel::RolePercent).toInt();
     bool showProgress = false;
 
-    switch (index.data(TrackViewModel::RoleStatus).toInt())
+    switch (TrackState(index.data(TrackViewModel::RoleStatus).toInt()))
     {
-    case Track::NotRunning:
+    case TrackState::NotRunning:
         txt = "";
         break;
 
-    case Track::Canceled:
+    case TrackState::Canceled:
         txt = "";
         break;
 
-    case Track::Error:
+    case TrackState::Error:
         txt = tr("Error");
         icon = &mErrorPix;
         break;
 
-    case Track::Aborted:
+    case TrackState::Aborted:
         txt = tr("Aborted");
         break;
 
-    case Track::OK:
+    case TrackState::OK:
         txt = tr("OK");
         icon = &mOkPix;
         break;
 
-    case Track::Splitting:
+    case TrackState::Splitting:
         txt = tr("Extracting");
         showProgress = true;
         break;
 
-    case Track::Encoding:
+    case TrackState::Encoding:
         txt = tr("Encoding");
         showProgress = true;
         break;
 
-    case Track::Queued:
+    case TrackState::Queued:
         txt = tr("Queued");
         break;
 
-    case Track::CalcGain:
+    case TrackState::CalcGain:
         txt = tr("Calculate gain");
         break;
 
-    case Track::WaitGain:
+    case TrackState::WaitGain:
         txt = tr("Wait gain");
         break;
 
-    case Track::WriteGain:
+    case TrackState::WriteGain:
         txt = tr("Write gain");
         break;
     }

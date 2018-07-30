@@ -58,6 +58,8 @@ public:
     QList<Track*> selectedTracks() const;
     QList<Disk*> selectedDisks() const;
 
+    TrackViewModel *model() const { return mModel; }
+
 public slots:
     void layoutChanged();
     void selectDisk(const Disk *disk);

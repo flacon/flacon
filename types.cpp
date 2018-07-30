@@ -296,3 +296,12 @@ QByteArray rightPart(const QByteArray &line, const QChar separator)
     else
         return QByteArray();
 }
+
+
+/************************************************
+ *
+ ************************************************/
+void initTypes()
+{
+    qRegisterMetaType<TrackState>("TrackState");
+}
