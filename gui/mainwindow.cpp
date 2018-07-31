@@ -575,12 +575,10 @@ void MainWindow::startConvert()
     connect(mConverter, SIGNAL(finished()),
             mConverter, SLOT(deleteLater()));
 
-    connect(mConverter,         &Converter::trackProgress,
-            trackView->model(), &TrackViewModel::trackProgressChanged);
+    connect(mConverter,         SIGNAL(trackProgress(Track,TrackState,Percent)),
+            trackView->model(), SLOT(trackProgressChanged(Track,TrackState,Percent)));
 
 
-    connect(mConverter, &Converter::trackProgress,
-            trackView->model(), &TrackViewModel::trackProgressChanged);
     mConverter->start();
     setControlsEnable();
 }
