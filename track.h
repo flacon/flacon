@@ -71,6 +71,7 @@ public:
     bool operator ==(const Track &other) const;
 
     QString cueFileName() const { return mCueFileName; }
+    void setCueFileName(const QString &value) { mCueFileName = value; }
 
 private:
     QVector<CueIndex> mCueIndexes;

@@ -176,8 +176,8 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
     mTagSets[mCurrentTagsUri].setTitle(cueDisk.title());
 
 
-    mPreGapTrack = *mTracks.first();
-    mPreGapTrack.setTrackNum(0);
+    mPreGapTrack.setTags(*mTracks.first());
+    mPreGapTrack.setCueFileName(mTracks.first()->cueFileName());
     mPreGapTrack.setTitle("(HTOA)");
 
     if (!mAudioFile)

@@ -371,7 +371,7 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
             res << disk;
         }
 
-        track->tags.mCueFileName = fullPath;
+        track->tags.setCueFileName(fullPath);
         track->tags.setTrackNum(n);
         track->tags.setTrackCount(diskNum);
         track->tags.setCodecName(codecName);
