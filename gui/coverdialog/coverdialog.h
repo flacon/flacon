@@ -29,6 +29,7 @@
 
 #include <QDialog>
 #include <QIcon>
+#include <QPointer>
 
 class Disk;
 class QAbstractButton;
@@ -64,7 +65,7 @@ private:
     void scan(const QString &startDir);
 
     Ui::CoverDialog *ui;
-    Disk *mDisk;
+    QPointer<Disk> mDisk;
     QIcon mEmptyIcon;
 };
 

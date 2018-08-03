@@ -97,6 +97,7 @@ CoverDialog::~CoverDialog()
 void CoverDialog::setDisk(Disk *disk)
 {
     mDisk = disk;
+    connect(mDisk.data(), SIGNAL(destroyed(QObject*)), SLOT(close()));
     ui->coverView->clear();
     scan(QFileInfo(disk->cueFile()).absoluteDir().absolutePath());
     ui->coverView->setGridSize(QSize(140, 160));
@@ -117,6 +118,13 @@ void CoverDialog::coverDoubleClicked(QListWidgetItem *)
  ************************************************/
 void CoverDialog::buttonClicked(QAbstractButton *button)
 {
+    if (!mDisk)
+    {
+        this->reject();
+        return;
+    }
+
+
     if (button == ui->buttonBox->button(QDialogButtonBox::Ok))
     {
         QListWidgetItem *item = ui->coverView->currentItem();
