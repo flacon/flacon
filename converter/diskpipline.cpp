@@ -127,13 +127,13 @@ bool DiskPipeline::Data::createDir(const QString &dirName) const
 
     if (! dir.mkpath("."))
     {
-        Project::error(QObject::tr("I can't create directory \"%1\".").arg(dir.path()));
+        Messages::error(QObject::tr("I can't create directory \"%1\".").arg(dir.path()));
         return false;
     }
 
     if (!QFileInfo(dir.path()).isWritable())
     {
-        Project::error(QObject::tr("I can't write to directory \"%1\".").arg(dir.path()));
+        Messages::error(QObject::tr("I can't write to directory \"%1\".").arg(dir.path()));
         return false;
     }
 
@@ -294,7 +294,7 @@ bool DiskPipeline::Data::copyCoverImage() const
     bool res = copyCover.run();
 
     if (!res)
-        Project::error(copyCover.errorString());
+        Messages::error(copyCover.errorString());
 
     return res;
 }
@@ -538,7 +538,7 @@ void DiskPipeline::trackError(const Track *track, const QString &message)
     emit threadFinished();
 
     emit finished();
-    Project::error(message);
+    Messages::error(message);
 }
 
 

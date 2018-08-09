@@ -99,7 +99,7 @@ void DataProvider::error(const QString &message)
         if (reply->isOpen())
             reply->abort();
     }
-    Project::error(message);
+    Messages::error(message);
 }
 
 

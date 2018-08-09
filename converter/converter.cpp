@@ -217,7 +217,7 @@ bool Converter::check(OutFormat *format) const
             s += QString("<li style='margin-top: 4px;'> %1</li>").arg(e);
         }
 
-        Project::error(QString("<html>%1<ul>%2</ul></html>")
+        Messages::error(QString("<html>%1<ul>%2</ul></html>")
                       .arg(tr("Conversion is not possible:"), s));
     }
 

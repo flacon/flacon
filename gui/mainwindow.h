@@ -29,6 +29,7 @@
 
 #include <QMainWindow>
 #include "ui_mainwindow.h"
+#include "types.h"
 #include <QPointer>
 
 namespace Ui {
@@ -39,7 +40,7 @@ class Project;
 class Converter;
 class Scanner;
 
-class MainWindow : public QMainWindow, private Ui::MainWindow
+class MainWindow : public QMainWindow, private Ui::MainWindow, private Messages::Handler
 {
     Q_OBJECT
     
@@ -112,6 +113,8 @@ private:
     void saveSettings();
 
     QIcon loadMainIcon();
+
+    void showErrorMessage(const QString &message) override;
 };
 
 #endif // MAINWINDOW_H

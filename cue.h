@@ -63,7 +63,7 @@ public:
 class CueReaderError: public FlaconError
 {
 public:
-    CueReaderError(const QString &msg): FlaconError(msg) {}
+    explicit CueReaderError(const QString &msg): FlaconError(msg) {}
 };
 
 #endif // CUE_H

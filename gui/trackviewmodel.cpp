@@ -38,7 +38,8 @@ struct CacheTrackData
     CacheTrackData():
         state(TrackState::NotRunning),
         percent(0),
-        diskNum(-1)
+        diskNum(-1),
+        trackNum(-1)
     {
     }
 
@@ -232,7 +233,7 @@ QModelIndex TrackViewModel::index(const Track track, int col) const
         for (int t=0; t<rowCount(diskIndex); ++t)
         {
             IndexData indexData(d, t);
-            if (*indexData.track() == track)
+            if (indexData.track() && *indexData.track() == track)
             {
                 cache.diskNum  = d;
                 cache.trackNum = t;

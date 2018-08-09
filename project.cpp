@@ -34,8 +34,6 @@
 #include <QMessageBox>
 #include <QDir>
 
-static void (*errorHandler)(const QString &msg);
-
 
 /************************************************
 
@@ -146,25 +144,6 @@ bool Project::diskExists(const QString &cueUri)
 
 
 /************************************************
- *
- ************************************************/
-void Project::error(const QString &msg)
-{
-    if (errorHandler)
-        errorHandler(msg);
-}
-
-
-/************************************************
- *
- ************************************************/
-void Project::installErrorHandler(void (*handler)(const QString &))
-{
-    errorHandler = handler;
-}
-
-
-/************************************************
 
  ************************************************/
 Disk *Project::addAudioFile(const QString &fileName, bool showErrors)
@@ -182,7 +161,7 @@ Disk *Project::addAudioFile(const QString &fileName, bool showErrors)
     if (!audio.isValid())
     {
         if (showErrors)
-            Project::error(audio.errorString());
+            Messages::error(audio.errorString());
 
         return 0;
     }
@@ -222,7 +201,7 @@ DiskList Project::addCueFile(const QString &fileName, bool showErrors)
     {
         emit layoutChanged();
         if (showErrors)
-            Project::error(err.message());
+            Messages::error(err.message());
     }
 
     return res;

@@ -76,7 +76,7 @@ QIcon loadIcon(const QString &iconName, bool loadDisable = true);
 class FlaconError: public std::exception
 {
 public:
-    FlaconError(const QString &msg):
+    explicit FlaconError(const QString &msg):
         std::exception(),
         mMsg(msg)
     {
@@ -146,5 +146,24 @@ typedef quint64 TrackId;
 QByteArray leftPart(const QByteArray &line, const QChar separator);
 QByteArray rightPart(const QByteArray &line, const QChar separator);
 void initTypes();
+
+
+
+class Messages
+{
+public:
+    static void error(const QString &message);
+
+    class Handler
+    {
+    public:
+        virtual void showErrorMessage(const QString &message) = 0;
+    };
+
+    static void setHandler(Handler *handler);
+
+private:
+    static Handler *mHandler;
+};
 
 #endif // TYPES_H

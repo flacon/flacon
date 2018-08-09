@@ -53,29 +53,6 @@ Worker::~Worker()
 /************************************************
 
  ************************************************/
-bool Worker::createDir(const QString &dirName) const
-{
-    QDir dir(dirName);
-
-    if (! dir.mkpath("."))
-    {
-        Project::error(tr("I can't create directory \"%1\".").arg(dir.path()));
-        return false;
-    }
-
-    if (!QFileInfo(dir.path()).isWritable())
-    {
-        Project::error(tr("I can't write to directory \"%1\".").arg(dir.path()));
-        return false;
-    }
-
-    return true;
-}
-
-
-/************************************************
-
- ************************************************/
 bool Worker::deleteFile(const QString &fileName) const
 {
     QFile f(fileName);

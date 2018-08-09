@@ -75,7 +75,6 @@ signals:
     void progress(const Track *track, int percent);
 
 protected:
-    bool createDir(const QString &dirName) const;
     bool deleteFile(const QString &fileName) const;
 
     void debugArguments(const QString &prog, const QStringList &args);

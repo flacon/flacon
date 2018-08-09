@@ -58,9 +58,6 @@ public:
 
     bool diskExists(const QString &cueUri);
 
-    static void error(const QString &msg);
-    static void installErrorHandler(void (*handler)(const QString &msg));
-
 public slots:
     void clear();
     Disk *addAudioFile(const QString &fileName, bool showErrors);

@@ -113,7 +113,6 @@ void TestFlacon::testConvert()
     settings->setOutFileDir(dir());
     settings->setOutFilePattern("%a/%n - %t");
 
-    Project::installErrorHandler(consoleErroHandler);
     project->clear();
     foreach (TestConvertRequest req, requests)
     {

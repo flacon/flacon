@@ -386,7 +386,6 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
         if (res.at(i).count() == 0)
         {
             throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Disk %2 has no tags.").arg(fileName).arg(i));
-            break;
         }
     }
 

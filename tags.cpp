@@ -59,7 +59,7 @@ QString TagValue::asString(const QTextCodec *codec) const
     if (codec)
         return codec->toUnicode(mValue);
 
-    return codec->toUnicode(mValue);
+    return encCodec()->toUnicode(mValue);
 }
 
 

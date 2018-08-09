@@ -92,8 +92,8 @@ public:
     TrackTags &operator=(const TrackTags &other);
     virtual ~TrackTags();
 
-    QString artist() const            { return tag(TagId::Performer); }
-    void setArtist(const QString &value)  { setTag(TagId::Performer, value); }
+    QString artist() const            { return performer(); }
+    void setArtist(const QString &value)  { setPerformer(value); }
 
     QString performer() const            { return tag(TagId::Performer); }
     void setPerformer(const QString &value)  { setTag(TagId::Performer, value); }

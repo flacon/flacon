@@ -156,7 +156,6 @@ void translate(QApplication *app)
 int runConsole(int argc, char *argv[], const QStringList &files)
 {
     QCoreApplication app(argc, argv);
-    Project::installErrorHandler(consoleErroHandler);
 
     foreach(QString file, files)
     {
@@ -206,7 +205,6 @@ int runGui(int argc, char *argv[], const QStringList &files)
     foreach(QString file, files)
         window.addFileOrDir(file);
 
-    Project::installErrorHandler(guiErrorHandler);
     QObject::connect(&app, SIGNAL(openFile(QString)),
             &window, SLOT(addFileOrDir(QString)));
 

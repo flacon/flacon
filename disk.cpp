@@ -255,6 +255,7 @@ void Disk::findCueFile()
         }
         catch (FlaconError)
         {
+            continue; // Just skipping the incorrect files.
         }
     }
 

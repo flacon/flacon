@@ -26,7 +26,7 @@
 
 #include "types.h"
 #include <QVector>
-
+#include <QTextStream>
 
 /************************************************
  *
@@ -304,4 +304,31 @@ QByteArray rightPart(const QByteArray &line, const QChar separator)
 void initTypes()
 {
     qRegisterMetaType<TrackState>("TrackState");
+}
+
+
+Messages::Handler *Messages::mHandler = nullptr;
+
+/************************************************
+ *
+ ************************************************/
+void Messages::error(const QString &message)
+{
+    QString msg(message);
+    msg.replace("<br>", " ", Qt::CaseInsensitive);
+    msg.remove(QRegExp("<[^>]*>"));
+    msg.replace("\\n", "\n");
+    QTextStream(stderr) << msg.toLocal8Bit() << endl;
+
+    if (mHandler)
+        mHandler->showErrorMessage(message);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Messages::setHandler(Messages::Handler *handler)
+{
+    mHandler = handler;
 }

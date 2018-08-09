@@ -64,6 +64,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     mScanner(nullptr)
 {
+    Messages::setHandler(this);
+
     setupUi(this);
 
     qApp->setWindowIcon(loadMainIcon());
@@ -380,7 +382,7 @@ void MainWindow::setCueForDisc(Disk *disk)
     }
     catch (FlaconError &err)
     {
-        Project::error(err.message());
+        Messages::error(err.message());
     }
 }
 
@@ -753,7 +755,7 @@ void MainWindow::setAudioForDisk(Disk *disk)
     if (audio.isValid())
         disk->setAudioFile(audio);
     else
-        Project::error(audio.errorString());
+        Messages::error(audio.errorString());
 }
 
 
@@ -1050,4 +1052,29 @@ QIcon MainWindow::loadMainIcon()
     }
 
     return QIcon::fromTheme("flacon", loadIcon("mainicon", false));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::showErrorMessage(const QString &message)
+{
+/*    QString msg(message);
+    msg.remove(QRegExp("<[^>]*>"));
+    msg.replace("\\n", "\n");
+    QTextStream(stderr) << msg.toLocal8Bit() << endl;
+*/
+    QString msg = message;
+    msg.replace("\n", "<br>");
+    msg.replace(" ", "&nbsp;");
+
+    QMessageBox *box = new QMessageBox(this);
+    box->setIcon(QMessageBox::Critical);
+    box->setWindowTitle(QObject::tr("Flacon", "Error"));
+    box->setText("<html>" + msg + "</html>");
+    box->setStandardButtons(QMessageBox::Ok);
+    box->setAttribute(Qt::WA_DeleteOnClose, true);
+
+    box->show();
 }
