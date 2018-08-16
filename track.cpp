@@ -171,15 +171,48 @@ QString Track::resultFileName() const
     if (pattern.isEmpty())
         pattern = QString("%a/%y - %A/%n - %t");
 
-    return calcFileName(pattern,
+    int n = pattern.lastIndexOf(QDir::separator());
+    if (n < 0)
+    {
+        return calcFileName(pattern,
+                            this->trackCount(),
+                            this->trackNum(),
+                            this->album(),
+                            this->title(),
+                            this->artist(),
+                            this->genre(),
+                            this->date(),
+                            settings->outFormat()->ext());
+    }
+
+    // If the disk is a collection, the files fall into different directories.
+    // So we use the tag DiskPerformer for expand the directory path.
+    return calcFileName(pattern.left(n),
                         this->trackCount(),
                         this->trackNum(),
                         this->album(),
                         this->title(),
-                        this->artist(),
+                        this->tag(TagId::DiskPerformer),
                         this->genre(),
                         this->date(),
-                        settings->outFormat()->ext());
+                        settings->outFormat()->ext())
+
+            +
+
+            calcFileName(pattern.mid(n),
+                         this->trackCount(),
+                         this->trackNum(),
+                         this->album(),
+                         this->title(),
+                         this->artist(),
+                         this->genre(),
+                         this->date(),
+                         settings->outFormat()->ext());
+
+
+
+
+
 }
 
 

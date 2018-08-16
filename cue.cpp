@@ -225,6 +225,39 @@ void readData(const QString &fileName, QByteArrayList *data,  QString *codecName
 
 
 /************************************************
+*
+************************************************/
+static void splitTitle(QList<ParserTrack*> *tracks, char separator)
+{
+    foreach (ParserTrack *track, *tracks)
+    {
+        QByteArray b = track->tags.tagData(TagId::Title);
+        int pos = b.indexOf(separator);
+        track->tags.setTag(TagId::Performer, b.left(pos).trimmed());
+        track->tags.setTag(TagId::Title,     b.right(b.length() - pos - 1).trimmed());
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+static void setDiskPerformer(QList<ParserTrack*> *tracks)
+{
+    QByteArray performer = tracks->first()->tags.tagData(TagId::Performer);
+
+    foreach (ParserTrack *track, *tracks)
+    {
+        if (track->tags.tagData(TagId::Performer) != performer)
+            return;
+    }
+
+    foreach (ParserTrack *track, *tracks)
+        track->tags.setTag(TagId::DiskPerformer, performer);
+}
+
+
+/************************************************
  Complete cue sheet syntax documentation
  https://github.com/flacon/flacon/blob/master/cuesheet_syntax.md
  ************************************************/
@@ -247,6 +280,9 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
     QList<ParserTrack*> tracks;
     ParserTrack *track = nullptr;
 
+    bool splitByDash      = true;
+    bool splitBySlash     = true;
+    bool splitByBackSlash = true;
     int lineNum = 0;
     auto i = data.begin();
     for (; i != data.end(); ++i)
@@ -284,7 +320,12 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
             case CTAG_COMMENT:     globalTags.setTag(TagId::Comment,    value); break;
             case CTAG_DATE:        globalTags.setTag(TagId::Date,       value); break;
             case CTAG_GENRE:       globalTags.setTag(TagId::Genre,      value); break;
-            case CTAG_PERFORMER:   globalTags.setTag(TagId::Performer,  value); break;
+            case CTAG_PERFORMER:
+            {
+                globalTags.setTag(TagId::Performer,     value);
+                globalTags.setTag(TagId::DiskPerformer, value);
+                break;
+            }
             case CTAG_SONGWRITER:  globalTags.setTag(TagId::SongWriter, value); break;
             default: break;
             }
@@ -321,11 +362,25 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
             case CTAG_CATALOG:     track->tags.setTag(TagId::Catalog,    value); break;
             case CTAG_CDTEXTFILE:  track->tags.setTag(TagId::CDTextfile, value); break;
 
-            case CTAG_TITLE:       track->tags.setTag(TagId::Title,      value); break;
+            case CTAG_TITLE:
+            {
+                track->tags.setTag(TagId::Title,      value);
+                splitByDash      = splitByDash      && value.contains('-');
+                splitBySlash     = splitBySlash     && value.contains('/');
+                splitByBackSlash = splitByBackSlash && value.contains('\\');
+                break;
+            }
             case CTAG_COMMENT:     track->tags.setTag(TagId::Comment,    value); break;
             case CTAG_DATE:        track->tags.setTag(TagId::Date,       value); break;
             case CTAG_GENRE:       track->tags.setTag(TagId::Genre,      value); break;
-            case CTAG_PERFORMER:   track->tags.setTag(TagId::Performer,  value); break;
+            case CTAG_PERFORMER:
+            {
+                track->tags.setTag(TagId::Performer,  value);
+                splitByDash      = false;
+                splitBySlash     = false;
+                splitByBackSlash = false;
+                break;
+            }
             case CTAG_SONGWRITER:  track->tags.setTag(TagId::SongWriter, value); break;
             case CTAG_ISRC:        track->tags.setTag(TagId::ISRC,       value); break;
             case CTAG_FLAGS:       track->tags.setTag(TagId::Flags,      value); break;
@@ -351,6 +406,14 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
         codecName = charDet.textCodecName();
     }
 
+    // Set global tags ::::::::::::::::::::::::::::::::::::
+    if (splitByBackSlash)   splitTitle(&tracks, '\\');
+    else if (splitBySlash)  splitTitle(&tracks, '/');
+    else if (splitByDash)   splitTitle(&tracks, '-');
+
+    if (globalTags.tagData(TagId::DiskPerformer).isEmpty())
+        setDiskPerformer(&tracks);
+    // ::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
     QVector<CueDisk> res;

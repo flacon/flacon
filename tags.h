@@ -52,7 +52,8 @@ enum class TagId
     File,
     Disknum,
     CueFile,
-    StartTrackNum
+    StartTrackNum,
+    DiskPerformer
 };
 
 
