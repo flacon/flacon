@@ -70,6 +70,8 @@ public:
     {
     }
 
+    explicit TagValue(const QString &val);
+
     bool encoded() const { return mEncoded; }
     QString asString(const QTextCodec *codec) const;
 
@@ -133,47 +135,5 @@ private:
 };
 
 
-class DiskTags: public QVector<TrackTags>
-{
-public:
-    DiskTags();
-    explicit DiskTags(int size);
-    DiskTags(const DiskTags &other);
-    DiskTags& operator=(const DiskTags &other);
-
-    QString uri() const { return mUri; }
-    void setUri(const QString &value) { mUri = value; }
-
-    QString title() const;
-    void setTitle(const QByteArray &value);
-    void setTitle(const QString &value);
-
-private:
-public:
-    QString mUri;
-    TagValue mTitle;
-};
-
-
-class UcharDet
-{
-
-public:
-    UcharDet();
-    ~UcharDet();
-
-    void add(const TrackTags &track);
-    UcharDet& operator<<(const TrackTags &track);
-
-
-    QString textCodecName() const;
-    QTextCodec* textCodec() const;
-
-private:
-    struct Data;
-    Data *mData;
-};
-
-QTextCodec *determineTextCodec(const QVector<TrackTags*> tracks);
 
 #endif // TAGS_H

@@ -165,6 +165,32 @@ void TrackView::downloadFinished(const Disk &disk)
 
 
 /************************************************
+ *
+ ************************************************/
+void TrackView::update(const Track &track)
+{
+    QModelIndex idx = mModel->index(track, 0);
+    QTreeView::update(idx);
+
+    int cnt = mModel->columnCount(idx.parent());
+    for (int i=1; i<cnt; ++i)
+        QTreeView::update(mModel->index(track, i));
+
+    QTreeView::update(idx.parent());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void TrackView::update(const Disk &disk)
+{
+    QModelIndex idx = mModel->index(disk, 0);
+    QTreeView::update(idx);
+}
+
+
+/************************************************
 
  ************************************************/
 void TrackView::headerContextMenu(QPoint pos)
@@ -208,12 +234,12 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 
 
     QMenu menu;
-    foreach (const DiskTags &tags, disk->tagSets())
+    foreach (const Disk::TagSet &tags, disk->tagSets())
     {
-        QAction *act = new QAction(tags.title(), &menu);
+        QAction *act = new QAction(tags.name, &menu);
         act->setCheckable(true);
-        act->setChecked(tags.uri() == disk->tagsUri());
-        connect(act, &QAction::triggered, [disk, tags](){ disk->activateTagSet(tags); });
+        act->setChecked(tags.uri == disk->tagsUri());
+        connect(act, &QAction::triggered, [disk, tags](){ disk->activateTagSet(tags.uri); });
         menu.addAction(act);
     }
 

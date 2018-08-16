@@ -144,7 +144,6 @@ TrackViewModel::TrackViewModel(TrackView *parent) :
     connect(project, &Project::diskChanged,
             this, &TrackViewModel::diskDataChanged);
 
-    connect(project, SIGNAL(trackChanged(int,int)), this, SLOT(trackDataChanged(int,int)));
     connect(project, SIGNAL(layoutChanged()), this, SIGNAL(layoutChanged()));
     connect(project, SIGNAL(afterRemoveDisk()), this, SIGNAL(layoutChanged()));
 }
@@ -203,9 +202,9 @@ QModelIndex TrackViewModel::index(int row, int column, const QModelIndex &parent
 /************************************************
 
  ************************************************/
-QModelIndex TrackViewModel::index(const Disk *disk, int col) const
+QModelIndex TrackViewModel::index(const Disk &disk, int col) const
 {
-    const int diskNum = project->indexOf(disk);
+    const int diskNum = project->indexOf(&disk);
     if (diskNum > -1 && diskNum < rowCount(QModelIndex()))
         return index(diskNum, col, QModelIndex());
 
@@ -216,7 +215,7 @@ QModelIndex TrackViewModel::index(const Disk *disk, int col) const
 /************************************************
  *
  ************************************************/
-QModelIndex TrackViewModel::index(const Track track, int col) const
+QModelIndex TrackViewModel::index(const Track &track, int col) const
 {
     CacheTrackData &cache = mCache->tracks[track];
 
@@ -582,7 +581,7 @@ Track *TrackViewModel::trackByIndex(const QModelIndex &index)
  ************************************************/
 void TrackViewModel::downloadStarted(const Disk &disk)
 {
-    mCache->downloadedDisks << index(&disk).row();
+    mCache->downloadedDisks << index(disk).row();
     diskDataChanged(&disk);
 }
 
@@ -592,7 +591,7 @@ void TrackViewModel::downloadStarted(const Disk &disk)
  ************************************************/
 void TrackViewModel::downloadFinished(const Disk &disk)
 {
-    mCache->downloadedDisks.remove(index(&disk).row());
+    mCache->downloadedDisks.remove(index(disk).row());
     diskDataChanged(&disk);
 }
 
@@ -616,8 +615,8 @@ void TrackViewModel::trackProgressChanged(const Track &track, TrackState state, 
  ************************************************/
 void TrackViewModel::diskDataChanged(const Disk *disk)
 {
-    QModelIndex index1 = index(disk, 0);
-    QModelIndex index2 = index(disk, TrackView::ColumnCount);
+    QModelIndex index1 = index(*disk, 0);
+    QModelIndex index2 = index(*disk, TrackView::ColumnCount);
     emit dataChanged(index1, index2);
 }
 

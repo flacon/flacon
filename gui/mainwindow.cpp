@@ -535,7 +535,10 @@ void MainWindow::setTrackTag()
 
     QList<Track*> tracks = trackView->selectedTracks();
     foreach(Track *track, tracks)
+    {
         track->setTag(edit->tagId(), edit->text());
+        trackView->update(*track);
+    }
 }
 
 
@@ -782,7 +785,7 @@ void MainWindow::downloadDiskInfo(Disk *disk)
             [disk, this]() { trackView->downloadFinished(*disk); });
 
     connect(provider, &DataProvider::ready,
-            [disk](const QVector<DiskTags> data) { disk->addTagSets(data); });
+            [disk](const QVector<Tracks> data) { disk->addTagSets(data); });
 
     provider->start();
     trackView->downloadStarted(*disk);

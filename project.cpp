@@ -220,24 +220,6 @@ void Project::emitDiskChanged(Disk *disk) const
 /************************************************
 
  ************************************************/
-void Project::emitTrackChanged(int disk, int track) const
-{
-    emit trackChanged(disk, track);
-}
-
-
-/************************************************
-
- ************************************************/
-void Project::emitTrackProgress(const Track *track) const
-{
-    emit trackProgress(track);
-}
-
-
-/************************************************
-
- ************************************************/
 void Project::emitLayoutChanged() const
 {
     emit layoutChanged();

@@ -65,6 +65,8 @@ public slots:
     void selectDisk(const Disk *disk);
     void downloadStarted(const Disk &disk);
     void downloadFinished(const Disk &disk);
+    void update(const Track &track);
+    void update(const Disk &disk);
 
 signals:
     void selectCueFile(Disk *disk);

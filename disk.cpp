@@ -49,7 +49,6 @@
 Disk::Disk(QObject *parent) :
     QObject(parent),
     mStartTrackNum(1),
-    mCount(0),
     mAudioFile(0)
 {
 
@@ -137,13 +136,13 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
     syncTagsFromTracks();
     mTagSets.remove(mCueFile);
 
-    mCount = cueDisk.count();
+    int count = cueDisk.count();
     mCueFile = cueDisk.fileName();
 
     // Remove all tags if number of tracks differ from loaded CUE.
     for(auto it = mTagSets.begin(); it != mTagSets.end();)
     {
-        if (it.value().count() != mCount)
+        if (it.value().count() != count)
             it = mTagSets.erase(it);
         else
             ++it;
@@ -151,20 +150,20 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
 
 
     // Sync count of tracks
-    for (int i=mTracks.count(); i<mCount; ++i)
+    for (int i=mTracks.count(); i<count; ++i)
         mTracks.append(new Track());
 
-    while (mTracks.count() > mCount)
+    while (mTracks.count() > count)
         delete mTracks.takeLast();
 
 
-    for (int t=0; t<mCount; ++t)
+    for (int t=0; t<count; ++t)
         *mTracks[t] = cueDisk.at(t);
 
-    for (int i=0; i<mCount; ++i)
+    for (int i=0; i<count; ++i)
     {
         Track *track = mTracks[i];
-        track->setTrackCount(mCount);
+        track->setTrackCount(count);
         track->setTrackNum(mStartTrackNum + i);
         track->mDuration = this->trackDuration(i);
 
@@ -316,7 +315,10 @@ Duration Disk::trackDuration(TrackNum trackNum) const
  ************************************************/
 void Disk::syncTagsFromTracks()
 {
-    DiskTags &tags = mTagSets[mCurrentTagsUri];
+    if (mTagSets.isEmpty())
+        return;
+
+    Tracks &tags = mTagSets[mCurrentTagsUri];
     if (tags.isEmpty())
     {
         tags.resize(mTracks.count());
@@ -335,7 +337,10 @@ void Disk::syncTagsFromTracks()
  ************************************************/
 void Disk::syncTagsToTracks()
 {
-    DiskTags &tags = mTagSets[mCurrentTagsUri];
+    if (mTagSets.isEmpty())
+        return;
+
+    Tracks &tags = mTagSets[mCurrentTagsUri];
     assert(tags.count() == mTracks.count());
 
     for (int i=0; i<mTracks.count(); ++i)
@@ -348,7 +353,7 @@ void Disk::syncTagsToTracks()
 /************************************************
  *
  ************************************************/
-int Disk::distance(const DiskTags &other)
+int Disk::distance(const Tracks &other)
 {
     if (mTracks.isEmpty() || other.empty())
         return std::numeric_limits<int>::max();
@@ -552,20 +557,25 @@ QString Disk::fileTag() const
 /************************************************
  *
  ************************************************/
-QList<DiskTags> Disk::tagSets() const
+QVector<Disk::TagSet> Disk::tagSets() const
 {
-    QList<DiskTags> res;
-    const_cast<Disk*>(this)->syncTagsFromTracks();
-
-    res << mTagSets[mCueFile];
+    if (mTagSets.isEmpty())
+        return QVector<TagSet>();
 
     QStringList keys = mTagSets.keys();
     keys.removeAll(mCueFile);
     qSort(keys);
+    keys.prepend(mCueFile);
 
+    QVector<TagSet> res;
     foreach (const QString &key, keys)
     {
-        res << mTagSets[key];
+        const Tracks &tags = mTagSets[key];
+
+        TagSet ts;
+        ts.uri  = tags.uri();
+        ts.name = tags.title();
+        res << ts;
     }
 
     return res;
@@ -575,19 +585,34 @@ QList<DiskTags> Disk::tagSets() const
 /************************************************
  *
  ************************************************/
-void Disk::addTagSet(const DiskTags &tags, bool activate)
+void Disk::addTagSet(const Tracks &tags, bool activate)
 {
     mTagSets[tags.uri()] = tags;
 
     if (activate)
-        activateTagSet(tags);
+        activateTagSet(tags.uri());
 }
 
 
 /************************************************
  *
  ************************************************/
-void Disk::addTagSets(const QVector<DiskTags> &disks)
+void Disk::activateTagSet(const QString &uri)
+{
+    if (!mTagSets.contains(uri))
+        return;
+
+    syncTagsFromTracks();
+    mCurrentTagsUri = uri;
+    syncTagsToTracks();
+    project->emitLayoutChanged();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Disk::addTagSets(const QVector<Tracks> &disks)
 {
     if (disks.isEmpty())
         return;
@@ -596,7 +621,7 @@ void Disk::addTagSets(const QVector<DiskTags> &disks)
     int bestDisk = 0;
     for (int i=0; i<disks.count(); ++i)
     {
-        const DiskTags &disk = disks.at(i);
+        const Tracks &disk = disks.at(i);
         addTagSet(disk, false);
         int n = distance(disk);
         if (n<minDist)
@@ -606,22 +631,7 @@ void Disk::addTagSets(const QVector<DiskTags> &disks)
         }
     }
 
-    activateTagSet(disks.at(bestDisk));
-}
-
-
-/************************************************
- *
- ************************************************/
-void Disk::activateTagSet(const DiskTags &tags)
-{
-    if (!mTagSets.contains(tags.uri()))
-        return;
-
-    syncTagsFromTracks();
-    mCurrentTagsUri = tags.uri();
-    syncTagsToTracks();
-    project->emitLayoutChanged();
+    activateTagSet(disks.at(bestDisk).uri());
 }
 
 

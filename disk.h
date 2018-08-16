@@ -43,11 +43,12 @@ class Disk: public QObject
     Q_OBJECT
     friend class Track;
 public:
+
     explicit Disk(QObject *parent = 0);
     virtual ~Disk();
 
     Track *track(int index) const;
-    int count() const { return mCount; }
+    int count() const { return mTracks.count(); }
     const Track *preGapTrack() const { return &mPreGapTrack; }
 
     void loadFromCue(const CueDisk &cueDisk);
@@ -74,10 +75,16 @@ public:
     bool canConvert(QString *description = 0) const;
     bool canDownloadInfo() const;
 
-    QList<DiskTags> tagSets() const;
-    void addTagSet(const DiskTags &tags, bool activate);
-    void addTagSets(const QVector<DiskTags> &disks);
-    void activateTagSet(const DiskTags &tags);
+
+    struct TagSet{
+        QString uri;
+        QString name;
+    };
+
+    QVector<TagSet> tagSets() const;
+    void addTagSet(const Tracks &tags, bool activate);
+    void addTagSets(const QVector<Tracks> &disks);
+    void activateTagSet(const QString &uri);
 
     QString coverImageFile() const { return mCoverImageFile; }
     void setCoverImageFile(const QString &fileName);
@@ -87,15 +94,12 @@ public:
     static QStringList searchCoverImages(const QString &startDir);
     static QString searchCoverImage(const QString &startDir);
 
-signals:
-    void trackChanged(int track);
 
 private:
-    QHash<QString, DiskTags> mTagSets;
+    QHash<QString, Tracks> mTagSets;
 
     QList<Track*> mTracks;
     int           mStartTrackNum;
-    int           mCount;
     QString       mCueFile;
     QString       mCurrentTagsUri;
 
@@ -111,7 +115,7 @@ private:
     void syncTagsFromTracks();
     void syncTagsToTracks();
 
-    int distance(const DiskTags &other);
+    int distance(const Tracks &other);
 };
 
 typedef QList<Disk*> DiskList;

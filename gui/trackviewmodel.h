@@ -59,6 +59,8 @@ public:
 
     TrackView *view() const { return mView; }
 
+    QModelIndex index(const Disk &disk, int col = 0) const;
+    QModelIndex index(const Track &track, int col) const;
 
 public slots:
 
@@ -109,8 +111,6 @@ private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;
     QVariant diskData(const Disk *disk, const QModelIndex &index, int role) const;
     QString trackDurationToString(uint milliseconds) const;
-    QModelIndex index(const Disk *disk, int col = 0) const;
-    QModelIndex index(const Track track, int col) const;
     class Cache;
     mutable Cache *mCache;
     TrackView *mView;

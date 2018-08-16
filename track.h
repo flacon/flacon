@@ -32,7 +32,7 @@
 
 class Disk;
 
-class Track: public TrackTags
+class Track
 {
     friend class Disk;
     friend class CueReader;
@@ -40,8 +40,44 @@ public:
     Track();
     Track(const Track &other);
     Track &operator =(const Track &other);
-    void setTags(const TrackTags &tags);
+    void setTags(const Track &other);
     ~Track();
+
+    QString tag(const TagId &tagID) const;
+    QByteArray tagData(const TagId &tagID) const;
+    void setTag(const TagId &tagID, const QString &value);
+    void setTag(const TagId &tagID, const QByteArray &value);
+
+    QString codecName() const;
+    void setCodecName(const QString &value);
+    const QTextCodec *codec() const { return mTextCodec; }
+
+    bool operator ==(const TrackTags &other) const;
+
+
+    QString artist() const            { return performer(); }
+    void setArtist(const QString &value)  { setPerformer(value); }
+
+    QString performer() const            { return tag(TagId::Performer); }
+    void setPerformer(const QString &value)  { setTag(TagId::Performer, value); }
+
+
+    QString album() const             { return tag(TagId::Album); }
+    void setAlbum(const QString &value)   { setTag(TagId::Album, value); }
+
+    QString comment() const           { return tag(TagId::Comment) ;}
+    void setComment(const QString &value)   { setTag(TagId::Comment, value); }
+
+    QString title() const             { return tag(TagId::Title) ;}
+    void setTitle(const QString &value)   { setTag(TagId::Title, value); }
+
+    QString genre() const             { return tag(TagId::Genre) ;}
+    void setGenre(const QString &value)   { setTag(TagId::Genre, value); }
+
+    QString date() const              { return tag(TagId::Date) ;}
+    void setDate(const QString &value)    { setTag(TagId::Date, value); }
+
+    QString diskId() const              { return tag(TagId::DiscId) ;}
 
     QString resultFileName() const;
     QString resultFilePath() const;
@@ -74,6 +110,8 @@ public:
     void setCueFileName(const QString &value) { mCueFileName = value; }
 
 private:
+    QHash<int, TagValue> mTags;
+    QTextCodec *mTextCodec;
     QVector<CueIndex> mCueIndexes;
     TrackNum mTrackNum;
     TrackNum mTrackCount;
@@ -105,5 +143,26 @@ private:
     QString mUri;
     TagValue mTitle;
 };
+
+class UcharDet
+{
+
+public:
+    UcharDet();
+    ~UcharDet();
+
+    void add(const Track &track);
+    UcharDet& operator<<(const Track &track);
+
+
+    QString textCodecName() const;
+    QTextCodec* textCodec() const;
+
+private:
+    struct Data;
+    Data *mData;
+};
+
+QTextCodec *determineTextCodec(const QVector<TrackTags*> tracks);
 
 #endif // TRACK_H

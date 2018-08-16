@@ -34,7 +34,9 @@
 #include "settings.h"
 #include "outformat.h"
 
+#include <uchardet.h>
 #include <QDir>
+#include <QTextCodec>
 #include <QDebug>
 
 
@@ -42,7 +44,7 @@
 
  ************************************************/
 Track::Track():
-    TrackTags(),
+    mTextCodec(nullptr),
     mTrackNum(0),
     mTrackCount(0),
     mDuration(0)
@@ -54,7 +56,8 @@ Track::Track():
  *
  ************************************************/
 Track::Track(const Track &other):
-    TrackTags(other),
+    mTags(other.mTags),
+    mTextCodec(other.mTextCodec),
     mCueIndexes(other.mCueIndexes),
     mTrackNum(other.mTrackNum),
     mTrackCount(other.mTrackCount),
@@ -69,12 +72,13 @@ Track::Track(const Track &other):
  ************************************************/
 Track &Track::operator =(const Track &other)
 {
-    TrackTags::operator =(other);
+    setTags(other);
     mCueIndexes = other.mCueIndexes;
     mTrackNum   = other.mTrackNum;
     mTrackCount = other.mTrackCount;
     mDuration   = other.mDuration;
     mCueFileName= other.mCueFileName;
+
     return *this;
 }
 
@@ -82,9 +86,10 @@ Track &Track::operator =(const Track &other)
 /************************************************
  *
  ************************************************/
-void Track::setTags(const TrackTags &tags)
+void Track::setTags(const Track &other)
 {
-    TrackTags::operator =(tags);
+    mTags      = other.mTags;
+    mTextCodec = other.mTextCodec;
 }
 
 
@@ -94,6 +99,66 @@ void Track::setTags(const TrackTags &tags)
  ************************************************/
 Track::~Track()
 {
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Track::tag(const TagId &tagID) const
+{
+    return mTags.value(static_cast<int>(tagID)).asString(mTextCodec);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QByteArray Track::tagData(const TagId &tagID) const
+{
+    return mTags.value(static_cast<int>(tagID)).value();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Track::setTag(const TagId &tagID, const QString &value)
+{
+    mTags.insert(static_cast<int>(tagID), TagValue(value));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Track::setTag(const TagId &tagID, const QByteArray &value)
+{
+    mTags.insert(static_cast<int>(tagID), TagValue(value, false));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Track::codecName() const
+{
+    if (mTextCodec)
+        return mTextCodec->name();
+
+    return "";
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Track::setCodecName(const QString &value)
+{
+    if (!value.isEmpty())
+        mTextCodec = QTextCodec::codecForName(value.toLatin1());
+    else
+        mTextCodec = nullptr;
 }
 
 
@@ -156,7 +221,7 @@ bool Track::operator ==(const Track &other) const
     if (this->mCueFileName != other.mCueFileName)
         return false;
 
-    return TrackTags::operator ==(other);
+    return mTags ==(other.mTags);
 }
 
 
@@ -399,4 +464,100 @@ void Tracks::setTitle(const QByteArray &value)
 void Tracks::setTitle(const QString &value)
 {
     mTitle.setValue(value);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+struct UcharDet::Data
+{
+    uchardet_t mUchcharDet;
+
+};
+
+
+/************************************************
+ *
+ ************************************************/
+UcharDet::UcharDet():
+    mData(new Data())
+{
+    mData->mUchcharDet = uchardet_new();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+UcharDet::~UcharDet()
+{
+    uchardet_delete(mData->mUchcharDet);
+    delete mData;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+UcharDet &UcharDet::operator<<(const Track &track)
+{
+    const QByteArray &performer = track.tagData(TagId::Performer);
+    const QByteArray &title     = track.tagData(TagId::Title);
+
+    uchardet_handle_data(mData->mUchcharDet, performer.data(), performer.length());
+    uchardet_handle_data(mData->mUchcharDet, title.data(),     title.length());
+
+    return *this;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString UcharDet::textCodecName() const
+{
+    return textCodec()->name();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QTextCodec *UcharDet::textCodec() const
+{
+    uchardet_data_end(mData->mUchcharDet);
+    QTextCodec *res = QTextCodec::codecForName(uchardet_get_charset(mData->mUchcharDet));
+    if (!res)
+        res = QTextCodec::codecForName("UTF-8");
+
+    return res;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QTextCodec *determineTextCodec(const QVector<TrackTags*> tracks)
+{
+    QTextCodec *res;
+    uchardet_t uc = uchardet_new();
+
+    foreach(const TrackTags *track, tracks)
+    {
+        const QByteArray &performer = track->tagData(TagId::Performer);
+        const QByteArray &title     = track->tagData(TagId::Title);
+
+        uchardet_handle_data(uc, performer.data(), performer.length());
+        uchardet_handle_data(uc, title.data(),     title.length());
+    }
+
+    uchardet_data_end(uc);
+    res = QTextCodec::codecForName(uchardet_get_charset(uc));
+    if (!res)
+        res = QTextCodec::codecForName("UTF-8");
+
+    uchardet_delete(uc);
+
+    return res;
 }

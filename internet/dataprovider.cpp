@@ -199,7 +199,7 @@ void FreeDbProvider::start()
 /************************************************
 
  ************************************************/
-QVector<DiskTags> FreeDbProvider::dataReady(QNetworkReply *reply)
+QVector<Tracks> FreeDbProvider::dataReady(QNetworkReply *reply)
 {
     QString statusLine = reply->readLine();
     int status = statusLine.section(' ', 0, 0).toInt();
@@ -208,7 +208,7 @@ QVector<DiskTags> FreeDbProvider::dataReady(QNetworkReply *reply)
     switch(status)
     {
     case 210:   // OK
-        return QVector<DiskTags>() << parse(reply);
+        return QVector<Tracks>() << parse(reply);
         break;
 
     case 401:   // No such CD entry in database, skip.
@@ -218,18 +218,18 @@ QVector<DiskTags> FreeDbProvider::dataReady(QNetworkReply *reply)
         error(statusLine);
     }
 
-    return QVector<DiskTags>();
+    return QVector<Tracks>();
 }
 
 
 /************************************************
 
  ************************************************/
-DiskTags FreeDbProvider::parse(QNetworkReply *reply)
+Tracks FreeDbProvider::parse(QNetworkReply *reply)
 {
     QByteArray category = reply->request().attribute(QNetworkRequest::User).toByteArray();
 
-    DiskTags res;
+    Tracks res;
     res.setUri(reply->url().toString());
 
     QByteArray album;
@@ -281,7 +281,7 @@ DiskTags FreeDbProvider::parse(QNetworkReply *reply)
     res.resize(tracks.count());
     foreach (QByteArray line, tracks)
     {
-        TrackTags &track = res[n++];
+        Track &track = res[n++];
         track.setCodecName(disk().codecName());
         track.setTag(TagId::DiscId, disk().discId());
         track.setTag(TagId::Date, year);

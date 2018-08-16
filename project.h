@@ -52,8 +52,6 @@ public:
     void removeDisk(const QList<Disk*> *disks);
 
     void emitDiskChanged(Disk *disk) const;
-    void emitTrackChanged(int disk, int track) const;
-    void emitTrackProgress(const Track *track) const;
     void emitLayoutChanged() const;
 
     bool diskExists(const QString &cueUri);
@@ -65,8 +63,6 @@ public slots:
 
 signals:
     void diskChanged(Disk *disk) const;
-    void trackChanged(int disk, int track) const;
-    void trackProgress(const Track *track) const;
     void layoutChanged() const;
     void beforeRemoveDisk(Disk *disk);
     void afterRemoveDisk();

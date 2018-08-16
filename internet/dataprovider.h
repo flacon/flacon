@@ -31,7 +31,7 @@
 #include <QList>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
-#include "tags.h"
+#include "track.h"
 
 class Disk;
 class QNetworkAccessManager;
@@ -55,12 +55,12 @@ public slots:
 
 signals:
     void finished();
-    void ready(const QVector<DiskTags> result);
+    void ready(const QVector<Tracks> result);
 
 protected:
     void get(const QNetworkRequest &request);
     void error(const QString &message);
-    virtual QVector<DiskTags> dataReady(QNetworkReply *reply) = 0;
+    virtual QVector<Tracks> dataReady(QNetworkReply *reply) = 0;
 
 private slots:
     void replayFinished();
@@ -69,7 +69,7 @@ private:
     QNetworkAccessManager *networkAccessManager() const;
     const Disk &mDisk;
     QList<QNetworkReply*> mReplies;
-    QVector<DiskTags> mResult;
+    QVector<Tracks> mResult;
 
     void addReply(QNetworkReply* reply);
 };
@@ -82,10 +82,10 @@ public:
 
     void start();
 protected:
-    QVector<DiskTags> dataReady(QNetworkReply *reply) override;
+    QVector<Tracks> dataReady(QNetworkReply *reply) override;
 
 private:
-    DiskTags parse(QNetworkReply *reply);
+    Tracks parse(QNetworkReply *reply);
 };
 
 #endif // DATAPROVIDER_H

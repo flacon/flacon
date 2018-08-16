@@ -31,7 +31,6 @@
 #include <QTextCodec>
 #include <QDebug>
 
-#include <uchardet.h>
 
 #define ENC_CODEC "UTF-8"
 
@@ -45,6 +44,16 @@ static QTextCodec *encCodec()
     return res;
 }
 
+
+
+/************************************************
+ *
+ ************************************************/
+TagValue::TagValue(const QString &value):
+    mValue(encCodec()->fromUnicode(value)),
+    mEncoded(true)
+{
+}
 
 
 /************************************************
@@ -199,174 +208,4 @@ void TrackTags::setCodecName(const QString &value)
 bool TrackTags::operator ==(const TrackTags &other) const
 {
     return this->mTags == other.mTags;
-}
-
-
-/************************************************
- *
- ************************************************/
-QTextCodec *determineTextCodec(const QVector<TrackTags*> tracks)
-{
-    QTextCodec *res;
-    uchardet_t uc = uchardet_new();
-
-    foreach(const TrackTags *track, tracks)
-    {
-        const QByteArray &performer = track->tagData(TagId::Performer);
-        const QByteArray &title     = track->tagData(TagId::Title);
-
-        uchardet_handle_data(uc, performer.data(), performer.length());
-        uchardet_handle_data(uc, title.data(),     title.length());
-    }
-
-    uchardet_data_end(uc);
-    res = QTextCodec::codecForName(uchardet_get_charset(uc));
-    if (!res)
-        res = QTextCodec::codecForName("UTF-8");
-
-    uchardet_delete(uc);
-
-    return res;
-}
-
-
-
-/************************************************
- *
- ************************************************/
-struct UcharDet::Data
-{
-    uchardet_t mUchcharDet;
-
-};
-
-
-/************************************************
- *
- ************************************************/
-UcharDet::UcharDet():
-    mData(new Data())
-{
-    mData->mUchcharDet = uchardet_new();
-}
-
-
-/************************************************
- *
- ************************************************/
-UcharDet::~UcharDet()
-{
-    uchardet_delete(mData->mUchcharDet);
-    delete mData;
-}
-
-
-/************************************************
- *
- ************************************************/
-UcharDet &UcharDet::operator<<(const TrackTags &track)
-{
-    const QByteArray &performer = track.tagData(TagId::Performer);
-    const QByteArray &title     = track.tagData(TagId::Title);
-
-    uchardet_handle_data(mData->mUchcharDet, performer.data(), performer.length());
-    uchardet_handle_data(mData->mUchcharDet, title.data(),     title.length());
-
-    return *this;
-}
-
-
-/************************************************
- *
- ************************************************/
-QString UcharDet::textCodecName() const
-{
-    return textCodec()->name();
-}
-
-
-/************************************************
- *
- ************************************************/
-QTextCodec *UcharDet::textCodec() const
-{
-    uchardet_data_end(mData->mUchcharDet);
-    QTextCodec *res = QTextCodec::codecForName(uchardet_get_charset(mData->mUchcharDet));
-    if (!res)
-        res = QTextCodec::codecForName("UTF-8");
-
-    return res;
-}
-
-
-/************************************************
- *
- ************************************************/
-DiskTags::DiskTags():
-    QVector<TrackTags>()
-{
-
-}
-
-
-/************************************************
- *
- ************************************************/
-DiskTags::DiskTags(int size):
-    QVector<TrackTags>(size)
-{
-
-}
-
-
-/************************************************
- *
- ************************************************/
-DiskTags::DiskTags(const DiskTags &other):
-    QVector<TrackTags>(other),
-    mUri(other.mUri),
-    mTitle(other.mTitle)
-{
-
-}
-
-/************************************************
- *
- ************************************************/
-DiskTags& DiskTags::operator=(const DiskTags &other)
-{
-    QVector<TrackTags>::operator =(other);
-    mUri   = other.mUri;
-    mTitle = other.mTitle;
-
-    return *this;
-}
-
-
-/************************************************
- *
- ************************************************/
-QString DiskTags::title() const
-{
-    assert(!isEmpty());
-
-    return mTitle.asString(first().codec());
-}
-
-
-/************************************************
- *
- ************************************************/
-void DiskTags::setTitle(const QByteArray &value)
-{
-    mTitle.setValue(value);
-}
-
-
-/************************************************
- *
- ************************************************/
-void DiskTags::setTitle(const QString &value)
-{
-    mTitle.setValue(value);
 }
