@@ -195,7 +195,7 @@ QString Track::resultFileName() const
                         this->tag(TagId::DiskPerformer),
                         this->genre(),
                         this->date(),
-                        settings->outFormat()->ext())
+                        "")
 
             +
 
@@ -242,6 +242,10 @@ QString Track::calcFileName(const QString &pattern,
     tokens.insert(QChar('y'),   Disk::safeString(date));
 
     QString res = expandPattern(pattern, &tokens, false);
+
+    if (fileExt.isEmpty())
+        return res;
+
     return res + "." + fileExt;
 }
 
