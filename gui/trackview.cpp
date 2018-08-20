@@ -82,9 +82,12 @@ QList<Track*> TrackView::selectedTracks() const
     QModelIndexList idxs = selectionModel()->selectedIndexes();
     foreach(QModelIndex index, idxs)
     {
-        Track *track = mModel->trackByIndex(index);
-        if (track)
-            res << track;
+        if (index.column() == 0)
+        {
+            Track *track = mModel->trackByIndex(index);
+            if (track)
+                res << track;
+        }
     }
 
     return res;
