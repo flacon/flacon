@@ -145,36 +145,36 @@ TrackTags::~TrackTags()
 /************************************************
  *
  ************************************************/
-QString TrackTags::tag(const TagId &tagID) const
+QString TrackTags::tag(TagId tagId) const
 {
-    return mTags.value(static_cast<int>(tagID)).asString(mTextCodec);
+    return mTags.value(static_cast<int>(tagId)).asString(mTextCodec);
 }
 
 
 /************************************************
  *
  ************************************************/
-QByteArray TrackTags::tagData(const TagId &tagID) const
+QByteArray TrackTags::tagData(TagId tagId) const
 {
-    return mTags.value(static_cast<int>(tagID)).value();
+    return mTags.value(static_cast<int>(tagId)).value();
 }
 
 
 /************************************************
  *
  ************************************************/
-void TrackTags::setTag(const TagId &tagID, const QString &value)
+void TrackTags::setTag(TagId tagId, const QString &value)
 {
-    mTags.insert(static_cast<int>(tagID), TagValue(encCodec()->fromUnicode(value), true));
+    mTags.insert(static_cast<int>(tagId), TagValue(encCodec()->fromUnicode(value), true));
 }
 
 
 /************************************************
  *
  ************************************************/
-void TrackTags::setTag(const TagId &tagID, const QByteArray &value)
+void TrackTags::setTag(TagId tagId, const QByteArray &value)
 {
-    mTags.insert(static_cast<int>(tagID), TagValue(value, false));
+    mTags.insert(static_cast<int>(tagId), TagValue(value, false));
 }
 
 

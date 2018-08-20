@@ -94,6 +94,8 @@ public:
     static QStringList searchCoverImages(const QString &startDir);
     static QString searchCoverImage(const QString &startDir);
 
+private slots:
+    void trackChanged(TagId tagId);
 
 private:
     QHash<QString, Tracks> mTagSets;
@@ -116,6 +118,7 @@ private:
     void syncTagsToTracks();
 
     int distance(const Tracks &other);
+    bool isSameTagValue(TagId tagId);
 };
 
 typedef QList<Disk*> DiskList;

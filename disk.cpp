@@ -61,6 +61,7 @@ Disk::Disk(QObject *parent) :
 Disk::~Disk()
 {
     delete mAudioFile;
+    qDeleteAll(mTracks);
 }
 
 
@@ -151,7 +152,12 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
 
     // Sync count of tracks
     for (int i=mTracks.count(); i<count; ++i)
-        mTracks.append(new Track());
+    {
+        Track *track = new Track();
+        connect(track, &Track::tagChanged, this, &Disk::trackChanged);
+        mTracks.append(track);
+
+    }
 
     while (mTracks.count() > count)
         delete mTracks.takeLast();
@@ -369,6 +375,29 @@ int Disk::distance(const Tracks &other)
     res += levenshteinDistance(str1, str2);
 
     return res;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+bool Disk::isSameTagValue(TagId tagId)
+{
+    if (mTracks.isEmpty())
+        return false;
+
+    auto it = mTracks.constBegin();
+    QByteArray value = (*it)->tagData(tagId);
+    ++it;
+
+    for (; it != mTracks.constEnd(); ++it)
+    {
+        if ((*it)->tagData(tagId) != value)
+            return false;
+    }
+
+    return true;
+
 }
 
 
@@ -769,4 +798,23 @@ QString Disk::searchCoverImage(const QString &startDir)
             return file;
     }
     return "";
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Disk::trackChanged(TagId tagId)
+{
+    if (mTracks.isEmpty())
+        return;
+
+    if (tagId == TagId::Performer && isSameTagValue(TagId::Performer))
+    {
+        foreach (Track *track, mTracks)
+        {
+            track->setTag(TagId::DiskPerformer, track->tagData(TagId::Performer));
+        }
+    }
+
 }

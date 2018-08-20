@@ -27,13 +27,15 @@
 #ifndef TRACK_H
 #define TRACK_H
 
+#include <QObject>
 #include "types.h"
 #include "tags.h"
 
 class Disk;
 
-class Track
+class Track: public QObject
 {
+    Q_OBJECT
     friend class Disk;
     friend class CueReader;
 public:
@@ -43,10 +45,10 @@ public:
     void setTags(const Track &other);
     ~Track();
 
-    QString tag(const TagId &tagID) const;
-    QByteArray tagData(const TagId &tagID) const;
-    void setTag(const TagId &tagID, const QString &value);
-    void setTag(const TagId &tagID, const QByteArray &value);
+    QString tag(const TagId &tagId) const;
+    QByteArray tagData(const TagId &tagId) const;
+    void setTag(const TagId &tagId, const QString &value);
+    void setTag(const TagId &tagId, const QByteArray &value);
 
     QString codecName() const;
     void setCodecName(const QString &value);
@@ -108,6 +110,9 @@ public:
 
     QString cueFileName() const { return mCueFileName; }
     void setCueFileName(const QString &value) { mCueFileName = value; }
+
+signals:
+    void tagChanged(TagId tagId);
 
 private:
     QHash<int, TagValue> mTags;

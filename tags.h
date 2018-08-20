@@ -119,10 +119,10 @@ public:
 
     QString diskId() const              { return tag(TagId::DiscId) ;}
 
-    QString tag(const TagId &tagID) const;
-    QByteArray tagData(const TagId &tagID) const;
-    void setTag(const TagId &tagID, const QString &value);
-    void setTag(const TagId &tagID, const QByteArray &value);
+    QString tag(TagId tagId) const;
+    QByteArray tagData(TagId tagId) const;
+    void setTag(TagId tagId, const QString &value);
+    void setTag(TagId tagId, const QByteArray &value);
 
     QString codecName() const;
     void setCodecName(const QString &value);

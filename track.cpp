@@ -44,6 +44,7 @@
 
  ************************************************/
 Track::Track():
+    QObject(nullptr),
     mTextCodec(nullptr),
     mTrackNum(0),
     mTrackCount(0),
@@ -56,6 +57,7 @@ Track::Track():
  *
  ************************************************/
 Track::Track(const Track &other):
+    QObject(nullptr),
     mTags(other.mTags),
     mTextCodec(other.mTextCodec),
     mCueIndexes(other.mCueIndexes),
@@ -105,36 +107,38 @@ Track::~Track()
 /************************************************
  *
  ************************************************/
-QString Track::tag(const TagId &tagID) const
+QString Track::tag(const TagId &tagId) const
 {
-    return mTags.value(static_cast<int>(tagID)).asString(mTextCodec);
+    return mTags.value(static_cast<int>(tagId)).asString(mTextCodec);
 }
 
 
 /************************************************
  *
  ************************************************/
-QByteArray Track::tagData(const TagId &tagID) const
+QByteArray Track::tagData(const TagId &tagId) const
 {
-    return mTags.value(static_cast<int>(tagID)).value();
+    return mTags.value(static_cast<int>(tagId)).value();
 }
 
 
 /************************************************
  *
  ************************************************/
-void Track::setTag(const TagId &tagID, const QString &value)
+void Track::setTag(const TagId &tagId, const QString &value)
 {
-    mTags.insert(static_cast<int>(tagID), TagValue(value));
+    mTags.insert(static_cast<int>(tagId), TagValue(value));
+    emit tagChanged(tagId);
 }
 
 
 /************************************************
  *
  ************************************************/
-void Track::setTag(const TagId &tagID, const QByteArray &value)
+void Track::setTag(const TagId &tagId, const QByteArray &value)
 {
-    mTags.insert(static_cast<int>(tagID), TagValue(value, false));
+    mTags.insert(static_cast<int>(tagId), TagValue(value, false));
+    emit tagChanged(tagId);
 }
 
 
