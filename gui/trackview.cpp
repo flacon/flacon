@@ -190,6 +190,16 @@ void TrackView::update(const Disk &disk)
 {
     QModelIndex idx = mModel->index(disk, 0);
     QTreeView::update(idx);
+
+    int rows = mModel->rowCount(idx);
+    int cols = mModel->columnCount(idx);
+    for (int r=0; r<rows; ++r)
+    {
+        for (int c=0; c<cols; ++c)
+        {
+            QTreeView::update(mModel->index(r, c, idx));
+        }
+    }
 }
 
 

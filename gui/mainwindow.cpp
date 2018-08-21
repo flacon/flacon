@@ -96,22 +96,29 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Tag edits ...............................................
     tagGenreEdit->setTagId(TagId::Genre);
-    connect(tagGenreEdit, SIGNAL(editingFinished()), this, SLOT(setTrackTag()));
+    connect(tagGenreEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
 
     tagYearEdit->setTagId(TagId::Date);
-    connect(tagYearEdit, SIGNAL(editingFinished()), this, SLOT(setTrackTag()));
+    connect(tagYearEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
 
     tagArtistEdit->setTagId(TagId::Performer);
-    connect(tagArtistEdit, SIGNAL(editingFinished()), this, SLOT(setTrackTag()));
+    connect(tagArtistEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
+    connect(tagArtistEdit, SIGNAL(textEdited(QString)), this, SLOT(refreshEdits()));
+
+    tagDiskPerformerEdit->setTagId(TagId::DiskPerformer);
+    connect(tagDiskPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(setDiskTag()));
+    connect(tagDiskPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(refreshEdits()));
 
     tagAlbumEdit->setTagId(TagId::Album);
-    connect(tagAlbumEdit, SIGNAL(editingFinished()), this, SLOT(setTrackTag()));
+    connect(tagAlbumEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
+
 
     tagDiscIdEdit->setTagId(TagId::DiscId);
 
     connect(tagStartNumEdit, SIGNAL(editingFinished()), this, SLOT(setStartTrackNum()));
     connect(tagStartNumEdit, SIGNAL(valueChanged(int)), this, SLOT(setStartTrackNum()));
 
+    connect(trackView->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)), this, SLOT(refreshEdits()));
     initActions();
 
     // Buttons .................................................
@@ -473,6 +480,7 @@ void MainWindow::refreshEdits()
     QSet<QString> artist;
     QSet<QString> album;
     QSet<QString> date;
+    QSet<QString> diskPerformer;
 
     QList<Track*> tracks = trackView->selectedTracks();
     foreach(Track *track, tracks)
@@ -481,6 +489,7 @@ void MainWindow::refreshEdits()
         artist << track->artist();
         album << track->album();
         date << track->date();
+        diskPerformer << track->tag(TagId::DiskPerformer);
     }
 
     tagGenreEdit->setMultiValue(genre);
@@ -490,6 +499,7 @@ void MainWindow::refreshEdits()
     tagStartNumEdit->setMultiValue(startNums);
     tagDiscIdEdit->setMultiValue(diskId);
     codepageCombo->setMultiValue(codePage);
+    tagDiskPerformerEdit->setMultiValue(diskPerformer);
 
     if (outDirEdit->currentText() != settings->value(Settings::OutFiles_Directory).toString())
         outDirEdit->lineEdit()->setText(settings->value(Settings::OutFiles_Directory).toString());
@@ -538,6 +548,24 @@ void MainWindow::setTrackTag()
     {
         track->setTag(edit->tagId(), edit->text());
         trackView->update(*track);
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::setDiskTag()
+{
+    TagLineEdit *edit = qobject_cast<TagLineEdit*>(sender());
+    if (!edit)
+        return;
+
+    QList<Disk*> disks = trackView->selectedDisks();
+    foreach(Disk *disk, disks)
+    {
+        disk->setDiskTag(edit->tagId(), edit->text());
+        trackView->update(*disk);
     }
 }
 

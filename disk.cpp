@@ -705,6 +705,50 @@ QImage Disk::coverImage() const
 
 
 /************************************************
+ *
+ ************************************************/
+QString Disk::diskTag(TagId tagId) const
+{
+    if (isEmpty())
+        return "";
+
+    return mTracks.first()->tag(tagId);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QByteArray Disk::diskTagData(TagId tagId) const
+{
+    if (isEmpty())
+        return QByteArray();
+
+    return mTracks.first()->tagData(tagId);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Disk::setDiskTag(TagId tagId, const QString &value)
+{
+    foreach (auto track,  mTracks)
+        track->setTag(tagId, value);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Disk::setDiskTag(TagId tagId, const QByteArray &value)
+{
+    foreach (auto track,  mTracks)
+        track->setTag(tagId, value);
+}
+
+
+/************************************************
 
  ************************************************/
 bool compareCoverImages(const QFileInfo &f1, const QFileInfo &f2)
@@ -813,7 +857,7 @@ void Disk::trackChanged(TagId tagId)
     {
         foreach (Track *track, mTracks)
         {
-            track->setTag(TagId::DiskPerformer, track->tagData(TagId::Performer));
+            track->setTag(TagId::DiskPerformer, track->tagValue(TagId::Performer));
         }
     }
 

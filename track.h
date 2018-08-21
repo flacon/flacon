@@ -47,14 +47,17 @@ public:
 
     QString tag(const TagId &tagId) const;
     QByteArray tagData(const TagId &tagId) const;
+    TagValue tagValue(TagId tagId) const;
     void setTag(const TagId &tagId, const QString &value);
     void setTag(const TagId &tagId, const QByteArray &value);
+    void setTag(TagId tagId, const TagValue &value);
+
 
     QString codecName() const;
     void setCodecName(const QString &value);
     const QTextCodec *codec() const { return mTextCodec; }
 
-    bool operator ==(const TrackTags &other) const;
+    bool operator ==(const Track &other) const;
 
 
     QString artist() const            { return performer(); }
@@ -105,8 +108,6 @@ public:
 
     TrackNum trackCount() const { return mTrackCount; }
     void setTrackCount(TrackNum value) { mTrackCount = value; }
-
-    bool operator ==(const Track &other) const;
 
     QString cueFileName() const { return mCueFileName; }
     void setCueFileName(const QString &value) { mCueFileName = value; }
@@ -168,6 +169,6 @@ private:
     Data *mData;
 };
 
-QTextCodec *determineTextCodec(const QVector<TrackTags*> tracks);
+QTextCodec *determineTextCodec(const QVector<Track*> tracks);
 
 #endif // TRACK_H

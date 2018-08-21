@@ -82,59 +82,12 @@ public:
 
     bool operator ==(const TagValue &other) const;
 
+    bool isEmpty() const { return mValue.isEmpty(); }
+
 private:
     QByteArray mValue;
     bool mEncoded;
 };
-
-class TrackTags
-{
-public:
-    TrackTags();
-    TrackTags(const TrackTags &other);
-    TrackTags &operator=(const TrackTags &other);
-    virtual ~TrackTags();
-
-    QString artist() const            { return performer(); }
-    void setArtist(const QString &value)  { setPerformer(value); }
-
-    QString performer() const            { return tag(TagId::Performer); }
-    void setPerformer(const QString &value)  { setTag(TagId::Performer, value); }
-
-
-    QString album() const             { return tag(TagId::Album); }
-    void setAlbum(const QString &value)   { setTag(TagId::Album, value); }
-
-    QString comment() const           { return tag(TagId::Comment) ;}
-    void setComment(const QString &value)   { setTag(TagId::Comment, value); }
-
-    QString title() const             { return tag(TagId::Title) ;}
-    void setTitle(const QString &value)   { setTag(TagId::Title, value); }
-
-    QString genre() const             { return tag(TagId::Genre) ;}
-    void setGenre(const QString &value)   { setTag(TagId::Genre, value); }
-
-    QString date() const              { return tag(TagId::Date) ;}
-    void setDate(const QString &value)    { setTag(TagId::Date, value); }
-
-    QString diskId() const              { return tag(TagId::DiscId) ;}
-
-    QString tag(TagId tagId) const;
-    QByteArray tagData(TagId tagId) const;
-    void setTag(TagId tagId, const QString &value);
-    void setTag(TagId tagId, const QByteArray &value);
-
-    QString codecName() const;
-    void setCodecName(const QString &value);
-    const QTextCodec *codec() const { return mTextCodec; }
-
-    bool operator ==(const TrackTags &other) const;
-
-private:
-    QHash<int, TagValue> mTags;
-    QTextCodec *mTextCodec;
-};
-
 
 
 #endif // TAGS_H

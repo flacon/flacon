@@ -318,6 +318,7 @@ bool TrackViewModel::setData(const QModelIndex &index, const QVariant &value, in
         }
     }
 
+    emit dataChanged(index, index, QVector<int>() << role);
     return true;
 }
 
@@ -624,10 +625,10 @@ void TrackViewModel::diskDataChanged(const Disk *disk)
 /************************************************
 
  ************************************************/
-void TrackViewModel::trackDataChanged(int disk, int track)
-{
-    QModelIndex diskIndex = index(disk, 0, QModelIndex());
-    QModelIndex index1 = index(track, 0, diskIndex);
-    QModelIndex index2 = index(track, TrackView::ColumnCount, diskIndex);
-    emit dataChanged(index1, index2);
-}
+//void TrackViewModel::trackDataChanged(int disk, int track)
+//{
+//    QModelIndex diskIndex = index(disk, 0, QModelIndex());
+//    QModelIndex index1 = index(track, 0, diskIndex);
+//    QModelIndex index2 = index(track, TrackView::ColumnCount, diskIndex);
+//    emit dataChanged(index1, index2);
+//}

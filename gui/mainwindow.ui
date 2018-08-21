@@ -204,7 +204,7 @@ If you surround sections of text that contain a token with braces, these section
            <item row="2" column="1">
             <widget class="TagLineEdit" name="tagArtistEdit"/>
            </item>
-           <item row="3" column="0">
+           <item row="4" column="0">
             <widget class="QLabel" name="tagAlbumEditLabel">
              <property name="text">
               <string>Album:</string>
@@ -214,10 +214,10 @@ If you surround sections of text that contain a token with braces, these section
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
+           <item row="4" column="1">
             <widget class="TagLineEdit" name="tagAlbumEdit"/>
            </item>
-           <item row="4" column="0">
+           <item row="5" column="0">
             <widget class="QLabel" name="tagStartNumEditLabel">
              <property name="toolTip">
               <string/>
@@ -230,14 +230,14 @@ If you surround sections of text that contain a token with braces, these section
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
+           <item row="5" column="1">
             <widget class="MultiValuesSpinBox" name="tagStartNumEdit">
              <property name="minimum">
               <number>1</number>
              </property>
             </widget>
            </item>
-           <item row="5" column="0">
+           <item row="6" column="0">
             <widget class="QLabel" name="tagDiscIdEditLabel">
              <property name="text">
               <string>Disc ID:</string>
@@ -247,14 +247,17 @@ If you surround sections of text that contain a token with braces, these section
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
+           <item row="7" column="1">
+            <widget class="CodePageComboBox" name="codepageCombo"/>
+           </item>
+           <item row="6" column="1">
             <widget class="TagLineEdit" name="tagDiscIdEdit">
              <property name="readOnly">
               <bool>true</bool>
              </property>
             </widget>
            </item>
-           <item row="6" column="0">
+           <item row="7" column="0">
             <widget class="QLabel" name="codepageComboLabel">
              <property name="text">
               <string>Codepage:</string>
@@ -264,8 +267,18 @@ If you surround sections of text that contain a token with braces, these section
              </property>
             </widget>
            </item>
-           <item row="6" column="1">
-            <widget class="CodePageComboBox" name="codepageCombo"/>
+           <item row="3" column="1">
+            <widget class="TagLineEdit" name="tagDiskPerformerEdit"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="tagDiskPerformerLabel">
+             <property name="text">
+              <string>Disk performer</string>
+             </property>
+             <property name="buddy">
+              <cstring>tagDiskPerformerEdit</cstring>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -324,7 +337,7 @@ If you surround sections of text that contain a token with braces, these section
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -426,7 +439,7 @@ If you surround sections of text that contain a token with braces, these section
   </action>
   <action name="actionConfigure">
    <property name="text">
-    <string>&amp;Preferences</string>
+    <string>Preferences</string>
    </property>
    <property name="toolTip">
     <string>Program preferences</string>
@@ -434,7 +447,7 @@ If you surround sections of text that contain a token with braces, these section
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>&amp;About Flacon</string>
+    <string>About Flacon</string>
    </property>
   </action>
   <action name="actionRemoveDisc">
@@ -539,6 +552,23 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
    <header>controls.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>outDirEdit</tabstop>
+  <tabstop>outDirButton</tabstop>
+  <tabstop>outPatternEdit</tabstop>
+  <tabstop>outPatternButton</tabstop>
+  <tabstop>outFormatCombo</tabstop>
+  <tabstop>configureEncoderBtn</tabstop>
+  <tabstop>tagGenreEdit</tabstop>
+  <tabstop>tagYearEdit</tabstop>
+  <tabstop>tagArtistEdit</tabstop>
+  <tabstop>tagDiskPerformerEdit</tabstop>
+  <tabstop>tagAlbumEdit</tabstop>
+  <tabstop>tagStartNumEdit</tabstop>
+  <tabstop>tagDiscIdEdit</tabstop>
+  <tabstop>codepageCombo</tabstop>
+  <tabstop>trackView</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

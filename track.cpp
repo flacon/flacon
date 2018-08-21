@@ -125,6 +125,15 @@ QByteArray Track::tagData(const TagId &tagId) const
 /************************************************
  *
  ************************************************/
+TagValue Track::tagValue(TagId tagId) const
+{
+    return mTags.value(static_cast<int>(tagId));
+}
+
+
+/************************************************
+ *
+ ************************************************/
 void Track::setTag(const TagId &tagId, const QString &value)
 {
     mTags.insert(static_cast<int>(tagId), TagValue(value));
@@ -138,6 +147,16 @@ void Track::setTag(const TagId &tagId, const QString &value)
 void Track::setTag(const TagId &tagId, const QByteArray &value)
 {
     mTags.insert(static_cast<int>(tagId), TagValue(value, false));
+    emit tagChanged(tagId);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Track::setTag(TagId tagId, const TagValue &value)
+{
+    mTags.insert(static_cast<int>(tagId), value);
     emit tagChanged(tagId);
 }
 
@@ -543,11 +562,14 @@ UcharDet::~UcharDet()
  ************************************************/
 UcharDet &UcharDet::operator<<(const Track &track)
 {
-    const QByteArray &performer = track.tagData(TagId::Performer);
-    const QByteArray &title     = track.tagData(TagId::Title);
+    TagId tags[] = {TagId::Performer, TagId::Title};
 
-    uchardet_handle_data(mData->mUchcharDet, performer.data(), performer.length());
-    uchardet_handle_data(mData->mUchcharDet, title.data(),     title.length());
+    for (uint i=0; i<sizeof(tags)/sizeof(TagId); ++i)
+    {
+        TagValue tv = track.tagValue(tags[i]);
+        if (!tv.encoded())
+            uchardet_handle_data(mData->mUchcharDet, tv.value().data(), tv.value().length());
+    }
 
     return *this;
 }
@@ -579,12 +601,12 @@ QTextCodec *UcharDet::textCodec() const
 /************************************************
  *
  ************************************************/
-QTextCodec *determineTextCodec(const QVector<TrackTags*> tracks)
+QTextCodec *determineTextCodec(const QVector<Track*> tracks)
 {
     QTextCodec *res;
     uchardet_t uc = uchardet_new();
 
-    foreach(const TrackTags *track, tracks)
+    foreach(const Track *track, tracks)
     {
         const QByteArray &performer = track->tagData(TagId::Performer);
         const QByteArray &title     = track->tagData(TagId::Title);

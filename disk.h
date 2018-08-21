@@ -91,8 +91,15 @@ public:
     QImage coverImagePreview() const;
     QImage coverImage() const;
 
+    QString diskTag(TagId tagId) const;
+    QByteArray diskTagData(TagId tagId) const;
+    void setDiskTag(TagId tagId, const QString &value);
+    void setDiskTag(TagId tagId, const QByteArray &value);
+
     static QStringList searchCoverImages(const QString &startDir);
     static QString searchCoverImage(const QString &startDir);
+
+    bool isEmpty() const { return mTracks.isEmpty(); }
 
 private slots:
     void trackChanged(TagId tagId);
@@ -110,6 +117,7 @@ private:
 
     QString mCoverImageFile;
     mutable QImage  mCoverImagePreview;
+
 
     void findAudioFile(const CueDisk &cueDisk);
     void findCueFile();
