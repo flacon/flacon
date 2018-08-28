@@ -27,6 +27,7 @@ macro(add_tests TESTS_DIR)
   option(BUILD_TESTS "Build tests." $ENV{BUILD_TESTS})
 
   if(BUILD_TESTS)
+    enable_testing()
     add_definitions(-DBUILD_TESTS)
     add_subdirectory(${TESTS_DIR})
   else()

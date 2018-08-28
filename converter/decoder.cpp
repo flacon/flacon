@@ -59,23 +59,9 @@ qint64 timeToBytes(CueTime time, const WavHeader &wav)
  ************************************************/
 Decoder::Decoder(QObject *parent) :
     QObject(parent),
-    mFormat(NULL),
-    mProcess(NULL),
-    mFile(NULL),
-    mPos(0)
-{
-
-}
-
-
-/************************************************
- *
- ************************************************/
-Decoder::Decoder(const AudioFormat &format, QObject *parent) :
-    QObject(parent),
-    mFormat(&format),
-    mProcess(NULL),
-    mFile(NULL),
+    mFormat(nullptr),
+    mProcess(nullptr),
+    mFile(nullptr),
     mPos(0)
 {
 
@@ -296,6 +282,11 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         // Read bytes from start to end of track ..........
         mPos= pos;
         return true;
+    }
+    catch(FlaconError &err)
+    {
+        mErrorString = "[Decoder] " + err.message();
+        return false;
     }
 
     catch (QString &err)

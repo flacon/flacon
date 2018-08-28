@@ -42,7 +42,6 @@ class Decoder : public QObject
     Q_OBJECT
 public:
     explicit Decoder(QObject *parent = 0);
-    explicit Decoder(const AudioFormat &format, QObject *parent = 0);
     virtual ~Decoder();
 
     bool open(const QString fileName);
@@ -58,6 +57,7 @@ public:
 
     WavHeader wavHeader() const { return mWavHeader; }
 
+    const AudioFormat *audioFormat() const { return mFormat; }
 signals:
     void progress(int percent);
 

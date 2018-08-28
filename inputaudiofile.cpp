@@ -101,16 +101,7 @@ bool InputAudioFile::load()
     }
 
 
-    mFormat = AudioFormat::formatForFile(mFileName);
-    if (!mFormat)
-    {
-        mErrorString = QObject::tr("File <b>%1</b> is not a supported audio file. <br>"
-                                   "<br>Verify that all required programs are installed and in your preferences.").arg(mFileName);
-
-        return false;
-    }
-
-    Decoder dec(*mFormat);
+    Decoder dec;
     if (!dec.open(mFileName))
     {
         mErrorString = QObject::tr("File <b>%1</b> is not a supported audio file. <br>"
@@ -118,6 +109,7 @@ bool InputAudioFile::load()
         mErrorString += ": " + dec.errorString();
         return false;
     }
+    mFormat = dec.audioFormat();
 
     mSampleRate = dec.wavHeader().sampleRate();
     mCdQuality  = dec.wavHeader().isCdQuality();

@@ -58,13 +58,13 @@ void TestFlacon::testDecoder()
 
 
     // Flacon decoder ___________________________
-    const AudioFormat *format = AudioFormat::formatForFile(inputFile);
-    if (!format)
-        QFAIL("Unknown format");
-
-    Decoder decoder(*format);
+    Decoder decoder;
     if (!decoder.open(inputFile))
         QFAIL(QString("Can't open input file '%1': %2").arg(inputFile, decoder.errorString()).toLocal8Bit());
+
+    if (!decoder.audioFormat())
+        QFAIL("Unknown format");
+
 
     for (int i=0; i < tracks.count(); ++i)
     {
