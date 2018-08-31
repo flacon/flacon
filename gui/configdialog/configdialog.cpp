@@ -44,6 +44,27 @@
 #include "updater/updater.h"
 #endif
 
+
+/************************************************
+ *
+ ************************************************/
+static void loadWidget(Settings::Key  key, QComboBox *widget)
+{
+    int n = qMax(0, widget->findData(settings->value(key)));
+    widget->setCurrentIndex(n);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+static void writeWidget(Settings::Key key, QComboBox *widget)
+{
+    QVariant data = widget->itemData(widget->currentIndex());
+    settings->setValue(key, data);
+}
+
+
 /************************************************
 
  ************************************************/
@@ -83,17 +104,7 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
     connect(pages, SIGNAL(currentChanged(int)), this, SLOT(setPage(int)));
 
-    tmpDirButton->setIcon(loadIcon("folder"));
-    connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
-
-
-    connect(coverDisableButton,  &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Disable);  });
-    connect(coverKeepSizeButton, &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::OrigSize); });
-    connect(coverScaleButton,    &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Scale);    });
-
-    preGapComboBox->addItem(tr("Extract to separate file"), preGapTypeToString(PreGapType::ExtractToFile));
-    preGapComboBox->addItem(tr("Add to first track"),       preGapTypeToString(PreGapType::AddToFirstTrack));
-
+    initGeneralPage();
     initTabPages();
 
 #ifdef MAC_BUNDLE
@@ -120,6 +131,37 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
  ************************************************/
 ConfigDialog::~ConfigDialog()
 {
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ConfigDialog::initGeneralPage()
+{
+    tmpDirButton->setIcon(loadIcon("folder"));
+    connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
+
+
+    connect(coverDisableButton,  &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Disable);  });
+    connect(coverKeepSizeButton, &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::OrigSize); });
+    connect(coverScaleButton,    &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Scale);    });
+
+    preGapComboBox->addItem(tr("Extract to separate file"), preGapTypeToString(PreGapType::ExtractToFile));
+    preGapComboBox->addItem(tr("Add to first track"),       preGapTypeToString(PreGapType::AddToFirstTrack));
+
+
+    bitDepthComboBox->addItem(tr("As source", "Item in combobox"), int(BitsPerSample::AsSourcee));
+    bitDepthComboBox->addItem(tr("16 bit",    "Item in combobox"), int(BitsPerSample::Bit_16));
+    bitDepthComboBox->addItem(tr("24 bit",    "Item in combobox"), int(BitsPerSample::Bit_24));
+    bitDepthComboBox->addItem(tr("32 bit",    "Item in combobox"), int(BitsPerSample::Bit_32));
+
+    sampleRateComboBox->addItem(tr("As source", "Item in combobox"), int(SampleRate::AsSource));
+    sampleRateComboBox->addItem(tr("44100 Hz",  "Item in combobox"), int(SampleRate::Hz_44100));
+    sampleRateComboBox->addItem(tr("48000 Hz",  "Item in combobox"), int(SampleRate::Hz_48000));
+    sampleRateComboBox->addItem(tr("96000 Hz",  "Item in combobox"), int(SampleRate::Hz_96000));
+    sampleRateComboBox->addItem(tr("192000 Hz", "Item in combobox"), int(SampleRate::Hz_192000));
 
 }
 
@@ -338,8 +380,12 @@ void ConfigDialog::load()
     EncoderConfigPage::loadWidget("PerTrackCue/Create",    perTrackCueCheck);
     EncoderConfigPage::loadWidget("PerTrackCue/Pregap",    preGapComboBox);
 
+
+    loadWidget(Settings::Resample_BitsPerSample,   bitDepthComboBox);
+    loadWidget(Settings::Resample_SampleRate, sampleRateComboBox);
+
     setCoverMode(settings->coverMode());
-    loadWidget(Settings::Cover_ResizeSize,   coverResizeSpinBox);
+    loadWidget(Settings::Cover_Size,   coverResizeSpinBox);
 
     foreach(EncoderConfigPage *page, mEncodersPages)
         page->load();
@@ -364,8 +410,11 @@ void ConfigDialog::write()
     EncoderConfigPage::writeWidget("PerTrackCue/Create",    perTrackCueCheck);
     EncoderConfigPage::writeWidget("PerTrackCue/Pregap",    preGapComboBox);
 
+    writeWidget(Settings::Resample_BitsPerSample,   bitDepthComboBox);
+    writeWidget(Settings::Resample_SampleRate, sampleRateComboBox);
+
     settings->setValue(Settings::Cover_Mode, coverModeToString(coverMode()));
-    writeWidget(Settings::Cover_ResizeSize,   coverResizeSpinBox);
+    writeWidget(Settings::Cover_Size,   coverResizeSpinBox);
 
     foreach(EncoderConfigPage *page, mEncodersPages)
         page->write();

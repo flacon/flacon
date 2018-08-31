@@ -33,7 +33,7 @@
 #include "project.h"
 #include "settings.h"
 #include "outformat.h"
-
+#include "inputaudiofile.h"
 
 #include <QThread>
 #include <QDebug>
@@ -99,7 +99,7 @@ public:
     QList<const Track*> tracks;
     bool needStartSplitter;
     QHash<const Track*, TrackState> trackStates;
-    QList<WorkerRequest> encoderRequests;
+    QList<EncoderRequest> encoderRequests;
     QList<WorkerRequest> gainRequests;
     bool interrupted;
     QString workDir;
@@ -108,7 +108,7 @@ public:
 
     void interrupt(TrackState state);
     void startSplitterThread();
-    void startEncoderThread(const WorkerRequest &req);
+    void startEncoderThread(const EncoderRequest &req);
     void startTrackGainThread(const WorkerRequest &req);
     void startAlbumGainThread(QList<WorkerRequest> &reqs);
     bool createDir(const QString &dirName) const;
@@ -338,9 +338,9 @@ void DiskPipeline::Data::startSplitterThread()
 /************************************************
  *
  ************************************************/
-void DiskPipeline::Data::startEncoderThread(const WorkerRequest &req)
+void DiskPipeline::Data::startEncoderThread(const EncoderRequest &req)
 {
-    Encoder *worker = new Encoder(req, settings->outFormat());
+    Encoder *worker = new Encoder(req);
     WorkerThread *thread = new WorkerThread(worker, pipeline);
 
     connect(pipeline, SIGNAL(threadQuit()),
@@ -439,7 +439,23 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFil
                 ".encoded." +
                 trackFile.suffix());
 
-    mData->encoderRequests << WorkerRequest(track, inputFile, outFile);
+    EncoderRequest req;
+    req.track      = track;
+    req.inputFile  = inputFile;
+    req.outFile    = outFile;
+    req.format     = settings->outFormat();
+    req.bitsPerSample = settings->value(Settings::Resample_BitsPerSample).toInt();
+    req.sampleRate = settings->value(Settings::Resample_SampleRate).toInt();
+
+    // If the original quality is worse than requested, leave it as is.
+    if (req.bitsPerSample && mData->disk->audioFile()->bitsPerSample() < req.bitsPerSample)
+        req.bitsPerSample = 0;
+
+    // If the original quality is worse than requested, leave it as is.
+    if (req.sampleRate && mData->disk->audioFile()->sampleRate() < req.sampleRate)
+        req.sampleRate = 0;
+
+    mData->encoderRequests << req;
     emit readyStart();
 }
 

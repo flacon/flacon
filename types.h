@@ -140,6 +140,27 @@ enum class TrackState
 
 Q_DECLARE_METATYPE(TrackState)
 
+
+enum class BitsPerSample
+{
+    AsSourcee =  0,
+    Bit_16    = 16,
+    Bit_24    = 24,
+    Bit_32    = 32
+};
+Q_DECLARE_METATYPE(BitsPerSample)
+
+
+enum class SampleRate
+{
+    AsSource  =      0,
+    Hz_44100  =  44100,
+    Hz_48000  =  48000,
+    Hz_96000  =  96000,
+    Hz_192000 = 192000,
+};
+Q_DECLARE_METATYPE(SampleRate)
+
 typedef quint8 Percent;
 typedef quint64 TrackId;
 

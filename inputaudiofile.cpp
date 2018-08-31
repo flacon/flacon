@@ -45,6 +45,7 @@ InputAudioFile::InputAudioFile(const QString &fileName):
     mFileName(fileName),
     mValid(false),
     mSampleRate(0),
+    mBitsPerSample(0),
     mCdQuality(false),
     mDuration(0),
     mFormat(0)
@@ -59,24 +60,23 @@ InputAudioFile::InputAudioFile(const QString &fileName):
  ************************************************/
 InputAudioFile::InputAudioFile(const InputAudioFile &other)
 {
-    mFileName    = other.mFileName;
-    mValid       = other.mValid;
-    mErrorString = other.mErrorString;
-    mSampleRate  = other.mSampleRate;
-    mCdQuality   = other.mCdQuality;
-    mDuration    = other.mDuration;
-    mFormat      = other.mFormat;
+    operator =(other);
 }
 
+
+/************************************************
+ *
+ ************************************************/
 InputAudioFile &InputAudioFile::operator =(const InputAudioFile &other)
 {
-    mFileName    = other.mFileName;
-    mValid       = other.mValid;
-    mErrorString = other.mErrorString;
-    mSampleRate  = other.mSampleRate;
-    mCdQuality   = other.mCdQuality;
-    mDuration    = other.mDuration;
-    mFormat      = other.mFormat;
+    mFileName      = other.mFileName;
+    mValid         = other.mValid;
+    mErrorString   = other.mErrorString;
+    mSampleRate    = other.mSampleRate;
+    mBitsPerSample = other.mBitsPerSample;
+    mCdQuality     = other.mCdQuality;
+    mDuration      = other.mDuration;
+    mFormat        = other.mFormat;
     return *this;
 }
 
@@ -111,9 +111,10 @@ bool InputAudioFile::load()
     }
     mFormat = dec.audioFormat();
 
-    mSampleRate = dec.wavHeader().sampleRate();
-    mCdQuality  = dec.wavHeader().isCdQuality();
-    mDuration   = dec.duration();
+    mSampleRate    = dec.wavHeader().sampleRate();
+    mBitsPerSample = dec.wavHeader().bitsPerSample();
+    mCdQuality     = dec.wavHeader().isCdQuality();
+    mDuration      = dec.duration();
 
     return true;
 }

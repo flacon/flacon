@@ -43,6 +43,7 @@ public:
     bool isValid() const { return mValid; }
     bool isCdQuality() const { return mCdQuality; }
     int sampleRate() const { return mSampleRate; }
+    int bitsPerSample() const { return mBitsPerSample; }
     QString errorString() const { return mErrorString; }
     uint duration() const { return mDuration; }
 
@@ -53,6 +54,7 @@ private:
     bool mValid;
     QString mErrorString;
     int mSampleRate;
+    int mBitsPerSample;
     bool mCdQuality;
     uint mDuration;
     const AudioFormat *mFormat;

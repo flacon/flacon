@@ -26,6 +26,8 @@
 
 #include "encoder.h"
 #include "outformat.h"
+#include "settings.h"
+#include "resampler.h"
 
 #include <QFileInfo>
 #include <QDir>
@@ -37,10 +39,9 @@ const quint64 MAX_BUF_SIZE = 1024 * 1024;
 /************************************************
  *
  ************************************************/
-Encoder::Encoder(const WorkerRequest request, const OutFormat *format, QObject *parent):
+Encoder::Encoder(const EncoderRequest request, QObject *parent):
     Worker(parent),
     mRequest(request),
-    mFormat(format),
     mTotal(0),
     mReady(0),
     mProgress(0)
@@ -50,50 +51,127 @@ Encoder::Encoder(const WorkerRequest request, const OutFormat *format, QObject *
 
 
 /************************************************
+ *
+ ************************************************/
+void Encoder::check(QProcess *process)
+{
+    if (process->exitCode() != 0)
+    {
+        QTextStream(stderr) << "Encoder command: ";
+        debugArguments(process->program(), process->arguments());
+        QString msg = tr("Encoder error:\n") + "<pre>" +
+            QString::fromLocal8Bit(process->readAllStandardError()) +
+            "</pre>";
+        error(mRequest.track, msg);
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Encoder::runOneProcess(QProcess *process)
+{
+    connect(process, &QProcess::bytesWritten, this, &Encoder::processBytesWritten);
+
+    process->start();
+    readInputFile(process);
+    process->closeWriteChannel();
+    process->waitForFinished(-1);
+    check(process);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Encoder::runTwoProcess(QProcess *resampler, QProcess *encoder)
+{
+    resampler->setStandardOutputProcess(encoder);
+
+    connect(resampler, &QProcess::bytesWritten, this, &Encoder::processBytesWritten);
+
+    resampler->start();
+    encoder->start();
+
+    readInputFile(resampler);
+    resampler->closeWriteChannel();
+    resampler->waitForFinished(-1);
+    check(resampler);
+
+    encoder->closeWriteChannel();
+    encoder->waitForFinished(-1);
+    check(encoder);
+}
+
+
+/************************************************
 
  ************************************************/
 void Encoder::run()
 {
-    emit trackProgress(mRequest.track(), TrackState::Encoding, 0);
+    emit trackProgress(mRequest.track, TrackState::Encoding, 0);
     bool debug  = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_ENCODER");
 
-    // Input file already WAV, so for WAV output format we just rename file.
-    if (mFormat->id() == "WAV")
+    const qint8 COPY_FILE=0, RESAMPLE=1, ENCODE=2, RESAMPLE_ENCODE=3;
+
+    QProcess resampler;
+    QProcess encoder;
+    qint8 mode = COPY_FILE;
+
+    if (mRequest.format->id() != "WAV")
     {
+        QStringList args = mRequest.format->encoderArgs(mRequest.track, QDir::toNativeSeparators(mRequest.outFile));
+        QString prog = args.takeFirst();
+
+        if (debug)
+            debugArguments(prog, args);
+
+        encoder.setProgram(prog);
+        encoder.setArguments(args);
+        mode += ENCODE;
+    }
+
+    if (mRequest.bitsPerSample || mRequest.sampleRate)
+    {
+        QString outFile;
+        if (mode == COPY_FILE)
+            outFile = mRequest.outFile; // Input file already WAV, so for WAV output format we just rename file.
+        else
+            outFile = "-";              // Write to STDOUT
+
+        QStringList args = Resampler::args(mRequest.bitsPerSample, mRequest.sampleRate, outFile);
+        QString prog = args.takeFirst();
+
+        if (debug)
+            debugArguments(prog, args);
+
+        resampler.setProgram(prog);
+        resampler.setArguments(args);
+        mode += RESAMPLE;
+    }
+
+    switch (mode)
+    {
+    case COPY_FILE:
         runWav();
         return;
+
+    case RESAMPLE:
+        runOneProcess(&resampler);
+        break;
+
+    case ENCODE:
+        runOneProcess(&encoder);
+        break;
+
+    case RESAMPLE_ENCODE:
+        runTwoProcess(&resampler, &encoder);
+        break;
     }
 
-    QProcess process;
-    QStringList args = mFormat->encoderArgs(mRequest.track(), QDir::toNativeSeparators(mRequest.outFile()));
-    QString prog = args.takeFirst();
-
-    if (debug)
-        debugArguments(prog, args);
-
-    connect(&process, SIGNAL(bytesWritten(qint64)),
-            this, SLOT(processBytesWritten(qint64)));
-
-    process.start(QDir::toNativeSeparators(prog), args);
-    process.waitForStarted();
-
-    readInputFile(&process);
-    process.closeWriteChannel();
-
-    process.waitForFinished(-1);
-    if (process.exitCode() != 0)
-    {
-        QTextStream(stderr) << "Encoder command: ";
-        debugArguments(prog, args);
-        QString msg = tr("Encoder error:\n") + "<pre>" +
-                QString::fromLocal8Bit(process.readAllStandardError()) +
-                "</pre>";
-        error(mRequest.track(), msg);
-    }
-
-    deleteFile(mRequest.inputFile());
-
-    emit trackReady(mRequest.track(), mRequest.outFile());
+    deleteFile(mRequest.inputFile);
+    emit trackReady(mRequest.track, mRequest.outFile);
 }
 
 
@@ -107,7 +185,7 @@ void Encoder::processBytesWritten(qint64 bytes)
     if (p != mProgress)
     {
         mProgress = p;
-        emit trackProgress(mRequest.track(), TrackState::Encoding, mProgress);
+        emit trackProgress(mRequest.track, TrackState::Encoding, mProgress);
     }
 }
 
@@ -117,10 +195,10 @@ void Encoder::processBytesWritten(qint64 bytes)
  ************************************************/
 void Encoder::readInputFile(QProcess *process)
 {
-    QFile file(mRequest.inputFile());
+    QFile file(mRequest.inputFile);
     if (!file.open(QFile::ReadOnly))
     {
-        error(mRequest.track(), tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mRequest.inputFile()));
+        error(mRequest.track, tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mRequest.inputFile));
     }
 
     mProgress = -1;
@@ -142,18 +220,18 @@ void Encoder::readInputFile(QProcess *process)
  ************************************************/
 void Encoder::runWav()
 {
-    QFile srcFile(mRequest.inputFile());
-    bool res =  srcFile.rename(mRequest.outFile());
+    QFile srcFile(mRequest.inputFile);
+    bool res =  srcFile.rename(mRequest.outFile);
 
     if (!res)
     {
-        error(mRequest.track(),
+        error(mRequest.track,
               tr("I can't rename file:\n%1 to %2\n%3").arg(
-                  mRequest.inputFile(),
-                  mRequest.outFile(),
+                  mRequest.inputFile,
+                  mRequest.outFile,
                   srcFile.errorString()));
     }
 
-    emit trackProgress(mRequest.track(), TrackState::Encoding, 100);
-    emit trackReady(mRequest.track(), mRequest.outFile());
+    emit trackProgress(mRequest.track, TrackState::Encoding, 100);
+    emit trackReady(mRequest.track, mRequest.outFile);
 }

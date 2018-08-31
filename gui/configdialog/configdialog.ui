@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>635</width>
-    <height>521</height>
+    <height>597</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -230,9 +230,47 @@
           </widget>
          </item>
          <item>
+          <widget class="QGroupBox" name="resamplingGroupBox">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="title">
+            <string>Resampling</string>
+           </property>
+           <layout class="QFormLayout" name="formLayout">
+            <item row="0" column="0">
+             <widget class="QLabel" name="bitDepthLabel">
+              <property name="text">
+               <string>Maximum bit depth</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="bitDepthComboBox"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="sampleRateLabel">
+              <property name="text">
+               <string>Maximum sample rate</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="sampleRateComboBox"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
           <spacer name="verticalSpacer_5">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -262,8 +300,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>601</width>
-              <height>334</height>
+              <width>100</width>
+              <height>30</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -406,8 +444,23 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>pages</tabstop>
+  <tabstop>threadsCountSpin</tabstop>
+  <tabstop>tmpDirEdit</tabstop>
+  <tabstop>tmpDirButton</tabstop>
+  <tabstop>codePageComboBox</tabstop>
+  <tabstop>perTrackCueCheck</tabstop>
+  <tabstop>preGapComboBox</tabstop>
+  <tabstop>coverDisableButton</tabstop>
+  <tabstop>coverKeepSizeButton</tabstop>
+  <tabstop>coverScaleButton</tabstop>
+  <tabstop>coverResizeSpinBox</tabstop>
+  <tabstop>bitDepthComboBox</tabstop>
+  <tabstop>sampleRateComboBox</tabstop>
+  <tabstop>progsArea</tabstop>
   <tabstop>progScanButton</tabstop>
-  <tabstop>buttonBox</tabstop>
+  <tabstop>autoUpdateCbk</tabstop>
+  <tabstop>updateNowBtn</tabstop>
  </tabstops>
  <resources/>
  <connections>

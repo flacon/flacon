@@ -34,11 +34,21 @@
 class QProcess;
 class OutFormat;
 
+struct EncoderRequest
+{
+    const Track *track;
+    QString      inputFile;
+    QString      outFile;
+    int          bitsPerSample;
+    int          sampleRate;
+    OutFormat   *format;
+};
+
 class Encoder: public Worker
 {
     Q_OBJECT
 public:
-    Encoder(const WorkerRequest request, const OutFormat *format, QObject *parent = 0);
+    Encoder(const EncoderRequest request, QObject *parent = 0);
 
     QString outFile() const { return mOutFile; }
 
@@ -53,8 +63,7 @@ private slots:
 
 
 private:
-    const WorkerRequest mRequest;
-    const OutFormat *mFormat;
+    const EncoderRequest mRequest;
     QString mOutFile;
     quint64 mTotal;
     quint64 mReady;
@@ -62,6 +71,10 @@ private:
 
     void readInputFile(QProcess *process);
     void runWav();
+    void initResampler(QProcess *process, const QString &outFile, bool debug);
+    void check(QProcess *process);
+    void runOneProcess(QProcess *process);
+    void runTwoProcess(QProcess *resampler, QProcess *encoder);
 };
 
 #endif // ENCODER_H

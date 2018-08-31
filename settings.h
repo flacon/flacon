@@ -72,8 +72,13 @@ public:
 
         // Cover image **************************
         Cover_Mode,
-        Cover_ResizeSize
+        Cover_Size,
+
+        // Resampling ***************************
+        Resample_BitsPerSample,
+        Resample_SampleRate,
     };
+    Q_ENUM(Key)
 
     static Settings *instance();
     static void setFileName(const QString &fileName);

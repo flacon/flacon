@@ -35,6 +35,7 @@
 #include "encoder.h"
 #include "gain.h"
 #include "diskpipline.h"
+#include "resampler.h"
 
 #include <iostream>
 #include <math.h>
@@ -208,6 +209,16 @@ bool Converter::check(OutFormat *format) const
 {
     QStringList errors;
     bool ok = format->check(&errors);
+
+    if (settings->value(Settings::Resample_BitsPerSample).toInt() ||
+        settings->value(Settings::Resample_SampleRate).toInt() )
+    {
+        if (!settings->checkProgram(Resampler::programName()))
+        {
+            errors << QObject::tr("I can't find program <b>%1</b>.").arg(Resampler::programName());
+            ok = false;
+        }
+    }
 
     if (!ok)
     {
