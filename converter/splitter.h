@@ -39,13 +39,12 @@ class Splitter: public Worker
 {
     Q_OBJECT
 public:
-    Splitter(const Disk *disk, const QString &workDir, PreGapType preGapType, QObject *parent = NULL);
+    Splitter(const Disk *disk, const QString &tmpFilePrefix, PreGapType preGapType, QObject *parent = NULL);
 
 public slots:
     void run() override;
 
 public:
-    QString workDir() const { return mWorkDir; }
     const QList<const Track*> tracks() const;
 
 private slots:
@@ -53,12 +52,10 @@ private slots:
 
 private:
     const Disk *mDisk;
-    const QString mWorkDir;
+    const QString mTmpFilePrefix;
     const PreGapType mPreGapType;
     const Track *mCurrentTrack;
     bool mExtractPregapTrack;
-    QString tmpFileName(const QString &dir, int trackNum);
-
 };
 
 

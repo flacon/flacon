@@ -25,6 +25,9 @@
 
 
 #include "diskpipline.h"
+
+#include <QUuid>
+
 #include "splitter.h"
 #include "encoder.h"
 #include "gain.h"
@@ -103,6 +106,7 @@ public:
     QList<WorkerRequest> gainRequests;
     bool interrupted;
     QString workDir;
+    QString tmpFilePrefix;
     PreGapType preGapType;
 
 
@@ -160,6 +164,14 @@ DiskPipeline::DiskPipeline(const Disk *disk, QObject *parent) :
  ************************************************/
 DiskPipeline::~DiskPipeline()
 {
+    // Remove temporary files
+    QDir dir(QFileInfo(mData->tmpFilePrefix).dir());
+    QStringList filters;
+    filters << QFileInfo(mData->tmpFilePrefix).fileName() + "*";
+
+    foreach (const QString &file, dir.entryList(filters, QDir::Files))
+        dir.remove(file);
+
     delete mData;
     delete mTmpDir;
 }
@@ -181,7 +193,12 @@ bool DiskPipeline::init()
     else
         mData->workDir = QFileInfo(mData->disk->track(0)->resultFilePath()).dir().absolutePath();
 
-    Splitter splitter(mData->disk, mData->workDir, mData->preGapType);
+    mData->tmpFilePrefix = QDir::toNativeSeparators(QString("%1/flacon_%2-")
+                                                .arg(mData->workDir)
+                                                .arg(QUuid::createUuid().toString().mid(1, 36)));
+
+
+    Splitter splitter(mData->disk, mData->tmpFilePrefix, mData->preGapType);
     mData->tracks = splitter.tracks();
 
     foreach (const Track *track, mData->tracks)
@@ -305,7 +322,7 @@ bool DiskPipeline::Data::copyCoverImage() const
  ************************************************/
 void DiskPipeline::Data::startSplitterThread()
 {
-    Splitter *worker = new Splitter(disk, workDir, preGapType);
+    Splitter *worker = new Splitter(disk, tmpFilePrefix, preGapType);
 
     WorkerThread *thread = new WorkerThread(worker, pipeline);
 
