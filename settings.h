@@ -78,7 +78,6 @@ public:
         Resample_BitsPerSample,
         Resample_SampleRate,
     };
-    Q_ENUM(Key)
 
     static Settings *instance();
     static void setFileName(const QString &fileName);

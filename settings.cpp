@@ -183,7 +183,52 @@ void Settings::init()
  ************************************************/
 QString Settings::keyToString(Settings::Key key) const
 {
-    return QString::fromLatin1(QMetaEnum::fromType<Key>().valueToKey(key)).replace('_', '/');
+    switch (key)
+    {
+    case Tags_DefaultCodepage:      return "Tags/DefaultCodepage";
+
+    // MainWindow **************************
+    case MainWindow_Width:          return "MainWindow/Width";
+    case MainWindow_Height:         return "MainWindow/Height";
+
+    // Globals *****************************
+    case Encoder_ThreadCount:       return "Encoder/ThreadCount";
+    case Encoder_TmpDir:            return "Encoder/TmpDir";
+
+    // Out Files ***************************
+    case OutFiles_Pattern:          return "OutFiles/Pattern";
+    case OutFiles_Directory:        return "OutFiles/Directory";
+    case OutFiles_Format:           return "OutFiles/Format";
+    case OutFiles_PatternHistory:   return "OutFiles/PatternHistory";
+    case OutFiles_DirectoryHistory: return "OutFiles/DirectoryHistory";
+
+    // Internet ****************************
+    case Inet_CDDBHost:             return "Inet/CDDBHost";
+
+
+    // Misc *********************************
+    case Misc_LastDir:              return "Misc/LastDirectory";
+
+
+    // PerTrackCue **************************
+    case PerTrackCue_Create:        return "PerTrackCue/Create";
+    case PerTrackCue_Pregap:        return "PerTrackCue/Pregap";
+
+    // ConfigureDialog **********************
+    case ConfigureDialog_Width:     return "ConfigureDialog/Width";
+    case ConfigureDialog_Height:    return "ConfigureDialog/Height";
+
+
+    // Cover image **************************
+    case Cover_Mode:                return "Cover/Mode";
+    case Cover_Size:                return "Cover/Size";
+
+    // Resampling ***************************
+    case Resample_BitsPerSample:    return "Resample/BitsPerSample";
+    case Resample_SampleRate:       return "Resample_SampleRate";
+    }
+
+    return "";
 }
 
 
