@@ -247,7 +247,7 @@ class OutDirComboBox : public HistoryComboBox
 {
     Q_OBJECT
 public:
-    OutDirComboBox(QWidget *parent = 0);
+    explicit OutDirComboBox(QWidget *parent = 0);
 };
 
 #endif // CONTROLS_H

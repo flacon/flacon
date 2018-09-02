@@ -155,6 +155,8 @@ class UcharDet
 
 public:
     UcharDet();
+    UcharDet(const UcharDet &) =delete;
+    UcharDet &operator =(const UcharDet &) =delete;
     ~UcharDet();
 
     void add(const Track &track);

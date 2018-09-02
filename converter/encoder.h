@@ -48,7 +48,7 @@ class Encoder: public Worker
 {
     Q_OBJECT
 public:
-    Encoder(const EncoderRequest request, QObject *parent = 0);
+    Encoder(const EncoderRequest &request, QObject *parent = 0);
 
     QString outFile() const { return mOutFile; }
 

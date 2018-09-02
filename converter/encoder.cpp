@@ -39,7 +39,7 @@ const quint64 MAX_BUF_SIZE = 1024 * 1024;
 /************************************************
  *
  ************************************************/
-Encoder::Encoder(const EncoderRequest request, QObject *parent):
+Encoder::Encoder(const EncoderRequest &request, QObject *parent):
     Worker(parent),
     mRequest(request),
     mTotal(0),

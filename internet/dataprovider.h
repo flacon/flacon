@@ -80,7 +80,7 @@ class FreeDbProvider: public DataProvider
 public:
     explicit FreeDbProvider(const Disk &disk);
 
-    void start();
+    void start() override;
 protected:
     QVector<Tracks> dataReady(QNetworkReply *reply) override;
 

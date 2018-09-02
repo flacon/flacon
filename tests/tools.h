@@ -63,7 +63,7 @@ private:
         }
 
 
-        TestCueTrack(const QString &index1):
+        explicit TestCueTrack(const QString &index1):
             index0(""),
             index1(index1)
         {

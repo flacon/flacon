@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -69,8 +69,14 @@
          <string>General</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_6">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetMinimumSize</enum>
+         </property>
          <item>
           <layout class="QGridLayout" name="formLayout_6">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetMinimumSize</enum>
+           </property>
            <item row="0" column="0">
             <widget class="QLabel" name="threadsCountLabel">
              <property name="text">
@@ -133,6 +139,9 @@
             <string>Per track cue sheet</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinimumSize</enum>
+            </property>
             <item>
              <widget class="QCheckBox" name="perTrackCueCheck">
               <property name="text">
@@ -179,6 +188,9 @@
             <bool>false</bool>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinimumSize</enum>
+            </property>
             <item>
              <layout class="QGridLayout" name="gridLayout_2">
               <item row="0" column="0" colspan="2">
@@ -231,16 +243,13 @@
          </item>
          <item>
           <widget class="QGroupBox" name="resamplingGroupBox">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
            <property name="title">
             <string>Resampling</string>
            </property>
-           <layout class="QFormLayout" name="formLayout">
+           <layout class="QGridLayout" name="gridLayout_3">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinimumSize</enum>
+            </property>
             <item row="0" column="0">
              <widget class="QLabel" name="bitDepthLabel">
               <property name="text">
@@ -300,8 +309,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>100</width>
-              <height>30</height>
+              <width>579</width>
+              <height>385</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_12">
