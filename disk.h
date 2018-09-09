@@ -72,6 +72,7 @@ public:
     QString discId() const;
     QString fileTag() const;
 
+    QStringList warnings() const;
     bool canConvert(QString *description = 0) const;
     bool canDownloadInfo() const;
 

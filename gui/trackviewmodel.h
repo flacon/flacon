@@ -83,6 +83,7 @@ protected:
         RoleFileName,
         RoleAudioFileName,
         RoleTagSetTitle,
+        RoleHasWarnings,
         RoleCanConvert,
         RoleIsDownloads,
         RoleItemID,
@@ -91,7 +92,8 @@ protected:
         RoleCoverImg,
         RoleCueFilePath,
         RoleAudioFilePath,
-        RoleDiskWarning,
+        RoleDiskWarnings,
+        RoleDiskErrors,
         RoleDiskPerformer
     };
 
@@ -106,7 +108,6 @@ public slots:
 
 private slots:
     void diskDataChanged(const Disk *disk);
-    //void trackDataChanged(int disk, int track);
 
 private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;

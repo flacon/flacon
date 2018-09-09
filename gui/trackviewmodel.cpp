@@ -453,13 +453,15 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
     case RoleItemType:      return DiskItem;
     case RoleTagSetTitle:   return disk->tagSetTitle();
     case RoleAudioFileName: return disk->audioFileName();
+    case RoleHasWarnings:   return !disk->warnings().isEmpty();
     case RoleCanConvert:    return disk->canConvert();
     case RoleIsDownloads:   return mCache->downloadedDisks.contains(index.row());
     case RoleCoverFile:     return disk->coverImageFile();
     case RoleCoverImg:      return disk->coverImagePreview();
     case RoleCueFilePath:   return disk->cueFile();
     case RoleAudioFilePath: return disk->audioFileName();
-    case RoleDiskWarning:
+    case RoleDiskWarnings:  return disk->warnings();
+    case RoleDiskErrors:
                         {
                             QString s;
                             if (!disk->canConvert(&s))
@@ -467,7 +469,6 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
                             else
                                 return QVariant();
                         }
-
     default:                return QVariant();
     }
 

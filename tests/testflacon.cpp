@@ -27,14 +27,6 @@
 #include <QTest>
 #include "testflacon.h"
 #include "tools.h"
-#include "../disk.h"
-#include "../settings.h"
-#include "../project.h"
-#include "../inputaudiofile.h"
-#include "converter/converter.h"
-#include "converter/wavheader.h"
-#include "converter/splitter.h"
-#include "outformat.h"
 
 #include <QDebug>
 #include <QProcess>
@@ -43,7 +35,16 @@
 #include <QDir>
 #include <QThreadPool>
 
-#define protected public;
+#define protected public
+#include "../disk.h"
+#include "../settings.h"
+#include "../project.h"
+#include "../inputaudiofile.h"
+#include "converter/converter.h"
+#include "converter/wavheader.h"
+#include "converter/splitter.h"
+#include "outformat.h"
+#include "converter/diskpipline.h"
 
 
 int TestFlacon::mTestNum = -1;
@@ -1076,5 +1077,84 @@ void TestFlacon::testCueIndex_data()
     QTest::newRow("HI 40:20:240 - 10:30:300")  << "29:49.940";
 }
 
+
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::testDiskPipelineCalcQuality()
+{
+    //int input = QTest::currentDataTag();
+    QFETCH(int, input);
+    QFETCH(int, preferences);
+    QFETCH(int, maxFormat);
+
+    QFETCH(int, expected);
+
+    int res = DiskPipeline::calcQuality(input, preferences, maxFormat);
+    QCOMPARE(res, expected);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::testDiskPipelineCalcQuality_data()
+{
+    QTest::addColumn<int>("preferences");
+    QTest::addColumn<int>("maxFormat");
+    QTest::addColumn<int>("input");
+    QTest::addColumn<int>("expected");
+
+    //                      preferences maxFormat   input   expected
+    QTest::newRow("Bits 01") << 0       << 16       << 16   <<  0;
+    QTest::newRow("Bits 02") << 0       << 16       << 24   << 16;
+    QTest::newRow("Bits 03") << 0       << 16       << 32   << 16;
+
+    QTest::newRow("Bits 04") << 16      << 16       << 16   <<  0;
+    QTest::newRow("Bits 05") << 16      << 16       << 24   << 16;
+    QTest::newRow("Bits 06") << 16      << 16       << 32   << 16;
+
+    QTest::newRow("Bits 07") << 24      << 16       << 16   <<  0;
+    QTest::newRow("Bits 08") << 24      << 16       << 24   << 16;
+    QTest::newRow("Bits 09") << 24      << 16       << 32   << 16;
+
+    QTest::newRow("Bits 10") << 32      << 16       << 16   <<  0;
+    QTest::newRow("Bits 11") << 32      << 16       << 24   << 16;
+    QTest::newRow("Bits 12") << 32      << 16       << 32   << 16;
+
+
+    QTest::newRow("Bits 13") << 0       << 24       << 16   <<  0;
+    QTest::newRow("Bits 14") << 0       << 24       << 24   <<  0;
+    QTest::newRow("Bits 15") << 0       << 24       << 32   << 24;
+
+    QTest::newRow("Bits 16") << 16      << 24       << 16   <<  0;
+    QTest::newRow("Bits 17") << 16      << 24       << 24   << 16;
+    QTest::newRow("Bits 18") << 16      << 24       << 32   << 16;
+
+    QTest::newRow("Bits 19") << 24      << 24       << 16   <<  0;
+    QTest::newRow("Bits 20") << 24      << 24       << 24   <<  0;
+    QTest::newRow("Bits 21") << 24      << 24       << 32   << 24;
+
+    QTest::newRow("Bits 22") << 32      << 24       << 16   <<  0;
+    QTest::newRow("Bits 23") << 32      << 24       << 24   <<  0;
+    QTest::newRow("Bits 24") << 32      << 24       << 32   << 24;
+
+
+    QTest::newRow("Bits 25") << 0       << 32       << 16   <<  0;
+    QTest::newRow("Bits 26") << 0       << 32       << 24   <<  0;
+    QTest::newRow("Bits 27") << 0       << 32       << 32   <<  0;
+
+    QTest::newRow("Bits 28") << 16      << 32       << 16   <<  0;
+    QTest::newRow("Bits 29") << 16      << 32       << 24   << 16;
+    QTest::newRow("Bits 30") << 16      << 32       << 32   << 16;
+
+    QTest::newRow("Bits 31") << 24      << 32       << 16   <<  0;
+    QTest::newRow("Bits 32") << 24      << 32       << 24   <<  0;
+    QTest::newRow("Bits 33") << 24      << 32       << 32   << 24;
+
+    QTest::newRow("Bits 34") << 32      << 32       << 16   <<  0;
+    QTest::newRow("Bits 35") << 32      << 32       << 24   <<  0;
+    QTest::newRow("Bits 36") << 32      << 32       << 32   <<  0;
+}
 
 QTEST_GUILESS_MAIN(TestFlacon)

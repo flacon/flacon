@@ -27,6 +27,7 @@
 #include "disk.h"
 #include "track.h"
 #include "project.h"
+#include "settings.h"
 #include "inputaudiofile.h"
 #include "formats/format.h"
 #include "outformat.h"
@@ -580,6 +581,26 @@ QString Disk::fileTag() const
         return mTracks.first()->tag(TagId::File);
 
     return "";
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QStringList Disk::warnings() const
+{
+    QStringList res;
+    if (audioFile())
+    {
+        if (audioFile()->bitsPerSample() > int(settings->outFormat()->maxBitPerSample()))
+            res << tr("The format supports a maximum %1 bits per sample, this value will be used for encoding.", "Warning message")
+                      .arg(int(settings->outFormat()->maxBitPerSample()));
+
+        if (audioFile()->sampleRate() > int(settings->outFormat()->maxSampleRate()))
+            res << tr("The format supports a maximum %1 sample rate, this value will be used for encoding.", "Warning message")
+                      .arg(int(settings->outFormat()->maxSampleRate()));
+    }
+    return res;
 }
 
 

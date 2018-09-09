@@ -55,6 +55,8 @@ public:
     virtual QString gainProgramName() const = 0;
     virtual QStringList gainArgs(const QStringList &files) const = 0;
 
+    virtual BitsPerSample maxBitPerSample() const { return BitsPerSample::Bit_32; }
+    virtual SampleRate    maxSampleRate() const { return SampleRate::Hz_192000; }
 
     virtual bool check(QStringList *errors) const;
 

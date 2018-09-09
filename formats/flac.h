@@ -44,6 +44,8 @@ public:
     virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
     virtual QStringList gainArgs(const QStringList &files) const override;
 
+    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
+
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage *configPage(QWidget *parent = 0) const override;
 };

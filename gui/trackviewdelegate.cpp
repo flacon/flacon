@@ -135,12 +135,13 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent):
     mCache(new TrackViewCache),
     mDiskHeightHint(0)
 {
-    mTrackBtnPix = loadIcon("cue-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
-    mAudioBtnPix = loadIcon("audio-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
-    mWarnPix     = loadIcon("warning", false).pixmap(MARK_HEIGHT, MARK_HEIGHT);
-    mOkPix       = loadIcon("track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
-    mErrorPix    = loadIcon("track-cancel", false).pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
-    mNoCoverImg  = QImage(":noCover");
+    mTrackBtnPix   = loadIcon("cue-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
+    mAudioBtnPix   = loadIcon("audio-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
+    mDiskErrorPix  = loadIcon("error", false).pixmap(MARK_HEIGHT, MARK_HEIGHT);
+    mDiskWarnPix   = loadIcon("warning", false).pixmap(MARK_HEIGHT, MARK_HEIGHT);
+    mTrackOkPix    = loadIcon("track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mTrackErrorPix = loadIcon("track-cancel", false).pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mNoCoverImg    = QImage(":noCover");
 
     mDownloadMovie.setFileName(":wait");
     connect(&mDownloadMovie, SIGNAL(updated(QRect)), this, SLOT(movieUpdated()));
@@ -256,7 +257,7 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
 
     case TrackState::Error:
         txt = tr("Error");
-        icon = &mErrorPix;
+        icon = &mTrackErrorPix;
         break;
 
     case TrackState::Aborted:
@@ -265,7 +266,7 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
 
     case TrackState::OK:
         txt = tr("OK");
-        icon = &mOkPix;
+        icon = &mTrackOkPix;
         break;
 
     case TrackState::Splitting:
@@ -450,7 +451,12 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     }
     else if (!index.data(TrackViewModel::RoleCanConvert).toBool())
     {
-        painter->drawPixmap(markRect, mWarnPix);
+        painter->drawPixmap(markRect, mDiskErrorPix);
+        cache->markBtn = markRect;
+    }
+    else if (index.data(TrackViewModel::RoleHasWarnings).toBool())
+    {
+        painter->drawPixmap(markRect, mDiskWarnPix);
         cache->markBtn = markRect;
     }
     else
@@ -626,10 +632,16 @@ bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, co
 
     if (cache->markBtn.contains(m))
     {
-        QToolTip::showText(
+        QString err  = view->model()->data(index, TrackViewModel::RoleDiskErrors).toString();
+        QString warn = view->model()->data(index, TrackViewModel::RoleDiskWarnings).toStringList().join("<br><br>");
+
+        if (!err.isEmpty() || !warn.isEmpty())
+        {
+            QToolTip::showText(
                     event->globalPos(),
-                    view->model()->data(index, TrackViewModel::RoleDiskWarning).toString(),
+                    warn + (!warn.isEmpty() && !err.isEmpty() ? "<br><hr><br>" : "") + err,
                     view);
+        }
         return true;
     }
     return false;

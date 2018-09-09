@@ -62,6 +62,7 @@ for size in 16 22 24 32 48 64 128 256 512 ; do
 
 	conv track-cancel.svg $size ""
 	conv warning.svg $size ""
+	conv error.svg $size ""
 
 	echo "    </qresource>" >> ${RC_FILE}
 	echo "" >> ${RC_FILE}

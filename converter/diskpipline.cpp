@@ -447,6 +447,22 @@ void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
 /************************************************
  *
  ************************************************/
+int DiskPipeline::calcQuality(int input, int preferences, int formatMax)
+{
+
+    int min = qMin(qMin(input, formatMax),
+                   (preferences ? preferences : std::numeric_limits<int>::max()));
+
+    if (min < input)
+        return min;
+    else
+        return 0;
+}
+
+
+/************************************************
+ *
+ ************************************************/
 void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFile)
 {
     trackProgress(track, TrackState::Queued, 0);
@@ -461,16 +477,15 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFil
     req.inputFile  = inputFile;
     req.outFile    = outFile;
     req.format     = settings->outFormat();
-    req.bitsPerSample = settings->value(Settings::Resample_BitsPerSample).toInt();
-    req.sampleRate = settings->value(Settings::Resample_SampleRate).toInt();
 
     // If the original quality is worse than requested, leave it as is.
-    if (req.bitsPerSample && mData->disk->audioFile()->bitsPerSample() < req.bitsPerSample)
-        req.bitsPerSample = 0;
+    req.bitsPerSample = calcQuality(mData->disk->audioFile()->bitsPerSample(),
+                                    settings->value(Settings::Resample_BitsPerSample).toInt(),
+                                    int(req.format->maxBitPerSample()));
 
-    // If the original quality is worse than requested, leave it as is.
-    if (req.sampleRate && mData->disk->audioFile()->sampleRate() < req.sampleRate)
-        req.sampleRate = 0;
+    req.sampleRate = calcQuality(mData->disk->audioFile()->sampleRate(),
+                                 settings->value(Settings::Resample_SampleRate).toInt(),
+                                 int(req.format->maxSampleRate()));
 
     mData->encoderRequests << req;
     emit readyStart();

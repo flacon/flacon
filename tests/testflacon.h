@@ -99,6 +99,9 @@ private slots:
     void testCueIndex_data();
     void testCueIndex();
 
+    void testDiskPipelineCalcQuality_data();
+    void testDiskPipelineCalcQuality();
+
     void testFindAudioFile_data();
     void testFindAudioFile();
 

@@ -64,6 +64,9 @@ private slots:
     void addGainRequest(const Track *track, const QString &fileName);
     void trackDone(const Track *track, const QString &outFileName);
 
+protected:
+   static int calcQuality(int input, int preferences, int formatMax);
+
 private:
     class Data;
     Data *mData;

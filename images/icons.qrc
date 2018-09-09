@@ -29,6 +29,7 @@
 
         <file alias="track-cancel">icons/16/track-cancel.png</file>
         <file alias="warning">icons/16/warning.png</file>
+        <file alias="error">icons/16/error.png</file>
     </qresource>
 
     <qresource prefix="22">
@@ -60,6 +61,7 @@
 
         <file alias="track-cancel">icons/22/track-cancel.png</file>
         <file alias="warning">icons/22/warning.png</file>
+        <file alias="error">icons/22/error.png</file>
     </qresource>
 
     <qresource prefix="24">
@@ -91,6 +93,7 @@
 
         <file alias="track-cancel">icons/24/track-cancel.png</file>
         <file alias="warning">icons/24/warning.png</file>
+        <file alias="error">icons/24/error.png</file>
     </qresource>
 
     <qresource prefix="32">
@@ -122,6 +125,7 @@
 
         <file alias="track-cancel">icons/32/track-cancel.png</file>
         <file alias="warning">icons/32/warning.png</file>
+        <file alias="error">icons/32/error.png</file>
     </qresource>
 
     <qresource prefix="48">
@@ -153,6 +157,7 @@
 
         <file alias="track-cancel">icons/48/track-cancel.png</file>
         <file alias="warning">icons/48/warning.png</file>
+        <file alias="error">icons/48/error.png</file>
     </qresource>
 
     <qresource prefix="64">
@@ -184,6 +189,7 @@
 
         <file alias="track-cancel">icons/64/track-cancel.png</file>
         <file alias="warning">icons/64/warning.png</file>
+        <file alias="error">icons/64/error.png</file>
     </qresource>
 
     <qresource prefix="128">
@@ -215,6 +221,7 @@
 
         <file alias="track-cancel">icons/128/track-cancel.png</file>
         <file alias="warning">icons/128/warning.png</file>
+        <file alias="error">icons/128/error.png</file>
     </qresource>
 
     <qresource prefix="256">
@@ -246,6 +253,7 @@
 
         <file alias="track-cancel">icons/256/track-cancel.png</file>
         <file alias="warning">icons/256/warning.png</file>
+        <file alias="error">icons/256/error.png</file>
     </qresource>
 
     <qresource prefix="512">
@@ -277,6 +285,7 @@
 
         <file alias="track-cancel">icons/512/track-cancel.png</file>
         <file alias="warning">icons/512/warning.png</file>
+        <file alias="error">icons/512/error.png</file>
     </qresource>
 
 </RCC>

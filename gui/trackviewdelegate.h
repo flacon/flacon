@@ -70,9 +70,10 @@ private:
     mutable QImage mNoCoverImg;
     QPixmap mTrackBtnPix;
     QPixmap mAudioBtnPix;
-    QPixmap mWarnPix;
-    QPixmap mOkPix;
-    QPixmap mErrorPix;
+    QPixmap mDiskErrorPix;
+    QPixmap mDiskWarnPix;
+    QPixmap mTrackOkPix;
+    QPixmap mTrackErrorPix;
     mutable QMovie mDownloadMovie;
     mutable int mDiskHeightHint;
 
