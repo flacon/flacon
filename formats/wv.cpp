@@ -81,18 +81,39 @@ QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile
 
     // Settings .................................................
     int compression = settings->value("WV/Compression").toInt();
-    if (compression == 0)    args << "-f";
-    if (compression == 1)    args << "-h";
-    if (compression == 2)    args << "-hh";
+    switch (compression)
+    {
+    case 0: args << "-f";  break;
+    case 1: args << "-h";  break;
+    case 2: args << "-hh"; break;
+    }
 
     // Tags .....................................................
-    if (!track->artist().isEmpty())  args << "-w" << QString("Artist=%1").arg(track->artist());
-    if (!track->album().isEmpty())   args << "-w" << QString("Album=%1").arg(track->album());
-    if (!track->genre().isEmpty())   args << "-w" << QString("Genre=%1").arg(track->genre());
-    if (!track->date().isEmpty())    args << "-w" << QString("Year=%1").arg(track->date());
-    if (!track->title().isEmpty())   args << "-w" << QString("Title=%1").arg(track->title());
-    if (!track->diskId().isEmpty())  args << "-w" << QString("DiscId=%1").arg(track->diskId());
-    if (!track->comment().isEmpty()) args << "-w" << QString("Comment=%1").arg(track->comment());
+    if (!track->artist().isEmpty())
+        args << "-w" << QString("Artist=%1").arg(track->artist());
+
+    if (!track->album().isEmpty())
+        args << "-w" << QString("Album=%1").arg(track->album());
+
+    if (!track->genre().isEmpty())
+        args << "-w" << QString("Genre=%1").arg(track->genre());
+
+    if (!track->date().isEmpty())
+        args << "-w" << QString("Year=%1").arg(track->date());
+
+    if (!track->title().isEmpty())
+        args << "-w" << QString("Title=%1").arg(track->title());
+
+    if (!track->tag(TagId::AlbumArtist).isEmpty())
+        args << "-w" << QString("Album Artist=%1").arg(track->tag(TagId::AlbumArtist));
+
+    if (!track->diskId().isEmpty())
+        args << "-w" << QString("DiscId=%1").arg(track->diskId());
+
+    if (!track->comment().isEmpty())
+        args << "-w" << QString("Comment=%1").arg(track->comment());
+
+
     args << "-w" << QString("Track=%1/%2").arg(track->trackNum()).arg(track->trackCount());
 
     args << "-";

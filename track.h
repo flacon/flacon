@@ -60,12 +60,8 @@ public:
     bool operator ==(const Track &other) const;
 
 
-    QString artist() const            { return performer(); }
-    void setArtist(const QString &value)  { setPerformer(value); }
-
-    QString performer() const            { return tag(TagId::Performer); }
-    void setPerformer(const QString &value)  { setTag(TagId::Performer, value); }
-
+    QString artist() const            { return tag(TagId::Artist); }
+    void setArtist(const QString &value)  { setTag(TagId::Artist, value); }
 
     QString album() const             { return tag(TagId::Album); }
     void setAlbum(const QString &value)   { setTag(TagId::Album, value); }

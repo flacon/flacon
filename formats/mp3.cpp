@@ -109,12 +109,28 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
     // Tags .....................................................
     args << "--add-id3v2";
     //#args << "--id3v2-only"
-    if (!track->artist().isEmpty())  args << "--ta" << track->artist();
-    if (!track->album().isEmpty())   args << "--tl" << track->album();
-    if (!track->genre().isEmpty())   args << "--tg" << track->genre();
-    if (!track->date().isEmpty())    args << "--ty" << track->date();
-    if (!track->title().isEmpty())   args << "--tt" << track->title();
-    if (!track->comment().isEmpty()) args << "--tc" << track->comment();
+    if (!track->artist().isEmpty())
+        args << "--ta" << track->artist();
+
+    if (!track->album().isEmpty())
+        args << "--tl" << track->album();
+
+    if (!track->genre().isEmpty())
+        args << "--tg" << track->genre();
+
+    if (!track->date().isEmpty())
+        args << "--ty" << track->date();
+
+    if (!track->title().isEmpty())
+        args << "--tt" << track->title();
+
+    if (!track->tag(TagId::AlbumArtist).isEmpty())
+        args << "--tv" << QString("TPE2=%1").arg(track->tag(TagId::AlbumArtist));
+
+    if (!track->comment().isEmpty())
+        args << "--tc" << track->comment();
+
+
     args << "--tn" << QString("%1/%2").arg(track->trackNum()).arg(track->trackCount());
 
 

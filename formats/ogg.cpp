@@ -74,13 +74,31 @@ QStringList OutFormat_Ogg::encoderArgs(const Track *track, const QString &outFil
     }
 
     // Tags .....................................................
-    if (!track->artist().isEmpty())  args << "--artist"  << track->artist();
-    if (!track->album().isEmpty())   args << "--album"   << track->album();
-    if (!track->genre().isEmpty())   args << "--genre"   << track->genre();
-    if (!track->date().isEmpty())    args << "--date"    << track->date();
-    if (!track->title().isEmpty())   args << "--title"   << track->title();
-    if (!track->comment().isEmpty()) args << "--comment" << QString("COMMENT=%1").arg(track->comment());
-    if (!track->diskId().isEmpty())  args << "--comment" << QString("DISCID=%1").arg(track->diskId());
+    if (!track->artist().isEmpty())
+        args << "--artist"  << track->artist();
+
+    if (!track->album().isEmpty())
+        args << "--album"   << track->album();
+
+    if (!track->genre().isEmpty())
+        args << "--genre"   << track->genre();
+
+    if (!track->date().isEmpty())
+        args << "--date"    << track->date();
+
+    if (!track->title().isEmpty())
+        args << "--title"   << track->title();
+
+    if (!track->tag(TagId::AlbumArtist).isEmpty())
+        args << "--comment" << QString("album_artist=%1").arg(track->tag(TagId::AlbumArtist));
+
+    if (!track->comment().isEmpty())
+        args << "--comment" << QString("COMMENT=%1").arg(track->comment());
+
+    if (!track->diskId().isEmpty())
+        args << "--comment" << QString("DISCID=%1").arg(track->diskId());
+
+
     args << "--tracknum" << QString("%1").arg(track->trackNum());
     args << "--comment" << QString("TOTALTRACKS=%1").arg(track->trackCount());
     args << "--comment" << QString("TRACKTOTAL=%1").arg(track->trackCount());

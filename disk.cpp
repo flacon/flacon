@@ -366,8 +366,8 @@ int Disk::distance(const Tracks &other)
 
     int res = 0;
 
-    QString str1 = mTracks.first()->performer().toUpper().replace("THE ", "");
-    QString str2 = other.first().performer().toUpper().replace("THE ", "");
+    QString str1 = mTracks.first()->artist().toUpper().replace("THE ", "");
+    QString str2 = other.first().artist().toUpper().replace("THE ", "");
     res += levenshteinDistance(str1, str2) * 3;
 
     str1 = mTracks.first()->album().toUpper().replace("THE ", "");
@@ -853,11 +853,11 @@ void Disk::trackChanged(TagId tagId)
     if (mTracks.isEmpty())
         return;
 
-    if (tagId == TagId::Performer && isSameTagValue(TagId::Performer))
+    if (tagId == TagId::Artist && isSameTagValue(TagId::Artist))
     {
         foreach (Track *track, mTracks)
         {
-            track->setTag(TagId::DiskPerformer, track->tagValue(TagId::Performer));
+            track->setTag(TagId::AlbumArtist, track->tagValue(TagId::Artist));
         }
     }
 

@@ -83,7 +83,7 @@ TagId tagNameToId(const QString &tagName)
     if (tagName.toUpper() == "FLAGS")         return TagId::Flags;
     if (tagName.toUpper() == "GENRE")         return TagId::Genre;
     if (tagName.toUpper() == "ISRC")          return TagId::ISRC;
-    if (tagName.toUpper() == "PERFORMER")     return TagId::Performer;
+    if (tagName.toUpper() == "PERFORMER")     return TagId::Artist;
     if (tagName.toUpper() == "SONGWRITER")    return TagId::SongWriter;
     if (tagName.toUpper() == "TITLE")         return TagId::Title;
     if (tagName.toUpper() == "DISCId")        return TagId::DiscId;

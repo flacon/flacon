@@ -77,7 +77,7 @@ static void write(const QVector<CueDisk> &cue, const QString &fileName)
             f << trackTxt << "INDEX 01: "   << track.cueIndex(1).toString(true) << "\n";
             f << trackTxt << "TITLE: "      << track.tag(TagId::Title)          << "\n";
             f << trackTxt << "ALBUM: "      << track.tag(TagId::Album)          << "\n";
-            f << trackTxt << "PERFORMER: "  << track.tag(TagId::Performer)      << "\n";
+            f << trackTxt << "PERFORMER: "  << track.tag(TagId::Artist)      << "\n";
             f << trackTxt << "DATE: "       << track.tag(TagId::Date)           << "\n";
             f << trackTxt << "DISKID: "     << track.tag(TagId::DiscId)         << "\n";
         }

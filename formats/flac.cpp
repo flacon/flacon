@@ -93,6 +93,7 @@ bool OutFormat_Flac::check(QStringList *errors) const
  ************************************************/
 QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFile) const
 {
+
     QStringList args;
 
     args << settings->programName(encoderProgramName());
@@ -104,13 +105,30 @@ QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFi
 
 
     // Tags .....................................................
-    if (!track->artist().isEmpty())   args << "--tag" << QString("artist=%1").arg(track->artist());
-    if (!track->album().isEmpty())    args << "--tag" << QString("album=%1").arg(track->album());
-    if (!track->genre().isEmpty())    args << "--tag" << QString("genre=%1").arg(track->genre());
-    if (!track->date().isEmpty())     args << "--tag" << QString("date=%1").arg(track->date());
-    if (!track->title().isEmpty())    args << "--tag" << QString("title=%1").arg(track->title());
-    if (!track->comment().isEmpty())  args << "--tag" << QString("comment=%1").arg(track->comment());
-    if (!track->diskId().isEmpty())   args << "--tag" << QString("discId=%1").arg(track->diskId());
+    if (!track->artist().isEmpty())
+        args << "--tag" << QString("artist=%1").arg(track->artist());
+
+    if (!track->album().isEmpty())
+        args << "--tag" << QString("album=%1").arg(track->album());
+
+    if (!track->genre().isEmpty())
+        args << "--tag" << QString("genre=%1").arg(track->genre());
+
+    if (!track->date().isEmpty())
+        args << "--tag" << QString("date=%1").arg(track->date());
+
+    if (!track->title().isEmpty())
+        args << "--tag" << QString("title=%1").arg(track->title());
+
+    if (!track->tag(TagId::AlbumArtist).isEmpty())
+        args << "--tag" << QString("albumartist=%1").arg(track->tag(TagId::AlbumArtist));
+
+    if (!track->comment().isEmpty())
+        args << "--tag" << QString("comment=%1").arg(track->comment());
+
+    if (!track->diskId().isEmpty())
+        args << "--tag" << QString("discId=%1").arg(track->diskId());
+
     args << "--tag" << QString("TRACKNUMBER=%1").arg(track->trackNum());
     args << "--tag" << QString("TOTALTRACKS=%1").arg(track->trackCount());
     args << "--tag" << QString("TRACKTOTAL=%1").arg(track->trackCount());

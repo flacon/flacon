@@ -101,11 +101,11 @@ MainWindow::MainWindow(QWidget *parent) :
     tagYearEdit->setTagId(TagId::Date);
     connect(tagYearEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
 
-    tagArtistEdit->setTagId(TagId::Performer);
+    tagArtistEdit->setTagId(TagId::Artist);
     connect(tagArtistEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
     connect(tagArtistEdit, SIGNAL(textEdited(QString)), this, SLOT(refreshEdits()));
 
-    tagDiskPerformerEdit->setTagId(TagId::DiskPerformer);
+    tagDiskPerformerEdit->setTagId(TagId::AlbumArtist);
     connect(tagDiskPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(setDiskTag()));
     connect(tagDiskPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(refreshEdits()));
 
@@ -489,7 +489,7 @@ void MainWindow::refreshEdits()
         artist << track->artist();
         album << track->album();
         date << track->date();
-        diskPerformer << track->tag(TagId::DiskPerformer);
+        diskPerformer << track->tag(TagId::AlbumArtist);
     }
 
     tagGenreEdit->setMultiValue(genre);

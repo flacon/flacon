@@ -93,8 +93,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << cfg
             << "/opt/flac --force --silent "
                "--compression-level-5 "
-               "--tag artist=Artist --tag album=Album --tag genre=Genre --tag date=2013 --tag title=Song01 --tag comment=ExactAudioCopy v0.99pb4 "
-               "--tag discId=123456789 --tag TRACKNUMBER=1 --tag TOTALTRACKS=4 --tag TRACKTOTAL=4 - -o OutFile.wav";
+               "--tag artist=Artist --tag album=Album --tag genre=Genre --tag date=2013 --tag title=Song01 --tag albumartist=Artist "
+               "--tag comment=ExactAudioCopy v0.99pb4 --tag discId=123456789 --tag TRACKNUMBER=1 --tag TOTALTRACKS=4 --tag TRACKTOTAL=4 - -o OutFile.wav";
 
     //*******************************************
     cfg.clear();
@@ -107,8 +107,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << cfg
             << "/opt/flac --force --silent "
                "--compression-level-1 "
-               "--tag artist=Artist --tag album=Album --tag genre=Genre --tag date=2013 --tag title=Song01 --tag comment=ExactAudioCopy v0.99pb4 "
-               "--tag discId=123456789 --tag TRACKNUMBER=1 --tag TOTALTRACKS=4 --tag TRACKTOTAL=4 - -o OutFile.wav";
+               "--tag artist=Artist --tag album=Album --tag genre=Genre --tag date=2013 --tag title=Song01 --tag albumartist=Artist "
+               "--tag comment=ExactAudioCopy v0.99pb4 --tag discId=123456789 --tag TRACKNUMBER=1 --tag TOTALTRACKS=4 --tag TRACKTOTAL=4 - -o OutFile.wav";
 
 
     //*******************************************
@@ -119,12 +119,13 @@ void TestFlacon::testOutFormatEncoderArgs_data()
     cfg.insert("Aac/UseQuality", true);
     cfg.insert("Aac/Quality",    500);
 
-    QTest::newRow("AAC_1")
+    QTest::newRow("01 AAC_1")
             << "AAC"
             << cfg
             << "/opt/faac -w "
                "-q 500 "
-               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 --comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
+               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 "
+               "--comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
 
 
     //*******************************************
@@ -133,12 +134,13 @@ void TestFlacon::testOutFormatEncoderArgs_data()
     cfg.insert("Aac/UseQuality", true);
     cfg.insert("Aac/Quality",    10);
 
-    QTest::newRow("AAC_2")
+    QTest::newRow("02 AAC_2")
             << "AAC"
             << cfg
             << "/opt/faac -w "
                "-q 10 "
-               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 --comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
+               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 "
+               "--comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
 
     //*******************************************
     cfg.clear();
@@ -147,12 +149,13 @@ void TestFlacon::testOutFormatEncoderArgs_data()
     cfg.insert("Aac/Quality",    500);
     cfg.insert("Aac/Bitrate",    64);
 
-    QTest::newRow("AAC_3")
+    QTest::newRow("03 AAC_3")
             << "AAC"
             << cfg
             << "/opt/faac -w "
                "-b 64 "
-               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 --comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
+               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 "
+               "--comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
 
 
     //*******************************************
@@ -163,147 +166,160 @@ void TestFlacon::testOutFormatEncoderArgs_data()
     cfg.insert("Mp3/Preset",     "vbrMedium");
     cfg.insert("Aac/Quality",    500);
 
-    QTest::newRow("MP3_vbrMedium")
+    QTest::newRow("01 MP3_vbrMedium")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "--preset medium "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "vbrStandard");
 
-    QTest::newRow("MP3_vbrStandard")
+    QTest::newRow("02 MP3_vbrStandard")
             << "MP3"
             << cfg
             << "/opt/lame "
                "--silent "
                "--preset standard "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
 
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "vbrStandardFast");
 
-    QTest::newRow("MP3_vbrStandardFast")
+    QTest::newRow("04 MP3_vbrStandardFast")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "--preset fast standard "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "vbrExtreme");
 
-    QTest::newRow("MP3_vbrExtreme")
+    QTest::newRow("05 MP3_vbrExtreme")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "--preset extreme "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "vbrExtremeFast");
 
-    QTest::newRow("MP3_vbrExtremeFast")
+    QTest::newRow("06 MP3_vbrExtremeFast")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "--preset fast extreme "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "cbrInsane");
 
-    QTest::newRow("MP3_cbrInsane")
+    QTest::newRow("07 MP3_cbrInsane")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "--preset insane "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "cbrKbps");
     cfg.insert("Mp3/Bitrate",    64);
 
-    QTest::newRow("MP3_cbrKbps64")
+    QTest::newRow("08 MP3_cbrKbps64")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "--preset cbr 64 "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "cbrKbps");
     cfg.insert("Mp3/Bitrate",    128);
 
-    QTest::newRow("MP3_cbrKbps128")
+    QTest::newRow("09 MP3_cbrKbps128")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "--preset cbr 128 "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "abrKbps");
     cfg.insert("Mp3/Bitrate",    64);
 
-    QTest::newRow("MP3_abrKbps64")
+    QTest::newRow("10 MP3_abrKbps64")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "--preset 64 "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "abrKbps");
     cfg.insert("Mp3/Bitrate",    128);
 
-    QTest::newRow("MP3_abrKbps128")
+    QTest::newRow("11 MP3_abrKbps128")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "--preset 128 "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "vbrQuality");
     cfg.insert("Mp3/Quality",    0);
 
-    QTest::newRow("MP3_vbrQuality0")
+    QTest::newRow("12 MP3_vbrQuality0")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "-V 9 "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "vbrQuality");
     cfg.insert("Mp3/Quality",    4);
 
-    QTest::newRow("MP3_vbrQuality4")
+    QTest::newRow("13 MP3_vbrQuality4")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "-V 5 "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "vbrQuality");
     cfg.insert("Mp3/Quality",    9);
 
-    QTest::newRow("MP3_vbrQuality9")
+    QTest::newRow("14 MP3_vbrQuality9")
             << "MP3"
             << cfg
             << "/opt/lame --silent "
                "-V 0 "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
 
 
 
@@ -318,25 +334,27 @@ void TestFlacon::testOutFormatEncoderArgs_data()
     cfg.insert("Ogg/NormBitrate",   "");
     cfg.insert("Ogg/MaxBitrate",    "");
 
-    QTest::newRow("Ogg Quality 5")
+    QTest::newRow("01 Ogg Quality 5")
             << "OGG"
             << cfg
             << "/opt/oggenc --quiet "
                "-q 5 "
-               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment COMMENT=ExactAudioCopy v0.99pb4 "
-               "--comment DISCID=123456789 --tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
+               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment album_artist=Artist "
+               "--comment COMMENT=ExactAudioCopy v0.99pb4 --comment DISCID=123456789 "
+               "--tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
 
 
     //*******************************************
     cfg.insert("Ogg/Quality",       10);
 
-    QTest::newRow("Ogg Quality 10")
+    QTest::newRow("02 Ogg Quality 10")
             << "OGG"
             << cfg
             << "/opt/oggenc --quiet "
                "-q 10 "
-               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment COMMENT=ExactAudioCopy v0.99pb4 "
-               "--comment DISCID=123456789 --tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
+               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment album_artist=Artist "
+               "--comment COMMENT=ExactAudioCopy v0.99pb4 --comment DISCID=123456789 "
+               "--tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
 
 
     //*******************************************
@@ -346,12 +364,13 @@ void TestFlacon::testOutFormatEncoderArgs_data()
     cfg.insert("Ogg/NormBitrate",   "");
     cfg.insert("Ogg/MaxBitrate",    "");
 
-    QTest::newRow("Ogg Bitrate 0 0 0")
+    QTest::newRow("03 Ogg Bitrate 0 0 0")
             << "OGG"
             << cfg
             << "/opt/oggenc --quiet "
-               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment COMMENT=ExactAudioCopy v0.99pb4 "
-               "--comment DISCID=123456789 --tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
+               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment album_artist=Artist "
+               "--comment COMMENT=ExactAudioCopy v0.99pb4 --comment DISCID=123456789 "
+               "--tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
 
     //*******************************************
     cfg.insert("Programs/oggenc",   "/opt/oggenc");
@@ -360,13 +379,14 @@ void TestFlacon::testOutFormatEncoderArgs_data()
     cfg.insert("Ogg/NormBitrate",   128);
     cfg.insert("Ogg/MaxBitrate",    350);
 
-    QTest::newRow("Ogg Bitrate 64 128 350")
+    QTest::newRow("04 Ogg Bitrate 64 128 350")
             << "OGG"
             << cfg
             << "/opt/oggenc --quiet "
                "-b 128 -m 64 -M 350 "
-               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment COMMENT=ExactAudioCopy v0.99pb4 "
-               "--comment DISCID=123456789 --tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
+               "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment album_artist=Artist "
+               "--comment COMMENT=ExactAudioCopy v0.99pb4 --comment DISCID=123456789 "
+               "--tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
 
 
 
@@ -377,33 +397,36 @@ void TestFlacon::testOutFormatEncoderArgs_data()
     cfg.insert("Programs/wavpack",  "/opt/wavpack");
     cfg.insert("WV/Compression",   0);
 
-    QTest::newRow("WavPack Quality 0")
+    QTest::newRow("01 WavPack Quality 0")
             << "WV"
             << cfg
             << "/opt/wavpack -q "
                "-f "
-               "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
+               "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w Album Artist=Artist "
+               "-w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
 
 
     //*******************************************
     cfg.insert("WV/Compression",   1);
 
-    QTest::newRow("WavPack Quality 1")
+    QTest::newRow("02 WavPack Quality 1")
             << "WV"
             << cfg
             << "/opt/wavpack -q "
                "-h "
-               "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
+               "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w Album Artist=Artist "
+               "-w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
 
 
     //*******************************************
     cfg.insert("WV/Compression",   2);
 
-    QTest::newRow("WavPack Quality 2")
+    QTest::newRow("03 WavPack Quality 2")
             << "WV"
             << cfg
             << "/opt/wavpack -q "
                "-hh "
-               "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
+               "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w Album Artist=Artist "
+               "-w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
 
 }

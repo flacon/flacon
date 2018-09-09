@@ -393,7 +393,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
     case RoleTracknum:  return track->trackNum();
     case RoleDuration:  return track->duration();
     case RoleTitle:     return track->title();
-    case RoleArtist:    return track->tag(TagId::DiskPerformer);
+    case RoleArtist:    return track->tag(TagId::AlbumArtist);
     case RoleAlbum:     return track->album();
     case RoleComment:   return track->album();
     case RoleFileName:  return track->resultFileName();
@@ -426,7 +426,7 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
 
         case TrackView::ColumnArtist:
             for (int i=0; i<disk->count(); ++i)
-                values << disk->track(i)->tag(TagId::DiskPerformer);
+                values << disk->track(i)->tag(TagId::AlbumArtist);
             break;
 
         case TrackView::ColumnAlbum:

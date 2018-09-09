@@ -233,8 +233,8 @@ static void splitTitle(QList<ParserTrack*> *tracks, char separator)
     {
         QByteArray b = track->tags.tagData(TagId::Title);
         int pos = b.indexOf(separator);
-        track->tags.setTag(TagId::Performer, b.left(pos).trimmed());
-        track->tags.setTag(TagId::Title,     b.right(b.length() - pos - 1).trimmed());
+        track->tags.setTag(TagId::Artist, b.left(pos).trimmed());
+        track->tags.setTag(TagId::Title,  b.right(b.length() - pos - 1).trimmed());
     }
 }
 
@@ -242,18 +242,18 @@ static void splitTitle(QList<ParserTrack*> *tracks, char separator)
 /************************************************
  *
  ************************************************/
-static void setDiskPerformer(QList<ParserTrack*> *tracks)
+static void setDiskArtist(QList<ParserTrack*> *tracks)
 {
-    QByteArray performer = tracks->first()->tags.tagData(TagId::Performer);
+    QByteArray artist = tracks->first()->tags.tagData(TagId::Artist);
 
     foreach (ParserTrack *track, *tracks)
     {
-        if (track->tags.tagData(TagId::Performer) != performer)
+        if (track->tags.tagData(TagId::Artist) != artist)
             return;
     }
 
     foreach (ParserTrack *track, *tracks)
-        track->tags.setTag(TagId::DiskPerformer, performer);
+        track->tags.setTag(TagId::AlbumArtist, artist);
 }
 
 
@@ -322,8 +322,8 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
             case CTAG_GENRE:       globalTags.setTag(TagId::Genre,      value); break;
             case CTAG_PERFORMER:
             {
-                globalTags.setTag(TagId::Performer,     value);
-                globalTags.setTag(TagId::DiskPerformer, value);
+                globalTags.setTag(TagId::Artist,      value);
+                globalTags.setTag(TagId::AlbumArtist, value);
                 break;
             }
             case CTAG_SONGWRITER:  globalTags.setTag(TagId::SongWriter, value); break;
@@ -375,7 +375,7 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
             case CTAG_GENRE:       track->tags.setTag(TagId::Genre,      value); break;
             case CTAG_PERFORMER:
             {
-                track->tags.setTag(TagId::Performer,  value);
+                track->tags.setTag(TagId::Artist,  value);
                 splitByDash      = false;
                 splitBySlash     = false;
                 splitByBackSlash = false;
@@ -411,8 +411,8 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
     else if (splitBySlash)  splitTitle(&tracks, '/');
     else if (splitByDash)   splitTitle(&tracks, '-');
 
-    if (globalTags.tagData(TagId::DiskPerformer).isEmpty())
-        setDiskPerformer(&tracks);
+    if (globalTags.tagData(TagId::AlbumArtist).isEmpty())
+        setDiskArtist(&tracks);
     // ::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 

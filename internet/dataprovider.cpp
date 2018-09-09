@@ -296,13 +296,13 @@ Tracks FreeDbProvider::parse(QNetworkReply *reply)
             // track titles, the track artist and the track title (in that order)
             // should be separated by a "/" with a single space on either side
             // to separate it from the text.
-            track.setTag(TagId::Performer, leftPart(value,  '/').trimmed());
-            track.setTag(TagId::Title,     rightPart(value, '/').trimmed());
+            track.setTag(TagId::Artist, leftPart(value,  '/').trimmed());
+            track.setTag(TagId::Title,  rightPart(value, '/').trimmed());
         }
         else
         {
-            track.setTag(TagId::Performer, performer.trimmed());
-            track.setTag(TagId::Title,     value);
+            track.setTag(TagId::Artist, performer.trimmed());
+            track.setTag(TagId::Title,  value);
         }
 
     }

@@ -215,7 +215,7 @@ QString Track::resultFileName() const
                         this->trackNum(),
                         this->album(),
                         this->title(),
-                        this->tag(TagId::DiskPerformer),
+                        this->tag(TagId::AlbumArtist),
                         this->genre(),
                         this->date(),
                         "")
@@ -562,7 +562,7 @@ UcharDet::~UcharDet()
  ************************************************/
 UcharDet &UcharDet::operator<<(const Track &track)
 {
-    TagId tags[] = {TagId::Performer, TagId::Title};
+    TagId tags[] = {TagId::Artist, TagId::Title};
 
     for (uint i=0; i<sizeof(tags)/sizeof(TagId); ++i)
     {
@@ -608,7 +608,7 @@ QTextCodec *determineTextCodec(const QVector<Track*> tracks)
 
     foreach(const Track *track, tracks)
     {
-        const QByteArray &performer = track->tagData(TagId::Performer);
+        const QByteArray &performer = track->tagData(TagId::Artist);
         const QByteArray &title     = track->tagData(TagId::Title);
 
         uchardet_handle_data(uc, performer.data(), performer.length());

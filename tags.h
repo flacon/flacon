@@ -45,7 +45,7 @@ enum class TagId
     Flags,
     Genre,
     ISRC,
-    Performer,
+    Artist,
     SongWriter,
     Title,
     DiscId,
@@ -53,7 +53,7 @@ enum class TagId
     Disknum,
     CueFile,
     StartTrackNum,
-    DiskPerformer
+    AlbumArtist
 };
 
 

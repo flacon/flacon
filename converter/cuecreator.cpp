@@ -75,7 +75,7 @@ void CueCreator::initGlobalTags()
     static TagId tags[] = {
         TagId::Genre,
         TagId::Date,
-        TagId::Performer,
+        TagId::Artist,
         TagId::SongWriter,
         TagId::Album,
         TagId::Catalog,
@@ -164,7 +164,7 @@ bool CueCreator::write()
     writeGlobalTag("REM DATE %1",       TagId::Date);
     writeGlobalTag("REM DISCID %1",     TagId::DiscId);
     writeLine(QString("REM COMMENT \"Flacon v%1\"").arg(FLACON_VERSION));
-    writeGlobalTag("PERFORMER \"%1\"",  TagId::Performer);
+    writeGlobalTag("PERFORMER \"%1\"",  TagId::Artist);
     writeGlobalTag("SONGWRITER \"%1\"", TagId::SongWriter);
     writeGlobalTag("TITLE \"%1\"",      TagId::Album);
 
@@ -214,7 +214,7 @@ bool CueCreator::write()
 
         writeTrackTag(track, "    REM GENRE \"%1\"",  TagId::Genre);
         writeTrackTag(track, "    REM DATE %1",       TagId::Date);
-        writeTrackTag(track, "    PERFORMER \"%1\"",  TagId::Performer);
+        writeTrackTag(track, "    PERFORMER \"%1\"",  TagId::Artist);
         writeTrackTag(track, "    SONGWRITER \"%1\"", TagId::SongWriter);
     }
 
