@@ -434,21 +434,33 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
             res << disk;
         }
 
-        track->tags.setCueFileName(fullPath);
-        track->tags.setTrackNum(n);
-        track->tags.setTrackCount(diskNum);
-        track->tags.setCodecName(codecName);
         res.last() << Track(track->tags);
     }
 
     qDeleteAll(tracks);
 
 
-    for (int i=0; i<res.count(); ++i)
+    for (int d=0; d<res.count(); ++d)
     {
-        if (res.at(i).count() == 0)
+        CueDisk &disk = res[d];
+
+        if (disk.count() == 0)
         {
-            throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Disk %2 has no tags.").arg(fileName).arg(i));
+            throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Disk %2 has no tags.").arg(fileName).arg(d));
+        }
+
+        for (int t=0; t<disk.count(); ++t)
+        {
+            Track &track = disk[t];
+
+            track.setTrackNum(t + 1);
+            track.setTrackCount(disk.count());
+
+            track.setDiskNum(d + 1);
+            track.setDiskCount(res.count());
+
+            track.setCueFileName(fullPath);
+            track.setCodecName(codecName);
         }
     }
 

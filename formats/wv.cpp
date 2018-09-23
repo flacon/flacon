@@ -115,6 +115,7 @@ QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile
 
 
     args << "-w" << QString("Track=%1/%2").arg(track->trackNum()).arg(track->trackCount());
+    args << "-w" << QString("Part=%1").arg(track->diskNum());
 
     args << "-";
     args << "-o" << outFile;

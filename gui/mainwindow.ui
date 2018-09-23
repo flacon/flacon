@@ -158,36 +158,10 @@ If you surround sections of text that contain a token with braces, these section
            <string>Tags</string>
           </property>
           <layout class="QGridLayout" name="formLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="tagGenreEditLabel_2">
-             <property name="text">
-              <string>Genre:</string>
-             </property>
-             <property name="buddy">
-              <cstring>tagGenreEdit</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="TagLineEdit" name="tagGenreEdit"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="tagYearEditLabel">
-             <property name="text">
-              <string>Year:</string>
-             </property>
-             <property name="buddy">
-              <cstring>tagYearEdit</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="TagLineEdit" name="tagYearEdit">
-             <property name="minimum" stdset="0">
-              <number>1900</number>
-             </property>
-             <property name="maximum" stdset="0">
-              <number>3000</number>
+           <item row="8" column="1" colspan="3">
+            <widget class="TagLineEdit" name="tagDiscIdEdit">
+             <property name="readOnly">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -201,21 +175,61 @@ If you surround sections of text that contain a token with braces, these section
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
-            <widget class="TagLineEdit" name="tagArtistEdit"/>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="tagAlbumEditLabel">
-             <property name="text">
-              <string>Album:</string>
-             </property>
-             <property name="buddy">
-              <cstring>tagAlbumEdit</cstring>
+           <item row="5" column="1" colspan="3">
+            <widget class="MultiValuesSpinBox" name="tagStartNumEdit">
+             <property name="minimum">
+              <number>1</number>
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
+           <item row="4" column="1" colspan="3">
             <widget class="TagLineEdit" name="tagAlbumEdit"/>
+           </item>
+           <item row="6" column="3">
+            <widget class="TagSpinBox" name="tagDiskCountSpinBox">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="3">
+            <widget class="TagLineEdit" name="tagYearEdit">
+             <property name="minimum" stdset="0">
+              <number>1900</number>
+             </property>
+             <property name="maximum" stdset="0">
+              <number>3000</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" colspan="3">
+            <widget class="TagLineEdit" name="tagDiskPerformerEdit"/>
+           </item>
+           <item row="9" column="1" colspan="3">
+            <widget class="CodePageComboBox" name="codepageCombo"/>
+           </item>
+           <item row="2" column="1" colspan="3">
+            <widget class="TagLineEdit" name="tagArtistEdit"/>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="tagDiscIdEditLabel">
+             <property name="text">
+              <string>Disc ID:</string>
+             </property>
+             <property name="buddy">
+              <cstring>tagDiscIdEdit</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="tagGenreEditLabel">
+             <property name="text">
+              <string>Genre:</string>
+             </property>
+             <property name="buddy">
+              <cstring>tagGenreEdit</cstring>
+             </property>
+            </widget>
            </item>
            <item row="5" column="0">
             <widget class="QLabel" name="tagStartNumEditLabel">
@@ -230,34 +244,7 @@ If you surround sections of text that contain a token with braces, these section
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
-            <widget class="MultiValuesSpinBox" name="tagStartNumEdit">
-             <property name="minimum">
-              <number>1</number>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0">
-            <widget class="QLabel" name="tagDiscIdEditLabel">
-             <property name="text">
-              <string>Disc ID:</string>
-             </property>
-             <property name="buddy">
-              <cstring>tagDiscIdEdit</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="1">
-            <widget class="CodePageComboBox" name="codepageCombo"/>
-           </item>
-           <item row="6" column="1">
-            <widget class="TagLineEdit" name="tagDiscIdEdit">
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="0">
+           <item row="9" column="0">
             <widget class="QLabel" name="codepageComboLabel">
              <property name="text">
               <string>Codepage:</string>
@@ -267,8 +254,12 @@ If you surround sections of text that contain a token with braces, these section
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
-            <widget class="TagLineEdit" name="tagDiskPerformerEdit"/>
+           <item row="6" column="1">
+            <widget class="TagSpinBox" name="tagDiskNumSpinBox">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+            </widget>
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="tagDiskPerformerLabel">
@@ -277,6 +268,49 @@ If you surround sections of text that contain a token with braces, these section
              </property>
              <property name="buddy">
               <cstring>tagDiskPerformerEdit</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="tagYearEditLabel">
+             <property name="text">
+              <string>Year:</string>
+             </property>
+             <property name="buddy">
+              <cstring>tagYearEdit</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="3">
+            <widget class="TagLineEdit" name="tagGenreEdit"/>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="tagAlbumEditLabel">
+             <property name="text">
+              <string>Album:</string>
+             </property>
+             <property name="buddy">
+              <cstring>tagAlbumEdit</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="tagDiskNumLabel">
+             <property name="text">
+              <string>Disk num:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="2">
+            <widget class="QLabel" name="label_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>of</string>
              </property>
             </widget>
            </item>
@@ -337,7 +371,7 @@ If you surround sections of text that contain a token with braces, these section
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -549,6 +583,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
   <customwidget>
    <class>OutDirComboBox</class>
    <extends>QComboBox</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TagSpinBox</class>
+   <extends>QSpinBox</extends>
    <header>controls.h</header>
   </customwidget>
  </customwidgets>

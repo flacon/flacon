@@ -522,3 +522,13 @@ OutDirComboBox::OutDirComboBox(QWidget *parent):
 {
 
 }
+
+
+/************************************************
+ *
+ ************************************************/
+TagSpinBox::TagSpinBox(QWidget *parent):
+    MultiValuesSpinBox(parent),
+    mTagId(TagId())
+{
+}

@@ -87,6 +87,7 @@ QStringList OutFormat_Aac::encoderArgs(const Track *track, const QString &outFil
 
     // --disc disc
     //     Set disc to disc in the format “number/total”
+    args << "--disc" << QString("%1/%2").arg(track->diskNum()).arg(track->diskCount());
 
     // --year year
     //     Set year to year

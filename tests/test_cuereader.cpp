@@ -30,6 +30,7 @@
 #include "tools.h"
 #include <QDebug>
 #include <QDir>
+#include <QSettings>
 
 
 /************************************************
@@ -67,19 +68,22 @@ static void write(const QVector<CueDisk> &cue, const QString &fileName)
         foreach (const Track &track, disk)
         {
             t++;
+            f << QString("[DISK %1 / TRACK %2]\n").arg(d+1, 2, 10, QChar('0')).arg(t+1, 2, 10, QChar('0'));
 
-            if (t != 0)
-                f << "\n";
+            f << "\t" << "FILE       = " << track.tag(TagId::File)               << "\n";
+            f << "\t" << "INDEX 00   = " << track.cueIndex(0).toString(true)     << "\n";
+            f << "\t" << "INDEX 01   = " << track.cueIndex(1).toString(true)     << "\n";
+            f << "\t" << "TITLE      = " << track.tag(TagId::Title)              << "\n";
+            f << "\t" << "ALBUM      = " << track.tag(TagId::Album)              << "\n";
+            f << "\t" << "PERFORMER  = " << track.tag(TagId::Artist)             << "\n";
+            f << "\t" << "DATE       = " << track.tag(TagId::Date)               << "\n";
+            f << "\t" << "DISKID     = " << track.tag(TagId::DiscId)             << "\n";
+            f << "\t" << "TRACKNUM   = " << QString::number(track.trackNum())    << "\n";
+            f << "\t" << "TRACKCOUNT = " << QString::number(track.trackCount())  << "\n";
+            f << "\t" << "DISKNUM   = "  << QString::number(track.diskNum())     << "\n";
+            f << "\t" << "DISKCOUNT = "  << QString::number(track.diskCount())   << "\n";
 
-            QString trackTxt = QString("DISK.%1 TRACK.%2 ").arg(d+1, 2, 10, QChar('0')).arg(t+1, 2, 10, QChar('0'));
-            f << trackTxt << "FILE: "       << track.tag(TagId::File)           << "\n";
-            f << trackTxt << "INDEX 00: "   << track.cueIndex(0).toString(true) << "\n";
-            f << trackTxt << "INDEX 01: "   << track.cueIndex(1).toString(true) << "\n";
-            f << trackTxt << "TITLE: "      << track.tag(TagId::Title)          << "\n";
-            f << trackTxt << "ALBUM: "      << track.tag(TagId::Album)          << "\n";
-            f << trackTxt << "PERFORMER: "  << track.tag(TagId::Artist)      << "\n";
-            f << trackTxt << "DATE: "       << track.tag(TagId::Date)           << "\n";
-            f << trackTxt << "DISKID: "     << track.tag(TagId::DiscId)         << "\n";
+            f << "\n";
         }
     }
 
@@ -90,34 +94,64 @@ static void write(const QVector<CueDisk> &cue, const QString &fileName)
 /************************************************
  *
  ************************************************/
+static void compare(const QString &resFile, const QString &expectedFile)
+{
+    QSettings result(resFile, QSettings::IniFormat);
+    QSettings expected(expectedFile, QSettings::IniFormat);
+
+    if (result.allKeys() != expected.allKeys())
+        FAIL(QString("The result groups or keys is different from the expected (%1 %2).").arg(resFile, expectedFile));
+
+    foreach (auto key, result.allKeys())
+    {
+        QCOMPARE(result.value(key).toString(), expected.value(key).toString());
+    }
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
 void TestFlacon::testCueReader()
 {
+    QFETCH(QString, cue);
 
+    QString srcDir = mDataDir + "testCueReader";
+
+    QString cueFile      = dir() + "/" + cue;
+    QString expectedFile = cueFile + ".expected";
+    QString resultFile   = cueFile + ".result";
+
+    QFile::copy(srcDir + "/" + cue, cueFile);
+    QFile::copy(srcDir + "/" + cue + ".expected", expectedFile);
+
+    try
+    {
+        CueReader reader;
+        auto cue = reader.load(cueFile);
+        write(cue, resultFile);
+
+        compare(resultFile, expectedFile);
+    }
+    catch (FlaconError &err)
+    {
+        FAIL(err.message());
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::testCueReader_data()
+{
+    QTest::addColumn<QString>("cue");
     QString srcDir = mDataDir + "testCueReader";
 
     foreach(QString f, QDir(srcDir).entryList(QStringList("*.cue"), QDir::Files, QDir::Name))
     {
-        QString cueFile      = dir() + "/" + f;
-        QString expectedFile = cueFile + ".expected";
-        QString resultFile   = cueFile + ".result";
+        QTest::newRow(f.toLocal8Bit()) << f;
 
-        QFile::copy(srcDir + "/" + f, cueFile);
-        QFile::copy(srcDir + "/" + f + ".expected", expectedFile);
-
-        try
-        {
-            CueReader reader;
-            auto cue = reader.load(cueFile);
-            write(cue, resultFile);
-
-            QString err;
-            if (!TestFlacon::compareCue(resultFile, expectedFile, &err, true))
-                FAIL(err.toLocal8Bit());
-        }
-        catch (FlaconError &err)
-        {
-            FAIL(err.message());
-        }
     }
-
 }

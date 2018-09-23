@@ -80,6 +80,12 @@ public:
 
     QString diskId() const              { return tag(TagId::DiscId) ;}
 
+    DiskNum diskNum() const;
+    void setDiskNum(DiskNum value);
+
+    DiskNum diskCount() const;
+    void setDiskCount(DiskNum value);
+
     QString resultFileName() const;
     QString resultFilePath() const;
 

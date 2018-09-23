@@ -88,7 +88,8 @@ TagId tagNameToId(const QString &tagName)
     if (tagName.toUpper() == "TITLE")         return TagId::Title;
     if (tagName.toUpper() == "DISCId")        return TagId::DiscId;
     if (tagName.toUpper() == "FILE")          return TagId::File;
-    if (tagName.toUpper() == "DISKNUM")       return TagId::Disknum;
+    if (tagName.toUpper() == "DISKNUM")       return TagId::DiskNum;
+    if (tagName.toUpper() == "DISCOUNT")      return TagId::DiskCount;
     if (tagName.toUpper() == "CUEFILE")       return TagId::CueFile;
     if (tagName.toUpper() == "STARTTRACKNUM") return TagId::StartTrackNum;
 

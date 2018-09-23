@@ -49,7 +49,7 @@ public:
 
     Track *track(int index) const;
     int count() const { return mTracks.count(); }
-    const Track *preGapTrack() const { return &mPreGapTrack; }
+    const Track *preGapTrack() const;
 
     void loadFromCue(const CueDisk &cueDisk);
     QString cueFile() const { return mCueFile; }
@@ -71,6 +71,8 @@ public:
     QString tagsUri() const;
     QString discId() const;
     QString fileTag() const;
+    DiskNum diskNum() const;
+    DiskNum diskCount() const;
 
     QStringList warnings() const;
     bool canConvert(QString *description = 0) const;
@@ -114,7 +116,7 @@ private:
     QString       mCurrentTagsUri;
 
     InputAudioFile *mAudioFile;
-    Track mPreGapTrack;
+    mutable Track mPreGapTrack;
 
     QString mCoverImageFile;
     mutable QImage  mCoverImagePreview;

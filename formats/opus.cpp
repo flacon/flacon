@@ -77,8 +77,12 @@ QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFi
         args << "--comment" << QString("album_artist=%1").arg(track->tag(TagId::AlbumArtist));
     }
 
-    args << "--comment" << QString("TRACKNUMBER=%1").arg(track->trackNum());
-    args << "--comment" << QString("TRACKTOTAL=%1").arg(track->trackCount());
+    args << "--comment" << QString("tracknumber=%1").arg(track->trackNum());
+    args << "--comment" << QString("tracktotal=%1").arg(track->trackCount());
+
+    args << "--comment" << QString("disc=%1").arg(track->diskNum());
+    args << "--comment" << QString("discnumber=%1").arg(track->diskNum());
+    args << "--comment" << QString("disctotal=%1").arg(track->diskCount());
 
     // Files ....................................................
     args << "-";

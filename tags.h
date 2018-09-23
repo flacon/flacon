@@ -50,10 +50,11 @@ enum class TagId
     Title,
     DiscId,
     File,
-    Disknum,
+    DiskNum,
+    DiskCount,
     CueFile,
     StartTrackNum,
-    AlbumArtist
+    AlbumArtist,
 };
 
 

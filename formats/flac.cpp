@@ -129,10 +129,13 @@ QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFi
     if (!track->diskId().isEmpty())
         args << "--tag" << QString("discId=%1").arg(track->diskId());
 
-    args << "--tag" << QString("TRACKNUMBER=%1").arg(track->trackNum());
-    args << "--tag" << QString("TOTALTRACKS=%1").arg(track->trackCount());
-    args << "--tag" << QString("TRACKTOTAL=%1").arg(track->trackCount());
+    args << "--tag" << QString("tracknumber=%1").arg(track->trackNum());
+    args << "--tag" << QString("totaltracks=%1").arg(track->trackCount());
+    args << "--tag" << QString("tracktotal=%1").arg(track->trackCount());
 
+    args << "--tag" << QString("disc=%1").arg(track->diskNum());
+    args << "--tag" << QString("discnumber=%1").arg(track->diskNum());
+    args << "--tag" << QString("disctotal=%1").arg(track->diskCount());
 
     args << "-";
     args << "-o" << outFile;

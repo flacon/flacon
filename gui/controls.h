@@ -147,6 +147,23 @@ private:
 
 
 /************************************************
+ *
+ ************************************************/
+class TagSpinBox: public MultiValuesSpinBox
+{
+    Q_OBJECT
+public:
+    TagSpinBox(QWidget *parent = 0);
+
+    TagId tagId() const { return mTagId; }
+    void setTagId(TagId tagId) { mTagId = tagId; }
+
+private:
+    TagId   mTagId;
+};
+
+
+/************************************************
 
  ************************************************/
 class MultiValuesComboBox: public QComboBox

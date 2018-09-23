@@ -76,6 +76,22 @@ Track *Disk::track(int index) const
 
 
 /************************************************
+ *
+ ************************************************/
+const Track *Disk::preGapTrack() const
+{
+    if (!mTracks.isEmpty())
+    {
+        mPreGapTrack.setTags(*mTracks.first());
+        mPreGapTrack.setCueFileName(mTracks.first()->cueFileName());
+    }
+
+    mPreGapTrack.setTitle("(HTOA)");
+    return &mPreGapTrack;
+}
+
+
+/************************************************
 
  ************************************************/
 bool Disk::canConvert(QString *description) const
@@ -180,11 +196,6 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
     mCurrentTagsUri = mCueFile;
     syncTagsFromTracks();
     mTagSets[mCurrentTagsUri].setTitle(cueDisk.title());
-
-
-    mPreGapTrack.setTags(*mTracks.first());
-    mPreGapTrack.setCueFileName(mTracks.first()->cueFileName());
-    mPreGapTrack.setTitle("(HTOA)");
 
     if (!mAudioFile)
         findAudioFile(cueDisk);
@@ -581,6 +592,30 @@ QString Disk::fileTag() const
         return mTracks.first()->tag(TagId::File);
 
     return "";
+}
+
+
+/************************************************
+ *
+ ************************************************/
+DiskNum Disk::diskNum() const
+{
+    if (!mTracks.isEmpty())
+        return mTracks.first()->diskNum();
+
+    return 0;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+DiskNum Disk::diskCount() const
+{
+    if (!mTracks.isEmpty())
+        return mTracks.first()->diskCount();
+
+    return 0;
 }
 
 

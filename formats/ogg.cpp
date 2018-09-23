@@ -100,8 +100,12 @@ QStringList OutFormat_Ogg::encoderArgs(const Track *track, const QString &outFil
 
 
     args << "--tracknum" << QString("%1").arg(track->trackNum());
-    args << "--comment" << QString("TOTALTRACKS=%1").arg(track->trackCount());
-    args << "--comment" << QString("TRACKTOTAL=%1").arg(track->trackCount());
+    args << "--comment" << QString("totaltracks=%1").arg(track->trackCount());
+    args << "--comment" << QString("tracktotal=%1").arg(track->trackCount());
+
+    args << "--comment" << QString("disc=%1").arg(track->diskNum());
+    args << "--comment" << QString("discnumber=%1").arg(track->diskNum());
+    args << "--comment" << QString("disctotal=%1").arg(track->diskCount());
 
     // Files ....................................................
     args << "-o" << outFile;

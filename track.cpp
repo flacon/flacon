@@ -286,6 +286,55 @@ bool Track::operator ==(const Track &other) const
 
 
 /************************************************
+ *
+ ************************************************/
+DiskNum Track::diskNum() const
+{
+    bool ok;
+    int res = tag(TagId::DiskNum).toInt(&ok);
+
+    if (ok)
+        return res;
+
+    return 1;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Track::setDiskNum(DiskNum value)
+{
+    setTag(TagId::DiskNum, QString::number(value));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+DiskNum Track::diskCount() const
+{
+    bool ok;
+    int res = tag(TagId::DiskCount).toInt(&ok);
+
+    if (ok)
+        return res;
+
+    return 1;
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Track::setDiskCount(DiskNum value)
+{
+    setTag(TagId::DiskCount, QString::number(value));
+}
+
+
+/************************************************
 
  ************************************************/
 QString Track::expandPattern(const QString &pattern, const QHash<QChar, QString> *tokens, bool optional)
@@ -592,6 +641,9 @@ QTextCodec *UcharDet::textCodec() const
     uchardet_data_end(mData->mUchcharDet);
     QTextCodec *res = QTextCodec::codecForName(uchardet_get_charset(mData->mUchcharDet));
     if (!res)
+        res = QTextCodec::codecForName(settings->value(Settings::Tags_DefaultCodepage).toString().toLocal8Bit());
+
+    else if (res->name() == "US-ASCII")
         res = QTextCodec::codecForName("UTF-8");
 
     return res;

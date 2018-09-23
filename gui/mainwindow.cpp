@@ -109,12 +109,20 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagDiskPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(setDiskTag()));
     connect(tagDiskPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(refreshEdits()));
 
+    tagDiskNumSpinBox->setTagId(TagId::DiskNum);
+    connect(tagDiskNumSpinBox, SIGNAL(editingFinished()), this, SLOT(setDiskTagInt()));
+    connect(tagDiskNumSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setDiskTagInt()));
+
+    tagDiskCountSpinBox->setTagId(TagId::DiskCount);
+    connect(tagDiskCountSpinBox, SIGNAL(editingFinished()), this, SLOT(setDiskTagInt()));
+    connect(tagDiskCountSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setDiskTagInt()));
+
+
     tagAlbumEdit->setTagId(TagId::Album);
     connect(tagAlbumEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
 
 
     tagDiscIdEdit->setTagId(TagId::DiscId);
-
     connect(tagStartNumEdit, SIGNAL(editingFinished()), this, SLOT(setStartTrackNum()));
     connect(tagStartNumEdit, SIGNAL(valueChanged(int)), this, SLOT(setStartTrackNum()));
 
@@ -465,7 +473,8 @@ void MainWindow::refreshEdits()
     QSet<int> startNums;
     QSet<QString> diskId;
     QSet<QString> codePage;
-
+    QSet<int> diskNum;
+    QSet<int> diskCount;
 
     QList<Disk*> disks = trackView->selectedDisks();
     foreach(Disk *disk, disks)
@@ -473,6 +482,8 @@ void MainWindow::refreshEdits()
         startNums << disk->startTrackNum();
         diskId << disk->discId();
         codePage << disk->codecName();
+        diskNum << disk->diskNum();
+        diskCount << disk->diskCount();
     }
 
     // Tracks ..............................
@@ -500,6 +511,8 @@ void MainWindow::refreshEdits()
     tagDiscIdEdit->setMultiValue(diskId);
     codepageCombo->setMultiValue(codePage);
     tagDiskPerformerEdit->setMultiValue(diskPerformer);
+    tagDiskNumSpinBox->setMultiValue(diskNum);
+    tagDiskCountSpinBox->setMultiValue(diskCount);
 
     if (outDirEdit->currentText() != settings->value(Settings::OutFiles_Directory).toString())
         outDirEdit->lineEdit()->setText(settings->value(Settings::OutFiles_Directory).toString());
@@ -565,6 +578,24 @@ void MainWindow::setDiskTag()
     foreach(Disk *disk, disks)
     {
         disk->setDiskTag(edit->tagId(), edit->text());
+        trackView->update(*disk);
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::setDiskTagInt()
+{
+    TagSpinBox *spinBox = qobject_cast<TagSpinBox*>(sender());
+    if (!spinBox)
+        return;
+
+    QList<Disk*> disks = trackView->selectedDisks();
+    foreach(Disk *disk, disks)
+    {
+        disk->setDiskTag(spinBox->tagId(), QString::number(spinBox->value()));
         trackView->update(*disk);
     }
 }
