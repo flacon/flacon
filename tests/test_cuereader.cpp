@@ -78,10 +78,12 @@ static void write(const QVector<CueDisk> &cue, const QString &fileName)
             f << "\t" << "PERFORMER  = " << track.tag(TagId::Artist)             << "\n";
             f << "\t" << "DATE       = " << track.tag(TagId::Date)               << "\n";
             f << "\t" << "DISKID     = " << track.tag(TagId::DiscId)             << "\n";
+            f << "\t" << "GENRE     = "  << track.tag(TagId::Genre)              << "\n";
             f << "\t" << "TRACKNUM   = " << QString::number(track.trackNum())    << "\n";
             f << "\t" << "TRACKCOUNT = " << QString::number(track.trackCount())  << "\n";
             f << "\t" << "DISKNUM   = "  << QString::number(track.diskNum())     << "\n";
             f << "\t" << "DISKCOUNT = "  << QString::number(track.diskCount())   << "\n";
+
 
             f << "\n";
         }
@@ -99,10 +101,7 @@ static void compare(const QString &resFile, const QString &expectedFile)
     QSettings result(resFile, QSettings::IniFormat);
     QSettings expected(expectedFile, QSettings::IniFormat);
 
-    if (result.allKeys() != expected.allKeys())
-        FAIL(QString("The result groups or keys is different from the expected (%1 %2).").arg(resFile, expectedFile));
-
-    foreach (auto key, result.allKeys())
+    foreach (auto key, expected.allKeys())
     {
         QCOMPARE(result.value(key).toString(), expected.value(key).toString());
     }
