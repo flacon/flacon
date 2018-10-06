@@ -38,6 +38,7 @@
 
 #include <QDebug>
 
+#include "gui/tageditor/tageditor.h"
 
 /************************************************
 
@@ -66,7 +67,7 @@ TrackView::TrackView(QWidget *parent):
     this->setAttribute(Qt::WA_MacShowFocusRect, false);
 
     // Context menu ....................................
-    setContextMenuPolicy(Qt::DefaultContextMenu);
+    setContextMenuPolicy(Qt::CustomContextMenu);
 
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(headerContextMenu(QPoint)));
@@ -330,64 +331,6 @@ void TrackViewSelectionModel::select(const QItemSelection &selection, QItemSelec
     }
 
     QItemSelectionModel::select(newSelection, command);
-}
-
-
-/************************************************
-
- ************************************************/
-void TrackView::contextMenuEvent(QContextMenuEvent *event)
-{
-    event->ignore();
-
-    QModelIndex index = indexAt(event->pos());
-    if (!index.isValid())
-        return;
-
-
-    Disk *disk = mModel->diskByIndex(index);
-    if (!disk)
-        return;
-
-    QModelIndex diskIndex = (mModel->trackByIndex(index)) ? index.parent() : index;
-
-    QMenu menu;
-    QMenu editMenu(tr("Edit"), &menu);
-
-    for(int i=0; i< mModel->columnCount(QModelIndex()); ++i)
-    {
-        if (!isColumnHidden(i) &&
-            mModel->flags(mModel->index(0, i, diskIndex)).testFlag(Qt::ItemIsEditable))
-        {
-            QAction *act = new QAction(&menu);
-            act->setText(mModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-            act->setData(i);
-            connect(act, SIGNAL(triggered()), this, SLOT(openEditor()));
-            editMenu.addAction(act);
-        }
-    }
-
-    menu.addMenu(&editMenu);
-    menu.addSeparator();
-
-
-    QAction *act;
-
-    act = new QAction(tr("Select another audio file"), &menu);
-    connect(act, &QAction::triggered, [this, disk](){ emit selectAudioFile(disk); });
-    menu.addAction(act);
-
-
-    act = new QAction(tr("Select another cue file"), &menu);
-    connect(act, &QAction::triggered, [this, disk](){ emit selectCueFile(disk); });
-    menu.addAction(act);
-
-    act = new QAction(tr("Get data from CDDB"), &menu);
-    act->setEnabled(disk->canDownloadInfo());
-    connect(act, &QAction::triggered, [this, disk](){ emit downloadInfo(disk);});
-    menu.addAction(act);
-
-    menu.exec(event->globalPos());
 }
 
 

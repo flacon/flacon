@@ -183,9 +183,52 @@ void CodePageComboBox::addCodecName(const QString &title, const QString &codecNa
  ************************************************/
 MultiValuesSpinBox::MultiValuesSpinBox(QWidget *parent):
     QSpinBox(parent),
-    mMultiState(MultiValuesEmpty)
+    mMultiState(MultiValuesEmpty),
+    mModified(false)
 {
+    this->connect(this, SIGNAL(valueChanged(int)), this, SLOT(setChanged()));
+}
 
+
+/************************************************
+ *
+ ************************************************/
+static MultiValuesState getTagEditState(const QSet<QString> values)
+{
+    switch (values.count())
+    {
+    case 0:  return MultiValuesEmpty;
+    case 1:  return MultiValuesSingle;
+    default: return MultiValuesMulti;
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+static QString getTagEditText(const QSet<QString> values)
+{
+    switch (values.count())
+    {
+    case 0:  return "";
+    case 1:  return *(values.constBegin());
+    default: return "";
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+static QString getTagEditPlaceHolder(const QSet<QString> values)
+{
+    switch (values.count())
+    {
+    case 0:  return "";
+    case 1:  return "";
+    default: return QObject::tr("Multiple values");
+    }
 }
 
 
@@ -531,4 +574,45 @@ TagSpinBox::TagSpinBox(QWidget *parent):
     MultiValuesSpinBox(parent),
     mTagId(TagId())
 {
+}
+
+
+/************************************************
+ *
+ ************************************************/
+MultiValuesTextEdit::MultiValuesTextEdit(QWidget *parent):
+    QPlainTextEdit(parent),
+    mMultiState(MultiValuesEmpty)
+{
+}
+
+
+/************************************************
+ *
+ ************************************************/
+bool MultiValuesTextEdit::isModified() const
+{
+    return this->document()->isModified();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void MultiValuesTextEdit::setMultiValue(QSet<QString> value)
+{
+    mMultiState = getTagEditState(value);
+    setPlainText(getTagEditText(value));
+    setPlaceholderText(getTagEditPlaceHolder(value));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+TagTextEdit::TagTextEdit(QWidget *parent):
+    MultiValuesTextEdit(parent),
+    mTagId(TagId())
+{
+
 }

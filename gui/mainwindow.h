@@ -93,6 +93,9 @@ private slots:
     void openAboutDialog();
     void checkUpdates();
 
+    void trackViewMenu(const QPoint &pos);
+    void openEditTagsDialog();
+
 protected:
     void closeEvent(QCloseEvent *) override;
     void dragEnterEvent(QDragEnterEvent *event) override;

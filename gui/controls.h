@@ -31,6 +31,7 @@
 #include <QToolButton>
 #include <QComboBox>
 #include <QLineEdit>
+#include <QPlainTextEdit>
 #include <QSet>
 #include <QMenu>
 #include "tags.h"
@@ -87,6 +88,7 @@ private:
     QMenu mMenu;
 };
 
+
 /************************************************
 
  ************************************************/
@@ -98,14 +100,21 @@ public:
     bool multi() const { return mMultiState == MultiValuesMulti; }
     void stepBy(int steps);
 
+    bool isModified() const { return mModified; }
+
 public slots:
     void setMultiValue(QSet<int> value);
+    void setModified(bool modified) { mModified = modified; }
 
 protected:
     QString textFromValue(int val) const;
 
+private slots:
+    void setChanged() { mModified = true; }
+
 private:
     MultiValuesState mMultiState;
+    bool mModified;
 };
 
 
@@ -118,7 +127,7 @@ class MultiValuesLineEdit: public QLineEdit
     Q_OBJECT
 public:
     explicit MultiValuesLineEdit(QWidget *parent = 0);
-    bool multi() const { return mMultiState == MultiValuesMulti; }
+
 
 public slots:
     void setMultiValue(QSet<QString> value);
@@ -128,6 +137,43 @@ private:
     QStringListModel *mCompleterModel;
 };
 
+
+/************************************************
+
+ ************************************************/
+class MultiValuesTextEdit: public QPlainTextEdit
+{
+    Q_OBJECT
+public:
+    explicit MultiValuesTextEdit(QWidget *parent = 0);
+
+    bool isModified() const;
+    QString text() const { return this->toPlainText(); }
+
+public slots:
+    void setMultiValue(QSet<QString> value);
+
+private:
+    MultiValuesState mMultiState;
+};
+
+
+/************************************************
+ *
+ ************************************************/
+class TagTextEdit: public MultiValuesTextEdit
+{
+    Q_OBJECT
+public:
+    explicit TagTextEdit(QWidget *parent = 0);
+
+    TagId tagId() const { return mTagId; }
+    void setTagId(TagId tagId) { mTagId = tagId; }
+
+
+private:
+    TagId   mTagId;
+};
 
 /************************************************
 

@@ -75,6 +75,7 @@ set(HEADERS
     gui/cuediskselectdialog/cuediskselectdialog.h
     gui/coverdialog/coverdialog.h
     gui/coverdialog/asynclistwidgetitem.h
+    gui/tageditor/tageditor.h
 
     converter/wavheader.h
     converter/decoder.h
@@ -126,6 +127,7 @@ set(SOURCES
     gui/cuediskselectdialog/cuediskselectdialog.cpp
     gui/coverdialog/coverdialog.cpp
     gui/coverdialog/asynclistwidgetitem.cpp
+    gui/tageditor/tageditor.cpp
 
     converter/wavheader.cpp
     converter/decoder.cpp

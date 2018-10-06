@@ -62,6 +62,9 @@ public:
     QModelIndex index(const Disk &disk, int col = 0) const;
     QModelIndex index(const Track &track, int col) const;
 
+    Disk *diskByIndex(const QModelIndex &index);
+    Track *trackByIndex(const QModelIndex &index);
+
 public slots:
 
 protected:
@@ -97,8 +100,7 @@ protected:
         RoleDiskPerformer
     };
 
-    Disk *diskByIndex(const QModelIndex &index);
-    Track *trackByIndex(const QModelIndex &index);
+
 
 public slots:
     void downloadStarted(const Disk &disk);

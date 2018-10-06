@@ -39,6 +39,7 @@
 #include "gui/coverdialog/coverdialog.h"
 #include "internet/dataprovider.h"
 #include "gui/trackviewmodel.h"
+#include "gui/tageditor/tageditor.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -109,15 +110,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagDiskPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(setDiskTag()));
     connect(tagDiskPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(refreshEdits()));
 
-    tagDiskNumSpinBox->setTagId(TagId::DiskNum);
-    connect(tagDiskNumSpinBox, SIGNAL(editingFinished()), this, SLOT(setDiskTagInt()));
-    connect(tagDiskNumSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setDiskTagInt()));
-
-    tagDiskCountSpinBox->setTagId(TagId::DiskCount);
-    connect(tagDiskCountSpinBox, SIGNAL(editingFinished()), this, SLOT(setDiskTagInt()));
-    connect(tagDiskCountSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setDiskTagInt()));
-
-
     tagAlbumEdit->setTagId(TagId::Album);
     connect(tagAlbumEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
 
@@ -127,6 +119,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagStartNumEdit, SIGNAL(valueChanged(int)), this, SLOT(setStartTrackNum()));
 
     connect(trackView->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)), this, SLOT(refreshEdits()));
+    connect(trackView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(trackViewMenu(QPoint)));
+
+    connect(editTagsButton, &QPushButton::clicked, this, &MainWindow::openEditTagsDialog);
+
     initActions();
 
     // Buttons .................................................
@@ -473,8 +469,6 @@ void MainWindow::refreshEdits()
     QSet<int> startNums;
     QSet<QString> diskId;
     QSet<QString> codePage;
-    QSet<int> diskNum;
-    QSet<int> diskCount;
 
     QList<Disk*> disks = trackView->selectedDisks();
     foreach(Disk *disk, disks)
@@ -482,8 +476,6 @@ void MainWindow::refreshEdits()
         startNums << disk->startTrackNum();
         diskId << disk->discId();
         codePage << disk->codecName();
-        diskNum << disk->diskNum();
-        diskCount << disk->diskCount();
     }
 
     // Tracks ..............................
@@ -511,8 +503,6 @@ void MainWindow::refreshEdits()
     tagDiscIdEdit->setMultiValue(diskId);
     codepageCombo->setMultiValue(codePage);
     tagDiskPerformerEdit->setMultiValue(diskPerformer);
-    tagDiskNumSpinBox->setMultiValue(diskNum);
-    tagDiskCountSpinBox->setMultiValue(diskCount);
 
     if (outDirEdit->currentText() != settings->value(Settings::OutFiles_Directory).toString())
         outDirEdit->lineEdit()->setText(settings->value(Settings::OutFiles_Directory).toString());
@@ -929,6 +919,53 @@ void MainWindow::checkUpdates()
 #ifdef MAC_UPDATER
     Updater::sharedUpdater().checkForUpdatesInBackground();
 #endif
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::trackViewMenu(const QPoint &pos)
+{
+    QModelIndex index = trackView->indexAt(pos);
+    if (!index.isValid())
+        return;
+
+
+    Disk *disk = trackView->model()->diskByIndex(index);
+    if (!disk)
+        return;
+
+
+    QMenu menu;
+    QAction *act = new QAction("Edit tags", &menu);
+    connect(act, &QAction::triggered, this, &MainWindow::openEditTagsDialog);
+    menu.addAction(act);
+
+    menu.addSeparator();
+
+    act = new QAction(tr("Select another audio file"), &menu);
+    connect(act, &QAction::triggered, [this, disk](){ this->setAudioForDisk(disk); });
+    menu.addAction(act);
+
+
+    act = new QAction(tr("Select another cue file"), &menu);
+    connect(act, &QAction::triggered, [this, disk](){ this->setCueForDisc(disk); });
+    menu.addAction(act);
+
+    act = new QAction(tr("Get data from CDDB"), &menu);
+    act->setEnabled(disk->canDownloadInfo());
+    connect(act, &QAction::triggered, [this, disk](){ this->downloadDiskInfo(disk);});
+    menu.addAction(act);
+
+    menu.exec(trackView->viewport()->mapToGlobal(pos));
+}
+
+void MainWindow::openEditTagsDialog()
+{
+    TagEditor editor(trackView->selectedTracks());
+    editor.exec();
+    refreshEdits();
 }
 
 
