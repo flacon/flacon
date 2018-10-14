@@ -49,7 +49,6 @@
  ************************************************/
 Disk::Disk(QObject *parent) :
     QObject(parent),
-    mStartTrackNum(1),
     mAudioFile(0)
 {
 
@@ -186,11 +185,7 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
     for (int i=0; i<count; ++i)
     {
         Track *track = mTracks[i];
-        track->setTrackCount(count);
-        track->setTrackNum(mStartTrackNum + i);
         track->mDuration = this->trackDuration(i);
-
-
     }
 
     mCurrentTagsUri = mCueFile;
@@ -481,11 +476,22 @@ void Disk::findAudioFile(const CueDisk &cueDisk)
 
 
 /************************************************
+ *
+ ************************************************/
+int Disk::startTrackNum() const
+{
+    if (mTracks.isEmpty())
+        return 0;
+
+    return mTracks.first()->trackNum();
+}
+
+
+/************************************************
 
  ************************************************/
 void Disk::setStartTrackNum(int value)
 {
-    mStartTrackNum = value;
     foreach (auto track, mTracks)
         track->setTrackNum(value++);
 

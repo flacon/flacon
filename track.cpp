@@ -643,7 +643,7 @@ QTextCodec *UcharDet::textCodec() const
     if (!res)
         res = QTextCodec::codecForName(settings->value(Settings::Tags_DefaultCodepage).toString().toLocal8Bit());
 
-    else if (res->name() == "US-ASCII")
+    if (!res || res->name() == "US-ASCII")
         res = QTextCodec::codecForName("UTF-8");
 
     return res;

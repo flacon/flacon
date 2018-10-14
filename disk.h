@@ -59,7 +59,7 @@ public:
     void setAudioFile(const InputAudioFile &audio);
 
 
-    int startTrackNum() const { return mStartTrackNum; }
+    int startTrackNum() const;
     void setStartTrackNum(int value);
 
     QString codecName() const;
@@ -111,7 +111,6 @@ private:
     QHash<QString, Tracks> mTagSets;
 
     QList<Track*> mTracks;
-    int           mStartTrackNum;
     QString       mCueFile;
     QString       mCurrentTagsUri;
 

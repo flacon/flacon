@@ -103,7 +103,15 @@ static void compare(const QString &resFile, const QString &expectedFile)
 
     foreach (auto key, expected.allKeys())
     {
-        QCOMPARE(result.value(key).toString(), expected.value(key).toString());
+        if (result.value(key).toString() == expected.value(key).toString())
+            continue;
+
+        QString msg = QString("Compared values are not the same\n\tKey\t%1\n\tActual\t%2\n\tExpected\t%3")
+                .arg(key)
+                .arg(result.value(key).toString())
+                .arg(expected.value(key).toString());
+
+        QFAIL(msg.toLocal8Bit());
     }
 
 }

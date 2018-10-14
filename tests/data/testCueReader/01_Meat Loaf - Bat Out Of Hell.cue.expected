@@ -8,9 +8,9 @@
 	DATE       = 1977
 	DISKID     = 
 	TRACKNUM   = 1
-	TRACKCOUNT = 4
+	TRACKCOUNT = 7
 	DISKNUM    = 1
-	DISKCOUNT  = 2
+	DISKCOUNT  = 1
 
 [ DISK 01 / TRACK 02]
 	FILE       = Side 1.flac
@@ -22,9 +22,9 @@
 	DATE       = 1977
 	DISKID     = 
 	TRACKNUM   = 2
-	TRACKCOUNT = 4
+	TRACKCOUNT = 7
 	DISKNUM    = 1
-	DISKCOUNT  = 2
+	DISKCOUNT  = 1
 
 
 [ DISK 01 / TRACK 03]
@@ -37,9 +37,9 @@
 	DATE       = 1977
 	DISKID     = 
 	TRACKNUM   = 3
-	TRACKCOUNT = 4
+	TRACKCOUNT = 7
 	DISKNUM    = 1
-	DISKCOUNT  = 2
+	DISKCOUNT  = 1
 
 
 [ DISK 01 / TRACK 04]
@@ -52,9 +52,9 @@
 	DATE       = 1977
 	DISKID     = 
 	TRACKNUM   = 4
-	TRACKCOUNT = 4
+	TRACKCOUNT = 7
 	DISKNUM    = 1
-	DISKCOUNT  = 2
+	DISKCOUNT  = 1
 
 
 [ DISK 02 / TRACK 01]
@@ -66,10 +66,10 @@
 	PERFORMER  = Meat Loaf
 	DATE       = 1977
 	DISKID     = 
-	TRACKNUM   = 1
-	TRACKCOUNT = 3
-	DISKNUM    = 2
-	DISKCOUNT  = 2
+	TRACKNUM   = 5
+	TRACKCOUNT = 7
+	DISKNUM    = 1
+	DISKCOUNT  = 1
 
 
 [ DISK 02 / TRACK 02]
@@ -81,10 +81,10 @@
 	PERFORMER  = Meat Loaf
 	DATE       = 1977
 	DISKID     = 
-	TRACKNUM   = 2
-	TRACKCOUNT = 3
-	DISKNUM    = 2
-	DISKCOUNT  = 2
+	TRACKNUM   = 6
+	TRACKCOUNT = 7
+	DISKNUM    = 1
+	DISKCOUNT  = 1
 
 
 [ DISK 02 / TRACK 03]
@@ -96,7 +96,7 @@
 	PERFORMER  = Meat Loaf
 	DATE       = 1977
 	DISKID     = 
-	TRACKNUM   = 3
-	TRACKCOUNT = 3
-	DISKNUM    = 2
-	DISKCOUNT  = 2
+	TRACKNUM   = 7
+	TRACKCOUNT = 7
+	DISKNUM    = 1
+	DISKCOUNT  = 1

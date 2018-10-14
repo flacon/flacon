@@ -94,7 +94,10 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/flac --force --silent "
                "--compression-level-5 "
                "--tag artist=Artist --tag album=Album --tag genre=Genre --tag date=2013 --tag title=Song01 --tag albumartist=Artist "
-               "--tag comment=ExactAudioCopy v0.99pb4 --tag discId=123456789 --tag TRACKNUMBER=1 --tag TOTALTRACKS=4 --tag TRACKTOTAL=4 - -o OutFile.wav";
+               "--tag comment=ExactAudioCopy v0.99pb4 --tag discId=123456789 "
+               "--tag tracknumber=1 --tag totaltracks=4 --tag tracktotal=4 "
+               "--tag disc=1 --tag discnumber=1 --tag disctotal=1 "
+               "- -o OutFile.wav";
 
     //*******************************************
     cfg.clear();
@@ -108,7 +111,10 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/flac --force --silent "
                "--compression-level-1 "
                "--tag artist=Artist --tag album=Album --tag genre=Genre --tag date=2013 --tag title=Song01 --tag albumartist=Artist "
-               "--tag comment=ExactAudioCopy v0.99pb4 --tag discId=123456789 --tag TRACKNUMBER=1 --tag TOTALTRACKS=4 --tag TRACKTOTAL=4 - -o OutFile.wav";
+               "--tag comment=ExactAudioCopy v0.99pb4 --tag discId=123456789 "
+               "--tag tracknumber=1 --tag totaltracks=4 --tag tracktotal=4 "
+               "--tag disc=1 --tag discnumber=1 --tag disctotal=1 "
+               "- -o OutFile.wav";
 
 
     //*******************************************
@@ -124,7 +130,7 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << cfg
             << "/opt/faac -w "
                "-q 500 "
-               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 "
+               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --disc 1/1 --year 2013 "
                "--comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
 
 
@@ -139,7 +145,7 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << cfg
             << "/opt/faac -w "
                "-q 10 "
-               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 "
+               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --disc 1/1 --year 2013 "
                "--comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
 
     //*******************************************
@@ -154,7 +160,7 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << cfg
             << "/opt/faac -w "
                "-b 64 "
-               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --year 2013 "
+               "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --disc 1/1 --year 2013 "
                "--comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
 
 
@@ -172,7 +178,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "--preset medium "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
 
     //*******************************************
@@ -185,7 +192,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--silent "
                "--preset standard "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
 
 
@@ -198,7 +206,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "--preset fast standard "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
 
     //*******************************************
@@ -210,7 +219,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "--preset extreme "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "vbrExtremeFast");
@@ -221,7 +231,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "--preset fast extreme "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
 
     //*******************************************
@@ -233,7 +244,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "--preset insane "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "cbrKbps");
@@ -245,7 +257,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "--preset cbr 64 "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "cbrKbps");
@@ -257,7 +270,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "--preset cbr 128 "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
 
     //*******************************************
@@ -270,7 +284,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "--preset 64 "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "abrKbps");
@@ -282,7 +297,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "--preset 128 "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
 
     //*******************************************
@@ -295,7 +311,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "-V 9 "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "vbrQuality");
@@ -307,7 +324,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "-V 5 "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
     //*******************************************
     cfg.insert("Mp3/Preset",     "vbrQuality");
@@ -319,7 +337,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/lame --silent "
                "-V 0 "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 - OutFile.wav";
+               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
+               "- OutFile.wav";
 
 
 
@@ -341,7 +360,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "-q 5 "
                "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment album_artist=Artist "
                "--comment COMMENT=ExactAudioCopy v0.99pb4 --comment DISCID=123456789 "
-               "--tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
+               "--tracknum 1 --comment totaltracks=4 --comment tracktotal=4 "
+               "--comment disc=1 --comment discnumber=1 --comment disctotal=1 "
+               "-o OutFile.wav -";
 
 
     //*******************************************
@@ -354,7 +375,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "-q 10 "
                "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment album_artist=Artist "
                "--comment COMMENT=ExactAudioCopy v0.99pb4 --comment DISCID=123456789 "
-               "--tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
+               "--tracknum 1 --comment totaltracks=4 --comment tracktotal=4 "
+               "--comment disc=1 --comment discnumber=1 --comment disctotal=1 "
+               "-o OutFile.wav -";
 
 
     //*******************************************
@@ -370,7 +393,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/oggenc --quiet "
                "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment album_artist=Artist "
                "--comment COMMENT=ExactAudioCopy v0.99pb4 --comment DISCID=123456789 "
-               "--tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
+               "--tracknum 1 --comment totaltracks=4 --comment tracktotal=4 "
+               "--comment disc=1 --comment discnumber=1 --comment disctotal=1 "
+               "-o OutFile.wav -";
 
     //*******************************************
     cfg.insert("Programs/oggenc",   "/opt/oggenc");
@@ -386,8 +411,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "-b 128 -m 64 -M 350 "
                "--artist Artist --album Album --genre Genre --date 2013 --title Song01 --comment album_artist=Artist "
                "--comment COMMENT=ExactAudioCopy v0.99pb4 --comment DISCID=123456789 "
-               "--tracknum 1 --comment TOTALTRACKS=4 --comment TRACKTOTAL=4 -o OutFile.wav -";
-
+               "--tracknum 1 --comment totaltracks=4 --comment tracktotal=4 "
+               "--comment disc=1 --comment discnumber=1 --comment disctotal=1 "
+               "-o OutFile.wav -";
 
 
     //*******************************************
@@ -403,7 +429,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/wavpack -q "
                "-f "
                "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w Album Artist=Artist "
-               "-w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
+               "-w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 "
+               "-w Track=1/4 -w Part=1 "
+               "- -o OutFile.wav";
 
 
     //*******************************************
@@ -415,7 +443,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/wavpack -q "
                "-h "
                "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w Album Artist=Artist "
-               "-w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
+               "-w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 "
+               "-w Track=1/4 -w Part=1 "
+               "- -o OutFile.wav";
 
 
     //*******************************************
@@ -427,6 +457,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << "/opt/wavpack -q "
                "-hh "
                "-w Artist=Artist -w Album=Album -w Genre=Genre -w Year=2013 -w Title=Song01 -w Album Artist=Artist "
-               "-w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 -w Track=1/4 - -o OutFile.wav";
+               "-w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 "
+               "-w Track=1/4 -w Part=1 "
+               "- -o OutFile.wav";
 
 }

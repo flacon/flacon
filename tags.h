@@ -53,7 +53,6 @@ enum class TagId
     DiskNum,
     DiskCount,
     CueFile,
-    StartTrackNum,
     AlbumArtist,
 };
 

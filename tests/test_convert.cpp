@@ -91,7 +91,6 @@ TagId tagNameToId(const QString &tagName)
     if (tagName.toUpper() == "DISKNUM")       return TagId::DiskNum;
     if (tagName.toUpper() == "DISCOUNT")      return TagId::DiskCount;
     if (tagName.toUpper() == "CUEFILE")       return TagId::CueFile;
-    if (tagName.toUpper() == "STARTTRACKNUM") return TagId::StartTrackNum;
 
     FAIL("Unknown TAG: \"" + tagName +"\"");
     return TagId(0);

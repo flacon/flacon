@@ -1,0 +1,21 @@
+[ DISK 01 / TRACK 01 ]
+  FILE	     = 01. Track01.flac
+  ALBUM      = "AlbumName"
+  PERFORMER  = ArtistName
+  TITLE      = Title01
+  INDEX 00   = 00:00:00
+  TRACKNUM   = 1
+  TRACKCOUNT = 2
+  DISKNUM    = 1
+  DISKCOUNT  = 1
+
+[ DISK 02 / TRACK 01 ]
+  FILE       = 02. Track02.flac
+  ALBUM      = "AlbumName"
+  PERFORMER  = ArtistName
+  TITLE      = Title02
+  INDEX 00   = 00:00:00
+  TRACKNUM   = 2
+  TRACKCOUNT = 2
+  DISKNUM    = 1
+  DISKCOUNT  = 1
