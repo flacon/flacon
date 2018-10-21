@@ -34,6 +34,7 @@
 #include "gui/controls.h"
 
 #include "track.h"
+#include "disk.h"
 
 
 /************************************************
@@ -76,10 +77,12 @@ void initControlValue(const QList<Track*> &tracks, const QList<TagSpinBox*> cont
 /************************************************
  *
  ************************************************/
-TagEditor::TagEditor(const QList<Track*> &tracks, QWidget *parent):
+TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disk *> &disks, QWidget *parent):
     QDialog(parent),
     ui(new Ui::TagEditor),
-    mTracks(tracks)
+    mTracks(tracks),
+    mDisks(disks),
+    mStartTrackSpin(nullptr)
 {
     ui->setupUi(this);
 
@@ -89,7 +92,18 @@ TagEditor::TagEditor(const QList<Track*> &tracks, QWidget *parent):
     addLineEdit(TagId::Genre,       tr("Genre", "Music tag name"));
     addLineEdit(TagId::Date,        tr("Year",  "Music tag name"));
 
-    addIntEditNumCount(TagId::DiskNum, TagId::DiskCount,  tr("Disk number", "Music tag name"));
+
+    mStartTrackSpin = new MultiValuesSpinBox(this);
+    mStartTrackSpin->setMinimum(1);
+    mStartTrackSpin->setMaximum(99);
+
+    TagSpinBox *trackCountSpin = new TagSpinBox(this);
+    trackCountSpin->setMinimum(1);
+    trackCountSpin->setMaximum(99);
+    trackCountSpin->setTagId(TagId::TrackCount);
+    this->add2Widget(mStartTrackSpin, trackCountSpin,  tr("Track number", "Music tag name"));
+
+    addIntEditNumCount(TagId::DiskNum,  TagId::DiskCount,  tr("Disk number", "Music tag name"));
 
     addLineEdit(TagId::Title,       tr("Track title",    "Music tag name"));
     addTextEdit(TagId::Comment,     tr("Comment",  "Music tag name"));
@@ -98,6 +112,14 @@ TagEditor::TagEditor(const QList<Track*> &tracks, QWidget *parent):
     initControlValue(tracks, this->findChildren<TagLineEdit *>());
     initControlValue(tracks, this->findChildren<TagTextEdit *>());
     initControlValue(tracks, this->findChildren<TagSpinBox *>());
+
+    QSet<int> values;
+    foreach(Disk *disk, disks)
+    {
+        values << disk->startTrackNum();
+    }
+
+    mStartTrackSpin->setMultiValue(values);
 }
 
 
@@ -162,8 +184,44 @@ void TagEditor::done(int res)
     setValue(mTracks, this->findChildren<TagTextEdit *>());
     setValue(mTracks, this->findChildren<TagSpinBox  *>());
 
+
+    if (mStartTrackSpin->isModified())
+    {
+        foreach (Disk *disk, mDisks)
+        {
+            disk->setStartTrackNum(mStartTrackSpin->value());
+        }
+    }
+
     QDialog::done(res);
 }
+
+
+/************************************************
+ *
+ ************************************************/
+void TagEditor::add2Widget(QWidget *widget1, QWidget *widget2, const QString &label)
+{
+    int row = ui->layout->rowCount();
+    {
+        QLabel *lbl = new QLabel(this);
+        lbl->setText(label);
+        lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
+        ui->layout->addWidget(lbl, row, 0);
+    }
+
+    ui->layout->addWidget(widget1, row, 1);
+
+    {
+        QLabel *lbl = new QLabel(this);
+        lbl->setText(tr("of"));
+        lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
+        ui->layout->addWidget(lbl, row, 2);
+    }
+
+    ui->layout->addWidget(widget2, row, 3);
+}
+
 
 
 /************************************************

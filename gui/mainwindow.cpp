@@ -961,9 +961,13 @@ void MainWindow::trackViewMenu(const QPoint &pos)
     menu.exec(trackView->viewport()->mapToGlobal(pos));
 }
 
+
+/************************************************
+ *
+ ************************************************/
 void MainWindow::openEditTagsDialog()
 {
-    TagEditor editor(trackView->selectedTracks());
+    TagEditor editor(trackView->selectedTracks(), trackView->selectedDisks());
     editor.exec();
     refreshEdits();
 }
@@ -1010,10 +1014,14 @@ bool MainWindow::event(QEvent *event)
  ************************************************/
 void MainWindow::setStartTrackNum()
 {
+    if (!tagStartNumEdit->isModified())
+        return;
+
+    int value = tagStartNumEdit->value();
     QList<Disk*> disks = trackView->selectedDisks();
     foreach(Disk *disk, disks)
     {
-        disk->setStartTrackNum(tagStartNumEdit->value());
+        disk->setStartTrackNum(value);
     }
 }
 

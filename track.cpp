@@ -46,8 +46,6 @@
 Track::Track():
     QObject(nullptr),
     mTextCodec(nullptr),
-    mTrackNum(0),
-    mTrackCount(0),
     mDuration(0)
 {
 }
@@ -61,8 +59,6 @@ Track::Track(const Track &other):
     mTags(other.mTags),
     mTextCodec(other.mTextCodec),
     mCueIndexes(other.mCueIndexes),
-    mTrackNum(other.mTrackNum),
-    mTrackCount(other.mTrackCount),
     mDuration(other.mDuration),
     mCueFileName(other.mCueFileName)
 {
@@ -76,8 +72,6 @@ Track &Track::operator =(const Track &other)
 {
     setTags(other);
     mCueIndexes = other.mCueIndexes;
-    mTrackNum   = other.mTrackNum;
-    mTrackCount = other.mTrackCount;
     mDuration   = other.mDuration;
     mCueFileName= other.mCueFileName;
 
@@ -282,6 +276,54 @@ bool Track::operator ==(const Track &other) const
         return false;
 
     return mTags ==(other.mTags);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+TrackNum Track::trackNum() const
+{
+    bool ok;
+    int res = tag(TagId::TrackNum).toInt(&ok);
+
+    if (ok)
+        return res;
+
+    return 1;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Track::setTrackNum(TrackNum value)
+{
+    setTag(TagId::TrackNum, QString::number(value));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+TrackNum Track::trackCount() const
+{
+    bool ok;
+    int res = tag(TagId::TrackNum).toInt(&ok);
+
+    if (ok)
+        return res;
+
+    return 1;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Track::setTrackCount(TrackNum value)
+{
+    setTag(TagId::TrackCount, QString::number(value));
 }
 
 

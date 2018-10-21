@@ -32,7 +32,9 @@
 #include "tags.h"
 
 class Track;
-class TagLineEdit;
+class Disk;
+class MultiValuesSpinBox;
+
 
 namespace Ui {
 class TagEditor;
@@ -43,7 +45,7 @@ class TagEditor : public QDialog
     Q_OBJECT
 
 public:
-    explicit TagEditor(const QList<Track*> &tracks, QWidget *parent = 0);
+    explicit TagEditor(const QList<Track*> &tracks, const QList<Disk *> &disks, QWidget *parent = 0);
     ~TagEditor();
 
 public slots:
@@ -51,11 +53,14 @@ public slots:
 
 private:
     Ui::TagEditor *ui;
+    void add2Widget(QWidget *widget1, QWidget *widget2, const QString &label);
     void addLineEdit(TagId tagId, const QString &label);
     void addTextEdit(TagId tagId, const QString &label);
     void addIntEdit(TagId tagId, const QString &label);
     void addIntEditNumCount(TagId numTagId, TagId cntTagId, const QString &numLabel);
     const QList<Track*> mTracks;
+    const QList<Disk *> mDisks;
+    MultiValuesSpinBox *mStartTrackSpin;
 };
 
 #endif // TAGEDITOR_H

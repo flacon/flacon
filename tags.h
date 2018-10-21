@@ -54,6 +54,8 @@ enum class TagId
     DiskCount,
     CueFile,
     AlbumArtist,
+    TrackNum,
+    TrackCount,
 };
 
 

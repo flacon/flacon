@@ -183,10 +183,8 @@ void CodePageComboBox::addCodecName(const QString &title, const QString &codecNa
  ************************************************/
 MultiValuesSpinBox::MultiValuesSpinBox(QWidget *parent):
     QSpinBox(parent),
-    mMultiState(MultiValuesEmpty),
-    mModified(false)
+    mMultiState(MultiValuesEmpty)
 {
-    this->connect(this, SIGNAL(valueChanged(int)), this, SLOT(setChanged()));
 }
 
 
@@ -237,13 +235,23 @@ static QString getTagEditPlaceHolder(const QSet<QString> values)
  ************************************************/
 void MultiValuesSpinBox::stepBy(int steps)
 {
+    // The QSpinBox::stepBy resets the lineEdit.isModified value.
+    // So we blockSignals, set modified and then emit the signals manually.
+    this->blockSignals(true);
     if (mMultiState != MultiValuesSingle && steps > 0)
     {
         mMultiState = MultiValuesSingle;
         QSpinBox::stepBy(0);
     }
     else
+    {
         QSpinBox::stepBy(steps);
+    }
+    this->blockSignals(false);
+
+    lineEdit()->setModified(true);
+    emit valueChanged(this->value());
+    emit valueChanged(lineEdit()->text());
 }
 
 
@@ -273,6 +281,15 @@ void MultiValuesSpinBox::setMultiValue(QSet<int> value)
         QSpinBox::setValue(minimum());
         setPlaceholder(lineEdit(), tr("Multiple values"));
     }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void MultiValuesSpinBox::setModified(bool modified)
+{
+    lineEdit()->setModified(modified);
 }
 
 

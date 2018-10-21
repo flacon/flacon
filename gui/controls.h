@@ -100,21 +100,17 @@ public:
     bool multi() const { return mMultiState == MultiValuesMulti; }
     void stepBy(int steps);
 
-    bool isModified() const { return mModified; }
+    bool isModified() const { return lineEdit()->isModified();}
 
 public slots:
     void setMultiValue(QSet<int> value);
-    void setModified(bool modified) { mModified = modified; }
+    void setModified(bool modified);
 
 protected:
     QString textFromValue(int val) const;
 
-private slots:
-    void setChanged() { mModified = true; }
-
 private:
     MultiValuesState mMultiState;
-    bool mModified;
 };
 
 

@@ -80,6 +80,12 @@ public:
 
     QString diskId() const              { return tag(TagId::DiscId) ;}
 
+    TrackNum trackNum() const;
+    void setTrackNum(TrackNum value);
+
+    TrackNum trackCount() const;
+    void setTrackCount(TrackNum value);
+
     DiskNum diskNum() const;
     void setDiskNum(DiskNum value);
 
@@ -105,12 +111,6 @@ public:
                                 const QString &date,
                                 const QString &fileExt);
 
-    TrackNum trackNum() const { return mTrackNum; }
-    void setTrackNum(TrackNum value) { mTrackNum = value; }
-
-    TrackNum trackCount() const { return mTrackCount; }
-    void setTrackCount(TrackNum value) { mTrackCount = value; }
-
     QString cueFileName() const { return mCueFileName; }
     void setCueFileName(const QString &value) { mCueFileName = value; }
 
@@ -121,8 +121,6 @@ private:
     QHash<int, TagValue> mTags;
     QTextCodec *mTextCodec;
     QVector<CueIndex> mCueIndexes;
-    TrackNum mTrackNum;
-    TrackNum mTrackCount;
     Duration mDuration;
     QString mCueFileName;
 
