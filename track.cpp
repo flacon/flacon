@@ -309,7 +309,7 @@ void Track::setTrackNum(TrackNum value)
 TrackNum Track::trackCount() const
 {
     bool ok;
-    int res = tag(TagId::TrackNum).toInt(&ok);
+    int res = tag(TagId::TrackCount).toInt(&ok);
 
     if (ok)
         return res;

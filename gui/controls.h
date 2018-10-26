@@ -73,6 +73,10 @@ private:
 };
 
 
+
+/************************************************
+ *
+ ************************************************/
 class ActionsButton: public QToolButton
 {
     Q_OBJECT
@@ -195,7 +199,7 @@ class TagSpinBox: public MultiValuesSpinBox
 {
     Q_OBJECT
 public:
-    TagSpinBox(QWidget *parent = 0);
+    explicit TagSpinBox(QWidget *parent = 0);
 
     TagId tagId() const { return mTagId; }
     void setTagId(TagId tagId) { mTagId = tagId; }

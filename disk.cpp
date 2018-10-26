@@ -83,6 +83,7 @@ const Track *Disk::preGapTrack() const
     {
         mPreGapTrack.setTags(*mTracks.first());
         mPreGapTrack.setCueFileName(mTracks.first()->cueFileName());
+        mPreGapTrack.setTag(TagId::TrackNum, QByteArray("0"));
     }
 
     mPreGapTrack.setTitle("(HTOA)");
