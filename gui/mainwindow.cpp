@@ -260,20 +260,11 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
     foreach(QUrl url, event->mimeData()->urls())
     {
-#if (QT_VERSION < QT_VERSION_CHECK(4, 8, 0))
-        QString scheme = url.scheme();
-        if (scheme.isEmpty() || scheme == "file")
-        {
-            event->acceptProposedAction();
-            return;
-        }
-#else
         if (url.isLocalFile())
         {
             event->acceptProposedAction();
             return;
         }
-#endif
     }
 }
 
@@ -1167,14 +1158,8 @@ QIcon MainWindow::loadMainIcon()
  ************************************************/
 void MainWindow::showErrorMessage(const QString &message)
 {
-/*    QString msg(message);
-    msg.remove(QRegExp("<[^>]*>"));
-    msg.replace("\\n", "\n");
-    QTextStream(stderr) << msg.toLocal8Bit() << endl;
-*/
     QString msg = message;
     msg.replace("\n", "<br>");
-    msg.replace(" ", "&nbsp;");
 
     QMessageBox *box = new QMessageBox(this);
     box->setIcon(QMessageBox::Critical);

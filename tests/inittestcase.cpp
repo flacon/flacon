@@ -34,12 +34,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QDebug>
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
-#include <QFuture>
-#include <QtConcurrentRun>
-#else
 #include <QtConcurrent/QtConcurrent>
-#endif
 
 #ifdef Q_OS_WIN
     #define PATH_ENV_SEPARATOR ';'
@@ -153,34 +148,6 @@ QString TestFlacon::dir(const QString &subTest)
 }
 
 
-
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
-bool removeRecursively(QString dirName)
-{
-    bool result = true;
-    QDir dir(dirName);
-
-    if (dir.exists(dirName))
-    {
-        foreach(QFileInfo fi, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files, QDir::DirsFirst))
-        {
-            if (fi.isDir())
-                result = removeRecursively(fi.absoluteFilePath());
-            else
-                result = QFile::remove(fi.absoluteFilePath());
-
-            if (!result)
-                return result;
-        }
-
-        result = dir.rmdir(dirName);
-    }
-
-    return result;
-}
-
-#endif
-
 void TestFlacon::init()
 {
     static QString prevTestFunction;
@@ -192,11 +159,7 @@ void TestFlacon::init()
 
     QString dir = this->dir();
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
-    removeRecursively(dir);
-#else
     QDir(dir).removeRecursively();
-#endif
     if (!QDir().mkpath(dir))
     {
         QTest::qFail(QString("Can't create directory '%1'").arg(dir).toLocal8Bit(), __FILE__, __LINE__);

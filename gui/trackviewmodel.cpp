@@ -81,17 +81,10 @@ public:
     }
 
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
-    quint32 asPtr()
-    {
-        return quint32((mTrackId << 16) |  mDiskId);
-    }
-#else
     quintptr asPtr()
     {
         return quintptr((mTrackId << 16) |  mDiskId);
     }
-#endif
 
 
     bool isDisk()  const { return mDiskId  > 0; }

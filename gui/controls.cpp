@@ -38,16 +38,6 @@
 #include <QCompleter>
 #include <QStringListModel>
 
-/************************************************
-
- ************************************************/
-void setPlaceholder(QLineEdit *edit, const QString &text)
-{
-#if QT_VERSION >= QT_VERSION_CHECK(4, 7, 0)
-    if (edit)
-        edit->setPlaceholderText(text);
-#endif
-}
 
 /************************************************
 
@@ -265,21 +255,24 @@ void MultiValuesSpinBox::setMultiValue(QSet<int> value)
     {
         mMultiState = MultiValuesEmpty;
         QSpinBox::setValue(minimum());
-        setPlaceholder(lineEdit(), "");
+        if (lineEdit())
+            lineEdit()->setPlaceholderText("");
     }
 
     else if (value.count() == 1)
     {
         mMultiState = MultiValuesSingle;
         QSpinBox::setValue(*(value.constBegin()));
-        setPlaceholder(lineEdit(), "");
+        if (lineEdit())
+            lineEdit()->setPlaceholderText("");
     }
 
     else
     {
         mMultiState = MultiValuesMulti;
         QSpinBox::setValue(minimum());
-        setPlaceholder(lineEdit(), tr("Multiple values"));
+        if (lineEdit())
+            lineEdit()->setPlaceholderText(tr("Multiple values"));
     }
 }
 
@@ -339,7 +332,7 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
     {
         mMultiState = MultiValuesEmpty;
         QLineEdit::setText("");
-        setPlaceholder(this, "");
+        setPlaceholderText("");
         mCompleterModel->setStringList(QStringList());
     }
 
@@ -347,7 +340,7 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
     {
         mMultiState = MultiValuesEmpty;
         QLineEdit::setText(*(value.constBegin()));
-        setPlaceholder(this, "");
+        setPlaceholderText("");
         mCompleterModel->setStringList(value.toList());
     }
 
@@ -355,7 +348,7 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
     {
         mMultiState = MultiValuesMulti;
         QLineEdit::setText("");
-        setPlaceholder(this, tr("Multiple values"));
+        setPlaceholderText(tr("Multiple values"));
         mCompleterModel->setStringList(value.toList());
     }
 }
@@ -393,7 +386,8 @@ void MultiValuesComboBox::setMultiValue(QSet<QString> value)
     {
         mMultiState = MultiValuesEmpty;
         setCurrentIndex(-1);
-        setPlaceholder(lineEdit(), "");
+        if (lineEdit())
+            lineEdit()->setPlaceholderText("");
     }
 
     else if (v.count() == 1)
@@ -405,14 +399,16 @@ void MultiValuesComboBox::setMultiValue(QSet<QString> value)
         else
             mMultiState = MultiValuesEmpty;
 
-        setPlaceholder(lineEdit(), "");
+        if (lineEdit())
+            lineEdit()->setPlaceholderText("");
     }
 
     else
     {
         mMultiState = MultiValuesMulti;
         setCurrentIndex(-1);
-        setPlaceholder(lineEdit(), tr("Multiple values"));
+        if (lineEdit())
+            lineEdit()->setPlaceholderText(tr("Multiple values"));
     }
 }
 
@@ -620,7 +616,9 @@ void MultiValuesTextEdit::setMultiValue(QSet<QString> value)
 {
     mMultiState = getTagEditState(value);
     setPlainText(getTagEditText(value));
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
     setPlaceholderText(getTagEditPlaceHolder(value));
+#endif
 }
 
 
