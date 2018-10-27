@@ -300,6 +300,58 @@
         <source>Resize if image size greater than</source>
         <translation>Átméretezés, ha a képfájl mérete nagyobb, mint</translation>
     </message>
+    <message>
+        <source>Resampling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>As source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>16 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>24 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>32 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -608,6 +660,16 @@ In CBR mode, it sets the specific output bitrate.
         <source>Audio file shorter than expected from cue sheet.</source>
         <translation>Az audio fájl rövidebb, mint a rendezői példányból elvárt.</translation>
     </message>
+    <message>
+        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Encoder</name>
@@ -794,16 +856,8 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <source>&amp;Preferences</source>
-        <translation>&amp;Beállítások</translation>
-    </message>
-    <message>
         <source>Program preferences</source>
         <translation>A program beállításai</translation>
-    </message>
-    <message>
-        <source>&amp;About Flacon</source>
-        <translation>Flacon &amp;névjegye</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -812,10 +866,6 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
     <message>
         <source>Configure encoder</source>
         <translation>Átalakító beállítása</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -965,10 +1015,6 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
         <translation>Az aktuális minta törlése az előzményekből</translation>
     </message>
     <message>
-        <source>Add disk</source>
-        <translation>Lemez hozzáadása</translation>
-    </message>
-    <message>
         <source>Remove disk</source>
         <translation>Lemez eltávolítása</translation>
     </message>
@@ -978,6 +1024,70 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     </message>
     <message>
         <source>Check for Updates...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit all tags...</source>
+        <comment>Button text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disk...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove current directory from history</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another cue file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1030,10 +1140,6 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
         <translation>A &lt;b&gt;%1&lt;/b&gt; egy nem támogatott audio-fájl. &lt;br&gt;&lt;br&gt;Ellenőrizni kell a szükséges programok telepítését és a beállításokat.</translation>
     </message>
     <message>
-        <source> [disk %1]</source>
-        <translation>[lemez %1]</translation>
-    </message>
-    <message>
         <source>Flacon</source>
         <comment>Error</comment>
         <translation>Flacon</translation>
@@ -1064,11 +1170,6 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
         <translation>&lt;b&gt;%1&lt;/b&gt;  nem egy valódi cue-fájl. A cue mező nem tartalmaz FÁJL cimkét.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt;  nem egy valódi cue-fájl. Érvénytelen sáv-index ebben: %2</translation>
-    </message>
-    <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; audio-fájl nem létezik</translation>
     </message>
@@ -1094,6 +1195,20 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation>Nem lehetett írni a borítóképet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multiple values</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
@@ -1104,22 +1219,71 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     </message>
 </context>
 <context>
+    <name>TagEditor</name>
+    <message>
+        <source>Edit tags</source>
+        <comment>Dialog title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
         <translation>Adatok megszerzése a CDDB-ből</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>Szerkesztés</translation>
-    </message>
-    <message>
-        <source>Select another audio file</source>
-        <translation>Egy másik audio-fájl kiválasztása</translation>
-    </message>
-    <message>
-        <source>Select another cue file</source>
-        <translation>Egy másik cue-fájl kiválasztása</translation>
+        <source>Select another cue file...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1225,17 +1389,6 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
 %1</source>
         <translation>Átalakítása nem lehetséges.
 %1</translation>
-    </message>
-</context>
-<context>
-    <name>Worker</name>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>&quot;%1&quot; könyvtár nem hozható létre.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>&quot;%1&quot; könyvtárba nem lehet írni.</translation>
     </message>
 </context>
 </TS>

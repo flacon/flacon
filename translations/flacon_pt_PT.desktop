@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Icon[pt_PT]=flacon
 Comment[pt_PT]=Extrai audio de uma imagem de CD para faixas individuais.
-GenericName[pt_PT]=Codificador de ficheiros audio.
+Icon[pt_PT]=flacon
 Name[pt_PT]=Flacon
+GenericName[pt_PT]=Codificador de ficheiros audio.

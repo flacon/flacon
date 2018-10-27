@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Icon[sr]=флакон
 Comment[sr]=Извлачи нумере из одраза аудио ЦД-а у посебне стазе.
-GenericName[sr]=Кодер аудио фајлова
+Icon[sr]=флакон
 Name[sr]=Флакон
+GenericName[sr]=Кодер аудио фајлова

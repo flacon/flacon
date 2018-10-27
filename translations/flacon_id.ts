@@ -1,53 +1,53 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_TW" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="id" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Flacon</source>
-        <translation type="unfinished"/>
+        <translation>Tentang Flacon</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Tentang</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished"/>
+        <translation>Pembuat</translation>
     </message>
     <message>
         <source>Thanks</source>
-        <translation type="unfinished"/>
+        <translation>Terimakasih</translation>
     </message>
     <message>
         <source>Translations</source>
-        <translation type="unfinished"/>
+        <translation>Terjemahan</translation>
     </message>
     <message>
         <source>External programs</source>
-        <translation type="unfinished"/>
+        <translation>Program eksternal</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation type="unfinished"/>
+        <translation>Halaman utama: %1</translation>
     </message>
     <message>
         <source>License: %1</source>
-        <translation type="unfinished"/>
+        <translation>Lisensi: %1</translation>
     </message>
     <message>
         <source>Special thanks to:</source>
-        <translation type="unfinished"/>
+        <translation>Ucapan terimakasih untuk:</translation>
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon 使用的外掛程式，非常感謝這些程式的開發者！</translation>
+        <translation>Flacon menggunakan program pihak ketiga. Terimakasih banyak kepada para pengembang! </translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation type="unfinished"/>
+        <translation>Ekstrak setiap lagu dari satu file audio besar yang berisi seluruh album.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation type="unfinished"/>
+        <translation>Copyright: %1-%2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -63,7 +63,7 @@
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation type="unfinished"/>
+        <translation>Akun Flacon di github.com</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
@@ -72,7 +72,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon telah diterjemahkan kedalam banyak bahasa, terimakasih atas pekerjaan Tim Penerjemah Flacon dalam &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -80,7 +80,7 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
-        <translation type="unfinished"/>
+        <translation>Deteksi otomatis</translation>
     </message>
     <message>
         <source>Unicode (UTF-8)</source>
@@ -96,11 +96,11 @@
     </message>
     <message>
         <source>Cyrillic (Win-1251)</source>
-        <translation>西裡爾語 (Win-1251)</translation>
+        <translation>Cyrillic (Win-1251)</translation>
     </message>
     <message>
         <source>Cyrillic (CP-866)</source>
-        <translation>西裡爾語 (CP-866)</translation>
+        <translation>Cyrillic (CP-866)</translation>
     </message>
     <message>
         <source>Latin-1 (ISO-8859-1)</source>
@@ -160,46 +160,46 @@
     </message>
     <message>
         <source>Windows 1250</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1250</translation>
     </message>
     <message>
         <source>Windows 1252</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1252</translation>
     </message>
     <message>
         <source>Windows 1253</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1253</translation>
     </message>
     <message>
         <source>Windows 1254</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1254</translation>
     </message>
     <message>
         <source>Windows 1255</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1255</translation>
     </message>
     <message>
         <source>Windows 1256</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1256</translation>
     </message>
     <message>
         <source>Windows 1257</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1257</translation>
     </message>
     <message>
         <source>Windows 1258</source>
-        <translation type="unfinished"/>
+        <translation>Windows 1258</translation>
     </message>
 </context>
 <context>
     <name>ConfigDialog</name>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Setelan</translation>
     </message>
     <message>
         <source>General configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi umum</translation>
     </message>
     <message>
         <source>Thread count:</source>
@@ -215,7 +215,7 @@
     </message>
     <message>
         <source>Rescan</source>
-        <translation type="unfinished"/>
+        <translation>Pindai ulang</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
@@ -227,11 +227,11 @@
     </message>
     <message>
         <source>Add to first track</source>
-        <translation type="unfinished"/>
+        <translation>Tambahkan ke trek pertama</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Umum</translation>
     </message>
     <message>
         <source>Programs</source>
@@ -239,7 +239,7 @@
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation type="unfinished"/>
+        <translation>Pilih direktori lama</translation>
     </message>
     <message>
         <source>Per track cue sheet</source>
@@ -251,11 +251,11 @@
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation>px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation type="unfinished"/>
+        <translation>Direktori sementara:</translation>
     </message>
     <message>
         <source>Default codepage:</source>
@@ -263,42 +263,42 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation type="unfinished"/>
+        <translation>Gambar cover</translation>
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat menyalin gambar</translation>
     </message>
     <message>
         <source>Update</source>
         <extracomment>Preferences tab title </extracomment>
-        <translation type="unfinished"/>
+        <translation>Update</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Otomatis mengecek untuk update</translation>
     </message>
     <message>
         <source>Check now</source>
-        <translation type="unfinished"/>
+        <translation>Cek sekarang</translation>
     </message>
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Cek terakhir pada %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Jangan pernah mengecek</translation>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation type="unfinished"/>
+        <translation>Pertahankan ukuran gambar original</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation type="unfinished"/>
+        <translation>Sesuaikan ketika gambar berukuran besar</translation>
     </message>
     <message>
         <source>Resampling</source>
@@ -357,30 +357,30 @@
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi kode AAC</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>Gunakan pengaturan kualitas (Rekomendasi)</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Pakai bitrate</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Bitrate:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Tetapkan bitrate (dalam kb/s)</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Flac</name>
     <message>
         <source>Compression:</source>
-        <translation type="unfinished"/>
+        <translation>Kompresi:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -392,18 +392,18 @@
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Nonaktifkan</translation>
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi kode FLAC</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi kode MP3</translation>
     </message>
     <message>
         <source>Preset:</source>
@@ -411,23 +411,23 @@
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Gunakan bitrate</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Bitrate:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Atur target bitrate (dalam kb/s) </translation>
     </message>
     <message>
         <source>Use quality</source>
-        <translation type="unfinished"/>
+        <translation>Gunakan kualitas</translation>
     </message>
     <message>
         <source>Quality:</source>
-        <translation type="unfinished"/>
+        <translation>Kualitas:</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -439,39 +439,39 @@
     </message>
     <message>
         <source>VBR medium</source>
-        <translation type="unfinished"/>
+        <translation>VBR medium</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation type="unfinished"/>
+        <translation>VBR standard</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation type="unfinished"/>
+        <translation>VBR standard cepat</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation type="unfinished"/>
+        <translation>VBR ekstrem</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation type="unfinished"/>
+        <translation>VBR ekstrem cepat</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation type="unfinished"/>
+        <translation>VBR kualitas</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation type="unfinished"/>
+        <translation>CBR super</translation>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation type="unfinished"/>
+        <translation>CBR kbps</translation>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation type="unfinished"/>
+        <translation>ABR kbps</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -499,34 +499,35 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dt&gt;&lt;/dt&gt;</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Ogg</name>
     <message>
         <source>Ogg encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi kode Ogg</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>Gunakan pengaturan kualitas (rekomendasi) </translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Gunakan bitrate</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Bitrate minimum:</translation>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Tentukan bitrate minimum (dalam kb/s)</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Bitrate normal</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
@@ -534,11 +535,11 @@
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Bitrate Maksimum:</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>Tentukan bitrate maksimum (dalam kb/s)</translation>
     </message>
     <message>
         <source>ReplayGain</source>
@@ -553,23 +554,23 @@
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi kode Opus</translation>
     </message>
     <message>
         <source>Bitrate type:</source>
-        <translation type="unfinished"/>
+        <translation>Tipe bitrate:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>Bitrate:</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
-        <translation type="unfinished"/>
+        <translation>VBR - variable bitrate (Statis)</translation>
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation type="unfinished"/>
+        <translation>CBR - constrained bitrate (Konstan)</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -577,7 +578,11 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Menggunakan bitrate encoding (Rekomendasi). Dalam mode VBR, bitrate dapat 
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Mengunakan constrained variable bitrate encoding.</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -586,14 +591,16 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
+        <translation>Set target bitrate dalam kb/s (2-256 per chennel)
+&lt;p&gt;
+Dalam mode VBR, ini menetapkan rata - rata bitrate untuk </translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Wv</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi kode WavPack</translation>
     </message>
     <message>
         <source>Compression:</source>
@@ -609,37 +616,37 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Dinonaktifkan</translation>
     </message>
 </context>
 <context>
     <name>Converter</name>
     <message>
         <source>Conversion is not possible:</source>
-        <translation>無法轉換：</translation>
+        <translation>Konversi tidak memungkinkan:</translation>
     </message>
 </context>
 <context>
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Pilih gambar cover</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Tanpa gambar cover</translation>
     </message>
 </context>
 <context>
     <name>CueDiskSelectDialog</name>
     <message>
         <source>Select disk</source>
-        <translation type="unfinished"/>
+        <translation>Pilih penyimpanan</translation>
     </message>
     <message>
         <source>%1 [ disk %2 ]</source>
         <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 [ disk %2]</translation>
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
@@ -650,7 +657,7 @@ In CBR mode, it sets the specific output bitrate.
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation type="unfinished"/>
+        <translation>Berkas audio tidak diset</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
@@ -676,31 +683,33 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Encoder error:
 </source>
-        <translation type="unfinished"/>
+        <translation>Pengkodean eror:
+</translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat membaca %1 berkas</translation>
     </message>
     <message>
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat menamai:
+%1 to %2
+%3</translation>
     </message>
 </context>
 <context>
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>設定編碼品質， 在 %1 (lowest) 和 %2 (highest)之間</translation>
+        <translation>Tentukan kualitas encode, antara %1 (rendah) dan %2 (tinggi)</translation>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>設定壓縮級別，範圍在 %1 (fastest) 和 %2 (highest compression)之間。
-這個設定僅僅影響檔案的大小。所以設定都是無損的。</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disabled</source>
@@ -722,18 +731,15 @@ This only affects the file size. All settings are lossless.</source>
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>重播增益是用來矯正各種電腦聲訊格式被我們最終感知到的聲響大小的一種標准。
-
-可以通過對每個音軌的解析，使所有的曲目以相衕的音量播放。
-使用專輯增益解析可以保全專輯內部的音量差異。</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 kbps</source>
-        <translation>%1 kbit/s</translation>
+        <translation>%1 kbps</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation>預設</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -748,11 +754,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>Result Files</source>
-        <translation type="unfinished"/>
+        <translation>Berkas Hasil</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -764,32 +770,32 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Format:</source>
-        <translation type="unfinished"/>
+        <translation>Format:</translation>
     </message>
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Format keluaran</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished"/>
+        <translation>Tag</translation>
     </message>
     <message>
         <source>Genre:</source>
-        <translation type="unfinished"/>
+        <translation>Aliran:</translation>
     </message>
     <message>
         <source>Year:</source>
-        <translation type="unfinished"/>
+        <translation>Tahun:</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation type="unfinished"/>
+        <translation>Artis:</translation>
     </message>
     <message>
         <source>Album:</source>
-        <translation type="unfinished"/>
+        <translation>Album:</translation>
     </message>
     <message>
         <source>Start num:</source>
@@ -805,15 +811,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Berkas</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Setelan</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bantuan</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -821,7 +827,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>Convert</source>
@@ -833,11 +839,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Abort</source>
-        <translation type="unfinished"/>
+        <translation>Batalkan</translation>
     </message>
     <message>
         <source>Abort conversion process</source>
@@ -845,23 +851,23 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Keluar</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>Program preferences</source>
-        <translation type="unfinished"/>
+        <translation>Pengaturan program</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Del</translation>
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi pengkodean</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -877,11 +883,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Ctrl+I</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <source>Scan</source>
-        <translation type="unfinished"/>
+        <translation>Pindai</translation>
     </message>
     <message>
         <source>Recursive album search</source>
@@ -923,7 +929,7 @@ Do you want to continue?</source>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation type="unfinished"/>
+        <translation>%1 berkas</translation>
     </message>
     <message>
         <source>All supported formats</source>
@@ -933,16 +939,16 @@ Do you want to continue?</source>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation type="unfinished"/>
+        <translation>Semua berkas</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Pilih berkas audio</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation type="unfinished"/>
+        <translation>Pilih direktori</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -993,15 +999,15 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>Buang disk</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
-        <translation type="unfinished"/>
+        <translation>Buang disk dari pekerjaan</translation>
     </message>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Mengecek update...</translation>
     </message>
     <message>
         <source>Edit all tags...</source>
@@ -1098,7 +1104,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation type="unfinished"/>
+        <translation>Semua berkas</translation>
     </message>
     <message>
         <source>%1 program</source>
@@ -1110,7 +1116,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>QObject</name>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat menemukan program &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
@@ -1119,7 +1125,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1135,7 +1141,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation type="unfinished"/>
+        <translation>Nama berkas audio tidak diset</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
@@ -1148,15 +1154,15 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Berkas audio &lt;b&gt;&quot;%1&quot;&lt;/b&gt; tidak ditemukan</translation>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat membuat direktori &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat menulis di direktori &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1165,7 +1171,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Tidak bisa membaca gambar cover &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1192,7 +1198,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat membaca &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1256,7 +1262,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
-        <translation>從 CDDB 擷取資料</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select another cue file...</source>
@@ -1267,47 +1273,47 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>TrackViewDelegate</name>
     <message>
         <source>Error</source>
-        <translation>錯誤</translation>
+        <translation>Kesalahan</translation>
     </message>
     <message>
         <source>Aborted</source>
-        <translation>終止</translation>
+        <translation>Dibatalkan</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>確定</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Extracting</source>
-        <translation>正在擷取</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Encoding</source>
-        <translation>正在編碼</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Queued</source>
-        <translation>排隊</translation>
+        <translation>Diantrekan</translation>
     </message>
     <message>
         <source>Calculate gain</source>
-        <translation>計算增益</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Wait gain</source>
-        <translation>等待增益</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Write gain</source>
-        <translation>寫入增益</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tracks:</source>
-        <translation>音軌：</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Audio:</source>
-        <translation>聲訊：</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1315,41 +1321,41 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation>音軌</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
-        <translation>標題</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
-        <translation>藝朮家</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Album</source>
         <comment>Table header.</comment>
-        <translation>專輯</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
-        <translation>註釋</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
-        <translation>檔案</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Multiple values</source>
-        <translation>多個值</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Durasi</translation>
     </message>
     <message>
         <source>%1:%2:%3</source>
@@ -1359,7 +1365,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
-        <translation type="unfinished"/>
+        <translation>%1:%2</translation>
     </message>
     <message>
         <source>The conversion is not possible.

@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Icon[ms_MY]=flacon
 Comment[ms_MY]=Ekstrak trek audio dari imej CD audio menjadi trek-trek berasingan
-GenericName[ms_MY]=Pengekod Fail Audio
+Icon[ms_MY]=flacon
 Name[ms_MY]=Flacon
+GenericName[ms_MY]=Pengekod Fail Audio

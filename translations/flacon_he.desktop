@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Comment[el]=Εξάγει κομμάτια ήχου από ένα CD image σε ξεχωριστά κομμάτια.
-Icon[el]=flacon
-Name[el]=Flacon
-GenericName[el]=Κωδικοποιητής αρχείων ήχου
+Comment[he]=מחלץ רצועות שמע מקובצי מתקליטור ומפריד אותן לרצועות.
+Icon[he]=flacon
+Name[he]=Flacon
+GenericName[he]=מפענח קובצי שמע

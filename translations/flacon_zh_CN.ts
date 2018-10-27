@@ -300,6 +300,58 @@
         <source>Resize if image size greater than</source>
         <translation>调整尺寸，如果图像尺寸大于</translation>
     </message>
+    <message>
+        <source>Resampling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>As source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>16 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>24 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>32 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -617,6 +669,16 @@ CBR 模式下，它指定特定的输出码率。
         <source>Audio file shorter than expected from cue sheet.</source>
         <translation>音频文件比预期的 cue 表短。</translation>
     </message>
+    <message>
+        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Encoder</name>
@@ -802,16 +864,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <source>&amp;Preferences</source>
-        <translation>首选项(&amp;P)</translation>
-    </message>
-    <message>
         <source>Program preferences</source>
         <translation>程序首选项</translation>
-    </message>
-    <message>
-        <source>&amp;About Flacon</source>
-        <translation>关于 Flacon (&amp;A)</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -820,10 +874,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Configure encoder</source>
         <translation>配置编码器</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -973,10 +1023,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>从历史中删除当前范例</translation>
     </message>
     <message>
-        <source>Add disk</source>
-        <translation>添加磁盘</translation>
-    </message>
-    <message>
         <source>Remove disk</source>
         <translation>移除磁盘</translation>
     </message>
@@ -987,6 +1033,70 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Check for Updates...</source>
         <translation>检查更新...</translation>
+    </message>
+    <message>
+        <source>Edit all tags...</source>
+        <comment>Button text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disk...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove current directory from history</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another cue file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1038,10 +1148,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation> &lt;b&gt;%1&lt;/b&gt; n&apos; 的音频格式不被支持。 &lt;br&gt;&lt;br&gt;请确认已安装所有必要的程序并在首选项中设置妥当。</translation>
     </message>
     <message>
-        <source> [disk %1]</source>
-        <translation> [磁盘 %1]</translation>
-    </message>
-    <message>
         <source>Flacon</source>
         <comment>Error</comment>
         <translation>Flacon</translation>
@@ -1072,11 +1178,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>&lt;b&gt;%1&lt;/b&gt; 不是一个有效的 cue 文件。该 cue 没有 FILE 标签。</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; 不是一个有效的 cue 文件。在 %2 有不正确的轨道索引。</translation>
-    </message>
-    <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>音频文件 &lt;b&gt;&quot;%1&quot;&lt;/b&gt; 不存在</translation>
     </message>
@@ -1102,6 +1203,20 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multiple values</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
@@ -1112,22 +1227,71 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
 </context>
 <context>
+    <name>TagEditor</name>
+    <message>
+        <source>Edit tags</source>
+        <comment>Dialog title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
         <translation>从 CDDB 撷取数据</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>编辑</translation>
-    </message>
-    <message>
-        <source>Select another audio file</source>
-        <translation>选择其他音频文件</translation>
-    </message>
-    <message>
-        <source>Select another cue file</source>
-        <translation>选择其他 cue 文件</translation>
+        <source>Select another cue file...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1233,17 +1397,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 %1</source>
         <translation>不可能转换。
 %1</translation>
-    </message>
-</context>
-<context>
-    <name>Worker</name>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>无法创建目录“%1”。</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>无法写入目录“%1”。</translation>
     </message>
 </context>
 </TS>

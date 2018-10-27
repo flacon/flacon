@@ -300,6 +300,58 @@
         <source>Resize if image size greater than</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Resampling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>As source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>16 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>24 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>32 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -616,6 +668,16 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
         <source>Audio file shorter than expected from cue sheet.</source>
         <translation>Zvukový soubor je kratší než očekáváno podle listu CUE.</translation>
     </message>
+    <message>
+        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Encoder</name>
@@ -798,16 +860,8 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <source>&amp;Preferences</source>
-        <translation>&amp;Nastavení</translation>
-    </message>
-    <message>
         <source>Program preferences</source>
         <translation>Nastavení programu</translation>
-    </message>
-    <message>
-        <source>&amp;About Flacon</source>
-        <translation>&amp;O programu Flacon</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -816,10 +870,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
     <message>
         <source>Configure encoder</source>
         <translation>Nastavit kodek</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -969,10 +1019,6 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
         <translation>Smazat nynější vzor z historie</translation>
     </message>
     <message>
-        <source>Add disk</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remove disk</source>
         <translation type="unfinished"/>
     </message>
@@ -982,6 +1028,70 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     </message>
     <message>
         <source>Check for Updates...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit all tags...</source>
+        <comment>Button text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disk...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove current directory from history</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another cue file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1034,10 +1144,6 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
         <translation>Soubor &lt;b&gt;%1&lt;/b&gt; není podporovaným zvukovým souborem. &lt;br&gt;&lt;br&gt;Ověřte, že jsou nainstalovány všechny požadované programy, a že jsou v nastavení.</translation>
     </message>
     <message>
-        <source> [disk %1]</source>
-        <translation> [disk %1]</translation>
-    </message>
-    <message>
         <source>Flacon</source>
         <comment>Error</comment>
         <translation>Flacon</translation>
@@ -1068,11 +1174,6 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
         <translation>&lt;b&gt;%1&lt;/b&gt; není platným souborem CUE. List CUE nemá žádnou značku SOUBOR (FILE).</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; není platným souborem CUE.Nesprávné číslo skladby na %2.</translation>
-    </message>
-    <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Zvukový soubor &lt;b&gt;&quot;%1&quot;&lt;/b&gt; neexistuje</translation>
     </message>
@@ -1098,6 +1199,20 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multiple values</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
@@ -1108,22 +1223,71 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     </message>
 </context>
 <context>
+    <name>TagEditor</name>
+    <message>
+        <source>Edit tags</source>
+        <comment>Dialog title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
         <translation>Získat data z CDDB</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>Upravit</translation>
-    </message>
-    <message>
-        <source>Select another audio file</source>
-        <translation>Vybrat jiný zvukový soubor</translation>
-    </message>
-    <message>
-        <source>Select another cue file</source>
-        <translation>Vybrat jiný soubor CUE</translation>
+        <source>Select another cue file...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1229,17 +1393,6 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
 %1</source>
         <translation>Převod není možný.
 %1</translation>
-    </message>
-</context>
-<context>
-    <name>Worker</name>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

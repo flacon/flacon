@@ -300,6 +300,58 @@
         <source>Resize if image size greater than</source>
         <translation>Ajustar tamaño si la imagen es mayor de</translation>
     </message>
+    <message>
+        <source>Resampling</source>
+        <translation>Remuestreo</translation>
+    </message>
+    <message>
+        <source>As source</source>
+        <comment>Item in combobox</comment>
+        <translation>Como fuente</translation>
+    </message>
+    <message>
+        <source>16 bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16 bits</translation>
+    </message>
+    <message>
+        <source>24 bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24 bits</translation>
+    </message>
+    <message>
+        <source>32 bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32 bits</translation>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>44100 Hz</translation>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>48000 Hz</translation>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>96000 Hz</translation>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>192000 Hz</translation>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -640,6 +692,16 @@ En el modo CBR, se establece la tasa de bits específica de salida.
         <source>Audio file shorter than expected from cue sheet.</source>
         <translation>El archivo de audio es más pequeño de lo esperado por la hoja CUE.</translation>
     </message>
+    <message>
+        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>El formato soporta un máximo de %1 bits por muestreo, que se usará para la codificación.</translation>
+    </message>
+    <message>
+        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>El formato soporta una tasa de muestreo máxima de %1, valor que se usará para la codificación.</translation>
+    </message>
 </context>
 <context>
     <name>Encoder</name>
@@ -826,16 +888,8 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <source>&amp;Preferences</source>
-        <translation>&amp;Preferencias</translation>
-    </message>
-    <message>
         <source>Program preferences</source>
         <translation>Preferencias de programa</translation>
-    </message>
-    <message>
-        <source>&amp;About Flacon</source>
-        <translation>&amp;Acerca de Flacon</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -844,10 +898,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>Configure encoder</source>
         <translation>Configurar codificador</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -997,10 +1047,6 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>Eliminar el patrón actual del historial</translation>
     </message>
     <message>
-        <source>Add disk</source>
-        <translation>Agregar disco</translation>
-    </message>
-    <message>
         <source>Remove disk</source>
         <translation>Eliminar disco</translation>
     </message>
@@ -1011,6 +1057,70 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>Check for Updates...</source>
         <translation>Comprobar actualizaciones...</translation>
+    </message>
+    <message>
+        <source>Edit all tags...</source>
+        <comment>Button text</comment>
+        <translation>Editar todas las etiquetas...</translation>
+    </message>
+    <message>
+        <source>Add disk...</source>
+        <translation>Agregar disco...</translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation>Preferencias</translation>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation>Acerca de Flacon</translation>
+    </message>
+    <message>
+        <source>Select directory...</source>
+        <translation>Seleccione directorio...</translation>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Ubicación habitual de la música</translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Escritorio</translation>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>El mismo directorio que el archivo CUE</translation>
+    </message>
+    <message>
+        <source>Remove current directory from history</source>
+        <translation>Eliminar directorio actual del historial</translation>
+    </message>
+    <message>
+        <source>Edit tags...</source>
+        <comment>context menu</comment>
+        <translation>Editar etiquetas...</translation>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation>Obtener información de CDDB</translation>
+    </message>
+    <message>
+        <source>Select another audio file...</source>
+        <comment>context menu</comment>
+        <translation>Seleccione otro archivo de audio...</translation>
+    </message>
+    <message>
+        <source>Select another cue file...</source>
+        <comment>context menu</comment>
+        <translation>Elija otro archivo CUE...</translation>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1062,10 +1172,6 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>El archivo &lt;b&gt;%1&lt;/b&gt; no es un formato de audio soportado.&lt;br&gt;&lt;br&gt;Verifique que todos los programas requeridos están instalados en sus preferencias.</translation>
     </message>
     <message>
-        <source> [disk %1]</source>
-        <translation> [disco %1]</translation>
-    </message>
-    <message>
         <source>Flacon</source>
         <comment>Error</comment>
         <translation>Flacon</translation>
@@ -1096,11 +1202,6 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo cue válido. La hoja cue no tiene la etiqueta FILE.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo cue válido. Índice incorrecto de pista en %2.</translation>
-    </message>
-    <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>El archivo de audio &lt;b&gt;&quot;%1&quot;&lt;/b&gt; no existe</translation>
     </message>
@@ -1126,6 +1227,20 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation>No puedo escribir la imagen de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es una archivo cue válido. Número de pista incorrecto en la línea %2.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo cue válido. Índice de pista incorrecto en la línea %2.</translation>
+    </message>
+    <message>
+        <source>Multiple values</source>
+        <translation>Múltiples valores</translation>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
@@ -1136,22 +1251,71 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     </message>
 </context>
 <context>
+    <name>TagEditor</name>
+    <message>
+        <source>Edit tags</source>
+        <comment>Dialog title</comment>
+        <translation>Editar etiquetas</translation>
+    </message>
+    <message>
+        <source>of</source>
+        <translation>de</translation>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <comment>Music tag name</comment>
+        <translation>Artista:</translation>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <comment>Music tag name</comment>
+        <translation>Artista del disco:</translation>
+    </message>
+    <message>
+        <source>Album:</source>
+        <comment>Music tag name</comment>
+        <translation>Álbum:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <comment>Music tag name</comment>
+        <translation>Género:</translation>
+    </message>
+    <message>
+        <source>Year:</source>
+        <comment>Music tag name</comment>
+        <translation>Año:</translation>
+    </message>
+    <message>
+        <source>Disk number:</source>
+        <comment>Music tag name</comment>
+        <translation>Número de disco:</translation>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <comment>Music tag name</comment>
+        <translation>Título de pista:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <comment>Music tag name</comment>
+        <translation>Comentario:</translation>
+    </message>
+    <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation>Número de pista de inicio:</translation>
+    </message>
+</context>
+<context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
         <translation>Obtener información de CDDB</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>Editar</translation>
-    </message>
-    <message>
-        <source>Select another audio file</source>
-        <translation>Seleccione otro archivo de audio</translation>
-    </message>
-    <message>
-        <source>Select another cue file</source>
-        <translation>Elija otro archivo CUE</translation>
+        <source>Select another cue file...</source>
+        <translation>Elija otro archivo CUE...</translation>
     </message>
 </context>
 <context>
@@ -1257,17 +1421,6 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
 %1</source>
         <translation>La conversión no es posible.
 %1</translation>
-    </message>
-</context>
-<context>
-    <name>Worker</name>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>No puedo crear el directorio &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>No puedo escribir en el directorio &quot;%1&quot;.</translation>
     </message>
 </context>
 </TS>

@@ -300,6 +300,58 @@
         <source>Resize if image size greater than</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Resampling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>As source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>16 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>24 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>32 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -631,6 +683,16 @@ In CBR mode, it sets the specific output bitrate.
         <source>Audio file shorter than expected from cue sheet.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Encoder</name>
@@ -815,16 +877,8 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <source>&amp;Preferences</source>
-        <translation>&amp;Preferencias</translation>
-    </message>
-    <message>
         <source>Program preferences</source>
         <translation>Preferencias de programas</translation>
-    </message>
-    <message>
-        <source>&amp;About Flacon</source>
-        <translation>&amp;Sobre Flacon</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -833,10 +887,6 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
     <message>
         <source>Configure encoder</source>
         <translation>Configurar o codificador</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -968,10 +1018,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add disk</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remove disk</source>
         <translation type="unfinished"/>
     </message>
@@ -981,6 +1027,70 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Check for Updates...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit all tags...</source>
+        <comment>Button text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disk...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove current directory from history</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another cue file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1033,10 +1143,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>O ficheiro &lt;b&gt;%1&lt;/b&gt; non é un tipo de ficheiro compatíbel. &lt;br&gt;&lt;br&gt;Verifique que todos os programas requiridos están instalados e que estean incluídos nas súas preferencias.</translation>
     </message>
     <message>
-        <source> [disk %1]</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Flacon</source>
         <comment>Error</comment>
         <translation type="unfinished"/>
@@ -1067,11 +1173,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation type="unfinished"/>
     </message>
@@ -1097,6 +1198,20 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multiple values</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
@@ -1107,21 +1222,70 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
 </context>
 <context>
+    <name>TagEditor</name>
+    <message>
+        <source>Edit tags</source>
+        <comment>Dialog title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
         <translation>Obter datos desde CDDB</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>Editar</translation>
-    </message>
-    <message>
-        <source>Select another audio file</source>
-        <translation>Seleccionar outro ficheiro de audio</translation>
-    </message>
-    <message>
-        <source>Select another cue file</source>
+        <source>Select another cue file...</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1226,17 +1390,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>The conversion is not possible.
 %1</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>Worker</name>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
         <translation type="unfinished"/>
     </message>
 </context>

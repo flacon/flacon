@@ -253,7 +253,7 @@
             <item row="0" column="0">
              <widget class="QLabel" name="bitDepthLabel">
               <property name="text">
-               <string>Maximum bit depth</string>
+               <string>Maximum bit depth:</string>
               </property>
              </widget>
             </item>
@@ -263,7 +263,7 @@
             <item row="1" column="0">
              <widget class="QLabel" name="sampleRateLabel">
               <property name="text">
-               <string>Maximum sample rate</string>
+               <string>Maximum sample rate:</string>
               </property>
              </widget>
             </item>

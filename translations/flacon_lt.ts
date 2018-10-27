@@ -300,6 +300,58 @@
         <source>Resize if image size greater than</source>
         <translation>Keisti dydį, jei paveikslo dydis didesnis nei</translation>
     </message>
+    <message>
+        <source>Resampling</source>
+        <translation>Ėminių atrankos keitimas</translation>
+    </message>
+    <message>
+        <source>As source</source>
+        <comment>Item in combobox</comment>
+        <translation>Toks kaip šaltinio</translation>
+    </message>
+    <message>
+        <source>16 bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16 bitų</translation>
+    </message>
+    <message>
+        <source>24 bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24 bitų</translation>
+    </message>
+    <message>
+        <source>32 bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32 bitų</translation>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>44100 Hz</translation>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>48000 Hz</translation>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>96000 Hz</translation>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>192000 Hz</translation>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -640,6 +692,16 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
         <source>Audio file shorter than expected from cue sheet.</source>
         <translation>Garso failas yra trumpesnis nei buvo tikimasi cue lape.</translation>
     </message>
+    <message>
+        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>Formatas palaiko daugiausiai %1 bitų vienam ėminiui, kodavimui bus naudojama ši reikšmė.</translation>
+    </message>
+    <message>
+        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>Formatas palaiko daugiausiai %1 skaitmeninimo dažnį, kodavimui bus naudojama ši reikšmė.</translation>
+    </message>
 </context>
 <context>
     <name>Encoder</name>
@@ -826,16 +888,8 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <source>&amp;Preferences</source>
-        <translation>&amp;Nuostatos</translation>
-    </message>
-    <message>
         <source>Program preferences</source>
         <translation>Programos nuostatos</translation>
-    </message>
-    <message>
-        <source>&amp;About Flacon</source>
-        <translation>&amp;Apie Flacon</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -844,10 +898,6 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Configure encoder</source>
         <translation>Konfigūruoti koduotuvą</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -997,10 +1047,6 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>Ištrinti esamą šabloną iš istorijos</translation>
     </message>
     <message>
-        <source>Add disk</source>
-        <translation>Pridėti diską</translation>
-    </message>
-    <message>
         <source>Remove disk</source>
         <translation>Šalinti diską</translation>
     </message>
@@ -1011,6 +1057,70 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     <message>
         <source>Check for Updates...</source>
         <translation>Tikrinti ar yra atnaujinimų...</translation>
+    </message>
+    <message>
+        <source>Edit all tags...</source>
+        <comment>Button text</comment>
+        <translation>Taisyti visas žymes...</translation>
+    </message>
+    <message>
+        <source>Add disk...</source>
+        <translation>Pridėti diską...</translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation>Nuostatos</translation>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation>Apie Flacon</translation>
+    </message>
+    <message>
+        <source>Select directory...</source>
+        <translation>Pasirinkti katalogą...</translation>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Standartinė muzikos vieta</translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Darbalaukis</translation>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Tas pats katalogas kaip ir CUE failo</translation>
+    </message>
+    <message>
+        <source>Remove current directory from history</source>
+        <translation>Šalinti esamą katalogą iš istorijos</translation>
+    </message>
+    <message>
+        <source>Edit tags...</source>
+        <comment>context menu</comment>
+        <translation>Taisyti žymes...</translation>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation>Gauti duomenis iš CDDB</translation>
+    </message>
+    <message>
+        <source>Select another audio file...</source>
+        <comment>context menu</comment>
+        <translation>Pasirinkti kitą garso failą...</translation>
+    </message>
+    <message>
+        <source>Select another cue file...</source>
+        <comment>context menu</comment>
+        <translation>Pasirinkti kitą cue failą...</translation>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1062,10 +1172,6 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>Failas &lt;b&gt;%1&lt;/b&gt; nėra palaikomas garso failas. &lt;br&gt;&lt;br&gt;Įsitikinkite, kad visos programos yra įdiegtos ir yra jūsų nuostatose.</translation>
     </message>
     <message>
-        <source> [disk %1]</source>
-        <translation> [diskas %1]</translation>
-    </message>
-    <message>
         <source>Flacon</source>
         <comment>Error</comment>
         <translation>Flacon</translation>
@@ -1096,11 +1202,6 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>&lt;b&gt;%1&lt;/b&gt; nėra taisyklingas cue failas. Cue lapas neturi FILE žymės.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; nėra taisyklingas cue failas. Neteisingas takelio indeksas ties %2.</translation>
-    </message>
-    <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Garso failo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nėra</translation>
     </message>
@@ -1126,6 +1227,20 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation>Nepavyksta įrašyti viršelio paveikslą &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; yra neteisingas cue failas. Neteisingas takelio numeris ties %2 eilute.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; yra neteisingas cue failas. Neteisingas takelio indeksas ties %2 eilute.</translation>
+    </message>
+    <message>
+        <source>Multiple values</source>
+        <translation>Kelios reikšmės</translation>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
@@ -1136,22 +1251,71 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     </message>
 </context>
 <context>
+    <name>TagEditor</name>
+    <message>
+        <source>Edit tags</source>
+        <comment>Dialog title</comment>
+        <translation>Taisyti žymes</translation>
+    </message>
+    <message>
+        <source>of</source>
+        <translation>iš</translation>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <comment>Music tag name</comment>
+        <translation>Atlikėjas:</translation>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <comment>Music tag name</comment>
+        <translation>Disko atlikėjas:</translation>
+    </message>
+    <message>
+        <source>Album:</source>
+        <comment>Music tag name</comment>
+        <translation>Albumas:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <comment>Music tag name</comment>
+        <translation>Žanras:</translation>
+    </message>
+    <message>
+        <source>Year:</source>
+        <comment>Music tag name</comment>
+        <translation>Metai:</translation>
+    </message>
+    <message>
+        <source>Disk number:</source>
+        <comment>Music tag name</comment>
+        <translation>Disko numeris:</translation>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <comment>Music tag name</comment>
+        <translation>Takelio pavadinimas:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <comment>Music tag name</comment>
+        <translation>Komentaras:</translation>
+    </message>
+    <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation>Pradžios takelio numeris:</translation>
+    </message>
+</context>
+<context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
         <translation>Gauti duomenis iš CDDB</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>Redaguoti</translation>
-    </message>
-    <message>
-        <source>Select another audio file</source>
-        <translation>Pasirinkti kitą garso failą</translation>
-    </message>
-    <message>
-        <source>Select another cue file</source>
-        <translation>Pasirinkti kitą cue failą</translation>
+        <source>Select another cue file...</source>
+        <translation>Pasirinkti kitą cue failą...</translation>
     </message>
 </context>
 <context>
@@ -1257,17 +1421,6 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
 %1</source>
         <translation>Konvertavimas neįmanomas.
 %1</translation>
-    </message>
-</context>
-<context>
-    <name>Worker</name>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Nepavyksta sukurti katalogo &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Nepavyksta rašyti į katalogą &quot;%1&quot;.</translation>
     </message>
 </context>
 </TS>

@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Icon[nl]=flacon
 Comment[nl]=Pakt audionummers uit een audio-cd-bestand uit in aparte nummers.
-GenericName[nl]=Audiobestandsencoder
+Icon[nl]=flacon
 Name[nl]=Flacon
+GenericName[nl]=Audiobestandsencoder

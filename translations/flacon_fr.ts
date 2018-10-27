@@ -300,6 +300,58 @@
         <source>Resize if image size greater than</source>
         <translation>Redimensionner si la taille de l’image est supérieure à</translation>
     </message>
+    <message>
+        <source>Resampling</source>
+        <translation>Rééchantillonnage</translation>
+    </message>
+    <message>
+        <source>As source</source>
+        <comment>Item in combobox</comment>
+        <translation>Identique à la source</translation>
+    </message>
+    <message>
+        <source>16 bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16 bits</translation>
+    </message>
+    <message>
+        <source>24 bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24 bits</translation>
+    </message>
+    <message>
+        <source>32 bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32 bits</translation>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>44 100 Hz</translation>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>48 000 Hz</translation>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>96 000 Hz</translation>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>192 000 Hz</translation>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -639,6 +691,16 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
         <source>Audio file shorter than expected from cue sheet.</source>
         <translation>Le fichier audio est plus court que prévu d’après le fichier cue.</translation>
     </message>
+    <message>
+        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>Un maximum de %1 bits sont pris en charge par ce format. Cette valeur sera utilisée pour l’encodage.</translation>
+    </message>
+    <message>
+        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>Un taux d’échantillonnage maximal de %1 est pris en charge par ce format. Cette valeur sera utilisée pour l’encodage.</translation>
+    </message>
 </context>
 <context>
     <name>Encoder</name>
@@ -824,16 +886,8 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <source>&amp;Preferences</source>
-        <translation>&amp;Préférences</translation>
-    </message>
-    <message>
         <source>Program preferences</source>
         <translation>Préférences du programme</translation>
-    </message>
-    <message>
-        <source>&amp;About Flacon</source>
-        <translation>&amp;À propos de Flacon</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -842,10 +896,6 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Configure encoder</source>
         <translation>Configurer l’encodeur</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>…</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -995,10 +1045,6 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
         <translation>Supprimer le modèle actuel de l’historique</translation>
     </message>
     <message>
-        <source>Add disk</source>
-        <translation>Ajouter un disque</translation>
-    </message>
-    <message>
         <source>Remove disk</source>
         <translation>Supprimer le disque</translation>
     </message>
@@ -1009,6 +1055,70 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>Check for Updates...</source>
         <translation>Vérification des mises à jour…</translation>
+    </message>
+    <message>
+        <source>Edit all tags...</source>
+        <comment>Button text</comment>
+        <translation>Modifier toutes les balises…</translation>
+    </message>
+    <message>
+        <source>Add disk...</source>
+        <translation>Ajouter un disque…</translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation>Préférences</translation>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation>À propos de Flacon</translation>
+    </message>
+    <message>
+        <source>Select directory...</source>
+        <translation>Sélectionner un répertoire…</translation>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove current directory from history</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags...</source>
+        <comment>context menu</comment>
+        <translation>Modifier les balises…</translation>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file...</source>
+        <comment>context menu</comment>
+        <translation>Sélectionner un autre fichier audio…</translation>
+    </message>
+    <message>
+        <source>Select another cue file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1060,10 +1170,6 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
         <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n’est pas un fichier audio pris en charge. &lt;br&gt;&lt;br&gt;Vérifiez que tous les programmes requis sont installés, et vérifiez aussi vos préférences.</translation>
     </message>
     <message>
-        <source> [disk %1]</source>
-        <translation>[disque %1]</translation>
-    </message>
-    <message>
         <source>Flacon</source>
         <comment>Error</comment>
         <translation>Flacon</translation>
@@ -1087,16 +1193,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>vous ne pouvez pas utiliser « ReplayGain » pour les fichiers dont le débit d’échantillonnage est supérieur à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
+        <translation>vous ne pouvez pas utiliser « ReplayGain » pour les fichiers dont la fréquence d’échantillonnage est supérieure à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier cue valide. Il n’a pas de balise FILE.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier cue valide. Index de piste erroné en %2.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1124,6 +1225,20 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation>Je ne peux pas écrire l’image de couverture &lt;b&gt;%1&lt;/b&gt; : &lt;br&gt;%2</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multiple values</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
@@ -1134,22 +1249,71 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
 </context>
 <context>
+    <name>TagEditor</name>
+    <message>
+        <source>Edit tags</source>
+        <comment>Dialog title</comment>
+        <translation>Modifier les balises</translation>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
         <translation>Obtenir les données de CDDB</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>Modifier</translation>
-    </message>
-    <message>
-        <source>Select another audio file</source>
-        <translation>Sélectionner un autre fichier audio</translation>
-    </message>
-    <message>
-        <source>Select another cue file</source>
-        <translation>Sélectionner un autre fichier cue</translation>
+        <source>Select another cue file...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1255,17 +1419,6 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
 %1</source>
         <translation>La conversion est impossible.
 %1</translation>
-    </message>
-</context>
-<context>
-    <name>Worker</name>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas créer le répertoire « %1 »</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas écrire dans le répertoire « %1 »</translation>
     </message>
 </context>
 </TS>

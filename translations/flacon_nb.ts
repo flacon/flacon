@@ -300,6 +300,58 @@
         <source>Resize if image size greater than</source>
         <translation>Endre oppløsning på bilde hvis større enn</translation>
     </message>
+    <message>
+        <source>Resampling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>As source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>16 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>24 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>32 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -640,6 +692,16 @@ I CBR-modus, setter angitt utdatabitrate.
         <source>Audio file shorter than expected from cue sheet.</source>
         <translation>Lydfil kortere enn forventet fra CUE-innholdsfortegnelse.</translation>
     </message>
+    <message>
+        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Encoder</name>
@@ -826,16 +888,8 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <source>&amp;Preferences</source>
-        <translation>&amp;Egenskaper</translation>
-    </message>
-    <message>
         <source>Program preferences</source>
         <translation>Programegenskaper</translation>
-    </message>
-    <message>
-        <source>&amp;About Flacon</source>
-        <translation>&amp;Om Flacon</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -844,10 +898,6 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     <message>
         <source>Configure encoder</source>
         <translation>Sett opp koder</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation> …</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -997,10 +1047,6 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation>Slett gjeldende mønster fra historikk</translation>
     </message>
     <message>
-        <source>Add disk</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remove disk</source>
         <translation type="unfinished"/>
     </message>
@@ -1010,6 +1056,70 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     </message>
     <message>
         <source>Check for Updates...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit all tags...</source>
+        <comment>Button text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disk...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove current directory from history</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another cue file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1062,10 +1172,6 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation>Fila &lt;b&gt;%1&lt;/b&gt; er ikke ei støtttet lydfil. &lt;br&gt;&lt;br&gt;Bekreft at alle påkrevde programmer er installert i dine innstillinger.</translation>
     </message>
     <message>
-        <source> [disk %1]</source>
-        <translation> [disk %1]</translation>
-    </message>
-    <message>
         <source>Flacon</source>
         <comment>Error</comment>
         <translation>Flacon</translation>
@@ -1096,11 +1202,6 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. CUE-innholdsoversikten har ingen FILE-merkelapp..</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. Ugyldig sporindeks på %2.</translation>
-    </message>
-    <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Lydfila &lt;b&gt; &quot;%1&quot; &lt;/b&gt; finnes ikke</translation>
     </message>
@@ -1126,6 +1227,20 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation>Jeg kan lagre omslagsbildet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multiple values</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Splitter</name>
@@ -1136,22 +1251,71 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     </message>
 </context>
 <context>
+    <name>TagEditor</name>
+    <message>
+        <source>Edit tags</source>
+        <comment>Dialog title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
         <translation>Innhent data fra CCDB</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>Rediger</translation>
-    </message>
-    <message>
-        <source>Select another audio file</source>
-        <translation>Velg en annen lydfil</translation>
-    </message>
-    <message>
-        <source>Select another cue file</source>
-        <translation>Velg en annen CUE-fil</translation>
+        <source>Select another cue file...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1257,17 +1421,6 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
 %1</source>
         <translation>Konverteringen er umulig.
 %1</translation>
-    </message>
-</context>
-<context>
-    <name>Worker</name>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke opprette mappa &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
     </message>
 </context>
 </TS>

@@ -251,7 +251,7 @@
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -263,41 +263,93 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation type="unfinished"/>
+        <translation>Обкладинка</translation>
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation type="unfinished"/>
+        <translation>Не копіювати</translation>
     </message>
     <message>
         <source>Update</source>
         <extracomment>Preferences tab title </extracomment>
-        <translation type="unfinished"/>
+        <translation>Оновлення</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Перевіряти автоматично</translation>
     </message>
     <message>
         <source>Check now</source>
-        <translation type="unfinished"/>
+        <translation>Перевірити</translation>
     </message>
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Останнє оновлення було %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Ніколи не перевіряли</translation>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation type="unfinished"/>
+        <translation>В початковому розмірі</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
+        <translation>Масштабувати якщо картинка більша ніж</translation>
+    </message>
+    <message>
+        <source>Resampling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>As source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>16 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>24 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>32 bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -344,7 +396,7 @@
     </message>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Налаштування конвертування у FLAC</translation>
     </message>
 </context>
 <context>
@@ -447,7 +499,30 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;При використанні режиму з середнім змінним бітрейтом, більшість людей не почують спотворень на більшости музики.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;При використанні режиму з стандартним змінним бітрейтом, більшість людей не почують спотворень на більшости музики. Ц режим забезпечує досить високу якість.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;Цей режим дає вищу якість ніж VBR standard. Ви помітите це, якщо у вас дуже добрий слух, або апаратура високого класу.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;В цьому режимі Ві можете самі вказати якість звуку, при цьому використовується змінний бітрейт&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Рекомендуємо використовувати режими з &quot;fast option&quot;, вони використовують новий, швидкий алгоритм VBR.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+Якщо Ви бажаєте отримати щонайбільшу якість звуку, а розмір файлу значення не має, використовуйте цей режим з постійним бітрейтом.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Використання цього режиму з постійним бітрейтом, дасть хорошу якість при фіксованому бітейті.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Зазвичай, цей режим з усередненим бітрейтом дає ліпшу якість ніж режими з постійним бітрейтом.&lt;/dd&gt;
+</translation>
     </message>
 </context>
 <context>
@@ -580,11 +655,11 @@ In CBR mode, it sets the specific output bitrate.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Обкладинка диску</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Без обкладинки</translation>
     </message>
 </context>
 <context>
@@ -600,7 +675,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>CUE містить декілька дисків. Який диск Ви волієте використовувати?</translation>
     </message>
 </context>
 <context>
@@ -616,6 +691,16 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Audio file shorter than expected from cue sheet.</source>
         <translation>Довжина аудіофайлу менша ніж вказано в CUE</translation>
+    </message>
+    <message>
+        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -635,7 +720,9 @@ In CBR mode, it sets the specific output bitrate.
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Не виходить перейменувати файл:
+%1 на %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -801,16 +888,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <source>&amp;Preferences</source>
-        <translation>&amp;Налаштування</translation>
-    </message>
-    <message>
         <source>Program preferences</source>
         <translation>Налаштування проґрами</translation>
-    </message>
-    <message>
-        <source>&amp;About Flacon</source>
-        <translation>&amp;Про Flacon</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -819,10 +898,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Configure encoder</source>
         <translation>Налаштувати кодувальник</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation>...</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -972,19 +1047,79 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Вилучити поточний шабльон з історії.</translation>
     </message>
     <message>
-        <source>Add disk</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remove disk</source>
-        <translation type="unfinished"/>
+        <translation>Вилучити диск</translation>
     </message>
     <message>
         <source>Remove disk from project</source>
-        <translation type="unfinished"/>
+        <translation>Вилучити диск із проєкту</translation>
     </message>
     <message>
         <source>Check for Updates...</source>
+        <translation>Перевірити оновлення...</translation>
+    </message>
+    <message>
+        <source>Edit all tags...</source>
+        <comment>Button text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disk...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove current directory from history</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another cue file...</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1023,7 +1158,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation type="unfinished"/>
+        <translation>програма %1</translation>
     </message>
 </context>
 <context>
@@ -1035,10 +1170,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <translation>Формат аудіо файлу &lt;b&gt;%1&lt;/b&gt; не підтримується. &lt;br&gt;&lt;br&gt;Перевірте що встановлені усі потрібні проґрами й вони вказані у налаштуваннях.</translation>
-    </message>
-    <message>
-        <source> [disk %1]</source>
-        <translation> [диск %1]</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -1071,34 +1202,43 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>&lt;b&gt;%1&lt;/b&gt; не є правильним CUE файлом. Він не містить тегу FILE.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index at %2.</source>
-        <comment>Cue parser error. %2 is file position</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не є правильним CUE файлом. Некоректний індекс у позиції %2.</translation>
-    </message>
-    <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Аудіо файл &lt;b&gt;%1&lt;/b&gt; не існує.</translation>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Не виходить створити директорію &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Не виходить писати в директорію &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Не виходить скопіювати файл обкладинки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Не виходить прочитати файл обкладинки  &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
+        <translation>Не виходить записати файл обкладинки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multiple values</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1107,6 +1247,63 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation>Не виходить прочитати &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+</context>
+<context>
+    <name>TagEditor</name>
+    <message>
+        <source>Edit tags</source>
+        <comment>Dialog title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1117,16 +1314,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Отримати дані з CDDB</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>Редагувати</translation>
-    </message>
-    <message>
-        <source>Select another audio file</source>
-        <translation>Обрати иньший аудіофайл</translation>
-    </message>
-    <message>
-        <source>Select another cue file</source>
-        <translation>Вибрати иньший CUE файл</translation>
+        <source>Select another cue file...</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1232,17 +1421,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 %1</source>
         <translation>Перетворення неможливе.
 %1</translation>
-    </message>
-</context>
-<context>
-    <name>Worker</name>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
