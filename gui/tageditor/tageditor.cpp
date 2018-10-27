@@ -86,11 +86,11 @@ TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disk *> &disks, QW
 {
     ui->setupUi(this);
 
-    addLineEdit(TagId::Artist,      tr("Artist", "Music tag name"));
-    addLineEdit(TagId::AlbumArtist, tr("Disk performer", "Music tag name"));
-    addLineEdit(TagId::Album,       tr("Album", "Music tag name"));
-    addLineEdit(TagId::Genre,       tr("Genre", "Music tag name"));
-    addLineEdit(TagId::Date,        tr("Year",  "Music tag name"));
+    addLineEdit(TagId::Artist,      tr("Artist:", "Music tag name"));
+    addLineEdit(TagId::AlbumArtist, tr("Disk performer:", "Music tag name"));
+    addLineEdit(TagId::Album,       tr("Album:", "Music tag name"));
+    addLineEdit(TagId::Genre,       tr("Genre:", "Music tag name"));
+    addLineEdit(TagId::Date,        tr("Year:",  "Music tag name"));
 
 
     mStartTrackSpin = new MultiValuesSpinBox(this);
@@ -101,12 +101,12 @@ TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disk *> &disks, QW
     trackCountSpin->setMinimum(1);
     trackCountSpin->setMaximum(99);
     trackCountSpin->setTagId(TagId::TrackCount);
-    this->add2Widget(mStartTrackSpin, trackCountSpin,  tr("Track number", "Music tag name"));
+    this->add2Widget(mStartTrackSpin, trackCountSpin,  tr("Start track number:", "Music tag name"));
 
-    addIntEditNumCount(TagId::DiskNum,  TagId::DiskCount,  tr("Disk number", "Music tag name"));
+    addIntEditNumCount(TagId::DiskNum,  TagId::DiskCount,  tr("Disk number:", "Music tag name"));
 
-    addLineEdit(TagId::Title,       tr("Track title",    "Music tag name"));
-    addTextEdit(TagId::Comment,     tr("Comment",  "Music tag name"));
+    addLineEdit(TagId::Title,       tr("Track title:",    "Music tag name"));
+    addTextEdit(TagId::Comment,     tr("Comment:",  "Music tag name"));
 
     // Set values ______________________________________________
     initControlValue(tracks, this->findChildren<TagLineEdit *>());
