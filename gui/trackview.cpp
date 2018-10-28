@@ -261,7 +261,7 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 
     QAction *act;
 
-    act = new QAction(tr("Select another cue file..."), &menu);
+    act = new QAction(tr("Select another CUE file…"), &menu);
     connect(act, &QAction::triggered, [this, disk] { this->selectCueFile(disk);});
     menu.addAction(act);
 

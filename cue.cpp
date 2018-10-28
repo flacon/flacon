@@ -225,7 +225,7 @@ CueData::CueData(const QString &fileName):
         bool ok;
         int num = leftPart(value, ' ').toInt(&ok);
         if (!ok)
-            throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track number on line %2.", "Cue parser error.").arg(mFileName).arg(mLineNum));
+            throw CueReaderError(QObject::tr("<b>%1</b> is not a valid CUE file. Incorrect track number on line %2.", "Cue parser error.").arg(mFileName).arg(mLineNum));
 
         CueTags track;
         track.insert(CTAG_TRACK, QString("%1").arg(num).toLatin1());
@@ -290,10 +290,10 @@ void CueData::parseLine(const QByteArray &line, CueTagId &tag, QByteArray &value
         bool ok;
         int num = leftPart(value, ' ').toInt(&ok);
         if (!ok)
-            throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track index on line %2.", "Cue parser error.").arg(mFileName).arg(mLineNum));
+            throw CueReaderError(QObject::tr("<b>%1</b> is not a valid CUE file. Incorrect track index on line %2.", "Cue parser error.").arg(mFileName).arg(mLineNum));
 
         if (num < 0 || num > 99)
-            throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Incorrect track index on line %2.", "Cue parser error.").arg(mFileName).arg(mLineNum));
+            throw CueReaderError(QObject::tr("<b>%1</b> is not a valid CUE file. Incorrect track index on line %2.", "Cue parser error.").arg(mFileName).arg(mLineNum));
 
         switch (num)
         {
@@ -326,14 +326,14 @@ void CueData::parseLine(const QByteArray &line, CueTagId &tag, QByteArray &value
 
 
 /************************************************
- Complete cue sheet syntax documentation
+ Complete CUE sheet syntax documentation
  https://github.com/flacon/flacon/blob/master/cuesheet_syntax.md
  ************************************************/
 QVector<CueDisk> CueReader::load(const QString &fileName)
 {
     CueData data(fileName);
     if (data.tracks.isEmpty())
-        throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. The cue sheet has no FILE tag.").arg(fileName));
+        throw CueReaderError(QObject::tr("<b>%1</b> is not a valid CUE file. The CUE sheet has no FILE tag.").arg(fileName));
 
     bool splitByDash      = true;
     bool splitBySlash     = true;
@@ -450,7 +450,7 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
 
           if (disk.count() == 0)
           {
-              throw CueReaderError(QObject::tr("<b>%1</b> is not a valid cue file. Disk %2 has no tags.").arg(fileName).arg(d));
+              throw CueReaderError(QObject::tr("<b>%1</b> is not a valid CUE file. Disk %2 has no tags.").arg(fileName).arg(d));
           }
 
           for (int t=0; t<disk.count(); ++t)

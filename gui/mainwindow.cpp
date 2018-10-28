@@ -352,7 +352,7 @@ void MainWindow::setCueForDisc(Disk *disk)
         dir = settings->value(Settings::Misc_LastDir).toString();
 
 
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Select cue file", "OpenFile dialog title"), dir, flt);
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Select CUE file", "OpenFile dialog title"), dir, flt);
 
     if (fileName.isEmpty())
         return;
@@ -762,7 +762,7 @@ void MainWindow::openAddFileDialog()
 {
     QString flt = getOpenFileFilter(true, true);
     QString lastDir = settings->value(Settings::Misc_LastDir).toString();
-    QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Add cue or audio file", "OpenFile dialog title"), lastDir, flt);
+    QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Add CUE or audio file", "OpenFile dialog title"), lastDir, flt);
 
     foreach(const QString &fileName, fileNames)
     {

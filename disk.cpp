@@ -119,7 +119,7 @@ bool Disk::canConvert(QString *description) const
 
         if (mAudioFile->duration() <= duration)
         {
-            msg << tr("Audio file shorter than expected from cue sheet.");
+            msg << tr("Audio file shorter than expected from CUE sheet.");
             res = false;
         }
 

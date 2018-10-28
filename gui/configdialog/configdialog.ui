@@ -136,7 +136,7 @@
          <item>
           <widget class="QGroupBox" name="perTrackCueGroup">
            <property name="title">
-            <string>Per track cue sheet</string>
+            <string>Per track CUE sheet</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <property name="sizeConstraint">
@@ -145,7 +145,7 @@
             <item>
              <widget class="QCheckBox" name="perTrackCueCheck">
               <property name="text">
-               <string>Create per track cue sheet</string>
+               <string>Create per track CUE sheet</string>
               </property>
              </widget>
             </item>
