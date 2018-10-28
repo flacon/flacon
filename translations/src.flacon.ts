@@ -244,14 +244,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Per track cue sheet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Create per track cue sheet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source> px</source>
         <translation type="unfinished"></translation>
     </message>
@@ -307,26 +299,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>As source</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>16 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>24 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>32 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
         <translation type="unfinished"></translation>
@@ -352,6 +324,34 @@
     </message>
     <message>
         <source>Maximum sample rate:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Per track CUE sheet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -659,16 +659,16 @@ In CBR mode, it sets the specific output bitrate.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Audio file shorter than expected from cue sheet.</source>
+        <source>Audio file shorter than expected from CUE sheet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -976,16 +976,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select cue file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add cue or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation type="unfinished"></translation>
     </message>
@@ -998,28 +988,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Check for Updates...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Edit all tags...</source>
-        <comment>Button text</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add disk...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Flacon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select directory...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1042,27 +1015,54 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit tags...</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
         <comment>context menu</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select another audio file...</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select another cue file...</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Disk performer:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit all tags…</source>
+        <comment>Button text</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add disk…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select directory…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for Updates…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select another audio file…</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1120,15 +1120,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1138,10 +1130,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1171,17 +1159,29 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Multiple values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1206,11 +1206,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Artist:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disk performer:</source>
         <comment>Music tag name</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -1249,6 +1244,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>Music tag name</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TrackView</name>
@@ -1257,7 +1257,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select another cue file...</source>
+        <source>Select another CUE file…</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

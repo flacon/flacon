@@ -635,11 +635,11 @@ QStringList Disk::warnings() const
     if (audioFile())
     {
         if (audioFile()->bitsPerSample() > int(settings->outFormat()->maxBitPerSample()))
-            res << tr("The format supports a maximum %1 bits per sample, this value will be used for encoding.", "Warning message")
+            res << tr("A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.", "Warning message")
                       .arg(int(settings->outFormat()->maxBitPerSample()));
 
         if (audioFile()->sampleRate() > int(settings->outFormat()->maxSampleRate()))
-            res << tr("The format supports a maximum %1 sample rate, this value will be used for encoding.", "Warning message")
+            res << tr("A maximum sample rate of %1 is supported by this format. This value will be used for encoding.", "Warning message")
                       .arg(int(settings->outFormat()->maxSampleRate()));
     }
     return res;

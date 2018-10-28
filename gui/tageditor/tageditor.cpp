@@ -87,7 +87,7 @@ TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disk *> &disks, QW
     ui->setupUi(this);
 
     addLineEdit(TagId::Artist,      tr("Artist:", "Music tag name"));
-    addLineEdit(TagId::AlbumArtist, tr("Disk performer:", "Music tag name"));
+    addLineEdit(TagId::AlbumArtist, tr("Album performer:", "Music tag name"));
     addLineEdit(TagId::Album,       tr("Album:", "Music tag name"));
     addLineEdit(TagId::Genre,       tr("Genre:", "Music tag name"));
     addLineEdit(TagId::Date,        tr("Year:",  "Music tag name"));

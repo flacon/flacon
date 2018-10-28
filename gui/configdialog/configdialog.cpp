@@ -152,16 +152,16 @@ void ConfigDialog::initGeneralPage()
     preGapComboBox->addItem(tr("Add to first track"),       preGapTypeToString(PreGapType::AddToFirstTrack));
 
 
-    bitDepthComboBox->addItem(tr("As source", "Item in combobox"), int(BitsPerSample::AsSourcee));
-    bitDepthComboBox->addItem(tr("16 bit",    "Item in combobox"), int(BitsPerSample::Bit_16));
-    bitDepthComboBox->addItem(tr("24 bit",    "Item in combobox"), int(BitsPerSample::Bit_24));
-    bitDepthComboBox->addItem(tr("32 bit",    "Item in combobox"), int(BitsPerSample::Bit_32));
+    bitDepthComboBox->addItem(tr("Same as source", "Item in combobox"), int(BitsPerSample::AsSourcee));
+    bitDepthComboBox->addItem(tr("16-bit",         "Item in combobox"), int(BitsPerSample::Bit_16));
+    bitDepthComboBox->addItem(tr("24-bit",         "Item in combobox"), int(BitsPerSample::Bit_24));
+    bitDepthComboBox->addItem(tr("32-bit",         "Item in combobox"), int(BitsPerSample::Bit_32));
 
-    sampleRateComboBox->addItem(tr("As source", "Item in combobox"), int(SampleRate::AsSource));
-    sampleRateComboBox->addItem(tr("44100 Hz",  "Item in combobox"), int(SampleRate::Hz_44100));
-    sampleRateComboBox->addItem(tr("48000 Hz",  "Item in combobox"), int(SampleRate::Hz_48000));
-    sampleRateComboBox->addItem(tr("96000 Hz",  "Item in combobox"), int(SampleRate::Hz_96000));
-    sampleRateComboBox->addItem(tr("192000 Hz", "Item in combobox"), int(SampleRate::Hz_192000));
+    sampleRateComboBox->addItem(tr("Same as source", "Item in combobox"), int(SampleRate::AsSource));
+    sampleRateComboBox->addItem(tr("44100 Hz",       "Item in combobox"), int(SampleRate::Hz_44100));
+    sampleRateComboBox->addItem(tr("48000 Hz",       "Item in combobox"), int(SampleRate::Hz_48000));
+    sampleRateComboBox->addItem(tr("96000 Hz",       "Item in combobox"), int(SampleRate::Hz_96000));
+    sampleRateComboBox->addItem(tr("192000 Hz",      "Item in combobox"), int(SampleRate::Hz_192000));
 
 }
 
