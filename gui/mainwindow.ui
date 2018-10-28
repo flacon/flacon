@@ -283,7 +283,7 @@ If you surround sections of text that contain a token with braces, these section
            <item row="9" column="2">
             <widget class="QPushButton" name="editTagsButton">
              <property name="text">
-              <string comment="Button text">Edit all tags...</string>
+              <string comment="Button text">Edit all tags…</string>
              </property>
             </widget>
            </item>
@@ -408,7 +408,7 @@ If you surround sections of text that contain a token with braces, these section
   </widget>
   <action name="actionAddDisk">
    <property name="text">
-    <string>Add disk...</string>
+    <string>Add disk…</string>
    </property>
    <property name="toolTip">
     <string>Add CUE or audio file</string>
@@ -478,7 +478,7 @@ If you surround sections of text that contain a token with braces, these section
   </action>
   <action name="actionSelectResultDir">
    <property name="text">
-    <string>Select directory...</string>
+    <string>Select directory…</string>
    </property>
    <property name="toolTip">
     <string comment="Main form tooltip for &quot;Directory&quot; edit">You can browse to the destination directory. You can also input it manually.
@@ -507,7 +507,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
   </action>
   <action name="actionUpdates">
    <property name="text">
-    <string>Check for Updates...</string>
+    <string>Check for Updates…</string>
    </property>
    <property name="visible">
     <bool>true</bool>

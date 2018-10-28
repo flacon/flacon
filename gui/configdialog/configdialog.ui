@@ -115,7 +115,7 @@
              <item>
               <widget class="QToolButton" name="tmpDirButton">
                <property name="text">
-                <string notr="true">...</string>
+                <string notr="true">…</string>
                </property>
               </widget>
              </item>

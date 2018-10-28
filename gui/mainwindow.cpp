@@ -929,18 +929,18 @@ void MainWindow::trackViewMenu(const QPoint &pos)
 
 
     QMenu menu;
-    QAction *act = new QAction(tr("Edit tags...", "context menu"), &menu);
+    QAction *act = new QAction(tr("Edit tags…", "context menu"), &menu);
     connect(act, &QAction::triggered, this, &MainWindow::openEditTagsDialog);
     menu.addAction(act);
 
     menu.addSeparator();
 
-    act = new QAction(tr("Select another audio file...", "context menu"), &menu);
+    act = new QAction(tr("Select another audio file…", "context menu"), &menu);
     connect(act, &QAction::triggered, [this, disk](){ this->setAudioForDisk(disk); });
     menu.addAction(act);
 
 
-    act = new QAction(tr("Select another cue file...", "context menu"), &menu);
+    act = new QAction(tr("Select another CUE file…", "context menu"), &menu);
     connect(act, &QAction::triggered, [this, disk](){ this->setCueForDisc(disk); });
     menu.addAction(act);
 
