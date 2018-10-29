@@ -161,7 +161,7 @@ If you surround sections of text that contain a token with braces, these section
            <item row="3" column="0">
             <widget class="QLabel" name="tagDiskPerformerLabel">
              <property name="text">
-              <string>Disk performer:</string>
+              <string>Album performer:</string>
              </property>
              <property name="buddy">
               <cstring>tagDiskPerformerEdit</cstring>
@@ -353,6 +353,8 @@ If you surround sections of text that contain a token with braces, these section
     </property>
     <addaction name="actionAddDisk"/>
     <addaction name="actionRemoveDisc"/>
+    <addaction name="separator"/>
+    <addaction name="actionDownloadTrackInfo"/>
     <addaction name="separator"/>
     <addaction name="actionStartConvert"/>
     <addaction name="actionAbortConvert"/>

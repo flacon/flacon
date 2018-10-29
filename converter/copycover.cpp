@@ -116,7 +116,7 @@ bool CopyCover::resizeImage(const QString &outFileName)
     QImageWriter writer(outFileName);
     if (!writer.write(img))
     {
-        mErrorString = QObject::tr("I can't write cover image <b>%1</b>:<br>%2",
+        mErrorString = QObject::tr("I can't save cover image <b>%1</b>:<br>%2",
                                    "%1 - is file name, %2 - an error text")
                 .arg(outFileName)
                 .arg(writer.errorString());

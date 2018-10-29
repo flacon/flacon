@@ -1020,10 +1020,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Disk performer:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
         <translation type="unfinished"></translation>
@@ -1063,6 +1059,10 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Select another CUE file…</source>
         <comment>context menu</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Album performer:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1154,11 +1154,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Multiple values</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1182,6 +1177,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
