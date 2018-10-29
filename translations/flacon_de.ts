@@ -242,14 +242,6 @@
         <translation>Temporäres Verzeichnis auswählen</translation>
     </message>
     <message>
-        <source>Per track cue sheet</source>
-        <translation>Cue-Datei pro Stück</translation>
-    </message>
-    <message>
-        <source>Create per track cue sheet</source>
-        <translation>Cue-Datei pro Stück erstellen</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
@@ -272,25 +264,25 @@
     <message>
         <source>Update</source>
         <extracomment>Preferences tab title </extracomment>
-        <translation type="unfinished"/>
+        <translation>Aktualisierung</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Automatisch auf Aktualisierungen prüfen</translation>
     </message>
     <message>
         <source>Check now</source>
-        <translation type="unfinished"/>
+        <translation>Jetzt prüfen</translation>
     </message>
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Letzte Prüfung war %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Niemals geprüft</translation>
     </message>
     <message>
         <source>Keep original image size</source>
@@ -302,55 +294,63 @@
     </message>
     <message>
         <source>Resampling</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>As source</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>16 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>24 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>32 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Abtastratenkonvertierung</translation>
     </message>
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>44100 Hz</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>48000 Hz</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>96000 Hz</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>192000 Hz</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
+        <translation>Maximale Bittiefe:</translation>
     </message>
     <message>
         <source>Maximum sample rate:</source>
+        <translation>Maximale Abtastrate:</translation>
+    </message>
+    <message>
+        <source>Per track CUE sheet</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation>Gleich wie Quelle</translation>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16 Bit</translation>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24 Bit</translation>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32 Bit</translation>
     </message>
 </context>
 <context>
@@ -689,16 +689,16 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
         <translation>Kein Cue Sheet ausgewählt. </translation>
     </message>
     <message>
-        <source>Audio file shorter than expected from cue sheet.</source>
-        <translation>Audio Datei ist kürzer als im Cue Sheet angegeben.</translation>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation>Audiodatei ist kürzer als erwartet von der CUE-Datei.</translation>
     </message>
     <message>
-        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"/>
     </message>
@@ -1033,16 +1033,6 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
         <translation>&quot;%1&quot; verwenden</translation>
     </message>
     <message>
-        <source>Select cue file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>CUE Sheet auswählen</translation>
-    </message>
-    <message>
-        <source>Add cue or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Cue- oder Audiodatei hinzufügen</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Aktuelles Muster aus Chronik löschen</translation>
     </message>
@@ -1055,29 +1045,12 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
         <translation>Disk aus Projekt entfernen</translation>
     </message>
     <message>
-        <source>Check for Updates...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Edit all tags...</source>
-        <comment>Button text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add disk...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <source>About Flacon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select directory...</source>
-        <translation type="unfinished"/>
+        <translation>Über Flacon</translation>
     </message>
     <message>
         <source>Standard music location</source>
@@ -1092,34 +1065,61 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     <message>
         <source>Same directory as CUE file</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Gleiches Verzeichnis wie CUE-Datei</translation>
     </message>
     <message>
         <source>Remove current directory from history</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Edit tags...</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Aktuelles Verzeichnis aus Chronik löschen</translation>
     </message>
     <message>
         <source>Get data from CDDB</source>
         <comment>context menu</comment>
+        <translation>Daten von CDDB abrufen</translation>
+    </message>
+    <message>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>CUE-Datei auswählen</translation>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>CUE- oder Audiodatei hinzufügen</translation>
+    </message>
+    <message>
+        <source>Edit all tags…</source>
+        <comment>Button text</comment>
+        <translation>Alle Schlagwörter bearbeiten…</translation>
+    </message>
+    <message>
+        <source>Add disk…</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select another audio file...</source>
+        <source>Select directory…</source>
+        <translation>Verzeichnis auswählen…</translation>
+    </message>
+    <message>
+        <source>Check for Updates…</source>
+        <translation>Auf Aktualisierungen prüfen…</translation>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation>Schlagwörter bearbeiten…</translation>
+    </message>
+    <message>
+        <source>Select another audio file…</source>
         <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select another cue file...</source>
+        <source>Select another CUE file…</source>
         <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Disk performer:</source>
+        <source>Album performer:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1177,16 +1177,8 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Ich kann die Cue-Datei &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 nicht schreiben</translation>
-    </message>
-    <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Datei &lt;b&gt;&quot;%1&quot;&lt;/b&gt; ist nicht vorhanden</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; ist keine gültige Cue-Datei. Disk %2 hat keine Tags.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1196,10 +1188,6 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation>&apos;ReplayGain&apos; kann für Dateien mit einer Samplerate über 48kHz nicht verwendet werden, da Metaflac diese Dateien nicht unterstützt.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; ist keine gültige Cue-Datei. Die Cue-Datei hat keinen FILE Tag.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1223,22 +1211,34 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
         <translation>&lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 kann nicht gelesen werden</translation>
     </message>
     <message>
-        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>Ich kann die Cover-Bilddatei &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 nicht schreiben</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Multiple values</source>
+        <translation>Mehrere Werte</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation>Ich kann die CUE-Datei &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 nicht schreiben</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1255,36 +1255,31 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     <message>
         <source>Edit tags</source>
         <comment>Dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Schlagwörter bearbeiten</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished"/>
+        <translation>von</translation>
     </message>
     <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disk performer:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Interpret:</translation>
     </message>
     <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Album:</translation>
     </message>
     <message>
         <source>Genre:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Genre:</translation>
     </message>
     <message>
         <source>Year:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Jahr:</translation>
     </message>
     <message>
         <source>Disk number:</source>
@@ -1294,15 +1289,20 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Stücktitel:</translation>
     </message>
     <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Kommentar:</translation>
     </message>
     <message>
         <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album performer:</source>
         <comment>Music tag name</comment>
         <translation type="unfinished"/>
     </message>
@@ -1314,7 +1314,7 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
         <translation>Daten von CDDB abrufen</translation>
     </message>
     <message>
-        <source>Select another cue file...</source>
+        <source>Select another CUE file…</source>
         <translation type="unfinished"/>
     </message>
 </context>

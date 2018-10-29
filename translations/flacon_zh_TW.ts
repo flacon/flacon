@@ -3,19 +3,19 @@
     <name>AboutDialog</name>
     <message>
         <source>About Flacon</source>
-        <translation type="unfinished"/>
+        <translation>關於 Flacon</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>關於</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished"/>
+        <translation>作者</translation>
     </message>
     <message>
         <source>Thanks</source>
-        <translation type="unfinished"/>
+        <translation>鳴謝</translation>
     </message>
     <message>
         <source>Translations</source>
@@ -23,7 +23,7 @@
     </message>
     <message>
         <source>External programs</source>
-        <translation type="unfinished"/>
+        <translation>外掛程式</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
@@ -43,7 +43,7 @@
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation type="unfinished"/>
+        <translation>從包含整個專輯的單個大聲訊檔案中擷取單個曲目。</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
@@ -195,19 +195,19 @@
     <name>ConfigDialog</name>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>個人偏好</translation>
     </message>
     <message>
         <source>General configuration</source>
-        <translation type="unfinished"/>
+        <translation>通用設定</translation>
     </message>
     <message>
         <source>Thread count:</source>
-        <translation type="unfinished"/>
+        <translation>執行緒計數：</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation type="unfinished"/>
+        <translation>轉換執行緒數。</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -215,11 +215,11 @@
     </message>
     <message>
         <source>Rescan</source>
-        <translation type="unfinished"/>
+        <translation>重新掃描</translation>
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation type="unfinished"/>
+        <translation>外掛程式的完整路徑</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
@@ -231,23 +231,15 @@
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>常規</translation>
     </message>
     <message>
         <source>Programs</source>
-        <translation type="unfinished"/>
+        <translation>程式</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Per track cue sheet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Create per track cue sheet</source>
-        <translation type="unfinished"/>
+        <translation>選取臨時目錄</translation>
     </message>
     <message>
         <source> px</source>
@@ -255,7 +247,7 @@
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation type="unfinished"/>
+        <translation>臨時目錄：</translation>
     </message>
     <message>
         <source>Default codepage:</source>
@@ -305,26 +297,6 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>As source</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>16 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>24 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>32 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
         <translation type="unfinished"/>
@@ -352,47 +324,75 @@
         <source>Maximum sample rate:</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
     <message>
         <source>AAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>AAC 編碼配置</translation>
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>使用動態編碼型態（建議）</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>使用固定碼率型態</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>碼率：</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>設定目標碼率 (kbit/s).</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Flac</name>
     <message>
         <source>Compression:</source>
-        <translation type="unfinished"/>
+        <translation>壓縮：</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>重播增益</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>計算增益：</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>禁用</translation>
     </message>
     <message>
         <source>FLAC encoding configuration</source>
@@ -411,15 +411,15 @@
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>使用固定碼率型態</translation>
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>碼率：</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>設定目標碼率 (kbit/s).</translation>
     </message>
     <message>
         <source>Use quality</source>
@@ -431,47 +431,47 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>重播增益</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>計算增益：</translation>
     </message>
     <message>
         <source>VBR medium</source>
-        <translation type="unfinished"/>
+        <translation>中等 VBR 型態</translation>
     </message>
     <message>
         <source>VBR standard</source>
-        <translation type="unfinished"/>
+        <translation>標准 VBR 型態</translation>
     </message>
     <message>
         <source>VBR standard fast</source>
-        <translation type="unfinished"/>
+        <translation>快速標准 VBR 型態</translation>
     </message>
     <message>
         <source>VBR extreme</source>
-        <translation type="unfinished"/>
+        <translation>極佳 VBR 型態</translation>
     </message>
     <message>
         <source>VBR extreme fast</source>
-        <translation type="unfinished"/>
+        <translation>快速極佳 VBR 型態</translation>
     </message>
     <message>
         <source>VBR quality</source>
-        <translation type="unfinished"/>
+        <translation>VBR 品質</translation>
     </message>
     <message>
         <source>CBR insane</source>
-        <translation type="unfinished"/>
+        <translation>極佳 CBR 型態</translation>
     </message>
     <message>
         <source>CBR kbps</source>
-        <translation type="unfinished"/>
+        <translation>CBR kbps</translation>
     </message>
     <message>
         <source>ABR kbps</source>
-        <translation type="unfinished"/>
+        <translation>ABR kbps</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -510,11 +510,11 @@
     </message>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation type="unfinished"/>
+        <translation>使用動態編碼型態（建議）</translation>
     </message>
     <message>
         <source>Use bitrate</source>
-        <translation type="unfinished"/>
+        <translation>使用固定碼率型態</translation>
     </message>
     <message>
         <source>Minimal bitrate:</source>
@@ -530,7 +530,7 @@
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation type="unfinished"/>
+        <translation>設定目標碼率 (kbit/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
@@ -542,11 +542,11 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>重播增益</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>計算增益：</translation>
     </message>
 </context>
 <context>
@@ -561,7 +561,7 @@
     </message>
     <message>
         <source>Bitrate:</source>
-        <translation type="unfinished"/>
+        <translation>碼率：</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -597,19 +597,19 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Compression:</source>
-        <translation type="unfinished"/>
+        <translation>壓縮：</translation>
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation type="unfinished"/>
+        <translation>重播增益</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
+        <translation>計算增益：</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>禁用</translation>
     </message>
 </context>
 <context>
@@ -650,23 +650,23 @@ In CBR mode, it sets the specific output bitrate.
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
-        <translation type="unfinished"/>
+        <translation>未設定聲訊檔案。</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Audio file shorter than expected from cue sheet.</source>
+        <source>Audio file shorter than expected from CUE sheet.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"/>
     </message>
@@ -705,17 +705,17 @@ This only affects the file size. All settings are lossless.</source>
     <message>
         <source>Disabled</source>
         <comment>ReplayGain type combobox</comment>
-        <translation type="unfinished"/>
+        <translation>禁用</translation>
     </message>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation type="unfinished"/>
+        <translation>每個音軌</translation>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
-        <translation type="unfinished"/>
+        <translation>每個專輯</translation>
     </message>
     <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
@@ -748,23 +748,23 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>Result Files</source>
-        <translation type="unfinished"/>
+        <translation>匯出檔案</translation>
     </message>
     <message>
         <source>Directory:</source>
-        <translation type="unfinished"/>
+        <translation>目錄</translation>
     </message>
     <message>
         <source>Pattern:</source>
-        <translation type="unfinished"/>
+        <translation>范例：</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation type="unfinished"/>
+        <translation>格式：</translation>
     </message>
     <message>
         <source>Output format</source>
@@ -773,35 +773,35 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished"/>
+        <translation>標簽</translation>
     </message>
     <message>
         <source>Genre:</source>
-        <translation type="unfinished"/>
+        <translation>風格：</translation>
     </message>
     <message>
         <source>Year:</source>
-        <translation type="unfinished"/>
+        <translation>年代：</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation type="unfinished"/>
+        <translation>藝朮家：</translation>
     </message>
     <message>
         <source>Album:</source>
-        <translation type="unfinished"/>
+        <translation>專輯：</translation>
     </message>
     <message>
         <source>Start num:</source>
-        <translation type="unfinished"/>
+        <translation>起始編號：</translation>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation type="unfinished"/>
+        <translation>光碟編號：</translation>
     </message>
     <message>
         <source>Codepage:</source>
-        <translation type="unfinished"/>
+        <translation>字元編碼：</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -817,39 +817,39 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation type="unfinished"/>
+        <translation>添加 CUE 或聲訊檔案</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>Convert</source>
-        <translation type="unfinished"/>
+        <translation>轉換</translation>
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation type="unfinished"/>
+        <translation>開始轉換</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <source>Abort</source>
-        <translation type="unfinished"/>
+        <translation>終止</translation>
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation type="unfinished"/>
+        <translation>終止轉換程式</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>結束</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>Program preferences</source>
@@ -857,31 +857,31 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Ctrl+Del</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Del</translation>
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation type="unfinished"/>
+        <translation>配置編碼器</translation>
     </message>
     <message>
         <source>Select result directory</source>
-        <translation type="unfinished"/>
+        <translation>選取匯出目錄</translation>
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation type="unfinished"/>
+        <translation>從 CDDB 擷取</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation type="unfinished"/>
+        <translation>從 CDDB 擷取專輯資訊</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <source>Scan</source>
-        <translation type="unfinished"/>
+        <translation>掃描</translation>
     </message>
     <message>
         <source>Recursive album search</source>
@@ -889,11 +889,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>插入 &quot; 軌道編號 &quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation type="unfinished"/>
+        <translation>插入 &quot; 音軌總數 &quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -901,48 +901,48 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>插入 &quot; 專輯名 &quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>插入 &quot; 音軌標題 &quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation type="unfinished"/>
+        <translation>插入 ;&quot; 年代 &quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation type="unfinished"/>
+        <translation>插入 &quot;風格&quot;</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation type="unfinished"/>
+        <translation>由於包含了錯誤，部分專輯無法轉換。你還要繼續嗎？</translation>
     </message>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation type="unfinished"/>
+        <translation>%1 檔案</translation>
     </message>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
-        <translation type="unfinished"/>
+        <translation>所有支援的格式</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation type="unfinished"/>
+        <translation>全部檔案</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>選取聲訊檔案</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation type="unfinished"/>
+        <translation>選取目錄</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -978,16 +978,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select cue file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add cue or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation type="unfinished"/>
     </message>
@@ -1000,29 +990,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Check for Updates...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Edit all tags...</source>
-        <comment>Button text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add disk...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>個人偏好</translation>
     </message>
     <message>
         <source>About Flacon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select directory...</source>
-        <translation type="unfinished"/>
+        <translation>關於 Flacon</translation>
     </message>
     <message>
         <source>Standard music location</source>
@@ -1044,27 +1017,54 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Edit tags...</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
         <comment>context menu</comment>
+        <translation>從 CDDB 擷取資料</translation>
+    </message>
+    <message>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>選取 CUE 檔案</translation>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>添加 CUE 或聲訊檔案</translation>
+    </message>
+    <message>
+        <source>Edit all tags…</source>
+        <comment>Button text</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select another audio file...</source>
+        <source>Add disk…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for Updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags…</source>
         <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select another cue file...</source>
+        <source>Select another audio file…</source>
         <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Disk performer:</source>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album performer:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1072,38 +1072,38 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>MultiValuesComboBox</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>多個值</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesLineEdit</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>多個值</translation>
     </message>
 </context>
 <context>
     <name>MultiValuesSpinBox</name>
     <message>
         <source>Multiple values</source>
-        <translation type="unfinished"/>
+        <translation>多個值</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
         <source>Select program file</source>
-        <translation type="unfinished"/>
+        <translation>選取程式檔案</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-        <translation type="unfinished"/>
+        <translation>全部檔案</translation>
     </message>
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation type="unfinished"/>
+        <translation>1% 程式</translation>
     </message>
 </context>
 <context>
@@ -1114,23 +1114,15 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation type="unfinished"/>
+        <translation> &lt;b&gt;%1&lt;/b&gt; n&apos; 是不被支援的聲訊格式。 &lt;br&gt;&lt;br&gt;驗證裝載所有必需的程式衕時處於你的個人偏好。</translation>
     </message>
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1140,11 +1132,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>你無法將重播增益用於高於48kHz的取樣率的檔案。Metaflac 不支援這些檔案。</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1168,22 +1156,34 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Multiple values</source>
+        <translation>多個值</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1209,27 +1209,22 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disk performer:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>藝朮家：</translation>
     </message>
     <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>專輯：</translation>
     </message>
     <message>
         <source>Genre:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>風格：</translation>
     </message>
     <message>
         <source>Year:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>年代：</translation>
     </message>
     <message>
         <source>Disk number:</source>
@@ -1251,6 +1246,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>Music tag name</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>TrackView</name>
@@ -1259,7 +1259,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>從 CDDB 擷取資料</translation>
     </message>
     <message>
-        <source>Select another cue file...</source>
+        <source>Select another CUE file…</source>
         <translation type="unfinished"/>
     </message>
 </context>

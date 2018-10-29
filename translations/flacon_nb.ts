@@ -242,14 +242,6 @@
         <translation>Velg midlertidig mappe</translation>
     </message>
     <message>
-        <source>Per track cue sheet</source>
-        <translation>CUE-innholdsfortegnelse per spor</translation>
-    </message>
-    <message>
-        <source>Create per track cue sheet</source>
-        <translation>Opprett CUE-innholdsfortegnelse per spor</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation>px</translation>
     </message>
@@ -305,26 +297,6 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>As source</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>16 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>24 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>32 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
         <translation type="unfinished"/>
@@ -350,6 +322,34 @@
     </message>
     <message>
         <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -689,16 +689,16 @@ I CBR-modus, setter angitt utdatabitrate.
         <translation>Cue-fil ikke fastsatt.</translation>
     </message>
     <message>
-        <source>Audio file shorter than expected from cue sheet.</source>
-        <translation>Lydfil kortere enn forventet fra CUE-innholdsfortegnelse.</translation>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"/>
     </message>
@@ -1033,16 +1033,6 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation>Bruk &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Select cue file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Velg CUE-fil</translation>
-    </message>
-    <message>
-        <source>Add cue or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Legg til CUE eller lydfil</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Slett gjeldende mønster fra historikk</translation>
     </message>
@@ -1055,29 +1045,12 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Check for Updates...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Edit all tags...</source>
-        <comment>Button text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add disk...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Innstillinger</translation>
     </message>
     <message>
         <source>About Flacon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select directory...</source>
-        <translation type="unfinished"/>
+        <translation>Om Flacon</translation>
     </message>
     <message>
         <source>Standard music location</source>
@@ -1099,27 +1072,54 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Edit tags...</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
         <comment>context menu</comment>
+        <translation>Innhent data fra CCDB</translation>
+    </message>
+    <message>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select another audio file...</source>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Legg til CUE eller lydfil</translation>
+    </message>
+    <message>
+        <source>Edit all tags…</source>
+        <comment>Button text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disk…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for Updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags…</source>
         <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select another cue file...</source>
+        <source>Select another audio file…</source>
         <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Disk performer:</source>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album performer:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1177,16 +1177,8 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Jeg kan ikke skrive CUE-fil &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Fila &lt;b&gt; &quot;%1&quot;&lt;/b&gt; finnes ikke</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. Disk %2 har ingen merkelapper..</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1196,10 +1188,6 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation>du kan ikke bruke &apos;ReplayGain&apos; for filer med samplingsrate over 48KHz. Metaflac støtter ikke slike filer.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; er ikke ei gyldig CUE-fil. CUE-innholdsoversikten har ingen FILE-merkelapp..</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1223,22 +1211,34 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation>Jeg kan ikke lese omslagsbildet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>Jeg kan lagre omslagsbildet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Multiple values</source>
+        <translation>Flerfoldige verdier</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1264,27 +1264,22 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disk performer:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Artist:</translation>
     </message>
     <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Album:</translation>
     </message>
     <message>
         <source>Genre:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Sjanger:</translation>
     </message>
     <message>
         <source>Year:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>År:</translation>
     </message>
     <message>
         <source>Disk number:</source>
@@ -1306,6 +1301,11 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <comment>Music tag name</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>TrackView</name>
@@ -1314,7 +1314,7 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation>Innhent data fra CCDB</translation>
     </message>
     <message>
-        <source>Select another cue file...</source>
+        <source>Select another CUE file…</source>
         <translation type="unfinished"/>
     </message>
 </context>

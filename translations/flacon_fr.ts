@@ -242,20 +242,12 @@
         <translation>Sélectionner un répertoire temporaire</translation>
     </message>
     <message>
-        <source>Per track cue sheet</source>
-        <translation>Fichier cue par piste</translation>
-    </message>
-    <message>
-        <source>Create per track cue sheet</source>
-        <translation>Créer un fichier cue par piste</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation>Répertoire temporaire :</translation>
+        <translation>Répertoire temporaire :</translation>
     </message>
     <message>
         <source>Default codepage:</source>
@@ -305,26 +297,6 @@
         <translation>Rééchantillonnage</translation>
     </message>
     <message>
-        <source>As source</source>
-        <comment>Item in combobox</comment>
-        <translation>Identique à la source</translation>
-    </message>
-    <message>
-        <source>16 bit</source>
-        <comment>Item in combobox</comment>
-        <translation>16 bits</translation>
-    </message>
-    <message>
-        <source>24 bit</source>
-        <comment>Item in combobox</comment>
-        <translation>24 bits</translation>
-    </message>
-    <message>
-        <source>32 bit</source>
-        <comment>Item in combobox</comment>
-        <translation>32 bits</translation>
-    </message>
-    <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
         <translation>44 100 Hz</translation>
@@ -346,11 +318,39 @@
     </message>
     <message>
         <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
+        <translation>Profondeur de bit maximale :</translation>
     </message>
     <message>
         <source>Maximum sample rate:</source>
-        <translation type="unfinished"/>
+        <translation>Fréquence d’échantillonnage maximale :</translation>
+    </message>
+    <message>
+        <source>Per track CUE sheet</source>
+        <translation>Fichier CUE par piste</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation>Créer un fichier CUE par piste</translation>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation>Identique à la source</translation>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16 bits</translation>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24 bits</translation>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32 bits</translation>
     </message>
 </context>
 <context>
@@ -556,7 +556,7 @@
     </message>
     <message>
         <source>Maximum bitrate:</source>
-        <translation>Débit binaire maximum :</translation>
+        <translation>Débit binaire maximum :</translation>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
@@ -688,16 +688,16 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
         <translation>Le fichier cue n’est pas défini.</translation>
     </message>
     <message>
-        <source>Audio file shorter than expected from cue sheet.</source>
-        <translation>Le fichier audio est plus court que prévu d’après le fichier cue.</translation>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation>Le fichier audio est plus court que prévu d’après le fichier CUE.</translation>
     </message>
     <message>
-        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation>Un maximum de %1 bits sont pris en charge par ce format. Cette valeur sera utilisée pour l’encodage.</translation>
+        <translation>Un maximum de %1 bits par échantillon est pris en charge par ce format. Cette valeur sera utilisée pour l’encodage.</translation>
     </message>
     <message>
-        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation>Un taux d’échantillonnage maximal de %1 est pris en charge par ce format. Cette valeur sera utilisée pour l’encodage.</translation>
     </message>
@@ -815,7 +815,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     </message>
     <message>
         <source>Year:</source>
-        <translation>Année :</translation>
+        <translation>Année :</translation>
     </message>
     <message>
         <source>Artist:</source>
@@ -1002,7 +1002,7 @@ If you surround sections of text that contain a token with braces, these section
  .term {font-weight: bold;}
  .def { white-space: nowrap; }
  &lt;/style&gt;
-Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants :
+Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants  :
  &lt;table&gt;
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numéro de piste &lt;/td&gt;
  &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nombre total de pistes&lt;/td&gt;&lt;/tr&gt;
@@ -1031,16 +1031,6 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
         <translation>Utiliser « %1 »</translation>
     </message>
     <message>
-        <source>Select cue file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Sélectionner le fichier cue</translation>
-    </message>
-    <message>
-        <source>Add cue or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Ajouter un fichier cue ou audio</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Supprimer le modèle actuel de l’historique</translation>
     </message>
@@ -1053,19 +1043,6 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
         <translation>Supprimer le disque du projet</translation>
     </message>
     <message>
-        <source>Check for Updates...</source>
-        <translation>Vérification des mises à jour…</translation>
-    </message>
-    <message>
-        <source>Edit all tags...</source>
-        <comment>Button text</comment>
-        <translation>Modifier toutes les balises…</translation>
-    </message>
-    <message>
-        <source>Add disk...</source>
-        <translation>Ajouter un disque…</translation>
-    </message>
-    <message>
         <source>Preferences</source>
         <translation>Préférences</translation>
     </message>
@@ -1074,51 +1051,74 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
         <translation>À propos de Flacon</translation>
     </message>
     <message>
-        <source>Select directory...</source>
-        <translation>Sélectionner un répertoire…</translation>
-    </message>
-    <message>
         <source>Standard music location</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Emplacement habituel de la musique</translation>
     </message>
     <message>
         <source>Desktop</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Bureau</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Même répertoire que le fichier CUE</translation>
     </message>
     <message>
         <source>Remove current directory from history</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Edit tags...</source>
-        <comment>context menu</comment>
-        <translation>Modifier les balises…</translation>
+        <translation>Supprimer le répertoire actuel de l’historique</translation>
     </message>
     <message>
         <source>Get data from CDDB</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Obtenir les données de CDDB</translation>
     </message>
     <message>
-        <source>Select another audio file...</source>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Sélectionner le fichier CUE</translation>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Ajoute un fichier CUE ou audio</translation>
+    </message>
+    <message>
+        <source>Edit all tags…</source>
+        <comment>Button text</comment>
+        <translation>Modifier toutes les balises…</translation>
+    </message>
+    <message>
+        <source>Add disk…</source>
+        <translation>Ajouter un disque…</translation>
+    </message>
+    <message>
+        <source>Select directory…</source>
+        <translation>Sélectionner un répertoire…</translation>
+    </message>
+    <message>
+        <source>Check for Updates…</source>
+        <translation>Vérifier les mises à jour…</translation>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation>Modifier les balises…</translation>
+    </message>
+    <message>
+        <source>Select another audio file…</source>
         <comment>context menu</comment>
         <translation>Sélectionner un autre fichier audio…</translation>
     </message>
     <message>
-        <source>Select another cue file...</source>
+        <source>Select another CUE file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Sélectionner un autre fichier CUE…</translation>
     </message>
     <message>
-        <source>Disk performer:</source>
-        <translation type="unfinished"/>
+        <source>Album performer:</source>
+        <translation>Interprète de l’album :</translation>
     </message>
 </context>
 <context>
@@ -1175,16 +1175,8 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Je ne peux pas écrire le fichier cue &lt;b&gt;%1&lt;/b&gt; : &lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Le fichier &lt;b&gt;« %1 »&lt;/b&gt; n’existe pas</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier cue valide. Le disque %2 n’a pas de balise.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1194,10 +1186,6 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation>vous ne pouvez pas utiliser « ReplayGain » pour les fichiers dont la fréquence d’échantillonnage est supérieure à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier cue valide. Il n’a pas de balise FILE.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1221,22 +1209,34 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
         <translation>Je ne peux pas lire l’image de couverture &lt;b&gt;%1&lt;/b&gt; : &lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>Je ne peux pas écrire l’image de couverture &lt;b&gt;%1&lt;/b&gt; : &lt;br&gt;%2</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Multiple values</source>
+        <translation>Valeurs multiples</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation>Je ne peux pas écrire le fichier CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. Le numéro de piste est erroné sur la ligne %2.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. L’index de piste est erroné sur la ligne %2.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. Il ne contient de balise FILE.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier CUE valide. Le disque %2 n&apos;a pas de balise.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1257,52 +1257,52 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished"/>
+        <translation>de</translation>
     </message>
     <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disk performer:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Artiste :</translation>
     </message>
     <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Album :</translation>
     </message>
     <message>
         <source>Genre:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Genre :</translation>
     </message>
     <message>
         <source>Year:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Année :</translation>
     </message>
     <message>
         <source>Disk number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Numéro de disque :</translation>
     </message>
     <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Titre de la piste :</translation>
     </message>
     <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Commentaire :</translation>
     </message>
     <message>
         <source>Start track number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Numéro de piste de début :</translation>
+    </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation>Interprète de l’album :</translation>
     </message>
 </context>
 <context>
@@ -1312,8 +1312,8 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
         <translation>Obtenir les données de CDDB</translation>
     </message>
     <message>
-        <source>Select another cue file...</source>
-        <translation type="unfinished"/>
+        <source>Select another CUE file…</source>
+        <translation>Sélectionner un autre fichier CUE…</translation>
     </message>
 </context>
 <context>

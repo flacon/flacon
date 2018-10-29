@@ -242,14 +242,6 @@
         <translation>Alegere director fișiere temporare</translation>
     </message>
     <message>
-        <source>Per track cue sheet</source>
-        <translation>Listă de indexare pentru fiecare track</translation>
-    </message>
-    <message>
-        <source>Create per track cue sheet</source>
-        <translation>Creare listă de indexare pentru fiecare pistă</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation type="unfinished"/>
     </message>
@@ -305,26 +297,6 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>As source</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>16 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>24 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>32 bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
         <translation type="unfinished"/>
@@ -350,6 +322,34 @@
     </message>
     <message>
         <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -689,16 +689,16 @@ In CBR mode, it sets the specific output bitrate.
         <translation>Lista de indexare nu este specificată</translation>
     </message>
     <message>
-        <source>Audio file shorter than expected from cue sheet.</source>
-        <translation>Fișierul audio este mai scurt decât era specificat în lista de indexare.</translation>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"/>
     </message>
@@ -720,7 +720,9 @@ In CBR mode, it sets the specific output bitrate.
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Nu se poate redenumi fișierul:
+%1 to %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -1031,16 +1033,6 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation>Utilizează &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Select cue file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Alegeți lista de indexare</translation>
-    </message>
-    <message>
-        <source>Add cue or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Adăugați un fișier audio sau o listă de indexare</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Șterge modelul curent din istoricul activităților</translation>
     </message>
@@ -1053,29 +1045,12 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Check for Updates...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Edit all tags...</source>
-        <comment>Button text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add disk...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Preferințe</translation>
     </message>
     <message>
         <source>About Flacon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select directory...</source>
-        <translation type="unfinished"/>
+        <translation>Despre Flacon</translation>
     </message>
     <message>
         <source>Standard music location</source>
@@ -1097,27 +1072,54 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Edit tags...</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
         <comment>context menu</comment>
+        <translation>Obțineți date din CDDB (baza de date cu CD-uri)</translation>
+    </message>
+    <message>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select another audio file...</source>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Adăugare fișier audio sau listă de indexare</translation>
+    </message>
+    <message>
+        <source>Edit all tags…</source>
+        <comment>Button text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disk…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for Updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags…</source>
         <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select another cue file...</source>
+        <source>Select another audio file…</source>
         <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Disk performer:</source>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album performer:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1156,7 +1158,7 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation type="unfinished"/>
+        <translation>Program(ul) %1</translation>
     </message>
 </context>
 <context>
@@ -1175,16 +1177,8 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Nu se poate scrie lista de indexare &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Fișierul  &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nu există</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; nu este o listă de indexare validă. Discul %2 nu are etichete.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1196,20 +1190,16 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation>Puteți utiliza standardul „ReplayGain” pentru fișierele cu rate de eșantionare mai mari de 48kHz. Metaflac nu poate lucra cu asemenea fișiere.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; nu este o listă de indexare validă. Lista de indexare nu are eticheta FIȘIER.</translation>
-    </message>
-    <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Fișierul audio &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nu există</translation>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nu se poate crea dosarul „%1”.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nu se poate scrie în dosarul „%1”.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1221,22 +1211,34 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Multiple values</source>
+        <translation>Valori multiple</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1262,27 +1264,22 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
     <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disk performer:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Artist:</translation>
     </message>
     <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Album:</translation>
     </message>
     <message>
         <source>Genre:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Gen:</translation>
     </message>
     <message>
         <source>Year:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>An:</translation>
     </message>
     <message>
         <source>Disk number:</source>
@@ -1304,6 +1301,11 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <comment>Music tag name</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>TrackView</name>
@@ -1312,7 +1314,7 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation>Obțineți date din CDDB (baza de date cu CD-uri)</translation>
     </message>
     <message>
-        <source>Select another cue file...</source>
+        <source>Select another CUE file…</source>
         <translation type="unfinished"/>
     </message>
 </context>

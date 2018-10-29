@@ -242,14 +242,6 @@
         <translation>Укажите временную директорию</translation>
     </message>
     <message>
-        <source>Per track cue sheet</source>
-        <translation>Потрековый CUE</translation>
-    </message>
-    <message>
-        <source>Create per track cue sheet</source>
-        <translation>Создавать потрековый CUE</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation>px</translation>
     </message>
@@ -305,26 +297,6 @@
         <translation>Передискретизация</translation>
     </message>
     <message>
-        <source>As source</source>
-        <comment>Item in combobox</comment>
-        <translation>Как в исходном файле</translation>
-    </message>
-    <message>
-        <source>16 bit</source>
-        <comment>Item in combobox</comment>
-        <translation>16 bit</translation>
-    </message>
-    <message>
-        <source>24 bit</source>
-        <comment>Item in combobox</comment>
-        <translation>24 bit</translation>
-    </message>
-    <message>
-        <source>32 bit</source>
-        <comment>Item in combobox</comment>
-        <translation>32 bit</translation>
-    </message>
-    <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
         <translation>44100 Hz</translation>
@@ -351,6 +323,34 @@
     <message>
         <source>Maximum sample rate:</source>
         <translation>Макс. частота дискретизации:</translation>
+    </message>
+    <message>
+        <source>Per track CUE sheet</source>
+        <translation>Потрековый CUE</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation>Создавать потрековый CUE</translation>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation>Как в исходном файле</translation>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16 бит</translation>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24 бит</translation>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32 бит</translation>
     </message>
 </context>
 <context>
@@ -688,16 +688,16 @@ In CBR mode, it sets the specific output bitrate.
         <translation>Не задан CUE файл.</translation>
     </message>
     <message>
-        <source>Audio file shorter than expected from cue sheet.</source>
+        <source>Audio file shorter than expected from CUE sheet.</source>
         <translation>Длина аудиофайла меньше чем указано в CUE.</translation>
     </message>
     <message>
-        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation>Формат поддерживает максимум %1 бит на отчет, это значение будет использоваться при кодировании.</translation>
     </message>
     <message>
-        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation>Формат поддерживает частоты дискретизации до %1, это значение будет использоваться при кодировании.</translation>
     </message>
@@ -976,7 +976,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Выбрать директорию</translation>
+        <translation>Выбор директории</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -1030,16 +1030,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Использовать &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Select cue file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Выбор CUE файла</translation>
-    </message>
-    <message>
-        <source>Add cue or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Добавление CUE или аудиофайла</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Удалить текущий шаблон из истории.</translation>
     </message>
@@ -1052,29 +1042,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Удалить диск из проекта</translation>
     </message>
     <message>
-        <source>Check for Updates...</source>
-        <translation>Проверить обновления...</translation>
-    </message>
-    <message>
-        <source>Edit all tags...</source>
-        <comment>Button text</comment>
-        <translation>Редактировать все теги...</translation>
-    </message>
-    <message>
-        <source>Add disk...</source>
-        <translation>Добавить диск</translation>
-    </message>
-    <message>
         <source>Preferences</source>
         <translation>Настройки</translation>
     </message>
     <message>
         <source>About Flacon</source>
         <translation>О программе Flacon</translation>
-    </message>
-    <message>
-        <source>Select directory...</source>
-        <translation>Выбрать директорию...</translation>
     </message>
     <message>
         <source>Standard music location</source>
@@ -1096,27 +1069,54 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Удалить текущий шаблон из истории.</translation>
     </message>
     <message>
-        <source>Edit tags...</source>
-        <comment>context menu</comment>
-        <translation>Редактировать теги...</translation>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
         <comment>context menu</comment>
         <translation>Получить информацию с CDDB</translation>
     </message>
     <message>
-        <source>Select another audio file...</source>
-        <comment>context menu</comment>
-        <translation>Выбрать другой аудиофайл...</translation>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Выбрать CUE файл</translation>
     </message>
     <message>
-        <source>Select another cue file...</source>
-        <comment>context menu</comment>
-        <translation>Выбрать другой CUE файл...</translation>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Добавление CUE или аудиофайла</translation>
     </message>
     <message>
-        <source>Disk performer:</source>
+        <source>Edit all tags…</source>
+        <comment>Button text</comment>
+        <translation>Редактировать все теги…</translation>
+    </message>
+    <message>
+        <source>Add disk…</source>
+        <translation>Добавить диск…</translation>
+    </message>
+    <message>
+        <source>Select directory…</source>
+        <translation>Выбрать директорию…</translation>
+    </message>
+    <message>
+        <source>Check for Updates…</source>
+        <translation>Проверить обновления…</translation>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation>Редактировать теги…</translation>
+    </message>
+    <message>
+        <source>Select another audio file…</source>
+        <comment>context menu</comment>
+        <translation>Выбрать другой аудиофайл…</translation>
+    </message>
+    <message>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation>Выбрать другой CUE файл…</translation>
+    </message>
+    <message>
+        <source>Album performer:</source>
         <translation>Исполнитель альбома:</translation>
     </message>
 </context>
@@ -1174,16 +1174,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Не получается записать CUE файл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>Файл &lt;b&gt;%1&lt;/b&gt; не существует.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Диск %2 не содержит тегов.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1193,10 +1185,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation>Вы не можете использовать &apos;выравнивание громкости&apos; для файлов с частотой дискретизации выше 48 КГц. Metaflac не поддерживает такие файлы.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Он не содержит тега FILE.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1220,23 +1208,35 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Не получается прочитать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>Не получается записать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <source>Multiple values</source>
+        <translation>Несколько значений</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
+        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation>Не получается записать CUE файл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
         <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Некорректный номер трека в строке %2.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
         <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Некорректный индекс в строке %2.</translation>
     </message>
     <message>
-        <source>Multiple values</source>
-        <translation>Несколько значений</translation>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Он не содержит тега FILE.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Диск %2 не содержит тегов.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation>Не получается записать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1262,11 +1262,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>Artist:</source>
         <comment>Music tag name</comment>
         <translation>Артист:</translation>
-    </message>
-    <message>
-        <source>Disk performer:</source>
-        <comment>Music tag name</comment>
-        <translation>Исполнитель альбома:</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -1303,6 +1298,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>Music tag name</comment>
         <translation>Нумеровать треки с:</translation>
     </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation>Исполнитель альбома:</translation>
+    </message>
 </context>
 <context>
     <name>TrackView</name>
@@ -1311,8 +1311,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Получить информацию с CDDB</translation>
     </message>
     <message>
-        <source>Select another cue file...</source>
-        <translation>Выбрать другой CUE файл...</translation>
+        <source>Select another CUE file…</source>
+        <translation>Выбрать другой CUE файл…</translation>
     </message>
 </context>
 <context>

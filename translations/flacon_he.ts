@@ -242,14 +242,6 @@
         <translation>בחירת ספריה זמנית</translation>
     </message>
     <message>
-        <source>Per track cue sheet</source>
-        <translation>גליון cue לכל רצועה</translation>
-    </message>
-    <message>
-        <source>Create per track cue sheet</source>
-        <translation>יצירת גליון cue לכל רצועה</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
@@ -305,26 +297,6 @@
         <translation>דגימה</translation>
     </message>
     <message>
-        <source>As source</source>
-        <comment>Item in combobox</comment>
-        <translation>כמקור</translation>
-    </message>
-    <message>
-        <source>16 bit</source>
-        <comment>Item in combobox</comment>
-        <translation>16 ביט</translation>
-    </message>
-    <message>
-        <source>24 bit</source>
-        <comment>Item in combobox</comment>
-        <translation>24 ביט</translation>
-    </message>
-    <message>
-        <source>32 bit</source>
-        <comment>Item in combobox</comment>
-        <translation>32 ביט</translation>
-    </message>
-    <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
         <translation>44100 הרץ</translation>
@@ -346,11 +318,39 @@
     </message>
     <message>
         <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
+        <translation>עומק סיביות מירבי:</translation>
     </message>
     <message>
         <source>Maximum sample rate:</source>
-        <translation type="unfinished"/>
+        <translation>קצב דגימה מירבי:</translation>
+    </message>
+    <message>
+        <source>Per track CUE sheet</source>
+        <translation>גליון cue לכל רצועה</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation>יצירת גליון cue לכל רצועה</translation>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation>זהה למקור</translation>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16 ביט</translation>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24 ביט</translation>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32 ביט</translation>
     </message>
 </context>
 <context>
@@ -688,16 +688,16 @@ In CBR mode, it sets the specific output bitrate.
         <translation>לא הוגדר גליון cue.</translation>
     </message>
     <message>
-        <source>Audio file shorter than expected from cue sheet.</source>
+        <source>Audio file shorter than expected from CUE sheet.</source>
         <translation>קובץ האודיו קצר מהצפוי על פי גליון cue.</translation>
     </message>
     <message>
-        <source>The format supports a maximum %1 bits per sample, this value will be used for encoding.</source>
+        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation>התבנית תומכת בקצב מירבי של %1 ביט לדגימה, יעשה שימוש בערך זה בקידוד.</translation>
     </message>
     <message>
-        <source>The format supports a maximum %1 sample rate, this value will be used for encoding.</source>
+        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation>התבנית תומכת בקצב דגימה מירבי של %1, יעשה שימוש בערך זה בקידוד.</translation>
     </message>
@@ -1033,16 +1033,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>משתמש ב &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Select cue file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>בחירת קובץ cue</translation>
-    </message>
-    <message>
-        <source>Add cue or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>הוספת קובץ cue או שמע</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>מחיקת תבנית נוכחית מההיסטוריה</translation>
     </message>
@@ -1055,29 +1045,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>הסרת תקליטור מהפרויקט</translation>
     </message>
     <message>
-        <source>Check for Updates...</source>
-        <translation>בודק עדכון</translation>
-    </message>
-    <message>
-        <source>Edit all tags...</source>
-        <comment>Button text</comment>
-        <translation>עריכת כל התגים...</translation>
-    </message>
-    <message>
-        <source>Add disk...</source>
-        <translation>הוספת תקליטור...</translation>
-    </message>
-    <message>
         <source>Preferences</source>
         <translation>העדפות</translation>
     </message>
     <message>
         <source>About Flacon</source>
         <translation>אודות Flacon</translation>
-    </message>
-    <message>
-        <source>Select directory...</source>
-        <translation>בחירת ספריה...</translation>
     </message>
     <message>
         <source>Standard music location</source>
@@ -1099,28 +1072,55 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>הסרת ספריה נוכחית מההיסטוריה</translation>
     </message>
     <message>
-        <source>Edit tags...</source>
-        <comment>context menu</comment>
-        <translation>עריכת התגים...</translation>
-    </message>
-    <message>
         <source>Get data from CDDB</source>
         <comment>context menu</comment>
         <translation>הבאת נתונים מ CDDB</translation>
     </message>
     <message>
-        <source>Select another audio file...</source>
-        <comment>context menu</comment>
-        <translation>בחירת קובץ שמע אחר</translation>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>בחירת קובץ cue</translation>
     </message>
     <message>
-        <source>Select another cue file...</source>
-        <comment>context menu</comment>
-        <translation>בחירת גליון cue אחר</translation>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>הוספת גליון CUE או קובץ שמע</translation>
     </message>
     <message>
-        <source>Disk performer:</source>
-        <translation type="unfinished"/>
+        <source>Edit all tags…</source>
+        <comment>Button text</comment>
+        <translation>עריכת כל התגים...</translation>
+    </message>
+    <message>
+        <source>Add disk…</source>
+        <translation>הוספת תקליטור...</translation>
+    </message>
+    <message>
+        <source>Select directory…</source>
+        <translation>בחירת ספריה...</translation>
+    </message>
+    <message>
+        <source>Check for Updates…</source>
+        <translation>בדיקת עדכונים...</translation>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation>עריכת התגים...</translation>
+    </message>
+    <message>
+        <source>Select another audio file…</source>
+        <comment>context menu</comment>
+        <translation>בחירת קובץ שמע אחר...</translation>
+    </message>
+    <message>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation>בחירת גליון cue אחר...</translation>
+    </message>
+    <message>
+        <source>Album performer:</source>
+        <translation>אמן תקליטור:</translation>
     </message>
 </context>
 <context>
@@ -1177,16 +1177,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>I can&apos;t write cue file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>‮לא ניתן לכתוב קובץ ‭‭&lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 cue‭</translation>
-    </message>
-    <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
         <translation>קובץ &lt;b&gt;&quot;%1&quot;&lt;/b&gt; לא קיים</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; אינו קובץ cue תקליטור %2 אינו מכיל תגים.</translation>
     </message>
     <message>
         <source>The audio file name is not set</source>
@@ -1196,10 +1188,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation>לא ניתן לנשתמש ב &apos;ReplayGain&apos; בקבצים שקצב הסיביות בהן גבוהה מ 48kHz. Metaflac אינו תומך בסוג זה של קבצים.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. The cue sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; אינו קובץ cue תקין. גליון ה cue אינו מכיל תג &lt;b&gt;קובץ&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1223,23 +1211,35 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>לא ניתן לקרוא תמונת עטיפה &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2&quot;</translation>
     </message>
     <message>
-        <source>I can&apos;t write cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>לא ניתן לכתוב תמונת עטיפה &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2&quot;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track number on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; אינו קובץ cue תקין. מפתח רצועה שגוי ב %2.</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid cue file. Incorrect track index on line %2.</source>
-        <comment>Cue parser error.</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; אינו קובץ cue תקין. מפתח רצועה שגוי ב %2.</translation>
-    </message>
-    <message>
         <source>Multiple values</source>
         <translation>ערכים מרובים</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <translation>‮לא ניתן לכתוב קובץ ‭‭&lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 cue‭</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; אינו קובץ cue תקין. מספר רצועה שגוי ב %2.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
+        <comment>Cue parser error.</comment>
+        <translation>&lt;b&gt;%1&lt;/b&gt; אינו קובץ cue תקין. מפתח רצועה שגוי ב %2.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; אינו קובץ cue תקין. גליון ה cue אינו מכיל תג קובץ.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; אינו קובץ cue תקין. תקליטור %2 אינו מכיל תגים.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1265,11 +1265,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>Artist:</source>
         <comment>Music tag name</comment>
         <translation>אמן:</translation>
-    </message>
-    <message>
-        <source>Disk performer:</source>
-        <comment>Music tag name</comment>
-        <translation>מבצע תקליטור:</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -1306,6 +1301,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>Music tag name</comment>
         <translation>מספר רצועת התחלה:</translation>
     </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation>אמן תקליטור:</translation>
+    </message>
 </context>
 <context>
     <name>TrackView</name>
@@ -1314,8 +1314,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>מביא נתונים מ CDDB</translation>
     </message>
     <message>
-        <source>Select another cue file...</source>
-        <translation>בחירת גליון cue אחר</translation>
+        <source>Select another CUE file…</source>
+        <translation>בחירת גליון cue אחר...</translation>
     </message>
 </context>
 <context>
