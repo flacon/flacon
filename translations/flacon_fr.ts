@@ -1232,12 +1232,12 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; n&apos;est pas un fichier CUE valide. Le disque %2 n&apos;a pas de balise.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. Le disque %2 n’a pas de balise.</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Je ne peux pas enregistrer l’image de couverture &lt;b&gt;%1&lt;/b&gt; : &lt;br&gt;%2</translation>
     </message>
 </context>
 <context>

@@ -1120,7 +1120,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Album performer:</source>
-        <translation>אמן תקליטור:</translation>
+        <translation>מבצע תקליטור:</translation>
     </message>
 </context>
 <context>
@@ -1239,7 +1239,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>לא ניתן לשמור תמונת עטיפה &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2&quot;</translation>
     </message>
 </context>
 <context>
