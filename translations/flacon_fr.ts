@@ -685,7 +685,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>Le fichier cue n’est pas défini.</translation>
+        <translation>Le fichier CUE n’est pas défini.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
@@ -786,7 +786,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Fichiers de sortie</translation>
+        <translation>Fichiers résultats</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -827,7 +827,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     </message>
     <message>
         <source>Start num:</source>
-        <translation>Premier numéro :</translation>
+        <translation>Numéro de début :</translation>
     </message>
     <message>
         <source>Disc ID:</source>
@@ -851,7 +851,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Ajouter un fichier cue ou audio</translation>
+        <translation>Ajoute un fichier CUE ou audio</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -863,7 +863,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation>Démarrer le processus de conversion</translation>
+        <translation>Lancer le processus de conversion</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -1328,7 +1328,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Valider</translation>
     </message>
     <message>
         <source>Extracting</source>

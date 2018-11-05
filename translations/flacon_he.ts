@@ -886,7 +886,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Program preferences</source>
-        <translation>העדפות תכניות</translation>
+        <translation>העדפות תכנית</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>

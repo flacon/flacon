@@ -264,25 +264,25 @@
     <message>
         <source>Update</source>
         <extracomment>Preferences tab title </extracomment>
-        <translation type="unfinished"/>
+        <translation>Kemaskini</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Periksa kemaskini secara automatik</translation>
     </message>
     <message>
         <source>Check now</source>
-        <translation type="unfinished"/>
+        <translation>Periksa sekarang</translation>
     </message>
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Periksa terakhir pada %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Jangan sesekali periksa</translation>
     </message>
     <message>
         <source>Keep original image size</source>
@@ -294,63 +294,63 @@
     </message>
     <message>
         <source>Resampling</source>
-        <translation type="unfinished"/>
+        <translation>Persampelan Semula</translation>
     </message>
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>44100 Hz</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>48000 Hz</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>96000 Hz</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>192000 Hz</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
+        <translation>Kedalaman bit maksimum:</translation>
     </message>
     <message>
         <source>Maximum sample rate:</source>
-        <translation type="unfinished"/>
+        <translation>Kadar sampel maksimum:</translation>
     </message>
     <message>
         <source>Per track CUE sheet</source>
-        <translation type="unfinished"/>
+        <translation>Per lembar CUE trek</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
-        <translation type="unfinished"/>
+        <translation>Cipta per lembar CUE trek</translation>
     </message>
     <message>
         <source>Same as source</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Sama seperti sumber</translation>
     </message>
     <message>
         <source>16-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>16-bit</translation>
     </message>
     <message>
         <source>24-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>24-bit</translation>
     </message>
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>32-bit</translation>
     </message>
 </context>
 <context>
@@ -690,17 +690,17 @@ Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation type="unfinished"/>
+        <translation>Fail audio lebih pendek berbanding lembar CUE.</translation>
     </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Satu sampel per %1-bit maksimum disokong oleh format ini. Nilai ini akan digunakan untuk pengekodan.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Satu kadar sampel maksimum %1 disokong oleh format ini. Nilai ini akan digunakan untuk pengekodan.</translation>
     </message>
 </context>
 <context>
@@ -1056,21 +1056,21 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
     <message>
         <source>Standard music location</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Lokasi muzik piawai</translation>
     </message>
     <message>
         <source>Desktop</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Desktop</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Sama direktori sebagai fail CUE</translation>
     </message>
     <message>
         <source>Remove current directory from history</source>
-        <translation type="unfinished"/>
+        <translation>Buang direktori semasa dari sejarah</translation>
     </message>
     <message>
         <source>Get data from CDDB</source>
@@ -1080,7 +1080,7 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Pilih fail CUE</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -1090,38 +1090,38 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
     <message>
         <source>Edit all tags…</source>
         <comment>Button text</comment>
-        <translation type="unfinished"/>
+        <translation>Sunting semua tag...</translation>
     </message>
     <message>
         <source>Add disk…</source>
-        <translation type="unfinished"/>
+        <translation>Tambah cakera...</translation>
     </message>
     <message>
         <source>Select directory…</source>
-        <translation type="unfinished"/>
+        <translation>Pilih direktori...</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
-        <translation type="unfinished"/>
+        <translation>Periksa Kemaskini...</translation>
     </message>
     <message>
         <source>Edit tags…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Sunting tag...</translation>
     </message>
     <message>
         <source>Select another audio file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Pilih fail audio yang lain...</translation>
     </message>
     <message>
         <source>Select another CUE file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Pilih fail CUE yang lain...</translation>
     </message>
     <message>
         <source>Album performer:</source>
-        <translation type="unfinished"/>
+        <translation>Pelaku album:</translation>
     </message>
 </context>
 <context>
@@ -1217,30 +1217,30 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat tulis fail CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; bukanlah fail CUE yang sah. Nombor trek salah pada baris %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; bukanlah fail CUE yang sah. Indeks trek salah pada baris %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; bukanlah fail CUE yang sah. Lembar CUE tidak mempunyai tag FILE.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; bukanlah fail CUE yang sah. Cakera %2 tidak mempunyai tag.</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat simpan imej kulit hadapan &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1256,11 +1256,11 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
     <message>
         <source>Edit tags</source>
         <comment>Dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Sunting tag</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished"/>
+        <translation>dari</translation>
     </message>
     <message>
         <source>Artist:</source>
@@ -1285,27 +1285,27 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
     <message>
         <source>Disk number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Nombor cakera:</translation>
     </message>
     <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Tajuk trek:</translation>
     </message>
     <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Ulasan:</translation>
     </message>
     <message>
         <source>Start track number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Nombor trek mula:</translation>
     </message>
     <message>
         <source>Album performer:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Pelaku album:</translation>
     </message>
 </context>
 <context>
@@ -1316,7 +1316,7 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
     </message>
     <message>
         <source>Select another CUE file…</source>
-        <translation type="unfinished"/>
+        <translation>Pilih fail CUE yang lain...</translation>
     </message>
 </context>
 <context>
