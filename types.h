@@ -168,7 +168,17 @@ QByteArray leftPart(const QByteArray &line, const QChar separator);
 QByteArray rightPart(const QByteArray &line, const QChar separator);
 void initTypes();
 
+QString safeString(const QString &str);
+QString expandPattern(const QString &pattern,
+                      int trackCount,
+                      int trackNum,
+                      const QString &album,
+                      const QString &title,
+                      const QString &artist,
+                      const QString &genre,
+                      const QString &date);
 
+QString patternExample(const QString &pattern);
 
 class Messages
 {

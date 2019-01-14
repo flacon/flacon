@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>635</width>
-    <height>597</height>
+    <height>827</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -135,13 +135,16 @@
          </item>
          <item>
           <widget class="QGroupBox" name="perTrackCueGroup">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="title">
             <string>Per track CUE sheet</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetMinimumSize</enum>
-            </property>
             <item>
              <widget class="QCheckBox" name="perTrackCueCheck">
               <property name="text">
@@ -151,7 +154,7 @@
             </item>
             <item>
              <layout class="QGridLayout" name="gridLayout">
-              <item row="0" column="0">
+              <item row="1" column="0">
                <widget class="QLabel" name="preGapLabel">
                 <property name="text">
                  <string>First track pregap:</string>
@@ -159,6 +162,27 @@
                </widget>
               </item>
               <item row="0" column="1">
+               <widget class="QComboBox" name="perTrackCueFormatEdit">
+                <property name="editable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="OutPatternButton" name="perTrackCueFormatBtn">
+                <property name="text">
+                 <string notr="true">*</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="perTrackCueLabel">
+                <property name="text">
+                 <string>File name format:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="2">
                <widget class="QComboBox" name="preGapComboBox">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -309,8 +333,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>579</width>
-              <height>385</height>
+              <width>100</width>
+              <height>30</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -449,6 +473,11 @@
   <customwidget>
    <class>CodePageComboBox</class>
    <extends>QComboBox</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>OutPatternButton</class>
+   <extends>QToolButton</extends>
    <header>controls.h</header>
   </customwidget>
  </customwidgets>

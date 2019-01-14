@@ -123,6 +123,35 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     load();
 
     preGapComboBox->setEnabled(perTrackCueCheck->isChecked());
+
+
+    perTrackCueFormatBtn->addPattern("%a", tr("Insert \"Artist\""));
+    perTrackCueFormatBtn->addPattern("%A", tr("Insert \"Album title\""));
+    perTrackCueFormatBtn->addPattern("%y", tr("Insert \"Year\""));
+    perTrackCueFormatBtn->addPattern("%g", tr("Insert \"Genre\""));
+
+    const QString patterns[] = {
+        "%a-%A.cue",
+        "%a - %A.cue",
+        "%a - %y - %A.cue"};
+
+
+    for (QString pattern: patterns)
+    {
+        perTrackCueFormatBtn->addFullPattern(pattern,
+                                             tr("Use \"%1\"", "Predefined CUE file name, string like 'Use \"%a/%A/%n - %t.cue\"'")
+                                             .arg(pattern)
+                                             + "  ( " + patternExample(pattern) + " )");
+    }
+
+    connect(perTrackCueFormatBtn, &OutPatternButton::paternSelected,
+            [this](const QString &pattern){ perTrackCueFormatEdit->lineEdit()->insert(pattern);});
+
+    connect(perTrackCueFormatBtn, &OutPatternButton::fullPaternSelected,
+            [this](const QString &pattern){ perTrackCueFormatEdit->lineEdit()->setText(pattern);});
+
+
+    perTrackCueFormatBtn->setIcon(loadIcon("pattern-button"));
 }
 
 
@@ -379,7 +408,7 @@ void ConfigDialog::load()
     EncoderConfigPage::loadWidget("Encoder/TmpDir",        tmpDirEdit);
     EncoderConfigPage::loadWidget("PerTrackCue/Create",    perTrackCueCheck);
     EncoderConfigPage::loadWidget("PerTrackCue/Pregap",    preGapComboBox);
-
+    perTrackCueFormatEdit->setEditText(settings->value(Settings::PerTrackCue_FileName).toString());
 
     loadWidget(Settings::Resample_BitsPerSample,   bitDepthComboBox);
     loadWidget(Settings::Resample_SampleRate, sampleRateComboBox);
@@ -409,6 +438,8 @@ void ConfigDialog::write()
     EncoderConfigPage::writeWidget("Encoder/TmpDir",        tmpDirEdit);
     EncoderConfigPage::writeWidget("PerTrackCue/Create",    perTrackCueCheck);
     EncoderConfigPage::writeWidget("PerTrackCue/Pregap",    preGapComboBox);
+
+    settings->setValue(Settings::PerTrackCue_FileName, perTrackCueFormatEdit->currentText());
 
     writeWidget(Settings::Resample_BitsPerSample,   bitDepthComboBox);
     writeWidget(Settings::Resample_SampleRate, sampleRateComboBox);

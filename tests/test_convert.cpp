@@ -112,6 +112,7 @@ void TestFlacon::testConvert()
     settings->setTmpDir(tmpDir.isEmpty() ? "" : (dir() + "/" + tmpDir));
     settings->setOutFileDir(dir());
     settings->setOutFilePattern("%a/%n - %t");
+    settings->setValue(Settings::PerTrackCue_FileName, "%a-%A.cue");
 
     project->clear();
     foreach (TestConvertRequest req, requests)

@@ -543,22 +543,6 @@ void Disk::setCodecName(const QString codecName)
 /************************************************
 
  ************************************************/
-QString Disk::safeString(const QString &str)
-{
-    QString res = str;
-    res.replace('|', "-");
-    res.replace('/', "-");
-    res.replace('\\', "-");
-    res.replace(':', "-");
-    res.replace('*', "-");
-    res.replace('?', "-");
-    return res;
-}
-
-
-/************************************************
-
- ************************************************/
 QString Disk::tagSetTitle() const
 {
     if (mCurrentTagsUri.isEmpty())

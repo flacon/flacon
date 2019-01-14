@@ -65,8 +65,6 @@ public:
     QString codecName() const;
     void setCodecName(const QString codecName);
 
-    static QString safeString(const QString &str);
-
     QString tagSetTitle() const;
     QString tagsUri() const;
     QString discId() const;

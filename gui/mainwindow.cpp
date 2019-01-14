@@ -141,35 +141,28 @@ MainWindow::MainWindow(QWidget *parent) :
     outPatternButton->addPattern("%t", tr("Insert \"Track title\""));
     outPatternButton->addPattern("%y", tr("Insert \"Year\""));
     outPatternButton->addPattern("%g", tr("Insert \"Genre\""));
-    outPatternButton->setAutoRaise(true);
-    outPatternButton->setStyleSheet("border: none;");
 
-    QString pattern;
+    const QString patterns[] = {
+        "%a/{%y - }%A/%n - %t",
+        "%a -{ %y }%A/%n - %t",
+        "{%y }%A - %a/%n - %t",
+        "%a/%A/%n - %t",
+        "%a - %A/%n - %t",
+        "%A - %a/%n - %t" };
 
-    pattern = "%a/{%y - }%A/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
-
-    pattern = "%a -{ %y }%A/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
-
-    pattern = "{%y }%A - %a/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
-
-    pattern = "%a/%A/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
-
-    pattern = "%a - %A/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
-
-    pattern = "%A - %a/%n - %t";
-    outPatternButton->addFullPattern(pattern, tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'").arg(pattern));
+    for (QString pattern: patterns)
+    {
+        outPatternButton->addFullPattern(pattern,
+                                         tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'")
+                                         .arg(pattern)
+                                         + "  ( " + patternExample(pattern)  + ".flac )");
+    }
 
     outPatternButton->menu()->addSeparator();
 
     outPatternEdit->deleteItemAction()->setText(tr("Delete current pattern from history"));
     outPatternButton->menu()->addAction(outPatternEdit->deleteItemAction());
 
-    outPatternButton->setFixedWidth(outDirButton->sizeHint().width());
     connect(outPatternButton, SIGNAL(paternSelected(QString)),
             this, SLOT(insertOutPattern(QString)));
 

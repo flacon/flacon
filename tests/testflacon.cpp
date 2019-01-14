@@ -339,7 +339,7 @@ void TestFlacon::testByteArraySplit_data()
  ************************************************/
 void TestFlacon::testSafeString()
 {
-    QCOMPARE(Disk::safeString("A|B/C|D\\E:F*G?H"), QString("A-B-C-D-E-F-G-H"));
+    QCOMPARE(safeString("A|B/C|D\\E:F*G?H"), QString("A-B-C-D-E-F-G-H"));
 }
 
 

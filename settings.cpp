@@ -134,6 +134,7 @@ void Settings::init()
     // PerTrackCue **************************
     setDefaultValue(PerTrackCue_Create,     false);
     setDefaultValue(PerTrackCue_Pregap,     preGapTypeToString(PreGapType::ExtractToFile));
+    setDefaultValue(PerTrackCue_FileName,   "%a-%A.cue");
 
     // Cover image **************************
     setDefaultValue(Cover_Mode,             coverModeToString(CoverMode::Scale));
@@ -213,6 +214,7 @@ QString Settings::keyToString(Settings::Key key) const
     // PerTrackCue **************************
     case PerTrackCue_Create:        return "PerTrackCue/Create";
     case PerTrackCue_Pregap:        return "PerTrackCue/Pregap";
+    case PerTrackCue_FileName:      return "PerTrackCue/FileName";
 
     // ConfigureDialog **********************
     case ConfigureDialog_Width:     return "ConfigureDialog/Width";

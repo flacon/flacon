@@ -332,3 +332,150 @@ void Messages::setHandler(Messages::Handler *handler)
 {
     mHandler = handler;
 }
+
+
+/************************************************
+
+ ************************************************/
+QString safeString(const QString &str)
+{
+    QString res = str;
+    res.replace('|', "-");
+    res.replace('/', "-");
+    res.replace('\\', "-");
+    res.replace(':', "-");
+    res.replace('*', "-");
+    res.replace('?', "-");
+    return res;
+}
+
+
+
+/************************************************
+
+ ************************************************/
+static QString doExpandPattern(const QString &pattern, const QHash<QChar, QString> *tokens, bool optional)
+{
+    QString res;
+    bool perc = false;
+    bool hasVars = false;
+    bool isValid = true;
+
+
+    for(int i=0; i<pattern.length(); ++i)
+    {
+        QChar c = pattern.at(i);
+
+
+        // Sub pattern .................................
+        if (c == '{')
+        {
+            int level = 0;
+            int start = i + 1;
+            //int j = i;
+            QString s = "{";
+
+            for (int j=i; j<pattern.length(); ++j)
+            {
+                c = pattern.at(j);
+                if (c == '{')
+                    level++;
+                else if (c == '}')
+                    level--;
+
+                if (level == 0)
+                {
+                    s = doExpandPattern(pattern.mid(start, j - start), tokens, true);
+                    i = j;
+                    break;
+                }
+            }
+            res += s;
+        }
+        // Sub pattern .................................
+
+        else
+        {
+            if (perc)
+            {
+                perc = false;
+                if (tokens->contains(c))
+                {
+                    QString s = tokens->value(c);
+                    hasVars = true;
+                    isValid = !s.isEmpty();
+                    res += s;
+                }
+                else
+                {
+                    if (c == '%')
+                        res += "%";
+                    else
+                        res += QString("%") + c;
+                }
+            }
+            else
+            {
+                if (c == '%')
+                    perc = true;
+                else
+                    res += c;
+            }
+        }
+    }
+
+    if (perc)
+        res += "%";
+
+    if (optional)
+    {
+        if  (hasVars)
+        {
+            if (!isValid)
+                return "";
+        }
+        else
+        {
+            return "{" + res + "}";
+        }
+    }
+
+    return res;
+}
+
+
+/************************************************
+  %N  Number of tracks       %n  Track number
+  %a  Artist                 %A  Album title
+  %y  Year                   %g  Genre
+  %t  Track title
+ ************************************************/
+QString expandPattern(const QString &pattern,
+                     int trackCount,
+                     int trackNum,
+                     const QString &album,
+                     const QString &title,
+                     const QString &artist,
+                     const QString &genre,
+                     const QString &date)
+{
+    QHash<QChar, QString> tokens;
+    tokens.insert(QChar('N'),   QString("%1").arg(trackCount, 2, 10, QChar('0')));
+    tokens.insert(QChar('n'),   QString("%1").arg(trackNum, 2, 10, QChar('0')));
+    tokens.insert(QChar('A'),   safeString(album));
+    tokens.insert(QChar('t'),   safeString(title));
+    tokens.insert(QChar('a'),   safeString(artist));
+    tokens.insert(QChar('g'),   safeString(genre));
+    tokens.insert(QChar('y'),   safeString(date));
+
+    return doExpandPattern(pattern, &tokens, false);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString patternExample(const QString &pattern)
+{
+    return expandPattern(pattern, 14, 13, "Help", "Yesterday", "The Beatles", "Pop", "1965");
+}

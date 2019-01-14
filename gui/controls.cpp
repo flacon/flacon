@@ -48,6 +48,9 @@ OutPatternButton::OutPatternButton(QWidget * parent):
     mSeparator = mMenu.addSeparator();
     connect(this, SIGNAL(clicked(bool)),
             this, SLOT(popupMenu()));
+    setAutoRaise(true);
+    setStyleSheet("border: none;");
+    setFixedWidth(sizeHint().width());
 }
 
 
@@ -68,8 +71,7 @@ void OutPatternButton::addPattern(const QString &pattern, const QString &title)
  ************************************************/
 void OutPatternButton::addFullPattern(const QString &pattern, const QString &title)
 {
-    QString example = Track::calcFileName(pattern, 14, 13, "Help", "Yesterday", "The Beatles", "Pop", "1965", "flac");
-    QAction *act = new QAction(title + "  ( " + example + " )", this);
+    QAction *act = new QAction(title, this);
     act->setData(pattern);
     connect(act, SIGNAL(triggered()), this, SLOT(fullPatternTriggered()));
     mMenu.addAction(act);

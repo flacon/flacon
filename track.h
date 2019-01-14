@@ -100,17 +100,6 @@ public:
     CueIndex cueIndex(int indexNum) const;
     void setCueIndex(int indexNum, const CueIndex &value);
 
-
-    static QString calcFileName(const QString &pattern,
-                                int trackCount,
-                                int trackNum,
-                                const QString &album,
-                                const QString &title,
-                                const QString &artist,
-                                const QString &genre,
-                                const QString &date,
-                                const QString &fileExt);
-
     QString cueFileName() const { return mCueFileName; }
     void setCueFileName(const QString &value) { mCueFileName = value; }
 
@@ -125,7 +114,6 @@ private:
     QString mCueFileName;
 
     QString calcResultFilePath() const;
-    static QString expandPattern(const QString &pattern, const QHash<QChar,QString> *tokens, bool optional);
 };
 
 

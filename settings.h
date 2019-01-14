@@ -65,6 +65,7 @@ public:
         // PerTrackCue **************************
         PerTrackCue_Create,
         PerTrackCue_Pregap,
+        PerTrackCue_FileName,
 
         // ConfigureDialog **********************
         ConfigureDialog_Width,
