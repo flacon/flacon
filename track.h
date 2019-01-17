@@ -42,7 +42,6 @@ public:
     Track();
     Track(const Track &other);
     Track &operator =(const Track &other);
-    void setTags(const Track &other);
     ~Track();
 
     QString tag(const TagId &tagId) const;

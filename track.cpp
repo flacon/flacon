@@ -70,24 +70,14 @@ Track::Track(const Track &other):
  ************************************************/
 Track &Track::operator =(const Track &other)
 {
-    setTags(other);
+    mTags       = other.mTags;
+    mTextCodec  = other.mTextCodec;
     mCueIndexes = other.mCueIndexes;
     mDuration   = other.mDuration;
     mCueFileName= other.mCueFileName;
 
     return *this;
 }
-
-
-/************************************************
- *
- ************************************************/
-void Track::setTags(const Track &other)
-{
-    mTags      = other.mTags;
-    mTextCodec = other.mTextCodec;
-}
-
 
 
 /************************************************

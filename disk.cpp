@@ -81,11 +81,11 @@ const Track *Disk::preGapTrack() const
 {
     if (!mTracks.isEmpty())
     {
-        mPreGapTrack.setTags(*mTracks.first());
+        mPreGapTrack = *mTracks.first();
         mPreGapTrack.setCueFileName(mTracks.first()->cueFileName());
-        mPreGapTrack.setTag(TagId::TrackNum, QByteArray("0"));
     }
 
+    mPreGapTrack.setTag(TagId::TrackNum, QByteArray("0"));
     mPreGapTrack.setTitle("(HTOA)");
     return &mPreGapTrack;
 }
@@ -359,7 +359,18 @@ void Disk::syncTagsToTracks()
 
     for (int i=0; i<mTracks.count(); ++i)
     {
-        mTracks[i]->setTags(tags.at(i));
+        Track *track = mTracks[i];
+        const Track &tgs = tags.at(i);
+
+        track->blockSignals(true);
+        track->setTag(TagId::Album,       tgs.tagValue(TagId::Album));
+        track->setTag(TagId::Date,        tgs.tagValue(TagId::Date));
+        track->setTag(TagId::Genre,       tgs.tagValue(TagId::Genre));
+        track->setTag(TagId::Artist,      tgs.tagValue(TagId::Artist));
+        track->setTag(TagId::SongWriter,  tgs.tagValue(TagId::SongWriter));
+        track->setTag(TagId::Title,       tgs.tagValue(TagId::Title));
+        track->setTag(TagId::AlbumArtist, tgs.tagValue(TagId::AlbumArtist));
+        track->blockSignals(false);
     }
 }
 
@@ -664,6 +675,10 @@ QVector<Disk::TagSet> Disk::tagSets() const
 void Disk::addTagSet(const Tracks &tags, bool activate)
 {
     mTagSets[tags.uri()] = tags;
+    // Sometimes CDDB response contains an additional
+    // DATA track. For example
+    // http://freedb.freedb.org/~cddb/cddb.cgi?cmd=CDDB+READ+rock+A20FA70C&hello=a+127.0.0.1+f+0&proto=5
+    mTagSets[tags.uri()].resize(mTracks.count());
 
     if (activate)
         activateTagSet(tags.uri());
@@ -698,6 +713,9 @@ void Disk::addTagSets(const QVector<Tracks> &disks)
     for (int i=0; i<disks.count(); ++i)
     {
         const Tracks &disk = disks.at(i);
+        if (disk.count() < mTracks.count())
+            continue;
+
         addTagSet(disk, false);
         int n = distance(disk);
         if (n<minDist)
