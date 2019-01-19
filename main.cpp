@@ -47,6 +47,8 @@
 #include "updater/updater.h"
 #endif
 
+static bool quiet;
+
 /************************************************
  *
  ************************************************/
@@ -60,6 +62,7 @@ void printHelp()
     out << "Generic options:" << endl;
     out << "  -s --start                Start to convert immediately." << endl;
     out << "  -c --config <file>        Specify an alternative configuration file." << endl;
+    out << "  -q --quiet                Quiet mode (no output)." << endl;
 
     out << "  -h, --help                Show help about options" << endl;
     out << "  --version                 Show version information" << endl;
@@ -180,6 +183,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
         return 10;
 
     Converter converter;
+    converter.setShowStatistic(!quiet);
     app.connect(&converter, SIGNAL(finished()),
                 &app, SLOT(quit()));
 
@@ -234,6 +238,8 @@ int main(int argc, char *argv[])
     parser.addOption(QCommandLineOption(                        "version", "Show version information."));
     parser.addOption(QCommandLineOption(QStringList() << "s" << "start"  , "Start to convert immediately."));
     parser.addOption(QCommandLineOption(QStringList() << "c" << "config" , "Specify an alternative configuration file.", "config file"));
+    parser.addOption(QCommandLineOption(QStringList() << "q" << "quiet"  , "Quiet mode (no output)."));
+
 
     QStringList args;
     for (int i=0; i<argc; ++i)
@@ -263,6 +269,7 @@ int main(int argc, char *argv[])
         Settings::setFileName(parser.value("config"));
     }
 
+    quiet = parser.isSet("quiet");
 
     if (parser.isSet("start"))
         return runConsole(argc, argv, parser.positionalArguments());

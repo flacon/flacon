@@ -27,216 +27,199 @@
 #include "testflacon.h"
 #include "types.h"
 #include "../settings.h"
-#include "outformat.h"
-#include "../converter/wavheader.h"
 #include "tools.h"
-#include "project.h"
-#include "../inputaudiofile.h"
-#include "../converter/converter.h"
-#include "tags.h"
 
 #include <QDir>
-#include <QDebug>
+#include <QProcess>
+#include <QDirIterator>
 
 
-
-struct TestConvertRequest {
-    QString cueFile;
-    QString audioFile;
-    QString expectedCue;
-    QStringList resultFiles;
-    QStringList tags;
-
-    void clear() {
-        cueFile.clear();
-        audioFile.clear();
-        expectedCue.clear();
-        resultFiles.clear();
-        tags.clear();
-
+/************************************************
+ *
+ ************************************************/
+static QStringList findFiles(const QString &dir, const QString &pattern)
+{
+    QStringList res;
+    QDirIterator it(dir, QStringList() << pattern, QDir::Files, QDirIterator::Subdirectories);
+    while (it.hasNext())
+    {
+        res << (it.next()).remove(dir + "/");
     }
-};
-Q_DECLARE_METATYPE(TestConvertRequest)
-Q_DECLARE_METATYPE(QList<TestConvertRequest>)
-
-/************************************************
- *
- ************************************************/
-void consoleErroHandler(const QString &message)
-{
-    QString msg(message);
-    msg.remove(QRegExp("<[^>]*>"));
-    qWarning() << "Converter error:" << msg;
+    return res;
 }
 
-
-/************************************************
- *
- ************************************************/
-TagId tagNameToId(const QString &tagName)
-{
-    if (tagName.toUpper() == "ALBUM")         return TagId::Album;
-    if (tagName.toUpper() == "CATALOG")       return TagId::Catalog;
-    if (tagName.toUpper() == "CDTEXTFILE")    return TagId::CDTextfile;
-    if (tagName.toUpper() == "COMMENT")       return TagId::Comment;
-    if (tagName.toUpper() == "DATE")          return TagId::Date;
-    if (tagName.toUpper() == "FLAGS")         return TagId::Flags;
-    if (tagName.toUpper() == "GENRE")         return TagId::Genre;
-    if (tagName.toUpper() == "ISRC")          return TagId::ISRC;
-    if (tagName.toUpper() == "PERFORMER")     return TagId::Artist;
-    if (tagName.toUpper() == "SONGWRITER")    return TagId::SongWriter;
-    if (tagName.toUpper() == "TITLE")         return TagId::Title;
-    if (tagName.toUpper() == "DISCId")        return TagId::DiscId;
-    if (tagName.toUpper() == "FILE")          return TagId::File;
-    if (tagName.toUpper() == "DISKNUM")       return TagId::DiskNum;
-    if (tagName.toUpper() == "DISCOUNT")      return TagId::DiskCount;
-    if (tagName.toUpper() == "CUEFILE")       return TagId::CueFile;
-
-    FAIL("Unknown TAG: \"" + tagName +"\"");
-    return TagId(0);
-}
 
 /************************************************
  *
  ************************************************/
 void TestFlacon::testConvert()
 {
-    QFETCH(bool, createCue);
-    QFETCH(int, preGapType);
-    QFETCH(QString, tmpDir);
-    QFETCH(QList<TestConvertRequest>, requests);
+    QFETCH(QString, dataDir);
 
+    QFile::copy(dataDir + "/spec.ini", dir() + "/spec.ini");
+    QSettings spec(dir() + "/spec.ini", QSettings::IniFormat);
+    spec.setIniCodec("UTF-8");
+
+    PreGapType preGapType = strToPreGapType(spec.value("pregap").toString());
+    QString tmpDir = spec.value("tmpDir").toString();
+
+    spec.beginGroup("Result_CUE");
+    bool createCue = spec.allKeys().count() > 0;
+    spec.endGroup();
+
+    const QString inDir(dir()  + "/IN");
+    const QString outDir(dir() + "/OUT");
+    QDir(inDir).mkpath(".");
+    QDir(outDir).mkpath(".");
+
+
+    // Create config ............................
     settings->setOutFormat("WAV");
     settings->setCreateCue(createCue);
     settings->setPregapType(PreGapType(preGapType));
     settings->setTmpDir(tmpDir.isEmpty() ? "" : (dir() + "/" + tmpDir));
-    settings->setOutFileDir(dir());
+    settings->setOutFileDir(outDir);
     settings->setOutFilePattern("%a/%n - %t");
     settings->setValue(Settings::PerTrackCue_FileName, "%a-%A.cue");
+    settings->sync();
+    // ..........................................
 
-    project->clear();
-    foreach (TestConvertRequest req, requests)
+
+    // Copy source audio files ..................
+    spec.beginGroup("Source_Audio");
+    foreach (auto key, spec.allKeys())
     {
-        QString srcAudioFile  = req.audioFile.section(':', 0, 0);
-        QString destAudioFile = req.audioFile.section(':', 1);
+        QString src  = mTmpDir + "/" + key;
+        QString dest = inDir   + "/" + spec.value(key).toString();
 
-        if (!destAudioFile.isEmpty())
+        QFileInfo(dest).dir().mkpath(".");
+        if (!QFile::copy(src,  dest))
+            QFAIL(QString("Can't copy audio file \"%1\"").arg(src).toLocal8Bit());
+    }
+    spec.endGroup();
+    // ..........................................
+
+    // Copy source CUE files ....................
+    spec.beginGroup("Source_CUE");
+    foreach (auto key, spec.allKeys())
+    {
+        QString src  = dataDir + "/" + key;
+        QString dest = inDir   + "/" + spec.value(key).toString();
+
+        QFileInfo(dest).dir().mkpath(".");
+        if (!QFile::copy(src,  dest))
+            QFAIL(QString("Can't copy CUE file \"%1\"").arg(src).toLocal8Bit());
+    }
+    spec.endGroup();
+    // ..........................................
+
+    // Copy expected CUE files ....................
+    spec.beginGroup("Result_CUE");
+    foreach (auto key, spec.allKeys())
+    {
+        QString dest = dir()   + "/" + spec.value(key).toString();
+        QString src  = dataDir + "/" + spec.value(key).toString();
+        QFileInfo(dest).dir().mkpath(".");
+        if (!QFile::copy(src,  dest))
+            QFAIL(QString("Can't copy CUE file \"%1\"").arg(src).toLocal8Bit());
+    }
+    spec.endGroup();
+    // ..........................................
+
+    // Run flacon ...............................
+    QString flacon = QCoreApplication::applicationDirPath() + "/../flacon";
+    QStringList args;
+    args << "--config" << settings->fileName();
+    args << "--start";
+    args << "--quiet";
+    args << inDir.toLocal8Bit().data();
+
+    {
+        QFile file(dir() + "/start.sh");
+        file.open(QIODevice::WriteOnly);
+        file.write('"' + flacon.toLocal8Bit() + '"');
+        for (QString a: args)
         {
-            destAudioFile = dir() + "/" + destAudioFile;
-            QFileInfo(destAudioFile).dir().mkpath(".");
-            QFile::copy(srcAudioFile, destAudioFile);
+            a.replace("\"", "\\\"");
+            file.write(" \"" + a.toLocal8Bit() + "\"");
         }
-        else
-        {
-            destAudioFile = srcAudioFile;
-        }
-
-        Disk *disk = loadFromCue(req.cueFile);
-        InputAudioFile audio(destAudioFile);
-        disk->setAudioFile(audio);
-        project->addDisk(disk);
-
-        foreach (QString line, req.tags)
-        {
-            line = line.trimmed();
-            if (line.isEmpty())
-                continue;
-
-            int n = line.section(' ', 0, 0).toInt() - 1;
-            Track *track = disk->track(n);
-
-            foreach (QString s, line.section(' ', 1).split(','))
-            {
-                TagId tagId = tagNameToId(s.section(':', 0, 0).trimmed());
-                track->setTag(tagId, s.section(':', 1).trimmed());
-            }
-        }
+        file.close();
     }
 
-    Converter conv;
-    conv.setShowStatistic(false);
-    QEventLoop loop;
-    loop.connect(&conv, SIGNAL(finished()), &loop, SLOT(quit()));
-    conv.start();
+    QProcess proc;
+    proc.start(flacon, args);
+    proc.waitForFinished(60 * 10000);
+    if (proc.exitCode() != 0)
+        QFAIL(QString("Can't start converter: \"%1\"")
+              .arg(QString::fromLocal8Bit(proc.readAllStandardError())).toLocal8Bit());
 
+    // ..........................................
 
-    if (!conv.isRunning())
+    // Check ____________________________________
+    QString msg = "";
+    QStringList files = findFiles(outDir, "*");
+    QStringList missing;
+
+    // ..........................................
+    spec.beginGroup("Result_Audio");
+    foreach (auto key, spec.allKeys())
     {
-        for (int i=0; i<project->count(); i++)
+        QString file = key;
+        QString hash = spec.value(key).toString();
+
+        if (files.removeAll(file) == 0)
         {
-            QString msg;
-            if (! project->disk(i)->canConvert(&msg))
-            {
-                QFAIL(QString("Can't start converter: \"%1\"").arg(msg).toLocal8Bit());
-            }
+            missing << file;
+            continue;
         }
+
+        if (!hash.isEmpty())
+            if (!compareAudioHash(outDir + "/" + file, hash))
+                QFAIL("");
+
     }
+    spec.endGroup();
+    // ..........................................
 
-    loop.exec();
-
-    // Checks __________________________________________________
-    for (int i=0; i<project->count(); i++)
+    // ..........................................
+    spec.beginGroup("Result_CUE");
+    foreach (auto key, spec.allKeys())
     {
-        TestConvertRequest req = requests.at(i);
-        QDir outDir = QFileInfo(project->disk(i)->track(0)->resultFilePath()).dir();
-        QStringList files = outDir.entryList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::Files);
+        QString file = key;
+        QString expected = dir() + "/" + spec.value(key).toString();
 
-        QFile::copy(req.cueFile, outDir.absoluteFilePath("source_%1.cue").arg(i, 2, 10, QChar('0')));
-
-        if (! req.expectedCue.isEmpty())
-            QFile::copy(req.expectedCue, outDir.absoluteFilePath("expected_%1.cue").arg(i, 2, 10, QChar('0')));
-
-        QStringList missing;
-        foreach(QString f, req.resultFiles)
+        if (files.removeAll(file) == 0)
         {
-            QString file = f.section(':', 0, 0).trimmed();
-            QString hash = f.section(':', 1).trimmed();
-
-            if (files.removeAll(file) == 0)
-                missing << file;
-
-            if (!hash.isEmpty() && QFileInfo(outDir.absoluteFilePath(file)).exists())
-            {
-               if (compareAudioHash(outDir.absoluteFilePath(file), hash))
-                    QFile::remove(outDir.absoluteFilePath(file));
-            }
-
-
+            missing << file;
+            continue;
         }
 
-
-        QString msg = "";
-        if (!missing.isEmpty())
-            msg += QString("\nFiles not exists in %1:\n  *%2")
-                    .arg(outDir.absolutePath())
-                    .arg(missing.join("\n  *"));
-
-        if (!files.isEmpty())
-            msg += QString("\nFiles exists in %1:\n  *%2")
-                    .arg(outDir.absolutePath())
-                    .arg(files.join("\n  *"));
-
-        if (!req.expectedCue.isEmpty())
-        {
-            files = outDir.entryList(QStringList() << "*.cue", QDir::Files);
-            if (files.isEmpty())
-            {
-                msg += "\nResult CUE file not found.";
-            }
-            else
-            {
-                QString err;
-                if (!TestFlacon::compareCue(outDir.absoluteFilePath(files.first()), req.expectedCue, &err))
-                    msg += "\n" + err;
-            }
-        }
-
-        if (!msg.isEmpty())
-            QFAIL(QString("%1\n%2").arg(QTest::currentDataTag()).arg(msg).toLocal8Bit().data());
+        QString err;
+        if (!TestFlacon::compareCue(outDir + "/" + file, expected, &err))
+            msg += "\n" + err;
     }
-    project->clear();
+    spec.endGroup();
+    // ..........................................
+
+
+    if (!missing.isEmpty())
+        msg += QString("\nFiles not exists in %1:\n  * %2")
+                .arg(outDir)
+                .arg(missing.join("\n  * "));
+
+    if (!files.isEmpty())
+        msg += QString("\nFiles exists in %1:\n  * %2")
+                .arg(outDir)
+                .arg(files.join("\n  * "));
+
+    if (!msg.isEmpty())
+        QFAIL(QString("%1\n%2").arg(QTest::currentDataTag()).arg(msg).toLocal8Bit().data());
+
+
+    // ..........................................
+
+    clearDir(dir());
 }
-
 
 
 /************************************************
@@ -244,303 +227,13 @@ void TestFlacon::testConvert()
  ************************************************/
 void TestFlacon::testConvert_data()
 {
-    QTest::addColumn<bool>("createCue");
-    QTest::addColumn<int>("preGapType");
-    QTest::addColumn<QString>("tmpDir");
-    QTest::addColumn<QList<TestConvertRequest> >("requests");
+    QTest::addColumn<QString>("dataDir");
 
-    TestConvertRequest req;
-    QList<TestConvertRequest> requests;
+    QString dataDir = mDataDir + "/testConvert/";
 
-
-    QString inDir = mDataDir + "/testConvert/";
-    QString name;
-
-    //=====================================================
-    name ="01.1 With pregap and HTOA, without cue";
-    requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "01.cuecreator.cue";
-    req.audioFile   = mAudio_24x96_wav;
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song01.wav : a86e2d59bf1e272b5ab7e9a16009455d"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
-    requests << req;
-
-    QTest::newRow(name.toUtf8())
-            << false
-            << int(PreGapType::ExtractToFile)
-            << ""
-            << requests;
-    //=====================================================
-
-
-    //=====================================================
-    name = "01.2 With pregap and HTOA, with cue";
-    requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "01.cuecreator.cue";
-    req.audioFile   = mAudio_24x96_wav;
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song01.wav : a86e2d59bf1e272b5ab7e9a16009455d"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f"
-                    << "00 - (HTOA).wav : afb9e4434b212bacdd62e585461af757"
-                    << "Artist_01-Album.cue";
-    requests << req;
-
-    QTest::newRow(name.toUtf8())
-            << true
-            << int(PreGapType::ExtractToFile)
-            << ""
-            << requests;
-    //=====================================================
-
-
-    //=====================================================
-    name = "02.1 Without pregap, without HTOA";
-    requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "02.cuecreator.cue";
-    req.audioFile   = mAudio_24x96_wav;
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song01.wav : 07bb5c5fbf7b9429c05e9b650d9df467"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f"
-                    << "Artist_02-Album.cue";
-    requests << req;
-
-    QTest::newRow(name.toUtf8())
-            << true
-            << int(PreGapType::AddToFirstTrack)
-            << ""
-            << requests;
-    //=====================================================
-
-
-    //=====================================================
-    name = "02.2 Without pregap, without HTOA";
-    requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "02.cuecreator.cue";
-    req.audioFile   = mAudio_24x96_wav;
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song01.wav : 07bb5c5fbf7b9429c05e9b650d9df467"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f"
-                    << "Artist_02-Album.cue";
-    requests << req;
-
-    QTest::newRow(name.toUtf8())
-            << true
-            << int(PreGapType::ExtractToFile)
-            << ""
-            << requests;
-    //=====================================================
-
-
-    //=====================================================
-    name = "03.1 With pregap, without HTOA";
-    requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "03.cuecreator.cue";
-    req.audioFile   = mAudio_24x96_wav;
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song01.wav : 07bb5c5fbf7b9429c05e9b650d9df467"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f"
-                    << "Artist_03-Album.cue";
-    requests << req;
-
-    QTest::newRow(name.toUtf8())
-            << true
-            << int(PreGapType::AddToFirstTrack)
-            << ""
-            << requests;
-    //=====================================================
-
-
-    //=====================================================
-    name = "04.1 All tags";
-    requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "04.cuecreator.cue";
-    req.audioFile   = mAudio_24x96_wav;
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song01.wav : 07bb5c5fbf7b9429c05e9b650d9df467"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f"
-                    << "Artist_04-Album.cue";
-    requests << req;
-
-    QTest::newRow(name.toUtf8())
-            << true
-            << int(PreGapType::AddToFirstTrack)
-            << ""
-            << requests;
-    //=====================================================
-
-
-    //=====================================================
-    name = "05.1 Cue without tags + tags form the separate file";
-    requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "05.cuecreator.cue";
-    req.audioFile   = mAudio_24x96_wav;
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song Title 01.wav : 07bb5c5fbf7b9429c05e9b650d9df467"
-                    << "02 - Song Title 02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song Title 03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song Title 04.wav : 2e5df99b43b96c208ab26983140dd19f"
-                    << "Artist_05-Album.cue";
-    req.tags        << "01 PERFORMER: Artist_05, ALBUM: Album, GENRE: Genre, DATE: 2013, TITLE: Song Title 01"
-                    << "02 PERFORMER: Artist_05, ALBUM: Album, GENRE: Genre, DATE: 2013, TITLE: Song Title 02"
-                    << "03 PERFORMER: Artist_05, ALBUM: Album, GENRE: Genre, DATE: 2013, TITLE: Song Title 03"
-                    << "04 PERFORMER: Artist_05, ALBUM: Album, GENRE: Genre, DATE: 2013, TITLE: Song Title 04";
-    requests << req;
-
-    QTest::newRow(name.toUtf8())
-            << true
-            << int(PreGapType::AddToFirstTrack)
-            << ""
-            << requests;
-    //=====================================================
-
-
-
-    //=====================================================
-    name = "06.1 Garbage in the CUE";
-    requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "06.garbageInTags.cue";
-    req.audioFile   = mAudio_24x96_wav;
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song01.wav : a86e2d59bf1e272b5ab7e9a16009455d"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
-
-    requests << req;
-    QTest::newRow(name.toUtf8())
-            << false
-            << int(PreGapType::ExtractToFile)
-            << ""
-            << requests;
-    //=====================================================
-
-
-    //=====================================================
-    name = "07.1 with symbols and space";
-    requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "07.path(with.symbols and space )/07.path(with.symbols and space ).cue";
-    req.audioFile   = mAudio_24x96_wav +
-                      ":Test_07.path(with.symbols and space )/Audio file (with.symbols and space ).wav";
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song01.wav : a86e2d59bf1e272b5ab7e9a16009455d"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
-
-    requests << req;
-    QTest::newRow(name.toUtf8())
-            << false
-            << int(PreGapType::ExtractToFile)
-            << ""
-            << requests;
-    //=====================================================
-
-
-    //=====================================================
-    name = "08.1 Test_8/Музыка";
-    requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "01.cuecreator.cue";
-    req.audioFile   = mAudio_24x96_wav;
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song01.wav : a86e2d59bf1e272b5ab7e9a16009455d"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
-
-    requests << req;
-    QTest::newRow(name.toUtf8())
-            << false
-            << int(PreGapType::ExtractToFile)
-            << ""
-            << requests;
-    //=====================================================
-
-
-    //=====================================================
-    name = "09.1 Multi";
-        requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "01.cuecreator.cue";
-    req.audioFile   = mAudio_24x96_wav;
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song01.wav : a86e2d59bf1e272b5ab7e9a16009455d"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
-    requests << req;
-
-
-    req.clear();
-    req.cueFile     = inDir + "02.cuecreator.cue";
-    req.audioFile   = mAudio_24x96_flac;
-    req.expectedCue = inDir + "02.expected.cue";
-    req.resultFiles << "01 - Song01.wav : 07bb5c5fbf7b9429c05e9b650d9df467"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
-    requests << req;
-
-
-    QTest::newRow(name.toUtf8())
-            << false
-            << int(PreGapType::AddToFirstTrack)
-            << ""
-            << requests;
-    //=====================================================
-
-
-    //=====================================================
-    name ="10.1 Temporary dir";
-    requests.clear();
-
-    req.clear();
-    req.cueFile     = inDir + "01.cuecreator.cue";
-    req.audioFile   = mAudio_24x96_wav;
-    req.expectedCue = "";
-    req.resultFiles << "01 - Song01.wav : a86e2d59bf1e272b5ab7e9a16009455d"
-                    << "02 - Song02.wav : 1a199e8e2badff1e643a9f1697ac4140"
-                    << "03 - Song03.wav : 71db07cb54faee8545cbed90fe0be6a3"
-                    << "04 - Song04.wav : 2e5df99b43b96c208ab26983140dd19f";
-    requests << req;
-
-    QTest::newRow(name.toUtf8())
-            << false
-            << int(PreGapType::ExtractToFile)
-            << "/tmp/tmp/really_tmp"
-            << requests;
-    //=====================================================
+    foreach (auto dir, QDir(dataDir).entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name))
+    {
+        if (QDir(dataDir + "/" + dir).exists("spec.ini"))
+            QTest::newRow(dir.toUtf8()) << dataDir + "/" + dir;
+    }
 }

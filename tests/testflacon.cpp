@@ -229,27 +229,41 @@ void removeEmptyLines(QByteArray &data)
     }
 }
 
+
+/************************************************
+ *
+ ************************************************/
+static QByteArray readCue(const QString &fileName, bool skipEmptyLines)
+{
+
+    QFile file(fileName);
+    file.open(QFile::ReadOnly);
+
+    QByteArray res;
+    res.reserve(file.size());
+    while (!file.atEnd())
+    {
+        QByteArray line = file.readLine().trimmed();
+        if (line.startsWith("REM COMMENT"))
+            continue;
+
+        if (skipEmptyLines && line.isEmpty())
+            continue;
+
+        res += line;
+        res += "\n";
+    }
+    file.close();
+    return res;
+}
+
 /************************************************
 
  ************************************************/
 bool TestFlacon::compareCue(const QString &result, const QString &expected, QString *error, bool skipEmptyLines)
 {
-    QFile resFile(result);
-    resFile.open(QFile::ReadOnly);
-    QByteArray resData = resFile.readAll();
-    resFile.close();
-    resData.replace("\r\n", "\n");
-    if (skipEmptyLines)
-        removeEmptyLines(resData);
-
-
-    QFile expFile(expected);
-    expFile.open(QFile::ReadOnly);
-    QByteArray expData = expFile.readAll();
-    expFile.close();
-    expData.replace("\r\n", "\n");
-    if (skipEmptyLines)
-        removeEmptyLines(expData);
+    QByteArray resData = readCue(result, skipEmptyLines);
+    QByteArray expData = readCue(expected, skipEmptyLines);
 
     if (resData != expData)
     {
