@@ -58,6 +58,9 @@ public:
     QList<Track*> selectedTracks() const;
     QList<Disk*> selectedDisks() const;
 
+    bool isSelected(const Disk &disk) const;
+    bool isSelected(const Track &track) const;
+
     TrackViewModel *model() const { return mModel; }
 
 public slots:

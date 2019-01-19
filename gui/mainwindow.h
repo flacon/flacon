@@ -31,6 +31,7 @@
 #include "ui_mainwindow.h"
 #include "types.h"
 #include <QPointer>
+#include "converter.h"
 
 namespace Ui {
 class MainWindow;
@@ -50,7 +51,8 @@ public:
 
 public slots:
     void addFileOrDir(const QString &fileName);
-    void startConvert();
+    void startConvertAll();
+    void startConvertSelected();
     void stopConvert();
 
 signals:
@@ -115,6 +117,8 @@ private:
 
     void loadSettings();
     void saveSettings();
+
+    void startConvert(const Converter::Jobs &jobs);
 
     QIcon loadMainIcon();
 

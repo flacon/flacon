@@ -357,6 +357,7 @@ If you surround sections of text that contain a token with braces, these section
     <addaction name="actionDownloadTrackInfo"/>
     <addaction name="separator"/>
     <addaction name="actionStartConvert"/>
+    <addaction name="actionStartConvertSelected"/>
     <addaction name="actionAbortConvert"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
@@ -516,6 +517,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
    </property>
    <property name="menuRole">
     <enum>QAction::ApplicationSpecificRole</enum>
+   </property>
+  </action>
+  <action name="actionStartConvertSelected">
+   <property name="text">
+    <string>Convert selected</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
    </property>
   </action>
  </widget>

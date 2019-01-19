@@ -576,9 +576,54 @@ void MainWindow::setDiskTagInt()
 
 
 /************************************************
+ *
+ ************************************************/
+void MainWindow::startConvertAll()
+{
+    Converter::Jobs jobs;
+    for (int d=0; d<project->count(); ++d)
+    {
+        Converter::Job job;
+        job.disk = project->disk(d);
+        for (int t=0; t<job.disk->count(); ++t)
+            job.tracks << job.disk->track(t);
+        jobs << job;
+    }
+
+    startConvert(jobs);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::startConvertSelected()
+{
+    Converter::Jobs jobs;
+    for (Disk *disk: trackView->selectedDisks())
+    {
+        Converter::Job job;
+        job.disk = disk;
+
+        for (int t=0; t<disk->count(); ++t)
+        {
+            Track *track = disk->track(t);
+            if (trackView->isSelected(*track))
+                job.tracks << track;
+
+        }
+
+        jobs << job;
+    }
+
+    startConvert(jobs);
+}
+
+
+/************************************************
 
  ************************************************/
-void MainWindow::startConvert()
+void MainWindow::startConvert(const Converter::Jobs &jobs)
 {
     trackView->setFocus();
 
@@ -617,7 +662,7 @@ void MainWindow::startConvert()
             trackView->model(), SLOT(trackProgressChanged(Track,TrackState,Percent)));
 
 
-    mConverter->start();
+    mConverter->start(jobs);
     setControlsEnable();
 }
 
@@ -1027,9 +1072,11 @@ void MainWindow::initActions()
     actionDownloadTrackInfo->setIcon(loadIcon("download-info"));
     connect(actionDownloadTrackInfo, SIGNAL(triggered()), this, SLOT(downloadInfo()));
 
-
     actionStartConvert->setIcon(loadIcon("start-convert"));
-    connect(actionStartConvert, SIGNAL(triggered()), this, SLOT(startConvert()));
+    connect(actionStartConvert, SIGNAL(triggered()), this, SLOT(startConvertAll()));
+
+    actionStartConvertSelected->setIcon(loadIcon("start-convert"));
+    connect(actionStartConvertSelected, SIGNAL(triggered()), this, SLOT(startConvertSelected()));
 
     actionAbortConvert->setIcon(loadIcon("abort-convert"));
     connect(actionAbortConvert, SIGNAL(triggered()), this, SLOT(stopConvert()));

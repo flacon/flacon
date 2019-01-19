@@ -120,6 +120,24 @@ QList<Disk*> TrackView::selectedDisks() const
 
 
 /************************************************
+ *
+ ************************************************/
+bool TrackView::isSelected(const Disk &disk) const
+{
+    return selectionModel()->isSelected(mModel->index(disk));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+bool TrackView::isSelected(const Track &track) const
+{
+    return selectionModel()->isSelected(mModel->index(track, 0));
+}
+
+
+/************************************************
 
  ************************************************/
 void TrackView::layoutChanged()
