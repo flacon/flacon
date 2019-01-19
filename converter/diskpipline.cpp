@@ -90,16 +90,15 @@ class DiskPipeline::Data
 public:
     Data():
         pipeline(nullptr),
-        disk(nullptr),
         needStartSplitter(true),
         interrupted(false),
-        preGapType(PreGapType::Skip)
+        preGapType(PreGapType::Skip),
+        extractPregap(false)
     {
     }
 
     DiskPipeline *pipeline;
-    const Disk *disk;
-    QList<const Track*> tracks;
+    Converter::Job job;
     bool needStartSplitter;
     QHash<const Track*, TrackState> trackStates;
     QList<EncoderRequest> encoderRequests;
@@ -108,7 +107,8 @@ public:
     QString workDir;
     QString tmpFilePrefix;
     PreGapType preGapType;
-
+    bool extractPregap;
+    int trackCount;
 
     void interrupt(TrackState state);
     void startSplitterThread();
@@ -148,14 +148,22 @@ bool DiskPipeline::Data::createDir(const QString &dirName) const
 /************************************************
  *
  ************************************************/
-DiskPipeline::DiskPipeline(const Disk *disk, QObject *parent) :
+DiskPipeline::DiskPipeline(const Converter::Job &job, QObject *parent) :
     QObject(parent),
     mData(new Data()),
     mTmpDir(nullptr)
 {
     mData->pipeline = this;
-    mData->disk = disk;
+    mData->job = job;
     mData->preGapType =  settings->createCue() ? settings->preGapType() : PreGapType::Skip;
+
+    // If the first track starts with zero second, doesn't make sense to create pregap track.
+    mData->extractPregap = (mData->preGapType == PreGapType::ExtractToFile &&
+                            job.disk->track(0)->cueIndex(1).milliseconds() > 0);
+
+    mData->trackCount = mData->job.tracks.count();
+    if (mData->extractPregap)
+        mData->trackCount += 1;
 }
 
 
@@ -191,17 +199,13 @@ bool DiskPipeline::init()
         mData->workDir = mTmpDir->path();
     }
     else
-        mData->workDir = QFileInfo(mData->disk->track(0)->resultFilePath()).dir().absolutePath();
+        mData->workDir = QFileInfo(mData->job.tracks.first()->resultFilePath()).dir().absolutePath();
 
     mData->tmpFilePrefix = QDir::toNativeSeparators(QString("%1/flacon_%2-")
                                                 .arg(mData->workDir)
                                                 .arg(QUuid::createUuid().toString().mid(1, 36)));
 
-
-    Splitter splitter(mData->disk, mData->tmpFilePrefix, mData->preGapType);
-    mData->tracks = splitter.tracks();
-
-    foreach (const Track *track, mData->tracks)
+    foreach (const Track *track, mData->job.tracks)
     {
         mData->trackStates.insert(track, TrackState::NotRunning);
     }
@@ -209,7 +213,7 @@ bool DiskPipeline::init()
     if (!mData->createDir(mData->workDir))
         return false;
 
-    foreach (const Track *track, mData->tracks)
+    foreach (const Track *track, mData->job.tracks)
     {
         QString dir = QFileInfo(track->resultFilePath()).absoluteDir().path();
         if (!mData->createDir(dir))
@@ -256,7 +260,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
     }
     else if (settings->outFormat()->gainType() == GainType::Album)
     {
-        if (*count > 0 && mData->gainRequests.count() == mData->tracks.count())
+        if (*count > 0 && mData->gainRequests.count() == mData->trackCount)
         {
             mData->startAlbumGainThread(mData->gainRequests);
             mData->gainRequests.clear();
@@ -280,10 +284,10 @@ bool DiskPipeline::Data::createCue() const
     if (!settings->createCue())
         return true;
 
-    CueCreator cue(disk, preGapType);
+    CueCreator cue(job.disk, preGapType);
     if (!cue.write())
     {
-        pipeline->trackError(tracks.first(), cue.errorString());
+        pipeline->trackError(job.tracks.first(), cue.errorString());
         return false;
     }
 
@@ -305,9 +309,9 @@ bool DiskPipeline::Data::copyCoverImage() const
     if (mode == CoverMode::Scale)
         size = settings->coverImageSize();
 
-    QString dir = QFileInfo(disk->track(0)->resultFilePath()).dir().absolutePath();
+    QString dir = QFileInfo(job.tracks.first()->resultFilePath()).dir().absolutePath();
 
-    CopyCover copyCover(disk, dir, "cover", size);
+    CopyCover copyCover(job.disk, dir, "cover", size);
     bool res = copyCover.run();
 
     if (!res)
@@ -322,7 +326,7 @@ bool DiskPipeline::Data::copyCoverImage() const
  ************************************************/
 void DiskPipeline::Data::startSplitterThread()
 {
-    Splitter *worker = new Splitter(disk, tmpFilePrefix, preGapType);
+    Splitter *worker = new Splitter(job, tmpFilePrefix, extractPregap, preGapType);
 
     WorkerThread *thread = new WorkerThread(worker, pipeline);
 
@@ -345,7 +349,7 @@ void DiskPipeline::Data::startSplitterThread()
     thread->start();
 
     needStartSplitter = false;
-    trackStates.insert(disk->track(0), TrackState::Splitting);
+    trackStates.insert(job.tracks.first(), TrackState::Splitting);
 
     createCue();
     copyCoverImage();
@@ -479,11 +483,11 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFil
     req.format     = settings->outFormat();
 
     // If the original quality is worse than requested, leave it as is.
-    req.bitsPerSample = calcQuality(mData->disk->audioFile()->bitsPerSample(),
+    req.bitsPerSample = calcQuality(mData->job.disk->audioFile()->bitsPerSample(),
                                     settings->value(Settings::Resample_BitsPerSample).toInt(),
                                     int(req.format->maxBitPerSample()));
 
-    req.sampleRate = calcQuality(mData->disk->audioFile()->sampleRate(),
+    req.sampleRate = calcQuality(mData->job.disk->audioFile()->sampleRate(),
                                  settings->value(Settings::Resample_SampleRate).toInt(),
                                  int(req.format->maxSampleRate()));
 

@@ -33,30 +33,56 @@
 #include <QProcess>
 #include <QCryptographicHash>
 #include <QIODevice>
+#include <QBuffer>
 #include <QDebug>
 #include "../settings.h"
 #include "../cue.h"
 #include "../disk.h"
-
+#include "../converter/decoder.h"
 
 /************************************************
  *
  ************************************************/
 QString calcAudioHash(const QString &fileName)
 {
-    QFile f(fileName);
-    f.open(QFile::ReadOnly);
-    QByteArray ba = f.read(1024);
-    int n = ba.indexOf("data");
-    f.seek(n + 8);
-
-    QCryptographicHash hash(QCryptographicHash::Md5);
-    while (!f.atEnd())
+    Decoder decoder;
+    if (!decoder.open(fileName))
     {
-        ba = f.read(1024 * 1024);
-        hash.addData(ba);
+        FAIL(QString("Can't open input file '%1': %2").arg(fileName, decoder.errorString()).toLocal8Bit());
+        return "";
     }
 
+    if (!decoder.audioFormat())
+    {
+        FAIL("Unknown format");
+        decoder.close();
+        return "";
+    }
+
+    QBuffer buf;
+    buf.open(QBuffer::ReadWrite);
+    bool res = decoder.extract(
+                CueTime(),
+                CueTime(),
+                &buf);
+    if (!res)
+    {
+        FAIL(QString("Can't extract file '%1': %2")
+             .arg(fileName)
+             .arg(decoder.errorString()).toLocal8Bit());
+        decoder.close();
+        return "";
+    }
+
+    decoder.close();
+
+    buf.reset();
+    QByteArray ba = buf.read(1024);
+    int n = ba.indexOf("data");
+    buf.seek(n + 8);
+
+    QCryptographicHash hash(QCryptographicHash::Md5);
+    hash.addData(&buf);
     return hash.result().toHex();
 }
 

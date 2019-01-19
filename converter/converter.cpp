@@ -69,7 +69,28 @@ Converter::~Converter()
  ************************************************/
 void Converter::start()
 {
-    if (project->count() == 0)
+    Jobs jobs;
+    for (int d=0; d<project->count(); ++d)
+    {
+        Job job;
+        job.disk = project->disk(d);
+
+        for (int t=0; t<job.disk->count(); ++t)
+            job.tracks << job.disk->track(t);
+
+        jobs << job;
+    }
+
+    start(jobs);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Converter::start(const Converter::Jobs &jobs)
+{
+    if (jobs.isEmpty())
     {
         emit finished();
         return;
@@ -88,30 +109,33 @@ void Converter::start()
     if (!ok || mThreadCount < 1)
         mThreadCount = qMax(6, QThread::idealThreadCount());
 
-    for (int i=0; i<project->count(); ++i)
+    for (const Job &job: jobs)
     {
-        if (project->disk(i)->canConvert())
+        if (job.tracks.isEmpty())
+            continue;
+
+        if (!job.disk->canConvert())
+            continue;
+
+        DiskPipeline * pipeline = new DiskPipeline(job, this);
+
+        connect(pipeline, SIGNAL(readyStart()),
+                this, SLOT(startThread()));
+
+        connect(pipeline, SIGNAL(threadFinished()),
+                this, SLOT(startThread()));
+
+        connect(pipeline, &DiskPipeline::trackProgressChanged,
+                this, &Converter::trackProgress);
+
+        mDiskPiplines << pipeline;
+
+        if (!pipeline->init())
         {
-            DiskPipeline * pipeline = new DiskPipeline(project->disk(i), this);
-
-            connect(pipeline, SIGNAL(readyStart()),
-                    this, SLOT(startThread()));
-
-            connect(pipeline, SIGNAL(threadFinished()),
-                    this, SLOT(startThread()));
-
-            connect(pipeline, &DiskPipeline::trackProgressChanged,
-                    this, &Converter::trackProgress);
-
-            mDiskPiplines << pipeline;
-
-            if (!pipeline->init())
-            {
-                qDeleteAll(mDiskPiplines);
-                mDiskPiplines.clear();
-                emit finished();
-                return;
-            }
+            qDeleteAll(mDiskPiplines);
+            mDiskPiplines.clear();
+            emit finished();
+            return;
         }
     }
 

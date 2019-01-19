@@ -26,12 +26,13 @@
 #include <QTest>
 #include "testflacon.h"
 #include "types.h"
-#include "../settings.h"
+//#include "../settings.h"
 #include "tools.h"
 
 #include <QDir>
 #include <QProcess>
 #include <QDirIterator>
+#include <QSettings>
 
 
 /************************************************
@@ -60,13 +61,7 @@ void TestFlacon::testConvert()
     QSettings spec(dir() + "/spec.ini", QSettings::IniFormat);
     spec.setIniCodec("UTF-8");
 
-    PreGapType preGapType = strToPreGapType(spec.value("pregap").toString());
-    QString tmpDir = spec.value("tmpDir").toString();
-
-    spec.beginGroup("Result_CUE");
-    bool createCue = spec.allKeys().count() > 0;
-    spec.endGroup();
-
+    const QString cfgFile(dir() + "/flacon.conf");
     const QString inDir(dir()  + "/IN");
     const QString outDir(dir() + "/OUT");
     QDir(inDir).mkpath(".");
@@ -74,14 +69,16 @@ void TestFlacon::testConvert()
 
 
     // Create config ............................
-    settings->setOutFormat("WAV");
-    settings->setCreateCue(createCue);
-    settings->setPregapType(PreGapType(preGapType));
-    settings->setTmpDir(tmpDir.isEmpty() ? "" : (dir() + "/" + tmpDir));
-    settings->setOutFileDir(outDir);
-    settings->setOutFilePattern("%a/%n - %t");
-    settings->setValue(Settings::PerTrackCue_FileName, "%a-%A.cue");
-    settings->sync();
+    {
+        QString src = dataDir + "/flacon.conf";
+        if (!QFile::copy(src,  cfgFile))
+            QFAIL(QString("Can't copy config file \"%1\"").arg(src).toLocal8Bit());
+
+        QSettings cfg(cfgFile, QSettings::IniFormat);
+        cfg.setIniCodec("UTF-8");
+        cfg.setValue("OutFiles/Directory", outDir);
+        cfg.sync();
+    }
     // ..........................................
 
 
@@ -129,7 +126,7 @@ void TestFlacon::testConvert()
     // Run flacon ...............................
     QString flacon = QCoreApplication::applicationDirPath() + "/../flacon";
     QStringList args;
-    args << "--config" << settings->fileName();
+    args << "--config" << cfgFile;
     args << "--start";
     args << "--quiet";
     args << inDir.toLocal8Bit().data();
@@ -137,22 +134,25 @@ void TestFlacon::testConvert()
     {
         QFile file(dir() + "/start.sh");
         file.open(QIODevice::WriteOnly);
-        file.write('"' + flacon.toLocal8Bit() + '"');
+        file.write("\"" + flacon.toLocal8Bit() + "\"");
         for (QString a: args)
         {
             a.replace("\"", "\\\"");
-            file.write(" \"" + a.toLocal8Bit() + "\"");
+            file.write(" \\\n    \"" + a.toLocal8Bit() + "\"");
         }
         file.close();
     }
 
     QProcess proc;
     proc.start(flacon, args);
-    proc.waitForFinished(60 * 10000);
+    if (!proc.waitForFinished(30 * 1000))
+        QFAIL("The program timed out waiting for the result.");
+
     if (proc.exitCode() != 0)
+    {
         QFAIL(QString("Can't start converter: \"%1\"")
               .arg(QString::fromLocal8Bit(proc.readAllStandardError())).toLocal8Bit());
-
+    }
     // ..........................................
 
     // Check ____________________________________

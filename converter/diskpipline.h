@@ -30,6 +30,7 @@
 #include <QObject>
 #include <QTemporaryDir>
 #include "track.h"
+#include "converter.h"
 
 class Disk;
 class Project;
@@ -39,7 +40,7 @@ class DiskPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiskPipeline(const Disk *disk, QObject *parent = 0);
+    explicit DiskPipeline(const Converter::Job &job, QObject *parent = 0);
     virtual ~DiskPipeline();
 
     bool init();

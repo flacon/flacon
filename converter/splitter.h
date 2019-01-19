@@ -29,35 +29,31 @@
 
 #include "worker.h"
 #include "types.h"
+#include "converter.h"
 
 class Disk;
 class Track;
 class Project;
-
+class Track;
 
 class Splitter: public Worker
 {
     Q_OBJECT
 public:
-    Splitter(const Disk *disk, const QString &tmpFilePrefix, PreGapType preGapType, QObject *parent = NULL);
+    Splitter(const Converter::Job &job, const QString &tmpFilePrefix, bool extractPregap, PreGapType preGapType, QObject *parent = nullptr);
 
 public slots:
     void run() override;
-
-public:
-    const QList<const Track*> tracks() const;
 
 private slots:
     void decoderProgress(int percent);
 
 private:
-    const Disk *mDisk;
+    const Converter::Job mJob;
     const QString mTmpFilePrefix;
     const PreGapType mPreGapType;
+    const bool mExtractPregap;
     const Track *mCurrentTrack;
-    bool mExtractPregapTrack;
 };
-
-
 
 #endif // SPLITTER_H

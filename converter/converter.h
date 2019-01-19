@@ -34,12 +34,19 @@
 
 class DiskPipeline;
 class OutFormat;
+class Disk;
 class Track;
 
 class Converter : public QObject
 {
     Q_OBJECT
 public:
+    struct Job {
+        Disk *disk;
+        QVector<const Track*> tracks;
+    };
+
+    typedef QVector<Job> Jobs;
     explicit Converter(QObject *parent = 0);
     virtual ~Converter();
 
@@ -55,6 +62,7 @@ signals:
 
 public slots:
     void start();
+    void start(const Jobs &jobs);
     void stop();
 
 private slots:

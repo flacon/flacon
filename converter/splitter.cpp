@@ -34,15 +34,14 @@
 /************************************************
  *
  ************************************************/
-Splitter::Splitter(const Disk *disk, const QString &tmpFilePrefix, PreGapType preGapType, QObject *parent):
+Splitter::Splitter(const Converter::Job &job, const QString &tmpFilePrefix, bool extractPregap, PreGapType preGapType, QObject *parent):
     Worker(parent),
-    mDisk(disk),
+    mJob(job),
     mTmpFilePrefix(tmpFilePrefix),
     mPreGapType(preGapType),
-    mCurrentTrack(NULL)
+    mExtractPregap(extractPregap),
+    mCurrentTrack(nullptr)
 {
-    // If the first track starts with zero second, doesn't make sense to create pregap track.
-    mExtractPregapTrack = (mPreGapType == PreGapType::ExtractToFile && mDisk->track(0)->cueIndex(1).milliseconds() > 0);
 }
 
 
@@ -51,27 +50,26 @@ Splitter::Splitter(const Disk *disk, const QString &tmpFilePrefix, PreGapType pr
  ************************************************/
 void Splitter::run()
 {
-    mCurrentTrack = 0;
+    mCurrentTrack = nullptr;
     Decoder decoder;
 
-    if (!decoder.open(mDisk->audioFileName()))
+    if (!decoder.open(mJob.disk->audioFileName()))
     {
-        error(mDisk->track(0),
+        error(mJob.tracks.first(),
               tr("I can't read <b>%1</b>:<br>%2",
                  "Splitter error. %1 is a file name, %2 is a system error text.")
-              .arg(mDisk->audioFileName())
+              .arg(mJob.disk->audioFileName())
               .arg(decoder.errorString()));
         return;
     }
 
 
     // Extract pregap to separate file ....................
-    // If the first track starts with zero second, doesn't make sense to create pregap track.
-    if (mExtractPregapTrack)
+    if (mExtractPregap)
     {
-        mCurrentTrack = mDisk->preGapTrack();
-        CueIndex start = mDisk->track(0)->cueIndex(0);
-        CueIndex end   = mDisk->track(0)->cueIndex(1);
+        mCurrentTrack = mJob.disk->preGapTrack();
+        CueIndex start = mJob.disk->track(0)->cueIndex(0);
+        CueIndex end   = mJob.disk->track(0)->cueIndex(1);
         QString outFileName = QString("%1%2.wav").arg(mTmpFilePrefix).arg(0, 2, 10, QLatin1Char('0'));
 
         try
@@ -96,19 +94,22 @@ void Splitter::run()
     connect(&decoder, SIGNAL(progress(int)),
             this, SLOT(decoderProgress(int)));
 
-    for (int i=0; i<mDisk->count(); ++i)
+    for (int i=0; i<mJob.disk->count(); ++i)
     {
-        mCurrentTrack = mDisk->track(i);
+        mCurrentTrack = mJob.disk->track(i);
+        if (!mJob.tracks.contains(mCurrentTrack))
+            continue;
+
         QString outFileName = QString("%1%2.wav").arg(mTmpFilePrefix).arg(i+1, 2, 10, QLatin1Char('0'));
 
         CueIndex start, end;
         if (i==0 && mPreGapType == PreGapType::AddToFirstTrack)
             start = CueTime("00:00:00");
         else
-            start = mDisk->track(i)->cueIndex(1);
+            start = mJob.disk->track(i)->cueIndex(1);
 
-        if (i<mDisk->count()-1)
-            end = mDisk->track(i+1)->cueIndex(01);
+        if (i<mJob.disk->count()-1)
+            end = mJob.disk->track(i+1)->cueIndex(01);
 
         bool ret = decoder.extract(start, end, outFileName);
 
@@ -123,22 +124,6 @@ void Splitter::run()
 
         emit trackReady(mCurrentTrack, outFileName);
     }
-}
-
-
-/************************************************
- *
- ************************************************/
-const QList<const Track *> Splitter::tracks() const
-{
-    QList<const Track *> res;
-    if (mExtractPregapTrack)
-        res << mDisk->preGapTrack();
-
-    for (int i=0; i<mDisk->count(); ++i)
-        res << mDisk->track(i);
-
-    return res;
 }
 
 
