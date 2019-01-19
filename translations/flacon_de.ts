@@ -352,6 +352,31 @@
         <comment>Item in combobox</comment>
         <translation>32 Bit</translation>
     </message>
+    <message>
+        <source>File name format:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>&quot;Interpret&quot; einfügen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>&quot;Albumtitel&quot; einfügen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>&quot;Jahr&quot; einfügen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>&quot;Genre&quot; einfügen</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>&quot;%1&quot; verwenden</translation>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -1120,6 +1145,18 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     </message>
     <message>
         <source>Album performer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Convert selected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start conversion process for the selected tracks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+W</source>
         <translation type="unfinished"/>
     </message>
 </context>

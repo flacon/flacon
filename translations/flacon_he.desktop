@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Comment[he]=מחלץ רצועות שמע מקובצי מתקליטור ומפריד אותן לרצועות.
-Icon[he]=flacon
-Name[he]=Flacon
+Comment[he]=מחלץ רצועות שמע מתקליטור ומפריד אותן לרצועות.
 GenericName[he]=מפענח קובצי שמע
+Name[he]=Flacon
+Icon[he]=flacon

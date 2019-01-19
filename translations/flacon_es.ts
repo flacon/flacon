@@ -352,6 +352,31 @@
         <comment>Item in combobox</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>File name format:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Insertar &quot;Artista&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Insertar &quot;Título de álbum&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Insertar &quot;Año&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Insertar &quot;Género&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Usar &quot;%1&quot;</translation>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -1120,6 +1145,18 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     </message>
     <message>
         <source>Album performer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Convert selected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start conversion process for the selected tracks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+W</source>
         <translation type="unfinished"/>
     </message>
 </context>

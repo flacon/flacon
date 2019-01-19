@@ -352,6 +352,31 @@
         <comment>Item in combobox</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>File name format:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Vložit &quot;Umělec&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Vložit &quot;Název alba&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Vložit &quot;Rok&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Vložit &quot;Žánr&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Použít &quot;%1&quot;</translation>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -1094,6 +1119,18 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     </message>
     <message>
         <source>Album performer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Convert selected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start conversion process for the selected tracks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+W</source>
         <translation type="unfinished"/>
     </message>
 </context>

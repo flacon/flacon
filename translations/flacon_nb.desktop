@@ -15,6 +15,6 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 # Translations
 Comment[nb]=Henter ut lydspor fra en avbildning av en audio-CD til individuelle spor.
-Icon[nb]=flacon
-Name[nb]=Flacon
 GenericName[nb]=Lydfilkoder
+Name[nb]=Flacon
+Icon[nb]=flacon

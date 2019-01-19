@@ -294,63 +294,88 @@
     </message>
     <message>
         <source>Resampling</source>
-        <translation type="unfinished"/>
+        <translation>Resamplen</translation>
     </message>
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>44100 Hz</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>48000 Hz</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>96000 Hz</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>192000 Hz</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
+        <translation>Maximale bitdiepte:</translation>
     </message>
     <message>
         <source>Maximum sample rate:</source>
-        <translation type="unfinished"/>
+        <translation>Maximale samplesnelheid:</translation>
     </message>
     <message>
         <source>Per track CUE sheet</source>
-        <translation type="unfinished"/>
+        <translation>Cueblad per nummer</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
-        <translation type="unfinished"/>
+        <translation>Cueblad aanmaken per nummer</translation>
     </message>
     <message>
         <source>Same as source</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Gelijk aan bron</translation>
     </message>
     <message>
         <source>16-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>16-bit</translation>
     </message>
     <message>
         <source>24-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>24-bit</translation>
     </message>
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
+        <translation>32-bit</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>‘Artiest’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>‘Albumtitel’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>‘Jaar’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>‘Genre’ invoegen</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Gebruik ‘%1’</translation>
     </message>
 </context>
 <context>
@@ -690,7 +715,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation type="unfinished"/>
+        <translation>Audiobestand korter dan verwacht van cuebestand.</translation>
     </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
@@ -1055,21 +1080,21 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>Standard music location</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Standaardlocatie voor muziek</translation>
     </message>
     <message>
         <source>Desktop</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Bureaublad</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Zelfde map als cuebestand</translation>
     </message>
     <message>
         <source>Remove current directory from history</source>
-        <translation type="unfinished"/>
+        <translation>Huidige map uit geschiedenis verwijderen</translation>
     </message>
     <message>
         <source>Get data from CDDB</source>
@@ -1079,7 +1104,7 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Kies cuebestand</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -1089,37 +1114,49 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>Edit all tags…</source>
         <comment>Button text</comment>
-        <translation type="unfinished"/>
+        <translation>Alle tags bewerken…</translation>
     </message>
     <message>
         <source>Add disk…</source>
-        <translation type="unfinished"/>
+        <translation>Schijf toevoegen…</translation>
     </message>
     <message>
         <source>Select directory…</source>
-        <translation type="unfinished"/>
+        <translation>Kies map…</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
-        <translation type="unfinished"/>
+        <translation>Controleren op updates…</translation>
     </message>
     <message>
         <source>Edit tags…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Tags bewerken…</translation>
     </message>
     <message>
         <source>Select another audio file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Kies een ander audiobestand…</translation>
     </message>
     <message>
         <source>Select another CUE file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Kies een ander cuebestand…</translation>
     </message>
     <message>
         <source>Album performer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Convert selected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start conversion process for the selected tracks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+W</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1216,30 +1253,30 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Ik kan niet naar het cuebestand &lt;b&gt;%1&lt;/b&gt; schrijven:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Verkeerd tracknummer op regel %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Verkeerde trackindex op regel %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Het cueblad heeft geen FILE-tag.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Schijf %2 heeft geen tags.</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Ik kan het albumhoesbestand &lt;b&gt;%1&lt;/b&gt; niet opslaan:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1255,11 +1292,11 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>Edit tags</source>
         <comment>Dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Tags bewerken</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished"/>
+        <translation>van</translation>
     </message>
     <message>
         <source>Artist:</source>
@@ -1284,17 +1321,17 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>Disk number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Schijfnummer:</translation>
     </message>
     <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Nummertitel:</translation>
     </message>
     <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Opmerking:</translation>
     </message>
     <message>
         <source>Start track number:</source>
@@ -1315,7 +1352,7 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     </message>
     <message>
         <source>Select another CUE file…</source>
-        <translation type="unfinished"/>
+        <translation>Kies een ander cuebestand…</translation>
     </message>
 </context>
 <context>

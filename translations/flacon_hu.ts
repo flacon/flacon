@@ -264,25 +264,25 @@
     <message>
         <source>Update</source>
         <extracomment>Preferences tab title </extracomment>
-        <translation type="unfinished"/>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Frissítések automatikus ellenőrzése</translation>
     </message>
     <message>
         <source>Check now</source>
-        <translation type="unfinished"/>
+        <translation>Ellenőrzés most</translation>
     </message>
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>%1 volt utoljára ellenőrizve</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Nem volt még ellenőrizve</translation>
     </message>
     <message>
         <source>Keep original image size</source>
@@ -294,35 +294,35 @@
     </message>
     <message>
         <source>Resampling</source>
-        <translation type="unfinished"/>
+        <translation>Mintavételezés újra</translation>
     </message>
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>44100 Hz</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>48000 Hz</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>96000 Hz</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>192000 Hz</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
+        <translation>Maximális bitráta:</translation>
     </message>
     <message>
         <source>Maximum sample rate:</source>
-        <translation type="unfinished"/>
+        <translation>Maximális mintaérték:</translation>
     </message>
     <message>
         <source>Per track CUE sheet</source>
@@ -335,22 +335,47 @@
     <message>
         <source>Same as source</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Azonos a forrással</translation>
     </message>
     <message>
         <source>16-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>16-bit</translation>
     </message>
     <message>
         <source>24-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>24-bit</translation>
     </message>
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
+        <translation>32-bit</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>&quot;Előadó&quot; beszúrása</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>&quot;Albumcím&quot; beszúrása</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>&quot;Év&quot; beszúrása</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>&quot;Műfaj&quot; beszúrása</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>&quot;%1&quot; használata</translation>
     </message>
 </context>
 <context>
@@ -1061,15 +1086,15 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     </message>
     <message>
         <source>Add disk…</source>
-        <translation type="unfinished"/>
+        <translation>Lemez hozzáadása...</translation>
     </message>
     <message>
         <source>Select directory…</source>
-        <translation type="unfinished"/>
+        <translation>Könyvtár kiválasztása..</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
-        <translation type="unfinished"/>
+        <translation>Frissítések ellenőrzése...</translation>
     </message>
     <message>
         <source>Edit tags…</source>
@@ -1088,6 +1113,18 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     </message>
     <message>
         <source>Album performer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Convert selected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start conversion process for the selected tracks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+W</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1252,22 +1289,22 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     <message>
         <source>Disk number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Lemez száma:</translation>
     </message>
     <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Sáv címe:</translation>
     </message>
     <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Megjegyzés:</translation>
     </message>
     <message>
         <source>Start track number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Kezdősáv száma:</translation>
     </message>
     <message>
         <source>Album performer:</source>

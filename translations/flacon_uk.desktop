@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Comment[uk]=Витягує доріжки з образу аудіо-КД.
-Icon[uk]=flacon
-Name[uk]=Flacon
+Comment[uk]=Видобуває доріжки з образу аудіо-КД.
 GenericName[uk]=Кодувальник аудіофайлів
+Name[uk]=Flacon
+Icon[uk]=flacon

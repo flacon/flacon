@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>About</source>
-        <translation>Про проґраму</translation>
+        <translation>Про програму</translation>
     </message>
     <message>
         <source>Author</source>
@@ -23,7 +23,7 @@
     </message>
     <message>
         <source>External programs</source>
-        <translation>Зовнішні проґрами</translation>
+        <translation>Зовнішні програми</translation>
     </message>
     <message>
         <source>Homepage: %1</source>
@@ -39,11 +39,11 @@
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon використовує зовнішні проґрами. Велике дякую їх авторам!</translation>
+        <translation>Flacon використовує зовнішні програми. Велика подяка їх авторам!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Видобуває окремі доріжки з одного великого аудіофайлу, який містить увесь альбом повністю.</translation>
+        <translation>Видобуває окремі доріжки з одного великого аудіофайлу, що містить увесь альбом повністю.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
@@ -219,7 +219,7 @@
     </message>
     <message>
         <source>Full path of the external applications</source>
-        <translation>Повний шлях до зовнішніх проґрам</translation>
+        <translation>Повний шлях до зовнішніх програм</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
@@ -235,7 +235,7 @@
     </message>
     <message>
         <source>Programs</source>
-        <translation>Проґрами</translation>
+        <translation>Програми</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
@@ -243,7 +243,7 @@
     </message>
     <message>
         <source> px</source>
-        <translation> px</translation>
+        <translation> пікс.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -277,44 +277,44 @@
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
-        <translation>Останнє оновлення було %1</translation>
+        <translation>Востаннє перевірялось %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
-        <translation>Ніколи не перевіряли</translation>
+        <translation>Ніколи не перевірялось</translation>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation>В початковому розмірі</translation>
+        <translation>Зберігати початковий розмір зображення</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation>Масштабувати якщо картинка більша ніж</translation>
+        <translation>Масштабувати, якщо картинка більша ніж</translation>
     </message>
     <message>
         <source>Resampling</source>
-        <translation type="unfinished"/>
+        <translation>Передискретизація</translation>
     </message>
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>44100 Гц</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>48000 Гц</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>96000 Гц</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>192000 Гц</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
@@ -340,17 +340,42 @@
     <message>
         <source>16-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>16 біт</translation>
     </message>
     <message>
         <source>24-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>24 біти</translation>
     </message>
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
+        <translation>32 біти</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Вставити ім’я виконавця</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Вставити назву альбому</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Вставити рік</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Вставити жанр</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Використовувати &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -796,7 +821,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Pattern:</source>
-        <translation>Шабльон:</translation>
+        <translation>Шаблон:</translation>
     </message>
     <message>
         <source>Format:</source>
@@ -889,7 +914,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Program preferences</source>
-        <translation>Налаштування проґрами</translation>
+        <translation>Налаштування програми</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -1034,7 +1059,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Delete current pattern from history</source>
-        <translation>Вилучити поточний шабльон з історії.</translation>
+        <translation>Вилучити поточний шаблон з історії.</translation>
     </message>
     <message>
         <source>Remove disk</source>
@@ -1042,7 +1067,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Remove disk from project</source>
-        <translation>Вилучити диск із проєкту</translation>
+        <translation>Вилучити диск із проекту</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1122,6 +1147,18 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>Album performer:</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Convert selected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start conversion process for the selected tracks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+W</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -1148,7 +1185,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>ProgramEdit</name>
     <message>
         <source>Select program file</source>
-        <translation>Вкажіть файл проґрами</translation>
+        <translation>Вкажіть файл програми</translation>
     </message>
     <message>
         <source>All files</source>
@@ -1165,11 +1202,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>QObject</name>
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Не можу знайти проґраму &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>Не можу знайти програму &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Формат аудіо файлу &lt;b&gt;%1&lt;/b&gt; не підтримується. &lt;br&gt;&lt;br&gt;Перевірте що встановлені усі потрібні проґрами й вони вказані у налаштуваннях.</translation>
+        <translation>Формат аудіо файлу &lt;b&gt;%1&lt;/b&gt; не підтримується. &lt;br&gt;&lt;br&gt;Перевірте що встановлені усі потрібні програми й вони вказані у налаштуваннях.</translation>
     </message>
     <message>
         <source>Flacon</source>

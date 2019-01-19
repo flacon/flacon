@@ -15,6 +15,6 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 # Translations
 Comment[cs_CZ]=Vytahuje zvukové stopy z obrazu CD se zvukem do oddělených stop.
-Icon[cs_CZ]=Flacon
-Name[cs_CZ]=Flacon
 GenericName[cs_CZ]=Kodér zvukových souborů
+Name[cs_CZ]=Flacon
+Icon[cs_CZ]=Flacon

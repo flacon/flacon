@@ -15,6 +15,6 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 # Translations
 Comment[pl_PL]=Wyodrębnia pojedyncze ścieżki z jednego dużego pliku audio, zawierającego cały album.
-Icon[pl_PL]=flacon
-Name[pl_PL]=Flacon
 GenericName[pl_PL]=Konwerter Plików Audio
+Name[pl_PL]=Flacon
+Icon[pl_PL]=flacon

@@ -3,7 +3,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About Flacon</source>
-        <translation>אודות Flacon</translation>
+        <translation>אודות פלאקון</translation>
     </message>
     <message>
         <source>About</source>
@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Translations</source>
-        <translation>תירגום</translation>
+        <translation>תרגום</translation>
     </message>
     <message>
         <source>External programs</source>
@@ -39,7 +39,7 @@
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon עושה שימוש בתוכנות צד שלישי. הרבה תודה ליוצריהן!</translation>
+        <translation>פלאקון עושה שימוש בתוכנות צד שלישי. הרבה תודה ליוצריהן!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
@@ -51,7 +51,7 @@
     </message>
     <message>
         <source>WavPack support patch</source>
-        <translation>תיקון תמיכת WavPack</translation>
+        <translation>תיקון לתמיכת WavPack</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
@@ -63,16 +63,16 @@
     </message>
     <message>
         <source>Flacon account on github.com</source>
-        <translation>חשבון Flacon ב github.com</translation>
+        <translation>חשבון פלאקון ב github.com</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation>מעקב תקלות %1</translation>
+        <translation>מעקב תקלים: %1</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon מתורגם לשפות רבות בזכות עבודתם של צוותי התרגום של Flacon באמצעות &lt;a href=&apos;%1&apos;&gt; Transifex &lt;/a&gt;.</translation>
+        <translation>פלאקון מתורגם לשפות רבות בזכות עבודתם של צוותי התרגום של פלאקון באמצעות &lt;a href=&apos;%1&apos;&gt; Transifex &lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -203,7 +203,7 @@
     </message>
     <message>
         <source>Thread count:</source>
-        <translation>מספר שרשורים:</translation>
+        <translation>מונה שרשורים:</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
@@ -211,7 +211,7 @@
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>מרווח מקדים רצועה ראשונה:</translation>
+        <translation>מרווח מקדים ברצועה ראשונה:</translation>
     </message>
     <message>
         <source>Rescan</source>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Add to first track</source>
-        <translation>הוספת לרצועה הראשונה</translation>
+        <translation>הוספה לרצועה הראשונה</translation>
     </message>
     <message>
         <source>General</source>
@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>דף קידוד ברירת מחדל</translation>
+        <translation>קידוד ברירת מחדל</translation>
     </message>
     <message>
         <source>Cover image</source>
@@ -259,7 +259,7 @@
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation>תמונה לא הועתקה</translation>
+        <translation>לא להעתיק תמונה</translation>
     </message>
     <message>
         <source>Update</source>
@@ -351,6 +351,31 @@
         <source>32-bit</source>
         <comment>Item in combobox</comment>
         <translation>32 ביט</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>הזנת &quot;אמן&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>הזנת &quot;שם אלבום&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>הזנת &quot;שנה&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>הזנת &quot;סוגה&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>משתמש ב &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -781,7 +806,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
-        <translation>Flacon</translation>
+        <translation>פלאקון</translation>
     </message>
     <message>
         <source>Result Files</source>
@@ -826,7 +851,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Start num:</source>
-        <translation>מספר התחלה:</translation>
+        <translation>להתחיל מרצועה:</translation>
     </message>
     <message>
         <source>Disc ID:</source>
@@ -834,7 +859,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Codepage:</source>
-        <translation>דף קידוד:</translation>
+        <translation>קידוד:</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -858,7 +883,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Convert</source>
-        <translation>להמיר</translation>
+        <translation>המרה</translation>
     </message>
     <message>
         <source>Start conversion process</source>
@@ -870,7 +895,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Abort</source>
-        <translation>לבטל</translation>
+        <translation>ביטול</translation>
     </message>
     <message>
         <source>Abort conversion process</source>
@@ -902,11 +927,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Get from CDDB</source>
-        <translation>מביא מ CDDB</translation>
+        <translation>אחזור מ CDDB</translation>
     </message>
     <message>
         <source>Get album information from CDDB</source>
-        <translation>הבאת נתוני אלבום מ CDDB</translation>
+        <translation>אחזור נתוני אלבום מ CDDB</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
@@ -1050,7 +1075,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>About Flacon</source>
-        <translation>אודות Flacon</translation>
+        <translation>אודות פלאקון</translation>
     </message>
     <message>
         <source>Standard music location</source>
@@ -1074,7 +1099,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Get data from CDDB</source>
         <comment>context menu</comment>
-        <translation>הבאת נתונים מ CDDB</translation>
+        <translation>אחזור נתונים מ CDDB</translation>
     </message>
     <message>
         <source>Select CUE file</source>
@@ -1120,7 +1145,19 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Album performer:</source>
-        <translation>מבצע תקליטור:</translation>
+        <translation>מבצע:</translation>
+    </message>
+    <message>
+        <source>Convert selected</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start conversion process for the selected tracks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+W</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1174,7 +1211,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
-        <translation>Flacon</translation>
+        <translation>פלאקון</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1299,7 +1336,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Start track number:</source>
         <comment>Music tag name</comment>
-        <translation>מספר רצועת התחלה:</translation>
+        <translation>להתחיל מרצועה מספר:</translation>
     </message>
     <message>
         <source>Album performer:</source>
@@ -1311,7 +1348,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <name>TrackView</name>
     <message>
         <source>Get data from CDDB</source>
-        <translation>מביא נתונים מ CDDB</translation>
+        <translation>אחזור נתונים מ CDDB</translation>
     </message>
     <message>
         <source>Select another CUE file…</source>

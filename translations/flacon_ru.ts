@@ -352,6 +352,31 @@
         <comment>Item in combobox</comment>
         <translation>32 бит</translation>
     </message>
+    <message>
+        <source>File name format:</source>
+        <translation>Имя файла:</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Вставить имя артиста</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Вставить название альбома</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Вставить год</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Вставить жанр</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Использовать &quot;%1&quot;</translation>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Aac</name>
@@ -1118,6 +1143,18 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Album performer:</source>
         <translation>Исполнитель альбома:</translation>
+    </message>
+    <message>
+        <source>Convert selected</source>
+        <translation>Конвертировать выделенное</translation>
+    </message>
+    <message>
+        <source>Start conversion process for the selected tracks</source>
+        <translation>Конвертировать выделенные треки</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+W</source>
+        <translation>Ctrl+Shift+W</translation>
     </message>
 </context>
 <context>
