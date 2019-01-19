@@ -523,6 +523,9 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
    <property name="text">
     <string>Convert selected</string>
    </property>
+   <property name="toolTip">
+    <string>Start conversion process for the selected tracks</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Shift+W</string>
    </property>
