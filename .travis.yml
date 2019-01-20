@@ -28,4 +28,5 @@ script:
   - cd build
   - cmake -DBUILD_TESTS=Yes ..
   - make
+  - export FLACON_SKIP_CONVERT_TEST=1
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then  tests/flacon_test  ; fi
