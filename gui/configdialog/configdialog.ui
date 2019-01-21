@@ -178,7 +178,7 @@
               <item row="0" column="0">
                <widget class="QLabel" name="perTrackCueLabel">
                 <property name="text">
-                 <string>File name format:</string>
+                 <string extracomment="Settings dialog, label for the edit control with name of the created CUE file.">File name format:</string>
                 </property>
                </widget>
               </item>

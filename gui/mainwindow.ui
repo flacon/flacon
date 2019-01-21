@@ -521,13 +521,13 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
   </action>
   <action name="actionStartConvertSelected">
    <property name="text">
-    <string>Convert selected</string>
+    <string extracomment="Main menu item">Convert selected</string>
    </property>
    <property name="toolTip">
-    <string>Start conversion process for the selected tracks</string>
+    <string extracomment="Main menu item tooltip">Start conversion process for the selected tracks</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+W</string>
+    <string extracomment="Main menu item shortcut">Ctrl+Shift+W</string>
    </property>
   </action>
  </widget>
