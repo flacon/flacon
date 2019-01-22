@@ -356,6 +356,7 @@
     </message>
     <message>
         <source>File name format:</source>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1092,14 +1093,17 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Convert selected</source>
+        <extracomment>Main menu item</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
+        <extracomment>Main menu item tooltip</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
+        <extracomment>Main menu item shortcut</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

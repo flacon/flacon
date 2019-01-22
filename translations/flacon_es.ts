@@ -326,35 +326,36 @@
     </message>
     <message>
         <source>Per track CUE sheet</source>
-        <translation type="unfinished"/>
+        <translation>Hoja CUE por pista</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
-        <translation type="unfinished"/>
+        <translation>Crear hoja CUE por pista</translation>
     </message>
     <message>
         <source>Same as source</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Igual a la fuente</translation>
     </message>
     <message>
         <source>16-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>16-bit</translation>
     </message>
     <message>
         <source>24-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>24-bit</translation>
     </message>
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>32-bit</translation>
     </message>
     <message>
         <source>File name format:</source>
-        <translation type="unfinished"/>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <translation>Formato de nombre de archivo</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -715,17 +716,17 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation type="unfinished"/>
+        <translation>El archivo de audio es más pequeño de lo esperado por la hoja CUE.</translation>
     </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Este formato soporta un máximo de %1-bit por muestreo. Este valor será que se usará para la codificación.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>El formato soporta una tasa de muestreo máxima de %1, valor que se usará para la codificación.</translation>
     </message>
 </context>
 <context>
@@ -1114,50 +1115,53 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>Edit all tags…</source>
         <comment>Button text</comment>
-        <translation type="unfinished"/>
+        <translation>Editar todas las etiquetas...</translation>
     </message>
     <message>
         <source>Add disk…</source>
-        <translation type="unfinished"/>
+        <translation>Agregar disco...</translation>
     </message>
     <message>
         <source>Select directory…</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione directorio...</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
-        <translation type="unfinished"/>
+        <translation>Comprobar actualizaciones...</translation>
     </message>
     <message>
         <source>Edit tags…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Editar etiquetas...</translation>
     </message>
     <message>
         <source>Select another audio file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Seleccione otro archivo de audio...</translation>
     </message>
     <message>
         <source>Select another CUE file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Seleccione otro archivo CUE...</translation>
     </message>
     <message>
         <source>Album performer:</source>
-        <translation type="unfinished"/>
+        <translation>Artista del álbum:</translation>
     </message>
     <message>
         <source>Convert selected</source>
-        <translation type="unfinished"/>
+        <extracomment>Main menu item</extracomment>
+        <translation>Convertir selección</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
-        <translation type="unfinished"/>
+        <extracomment>Main menu item tooltip</extracomment>
+        <translation>Comenzar proceso de conversión para las pistas seleccionadas</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
-        <translation type="unfinished"/>
+        <extracomment>Main menu item shortcut</extracomment>
+        <translation>Ctrl+Mayúsculas+W</translation>
     </message>
 </context>
 <context>
@@ -1258,25 +1262,25 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es una archivo CUE válido. Número de pista incorrecto en la línea %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. Índice de pista incorrecto en la línea %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. La hoja CUE no tiene la etiqueta FILE.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. El disco %2 no tiene etiquetas.</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>No puedo guardar la imagen de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1341,7 +1345,7 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>Album performer:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Artista del Álbum:</translation>
     </message>
 </context>
 <context>
@@ -1352,7 +1356,7 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     </message>
     <message>
         <source>Select another CUE file…</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione otro archivo CUE...</translation>
     </message>
 </context>
 <context>

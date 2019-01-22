@@ -354,7 +354,8 @@
     </message>
     <message>
         <source>File name format:</source>
-        <translation type="unfinished"/>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <translation>Formato do nome do arquivo:</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -1145,15 +1146,18 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     </message>
     <message>
         <source>Convert selected</source>
-        <translation type="unfinished"/>
+        <extracomment>Main menu item</extracomment>
+        <translation>Converter selecionadas</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
-        <translation type="unfinished"/>
+        <extracomment>Main menu item tooltip</extracomment>
+        <translation>Iniciar o processo de conversão das faixas selecionadas</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
-        <translation type="unfinished"/>
+        <extracomment>Main menu item shortcut</extracomment>
+        <translation>Ctrl+Shift+W</translation>
     </message>
 </context>
 <context>

@@ -72,7 +72,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon переведена на множество языков благодаря работе команды переводчиков на сайте &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;..</translation>
+        <translation>Flacon переведена на множество языков благодаря работе команды переводчиков на сайте &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -354,6 +354,7 @@
     </message>
     <message>
         <source>File name format:</source>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
         <translation>Имя файла:</translation>
     </message>
     <message>
@@ -1146,14 +1147,17 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Convert selected</source>
+        <extracomment>Main menu item</extracomment>
         <translation>Конвертировать выделенное</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
+        <extracomment>Main menu item tooltip</extracomment>
         <translation>Конвертировать выделенные треки</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
+        <extracomment>Main menu item shortcut</extracomment>
         <translation>Ctrl+Shift+W</translation>
     </message>
 </context>

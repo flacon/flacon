@@ -354,7 +354,8 @@
     </message>
     <message>
         <source>File name format:</source>
-        <translation type="unfinished"/>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <translation>תבנית שם קובץ:</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -1149,15 +1150,18 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Convert selected</source>
-        <translation type="unfinished"/>
+        <extracomment>Main menu item</extracomment>
+        <translation>המרת רצועות שנבחרו</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
-        <translation type="unfinished"/>
+        <extracomment>Main menu item tooltip</extracomment>
+        <translation>התחלת תהליך ההמרה של הרצועות שנבחרו</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
-        <translation type="unfinished"/>
+        <extracomment>Main menu item shortcut</extracomment>
+        <translation>Ctrl+Shift+W</translation>
     </message>
 </context>
 <context>
