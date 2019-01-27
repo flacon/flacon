@@ -1369,7 +1369,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>OK</source>
-        <translation>Valider</translation>
+        <translation>Validé</translation>
     </message>
     <message>
         <source>Extracting</source>
