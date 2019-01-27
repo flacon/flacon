@@ -29,9 +29,11 @@
 #include <QtCore/QSettings>
 #include <QtCore/QStringList>
 #include <QtCore/QTextCodec>
-#include <QtGui/QTextDocument>
 
-void fillLangguages(QMap<QString, QString> *languages)
+/************************************************
+ *
+ ************************************************/
+static void fillLangguages(QMap<QString, QString> *languages)
 {
     languages->insert("ach"   ,"Acoli");
     languages->insert("af"    ,"Afrikaans");
@@ -319,50 +321,69 @@ void fillLangguages(QMap<QString, QString> *languages)
 }
 
 
-QString getValue(const QSettings &src, const QString &key)
+
+/************************************************
+ *
+ ************************************************/
+static QString getValue(const QSettings &src, const QString &key)
 {
     QString ret = src.value(key).toString().trimmed();
-    if (ret == "-")
-        return "";
+    const char* garbage[] =
+    {
+        "-",
+        "--",
+        "N/A",
+        "None"
+    };
+
+    for (const auto &s: garbage)
+    {
+        if (ret == s)
+            return "";
+    }
 
     return ret;
 }
 
 
-
+/************************************************
+ *
+ ************************************************/
 TranslatorsInfo::TranslatorsInfo()
 {
-    //fillLangguages(&mLanguagesList);
-
     QSettings src(":/translatorsInfo", QSettings::IniFormat);
     src.setIniCodec("UTF-8");
 
     foreach(QString group, src.childGroups())
     {
+        QSet<QString> processed;
+
         QString lang = group.section("_", 1).remove(".info");
         src.beginGroup(group);
         int cnt = src.allKeys().count();
         for (int i=0; i<cnt; i++)
         {
+
             QString nameEnglish = getValue(src, QString("translator_%1_nameEnglish").arg(i));
             QString nameNative = getValue(src, QString("translator_%1_nameNative").arg(i));
             QString contact = getValue(src, QString("translator_%1_contact").arg(i));
 
             if (nameEnglish.startsWith(QString("Translator %1. ").arg(i)))
-                nameEnglish = "";
+                nameEnglish.clear();
 
             if (nameNative.startsWith(QString("Translator %1. ").arg(i)))
-                nameNative = "";
+                nameNative.clear();
 
             if (contact.startsWith(QString("Translator %1. ").arg(i)))
-                contact = "";
+                contact.clear();
 
             if (nameEnglish.isEmpty())
                 nameEnglish = nameNative;
 
-            if (!nameEnglish.isEmpty())
+            if (!nameEnglish.isEmpty() && !processed.contains(nameEnglish))
             {
                 process(lang, nameEnglish, nameNative, contact);
+                processed << nameEnglish;
             }
 
         }
@@ -371,11 +392,18 @@ TranslatorsInfo::TranslatorsInfo()
 
 }
 
+/************************************************
+ *
+ ************************************************/
 TranslatorsInfo::~TranslatorsInfo()
 {
     qDeleteAll(mItems);
 }
 
+
+/************************************************
+ *
+ ************************************************/
 QString TranslatorsInfo::asHtml() const
 {
     QString ret;
@@ -388,7 +416,9 @@ QString TranslatorsInfo::asHtml() const
 }
 
 
-
+/************************************************
+ *
+ ************************************************/
 void TranslatorsInfo::process(const QString &lang, const QString &englishName, const QString &nativeName, const QString &contact)
 {
     QString key = QString("%1:%2:%3").arg(englishName, nativeName, contact);
@@ -404,6 +434,9 @@ void TranslatorsInfo::process(const QString &lang, const QString &englishName, c
 }
 
 
+/************************************************
+ *
+ ************************************************/
 Translator::Translator(const QString &englishName, const QString &nativeName, const QString &contact)
 {
     mEnglishName = englishName;
@@ -430,6 +463,9 @@ Translator::Translator(const QString &englishName, const QString &nativeName, co
 }
 
 
+/************************************************
+ *
+ ************************************************/
 void Translator::addLanguage(QString langId)
 {
     static QMap<QString, QString> mLanguagesList;
@@ -445,6 +481,9 @@ void Translator::addLanguage(QString langId)
 }
 
 
+/************************************************
+ *
+ ************************************************/
 QString Translator::asHtml()
 {
     QString ret(mInfo);
