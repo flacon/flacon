@@ -200,8 +200,10 @@ DiskList Project::addCueFile(const QString &fileName, bool showErrors)
     catch (FlaconError &err)
     {
         emit layoutChanged();
+        qWarning() << err.what();
+
         if (showErrors)
-            Messages::error(err.message());
+            Messages::error(err.what());
     }
 
     return res;

@@ -191,7 +191,9 @@ void mustWrite(const char *buf, qint64 maxSize, QIODevice *outDevice)
         outDevice->waitForBytesWritten(10000);
         qint64 n = outDevice->write(buf + done, maxSize - done);
         if (n < 0)
-            throw QString("Can't write %1 bytes. %2").arg(maxSize - done).arg(outDevice->errorString());
+            throw FlaconError(QString("Can't write %1 bytes. %2")
+                    .arg(maxSize - done)
+                    .arg(outDevice->errorString()));
 
         done += n;
     }
@@ -230,10 +232,10 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         // Skip bytes from current to start of track ......
         qint64 len = bs - mPos;
         if (len < 0)
-            throw "Incorrect start time.";
+            throw FlaconError("Incorrect start time.");
 
         if (!mustSkip(input, len))
-            throw "Can't skip to start of track.";
+            throw FlaconError("Can't skip to start of track.");
 
         pos += len;
         // Skip bytes from current to start of track ......
@@ -241,7 +243,7 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         // Read bytes from start to end of track ..........
         len = be - bs;
         if (len < 0)
-            throw "Incorrect start or end time.";
+            throw FlaconError("Incorrect start or end time.");
 
         pos += len;
         qint64 remains = len;
@@ -255,7 +257,7 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
             qint64 n = qMin(qint64(MAX_BUF_SIZE), remains);
             n = input->read(buf, n);
             if (n<0)
-                throw QString("Can't read %1 bytes").arg(remains);
+                throw FlaconError(QString("Can't read %1 bytes").arg(remains));
 
             remains -= n;
 
@@ -285,19 +287,7 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
     }
     catch(FlaconError &err)
     {
-        mErrorString = "[Decoder] " + err.message();
-        return false;
-    }
-
-    catch (QString &err)
-    {
-        mErrorString = "[Decoder] " + QString(err);
-        return false;
-    }
-
-    catch (char const *err)
-    {
-        mErrorString = "[Decoder] " + QString(err);
+        mErrorString = QString("[Decoder] %1").arg(err.what());
         return false;
     }
 }

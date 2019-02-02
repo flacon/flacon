@@ -73,27 +73,13 @@ typedef quint16 TrackNum;
 unsigned int levenshteinDistance(const QString &s1, const QString & s2);
 QIcon loadIcon(const QString &iconName, bool loadDisable = true);
 
-class FlaconError: public std::exception
+
+class FlaconError: public std::runtime_error
 {
 public:
-    explicit FlaconError(const QString &msg):
-        std::exception(),
-        mMsg(msg)
-    {
-    }
-
-    const char* what() const noexcept
-    {
-        return mMsg.toLocal8Bit().constData();
-    }
-
-    QString message()  const noexcept
-    {
-        return mMsg;
-    }
-
-protected:
-    QString mMsg;
+    explicit FlaconError(const char *msg): std::runtime_error(msg){}
+    explicit FlaconError(const std::string &msg): std::runtime_error(msg){}
+    explicit FlaconError(const QString &msg): std::runtime_error(msg.toStdString()){}
 };
 
 

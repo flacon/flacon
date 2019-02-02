@@ -377,7 +377,7 @@ void MainWindow::setCueForDisc(Disk *disk)
     }
     catch (FlaconError &err)
     {
-        Messages::error(err.message());
+        Messages::error(err.what());
     }
 }
 

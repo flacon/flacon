@@ -143,7 +143,7 @@ void TestFlacon::testCueReader()
     }
     catch (FlaconError &err)
     {
-        FAIL(err.message());
+        FAIL(err.what());
     }
 }
 
