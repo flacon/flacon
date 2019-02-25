@@ -94,6 +94,8 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 {
     setupUi(this);
 
+    this->setMinimumSize(this->size());
+
     int width = settings->value(Settings::ConfigureDialog_Width).toInt();
     int height = settings->value(Settings::ConfigureDialog_Height).toInt();
     resize(width, height);
