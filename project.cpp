@@ -146,7 +146,7 @@ bool Project::diskExists(const QString &cueUri)
 /************************************************
 
  ************************************************/
-Disk *Project::addAudioFile(const QString &fileName, bool showErrors)
+Disk *Project::addAudioFile(const QString &fileName)
 {
 
     QString canonicalFileName = QFileInfo(fileName).canonicalFilePath();
@@ -160,10 +160,7 @@ Disk *Project::addAudioFile(const QString &fileName, bool showErrors)
     InputAudioFile audio(QFileInfo(fileName).absoluteFilePath());
     if (!audio.isValid())
     {
-        if (showErrors)
-            Messages::error(audio.errorString());
-
-        return 0;
+        throw FlaconError(audio.errorString());
     }
 
     Disk *disk = new Disk();
@@ -178,7 +175,7 @@ Disk *Project::addAudioFile(const QString &fileName, bool showErrors)
 /************************************************
 
  ************************************************/
-DiskList Project::addCueFile(const QString &fileName, bool showErrors)
+DiskList Project::addCueFile(const QString &fileName)
 {
     DiskList res;
     try
@@ -201,9 +198,7 @@ DiskList Project::addCueFile(const QString &fileName, bool showErrors)
     {
         emit layoutChanged();
         qWarning() << err.what();
-
-        if (showErrors)
-            Messages::error(err.what());
+        throw err;
     }
 
     return res;

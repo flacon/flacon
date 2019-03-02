@@ -94,8 +94,14 @@ void Scanner::start(const QString &startDir)
             qApp->processEvents();
             if (mAbort)
                 return;
-
-            project->addAudioFile(f.absoluteFilePath(), false);
+            try
+            {
+                project->addAudioFile(f.absoluteFilePath());
+            }
+            catch (FlaconError)
+            {
+                // Silently skip corrupted files
+            }
         }
     }
 }

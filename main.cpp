@@ -163,18 +163,25 @@ int runConsole(int argc, char *argv[], const QStringList &files)
     foreach(QString file, files)
     {
         QFileInfo fi = QFileInfo(file);
-        if (fi.isDir())
+        try
         {
-            Scanner scanner;
-            scanner.start(fi.absoluteFilePath());
+            if (fi.isDir())
+            {
+                Scanner scanner;
+                scanner.start(fi.absoluteFilePath());
+            }
+            else if (fi.size() > 102400)
+            {
+                project->addAudioFile(file);
+            }
+            else
+            {
+                project->addCueFile(file);
+            }
         }
-        else if (fi.size() > 102400)
+        catch (FlaconError)
         {
-            project->addAudioFile(file, false);
-        }
-        else
-        {
-            project->addCueFile(file, false);
+            // Silently skip corrupted files
         }
     }
 

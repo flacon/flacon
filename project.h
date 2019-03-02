@@ -58,8 +58,8 @@ public:
 
 public slots:
     void clear();
-    Disk *addAudioFile(const QString &fileName, bool showErrors);
-    DiskList addCueFile(const QString &fileName, bool showErrors);
+    Disk *addAudioFile(const QString &fileName);
+    DiskList addCueFile(const QString &fileName);
 
 signals:
     void diskChanged(Disk *disk) const;

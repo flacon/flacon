@@ -879,22 +879,31 @@ void MainWindow::addFileOrDir(const QString &fileName)
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
     QFileInfo fi = QFileInfo(fileName);
-    if (fi.isDir())
+
+    try
     {
-        mScanner = new Scanner;
-        setControlsEnable();
-        mScanner->start(fi.absoluteFilePath());
-        delete mScanner;
-        mScanner = 0;
-        setControlsEnable();
+        if (fi.isDir())
+        {
+            mScanner = new Scanner;
+            setControlsEnable();
+            mScanner->start(fi.absoluteFilePath());
+            delete mScanner;
+            mScanner = 0;
+            setControlsEnable();
+        }
+        else if (fi.size() > 102400)
+        {
+            addedDisks << project->addAudioFile(fileName);
+        }
+        else
+        {
+            addedDisks << project->addCueFile(fileName);
+        }
     }
-    else if (fi.size() > 102400)
+    catch (FlaconError &err)
     {
-        addedDisks << project->addAudioFile(fileName, true);
-    }
-    else
-    {
-        addedDisks << project->addCueFile(fileName, true);
+        QApplication::restoreOverrideCursor();
+        showErrorMessage(err.what());
     }
     QApplication::restoreOverrideCursor();
 
