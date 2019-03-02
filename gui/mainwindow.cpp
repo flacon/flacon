@@ -1201,12 +1201,29 @@ void MainWindow::showErrorMessage(const QString &message)
     QString msg = message;
     msg.replace("\n", "<br>");
 
-    QMessageBox *box = new QMessageBox(this);
-    box->setIcon(QMessageBox::Critical);
-    box->setWindowTitle(QObject::tr("Flacon", "Error"));
-    box->setText("<html>" + msg + "</html>");
+    const QString name = "errorMessage";
+    QMessageBox *box = this->findChild<QMessageBox *>(name);
+    if (!box)
+    {
+        box = new QMessageBox(this);
+        box->setObjectName(name);
+        box->setIcon(QMessageBox::Critical);
+        box->setWindowTitle(QObject::tr("Flacon", "Error"));
+        box->setTextFormat(Qt::RichText);
+    }
+
+    QString prev = box->text();
+    if (!prev.isEmpty())
+    {
+        prev.remove("<ul>");
+        prev.remove("</ul>");
+    }
+
+
+    box->setText("<ul>" + prev + "<li>" + msg + "</li>" + "</ul>");
+    qDebug() << box->text();
+
     box->setStandardButtons(QMessageBox::Ok);
     box->setAttribute(Qt::WA_DeleteOnClose, true);
-
     box->show();
 }
