@@ -6,15 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>635</width>
-    <height>827</height>
+    <width>674</width>
+    <height>638</height>
    </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Preferences</string>
@@ -333,8 +327,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>100</width>
-              <height>30</height>
+              <width>599</width>
+              <height>451</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_12">
