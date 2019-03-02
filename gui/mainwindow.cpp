@@ -40,6 +40,7 @@
 #include "internet/dataprovider.h"
 #include "gui/trackviewmodel.h"
 #include "gui/tageditor/tageditor.h"
+#include "controls.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -1218,5 +1219,5 @@ void MainWindow::showErrorMessage(const QString &message)
     }
 
     box->addMessage(message);
-    box->show();
+    box->open();
 }
