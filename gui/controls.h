@@ -34,6 +34,7 @@
 #include <QPlainTextEdit>
 #include <QSet>
 #include <QMenu>
+#include <QMessageBox>
 #include "tags.h"
 
 class QStringListModel;
@@ -311,6 +312,25 @@ class OutDirComboBox : public HistoryComboBox
     Q_OBJECT
 public:
     explicit OutDirComboBox(QWidget *parent = 0);
+};
+
+
+
+/************************************************
+ *
+ ************************************************/
+class ErrorBox: public QMessageBox
+{
+    Q_OBJECT
+public:
+    explicit ErrorBox(QWidget *parent = 0);
+
+    QStringList messages() const { return mMessgaes; }
+    void setMessages(const QStringList &messages);
+    void addMessage( const QString &message);
+
+private:
+    QStringList mMessgaes;
 };
 
 #endif // CONTROLS_H

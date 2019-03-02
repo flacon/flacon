@@ -1198,32 +1198,16 @@ QIcon MainWindow::loadMainIcon()
  ************************************************/
 void MainWindow::showErrorMessage(const QString &message)
 {
-    QString msg = message;
-    msg.replace("\n", "<br>");
-
     const QString name = "errorMessage";
-    QMessageBox *box = this->findChild<QMessageBox *>(name);
+    ErrorBox *box = this->findChild<ErrorBox *>(name);
     if (!box)
     {
-        box = new QMessageBox(this);
+        box = new ErrorBox(this);
         box->setObjectName(name);
-        box->setIcon(QMessageBox::Critical);
         box->setWindowTitle(QObject::tr("Flacon", "Error"));
-        box->setTextFormat(Qt::RichText);
+        box->setAttribute(Qt::WA_DeleteOnClose, true);
     }
 
-    QString prev = box->text();
-    if (!prev.isEmpty())
-    {
-        prev.remove("<ul>");
-        prev.remove("</ul>");
-    }
-
-
-    box->setText("<ul>" + prev + "<li>" + msg + "</li>" + "</ul>");
-    qDebug() << box->text();
-
-    box->setStandardButtons(QMessageBox::Ok);
-    box->setAttribute(Qt::WA_DeleteOnClose, true);
+    box->addMessage(message);
     box->show();
 }

@@ -633,3 +633,49 @@ TagTextEdit::TagTextEdit(QWidget *parent):
 {
 
 }
+
+
+/************************************************
+ *
+ ************************************************/
+ErrorBox::ErrorBox(QWidget *parent):
+    QMessageBox(parent)
+{
+    setIcon(QMessageBox::Critical);
+    setTextFormat(Qt::RichText);
+    setStandardButtons(QMessageBox::Ok);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ErrorBox::setMessages(const QStringList &messages)
+{
+    mMessgaes = messages;
+    if (mMessgaes.count() == 1)
+    {
+        setText(mMessgaes.first());
+        return;
+    }
+
+    QString txt;
+    foreach (QString s, mMessgaes)
+    {
+        s.replace("\n", "<p>");
+        txt += QString("<li>%1</li>").arg(s);
+    }
+
+    setText("<ul>" + txt + "</ul>");
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ErrorBox::addMessage(const QString &message)
+{
+    QStringList msgs = mMessgaes;
+    msgs << message;
+    this->setMessages(msgs);
+}
