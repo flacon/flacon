@@ -25,6 +25,7 @@
 
 
 #include "wavheader.h"
+#include "types.h"
 
 #include <QByteArray>
 #include <QtEndian>
@@ -120,7 +121,7 @@ quint32 readUInt32(QIODevice *stream)
 {
     quint32 n;
     if (stream->read((char*)&n, 4) != 4)
-        throw "Unexpected end of file";
+        throw FlaconError("Unexpected end of file");
     return qFromLittleEndian(n);
 }
 
@@ -132,7 +133,7 @@ quint16 readUInt16(QIODevice *stream)
 {
     quint16 n;
     if (stream->read((char*)&n, 2) != 2)
-        throw "Unexpected end of file";
+        throw FlaconError("Unexpected end of file");
     return qFromLittleEndian(n);
 }
 
@@ -291,12 +292,12 @@ void WavHeader::load(QIODevice *stream)
     char tag[5] = { '\0' };
     // look for "RIFF" in header
     if (!readTag(stream, tag) || strcmp(tag, WAV_RIFF) != 0)
-        throw "WAVE header is missing RIFF tag while processing file";
+        throw FlaconError("WAVE header is missing RIFF tag while processing file");
 
     this->mFileSize = readUInt32(stream) + 8;
 
     if (!readTag(stream, tag) || strcmp(tag, WAV_WAVE) != 0)
-        throw "WAVE header is missing WAVE tag while processing file";
+        throw FlaconError("WAVE header is missing WAVE tag while processing file");
 
 
     char    chunkID[5];
@@ -304,7 +305,7 @@ void WavHeader::load(QIODevice *stream)
     while (!stream->atEnd())
     {
         if (!readTag(stream, chunkID))
-            throw "[WAV] can't read chunk ID";
+            throw FlaconError("[WAV] can't read chunk ID");
 
         quint32 chunkSize = readUInt32(stream);
         pos+=8;
@@ -314,7 +315,7 @@ void WavHeader::load(QIODevice *stream)
         {
             pos+=chunkSize;
             if (chunkSize < 16)
-                throw "fmt chunk in WAVE header was too short";
+                throw FlaconError("fmt chunk in WAVE header was too short");
 
             this->mFormat        = static_cast<Format>(readUInt16(stream));
             this->mNumChannels   = readUInt16(stream);
@@ -342,7 +343,7 @@ void WavHeader::load(QIODevice *stream)
         }
     }
 
-    throw "data chunk not found";
+    throw FlaconError("data chunk not found");
 }
 
 

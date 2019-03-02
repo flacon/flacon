@@ -123,7 +123,11 @@ void TestFlacon::initTestCase()
 
 }
 
-QString safePath(const QString &path)
+
+/************************************************
+ *
+ ************************************************/
+static QString safePath(const QString &path)
 {
     QString res = path;
     res = res.replace(' ', '_');
@@ -134,6 +138,10 @@ QString safePath(const QString &path)
 }
 
 
+
+/************************************************
+ *
+ ************************************************/
 QString TestFlacon::dir(const QString &subTest)
 {
     QString test    = QString::fromLocal8Bit(QTest::currentTestFunction());
@@ -148,6 +156,9 @@ QString TestFlacon::dir(const QString &subTest)
 }
 
 
+/************************************************
+ *
+ ************************************************/
 void TestFlacon::init()
 {
     static QString prevTestFunction;

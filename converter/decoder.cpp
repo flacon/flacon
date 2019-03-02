@@ -82,17 +82,14 @@ Decoder::~Decoder()
 /************************************************
  *
  ************************************************/
-bool Decoder::open(const QString fileName)
+void Decoder::open(const QString fileName)
 {
     mInputFile = fileName;
     if (!mFormat)
         mFormat = AudioFormat::formatForFile(fileName);
 
     if (!mFormat)
-    {
-        mErrorString = "Unknown format";
-        return false;
-    }
+        throw FlaconError("Unknown format");
 
     if (!mFormat->decoderProgramName().isEmpty())
         return openProcess();
@@ -104,63 +101,38 @@ bool Decoder::open(const QString fileName)
 /************************************************
  *
  ************************************************/
-bool Decoder::openFile()
+void Decoder::openFile()
 {
     mFile = new QFile(mInputFile, this);
     if (!mFile->open(QFile::ReadOnly))
-    {
-         mErrorString = mFile->errorString();
-        return false;
-    }
+        throw FlaconError(mFile->errorString());
 
-    try
-    {
-        mWavHeader.load(mFile);
-        mPos = mWavHeader.dataStartPos();
-        return true;
-    }
-    catch (char const *err)
-    {
-        mErrorString = err;
-        return false;
-    }
+    mWavHeader.load(mFile);
+    mPos = mWavHeader.dataStartPos();
 }
 
 
 /************************************************
  *
  ************************************************/
-bool Decoder::openProcess()
+void Decoder::openProcess()
 {
     mProcess = new QProcess(this);
 
     QString program = settings->programName(mFormat->decoderProgramName());
     mProcess->setReadChannel(QProcess::StandardOutput);
-    connect(mProcess, SIGNAL(readyReadStandardError()),
-            this, SLOT(readStandardError()));
 
 
     mProcess->start(QDir::toNativeSeparators(program), mFormat->decoderArgs(mInputFile));
     bool res = mProcess->waitForStarted();
     if(!res)
-    {
-        mErrorString = QString("[Decoder] Can't start '%1': %2").arg(program, mProcess->errorString());
-        return false;
-    }
+        throw FlaconError(QString("[Decoder] Can't start '%1': %2")
+                          .arg(program, mProcess->errorString()));
 
-
-    try
-    {
-        mWavHeader.load(mProcess);
-        mPos = mWavHeader.dataStartPos();
-        return true;
-    }
-    catch (char const *err)
-    {
-        mErrorString = err;
-        return false;
-    }
+    mWavHeader.load(mProcess);
+    mPos = mWavHeader.dataStartPos();
 }
+
 
 /************************************************
  *
@@ -177,7 +149,6 @@ void Decoder::close()
         mProcess->close();
     }
 }
-
 
 
 /************************************************
@@ -203,7 +174,7 @@ void mustWrite(const char *buf, qint64 maxSize, QIODevice *outDevice)
 /************************************************
  *
  ************************************************/
-bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDevice)
+void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDevice)
 {
     try
     {
@@ -214,8 +185,6 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
             input = mProcess;
         else
             input = mFile;
-
-        mErrorString = "";
 
         quint64 bs = timeToBytes(start, mWavHeader) + mWavHeader.dataStartPos();
         quint64 be = 0;
@@ -283,50 +252,27 @@ bool Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         }
         // Read bytes from start to end of track ..........
         mPos= pos;
-        return true;
     }
     catch(FlaconError &err)
     {
-        mErrorString = QString("[Decoder] %1").arg(err.what());
-        return false;
+        close();
+        throw err;
     }
 }
+
 
 /************************************************
  *
  ************************************************/
-bool Decoder::extract(const CueTime &start, const CueTime &end, const QString &outFileName)
+void Decoder::extract(const CueTime &start, const CueTime &end, const QString &outFileName)
 {
     QFile file(outFileName);
     if (! file.open(QFile::WriteOnly | QFile::Truncate))
-    {
-        mErrorString = file.errorString();
-        return false;
-    }
+        throw FlaconError(tr("I can't write file <b>%1</b>:<br>%2",
+                             "Error string, %1 is a filename, %2 error message")
+                          .arg(file.fileName())
+                          .arg(file.errorString()));
 
-    bool res = extract(start, end, &file);
+    extract(start, end, &file);
     file.close();
-
-    return res;
-}
-
-
-/************************************************
- *
- ************************************************/
-void Decoder::readStandardError()
-{
-    mErrBuff += mProcess->readAllStandardError();
-
-    QList<QByteArray> lines = mErrBuff.split('\n');
-    int e = (mErrBuff.endsWith('\n')) ? lines.length() : lines.length() - 1;
-    for (int i=0 ; i < e; ++i)
-    {
-        QString s = mFormat->filterDecoderStderr(lines[i]);
-        if (!s.isEmpty())
-            qWarning("[Decoder] %s", s.toLocal8Bit().data());
-    }
-
-    if (!mErrBuff.endsWith('\n'))
-        mErrBuff = lines.last();
 }

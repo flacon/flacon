@@ -44,16 +44,14 @@ public:
     explicit Decoder(QObject *parent = 0);
     virtual ~Decoder();
 
-    bool open(const QString fileName);
+    void open(const QString fileName);
     void close();
 
-    bool extract(const CueTime &start, const CueTime &end, QIODevice *outDevice);
-    bool extract(const CueTime &start, const CueTime &end, const QString &outFileName);
+    void extract(const CueTime &start, const CueTime &end, QIODevice *outDevice);
+    void extract(const CueTime &start, const CueTime &end, const QString &outFileName);
 
     // Duration of audio in milliseconds.
     uint duration() const { return mWavHeader.duration(); }
-
-    QString errorString() const { return mErrorString; }
 
     WavHeader wavHeader() const { return mWavHeader; }
 
@@ -61,21 +59,16 @@ public:
 signals:
     void progress(int percent);
 
-private slots:
-    void readStandardError();
-
 private:
     const AudioFormat *mFormat;
     QProcess  *mProcess;
     QString    mInputFile;
     QFile     *mFile;
     WavHeader  mWavHeader;
-    QString    mErrorString;
     quint64    mPos;
-    QByteArray mErrBuff;
 
-    bool openFile();
-    bool openProcess();
+    void openFile();
+    void openProcess();
 };
 
 

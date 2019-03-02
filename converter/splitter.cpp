@@ -53,13 +53,17 @@ void Splitter::run()
     mCurrentTrack = nullptr;
     Decoder decoder;
 
-    if (!decoder.open(mJob.disk->audioFileName()))
+    try
+    {
+        decoder.open(mJob.disk->audioFileName());
+    }
+    catch (FlaconError &err)
     {
         error(mJob.tracks.first(),
               tr("I can't read <b>%1</b>:<br>%2",
                  "Splitter error. %1 is a file name, %2 is a system error text.")
               .arg(mJob.disk->audioFileName())
-              .arg(decoder.errorString()));
+              .arg(err.what()));
         return;
     }
 
@@ -76,11 +80,11 @@ void Splitter::run()
         {
             decoder.extract(start, end, outFileName);
         }
-        catch (QString &err)
+        catch (FlaconError &err)
         {
-            qWarning() << "Splitter error for pregap track : " <<  decoder.errorString();
+            qWarning() << "Splitter error for pregap track : " <<  err.what();
             deleteFile(outFileName);
-            error(mCurrentTrack, decoder.errorString());
+            error(mCurrentTrack, err.what());
             return;
         }
 
@@ -111,15 +115,16 @@ void Splitter::run()
         if (i<mJob.disk->count()-1)
             end = mJob.disk->track(i+1)->cueIndex(01);
 
-        bool ret = decoder.extract(start, end, outFileName);
-
-
-        if (!ret)
+        try
         {
-            qWarning() << "Splitter error for track " << mCurrentTrack->trackNum() << ": " <<  decoder.errorString();
+            decoder.extract(start, end, outFileName);
+        }
+        catch (FlaconError &err)
+        {
+            qWarning() << "Splitter error for track " << mCurrentTrack->trackNum() << ": " <<  err.what();
             deleteFile(outFileName);
-            error(mCurrentTrack, decoder.errorString());
-            return;
+            error(mCurrentTrack, err.what());
+
         }
 
         emit trackReady(mCurrentTrack, outFileName);

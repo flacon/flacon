@@ -59,8 +59,14 @@ void TestFlacon::testDecoder()
 
     // Flacon decoder ___________________________
     Decoder decoder;
-    if (!decoder.open(inputFile))
-        QFAIL(QString("Can't open input file '%1': %2").arg(inputFile, decoder.errorString()).toLocal8Bit());
+    try
+    {
+        decoder.open(inputFile);
+    }
+    catch (FlaconError &err)
+    {
+        QFAIL(QString("Can't open input file '%1': %2").arg(inputFile, err.what()).toLocal8Bit());
+    }
 
     if (!decoder.audioFormat())
         QFAIL("Unknown format");
@@ -72,16 +78,17 @@ void TestFlacon::testDecoder()
 
         QString flaconFile = QString("%1/%2-flacon.wav").arg(dir()).arg(i + 1, 3, 10, QChar('0'));
 
-        bool res = decoder.extract(
-                    CueTime(track.start),
-                    CueTime(track.end),
-                    flaconFile);
-
-        if (!res)
+        try
+        {
+            decoder.extract(CueTime(track.start), CueTime(track.end), flaconFile);
+        }
+        catch (FlaconError &err)
+        {
             QFAIL(QString("Can't extract file '%1' [%2-%3]: %4")
                   .arg(inputFile)
                   .arg(track.start, track.end)
-                  .arg(decoder.errorString()).toLocal8Bit());
+                  .arg(err.what()).toLocal8Bit());
+        }
     }
     decoder.close();
 

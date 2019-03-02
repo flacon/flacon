@@ -46,9 +46,13 @@
 QString calcAudioHash(const QString &fileName)
 {
     Decoder decoder;
-    if (!decoder.open(fileName))
+    try
     {
-        FAIL(QString("Can't open input file '%1': %2").arg(fileName, decoder.errorString()).toLocal8Bit());
+        decoder.open(fileName);
+    }
+    catch (FlaconError &err)
+    {
+        FAIL(QString("Can't open input file '%1': %2").arg(fileName, err.what()).toLocal8Bit());
         return "";
     }
 
@@ -61,16 +65,15 @@ QString calcAudioHash(const QString &fileName)
 
     QBuffer buf;
     buf.open(QBuffer::ReadWrite);
-    bool res = decoder.extract(
-                CueTime(),
-                CueTime(),
-                &buf);
-    if (!res)
+    try
+    {
+        decoder.extract(CueTime(), CueTime(), &buf);
+    }
+    catch (FlaconError &err)
     {
         FAIL(QString("Can't extract file '%1': %2")
              .arg(fileName)
-             .arg(decoder.errorString()).toLocal8Bit());
-        decoder.close();
+             .arg(err.what()).toLocal8Bit());
         return "";
     }
 

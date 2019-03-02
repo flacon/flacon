@@ -101,21 +101,26 @@ bool InputAudioFile::load()
     }
 
 
-    Decoder dec;
-    if (!dec.open(mFileName))
+    try
+    {
+        Decoder dec;
+        dec.open(mFileName);
+        mFormat = dec.audioFormat();
+
+        mSampleRate    = dec.wavHeader().sampleRate();
+        mBitsPerSample = dec.wavHeader().bitsPerSample();
+        mCdQuality     = dec.wavHeader().isCdQuality();
+        mDuration      = dec.duration();
+        return true;
+    }
+    catch (FlaconError &err)
     {
         mErrorString = QObject::tr("File <b>%1</b> is not a supported audio file. <br>"
-                                   "<br>Verify that all required programs are installed and in your preferences.").arg(mFileName);
-        mErrorString += ": " + dec.errorString();
+                                   "<br>Verify that all required programs are installed and in your preferences.")
+                                   .arg(mFileName);
+        mErrorString += ": ";
+        mErrorString += err.what();
         return false;
     }
-    mFormat = dec.audioFormat();
-
-    mSampleRate    = dec.wavHeader().sampleRate();
-    mBitsPerSample = dec.wavHeader().bitsPerSample();
-    mCdQuality     = dec.wavHeader().isCdQuality();
-    mDuration      = dec.duration();
-
-    return true;
 }
 
