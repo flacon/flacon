@@ -20,3 +20,4 @@ CMakeLists.txt.user*
 *.kate-swp
 *.pro.user
 *.pro.user.*
+PVS.tasks
