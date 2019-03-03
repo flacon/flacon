@@ -104,7 +104,7 @@ public:
     explicit TrackViewSelectionModel(QAbstractItemModel *model, QObject *parent);
 
 public slots:
-    virtual void select(const QItemSelection &selection, QItemSelectionModel::SelectionFlags command);
+    virtual void select(const QItemSelection &selection, const SelectionFlags &command);
 };
 
 #endif // TRACKVIEW_H

@@ -526,7 +526,7 @@ QString Disk::codecName() const
 /************************************************
 
  ************************************************/
-void Disk::setCodecName(const QString codecName)
+void Disk::setCodecName(const QString &codecName)
 {
 
     QString codec = codecName;

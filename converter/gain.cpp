@@ -35,7 +35,7 @@
 /************************************************
  *
  ************************************************/
-Gain::Gain(const WorkerRequest request, const OutFormat *format, QObject *parent):
+Gain::Gain(const WorkerRequest &request, const OutFormat *format, QObject *parent):
     Worker(parent),
     mFormat(format)
 {

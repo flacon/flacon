@@ -51,13 +51,13 @@ public:
 private:
 
     QString mFileName;
-    bool mValid;
     QString mErrorString;
+    const AudioFormat *mFormat;
     int mSampleRate;
     int mBitsPerSample;
-    bool mCdQuality;
     uint mDuration;
-    const AudioFormat *mFormat;
+    bool mValid;
+    bool mCdQuality;
 
     bool load();
 };

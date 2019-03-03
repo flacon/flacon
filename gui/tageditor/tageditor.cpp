@@ -41,7 +41,7 @@
  *
  ************************************************/
 template <class Control>
-void initControlValue(const QList<Track*> &tracks, const QList<Control*> controls)
+static void initControlValue(const QList<Track*> &tracks, const QList<Control*> &controls)
 {
     foreach (auto *control, controls)
     {
@@ -59,7 +59,7 @@ void initControlValue(const QList<Track*> &tracks, const QList<Control*> control
 /************************************************
  *
  ************************************************/
-void initControlValue(const QList<Track*> &tracks, const QList<TagSpinBox*> controls)
+static void initControlValue(const QList<Track*> &tracks, const QList<TagSpinBox*> &controls)
 {
     foreach (auto *control, controls)
     {
@@ -136,7 +136,7 @@ TagEditor::~TagEditor()
  *
  ************************************************/
 template <class Control>
-void setValue(const QList<Track*> &tracks, const QList<Control*> controls)
+static void setValue(const QList<Track*> &tracks, const QList<Control*> &controls)
 {
     foreach (Control *edit, controls)
     {
@@ -154,7 +154,7 @@ void setValue(const QList<Track*> &tracks, const QList<Control*> controls)
 /************************************************
  *
  ************************************************/
-void setValue(const QList<Track*> &tracks, const QList<TagSpinBox*> controls)
+static void setValue(const QList<Track*> &tracks, const QList<TagSpinBox*> &controls)
 {
     foreach (TagSpinBox *edit, controls)
     {

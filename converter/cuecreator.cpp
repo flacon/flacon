@@ -62,7 +62,7 @@ CueCreator::CueCreator(const Disk *disk, PreGapType preGapType):
 /************************************************
 
  ************************************************/
-void CueCreator::setTextCodecName(const QString codecName)
+void CueCreator::setTextCodecName(const QString &codecName)
 {
     mTextCodec = QTextCodec::codecForName(codecName.toLatin1());
     if (!mTextCodec)
@@ -107,7 +107,7 @@ void CueCreator::initGlobalTags()
         {
             if (mDisk->track(i)->tag(tagId) != value)
             {
-                value = "";
+                value.clear();
                 break;
             }
         }

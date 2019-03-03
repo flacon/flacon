@@ -93,7 +93,8 @@ public:
         needStartSplitter(true),
         interrupted(false),
         preGapType(PreGapType::Skip),
-        extractPregap(false)
+        extractPregap(false),
+        trackCount(0)
     {
     }
 

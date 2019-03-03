@@ -123,7 +123,7 @@ CoverMode strToCoverMode(const QString &str)
  ************************************************/
 unsigned int levenshteinDistance(const QString &s1, const QString & s2)
 {
-    const size_t len1 = s1.size(), len2 = s2.size();
+    const unsigned int len1 = s1.size(), len2 = s2.size();
     QVector<unsigned int> col(len2+1), prevCol(len2+1);
 
     for (int i = 0; i < prevCol.size(); i++)

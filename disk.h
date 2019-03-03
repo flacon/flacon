@@ -63,7 +63,7 @@ public:
     void setStartTrackNum(int value);
 
     QString codecName() const;
-    void setCodecName(const QString codecName);
+    void setCodecName(const QString &codecName);
 
     QString tagSetTitle() const;
     QString tagsUri() const;

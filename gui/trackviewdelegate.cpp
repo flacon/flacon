@@ -471,7 +471,7 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
 /************************************************
 
  ************************************************/
-QRect TrackViewDelegate::drawLabel(const QString &text, QRect rect, QPainter *painter) const
+QRect TrackViewDelegate::drawLabel(const QString &text, const QRect &rect, QPainter *painter) const
 {
     QRect res;
     painter->save();
@@ -485,7 +485,7 @@ QRect TrackViewDelegate::drawLabel(const QString &text, QRect rect, QPainter *pa
 /************************************************
 
  ************************************************/
-QRect TrackViewDelegate::drawFile(const QString &text, QRect rect, QPainter *painter) const
+QRect TrackViewDelegate::drawFile(const QString &text, const QRect &rect, QPainter *painter) const
 {
     QRect res;
     if (!text.isEmpty())

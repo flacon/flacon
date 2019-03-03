@@ -45,7 +45,7 @@ public:
     QString errorString() const { return mErrorString; }
 
     QTextCodec *textCodec() const { return mTextCodec; }
-    void setTextCodecName(const QString codecName);
+    void setTextCodecName(const QString &codecName);
     void setTextCodecMib(int mib);
 
 private:
