@@ -29,7 +29,7 @@ FILE "Performer Arts - Title.wav" WAVE
     TITLE "Song"
     PERFORMER "Performer Arts"
     INDEX 00 14:57:17
-    INDEX 01 14:57:78
+    INDEX 01 14:57:18
   TRACK 06 AUDIO
     TITLE "Song"
     PERFORMER "Performer Arts"
