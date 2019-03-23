@@ -234,13 +234,13 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
 {
 
     if (!(index.row() % 2))
-        painter->fillRect(option.rect, QColor(245, 245, 245));
+        painter->fillRect(option.rect, QColor(128, 128, 128, 20));
 
     QStyledItemDelegate::paint(painter, option, index);
     if (index.column() != TrackView::ColumnPercent)
         return;
 
-    const QPixmap *icon = 0;
+    const QPixmap *icon = nullptr;
     QString txt;
     int progress = index.data(TrackViewModel::RolePercent).toInt();
     bool showProgress = false;
