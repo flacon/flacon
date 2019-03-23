@@ -673,6 +673,14 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
+    <name>Decoder</name>
+    <message>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
@@ -684,17 +692,17 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation type="unfinished"/>
+        <translation>Az audiofájl rövidebb, mint ami a CUE laptól elvárt.</translation>
     </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Ezáltal a formátum által maximum %1-bit/mintavétel támogatott.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Ezáltal a formátum által maximum %1-bit/mintavétel támogatott. Ez az érték lesz használva a kódoláshoz.</translation>
     </message>
 </context>
 <context>
@@ -1049,21 +1057,21 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     <message>
         <source>Standard music location</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Szabványos zenei hely</translation>
     </message>
     <message>
         <source>Desktop</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Asztal</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>A CUE-fájlal azonos könyvtár</translation>
     </message>
     <message>
         <source>Remove current directory from history</source>
-        <translation type="unfinished"/>
+        <translation>A jelenlegi könyvtár eltávolítása az előzményekből</translation>
     </message>
     <message>
         <source>Get data from CDDB</source>
@@ -1073,7 +1081,7 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>CUE-fájl kiválasztása</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -1105,12 +1113,12 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     <message>
         <source>Select another audio file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Másik audiofájl kiválasztása...</translation>
     </message>
     <message>
         <source>Select another CUE file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Másik cue-fájl kiválasztása...</translation>
     </message>
     <message>
         <source>Album performer:</source>
@@ -1119,7 +1127,7 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>A kiválasztott konvertálása</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
@@ -1324,7 +1332,7 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     </message>
     <message>
         <source>Select another CUE file…</source>
-        <translation type="unfinished"/>
+        <translation>Másik cue-fájl kiválasztása...</translation>
     </message>
 </context>
 <context>

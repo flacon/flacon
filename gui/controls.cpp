@@ -183,7 +183,7 @@ MultiValuesSpinBox::MultiValuesSpinBox(QWidget *parent):
 /************************************************
  *
  ************************************************/
-static MultiValuesState getTagEditState(const QSet<QString> values)
+static MultiValuesState getTagEditState(const QSet<QString> &values)
 {
     switch (values.count())
     {
@@ -197,7 +197,7 @@ static MultiValuesState getTagEditState(const QSet<QString> values)
 /************************************************
  *
  ************************************************/
-static QString getTagEditText(const QSet<QString> values)
+static QString getTagEditText(const QSet<QString> &values)
 {
     switch (values.count())
     {
@@ -211,7 +211,7 @@ static QString getTagEditText(const QSet<QString> values)
 /************************************************
  *
  ************************************************/
-static QString getTagEditPlaceHolder(const QSet<QString> values)
+static QString getTagEditPlaceHolder(const QSet<QString> &values)
 {
     switch (values.count())
     {

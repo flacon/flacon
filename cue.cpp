@@ -269,9 +269,12 @@ void CueData::parseLine(const QByteArray &line, CueTagId &tag, QByteArray &value
     QByteArray l = line.trimmed();
 
     if (l.isEmpty())
+    {
         tag = CTAG_EMPTY;
+        return;
+    }
 
-
+    tag   = CueTagId::CTAG_UNKNOWN;
     QByteArray tagStr = leftPart(l, ' ').toUpper();
     value = rightPart(l, ' ').trimmed();
 

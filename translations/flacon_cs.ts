@@ -704,6 +704,14 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     </message>
 </context>
 <context>
+    <name>Decoder</name>
+    <message>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>

@@ -158,6 +158,6 @@ private:
     Data *mData;
 };
 
-QTextCodec *determineTextCodec(const QVector<Track*> tracks);
+QTextCodec *determineTextCodec(const QVector<Track *> &tracks);
 
 #endif // TRACK_H

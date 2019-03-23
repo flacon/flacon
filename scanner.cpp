@@ -101,6 +101,7 @@ void Scanner::start(const QString &startDir)
             catch (FlaconError)
             {
                 // Silently skip corrupted files
+                Q_UNUSED(startDir);
             }
         }
     }

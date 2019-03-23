@@ -182,6 +182,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
         catch (FlaconError)
         {
             // Silently skip corrupted files
+            Q_UNUSED(argc);
         }
     }
 

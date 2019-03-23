@@ -36,20 +36,26 @@
 #include <QFileInfo>
 #include <QDir>
 
-
+QString mFileName;
+QString mErrorString;
+const AudioFormat *mFormat;
+int mSampleRate;
+int mBitsPerSample;
+uint mDuration;
+bool mValid;
+bool mCdQuality;
 
 /************************************************
 
  ************************************************/
 InputAudioFile::InputAudioFile(const QString &fileName):
     mFileName(fileName),
-    mValid(false),
+    mFormat(0),
     mSampleRate(0),
     mBitsPerSample(0),
-    mCdQuality(false),
     mDuration(0),
-    mFormat(0)
-
+    mValid(false),
+    mCdQuality(false)
 {
     mValid = load();
 }

@@ -1,163 +1,163 @@
 [ DISK 01 / TRACK 01 ]
-	FILE       = stonecold.flac
-	INDEX 00   = 00:00:00
-	INDEX 01   = 00:00:00
-	TITLE      = Stone Cold Crazy
-	ALBUM      = Tribute To Queen - Stone Cold Queen
-	PERFORMER  = Robin Zander
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 1
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = stonecold.flac
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 00:00:00
+	TITLE       = Stone Cold Crazy
+	ALBUM       = Tribute To Queen - Stone Cold Queen
+	PERFORMER   = Robin Zander
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 1
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 02 ]
-	FILE       = stonecold.flac
-	INDEX 00   = 00:00:00
-	INDEX 01   = 03:38:30
-	TITLE      = Play The Game
-	ALBUM      = Tribute To Queen - Stone Cold Queen
-	PERFORMER  = Mickey Thomas
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 2
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = stonecold.flac
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 03:38:30
+	TITLE       = Play The Game
+	ALBUM       = Tribute To Queen - Stone Cold Queen
+	PERFORMER   = Mickey Thomas
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 2
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 03 ]
-	FILE       = stonecold.flac
-	INDEX 00   = 00:00:00
-	INDEX 01   = 08:35:35
-	TITLE      = Fat Bottomed Girls
-	ALBUM      = Tribute To Queen - Stone Cold Queen
-	PERFORMER  = Joe Lynn Turner
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 3
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = stonecold.flac
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 08:35:35
+	TITLE       = Fat Bottomed Girls
+	ALBUM       = Tribute To Queen - Stone Cold Queen
+	PERFORMER   = Joe Lynn Turner
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 3
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 04 ]
-	FILE       = stonecold.flac
-	INDEX 00   = 00:00:00
-	INDEX 01   = 13:02:10
-	TITLE      = Somebody To Love
-	ALBUM      = Tribute To Queen - Stone Cold Queen
-	PERFORMER  = Geoff Tate
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 4
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = stonecold.flac
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 13:02:10
+	TITLE       = Somebody To Love
+	ALBUM       = Tribute To Queen - Stone Cold Queen
+	PERFORMER   = Geoff Tate
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 4
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 05 ]
-	FILE       = stonecold.flac
-	INDEX 00   = 00:00:00
-	INDEX 01   = 17:47:17
-	TITLE      = Crazy Little Thing Called Love
-	ALBUM      = Tribute To Queen - Stone Cold Queen
-	PERFORMER  = Gunnar & Mathew Nelson
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 5
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = stonecold.flac
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 17:47:17
+	TITLE       = Crazy Little Thing Called Love
+	ALBUM       = Tribute To Queen - Stone Cold Queen
+	PERFORMER   = Gunnar & Mathew Nelson
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 5
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 06 ]
-	FILE       = stonecold.flac
-	INDEX 00   = 00:00:00
-	INDEX 01   = 20:55:62
-	TITLE      = Fight From Inside
-	ALBUM      = Tribute To Queen - Stone Cold Queen
-	PERFORMER  = Jack Blades
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 6
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = stonecold.flac
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 20:55:62
+	TITLE       = Fight From Inside
+	ALBUM       = Tribute To Queen - Stone Cold Queen
+	PERFORMER   = Jack Blades
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 6
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 07 ]
-	FILE       = stonecold.flac
-	INDEX 00   = 00:00:00
-	INDEX 01   = 24:48:12
-	TITLE      = You're My Best Friend
-	ALBUM      = Tribute To Queen - Stone Cold Queen
-	PERFORMER  = Jason Scheff
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 7
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = stonecold.flac
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 24:48:12
+	TITLE       = You're My Best Friend
+	ALBUM       = Tribute To Queen - Stone Cold Queen
+	PERFORMER   = Jason Scheff
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 7
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 08 ]
-	FILE       = stonecold.flac
-	INDEX 00   = 00:00:00
-	INDEX 01   = 27:57:45
-	TITLE      = I'm In Love With My Car
-	ALBUM      = Tribute To Queen - Stone Cold Queen
-	PERFORMER  = Kip Winger
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 8
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = stonecold.flac
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 27:57:45
+	TITLE       = I'm In Love With My Car
+	ALBUM       = Tribute To Queen - Stone Cold Queen
+	PERFORMER   = Kip Winger
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 8
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 09 ]
-	FILE       = stonecold.flac
-	INDEX 00   = 00:00:00
-	INDEX 01   = 31:42:05
-	TITLE      = Killer Queen
-	ALBUM      = Tribute To Queen - Stone Cold Queen
-	PERFORMER  = Glenn Hughes
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 9
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = stonecold.flac
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 31:42:05
+	TITLE       = Killer Queen
+	ALBUM       = Tribute To Queen - Stone Cold Queen
+	PERFORMER   = Glenn Hughes
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 9
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 10 ]
-	FILE       = stonecold.flac
-	INDEX 00   = 00:00:00
-	INDEX 01   = 35:12:15
-	TITLE      = Spread Your Wings
-	ALBUM      = Tribute To Queen - Stone Cold Queen
-	PERFORMER  = Tommy Shaw
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 10
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = stonecold.flac
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 35:12:15
+	TITLE       = Spread Your Wings
+	ALBUM       = Tribute To Queen - Stone Cold Queen
+	PERFORMER   = Tommy Shaw
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 10
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 11 ]
-	FILE       = stonecold.flac
-	INDEX 00   = 00:00:00
-	INDEX 01   = 39:58:10
-	TITLE      = We Will Rock You
-	ALBUM      = Tribute To Queen - Stone Cold Queen
-	PERFORMER  = Jack Russel
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 11
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = stonecold.flac
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 39:58:10
+	TITLE       = We Will Rock You
+	ALBUM       = Tribute To Queen - Stone Cold Queen
+	PERFORMER   = Jack Russel
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 11
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1

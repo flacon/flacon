@@ -1,163 +1,163 @@
 [ DISK 01 / TRACK 01 ]
-	FILE       = dragonattack.wav
-	INDEX 00   = 00:00:00
-	INDEX 01   = 00:00:30
-	TITLE      = I Want It All
-	ALBUM      = Dragon Attack - A Tribute to Queen
-	PERFORMER  = McAuley, Impellitteri, Kulick, Roth, Phillips, Schellen
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 1
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = dragonattack.wav
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 00:00:30
+	TITLE       = I Want It All
+	ALBUM       = Dragon Attack - A Tribute to Queen
+	PERFORMER   = McAuley, Impellitteri, Kulick, Roth, Phillips, Schellen
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 1
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 02 ]
-	FILE       = dragonattack.wav
-	INDEX 00   = 00:00:00
-	INDEX 01   = 04:08:02
-	TITLE      = Sheer Heart Attack
-	ALBUM      = Dragon Attack - A Tribute to Queen
-	PERFORMER  = LaBrie, Friedman, Franklin, Appice
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 2
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = dragonattack.wav
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 04:08:02
+	TITLE       = Sheer Heart Attack
+	ALBUM       = Dragon Attack - A Tribute to Queen
+	PERFORMER   = LaBrie, Friedman, Franklin, Appice
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 2
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 03 ]
-	FILE       = dragonattack.wav
-	INDEX 00   = 00:00:00
-	INDEX 01   = 07:35:59
-	TITLE      = Another One Bites the Dust
-	ALBUM      = Dragon Attack - A Tribute to Queen
-	PERFORMER  = Adam, Petrucci, Sarzo, Aldridge
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 3
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = dragonattack.wav
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 07:35:59
+	TITLE       = Another One Bites the Dust
+	ALBUM       = Dragon Attack - A Tribute to Queen
+	PERFORMER   = Adam, Petrucci, Sarzo, Aldridge
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 3
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 04 ]
-	FILE       = dragonattack.wav
-	INDEX 00   = 00:00:00
-	INDEX 01   = 11:01:62
-	TITLE      = Save Me
-	ALBUM      = Dragon Attack - A Tribute to Queen
-	PERFORMER  = Sato, Kulick, Kulick, Sherwood, Phillips, Singer
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 4
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = dragonattack.wav
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 11:01:62
+	TITLE       = Save Me
+	ALBUM       = Dragon Attack - A Tribute to Queen
+	PERFORMER   = Sato, Kulick, Kulick, Sherwood, Phillips, Singer
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 4
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 05 ]
-	FILE       = dragonattack.wav
-	INDEX 00   = 00:00:00
-	INDEX 01   = 15:13:54
-	TITLE      = We Will Rock You
-	ALBUM      = Dragon Attack - A Tribute to Queen
-	PERFORMER  = Shortino, Kulick, Schellen, Laurent, Dio
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 5
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = dragonattack.wav
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 15:13:54
+	TITLE       = We Will Rock You
+	ALBUM       = Dragon Attack - A Tribute to Queen
+	PERFORMER   = Shortino, Kulick, Schellen, Laurent, Dio
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 5
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 06 ]
-	FILE       = dragonattack.wav
-	INDEX 00   = 00:00:00
-	INDEX 01   = 17:16:21
-	TITLE      = We are the Champions
-	ALBUM      = Dragon Attack - A Tribute to Queen
-	PERFORMER  = Shortino, Krieger, Kulick, Sherwood, Franklin, Appice, Laurent, Dio
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 6
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = dragonattack.wav
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 17:16:21
+	TITLE       = We are the Champions
+	ALBUM       = Dragon Attack - A Tribute to Queen
+	PERFORMER   = Shortino, Krieger, Kulick, Sherwood, Franklin, Appice, Laurent, Dio
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 6
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 07 ]
-	FILE       = dragonattack.wav
-	INDEX 00   = 00:00:00
-	INDEX 01   = 20:57:08
-	TITLE      = Tie Your Mother Down
-	ALBUM      = Dragon Attack - A Tribute to Queen
-	PERFORMER  = Kilmister, Nugent, Kilmister, Kulick, Sarzo, Aldridge
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 7
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = dragonattack.wav
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 20:57:08
+	TITLE       = Tie Your Mother Down
+	ALBUM       = Dragon Attack - A Tribute to Queen
+	PERFORMER   = Kilmister, Nugent, Kilmister, Kulick, Sarzo, Aldridge
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 7
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 08 ]
-	FILE       = dragonattack.wav
-	INDEX 00   = 00:00:00
-	INDEX 01   = 24:43:15
-	TITLE      = Get Down Make Love
-	ALBUM      = Dragon Attack - A Tribute to Queen
-	PERFORMER  = Hughes, Lee, Kulick, Franklin, Appice
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 8
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = dragonattack.wav
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 24:43:15
+	TITLE       = Get Down Make Love
+	ALBUM       = Dragon Attack - A Tribute to Queen
+	PERFORMER   = Hughes, Lee, Kulick, Franklin, Appice
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 8
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 09 ]
-	FILE       = dragonattack.wav
-	INDEX 00   = 00:00:00
-	INDEX 01   = 28:53:69
-	TITLE      = Keep Yourself Alive
-	ALBUM      = Dragon Attack - A Tribute to Queen
-	PERFORMER  = Boals, Malmsteen, Sarza, Aldridge
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 9
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = dragonattack.wav
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 28:53:69
+	TITLE       = Keep Yourself Alive
+	ALBUM       = Dragon Attack - A Tribute to Queen
+	PERFORMER   = Boals, Malmsteen, Sarza, Aldridge
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 9
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 10 ]
-	FILE       = dragonattack.wav
-	INDEX 00   = 00:00:00
-	INDEX 01   = 32:42:60
-	TITLE      = One Vision
-	ALBUM      = Dragon Attack - A Tribute to Queen
-	PERFORMER  = LaBrie, Bouillet, Bouillet, Kulick, Phillips, Schellen
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 10
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = dragonattack.wav
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 32:42:60
+	TITLE       = One Vision
+	ALBUM       = Dragon Attack - A Tribute to Queen
+	PERFORMER   = LaBrie, Bouillet, Bouillet, Kulick, Phillips, Schellen
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 10
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1
 
 
 [ DISK 01 / TRACK 11 ]
-	FILE       = dragonattack.wav
-	INDEX 00   = 00:00:00
-	INDEX 01   = 36:27:64
-	TITLE      = It's Late
-	ALBUM      = Dragon Attack - A Tribute to Queen
-	PERFORMER  = Bush, Ian, Throne, Vera, Ian
-	DATE       = 
-	DISKID     = 
-	TRACKNUM   = 11
-	TRACKCOUNT = 11
-	DISKNUM    = 1
-	DISKCOUNT  = 1
+	FILE        = dragonattack.wav
+	INDEX CD 00 = 00:00:00
+	INDEX CD 01 = 36:27:64
+	TITLE       = It's Late
+	ALBUM       = Dragon Attack - A Tribute to Queen
+	PERFORMER   = Bush, Ian, Throne, Vera, Ian
+	DATE        =
+	DISKID      =
+	TRACKNUM    = 11
+	TRACKCOUNT  = 11
+	DISKNUM     = 1
+	DISKCOUNT   = 1

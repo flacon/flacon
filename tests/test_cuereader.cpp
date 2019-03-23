@@ -70,19 +70,21 @@ static void write(const QVector<CueDisk> &cue, const QString &fileName)
             t++;
             f << QString("[DISK %1 / TRACK %2]\n").arg(d+1, 2, 10, QChar('0')).arg(t+1, 2, 10, QChar('0'));
 
-            f << "\t" << "FILE       = " << track.tag(TagId::File)               << "\n";
-            f << "\t" << "INDEX 00   = " << track.cueIndex(0).toString(true)     << "\n";
-            f << "\t" << "INDEX 01   = " << track.cueIndex(1).toString(true)     << "\n";
-            f << "\t" << "TITLE      = " << track.tag(TagId::Title)              << "\n";
-            f << "\t" << "ALBUM      = " << track.tag(TagId::Album)              << "\n";
-            f << "\t" << "PERFORMER  = " << track.tag(TagId::Artist)             << "\n";
-            f << "\t" << "DATE       = " << track.tag(TagId::Date)               << "\n";
-            f << "\t" << "DISKID     = " << track.tag(TagId::DiscId)             << "\n";
-            f << "\t" << "GENRE     = "  << track.tag(TagId::Genre)              << "\n";
-            f << "\t" << "TRACKNUM   = " << QString::number(track.trackNum())    << "\n";
-            f << "\t" << "TRACKCOUNT = " << QString::number(track.trackCount())  << "\n";
-            f << "\t" << "DISKNUM   = "  << QString::number(track.diskNum())     << "\n";
-            f << "\t" << "DISKCOUNT = "  << QString::number(track.diskCount())   << "\n";
+            f << "\t" << "FILE        = " << track.tag(TagId::File)               << "\n";
+            f << "\t" << "INDEX CD 00 = " << track.cueIndex(0).toString(true)     << "\n";
+            f << "\t" << "INDEX CD 01 = " << track.cueIndex(1).toString(true)     << "\n";
+            f << "\t" << "INDEX HI 00 = " << track.cueIndex(0).toString(false)    << "\n";
+            f << "\t" << "INDEX HI 01 = " << track.cueIndex(1).toString(false)    << "\n";
+            f << "\t" << "TITLE       = " << track.tag(TagId::Title)              << "\n";
+            f << "\t" << "ALBUM       = " << track.tag(TagId::Album)              << "\n";
+            f << "\t" << "PERFORMER   = " << track.tag(TagId::Artist)             << "\n";
+            f << "\t" << "DATE        = " << track.tag(TagId::Date)               << "\n";
+            f << "\t" << "DISKID      = " << track.tag(TagId::DiscId)             << "\n";
+            f << "\t" << "GENRE       = "  << track.tag(TagId::Genre)             << "\n";
+            f << "\t" << "TRACKNUM    = " << QString::number(track.trackNum())    << "\n";
+            f << "\t" << "TRACKCOUNT  = " << QString::number(track.trackCount())  << "\n";
+            f << "\t" << "DISKNUM     = "  << QString::number(track.diskNum())    << "\n";
+            f << "\t" << "DISKCOUNT   = "  << QString::number(track.diskCount())  << "\n";
 
 
             f << "\n";

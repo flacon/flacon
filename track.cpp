@@ -552,7 +552,7 @@ QTextCodec *UcharDet::textCodec() const
 /************************************************
  *
  ************************************************/
-QTextCodec *determineTextCodec(const QVector<Track*> tracks)
+QTextCodec *determineTextCodec(const QVector<Track*> &tracks)
 {
     QTextCodec *res;
     uchardet_t uc = uchardet_new();

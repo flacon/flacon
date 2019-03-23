@@ -44,7 +44,7 @@ public:
     explicit Decoder(QObject *parent = 0);
     virtual ~Decoder();
 
-    void open(const QString fileName);
+    void open(const QString &fileName);
     void close();
 
     void extract(const CueTime &start, const CueTime &end, QIODevice *outDevice);

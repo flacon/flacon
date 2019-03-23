@@ -329,7 +329,7 @@ TrackViewSelectionModel::TrackViewSelectionModel(QAbstractItemModel *model, QObj
 /************************************************
 
  ************************************************/
-void TrackViewSelectionModel::select(const QItemSelection &selection, QItemSelectionModel::SelectionFlags command)
+void TrackViewSelectionModel::select(const QItemSelection &selection, const QItemSelectionModel::SelectionFlags &command)
 {
     if (selection.count() == 0)
         return;

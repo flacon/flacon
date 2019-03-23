@@ -322,7 +322,7 @@
     </message>
     <message>
         <source>Maximum sample rate:</source>
-        <translation>Maximale samplesnelheid:</translation>
+        <translation>Maximale bemonsteringsfrequentie:</translation>
     </message>
     <message>
         <source>Per track CUE sheet</source>
@@ -355,7 +355,7 @@
     <message>
         <source>File name format:</source>
         <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Bestandsnaamformaat:</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -705,6 +705,14 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     </message>
 </context>
 <context>
+    <name>Decoder</name>
+    <message>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Disk</name>
     <message>
         <source>Audio file not set.</source>
@@ -721,12 +729,12 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Een maximum van %1-bit per monster wordt door dit formaat ondersteund. Deze waarde zal worden gebruikt voor codering.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Een maximale bemonsteringsfrequentie van %1 wordt door dit formaat ondersteund. Deze waarde zal worden gebruikt voor codering.</translation>
     </message>
 </context>
 <context>
@@ -1146,22 +1154,22 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     </message>
     <message>
         <source>Album performer:</source>
-        <translation type="unfinished"/>
+        <translation>Albumperformer:</translation>
     </message>
     <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Geselecteerde converteren</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
         <extracomment>Main menu item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Begin het conversieproces voor de geselecteerde nummers</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+W</translation>
     </message>
 </context>
 <context>
@@ -1228,7 +1236,7 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>U kan ReplayGain niet gebruiken voor bestanden met bemonsteringsfrequenties boven 48kHz. Metaflac ondersteunt zo’n bestanden niet.</translation>
+        <translation>U kan ReplayGain niet gebruiken voor bestanden met bemonsteringsfrequenties boven 48kHz. Metaflac ondersteunt zulke bestanden niet.</translation>
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1340,12 +1348,12 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>Start track number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Beginnummer:</translation>
     </message>
     <message>
         <source>Album performer:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Albumperformer:</translation>
     </message>
 </context>
 <context>

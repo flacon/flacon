@@ -81,8 +81,8 @@ private:
     QFont filesFont(const QFont &font) const;
     void paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void paintDisk(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    QRect drawLabel(const QString &text, QRect rect, QPainter *painter) const;
-    QRect drawFile(const QString &text, QRect rect, QPainter *painter) const;
+    QRect drawLabel(const QString &text, const QRect &rect, QPainter *painter) const;
+    QRect drawFile(const QString &text, const QRect &rect, QPainter *painter) const;
     void drawSelectionMark(QPainter *painter, const QRect &rect) const;
 };
 

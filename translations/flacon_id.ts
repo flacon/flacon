@@ -72,7 +72,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon telah diterjemahkan kedalam banyak bahasa, terimakasih atas pekerjaan Tim Penerjemah Flacon dalam &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;</translation>
+        <translation>Flacon telah diterjemahkan kedalam banyak bahasa, terimakasih atas kerja keras Tim Penerjemah Flacon dalam &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -203,11 +203,11 @@
     </message>
     <message>
         <source>Thread count:</source>
-        <translation type="unfinished"/>
+        <translation>Jumlah antrian:</translation>
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation type="unfinished"/>
+        <translation>Jumlah antrian dalam proses konversi.</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -235,7 +235,7 @@
     </message>
     <message>
         <source>Programs</source>
-        <translation type="unfinished"/>
+        <translation>Program</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
@@ -255,7 +255,7 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation>Gambar cover</translation>
+        <translation>Gambar sampul</translation>
     </message>
     <message>
         <source>Do not copy image</source>
@@ -264,11 +264,11 @@
     <message>
         <source>Update</source>
         <extracomment>Preferences tab title </extracomment>
-        <translation>Update</translation>
+        <translation>Memperbarui</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation>Otomatis mengecek untuk update</translation>
+        <translation>Otomatis mengecek pembaruan</translation>
     </message>
     <message>
         <source>Check now</source>
@@ -299,22 +299,22 @@
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>44100 Hz</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>48000 Hz</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>96000 Hz</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>192000 Hz</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
@@ -676,6 +676,14 @@ Dalam mode VBR, ini menetapkan rata - rata bitrate untuk </translation>
     </message>
     <message>
         <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Decoder</name>
+    <message>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
         <translation type="unfinished"/>
     </message>
 </context>

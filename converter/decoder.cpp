@@ -41,7 +41,7 @@
 /************************************************
  *
  ************************************************/
-qint64 timeToBytes(CueTime time, const WavHeader &wav)
+static qint64 timeToBytes(const CueTime &time, const WavHeader &wav)
 {
     if (wav.isCdQuality())
     {
@@ -82,7 +82,7 @@ Decoder::~Decoder()
 /************************************************
  *
  ************************************************/
-void Decoder::open(const QString fileName)
+void Decoder::open(const QString &fileName)
 {
     mInputFile = fileName;
     if (!mFormat)
