@@ -74,6 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolBar->setIconSize(QSize(24,24));
     qApp->setAttribute(Qt::AA_DontShowIconsInMenus, true);
+    qApp->setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
 #ifdef Q_OS_MAC
     this->setUnifiedTitleAndToolBarOnMac(true);

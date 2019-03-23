@@ -23,6 +23,9 @@
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 
+	<key>NSHighResolutionCapable</key>
+	<true/>
+
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 
