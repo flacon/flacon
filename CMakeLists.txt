@@ -156,6 +156,11 @@ set(SOURCES
     formats/tta.cpp
 )
 
+if (APPLE)
+    set(SOURCES ${SOURCES}
+        application_mac.mm
+    )
+endif()
 
 set (FORMS
     gui/mainwindow.ui
@@ -241,6 +246,10 @@ set(LIBRARIES ${LIBRARIES} ${UCHARDET_LIBRARIES})
 include_directories(${UCHARDET_INCLUDE_DIRS})
 link_directories(${UCHARDET_LIBRARY_DIRS})
 
+if (APPLE)
+    FIND_LIBRARY(COCOA_LIBRARY Cocoa)
+    set(LIBRARIES ${LIBRARIES} ${COCOA_LIBRARY})
+endif()
 
 if ( MAC_BUNDLE )
     add_definitions(-DMAC_BUNDLE=Yes)
@@ -259,8 +268,7 @@ if ( MAC_BUNDLE )
     include_directories(${SPARKLE_INCLUDE_DIR})
     set(LIBRARIES ${LIBRARIES} ${SPARKLE_LIBRARY})
 
-    FIND_LIBRARY(COCOA_LIBRARY Cocoa)
-    set(LIBRARIES ${LIBRARIES} ${COCOA_LIBRARY})
+
 endif()
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${QM_FILES} ${QRC_SOURCES} ${ENGINES_CPP} ${ENGINES_H} ${RESOURCES} ${TRANSLATORS_INFO_QRC})

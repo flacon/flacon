@@ -45,7 +45,9 @@ public:
     ************************************************/
     IconEngine(const IconEngine &other):
         QIconEngine(other),
+#ifdef Q_OS_MAC
         mIconDark(other.mIconDark),
+#endif
         mIconLight(other.mIconLight)
     {
     }
@@ -66,9 +68,11 @@ public:
     void addFile(const QString &fileName, const QSize &size, QIcon::Mode mode, QIcon::State state) override
     {
         mIconLight.addFile(fileName, size, mode, state);
+#ifdef Q_OS_MAC
         QString d = fileName;
         d.replace("/light/", "/dark/");
         mIconDark.addFile(d, size, mode, state);
+#endif
     }
 
 
@@ -86,10 +90,7 @@ public:
     ************************************************/
     void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override
     {
-        if (mDarkMode)
-            mIconDark.paint(painter, rect, Qt::AlignCenter, mode, state);
-        else
-            mIconLight.paint(painter, rect, Qt::AlignCenter, mode, state);
+        icon().paint(painter, rect, Qt::AlignCenter, mode, state);
     }
 
 
@@ -98,19 +99,34 @@ public:
     ************************************************/
     QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override
     {
-        if (mDarkMode)
-            return mIconDark.pixmap(size, mode, state);
-        else
-            return mIconLight.pixmap(size, mode, state);
+        return icon().pixmap(size, mode, state);
     }
 
 
     static bool mDarkMode;
 
 private:
-    QIcon mIconLight;
-    QIcon mIconDark;
 
+#ifdef Q_OS_MAC
+    QIcon &icon()
+    {
+        if (mDarkMode)
+            return mIconDark;
+        else
+            return mIconLight;
+    }
+
+    QIcon mIconDark;
+    QIcon mIconLight;
+
+#else
+    QIcon &icon()
+    {
+        return mIconLight;
+    }
+
+    QIcon mIconLight;
+#endif
 };
 
 bool IconEngine::mDarkMode = false;

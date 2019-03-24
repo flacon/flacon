@@ -31,7 +31,19 @@
 Application::Application(int &argc, char **argv):
     QApplication(argc, argv)
 {
+    init();
 }
+
+Application::~Application()
+{
+    free();
+}
+
+Application *Application::instance()
+{
+    return qobject_cast<Application*>(qApp);
+}
+
 
 bool Application::event(QEvent *event)
 {

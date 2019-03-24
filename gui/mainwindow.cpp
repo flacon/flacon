@@ -42,6 +42,7 @@
 #include "gui/tageditor/tageditor.h"
 #include "controls.h"
 #include "gui/icon.h"
+#include "application.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -214,6 +215,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(refreshEdits()));
     connect(project, SIGNAL(diskChanged(Disk*)), this, SLOT(setControlsEnable()));
 
+    connect(Application::instance(), &Application::visualModeChanged,
+        [](){
+            Icon::setDarkMode(Application::instance()->isDarkVisualMode());
+    });
+
+    Icon::setDarkMode(Application::instance()->isDarkVisualMode());
 
     refreshEdits();
     setControlsEnable();

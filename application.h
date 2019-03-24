@@ -34,14 +34,32 @@ class Application : public QApplication
     Q_OBJECT
 public:
     explicit Application(int &argc, char **argv);
+    virtual ~Application();
+
+    static Application *instance();
+
+#ifdef Q_OS_MAC
+    bool isDarkVisualMode() const;
+#else
+    bool isDarkVisualMode() const { return false; }
+#endif
 
 protected:
     bool event(QEvent *event);
 
 signals:
     void openFile(const QString &fileName);
+    void visualModeChanged();
 
-public slots:
+private:
+#ifdef Q_OS_MAC
+    void init();
+    void free();
+#else
+    void init() {}
+    void free() {}
+#endif
 };
+
 
 #endif // APPLICATION_H
