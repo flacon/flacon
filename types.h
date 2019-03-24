@@ -71,7 +71,6 @@ typedef quint16 DiskNum;
 typedef quint16 TrackNum;
 
 unsigned int levenshteinDistance(const QString &s1, const QString & s2);
-QIcon loadIcon(const QString &iconName, bool loadDisable = true);
 
 
 class FlaconError: public std::runtime_error

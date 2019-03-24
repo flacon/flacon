@@ -1,291 +1,500 @@
 <!-- Generated from icons2png.sh do not edit by hand. -->
 <RCC>
-    <qresource prefix="16">
-        <file alias="add-disk">icons/16/add-disk.png</file>
-        <file alias="remove-disk">icons/16/remove-disk.png</file>
-        <file alias="scan">icons/16/scan.png</file>
-        <file alias="download-info">icons/16/download-info.png</file>
-        <file alias="abort-convert">icons/16/abort-convert.png</file>
-        <file alias="start-convert">icons/16/start-convert.png</file>
-        <file alias="folder">icons/16/folder.png</file>
-        <file alias="configure">icons/16/configure.png</file>
-        <file alias="pattern-button">icons/16/pattern-button.png</file>
-        <file alias="track-ok">icons/16/track-ok.png</file>
-        <file alias="audio-button">icons/16/audio-button.png</file>
-        <file alias="cue-button">icons/16/cue-button.png</file>
+    <qresource prefix="/">
+        <file>icons/light/016/add-disk.png</file>
+        <file>icons/light/016/add-disk-disabled.png</file>
+        <file>icons/dark/016/add-disk.png</file>
+        <file>icons/dark/016/add-disk-disabled.png</file>
+        <file>icons/light/016/remove-disk.png</file>
+        <file>icons/light/016/remove-disk-disabled.png</file>
+        <file>icons/dark/016/remove-disk.png</file>
+        <file>icons/dark/016/remove-disk-disabled.png</file>
+        <file>icons/light/016/scan.png</file>
+        <file>icons/light/016/scan-disabled.png</file>
+        <file>icons/dark/016/scan.png</file>
+        <file>icons/dark/016/scan-disabled.png</file>
+        <file>icons/light/016/download-info.png</file>
+        <file>icons/light/016/download-info-disabled.png</file>
+        <file>icons/dark/016/download-info.png</file>
+        <file>icons/dark/016/download-info-disabled.png</file>
+        <file>icons/light/016/abort-convert.png</file>
+        <file>icons/light/016/abort-convert-disabled.png</file>
+        <file>icons/dark/016/abort-convert.png</file>
+        <file>icons/dark/016/abort-convert-disabled.png</file>
+        <file>icons/light/016/start-convert.png</file>
+        <file>icons/light/016/start-convert-disabled.png</file>
+        <file>icons/dark/016/start-convert.png</file>
+        <file>icons/dark/016/start-convert-disabled.png</file>
+        <file>icons/light/016/folder.png</file>
+        <file>icons/light/016/folder-disabled.png</file>
+        <file>icons/dark/016/folder.png</file>
+        <file>icons/dark/016/folder-disabled.png</file>
+        <file>icons/light/016/configure.png</file>
+        <file>icons/light/016/configure-disabled.png</file>
+        <file>icons/dark/016/configure.png</file>
+        <file>icons/dark/016/configure-disabled.png</file>
+        <file>icons/light/016/pattern-button.png</file>
+        <file>icons/light/016/pattern-button-disabled.png</file>
+        <file>icons/dark/016/pattern-button.png</file>
+        <file>icons/dark/016/pattern-button-disabled.png</file>
+        <file>icons/light/016/track-ok.png</file>
+        <file>icons/light/016/track-ok-disabled.png</file>
+        <file>icons/dark/016/track-ok.png</file>
+        <file>icons/dark/016/track-ok-disabled.png</file>
+        <file>icons/light/016/audio-button.png</file>
+        <file>icons/light/016/audio-button-disabled.png</file>
+        <file>icons/dark/016/audio-button.png</file>
+        <file>icons/dark/016/audio-button-disabled.png</file>
+        <file>icons/light/016/cue-button.png</file>
+        <file>icons/light/016/cue-button-disabled.png</file>
+        <file>icons/dark/016/cue-button.png</file>
+        <file>icons/dark/016/cue-button-disabled.png</file>
+        <file>icons/light/016/track-cancel.png</file>
+        <file>icons/dark/016/track-cancel.png</file>
+        <file>icons/light/016/warning.png</file>
+        <file>icons/dark/016/warning.png</file>
+        <file>icons/light/016/error.png</file>
+        <file>icons/dark/016/error.png</file>
 
-        <file alias="add-disk_disable">icons/16/add-disk_disable.png</file>
-        <file alias="remove-disk_disable">icons/16/remove-disk_disable.png</file>
-        <file alias="scan_disable">icons/16/scan_disable.png</file>
-        <file alias="download-info_disable">icons/16/download-info_disable.png</file>
-        <file alias="abort-convert_disable">icons/16/abort-convert_disable.png</file>
-        <file alias="start-convert_disable">icons/16/start-convert_disable.png</file>
-        <file alias="folder_disable">icons/16/folder_disable.png</file>
-        <file alias="configure_disable">icons/16/configure_disable.png</file>
-        <file alias="pattern-button_disable">icons/16/pattern-button_disable.png</file>
-        <file alias="track-ok_disable">icons/16/track-ok_disable.png</file>
-        <file alias="audio-button_disable">icons/16/audio-button_disable.png</file>
-        <file alias="cue-button_disable">icons/16/cue-button_disable.png</file>
+        <file>icons/light/022/add-disk.png</file>
+        <file>icons/light/022/add-disk-disabled.png</file>
+        <file>icons/dark/022/add-disk.png</file>
+        <file>icons/dark/022/add-disk-disabled.png</file>
+        <file>icons/light/022/remove-disk.png</file>
+        <file>icons/light/022/remove-disk-disabled.png</file>
+        <file>icons/dark/022/remove-disk.png</file>
+        <file>icons/dark/022/remove-disk-disabled.png</file>
+        <file>icons/light/022/scan.png</file>
+        <file>icons/light/022/scan-disabled.png</file>
+        <file>icons/dark/022/scan.png</file>
+        <file>icons/dark/022/scan-disabled.png</file>
+        <file>icons/light/022/download-info.png</file>
+        <file>icons/light/022/download-info-disabled.png</file>
+        <file>icons/dark/022/download-info.png</file>
+        <file>icons/dark/022/download-info-disabled.png</file>
+        <file>icons/light/022/abort-convert.png</file>
+        <file>icons/light/022/abort-convert-disabled.png</file>
+        <file>icons/dark/022/abort-convert.png</file>
+        <file>icons/dark/022/abort-convert-disabled.png</file>
+        <file>icons/light/022/start-convert.png</file>
+        <file>icons/light/022/start-convert-disabled.png</file>
+        <file>icons/dark/022/start-convert.png</file>
+        <file>icons/dark/022/start-convert-disabled.png</file>
+        <file>icons/light/022/folder.png</file>
+        <file>icons/light/022/folder-disabled.png</file>
+        <file>icons/dark/022/folder.png</file>
+        <file>icons/dark/022/folder-disabled.png</file>
+        <file>icons/light/022/configure.png</file>
+        <file>icons/light/022/configure-disabled.png</file>
+        <file>icons/dark/022/configure.png</file>
+        <file>icons/dark/022/configure-disabled.png</file>
+        <file>icons/light/022/pattern-button.png</file>
+        <file>icons/light/022/pattern-button-disabled.png</file>
+        <file>icons/dark/022/pattern-button.png</file>
+        <file>icons/dark/022/pattern-button-disabled.png</file>
+        <file>icons/light/022/track-ok.png</file>
+        <file>icons/light/022/track-ok-disabled.png</file>
+        <file>icons/dark/022/track-ok.png</file>
+        <file>icons/dark/022/track-ok-disabled.png</file>
+        <file>icons/light/022/audio-button.png</file>
+        <file>icons/light/022/audio-button-disabled.png</file>
+        <file>icons/dark/022/audio-button.png</file>
+        <file>icons/dark/022/audio-button-disabled.png</file>
+        <file>icons/light/022/cue-button.png</file>
+        <file>icons/light/022/cue-button-disabled.png</file>
+        <file>icons/dark/022/cue-button.png</file>
+        <file>icons/dark/022/cue-button-disabled.png</file>
+        <file>icons/light/022/track-cancel.png</file>
+        <file>icons/dark/022/track-cancel.png</file>
+        <file>icons/light/022/warning.png</file>
+        <file>icons/dark/022/warning.png</file>
+        <file>icons/light/022/error.png</file>
+        <file>icons/dark/022/error.png</file>
 
-        <file alias="track-cancel">icons/16/track-cancel.png</file>
-        <file alias="warning">icons/16/warning.png</file>
-        <file alias="error">icons/16/error.png</file>
+        <file>icons/light/024/add-disk.png</file>
+        <file>icons/light/024/add-disk-disabled.png</file>
+        <file>icons/dark/024/add-disk.png</file>
+        <file>icons/dark/024/add-disk-disabled.png</file>
+        <file>icons/light/024/remove-disk.png</file>
+        <file>icons/light/024/remove-disk-disabled.png</file>
+        <file>icons/dark/024/remove-disk.png</file>
+        <file>icons/dark/024/remove-disk-disabled.png</file>
+        <file>icons/light/024/scan.png</file>
+        <file>icons/light/024/scan-disabled.png</file>
+        <file>icons/dark/024/scan.png</file>
+        <file>icons/dark/024/scan-disabled.png</file>
+        <file>icons/light/024/download-info.png</file>
+        <file>icons/light/024/download-info-disabled.png</file>
+        <file>icons/dark/024/download-info.png</file>
+        <file>icons/dark/024/download-info-disabled.png</file>
+        <file>icons/light/024/abort-convert.png</file>
+        <file>icons/light/024/abort-convert-disabled.png</file>
+        <file>icons/dark/024/abort-convert.png</file>
+        <file>icons/dark/024/abort-convert-disabled.png</file>
+        <file>icons/light/024/start-convert.png</file>
+        <file>icons/light/024/start-convert-disabled.png</file>
+        <file>icons/dark/024/start-convert.png</file>
+        <file>icons/dark/024/start-convert-disabled.png</file>
+        <file>icons/light/024/folder.png</file>
+        <file>icons/light/024/folder-disabled.png</file>
+        <file>icons/dark/024/folder.png</file>
+        <file>icons/dark/024/folder-disabled.png</file>
+        <file>icons/light/024/configure.png</file>
+        <file>icons/light/024/configure-disabled.png</file>
+        <file>icons/dark/024/configure.png</file>
+        <file>icons/dark/024/configure-disabled.png</file>
+        <file>icons/light/024/pattern-button.png</file>
+        <file>icons/light/024/pattern-button-disabled.png</file>
+        <file>icons/dark/024/pattern-button.png</file>
+        <file>icons/dark/024/pattern-button-disabled.png</file>
+        <file>icons/light/024/track-ok.png</file>
+        <file>icons/light/024/track-ok-disabled.png</file>
+        <file>icons/dark/024/track-ok.png</file>
+        <file>icons/dark/024/track-ok-disabled.png</file>
+        <file>icons/light/024/audio-button.png</file>
+        <file>icons/light/024/audio-button-disabled.png</file>
+        <file>icons/dark/024/audio-button.png</file>
+        <file>icons/dark/024/audio-button-disabled.png</file>
+        <file>icons/light/024/cue-button.png</file>
+        <file>icons/light/024/cue-button-disabled.png</file>
+        <file>icons/dark/024/cue-button.png</file>
+        <file>icons/dark/024/cue-button-disabled.png</file>
+        <file>icons/light/024/track-cancel.png</file>
+        <file>icons/dark/024/track-cancel.png</file>
+        <file>icons/light/024/warning.png</file>
+        <file>icons/dark/024/warning.png</file>
+        <file>icons/light/024/error.png</file>
+        <file>icons/dark/024/error.png</file>
+
+        <file>icons/light/032/add-disk.png</file>
+        <file>icons/light/032/add-disk-disabled.png</file>
+        <file>icons/dark/032/add-disk.png</file>
+        <file>icons/dark/032/add-disk-disabled.png</file>
+        <file>icons/light/032/remove-disk.png</file>
+        <file>icons/light/032/remove-disk-disabled.png</file>
+        <file>icons/dark/032/remove-disk.png</file>
+        <file>icons/dark/032/remove-disk-disabled.png</file>
+        <file>icons/light/032/scan.png</file>
+        <file>icons/light/032/scan-disabled.png</file>
+        <file>icons/dark/032/scan.png</file>
+        <file>icons/dark/032/scan-disabled.png</file>
+        <file>icons/light/032/download-info.png</file>
+        <file>icons/light/032/download-info-disabled.png</file>
+        <file>icons/dark/032/download-info.png</file>
+        <file>icons/dark/032/download-info-disabled.png</file>
+        <file>icons/light/032/abort-convert.png</file>
+        <file>icons/light/032/abort-convert-disabled.png</file>
+        <file>icons/dark/032/abort-convert.png</file>
+        <file>icons/dark/032/abort-convert-disabled.png</file>
+        <file>icons/light/032/start-convert.png</file>
+        <file>icons/light/032/start-convert-disabled.png</file>
+        <file>icons/dark/032/start-convert.png</file>
+        <file>icons/dark/032/start-convert-disabled.png</file>
+        <file>icons/light/032/folder.png</file>
+        <file>icons/light/032/folder-disabled.png</file>
+        <file>icons/dark/032/folder.png</file>
+        <file>icons/dark/032/folder-disabled.png</file>
+        <file>icons/light/032/configure.png</file>
+        <file>icons/light/032/configure-disabled.png</file>
+        <file>icons/dark/032/configure.png</file>
+        <file>icons/dark/032/configure-disabled.png</file>
+        <file>icons/light/032/pattern-button.png</file>
+        <file>icons/light/032/pattern-button-disabled.png</file>
+        <file>icons/dark/032/pattern-button.png</file>
+        <file>icons/dark/032/pattern-button-disabled.png</file>
+        <file>icons/light/032/track-ok.png</file>
+        <file>icons/light/032/track-ok-disabled.png</file>
+        <file>icons/dark/032/track-ok.png</file>
+        <file>icons/dark/032/track-ok-disabled.png</file>
+        <file>icons/light/032/audio-button.png</file>
+        <file>icons/light/032/audio-button-disabled.png</file>
+        <file>icons/dark/032/audio-button.png</file>
+        <file>icons/dark/032/audio-button-disabled.png</file>
+        <file>icons/light/032/cue-button.png</file>
+        <file>icons/light/032/cue-button-disabled.png</file>
+        <file>icons/dark/032/cue-button.png</file>
+        <file>icons/dark/032/cue-button-disabled.png</file>
+        <file>icons/light/032/track-cancel.png</file>
+        <file>icons/dark/032/track-cancel.png</file>
+        <file>icons/light/032/warning.png</file>
+        <file>icons/dark/032/warning.png</file>
+        <file>icons/light/032/error.png</file>
+        <file>icons/dark/032/error.png</file>
+
+        <file>icons/light/048/add-disk.png</file>
+        <file>icons/light/048/add-disk-disabled.png</file>
+        <file>icons/dark/048/add-disk.png</file>
+        <file>icons/dark/048/add-disk-disabled.png</file>
+        <file>icons/light/048/remove-disk.png</file>
+        <file>icons/light/048/remove-disk-disabled.png</file>
+        <file>icons/dark/048/remove-disk.png</file>
+        <file>icons/dark/048/remove-disk-disabled.png</file>
+        <file>icons/light/048/scan.png</file>
+        <file>icons/light/048/scan-disabled.png</file>
+        <file>icons/dark/048/scan.png</file>
+        <file>icons/dark/048/scan-disabled.png</file>
+        <file>icons/light/048/download-info.png</file>
+        <file>icons/light/048/download-info-disabled.png</file>
+        <file>icons/dark/048/download-info.png</file>
+        <file>icons/dark/048/download-info-disabled.png</file>
+        <file>icons/light/048/abort-convert.png</file>
+        <file>icons/light/048/abort-convert-disabled.png</file>
+        <file>icons/dark/048/abort-convert.png</file>
+        <file>icons/dark/048/abort-convert-disabled.png</file>
+        <file>icons/light/048/start-convert.png</file>
+        <file>icons/light/048/start-convert-disabled.png</file>
+        <file>icons/dark/048/start-convert.png</file>
+        <file>icons/dark/048/start-convert-disabled.png</file>
+        <file>icons/light/048/folder.png</file>
+        <file>icons/light/048/folder-disabled.png</file>
+        <file>icons/dark/048/folder.png</file>
+        <file>icons/dark/048/folder-disabled.png</file>
+        <file>icons/light/048/configure.png</file>
+        <file>icons/light/048/configure-disabled.png</file>
+        <file>icons/dark/048/configure.png</file>
+        <file>icons/dark/048/configure-disabled.png</file>
+        <file>icons/light/048/pattern-button.png</file>
+        <file>icons/light/048/pattern-button-disabled.png</file>
+        <file>icons/dark/048/pattern-button.png</file>
+        <file>icons/dark/048/pattern-button-disabled.png</file>
+        <file>icons/light/048/track-ok.png</file>
+        <file>icons/light/048/track-ok-disabled.png</file>
+        <file>icons/dark/048/track-ok.png</file>
+        <file>icons/dark/048/track-ok-disabled.png</file>
+        <file>icons/light/048/audio-button.png</file>
+        <file>icons/light/048/audio-button-disabled.png</file>
+        <file>icons/dark/048/audio-button.png</file>
+        <file>icons/dark/048/audio-button-disabled.png</file>
+        <file>icons/light/048/cue-button.png</file>
+        <file>icons/light/048/cue-button-disabled.png</file>
+        <file>icons/dark/048/cue-button.png</file>
+        <file>icons/dark/048/cue-button-disabled.png</file>
+        <file>icons/light/048/track-cancel.png</file>
+        <file>icons/dark/048/track-cancel.png</file>
+        <file>icons/light/048/warning.png</file>
+        <file>icons/dark/048/warning.png</file>
+        <file>icons/light/048/error.png</file>
+        <file>icons/dark/048/error.png</file>
+
+        <file>icons/light/064/add-disk.png</file>
+        <file>icons/light/064/add-disk-disabled.png</file>
+        <file>icons/dark/064/add-disk.png</file>
+        <file>icons/dark/064/add-disk-disabled.png</file>
+        <file>icons/light/064/remove-disk.png</file>
+        <file>icons/light/064/remove-disk-disabled.png</file>
+        <file>icons/dark/064/remove-disk.png</file>
+        <file>icons/dark/064/remove-disk-disabled.png</file>
+        <file>icons/light/064/scan.png</file>
+        <file>icons/light/064/scan-disabled.png</file>
+        <file>icons/dark/064/scan.png</file>
+        <file>icons/dark/064/scan-disabled.png</file>
+        <file>icons/light/064/download-info.png</file>
+        <file>icons/light/064/download-info-disabled.png</file>
+        <file>icons/dark/064/download-info.png</file>
+        <file>icons/dark/064/download-info-disabled.png</file>
+        <file>icons/light/064/abort-convert.png</file>
+        <file>icons/light/064/abort-convert-disabled.png</file>
+        <file>icons/dark/064/abort-convert.png</file>
+        <file>icons/dark/064/abort-convert-disabled.png</file>
+        <file>icons/light/064/start-convert.png</file>
+        <file>icons/light/064/start-convert-disabled.png</file>
+        <file>icons/dark/064/start-convert.png</file>
+        <file>icons/dark/064/start-convert-disabled.png</file>
+        <file>icons/light/064/folder.png</file>
+        <file>icons/light/064/folder-disabled.png</file>
+        <file>icons/dark/064/folder.png</file>
+        <file>icons/dark/064/folder-disabled.png</file>
+        <file>icons/light/064/configure.png</file>
+        <file>icons/light/064/configure-disabled.png</file>
+        <file>icons/dark/064/configure.png</file>
+        <file>icons/dark/064/configure-disabled.png</file>
+        <file>icons/light/064/pattern-button.png</file>
+        <file>icons/light/064/pattern-button-disabled.png</file>
+        <file>icons/dark/064/pattern-button.png</file>
+        <file>icons/dark/064/pattern-button-disabled.png</file>
+        <file>icons/light/064/track-ok.png</file>
+        <file>icons/light/064/track-ok-disabled.png</file>
+        <file>icons/dark/064/track-ok.png</file>
+        <file>icons/dark/064/track-ok-disabled.png</file>
+        <file>icons/light/064/audio-button.png</file>
+        <file>icons/light/064/audio-button-disabled.png</file>
+        <file>icons/dark/064/audio-button.png</file>
+        <file>icons/dark/064/audio-button-disabled.png</file>
+        <file>icons/light/064/cue-button.png</file>
+        <file>icons/light/064/cue-button-disabled.png</file>
+        <file>icons/dark/064/cue-button.png</file>
+        <file>icons/dark/064/cue-button-disabled.png</file>
+        <file>icons/light/064/track-cancel.png</file>
+        <file>icons/dark/064/track-cancel.png</file>
+        <file>icons/light/064/warning.png</file>
+        <file>icons/dark/064/warning.png</file>
+        <file>icons/light/064/error.png</file>
+        <file>icons/dark/064/error.png</file>
+
+        <file>icons/light/128/add-disk.png</file>
+        <file>icons/light/128/add-disk-disabled.png</file>
+        <file>icons/dark/128/add-disk.png</file>
+        <file>icons/dark/128/add-disk-disabled.png</file>
+        <file>icons/light/128/remove-disk.png</file>
+        <file>icons/light/128/remove-disk-disabled.png</file>
+        <file>icons/dark/128/remove-disk.png</file>
+        <file>icons/dark/128/remove-disk-disabled.png</file>
+        <file>icons/light/128/scan.png</file>
+        <file>icons/light/128/scan-disabled.png</file>
+        <file>icons/dark/128/scan.png</file>
+        <file>icons/dark/128/scan-disabled.png</file>
+        <file>icons/light/128/download-info.png</file>
+        <file>icons/light/128/download-info-disabled.png</file>
+        <file>icons/dark/128/download-info.png</file>
+        <file>icons/dark/128/download-info-disabled.png</file>
+        <file>icons/light/128/abort-convert.png</file>
+        <file>icons/light/128/abort-convert-disabled.png</file>
+        <file>icons/dark/128/abort-convert.png</file>
+        <file>icons/dark/128/abort-convert-disabled.png</file>
+        <file>icons/light/128/start-convert.png</file>
+        <file>icons/light/128/start-convert-disabled.png</file>
+        <file>icons/dark/128/start-convert.png</file>
+        <file>icons/dark/128/start-convert-disabled.png</file>
+        <file>icons/light/128/folder.png</file>
+        <file>icons/light/128/folder-disabled.png</file>
+        <file>icons/dark/128/folder.png</file>
+        <file>icons/dark/128/folder-disabled.png</file>
+        <file>icons/light/128/configure.png</file>
+        <file>icons/light/128/configure-disabled.png</file>
+        <file>icons/dark/128/configure.png</file>
+        <file>icons/dark/128/configure-disabled.png</file>
+        <file>icons/light/128/pattern-button.png</file>
+        <file>icons/light/128/pattern-button-disabled.png</file>
+        <file>icons/dark/128/pattern-button.png</file>
+        <file>icons/dark/128/pattern-button-disabled.png</file>
+        <file>icons/light/128/track-ok.png</file>
+        <file>icons/light/128/track-ok-disabled.png</file>
+        <file>icons/dark/128/track-ok.png</file>
+        <file>icons/dark/128/track-ok-disabled.png</file>
+        <file>icons/light/128/audio-button.png</file>
+        <file>icons/light/128/audio-button-disabled.png</file>
+        <file>icons/dark/128/audio-button.png</file>
+        <file>icons/dark/128/audio-button-disabled.png</file>
+        <file>icons/light/128/cue-button.png</file>
+        <file>icons/light/128/cue-button-disabled.png</file>
+        <file>icons/dark/128/cue-button.png</file>
+        <file>icons/dark/128/cue-button-disabled.png</file>
+        <file>icons/light/128/track-cancel.png</file>
+        <file>icons/dark/128/track-cancel.png</file>
+        <file>icons/light/128/warning.png</file>
+        <file>icons/dark/128/warning.png</file>
+        <file>icons/light/128/error.png</file>
+        <file>icons/dark/128/error.png</file>
+
+        <file>icons/light/256/add-disk.png</file>
+        <file>icons/light/256/add-disk-disabled.png</file>
+        <file>icons/dark/256/add-disk.png</file>
+        <file>icons/dark/256/add-disk-disabled.png</file>
+        <file>icons/light/256/remove-disk.png</file>
+        <file>icons/light/256/remove-disk-disabled.png</file>
+        <file>icons/dark/256/remove-disk.png</file>
+        <file>icons/dark/256/remove-disk-disabled.png</file>
+        <file>icons/light/256/scan.png</file>
+        <file>icons/light/256/scan-disabled.png</file>
+        <file>icons/dark/256/scan.png</file>
+        <file>icons/dark/256/scan-disabled.png</file>
+        <file>icons/light/256/download-info.png</file>
+        <file>icons/light/256/download-info-disabled.png</file>
+        <file>icons/dark/256/download-info.png</file>
+        <file>icons/dark/256/download-info-disabled.png</file>
+        <file>icons/light/256/abort-convert.png</file>
+        <file>icons/light/256/abort-convert-disabled.png</file>
+        <file>icons/dark/256/abort-convert.png</file>
+        <file>icons/dark/256/abort-convert-disabled.png</file>
+        <file>icons/light/256/start-convert.png</file>
+        <file>icons/light/256/start-convert-disabled.png</file>
+        <file>icons/dark/256/start-convert.png</file>
+        <file>icons/dark/256/start-convert-disabled.png</file>
+        <file>icons/light/256/folder.png</file>
+        <file>icons/light/256/folder-disabled.png</file>
+        <file>icons/dark/256/folder.png</file>
+        <file>icons/dark/256/folder-disabled.png</file>
+        <file>icons/light/256/configure.png</file>
+        <file>icons/light/256/configure-disabled.png</file>
+        <file>icons/dark/256/configure.png</file>
+        <file>icons/dark/256/configure-disabled.png</file>
+        <file>icons/light/256/pattern-button.png</file>
+        <file>icons/light/256/pattern-button-disabled.png</file>
+        <file>icons/dark/256/pattern-button.png</file>
+        <file>icons/dark/256/pattern-button-disabled.png</file>
+        <file>icons/light/256/track-ok.png</file>
+        <file>icons/light/256/track-ok-disabled.png</file>
+        <file>icons/dark/256/track-ok.png</file>
+        <file>icons/dark/256/track-ok-disabled.png</file>
+        <file>icons/light/256/audio-button.png</file>
+        <file>icons/light/256/audio-button-disabled.png</file>
+        <file>icons/dark/256/audio-button.png</file>
+        <file>icons/dark/256/audio-button-disabled.png</file>
+        <file>icons/light/256/cue-button.png</file>
+        <file>icons/light/256/cue-button-disabled.png</file>
+        <file>icons/dark/256/cue-button.png</file>
+        <file>icons/dark/256/cue-button-disabled.png</file>
+        <file>icons/light/256/track-cancel.png</file>
+        <file>icons/dark/256/track-cancel.png</file>
+        <file>icons/light/256/warning.png</file>
+        <file>icons/dark/256/warning.png</file>
+        <file>icons/light/256/error.png</file>
+        <file>icons/dark/256/error.png</file>
+
+        <file>icons/light/512/add-disk.png</file>
+        <file>icons/light/512/add-disk-disabled.png</file>
+        <file>icons/dark/512/add-disk.png</file>
+        <file>icons/dark/512/add-disk-disabled.png</file>
+        <file>icons/light/512/remove-disk.png</file>
+        <file>icons/light/512/remove-disk-disabled.png</file>
+        <file>icons/dark/512/remove-disk.png</file>
+        <file>icons/dark/512/remove-disk-disabled.png</file>
+        <file>icons/light/512/scan.png</file>
+        <file>icons/light/512/scan-disabled.png</file>
+        <file>icons/dark/512/scan.png</file>
+        <file>icons/dark/512/scan-disabled.png</file>
+        <file>icons/light/512/download-info.png</file>
+        <file>icons/light/512/download-info-disabled.png</file>
+        <file>icons/dark/512/download-info.png</file>
+        <file>icons/dark/512/download-info-disabled.png</file>
+        <file>icons/light/512/abort-convert.png</file>
+        <file>icons/light/512/abort-convert-disabled.png</file>
+        <file>icons/dark/512/abort-convert.png</file>
+        <file>icons/dark/512/abort-convert-disabled.png</file>
+        <file>icons/light/512/start-convert.png</file>
+        <file>icons/light/512/start-convert-disabled.png</file>
+        <file>icons/dark/512/start-convert.png</file>
+        <file>icons/dark/512/start-convert-disabled.png</file>
+        <file>icons/light/512/folder.png</file>
+        <file>icons/light/512/folder-disabled.png</file>
+        <file>icons/dark/512/folder.png</file>
+        <file>icons/dark/512/folder-disabled.png</file>
+        <file>icons/light/512/configure.png</file>
+        <file>icons/light/512/configure-disabled.png</file>
+        <file>icons/dark/512/configure.png</file>
+        <file>icons/dark/512/configure-disabled.png</file>
+        <file>icons/light/512/pattern-button.png</file>
+        <file>icons/light/512/pattern-button-disabled.png</file>
+        <file>icons/dark/512/pattern-button.png</file>
+        <file>icons/dark/512/pattern-button-disabled.png</file>
+        <file>icons/light/512/track-ok.png</file>
+        <file>icons/light/512/track-ok-disabled.png</file>
+        <file>icons/dark/512/track-ok.png</file>
+        <file>icons/dark/512/track-ok-disabled.png</file>
+        <file>icons/light/512/audio-button.png</file>
+        <file>icons/light/512/audio-button-disabled.png</file>
+        <file>icons/dark/512/audio-button.png</file>
+        <file>icons/dark/512/audio-button-disabled.png</file>
+        <file>icons/light/512/cue-button.png</file>
+        <file>icons/light/512/cue-button-disabled.png</file>
+        <file>icons/dark/512/cue-button.png</file>
+        <file>icons/dark/512/cue-button-disabled.png</file>
+        <file>icons/light/512/track-cancel.png</file>
+        <file>icons/dark/512/track-cancel.png</file>
+        <file>icons/light/512/warning.png</file>
+        <file>icons/dark/512/warning.png</file>
+        <file>icons/light/512/error.png</file>
+        <file>icons/dark/512/error.png</file>
+
     </qresource>
-
-    <qresource prefix="22">
-        <file alias="add-disk">icons/22/add-disk.png</file>
-        <file alias="remove-disk">icons/22/remove-disk.png</file>
-        <file alias="scan">icons/22/scan.png</file>
-        <file alias="download-info">icons/22/download-info.png</file>
-        <file alias="abort-convert">icons/22/abort-convert.png</file>
-        <file alias="start-convert">icons/22/start-convert.png</file>
-        <file alias="folder">icons/22/folder.png</file>
-        <file alias="configure">icons/22/configure.png</file>
-        <file alias="pattern-button">icons/22/pattern-button.png</file>
-        <file alias="track-ok">icons/22/track-ok.png</file>
-        <file alias="audio-button">icons/22/audio-button.png</file>
-        <file alias="cue-button">icons/22/cue-button.png</file>
-
-        <file alias="add-disk_disable">icons/22/add-disk_disable.png</file>
-        <file alias="remove-disk_disable">icons/22/remove-disk_disable.png</file>
-        <file alias="scan_disable">icons/22/scan_disable.png</file>
-        <file alias="download-info_disable">icons/22/download-info_disable.png</file>
-        <file alias="abort-convert_disable">icons/22/abort-convert_disable.png</file>
-        <file alias="start-convert_disable">icons/22/start-convert_disable.png</file>
-        <file alias="folder_disable">icons/22/folder_disable.png</file>
-        <file alias="configure_disable">icons/22/configure_disable.png</file>
-        <file alias="pattern-button_disable">icons/22/pattern-button_disable.png</file>
-        <file alias="track-ok_disable">icons/22/track-ok_disable.png</file>
-        <file alias="audio-button_disable">icons/22/audio-button_disable.png</file>
-        <file alias="cue-button_disable">icons/22/cue-button_disable.png</file>
-
-        <file alias="track-cancel">icons/22/track-cancel.png</file>
-        <file alias="warning">icons/22/warning.png</file>
-        <file alias="error">icons/22/error.png</file>
-    </qresource>
-
-    <qresource prefix="24">
-        <file alias="add-disk">icons/24/add-disk.png</file>
-        <file alias="remove-disk">icons/24/remove-disk.png</file>
-        <file alias="scan">icons/24/scan.png</file>
-        <file alias="download-info">icons/24/download-info.png</file>
-        <file alias="abort-convert">icons/24/abort-convert.png</file>
-        <file alias="start-convert">icons/24/start-convert.png</file>
-        <file alias="folder">icons/24/folder.png</file>
-        <file alias="configure">icons/24/configure.png</file>
-        <file alias="pattern-button">icons/24/pattern-button.png</file>
-        <file alias="track-ok">icons/24/track-ok.png</file>
-        <file alias="audio-button">icons/24/audio-button.png</file>
-        <file alias="cue-button">icons/24/cue-button.png</file>
-
-        <file alias="add-disk_disable">icons/24/add-disk_disable.png</file>
-        <file alias="remove-disk_disable">icons/24/remove-disk_disable.png</file>
-        <file alias="scan_disable">icons/24/scan_disable.png</file>
-        <file alias="download-info_disable">icons/24/download-info_disable.png</file>
-        <file alias="abort-convert_disable">icons/24/abort-convert_disable.png</file>
-        <file alias="start-convert_disable">icons/24/start-convert_disable.png</file>
-        <file alias="folder_disable">icons/24/folder_disable.png</file>
-        <file alias="configure_disable">icons/24/configure_disable.png</file>
-        <file alias="pattern-button_disable">icons/24/pattern-button_disable.png</file>
-        <file alias="track-ok_disable">icons/24/track-ok_disable.png</file>
-        <file alias="audio-button_disable">icons/24/audio-button_disable.png</file>
-        <file alias="cue-button_disable">icons/24/cue-button_disable.png</file>
-
-        <file alias="track-cancel">icons/24/track-cancel.png</file>
-        <file alias="warning">icons/24/warning.png</file>
-        <file alias="error">icons/24/error.png</file>
-    </qresource>
-
-    <qresource prefix="32">
-        <file alias="add-disk">icons/32/add-disk.png</file>
-        <file alias="remove-disk">icons/32/remove-disk.png</file>
-        <file alias="scan">icons/32/scan.png</file>
-        <file alias="download-info">icons/32/download-info.png</file>
-        <file alias="abort-convert">icons/32/abort-convert.png</file>
-        <file alias="start-convert">icons/32/start-convert.png</file>
-        <file alias="folder">icons/32/folder.png</file>
-        <file alias="configure">icons/32/configure.png</file>
-        <file alias="pattern-button">icons/32/pattern-button.png</file>
-        <file alias="track-ok">icons/32/track-ok.png</file>
-        <file alias="audio-button">icons/32/audio-button.png</file>
-        <file alias="cue-button">icons/32/cue-button.png</file>
-
-        <file alias="add-disk_disable">icons/32/add-disk_disable.png</file>
-        <file alias="remove-disk_disable">icons/32/remove-disk_disable.png</file>
-        <file alias="scan_disable">icons/32/scan_disable.png</file>
-        <file alias="download-info_disable">icons/32/download-info_disable.png</file>
-        <file alias="abort-convert_disable">icons/32/abort-convert_disable.png</file>
-        <file alias="start-convert_disable">icons/32/start-convert_disable.png</file>
-        <file alias="folder_disable">icons/32/folder_disable.png</file>
-        <file alias="configure_disable">icons/32/configure_disable.png</file>
-        <file alias="pattern-button_disable">icons/32/pattern-button_disable.png</file>
-        <file alias="track-ok_disable">icons/32/track-ok_disable.png</file>
-        <file alias="audio-button_disable">icons/32/audio-button_disable.png</file>
-        <file alias="cue-button_disable">icons/32/cue-button_disable.png</file>
-
-        <file alias="track-cancel">icons/32/track-cancel.png</file>
-        <file alias="warning">icons/32/warning.png</file>
-        <file alias="error">icons/32/error.png</file>
-    </qresource>
-
-    <qresource prefix="48">
-        <file alias="add-disk">icons/48/add-disk.png</file>
-        <file alias="remove-disk">icons/48/remove-disk.png</file>
-        <file alias="scan">icons/48/scan.png</file>
-        <file alias="download-info">icons/48/download-info.png</file>
-        <file alias="abort-convert">icons/48/abort-convert.png</file>
-        <file alias="start-convert">icons/48/start-convert.png</file>
-        <file alias="folder">icons/48/folder.png</file>
-        <file alias="configure">icons/48/configure.png</file>
-        <file alias="pattern-button">icons/48/pattern-button.png</file>
-        <file alias="track-ok">icons/48/track-ok.png</file>
-        <file alias="audio-button">icons/48/audio-button.png</file>
-        <file alias="cue-button">icons/48/cue-button.png</file>
-
-        <file alias="add-disk_disable">icons/48/add-disk_disable.png</file>
-        <file alias="remove-disk_disable">icons/48/remove-disk_disable.png</file>
-        <file alias="scan_disable">icons/48/scan_disable.png</file>
-        <file alias="download-info_disable">icons/48/download-info_disable.png</file>
-        <file alias="abort-convert_disable">icons/48/abort-convert_disable.png</file>
-        <file alias="start-convert_disable">icons/48/start-convert_disable.png</file>
-        <file alias="folder_disable">icons/48/folder_disable.png</file>
-        <file alias="configure_disable">icons/48/configure_disable.png</file>
-        <file alias="pattern-button_disable">icons/48/pattern-button_disable.png</file>
-        <file alias="track-ok_disable">icons/48/track-ok_disable.png</file>
-        <file alias="audio-button_disable">icons/48/audio-button_disable.png</file>
-        <file alias="cue-button_disable">icons/48/cue-button_disable.png</file>
-
-        <file alias="track-cancel">icons/48/track-cancel.png</file>
-        <file alias="warning">icons/48/warning.png</file>
-        <file alias="error">icons/48/error.png</file>
-    </qresource>
-
-    <qresource prefix="64">
-        <file alias="add-disk">icons/64/add-disk.png</file>
-        <file alias="remove-disk">icons/64/remove-disk.png</file>
-        <file alias="scan">icons/64/scan.png</file>
-        <file alias="download-info">icons/64/download-info.png</file>
-        <file alias="abort-convert">icons/64/abort-convert.png</file>
-        <file alias="start-convert">icons/64/start-convert.png</file>
-        <file alias="folder">icons/64/folder.png</file>
-        <file alias="configure">icons/64/configure.png</file>
-        <file alias="pattern-button">icons/64/pattern-button.png</file>
-        <file alias="track-ok">icons/64/track-ok.png</file>
-        <file alias="audio-button">icons/64/audio-button.png</file>
-        <file alias="cue-button">icons/64/cue-button.png</file>
-
-        <file alias="add-disk_disable">icons/64/add-disk_disable.png</file>
-        <file alias="remove-disk_disable">icons/64/remove-disk_disable.png</file>
-        <file alias="scan_disable">icons/64/scan_disable.png</file>
-        <file alias="download-info_disable">icons/64/download-info_disable.png</file>
-        <file alias="abort-convert_disable">icons/64/abort-convert_disable.png</file>
-        <file alias="start-convert_disable">icons/64/start-convert_disable.png</file>
-        <file alias="folder_disable">icons/64/folder_disable.png</file>
-        <file alias="configure_disable">icons/64/configure_disable.png</file>
-        <file alias="pattern-button_disable">icons/64/pattern-button_disable.png</file>
-        <file alias="track-ok_disable">icons/64/track-ok_disable.png</file>
-        <file alias="audio-button_disable">icons/64/audio-button_disable.png</file>
-        <file alias="cue-button_disable">icons/64/cue-button_disable.png</file>
-
-        <file alias="track-cancel">icons/64/track-cancel.png</file>
-        <file alias="warning">icons/64/warning.png</file>
-        <file alias="error">icons/64/error.png</file>
-    </qresource>
-
-    <qresource prefix="128">
-        <file alias="add-disk">icons/128/add-disk.png</file>
-        <file alias="remove-disk">icons/128/remove-disk.png</file>
-        <file alias="scan">icons/128/scan.png</file>
-        <file alias="download-info">icons/128/download-info.png</file>
-        <file alias="abort-convert">icons/128/abort-convert.png</file>
-        <file alias="start-convert">icons/128/start-convert.png</file>
-        <file alias="folder">icons/128/folder.png</file>
-        <file alias="configure">icons/128/configure.png</file>
-        <file alias="pattern-button">icons/128/pattern-button.png</file>
-        <file alias="track-ok">icons/128/track-ok.png</file>
-        <file alias="audio-button">icons/128/audio-button.png</file>
-        <file alias="cue-button">icons/128/cue-button.png</file>
-
-        <file alias="add-disk_disable">icons/128/add-disk_disable.png</file>
-        <file alias="remove-disk_disable">icons/128/remove-disk_disable.png</file>
-        <file alias="scan_disable">icons/128/scan_disable.png</file>
-        <file alias="download-info_disable">icons/128/download-info_disable.png</file>
-        <file alias="abort-convert_disable">icons/128/abort-convert_disable.png</file>
-        <file alias="start-convert_disable">icons/128/start-convert_disable.png</file>
-        <file alias="folder_disable">icons/128/folder_disable.png</file>
-        <file alias="configure_disable">icons/128/configure_disable.png</file>
-        <file alias="pattern-button_disable">icons/128/pattern-button_disable.png</file>
-        <file alias="track-ok_disable">icons/128/track-ok_disable.png</file>
-        <file alias="audio-button_disable">icons/128/audio-button_disable.png</file>
-        <file alias="cue-button_disable">icons/128/cue-button_disable.png</file>
-
-        <file alias="track-cancel">icons/128/track-cancel.png</file>
-        <file alias="warning">icons/128/warning.png</file>
-        <file alias="error">icons/128/error.png</file>
-    </qresource>
-
-    <qresource prefix="256">
-        <file alias="add-disk">icons/256/add-disk.png</file>
-        <file alias="remove-disk">icons/256/remove-disk.png</file>
-        <file alias="scan">icons/256/scan.png</file>
-        <file alias="download-info">icons/256/download-info.png</file>
-        <file alias="abort-convert">icons/256/abort-convert.png</file>
-        <file alias="start-convert">icons/256/start-convert.png</file>
-        <file alias="folder">icons/256/folder.png</file>
-        <file alias="configure">icons/256/configure.png</file>
-        <file alias="pattern-button">icons/256/pattern-button.png</file>
-        <file alias="track-ok">icons/256/track-ok.png</file>
-        <file alias="audio-button">icons/256/audio-button.png</file>
-        <file alias="cue-button">icons/256/cue-button.png</file>
-
-        <file alias="add-disk_disable">icons/256/add-disk_disable.png</file>
-        <file alias="remove-disk_disable">icons/256/remove-disk_disable.png</file>
-        <file alias="scan_disable">icons/256/scan_disable.png</file>
-        <file alias="download-info_disable">icons/256/download-info_disable.png</file>
-        <file alias="abort-convert_disable">icons/256/abort-convert_disable.png</file>
-        <file alias="start-convert_disable">icons/256/start-convert_disable.png</file>
-        <file alias="folder_disable">icons/256/folder_disable.png</file>
-        <file alias="configure_disable">icons/256/configure_disable.png</file>
-        <file alias="pattern-button_disable">icons/256/pattern-button_disable.png</file>
-        <file alias="track-ok_disable">icons/256/track-ok_disable.png</file>
-        <file alias="audio-button_disable">icons/256/audio-button_disable.png</file>
-        <file alias="cue-button_disable">icons/256/cue-button_disable.png</file>
-
-        <file alias="track-cancel">icons/256/track-cancel.png</file>
-        <file alias="warning">icons/256/warning.png</file>
-        <file alias="error">icons/256/error.png</file>
-    </qresource>
-
-    <qresource prefix="512">
-        <file alias="add-disk">icons/512/add-disk.png</file>
-        <file alias="remove-disk">icons/512/remove-disk.png</file>
-        <file alias="scan">icons/512/scan.png</file>
-        <file alias="download-info">icons/512/download-info.png</file>
-        <file alias="abort-convert">icons/512/abort-convert.png</file>
-        <file alias="start-convert">icons/512/start-convert.png</file>
-        <file alias="folder">icons/512/folder.png</file>
-        <file alias="configure">icons/512/configure.png</file>
-        <file alias="pattern-button">icons/512/pattern-button.png</file>
-        <file alias="track-ok">icons/512/track-ok.png</file>
-        <file alias="audio-button">icons/512/audio-button.png</file>
-        <file alias="cue-button">icons/512/cue-button.png</file>
-
-        <file alias="add-disk_disable">icons/512/add-disk_disable.png</file>
-        <file alias="remove-disk_disable">icons/512/remove-disk_disable.png</file>
-        <file alias="scan_disable">icons/512/scan_disable.png</file>
-        <file alias="download-info_disable">icons/512/download-info_disable.png</file>
-        <file alias="abort-convert_disable">icons/512/abort-convert_disable.png</file>
-        <file alias="start-convert_disable">icons/512/start-convert_disable.png</file>
-        <file alias="folder_disable">icons/512/folder_disable.png</file>
-        <file alias="configure_disable">icons/512/configure_disable.png</file>
-        <file alias="pattern-button_disable">icons/512/pattern-button_disable.png</file>
-        <file alias="track-ok_disable">icons/512/track-ok_disable.png</file>
-        <file alias="audio-button_disable">icons/512/audio-button_disable.png</file>
-        <file alias="cue-button_disable">icons/512/cue-button_disable.png</file>
-
-        <file alias="track-cancel">icons/512/track-cancel.png</file>
-        <file alias="warning">icons/512/warning.png</file>
-        <file alias="error">icons/512/error.png</file>
-    </qresource>
-
 </RCC>

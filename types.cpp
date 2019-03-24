@@ -142,29 +142,6 @@ unsigned int levenshteinDistance(const QString &s1, const QString & s2)
 
 
 /************************************************
- *
- ************************************************/
-QIcon loadIcon(const QString &iconName, bool loadDisable)
-{
-    QVector<int> sizes;
-    sizes << 16 << 22 << 24 << 32 << 48 << 64 << 128 << 256 << 512;
-
-    QIcon res;
-    foreach (int size, sizes)
-        res.addFile(QString(":%2/%1").arg(iconName).arg(size), QSize(size, size), QIcon::Normal);
-
-
-    if (loadDisable)
-    {
-        foreach (int size, sizes)
-            res.addFile(QString(":%2/%1_disable").arg(iconName).arg(size), QSize(size, size), QIcon::Disabled);
-    }
-
-    return res;
-}
-
-
-/************************************************
 
  ************************************************/
 CueIndex::CueIndex(const QString &str):

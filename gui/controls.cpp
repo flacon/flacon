@@ -27,6 +27,7 @@
 #include "controls.h"
 #include "project.h"
 #include "settings.h"
+#include "icon.h"
 
 #include <QMenu>
 #include <QDebug>
@@ -424,7 +425,7 @@ ProgramEdit::ProgramEdit(const QString &programName, QWidget *parent):
 {
     mBtn = new QToolButton(this);
     mBtn->setText("…");
-    mBtn->setIcon(loadIcon("folder"));
+    mBtn->setIcon(Icon("folder"));
     mBtn->setStyleSheet("QToolButton { border: none; padding: 0px; }");
     mBtn->setCursor(Qt::ArrowCursor);
 

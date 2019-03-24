@@ -2,100 +2,83 @@
 
 SRC_COLOR="#000000"
 
-ENABLE="#656565"
-DISABLE="#a1a1a1"
+ENABLE_LIGHT="#656565"
+DISABLE_LIGHT="#a1a1a1"
+ENABLE_DARK="#a1a1a1"
+DISABLE_DARK="#656565"
+
+
 
 RC_FILE="icons.qrc"
 
-#ENABLE="#ff00ff"
-#DISABLE="#00ff00"
+GRAY_FILES="add-disk.svg
+			remove-disk.svg
+			scan.svg
+			download-info.svg
+			abort-convert.svg
+			start-convert.svg
+			folder.svg
+			configure.svg
+			pattern-button.svg
+			track-ok.svg
+			audio-button.svg
+			cue-button.svg"
+
+COLOR_FILES="track-cancel.svg
+			warning.svg
+			error.svg"
+
+
+SIZES="16 22 24 32 48 64 128 256 512"
+
 
 function conv()
 {
 	local svgFile=$1
-	#local pngFile=$2
 	local size=$2
 	local color=$3
+	local pngFile=$4
 
-	postfix=""
-#	postfix="${size}x${size}"	
-	[ "${color}" = "${DISABLE}" ] && postfix="_disable"
-		
-	pngFile=${svgFile/.svg/${postfix}.png}
 	echo "$svgFile => $pngFile"
 
-	sed -e "s/${SRC_COLOR}/${color}/g" icons/${svgFile} > icons/_tmp.svg
-	mkdir -p icons/${size}
-	inkscape -z -e icons/${size}/${pngFile} -w ${size} -h ${size} icons/_tmp.svg
-	rm icons/_tmp.svg
+	local dir=$(dirname $pngFile)
 
-	name=${svgFile/.svg/${postfix}}
-	echo "        <file alias=\"${name}\">icons/${size}/${pngFile}</file>" >> ${RC_FILE}	
+	mkdir -p "${dir}"
+	sed -e "s/${SRC_COLOR}/${color}/g" icons/${svgFile} > "${dir}/_tmp.svg"
+
+	inkscape -z -e "${pngFile}" -w ${size} -h ${size} "${dir}/_tmp.svg"
+	rm "${dir}/_tmp.svg"
+
+	echo "        <file>${pngFile}</file>" >> ${RC_FILE}
 	echo ""
 }
 
 echo "<!-- Generated from icons2png.sh do not edit by hand. -->" > ${RC_FILE}
 echo "<RCC>" >> ${RC_FILE}
 
+echo "    <qresource prefix=\"/\">" >> ${RC_FILE}
+for size in ${SIZES}; do
 
-for size in 16 22 24 32 48 64 128 256 512 ; do
-	echo "    <qresource prefix=\"${size}\">" >> ${RC_FILE}	
+	sizeStr=$(printf "%03d" $size)
+	for f in $GRAY_FILES; do
+		out=${f/.svg/}
 
-	for color in "$ENABLE" "$DISABLE"; do 
-		conv add-disk.svg $size $color
-		conv remove-disk.svg $size $color
-		conv scan.svg $size $color
-
-		conv download-info.svg $size $color
+		conv "$f" $size ${ENABLE_LIGHT} 	"icons/light/${sizeStr}/${out}.png"
+		conv "$f" $size ${DISABLE_LIGHT} 	"icons/light/${sizeStr}/${out}-disabled.png"
 		
-		conv abort-convert.svg $size $color
-		conv start-convert.svg $size $color
-		
-		conv folder.svg $size $color
-		conv configure.svg $size $color
-		conv pattern-button.svg $size $color		
-		conv track-ok.svg $size $color
-		conv audio-button.svg $size $color
-		conv cue-button.svg $size $color
-		echo "" >> ${RC_FILE}
+		conv "$f" $size ${ENABLE_DARK} 		"icons/dark/${sizeStr}/${out}.png"
+		conv "$f" $size ${DISABLE_DARK} 	"icons/dark/${sizeStr}/${out}-disabled.png"
 	done
 
-	conv track-cancel.svg $size ""
-	conv warning.svg $size ""
-	conv error.svg $size ""
+	for f in $COLOR_FILES; do
+		out=${f/.svg/}
+		conv "$f" $size ""  "icons/light/${sizeStr}/${out}.png"
+		conv "$f" $size ""	"icons/dark/${sizeStr}/${out}.png"
+	done
 
-	echo "    </qresource>" >> ${RC_FILE}
 	echo "" >> ${RC_FILE}
 done
 
+echo "    </qresource>" >> ${RC_FILE}
 echo "</RCC>" >> ${RC_FILE}
 
-
-
-
-# RC_FILE="icons.qrc"
-
-# echo '<RCC>' > ${RC_FILE}
-
-# for SIZE in 16 22 32 48 64 128 256 512 ; do
-# 	echo "    <qresource prefix=\"${SIZE}\">" >> ${RC_FILE}
-# 	for FILE in $(ls icons/*.svg); do
-# 		NAME=$(basename $FILE .svg)	
-# 		echo "        <file alias=\"$NAME">add-disk.svg</file>
-
-# 	done
-# 	echo '    </qresource>' >> ${RC_FILE}
-# done
-
-# echo '</RCC>' >> ${RC_FILE}
-
-# for FILE in $(ls icons/*.svg); do
-# 	NAME=$(basename $FILE .svg)
-# 	echo $NAME $FILE
-	
-		
-# 		echo " $NAME-$SIZE.png"
-# 		echo "        <file alias=\"$NAMEadd-disk">add-disk.svg</file>
-# 	done 
-
-# done

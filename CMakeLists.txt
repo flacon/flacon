@@ -64,6 +64,7 @@ set(HEADERS
     internet/dataprovider.h
     scanner.h
 
+    gui/icon.h
     gui/mainwindow.h
     gui/controls.h
     gui/trackview.h
@@ -116,6 +117,7 @@ set(SOURCES
     internet/dataprovider.cpp
     scanner.cpp
 
+    gui/icon.cpp
     gui/mainwindow.cpp
     gui/controls.cpp
     gui/trackview.cpp

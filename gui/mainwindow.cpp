@@ -41,6 +41,7 @@
 #include "gui/trackviewmodel.h"
 #include "gui/tageditor/tageditor.h"
 #include "controls.h"
+#include "gui/icon.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -171,7 +172,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(outPatternButton, SIGNAL(fullPaternSelected(QString)),
             this, SLOT(replaceOutPattern(QString)));
 
-    outPatternButton->setIcon(loadIcon("pattern-button"));
+    outPatternButton->setIcon(Icon("pattern-button"));
 
     // Format combo ............................................
     initOutFormatCombo();
@@ -751,7 +752,7 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
  ************************************************/
 void MainWindow::initOutDirButton()
 {
-    outDirButton->setIcon(loadIcon("pattern-button"));
+    outDirButton->setIcon(Icon("pattern-button"));
     QMenu *menu = outDirButton->menu();
 
     menu->addAction(actionSelectResultDir);
@@ -1071,31 +1072,31 @@ void MainWindow::setStartTrackNum()
  ************************************************/
 void MainWindow::initActions()
 {
-    actionAddDisk->setIcon(loadIcon("add-disk"));
+    actionAddDisk->setIcon(Icon("add-disk"));
     connect(actionAddDisk, SIGNAL(triggered()), this, SLOT(openAddFileDialog()));
 
-    actionRemoveDisc->setIcon(loadIcon("remove-disk"));
+    actionRemoveDisc->setIcon(Icon("remove-disk"));
     connect(actionRemoveDisc, SIGNAL(triggered()), this, SLOT(removeDisks()));
 
-    actionScan->setIcon(loadIcon("scan"));
+    actionScan->setIcon(Icon("scan"));
     connect(actionScan, SIGNAL(triggered()), this, SLOT(openScanDialog()));
 
-    actionDownloadTrackInfo->setIcon(loadIcon("download-info"));
+    actionDownloadTrackInfo->setIcon(Icon("download-info"));
     connect(actionDownloadTrackInfo, SIGNAL(triggered()), this, SLOT(downloadInfo()));
 
-    actionStartConvert->setIcon(loadIcon("start-convert"));
+    actionStartConvert->setIcon(Icon("start-convert"));
     connect(actionStartConvert, SIGNAL(triggered()), this, SLOT(startConvertAll()));
 
-    actionStartConvertSelected->setIcon(loadIcon("start-convert"));
+    actionStartConvertSelected->setIcon(Icon("start-convert"));
     connect(actionStartConvertSelected, SIGNAL(triggered()), this, SLOT(startConvertSelected()));
 
-    actionAbortConvert->setIcon(loadIcon("abort-convert"));
+    actionAbortConvert->setIcon(Icon("abort-convert"));
     connect(actionAbortConvert, SIGNAL(triggered()), this, SLOT(stopConvert()));
 
-    actionSelectResultDir->setIcon(loadIcon("folder"));
+    actionSelectResultDir->setIcon(Icon("folder"));
     connect(actionSelectResultDir, SIGNAL(triggered()), this, SLOT(openOutDirDialog()));
 
-    actionConfigure->setIcon(loadIcon("configure"));
+    actionConfigure->setIcon(Icon("configure"));
     connect(actionConfigure, SIGNAL(triggered()), this, SLOT(configure()));
     actionConfigure->setMenuRole(QAction::PreferencesRole);
 
@@ -1200,7 +1201,7 @@ QIcon MainWindow::loadMainIcon()
         }
     }
 
-    return QIcon::fromTheme("flacon", loadIcon("mainicon", false));
+    return QIcon::fromTheme("flacon", Icon("mainicon"));
 }
 
 

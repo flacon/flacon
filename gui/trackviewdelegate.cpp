@@ -30,6 +30,7 @@
 #include "project.h"
 #include "internet/dataprovider.h"
 #include "types.h"
+#include "icon.h"
 
 #include <QImage>
 #include <QPixmap>
@@ -135,12 +136,12 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent):
     mCache(new TrackViewCache),
     mDiskHeightHint(0)
 {
-    mTrackBtnPix   = loadIcon("cue-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
-    mAudioBtnPix   = loadIcon("audio-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
-    mDiskErrorPix  = loadIcon("error", false).pixmap(MARK_HEIGHT, MARK_HEIGHT);
-    mDiskWarnPix   = loadIcon("warning", false).pixmap(MARK_HEIGHT, MARK_HEIGHT);
-    mTrackOkPix    = loadIcon("track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
-    mTrackErrorPix = loadIcon("track-cancel", false).pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mTrackBtnPix   = Icon("cue-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
+    mAudioBtnPix   = Icon("audio-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
+    mDiskErrorPix  = Icon("error").pixmap(MARK_HEIGHT, MARK_HEIGHT);
+    mDiskWarnPix   = Icon("warning").pixmap(MARK_HEIGHT, MARK_HEIGHT);
+    mTrackOkPix    = Icon("track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mTrackErrorPix = Icon("track-cancel").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
     mNoCoverImg    = QImage(":noCover");
 
     mDownloadMovie.setFileName(":wait");

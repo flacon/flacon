@@ -30,6 +30,7 @@
 #include "settings.h"
 #include "project.h"
 #include "../controls.h"
+#include "../icon.h"
 
 #include <QStringList>
 #include <QSet>
@@ -153,7 +154,7 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
             [this](const QString &pattern){ perTrackCueFormatEdit->lineEdit()->setText(pattern);});
 
 
-    perTrackCueFormatBtn->setIcon(loadIcon("pattern-button"));
+    perTrackCueFormatBtn->setIcon(Icon("pattern-button"));
 }
 
 
@@ -171,7 +172,7 @@ ConfigDialog::~ConfigDialog()
  ************************************************/
 void ConfigDialog::initGeneralPage()
 {
-    tmpDirButton->setIcon(loadIcon("folder"));
+    tmpDirButton->setIcon(Icon("folder"));
     connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
 
 
