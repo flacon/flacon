@@ -84,6 +84,15 @@ Updater::~Updater()
 /************************************************
  *
  ************************************************/
+void Updater::checkForUpdates(const QString &id)
+{
+    [d->mUpdater checkForUpdates: id.toNSString()];
+}
+
+
+/************************************************
+ *
+ ************************************************/
 void Updater::checkForUpdatesInBackground()
 {
     [d->mUpdater checkForUpdatesInBackground];

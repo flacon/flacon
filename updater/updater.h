@@ -68,6 +68,15 @@ public:
 
 public slots:
     /*!
+    Explicitly checks for updates and displays a progress dialog while doing so.
+
+    This method is meant for a main menu item.
+    Connect any menu item to this slot, and Sparkle will check for updates
+    and report back its findings verbosely when it is invoked.
+    */
+    void checkForUpdates(const QString &id = "");
+
+    /*!
      Checks for updates, but does not display any UI unless an update is found.
 
      This is meant for programmatically initating a check for updates. That is,

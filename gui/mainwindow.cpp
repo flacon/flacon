@@ -965,7 +965,7 @@ void MainWindow::openAboutDialog()
 void MainWindow::checkUpdates()
 {
 #ifdef MAC_UPDATER
-    Updater::sharedUpdater().checkForUpdatesInBackground();
+    Updater::sharedUpdater().checkForUpdates("io.github.flacon");
 #endif
 }
 
@@ -1132,8 +1132,8 @@ void MainWindow::initActions()
     actionUpdates->setVisible(true);
     actionUpdates->setMenuRole(QAction::ApplicationSpecificRole);
 
-    connect(actionUpdates, &QAction::triggered,
-            &Updater::sharedUpdater(), &Updater::checkForUpdatesInBackground);
+    connect(actionUpdates, SIGNAL(triggered()),
+            this, SLOT(checkUpdates()));
 #else
     actionUpdates->setVisible(false);
 #endif
