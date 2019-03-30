@@ -33,6 +33,8 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 
+	<key>NSRequiresAquaSystemAppearance</key>
+	<string>True</string>
 	
 	<key>CFBundleDocumentTypes</key>
 	<array>
