@@ -708,7 +708,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
-        <translation type="unfinished"/>
+        <translation>‮לא ניתן לכתוב קובץ &lt;b&gt;%1&lt;/b&gt;: &lt;br&gt;%2</translation>
     </message>
 </context>
 <context>

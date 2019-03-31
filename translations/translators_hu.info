@@ -5,9 +5,9 @@ translator_1_nameEnglish = Fordító 1. Charles K Barcza
 translator_1_nameNative  = Fordító 1. Barcza Károly
 translator_1_contact     = Fordító 1. www.blackpanther.hu
 
-translator_2_nameEnglish = Fordító 2. Charles K. Barcza
-translator_2_nameNative  = Fordító 2. Barcza Károly
-translator_2_contact     = Fordító 1. www.blackpanther.hu
+translator_2_nameEnglish = Translator 2. Your name in English.
+translator_2_nameNative  = Translator 2. Your name in the native language.
+translator_2_contact     = Translator 2. Contact information, email or web site address.
 
 translator_3_nameEnglish = Translator 3. Your name in English.
 translator_3_nameNative  = Translator 3. Your name in the native language.

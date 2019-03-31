@@ -708,7 +708,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
-        <translation type="unfinished"/>
+        <translation>Je ne peux pas écrire le fichier &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2.</translation>
     </message>
 </context>
 <context>
@@ -1263,7 +1263,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Je ne peux pas écrire le fichier CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2.</translation>
+        <translation>Je ne peux pas écrire le fichier CUE &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>

@@ -326,11 +326,11 @@
     </message>
     <message>
         <source>Per track CUE sheet</source>
-        <translation type="unfinished"/>
+        <translation>Sávonkénti CUE mező</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
-        <translation type="unfinished"/>
+        <translation>CUE mező létrehozása sávonként</translation>
     </message>
     <message>
         <source>Same as source</source>
@@ -355,7 +355,7 @@
     <message>
         <source>File name format:</source>
         <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Fájlnév formátuma:</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -525,7 +525,31 @@
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;Közepes VBR&lt;/dt&gt;
+&lt;dd&gt;Közepes változó bitráta használatával ez az előre beállított értéknek közeli átláthatóságot kell biztosítania
+a legtöbb embernek és a legtöbb zenének.&lt;/dd&gt;
+
+&lt;dt&gt;Szabványos VBR, Szabványos gyors VBR&lt;/dt&gt;
+&lt;dd&gt;A szabványos változó bitráta használatával ez az előre beállított érték általában átlátható a legtöbb ember számára a legtöbb zenénél, és meglehetősen magas minőségű..&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you&apos;ll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+</translation>
     </message>
 </context>
 <context>
@@ -603,7 +627,11 @@
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Használjon változó bitráta kódolást (ajánlott). VBR módban a bitráta szabadon lefelé és lefelé haladhat, attól függően, hogy a tartalom minősége mennyire konzisztens.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Használja a korlátozott változó bitrátát. Kimenet egy adott bitrátához. Ez az üzemmód hasonló a CBR-hez az AAC / MP3 kódolókban és a kezelt módban vorbis kódolókban. Ez kevésbé konzisztens minőséget biztosít  mint a VBR mód, de konzisztens bitráta.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -612,7 +640,13 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
+        <translation>Beállítja a cél bitrátákat kb/mp-ben (6-256 csatornánként).
+&lt;p&gt;
+VBR módban ez az érték egy nagy és változatos hanggyűjtemény átlagos értékét állítja be.
+&lt;p&gt;
+CBR módban beállítja az adott kimeneti bitrátát.
+.
+</translation>
     </message>
 </context>
 <context>
@@ -677,7 +711,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
-        <translation type="unfinished"/>
+        <translation>Nem lehetett írni az &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 fájlt</translation>
     </message>
 </context>
 <context>
@@ -1091,7 +1125,7 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     <message>
         <source>Edit all tags…</source>
         <comment>Button text</comment>
-        <translation type="unfinished"/>
+        <translation>Az összes címke szerkesztése</translation>
     </message>
     <message>
         <source>Add disk…</source>
@@ -1108,7 +1142,7 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     <message>
         <source>Edit tags…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Címkék szerkesztése..</translation>
     </message>
     <message>
         <source>Select another audio file…</source>
@@ -1122,7 +1156,7 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     </message>
     <message>
         <source>Album performer:</source>
-        <translation type="unfinished"/>
+        <translation>Album előadója:</translation>
     </message>
     <message>
         <source>Convert selected</source>
@@ -1132,12 +1166,12 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     <message>
         <source>Start conversion process for the selected tracks</source>
         <extracomment>Main menu item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>A konvertálási folyamat kezdése a kiválasztott sávokkal</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+W</translation>
     </message>
 </context>
 <context>
@@ -1233,30 +1267,30 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Nem lehet írni a CUE fájlt &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt;  nem egy valódi cue-fájl. Érvénytelen sáv-sorszám ebben a sorban: %2</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt;  nem egy valódi cue-fájl. Érvénytelen sáv-index ebben a sorban: %2</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; nem egy valódi cue-fájl. A cue mező nem tartalmaz FÁJL címkét.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt;  nem egy valódi cue-fájl. %2 lemeznek nincs cimkéje </translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Nem lehetett menteni a borítóképet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1272,11 +1306,11 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     <message>
         <source>Edit tags</source>
         <comment>Dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Címkék szerkesztése</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished"/>
+        <translation>é</translation>
     </message>
     <message>
         <source>Artist:</source>
@@ -1321,7 +1355,7 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     <message>
         <source>Album performer:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Album előadója:</translation>
     </message>
 </context>
 <context>
