@@ -79,7 +79,7 @@ signals:
 
 protected:
     void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
-    void keyPressEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
 
 private slots:
     void headerContextMenu(QPoint pos);
@@ -104,7 +104,7 @@ public:
     explicit TrackViewSelectionModel(QAbstractItemModel *model, QObject *parent);
 
 public slots:
-    virtual void select(const QItemSelection &selection, const SelectionFlags &command);
+    virtual void select(const QItemSelection &selection, SelectionFlags command) override;
 };
 
 #endif // TRACKVIEW_H

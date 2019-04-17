@@ -36,14 +36,6 @@
 #include <QFileInfo>
 #include <QDir>
 
-QString mFileName;
-QString mErrorString;
-const AudioFormat *mFormat;
-int mSampleRate;
-int mBitsPerSample;
-uint mDuration;
-bool mValid;
-bool mCdQuality;
 
 /************************************************
 
