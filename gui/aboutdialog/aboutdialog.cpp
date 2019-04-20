@@ -182,27 +182,27 @@ AboutInfo AboutDialog::thanksInfo() const
 
     result.add("Artem Aleksuk",
                "mailto:h31mail@yandex.ru",
-               tr("WavPack support patch"));
+               tr("WavPack support patch", "Thanks on the about page"));
 
     result.add("Kyrill Detinov",
                "mailto:lazy.kent@opensuse.org",
-               tr("Packaging, testing"));
+               tr("Packaging, testing", "Thanks on the about page"));
 
     result.add("",
                "mailto:yahoe.001@gmail.com",
-               tr("Improvements in the UI"));
+               tr("Improvements in the UI", "Thanks on the about page"));
 
     result.add("Taras Sokol",
                "mailto:tsokolp@gmail.com",
-               tr("Flacon account on github.com"));
+               tr("Flacon account on github.com", "Thanks on the about page"));
 
     result.add("FlatIcon",
                "https://www.flaticon.com",
-               "Icon for application");
+               tr("Icon for application", "Thanks on the about page"));
 
     result.add("Icons8",
                "https://icons8.com",
-               "icons for application");
+               tr("Icons for application", "Thanks on the about page"));
 
     return result;
 }

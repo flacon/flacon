@@ -1114,6 +1114,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <extracomment>Main menu item shortcut</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Insert &quot;Disk number&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of disks&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
