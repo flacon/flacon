@@ -519,17 +519,12 @@ void HistoryComboBox::setHistory(const QStringList &value)
 
 
 /************************************************
-
+ *
  ************************************************/
-void HistoryComboBox::focusOutEvent(QFocusEvent *e)
+void HistoryComboBox::showPopup()
 {
-    QKeyEvent key_press(QKeyEvent::KeyPress, Qt::Key_Return, Qt::NoModifier, QString(), false, 0 );
-    QApplication::sendEvent(this, &key_press);
-
-    QKeyEvent key_release(QKeyEvent::KeyRelease, Qt::Key_Return, Qt::NoModifier, QString(), false, 0 );
-    QApplication::sendEvent(this, &key_release);
-
-    QComboBox::focusOutEvent(e);
+    addToHistory(lineEdit()->text());
+    QComboBox::showPopup();
 }
 
 
@@ -547,6 +542,18 @@ void HistoryComboBox::deleteItem()
 
     emit currentIndexChanged(currentText());
     emit currentIndexChanged(currentIndex());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void HistoryComboBox::addToHistory(const QString &value)
+{
+    QStringList hist = this->history();
+    hist.removeAll(value);
+    hist.insert(0, value);
+    setHistory(hist);
 }
 
 

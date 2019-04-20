@@ -293,14 +293,14 @@ public:
 
     QAction * deleteItemAction() { return &mDeleteItemAct; }
 
-protected:
-    void focusOutEvent(QFocusEvent *e);
+    void showPopup() override;
 
 private slots:
     void deleteItem();
 
 private:
     QAction mDeleteItemAct;
+    void addToHistory(const QString &value);
 };
 
 
