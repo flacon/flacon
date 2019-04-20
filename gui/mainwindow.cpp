@@ -43,6 +43,7 @@
 #include "controls.h"
 #include "gui/icon.h"
 #include "application.h"
+#include "patternexpander.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -145,6 +146,9 @@ MainWindow::MainWindow(QWidget *parent) :
     outPatternButton->addPattern("%t", tr("Insert \"Track title\""));
     outPatternButton->addPattern("%y", tr("Insert \"Year\""));
     outPatternButton->addPattern("%g", tr("Insert \"Genre\""));
+    outPatternButton->addPattern("%d", tr("Insert \"Disk number\""));
+    outPatternButton->addPattern("%D", tr("Insert \"Total number of disks\""));
+
 
     const QString patterns[] = {
         "%a/{%y - }%A/%n - %t",
@@ -159,7 +163,7 @@ MainWindow::MainWindow(QWidget *parent) :
         outPatternButton->addFullPattern(pattern,
                                          tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'")
                                          .arg(pattern)
-                                         + "  ( " + patternExample(pattern)  + ".flac )");
+                                         + "  ( " + PatternExpander::example(pattern)  + ".flac )");
     }
 
     outPatternButton->menu()->addSeparator();

@@ -63,6 +63,7 @@ set(HEADERS
     inputaudiofile.h
     internet/dataprovider.h
     scanner.h
+    patternexpander.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -116,6 +117,7 @@ set(SOURCES
     inputaudiofile.cpp
     internet/dataprovider.cpp
     scanner.cpp
+    patternexpander.cpp
 
     gui/icon.cpp
     gui/mainwindow.cpp

@@ -47,6 +47,7 @@ set(TEST_SOURCES
     test_findcuefile.cpp
     test_findaudiofile.cpp
     test_outformatencoderargs.cpp
+    test_patternexpander.cpp
 )
 
 

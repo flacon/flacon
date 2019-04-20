@@ -31,6 +31,7 @@
 #include "project.h"
 #include "../controls.h"
 #include "../icon.h"
+#include "../patternexpander.h"
 
 #include <QStringList>
 #include <QSet>
@@ -144,7 +145,7 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
         perTrackCueFormatBtn->addFullPattern(pattern,
                                              tr("Use \"%1\"", "Predefined CUE file name, string like 'Use \"%a/%A/%n - %t.cue\"'")
                                              .arg(pattern)
-                                             + "  ( " + patternExample(pattern) + " )");
+                                             + "  ( " + PatternExpander::example(pattern) + " )");
     }
 
     connect(perTrackCueFormatBtn, &OutPatternButton::paternSelected,

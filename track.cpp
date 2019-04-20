@@ -33,6 +33,7 @@
 #include "project.h"
 #include "settings.h"
 #include "outformat.h"
+#include "patternexpander.h"
 
 #include <uchardet.h>
 #include <QDir>
@@ -181,40 +182,21 @@ QString Track::resultFileName() const
     int n = pattern.lastIndexOf(QDir::separator());
     if (n < 0)
     {
-        return expandPattern(pattern,
-                            this->trackCount(),
-                            this->trackNum(),
-                            this->album(),
-                            this->title(),
-                            this->artist(),
-                            this->genre(),
-                            this->date())
-                + "." + settings->outFormat()->ext();
+        PatternExpander expander(*this);
+        return expander.expand(pattern) +
+                "." + settings->outFormat()->ext();
     }
 
     // If the disk is a collection, the files fall into different directories.
     // So we use the tag DiskPerformer for expand the directory path.
-    return expandPattern(pattern.left(n),
-                        this->trackCount(),
-                        this->trackNum(),
-                        this->album(),
-                        this->title(),
-                        this->tag(TagId::AlbumArtist),
-                        this->genre(),
-                        this->date())
+    PatternExpander albumExpander(*this);
+    albumExpander.setArtist(this->tag(TagId::AlbumArtist));
 
-            +
+    PatternExpander trackExpander(*this);
 
-            expandPattern(pattern.mid(n),
-                         this->trackCount(),
-                         this->trackNum(),
-                         this->album(),
-                         this->title(),
-                         this->artist(),
-                         this->genre(),
-                         this->date())
-
-            + "." + settings->outFormat()->ext();
+    return albumExpander.expand(pattern.left(n)) +
+           trackExpander.expand(pattern.mid(n)) +
+           "." + settings->outFormat()->ext();
 }
 
 

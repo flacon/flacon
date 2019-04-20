@@ -67,7 +67,10 @@ enum class CoverMode
 QString coverModeToString(CoverMode mode);
 CoverMode strToCoverMode(const QString &str);
 
+typedef quint16 DiskCount;
 typedef quint16 DiskNum;
+
+typedef quint16 TrackCount;
 typedef quint16 TrackNum;
 
 unsigned int levenshteinDistance(const QString &s1, const QString & s2);
@@ -154,16 +157,7 @@ QByteArray rightPart(const QByteArray &line, const QChar separator);
 void initTypes();
 
 QString safeString(const QString &str);
-QString expandPattern(const QString &pattern,
-                      int trackCount,
-                      int trackNum,
-                      const QString &album,
-                      const QString &title,
-                      const QString &artist,
-                      const QString &genre,
-                      const QString &date);
 
-QString patternExample(const QString &pattern);
 
 class Messages
 {

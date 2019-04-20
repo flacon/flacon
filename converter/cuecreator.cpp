@@ -27,6 +27,7 @@
 #include "cuecreator.h"
 #include "disk.h"
 #include "settings.h"
+#include "patternexpander.h"
 
 #include <QFileInfo>
 #include <QTextCodec>
@@ -42,14 +43,13 @@ CueCreator::CueCreator(const Disk *disk, PreGapType preGapType):
 {
     Track *track = mDisk->track(0);
     QString dir = QFileInfo(track->resultFilePath()).dir().absolutePath();
-    QString fileName = safeString(expandPattern(settings->value(Settings::PerTrackCue_FileName).toString(),
-                                     mDisk->count(),
-                                     0,
-                                     track->album(),
-                                     track->title(),
-                                     track->artist(),
-                                     track->genre(),
-                                     track->date()));
+    PatternExpander expander(*track);
+    expander.setTrackNum(0);
+    expander.setTrackCount(mDisk->count());
+    expander.setDiskNum(mDisk->diskNum());
+    expander.setDiskCount(mDisk->diskCount());
+
+    QString fileName = expander.expand(settings->value(Settings::PerTrackCue_FileName).toString());
 
     if (!fileName.endsWith(".cue"))
         fileName += ".cue";
