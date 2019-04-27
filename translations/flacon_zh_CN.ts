@@ -50,22 +50,6 @@
         <translation>版权: %1-%2 %3</translation>
     </message>
     <message>
-        <source>WavPack support patch</source>
-        <translation>WavPach 支持补丁</translation>
-    </message>
-    <message>
-        <source>Packaging, testing</source>
-        <translation>打包和测试。</translation>
-    </message>
-    <message>
-        <source>Improvements in the UI</source>
-        <translation>UI的改进</translation>
-    </message>
-    <message>
-        <source>Flacon account on github.com</source>
-        <translation>Flacon 在github.com 的网址</translation>
-    </message>
-    <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>出错的曲目 %1</translation>
@@ -73,6 +57,36 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
         <translation>Flacon 已被翻译到许多种语言，这要感谢 &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt; 上的各 Flacon 翻译小组。</translation>
+    </message>
+    <message>
+        <source>WavPack support patch</source>
+        <comment>Thanks on the about page</comment>
+        <translation>WavPach 支持补丁</translation>
+    </message>
+    <message>
+        <source>Packaging, testing</source>
+        <comment>Thanks on the about page</comment>
+        <translation>打包和测试。</translation>
+    </message>
+    <message>
+        <source>Improvements in the UI</source>
+        <comment>Thanks on the about page</comment>
+        <translation>UI的改进</translation>
+    </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Flacon 在github.com 的网址</translation>
+    </message>
+    <message>
+        <source>Icon for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Icons for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1145,6 +1159,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Disk number&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of disks&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>

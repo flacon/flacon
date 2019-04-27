@@ -50,22 +50,6 @@
         <translation>Derechos de autor: %1-%2-%3</translation>
     </message>
     <message>
-        <source>WavPack support patch</source>
-        <translation>Parche de soporte WavPack</translation>
-    </message>
-    <message>
-        <source>Packaging, testing</source>
-        <translation>Empaquetando, probando</translation>
-    </message>
-    <message>
-        <source>Improvements in the UI</source>
-        <translation>Mejoras en la interfase de usuario</translation>
-    </message>
-    <message>
-        <source>Flacon account on github.com</source>
-        <translation>Cuenta de Flacon en github.com</translation>
-    </message>
-    <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>Rastreador de errores %1</translation>
@@ -73,6 +57,36 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
         <translation>Flacon es traducido a muchos idiomas gracias al trabajo de los equipos de traducción de Flacon en &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>WavPack support patch</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Parche de soporte WavPack</translation>
+    </message>
+    <message>
+        <source>Packaging, testing</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Empaquetando, probando</translation>
+    </message>
+    <message>
+        <source>Improvements in the UI</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Mejoras en la interfase de usuario</translation>
+    </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Cuenta de Flacon en github.com</translation>
+    </message>
+    <message>
+        <source>Icon for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Ícono de la aplicación</translation>
+    </message>
+    <message>
+        <source>Icons for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Íconos de la aplicación</translation>
     </message>
 </context>
 <context>
@@ -294,7 +308,7 @@
     </message>
     <message>
         <source>Resampling</source>
-        <translation type="unfinished"/>
+        <translation>Remuestreo</translation>
     </message>
     <message>
         <source>44100 Hz</source>
@@ -318,11 +332,11 @@
     </message>
     <message>
         <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
+        <translation>Bit depth máximo:</translation>
     </message>
     <message>
         <source>Maximum sample rate:</source>
-        <translation type="unfinished"/>
+        <translation>Ratio máximo de muestra:</translation>
     </message>
     <message>
         <source>Per track CUE sheet</source>
@@ -350,12 +364,12 @@
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>32-bit</translation>
     </message>
     <message>
         <source>File name format:</source>
         <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Formato de nombre de archivo:</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -686,7 +700,7 @@ En el modo CBR, establece la tasa de bits específica de salida.
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
-        <translation type="unfinished"/>
+        <translation>No se puede escribir el archivo &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -706,12 +720,12 @@ En el modo CBR, establece la tasa de bits específica de salida.
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Este formato soporta un máximo de %1-bit por muestreo. Éste valor será usado para su codificación.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Este formato soporta un máximo de %1-bit por muestreo. Éste valor será usado para su codificación. </translation>
     </message>
 </context>
 <context>
@@ -1065,7 +1079,7 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     <message>
         <source>Standard music location</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Ubicación de música estándar</translation>
     </message>
     <message>
         <source>Desktop</source>
@@ -1130,22 +1144,30 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     </message>
     <message>
         <source>Album performer:</source>
-        <translation type="unfinished"/>
+        <translation>Interprete del álbum</translation>
     </message>
     <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Conversor seleccionado</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
         <extracomment>Main menu item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Iniciar el proceso de conversión para las pistas seleccionadas</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+W</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disk number&quot;</source>
+        <translation>Insertar &quot;número de disco&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of disks&quot;</source>
+        <translation>Insertar &quot;número total de discos&quot;</translation>
     </message>
 </context>
 <context>
@@ -1329,7 +1351,7 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     <message>
         <source>Album performer:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Interprete del álbum</translation>
     </message>
 </context>
 <context>

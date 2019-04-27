@@ -50,22 +50,6 @@
         <translation>Copyright: %1-%2 %3</translation>
     </message>
     <message>
-        <source>WavPack support patch</source>
-        <translation>Патч для поддержки WavPack</translation>
-    </message>
-    <message>
-        <source>Packaging, testing</source>
-        <translation>Пакетирование, тестирование</translation>
-    </message>
-    <message>
-        <source>Improvements in the UI</source>
-        <translation>Улучшения в интерфейсе</translation>
-    </message>
-    <message>
-        <source>Flacon account on github.com</source>
-        <translation>Учетная запись &quot;Flacon&quot; на github.com</translation>
-    </message>
-    <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>Баг-трекер %1</translation>
@@ -73,6 +57,36 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
         <translation>Flacon переведена на множество языков благодаря работе команды переводчиков на сайте &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>WavPack support patch</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Патч для поддержки WavPack</translation>
+    </message>
+    <message>
+        <source>Packaging, testing</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Пакетирование, тестирование</translation>
+    </message>
+    <message>
+        <source>Improvements in the UI</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Улучшения в интерфейсе</translation>
+    </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Учетная запись &quot;Flacon&quot; на github.com</translation>
+    </message>
+    <message>
+        <source>Icon for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Иконка для программы</translation>
+    </message>
+    <message>
+        <source>Icons for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Иконки для программы</translation>
     </message>
 </context>
 <context>
@@ -1167,6 +1181,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
         <translation>Ctrl+Shift+W</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disk number&quot;</source>
+        <translation>Вставить номер диска</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of disks&quot;</source>
+        <translation>Вставить количество дисков</translation>
     </message>
 </context>
 <context>

@@ -50,22 +50,6 @@
         <translation>Todos los derechos reservados: %1-%2 %3</translation>
     </message>
     <message>
-        <source>WavPack support patch</source>
-        <translation>Parche de soporte de Wavpack</translation>
-    </message>
-    <message>
-        <source>Packaging, testing</source>
-        <translation>Empaquetado,  pruebas</translation>
-    </message>
-    <message>
-        <source>Improvements in the UI</source>
-        <translation>Mejoras de la Interfaz de Usuario</translation>
-    </message>
-    <message>
-        <source>Flacon account on github.com</source>
-        <translation>Cuenta de Flacon en github.com</translation>
-    </message>
-    <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>Seguimiento de fallos %1</translation>
@@ -73,6 +57,36 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
         <translation>Flacon es traducido a muchos lenguajes gracias al trabajo del equipo de traductores en &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>WavPack support patch</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Parche de soporte de Wavpack</translation>
+    </message>
+    <message>
+        <source>Packaging, testing</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Empaquetado,  pruebas</translation>
+    </message>
+    <message>
+        <source>Improvements in the UI</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Mejoras de la Interfaz de Usuario</translation>
+    </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Cuenta de Flacon en github.com</translation>
+    </message>
+    <message>
+        <source>Icon for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Icono para la aplicación</translation>
+    </message>
+    <message>
+        <source>Icons for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Iconos para la aplicación</translation>
     </message>
 </context>
 <context>
@@ -1170,6 +1184,14 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
         <translation>Ctrl+Mayúsculas+W</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disk number&quot;</source>
+        <translation>Insertar &quot;Número de disco&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of disks&quot;</source>
+        <translation>Insertar &quot;Número total de discos&quot;</translation>
     </message>
 </context>
 <context>

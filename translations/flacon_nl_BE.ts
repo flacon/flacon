@@ -50,22 +50,6 @@
         <translation>Auteursrecht: %1-%2 %3</translation>
     </message>
     <message>
-        <source>WavPack support patch</source>
-        <translation>WavPack-ondersteuningsplakker</translation>
-    </message>
-    <message>
-        <source>Packaging, testing</source>
-        <translation>Verpakken, testen</translation>
-    </message>
-    <message>
-        <source>Improvements in the UI</source>
-        <translation>Verbeteringen in de gebruikersinterface</translation>
-    </message>
-    <message>
-        <source>Flacon account on github.com</source>
-        <translation>Flacon-account op github.com</translation>
-    </message>
-    <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>Bugtracker %1</translation>
@@ -73,6 +57,36 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
         <translation>Flacon is vertaald in nen hoop talen dankzij het werk van de Flacon-vertalingsteams op &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>WavPack support patch</source>
+        <comment>Thanks on the about page</comment>
+        <translation>WavPack-ondersteuningsplakker</translation>
+    </message>
+    <message>
+        <source>Packaging, testing</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Verpakken, testen</translation>
+    </message>
+    <message>
+        <source>Improvements in the UI</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Verbeteringen in de gebruikersinterface</translation>
+    </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Flacon-account op github.com</translation>
+    </message>
+    <message>
+        <source>Icon for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Pictogram voor toepassing</translation>
+    </message>
+    <message>
+        <source>Icons for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Pictogrammen voor toepassing</translation>
     </message>
 </context>
 <context>
@@ -963,7 +977,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>‘Totaal aantal nummers’ invoegen</translation>
+        <translation>‘Aantal nummers’ invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -1041,7 +1055,7 @@ If you surround sections of text that contain a token with braces, these section
 Tokens beginnen met %. U kan volgende tokens gebruiken:
 &lt;table&gt;
 &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tracknummer&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Totaal aantal nummers&lt;/td&gt;&lt;/tr&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Aantal nummers&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artiest&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumtitel&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nummertitel&lt;/td&gt;
@@ -1170,6 +1184,14 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
         <translation>Ctrl+Shift+W</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disk number&quot;</source>
+        <translation>‘Schijfnummer’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of disks&quot;</source>
+        <translation>‘Aantal schijven’ invoegen</translation>
     </message>
 </context>
 <context>

@@ -50,22 +50,6 @@
         <translation>Autorské právo: %1-%2 %3</translation>
     </message>
     <message>
-        <source>WavPack support patch</source>
-        <translation>Záplata s podporou pro WavPack</translation>
-    </message>
-    <message>
-        <source>Packaging, testing</source>
-        <translation>Balení, zkouška</translation>
-    </message>
-    <message>
-        <source>Improvements in the UI</source>
-        <translation>Vylepšení rozhraní</translation>
-    </message>
-    <message>
-        <source>Flacon account on github.com</source>
-        <translation>Účet Flaconu na github.com</translation>
-    </message>
-    <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>Sledování chyb %1</translation>
@@ -73,6 +57,36 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
         <translation>Flacon je přeložen do mnoha jazyků díky práci překladatelů z celého světa na &lt;a href=&apos;%1&apos;&gt;Transifexu&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>WavPack support patch</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Záplata s podporou pro WavPack</translation>
+    </message>
+    <message>
+        <source>Packaging, testing</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Balení, zkouška</translation>
+    </message>
+    <message>
+        <source>Improvements in the UI</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Vylepšení rozhraní</translation>
+    </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Účet Flaconu na github.com</translation>
+    </message>
+    <message>
+        <source>Icon for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Icons for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1143,6 +1157,14 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Disk number&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of disks&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>

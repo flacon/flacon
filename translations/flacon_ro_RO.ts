@@ -50,22 +50,6 @@
         <translation>Copyright: %1-%2 %3</translation>
     </message>
     <message>
-        <source>WavPack support patch</source>
-        <translation>Suport WavPack</translation>
-    </message>
-    <message>
-        <source>Packaging, testing</source>
-        <translation>Creare fișiere binare, testare</translation>
-    </message>
-    <message>
-        <source>Improvements in the UI</source>
-        <translation>Îmbunătățiri ale interfeței</translation>
-    </message>
-    <message>
-        <source>Flacon account on github.com</source>
-        <translation>Cont Flacon pe github.com</translation>
-    </message>
-    <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>Raportare erori %1</translation>
@@ -73,6 +57,36 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
         <translation>Flacon este tradus în multe limbi datorită echipelor de traducere implicate în proiectul Flacon de pe &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>WavPack support patch</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Suport WavPack</translation>
+    </message>
+    <message>
+        <source>Packaging, testing</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Creare fișiere binare, testare</translation>
+    </message>
+    <message>
+        <source>Improvements in the UI</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Îmbunătățiri ale interfeței</translation>
+    </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Cont Flacon pe github.com</translation>
+    </message>
+    <message>
+        <source>Icon for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Icons for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1169,6 +1183,14 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
     <message>
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Disk number&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of disks&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -50,22 +50,6 @@
         <translation>Autorių Teisės: %1-%2 %3</translation>
     </message>
     <message>
-        <source>WavPack support patch</source>
-        <translation>WavPack palaikymo pataisa</translation>
-    </message>
-    <message>
-        <source>Packaging, testing</source>
-        <translation>Pakavimas, testavimas</translation>
-    </message>
-    <message>
-        <source>Improvements in the UI</source>
-        <translation>Patobulinimai naudotojo sąsajoje</translation>
-    </message>
-    <message>
-        <source>Flacon account on github.com</source>
-        <translation>Flacon paskyra puslapyje github.com</translation>
-    </message>
-    <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>Klaidų sekimas %1</translation>
@@ -73,6 +57,36 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
         <translation>Flacon vertimo komandų darbo &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt; puslapyje dėka, programa Flacon yra verčiama į daugelį kalbų.</translation>
+    </message>
+    <message>
+        <source>WavPack support patch</source>
+        <comment>Thanks on the about page</comment>
+        <translation>WavPack palaikymo pataisa</translation>
+    </message>
+    <message>
+        <source>Packaging, testing</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Pakavimas, testavimas</translation>
+    </message>
+    <message>
+        <source>Improvements in the UI</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Patobulinimai naudotojo sąsajoje</translation>
+    </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Flacon paskyra puslapyje github.com</translation>
+    </message>
+    <message>
+        <source>Icon for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Programos piktograma</translation>
+    </message>
+    <message>
+        <source>Icons for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Programos piktogramos</translation>
     </message>
 </context>
 <context>
@@ -1170,6 +1184,14 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
         <translation>Ctrl+Shift+W</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disk number&quot;</source>
+        <translation>Įterpti &quot;Disko numerį&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of disks&quot;</source>
+        <translation>Įterpti &quot;Bendrą diskų skaičių&quot;</translation>
     </message>
 </context>
 <context>

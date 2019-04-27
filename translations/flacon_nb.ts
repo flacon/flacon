@@ -50,22 +50,6 @@
         <translation>Kopirett: %1-%2 %3</translation>
     </message>
     <message>
-        <source>WavPack support patch</source>
-        <translation>Programfiks for WavPack-støtte</translation>
-    </message>
-    <message>
-        <source>Packaging, testing</source>
-        <translation>Pakking, testing</translation>
-    </message>
-    <message>
-        <source>Improvements in the UI</source>
-        <translation>Forbedringer i grensesnittet</translation>
-    </message>
-    <message>
-        <source>Flacon account on github.com</source>
-        <translation>Kontoen Flacon på github.com</translation>
-    </message>
-    <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>Feilrettingsoversikt %1</translation>
@@ -73,6 +57,36 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
         <translation>Flacon oversettes til mange språk takket være oversettelseslagene på &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>WavPack support patch</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Programfiks for WavPack-støtte</translation>
+    </message>
+    <message>
+        <source>Packaging, testing</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Pakking, testing</translation>
+    </message>
+    <message>
+        <source>Improvements in the UI</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Forbedringer i grensesnittet</translation>
+    </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <comment>Thanks on the about page</comment>
+        <translation>Kontoen Flacon på github.com</translation>
+    </message>
+    <message>
+        <source>Icon for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Icons for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1169,6 +1183,14 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     <message>
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Disk number&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of disks&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>

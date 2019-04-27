@@ -50,22 +50,6 @@
         <translation>זכויות יוצרים: %1-%2 %3</translation>
     </message>
     <message>
-        <source>WavPack support patch</source>
-        <translation>תיקון לתמיכת WavPack</translation>
-    </message>
-    <message>
-        <source>Packaging, testing</source>
-        <translation>אריזה, בדיקה</translation>
-    </message>
-    <message>
-        <source>Improvements in the UI</source>
-        <translation>שיפורים בממשק משתמש</translation>
-    </message>
-    <message>
-        <source>Flacon account on github.com</source>
-        <translation>חשבון פלאקון ב github.com</translation>
-    </message>
-    <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation>מעקב תקלים: %1</translation>
@@ -73,6 +57,36 @@
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
         <translation>פלאקון מתורגם לשפות רבות בזכות עבודתם של צוותי התרגום של פלאקון באמצעות &lt;a href=&apos;%1&apos;&gt; Transifex &lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>WavPack support patch</source>
+        <comment>Thanks on the about page</comment>
+        <translation>תיקון לתמיכת וואבפאק</translation>
+    </message>
+    <message>
+        <source>Packaging, testing</source>
+        <comment>Thanks on the about page</comment>
+        <translation>אריזה, בדיקה</translation>
+    </message>
+    <message>
+        <source>Improvements in the UI</source>
+        <comment>Thanks on the about page</comment>
+        <translation>שיפורים בממשק משתמש</translation>
+    </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <comment>Thanks on the about page</comment>
+        <translation>חשבון פלאקון ב github.com</translation>
+    </message>
+    <message>
+        <source>Icon for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>צלמית עבור היישום</translation>
+    </message>
+    <message>
+        <source>Icons for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation>צלמיות עבור היישום</translation>
     </message>
 </context>
 <context>
@@ -410,7 +424,7 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation>ריפלאיגאיין</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -457,7 +471,7 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation>ריפלאיגאיין</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -590,7 +604,7 @@
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation>ריפלאיגאיין</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -601,7 +615,7 @@
     <name>ConfigPage_Opus</name>
     <message>
         <source>Opus encoding configuration</source>
-        <translation>הגדרות קידוד Opus</translation>
+        <translation>הגדרות קידוד אופוס</translation>
     </message>
     <message>
         <source>Bitrate type:</source>
@@ -658,7 +672,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
+        <translation>ריפלאיגאיין</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1170,6 +1184,14 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
         <translation>Ctrl+Shift+W</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disk number&quot;</source>
+        <translation>הזנת &quot;מספר תקליטור&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of disks&quot;</source>
+        <translation>הזנת &quot;מספר תקליטורים כולל&quot;</translation>
     </message>
 </context>
 <context>
