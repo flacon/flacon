@@ -266,7 +266,7 @@ void Disk::findCueFile()
             CueReader c;
             cues << c.load(f.absoluteFilePath());
         }
-        catch (FlaconError)
+        catch (FlaconError&)
         {
             continue; // Just skipping the incorrect files.
         }

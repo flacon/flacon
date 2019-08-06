@@ -179,7 +179,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
                 project->addCueFile(file);
             }
         }
-        catch (FlaconError)
+        catch (FlaconError&)
         {
             // Silently skip corrupted files
             Q_UNUSED(argc);
