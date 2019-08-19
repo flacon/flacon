@@ -273,6 +273,10 @@ if ( MAC_BUNDLE )
 
 endif()
 
+if (FLATPAK_BUNDLE)
+	add_definitions(-DFLATPAK_BUNDLE=Yes)
+endif()
+
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${QM_FILES} ${QRC_SOURCES} ${ENGINES_CPP} ${ENGINES_H} ${RESOURCES} ${TRANSLATORS_INFO_QRC})
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES} ${QT_LIBRARIES} Qt5::Widgets Qt5::Network)
 

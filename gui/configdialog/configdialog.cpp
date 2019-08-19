@@ -98,30 +98,19 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
     this->setMinimumSize(this->size());
 
-    int width = settings->value(Settings::ConfigureDialog_Width).toInt();
-    int height = settings->value(Settings::ConfigureDialog_Height).toInt();
-    resize(width, height);
-
-
     generalPage->setWindowTitle(tr("General configuration"));
     programsPage->setWindowTitle(tr("Full path of the external applications"));
 
     connect(pages, SIGNAL(currentChanged(int)), this, SLOT(setPage(int)));
 
     initGeneralPage();
-    initTabPages();
+    int width = settings->value(Settings::ConfigureDialog_Width).toInt();
+    int height = settings->value(Settings::ConfigureDialog_Height).toInt();
+    resize(width, height);
 
-#ifdef MAC_BUNDLE
-    pages->removeTab(pages->indexOf(programsPage));
-#else
+    initFormatPages();
     initPrograms();
-#endif
-
-#ifdef MAC_UPDATER
     initUpdatePage();
-#else
-    pages->removeTab(pages->indexOf(updatePage));
-#endif
 
     pages->setCurrentIndex(0);
     load();
@@ -173,6 +162,12 @@ ConfigDialog::~ConfigDialog()
  ************************************************/
 void ConfigDialog::initGeneralPage()
 {
+#ifdef FLATPAK_BUNDLE
+    tmpDirLabel->hide();
+    tmpDirEdit->hide();
+    tmpDirButton->hide();
+#endif
+
     tmpDirButton->setIcon(Icon("folder"));
     connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
 
@@ -202,7 +197,7 @@ void ConfigDialog::initGeneralPage()
 /************************************************
 
  ************************************************/
-void ConfigDialog::initTabPages()
+void ConfigDialog::initFormatPages()
 {
     int n = 1;
     foreach(OutFormat *format, OutFormat::allFormats())
@@ -223,6 +218,12 @@ void ConfigDialog::initTabPages()
 /************************************************
 
  ************************************************/
+#if defined(MAC_BUNDLE) || defined(FLATPAK_BUNDLE)
+void ConfigDialog::initPrograms()
+{
+    pages->removeTab(pages->indexOf(programsPage));
+}
+#else
 void ConfigDialog::initPrograms()
 {
     QStringList progs = QStringList::fromSet(settings->programs());
@@ -242,14 +243,14 @@ void ConfigDialog::initPrograms()
         row++;
     }
 }
-
+#endif
 
 /************************************************
  *
  ************************************************/
+#ifdef MAC_UPDATER
 void ConfigDialog::initUpdatePage()
 {
-#ifdef MAC_UPDATER
     connect(updateNowBtn, &QPushButton::clicked,
             [this]() {
                 Updater::sharedUpdater().checkForUpdatesInBackground();
@@ -257,10 +258,13 @@ void ConfigDialog::initUpdatePage()
             });
 
     updateLastUpdateLbl();
-
-#endif
 }
-
+#else
+void ConfigDialog::initUpdatePage()
+{
+    pages->removeTab(pages->indexOf(updatePage));
+}
+#endif
 
 /************************************************
 
@@ -409,7 +413,6 @@ void ConfigDialog::load()
 {
     EncoderConfigPage::loadWidget("Tags/DefaultCodepage",  codePageComboBox);
     EncoderConfigPage::loadWidget("Encoder/ThreadCount",   threadsCountSpin);
-    EncoderConfigPage::loadWidget("Encoder/TmpDir",        tmpDirEdit);
     EncoderConfigPage::loadWidget("PerTrackCue/Create",    perTrackCueCheck);
     EncoderConfigPage::loadWidget("PerTrackCue/Pregap",    preGapComboBox);
     perTrackCueFormatEdit->setEditText(settings->value(Settings::PerTrackCue_FileName).toString());
@@ -427,7 +430,11 @@ void ConfigDialog::load()
         edit->setText(settings->value("Programs/" + edit->programName()).toString());
 
 #ifdef MAC_UPDATER
-   autoUpdateCbk->setChecked(Updater::sharedUpdater().automaticallyChecksForUpdates());
+    autoUpdateCbk->setChecked(Updater::sharedUpdater().automaticallyChecksForUpdates());
+#endif
+
+#ifndef FLATPAK_BUNDLE
+    EncoderConfigPage::loadWidget("Encoder/TmpDir",        tmpDirEdit);
 #endif
 }
 
@@ -439,7 +446,6 @@ void ConfigDialog::write()
 {
     EncoderConfigPage::writeWidget("Tags/DefaultCodepage",  codePageComboBox);
     EncoderConfigPage::writeWidget("Encoder/ThreadCount",   threadsCountSpin);
-    EncoderConfigPage::writeWidget("Encoder/TmpDir",        tmpDirEdit);
     EncoderConfigPage::writeWidget("PerTrackCue/Create",    perTrackCueCheck);
     EncoderConfigPage::writeWidget("PerTrackCue/Pregap",    preGapComboBox);
 
@@ -460,6 +466,10 @@ void ConfigDialog::write()
 #ifdef MAC_UPDATER
     Updater::sharedUpdater().setAutomaticallyChecksForUpdates(
         autoUpdateCbk->isChecked());
+#endif
+
+#ifndef FLATPAK_BUNDLE
+    EncoderConfigPage::writeWidget("Encoder/TmpDir",        tmpDirEdit);
 #endif
 }
 

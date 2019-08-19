@@ -55,7 +55,7 @@ private:
     ~ConfigDialog();
 
     void initGeneralPage();
-    void initTabPages();
+    void initFormatPages();
     void initPrograms();
     void initUpdatePage();
 

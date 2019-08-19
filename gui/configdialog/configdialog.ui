@@ -123,7 +123,14 @@
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="CodePageComboBox" name="codePageComboBox"/>
+            <widget class="CodePageComboBox" name="codePageComboBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
