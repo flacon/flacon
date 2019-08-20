@@ -110,6 +110,7 @@ public slots:
 
 private slots:
     void diskDataChanged(const Disk *disk);
+    void invalidateCache(const Disk *disk);
 
 private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;

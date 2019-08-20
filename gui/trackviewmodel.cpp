@@ -139,6 +139,9 @@ TrackViewModel::TrackViewModel(TrackView *parent) :
 
     connect(project, SIGNAL(layoutChanged()), this, SIGNAL(layoutChanged()));
     connect(project, SIGNAL(afterRemoveDisk()), this, SIGNAL(layoutChanged()));
+
+    connect(project, &Project::beforeRemoveDisk,
+            this, &TrackViewModel::invalidateCache);
 }
 
 
@@ -619,10 +622,10 @@ void TrackViewModel::diskDataChanged(const Disk *disk)
 /************************************************
 
  ************************************************/
-//void TrackViewModel::trackDataChanged(int disk, int track)
-//{
-//    QModelIndex diskIndex = index(disk, 0, QModelIndex());
-//    QModelIndex index1 = index(track, 0, diskIndex);
-//    QModelIndex index2 = index(track, TrackView::ColumnCount, diskIndex);
-//    emit dataChanged(index1, index2);
-//}
+void TrackViewModel::invalidateCache(const Disk *disk)
+{
+    mCache->downloadedDisks.remove(index(disk).row());
+
+    for (int i=0; i<disk->count(); ++i)
+        mCache->tracks.remove(*(disk->track(i)));
+}
