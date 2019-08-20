@@ -624,7 +624,7 @@ void TrackViewModel::diskDataChanged(const Disk *disk)
  ************************************************/
 void TrackViewModel::invalidateCache(const Disk *disk)
 {
-    mCache->downloadedDisks.remove(index(disk).row());
+    mCache->downloadedDisks.remove(index(*disk).row());
 
     for (int i=0; i<disk->count(); ++i)
         mCache->tracks.remove(*(disk->track(i)));
