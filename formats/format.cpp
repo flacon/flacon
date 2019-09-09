@@ -149,7 +149,7 @@ const AudioFormat *AudioFormat::formatForFile(QIODevice *device)
 
     QByteArray buf = device->read(bufSize);
     if (buf.size() < bufSize)
-        return NULL;
+        return nullptr;
 
     foreach (const AudioFormat *format, allFormats())
     {
@@ -157,7 +157,7 @@ const AudioFormat *AudioFormat::formatForFile(QIODevice *device)
             return format;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 
@@ -169,7 +169,7 @@ const AudioFormat *AudioFormat::formatForFile(const QString &fileName)
     QFile file(fileName);
     if (! file.open(QFile::ReadOnly))
     {
-        return NULL;
+        return nullptr;
     }
 
     const AudioFormat *res = formatForFile(&file);

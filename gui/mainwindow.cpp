@@ -697,7 +697,7 @@ void MainWindow::stopConvert()
  ************************************************/
 void MainWindow::configure()
 {
-    ConfigDialog::createAndShow(0, this);
+    ConfigDialog::createAndShow(nullptr, this);
 }
 
 
@@ -902,7 +902,7 @@ void MainWindow::addFileOrDir(const QString &fileName)
             setControlsEnable();
             mScanner->start(fi.absoluteFilePath());
             delete mScanner;
-            mScanner = 0;
+            mScanner = nullptr;
             setControlsEnable();
         }
         else if (fi.size() > 102400)

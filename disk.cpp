@@ -49,7 +49,7 @@
  ************************************************/
 Disk::Disk(QObject *parent) :
     QObject(parent),
-    mAudioFile(0)
+    mAudioFile(nullptr)
 {
 
 }

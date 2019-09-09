@@ -108,7 +108,7 @@ AsyncListWidgetItem::~AsyncListWidgetItem()
 {
     if (mWatcher)
     {
-        QObject::disconnect(mWatcher, 0, 0, 0);
+        QObject::disconnect(mWatcher, nullptr, nullptr, nullptr);
         mWatcher->deleteLater();
     }
 }
@@ -121,7 +121,7 @@ void AsyncListWidgetItem::setIconAsync(const QString &fileName)
 {
     if (mWatcher)
     {
-        QObject::disconnect(mWatcher, 0, 0, 0);
+        QObject::disconnect(mWatcher, nullptr, nullptr, nullptr);
         mWatcher->deleteLater();
     }
 

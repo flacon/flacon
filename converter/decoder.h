@@ -41,7 +41,7 @@ class Decoder : public QObject
 {
     Q_OBJECT
 public:
-    explicit Decoder(QObject *parent = 0);
+    explicit Decoder(QObject *parent = nullptr);
     virtual ~Decoder();
 
     void open(const QString &fileName);

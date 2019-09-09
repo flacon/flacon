@@ -33,7 +33,7 @@ class Scanner : public QObject
 {
     Q_OBJECT
 public:
-    explicit Scanner(QObject *parent = 0);
+    explicit Scanner(QObject *parent = nullptr);
 
 public slots:
     void start(const QString &startDir);

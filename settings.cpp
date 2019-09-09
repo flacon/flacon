@@ -54,7 +54,7 @@
 #endif
 
 QString Settings::mFileName;
-static Settings *inst = NULL;
+static Settings *inst = nullptr;
 
 /************************************************
 
@@ -80,7 +80,7 @@ void Settings::setFileName(const QString &fileName)
 {
     mFileName = fileName;
     delete inst;
-    inst = 0;
+    inst = nullptr;
 }
 
 

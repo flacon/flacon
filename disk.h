@@ -44,7 +44,7 @@ class Disk: public QObject
     friend class Track;
 public:
 
-    explicit Disk(QObject *parent = 0);
+    explicit Disk(QObject *parent = nullptr);
     virtual ~Disk();
 
     Track *track(int index) const;
@@ -73,7 +73,7 @@ public:
     DiskNum diskCount() const;
 
     QStringList warnings() const;
-    bool canConvert(QString *description = 0) const;
+    bool canConvert(QString *description = nullptr) const;
     bool canDownloadInfo() const;
 
 

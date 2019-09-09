@@ -45,7 +45,7 @@ class TagEditor : public QDialog
     Q_OBJECT
 
 public:
-    explicit TagEditor(const QList<Track*> &tracks, const QList<Disk *> &disks, QWidget *parent = 0);
+    explicit TagEditor(const QList<Track*> &tracks, const QList<Disk *> &disks, QWidget *parent = nullptr);
     ~TagEditor();
 
 public slots:

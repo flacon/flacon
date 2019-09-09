@@ -114,7 +114,7 @@ TrackViewCacheItem *TrackViewCache::item(const QModelIndex &index)
     if (currentIndex != index)
     {
         currentIndex = index;
-        currentItem = mItems.value(index, 0);
+        currentItem = mItems.value(index, nullptr);
 
         if (!currentItem)
         {

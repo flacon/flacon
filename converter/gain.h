@@ -38,8 +38,8 @@ class Gain: public Worker
 {
     Q_OBJECT
 public:
-    explicit Gain(const WorkerRequest &request, const OutFormat *format, QObject *parent = 0);
-    explicit Gain(const QList<WorkerRequest> &requests, const OutFormat *format, QObject *parent = 0);
+    explicit Gain(const WorkerRequest &request, const OutFormat *format, QObject *parent = nullptr);
+    explicit Gain(const QList<WorkerRequest> &requests, const OutFormat *format, QObject *parent = nullptr);
 
     void run() override;
 

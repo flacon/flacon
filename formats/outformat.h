@@ -40,6 +40,7 @@ public:
     static QList<OutFormat*> allFormats();
     static OutFormat *currentFormat();
     static OutFormat * formatForId(const QString &id);
+    virtual ~OutFormat() {}
 
     QString id() const { return mId; }
     QString name() const { return mName; }
@@ -61,7 +62,7 @@ public:
     virtual bool check(QStringList *errors) const;
 
     virtual QHash<QString, QVariant> defaultParameters() const = 0;
-    virtual EncoderConfigPage *configPage(QWidget *parent = 0) const = 0;
+    virtual EncoderConfigPage *configPage(QWidget *parent = nullptr) const = 0;
     virtual bool hasConfigPage() const { return true; }
 
 

@@ -39,7 +39,7 @@ class TestFlacon : public QObject
 {
     Q_OBJECT
 public:
-    explicit TestFlacon(QObject *parent = 0);
+    explicit TestFlacon(QObject *parent = nullptr);
 
     static bool compareCue(const QString &result, const QString &expected, QString *error, bool skipEmptyLines = false);
 

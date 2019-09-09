@@ -68,7 +68,7 @@ signals:
     void afterRemoveDisk();
 
 private:
-    explicit Project(QObject *parent = 0);
+    explicit Project(QObject *parent = nullptr);
 
     QList<Disk*> mDisks;
 };

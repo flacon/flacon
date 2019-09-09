@@ -57,7 +57,7 @@ TestFlacon::TestFlacon(QObject *parent) :
     QObject(parent),
     mTmpDir(TEST_OUT_DIR),
     mDataDir(TEST_DATA_DIR),
-    mStandardDisk(0)
+    mStandardDisk(nullptr)
 {
 }
 
@@ -184,7 +184,7 @@ void TestFlacon::applySettings(const SettingsValues &config)
  ************************************************/
 Disk *TestFlacon::standardDisk()
 {
-    if (mStandardDisk == 0)
+    if (mStandardDisk == nullptr)
     {
         QString cueFile = dir() + "testTrackResultFileName.cue";
 

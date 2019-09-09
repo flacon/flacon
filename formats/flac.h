@@ -47,7 +47,7 @@ public:
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(QWidget *parent = 0) const override;
+    EncoderConfigPage *configPage(QWidget *parent = nullptr) const override;
 };
 
 class Format_Flac: public AudioFormat
@@ -69,7 +69,7 @@ class ConfigPage_Flac: public EncoderConfigPage, private Ui::ConfigPage_Flac
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Flac(QWidget *parent = 0);
+    explicit ConfigPage_Flac(QWidget *parent = nullptr);
 
     virtual void load() override;
     virtual void write() override;

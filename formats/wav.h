@@ -44,7 +44,7 @@ public:
 
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(QWidget *parent = 0) const override;
+    EncoderConfigPage *configPage(QWidget *parent = nullptr) const override;
 
     virtual bool hasConfigPage() const override { return false; }
 

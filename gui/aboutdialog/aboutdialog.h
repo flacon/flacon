@@ -42,14 +42,14 @@ class AboutInfo: public QList<AboutInfoItem>
 public:
     AboutInfo();
     QString asString() const;
-    void add(const QString &name, const QString &url, const QString &description = 0);
+    void add(const QString &name, const QString &url, const QString &description = nullptr);
 };
 
 class AboutDialog : public QDialog, private Ui::AboutDialog
 {
     Q_OBJECT
 public:
-    explicit AboutDialog(QWidget *parent = 0);
+    explicit AboutDialog(QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *event) override;

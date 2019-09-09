@@ -43,7 +43,7 @@ public:
     virtual QStringList gainArgs(const QStringList &files) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(QWidget *parent = 0) const override;
+    EncoderConfigPage *configPage(QWidget *parent = nullptr) const override;
 };
 
 
@@ -51,7 +51,7 @@ class ConfigPage_Ogg: public EncoderConfigPage, private Ui::ConfigPage_Ogg
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Ogg(QWidget *parent = 0);
+    explicit ConfigPage_Ogg(QWidget *parent = nullptr);
 
     virtual void load() override;
     virtual void write() override;

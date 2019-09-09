@@ -46,7 +46,7 @@ class CoverDialog : public QDialog
     Q_OBJECT
 
 public:
-    static CoverDialog *createAndShow(Disk *disk, QWidget *parent = 0);
+    static CoverDialog *createAndShow(Disk *disk, QWidget *parent = nullptr);
     ~CoverDialog() override;
 
     Disk *disk() const { return mDisk; }
@@ -59,7 +59,7 @@ private slots:
     void buttonClicked(QAbstractButton *button);
 
 private:
-    explicit CoverDialog(QWidget *parent = 0);
+    explicit CoverDialog(QWidget *parent = nullptr);
 
 
     void scan(const QString &startDir);

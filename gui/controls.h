@@ -53,7 +53,7 @@ class OutPatternButton: public QToolButton
 {
     Q_OBJECT
 public:
-    explicit OutPatternButton(QWidget * parent=0);
+    explicit OutPatternButton(QWidget * parent = nullptr);
     void addPattern(const QString &pattern, const QString &title);
     void addFullPattern(const QString &pattern, const QString &title);
 
@@ -82,7 +82,7 @@ class ActionsButton: public QToolButton
 {
     Q_OBJECT
 public:
-    explicit ActionsButton(QWidget * parent=0);
+    explicit ActionsButton(QWidget * parent = nullptr);
     QMenu *menu()  { return &mMenu; }
 
 private slots:
@@ -101,7 +101,7 @@ class MultiValuesSpinBox: public QSpinBox
 {
     Q_OBJECT
 public:
-    explicit MultiValuesSpinBox(QWidget *parent = 0);
+    explicit MultiValuesSpinBox(QWidget *parent = nullptr);
     bool multi() const { return mMultiState == MultiValuesMulti; }
     void stepBy(int steps);
 
@@ -127,7 +127,7 @@ class MultiValuesLineEdit: public QLineEdit
 {
     Q_OBJECT
 public:
-    explicit MultiValuesLineEdit(QWidget *parent = 0);
+    explicit MultiValuesLineEdit(QWidget *parent = nullptr);
 
 
 public slots:
@@ -146,7 +146,7 @@ class MultiValuesTextEdit: public QPlainTextEdit
 {
     Q_OBJECT
 public:
-    explicit MultiValuesTextEdit(QWidget *parent = 0);
+    explicit MultiValuesTextEdit(QWidget *parent = nullptr);
 
     bool isModified() const;
     QString text() const { return this->toPlainText(); }
@@ -166,7 +166,7 @@ class TagTextEdit: public MultiValuesTextEdit
 {
     Q_OBJECT
 public:
-    explicit TagTextEdit(QWidget *parent = 0);
+    explicit TagTextEdit(QWidget *parent = nullptr);
 
     TagId tagId() const { return mTagId; }
     void setTagId(TagId tagId) { mTagId = tagId; }
@@ -183,7 +183,7 @@ class TagLineEdit: public MultiValuesLineEdit
 {
     Q_OBJECT
 public:
-    explicit TagLineEdit(QWidget *parent = 0);
+    explicit TagLineEdit(QWidget *parent = nullptr);
 
     TagId tagId() const { return mTagId; }
     void setTagId(TagId tagId) { mTagId = tagId; }
@@ -200,7 +200,7 @@ class TagSpinBox: public MultiValuesSpinBox
 {
     Q_OBJECT
 public:
-    explicit TagSpinBox(QWidget *parent = 0);
+    explicit TagSpinBox(QWidget *parent = nullptr);
 
     TagId tagId() const { return mTagId; }
     void setTagId(TagId tagId) { mTagId = tagId; }
@@ -217,7 +217,7 @@ class MultiValuesComboBox: public QComboBox
 {
     Q_OBJECT
 public:
-    explicit MultiValuesComboBox(QWidget *parent = 0);
+    explicit MultiValuesComboBox(QWidget *parent = nullptr);
     bool multi() const { return mMultiState == MultiValuesMulti; }
 
 public slots:
@@ -236,7 +236,7 @@ class CodePageComboBox: public MultiValuesComboBox
 {
     Q_OBJECT
 public:
-    explicit CodePageComboBox(QWidget *parent = 0);
+    explicit CodePageComboBox(QWidget *parent = nullptr);
 
 private:
     void addCodecName(const QString &title, const QString &codecName);
@@ -260,7 +260,7 @@ class ProgramEdit: public QLineEdit
 {
     Q_OBJECT
 public:
-    ProgramEdit(const QString &programName, QWidget *parent = 0);
+    ProgramEdit(const QString &programName, QWidget *parent = nullptr);
 
     QString programName() const { return mProgramName;}
 
@@ -287,7 +287,7 @@ class HistoryComboBox: public QComboBox
 {
     Q_OBJECT
 public:
-    explicit HistoryComboBox(QWidget *parent = 0);
+    explicit HistoryComboBox(QWidget *parent = nullptr);
     QStringList history() const;
     void setHistory(const QStringList &value);
 
@@ -311,7 +311,7 @@ class OutDirComboBox : public HistoryComboBox
 {
     Q_OBJECT
 public:
-    explicit OutDirComboBox(QWidget *parent = 0);
+    explicit OutDirComboBox(QWidget *parent = nullptr);
 };
 
 
@@ -323,7 +323,7 @@ class ErrorBox: public QMessageBox
 {
     Q_OBJECT
 public:
-    explicit ErrorBox(QWidget *parent = 0);
+    explicit ErrorBox(QWidget *parent = nullptr);
 
     QStringList messages() const { return mMessgaes; }
     void setMessages(const QStringList &messages);

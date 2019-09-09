@@ -39,7 +39,7 @@ class ConfigDialog : public QDialog, private Ui::ConfigDialog
 {
     Q_OBJECT
 public:
-    static ConfigDialog *createAndShow(const OutFormat *format, QWidget *parent = 0);
+    static ConfigDialog *createAndShow(const OutFormat *format, QWidget *parent = nullptr);
 
 signals:
     
@@ -51,7 +51,7 @@ public slots:
     void tmpDirShowDialog();
 
 private:
-    explicit ConfigDialog(QWidget *parent = 0);
+    explicit ConfigDialog(QWidget *parent = nullptr);
     ~ConfigDialog();
 
     void initGeneralPage();
@@ -77,7 +77,7 @@ class EncoderConfigPage: public QWidget
 {
     Q_OBJECT
 public:
-    explicit EncoderConfigPage(QWidget *parent = 0);
+    explicit EncoderConfigPage(QWidget *parent = nullptr);
     virtual ~EncoderConfigPage();
 
     virtual void load() = 0;

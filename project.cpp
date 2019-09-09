@@ -53,7 +53,7 @@ void Project::clear()
  ************************************************/
 Project *Project::instance()
 {
-    static Project *inst = 0;
+    static Project *inst = nullptr;
     if (!inst)
         inst = new Project();
 
@@ -154,7 +154,7 @@ Disk *Project::addAudioFile(const QString &fileName)
     for(int i=0; i<count(); ++i )
     {
         if (disk(i)->audioFileName() == canonicalFileName)
-            return 0;
+            return nullptr;
     }
 
     InputAudioFile audio(QFileInfo(fileName).absoluteFilePath());

@@ -43,7 +43,7 @@ class TrackViewModel : public QAbstractItemModel
     friend class TrackViewDelegate;
     Q_OBJECT
 public:
-    explicit TrackViewModel(TrackView *parent = 0);
+    explicit TrackViewModel(TrackView *parent = nullptr);
     virtual ~TrackViewModel();
 
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;

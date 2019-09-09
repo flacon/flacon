@@ -98,7 +98,7 @@ public:
         if (mDiskId && mDiskId-1 < project->count())
             return project->disk(mDiskId - 1);
 
-        return NULL;
+        return nullptr;
     }
 
     Track *track() const
@@ -109,7 +109,7 @@ public:
             if (disk && mTrackId -1 < disk->count())
                 return disk->track(mTrackId - 1);
         }
-        return NULL;
+        return nullptr;
     }
 
 private:

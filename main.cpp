@@ -125,7 +125,7 @@ void guiErrorHandler(const QString &message)
     QString msg(message);
     msg.replace("\n", "<br>");
     msg.replace(" ", "&nbsp;");
-    QMessageBox::critical(0, QObject::tr("Flacon", "Error"), "<html>" + msg + "</html>");
+    QMessageBox::critical(nullptr, QObject::tr("Flacon", "Error"), "<html>" + msg + "</html>");
 }
 
 

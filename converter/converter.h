@@ -47,7 +47,7 @@ public:
     };
 
     typedef QVector<Job> Jobs;
-    explicit Converter(QObject *parent = 0);
+    explicit Converter(QObject *parent = nullptr);
     virtual ~Converter();
 
     bool isRunning();

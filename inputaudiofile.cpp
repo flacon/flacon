@@ -42,7 +42,7 @@
  ************************************************/
 InputAudioFile::InputAudioFile(const QString &fileName):
     mFileName(fileName),
-    mFormat(0),
+    mFormat(nullptr),
     mSampleRate(0),
     mBitsPerSample(0),
     mDuration(0),
