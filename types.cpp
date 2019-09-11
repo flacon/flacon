@@ -312,16 +312,50 @@ void Messages::setHandler(Messages::Handler *handler)
 
 
 /************************************************
+	Windows special symbols
+	Use any character, except for the following:
+	The following reserved characters:
+		< (less than)
+		> (greater than)
+		: (colon)
+		" (double quote)
+		/ (forward slash)
+		\ (backslash)
+		| (vertical bar or pipe)
+		? (question mark)
+		* (asterisk)
+		\0 Integer value zero, sometimes referred to as the ASCII NUL character.
 
+		\1-\31 Characters whose integer representations are in the range from 1 through 31
+	 https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#file-and-directory-names
  ************************************************/
 QString safeString(const QString &str)
 {
     QString res = str;
-    res.replace('|', "-");
-    res.replace('/', "-");
-    res.replace('\\', "-");
-    res.replace(':', "-");
-    res.replace('*', "-");
-    res.replace('?', "-");
+    for (auto it = res.begin(); it != res.end(); ++it) {
+        if (it->toLatin1() <= 31)
+        {
+            *it = ' ';
+            continue;
+        }
+
+
+        switch (it->toLatin1()) {
+        case '|':
+        case '/':
+        case '\\':
+        case ':':
+        case '*':
+        case '?':
+        case '<':
+        case '>':
+            *it = '-';
+            break;
+
+        case '"':
+            *it = '\'';
+            break;
+        }
+    }
     return res;
 }

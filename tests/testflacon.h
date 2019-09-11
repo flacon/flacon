@@ -80,6 +80,7 @@ private slots:
     void testByteArraySplit_data();
     void testByteArraySplit();
 
+    void testSafeString_data();
     void testSafeString();
 
     void testTrackResultFileName_data();

@@ -353,9 +353,59 @@ void TestFlacon::testByteArraySplit_data()
  ************************************************/
 void TestFlacon::testSafeString()
 {
-    QCOMPARE(safeString("A|B/C|D\\E:F*G?H"), QString("A-B-C-D-E-F-G-H"));
+    QFETCH(QString,  string);
+    QFETCH(QString,  expected);
+    QString result = safeString(string);
+    QCOMPARE(result, expected);
 }
 
+
+/************************************************
+
+ ************************************************/
+void TestFlacon::testSafeString_data()
+{
+    QTest::addColumn<QString>("string",   nullptr);
+    QTest::addColumn<QString>("expected", nullptr);
+
+    QTest::newRow("01")
+            << "A|B/C|D\\E:F*G?H"
+            << "A-B-C-D-E-F-G-H";
+
+
+    /* Windows special symbols
+     * Use any character, except for the following:
+     * The following reserved characters:
+     *    < (less than)
+     *    > (greater than)
+     *    : (colon)
+     *    " (double quote)
+     *    / (forward slash)
+     *    \ (backslash)
+     *    | (vertical bar or pipe)
+     *    ? (question mark)
+     *    * (asterisk)
+     *
+     *
+     * https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#file-and-directory-names	*/
+    QTest::newRow("02")
+            << "A<B>C:D\"E/F\\G|H?I*J"
+            << "A-B-C-D'E-F-G-H-I-J";
+
+
+    /* \0 Integer value zero, sometimes referred to as the ASCII NUL character.
+     * Characters whose integer representations are in the range from 1 through 31.
+     * https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#file-and-directory-names	*/
+    QTest::newRow("03")
+            << "\x01_C\x02_h\x03_a\x04_r\x05_a\x06_c\x07_t\x08_e"
+               "\x09_r\x0A_s\x0B__\x0C_w\x0D_h\x0E_o\x0F_s\x10_e"
+               "\x11__\x12_r\x13_e\x14_p\x15_r\x16_e\x17_s\x18_e"
+               "\x19_n\x1A_t\x1B_a\x1C_t\x1D_i\x1E_o\x1F_n"
+            << " _C _h _a _r _a _c _t _e"
+               " _r _s __ _w _h _o _s _e"
+               " __ _r _e _p _r _e _s _e"
+               " _n _t _a _t _i _o _n";
+}
 
 
 /************************************************
