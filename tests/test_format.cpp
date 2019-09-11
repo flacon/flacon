@@ -79,8 +79,8 @@ void TestFlacon::testFormat()
  ************************************************/
 void TestFlacon::testFormat_data()
 {
-    QTest::addColumn<QString>("testdata");
-    QTest::addColumn<QString>("ext");
+    QTest::addColumn<QString>("testdata", nullptr);
+    QTest::addColumn<QString>("ext",      nullptr);
 
     QTest::newRow("01 WAV")
             << "52 49 46 46"  // RIFF
@@ -115,8 +115,8 @@ void TestFlacon::testFormatFromFile()
  ************************************************/
 void TestFlacon::testFormatFromFile_data()
 {
-    QTest::addColumn<QString>("filename");
-    QTest::addColumn<QString>("ext");
+    QTest::addColumn<QString>("filename", nullptr);
+    QTest::addColumn<QString>("ext",      nullptr);
 
     // WAV ______________________________________
     QTest::newRow("WAV 01")     << mAudio_cd_wav        << "wav";

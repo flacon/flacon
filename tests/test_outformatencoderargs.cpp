@@ -74,9 +74,9 @@ void TestFlacon::testOutFormatEncoderArgs()
  ************************************************/
 void TestFlacon::testOutFormatEncoderArgs_data()
 {
-    QTest::addColumn<QString>("formatId");
-    QTest::addColumn<SettingsValues>("config");
-    QTest::addColumn<QString>("expected");
+    QTest::addColumn<QString>("formatId",      nullptr);
+    QTest::addColumn<SettingsValues>("config", nullptr);
+    QTest::addColumn<QString>("expected",      nullptr);
 
     SettingsValues cfg;
 

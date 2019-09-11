@@ -299,10 +299,10 @@ void TestFlacon::testByteArraySplit()
  ************************************************/
 void TestFlacon::testByteArraySplit_data()
 {
-    QTest::addColumn<QByteArray>("inArray");
-    QTest::addColumn<char>("separator");
-    QTest::addColumn<QByteArray>("expectedLeft");
-    QTest::addColumn<QByteArray>("expectedRight");
+    QTest::addColumn<QByteArray>("inArray",      nullptr);
+    QTest::addColumn<char>("separator",          nullptr);
+    QTest::addColumn<QByteArray>("expectedLeft", nullptr);
+    QTest::addColumn<QByteArray>("expectedRight", nullptr);
 
     QTest::newRow("'' split by ' '")
             << QByteArray()
@@ -514,9 +514,9 @@ void TestFlacon::testTrackResultFileName()
  ************************************************/
 void TestFlacon::testTrackResultFileName_data()
 {
-    QTest::addColumn<QString>("cue");
-    QTest::addColumn<QString>("pattern");
-    QTest::addColumn<QString>("expected");
+    QTest::addColumn<QString>("cue",      nullptr);
+    QTest::addColumn<QString>("pattern",  nullptr);
+    QTest::addColumn<QString>("expected", nullptr);
 
 
     QTest::newRow("1.1")
@@ -776,10 +776,10 @@ void TestFlacon::testTrackResultFilePath()
 void TestFlacon::testTrackResultFilePath_data()
 {
     //QTest::addColumn<QString>("cueFile");
-    QTest::addColumn<QString>("outDir");
-    QTest::addColumn<QString>("pattern");
-    QTest::addColumn<QString>("expected");
-    QTest::addColumn<QString>("cueFile");
+    QTest::addColumn<QString>("outDir",   nullptr);
+    QTest::addColumn<QString>("pattern",  nullptr);
+    QTest::addColumn<QString>("expected", nullptr);
+    QTest::addColumn<QString>("cueFile",  nullptr);
 
 
     QTest::newRow("1: /home/user/music")
@@ -910,10 +910,10 @@ void TestFlacon::testTrackSetCodepages()
  ************************************************/
 void TestFlacon::testTrackSetCodepages_data()
 {
-    QTest::addColumn<QString>("cueFile");
-    QTest::addColumn<QString>("sampleFile");
-    QTest::addColumn<QString>("codepageBefore");
-    QTest::addColumn<QString>("codepageAfter");
+    QTest::addColumn<QString>("cueFile",        nullptr);
+    QTest::addColumn<QString>("sampleFile",     nullptr);
+    QTest::addColumn<QString>("codepageBefore", nullptr);
+    QTest::addColumn<QString>("codepageAfter",  nullptr);
 
 
     QTest::newRow("01 TrackSet_UTF-8")
@@ -969,9 +969,9 @@ void TestFlacon::testOutFormatGainArgs()
  ************************************************/
 void TestFlacon::testOutFormatGainArgs_data()
 {
-    QTest::addColumn<QString>("formatId");
-    QTest::addColumn<SettingsValues>("config");
-    QTest::addColumn<QString>("expected");
+    QTest::addColumn<QString>("formatId",      nullptr);
+    QTest::addColumn<SettingsValues>("config", nullptr);
+    QTest::addColumn<QString>("expected",      nullptr);
 
     SettingsValues cfg;
 
@@ -1106,7 +1106,7 @@ void TestFlacon::testCueIndex()
  ************************************************/
 void TestFlacon::testCueIndex_data()
 {
-    QTest::addColumn<QString>("expected");
+    QTest::addColumn<QString>("expected", nullptr);
 
 
     QTest::newRow("CD")             << "00:00:00";
@@ -1164,10 +1164,10 @@ void TestFlacon::testDiskPipelineCalcQuality()
  ************************************************/
 void TestFlacon::testDiskPipelineCalcQuality_data()
 {
-    QTest::addColumn<int>("preferences");
-    QTest::addColumn<int>("maxFormat");
-    QTest::addColumn<int>("input");
-    QTest::addColumn<int>("expected");
+    QTest::addColumn<int>("preferences", nullptr);
+    QTest::addColumn<int>("maxFormat",   nullptr);
+    QTest::addColumn<int>("input",       nullptr);
+    QTest::addColumn<int>("expected",    nullptr);
 
     //                      preferences maxFormat   input   expected
     QTest::newRow("Bits 01") << 0       << 16       << 16   <<  0;

@@ -103,10 +103,10 @@ void TestFlacon::testFindAudioFile()
  ************************************************/
 void TestFlacon::testFindAudioFile_data()
 {
-    QTest::addColumn<QString>("fileTag");
-    QTest::addColumn<QString>("cueFileName");
-    QTest::addColumn<QString>("audioFiles");
-    QTest::addColumn<QString>("expected");
+    QTest::addColumn<QString>("fileTag",     nullptr);
+    QTest::addColumn<QString>("cueFileName", nullptr);
+    QTest::addColumn<QString>("audioFiles",  nullptr);
+    QTest::addColumn<QString>("expected",    nullptr);
 
     QTest::newRow("01")
             << "Album.wav"

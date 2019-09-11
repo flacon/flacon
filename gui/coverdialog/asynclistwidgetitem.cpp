@@ -125,7 +125,7 @@ void AsyncListWidgetItem::setIconAsync(const QString &fileName)
         mWatcher->deleteLater();
     }
 
-    mWatcher = new QFutureWatcher<QImage*>;
+    mWatcher = new QFutureWatcher<QImage*>(nullptr);
 
     mWatcher->connect(mWatcher, &QFutureWatcher<QImage*>::finished,
                      [this](){this->imageReady();});

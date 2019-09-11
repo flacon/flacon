@@ -102,7 +102,7 @@ void TestFlacon::testFindCueFile()
 void TestFlacon::testFindCueFile_data()
 {
 
-    QTest::addColumn<TestFindCueFileData>("test");
+    QTest::addColumn<TestFindCueFileData>("test", nullptr);
     TestFindCueFileData test;
 
     // -------------------------------------

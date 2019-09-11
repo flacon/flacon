@@ -92,9 +92,9 @@ void TestFlacon::testPatternExpander()
  ************************************************/
 void TestFlacon::testPatternExpander_data()
 {
-    QTest::addColumn<QString>("pattern");
-    QTest::addColumn<QString>("trackData");
-    QTest::addColumn<QString>("expected");
+    QTest::addColumn<QString>("pattern",   nullptr);
+    QTest::addColumn<QString>("trackData", nullptr);
+    QTest::addColumn<QString>("expected",  nullptr);
 
 
     QTest::newRow("01")

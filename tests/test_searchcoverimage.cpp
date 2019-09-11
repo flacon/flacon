@@ -78,7 +78,7 @@ void TestFlacon::testSearchCoverImage()
  ************************************************/
 void TestFlacon::testSearchCoverImage_data()
 {
-    QTest::addColumn<TestSearchCoverImage_Case>("test");
+    QTest::addColumn<TestSearchCoverImage_Case>("test", nullptr);
     TestSearchCoverImage_Case req;
 
     // .....................................

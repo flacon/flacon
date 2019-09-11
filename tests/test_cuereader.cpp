@@ -155,7 +155,7 @@ void TestFlacon::testCueReader()
  ************************************************/
 void TestFlacon::testCueReader_data()
 {
-    QTest::addColumn<QString>("cue");
+    QTest::addColumn<QString>("cue", nullptr);
     QString srcDir = mDataDir + "testCueReader";
 
     foreach(QString f, QDir(srcDir).entryList(QStringList("*.cue"), QDir::Files, QDir::Name))

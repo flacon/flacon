@@ -230,7 +230,7 @@ void TestFlacon::testConvert_data()
     if (QProcessEnvironment::systemEnvironment().contains("FLACON_SKIP_CONVERT_TEST"))
         QSKIP("Skipping testConvert");
 
-    QTest::addColumn<QString>("dataDir");
+    QTest::addColumn<QString>("dataDir", nullptr);
 
     QString dataDir = mDataDir + "/testConvert/";
 

@@ -61,9 +61,9 @@ void TestFlacon::testInputAudioFile()
 
 void TestFlacon::testInputAudioFile_data()
 {
-    QTest::addColumn<QString>("fileName");
-    QTest::addColumn<QString>("duration");
-    QTest::addColumn<QString>("format");
+    QTest::addColumn<QString>("fileName", nullptr);
+    QTest::addColumn<QString>("duration", nullptr);
+    QTest::addColumn<QString>("format",   nullptr);
 
     QTest::newRow("01 mAudio_cd_ape")
             << mAudio_cd_ape

@@ -110,7 +110,7 @@ void TestFlacon::testDecoder()
  ************************************************/
 void TestFlacon::testDecoder_data()
 {
-    QTest::addColumn<QStringList>("data");
+    QTest::addColumn<QStringList>("data", nullptr);
 
 
     // Wav ______________________________________

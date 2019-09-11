@@ -75,10 +75,10 @@ void TestFlacon::testReadWavHeader()
  ************************************************/
 void TestFlacon::testReadWavHeader_data()
 {
-    QTest::addColumn<QString>("testdata");
-    QTest::addColumn<QString>("file_size");
-    QTest::addColumn<QString>("data_size");
-    QTest::addColumn<QString>("duration");
+    QTest::addColumn<QString>("testdata",  nullptr);
+    QTest::addColumn<QString>("file_size", nullptr);
+    QTest::addColumn<QString>("data_size", nullptr);
+    QTest::addColumn<QString>("duration",  nullptr);
 
     QTest::newRow("01") <<
                          "52 49 46 46"  // RIFF
