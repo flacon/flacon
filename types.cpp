@@ -332,6 +332,13 @@ void Messages::setHandler(Messages::Handler *handler)
 QString safeString(const QString &str)
 {
     QString res = str;
+
+	if (str == ".")
+		return "_";
+
+	if (str == "..")
+		return "__";
+
     for (auto it = res.begin(); it != res.end(); ++it) {
         if (it->toLatin1() <= 31)
         {

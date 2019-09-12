@@ -731,6 +731,76 @@ void TestFlacon::testTrackResultFileName_data()
             << "Text}/{%n}/{%n Text}/{%A}/{%A Text}"
             << "Text}/01/01 Text//.wav";
 
+    QTest::newRow("3.1")
+            <<  R"( REM GENRE Genre
+                    REM DATE 2013
+                    REM DISCID 123456789
+                    REM COMMENT "ExactAudioCopy v0.99pb4"
+                    PERFORMER "Artist"
+                    TITLE "."
+                    FILE "en.wav" WAVE
+                    TRACK 01 AUDIO
+                        TITLE "Song01"
+                        INDEX 01 00:00:00
+                    TRACK 02 AUDIO
+                        TITLE "Song02"
+                        INDEX 01 03:39:10
+                    TRACK 03 AUDIO
+                        TITLE "Song03"
+                        INDEX 01 07:25:42
+                    TRACK 04 AUDIO
+                        TITLE "Song04"
+                        INDEX 01 12:04:72)"
+             << "%a/%A/%n - %t"
+             << "Artist/_/01 - Song01.wav";
+
+
+    QTest::newRow("3.2")
+            <<  R"( REM GENRE Genre
+                    REM DATE 2013
+                    REM DISCID 123456789
+                    REM COMMENT "ExactAudioCopy v0.99pb4"
+                    PERFORMER "Artist"
+                    TITLE ".."
+                    FILE "en.wav" WAVE
+                    TRACK 01 AUDIO
+                        TITLE "Song01"
+                        INDEX 01 00:00:00
+                    TRACK 02 AUDIO
+                        TITLE "Song02"
+                        INDEX 01 03:39:10
+                    TRACK 03 AUDIO
+                        TITLE "Song03"
+                        INDEX 01 07:25:42
+                    TRACK 04 AUDIO
+                        TITLE "Song04"
+                        INDEX 01 12:04:72)"
+             << "%a/%A/%n - %t"
+             << "Artist/__/01 - Song01.wav";
+
+
+    QTest::newRow("3.3")
+            <<  R"( REM GENRE Genre
+                    REM DATE 2013
+                    REM DISCID 123456789
+                    REM COMMENT "ExactAudioCopy v0.99pb4"
+                    PERFORMER "."
+                    TITLE ".."
+                    FILE "en.wav" WAVE
+                    TRACK 01 AUDIO
+                        TITLE "Song01"
+                        INDEX 01 00:00:00
+                    TRACK 02 AUDIO
+                        TITLE "Song02"
+                        INDEX 01 03:39:10
+                    TRACK 03 AUDIO
+                        TITLE "Song03"
+                        INDEX 01 07:25:42
+                    TRACK 04 AUDIO
+                        TITLE "Song04"
+                        INDEX 01 12:04:72)"
+             << "%a%A/%n - %t"
+             << "___/01 - Song01.wav";
 }
 
 
