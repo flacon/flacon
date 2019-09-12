@@ -90,6 +90,7 @@ void Settings::setFileName(const QString &fileName)
 Settings::Settings(const QString &organization, const QString &application) :
     QSettings(organization, application)
 {
+    setIniCodec("UTF-8");
     init();
 }
 
@@ -100,6 +101,7 @@ Settings::Settings(const QString &organization, const QString &application) :
 Settings::Settings(const QString &fileName):
     QSettings(fileName, QSettings::IniFormat)
 {
+    setIniCodec("UTF-8");
     init();
 }
 
