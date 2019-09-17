@@ -27,6 +27,7 @@
 #include "types.h"
 #include <QVector>
 #include <QTextStream>
+#include <QDebug>
 
 /************************************************
  *
@@ -340,14 +341,14 @@ QString safeString(const QString &str)
 		return "__";
 
     for (auto it = res.begin(); it != res.end(); ++it) {
-        if (it->toLatin1() <= 31)
+        if (it->unicode() <= 31)
         {
             *it = ' ';
             continue;
         }
 
 
-        switch (it->toLatin1()) {
+        switch (it->unicode()) {
         case '|':
         case '/':
         case '\\':

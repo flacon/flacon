@@ -405,6 +405,10 @@ void TestFlacon::testSafeString_data()
                " _r _s __ _w _h _o _s _e"
                " __ _r _e _p _r _e _s _e"
                " _n _t _a _t _i _o _n";
+
+    QTest::newRow("04")
+            << "Русский текст/Russian text"
+            << "Русский текст-Russian text";
 }
 
 
@@ -801,6 +805,31 @@ void TestFlacon::testTrackResultFileName_data()
                         INDEX 01 12:04:72)"
              << "%a%A/%n - %t"
              << "___/01 - Song01.wav";
+
+
+    QTest::newRow("4.1")
+            <<  R"( REM GENRE Genre
+                    REM DATE 2013
+                    REM DISCID 123456789
+                    REM COMMENT "ExactAudioCopy v0.99pb4"
+                    PERFORMER "Автор"
+                    TITLE "Альбом"
+                    FILE "en.wav" WAVE
+                    TRACK 01 AUDIO
+                        TITLE "Песнь"
+                        INDEX 01 00:00:00
+                    TRACK 02 AUDIO
+                        TITLE "Song02"
+                        INDEX 01 03:39:10
+                    TRACK 03 AUDIO
+                        TITLE "Song03"
+                        INDEX 01 07:25:42
+                    TRACK 04 AUDIO
+                        TITLE "Song04"
+                        INDEX 01 12:04:72)"
+             << "%a_%A/%n - %t"
+             << "Автор_Альбом/01 - Песнь.wav";
+
 }
 
 
