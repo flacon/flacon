@@ -132,13 +132,17 @@ bool DiskPipeline::Data::createDir(const QString &dirName) const
 
     if (! dir.mkpath("."))
     {
-        Messages::error(QObject::tr("I can't create directory \"%1\".").arg(dir.path()));
+        QString msg = QObject::tr("I can't create directory \"%1\".").arg(dir.path());
+        QString err = strerror(errno);
+        Messages::error(msg + "<br><br>" + err);
         return false;
     }
 
     if (!QFileInfo(dir.path()).isWritable())
     {
-        Messages::error(QObject::tr("I can't write to directory \"%1\".").arg(dir.path()));
+        QString msg = QObject::tr("I can't write to directory \"%1\".").arg(dir.path());
+        QString err = strerror(errno);
+        Messages::error(msg + "<br><br>" + err);
         return false;
     }
 
@@ -519,8 +523,14 @@ void DiskPipeline::trackDone(const Track *track, const QString &outFileName)
 {
     // Track is ready, rename the file to the final name.
     QFile::remove(track->resultFilePath());
-    QFile(outFileName).rename(track->resultFilePath());
 
+    QFile file(outFileName);
+    if (! file.rename(track->resultFilePath())) {
+        trackError(track, tr("I can't rename file:\n%1 to %2\n%3")
+                   .arg(outFileName)
+                   .arg(track->resultFilePath())
+                   .arg(file.errorString()));
+    }
 
     mData->trackStates.insert(track, TrackState::OK);
     emit trackProgressChanged(*track, TrackState::OK, 0);
