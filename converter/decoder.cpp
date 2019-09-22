@@ -34,8 +34,8 @@
 #include <QDir>
 #include <QDebug>
 
-#define MAX_BUF_SIZE            4096
-
+static const int MAX_BUF_SIZE = 4096;
+static const int READ_DELAY   = 1000;
 
 
 /************************************************
@@ -107,7 +107,7 @@ void Decoder::openFile()
     if (!mFile->open(QFile::ReadOnly))
         throw FlaconError(mFile->errorString());
 
-    mWavHeader.load(mFile);
+    mWavHeader = WavHeader(mFile);
     mPos = mWavHeader.dataStartPos();
 }
 
@@ -129,7 +129,7 @@ void Decoder::openProcess()
         throw FlaconError(QString("[Decoder] Can't start '%1': %2")
                           .arg(program, mProcess->errorString()));
 
-    mWavHeader.load(mProcess);
+    mWavHeader = WavHeader(mProcess);
     mPos = mWavHeader.dataStartPos();
 }
 
@@ -170,6 +170,31 @@ void mustWrite(const char *buf, qint64 maxSize, QIODevice *outDevice)
     }
 }
 
+/************************************************
+ *
+ ************************************************/
+bool mustSkip(QIODevice *device, qint64 size, int msecs = READ_DELAY)
+{
+    static const int BUF_SIZE = 4096;
+
+    if (size == 0)
+        return true;
+
+    char buf[BUF_SIZE];
+    qint64 left = size;
+    while (left > 0)
+    {
+        device->bytesAvailable() || device->waitForReadyRead(msecs);
+        qint64 n = device->read(buf, qMin(qint64(BUF_SIZE), left));
+        if (n<0)
+            return false;
+
+        left -= n;
+    }
+
+    return true;
+}
+
 
 /************************************************
  *
@@ -194,7 +219,9 @@ void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         else
             be = timeToBytes(end,   mWavHeader) + mWavHeader.dataStartPos();
 
-        outDevice->write(StdWavHeader(be - bs, mWavHeader).toByteArray());
+        WavHeader hdr = mWavHeader;
+        hdr.resizeData(be - bs);
+        outDevice->write(hdr.toByteArray());
 
         qint64 pos = mPos;
 

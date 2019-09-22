@@ -30,6 +30,10 @@
 #include <QtGlobal>
 #include <QIODevice>
 
+/************************************************
+ * Info for format tags can be found at:
+ *   http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html
+ ************************************************/
 class WavHeader {
 public:
     enum Format{
@@ -52,76 +56,72 @@ public:
         Format_MPEG               = 0x0050,
         Format_MPEGLAYER3         = 0x0055,
         Format_G726_ADPCM         = 0x0064,
-        Format_G722_ADPCM         = 0x0065
-
+        Format_G722_ADPCM         = 0x0065,
+        Format_Extensible         = 0xFFFE,
     };
 
-
-    WavHeader();
-
-    quint32     fileSize() const      { return mFileSize; }
-    Format      format() const        { return mFormat; }
-    quint16     numChannels() const   { return mNumChannels; }
-    quint32     sampleRate() const    { return mSampleRate; }
-    quint32     byteRate() const      { return mByteRate; }
-    quint16     blockAlign() const    { return mBlockAlign; }
-    quint16     bitsPerSample() const { return mBitsPerSample; }
-    quint32     dataSize() const      { return mDataSize; }
-    quint32     dataStartPos() const  { return mDataStartPos; }
-    bool        isCdQuality() const;
-
-    /// Duration of audio in milliseconds.
-    quint64 duration() const;
-
-    void load(QIODevice* stream);
-
-    QByteArray toByteArray() const;
-
-protected:
-    quint32 mFileSize;
-    Format  mFormat;
-    quint16 mNumChannels;
-    quint32 mSampleRate;
-    quint32 mByteRate;
-    quint16 mBlockAlign;
-    quint16 mBitsPerSample;
-    quint32 mDataSize;
-    quint32 mDataStartPos;
-
-private:
-
-};
-
-QDebug operator<<(QDebug dbg, const WavHeader &header);
-
-class StdWavHeader: public WavHeader
-{
-public:
     enum Quality {
         Quality_Stereo_CD       = 2 * 16 *  44100,
         Quality_Stereo_24_96    = 2 * 24 *  96000,
         Quality_Stereo_24_192   = 2 * 24 * 192000
 
     };
-    StdWavHeader(quint32 dataSize, const WavHeader &base);
 
-    /**
-     * dataSize      - This is the number of bytes in the audio data.  NumSamples * NumChannels * BitsPerSample/8
-     * sampleRate    - 8000, 44100, etc.
-     * bitsPerSample - 8 bits = 8, 16 bits = 16, etc.
-     * numChannels   - Mono = 1, Stereo = 2, etc.
-     */
-    explicit StdWavHeader(quint32 dataSize, quint32 sampleRate, quint16 bitsPerSample, quint8 numChannels);
+    typedef char SubFormat[16];
 
+    WavHeader();
+    explicit WavHeader(QIODevice* stream);
+    explicit WavHeader(Quality quality);
 
-    explicit StdWavHeader(quint32 dataSize, Quality quality);
+    WavHeader(const WavHeader &other);
+    WavHeader &operator=(const WavHeader &other);
+
+    /// Duration of audio in milliseconds.
+    quint64 duration() const;
+
+    QByteArray toByteArray() const;
+
+    void resizeData(quint32 dataSize);
 
     static quint32 bytesPerSecond(Quality quality);
+
+
+    quint32 fileSize()           const { return mFileSize; }
+    Format  format()             const { return mFormat; }
+    quint16 numChannels()        const { return mNumChannels; }
+    quint32 sampleRate()         const { return mSampleRate; }
+    quint32 byteRate()           const { return mByteRate; }
+    quint16 blockAlign()         const { return mBlockAlign; }
+    quint16 bitsPerSample()      const { return mBitsPerSample; }
+    quint16 validBitsPerSample() const { return mValidBitsPerSample; }
+    quint32 channelMask()        const { return mChannelMask; }
+    quint32 dataSize()           const { return mDataSize; }
+    quint32 dataStartPos()       const { return mDataStartPos; }
+    bool    isCdQuality() const;
+
+
+protected:
+    quint32 mFileSize;
+    quint32 mFmtSize;
+    Format  mFormat;
+    quint16 mNumChannels;
+    quint32 mSampleRate;
+    quint32 mByteRate;
+    quint16 mBlockAlign;
+    quint16 mBitsPerSample;
+    quint16 mExtSize;            // Size of the extension:
+    quint16 mValidBitsPerSample; // at most 8*M
+    quint32 mChannelMask;        // Speaker position mask
+    QByteArray mSubFormat;   // GUID (first two bytes are the data format code)
+    quint32 mDataSize;
+    quint32 mDataStartPos;
+
+    QByteArray mOtherCunks;
+
+private:
+    void loadFmtChunk(QIODevice* stream, const quint32 chunkSize);
 };
 
-#define READ_DELAY            1000
-inline bool mustRead(QIODevice *device, char *data, qint64 size, int msecs = READ_DELAY);
-bool mustSkip(QIODevice *device, qint64 size, int msecs = READ_DELAY);
-
+QDebug operator<<(QDebug dbg, const WavHeader &header);
 
 #endif // WAVHEADER_H

@@ -325,7 +325,7 @@ void createWavFile(const QString &fileName, const QString &header)
 /************************************************
  *
  ************************************************/
-void createWavFile(const QString &fileName, int duration, StdWavHeader::Quality quality)
+void createWavFile(const QString &fileName, int duration, WavHeader::Quality quality)
 {
     if (QFileInfo(fileName).exists())
         return;
@@ -334,9 +334,10 @@ void createWavFile(const QString &fileName, int duration, StdWavHeader::Quality 
         if (!file.open(QFile::WriteOnly | QFile::Truncate))
             QFAIL(QString("Can't create file '%1': %2").arg(fileName, file.errorString()).toLocal8Bit());
 
-
-    int dataSize = StdWavHeader::bytesPerSecond(quality) * duration;
-    file.write(StdWavHeader(dataSize, quality).toByteArray());
+    int dataSize = WavHeader::bytesPerSecond(quality) * duration;
+    WavHeader header(quality);
+    header.resizeData(dataSize);
+    file.write(header.toByteArray());
     writeTestWavData(&file, dataSize);
     file.close();
 }

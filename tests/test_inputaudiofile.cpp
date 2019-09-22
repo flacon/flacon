@@ -27,9 +27,7 @@
 #include "testflacon.h"
 #include "tools.h"
 #include "../formats/format.h"
-//#include "../formats/wav.h"
-//#include "../formats/flac.h"
-//#include "../settings.h"
+#include "types.h"
 #include "../inputaudiofile.h"
 
 #include <QTest>
@@ -46,16 +44,22 @@ void TestFlacon::testInputAudioFile()
 
     uint dur = duration.toInt();
 
-
-    InputAudioFile ia(fileName);
-    if (!ia.isValid())
+    try
     {
-        FAIL(QString("Can't open '%1': %2").arg(fileName, ia.errorString()));
-        return;
-    }
+        InputAudioFile ia(fileName);
+        if (!ia.isValid())
+        {
+            FAIL(QString("Can't open '%1': %2").arg(fileName, ia.errorString()));
+            return;
+        }
 
-    QCOMPARE(ia.duration(), dur);
-    QCOMPARE(ia.format()->name(), format);
+        QCOMPARE(ia.duration(), dur);
+        QCOMPARE(ia.format()->name(), format);
+    }
+    catch (FlaconError &err)
+    {
+        FAIL(err.what());
+    }
 }
 
 

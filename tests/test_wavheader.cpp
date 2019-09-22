@@ -27,9 +27,10 @@
 #include "../converter/wavheader.h"
 #include "testflacon.h"
 #include "tools.h"
+#include "types.h"
 #include <QTest>
 #include <QString>
-#include<QBuffer>
+#include <QBuffer>
 
 
 /************************************************
@@ -42,31 +43,42 @@ void TestFlacon::testReadWavHeader()
     QFETCH(QString, data_size);
     QFETCH(QString, duration);
 
-    quint32 fileSize = file_size.toLongLong();
-    quint32 dataSize = data_size.toLongLong();
-    quint64 uduration = duration.toLongLong();
+    quint32 expectedFileSize = file_size.toLongLong();
+    quint32 expectedDataSize = data_size.toLongLong();
+    QTime   expectedDuration = QTime::fromString(duration, "hh:mm:ss.zzz");
 
     try
     {
         QBuffer data;
         data.open(QBuffer::ReadWrite);
         writeHexString(testdata, &data);
+
         data.seek(0);
+        WavHeader header(&data);
+
+        QCOMPARE(header.toByteArray().toHex(), data.buffer().toHex());
+
+        QCOMPARE(header.fileSize(), expectedFileSize);
+        QCOMPARE(header.dataSize(), expectedDataSize);
+        QCOMPARE(QTime::fromMSecsSinceStartOfDay(header.duration()), expectedDuration);
+
+        // Test copy operator
+        WavHeader copyOperator = header;
+        QCOMPARE(copyOperator.toByteArray().toHex(), data.buffer().toHex());
 
 
-        WavHeader header;
-        header.load(&data);
-
-        QCOMPARE(header.fileSize(), fileSize);
-        QCOMPARE(header.dataSize(), dataSize);
-        QCOMPARE(header.duration(), uduration);
+        // Test copy constructor
+        WavHeader copyConstructor(header);
+        QCOMPARE(copyConstructor.toByteArray().toHex(), data.buffer().toHex());
+    }
+    catch (FlaconError &err)
+    {
+        FAIL(err.what());
     }
     catch (char const *err)
     {
         QFAIL(err);
     }
-
-
 }
 
 
@@ -80,48 +92,48 @@ void TestFlacon::testReadWavHeader_data()
     QTest::addColumn<QString>("data_size", nullptr);
     QTest::addColumn<QString>("duration",  nullptr);
 
+
     QTest::newRow("01") <<
-                         "52 49 46 46"  // RIFF
-                         "24 B9 4D 02"  // file size - 8
-                         "57 41 56 45"  // WAVE
+                         "52 49 46 46"      // RIFF
+                         "24 B9 4D 02"      // file size - 8
+                         "57 41 56 45"      // WAVE
 
-                         "66 6D 74 20"  // "fmt "
-                         "10 00 00 00"  // Chunk size
-                         "01 00"        // AudioFormat
-                         "02 00"        // NumChannels
+                         "66 6D 74 20"      // "fmt "
+                         "10 00 00 00"      // Chunk size
+                         "01 00"            // AudioFormat
+                         "02 00"            // NumChannels
 
-                         "44 AC 00 00"  // mSampleRate
-                         "10 B1 02 00"  // mByteRate
-                         "04 00"        // mBlockAlign
-                         "10 00"        // mBitsPerSample
+                         "44 AC 00 00"      // mSampleRate
+                         "10 B1 02 00"      // mByteRate
+                         "04 00"            // mBlockAlign
+                         "10 00"            // mBitsPerSample
 
-                         "64 61 74 61"  // data
-                         "00 B9 4D 02"  // data size
-                         "00"
+                         "64 61 74 61"      // data
+                         "00 B9 4D 02"      // data size
 
-                      << "38648108"     // file size
-                      << "38648064"     // data size
-                      << "219093"       // duration   3 min 39 s 93 ms
+                      << "38648108"         // file size
+                      << "38648064"         // data size
+                      << "00:03:39.093"     // duration
                       ;
 
 
     QTest::newRow("02") <<
-                         "52 49 46 46"  // RIFF
-                         "46 B9 4D 02"  // file size - 8
-                         "57 41 56 45"  // WAVE
+                         "52 49 46 46"      // RIFF
+                         "46 B9 4D 02"      // file size - 8
+                         "57 41 56 45"      // WAVE
 
-                         "66 6D 74 20"  // "fmt "
-                         "10 00 00 00"  // Chunk size
-                         "01 00"        // AudioFormat
-                         "02 00"        // NumChannels
+                         "66 6D 74 20"      // "fmt "
+                         "10 00 00 00"      // Chunk size
+                         "01 00"            // AudioFormat
+                         "02 00"            // NumChannels
 
-                         "44 AC 00 00"  // mSampleRate
-                         "10 B1 02 00"  // mByteRate
-                         "04 00"        // mBlockAlign
-                         "10 00"        // mBitsPerSample
+                         "44 AC 00 00"      // mSampleRate
+                         "10 B1 02 00"      // mByteRate
+                         "04 00"            // mBlockAlign
+                         "10 00"            // mBitsPerSample
 
-                         "4C 49 53 54"  // LIST
-                         "1A 00 00 00"  // Chunk size
+                         "4C 49 53 54"      // LIST
+                         "1A 00 00 00"      // Chunk size
                          "49 4E 46 4F"
                          "49 53 46 54"
                          "0E 00 00 00"
@@ -130,41 +142,244 @@ void TestFlacon::testReadWavHeader_data()
                          "31 2E 31 30"
                          "30 00 "
 
-                         "64 61 74 61"  // data
-                         "00 B9 4D 02"  // data size
-                         "00"
+                         "64 61 74 61"      // data
+                         "00 B9 4D 02"      // data size
 
-                      << "38648142"     // file size
-                      << "38648064"     // data size
-                      << "219093"       // duration   3 min 39 s 93 ms
+                      << "38648142"         // file size
+                      << "38648064"         // data size
+                      << "00:03:39.093"     // duration
                       ;
 
 
     QTest::newRow("03") <<
-                          "52 49 46 46" // RIFF
-                          "24 A3 23 A8" // file size - 8
-                          "57 41 56 45" // WAVE
+                          "52 49 46 46"     // RIFF
+                          "24 A3 23 A8"     // file size - 8
+                          "57 41 56 45"     // WAVE
 
-                          "66 6D 74 20" // "fmt "
-                          "10 00 00 00" // Chunk size
-                          "01 00"       // AudioFormat
-                          "02 00"       // NumChannels
+                          "66 6D 74 20"     // "fmt "
+                          "10 00 00 00"     // Chunk size
+                          "01 00"           // AudioFormat
+                          "02 00"           // NumChannels
 
-                          "00 EE 02 00" // mSampleRate
-                          "00 94 11 00" // mByteRate
-                          "06 00"       // mBlockAlign
-                          "18 00"       // mBitsPerSample
+                          "00 EE 02 00"     // mSampleRate
+                          "00 94 11 00"     // mByteRate
+                          "06 00"           // mBlockAlign
+                          "18 00"           // mBitsPerSample
 
-                          "64 61 74 61" // data
-                          "00 A3 23 A8" // data size
+                          "64 61 74 61"     // data
+                          "00 A3 23 A8"     // data size
 
-                       << "2820907820"  // file size
-                       << "2820907776"  // data size
-                       << "2448704"     // duration   40 min 48 s 704 ms
+                       << "2820907820"      // file size
+                       << "2820907776"      // data size
+                       << "00:40:48.704"    // duration
                           ;
+
+
+    QTest::newRow("04") <<
+                          "52 49 46 46"     // RIFF
+                          "D0 9B 9B AF"     // file size - 8
+                          "57 41 56 45"     // WAVE
+
+                          "66 6D 74 20"     // "fmt "
+                          "28 00 00 00"     // Chunk size 40
+                                "FE FF"     // AudioFormat
+                                "02 00"     // NumChannels
+
+                          "00 77 01 00"     // mSampleRate
+                          "00 CA 08 00"     // mByteRate
+                                "06 00"     // mBlockAlign
+                                "18 00"     // mBitsPerSample
+
+                                "16 00"     // Size of the extension
+                                "18 00"     // Number of valid bits
+                          "03 00 00 00"     // Speaker position mask
+                          "01 00 00 00"     // GUID, including the data format code
+                          "00 00 10 00"     //
+                          "80 00 00 AA"     //
+                          "00 38 9B 71"     //
+
+                          "64 61 74 61"     // data
+                          "94 9B 9B AF"     // data size
+
+                       << "2946210776"      // file size
+                       << "2946210708"      // data size
+                       << "01:25:14.949"    // duration
+                          ;
+
+    QTest::newRow("05") <<
+                          "52 49 46 46"     // RIFF
+                          "D0 9B 9B AF"     // file size - 8
+                          "57 41 56 45"     // WAVE
+
+                          "66 6D 74 20"     // "fmt "
+                          "28 00 00 00"     // Chunk size 40
+                                "FE FF"     // AudioFormat
+                                "02 00"     // NumChannels
+
+                          "00 77 01 00"     // mSampleRate
+                          "00 CA 08 00"     // mByteRate
+                                "06 00"     // mBlockAlign
+                                "18 00"     // mBitsPerSample
+
+                                "16 00"     // Size of the extension
+                                "18 00"     // Number of valid bits
+                          "03 00 00 00"     // Speaker position mask
+                          "01 00 00 00"     // GUID, including the data format code
+                          "00 00 10 00"     //
+                          "80 00 00 AA"     //
+                          "00 38 9B 71"     //
+
+                          "64 61 74 61"     // data
+                          "94 9B 9B AF"     // data size
+
+                       << "2946210776"      // file size
+                       << "2946210708"      // data size
+                       << "01:25:14.949"    // duration
+                          ;
+
+    QTest::newRow("05") <<
+                           "52 49 46 46"
+                           "2A DF 02 00"
+                           "57 41 56 45"
+
+                           "66 6D 74 20"    // Chunk ID
+                           "28 00 00 00"    // Chunk size
+                                 "FE FF"    //Format code
+                                 "02 00"
+                           "40 1F 00 00"
+                           "00 FA 00 00"
+                                 "08 00"
+                                 "20 00"
+                                 "16 00"    // Size of the extension
+                                 "20 00"    // Number of valid bits
+                           "03 00 00 00"    // Speaker position mask
+                           "03 00 00 00"    // GUID, including the data format code
+                           "00 00 10 00"
+                           "80 00 00 AA"
+                           "00 38 9B 71"
+
+                           "66 61 63 74"    // fact chunk
+                           "04 00 00 00"    // Chunk size
+                           "C5 5B 00 00"
+
+                           "64 61 74 61"    // data chunk
+                           "28 DE 02 00"    // Chunk size
+
+                        << "188210"         // file size
+                        << "187944"         // data size
+                        << "00:00:02.936";  // duration
 
 }
 
 
 
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::testWavHeaderByQuality()
+{
+     QFETCH(int, quality);
+     QFETCH(QString, expected);
 
+     try
+     {
+         WavHeader header(static_cast<WavHeader::Quality>(quality));
+
+         QBuffer data;
+         data.open(QBuffer::ReadWrite);
+         writeHexString(expected, &data);
+
+         QCOMPARE(header.toByteArray().toHex(), data.buffer().toHex());
+     }
+     catch (FlaconError &err)
+     {
+         FAIL(err.what());
+     }
+     catch (char const *err)
+     {
+         QFAIL(err);
+     }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::testWavHeaderByQuality_data()
+{
+    QTest::addColumn<int>("quality",  nullptr);
+    QTest::addColumn<QString>("expected", nullptr);
+
+
+    QTest::newRow("Quality_Stereo_CD")
+            << int(WavHeader::Quality_Stereo_CD)
+            << "52 49 46 46"      // RIFF
+               "24 00 00 00"      // file size - 8
+               "57 41 56 45"      // WAVE
+
+               "66 6D 74 20"      // "fmt "
+               "10 00 00 00"      // Chunk size
+               "01 00"            // AudioFormat
+               "02 00"            // NumChannels
+
+               "44 AC 00 00"      // mSampleRate
+               "10 B1 02 00"      // mByteRate
+               "04 00"            // mBlockAlign
+               "10 00"            // mBitsPerSample
+
+               "64 61 74 61"      // data
+               "00 00 00 00";     // data size
+
+
+    QTest::newRow("Quality_Stereo_24_96")
+            << int(WavHeader::Quality_Stereo_24_96)
+            << "52 49 46 46"    // RIFF
+               "3C 00 00 00"    // file size - 8
+               "57 41 56 45"    // WAVE
+
+               "66 6D 74 20"    // Chunk ID
+               "28 00 00 00"    // Chunk size
+               "FE FF"          // Format code
+               "02 00"          // NumChannels
+               "00 77 01 00"    // SampleRate 96000
+               "00 CA 08 00"    // ByteRate 576000
+               "06 00"          // BlockAlign
+               "18 00"          // BitsPerSample
+               "16 00"          // Size of the extension
+               "18 00"          // Number of valid bits
+               "03 00 00 00"    // Speaker position mask
+               "01 00 00 00"    // GUID, 16 bytes
+               "00 00 10 00"
+               "80 00 00 AA"
+               "00 38 9B 71"
+
+               "64 61 74 61"    // data chunk
+               "00 00 00 00";   // Chunk size
+
+
+    QTest::newRow("Quality_Stereo_24_192")
+            << int(WavHeader::Quality_Stereo_24_192)
+            << "52 49 46 46"    // RIFF
+               "3C 00 00 00"    // file size - 8
+               "57 41 56 45"    // WAVE
+
+               "66 6D 74 20"    // Chunk ID
+               "28 00 00 00"    // Chunk size
+               "FE FF"          // Format code
+               "02 00"          // NumChannels
+               "00 EE 02 00"    // SampleRate 192000
+               "00 94 11 00"    // ByteRate 1152000
+               "06 00"          // BlockAlign
+               "18 00"          // BitsPerSample
+               "16 00"          // Size of the extension
+               "18 00"          // Number of valid bits
+               "03 00 00 00"    // Speaker position mask
+               "01 00 00 00"    // GUID, 16 bytes
+               "00 00 10 00"
+               "80 00 00 AA"
+               "00 38 9B 71"
+
+               "64 61 74 61"    // data chunk
+               "00 00 00 00";   // Chunk size
+
+}

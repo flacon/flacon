@@ -56,6 +56,7 @@ public:
     WavHeader wavHeader() const { return mWavHeader; }
 
     const AudioFormat *audioFormat() const { return mFormat; }
+
 signals:
     void progress(int percent);
 

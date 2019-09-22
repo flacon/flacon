@@ -63,6 +63,9 @@ private slots:
     void testReadWavHeader();
     void testReadWavHeader_data();
 
+    void testWavHeaderByQuality();
+    void testWavHeaderByQuality_data();
+
     void testFormatWavLast();
 
     void testFormat();
