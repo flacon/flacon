@@ -82,18 +82,32 @@ void TestFlacon::testConvert()
     // ..........................................
 
 
-    // Copy source audio files ..................
-    spec.beginGroup("Source_Audio");
-    foreach (auto key, spec.allKeys())
-    {
-        QString src  = mTmpDir + "/" + key;
-        QString dest = inDir   + "/" + spec.value(key).toString();
+    // Prepare source audio files ...............
+    for (QString group: spec.childGroups()) {
+        if (!group.toUpper().startsWith("SOURCE_AUDIO"))
+            continue;
 
+        spec.beginGroup(group);
+        QString dest = inDir   + "/" + spec.value("destination").toString();
         QFileInfo(dest).dir().mkpath(".");
-        if (!QFile::copy(src,  dest))
-            QFAIL(QString("Can't copy audio file \"%1\"").arg(src).toLocal8Bit());
+
+        QString method = spec.value("method", "copy").toString().toLower();
+
+        // Copy audio file ......................
+        if ( method == "copy") {
+            QString src  = mTmpDir + "/" + spec.value("source").toString();;
+
+            if (!QFile::copy(src,  dest))
+                QFAIL(QString("Can't copy audio file \"%1\"").arg(src).toLocal8Bit());
+        }
+
+        // Generate file ........................
+        if (method == "generate") {
+            QString header = dataDir + "/" + spec.value("header").toString();
+            createWavFile(dest, readFile(header).join("\n"));
+        }
+        spec.endGroup();
     }
-    spec.endGroup();
     // ..........................................
 
     // Copy source CUE files ....................
@@ -146,11 +160,14 @@ void TestFlacon::testConvert()
     QProcess proc;
     proc.start(flacon, args);
     if (!proc.waitForFinished(30 * 1000))
-        QFAIL("The program timed out waiting for the result.");
+    {
+        QFAIL(QString("The program timed out waiting for the result: %1.")
+              .arg(QString::fromLocal8Bit(proc.readAllStandardError())).toLocal8Bit());
+    }
 
     if (proc.exitCode() != 0)
     {
-        QFAIL(QString("Can't start converter: \"%1\"")
+        QFAIL(QString("Can't start converter: %1")
               .arg(QString::fromLocal8Bit(proc.readAllStandardError())).toLocal8Bit());
     }
     // ..........................................
@@ -234,7 +251,8 @@ void TestFlacon::testConvert_data()
 
     QString dataDir = mDataDir + "/testConvert/";
 
-    foreach (auto dir, QDir(dataDir).entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name))
+    static const QStringList mask("*");
+    foreach (auto dir, QDir(dataDir).entryList(mask, QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name))
     {
         if (QDir(dataDir + "/" + dir).exists("spec.ini"))
             QTest::newRow(dir.toUtf8()) << dataDir + "/" + dir;

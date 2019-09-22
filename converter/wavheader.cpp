@@ -307,6 +307,10 @@ void WavHeader::load(QIODevice *stream)
         if (!readTag(stream, chunkID))
             throw FlaconError("[WAV] can't read chunk ID");
 
+        if (pos > 1024 * 1024)
+            throw FlaconError("[WAV] can't find a \"data\" chunk");
+
+
         quint32 chunkSize = readUInt32(stream);
         pos+=8;
         //qDebug()<< QString("found chunk: [%1] with length %2").arg(chunkID.data()).arg(chunkSize);

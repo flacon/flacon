@@ -40,6 +40,46 @@
 #include "../disk.h"
 #include "../converter/decoder.h"
 
+class HashDevice: public QIODevice {
+public:
+    HashDevice(QCryptographicHash::Algorithm method, QObject *parent = nullptr):
+        QIODevice(parent),
+        mHash(method),
+        mInHeader(true)
+    {
+    }
+
+    QByteArray result() const { return mHash.result(); }
+
+
+protected:
+    qint64 readData(char*, qint64) { return -1; }
+
+    qint64 writeData(const char *data, qint64 len)
+    {
+        if (mInHeader)
+        {
+            mBuf.append(data, len);
+            int n = mBuf.indexOf("data");
+            if (n > -1 && n < mBuf.length() - 8)
+            {
+                mInHeader = false;
+                mHash.addData(mBuf.data() + n + 8, mBuf.length() - n - 8);
+            }
+            return len;
+        }
+
+        mHash.addData(data, len);
+        return len;
+    }
+
+private:
+    QByteArray mBuf;
+    QCryptographicHash mHash;
+    bool mInHeader;
+};
+
+
 /************************************************
  *
  ************************************************/
@@ -63,29 +103,11 @@ QString calcAudioHash(const QString &fileName)
         return "";
     }
 
-    QBuffer buf;
-    buf.open(QBuffer::ReadWrite);
-    try
-    {
-        decoder.extract(CueTime(), CueTime(), &buf);
-    }
-    catch (FlaconError &err)
-    {
-        FAIL(QString("Can't extract file '%1': %2")
-             .arg(fileName)
-             .arg(err.what()).toLocal8Bit());
-        return "";
-    }
-
+    HashDevice hash(QCryptographicHash::Md5);
+    hash.open(QIODevice::WriteOnly);
+    decoder.extract(CueTime(), CueTime(), &hash);
     decoder.close();
 
-    buf.reset();
-    QByteArray ba = buf.read(1024);
-    int n = ba.indexOf("data");
-    buf.seek(n + 8);
-
-    QCryptographicHash hash(QCryptographicHash::Md5);
-    hash.addData(&buf);
     return hash.result().toHex();
 }
 
@@ -183,28 +205,122 @@ bool compareAudioHash(const QString &file1, const QString &expected)
  ************************************************/
 void writeHexString(const QString &str, QIODevice *out)
 {
-    bool ok;
-    int i =0;
-    while (i<str.length()-1)
+    for (QString line : str.split('\n'))
     {
-        if (str.at(i).isSpace())
+        for (int i=0;  i<line.length()-1;)
         {
-            ++i;
-            continue;
+            // Skip comments
+            if (line.at(i) == "/")
+                break;
+
+            if (line.at(i).isSpace())
+            {
+                ++i;
+                continue;
+            }
+
+
+            union {
+                quint16 n16;
+                char b;
+            };
+
+            bool ok;
+            n16 = line.mid(i, 2).toShort(&ok, 16);
+            if (!ok)
+                throw QString("Incorrect HEX data at %1:\n%2").arg(i).arg(line);
+
+            out->write(&b, 1);
+            i+=2;
         }
-
-        union {
-            quint16 n16;
-            char b;
-        };
-        n16 = str.mid(i, 2).toShort(&ok, 16);
-
-        out->write(&b, 1);
-        if (!ok)
-            throw QString("Incorrect HEX data at %1:\n%2").arg(i).arg(str);
-        i+=2;
     }
 }
+
+
+/************************************************
+ *
+ ************************************************/
+static void writeTestWavData(QIODevice *device, quint64 dataSize)
+{
+    static const int BUF_SIZE = 1024 * 1024;
+
+    quint32 x=123456789, y=362436069, z=521288629;
+    union {
+        quint32 t;
+        char    bytes[4];
+    };
+
+    QByteArray buf;
+
+    buf.reserve(4 * 1024 * 1024);
+    buf.reserve(BUF_SIZE);
+    for (uint i=0; i<(dataSize/ sizeof(quint32)); ++i)
+    {
+        // xorshf96 ...................
+        x ^= x << 16;
+        x ^= x >> 5;
+        x ^= x << 1;
+
+        t = x;
+        x = y;
+        y = z;
+        z = t ^ x ^ y;
+        // xorshf96 ...................
+
+        buf.append(bytes, 4);
+        if (buf.size() >= BUF_SIZE)
+        {
+            device->write(buf);
+            buf.resize(0);
+        }
+    }
+
+    device->write(buf);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void createWavFile(const QString &fileName, const QString &header)
+{
+    QBuffer wavHdr;
+    wavHdr.open(QBuffer::ReadWrite);
+    writeHexString(header, &wavHdr);
+
+    // See http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html
+    quint32 ckSize =
+            (quint8(wavHdr.buffer()[4]) <<  0) +
+            (quint8(wavHdr.buffer()[5]) <<  8) +
+            (quint8(wavHdr.buffer()[6]) << 16) +
+            (quint8(wavHdr.buffer()[7]) << 24);
+
+    quint32 dataSize = ckSize - wavHdr.size();
+
+
+
+    QFile file(fileName);
+
+    if (file.exists() && file.size() == ckSize + 8)
+        return;
+
+    if (!file.open(QFile::WriteOnly | QFile::Truncate))
+        QFAIL(QString("Can't create file '%1': %2").arg(fileName, file.errorString()).toLocal8Bit());
+
+    file.write(wavHdr.buffer());
+
+    file.write("data", 4);
+    char buf[4];
+    buf[0] = quint8(dataSize);
+    buf[1] = quint8(dataSize >> 8);
+    buf[2] = quint8(dataSize >> 16);
+    buf[3] = quint8(dataSize >> 24);
+    file.write(buf, 4);
+
+    writeTestWavData(&file, dataSize);
+    file.close();
+}
+
 
 /************************************************
  *
@@ -219,31 +335,9 @@ void createWavFile(const QString &fileName, int duration, StdWavHeader::Quality 
             QFAIL(QString("Can't create file '%1': %2").arg(fileName, file.errorString()).toLocal8Bit());
 
 
-        int dataSize = StdWavHeader::bytesPerSecond(quality) * duration;
+    int dataSize = StdWavHeader::bytesPerSecond(quality) * duration;
     file.write(StdWavHeader(dataSize, quality).toByteArray());
-
-    quint32 x=123456789, y=362436069, z=521288629;
-    union {
-        quint32 t;
-        char    bytes[4];
-    };
-
-    for (uint i=0; i<(dataSize/ sizeof(quint32)); ++i)
-    {
-        // xorshf96 ...................
-        x ^= x << 16;
-        x ^= x >> 5;
-        x ^= x << 1;
-
-        t = x;
-        x = y;
-        y = z;
-        z = t ^ x ^ y;
-        // xorshf96 ...................
-
-        file.write(bytes, 4);
-    }
-
+    writeTestWavData(&file, dataSize);
     file.close();
 }
 
