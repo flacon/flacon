@@ -239,6 +239,8 @@ void TestFlacon::testConvert()
 }
 
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
 /************************************************
  *
  ************************************************/
@@ -258,3 +260,4 @@ void TestFlacon::testConvert_data()
             QTest::newRow(dir.toUtf8()) << dataDir + "/" + dir;
     }
 }
+#pragma GCC diagnostic pop

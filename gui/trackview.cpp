@@ -407,31 +407,3 @@ void TrackView::keyPressEvent(QKeyEvent *event)
         QTreeView::keyPressEvent(event);
     }
 }
-
-
-/************************************************
- Open treeview inline editor
- ************************************************/
-void TrackView::openEditor()
-{
-    QAction *act = qobject_cast<QAction*>(sender());
-    if (!act)
-        return;
-
-    QModelIndex index = currentIndex();
-
-    if (!index.parent().isValid())
-    {
-        index = index.child(0, 0);
-        selectionModel()->setCurrentIndex(index, QItemSelectionModel::NoUpdate);
-    }
-
-    if (index.isValid())
-    {
-        index = index.sibling(index.row(), act->data().toInt());
-        edit(index);
-    }
-}
-
-
-

@@ -651,7 +651,7 @@ QVector<Disk::TagSet> Disk::tagSets() const
 
     QStringList keys = mTagSets.keys();
     keys.removeAll(mCueFile);
-    qSort(keys);
+    std::sort(keys.begin(), keys.end());
     keys.prepend(mCueFile);
 
     QVector<TagSet> res;
@@ -884,7 +884,7 @@ QStringList Disk::searchCoverImages(const QString &startDir)
         files << dir.entryInfoList(exts, QDir::Files | QDir::Readable);
     }
 
-    qStableSort(files.begin(), files.end(), compareCoverImages);
+    std::stable_sort(files.begin(), files.end(), compareCoverImages);
 
     QStringList res;
     foreach (QFileInfo f, files)

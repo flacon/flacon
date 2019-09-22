@@ -78,7 +78,7 @@ signals:
     void downloadInfo(Disk *disk);
 
 protected:
-    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
+    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
     void keyPressEvent(QKeyEvent *event) override;
 
 private slots:
@@ -88,8 +88,6 @@ private slots:
     void showTrackMenu(const QModelIndex &index, const QRect &buttonRect);
     void emitSelectAudioFile(const QModelIndex &index, const QRect &buttonRect);
     void emitSelectCoverImage(const QModelIndex &index);
-
-    void openEditor();
 
 private:
     TrackViewModel *mModel;

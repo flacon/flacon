@@ -287,7 +287,7 @@ AboutInfo::AboutInfo():
 QString AboutInfo::asString() const
 {
     AboutInfo list = *this;
-    qSort(list.begin(), list.end(), aboutItemLessThan);
+    std::sort(list.begin(), list.end(), aboutItemLessThan);
     QString result;
 
     result += "<ul>";

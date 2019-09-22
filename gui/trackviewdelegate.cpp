@@ -319,7 +319,7 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
     {
         if (icon)
         {
-            int textWidth = painter->fontMetrics().width(txt);
+            int textWidth = painter->fontMetrics().horizontalAdvance(txt);
             int imgLeft = (windowRect.width() - LINE_MARK_HEIGHT - 4 - textWidth) / 2;
             painter->drawPixmap(imgLeft, (windowRect.height() - LINE_MARK_HEIGHT) / 2, *icon);
 

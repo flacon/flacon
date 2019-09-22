@@ -35,7 +35,10 @@
 #include <QDir>
 #include <QThreadPool>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wkeyword-macro"
 #define protected public
+#pragma GCC diagnostic pop
 #include "../disk.h"
 #include "../settings.h"
 #include "../project.h"
