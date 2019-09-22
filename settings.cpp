@@ -229,7 +229,7 @@ QString Settings::keyToString(Settings::Key key) const
 
     // Resampling ***************************
     case Resample_BitsPerSample:    return "Resample/BitsPerSample";
-    case Resample_SampleRate:       return "Resample_SampleRate";
+    case Resample_SampleRate:       return "Resample/SampleRate";
     }
 
     return "";
