@@ -1019,7 +1019,7 @@ void MainWindow::trackViewMenu(const QPoint &pos)
  ************************************************/
 void MainWindow::openEditTagsDialog()
 {
-    TagEditor editor(trackView->selectedTracks(), trackView->selectedDisks());
+    TagEditor editor(trackView->selectedTracks(), trackView->selectedDisks(), this);
     editor.exec();
     refreshEdits();
 }

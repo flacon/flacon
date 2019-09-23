@@ -85,6 +85,7 @@ TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disk *> &disks, QW
     mStartTrackSpin(nullptr)
 {
     ui->setupUi(this);
+    setWindowModality(Qt::WindowModal);
 
     addLineEdit(TagId::Artist,      tr("Artist:", "Music tag name"));
     addLineEdit(TagId::AlbumArtist, tr("Album performer:", "Music tag name"));
