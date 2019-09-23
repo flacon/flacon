@@ -239,15 +239,14 @@ void TestFlacon::testConvert()
 }
 
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
 /************************************************
  *
  ************************************************/
 void TestFlacon::testConvert_data()
 {
     if (QProcessEnvironment::systemEnvironment().contains("FLACON_SKIP_CONVERT_TEST"))
-        QSKIP("Skipping testConvert");
+        QTest::qSkip("Skipping testConvert", __FILE__, __LINE__);
+
 
     QTest::addColumn<QString>("dataDir", nullptr);
 
@@ -260,4 +259,4 @@ void TestFlacon::testConvert_data()
             QTest::newRow(dir.toUtf8()) << dataDir + "/" + dir;
     }
 }
-#pragma GCC diagnostic pop
+

@@ -210,7 +210,7 @@ void writeHexString(const QString &str, QIODevice *out)
         for (int i=0;  i<line.length()-1;)
         {
             // Skip comments
-            if (line.at(i) == "/")
+            if (line.at(i) == '/')
                 break;
 
             if (line.at(i).isSpace())

@@ -35,10 +35,6 @@
 #include <QDir>
 #include <QThreadPool>
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wkeyword-macro"
-#define protected public
-#pragma GCC diagnostic pop
 #include "../disk.h"
 #include "../settings.h"
 #include "../project.h"
@@ -1244,19 +1240,25 @@ void TestFlacon::testCueIndex_data()
 }
 
 
+class Test_DiskPipeline: public DiskPipeline {
+public:
+    static int calcQuality(int input, int preferences, int formatMax)
+            { return DiskPipeline::calcQuality(input, preferences, formatMax) ;}
+
+};
+
 /************************************************
  *
  ************************************************/
 void TestFlacon::testDiskPipelineCalcQuality()
 {
-    //int input = QTest::currentDataTag();
     QFETCH(int, input);
     QFETCH(int, preferences);
     QFETCH(int, maxFormat);
 
     QFETCH(int, expected);
 
-    int res = DiskPipeline::calcQuality(input, preferences, maxFormat);
+    int res = Test_DiskPipeline::calcQuality(input, preferences, maxFormat);
     QCOMPARE(res, expected);
 }
 
