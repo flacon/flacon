@@ -240,6 +240,18 @@ void writeHexString(const QString &str, QIODevice *out)
 /************************************************
  *
  ************************************************/
+QByteArray writeHexString(const QString &str)
+{
+    QBuffer data;
+    data.open(QBuffer::ReadWrite);
+    writeHexString(str, &data);
+    return data.buffer();
+}
+
+
+/************************************************
+ *
+ ************************************************/
 static void writeTestWavData(QIODevice *device, quint64 dataSize)
 {
     static const int BUF_SIZE = 1024 * 1024;
@@ -282,11 +294,26 @@ static void writeTestWavData(QIODevice *device, quint64 dataSize)
 /************************************************
  *
  ************************************************/
-void createWavFile(const QString &fileName, const QString &header)
+void createWavFile(const QString &fileName, const QString &header, const int duration)
 {
     QBuffer wavHdr;
     wavHdr.open(QBuffer::ReadWrite);
     writeHexString(header, &wavHdr);
+
+    if (duration) {
+        quint32 bitsPerSample =
+                (quint8(wavHdr.buffer()[28]) << 0) +
+                (quint8(wavHdr.buffer()[29]) <<  8) +
+                (quint8(wavHdr.buffer()[30]) << 16) +
+                (quint8(wavHdr.buffer()[31]) << 24);
+
+        quint32 ckSize = bitsPerSample * duration + wavHdr.buffer().size() - 8 + 8;
+        wavHdr.buffer()[4] = quint8(ckSize >>  0);
+        wavHdr.buffer()[5] = quint8(ckSize >>  8);
+        wavHdr.buffer()[6] = quint8(ckSize >> 16);
+        wavHdr.buffer()[7] = quint8(ckSize >> 24);
+    }
+
 
     // See http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html
     quint32 ckSize =
@@ -297,8 +324,6 @@ void createWavFile(const QString &fileName, const QString &header)
 
     quint32 dataSize = ckSize - wavHdr.size();
 
-
-
     QFile file(fileName);
 
     if (file.exists() && file.size() == ckSize + 8)
@@ -308,7 +333,6 @@ void createWavFile(const QString &fileName, const QString &header)
         QFAIL(QString("Can't create file '%1': %2").arg(fileName, file.errorString()).toLocal8Bit());
 
     file.write(wavHdr.buffer());
-
     file.write("data", 4);
     char buf[4];
     buf[0] = quint8(dataSize);
@@ -317,27 +341,6 @@ void createWavFile(const QString &fileName, const QString &header)
     buf[3] = quint8(dataSize >> 24);
     file.write(buf, 4);
 
-    writeTestWavData(&file, dataSize);
-    file.close();
-}
-
-
-/************************************************
- *
- ************************************************/
-void createWavFile(const QString &fileName, int duration, WavHeader::Quality quality)
-{
-    if (QFileInfo(fileName).exists())
-        return;
-
-    QFile file(fileName);
-        if (!file.open(QFile::WriteOnly | QFile::Truncate))
-            QFAIL(QString("Can't create file '%1': %2").arg(fileName, file.errorString()).toLocal8Bit());
-
-    int dataSize = WavHeader::bytesPerSecond(quality) * duration;
-    WavHeader header(quality);
-    header.resizeData(dataSize);
-    file.write(header.toByteArray());
     writeTestWavData(&file, dataSize);
     file.close();
 }
@@ -397,17 +400,12 @@ void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
         QFAIL(QString("Can't create file '%1': unknown file format").arg(outFileName).toLocal8Bit());
     }
 
-#if 1
+
     QProcess proc;
     proc.start(program, args);
     proc.waitForFinished(3 * 60 * 10000);
     if (proc.exitStatus() != 0)
         QFAIL(QString("Can't encode to file '%1':").arg(outFileName).toLocal8Bit() + proc.readAllStandardError());
-#else
-    QProcess proc;
-    if (proc.execute(program, args) != 0)
-        QFAIL(QString("Can't encode to file '%1':").arg(outFileName).toLocal8Bit() + proc.readAllStandardError());
-#endif
 
     if (!QFileInfo(outFileName).isFile())
         QFAIL(QString("Can't encode to file '%1' (file don't exists'):").arg(outFileName).toLocal8Bit() + proc.readAllStandardError());
@@ -441,3 +439,4 @@ Disk *loadFromCue(const QString &cueFile)
     }
     return nullptr;
 }
+

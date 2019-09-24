@@ -194,60 +194,6 @@ WavHeader::WavHeader():
 
 
 /************************************************
- *
- ************************************************/
-WavHeader::WavHeader(WavHeader::Quality quality)
-{
-    static const uchar GUID[16] = {0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00,
-                                   0x80, 0x00, 0x00, 0xAA, 0x00, 0x38, 0x9B, 0x71};
-    switch (quality)
-    {
-    case Quality_Stereo_CD:
-        mFmtSize            = 16;
-        mFormat             = WavHeader::Format_PCM;
-        mNumChannels        = 2;
-        mSampleRate         = 44100;
-        mBitsPerSample      = 16;
-        mExtSize            = 0;
-        mValidBitsPerSample = 0;
-        mChannelMask        = 0;
-        break;
-
-    case Quality_Stereo_24_96:
-        mFmtSize            = 40;
-        mFormat             = WavHeader::Format_Extensible;
-        mNumChannels        = 2;
-        mBitsPerSample      = 24;
-        mSampleRate         = 96000;
-        mExtSize            = 22;
-        mValidBitsPerSample = 24;
-        mChannelMask        = 3;
-        mSubFormat.append(reinterpret_cast<const char*>(GUID), 16);
-        break;
-
-    case Quality_Stereo_24_192:
-        mFmtSize            = 40;
-        mFormat             = WavHeader::Format_Extensible;
-        mNumChannels        = 2;
-        mBitsPerSample      = 24;
-        mSampleRate         = 192000;
-        mExtSize            = 22;
-        mValidBitsPerSample = 24;
-        mChannelMask        = 3;
-        mSubFormat.append(reinterpret_cast<const char*>(GUID), 16);
-        break;
-    }
-
-    mDataSize       = 0;
-    mFileSize       = 12 + 8 + mFmtSize + 8;
-    mDataStartPos   = mFileSize;
-
-    mByteRate      = mSampleRate * mNumChannels * mBitsPerSample / 8;
-    mBlockAlign    =               mNumChannels * mBitsPerSample / 8;
-}
-
-
-/************************************************
  * See WAV specoification
  *   http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html
  *   https://en.wikipedia.org/wiki/WAV
@@ -385,6 +331,15 @@ quint32 WavHeader::bytesPerSecond(WavHeader::Quality quality)
     case Quality_Stereo_24_192: return 2 * 24 * 192000 / 8;
     }
     return 0;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+quint32 WavHeader::bytesPerSecond()
+{
+    return mNumChannels * mBitsPerSample * mSampleRate / 8;
 }
 
 

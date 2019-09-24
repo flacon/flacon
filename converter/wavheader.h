@@ -29,6 +29,7 @@
 
 #include <QtGlobal>
 #include <QIODevice>
+#include <QTime>
 
 /************************************************
  * Info for format tags can be found at:
@@ -71,7 +72,6 @@ public:
 
     WavHeader();
     explicit WavHeader(QIODevice* stream);
-    explicit WavHeader(Quality quality);
 
     WavHeader(const WavHeader &other);
     WavHeader &operator=(const WavHeader &other);
@@ -84,7 +84,7 @@ public:
     void resizeData(quint32 dataSize);
 
     static quint32 bytesPerSecond(Quality quality);
-
+    quint32 bytesPerSecond();
 
     quint32 fileSize()           const { return mFileSize; }
     Format  format()             const { return mFormat; }
@@ -112,7 +112,7 @@ protected:
     quint16 mExtSize;            // Size of the extension:
     quint16 mValidBitsPerSample; // at most 8*M
     quint32 mChannelMask;        // Speaker position mask
-    QByteArray mSubFormat;   // GUID (first two bytes are the data format code)
+    QByteArray mSubFormat;       // GUID (first two bytes are the data format code)
     quint32 mDataSize;
     quint32 mDataStartPos;
 

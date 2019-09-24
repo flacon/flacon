@@ -1,0 +1,12 @@
+52 49 46 46     // RIFF
+24 5C 8B 09     // To set the duration, change this field. Formula is dataSize + headerSize - 8
+57 41 56 45     // Format [WAVE]
+
+66 6d 74 20     // ChunkID [fmt]
+10 00 00 00     // Chunk size [16]
+      01 00     // Format code [PCM]
+      02 00     // NumChannels [2]
+00 77 01 00     // SampleRate [96000]
+00 ca 08 00     // ByteRate [576000]
+      06 00     // BlockAlign
+      18 00     // BitsPerSample [24]

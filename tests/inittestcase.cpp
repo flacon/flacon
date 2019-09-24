@@ -91,7 +91,13 @@ void TestFlacon::initTestCase()
     mAudio_cd_wv   = mTmpDir + "CD.wv";
     mAudio_cd_tta  = mTmpDir + "CD.tta";
 
-    createWavFile(  mAudio_cd_wav,  900, WavHeader::Quality_Stereo_CD);
+    {
+        QFile hdr(TEST_DATA_DIR "CD.wav.hdr");
+        if (!hdr.open(QFile::ReadOnly))
+            QTest::qFail(QString("Can't open header file '%1': %2").arg(hdr.fileName()).arg(hdr.errorString()).toLocal8Bit(), __FILE__, __LINE__);
+
+        createWavFile(mAudio_cd_wav, hdr.readAll(), 900);
+    }
     auto wait_cd_ape  = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_ape);
     auto wait_cd_flac = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_flac);
     auto wait_cd_wv   = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_wv);
@@ -104,7 +110,14 @@ void TestFlacon::initTestCase()
     mAudio_24x96_wv   = mTmpDir + "24x96.wv";
     mAudio_24x96_tta  = mTmpDir + "24x96.tta";
 
-    createWavFile(  mAudio_24x96_wav,  900, WavHeader::Quality_Stereo_24_96);
+
+    {
+        QFile hdr(TEST_DATA_DIR "24x96.wav.hdr");
+        if (!hdr.open(QFile::ReadOnly))
+            QTest::qFail(QString("Can't open header file '%1': %2").arg(hdr.fileName()).arg(hdr.errorString()).toLocal8Bit(), __FILE__, __LINE__);
+
+        createWavFile(mAudio_24x96_wav, hdr.readAll(), 900);
+    }
     auto wait_24x96_ape  = QtConcurrent::run(encodeAudioFile, mAudio_24x96_wav, mAudio_24x96_ape);
     auto wait_24x96_flac = QtConcurrent::run(encodeAudioFile, mAudio_24x96_wav, mAudio_24x96_flac);
     auto wait_24x96_wv   = QtConcurrent::run(encodeAudioFile, mAudio_24x96_wav, mAudio_24x96_wv);

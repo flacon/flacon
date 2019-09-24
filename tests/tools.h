@@ -88,8 +88,8 @@ private:
 QString calcAudioHash(const QString &fileName);
 bool  compareAudioHash(const QString &file1, const QString &expected);
 void writeHexString(const QString &str, QIODevice *out);
-void createWavFile(const QString &fileName, const QString &header);
-void createWavFile(const QString &fileName, int duration, WavHeader::Quality quality);
+QByteArray writeHexString(const QString &str);
+void createWavFile(const QString &fileName, const QString &header, const int duration = 0);
 void encodeAudioFile(const QString &wavFileName, const QString &outFileName);
 void testFail(const QString &message, const char *file, int line);
 
