@@ -329,41 +329,55 @@ void Messages::setHandler(Messages::Handler *handler)
 
 		\1-\31 Characters whose integer representations are in the range from 1 through 31
 	 https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#file-and-directory-names
+
+Characters from 1 through 31, except TAB and NEW LINE	remove
+TAB (\t)	replace to " " (space)
+NEW LINE (\n)	replace to " " (space)
+/	replace to - (dash)
+\	replace to - (dash)
+:	replace to _ (underscore)
+*	replace to _ (underscore)
+?	remove
+<	replace to _
+>	replace to _
+"	replace to ' (single quote)
  ************************************************/
 QString safeString(const QString &str)
 {
-    QString res = str;
+    QString res = "";
 
-	if (str == ".")
-		return "_";
-
-	if (str == "..")
-		return "__";
-
-    for (auto it = res.begin(); it != res.end(); ++it) {
-        if (it->unicode() <= 31)
-        {
-            *it = ' ';
-            continue;
-        }
-
-
+    for (auto it = str.begin(); it != str.end(); ++it) {
         switch (it->unicode()) {
-        case '|':
-        case '/':
-        case '\\':
-        case ':':
-        case '*':
-        case '?':
-        case '<':
-        case '>':
-            *it = '-';
-            break;
+        case '\t':
+        case '\n':	res += " ";	continue;
 
-        case '"':
-            *it = '\'';
-            break;
+        case '\\':
+        case '/':	res += "-";	continue;
+
+        case ':':
+        case '*':   res += "_"; continue;
+
+        case '<':   res += "[";	continue;
+        case '>':   res += "]";	continue;
+
+        case '?':
+            continue;
+
+        case '"':   res += "'"; continue;
         }
+
+        if (it->unicode() <= 31)
+            continue;
+
+        res += it->unicode();
     }
+
+
+    if (res == ".")
+        return "_";
+
+    if (res == "..")
+        return "__";
+
     return res;
 }

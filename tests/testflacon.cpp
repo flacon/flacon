@@ -367,47 +367,62 @@ void TestFlacon::testSafeString_data()
     QTest::addColumn<QString>("string",   nullptr);
     QTest::addColumn<QString>("expected", nullptr);
 
-    QTest::newRow("01")
-            << "A|B/C|D\\E:F*G?H"
-            << "A-B-C-D-E-F-G-H";
+    for (char c=1; c<=31; ++c )
+    {
+        if (c != '\t' && c != '\n')
+            QTest::newRow(QString("01 - \\%1").arg(int(c), 2, 16, QChar('0')).toLocal8Bit())
+                    << QString(c)
+                    << "";
+    }
+
+    QTest::newRow("01 - \\t") << "\t"  << " ";
+    QTest::newRow("01 - \\n") << "\n"  << " ";
+    QTest::newRow("01 - /")   << "/"   << "-";
+    QTest::newRow("01 - \\")  << "\\"  << "-";
+    QTest::newRow("01 - *")   << "*"   << "_";
+    QTest::newRow("01 - :")   << ":"   << "_";
+    QTest::newRow("01 - ?")   << "?"   << "";
+    QTest::newRow("01 - <")   << "<"   << "[";
+    QTest::newRow("01 - >")   << ">"   << "]";
+    QTest::newRow("01 - \"")  << "\""  << "'";
 
 
-    /* Windows special symbols
-     * Use any character, except for the following:
-     * The following reserved characters:
-     *    < (less than)
-     *    > (greater than)
-     *    : (colon)
-     *    " (double quote)
-     *    / (forward slash)
-     *    \ (backslash)
-     *    | (vertical bar or pipe)
-     *    ? (question mark)
-     *    * (asterisk)
-     *
-     *
-     * https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#file-and-directory-names	*/
-    QTest::newRow("02")
-            << "A<B>C:D\"E/F\\G|H?I*J"
-            << "A-B-C-D'E-F-G-H-I-J";
+    for (char c=1; c<=31; ++c )
+    {
+        if (c != '\t' && c != '\n')
+            QTest::newRow(QString("02 - A\\%1B").arg(int(c), 2, 16, QChar('0')).toLocal8Bit())
+                    << "A" + QString(c) + "B"
+                    << "AB";
+    }
+
+    QTest::newRow("02 - A\\tB") << "A\tB"  << "A B";
+    QTest::newRow("02 - A\\nB") << "A\nB"  << "A B";
+    QTest::newRow("02 - A/B")   << "A/B"   << "A-B";
+    QTest::newRow("02 - A\\B")  << "A\\B"  << "A-B";
+    QTest::newRow("02 - A*B")   << "A*B"   << "A_B";
+    QTest::newRow("02 - A:B")   << "A:B"   << "A_B";
+    QTest::newRow("02 - A?B")   << "A?B"   << "AB";
+    QTest::newRow("02 - A<B")   << "A<B"   << "A[B";
+    QTest::newRow("02 - A>B")   << "A>B"   << "A]B";
+    QTest::newRow("02 - A\"B")  << "A\"B"  << "A'B";
 
 
-    /* \0 Integer value zero, sometimes referred to as the ASCII NUL character.
-     * Characters whose integer representations are in the range from 1 through 31.
-     * https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#file-and-directory-names	*/
-    QTest::newRow("03")
-            << "\x01_C\x02_h\x03_a\x04_r\x05_a\x06_c\x07_t\x08_e"
-               "\x09_r\x0A_s\x0B__\x0C_w\x0D_h\x0E_o\x0F_s\x10_e"
-               "\x11__\x12_r\x13_e\x14_p\x15_r\x16_e\x17_s\x18_e"
-               "\x19_n\x1A_t\x1B_a\x1C_t\x1D_i\x1E_o\x1F_n"
-            << " _C _h _a _r _a _c _t _e"
-               " _r _s __ _w _h _o _s _e"
-               " __ _r _e _p _r _e _s _e"
-               " _n _t _a _t _i _o _n";
+    QTest::newRow("03.1 single dot")
+            << "."
+            << "_";
 
-    QTest::newRow("04")
-            << "Русский текст/Russian text"
-            << "Русский текст-Russian text";
+    QTest::newRow("03.2 double dot")
+            << ".."
+            << "__";
+
+    QTest::newRow("03.3 ?single dot?")
+            << "?.?"
+            << "_";
+
+    QTest::newRow("03.4 ?double dot?")
+            << "?..?"
+            << "__";
+
 }
 
 
