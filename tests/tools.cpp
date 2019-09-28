@@ -351,7 +351,7 @@ void createWavFile(const QString &fileName, const QString &header, const int dur
  ************************************************/
 void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
 {
-    if (QFileInfo(outFileName).exists())
+    if (QFileInfo(outFileName).exists() && QFileInfo(outFileName).size() > 1024)
         return;
 
     QString program;
@@ -401,14 +401,28 @@ void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
     }
 
 
+    bool ok = true;
     QProcess proc;
     proc.start(program, args);
-    proc.waitForFinished(3 * 60 * 10000);
-    if (proc.exitStatus() != 0)
-        QFAIL(QString("Can't encode to file '%1':").arg(outFileName).toLocal8Bit() + proc.readAllStandardError());
+    ok = proc.waitForStarted(3 * 1000);
+    ok = ok && proc.waitForFinished(3 * 60 * 100) ;
+    ok = ok && (proc.exitStatus() == 0);
+
+    if (!ok)
+    {
+        QFAIL(QString("Can't encode %1 %2:")
+              .arg(program)
+              .arg(args.join(" "))
+              .toLocal8Bit()
+              + proc.readAllStandardError());
+    }
 
     if (!QFileInfo(outFileName).isFile())
-        QFAIL(QString("Can't encode to file '%1' (file don't exists'):").arg(outFileName).toLocal8Bit() + proc.readAllStandardError());
+    {
+        QFAIL(QString("Can't encode to file '%1' (file don't exists'):")
+              .arg(outFileName).toLocal8Bit()
+              + proc.readAllStandardError());
+    }
 }
 
 
