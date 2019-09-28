@@ -346,8 +346,8 @@ QString safeString(const QString &str)
 {
     QString res = "";
 
-    for (auto it = str.begin(); it != str.end(); ++it) {
-        switch (it->unicode()) {
+    foreach (const QChar c, str) {
+        switch (c.unicode()) {
         case '\t':
         case '\n':	res += " ";	continue;
 
@@ -366,10 +366,10 @@ QString safeString(const QString &str)
         case '"':   res += "'"; continue;
         }
 
-        if (it->unicode() <= 31)
+        if (c <= 31)
             continue;
 
-        res += it->unicode();
+        res += c;
     }
 
 

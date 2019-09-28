@@ -423,6 +423,9 @@ void TestFlacon::testSafeString_data()
             << "?..?"
             << "__";
 
+    QTest::newRow("04 UTF8")
+            << "Русский текст"
+            << "Русский текст";
 }
 
 
