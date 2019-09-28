@@ -61,7 +61,7 @@
     <message>
         <source>WavPack support patch</source>
         <comment>Thanks on the about page</comment>
-        <translation>Wavpack támogató patch</translation>
+        <translation>Wavpack támogató folt</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
@@ -81,12 +81,12 @@
     <message>
         <source>Icon for application</source>
         <comment>Thanks on the about page</comment>
-        <translation type="unfinished"/>
+        <translation>Ikon az alkalmazáshoz</translation>
     </message>
     <message>
         <source>Icons for application</source>
         <comment>Thanks on the about page</comment>
-        <translation type="unfinished"/>
+        <translation>Ikonok az alkalmazáshoz</translation>
     </message>
 </context>
 <context>
@@ -754,6 +754,17 @@ CBR módban beállítja az adott kimeneti bitrátát.
     </message>
 </context>
 <context>
+    <name>DiskPipeline</name>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Nem tudtam átnevezni:
+%1 erre %2
+%3</translation>
+    </message>
+</context>
+<context>
     <name>Encoder</name>
     <message>
         <source>Encoder error:
@@ -1189,11 +1200,11 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
     </message>
     <message>
         <source>Insert &quot;Disk number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Lemezszám beszúrása</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of disks&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Összes lemezszám&quot; beszúrása</translation>
     </message>
 </context>
 <context>

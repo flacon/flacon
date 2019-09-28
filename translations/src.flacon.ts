@@ -52,28 +52,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>WavPack support patch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Packaging, testing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Improvements in the UI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Flacon account on github.com</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WavPack support patch</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Packaging, testing</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Improvements in the UI</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flacon account on github.com</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icon for application</source>
+        <comment>Thanks on the about page</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icons for application</source>
+        <comment>Thanks on the about page</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -704,6 +718,15 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiskPipeline</name>
+    <message>
+        <source>I can&apos;t rename file:
+%1 to %2
+%3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

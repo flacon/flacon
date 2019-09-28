@@ -752,6 +752,17 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     </message>
 </context>
 <context>
+    <name>DiskPipeline</name>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>No puedo renombrar el fichero:
+%1 como %2
+%3</translation>
+    </message>
+</context>
+<context>
     <name>Encoder</name>
     <message>
         <source>Encoder error:

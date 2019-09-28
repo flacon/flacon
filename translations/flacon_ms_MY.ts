@@ -81,12 +81,12 @@
     <message>
         <source>Icon for application</source>
         <comment>Thanks on the about page</comment>
-        <translation type="unfinished"/>
+        <translation>Ikon untuk aplikasi</translation>
     </message>
     <message>
         <source>Icons for application</source>
         <comment>Thanks on the about page</comment>
-        <translation type="unfinished"/>
+        <translation>Ikon untuk aplikasi</translation>
     </message>
 </context>
 <context>
@@ -369,7 +369,7 @@
     <message>
         <source>File name format:</source>
         <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Format nama fail:</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -723,7 +723,7 @@ Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
-        <translation type="unfinished"/>
+        <translation>Saya tidak dapat tulis fail &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -749,6 +749,17 @@ Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation>Satu kadar sampel maksimum %1 disokong oleh format ini. Nilai ini akan digunakan untuk pengekodan.</translation>
+    </message>
+</context>
+<context>
+    <name>DiskPipeline</name>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Tidak dapat namakan semula fail:
+%1 menjadi %2
+%3</translation>
     </message>
 </context>
 <context>
@@ -1174,25 +1185,25 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
     <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Pertukaran format terpilih</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
         <extracomment>Main menu item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Mulakan proses pertukaran format untuk trek terpilih</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
         <source>Insert &quot;Disk number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sisip &quot;Nombor cakera&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of disks&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Sisip &quot;Jumlah bilangan cakera&quot;</translation>
     </message>
 </context>
 <context>

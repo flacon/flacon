@@ -752,6 +752,17 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     </message>
 </context>
 <context>
+    <name>DiskPipeline</name>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Datei kann nicht umbenannt werden:
+%1 zu %2
+%3</translation>
+    </message>
+</context>
+<context>
     <name>Encoder</name>
     <message>
         <source>Encoder error:

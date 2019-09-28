@@ -729,6 +729,17 @@ CBR 模式下，它指定特定的输出码率。
     </message>
 </context>
 <context>
+    <name>DiskPipeline</name>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>无法重命名文件:
+%1 到 %2
+%3</translation>
+    </message>
+</context>
+<context>
     <name>Encoder</name>
     <message>
         <source>Encoder error:

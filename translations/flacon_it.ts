@@ -743,6 +743,17 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
+    <name>DiskPipeline</name>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Impossibile rinominare il file:
+%1 a %2
+%3</translation>
+    </message>
+</context>
+<context>
     <name>Encoder</name>
     <message>
         <source>Encoder error:

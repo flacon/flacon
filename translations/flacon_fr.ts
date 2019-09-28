@@ -43,7 +43,7 @@
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Extrait individuellement les pistes d’un fichier audio volumineux contenant l’album entier.</translation>
+        <translation>Extrait individuellement les plages d’un fichier audio volumineux contenant l’album entier.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
@@ -225,7 +225,7 @@
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Présilence de la première piste : </translation>
+        <translation>Présilence de la première plage : </translation>
     </message>
     <message>
         <source>Rescan</source>
@@ -241,7 +241,7 @@
     </message>
     <message>
         <source>Add to first track</source>
-        <translation>Ajouter à la première piste</translation>
+        <translation>Ajouter à la première plage</translation>
     </message>
     <message>
         <source>General</source>
@@ -340,11 +340,11 @@
     </message>
     <message>
         <source>Per track CUE sheet</source>
-        <translation>Fichier CUE par piste</translation>
+        <translation>Fichier CUE par plage</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
-        <translation>Créer un fichier CUE par piste</translation>
+        <translation>Créer un fichier CUE par plage</translation>
     </message>
     <message>
         <source>Same as source</source>
@@ -751,6 +751,17 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
 </context>
 <context>
+    <name>DiskPipeline</name>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Je ne peux pas renommer le fichier :
+%1 en %2
+%3</translation>
+    </message>
+</context>
+<context>
     <name>Encoder</name>
     <message>
         <source>Encoder error:
@@ -792,7 +803,7 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
-        <translation>Par piste</translation>
+        <translation>Par plage</translation>
     </message>
     <message>
         <source>Per Album</source>
@@ -806,7 +817,7 @@ The analysis can be performed on individual tracks, so that all tracks will be o
 Using the album-gain analysis will preserve the volume differences within an album.</source>
         <translation>ReplayGain est une norme permettant d’égaliser l’intensité perçue du son des formats de fichiers audio sur ordinateur.
 
-L’analyse peut être effectuée sur des pistes individuelles de manière à ce que toutes les pistes soient jouées à un volume sonore équivalent.
+L’analyse peut être effectuée sur des plages individuelles de manière à ce que toutes les plages soient jouées à un volume sonore équivalent.
 L’utilisation de l’analyse par album permet de préserver les différences de volume pour un même album.</translation>
     </message>
     <message>
@@ -971,11 +982,11 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     </message>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Insérer le « Numéro de piste »</translation>
+        <translation>Insérer le « Numéro de plage »</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Insérer le « Nombre total de pistes »</translation>
+        <translation>Insérer le « Nombre total de plages »</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -987,7 +998,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Insérer le « Titre de la piste »</translation>
+        <translation>Insérer le « Titre de la plage »</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
@@ -1052,11 +1063,11 @@ If you surround sections of text that contain a token with braces, these section
  &lt;/style&gt;
 Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants  :
  &lt;table&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numéro de piste &lt;/td&gt;
- &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nombre total de pistes&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numéro de plage &lt;/td&gt;
+ &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nombre total de plages&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artiste&lt;/td&gt;
  &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titre de l’album&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titre de la piste&lt;/td&gt;
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titre de la plage&lt;/td&gt;
 &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Année&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
  &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
@@ -1176,7 +1187,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>Start conversion process for the selected tracks</source>
         <extracomment>Main menu item tooltip</extracomment>
-        <translation>Lancer le processus de conversion pour les pistes sélectionnées</translation>
+        <translation>Lancer le processus de conversion pour les plages sélectionnées</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
@@ -1290,12 +1301,12 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. Le numéro de piste est erroné sur la ligne %2.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. Le numéro de plage est erroné sur la ligne %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. L’index de piste est erroné sur la ligne %2.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. L’index de plage est erroné sur la ligne %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1358,7 +1369,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
-        <translation>Titre de la piste :</translation>
+        <translation>Titre de la plage :</translation>
     </message>
     <message>
         <source>Comment:</source>
@@ -1368,7 +1379,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>Start track number:</source>
         <comment>Music tag name</comment>
-        <translation>Numéro de piste de début :</translation>
+        <translation>Numéro de plage de début :</translation>
     </message>
     <message>
         <source>Album performer:</source>
@@ -1427,7 +1438,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>Tracks:</source>
-        <translation>Pistes :</translation>
+        <translation>Plages :</translation>
     </message>
     <message>
         <source>Audio:</source>
@@ -1439,7 +1450,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
-        <translation>Piste</translation>
+        <translation>Plage</translation>
     </message>
     <message>
         <source>Title</source>

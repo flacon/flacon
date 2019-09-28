@@ -752,6 +752,17 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     </message>
 </context>
 <context>
+    <name>DiskPipeline</name>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Ik kan het bestand niet hernoemen:
+%1 naar %2
+%3</translation>
+    </message>
+</context>
+<context>
     <name>Encoder</name>
     <message>
         <source>Encoder error:

@@ -751,6 +751,17 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     </message>
 </context>
 <context>
+    <name>DiskPipeline</name>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation>Nelze přejmenovat soubor:⏎
+%1 na %2⏎
+%3</translation>
+    </message>
+</context>
+<context>
     <name>Encoder</name>
     <message>
         <source>Encoder error:

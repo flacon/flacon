@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Comment[fr]=Extrait les pistes audio d’une image de CD audio en des pistes séparées.
+Comment[fr]=Extrait les plages audio d’une image de CD audio en des plages séparées.
 GenericName[fr]=Encodeur de fichiers audio
 Name[fr]=Flacon
 Icon[fr]=flacon
