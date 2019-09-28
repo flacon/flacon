@@ -405,7 +405,7 @@ void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
     QProcess proc;
     proc.start(program, args);
     ok = proc.waitForStarted(3 * 1000);
-    ok = ok && proc.waitForFinished(3 * 60 * 100) ;
+    ok = ok && proc.waitForFinished(5 * 60 * 1000) ;
     ok = ok && (proc.exitStatus() == 0);
 
     if (!ok)
