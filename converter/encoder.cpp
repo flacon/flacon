@@ -129,6 +129,7 @@ void Encoder::run()
 
         encoder.setProgram(prog);
         encoder.setArguments(args);
+        encoder.setEnvironment(QStringList("LANG=en_US.UTF-8"));
         mode += ENCODE;
     }
 
