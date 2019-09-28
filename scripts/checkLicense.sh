@@ -65,7 +65,7 @@ searchAll()
 
 searchGit()
 {
-    git ls-files -- "${DIR}" | grep -E '(*\.cpp|*\.h)$'
+    git ls-files -- "${DIR}" | grep -E '(\.cpp|\.h)$'
 }
 
 # License compatibility: BSD 3-Clause; LGPL v2.1 or later
