@@ -83,7 +83,7 @@
 	</array>
 
 	<key>SUFeedURL</key>
-	<string>https://flacon.github.io/download/feed.xml</string>
+        <string>@MAC_UPDATE_URL@</string>
 
 </dict>
 </plist>

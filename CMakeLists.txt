@@ -249,6 +249,9 @@ set(LIBRARIES ${LIBRARIES} ${UCHARDET_LIBRARIES})
 include_directories(${UCHARDET_INCLUDE_DIRS})
 link_directories(${UCHARDET_LIBRARY_DIRS})
 
+
+set(MAC_UPDATE_URL "https://flacon.github.io/download/feed.xml" CACHE STRING "The URL of updates appcast for MacOS")
+
 if (APPLE)
     FIND_LIBRARY(COCOA_LIBRARY Cocoa)
     set(LIBRARIES ${LIBRARIES} ${COCOA_LIBRARY})
