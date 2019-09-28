@@ -46,6 +46,7 @@ add_definitions(-DFLACON_MINOR_VERSION=\"${MINOR_VERSION}\")
 add_definitions(-DFLACON_PATCH_VERSION=\"${PATCH_VERSION}\")
 add_definitions(-DFLACON_VERSION=\"${FLACON_VERSION}\")
 
+
 include("cmake/status_message.cmake")
 status_message("${PROJECT_NAME} ver. ${FLACON_VERSION}")
 status_message(" ")
@@ -313,14 +314,14 @@ function(CREATE_DESKTOP_FILE _IN_FILE _OUT_FILE _TRANSLATIONS_PATTERN)
     file(APPEND ${_OUT_FILE} "${genericname_tag}\n")
 endfunction()
 
-function(CREATE_APPDATA_FILE _IN_FILE _OUT_FILE)
+function(CREATE_FLATPAK_METADATA_FILE _IN_FILE _OUT_FILE)
     string(TIMESTAMP BUILD_DATE "%Y-%m-%d")
     configure_file(${_IN_FILE} ${_OUT_FILE} @ONLY)
 endfunction()
 
 CREATE_DESKTOP_FILE(misc/${PROJECT_NAME}.desktop ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop translations/*.desktop)
 CREATE_PLIST_FILE(misc/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
-CREATE_APPDATA_FILE(misc/com.github.Flacon.appdata.xml.in ${CMAKE_CURRENT_BINARY_DIR}/com.github.Flacon.appdata.xml)
+CREATE_FLATPAK_METADATA_FILE(misc/com.github.Flacon.metadata.xml.in ${CMAKE_CURRENT_BINARY_DIR}/com.github.Flacon.metadata.xml)
 
 # Man page **************************************
 configure_file(
@@ -348,7 +349,7 @@ else()
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION share/man/man1)
 
     install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop        DESTINATION "share/applications")
-    install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/com.github.Flacon.appdata.xml  DESTINATION  "share/metainfo")
+    install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/com.github.Flacon.metadata.xml DESTINATION "share/metainfo")
     install(FILES   images/mainicon/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps"    RENAME "flacon.png")
     install(FILES   images/mainicon/flacon-32x32.png   DESTINATION "share/icons/hicolor/32x32/apps"    RENAME "flacon.png")
     install(FILES   images/mainicon/flacon-48x48.png   DESTINATION "share/icons/hicolor/48x48/apps"    RENAME "flacon.png")
