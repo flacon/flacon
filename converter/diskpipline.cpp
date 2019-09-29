@@ -43,6 +43,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QCoreApplication>
+#include <errno.h>
 
 
 /************************************************
