@@ -23,12 +23,10 @@
  #
  # END_COMMON_COPYRIGHT_HEADER
 
+set(TRANSLATORS_INFO_FILE ${CMAKE_CURRENT_BINARY_DIR}/translators.info)
 
 FUNCTION(create_translatorsinfo_qrc _qrcFile _DIR)
     get_filename_component(srcDir ${_DIR}/ ABSOLUTE)
-
-
-    set(TRANSLATORS_INFO_FILE ${CMAKE_CURRENT_BINARY_DIR}/translators.info)
 
     file(GLOB IN_FILES ${srcDir}/translators_*.info)
     file(WRITE ${TRANSLATORS_INFO_FILE} "")
@@ -42,11 +40,7 @@ FUNCTION(create_translatorsinfo_qrc _qrcFile _DIR)
 
     configure_file(${srcDir}/translatorsinfo.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/translatorsinfo.qrc)
 
-    if(USE_QT4)
-        qt4_add_resources(__qrcFile ${CMAKE_CURRENT_BINARY_DIR}/translatorsinfo.qrc)
-    else()
-        qt5_add_resources(__qrcFile ${CMAKE_CURRENT_BINARY_DIR}/translatorsinfo.qrc)
-    endif()
+    qt5_add_resources(__qrcFile ${CMAKE_CURRENT_BINARY_DIR}/translatorsinfo.qrc)
 
     set(${_qrcFile} ${__qrcFile} PARENT_SCOPE)
 ENDFUNCTION()

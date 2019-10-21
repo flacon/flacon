@@ -244,7 +244,15 @@ include(FindPkgConfig)
 pkg_search_module(UCHARDET REQUIRED uchardet)
 
 include(translations/translatorsinfo.cmake)
-create_translatorsinfo_qrc(TRANSLATORS_INFO_QRC translations)
+add_custom_target("translators")
+add_custom_command(
+    TARGET "translators"
+    PRE_BUILD
+    BYPRODUCTS ${TRANSLATORS_INFO_FILE}
+    COMMAND create_translatorsinfo_qrc(TRANSLATORS_INFO_QRC translations)
+)
+
+
 set(LIBRARIES ${LIBRARIES} ${UCHARDET_LIBRARIES})
 include_directories(${UCHARDET_INCLUDE_DIRS})
 link_directories(${UCHARDET_LIBRARY_DIRS})
