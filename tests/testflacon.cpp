@@ -847,6 +847,177 @@ void TestFlacon::testTrackResultFileName_data()
              << "%a_%A/%n - %t"
              << "Автор_Альбом/01 - Песнь.wav";
 
+
+    QTest::newRow("5.1")
+            <<  R"(
+                REM GENRE "Genre"
+                REM DATE 2013
+                REM DISCID 123456789
+                REM COMMENT "ExactAudioCopy v0.99pb4"
+                PERFORMER "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                TITLE     "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                FILE "en.wav" WAVE
+                  TRACK 01 AUDIO
+                    TITLE "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                    INDEX 01 00:00:00
+                  TRACK 02 AUDIO
+                    TITLE "Song02"
+                    INDEX 01 03:39:10
+                  TRACK 03 AUDIO
+                    TITLE "Song03"
+                    INDEX 01 07:25:42
+                  TRACK 04 AUDIO
+                    TITLE "Song04"
+                    INDEX 01 12:04:72
+                )"
+            <<  "%A%a%t"
+            <<  "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                "123456789_123456789_123456789_123456789_123456789_.wav";
+
+
+    QTest::newRow("5.2")
+            <<  R"(
+                REM GENRE "Genre"
+                REM DATE 2013
+                REM DISCID 123456789
+                REM COMMENT "ExactAudioCopy v0.99pb4"
+                PERFORMER "artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_"
+                TITLE     "album----_album----_album----_album----_album----_album----_album----_album----_album----_album----_"
+                FILE "en.wav" WAVE
+                  TRACK 01 AUDIO
+                TITLE     "track----_track----_track----_track----_track----_track----_track----_track----_track----_track----_"
+                    INDEX 01 00:00:00
+                  TRACK 02 AUDIO
+                    TITLE "Song02"
+                    INDEX 01 03:39:10
+                  TRACK 03 AUDIO
+                    TITLE "Song03"
+                    INDEX 01 07:25:42
+                  TRACK 04 AUDIO
+                    TITLE "Song04"
+                    INDEX 01 12:04:72
+                )"
+             << "%y - %n - [%a] - [%A]  - %t/%n"
+             << "2013 - 01 - [artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_] - "
+                "[album----_album----_album----_album----_album----_album----_album----_album----_album----_album----_]  - "
+                "track----_track----_track--/01.wav";
+
+
+    QTest::newRow("5.3")
+            <<  R"(
+                REM GENRE "Genre"
+                REM DATE 2013
+                REM DISCID 123456789
+                REM COMMENT "ExactAudioCopy v0.99pb4"
+                PERFORMER "Very-verry long artist name, and another long artis name. Very-verry long artist name, and another long artis name"
+                TITLE "Long album title, long album title, long album title"
+                FILE "en.wav" WAVE
+                  TRACK 01 AUDIO
+                    TITLE "Long first track tile, long first track tile, long first track tile, long first track tile, long first track tile"
+                    INDEX 01 00:00:00
+                  TRACK 02 AUDIO
+                    TITLE "Song02"
+                    INDEX 01 03:39:10
+                  TRACK 03 AUDIO
+                    TITLE "Song03"
+                    INDEX 01 07:25:42
+                  TRACK 04 AUDIO
+                    TITLE "Song04"
+                    INDEX 01 12:04:72
+                )"
+            << "%y_%n - [%a] - [%A]  - %t/%y_%n - [%a] - [%A]  - %t"
+            << "2013_01 - [Very-verry long artist name, and another long artis name. Very-verry long artist name, and an"
+               "other long artis name] - [Long album title, long album title, long album title]  - Long first track"
+               " tile, long first track tile, long first track /"
+               "2013_01 - [Very-verry long artist name, and another long artis name. Very-verry long artist name, and an"
+               "other long artis name] - [Long album title, long album title, long album title]  - Long first track"
+               " tile, long first track tile, long first track .wav";
+
+
+    QTest::newRow("5.4 UTF-8")
+            <<  R"(
+                REM GENRE "Genre"
+                REM DATE 2013
+                REM DISCID 123456789
+                REM COMMENT "ExactAudioCopy v0.99pb4"
+                PERFORMER "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                TITLE     "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                FILE "en.wav" WAVE
+                  TRACK 01 AUDIO
+                    TITLE "123456789_123456789_123456789_123456789_Русский"
+                    INDEX 01 00:00:00
+                  TRACK 02 AUDIO
+                    TITLE "Song02"
+                    INDEX 01 03:39:10
+                  TRACK 03 AUDIO
+                    TITLE "Song03"
+                    INDEX 01 07:25:42
+                  TRACK 04 AUDIO
+                    TITLE "Song04"
+                    INDEX 01 12:04:72
+                )"
+            <<  "%A%a%t"
+            <<  "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                "123456789_123456789_123456789_123456789_Русск.wav";
+
+
+    QTest::newRow("5.5 UTF-8")
+            <<  R"(
+                REM GENRE "Genre"
+                REM DATE 2013
+                REM DISCID 123456789
+                REM COMMENT "ExactAudioCopy v0.99pb4"
+                PERFORMER "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                TITLE     "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                FILE "en.wav" WAVE
+                  TRACK 01 AUDIO
+                    TITLE "123456789_123456789_123456789_123456789_1Русский"
+                    INDEX 01 00:00:00
+                  TRACK 02 AUDIO
+                    TITLE "Song02"
+                    INDEX 01 03:39:10
+                  TRACK 03 AUDIO
+                    TITLE "Song03"
+                    INDEX 01 07:25:42
+                  TRACK 04 AUDIO
+                    TITLE "Song04"
+                    INDEX 01 12:04:72
+                )"
+            <<  "%A%a%t"
+            <<  "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                "123456789_123456789_123456789_123456789_1Русс.wav";
+
+
+    QTest::newRow("5.6 UTF-8")
+            <<  R"(
+                REM GENRE "Genre"
+                REM DATE 2013
+                REM DISCID 123456789
+                REM COMMENT "ExactAudioCopy v0.99pb4"
+                PERFORMER "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                TITLE     "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                FILE "en.wav" WAVE
+                  TRACK 01 AUDIO
+                    TITLE "123456789_123456789_123456789_123456789_12Русский"
+                    INDEX 01 00:00:00
+                  TRACK 02 AUDIO
+                    TITLE "Song02"
+                    INDEX 01 03:39:10
+                  TRACK 03 AUDIO
+                    TITLE "Song03"
+                    INDEX 01 07:25:42
+                  TRACK 04 AUDIO
+                    TITLE "Song04"
+                    INDEX 01 12:04:72
+                )"
+            <<  "%A%a%t"
+            <<  "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+                "123456789_123456789_123456789_123456789_12Русс.wav";
+
 }
 
 

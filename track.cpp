@@ -183,8 +183,10 @@ QString Track::resultFileName() const
     if (n < 0)
     {
         PatternExpander expander(*this);
-        return expander.expand(pattern) +
-                "." + settings->outFormat()->ext();
+        return safeFilePathLen(expander.expand(pattern) +
+                "." + settings->outFormat()->ext());
+
+
     }
 
     // If the disk is a collection, the files fall into different directories.
@@ -194,9 +196,11 @@ QString Track::resultFileName() const
 
     PatternExpander trackExpander(*this);
 
-    return albumExpander.expand(pattern.left(n)) +
-           trackExpander.expand(pattern.mid(n)) +
-           "." + settings->outFormat()->ext();
+    return safeFilePathLen(
+            albumExpander.expand(pattern.left(n)) +
+            trackExpander.expand(pattern.mid(n)) +
+            "." + settings->outFormat()->ext());
+
 }
 
 
@@ -348,6 +352,25 @@ QString Track::calcResultFilePath() const
         return fi.absoluteFilePath();
 
     return QFileInfo(mCueFileName).dir().absolutePath() + QDir::separator() + dir;
+}
+
+QString Track::safeFilePathLen(const QString &path) const
+{
+    QString file = path;
+    QString ext  = QFileInfo(path).suffix();
+    if (!ext.isEmpty()) {
+        ext = "." + ext;
+        file.resize(file.length() - ext.length());
+    }
+
+    QStringList res;
+    for (QString f :file.split(QDir::separator())) {
+        while (f.toUtf8().length() > 250) {
+            f.resize(f.length() - 1);
+        }
+        res << f;
+    }
+    return res.join(QDir::separator()) +  ext;
 }
 
 

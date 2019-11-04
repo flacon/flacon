@@ -113,6 +113,7 @@ private:
     QString mCueFileName;
 
     QString calcResultFilePath() const;
+    QString safeFilePathLen(const QString &path) const;
 };
 
 
