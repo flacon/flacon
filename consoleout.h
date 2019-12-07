@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2019
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,53 +24,29 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef CONVERTER_H
-#define CONVERTER_H
+#ifndef CONSOLEOUT_H
+#define CONSOLEOUT_H
 
-#include "types.h"
 #include <QObject>
 #include <QDateTime>
-#include <QVector>
+#include "track.h"
 
-class DiskPipeline;
-class OutFormat;
-class Disk;
-class Track;
-
-class Converter : public QObject
+class ConsoleOut : public QObject
 {
     Q_OBJECT
 public:
-    struct Job {
-        Disk *disk = nullptr;
-        QVector<const Track*> tracks;
-    };
-
-    typedef QVector<Job> Jobs;
-    explicit Converter(QObject *parent = nullptr);
-    virtual ~Converter();
-
-    bool isRunning();
-    static bool canConvert();
-
-signals:
-    void started();
-    void finished();
-    void trackProgress(const Track &track, TrackState state, Percent percent);
+    explicit ConsoleOut(QObject *parent = nullptr);
 
 public slots:
-    void start();
-    void start(const Jobs &jobs);
-    void stop();
+    void converterStarted();
+    void converterFinished();
+    void trackProgress(const Track &track, TrackState state, Percent percent);
 
-private slots:
-    void startThread();
+    void printStatistic();
 
 private:
-    int mThreadCount;
-    QVector<DiskPipeline*> mDiskPiplines;
-
-    bool check(OutFormat *format) const;
+    QDateTime mStartTime;
+    QDateTime mFinishTime;
 };
 
-#endif // CONVERTER_H
+#endif // CONSOLEOUT_H

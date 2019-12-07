@@ -65,6 +65,7 @@ set(HEADERS
     internet/dataprovider.h
     scanner.h
     patternexpander.h
+    consoleout.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -119,6 +120,7 @@ set(SOURCES
     internet/dataprovider.cpp
     scanner.cpp
     patternexpander.cpp
+    consoleout.cpp
 
     gui/icon.cpp
     gui/mainwindow.cpp

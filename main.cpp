@@ -32,6 +32,7 @@
 #include "converter/converter.h"
 #include "project.h"
 #include "scanner.h"
+#include "consoleout.h"
 
 #include <QString>
 #include <QLocale>
@@ -48,6 +49,8 @@
 #endif
 
 static bool quiet;
+static bool progress;
+
 
 /************************************************
  *
@@ -63,7 +66,8 @@ void printHelp()
     out << "  -s --start                Start to convert immediately." << endl;
     out << "  -c --config <file>        Specify an alternative configuration file." << endl;
     out << "  -q --quiet                Quiet mode (no output)." << endl;
-
+    out << "  -p --progress             Show progress during conversion." << endl;
+    out << endl;
     out << "  -h, --help                Show help about options" << endl;
     out << "  --version                 Show version information" << endl;
 
@@ -189,8 +193,25 @@ int runConsole(int argc, char *argv[], const QStringList &files)
     if (project->count() == 0)
         return 10;
 
+    ConsoleOut out;
     Converter converter;
-    converter.setShowStatistic(!quiet);
+    if (!quiet) {
+        qDebug() << Q_FUNC_INFO << "START_FINISH";
+        QObject::connect(&converter, &Converter::started,
+                         &out, &ConsoleOut::converterStarted);
+
+        QObject::connect(&converter, &Converter::finished,
+                         &out, &ConsoleOut::converterFinished);
+
+        QObject::connect(&converter, &Converter::destroyed,
+                         &out, &ConsoleOut::printStatistic);
+
+        if (progress) {
+            QObject::connect(&converter, &Converter::trackProgress,
+                         &out, &ConsoleOut::trackProgress);
+        }
+    }
+
     app.connect(&converter, SIGNAL(finished()),
                 &app, SLOT(quit()));
 
@@ -200,6 +221,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
         return 11;
 
     return app.exec();
+
 }
 
 
@@ -241,12 +263,12 @@ int main(int argc, char *argv[])
 
     parser.addPositionalArgument("file", "CUE or Audio file.");
 
-    parser.addOption(QCommandLineOption(QStringList() << "h" << "help"   , "Show help about options."));
-    parser.addOption(QCommandLineOption(                        "version", "Show version information."));
-    parser.addOption(QCommandLineOption(QStringList() << "s" << "start"  , "Start to convert immediately."));
-    parser.addOption(QCommandLineOption(QStringList() << "c" << "config" , "Specify an alternative configuration file.", "config file"));
-    parser.addOption(QCommandLineOption(QStringList() << "q" << "quiet"  , "Quiet mode (no output)."));
-
+    parser.addOption(QCommandLineOption(QStringList() << "h" << "help",     "Show help about options."));
+    parser.addOption(QCommandLineOption(                        "version",  "Show version information."));
+    parser.addOption(QCommandLineOption(QStringList() << "s" << "start",    "Start to convert immediately."));
+    parser.addOption(QCommandLineOption(QStringList() << "c" << "config",   "Specify an alternative configuration file.", "config file"));
+    parser.addOption(QCommandLineOption(QStringList() << "q" << "quiet",    "Quiet mode (no output)."));
+    parser.addOption(QCommandLineOption(QStringList() << "p" << "progress", "Show progress during conversion."));
 
     QStringList args;
     for (int i=0; i<argc; ++i)
@@ -277,6 +299,7 @@ int main(int argc, char *argv[])
     }
 
     quiet = parser.isSet("quiet");
+    progress = parser.isSet("progress");
 
     if (parser.isSet("start"))
         return runConsole(argc, argv, parser.positionalArguments());

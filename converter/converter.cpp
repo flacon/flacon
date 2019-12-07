@@ -48,8 +48,7 @@
  ************************************************/
 Converter::Converter(QObject *parent) :
     QObject(parent),
-    mThreadCount(0),
-    mShowStatistic(true)
+    mThreadCount(0)
 {
 }
 
@@ -59,8 +58,6 @@ Converter::Converter(QObject *parent) :
  ************************************************/
 Converter::~Converter()
 {
-    if (mShowStatistic)
-        printStatistic();
 }
 
 
@@ -102,8 +99,6 @@ void Converter::start(const Converter::Jobs &jobs)
         return;
     }
 
-    mStartTime = QDateTime::currentDateTime();
-
     bool ok;
     mThreadCount = settings->value(Settings::Encoder_ThreadCount).toInt(&ok);
     if (!ok || mThreadCount < 1)
@@ -140,6 +135,7 @@ void Converter::start(const Converter::Jobs &jobs)
     }
 
     startThread();
+    emit started();
 }
 
 
@@ -170,15 +166,6 @@ bool Converter::canConvert()
     }
 
     return false;
-}
-
-
-/************************************************
-
- ************************************************/
-void Converter::setShowStatistic(bool value)
-{
-    mShowStatistic = value;
 }
 
 
@@ -221,8 +208,8 @@ void Converter::startThread()
         if (pipe->isRunning())
             return;
     }
-    emit finished();
 
+    emit finished();
 }
 
 
@@ -257,30 +244,4 @@ bool Converter::check(OutFormat *format) const
     }
 
     return ok;
-}
-
-
-/************************************************
- *
- ************************************************/
-void Converter::printStatistic()
-{
-    int duration = QDateTime::currentDateTime().toTime_t() - mStartTime.toTime_t();
-    if (!duration)
-        duration = 1;
-
-    int h = duration / 3600;
-    int m = (duration - (h * 3600)) / 60;
-    int s =  duration - (h * 3600) - (m * 60);
-
-    QString str;
-
-    if (h)
-        str = QString("Encoding time %4h %3m %2s [%1 sec]").arg(duration).arg(s).arg(m).arg(h);
-    else if (m)
-        str = QString("Encoding time %3m %2s [%1 sec]").arg(duration).arg(s).arg(m);
-    else
-        str = QString("Encoding time %1 sec").arg(duration);
-
-    std::cout << str.toLocal8Bit().constData() << std::endl;
 }
