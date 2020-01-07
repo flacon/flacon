@@ -73,7 +73,7 @@ QList<OutFormat *> OutFormat::allFormats()
  ************************************************/
 OutFormat *OutFormat::currentFormat()
 {
-    QString formatId = settings->value(Settings::OutFiles_Format).toString();
+    QString formatId = Settings::i()->value(Settings::OutFiles_Format).toString();
     foreach (OutFormat *format, allFormats())
     {
         if (format->id() == formatId)
@@ -104,7 +104,7 @@ OutFormat *OutFormat::formatForId(const QString &id)
  ************************************************/
 GainType OutFormat::gainType() const
 {
-    QString s = settings->value(settingsGroup() + "/ReplayGain").toString();
+    QString s = Settings::i()->value(settingsGroup() + "/ReplayGain").toString();
     return strToGainType(s);
 }
 
@@ -114,7 +114,7 @@ GainType OutFormat::gainType() const
  ************************************************/
 bool OutFormat::createCue() const
 {
-    return settings->value(Settings::PerTrackCue_Create).toBool();
+    return Settings::i()->value(Settings::PerTrackCue_Create).toBool();
 }
 
 
@@ -126,7 +126,7 @@ bool OutFormat::checkProgram(const QString &program, QStringList *errors) const
     if (program.isEmpty())
         return true;
 
-    if (!settings->checkProgram(program))
+    if (!Settings::i()->checkProgram(program))
     {
         *errors << QObject::tr("I can't find program <b>%1</b>.").arg(program);
         return false;

@@ -184,13 +184,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     loadSettings();
 
-    outDirEdit->setHistory(settings->value(Settings::OutFiles_DirectoryHistory).toStringList());
-    outDirEdit->setCurrentText(settings->value(Settings::OutFiles_Directory).toString());
+    outDirEdit->setHistory(Settings::i()->value(Settings::OutFiles_DirectoryHistory).toStringList());
+    outDirEdit->setCurrentText(Settings::i()->value(Settings::OutFiles_Directory).toString());
 
-    outPatternEdit->setHistory(settings->value(Settings::OutFiles_PatternHistory).toStringList());
+    outPatternEdit->setHistory(Settings::i()->value(Settings::OutFiles_PatternHistory).toStringList());
 
     // Signals .................................................
-    connect(settings, SIGNAL(changed()), trackView->model(), SIGNAL(layoutChanged()));
+    connect(Settings::i(), SIGNAL(changed()), trackView->model(), SIGNAL(layoutChanged()));
 
     connect(outPatternEdit->lineEdit(), SIGNAL(editingFinished()), this, SLOT(setPattern()));
     connect(outPatternEdit, SIGNAL(currentIndexChanged(int)), this, SLOT(setPattern()));
@@ -313,8 +313,8 @@ void MainWindow::replaceOutPattern(const QString &pattern)
  ************************************************/
 void MainWindow::setPattern()
 {
-    settings->setValue(Settings::OutFiles_Pattern, outPatternEdit->currentText());
-    settings->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
+    Settings::i()->setValue(Settings::OutFiles_Pattern, outPatternEdit->currentText());
+    Settings::i()->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
 }
 
 
@@ -323,8 +323,8 @@ void MainWindow::setPattern()
  ************************************************/
 void MainWindow::setOutDir()
 {
-    settings->setValue(Settings::OutFiles_Directory, outDirEdit->currentText());
-    settings->setValue(Settings::OutFiles_DirectoryHistory, outDirEdit->history());
+    Settings::i()->setValue(Settings::OutFiles_Directory, outDirEdit->currentText());
+    Settings::i()->setValue(Settings::OutFiles_DirectoryHistory, outDirEdit->history());
 }
 
 
@@ -356,7 +356,7 @@ void MainWindow::setCueForDisc(Disk *disk)
     else if (! disk->cueFile().isEmpty())
         dir = QFileInfo(disk->cueFile()).dir().absolutePath();
     else
-        dir = settings->value(Settings::Misc_LastDir).toString();
+        dir = Settings::i()->value(Settings::Misc_LastDir).toString();
 
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select CUE file", "OpenFile dialog title"), dir, flt);
@@ -404,7 +404,7 @@ void MainWindow::setOutFormat()
     int n = outFormatCombo->currentIndex();
     if (n > -1)
     {
-        settings->setValue(Settings::OutFiles_Format, outFormatCombo->itemData(n));
+        Settings::i()->setValue(Settings::OutFiles_Format, outFormatCombo->itemData(n));
     }
 }
 
@@ -502,13 +502,13 @@ void MainWindow::refreshEdits()
     codepageCombo->setMultiValue(codePage);
     tagDiskPerformerEdit->setMultiValue(diskPerformer);
 
-    if (outDirEdit->currentText() != settings->value(Settings::OutFiles_Directory).toString())
-        outDirEdit->lineEdit()->setText(settings->value(Settings::OutFiles_Directory).toString());
+    if (outDirEdit->currentText() != Settings::i()->value(Settings::OutFiles_Directory).toString())
+        outDirEdit->lineEdit()->setText(Settings::i()->value(Settings::OutFiles_Directory).toString());
 
-    if (outPatternEdit->currentText() != settings->value(Settings::OutFiles_Pattern).toString())
-        outPatternEdit->lineEdit()->setText(settings->value(Settings::OutFiles_Pattern).toString());
+    if (outPatternEdit->currentText() != Settings::i()->value(Settings::OutFiles_Pattern).toString())
+        outPatternEdit->lineEdit()->setText(Settings::i()->value(Settings::OutFiles_Pattern).toString());
 
-    int n = outFormatCombo->findData(settings->value(Settings::OutFiles_Format).toString());
+    int n = outFormatCombo->findData(Settings::i()->value(Settings::OutFiles_Format).toString());
     if (n > -1)
         outFormatCombo->setCurrentIndex(n);
     else
@@ -530,7 +530,7 @@ void MainWindow::setCodePage()
         foreach(Disk *disk, disks)
             disk->setCodecName(codepage);
 
-        settings->setValue(Settings::Tags_DefaultCodepage, codepage);
+        Settings::i()->setValue(Settings::Tags_DefaultCodepage, codepage);
     }
 }
 
@@ -813,12 +813,12 @@ void MainWindow::initOutDirButton()
 void MainWindow::openAddFileDialog()
 {
     QString flt = getOpenFileFilter(true, true);
-    QString lastDir = settings->value(Settings::Misc_LastDir).toString();
+    QString lastDir = Settings::i()->value(Settings::Misc_LastDir).toString();
     QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Add CUE or audio file", "OpenFile dialog title"), lastDir, flt);
 
     foreach(const QString &fileName, fileNames)
     {
-        settings->setValue(Settings::Misc_LastDir, QFileInfo(fileName).dir().path());
+        Settings::i()->setValue(Settings::Misc_LastDir, QFileInfo(fileName).dir().path());
         addFileOrDir(fileName);
     }
 }
@@ -838,7 +838,7 @@ void MainWindow::setAudioForDisk(Disk *disk)
     else if (! disk->audioFileName().isEmpty())
         dir = QFileInfo(disk->audioFileName()).dir().absolutePath();
     else
-        dir = settings->value(Settings::Misc_LastDir).toString();
+        dir = Settings::i()->value(Settings::Misc_LastDir).toString();
 
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select audio file", "OpenFile dialog title"), dir, flt);
@@ -942,12 +942,12 @@ void MainWindow::removeDisks()
  ************************************************/
 void MainWindow::openScanDialog()
 {
-    QString lastDir = settings->value(Settings::Misc_LastDir).toString();
+    QString lastDir = Settings::i()->value(Settings::Misc_LastDir).toString();
     QString dir = QFileDialog::getExistingDirectory(this, tr("Select directory"), lastDir);
 
     if (!dir.isEmpty())
     {
-        settings->setValue(Settings::Misc_LastDir, dir);
+        Settings::i()->setValue(Settings::Misc_LastDir, dir);
         addFileOrDir(dir);
     }
 }
@@ -1163,12 +1163,12 @@ void MainWindow::initOutFormatCombo()
 void MainWindow::loadSettings()
 {
      // MainWindow geometry
-    int width = settings->value(Settings::MainWindow_Width,  QVariant(987)).toInt();
-    int height = settings->value(Settings::MainWindow_Height, QVariant(450)).toInt();
+    int width = Settings::i()->value(Settings::MainWindow_Width,  QVariant(987)).toInt();
+    int height = Settings::i()->value(Settings::MainWindow_Height, QVariant(450)).toInt();
     this->resize(width, height);
 
-    splitter->restoreState(settings->value("MainWindow/Splitter").toByteArray());
-    trackView->header()->restoreState(settings->value("MainWindow/TrackView").toByteArray());
+    splitter->restoreState(Settings::i()->value("MainWindow/Splitter").toByteArray());
+    trackView->header()->restoreState(Settings::i()->value("MainWindow/TrackView").toByteArray());
 }
 
 
@@ -1177,10 +1177,10 @@ void MainWindow::loadSettings()
  ************************************************/
 void MainWindow::saveSettings()
 {
-     settings->setValue("MainWindow/Width",     QVariant(size().width()));
-     settings->setValue("MainWindow/Height",    QVariant(size().height()));
-     settings->setValue("MainWindow/Splitter",  QVariant(splitter->saveState()));
-     settings->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
+     Settings::i()->setValue("MainWindow/Width",     QVariant(size().width()));
+     Settings::i()->setValue("MainWindow/Height",    QVariant(size().height()));
+     Settings::i()->setValue("MainWindow/Splitter",  QVariant(splitter->saveState()));
+     Settings::i()->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
 }
 
 

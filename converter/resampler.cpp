@@ -36,7 +36,7 @@ Resampler::Resampler()
 
 QStringList Resampler::args(int bitsPerSample, int sampleRate, const QString &outFile)
 {
-    QString prog = settings->programName(programName());
+    QString prog = Settings::i()->programName(programName());
     QStringList args;
     args << QDir::toNativeSeparators(prog);
 

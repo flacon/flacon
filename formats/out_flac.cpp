@@ -78,12 +78,12 @@ QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFi
 
     QStringList args;
 
-    args << settings->programName(encoderProgramName());
+    args << Settings::i()->programName(encoderProgramName());
     args << "--force";      // Force overwriting of output files.
     args << "--silent";     // Suppress progress indicator
 
     // Settings .................................................
-    args << QString("--compression-level-%1").arg(settings->value("Flac/Compression").toString());
+    args << QString("--compression-level-%1").arg(Settings::i()->value("Flac/Compression").toString());
 
 
     // Tags .....................................................
@@ -131,7 +131,7 @@ QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFi
 QStringList OutFormat_Flac::gainArgs(const QStringList &files) const
 {
     QStringList args;
-    args << settings->programName(gainProgramName());
+    args << Settings::i()->programName(gainProgramName());
     args << "--add-replay-gain";
     args << files;
 

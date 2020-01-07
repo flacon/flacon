@@ -48,14 +48,14 @@ QStringList OutFormat_Aac::encoderArgs(const Track *track, const QString &outFil
 {
     QStringList args;
 
-    args << settings->programName(encoderProgramName());
+    args << Settings::i()->programName(encoderProgramName());
     args << "-w"; // Wrap  AAC  data  in  an MP4 container.
 
     // Quality settings .........................................
-    if (settings->value("Aac/UseQuality").toBool())
-        args << "-q" << settings->value("Aac/Quality").toString();
+    if (Settings::i()->value("Aac/UseQuality").toBool())
+        args << "-q" << Settings::i()->value("Aac/Quality").toString();
     else
-        args << "-b" << settings->value("Aac/Bitrate").toString();
+        args << "-b" << Settings::i()->value("Aac/Bitrate").toString();
 
 
     // Tags .....................................................

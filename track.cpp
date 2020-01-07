@@ -175,7 +175,7 @@ void Track::setCodecName(const QString &value)
  ************************************************/
 QString Track::resultFileName() const
 {
-    QString pattern = settings->outFilePattern();
+    QString pattern = Settings::i()->outFilePattern();
     if (pattern.isEmpty())
         pattern = QString("%a/%y - %A/%n - %t");
 
@@ -184,7 +184,7 @@ QString Track::resultFileName() const
     {
         PatternExpander expander(*this);
         return safeFilePathLen(expander.expand(pattern) +
-                "." + settings->outFormat()->ext());
+                "." + Settings::i()->outFormat()->ext());
 
 
     }
@@ -199,7 +199,7 @@ QString Track::resultFileName() const
     return safeFilePathLen(
             albumExpander.expand(pattern.left(n)) +
             trackExpander.expand(pattern.mid(n)) +
-            "." + settings->outFormat()->ext());
+            "." + Settings::i()->outFormat()->ext());
 
 }
 
@@ -335,7 +335,7 @@ QString Track::resultFilePath() const
  ************************************************/
 QString Track::calcResultFilePath() const
 {
-    QString dir = settings->outFileDir();
+    QString dir = Settings::i()->outFileDir();
 
     if (dir == "~" || dir == "~//")
         return QDir::homePath();
@@ -545,7 +545,7 @@ QTextCodec *UcharDet::textCodec() const
     uchardet_data_end(mData->mUchcharDet);
     QTextCodec *res = QTextCodec::codecForName(uchardet_get_charset(mData->mUchcharDet));
     if (!res)
-        res = QTextCodec::codecForName(settings->value(Settings::Tags_DefaultCodepage).toString().toLocal8Bit());
+        res = QTextCodec::codecForName(Settings::i()->value(Settings::Tags_DefaultCodepage).toString().toLocal8Bit());
 
     if (!res || res->name() == "US-ASCII")
         res = QTextCodec::codecForName("UTF-8");

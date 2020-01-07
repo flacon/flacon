@@ -54,22 +54,22 @@
 #endif
 
 QString Settings::mFileName;
-static Settings *inst = nullptr;
+Settings *Settings::mInstance = nullptr;
 
 /************************************************
 
  ************************************************/
-Settings *Settings::instance()
+Settings *Settings::i()
 {
-    if (!inst)
+    if (!mInstance)
     {
         if (mFileName.isEmpty())
-            inst = new Settings("flacon", "flacon");
+            mInstance = new Settings("flacon", "flacon");
         else
-            inst = new Settings(mFileName);
+            mInstance = new Settings(mFileName);
     }
 
-    return inst;
+    return mInstance;
 }
 
 
@@ -79,8 +79,8 @@ Settings *Settings::instance()
 void Settings::setFileName(const QString &fileName)
 {
     mFileName = fileName;
-    delete inst;
-    inst = nullptr;
+    delete mInstance;
+    mInstance = nullptr;
 }
 
 

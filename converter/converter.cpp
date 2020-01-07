@@ -93,14 +93,14 @@ void Converter::start(const Converter::Jobs &jobs)
         return;
     }
 
-    if (!check(settings->outFormat()))
+    if (!check(Settings::i()->outFormat()))
     {
         emit finished();
         return;
     }
 
     bool ok;
-    mThreadCount = settings->value(Settings::Encoder_ThreadCount).toInt(&ok);
+    mThreadCount = Settings::i()->value(Settings::Encoder_ThreadCount).toInt(&ok);
     if (!ok || mThreadCount < 1)
         mThreadCount = qMax(6, QThread::idealThreadCount());
 
@@ -221,10 +221,10 @@ bool Converter::check(OutFormat *format) const
     QStringList errors;
     bool ok = format->check(&errors);
 
-    if (settings->value(Settings::Resample_BitsPerSample).toInt() ||
-        settings->value(Settings::Resample_SampleRate).toInt() )
+    if (Settings::i()->value(Settings::Resample_BitsPerSample).toInt() ||
+        Settings::i()->value(Settings::Resample_SampleRate).toInt() )
     {
-        if (!settings->checkProgram(Resampler::programName()))
+        if (!Settings::i()->checkProgram(Resampler::programName()))
         {
             errors << QObject::tr("I can't find program <b>%1</b>.").arg(Resampler::programName());
             ok = false;

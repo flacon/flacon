@@ -49,7 +49,7 @@ CueCreator::CueCreator(const Disk *disk, PreGapType preGapType):
     expander.setDiskNum(mDisk->diskNum());
     expander.setDiskCount(mDisk->diskCount());
 
-    QString fileName = expander.expand(settings->value(Settings::PerTrackCue_FileName).toString());
+    QString fileName = expander.expand(Settings::i()->value(Settings::PerTrackCue_FileName).toString());
 
     if (!fileName.endsWith(".cue"))
         fileName += ".cue";

@@ -49,12 +49,12 @@ QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile
 {
     QStringList args;
 
-    args << settings->programName(encoderProgramName());
+    args << Settings::i()->programName(encoderProgramName());
 
     args << "-q";            // Suppress progress indicator
 
     // Settings .................................................
-    int compression = settings->value("WV/Compression").toInt();
+    int compression = Settings::i()->value("WV/Compression").toInt();
     switch (compression)
     {
     case 0: args << "-f";  break;
@@ -104,7 +104,7 @@ QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile
 QStringList OutFormat_Wv::gainArgs(const QStringList &files) const
 {
     QStringList args;
-    args <<  args << settings->programName(gainProgramName());
+    args <<  args << Settings::i()->programName(gainProgramName());
     args << "-a";
     args << files;
 

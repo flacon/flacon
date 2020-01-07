@@ -439,7 +439,7 @@ ProgramEdit::ProgramEdit(const QString &programName, QWidget *parent):
 void ProgramEdit::find()
 {
     if (text().isEmpty())
-        setText(settings->findProgram(mProgramName));
+        setText(Settings::i()->findProgram(mProgramName));
 }
 
 

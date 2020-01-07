@@ -161,7 +161,7 @@ FreeDbProvider::FreeDbProvider(const Disk &disk):
  ************************************************/
 void FreeDbProvider::start()
 {
-    QString host= settings->value(Settings::Inet_CDDBHost).toString();
+    QString host= Settings::i()->value(Settings::Inet_CDDBHost).toString();
 
     // Categories from http://freedb.freedb.org/~cddb/cddb.cgi?cmd=CDDB+LSCAT&hello=n+h+c+1&proto=6
     QStringList categories;

@@ -119,7 +119,7 @@ void Decoder::openProcess()
 {
     mProcess = new QProcess(this);
 
-    QString program = settings->programName(mFormat->decoderProgramName());
+    QString program = Settings::i()->programName(mFormat->decoderProgramName());
     mProcess->setReadChannel(QProcess::StandardOutput);
 
 

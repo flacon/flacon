@@ -161,7 +161,7 @@ DiskPipeline::DiskPipeline(const Converter::Job &job, QObject *parent) :
 {
     mData->pipeline = this;
     mData->job = job;
-    mData->preGapType =  settings->createCue() ? settings->preGapType() : PreGapType::Skip;
+    mData->preGapType =  Settings::i()->createCue() ? Settings::i()->preGapType() : PreGapType::Skip;
 
     // If the first track starts with zero second, doesn't make sense to create pregap track.
     mData->extractPregap = (mData->preGapType == PreGapType::ExtractToFile &&
@@ -196,11 +196,11 @@ DiskPipeline::~DiskPipeline()
  ************************************************/
 bool DiskPipeline::init()
 {
-    if (!settings->tmpDir().isEmpty())
+    if (!Settings::i()->tmpDir().isEmpty())
     {
-        if (!mData->createDir(settings->tmpDir()))
+        if (!mData->createDir(Settings::i()->tmpDir()))
             return false;
-        mTmpDir = new QTemporaryDir(QString("%1/flacon.").arg(settings->tmpDir()));
+        mTmpDir = new QTemporaryDir(QString("%1/flacon.").arg(Settings::i()->tmpDir()));
         mTmpDir->setAutoRemove(true);
         mData->workDir = mTmpDir->path();
     }
@@ -256,7 +256,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
         return;
     }
 
-    if (settings->outFormat()->gainType() == GainType::Track)
+    if (Settings::i()->outFormat()->gainType() == GainType::Track)
     {
         while (*count > 0 && !mData->gainRequests.isEmpty())
         {
@@ -264,7 +264,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
             --(*count);
         }
     }
-    else if (settings->outFormat()->gainType() == GainType::Album)
+    else if (Settings::i()->outFormat()->gainType() == GainType::Album)
     {
         if (*count > 0 && mData->gainRequests.count() == mData->trackCount)
         {
@@ -287,7 +287,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
  ************************************************/
 bool DiskPipeline::Data::createCue() const
 {
-    if (!settings->createCue())
+    if (!Settings::i()->createCue())
         return true;
 
     CueCreator cue(job.disk, preGapType);
@@ -306,14 +306,14 @@ bool DiskPipeline::Data::createCue() const
  ************************************************/
 bool DiskPipeline::Data::copyCoverImage() const
 {
-    CoverMode mode = settings->coverMode();
+    CoverMode mode = Settings::i()->coverMode();
 
     if (mode == CoverMode::Disable)
         return true;
 
     int size = 0;
     if (mode == CoverMode::Scale)
-        size = settings->coverImageSize();
+        size = Settings::i()->coverImageSize();
 
     QString dir = QFileInfo(job.tracks.first()->resultFilePath()).dir().absolutePath();
 
@@ -379,7 +379,7 @@ void DiskPipeline::Data::startEncoderThread(const EncoderRequest &req)
     connect(worker, SIGNAL(error(const Track*,QString)),
             pipeline, SLOT(trackError(const Track*,QString)));
 
-    if (settings->outFormat()->gainType() == GainType::Disable)
+    if (Settings::i()->outFormat()->gainType() == GainType::Disable)
     {
         connect(worker, SIGNAL(trackReady(const Track*,QString)),
                 pipeline, SLOT(trackDone(const Track*,QString)));
@@ -403,7 +403,7 @@ void DiskPipeline::Data::startEncoderThread(const EncoderRequest &req)
  ************************************************/
 void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
 {
-    Gain *worker = new Gain(req, settings->outFormat());
+    Gain *worker = new Gain(req, Settings::i()->outFormat());
     WorkerThread *thread = new WorkerThread(worker, pipeline);
 
     connect(pipeline, SIGNAL(threadQuit()),
@@ -431,7 +431,7 @@ void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
  ************************************************/
 void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
 {
-    Gain *worker = new Gain(reqs, settings->outFormat());
+    Gain *worker = new Gain(reqs, Settings::i()->outFormat());
     WorkerThread *thread = new WorkerThread(worker, pipeline);
 
     connect(pipeline, SIGNAL(threadQuit()),
@@ -486,15 +486,15 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFil
     req.track      = track;
     req.inputFile  = inputFile;
     req.outFile    = outFile;
-    req.format     = settings->outFormat();
+    req.format     = Settings::i()->outFormat();
 
     // If the original quality is worse than requested, leave it as is.
     req.bitsPerSample = calcQuality(mData->job.disk->audioFile()->bitsPerSample(),
-                                    settings->value(Settings::Resample_BitsPerSample).toInt(),
+                                    Settings::i()->value(Settings::Resample_BitsPerSample).toInt(),
                                     int(req.format->maxBitPerSample()));
 
     req.sampleRate = calcQuality(mData->job.disk->audioFile()->sampleRate(),
-                                 settings->value(Settings::Resample_SampleRate).toInt(),
+                                 Settings::i()->value(Settings::Resample_SampleRate).toInt(),
                                  int(req.format->maxSampleRate()));
 
     mData->encoderRequests << req;
@@ -507,7 +507,7 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFil
  ************************************************/
 void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
 {
-    if (settings->outFormat()->gainType() == GainType::Album)
+    if (Settings::i()->outFormat()->gainType() == GainType::Album)
         trackProgress(track, TrackState::WaitGain, 0);
     else
         trackProgress(track, TrackState::Queued, 0);

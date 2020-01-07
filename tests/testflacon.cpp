@@ -170,9 +170,9 @@ void TestFlacon::applySettings(const SettingsValues &config)
     i = config.begin();
     for (i = config.begin(); i != config.end(); ++i)
     {
-        settings->setValue(i.key(), i.value());
+        Settings::i()->setValue(i.key(), i.value());
     }
-    settings->sync();
+    Settings::i()->sync();
 }
 
 
@@ -505,8 +505,8 @@ void TestFlacon::testTrackResultFileName()
     QFETCH(QString, expected);
 
 
-    settings->setOutFilePattern(pattern);
-    settings->setOutFormat("WAV");
+    Settings::i()->setOutFilePattern(pattern);
+    Settings::i()->setOutFormat("WAV");
 
     project->clear();
 
@@ -1031,9 +1031,9 @@ void TestFlacon::testTrackResultFilePath()
     QFETCH(QString, expected);
     QFETCH(QString, cueFile);
 
-    settings->setOutFileDir(outDir);
-    settings->setOutFilePattern(pattern);
-    settings->setOutFormat("WAV");
+    Settings::i()->setOutFileDir(outDir);
+    Settings::i()->setOutFilePattern(pattern);
+    Settings::i()->setOutFormat("WAV");
 
 
     if (!cueFile.isEmpty())
@@ -1143,9 +1143,9 @@ void TestFlacon::testTrackSetCodepages()
         QFAIL(QString("Can't copy file %1 to %2").arg(testDataDir + cueFile, testCueFile).toLocal8Bit().data());
 
     if (!codepageBefore.isEmpty())
-        settings->setValue(Settings::Tags_DefaultCodepage, codepageBefore);
+        Settings::i()->setValue(Settings::Tags_DefaultCodepage, codepageBefore);
     else
-        settings->setValue(Settings::Tags_DefaultCodepage, "UTF-8");
+        Settings::i()->setValue(Settings::Tags_DefaultCodepage, "UTF-8");
 
     Disk *disk = loadFromCue(testCueFile);
 

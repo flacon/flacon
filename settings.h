@@ -80,7 +80,7 @@ public:
         Resample_SampleRate,
     };
 
-    static Settings *instance();
+    static Settings *i();
     static void setFileName(const QString &fileName);
 
     QVariant value(Key key, const QVariant &defaultValue = QVariant()) const;
@@ -136,7 +136,7 @@ private:
 
     QSet<QString> mPrograms;
     static QString mFileName;
+    static Settings *mInstance;
 };
 
-#define settings Settings::instance()
 #endif // SETTINGS_H

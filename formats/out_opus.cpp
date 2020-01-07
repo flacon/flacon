@@ -51,18 +51,18 @@ QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFi
 {
     QStringList args;
 
-    args << settings->programName(encoderProgramName());
+    args << Settings::i()->programName(encoderProgramName());
 
     args << "--quiet";
 
-    QString type = settings->value(CONF_OPUS_BITRATETYPE).toString();
+    QString type = Settings::i()->value(CONF_OPUS_BITRATETYPE).toString();
     if (type == "VBR")
         args << "--vbr";
 
     if (type == "CBR")
         args << "--cvbr";
 
-    args << "--bitrate" << settings->value(CONF_OPUS_BITRATE).toString();
+    args << "--bitrate" << Settings::i()->value(CONF_OPUS_BITRATE).toString();
 
     // Tags .....................................................
     if (!track->artist().isEmpty())  args << "--artist"  << track->artist();

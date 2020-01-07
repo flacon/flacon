@@ -49,26 +49,26 @@ QStringList OutFormat_Ogg::encoderArgs(const Track *track, const QString &outFil
 {
     QStringList args;
 
-    args << settings->programName(encoderProgramName());
+    args << Settings::i()->programName(encoderProgramName());
 
     args << "--quiet";
 
     // Quality settings .........................................
-    if (settings->value("Ogg/UseQuality").toBool())
+    if (Settings::i()->value("Ogg/UseQuality").toBool())
     {
-        args << "-q" << settings->value("Ogg/Quality").toString();
+        args << "-q" << Settings::i()->value("Ogg/Quality").toString();
     }
     else
     {
-        QString val = settings->value("Ogg/NormBitrate").toString();
+        QString val = Settings::i()->value("Ogg/NormBitrate").toString();
         if (!val.isEmpty())
             args << "-b" << val;
 
-        val = settings->value("Ogg/MinBitrate").toString();
+        val = Settings::i()->value("Ogg/MinBitrate").toString();
         if (!val.isEmpty())
             args << "-m" << val;
 
-        val = settings->value("Ogg/MaxBitrate").toString();
+        val = Settings::i()->value("Ogg/MaxBitrate").toString();
         if (!val.isEmpty())
             args << "-M" << val;
     }
@@ -120,8 +120,8 @@ QStringList OutFormat_Ogg::encoderArgs(const Track *track, const QString &outFil
 QStringList OutFormat_Ogg::gainArgs(const QStringList &files) const
 {
     QStringList args;
-    args <<  args << settings->programName(gainProgramName());
-    if (strToGainType(settings->value("Ogg/ReplayGain").toString()) ==  GainType::Album)
+    args <<  args << Settings::i()->programName(gainProgramName());
+    if (strToGainType(Settings::i()->value("Ogg/ReplayGain").toString()) ==  GainType::Album)
         args << "--album";
 
     args << files;

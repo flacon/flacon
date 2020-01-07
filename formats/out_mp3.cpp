@@ -48,11 +48,11 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
 {
     QStringList args;
 
-    args << settings->programName(encoderProgramName());
+    args << Settings::i()->programName(encoderProgramName());
     args << "--silent";
 
     // Settings .................................................
-    QString preset = settings->value("Mp3/Preset").toString();
+    QString preset = Settings::i()->value("Mp3/Preset").toString();
 
     if (preset == "vbrMedium")
     {
@@ -86,22 +86,22 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
 
     else if (preset == "cbrKbps")
     {
-        args << "--preset" << "cbr" << settings->value("Mp3/Bitrate").toString();
+        args << "--preset" << "cbr" << Settings::i()->value("Mp3/Bitrate").toString();
     }
 
     else if (preset == "abrKbps")
     {
-        args << "--preset" << settings->value("Mp3/Bitrate").toString();
+        args << "--preset" << Settings::i()->value("Mp3/Bitrate").toString();
     }
 
     else if (preset == "vbrQuality")
     {
-        int quality = settings->value("Mp3/Quality").toInt();
+        int quality = Settings::i()->value("Mp3/Quality").toInt();
         args << "-V" << QString("%1").arg(9 - quality);
     }
 
     // ReplayGain ...............................................
-    if (strToGainType(settings->value("Mp3/ReplayGain").toString()) != GainType::Track)
+    if (strToGainType(Settings::i()->value("Mp3/ReplayGain").toString()) != GainType::Track)
     {
         args << "--noreplaygain";
     }
@@ -147,7 +147,7 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
 QStringList OutFormat_Mp3::gainArgs(const QStringList &files) const
 {
     QStringList args;
-    args <<  args << settings->programName(gainProgramName());
+    args <<  args << Settings::i()->programName(gainProgramName());
     args << "-a"; // Album gain
     args << "-c"; // ignore clipping warning when applying gain
 
