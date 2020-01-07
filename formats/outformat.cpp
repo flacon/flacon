@@ -29,13 +29,13 @@
 #include "encoder.h"
 #include "gain.h"
 
-#include "wav.h"
-#include "flac.h"
-#include "aac.h"
-#include "mp3.h"
-#include "ogg.h"
-#include "wv.h"
-#include "opus.h"
+#include "out_wav.h"
+#include "out_flac.h"
+#include "out_aac.h"
+#include "out_mp3.h"
+#include "out_ogg.h"
+#include "out_wv.h"
+#include "out_opus.h"
 
 #include <QDebug>
 

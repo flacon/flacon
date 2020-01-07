@@ -24,12 +24,12 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef MP3_H
-#define MP3_H
+#ifndef OUT_MP3_H
+#define OUT_MP3_H
 
 #include "outformat.h"
 #include "configdialog.h"
-#include "ui_mp3_config.h"
+#include "ui_out_mp3_config.h"
 
 class OutFormat_Mp3: public OutFormat
 {
@@ -64,4 +64,4 @@ private slots:
     void mp3PresetCbxCanged(int index);
 };
 
-#endif // MP3_H
+#endif // OUT_MP3_H

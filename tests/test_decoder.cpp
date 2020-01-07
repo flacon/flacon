@@ -27,8 +27,6 @@
 #include "testflacon.h"
 #include "tools.h"
 #include "../converter/decoder.h"
-#include "../formats/wav.h"
-#include "../formats/flac.h"
 
 #include <QTest>
 #include <QVector>

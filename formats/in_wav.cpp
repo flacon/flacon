@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2017
+ * Copyright: 2012-2013
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,35 +24,14 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "tta.h"
-#include <QDebug>
+#include "in_wav.h"
 
-REGISTER_FORMAT(Format_Tta)
-
+REGISTER_FORMAT(Format_Wav)
 
 /************************************************
  *
  ************************************************/
-QStringList Format_Tta::decoderArgs(const QString &fileName) const
+QStringList Format_Wav::decoderArgs(const QString &) const
 {
-    QStringList args;
-    args << "-d";
-    args << fileName;
-    args << "-o" << "-";
-
-    return args;
-}
-
-
-/************************************************
- *
- ************************************************/
-QString Format_Tta::filterDecoderStderr(const QString &stdErr) const
-{
-
-    int pos = stdErr.indexOf("Error:");
-    if (pos>-1)
-        return stdErr.mid(pos + 6).trimmed();
-
-    return "";
+    return QStringList();
 }

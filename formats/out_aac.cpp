@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "aac.h"
+#include "out_aac.h"
 #include "settings.h"
 #include "inputaudiofile.h"
 
@@ -173,5 +173,3 @@ void ConfigPage_Acc::write()
     writeWidget("Aac/Quality",    aacQualitySpin);
     writeWidget("Aac/Bitrate",    aacBitrateCbx);
 }
-
-

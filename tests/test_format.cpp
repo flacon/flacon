@@ -26,9 +26,7 @@
 
 #include "testflacon.h"
 #include "tools.h"
-#include "../formats/format.h"
-#include "../formats/wav.h"
-#include "../formats/flac.h"
+#include "../formats/informat.h"
 #include "../settings.h"
 
 #include <QTest>

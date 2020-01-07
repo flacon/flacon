@@ -24,12 +24,10 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "format.h"
+#include "informat.h"
 
-#include "flac.h"
 #include <QDebug>
 #include <QIODevice>
-#include <QByteArray>
 #include <QFile>
 
 /************************************************

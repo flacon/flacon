@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "opus.h"
+#include "out_opus.h"
 #include "disk.h"
 #include "settings.h"
 #include <QDebug>
@@ -161,9 +161,3 @@ void ConfigPage_Opus::write()
     writeWidget("Opus/BitrateType",  opusBitrateTypeCbx);
     writeWidget("Opus/Bitrate",      opusBitrateSlider);
 }
-
-
-
-
-
-

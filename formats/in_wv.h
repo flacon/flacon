@@ -24,32 +24,10 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef WV_H
-#define WV_H
+#ifndef IN_WV_H
+#define IN_WV_H
 
-#include "format.h"
-#include "outformat.h"
-#include "configdialog.h"
-#include "ui_wv_config.h"
-
-class OutFormat_Wv: public OutFormat
-{
-public:
-    OutFormat_Wv();
-
-    virtual QString encoderProgramName() const override { return "wavpack"; }
-    virtual QString gainProgramName() const override { return "wvgain"; }
-
-    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
-    virtual QStringList gainArgs(const QStringList &files) const override;
-
-    QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(QWidget *parent = nullptr) const override;
-
-    // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
-    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
-    virtual SampleRate    maxSampleRate()   const override { return SampleRate::Hz_768000; }
-};
+#include "informat.h"
 
 class Format_Wv: public AudioFormat
 {
@@ -71,14 +49,4 @@ protected:
 
 };
 
-class ConfigPage_Wv: public EncoderConfigPage, private Ui::ConfigPage_Wv
-{
-    Q_OBJECT
-public:
-    explicit ConfigPage_Wv(QWidget *parent = nullptr);
-
-    virtual void load() override;
-    virtual void write() override;
-};
-
-#endif // WV_H
+#endif // IN_WV_H

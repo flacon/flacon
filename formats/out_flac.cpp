@@ -24,30 +24,12 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "flac.h"
+#include "out_flac.h"
 #include "settings.h"
 #include "project.h"
 #include "inputaudiofile.h"
 
 #include <QDebug>
-
-REGISTER_FORMAT(Format_Flac)
-
-
-/************************************************
- *
- ************************************************/
-QStringList Format_Flac::decoderArgs(const QString &fileName) const
-{
-    QStringList args;
-    args << "-c";
-    args << "-d";
-    args << "-s";
-    args << fileName;
-    args << "-";
-
-    return args;
-}
 
 
 /************************************************
@@ -210,8 +192,3 @@ void ConfigPage_Flac::write()
     writeWidget("Flac/Compression",  flacCompressionSlider);
     writeWidget("Flac/ReplayGain", flacGainCbx);
 }
-
-
-
-
-

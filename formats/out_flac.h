@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2012-2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,20 +24,21 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef OPUS_H
-#define OPUS_H
+#ifndef OUT_FLAC_H
+#define OUT_FLAC_H
 
 #include "outformat.h"
 #include "configdialog.h"
-#include "ui_opus_config.h"
+#include "ui_out_flac_config.h"
 
-class OutFormat_Opus: public OutFormat
+class OutFormat_Flac: public OutFormat
 {
 public:
-    OutFormat_Opus();
+    OutFormat_Flac();
+    bool check(QStringList *errors) const override;
 
-    virtual QString encoderProgramName() const override { return "opusenc"; }
-    virtual QString gainProgramName() const override { return ""; }
+    virtual QString encoderProgramName() const override { return "flac"; }
+    virtual QString gainProgramName() const override { return "metaflac"; }
 
     virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
     virtual QStringList gainArgs(const QStringList &files) const override;
@@ -52,14 +53,15 @@ public:
 };
 
 
-class ConfigPage_Opus: public EncoderConfigPage, private Ui::ConfigPage_Opus
+class ConfigPage_Flac: public EncoderConfigPage, private Ui::ConfigPage_Flac
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Opus(QWidget *parent = nullptr);
+    explicit ConfigPage_Flac(QWidget *parent = nullptr);
 
     virtual void load() override;
     virtual void write() override;
+
 };
 
-#endif // OPUS_H
+#endif // OUT_FLAC_H

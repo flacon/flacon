@@ -24,12 +24,12 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef AAC_H
-#define AAC_H
+#ifndef OUT_AAC_H
+#define OUT_AAC_H
 
 #include "outformat.h"
 #include "configdialog.h"
-#include "ui_aac_config.h"
+#include "ui_out_aac_config.h"
 
 class OutFormat_Aac: public OutFormat
 {
@@ -62,4 +62,4 @@ public:
 
 };
 
-#endif // AAC_H
+#endif // OUT_AAC_H

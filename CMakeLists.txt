@@ -93,17 +93,21 @@ set(HEADERS
     converter/copycover.h
     converter/resampler.h
 
-    formats/format.h
+    formats/informat.h
+    formats/in_ape.h
+    formats/in_flac.h
+    formats/in_tta.h
+    formats/in_wav.h
+    formats/in_wv.h
+
     formats/outformat.h
-    formats/aac.h
-    formats/flac.h
-    formats/mp3.h
-    formats/ogg.h
-    formats/wav.h
-    formats/wv.h
-    formats/opus.h
-    formats/ape.h
-    formats/tta.h
+    formats/out_aac.h
+    formats/out_flac.h
+    formats/out_mp3.h
+    formats/out_ogg.h
+    formats/out_opus.h
+    formats/out_wav.h
+    formats/out_wv.h
 )
 
 set(SOURCES
@@ -148,17 +152,21 @@ set(SOURCES
     converter/copycover.cpp
     converter/resampler.cpp
 
-    formats/format.cpp
+    formats/informat.cpp
+    formats/in_ape.cpp
+    formats/in_flac.cpp
+    formats/in_tta.cpp
+    formats/in_wav.cpp
+    formats/in_wv.cpp
+
     formats/outformat.cpp
-    formats/aac.cpp
-    formats/flac.cpp
-    formats/mp3.cpp
-    formats/ogg.cpp
-    formats/wav.cpp
-    formats/wv.cpp
-    formats/opus.cpp
-    formats/ape.cpp
-    formats/tta.cpp
+    formats/out_aac.cpp
+    formats/out_flac.cpp
+    formats/out_mp3.cpp
+    formats/out_ogg.cpp
+    formats/out_opus.cpp
+    formats/out_wav.cpp
+    formats/out_wv.cpp
 )
 
 if (APPLE)
@@ -167,20 +175,6 @@ if (APPLE)
     )
 endif()
 
-set (FORMS
-    gui/mainwindow.ui
-    gui/configdialog/configdialog.ui
-    gui/aboutdialog/aboutdialog.ui
-    gui/cuediskselectdialog/cuediskselectdialog.ui
-    gui/coverdialog/coverdialog.ui
-
-    formats/flac_config.ui
-    formats/aac_config.ui
-    formats/mp3_config.ui
-    formats/ogg_config.ui
-    formats/wv_config.ui
-    formats/opus_config.ui
-)
 
 set(LIBRARIES
 )

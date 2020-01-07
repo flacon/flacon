@@ -31,7 +31,7 @@
 #include "converter/converter.h"
 #include "outformat.h"
 #include "inputaudiofile.h"
-#include "formats/format.h"
+#include "formats/informat.h"
 #include "configdialog/configdialog.h"
 #include "aboutdialog/aboutdialog.h"
 #include "cuediskselectdialog/cuediskselectdialog.h"

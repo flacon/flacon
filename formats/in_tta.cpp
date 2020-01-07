@@ -24,29 +24,35 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef APE_H
-#define APE_H
+#include "in_tta.h"
+#include <QDebug>
 
-#include "format.h"
+REGISTER_FORMAT(Format_Tta)
 
-class Format_Ape: public AudioFormat
+
+/************************************************
+ *
+ ************************************************/
+QStringList Format_Tta::decoderArgs(const QString &fileName) const
 {
-public:
-    virtual QString name() const override { return "APE"; }
-    virtual QString ext() const override { return "ape"; }
-    virtual bool isInputFormat() const override { return true; }
+    QStringList args;
+    args << "-d";
+    args << fileName;
+    args << "-o" << "-";
 
-    virtual QByteArray magic() const override { return "MAC "; }
-    virtual uint magicOffset() const override { return 0; }
-
-
-    virtual QString decoderProgramName() const override { return "mac"; }
-    virtual QStringList decoderArgs(const QString &fileName) const override;
-    virtual QString filterDecoderStderr(const QString &stdErr) const override;
-
-    virtual bool isOutputFormat() const override { return false; }
+    return args;
+}
 
 
-};
+/************************************************
+ *
+ ************************************************/
+QString Format_Tta::filterDecoderStderr(const QString &stdErr) const
+{
 
-#endif // APE_H
+    int pos = stdErr.indexOf("Error:");
+    if (pos>-1)
+        return stdErr.mid(pos + 6).trimmed();
+
+    return "";
+}

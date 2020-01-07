@@ -24,12 +24,13 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef FORMAT_H
-#define FORMAT_H
+#ifndef INFORMAT_H
+#define INFORMAT_H
 
 #include <QList>
 #include <QStringList>
 #include <QByteArray>
+
 class QIODevice;
 
 class AudioFormat;
@@ -73,10 +74,8 @@ protected:
 };
 
 
-
-
 #define REGISTER_FORMAT(FORMAT) \
     static FORMAT static_##FORMAT##_Instance; \
     static bool is_##FORMAT##_loaded = AudioFormat::registerFormat(static_##FORMAT##_Instance);
 
-#endif // FORMAT_H
+#endif // INFORMAT_H

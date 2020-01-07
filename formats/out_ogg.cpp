@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "ogg.h"
+#include "out_ogg.h"
 #include "disk.h"
 #include "settings.h"
 #include <QDebug>

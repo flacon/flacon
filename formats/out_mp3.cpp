@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "mp3.h"
+#include "out_mp3.h"
 #include "settings.h"
 #include <QDebug>
 
@@ -263,10 +263,3 @@ void ConfigPage_Mp3::mp3PresetCbxCanged(int index)
     enable = (preset == "vbrQuality");
     mp3QualityBox->setEnabled(enable);
 }
-
-
-
-
-
-
-

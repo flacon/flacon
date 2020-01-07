@@ -25,7 +25,7 @@
 
 
 #include "types.h"
-#include "formats/format.h"
+#include "formats/informat.h"
 #include "settings.h"
 #include "inputaudiofile.h"
 #include "outformat.h"

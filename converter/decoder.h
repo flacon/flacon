@@ -32,7 +32,7 @@
 #include <QString>
 #include <QByteArray>
 #include "../cue.h"
-#include "../formats/format.h"
+#include "../formats/informat.h"
 
 class QIODevice;
 class QProcess;

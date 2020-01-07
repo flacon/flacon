@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2017
+ * Copyright: 2012-2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,39 +24,23 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "ape.h"
+#include "in_flac.h"
+#include <QDebug>
 
-REGISTER_FORMAT(Format_Ape)
+REGISTER_FORMAT(Format_Flac)
 
 
 /************************************************
  *
  ************************************************/
-QStringList Format_Ape::decoderArgs(const QString &fileName) const
+QStringList Format_Flac::decoderArgs(const QString &fileName) const
 {
     QStringList args;
+    args << "-c";
+    args << "-d";
+    args << "-s";
     args << fileName;
     args << "-";
-    args << "-d";
 
     return args;
-}
-
-
-/************************************************
- *
- ************************************************/
-QString Format_Ape::filterDecoderStderr(const QString &stdErr) const
-{
-    if (stdErr.startsWith("Progress:"))
-        return "";
-
-    if (stdErr.contains("-- Monkey's Audio Console Front End"))
-        return "";
-
-    if (stdErr.startsWith("Decompressing..."))
-        return "";
-
-    return stdErr;
-
 }

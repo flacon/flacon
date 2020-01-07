@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2017
+ * Copyright: 2012-2013
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,28 +24,23 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef TTA_H
-#define TTA_H
+#ifndef IN_WAV_H
+#define IN_WAV_H
 
-#include "format.h"
+#include "informat.h"
 
-class Format_Tta: public AudioFormat
+class Format_Wav: public AudioFormat
 {
 public:
-    virtual QString name() const override { return "TTA"; }
-    virtual QString ext() const override { return "tta"; }
-    virtual QByteArray magic() const override { return "TTA1"; }
-    virtual uint magicOffset() const override { return 0; }
-
-
+    virtual QString name() const override { return "WAV"; }
+    virtual QString ext() const override { return "wav"; }
     virtual bool isInputFormat() const override { return true; }
-    virtual QString decoderProgramName() const override { return "ttaenc"; }
+
+    virtual QString decoderProgramName() const override { return ""; }
     virtual QStringList decoderArgs(const QString &fileName) const override;
-    virtual QString filterDecoderStderr(const QString &stdErr) const override;
 
-    virtual bool isOutputFormat() const override { return false; }
-
-
+    virtual QByteArray magic() const override { return "RIFF"; }
+    virtual uint magicOffset() const override { return 0; }
 };
 
-#endif // TTA_H
+#endif // IN_WAV_H

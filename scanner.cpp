@@ -25,7 +25,7 @@
 
 
 #include "scanner.h"
-#include "formats/format.h"
+#include "formats/informat.h"
 #include "inputaudiofile.h"
 
 #include "project.h"

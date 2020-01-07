@@ -24,19 +24,8 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "wav.h"
-#include <QFile>
-
-REGISTER_FORMAT(Format_Wav)
-
-/************************************************
- *
- ************************************************/
-QStringList Format_Wav::decoderArgs(const QString &fileName) const
-{
-    Q_UNUSED(fileName);
-    return QStringList();
-}
+#include "out_wav.h"
+//#include <QFile>
 
 
 /************************************************
@@ -91,9 +80,3 @@ EncoderConfigPage *OutFormat_Wav::configPage(QWidget *parent) const
     Q_UNUSED(parent);
     return nullptr;
 }
-
-
-
-
-
-

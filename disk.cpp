@@ -29,7 +29,7 @@
 #include "project.h"
 #include "settings.h"
 #include "inputaudiofile.h"
-#include "formats/format.h"
+#include "formats/informat.h"
 #include "outformat.h"
 
 #include "assert.h"

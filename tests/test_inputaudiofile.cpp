@@ -26,7 +26,7 @@
 
 #include "testflacon.h"
 #include "tools.h"
-#include "../formats/format.h"
+#include "../formats/informat.h"
 #include "types.h"
 #include "../inputaudiofile.h"
 

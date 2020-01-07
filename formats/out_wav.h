@@ -24,12 +24,11 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef WAV_H
-#define WAV_H
+#ifndef OUT_WAV_H
+#define OUT_WAV_H
 
 #include "outformat.h"
-#include "format.h"
-#include "encoder.h"
+//#include "encoder.h"
 
 class OutFormat_Wav: public OutFormat
 {
@@ -53,19 +52,4 @@ public:
     virtual SampleRate    maxSampleRate()   const override { return SampleRate::Hz_768000; }
 };
 
-
-class Format_Wav: public AudioFormat
-{
-public:
-    virtual QString name() const override { return "WAV"; }
-    virtual QString ext() const override { return "wav"; }
-    virtual bool isInputFormat() const override { return true; }
-
-    virtual QString decoderProgramName() const override { return ""; }
-    virtual QStringList decoderArgs(const QString &fileName) const override;
-
-    virtual QByteArray magic() const override { return "RIFF"; }
-    virtual uint magicOffset() const override { return 0; }
-};
-
-#endif // WAV_H
+#endif // OUT_WAV_H
