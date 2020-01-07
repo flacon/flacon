@@ -149,10 +149,3 @@ bool OutFormat::check(QStringList *errors) const
 
     return res;
 }
-
-
-
-
-
-
-

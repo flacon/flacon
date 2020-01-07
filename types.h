@@ -134,7 +134,8 @@ enum class BitsPerSample
     AsSourcee =  0,
     Bit_16    = 16,
     Bit_24    = 24,
-    Bit_32    = 32
+    Bit_32    = 32,
+    Bit_64    = 64,
 };
 Q_DECLARE_METATYPE(BitsPerSample)
 
@@ -146,6 +147,8 @@ enum class SampleRate
     Hz_48000  =  48000,
     Hz_96000  =  96000,
     Hz_192000 = 192000,
+    Hz_384000 = 384000,
+    Hz_768000 = 768000,
 };
 Q_DECLARE_METATYPE(SampleRate)
 

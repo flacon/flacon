@@ -48,6 +48,9 @@ public:
 
     virtual bool hasConfigPage() const override { return false; }
 
+    // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
+    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_64; }
+    virtual SampleRate    maxSampleRate()   const override { return SampleRate::Hz_768000; }
 };
 
 

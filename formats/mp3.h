@@ -44,6 +44,10 @@ public:
 
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage *configPage(QWidget *parent = nullptr) const override;
+
+    // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
+    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_64; }
+    virtual SampleRate    maxSampleRate()   const override { return SampleRate::Hz_768000; }
 };
 
 

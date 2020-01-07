@@ -349,6 +349,55 @@ void createWavFile(const QString &fileName, const QString &header, const int dur
 /************************************************
  *
  ************************************************/
+class TestWavHeader: public WavHeader
+{
+public:
+    TestWavHeader(quint16 bitsPerSample, quint32 sampleRate, quint16 numChannels, uint durationSec)
+    {
+        mFormat = WavHeader::Format_PCM;
+        mNumChannels = numChannels;
+        mSampleRate = sampleRate;
+        mBitsPerSample = bitsPerSample;
+        mFmtSize = 16;
+        mByteRate = mSampleRate * mBitsPerSample / 8 * mNumChannels;
+        mBlockAlign = mBitsPerSample * mNumChannels / 8;
+
+        mDataStartPos = 12 + 8 + mFmtSize;
+        mDataSize = durationSec * mByteRate;
+
+        mFileSize = mDataStartPos + mDataSize;
+
+        mExtSize = 0;
+    }
+};
+
+
+/************************************************
+ *
+ ************************************************/
+void createWavFile(const QString &fileName, quint16 bitsPerSample, quint32 sampleRate, uint durationSec)
+{
+    TestWavHeader header(bitsPerSample, sampleRate, 2, durationSec);
+
+    QFile file(fileName);
+
+    if (file.exists() && file.size() != header.fileSize() + 8)
+        return;
+
+
+    if (!file.open(QFile::WriteOnly | QFile::Truncate))
+        QFAIL(QString("Can't create file '%1': %2").arg(fileName, file.errorString()).toLocal8Bit());
+
+
+    file.write(header.toByteArray());
+    writeTestWavData(&file, header.dataSize());
+    file.close();
+}
+
+
+/************************************************
+ *
+ ************************************************/
 void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
 {
     if (QFileInfo(outFileName).exists() && QFileInfo(outFileName).size() > 1024)
@@ -453,4 +502,3 @@ Disk *loadFromCue(const QString &cueFile)
     }
     return nullptr;
 }
-

@@ -56,8 +56,9 @@ public:
     virtual QString gainProgramName() const = 0;
     virtual QStringList gainArgs(const QStringList &files) const = 0;
 
-    virtual BitsPerSample maxBitPerSample() const { return BitsPerSample::Bit_32; }
-    virtual SampleRate    maxSampleRate() const { return SampleRate::Hz_192000; }
+    // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
+    virtual BitsPerSample maxBitPerSample() const = 0;
+    virtual SampleRate    maxSampleRate()   const = 0;
 
     virtual bool check(QStringList *errors) const;
 
