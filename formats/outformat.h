@@ -38,7 +38,6 @@ class OutFormat
 {
 public:
     static QList<OutFormat*> allFormats();
-    static OutFormat *currentFormat();
     static OutFormat * formatForId(const QString &id);
     virtual ~OutFormat() {}
 

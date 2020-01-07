@@ -69,22 +69,6 @@ QList<OutFormat *> OutFormat::allFormats()
 
 
 /************************************************
-
- ************************************************/
-OutFormat *OutFormat::currentFormat()
-{
-    QString formatId = Settings::i()->value(Settings::OutFiles_Format).toString();
-    foreach (OutFormat *format, allFormats())
-    {
-        if (format->id() == formatId)
-            return format;
-    }
-
-    return allFormats().first();
-}
-
-
-/************************************************
  *
  ************************************************/
 OutFormat *OutFormat::formatForId(const QString &id)

@@ -452,7 +452,7 @@ void MainWindow::setControlsEnable()
         actionDownloadTrackInfo->setEnabled(canDownload);
         actionScan->setEnabled(!mScanner);
         actionConfigure->setEnabled(true);
-        actionConfigureEncoder->setEnabled(OutFormat::currentFormat()->hasConfigPage());
+        actionConfigureEncoder->setEnabled(Settings::i()->outFormat()->hasConfigPage());
     }
 }
 
@@ -706,7 +706,7 @@ void MainWindow::configure()
  ************************************************/
 void MainWindow::configureEncoder()
 {
-    ConfigDialog::createAndShow(OutFormat::currentFormat(), this);
+    ConfigDialog::createAndShow(Settings::i()->outFormat(), this);
 }
 
 
