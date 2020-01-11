@@ -119,6 +119,9 @@ private slots:
     void testConvert();
     void testConvert_data();
 
+    void testLoadProfiles();
+    void testLoadProfiles_data();
+
 private:
     void writeTextFile( const QString &fileName, const QString &content);
     void writeTextFile( const QString &fileName, const QStringList &content);

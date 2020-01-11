@@ -136,12 +136,12 @@ QStringList OutFormat_Ogg::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Ogg::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Ogg/UseQuality",       true);
-    res.insert("Ogg/Quality",          7);
-    res.insert("Ogg/MinBitrate",       "");
-    res.insert("Ogg/NormBitrate",      "");
-    res.insert("Ogg/MaxBitrate",       "");
-    res.insert("Ogg/ReplayGain",       gainTypeToString(GainType::Disable));
+    res.insert("UseQuality",       true);
+    res.insert("Quality",          7);
+    res.insert("MinBitrate",       "");
+    res.insert("NormBitrate",      "");
+    res.insert("MaxBitrate",       "");
+    res.insert("ReplayGain",       gainTypeToString(GainType::Disable));
     return res;
 }
 

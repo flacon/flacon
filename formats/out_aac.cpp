@@ -123,9 +123,9 @@ QStringList OutFormat_Aac::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Aac::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Aac/UseQuality",  true);
-    res.insert("Aac/Quality",   100);
-    res.insert("Aac/Bitrate", 256);
+    res.insert("UseQuality",  true);
+    res.insert("Quality",   100);
+    res.insert("Bitrate", 256);
     return res;
 }
 

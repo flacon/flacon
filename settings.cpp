@@ -53,6 +53,8 @@
 
 #endif
 
+#define PROFILES_PREFIX "Profiles/"
+
 QString Settings::mFileName;
 Settings *Settings::mInstance = nullptr;
 
@@ -260,6 +262,22 @@ QVariant Settings::value(Key key, const QVariant &defaultValue) const
 QVariant Settings::value(const QString &key, const QVariant &defaultValue) const
 {
     return QSettings::value(key, defaultValue);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QStringList Settings::groups(const QString &parentGroup) const
+{
+    QStringList res;
+    for (const QString &key: allKeys()) {
+        if (key.startsWith(parentGroup)) {
+            res << key.section("/", 1, 1);
+        }
+    }
+    res.removeDuplicates();
+    return res;
 }
 
 
@@ -501,5 +519,73 @@ void Settings::setDefaultValue(const QString &key, const QVariant &defaultValue)
 }
 
 
+/************************************************
+
+ ************************************************/
+Profiles Settings::profiles()
+{
+    if (mProfiles.isEmpty()) {
+        loadProfiles();
+    }
+
+    return mProfiles;
+}
 
 
+/************************************************
+ * Added on 6.0.0 release, remove after 8.0.0 release
+ ************************************************/
+QVariant oldFormatValue(Settings *settings, QString formatId, QString key)
+{
+    if (formatId == "FLAC") return settings->value("Flac/" + key);
+    if (formatId == "AAC" ) return settings->value("Aac/" + key);
+    if (formatId == "MP3" ) return settings->value("Mp3/" + key);
+    if (formatId == "OGG" ) return settings->value("Ogg/" + key);
+    if (formatId == "OPUS") return settings->value("Opus/" + key);
+    if (formatId == "WV"  ) return settings->value("WV/" + key);
+    return QVariant();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::loadProfiles()
+{
+    QList<OutFormat*> formats = OutFormat::allFormats();
+
+    allKeys();
+    beginGroup(PROFILES_PREFIX);
+    for (QString id: childGroups()) {
+
+        Profile profile(id);
+        profile.load(*this, id);
+
+        if (profile.isValid())
+        {
+            formats.removeAll(profile.format());
+            mProfiles << profile;
+        }
+    }
+    endGroup();
+
+    for (OutFormat *fmt: formats) {
+
+        if (!fmt->hasConfigPage())
+            continue;
+
+        Profile profile(fmt->id());
+        profile.setName(fmt->name());
+        profile.setFormatId(fmt->id());
+        auto params = fmt->defaultParameters();
+        for (auto i = params.constBegin(); i != params.constEnd(); ++i) {
+            QVariant v = oldFormatValue(this, fmt->id(), i.key());
+            if (!v.isNull())
+                profile.setValue(i.key(), v);
+            else
+                profile.setValue(i.key(), i.value());
+        }
+
+        mProfiles << profile;
+    }
+}

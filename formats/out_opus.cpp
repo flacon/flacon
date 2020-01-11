@@ -108,8 +108,8 @@ QStringList OutFormat_Opus::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Opus::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Opus/BitrateType",      "VBR");
-    res.insert("Opus/Bitrate",          96);
+    res.insert("BitrateType",      "VBR");
+    res.insert("Bitrate",          96);
     return res;
 }
 

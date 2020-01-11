@@ -118,8 +118,8 @@ QStringList OutFormat_Wv::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Wv::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("WV/Compression",       1);
-    res.insert("WV/ReplayGain",        gainTypeToString(GainType::Disable));
+    res.insert("Compression",       1);
+    res.insert("ReplayGain",        gainTypeToString(GainType::Disable));
     return res;
 }
 

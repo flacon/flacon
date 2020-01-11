@@ -145,8 +145,8 @@ QStringList OutFormat_Flac::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Flac::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Flac/Compression",  5);
-    res.insert("Flac/ReplayGain",   gainTypeToString(GainType::Disable));
+    res.insert("Compression",  5);
+    res.insert("ReplayGain",   gainTypeToString(GainType::Disable));
     return res;
 }
 

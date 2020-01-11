@@ -28,7 +28,6 @@
 #define OUT_WAV_H
 
 #include "outformat.h"
-//#include "encoder.h"
 
 class OutFormat_Wav: public OutFormat
 {

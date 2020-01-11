@@ -163,10 +163,10 @@ QStringList OutFormat_Mp3::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Mp3::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Mp3/Preset",           "vbrStandardFast");
-    res.insert("Mp3/Bitrate",          320);
-    res.insert("Mp3/Quality",          4);
-    res.insert("Mp3/ReplayGain",       gainTypeToString(GainType::Disable));
+    res.insert("Preset",           "vbrStandardFast");
+    res.insert("Bitrate",          320);
+    res.insert("Quality",          4);
+    res.insert("ReplayGain",       gainTypeToString(GainType::Disable));
     return res;
 }
 

@@ -30,6 +30,7 @@
 #include <QSettings>
 #include <QSet>
 #include "types.h"
+#include "profiles.h"
 
 class OutFormat;
 
@@ -120,23 +121,28 @@ public:
     CoverMode coverMode() const;
     int coverImageSize() const;
 
+    Profiles profiles();
+
 signals:
     void changed();
 
-public slots:
-private:
+protected:
     explicit Settings(const QString &organization, const QString &application);
     explicit Settings(const QString &fileName);
     virtual ~Settings();
 
+private:
     void init();
     void setDefaultValue(const QString &key, const QVariant &defaultValue);
     void setDefaultValue(Key key, const QVariant &defaultValue);
     QString keyToString(Key key) const;
+    QStringList groups(const QString &parentGroup) const;
+    void loadProfiles();
 
     QSet<QString> mPrograms;
     static QString mFileName;
     static Settings *mInstance;
+    Profiles mProfiles;
 };
 
 #endif // SETTINGS_H

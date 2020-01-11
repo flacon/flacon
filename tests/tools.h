@@ -31,6 +31,7 @@
 #include <QStringList>
 #include <QVector>
 #include "wavheader.h"
+#include "settings.h"
 
 class QIODevice;
 class Disk;
@@ -82,6 +83,13 @@ private:
     QString mFileName;
     QString mWavFile;
     QVector<TestCueTrack> mTracks;
+};
+
+class TestSettings: public Settings
+{
+    Q_OBJECT
+public:
+    TestSettings (const QString &fileName): Settings(fileName)  { }
 };
 
 

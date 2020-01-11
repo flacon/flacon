@@ -1,0 +1,42 @@
+[Profiles/AAC]
+    Format=AAC
+    Name=AAC
+    Bitrate=256
+    Quality=100
+    UseQuality=true
+
+[Profiles/FLAC]
+    Format = FLAC
+    Name = Flac
+    Compression=5
+    ReplayGain=Disable
+
+[Profiles/MP3]
+    Format = MP3
+    Name = MP3
+    Bitrate=320
+    Preset=vbrStandardFast
+    Quality=4
+    ReplayGain=Disable
+
+[Profiles/OGG]
+    Format = OGG
+    Name = OGG
+    MaxBitrate=
+    MinBitrate=
+    NormBitrate=
+    Quality=7
+    ReplayGain=Disable
+    UseQuality=true
+
+[Profiles/OPUS]
+    Name = Opus
+    Format = OPUS
+    Bitrate=96
+    BitrateType=VBR
+
+[Profiles/WV]
+    Name = WavPack
+    Format = WV
+    Compression=1
+    ReplayGain=Disable

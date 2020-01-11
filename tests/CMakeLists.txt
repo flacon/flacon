@@ -48,6 +48,7 @@ set(TEST_SOURCES
     test_findaudiofile.cpp
     test_outformatencoderargs.cpp
     test_patternexpander.cpp
+    test_profiles.cpp
 )
 
 
