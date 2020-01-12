@@ -58,7 +58,7 @@ public:
     explicit ConfigPage_Mp3(QWidget *parent = nullptr);
 
     virtual void load() override;
-    virtual void write() override;
+    virtual void save() override;
 
 private slots:
     void mp3PresetCbxCanged(int index);

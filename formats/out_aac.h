@@ -58,7 +58,7 @@ public:
     explicit ConfigPage_Acc(QWidget *parent = nullptr);
 
     virtual void load() override;
-    virtual void write() override;
+    virtual void save() override;
 
 };
 

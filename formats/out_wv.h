@@ -58,7 +58,7 @@ public:
     explicit ConfigPage_Wv(QWidget *parent = nullptr);
 
     virtual void load() override;
-    virtual void write() override;
+    virtual void save() override;
 };
 
 #endif // OUT_WV_H

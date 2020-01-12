@@ -187,8 +187,8 @@ void ConfigPage_Flac::load()
 /************************************************
 
  ************************************************/
-void ConfigPage_Flac::write()
+void ConfigPage_Flac::save()
 {
-    writeWidget("Flac/Compression",  flacCompressionSlider);
-    writeWidget("Flac/ReplayGain", flacGainCbx);
+    saveWidget("Flac/Compression",  flacCompressionSlider);
+    saveWidget("Flac/ReplayGain", flacGainCbx);
 }

@@ -241,12 +241,12 @@ void ConfigPage_Mp3::load()
 /************************************************
 
  ************************************************/
-void ConfigPage_Mp3::write()
+void ConfigPage_Mp3::save()
 {
-    writeWidget("Mp3/Preset",     mp3PresetCbx);
-    writeWidget("Mp3/Bitrate",    mp3BitrateCbx);
-    writeWidget("Mp3/Quality",    mp3QualitySpin);
-    writeWidget("Mp3/ReplayGain", mp3GainCbx);
+    saveWidget("Mp3/Preset",     mp3PresetCbx);
+    saveWidget("Mp3/Bitrate",    mp3BitrateCbx);
+    saveWidget("Mp3/Quality",    mp3QualitySpin);
+    saveWidget("Mp3/ReplayGain", mp3GainCbx);
 }
 
 

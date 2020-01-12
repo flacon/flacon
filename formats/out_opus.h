@@ -59,7 +59,7 @@ public:
     explicit ConfigPage_Opus(QWidget *parent = nullptr);
 
     virtual void load() override;
-    virtual void write() override;
+    virtual void save() override;
 };
 
 #endif // OUT_OPUS_H

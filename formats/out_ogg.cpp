@@ -198,14 +198,14 @@ void ConfigPage_Ogg::load()
 /************************************************
 
  ************************************************/
-void ConfigPage_Ogg::write()
+void ConfigPage_Ogg::save()
 {
-    writeWidget("Ogg/UseQuality",  oggUseQualityCheck);
-    writeWidget("Ogg/Quality",     oggQualitySpin);
-    writeWidget("Ogg/MinBitrate",  oggMinBitrateCbx);
-    writeWidget("Ogg/NormBitrate", oggNormBitrateCbx);
-    writeWidget("Ogg/MaxBitrate",  oggMaxBitrateCbx);
-    writeWidget("Ogg/ReplayGain",  oggGainCbx);
+    saveWidget("Ogg/UseQuality",  oggUseQualityCheck);
+    saveWidget("Ogg/Quality",     oggQualitySpin);
+    saveWidget("Ogg/MinBitrate",  oggMinBitrateCbx);
+    saveWidget("Ogg/NormBitrate", oggNormBitrateCbx);
+    saveWidget("Ogg/MaxBitrate",  oggMaxBitrateCbx);
+    saveWidget("Ogg/ReplayGain",  oggGainCbx);
 }
 
 

@@ -167,9 +167,9 @@ void ConfigPage_Acc::load()
 /************************************************
 
  ************************************************/
-void ConfigPage_Acc::write()
+void ConfigPage_Acc::save()
 {
-    writeWidget("Aac/UseQuality", aacUseQualityCheck);
-    writeWidget("Aac/Quality",    aacQualitySpin);
-    writeWidget("Aac/Bitrate",    aacBitrateCbx);
+    saveWidget("Aac/UseQuality", aacUseQualityCheck);
+    saveWidget("Aac/Quality",    aacQualitySpin);
+    saveWidget("Aac/Bitrate",    aacBitrateCbx);
 }

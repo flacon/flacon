@@ -283,7 +283,7 @@ void ConfigDialog::done(int res)
 
     if (res)
     {
-        write();
+        save();
         Settings::i()->sync();
     }
 
@@ -383,7 +383,7 @@ void ConfigDialog::load()
 /************************************************
 
  ************************************************/
-void ConfigDialog::write()
+void ConfigDialog::save()
 {
     Controls::saveToSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
     Controls::saveToSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
@@ -399,7 +399,7 @@ void ConfigDialog::write()
     Controls::saveToSettings(coverResizeSpinBox, Settings::Cover_Size);
 
     foreach(EncoderConfigPage *page, mEncodersPages)
-        page->write();
+        page->save();
 
     foreach(ProgramEdit *edit, mProgramEdits)
         Settings::i()->setValue("Programs/" + edit->programName(), edit->text());
@@ -558,7 +558,7 @@ void EncoderConfigPage::loadWidget(const QString &key, QSlider *widget)
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QSlider *widget)
+void EncoderConfigPage::saveWidget(const QString &key, QSlider *widget)
 {
     Settings::i()->setValue(key, widget->value());
 }
@@ -576,7 +576,7 @@ void EncoderConfigPage::loadWidget(const QString &key, QLineEdit *widget)
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QLineEdit *widget)
+void EncoderConfigPage::saveWidget(const QString &key, QLineEdit *widget)
 {
     Settings::i()->setValue(key, widget->text());
 }
@@ -594,7 +594,7 @@ void EncoderConfigPage::loadWidget(const QString &key, QCheckBox *widget)
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QCheckBox *widget)
+void EncoderConfigPage::saveWidget(const QString &key, QCheckBox *widget)
 {
     Settings::i()->setValue(key, widget->isChecked());
 }
@@ -615,7 +615,7 @@ void EncoderConfigPage::loadWidget(const QString &key, QSpinBox *widget)
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QSpinBox *widget)
+void EncoderConfigPage::saveWidget(const QString &key, QSpinBox *widget)
 {
     Settings::i()->setValue(key, widget->value());
 }
@@ -637,7 +637,7 @@ void EncoderConfigPage::loadWidget(const QString &key, QDoubleSpinBox *widget)
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QDoubleSpinBox *widget)
+void EncoderConfigPage::saveWidget(const QString &key, QDoubleSpinBox *widget)
 {
     Settings::i()->setValue(key, widget->value());
 }
@@ -656,7 +656,7 @@ void EncoderConfigPage::loadWidget(const QString &key, QComboBox *widget)
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QComboBox *widget)
+void EncoderConfigPage::saveWidget(const QString &key, QComboBox *widget)
 {
     QVariant data = widget->itemData(widget->currentIndex());
     Settings::i()->setValue(key, data);

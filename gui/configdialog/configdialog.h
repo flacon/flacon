@@ -60,7 +60,7 @@ private:
     void initUpdatePage();
 
     void load();
-    void write();
+    void save();
 
     CoverMode coverMode() const;
     void setCoverMode(CoverMode mode);
@@ -81,7 +81,7 @@ public:
     virtual ~EncoderConfigPage();
 
     virtual void load() = 0;
-    virtual void write() = 0;
+    virtual void save() = 0;
 
     static QString losslessCompressionToolTip(int min, int max);
     static void setLosslessToolTip(QSlider *widget);
@@ -97,22 +97,22 @@ public:
 
 
     static void loadWidget(const QString &key, QSlider *widget);
-    static void writeWidget(const QString &key, QSlider *widget);
+    static void saveWidget(const QString &key, QSlider *widget);
 
     static void loadWidget(const QString &key, QLineEdit *widget);
-    static void writeWidget(const QString &key, QLineEdit *widget);
+    static void saveWidget(const QString &key, QLineEdit *widget);
 
     static void loadWidget(const QString &key, QCheckBox *widget);
-    static void writeWidget(const QString &key, QCheckBox *widget);
+    static void saveWidget(const QString &key, QCheckBox *widget);
 
     static void loadWidget(const QString &key, QSpinBox *widget);
-    static void writeWidget(const QString &key, QSpinBox *widget);
+    static void saveWidget(const QString &key, QSpinBox *widget);
 
     static void loadWidget(const QString &key, QDoubleSpinBox *widget);
-    static void writeWidget(const QString &key, QDoubleSpinBox *widget);
+    static void saveWidget(const QString &key, QDoubleSpinBox *widget);
 
     static void loadWidget(const QString &key, QComboBox *widget);
-    static void writeWidget(const QString &key, QComboBox *widget);
+    static void saveWidget(const QString &key, QComboBox *widget);
 
     static QString toolTipCss();
 };

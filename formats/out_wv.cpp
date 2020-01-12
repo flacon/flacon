@@ -160,8 +160,8 @@ void ConfigPage_Wv::load()
 /************************************************
 
  ************************************************/
-void ConfigPage_Wv::write()
+void ConfigPage_Wv::save()
 {
-    writeWidget("WV/Compression", wvCompressionSlider);
-    writeWidget("WV/ReplayGain",  wvGainCbx);
+    saveWidget("WV/Compression", wvCompressionSlider);
+    saveWidget("WV/ReplayGain",  wvGainCbx);
 }

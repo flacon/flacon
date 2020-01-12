@@ -156,8 +156,8 @@ void ConfigPage_Opus::load()
 /************************************************
 
  ************************************************/
-void ConfigPage_Opus::write()
+void ConfigPage_Opus::save()
 {
-    writeWidget("Opus/BitrateType",  opusBitrateTypeCbx);
-    writeWidget("Opus/Bitrate",      opusBitrateSlider);
+    saveWidget("Opus/BitrateType",  opusBitrateTypeCbx);
+    saveWidget("Opus/Bitrate",      opusBitrateSlider);
 }
