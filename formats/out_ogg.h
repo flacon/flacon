@@ -51,7 +51,7 @@ public:
 };
 
 
-class ConfigPage_Ogg: public EncoderConfigPage, private Ui::ConfigPage_Ogg
+class ConfigPage_Ogg: public EncoderConfigPage, private Ui::oggConfigPage
 {
     Q_OBJECT
 public:

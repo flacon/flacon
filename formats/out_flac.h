@@ -53,7 +53,7 @@ public:
 };
 
 
-class ConfigPage_Flac: public EncoderConfigPage, private Ui::ConfigPage_Flac
+class ConfigPage_Flac: public EncoderConfigPage, private Ui::flacConfigPage
 {
     Q_OBJECT
 public:

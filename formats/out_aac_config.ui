@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ConfigPage_Aac</class>
+ <class>aacConfigPage</class>
  <widget class="QWidget" name="aacConfigPage">
   <property name="geometry">
    <rect>

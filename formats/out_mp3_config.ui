@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ConfigPage_Mp3</class>
+ <class>mp3ConfigPage</class>
  <widget class="QWidget" name="mp3ConfigPage">
   <property name="geometry">
    <rect>

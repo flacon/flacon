@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ConfigPage_Wv</class>
+ <class>wvConfigPage</class>
  <widget class="QWidget" name="wvConfigPage">
   <property name="geometry">
    <rect>

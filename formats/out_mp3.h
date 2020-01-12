@@ -51,7 +51,7 @@ public:
 };
 
 
-class ConfigPage_Mp3: public EncoderConfigPage, private Ui::ConfigPage_Mp3
+class ConfigPage_Mp3: public EncoderConfigPage, private Ui::mp3ConfigPage
 {
     Q_OBJECT
 public:

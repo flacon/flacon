@@ -51,7 +51,7 @@ public:
 };
 
 
-class ConfigPage_Acc: public EncoderConfigPage, private Ui::ConfigPage_Aac
+class ConfigPage_Acc: public EncoderConfigPage, private Ui::aacConfigPage
 {
     Q_OBJECT
 public:

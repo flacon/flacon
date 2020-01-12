@@ -51,7 +51,7 @@ public:
 };
 
 
-class ConfigPage_Wv: public EncoderConfigPage, private Ui::ConfigPage_Wv
+class ConfigPage_Wv: public EncoderConfigPage, private Ui::wvConfigPage
 {
     Q_OBJECT
 public:

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ConfigPage_Flac</class>
+ <class>flacConfigPage</class>
  <widget class="QWidget" name="flacConfigPage">
   <property name="geometry">
    <rect>
