@@ -45,7 +45,7 @@ public:
     QString id() const { return mId; }
 
     QString name() const { return mName; }
-    void setName(const QString value);
+    void setName(const QString &value);
 
     QString formatId() const { return mFormatId; }
     void setFormatId(QString formatId);
@@ -56,8 +56,8 @@ public:
     OutFormat *format() const;
     bool isValid() const noexcept;
 
-    void load(QSettings &settings, QString group);
-    void save(QSettings &settings, QString group);
+    void load(QSettings &settings, const QString &group);
+    void save(QSettings &settings, const QString &group) const;
 
 private:
     QString mId;
@@ -67,5 +67,17 @@ private:
 
 };
 
-typedef QVector<Profile> Profiles;
+class Profiles: public QVector<Profile>
+{
+public:
+//    inline Profiles() Q_DECL_NOTHROW :    QVector<Profile>() { }
+//    explicit Profiles(int size):          QVector<Profile>(size) {}
+//    Profiles(int size, const Profile &t): QVector<Profile>(size, t) {}
+//    inline Profiles(const Profiles &v):   QVector<Profile>(v) {}
+//    const Profile &find(const QString id) const;
+//          Profile &find(const QString id);
+
+    //int indexOf(const Profile &p, int from = 0) const;
+    int indexOf(const QString &id, int from = 0) const;
+};
 #endif // PROFILES_H

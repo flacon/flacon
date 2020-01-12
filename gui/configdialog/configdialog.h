@@ -33,6 +33,7 @@
 class OutFormat;
 class EncoderConfigPage;
 class ProgramEdit;
+class QListWidgetItem;
 
 class ConfigDialog : public QDialog, private Ui::ConfigDialog
 {
@@ -48,6 +49,9 @@ public slots:
 
     void done(int res);
     void tmpDirShowDialog();
+
+private slots:
+    void profileListSelected(QListWidgetItem *current, QListWidgetItem *previous);
 
 private:
     explicit ConfigDialog(QWidget *parent = nullptr);
@@ -67,8 +71,8 @@ private:
 
     void updateLastUpdateLbl();
 
-    QList<EncoderConfigPage*> mEncodersPages;
     QList<ProgramEdit*> mProgramEdits;
+    Profiles mProfiles;
 };
 
 #endif // CONFIGDIALOG_H

@@ -43,7 +43,7 @@ public:
     virtual QStringList gainArgs(const QStringList &files) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(QWidget *parent = nullptr) const override;
+    EncoderConfigPage *configPage(Profile *profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
@@ -55,7 +55,7 @@ class ConfigPage_Ogg: public EncoderConfigPage, private Ui::oggConfigPage
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Ogg(QWidget *parent = nullptr);
+    explicit ConfigPage_Ogg(Profile *profile, QWidget *parent = nullptr);
 
     virtual void load() override;
     virtual void save() override;

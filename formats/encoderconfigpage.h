@@ -36,13 +36,13 @@ class QDoubleSpinBox;
 class QComboBox;
 class QLineEdit;
 class QCheckBox;
-
+class Profile;
 
 class EncoderConfigPage: public QWidget
 {
     Q_OBJECT
 public:
-    explicit EncoderConfigPage(QWidget *parent = nullptr);
+    explicit EncoderConfigPage(Profile *profile, QWidget *parent = nullptr);
     virtual ~EncoderConfigPage();
 
     virtual void load() = 0;
@@ -80,6 +80,11 @@ public:
     static void saveWidget(const QString &key, QComboBox *widget);
 
     static QString toolTipCss();
+
+    Profile *profile() const { return mProfile; }
+
+private:
+    Profile *mProfile;
 };
 
 #endif // ENCODERCONFIGPAGE_H

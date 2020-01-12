@@ -36,6 +36,7 @@
 #include "updater/updater.h"
 #endif
 
+static const int PROFILE_ID_ROLE = Qt::UserRole;
 
 /************************************************
 
@@ -113,8 +114,12 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     connect(perTrackCueFormatBtn, &OutPatternButton::fullPaternSelected,
             [this](const QString &pattern){ perTrackCueFormatEdit->lineEdit()->setText(pattern);});
 
+    connect(profilesList, &QListWidget::currentItemChanged,
+            this, &ConfigDialog::profileListSelected);
 
     perTrackCueFormatBtn->setIcon(Icon("pattern-button"));
+
+    profileListSelected(profilesList->currentItem(), nullptr);
 }
 
 
@@ -161,27 +166,6 @@ void ConfigDialog::initGeneralPage()
     sampleRateComboBox->addItem(tr("96000 Hz",       "Item in combobox"), int(SampleRate::Hz_96000));
     sampleRateComboBox->addItem(tr("192000 Hz",      "Item in combobox"), int(SampleRate::Hz_192000));
 
-}
-
-
-/************************************************
-
- ************************************************/
-void ConfigDialog::initFormatPages()
-{
-    int n = 1;
-    foreach(OutFormat *format, OutFormat::allFormats())
-    {
-        EncoderConfigPage *page = format->configPage(this);
-        if (!page)
-            continue;
-
-        mEncodersPages << page;
-
-        page->setObjectName(format->id());
-        pages->insertTab(n, page, format->name());
-        n++;
-    }
 }
 
 
@@ -236,6 +220,38 @@ void ConfigDialog::initUpdatePage()
 }
 #endif
 
+
+/************************************************
+ *
+ ************************************************/
+void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem *previous)
+{
+    //qDebug() << "previous" << (previous ? previous->text() : "NULL");
+    //qDebug() << "current " << (current ? current->text() : "NULL");
+    if (mProfileWidget) {
+        QString id = mProfileWidget->property("PROFILE_ID").toString();
+
+        int n = mProfiles.indexOf(id);
+        if (n>=0) {
+            Profile &profile = mProfiles.at(n);
+        }
+    }
+
+    if (!current)
+        return;
+
+    delete mProfileWidget;
+    mProfileWidget = nullptr;
+
+    int n = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());
+    if (n<0)
+        return;
+
+    const Profile &profile = mProfiles.at(n);
+    mProfileWidget = profile.configPage(profileParent);
+    mProfileWidget->setProperty("PROFILE_ID", profile.id());
+    mProfileWidget->show();
+}
 /************************************************
 
  ************************************************/

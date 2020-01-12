@@ -33,6 +33,7 @@
 #include "types.h"
 
 class EncoderConfigPage;
+class Profile;
 
 class OutFormat
 {
@@ -62,7 +63,7 @@ public:
     virtual bool check(QStringList *errors) const;
 
     virtual QHash<QString, QVariant> defaultParameters() const = 0;
-    virtual EncoderConfigPage *configPage(QWidget *parent = nullptr) const = 0;
+    virtual EncoderConfigPage *configPage(Profile *profile, QWidget *parent) const = 0;
     virtual bool hasConfigPage() const { return true; }
 
 
@@ -74,9 +75,5 @@ protected:
 
     bool checkProgram(const QString &program, QStringList *errors) const;
 };
-
-
-
-
 
 #endif // OUTFORMAT_H

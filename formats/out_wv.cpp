@@ -127,17 +127,17 @@ QHash<QString, QVariant> OutFormat_Wv::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Wv::configPage(QWidget *parent) const
+EncoderConfigPage *OutFormat_Wv::configPage(Profile *profile, QWidget *parent) const
 {
-    return new ConfigPage_Wv(parent);
+    return new ConfigPage_Wv(profile, parent);
 }
 
 
 /************************************************
 
  ************************************************/
-ConfigPage_Wv::ConfigPage_Wv(QWidget *parent):
-    EncoderConfigPage(parent)
+ConfigPage_Wv::ConfigPage_Wv(Profile *profile, QWidget *parent):
+    EncoderConfigPage(profile, parent)
 {
     setupUi(this);
 

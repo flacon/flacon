@@ -75,7 +75,7 @@ Profile &Profile::operator =(const Profile &other)
 /************************************************
  *
  ************************************************/
-void Profile::setName(const QString value)
+void Profile::setName(const QString &value)
 {
     mName = value;
 }
@@ -134,7 +134,7 @@ bool Profile::isValid() const noexcept
 /************************************************
  *
  ************************************************/
-void Profile::load(QSettings &settings, QString group)
+void Profile::load(QSettings &settings, const QString &group)
 {
     settings.beginGroup(group);
     for (QString key: settings.allKeys()) {
@@ -163,7 +163,7 @@ void Profile::load(QSettings &settings, QString group)
 /************************************************
  *
  ************************************************/
-void Profile::save(QSettings &settings, QString group)
+void Profile::save(QSettings &settings, const QString &group) const
 {
     settings.beginGroup(group);
     settings.setValue("Name", name());
@@ -173,4 +173,16 @@ void Profile::save(QSettings &settings, QString group)
         settings.setValue(i.key(), i.value());
     }
     settings.endGroup();
+}
+
+/************************************************
+ *
+ ************************************************/
+int Profiles::indexOf(const QString &id, int from) const
+{
+    for (int i=from; i<count(); ++i) {
+        if (at(i).id() == id)
+            return i;
+    }
+    return -1;
 }

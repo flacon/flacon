@@ -149,17 +149,17 @@ QHash<QString, QVariant> OutFormat_Ogg::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Ogg::configPage(QWidget *parent) const
+EncoderConfigPage *OutFormat_Ogg::configPage(Profile *profile, QWidget *parent) const
 {
-    return new ConfigPage_Ogg(parent);
+    return new ConfigPage_Ogg(profile, parent);
 }
 
 
 /************************************************
 
  ************************************************/
-ConfigPage_Ogg::ConfigPage_Ogg(QWidget *parent):
-    EncoderConfigPage(parent)
+ConfigPage_Ogg::ConfigPage_Ogg(Profile *profile, QWidget *parent):
+    EncoderConfigPage(profile, parent)
 {
     setupUi(this);
 

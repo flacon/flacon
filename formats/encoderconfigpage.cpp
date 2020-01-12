@@ -36,8 +36,9 @@
 /************************************************
 
  ************************************************/
-EncoderConfigPage::EncoderConfigPage(QWidget *parent):
-    QWidget(parent)
+EncoderConfigPage::EncoderConfigPage(Profile *profile, QWidget *parent):
+    QWidget(parent),
+    mProfile(profile)
 {
 }
 

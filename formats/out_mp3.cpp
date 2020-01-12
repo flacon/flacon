@@ -174,17 +174,17 @@ QHash<QString, QVariant> OutFormat_Mp3::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Mp3::configPage(QWidget *parent) const
+EncoderConfigPage *OutFormat_Mp3::configPage(Profile *profile, QWidget *parent) const
 {
-    return new ConfigPage_Mp3(parent);
+    return new ConfigPage_Mp3(profile, parent);
 }
 
 
 /************************************************
 
  ************************************************/
-ConfigPage_Mp3::ConfigPage_Mp3(QWidget *parent):
-    EncoderConfigPage(parent)
+ConfigPage_Mp3::ConfigPage_Mp3(Profile *profile, QWidget *parent):
+    EncoderConfigPage(profile, parent)
 {
     setupUi(this);
 
