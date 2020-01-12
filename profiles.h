@@ -37,6 +37,7 @@ class QSettings;
 class Profile
 {
 public:
+    Profile();
     explicit Profile(const QString &id);
     Profile(const Profile &other);
     Profile &operator =(const Profile &other);

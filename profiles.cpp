@@ -33,6 +33,14 @@
 /************************************************
  *
  ************************************************/
+Profile::Profile()
+{
+}
+
+
+/************************************************
+ *
+ ************************************************/
 Profile::Profile(const QString &id):
     mId(id)
 {
@@ -118,7 +126,8 @@ OutFormat *Profile::format() const
  ************************************************/
 bool Profile::isValid() const noexcept
 {
-    return format() != nullptr;
+    return !mId.isEmpty() &&
+            format() != nullptr;
 }
 
 
