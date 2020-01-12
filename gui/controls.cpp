@@ -38,6 +38,7 @@
 #include <QApplication>
 #include <QCompleter>
 #include <QStringListModel>
+#include <QCheckBox>
 
 
 /************************************************
@@ -686,4 +687,124 @@ void ErrorBox::addMessage(const QString &message)
     QStringList msgs = mMessgaes;
     msgs << message;
     this->setMessages(msgs);
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::loadFromSettings(QSlider *widget, Settings::Key key)
+{
+    bool ok;
+    int value = Settings::i()->value(key).toInt(&ok);
+    if (ok)
+        widget->setValue(value);
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::saveToSettings(const QSlider *widget, Settings::Key key)
+{
+    Settings::i()->setValue(key, widget->value());
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::loadFromSettings(QLineEdit *widget, Settings::Key key)
+{
+    widget->setText(Settings::i()->value(key).toString());
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::saveToSettings(const QLineEdit *widget, Settings::Key key)
+{
+    Settings::i()->setValue(key, widget->text());
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::loadFromSettings(QCheckBox *widget, Settings::Key key)
+{
+    widget->setChecked(Settings::i()->value(key).toBool());
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::saveToSettings(const QCheckBox *widget, Settings::Key key)
+{
+    Settings::i()->setValue(key, widget->isChecked());
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::loadFromSettings(QSpinBox *widget, Settings::Key key)
+{
+    bool ok;
+    int value = Settings::i()->value(key).toInt(&ok);
+    if (ok)
+        widget->setValue(value);
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::saveToSettings(const QSpinBox *widget, Settings::Key key)
+{
+    Settings::i()->setValue(key, widget->value());
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::loadFromSettings(QDoubleSpinBox *widget, Settings::Key key)
+{
+    bool ok;
+    int value = Settings::i()->value(key).toDouble(&ok);
+    if (ok)
+        widget->setValue(value);
+
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::saveToSettings(const QDoubleSpinBox *widget, Settings::Key key)
+{
+    Settings::i()->setValue(key, widget->value());
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::loadFromSettings(QComboBox *widget, Settings::Key key)
+{
+    int n = qMax(0, widget->findData(Settings::i()->value(key)));
+    widget->setCurrentIndex(n);
+}
+
+
+/************************************************
+
+ ************************************************/
+void Controls::saveToSettings(const QComboBox *widget, Settings::Key key)
+{
+    QVariant data = widget->itemData(widget->currentIndex());
+    Settings::i()->setValue(key, data);
 }

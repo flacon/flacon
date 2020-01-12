@@ -48,26 +48,6 @@
 
 
 /************************************************
- *
- ************************************************/
-static void loadWidget(Settings::Key  key, QComboBox *widget)
-{
-    int n = qMax(0, widget->findData(Settings::i()->value(key)));
-    widget->setCurrentIndex(n);
-}
-
-
-/************************************************
- *
- ************************************************/
-static void writeWidget(Settings::Key key, QComboBox *widget)
-{
-    QVariant data = widget->itemData(widget->currentIndex());
-    Settings::i()->setValue(key, data);
-}
-
-
-/************************************************
 
  ************************************************/
 ConfigDialog *ConfigDialog::createAndShow(const OutFormat *format, QWidget *parent)
@@ -368,60 +348,21 @@ void ConfigDialog::updateLastUpdateLbl()
 
 
 /************************************************
- *
- ************************************************/
-void loadWidget(Settings::Key key, QCheckBox *widget)
-{
-    widget->setChecked(Settings::i()->value(key).toBool());
-}
-
-
-/************************************************
- *
- ************************************************/
-void loadWidget(Settings::Key key, QSpinBox *widget)
-{
-    bool ok;
-    int value = Settings::i()->value(key).toInt(&ok);
-    if (ok)
-        widget->setValue(value);
-}
-
-
-/************************************************
- *
- ************************************************/
-void writeWidget(Settings::Key key, QCheckBox *widget)
-{
-    Settings::i()->setValue(key, widget->isChecked());
-}
-
-
-/************************************************
-
- ************************************************/
-void writeWidget(Settings::Key key, QSpinBox *widget)
-{
-    Settings::i()->setValue(key, widget->value());
-}
-
-
-/************************************************
 
  ************************************************/
 void ConfigDialog::load()
 {
-    EncoderConfigPage::loadWidget("Tags/DefaultCodepage",  codePageComboBox);
-    EncoderConfigPage::loadWidget("Encoder/ThreadCount",   threadsCountSpin);
-    EncoderConfigPage::loadWidget("PerTrackCue/Create",    perTrackCueCheck);
-    EncoderConfigPage::loadWidget("PerTrackCue/Pregap",    preGapComboBox);
+    Controls::loadFromSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
+    Controls::loadFromSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
+    Controls::loadFromSettings(perTrackCueCheck, Settings::PerTrackCue_Create);
+    Controls::loadFromSettings(preGapComboBox, Settings::PerTrackCue_Pregap);
     perTrackCueFormatEdit->setEditText(Settings::i()->value(Settings::PerTrackCue_FileName).toString());
 
-    loadWidget(Settings::Resample_BitsPerSample,   bitDepthComboBox);
-    loadWidget(Settings::Resample_SampleRate, sampleRateComboBox);
+    Controls::loadFromSettings(bitDepthComboBox, Settings::Resample_BitsPerSample);
+    Controls::loadFromSettings(sampleRateComboBox, Settings::Resample_SampleRate);
 
     setCoverMode(Settings::i()->coverMode());
-    loadWidget(Settings::Cover_Size,   coverResizeSpinBox);
+    Controls::loadFromSettings(coverResizeSpinBox, Settings::Cover_Size);
 
     foreach(EncoderConfigPage *page, mEncodersPages)
         page->load();
@@ -434,7 +375,7 @@ void ConfigDialog::load()
 #endif
 
 #ifndef FLATPAK_BUNDLE
-    EncoderConfigPage::loadWidget("Encoder/TmpDir",        tmpDirEdit);
+    Controls::loadFromSettings(tmpDirEdit, Settings::Encoder_TmpDir);
 #endif
 }
 
@@ -444,18 +385,18 @@ void ConfigDialog::load()
  ************************************************/
 void ConfigDialog::write()
 {
-    EncoderConfigPage::writeWidget("Tags/DefaultCodepage",  codePageComboBox);
-    EncoderConfigPage::writeWidget("Encoder/ThreadCount",   threadsCountSpin);
-    EncoderConfigPage::writeWidget("PerTrackCue/Create",    perTrackCueCheck);
-    EncoderConfigPage::writeWidget("PerTrackCue/Pregap",    preGapComboBox);
+    Controls::saveToSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
+    Controls::saveToSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
+    Controls::saveToSettings(perTrackCueCheck, Settings::PerTrackCue_Create);
+    Controls::saveToSettings(preGapComboBox,   Settings::PerTrackCue_Pregap);
 
     Settings::i()->setValue(Settings::PerTrackCue_FileName, perTrackCueFormatEdit->currentText());
 
-    writeWidget(Settings::Resample_BitsPerSample,   bitDepthComboBox);
-    writeWidget(Settings::Resample_SampleRate, sampleRateComboBox);
+    Controls::saveToSettings(bitDepthComboBox, Settings::Resample_BitsPerSample);
+    Controls::saveToSettings(sampleRateComboBox, Settings::Resample_SampleRate);
 
     Settings::i()->setValue(Settings::Cover_Mode, coverModeToString(coverMode()));
-    writeWidget(Settings::Cover_Size,   coverResizeSpinBox);
+    Controls::saveToSettings(coverResizeSpinBox, Settings::Cover_Size);
 
     foreach(EncoderConfigPage *page, mEncodersPages)
         page->write();
@@ -469,7 +410,7 @@ void ConfigDialog::write()
 #endif
 
 #ifndef FLATPAK_BUNDLE
-    EncoderConfigPage::writeWidget("Encoder/TmpDir",        tmpDirEdit);
+    Controls::saveToSettings(tmpDirEdit, Settings::Encoder_TmpDir);
 #endif
 }
 
