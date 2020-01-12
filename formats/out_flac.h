@@ -28,7 +28,7 @@
 #define OUT_FLAC_H
 
 #include "outformat.h"
-#include "configdialog.h"
+#include "encoderconfigpage.h"
 #include "ui_out_flac_config.h"
 
 class OutFormat_Flac: public OutFormat

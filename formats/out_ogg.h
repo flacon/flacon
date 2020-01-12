@@ -28,7 +28,7 @@
 #define OUT_OGG_H
 
 #include "outformat.h"
-#include "configdialog.h"
+#include "encoderconfigpage.h"
 #include "ui_out_ogg_config.h"
 
 class OutFormat_Ogg: public OutFormat

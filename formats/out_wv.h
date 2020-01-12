@@ -28,7 +28,7 @@
 #define OUT_WV_H
 
 #include "outformat.h"
-#include "configdialog.h"
+#include "encoderconfigpage.h"
 #include "ui_out_wv_config.h"
 
 class OutFormat_Wv: public OutFormat

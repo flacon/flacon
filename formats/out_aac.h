@@ -28,7 +28,7 @@
 #define OUT_AAC_H
 
 #include "outformat.h"
-#include "configdialog.h"
+#include "encoderconfigpage.h"
 #include "ui_out_aac_config.h"
 
 class OutFormat_Aac: public OutFormat

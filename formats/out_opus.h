@@ -28,7 +28,7 @@
 #define OUT_OPUS_H
 
 #include "outformat.h"
-#include "configdialog.h"
+#include "encoderconfigpage.h"
 #include "ui_out_opus_config.h"
 
 class OutFormat_Opus: public OutFormat

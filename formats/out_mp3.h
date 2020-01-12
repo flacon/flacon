@@ -28,7 +28,7 @@
 #define OUT_MP3_H
 
 #include "outformat.h"
-#include "configdialog.h"
+#include "encoderconfigpage.h"
 #include "ui_out_mp3_config.h"
 
 class OutFormat_Mp3: public OutFormat

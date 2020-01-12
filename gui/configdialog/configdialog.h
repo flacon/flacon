@@ -29,7 +29,6 @@
 
 #include <QDialog>
 #include "ui_configdialog.h"
-#include "types.h"
 
 class OutFormat;
 class EncoderConfigPage;
@@ -71,51 +70,5 @@ private:
     QList<EncoderConfigPage*> mEncodersPages;
     QList<ProgramEdit*> mProgramEdits;
 };
-
-
-class EncoderConfigPage: public QWidget
-{
-    Q_OBJECT
-public:
-    explicit EncoderConfigPage(QWidget *parent = nullptr);
-    virtual ~EncoderConfigPage();
-
-    virtual void load() = 0;
-    virtual void save() = 0;
-
-    static QString losslessCompressionToolTip(int min, int max);
-    static void setLosslessToolTip(QSlider *widget);
-    static void setLosslessToolTip(QSpinBox *widget);
-
-    static QString lossyCompressionToolTip(int min, int max);
-    static void setLossyToolTip(QSlider *widget);
-    static void setLossyToolTip(QSpinBox *widget);
-    static void setLossyToolTip(QDoubleSpinBox *widget);
-
-    static void fillReplayGainComboBox(QComboBox *comboBox);
-    static void fillBitrateComboBox(QComboBox *comboBox, const QList<int> &bitrates);
-
-
-    static void loadWidget(const QString &key, QSlider *widget);
-    static void saveWidget(const QString &key, QSlider *widget);
-
-    static void loadWidget(const QString &key, QLineEdit *widget);
-    static void saveWidget(const QString &key, QLineEdit *widget);
-
-    static void loadWidget(const QString &key, QCheckBox *widget);
-    static void saveWidget(const QString &key, QCheckBox *widget);
-
-    static void loadWidget(const QString &key, QSpinBox *widget);
-    static void saveWidget(const QString &key, QSpinBox *widget);
-
-    static void loadWidget(const QString &key, QDoubleSpinBox *widget);
-    static void saveWidget(const QString &key, QDoubleSpinBox *widget);
-
-    static void loadWidget(const QString &key, QComboBox *widget);
-    static void saveWidget(const QString &key, QComboBox *widget);
-
-    static QString toolTipCss();
-};
-
 
 #endif // CONFIGDIALOG_H

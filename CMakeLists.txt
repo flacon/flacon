@@ -101,6 +101,7 @@ set(HEADERS
     formats/in_wav.h
     formats/in_wv.h
 
+    formats/encoderconfigpage.h
     formats/outformat.h
     formats/out_aac.h
     formats/out_flac.h
@@ -161,6 +162,7 @@ set(SOURCES
     formats/in_wav.cpp
     formats/in_wv.cpp
 
+    formats/encoderconfigpage.cpp
     formats/outformat.cpp
     formats/out_aac.cpp
     formats/out_flac.cpp
