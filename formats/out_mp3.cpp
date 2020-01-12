@@ -230,11 +230,11 @@ ConfigPage_Mp3::ConfigPage_Mp3(Profile *profile, QWidget *parent):
  ************************************************/
 void ConfigPage_Mp3::load()
 {
-    loadWidget("Mp3/Preset",      mp3PresetCbx);
-    loadWidget("Mp3/Bitrate",     mp3BitrateCbx);
-    loadWidget("Mp3/Quality",     mp3QualitySpin);
+    loadWidget("Preset",      mp3PresetCbx);
+    loadWidget("Bitrate",     mp3BitrateCbx);
+    loadWidget("Quality",     mp3QualitySpin);
     mp3QualitySlider->setValue(mp3QualitySpin->value());
-    loadWidget("Mp3/ReplayGain",  mp3GainCbx);
+    loadWidget("ReplayGain",  mp3GainCbx);
 }
 
 
@@ -243,10 +243,10 @@ void ConfigPage_Mp3::load()
  ************************************************/
 void ConfigPage_Mp3::save()
 {
-    saveWidget("Mp3/Preset",     mp3PresetCbx);
-    saveWidget("Mp3/Bitrate",    mp3BitrateCbx);
-    saveWidget("Mp3/Quality",    mp3QualitySpin);
-    saveWidget("Mp3/ReplayGain", mp3GainCbx);
+    saveWidget("Preset",     mp3PresetCbx);
+    saveWidget("Bitrate",    mp3BitrateCbx);
+    saveWidget("Quality",    mp3QualitySpin);
+    saveWidget("ReplayGain", mp3GainCbx);
 }
 
 

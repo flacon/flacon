@@ -186,3 +186,35 @@ int Profiles::indexOf(const QString &id, int from) const
     }
     return -1;
 }
+
+
+/************************************************
+ *
+ ************************************************/
+QDebug operator<<(QDebug dbg, const Profile &profile)
+{
+    dbg.nospace().noquote() << "ID:     " << profile.id()       << "\n";
+    dbg.nospace().noquote() << "Format: " << profile.formatId() << "\n";
+    dbg.nospace().noquote() << "Name:   " << profile.name()     << "\n";
+    dbg.nospace().noquote() << "Valid:  " << profile.isValid()  << "\n";
+    for (auto i = profile.mValues.constBegin(); i != profile.mValues.constEnd(); ++i) {
+        dbg.nospace().noquote() << "  " << i.key() << " = " << i.value() << "\n";
+    }
+
+    return dbg.space();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QDebug operator<<(QDebug dbg, const Profiles &profiles)
+{
+    dbg.nospace().noquote() << profiles.count() << " items .....................\n";
+    for (const Profile &p: profiles) {
+        dbg << p;
+        dbg << "\n";
+    }
+    dbg.nospace().noquote() << "....................................";
+    return dbg.space();
+}

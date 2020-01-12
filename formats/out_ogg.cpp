@@ -186,12 +186,12 @@ ConfigPage_Ogg::ConfigPage_Ogg(Profile *profile, QWidget *parent):
  ************************************************/
 void ConfigPage_Ogg::load()
 {
-    loadWidget("Ogg/UseQuality",  oggUseQualityCheck);
-    loadWidget("Ogg/Quality",     oggQualitySpin);
-    loadWidget("Ogg/MinBitrate",  oggMinBitrateCbx);
-    loadWidget("Ogg/NormBitrate", oggNormBitrateCbx);
-    loadWidget("Ogg/MaxBitrate",  oggMaxBitrateCbx);
-    loadWidget("Ogg/ReplayGain",  oggGainCbx);
+    loadWidget("UseQuality",  oggUseQualityCheck);
+    loadWidget("Quality",     oggQualitySpin);
+    loadWidget("MinBitrate",  oggMinBitrateCbx);
+    loadWidget("NormBitrate", oggNormBitrateCbx);
+    loadWidget("MaxBitrate",  oggMaxBitrateCbx);
+    loadWidget("ReplayGain",  oggGainCbx);
 }
 
 
@@ -200,12 +200,12 @@ void ConfigPage_Ogg::load()
  ************************************************/
 void ConfigPage_Ogg::save()
 {
-    saveWidget("Ogg/UseQuality",  oggUseQualityCheck);
-    saveWidget("Ogg/Quality",     oggQualitySpin);
-    saveWidget("Ogg/MinBitrate",  oggMinBitrateCbx);
-    saveWidget("Ogg/NormBitrate", oggNormBitrateCbx);
-    saveWidget("Ogg/MaxBitrate",  oggMaxBitrateCbx);
-    saveWidget("Ogg/ReplayGain",  oggGainCbx);
+    saveWidget("UseQuality",  oggUseQualityCheck);
+    saveWidget("Quality",     oggQualitySpin);
+    saveWidget("MinBitrate",  oggMinBitrateCbx);
+    saveWidget("NormBitrate", oggNormBitrateCbx);
+    saveWidget("MaxBitrate",  oggMaxBitrateCbx);
+    saveWidget("ReplayGain",  oggGainCbx);
 }
 
 

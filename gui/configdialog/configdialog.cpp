@@ -31,6 +31,8 @@
 #include "formats/encoderconfigpage.h"
 
 #include <QFileDialog>
+#include <QListWidget>
+#include <QDebug>
 
 #ifdef MAC_UPDATER
 #include "updater/updater.h"
@@ -79,7 +81,6 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     int height = Settings::i()->value(Settings::ConfigureDialog_Height).toInt();
     resize(width, height);
 
-    initFormatPages();
     initPrograms();
     initUpdatePage();
 
@@ -117,9 +118,17 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     connect(profilesList, &QListWidget::currentItemChanged,
             this, &ConfigDialog::profileListSelected);
 
+    connect(profilesList, &QListWidget::itemChanged,
+            this, &ConfigDialog::profileItemChanged);
+
     perTrackCueFormatBtn->setIcon(Icon("pattern-button"));
 
-    profileListSelected(profilesList->currentItem(), nullptr);
+    fillProfilesList();
+
+#ifdef Q_OS_MAC
+    buttonBox->hide();
+    line->hide();
+#endif
 }
 
 
@@ -224,34 +233,62 @@ void ConfigDialog::initUpdatePage()
 /************************************************
  *
  ************************************************/
+void ConfigDialog::fillProfilesList()
+{
+    for (const Profile &profile: mProfiles) {
+        QListWidgetItem *item = new QListWidgetItem(profilesList);
+        item->setText(profile.name());
+        item->setData(PROFILE_ID_ROLE, profile.id());
+        item->setFlags(item->flags() | Qt::ItemIsEditable);
+    }
+    profilesList->sortItems();
+    profilesList->setCurrentRow(0);
+}
+
+
+/************************************************
+ *
+ ************************************************/
 void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem *previous)
 {
-    //qDebug() << "previous" << (previous ? previous->text() : "NULL");
-    //qDebug() << "current " << (current ? current->text() : "NULL");
-    if (mProfileWidget) {
-        QString id = mProfileWidget->property("PROFILE_ID").toString();
-
-        int n = mProfiles.indexOf(id);
-        if (n>=0) {
-            Profile &profile = mProfiles.at(n);
-        }
+    if (mEncoderPage && previous) {
+        //qDebug() << previous->text();
+        mEncoderPage->save();
     }
 
     if (!current)
         return;
 
-    delete mProfileWidget;
-    mProfileWidget = nullptr;
+    delete mEncoderPage;
 
     int n = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());
     if (n<0)
         return;
 
-    const Profile &profile = mProfiles.at(n);
-    mProfileWidget = profile.configPage(profileParent);
-    mProfileWidget->setProperty("PROFILE_ID", profile.id());
-    mProfileWidget->show();
+    Profile &profile = mProfiles[n];
+    OutFormat *fmt = profile.format();
+    assert(fmt != nullptr);
+
+    mEncoderPage = fmt->configPage(&profile, profileParent);
+    mEncoderPage->load();
+    mEncoderPage->show();
 }
+
+
+/************************************************
+ *
+ ************************************************/
+void ConfigDialog::profileItemChanged(QListWidgetItem *item)
+{
+    QString id = item->data(PROFILE_ID_ROLE).toString();
+    int n = mProfiles.indexOf(id);
+
+    if (n>-1) {
+        mProfiles[n].setName(item->text());
+    }
+}
+
+
 /************************************************
 
  ************************************************/
@@ -287,7 +324,9 @@ void ConfigDialog::done(int res)
     Settings::i()->setValue(Settings::ConfigureDialog_Width,  size().width());
     Settings::i()->setValue(Settings::ConfigureDialog_Height, size().height());
 
+#ifndef Q_OS_MAC
     if (res)
+#endif
     {
         save();
         Settings::i()->sync();
@@ -370,11 +409,10 @@ void ConfigDialog::load()
     setCoverMode(Settings::i()->coverMode());
     Controls::loadFromSettings(coverResizeSpinBox, Settings::Cover_Size);
 
-    foreach(EncoderConfigPage *page, mEncodersPages)
-        page->load();
-
     foreach(ProgramEdit *edit, mProgramEdits)
         edit->setText(Settings::i()->value("Programs/" + edit->programName()).toString());
+
+    mProfiles = Settings::i()->profiles();
 
 #ifdef MAC_UPDATER
     autoUpdateCbk->setChecked(Updater::sharedUpdater().automaticallyChecksForUpdates());
@@ -404,11 +442,13 @@ void ConfigDialog::save()
     Settings::i()->setValue(Settings::Cover_Mode, coverModeToString(coverMode()));
     Controls::saveToSettings(coverResizeSpinBox, Settings::Cover_Size);
 
-    foreach(EncoderConfigPage *page, mEncodersPages)
-        page->save();
-
     foreach(ProgramEdit *edit, mProgramEdits)
         Settings::i()->setValue("Programs/" + edit->programName(), edit->text());
+
+    if (mEncoderPage) {
+        mEncoderPage->save();
+    }
+    Settings::i()->setProfiles(mProfiles);
 
 #ifdef MAC_UPDATER
     Updater::sharedUpdater().setAutomaticallyChecksForUpdates(

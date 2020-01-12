@@ -36,6 +36,7 @@ class QSettings;
 
 class Profile
 {
+    friend QDebug operator<<(QDebug dbg, const Profile &profile);
 public:
     Profile();
     explicit Profile(const QString &id);
@@ -67,6 +68,7 @@ private:
 
 };
 
+
 class Profiles: public QVector<Profile>
 {
 public:
@@ -80,4 +82,8 @@ public:
     //int indexOf(const Profile &p, int from = 0) const;
     int indexOf(const QString &id, int from = 0) const;
 };
+
+QDebug operator<<(QDebug dbg, const Profile &profile);
+QDebug operator<<(QDebug dbg, const Profiles &profiles);
+
 #endif // PROFILES_H

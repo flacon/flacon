@@ -61,23 +61,23 @@ public:
     static void fillBitrateComboBox(QComboBox *comboBox, const QList<int> &bitrates);
 
 
-    static void loadWidget(const QString &key, QSlider *widget);
-    static void saveWidget(const QString &key, QSlider *widget);
+    void loadWidget(const QString &key, QSlider *widget) const;
+    void saveWidget(const QString &key, const QSlider *widget);
 
-    static void loadWidget(const QString &key, QLineEdit *widget);
-    static void saveWidget(const QString &key, QLineEdit *widget);
+    void loadWidget(const QString &key, QLineEdit *widget) const;
+    void saveWidget(const QString &key, const QLineEdit *widget);
 
-    static void loadWidget(const QString &key, QCheckBox *widget);
-    static void saveWidget(const QString &key, QCheckBox *widget);
+    void loadWidget(const QString &key, QCheckBox *widget) const;
+    void saveWidget(const QString &key, const QCheckBox *widget);
 
-    static void loadWidget(const QString &key, QSpinBox *widget);
-    static void saveWidget(const QString &key, QSpinBox *widget);
+    void loadWidget(const QString &key, QSpinBox *widget) const;
+    void saveWidget(const QString &key, const QSpinBox *widget);
 
-    static void loadWidget(const QString &key, QDoubleSpinBox *widget);
-    static void saveWidget(const QString &key, QDoubleSpinBox *widget);
+    void loadWidget(const QString &key, QDoubleSpinBox *widget) const;
+    void saveWidget(const QString &key, const QDoubleSpinBox *widget);
 
-    static void loadWidget(const QString &key, QComboBox *widget);
-    static void saveWidget(const QString &key, QComboBox *widget);
+    void loadWidget(const QString &key, QComboBox *widget) const;
+    void saveWidget(const QString &key, const QComboBox *widget);
 
     static QString toolTipCss();
 

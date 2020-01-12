@@ -148,8 +148,8 @@ ConfigPage_Opus::ConfigPage_Opus(Profile *profile, QWidget *parent):
  ************************************************/
 void ConfigPage_Opus::load()
 {
-    loadWidget("Opus/BitrateType",  opusBitrateTypeCbx);
-    loadWidget("Opus/Bitrate",      opusBitrateSlider);
+    loadWidget("BitrateType",  opusBitrateTypeCbx);
+    loadWidget("Bitrate",      opusBitrateSlider);
 }
 
 
@@ -158,6 +158,6 @@ void ConfigPage_Opus::load()
  ************************************************/
 void ConfigPage_Opus::save()
 {
-    saveWidget("Opus/BitrateType",  opusBitrateTypeCbx);
-    saveWidget("Opus/Bitrate",      opusBitrateSlider);
+    saveWidget("BitrateType",  opusBitrateTypeCbx);
+    saveWidget("Bitrate",      opusBitrateSlider);
 }

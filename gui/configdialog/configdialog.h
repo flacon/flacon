@@ -52,13 +52,13 @@ public slots:
 
 private slots:
     void profileListSelected(QListWidgetItem *current, QListWidgetItem *previous);
+    void profileItemChanged(QListWidgetItem *item);
 
 private:
     explicit ConfigDialog(QWidget *parent = nullptr);
     ~ConfigDialog();
 
     void initGeneralPage();
-    void initFormatPages();
     void initPrograms();
     void initUpdatePage();
 
@@ -68,11 +68,12 @@ private:
     CoverMode coverMode() const;
     void setCoverMode(CoverMode mode);
 
-
+    void fillProfilesList();
     void updateLastUpdateLbl();
 
     QList<ProgramEdit*> mProgramEdits;
     Profiles mProfiles;
+    EncoderConfigPage *mEncoderPage = nullptr;
 };
 
 #endif // CONFIGDIALOG_H

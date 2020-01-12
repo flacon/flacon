@@ -179,8 +179,8 @@ ConfigPage_Flac::ConfigPage_Flac(Profile *profile, QWidget *parent):
  ************************************************/
 void ConfigPage_Flac::load()
 {
-    loadWidget("Flac/Compression",  flacCompressionSlider);
-    loadWidget("Flac/ReplayGain", flacGainCbx);
+    loadWidget("Compression",  flacCompressionSlider);
+    loadWidget("ReplayGain", flacGainCbx);
 }
 
 
@@ -189,6 +189,6 @@ void ConfigPage_Flac::load()
  ************************************************/
 void ConfigPage_Flac::save()
 {
-    saveWidget("Flac/Compression",  flacCompressionSlider);
-    saveWidget("Flac/ReplayGain", flacGainCbx);
+    saveWidget("Compression",  flacCompressionSlider);
+    saveWidget("ReplayGain", flacGainCbx);
 }

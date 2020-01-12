@@ -589,3 +589,25 @@ void Settings::loadProfiles()
         mProfiles << profile;
     }
 }
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setProfiles(const Profiles &profiles)
+{
+    allKeys();
+    beginGroup(PROFILES_PREFIX);
+    QSet<QString> old = QSet<QString>::fromList(childGroups());
+
+    for (const Profile &profile: profiles) {
+        old.remove(profile.id());
+        profile.save(*this, profile.id());
+    }
+
+    for (const QString &id: old) {
+        remove(id);
+    }
+    endGroup();
+    mProfiles.clear();
+}

@@ -158,9 +158,9 @@ ConfigPage_Acc::ConfigPage_Acc(Profile *profile, QWidget *parent):
  ************************************************/
 void ConfigPage_Acc::load()
 {
-    loadWidget("Aac/UseQuality", aacUseQualityCheck);
-    loadWidget("Aac/Quality",    aacQualitySpin);
-    loadWidget("Aac/Bitrate",    aacBitrateCbx);
+    loadWidget("UseQuality", aacUseQualityCheck);
+    loadWidget("Quality",    aacQualitySpin);
+    loadWidget("Bitrate",    aacBitrateCbx);
 }
 
 
@@ -169,7 +169,7 @@ void ConfigPage_Acc::load()
  ************************************************/
 void ConfigPage_Acc::save()
 {
-    saveWidget("Aac/UseQuality", aacUseQualityCheck);
-    saveWidget("Aac/Quality",    aacQualitySpin);
-    saveWidget("Aac/Bitrate",    aacBitrateCbx);
+    saveWidget("UseQuality", aacUseQualityCheck);
+    saveWidget("Quality",    aacQualitySpin);
+    saveWidget("Bitrate",    aacBitrateCbx);
 }

@@ -122,6 +122,7 @@ public:
     int coverImageSize() const;
 
     Profiles profiles();
+    void setProfiles(const Profiles &profiles);
 
 signals:
     void changed();

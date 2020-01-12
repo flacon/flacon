@@ -25,7 +25,8 @@
 
 
 #include "encoderconfigpage.h"
-#include "settings.h"
+#include "types.h"
+
 #include <QSlider>
 #include <QCheckBox>
 #include <QComboBox>
@@ -151,10 +152,10 @@ void EncoderConfigPage::fillBitrateComboBox(QComboBox *comboBox, const QList<int
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QSlider *widget)
+void EncoderConfigPage::loadWidget(const QString &key, QSlider *widget) const
 {
     bool ok;
-    int value = Settings::i()->value(key).toInt(&ok);
+    int value = mProfile->value(key).toInt(&ok);
     if (ok)
         widget->setValue(value);
 }
@@ -163,55 +164,55 @@ void EncoderConfigPage::loadWidget(const QString &key, QSlider *widget)
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::saveWidget(const QString &key, QSlider *widget)
+void EncoderConfigPage::saveWidget(const QString &key, const QSlider *widget)
 {
-    Settings::i()->setValue(key, widget->value());
+    mProfile->setValue(key, widget->value());
 }
 
 
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QLineEdit *widget)
+void EncoderConfigPage::loadWidget(const QString &key, QLineEdit *widget) const
 {
-    widget->setText(Settings::i()->value(key).toString());
+    widget->setText(mProfile->value(key).toString());
 }
 
 
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::saveWidget(const QString &key, QLineEdit *widget)
+void EncoderConfigPage::saveWidget(const QString &key, const QLineEdit *widget)
 {
-    Settings::i()->setValue(key, widget->text());
+    mProfile->setValue(key, widget->text());
 }
 
 
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QCheckBox *widget)
+void EncoderConfigPage::loadWidget(const QString &key, QCheckBox *widget) const
 {
-    widget->setChecked(Settings::i()->value(key).toBool());
+    widget->setChecked(mProfile->value(key).toBool());
 }
 
 
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::saveWidget(const QString &key, QCheckBox *widget)
+void EncoderConfigPage::saveWidget(const QString &key, const QCheckBox *widget)
 {
-    Settings::i()->setValue(key, widget->isChecked());
+    mProfile->setValue(key, widget->isChecked());
 }
 
 
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QSpinBox *widget)
+void EncoderConfigPage::loadWidget(const QString &key, QSpinBox *widget) const
 {
     bool ok;
-    int value = Settings::i()->value(key).toInt(&ok);
+    int value = mProfile->value(key).toInt(&ok);
     if (ok)
         widget->setValue(value);
 }
@@ -220,19 +221,19 @@ void EncoderConfigPage::loadWidget(const QString &key, QSpinBox *widget)
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::saveWidget(const QString &key, QSpinBox *widget)
+void EncoderConfigPage::saveWidget(const QString &key, const QSpinBox *widget)
 {
-    Settings::i()->setValue(key, widget->value());
+    mProfile->setValue(key, widget->value());
 }
 
 
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QDoubleSpinBox *widget)
+void EncoderConfigPage::loadWidget(const QString &key, QDoubleSpinBox *widget) const
 {
     bool ok;
-    int value = Settings::i()->value(key).toDouble(&ok);
+    int value = mProfile->value(key).toDouble(&ok);
     if (ok)
         widget->setValue(value);
 
@@ -242,18 +243,18 @@ void EncoderConfigPage::loadWidget(const QString &key, QDoubleSpinBox *widget)
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::saveWidget(const QString &key, QDoubleSpinBox *widget)
+void EncoderConfigPage::saveWidget(const QString &key, const QDoubleSpinBox *widget)
 {
-    Settings::i()->setValue(key, widget->value());
+    mProfile->setValue(key, widget->value());
 }
 
 
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QComboBox *widget)
+void EncoderConfigPage::loadWidget(const QString &key, QComboBox *widget) const
 {
-    int n = qMax(0, widget->findData(Settings::i()->value(key)));
+    int n = qMax(0, widget->findData(mProfile->value(key)));
     widget->setCurrentIndex(n);
 }
 
@@ -261,10 +262,10 @@ void EncoderConfigPage::loadWidget(const QString &key, QComboBox *widget)
 /************************************************
 
  ************************************************/
-void EncoderConfigPage::saveWidget(const QString &key, QComboBox *widget)
+void EncoderConfigPage::saveWidget(const QString &key, const QComboBox *widget)
 {
     QVariant data = widget->itemData(widget->currentIndex());
-    Settings::i()->setValue(key, data);
+    mProfile->setValue(key, data);
 }
 
 

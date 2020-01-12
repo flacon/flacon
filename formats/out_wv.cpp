@@ -152,8 +152,8 @@ ConfigPage_Wv::ConfigPage_Wv(Profile *profile, QWidget *parent):
  ************************************************/
 void ConfigPage_Wv::load()
 {
-    loadWidget("WV/Compression", wvCompressionSlider);
-    loadWidget("WV/ReplayGain",  wvGainCbx);
+    loadWidget("Compression", wvCompressionSlider);
+    loadWidget("ReplayGain",  wvGainCbx);
 }
 
 
@@ -162,6 +162,6 @@ void ConfigPage_Wv::load()
  ************************************************/
 void ConfigPage_Wv::save()
 {
-    saveWidget("WV/Compression", wvCompressionSlider);
-    saveWidget("WV/ReplayGain",  wvGainCbx);
+    saveWidget("Compression", wvCompressionSlider);
+    saveWidget("ReplayGain",  wvGainCbx);
 }
