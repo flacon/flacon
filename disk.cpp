@@ -629,13 +629,13 @@ QStringList Disk::warnings() const
     QStringList res;
     if (audioFile())
     {
-        if (audioFile()->bitsPerSample() > int(Settings::i()->outFormat()->maxBitPerSample()))
+        if (audioFile()->bitsPerSample() > int(Settings::i()->currentProfile().maxBitPerSample()))
             res << tr("A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.", "Warning message")
-                      .arg(int(Settings::i()->outFormat()->maxBitPerSample()));
+                      .arg(int(Settings::i()->currentProfile().maxBitPerSample()));
 
-        if (audioFile()->sampleRate() > int(Settings::i()->outFormat()->maxSampleRate()))
+        if (audioFile()->sampleRate() > int(Settings::i()->currentProfile().maxSampleRate()))
             res << tr("A maximum sample rate of %1 is supported by this format. This value will be used for encoding.", "Warning message")
-                      .arg(int(Settings::i()->outFormat()->maxSampleRate()));
+                      .arg(int(Settings::i()->currentProfile().maxSampleRate()));
     }
     return res;
 }

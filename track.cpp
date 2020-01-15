@@ -184,7 +184,7 @@ QString Track::resultFileName() const
     {
         PatternExpander expander(*this);
         return safeFilePathLen(expander.expand(pattern) +
-                "." + Settings::i()->outFormat()->ext());
+                "." + Settings::i()->currentProfile().ext());
 
 
     }
@@ -199,7 +199,7 @@ QString Track::resultFileName() const
     return safeFilePathLen(
             albumExpander.expand(pattern.left(n)) +
             trackExpander.expand(pattern.mid(n)) +
-            "." + Settings::i()->outFormat()->ext());
+            "." + Settings::i()->currentProfile().ext());
 
 }
 

@@ -29,11 +29,58 @@
 #include <QSettings>
 #include <QDebug>
 
+class OutFormat_Null: public OutFormat
+{
+public:
+    OutFormat_Null()
+    {
+        mId   = "";
+        mExt  = "";
+        mName = "";
+        mSettingsGroup = "NULL_FORMAT";
+    }
+
+    virtual QString encoderProgramName() const override { return ""; }
+    virtual QString gainProgramName() const override { return ""; }
+
+    virtual QStringList encoderArgs(const Track *, const QString &) const override
+    {
+        return QStringList();
+    }
+
+    virtual QStringList gainArgs(const QStringList &) const override
+    {
+        return QStringList();
+    }
+
+    QHash<QString, QVariant> defaultParameters() const override
+    {
+        return QHash<QString, QVariant>();
+    }
+
+    EncoderConfigPage *configPage(Profile *, QWidget *) const override
+    {
+        return nullptr;
+    }
+
+    virtual bool hasConfigPage() const override { return false; }
+
+    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::AsSourcee; }
+    virtual SampleRate    maxSampleRate()   const override { return SampleRate::AsSource; }
+
+};
+
+static OutFormat_Null *nullFormat() {
+    static OutFormat_Null res;
+    return &res;
+}
+
 
 /************************************************
  *
  ************************************************/
-Profile::Profile()
+Profile::Profile():
+    mFormat(nullFormat())
 {
 }
 
@@ -42,7 +89,8 @@ Profile::Profile()
  *
  ************************************************/
 Profile::Profile(const QString &id):
-    mId(id)
+    mId(id),
+    mFormat(nullFormat())
 {
 
 }
@@ -51,7 +99,20 @@ Profile::Profile(const QString &id):
 /************************************************
  *
  ************************************************/
-Profile::Profile(const Profile &other)
+Profile::Profile(OutFormat &format, const QString &id):
+    mId(id.isEmpty() ? format.id() : id),
+    mFormat(&format)
+{
+    mName = format.name();
+    mValues = format.defaultParameters();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+Profile::Profile(const Profile &other):
+    mFormat(other.mFormat)
 {
     operator=(other);
 }
@@ -64,7 +125,7 @@ Profile &Profile::operator =(const Profile &other)
 {
     if (this != &other) {
         mId       = other.mId;
-        mFormatId = other.mFormatId;
+        mFormat   = other.mFormat;
         mName     = other.mName;
         mValues   = other.mValues;
     }
@@ -78,15 +139,6 @@ Profile &Profile::operator =(const Profile &other)
 void Profile::setName(const QString &value)
 {
     mName = value;
-}
-
-
-/************************************************
- *
- ************************************************/
-void Profile::setFormatId(QString formatId)
-{
-    mFormatId = formatId;
 }
 
 
@@ -115,19 +167,19 @@ void Profile::setValue(const QString &key, const QVariant &value)
 /************************************************
  *
  ************************************************/
-OutFormat *Profile::format() const
+bool Profile::isValid() const noexcept
 {
-    return OutFormat::formatForId(mFormatId);
+    return !mId.isEmpty() &&
+           !mFormat->id().isEmpty();
 }
 
 
 /************************************************
  *
  ************************************************/
-bool Profile::isValid() const noexcept
+EncoderConfigPage *Profile::configPage(QWidget *parent)
 {
-    return !mId.isEmpty() &&
-            format() != nullptr;
+    return mFormat->configPage(this, parent);
 }
 
 
@@ -146,7 +198,8 @@ void Profile::load(QSettings &settings, const QString &group)
         }
 
         if (uKey == "FORMAT") {
-            setFormatId(settings.value(key).toString());
+            auto *fmt = OutFormat::formatForId(settings.value(key).toString());
+            mFormat = fmt ? fmt : nullFormat();
             continue;
         }
 
@@ -154,8 +207,8 @@ void Profile::load(QSettings &settings, const QString &group)
     }
     settings.endGroup();
 
-    if (name().isEmpty() && format()) {
-        setName(format()->name());
+    if (name().isEmpty()) {
+        setName(mFormat->name());
     }
 }
 
@@ -174,6 +227,7 @@ void Profile::save(QSettings &settings, const QString &group) const
     }
     settings.endGroup();
 }
+
 
 /************************************************
  *

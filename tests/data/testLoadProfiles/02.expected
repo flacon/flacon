@@ -40,3 +40,7 @@
     Format = WV
     Compression=2
     ReplayGain=Track
+
+[Profiles/WAV]
+    Format=WAV
+    Name=WAV

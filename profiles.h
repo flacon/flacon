@@ -31,7 +31,7 @@
 #include <QVariant>
 #include <QVector>
 
-class OutFormat;
+#include "formats/outformat.h"
 class QSettings;
 
 class Profile
@@ -40,6 +40,7 @@ class Profile
 public:
     Profile();
     explicit Profile(const QString &id);
+    explicit Profile(OutFormat &format, const QString &id ="" );
     Profile(const Profile &other);
     Profile &operator =(const Profile &other);
 
@@ -48,21 +49,24 @@ public:
     QString name() const { return mName; }
     void setName(const QString &value);
 
-    QString formatId() const { return mFormatId; }
-    void setFormatId(QString formatId);
-
     QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
     void setValue(const QString &key, const QVariant &value);
 
-    OutFormat *format() const;
     bool isValid() const noexcept;
+
+    QString formatId() const { return mFormat->id(); }
+    QString ext() const { return mFormat->ext(); }
+    BitsPerSample maxBitPerSample() const { return mFormat->maxBitPerSample(); }
+    SampleRate    maxSampleRate() const { return mFormat->maxSampleRate(); }
+    bool hasConfigPage() const { return mFormat->hasConfigPage(); }
+    EncoderConfigPage *configPage(QWidget *parent);
 
     void load(QSettings &settings, const QString &group);
     void save(QSettings &settings, const QString &group) const;
 
 private:
     QString mId;
-    QString mFormatId;
+    const OutFormat *mFormat;
     QString mName;
     QHash<QString, QVariant> mValues;
 
@@ -72,14 +76,6 @@ private:
 class Profiles: public QVector<Profile>
 {
 public:
-//    inline Profiles() Q_DECL_NOTHROW :    QVector<Profile>() { }
-//    explicit Profiles(int size):          QVector<Profile>(size) {}
-//    Profiles(int size, const Profile &t): QVector<Profile>(size, t) {}
-//    inline Profiles(const Profiles &v):   QVector<Profile>(v) {}
-//    const Profile &find(const QString id) const;
-//          Profile &find(const QString id);
-
-    //int indexOf(const Profile &p, int from = 0) const;
     int indexOf(const QString &id, int from = 0) const;
 };
 

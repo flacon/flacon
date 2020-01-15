@@ -127,7 +127,7 @@ void Settings::init()
 
     outDir.replace(QDir::homePath(), "~");
     setDefaultValue(OutFiles_Directory,     outDir);
-    setDefaultValue(OutFiles_Format,        "FLAC");
+    setDefaultValue(OutFiles_Profile,       "FLAC");
 
     // Internet *********************************
     setDefaultValue(Inet_CDDBHost,          "freedb.freedb.org");
@@ -203,7 +203,7 @@ QString Settings::keyToString(Settings::Key key) const
     // Out Files ***************************
     case OutFiles_Pattern:          return "OutFiles/Pattern";
     case OutFiles_Directory:        return "OutFiles/Directory";
-    case OutFiles_Format:           return "OutFiles/Format";
+    case OutFiles_Profile:          return "OutFiles/Profile";
     case OutFiles_PatternHistory:   return "OutFiles/PatternHistory";
     case OutFiles_DirectoryHistory: return "OutFiles/DirectoryHistory";
 
@@ -330,7 +330,7 @@ QString Settings::findProgram(const QString &program) const
  ************************************************/
 OutFormat *Settings::outFormat() const
 {
-    OutFormat *format = OutFormat::formatForId(value(OutFiles_Format).toString());
+    OutFormat *format = OutFormat::formatForId(currentProfile().formatId());
     if (format)
         return format;
 
@@ -522,10 +522,10 @@ void Settings::setDefaultValue(const QString &key, const QVariant &defaultValue)
 /************************************************
 
  ************************************************/
-Profiles Settings::profiles()
+Profiles Settings::profiles() const
 {
     if (mProfiles.isEmpty()) {
-        loadProfiles();
+        const_cast<Settings*>(this)->loadProfiles();
     }
 
     return mProfiles;
@@ -535,15 +535,22 @@ Profiles Settings::profiles()
 /************************************************
  * Added on 6.0.0 release, remove after 8.0.0 release
  ************************************************/
-QVariant oldFormatValue(Settings *settings, QString formatId, QString key)
+void loadOldFormatValues(Settings *settings, Profile &profile)
 {
-    if (formatId == "FLAC") return settings->value("Flac/" + key);
-    if (formatId == "AAC" ) return settings->value("Aac/" + key);
-    if (formatId == "MP3" ) return settings->value("Mp3/" + key);
-    if (formatId == "OGG" ) return settings->value("Ogg/" + key);
-    if (formatId == "OPUS") return settings->value("Opus/" + key);
-    if (formatId == "WV"  ) return settings->value("WV/" + key);
-    return QVariant();
+    QString group;
+    if (profile.formatId() == "WAV")  settings->beginGroup("WAV/");
+    if (profile.formatId() == "FLAC") settings->beginGroup("Flac/");
+    if (profile.formatId() == "AAC" ) settings->beginGroup("Aac/");
+    if (profile.formatId() == "MP3" ) settings->beginGroup("Mp3/");
+    if (profile.formatId() == "OGG" ) settings->beginGroup("Ogg/");
+    if (profile.formatId() == "OPUS") settings->beginGroup("Opus/");
+    if (profile.formatId() == "WV"  ) settings->beginGroup("WV/");
+
+    for (const QString &key : settings->allKeys()) {
+        profile.setValue(key, settings->value(group + key, profile.value(key)));
+    }
+
+    settings->endGroup();
 }
 
 
@@ -552,8 +559,7 @@ QVariant oldFormatValue(Settings *settings, QString formatId, QString key)
  ************************************************/
 void Settings::loadProfiles()
 {
-    QList<OutFormat*> formats = OutFormat::allFormats();
-
+    QSet<QString> loaded;
     allKeys();
     beginGroup(PROFILES_PREFIX);
     for (QString id: childGroups()) {
@@ -563,30 +569,18 @@ void Settings::loadProfiles()
 
         if (profile.isValid())
         {
-            formats.removeAll(profile.format());
             mProfiles << profile;
+            loaded << profile.formatId();
         }
     }
     endGroup();
 
-    for (OutFormat *fmt: formats) {
-
-        if (!fmt->hasConfigPage())
-            continue;
-
-        Profile profile(fmt->id());
-        profile.setName(fmt->name());
-        profile.setFormatId(fmt->id());
-        auto params = fmt->defaultParameters();
-        for (auto i = params.constBegin(); i != params.constEnd(); ++i) {
-            QVariant v = oldFormatValue(this, fmt->id(), i.key());
-            if (!v.isNull())
-                profile.setValue(i.key(), v);
-            else
-                profile.setValue(i.key(), i.value());
+    for (OutFormat *fmt: OutFormat::allFormats()) {
+        if (!loaded.contains(fmt->id())) {
+            Profile profile(*fmt);
+            loadOldFormatValues(this, profile); // Added on 6.0.0 release, remove after 8.0.0 release
+            mProfiles << profile;
         }
-
-        mProfiles << profile;
     }
 }
 
@@ -601,8 +595,10 @@ void Settings::setProfiles(const Profiles &profiles)
     QSet<QString> old = QSet<QString>::fromList(childGroups());
 
     for (const Profile &profile: profiles) {
-        old.remove(profile.id());
-        profile.save(*this, profile.id());
+        if (profile.hasConfigPage()) {
+            old.remove(profile.id());
+            profile.save(*this, profile.id());
+        }
     }
 
     for (const QString &id: old) {
@@ -610,4 +606,14 @@ void Settings::setProfiles(const Profiles &profiles)
     }
     endGroup();
     mProfiles.clear();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+Profile &Settings::currentProfile() const
+{
+    int n = profiles().indexOf(value(OutFiles_Profile).toString());
+    return profiles()[qMax(0, n)];
 }

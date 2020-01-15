@@ -196,7 +196,6 @@ int runConsole(int argc, char *argv[], const QStringList &files)
     ConsoleOut out;
     Converter converter;
     if (!quiet) {
-        qDebug() << Q_FUNC_INFO << "START_FINISH";
         QObject::connect(&converter, &Converter::started,
                          &out, &ConsoleOut::converterStarted);
 

@@ -54,7 +54,7 @@ public:
         OutFiles_Pattern,
         OutFiles_Directory,
         OutFiles_DirectoryHistory,
-        OutFiles_Format,
+        OutFiles_Profile,
         OutFiles_PatternHistory,
 
         // Internet *****************************
@@ -97,8 +97,6 @@ public:
     QString findProgram(const QString &program) const;
 
     OutFormat *outFormat() const;
-    void setOutFormat(const OutFormat *format);
-    void setOutFormat(const QString &formatId);
 
     QString tmpDir() const;
     void setTmpDir(const QString &value);
@@ -121,8 +119,10 @@ public:
     CoverMode coverMode() const;
     int coverImageSize() const;
 
-    Profiles profiles();
+    Profiles profiles() const;
     void setProfiles(const Profiles &profiles);
+
+    Profile &currentProfile() const;
 
 signals:
     void changed();

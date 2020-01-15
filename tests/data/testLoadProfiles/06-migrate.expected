@@ -40,3 +40,7 @@ Name=WavPack
 Format=WV
 Compression=0
 ReplayGain=Track
+
+[Profiles/WAV]
+    Format=WAV
+    Name=WAV
