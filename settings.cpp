@@ -341,24 +341,6 @@ OutFormat *Settings::outFormat() const
 /************************************************
  *
  ************************************************/
-void Settings::setOutFormat(const OutFormat *format)
-{
-    setOutFormat(format->id());
-}
-
-
-/************************************************
- *
- ************************************************/
-void Settings::setOutFormat(const QString &formatId)
-{
-    setValue(OutFiles_Format, formatId);
-}
-
-
-/************************************************
- *
- ************************************************/
 QString Settings::tmpDir() const
 {
     return value(Encoder_TmpDir).toString();

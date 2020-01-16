@@ -40,17 +40,29 @@
 
 static const int PROFILE_ID_ROLE = Qt::UserRole;
 
+
+/************************************************
+ *
+ ************************************************/
+ConfigDialog *ConfigDialog::createAndShow(QWidget *parent)
+{
+    return createAndShow("", parent);
+}
+
+
 /************************************************
 
  ************************************************/
-ConfigDialog *ConfigDialog::createAndShow(const OutFormat *format, QWidget *parent)
+ConfigDialog *ConfigDialog::createAndShow(const QString &profileId, QWidget *parent)
 {
     ConfigDialog *instance = parent->findChild<ConfigDialog*>();
 
     if (!instance)
         instance = new ConfigDialog(parent);
 
-    instance->setPage(format);
+    instance->pages->setCurrentWidget(instance->profilesPage);
+    instance->setProfile(profileId);
+
     instance->show();
     instance->raise();
     instance->activateWindow();
@@ -58,7 +70,6 @@ ConfigDialog *ConfigDialog::createAndShow(const OutFormat *format, QWidget *pare
 
     return instance;
 }
-
 
 
 /************************************************
@@ -73,8 +84,6 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
     generalPage->setWindowTitle(tr("General configuration"));
     programsPage->setWindowTitle(tr("Full path of the external applications"));
-
-    connect(pages, SIGNAL(currentChanged(int)), this, SLOT(setPage(int)));
 
     initGeneralPage();
     int width = Settings::i()->value(Settings::ConfigureDialog_Width).toInt();
@@ -153,7 +162,7 @@ void ConfigDialog::initGeneralPage()
 #endif
 
     tmpDirButton->setIcon(Icon("folder"));
-    connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
+    connect(tmpDirButton, &QToolButton::clicked, this, &ConfigDialog::tmpDirShowDialog);
 
 
     connect(coverDisableButton,  &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Disable);  });
@@ -202,7 +211,7 @@ void ConfigDialog::initPrograms()
         label->setBuddy(edit);
         progsLayout->addWidget(label, row, 0);
         progsLayout->addWidget(edit,  row, 1);
-        connect(progScanButton, SIGNAL(clicked()), edit, SLOT(find()));
+        connect(progScanButton, &QPushButton::clicked, edit, &ProgramEdit::find);
         row++;
     }
 }
@@ -236,13 +245,18 @@ void ConfigDialog::initUpdatePage()
 void ConfigDialog::fillProfilesList()
 {
     for (const Profile &profile: mProfiles) {
-        QListWidgetItem *item = new QListWidgetItem(profilesList);
-        item->setText(profile.name());
-        item->setData(PROFILE_ID_ROLE, profile.id());
-        item->setFlags(item->flags() | Qt::ItemIsEditable);
+        if (profile.hasConfigPage()) {
+            QListWidgetItem *item = new QListWidgetItem(profilesList);
+            item->setText(profile.name());
+            item->setData(PROFILE_ID_ROLE, profile.id());
+            item->setFlags(item->flags() | Qt::ItemIsEditable);
+        }
     }
-    profilesList->sortItems();
-    profilesList->setCurrentRow(0);
+
+    if (profilesList->count() > 0) {
+        profilesList->sortItems();
+        profilesList->setCurrentRow(0);
+    }
 }
 
 
@@ -266,10 +280,8 @@ void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem
         return;
 
     Profile &profile = mProfiles[n];
-    OutFormat *fmt = profile.format();
-    assert(fmt != nullptr);
 
-    mEncoderPage = fmt->configPage(&profile, profileParent);
+    mEncoderPage = profile.configPage(profileParent);
     mEncoderPage->load();
     mEncoderPage->show();
 }
@@ -286,33 +298,6 @@ void ConfigDialog::profileItemChanged(QListWidgetItem *item)
     if (n>-1) {
         mProfiles[n].setName(item->text());
     }
-}
-
-
-/************************************************
-
- ************************************************/
-void ConfigDialog::setPage(const OutFormat *format)
-{
-    int n = 0;
-    if (format)
-    {
-        EncoderConfigPage *page = pages->findChild<EncoderConfigPage*>(format->id());
-        if (page)
-            n = pages->indexOf(page);
-    }
-
-    setPage(n);
-}
-
-
-/************************************************
-
- ************************************************/
-void ConfigDialog::setPage(int pageIndex)
-{
-    pageTitle->setText(pages->currentWidget()->windowTitle());
-    pages->setCurrentIndex(pageIndex);
 }
 
 
@@ -369,6 +354,20 @@ void ConfigDialog::setCoverMode(CoverMode mode)
         coverScaleButton->setChecked(true);
         coverResizeSpinBox->setEnabled(true);
         break;
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ConfigDialog::setProfile(const QString &profileId)
+{
+    for (int i=0; i<profilesList->count(); ++i) {
+        QListWidgetItem *item = profilesList->item(i);
+        if (item->data(PROFILE_ID_ROLE).toString() == profileId) {
+            item->setSelected(true);
+        }
     }
 }
 

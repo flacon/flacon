@@ -65,7 +65,7 @@ private slots:
 
     void setPattern();
     void setOutDir();
-    void setOutFormat();
+    void setOutProfile();
     void setCodePage();
 
     void setControlsEnable();
@@ -113,7 +113,7 @@ private:
 
     void initOutDirButton();
     void initActions();
-    void initOutFormatCombo();
+    void refreshOutProfileCombo();
 
     void loadSettings();
     void saveSettings();

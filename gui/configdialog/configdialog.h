@@ -39,14 +39,12 @@ class ConfigDialog : public QDialog, private Ui::ConfigDialog
 {
     Q_OBJECT
 public:
-    static ConfigDialog *createAndShow(const OutFormat *format, QWidget *parent = nullptr);
+    static ConfigDialog *createAndShow(QWidget *parent = nullptr);
+    static ConfigDialog *createAndShow(const QString &profileId, QWidget *parent = nullptr);
 
 signals:
     
 public slots:
-    void setPage(int pageIndex);
-    void setPage(const OutFormat *format);
-
     void done(int res);
     void tmpDirShowDialog();
 
@@ -68,6 +66,7 @@ private:
     CoverMode coverMode() const;
     void setCoverMode(CoverMode mode);
 
+    void setProfile(const QString &profileId);
     void fillProfilesList();
     void updateLastUpdateLbl();
 

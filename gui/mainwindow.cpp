@@ -135,9 +135,9 @@ MainWindow::MainWindow(QWidget *parent) :
     outDirButton->setStyleSheet("border: none;");
     initOutDirButton();
 
-    configureEncoderBtn->setDefaultAction(actionConfigureEncoder);
-    configureEncoderBtn->setAutoRaise(true);
-    configureEncoderBtn->setStyleSheet("border: none;");
+    configureProfileBtn->setDefaultAction(actionConfigureEncoder);
+    configureProfileBtn->setAutoRaise(true);
+    configureProfileBtn->setStyleSheet("border: none;");
 
     outPatternButton->addPattern("%n", tr("Insert \"Track number\""));
     outPatternButton->addPattern("%N", tr("Insert \"Total number of tracks\""));
@@ -179,9 +179,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     outPatternButton->setIcon(Icon("pattern-button"));
 
-    // Format combo ............................................
-    initOutFormatCombo();
-
     loadSettings();
 
     outDirEdit->setHistory(Settings::i()->value(Settings::OutFiles_DirectoryHistory).toStringList());
@@ -198,8 +195,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(outDirEdit->lineEdit(),     SIGNAL(editingFinished()), this, SLOT(setOutDir()));
     connect(outDirEdit,     SIGNAL(currentIndexChanged(int)), this, SLOT(setOutDir()));
 
-    connect(outFormatCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setOutFormat()));
-    connect(codepageCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
+    connect(outProfileCombo, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &MainWindow::setOutProfile);
+    connect(codepageCombo,   SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
 
     connect(trackView, SIGNAL(selectCueFile(Disk*)),     this, SLOT(setCueForDisc(Disk*)));
     connect(trackView, SIGNAL(selectAudioFile(Disk*)),   this, SLOT(setAudioForDisk(Disk*)));
@@ -399,12 +397,11 @@ void MainWindow::setCueForDisc(Disk *disk)
 /************************************************
 
  ************************************************/
-void MainWindow::setOutFormat()
+void MainWindow::setOutProfile()
 {
-    int n = outFormatCombo->currentIndex();
-    if (n > -1)
-    {
-        Settings::i()->setValue(Settings::OutFiles_Format, outFormatCombo->itemData(n));
+    int n = outProfileCombo->currentIndex();
+    if (n > -1) {
+        Settings::i()->setValue(Settings::OutFiles_Profile, outProfileCombo->itemData(n));
     }
 }
 
@@ -452,7 +449,7 @@ void MainWindow::setControlsEnable()
         actionDownloadTrackInfo->setEnabled(canDownload);
         actionScan->setEnabled(!mScanner);
         actionConfigure->setEnabled(true);
-        actionConfigureEncoder->setEnabled(Settings::i()->outFormat()->hasConfigPage());
+        actionConfigureEncoder->setEnabled(Settings::i()->currentProfile().hasConfigPage());
     }
 }
 
@@ -508,11 +505,34 @@ void MainWindow::refreshEdits()
     if (outPatternEdit->currentText() != Settings::i()->value(Settings::OutFiles_Pattern).toString())
         outPatternEdit->lineEdit()->setText(Settings::i()->value(Settings::OutFiles_Pattern).toString());
 
-    int n = outFormatCombo->findData(Settings::i()->value(Settings::OutFiles_Format).toString());
-    if (n > -1)
-        outFormatCombo->setCurrentIndex(n);
-    else
-        outFormatCombo->setCurrentIndex(0);
+    refreshOutProfileCombo();
+}
+
+
+/************************************************
+
+ ************************************************/
+void MainWindow::refreshOutProfileCombo()
+{
+    outProfileCombo->blockSignals(true);
+    int n=0;
+    for (const Profile &p: Settings::i()->profiles()) {
+        if (n<outProfileCombo->count()) {
+            outProfileCombo->setItemText(n, p.name());
+            outProfileCombo->setItemData(n, p.id());
+        }
+        else {
+            outProfileCombo->addItem(p.name(), p.id());
+        }
+        n++;
+    }
+    while (outProfileCombo->count() > n)
+        outProfileCombo->removeItem(outProfileCombo->count()-1);
+
+    outProfileCombo->blockSignals(false);
+
+    n = outProfileCombo->findData(Settings::i()->value(Settings::OutFiles_Profile).toString());
+    outProfileCombo->setCurrentIndex(qMax(0, n));
 }
 
 
@@ -639,6 +659,9 @@ void MainWindow::startConvertSelected()
  ************************************************/
 void MainWindow::startConvert(const Converter::Jobs &jobs)
 {
+    if (!Settings::i()->currentProfile().isValid())
+        return;
+
     trackView->setFocus();
 
     bool ok = true;
@@ -675,7 +698,6 @@ void MainWindow::startConvert(const Converter::Jobs &jobs)
     connect(mConverter,         SIGNAL(trackProgress(Track,TrackState,Percent)),
             trackView->model(), SLOT(trackProgressChanged(Track,TrackState,Percent)));
 
-
     mConverter->start(jobs);
     setControlsEnable();
 }
@@ -706,7 +728,7 @@ void MainWindow::configure()
  ************************************************/
 void MainWindow::configureEncoder()
 {
-    ConfigDialog::createAndShow(Settings::i()->outFormat(), this);
+    ConfigDialog::createAndShow(Settings::i()->currentProfile().id(), this);
 }
 
 
@@ -1141,19 +1163,6 @@ void MainWindow::initActions()
 #else
     actionUpdates->setVisible(false);
 #endif
-}
-
-
-/************************************************
-
- ************************************************/
-void MainWindow::initOutFormatCombo()
-{
-    QList<OutFormat*> formats = OutFormat::allFormats();
-    foreach (OutFormat *format, formats)
-    {
-        outFormatCombo->addItem(format->name(), format->id());
-    }
 }
 
 
