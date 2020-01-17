@@ -25,9 +25,8 @@
 
 
 #include "encoder.h"
-#include "outformat.h"
-#include "settings.h"
 #include "resampler.h"
+#include "profiles.h"
 
 #include <QFileInfo>
 #include <QDir>
@@ -39,12 +38,10 @@ const quint64 MAX_BUF_SIZE = 1024 * 1024;
 /************************************************
  *
  ************************************************/
-Encoder::Encoder(const EncoderRequest &request, QObject *parent):
+Encoder::Encoder(const EncoderRequest &request, const Profile &profile, QObject *parent):
     Worker(parent),
     mRequest(request),
-    mTotal(0),
-    mReady(0),
-    mProgress(0)
+    mProfile(profile)
 {
 
 }
@@ -119,9 +116,9 @@ void Encoder::run()
     QProcess encoder;
     qint8 mode = COPY_FILE;
 
-    if (mRequest.format->id() != "WAV")
+    if (mProfile.formatId() != "WAV")
     {
-        QStringList args = mRequest.format->encoderArgs(mRequest.track, QDir::toNativeSeparators(mRequest.outFile));
+        QStringList args = mProfile.encoderArgs(mRequest.track, QDir::toNativeSeparators(mRequest.outFile));
         QString prog = args.takeFirst();
 
         if (debug)

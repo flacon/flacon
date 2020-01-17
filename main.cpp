@@ -215,7 +215,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
                 &app, SLOT(quit()));
 
 
-    converter.start();
+    converter.start(Settings::i()->currentProfile());
     if (!converter.isRunning())
         return 11;
 

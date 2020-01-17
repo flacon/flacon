@@ -30,7 +30,6 @@
 #include <QObject>
 #include "track.h"
 
-class OutFormat;
 class Disk;
 
 

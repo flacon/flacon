@@ -30,9 +30,9 @@
 #include <QProcess>
 
 #include "worker.h"
-
+#include "profiles.h"
 class QProcess;
-class OutFormat;
+class Profile;
 
 struct EncoderRequest
 {
@@ -41,14 +41,13 @@ struct EncoderRequest
     QString      outFile;
     int          bitsPerSample;
     int          sampleRate;
-    OutFormat   *format;
 };
 
 class Encoder: public Worker
 {
     Q_OBJECT
 public:
-    Encoder(const EncoderRequest &request, QObject *parent = nullptr);
+    Encoder(const EncoderRequest &request, const Profile &profile, QObject *parent = nullptr);
 
     QString outFile() const { return mOutFile; }
 
@@ -64,10 +63,11 @@ private slots:
 
 private:
     const EncoderRequest mRequest;
+    const Profile &mProfile;
     QString mOutFile;
-    quint64 mTotal;
-    quint64 mReady;
-    int mProgress;
+    quint64 mTotal = 0;
+    quint64 mReady = 0;
+    int mProgress  = 0;
 
     void readInputFile(QProcess *process);
     void runWav();

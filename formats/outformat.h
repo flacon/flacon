@@ -45,8 +45,6 @@ public:
     QString id() const { return mId; }
     QString name() const { return mName; }
     QString ext() const {return mExt; }
-    QString settingsGroup() const { return mSettingsGroup; }
-    GainType gainType() const;
     bool createCue() const;
 
     virtual QString encoderProgramName() const = 0;
@@ -60,7 +58,7 @@ public:
     virtual BitsPerSample maxBitPerSample() const = 0;
     virtual SampleRate    maxSampleRate()   const = 0;
 
-    virtual bool check(QStringList *errors) const;
+    virtual bool check(const Profile &profile, QStringList *errors) const;
 
     virtual QHash<QString, QVariant> defaultParameters() const = 0;
     virtual EncoderConfigPage *configPage(Profile *profile, QWidget *parent) const = 0;
@@ -71,7 +69,6 @@ protected:
     QString mId;
     QString mName;
     QString mExt;
-    QString mSettingsGroup;
 
     bool checkProgram(const QString &program, QStringList *errors) const;
 };

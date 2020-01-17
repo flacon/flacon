@@ -35,7 +35,7 @@ class OutFormat_Flac: public OutFormat
 {
 public:
     OutFormat_Flac();
-    bool check(QStringList *errors) const override;
+    bool check(const Profile &profile, QStringList *errors) const override;
 
     virtual QString encoderProgramName() const override { return "flac"; }
     virtual QString gainProgramName() const override { return "metaflac"; }

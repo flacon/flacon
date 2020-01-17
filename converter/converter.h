@@ -33,9 +33,9 @@
 #include <QVector>
 
 class DiskPipeline;
-class OutFormat;
 class Disk;
 class Track;
+class Profile;
 
 class Converter : public QObject
 {
@@ -59,8 +59,8 @@ signals:
     void trackProgress(const Track &track, TrackState state, Percent percent);
 
 public slots:
-    void start();
-    void start(const Jobs &jobs);
+    void start(const Profile &profile);
+    void start(const Jobs &jobs, const Profile &profile);
     void stop();
 
 private slots:
@@ -70,7 +70,7 @@ private:
     int mThreadCount;
     QVector<DiskPipeline*> mDiskPiplines;
 
-    bool check(OutFormat *format) const;
+    bool check(const Profile &profile) const;
 };
 
 #endif // CONVERTER_H

@@ -698,7 +698,7 @@ void MainWindow::startConvert(const Converter::Jobs &jobs)
     connect(mConverter,         SIGNAL(trackProgress(Track,TrackState,Percent)),
             trackView->model(), SLOT(trackProgressChanged(Track,TrackState,Percent)));
 
-    mConverter->start(jobs);
+    mConverter->start(jobs, Settings::i()->currentProfile());
     setControlsEnable();
 }
 

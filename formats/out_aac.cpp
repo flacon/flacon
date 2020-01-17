@@ -37,7 +37,6 @@ OutFormat_Aac::OutFormat_Aac()
     mId   = "AAC";
     mExt  = "m4a";
     mName = "AAC";
-    mSettingsGroup = "Aac";
 }
 
 

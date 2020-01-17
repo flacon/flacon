@@ -40,7 +40,7 @@ class DiskPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiskPipeline(const Converter::Job &job, QObject *parent = nullptr);
+    explicit DiskPipeline(const Converter::Job &job, const Profile &profile, QObject *parent = nullptr);
     virtual ~DiskPipeline();
 
     bool init();

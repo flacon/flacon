@@ -32,20 +32,20 @@
 
 class Disk;
 class Track;
-class OutFormat;
+class Profile;
 
 class Gain: public Worker
 {
     Q_OBJECT
-public:
-    explicit Gain(const WorkerRequest &request, const OutFormat *format, QObject *parent = nullptr);
-    explicit Gain(const QList<WorkerRequest> &requests, const OutFormat *format, QObject *parent = nullptr);
+public:   
+    explicit Gain(const WorkerRequest &request, const Profile &profile, QObject *parent = nullptr);
+    explicit Gain(const QList<WorkerRequest> &requests, const Profile &profile, QObject *parent = nullptr);
 
     void run() override;
 
 private:
     QList<WorkerRequest> mRequests;
-    const OutFormat *mFormat;
+    const Profile &mProfile;
 };
 
 

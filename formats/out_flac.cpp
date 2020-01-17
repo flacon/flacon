@@ -40,7 +40,6 @@ OutFormat_Flac::OutFormat_Flac()
     mId   = "FLAC";
     mExt  = "flac";
     mName = "Flac";
-    mSettingsGroup = "Flac";
 }
 
 
@@ -48,11 +47,11 @@ OutFormat_Flac::OutFormat_Flac()
 /************************************************
 
  ************************************************/
-bool OutFormat_Flac::check(QStringList *errors) const
+bool OutFormat_Flac::check(const Profile &profile, QStringList *errors) const
 {
-    bool res = OutFormat::check(errors);
+    bool res = OutFormat::check(profile, errors);
 
-    if (gainType() != GainType::Disable)
+    if (profile.gainType() != GainType::Disable)
     {
         for (int i=0; i<project->count(); ++i)
         {

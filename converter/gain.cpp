@@ -25,7 +25,7 @@
 
 
 #include "gain.h"
-#include "outformat.h"
+#include "profiles.h"
 
 #include <QProcess>
 #include <QDir>
@@ -35,9 +35,9 @@
 /************************************************
  *
  ************************************************/
-Gain::Gain(const WorkerRequest &request, const OutFormat *format, QObject *parent):
+Gain::Gain(const WorkerRequest &request, const Profile &profile, QObject *parent):
     Worker(parent),
-    mFormat(format)
+    mProfile(profile)
 {
     mRequests << request;
 }
@@ -46,9 +46,9 @@ Gain::Gain(const WorkerRequest &request, const OutFormat *format, QObject *paren
 /************************************************
  *
  ************************************************/
-Gain::Gain(const QList<WorkerRequest> &requests, const OutFormat *format, QObject *parent):
+Gain::Gain(const QList<WorkerRequest> &requests, const Profile &profile, QObject *parent):
     Worker(parent),
-    mFormat(format)
+    mProfile(profile)
 {
     mRequests << requests;
 }
@@ -69,7 +69,7 @@ void Gain::run()
     foreach (WorkerRequest req, mRequests)
         files << QDir::toNativeSeparators(req.inputFile());
 
-    QStringList args = mFormat->gainArgs(files);
+    QStringList args = mProfile.gainArgs(files);
     QString prog = args.takeFirst();
 
     if (debug)

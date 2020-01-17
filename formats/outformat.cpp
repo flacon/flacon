@@ -86,16 +86,6 @@ OutFormat *OutFormat::formatForId(const QString &id)
 /************************************************
 
  ************************************************/
-GainType OutFormat::gainType() const
-{
-    QString s = Settings::i()->value(settingsGroup() + "/ReplayGain").toString();
-    return strToGainType(s);
-}
-
-
-/************************************************
-
- ************************************************/
 bool OutFormat::createCue() const
 {
     return Settings::i()->value(Settings::PerTrackCue_Create).toBool();
@@ -124,11 +114,11 @@ bool OutFormat::checkProgram(const QString &program, QStringList *errors) const
 /************************************************
 
  ************************************************/
-bool OutFormat::check(QStringList *errors) const
+bool OutFormat::check(const Profile &profile, QStringList *errors) const
 {
     bool res = checkProgram(encoderProgramName(), errors);
 
-    if (gainType() != GainType::Disable)
+    if (profile.gainType() != GainType::Disable)
         checkProgram(gainProgramName(), errors);
 
     return res;

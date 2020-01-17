@@ -30,7 +30,6 @@
 #include "converter.h"
 #include "project.h"
 #include "settings.h"
-#include "outformat.h"
 #include "splitter.h"
 #include "encoder.h"
 #include "gain.h"
@@ -64,7 +63,7 @@ Converter::~Converter()
 /************************************************
 
  ************************************************/
-void Converter::start()
+void Converter::start(const Profile &profile)
 {
     Jobs jobs;
     for (int d=0; d<project->count(); ++d)
@@ -78,14 +77,14 @@ void Converter::start()
         jobs << job;
     }
 
-    start(jobs);
+    start(jobs, profile);
 }
 
 
 /************************************************
  *
  ************************************************/
-void Converter::start(const Converter::Jobs &jobs)
+void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
 {
     if (jobs.isEmpty())
     {
@@ -93,7 +92,7 @@ void Converter::start(const Converter::Jobs &jobs)
         return;
     }
 
-    if (!check(Settings::i()->outFormat()))
+    if (!check(profile))
     {
         emit finished();
         return;
@@ -112,7 +111,7 @@ void Converter::start(const Converter::Jobs &jobs)
         if (!job.disk->canConvert())
             continue;
 
-        DiskPipeline * pipeline = new DiskPipeline(job, this);
+        DiskPipeline * pipeline = new DiskPipeline(job, profile, this);
 
         connect(pipeline, SIGNAL(readyStart()),
                 this, SLOT(startThread()));
@@ -216,10 +215,10 @@ void Converter::startThread()
 /************************************************
 
  ************************************************/
-bool Converter::check(OutFormat *format) const
+bool Converter::check(const Profile &profile) const
 {
     QStringList errors;
-    bool ok = format->check(&errors);
+    bool ok = profile.check(&errors);
 
     if (Settings::i()->value(Settings::Resample_BitsPerSample).toInt() ||
         Settings::i()->value(Settings::Resample_SampleRate).toInt() )

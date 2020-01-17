@@ -37,7 +37,6 @@ public:
         mId   = "";
         mExt  = "";
         mName = "";
-        mSettingsGroup = "NULL_FORMAT";
     }
 
     virtual QString encoderProgramName() const override { return ""; }
@@ -171,6 +170,16 @@ bool Profile::isValid() const noexcept
 {
     return !mId.isEmpty() &&
            !mFormat->id().isEmpty();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+GainType Profile::gainType() const
+{
+    QString s = value("ReplayGain").toString();
+    return strToGainType(s);
 }
 
 
