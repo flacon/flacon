@@ -84,28 +84,3 @@ void Worker::debugArguments(const QString &prog, const QStringList &args)
     }
     out << endl;
 }
-
-
-/************************************************
- *
- ************************************************/
-WorkerRequest::WorkerRequest(const WorkerRequest &other):
-    mTrack(other.mTrack),
-    mInputFile(other.mInputFile),
-    mOutFile(other.mOutFile)
-{
-
-}
-
-
-/************************************************
- *
- ************************************************/
-WorkerRequest &WorkerRequest::operator=(const WorkerRequest &other)
-{
-    mTrack     = other.mTrack;
-    mInputFile = other.mInputFile;
-    mOutFile   = other.mOutFile;
-
-    return *this;
-}

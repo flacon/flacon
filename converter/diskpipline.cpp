@@ -104,7 +104,7 @@ public:
     bool needStartSplitter;
     QHash<const Track*, TrackState> trackStates;
     QList<EncoderRequest> encoderRequests;
-    QList<WorkerRequest> gainRequests;
+    QList<Gain::Request> gainRequests;
     bool interrupted;
     QString workDir;
     QString tmpFilePrefix;
@@ -115,8 +115,8 @@ public:
     void interrupt(TrackState state);
     void startSplitterThread();
     void startEncoderThread(const EncoderRequest &req);
-    void startTrackGainThread(const WorkerRequest &req);
-    void startAlbumGainThread(QList<WorkerRequest> &reqs);
+    void startTrackGainThread(const Gain::Request &req);
+    void startAlbumGainThread(QList<Gain::Request> &reqs);
     bool createDir(const QString &dirName) const;
     bool createCue() const;
     bool copyCoverImage() const;
@@ -401,7 +401,7 @@ void DiskPipeline::Data::startEncoderThread(const EncoderRequest &req)
 /************************************************
  *
  ************************************************/
-void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
+void DiskPipeline::Data::startTrackGainThread(const Gain::Request &req)
 {
     Gain *worker = new Gain(req, Settings::i()->outFormat());
     WorkerThread *thread = new WorkerThread(worker, pipeline);
@@ -429,7 +429,7 @@ void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
 /************************************************
  *
  ************************************************/
-void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
+void DiskPipeline::Data::startAlbumGainThread(QList<Gain::Request> &reqs)
 {
     Gain *worker = new Gain(reqs, Settings::i()->outFormat());
     WorkerThread *thread = new WorkerThread(worker, pipeline);
@@ -512,7 +512,7 @@ void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
     else
         trackProgress(track, TrackState::Queued, 0);
 
-    mData->gainRequests << WorkerRequest(track, fileName, fileName);
+    mData->gainRequests.append({track, fileName});
     emit readyStart();
 }
 

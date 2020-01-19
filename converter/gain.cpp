@@ -35,7 +35,7 @@
 /************************************************
  *
  ************************************************/
-Gain::Gain(const WorkerRequest &request, const OutFormat *format, QObject *parent):
+Gain::Gain(const Request &request, const OutFormat *format, QObject *parent):
     Worker(parent),
     mFormat(format)
 {
@@ -46,7 +46,7 @@ Gain::Gain(const WorkerRequest &request, const OutFormat *format, QObject *paren
 /************************************************
  *
  ************************************************/
-Gain::Gain(const QList<WorkerRequest> &requests, const OutFormat *format, QObject *parent):
+Gain::Gain(const QList<Request> &requests, const OutFormat *format, QObject *parent):
     Worker(parent),
     mFormat(format)
 {
@@ -61,13 +61,11 @@ void Gain::run()
 {
     bool debug = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_GAIN");
 
-    foreach (WorkerRequest req, mRequests)
-        emit trackProgress(req.track(), TrackState::CalcGain, 0);
-
-
     QStringList files;
-    foreach (WorkerRequest req, mRequests)
-        files << QDir::toNativeSeparators(req.inputFile());
+    for (const Request &req: mRequests) {
+        emit trackProgress(req.track, TrackState::CalcGain, 0);
+        files << QDir::toNativeSeparators(req.file);
+    }
 
     QStringList args = mFormat->gainArgs(files);
     QString prog = args.takeFirst();
@@ -80,18 +78,16 @@ void Gain::run()
     process.start(prog, args);
     process.waitForFinished(-1);
 
-    if (process.exitCode() != 0)
-    {
+    if (process.exitCode() != 0) {
         QTextStream(stderr) << "Gain command: ";
         debugArguments(prog, args);
         QString msg = tr("Gain error:\n") +
                 QString::fromLocal8Bit(process.readAllStandardError());
-        error(mRequests.first().track(), msg);
+        error(mRequests.first().track, msg);
     }
 
-    foreach (WorkerRequest req, mRequests)
-    {
-        emit trackProgress(req.track(), TrackState::WriteGain, 100);
-        emit trackReady(req.track(), req.inputFile());
+    foreach (const Request &req, mRequests) {
+        emit trackProgress(req.track, TrackState::WriteGain, 100);
+        emit trackReady(req.track, req.file);
     }
 }

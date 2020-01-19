@@ -38,13 +38,17 @@ class Gain: public Worker
 {
     Q_OBJECT
 public:
-    explicit Gain(const WorkerRequest &request, const OutFormat *format, QObject *parent = nullptr);
-    explicit Gain(const QList<WorkerRequest> &requests, const OutFormat *format, QObject *parent = nullptr);
+    struct Request {
+        const Track *track;
+        QString file;
+    };
+    explicit Gain(const Request &request, const OutFormat *format, QObject *parent = nullptr);
+    explicit Gain(const QList<Request> &requests, const OutFormat *format, QObject *parent = nullptr);
 
     void run() override;
 
 private:
-    QList<WorkerRequest> mRequests;
+    QList<Request> mRequests;
     const OutFormat *mFormat;
 };
 
