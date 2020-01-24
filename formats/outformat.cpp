@@ -110,7 +110,6 @@ bool OutFormat::checkProgram(const QString &program, QStringList *errors) const
 }
 
 
-
 /************************************************
 
  ************************************************/

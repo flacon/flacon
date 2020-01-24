@@ -1,3 +1,7 @@
+[Resample]
+BitsPerSample=24
+SampleRate=48000
+
 [Aac]
 Bitrate=128
 Quality=112

@@ -56,6 +56,12 @@ public:
 
     GainType gainType() const;
 
+    int bitsPerSample() const;
+    void setBitsPerSample(int value);
+
+    int sampleRate() const;
+    void setSampleRate(int value);
+
     QString formatId() const { return mFormat->id(); }
     QString ext() const { return mFormat->ext(); }
     BitsPerSample maxBitPerSample() const { return mFormat->maxBitPerSample(); }

@@ -4,12 +4,17 @@
     Bitrate=256
     Quality=100
     UseQuality=true
+    BitsPerSample=16
+    SampleRate=44100
 
 [Profiles/FLAC]
     Format = FLAC
     Name = Flac
     Compression=5
     ReplayGain=Disable
+    BitsPerSample=24
+    SampleRate=48000
+
 
 [Profiles/MP3]
     Format = MP3
@@ -18,6 +23,8 @@
     Preset=vbrStandardFast
     Quality=4
     ReplayGain=Disable
+    BitsPerSample=16
+    SampleRate=44100
 
 [Profiles/OGG]
     Format = OGG
@@ -28,19 +35,27 @@
     Quality=7
     ReplayGain=Disable
     UseQuality=true
+    BitsPerSample=16
+    SampleRate=44100
 
 [Profiles/OPUS]
     Name = Opus
     Format = OPUS
     Bitrate=96
     BitrateType=VBR
+    BitsPerSample=0
+    SampleRate=0
 
 [Profiles/WV]
     Name = WV
     Format = WV
     Compression=1
     ReplayGain=Disable
+    BitsPerSample=32
+    SampleRate=9600
 
 [Profiles/WAV]
     Format=WAV
     Name=WAV
+    BitsPerSample=0
+    SampleRate=44100

@@ -148,10 +148,6 @@ void Settings::init()
     setDefaultValue(ConfigureDialog_Width,  645);
     setDefaultValue(ConfigureDialog_Height, 425);
 
-    // Resampling ***************************
-    setDefaultValue(Resample_BitsPerSample, 0);
-    setDefaultValue(Resample_SampleRate,    0);
-
     mPrograms << Resampler::programName();
 
     foreach(OutFormat *format, OutFormat::allFormats())
@@ -228,10 +224,6 @@ QString Settings::keyToString(Settings::Key key) const
     // Cover image **************************
     case Cover_Mode:                return "Cover/Mode";
     case Cover_Size:                return "Cover/Size";
-
-    // Resampling ***************************
-    case Resample_BitsPerSample:    return "Resample/BitsPerSample";
-    case Resample_SampleRate:       return "Resample/SampleRate";
     }
 
     return "";
@@ -519,17 +511,21 @@ Profiles Settings::profiles() const
  ************************************************/
 void loadOldFormatValues(Settings *settings, Profile &profile)
 {
-    QString group;
-    if (profile.formatId() == "WAV")  settings->beginGroup("WAV/");
-    if (profile.formatId() == "FLAC") settings->beginGroup("Flac/");
-    if (profile.formatId() == "AAC" ) settings->beginGroup("Aac/");
-    if (profile.formatId() == "MP3" ) settings->beginGroup("Mp3/");
-    if (profile.formatId() == "OGG" ) settings->beginGroup("Ogg/");
-    if (profile.formatId() == "OPUS") settings->beginGroup("Opus/");
-    if (profile.formatId() == "WV"  ) settings->beginGroup("WV/");
+    settings->beginGroup("Resample");
+    profile.setValue("BitsPerSample", settings->value("BitsPerSample", profile.value("BitsPerSample")));
+    profile.setValue("SampleRate",    settings->value("SampleRate",    profile.value("SampleRate")));
+    settings->endGroup();
+
+    if (profile.formatId() == "WAV")  settings->beginGroup("WAV");
+    if (profile.formatId() == "FLAC") settings->beginGroup("Flac");
+    if (profile.formatId() == "AAC" ) settings->beginGroup("Aac");
+    if (profile.formatId() == "MP3" ) settings->beginGroup("Mp3");
+    if (profile.formatId() == "OGG" ) settings->beginGroup("Ogg");
+    if (profile.formatId() == "OPUS") settings->beginGroup("Opus");
+    if (profile.formatId() == "WV"  ) settings->beginGroup("WV");
 
     for (const QString &key : settings->allKeys()) {
-        profile.setValue(key, settings->value(group + key, profile.value(key)));
+        profile.setValue(key, settings->value(key, profile.value(key)));
     }
 
     settings->endGroup();

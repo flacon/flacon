@@ -104,6 +104,8 @@ Profile::Profile(OutFormat &format, const QString &id):
 {
     mName = format.name();
     mValues = format.defaultParameters();
+    mValues["BitsPerSample"] = 0;
+    mValues["SampleRate"]    = 0;
 }
 
 
@@ -180,6 +182,43 @@ GainType Profile::gainType() const
 {
     QString s = value("ReplayGain").toString();
     return strToGainType(s);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+int Profile::bitsPerSample() const
+{
+    return mValues["BitsPerSample"].toInt();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setBitsPerSample(int value)
+{
+    mValues["BitsPerSample"] = value;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+int Profile::sampleRate() const
+{
+    return mValues["SampleRate"].toInt();
+}
+
+
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setSampleRate(int value)
+{
+    mValues["SampleRate"] = value;
 }
 
 

@@ -266,24 +266,34 @@ void ConfigDialog::fillProfilesList()
 void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem *previous)
 {
     if (mEncoderPage && previous) {
-        //qDebug() << previous->text();
         mEncoderPage->save();
     }
 
     if (!current)
         return;
 
-    delete mEncoderPage;
+    if (mEncoderPage) {
+        profileParent->layout()->removeWidget(mEncoderPage);
+        delete mEncoderPage;
+    }
 
-    int n = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());
-    if (n<0)
+    int n = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());    
+    if (n<0) {
+        profileParent->hide();
         return;
+    }
 
     Profile &profile = mProfiles[n];
 
     mEncoderPage = profile.configPage(profileParent);
+    qobject_cast<QVBoxLayout*>(profileParent->layout())->insertWidget(0, mEncoderPage);
+
     mEncoderPage->load();
+    Controls::loadFromSettings(bitDepthComboBox, Settings::Resample_BitsPerSample);
+    Controls::loadFromSettings(sampleRateComboBox, Settings::Resample_SampleRate);
+
     mEncoderPage->show();
+    profileParent->show();
 }
 
 
@@ -366,7 +376,8 @@ void ConfigDialog::setProfile(const QString &profileId)
     for (int i=0; i<profilesList->count(); ++i) {
         QListWidgetItem *item = profilesList->item(i);
         if (item->data(PROFILE_ID_ROLE).toString() == profileId) {
-            item->setSelected(true);
+            profilesList->setCurrentItem(item);
+            return;
         }
     }
 }
@@ -401,9 +412,6 @@ void ConfigDialog::load()
     Controls::loadFromSettings(perTrackCueCheck, Settings::PerTrackCue_Create);
     Controls::loadFromSettings(preGapComboBox, Settings::PerTrackCue_Pregap);
     perTrackCueFormatEdit->setEditText(Settings::i()->value(Settings::PerTrackCue_FileName).toString());
-
-    Controls::loadFromSettings(bitDepthComboBox, Settings::Resample_BitsPerSample);
-    Controls::loadFromSettings(sampleRateComboBox, Settings::Resample_SampleRate);
 
     setCoverMode(Settings::i()->coverMode());
     Controls::loadFromSettings(coverResizeSpinBox, Settings::Cover_Size);

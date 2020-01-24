@@ -118,6 +118,123 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <widget class="QGroupBox" name="resamplingGroupBox">
+              <property name="title">
+               <string>Resampling</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_3">
+               <property name="sizeConstraint">
+                <enum>QLayout::SetMinimumSize</enum>
+               </property>
+               <item row="0" column="0">
+                <widget class="QLabel" name="bitDepthLabel">
+                 <property name="text">
+                  <string>Maximum bit depth:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="bitDepthComboBox"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="sampleRateLabel">
+                 <property name="text">
+                  <string>Maximum sample rate:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="sampleRateComboBox"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="perTrackCueGroup">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Per track CUE sheet</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_3">
+               <item>
+                <widget class="QCheckBox" name="perTrackCueCheck">
+                 <property name="text">
+                  <string>Create per track CUE sheet</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QGridLayout" name="gridLayout">
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="preGapLabel">
+                   <property name="text">
+                    <string>First track pregap:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QComboBox" name="perTrackCueFormatEdit">
+                   <property name="editable">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="OutPatternButton" name="perTrackCueFormatBtn">
+                   <property name="text">
+                    <string notr="true">*</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="perTrackCueLabel">
+                   <property name="text">
+                    <string extracomment="Settings dialog, label for the edit control with name of the created CUE file.">File name format:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1" colspan="2">
+                  <widget class="QComboBox" name="preGapComboBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>1</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="sizeIncrement">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="profilesSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>84</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
@@ -202,76 +319,6 @@
           </layout>
          </item>
          <item>
-          <widget class="QGroupBox" name="perTrackCueGroup">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="title">
-            <string>Per track CUE sheet</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
-            <item>
-             <widget class="QCheckBox" name="perTrackCueCheck">
-              <property name="text">
-               <string>Create per track CUE sheet</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QGridLayout" name="gridLayout">
-              <item row="1" column="0">
-               <widget class="QLabel" name="preGapLabel">
-                <property name="text">
-                 <string>First track pregap:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QComboBox" name="perTrackCueFormatEdit">
-                <property name="editable">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="OutPatternButton" name="perTrackCueFormatBtn">
-                <property name="text">
-                 <string notr="true">*</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="perTrackCueLabel">
-                <property name="text">
-                 <string extracomment="Settings dialog, label for the edit control with name of the created CUE file.">File name format:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1" colspan="2">
-               <widget class="QComboBox" name="preGapComboBox">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>1</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="sizeIncrement">
-                 <size>
-                  <width>0</width>
-                  <height>0</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
           <widget class="QGroupBox" name="coverGroupBox">
            <property name="title">
             <string>Cover image</string>
@@ -329,38 +376,6 @@
                </widget>
               </item>
              </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="resamplingGroupBox">
-           <property name="title">
-            <string>Resampling</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_3">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetMinimumSize</enum>
-            </property>
-            <item row="0" column="0">
-             <widget class="QLabel" name="bitDepthLabel">
-              <property name="text">
-               <string>Maximum bit depth:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="bitDepthComboBox"/>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="sampleRateLabel">
-              <property name="text">
-               <string>Maximum sample rate:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="sampleRateComboBox"/>
             </item>
            </layout>
           </widget>
@@ -555,14 +570,6 @@
   <tabstop>tmpDirEdit</tabstop>
   <tabstop>tmpDirButton</tabstop>
   <tabstop>codePageComboBox</tabstop>
-  <tabstop>perTrackCueCheck</tabstop>
-  <tabstop>preGapComboBox</tabstop>
-  <tabstop>coverDisableButton</tabstop>
-  <tabstop>coverKeepSizeButton</tabstop>
-  <tabstop>coverScaleButton</tabstop>
-  <tabstop>coverResizeSpinBox</tabstop>
-  <tabstop>bitDepthComboBox</tabstop>
-  <tabstop>sampleRateComboBox</tabstop>
   <tabstop>progsArea</tabstop>
   <tabstop>progScanButton</tabstop>
   <tabstop>autoUpdateCbk</tabstop>

@@ -1,46 +1,60 @@
 [Profiles/AAC]
-Name=AAC
-Format=AAC
-Bitrate=128
-Quality=112
-UseQuality=false
+    Name=AAC
+    Format=AAC
+    Bitrate=128
+    Quality=112
+    UseQuality=false
+    BitsPerSample=24
+    SampleRate=48000
 
 [Profiles/FLAC]
-Name=Flac
-Format=FLAC
-Compression=1
-ReplayGain=Album
+    Name=Flac
+    Format=FLAC
+    Compression=1
+    ReplayGain=Album
+    BitsPerSample=24
+    SampleRate=48000
 
 [Profiles/MP3]
-Name=MP3
-Format=MP3
-Bitrate=128
-Preset=cbrKbps
-Quality=1
-ReplayGain=Album
+    Name=MP3
+    Format=MP3
+    Bitrate=128
+    Preset=cbrKbps
+    Quality=1
+    ReplayGain=Album
+    BitsPerSample=24
+    SampleRate=48000
 
 [Profiles/OGG]
-Name=OGG
-Format=OGG
-MaxBitrate=
-MinBitrate=
-NormBitrate=
-Quality=2.3
-ReplayGain=Track
-UseQuality=false
+    Name=OGG
+    Format=OGG
+    MaxBitrate=
+    MinBitrate=
+    NormBitrate=
+    Quality=2.3
+    ReplayGain=Track
+    UseQuality=false
+    BitsPerSample=24
+    SampleRate=48000
 
 [Profiles/OPUS]
-Name=Opus
-Format=OPUS
-Bitrate=125
-BitrateType=VBR
+    Name=Opus
+    Format=OPUS
+    Bitrate=125
+    BitrateType=VBR
+    BitsPerSample=24
+    SampleRate=48000
 
 [Profiles/WV]
-Name=WavPack
-Format=WV
-Compression=0
-ReplayGain=Track
+    Name=WavPack
+    Format=WV
+    Compression=0
+    ReplayGain=Track
+    BitsPerSample=24
+    SampleRate=48000
 
 [Profiles/WAV]
     Format=WAV
     Name=WAV
+    BitsPerSample=24
+    SampleRate=48000
