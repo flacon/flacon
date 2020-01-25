@@ -135,11 +135,6 @@ void Settings::init()
     // Misc *************************************
     setDefaultValue(Misc_LastDir,           QDir::homePath());
 
-    // PerTrackCue **************************
-    setDefaultValue(PerTrackCue_Create,     false);
-    setDefaultValue(PerTrackCue_Pregap,     preGapTypeToString(PreGapType::ExtractToFile));
-    setDefaultValue(PerTrackCue_FileName,   "%a-%A.cue");
-
     // Cover image **************************
     setDefaultValue(Cover_Mode,             coverModeToString(CoverMode::Scale));
     setDefaultValue(Cover_Size,             500);
@@ -206,26 +201,19 @@ QString Settings::keyToString(Settings::Key key) const
     // Internet ****************************
     case Inet_CDDBHost:             return "Inet/CDDBHost";
 
-
     // Misc *********************************
     case Misc_LastDir:              return "Misc/LastDirectory";
-
-
-    // PerTrackCue **************************
-    case PerTrackCue_Create:        return "PerTrackCue/Create";
-    case PerTrackCue_Pregap:        return "PerTrackCue/Pregap";
-    case PerTrackCue_FileName:      return "PerTrackCue/FileName";
 
     // ConfigureDialog **********************
     case ConfigureDialog_Width:     return "ConfigureDialog/Width";
     case ConfigureDialog_Height:    return "ConfigureDialog/Height";
-
 
     // Cover image **************************
     case Cover_Mode:                return "Cover/Mode";
     case Cover_Size:                return "Cover/Size";
     }
 
+    assert(false);
     return "";
 }
 
@@ -345,42 +333,6 @@ QString Settings::tmpDir() const
 void Settings::setTmpDir(const QString &value)
 {
     setValue(Encoder_TmpDir, value);
-}
-
-
-/************************************************
-
- ************************************************/
-bool Settings::createCue() const
-{
-    return value(PerTrackCue_Create).toBool();
-}
-
-
-/************************************************
-
- ************************************************/
-void Settings::setCreateCue(bool value)
-{
-    setValue(PerTrackCue_Create, value);
-}
-
-
-/************************************************
-
- ************************************************/
-PreGapType Settings::preGapType() const
-{
-    return strToPreGapType(value(Settings::PerTrackCue_Pregap).toString());
-}
-
-
-/************************************************
-
- ************************************************/
-void Settings::setPregapType(PreGapType value)
-{
-    setValue(Settings::PerTrackCue_Pregap, preGapTypeToString(value));
 }
 
 
@@ -511,11 +463,33 @@ Profiles Settings::profiles() const
  ************************************************/
 void loadOldFormatValues(Settings *settings, Profile &profile)
 {
+    // Resample ............................
     settings->beginGroup("Resample");
-    profile.setValue("BitsPerSample", settings->value("BitsPerSample", profile.value("BitsPerSample")));
-    profile.setValue("SampleRate",    settings->value("SampleRate",    profile.value("SampleRate")));
+
+    if (settings->contains("BitsPerSample"))
+        profile.setBitsPerSample(settings->value("BitsPerSample").toInt());
+
+    if (settings->contains("SampleRate"))
+        profile.setSampleRate(settings->value("SampleRate").toInt());
+
     settings->endGroup();
 
+    // Per track cue .......................
+    settings->beginGroup("PerTrackCue");
+
+    if (settings->contains("Create"))
+        profile.setCreateCue(settings->value("Create").toBool());
+
+    if (settings->contains("FileName"))
+        profile.setCueFileName(settings->value("FileName").toString());
+
+    if (settings->contains("Pregap"))
+        profile.setPregapType(strToPreGapType(settings->value("Pregap").toString()));
+
+    settings->endGroup();
+
+
+    // Format values .......................
     if (profile.formatId() == "WAV")  settings->beginGroup("WAV");
     if (profile.formatId() == "FLAC") settings->beginGroup("Flac");
     if (profile.formatId() == "AAC" ) settings->beginGroup("Aac");

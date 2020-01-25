@@ -49,6 +49,15 @@ public:
     bool isRunning() const;
     int runningThreadCount() const;
 
+    CoverMode coverMode() const;
+    void setCoverMode(CoverMode value);
+
+    int coverImageSize() const;
+    void setCoverImageSize(int value);
+
+    QString tmpDir() const;
+    void setTmpDir(QString value);
+
 signals:
     void readyStart();
     void threadFinished();
@@ -71,7 +80,7 @@ protected:
 private:
     class Data;
     Data *mData;
-    QTemporaryDir *mTmpDir;
+    QTemporaryDir *mTmpDir = nullptr;
     QVector<WorkerThread*> mThreads;
 };
 

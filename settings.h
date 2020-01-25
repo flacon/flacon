@@ -63,11 +63,6 @@ public:
         // Misc *********************************
         Misc_LastDir,
 
-        // PerTrackCue **************************
-        PerTrackCue_Create,
-        PerTrackCue_Pregap,
-        PerTrackCue_FileName,
-
         // ConfigureDialog **********************
         ConfigureDialog_Width,
         ConfigureDialog_Height,
@@ -75,10 +70,6 @@ public:
         // Cover image **************************
         Cover_Mode,
         Cover_Size,
-
-        // Resampling ***************************
-        Resample_BitsPerSample,
-        Resample_SampleRate,
     };
 
     static Settings *i();
@@ -100,12 +91,6 @@ public:
 
     QString tmpDir() const;
     void setTmpDir(const QString &value);
-
-    bool createCue() const;
-    void setCreateCue(bool value);
-
-    PreGapType preGapType() const;
-    void setPregapType(PreGapType value);
 
     QString outFilePattern() const;
     void setOutFilePattern(const QString &value);

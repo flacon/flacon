@@ -86,15 +86,6 @@ OutFormat *OutFormat::formatForId(const QString &id)
 /************************************************
 
  ************************************************/
-bool OutFormat::createCue() const
-{
-    return Settings::i()->value(Settings::PerTrackCue_Create).toBool();
-}
-
-
-/************************************************
-
- ************************************************/
 bool OutFormat::checkProgram(const QString &program, QStringList *errors) const
 {
     if (program.isEmpty())

@@ -96,9 +96,6 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     pages->setCurrentIndex(0);
     load();
 
-    preGapComboBox->setEnabled(perTrackCueCheck->isChecked());
-
-
     perTrackCueFormatBtn->addPattern("%a", tr("Insert \"Artist\""));
     perTrackCueFormatBtn->addPattern("%A", tr("Insert \"Album title\""));
     perTrackCueFormatBtn->addPattern("%y", tr("Insert \"Year\""));
@@ -129,6 +126,9 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
     connect(profilesList, &QListWidget::itemChanged,
             this, &ConfigDialog::profileItemChanged);
+
+    connect(perTrackCueCheck, &QCheckBox::toggled,
+            this, &ConfigDialog::setEnablePerTrackGroup);
 
     perTrackCueFormatBtn->setIcon(Icon("pattern-button"));
 
@@ -266,7 +266,7 @@ void ConfigDialog::fillProfilesList()
 void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem *previous)
 {
     if (mEncoderPage && previous) {
-        mEncoderPage->save();
+        saveEncoderPage();
     }
 
     if (!current)
@@ -288,9 +288,8 @@ void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem
     mEncoderPage = profile.configPage(profileParent);
     qobject_cast<QVBoxLayout*>(profileParent->layout())->insertWidget(0, mEncoderPage);
 
-    mEncoderPage->load();
-    Controls::loadFromSettings(bitDepthComboBox, Settings::Resample_BitsPerSample);
-    Controls::loadFromSettings(sampleRateComboBox, Settings::Resample_SampleRate);
+    loadEncoderPage();
+
 
     mEncoderPage->show();
     profileParent->show();
@@ -308,6 +307,53 @@ void ConfigDialog::profileItemChanged(QListWidgetItem *item)
     if (n>-1) {
         mProfiles[n].setName(item->text());
     }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ConfigDialog::setEnablePerTrackGroup(bool enabled)
+{
+    for (QWidget *w: perTrackCueGroup->findChildren<QWidget*>()) {
+        if (w != perTrackCueCheck) {
+            w->setEnabled(enabled);
+        }
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ConfigDialog::loadEncoderPage()
+{
+    mEncoderPage->load();
+
+    mEncoderPage->loadWidget(Profile::BITS_PER_SAMPLE_KEY, bitDepthComboBox);
+    mEncoderPage->loadWidget(Profile::SAMPLE_RATE_KEY,     sampleRateComboBox);
+
+    mEncoderPage->loadWidget(Profile::CREATE_CUE_KEY,    perTrackCueCheck);
+    mEncoderPage->loadWidget(Profile::PREGAP_TYPE_KEY,   preGapComboBox);
+    mEncoderPage->loadWidget(Profile::CUE_FILE_NAME_KEY, perTrackCueFormatEdit);
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ConfigDialog::saveEncoderPage()
+{
+    mEncoderPage->save();
+
+    mEncoderPage->saveWidget(Profile::BITS_PER_SAMPLE_KEY, bitDepthComboBox);
+    mEncoderPage->saveWidget(Profile::SAMPLE_RATE_KEY,     sampleRateComboBox);
+
+    mEncoderPage->saveWidget(Profile::CREATE_CUE_KEY,    perTrackCueCheck);
+    mEncoderPage->saveWidget(Profile::PREGAP_TYPE_KEY,   preGapComboBox);
+    mEncoderPage->saveWidget(Profile::CUE_FILE_NAME_KEY, perTrackCueFormatEdit);//Settings::i()->setValue(Settings::PerTrackCue_FileName, perTrackCueFormatEdit->currentText());
+
 }
 
 
@@ -409,9 +455,6 @@ void ConfigDialog::load()
 {
     Controls::loadFromSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
     Controls::loadFromSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
-    Controls::loadFromSettings(perTrackCueCheck, Settings::PerTrackCue_Create);
-    Controls::loadFromSettings(preGapComboBox, Settings::PerTrackCue_Pregap);
-    perTrackCueFormatEdit->setEditText(Settings::i()->value(Settings::PerTrackCue_FileName).toString());
 
     setCoverMode(Settings::i()->coverMode());
     Controls::loadFromSettings(coverResizeSpinBox, Settings::Cover_Size);
@@ -438,13 +481,6 @@ void ConfigDialog::save()
 {
     Controls::saveToSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
     Controls::saveToSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
-    Controls::saveToSettings(perTrackCueCheck, Settings::PerTrackCue_Create);
-    Controls::saveToSettings(preGapComboBox,   Settings::PerTrackCue_Pregap);
-
-    Settings::i()->setValue(Settings::PerTrackCue_FileName, perTrackCueFormatEdit->currentText());
-
-    Controls::saveToSettings(bitDepthComboBox, Settings::Resample_BitsPerSample);
-    Controls::saveToSettings(sampleRateComboBox, Settings::Resample_SampleRate);
 
     Settings::i()->setValue(Settings::Cover_Mode, coverModeToString(coverMode()));
     Controls::saveToSettings(coverResizeSpinBox, Settings::Cover_Size);
@@ -453,7 +489,7 @@ void ConfigDialog::save()
         Settings::i()->setValue("Programs/" + edit->programName(), edit->text());
 
     if (mEncoderPage) {
-        mEncoderPage->save();
+        saveEncoderPage();
     }
     Settings::i()->setProfiles(mProfiles);
 
@@ -466,7 +502,6 @@ void ConfigDialog::save()
     Controls::saveToSettings(tmpDirEdit, Settings::Encoder_TmpDir);
 #endif
 }
-
 
 
 /************************************************

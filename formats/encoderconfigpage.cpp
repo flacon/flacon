@@ -193,7 +193,13 @@ void EncoderConfigPage::saveWidget(const QString &key, const QLineEdit *widget)
  ************************************************/
 void EncoderConfigPage::loadWidget(const QString &key, QCheckBox *widget) const
 {
+    bool wasChecked = widget->isChecked();
     widget->setChecked(mProfile->value(key).toBool());
+
+    if (widget->isChecked() == wasChecked) {
+        emit widget->toggled(widget->isChecked());
+        emit widget->clicked(widget->isChecked());
+    }
 }
 
 
@@ -254,8 +260,14 @@ void EncoderConfigPage::saveWidget(const QString &key, const QDoubleSpinBox *wid
  ************************************************/
 void EncoderConfigPage::loadWidget(const QString &key, QComboBox *widget) const
 {
-    int n = qMax(0, widget->findData(mProfile->value(key)));
-    widget->setCurrentIndex(n);
+    if (widget->isEditable()) {
+        widget->setEditText(mProfile->value(key).toString());
+
+    }
+    else {
+        int n = qMax(0, widget->findData(mProfile->value(key)));
+        widget->setCurrentIndex(n);
+    }
 }
 
 
@@ -264,8 +276,14 @@ void EncoderConfigPage::loadWidget(const QString &key, QComboBox *widget) const
  ************************************************/
 void EncoderConfigPage::saveWidget(const QString &key, const QComboBox *widget)
 {
-    QVariant data = widget->itemData(widget->currentIndex());
-    mProfile->setValue(key, data);
+    if (widget->isEditable()) {
+        mProfile->setValue(key, widget->currentText());
+
+    }
+    else {
+        QVariant data = widget->itemData(widget->currentIndex());
+        mProfile->setValue(key, data);
+    }
 }
 
 

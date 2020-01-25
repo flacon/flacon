@@ -1,72 +1,72 @@
 [Profiles/AAC]
-    Name=AAC
     Format=AAC
-    Bitrate=128
-    Quality=112
-    UseQuality=false
-    BitsPerSample=24
-    SampleRate=48000
+    Name=AAC
+    Bitrate=256
+    Quality=100
+    UseQuality=true
+    BitsPerSample=0
+    SampleRate=0
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
 
 [Profiles/FLAC]
-    Name=Flac
-    Format=FLAC
-    Compression=1
-    ReplayGain=Album
-    BitsPerSample=24
-    SampleRate=48000
+    Format = FLAC
+    Name = Flac
+    Compression=5
+    ReplayGain=Disable
+    BitsPerSample=0
+    SampleRate=0
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
 
 [Profiles/MP3]
-    Name=MP3
-    Format=MP3
-    Bitrate=128
-    Preset=cbrKbps
-    Quality=1
-    ReplayGain=Album
-    BitsPerSample=24
-    SampleRate=48000
+    Format = MP3
+    Name = MP3
+    Bitrate=320
+    Preset=vbrStandardFast
+    Quality=4
+    ReplayGain=Disable
+    BitsPerSample=0
+    SampleRate=0
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
 
 [Profiles/OGG]
-    Name=OGG
-    Format=OGG
+    Format = OGG
+    Name = OGG
     MaxBitrate=
     MinBitrate=
     NormBitrate=
-    Quality=2.3
-    ReplayGain=Track
-    UseQuality=false
-    BitsPerSample=24
-    SampleRate=48000
+    Quality=7
+    ReplayGain=Disable
+    UseQuality=true
+    BitsPerSample=0
+    SampleRate=0
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
 
 [Profiles/OPUS]
-    Name=Opus
-    Format=OPUS
-    Bitrate=125
+    Name = Opus
+    Format = OPUS
+    Bitrate=96
     BitrateType=VBR
-    BitsPerSample=24
-    SampleRate=48000
+    BitsPerSample=0
+    SampleRate=0
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
 
 [Profiles/WV]
-    Name=WavPack
-    Format=WV
-    Compression=0
-    ReplayGain=Track
-    BitsPerSample=24
-    SampleRate=48000
+    Name = WavPack
+    Format = WV
+    Compression=1
+    ReplayGain=Disable
+    BitsPerSample=0
+    SampleRate=0
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
@@ -74,8 +74,8 @@
 [Profiles/WAV]
     Format=WAV
     Name=WAV
-    BitsPerSample=24
-    SampleRate=48000
+    BitsPerSample=0
+    SampleRate=0
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract

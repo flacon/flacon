@@ -37,7 +37,7 @@
 /************************************************
 
  ************************************************/
-CueCreator::CueCreator(const Disk *disk, PreGapType preGapType):
+CueCreator::CueCreator(const Disk *disk, PreGapType preGapType, const QString &fileTemplate):
     mDisk(disk),
     mPreGapType(preGapType)
 {
@@ -49,7 +49,7 @@ CueCreator::CueCreator(const Disk *disk, PreGapType preGapType):
     expander.setDiskNum(mDisk->diskNum());
     expander.setDiskCount(mDisk->diskCount());
 
-    QString fileName = expander.expand(Settings::i()->value(Settings::PerTrackCue_FileName).toString());
+    QString fileName = expander.expand(fileTemplate);
 
     if (!fileName.endsWith(".cue"))
         fileName += ".cue";

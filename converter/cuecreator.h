@@ -39,7 +39,7 @@ class Track;
 class CueCreator
 {
 public:
-    explicit CueCreator(const Disk *disk, PreGapType preGapType);
+    explicit CueCreator(const Disk *disk, PreGapType preGapType, const QString &fileTemplate);
     bool write();
 
     QString errorString() const { return mErrorString; }

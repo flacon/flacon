@@ -29,6 +29,16 @@
 #include <QSettings>
 #include <QDebug>
 
+QHash<QString, QVariant> &operator<<(QHash<QString, QVariant> &values, const QHash<QString, QVariant> &other)
+{
+    for (auto i= other.constBegin(); i!=other.constEnd(); ++i) {
+        if (!values.contains(i.key()))
+            values.insert(i.key(), i.value());
+    }
+    return values;
+}
+
+
 class OutFormat_Null: public OutFormat
 {
 public:
@@ -81,6 +91,7 @@ static OutFormat_Null *nullFormat() {
 Profile::Profile():
     mFormat(nullFormat())
 {
+    setDefaultValues();
 }
 
 
@@ -91,7 +102,7 @@ Profile::Profile(const QString &id):
     mId(id),
     mFormat(nullFormat())
 {
-
+    setDefaultValues();
 }
 
 
@@ -103,9 +114,21 @@ Profile::Profile(OutFormat &format, const QString &id):
     mFormat(&format)
 {
     mName = format.name();
-    mValues = format.defaultParameters();
-    mValues["BitsPerSample"] = 0;
-    mValues["SampleRate"]    = 0;
+    setDefaultValues();
+    mValues << format.defaultParameters();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setDefaultValues()
+{
+    mValues[BITS_PER_SAMPLE_KEY] = 0;
+    mValues[SAMPLE_RATE_KEY]     = 0;
+    mValues[CREATE_CUE_KEY]      = false;
+    mValues[CUE_FILE_NAME_KEY]   = "%a-%A.cue";
+    mValues[PREGAP_TYPE_KEY]     = preGapTypeToString(PreGapType::ExtractToFile);
 }
 
 
@@ -190,7 +213,7 @@ GainType Profile::gainType() const
  ************************************************/
 int Profile::bitsPerSample() const
 {
-    return mValues["BitsPerSample"].toInt();
+    return value(BITS_PER_SAMPLE_KEY, int(BitsPerSample::AsSourcee)).toInt();
 }
 
 
@@ -199,7 +222,7 @@ int Profile::bitsPerSample() const
  ************************************************/
 void Profile::setBitsPerSample(int value)
 {
-    mValues["BitsPerSample"] = value;
+    setValue(BITS_PER_SAMPLE_KEY, value);
 }
 
 
@@ -208,7 +231,7 @@ void Profile::setBitsPerSample(int value)
  ************************************************/
 int Profile::sampleRate() const
 {
-    return mValues["SampleRate"].toInt();
+    return value(SAMPLE_RATE_KEY, int(SampleRate::AsSource)).toInt();
 }
 
 
@@ -218,7 +241,61 @@ int Profile::sampleRate() const
  ************************************************/
 void Profile::setSampleRate(int value)
 {
-    mValues["SampleRate"] = value;
+    setValue(SAMPLE_RATE_KEY, value);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+bool Profile::isCreateCue() const
+{
+    return value(CREATE_CUE_KEY, false).toBool();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setCreateCue(bool value)
+{
+    setValue(CREATE_CUE_KEY, value);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Profile::cueFileName() const
+{
+    return value(CUE_FILE_NAME_KEY).toString();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setCueFileName(const QString &value)
+{
+    setValue(CUE_FILE_NAME_KEY, value);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+PreGapType Profile::preGapType() const
+{
+    return strToPreGapType(value(PREGAP_TYPE_KEY).toString());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setPregapType(PreGapType value)
+{
+    setValue(PREGAP_TYPE_KEY, preGapTypeToString(value));
 }
 
 
@@ -237,27 +314,31 @@ EncoderConfigPage *Profile::configPage(QWidget *parent)
 void Profile::load(QSettings &settings, const QString &group)
 {
     settings.beginGroup(group);
+
+    if (settings.contains("Format")) {
+        auto *fmt = OutFormat::formatForId(settings.value("Format").toString());
+        mFormat = fmt ? fmt : nullFormat();
+        mValues << fmt->defaultParameters();
+    }
+
+
+    if (settings.contains("Name")) {
+        setName(settings.value("Name").toString());
+    }
+    else {
+        setName(mFormat->name());
+    }
+
     for (QString key: settings.allKeys()) {
         QString uKey = key.toUpper();
 
-        if (uKey == "NAME") {
-            setName(settings.value(key).toString());
-            continue;
-        }
-
-        if (uKey == "FORMAT") {
-            auto *fmt = OutFormat::formatForId(settings.value(key).toString());
-            mFormat = fmt ? fmt : nullFormat();
-            continue;
-        }
+        if (uKey == "NAME")   continue;
+        if (uKey == "FORMAT") continue;
 
         setValue(key, settings.value(key));
     }
-    settings.endGroup();
 
-    if (name().isEmpty()) {
-        setName(mFormat->name());
-    }
+    settings.endGroup();
 }
 
 

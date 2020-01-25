@@ -1,0 +1,20 @@
+[Profiles/AAC]
+    Format=AAC
+
+[Profiles/FLAC]
+    Format = FLAC
+
+[Profiles/MP3]
+    Format = MP3
+
+[Profiles/OGG]
+    Format = OGG
+
+[Profiles/OPUS]
+    Format = OPUS
+
+[Profiles/WV]
+    Format = WV
+
+[Profiles/WAV]
+    Format=WAV

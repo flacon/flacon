@@ -101,8 +101,7 @@ void TestFlacon::testLoadProfiles_data()
     QTest::addColumn<QString>("expect", nullptr);
     QString srcDir = mDataDir + "testLoadProfiles";
 
-    foreach(QString f, QDir(srcDir).entryList(QStringList("*.expected"), QDir::Files, QDir::Name))
-    {
+    foreach(QString f, QDir(srcDir).entryList(QStringList("*.expected"), QDir::Files, QDir::Name)) {
         QString name = QFileInfo(f).baseName();
         QTest::newRow(name.toLocal8Bit()) << QFileInfo(f).baseName() + ".in" << f;
     }

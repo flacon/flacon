@@ -51,6 +51,7 @@ public slots:
 private slots:
     void profileListSelected(QListWidgetItem *current, QListWidgetItem *previous);
     void profileItemChanged(QListWidgetItem *item);
+    void setEnablePerTrackGroup(bool enabled);
 
 private:
     explicit ConfigDialog(QWidget *parent = nullptr);
@@ -62,6 +63,9 @@ private:
 
     void load();
     void save();
+
+    void loadEncoderPage();
+    void saveEncoderPage();
 
     CoverMode coverMode() const;
     void setCoverMode(CoverMode mode);

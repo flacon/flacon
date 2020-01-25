@@ -45,7 +45,6 @@ public:
     QString id() const { return mId; }
     QString name() const { return mName; }
     QString ext() const {return mExt; }
-    bool createCue() const;
 
     virtual QString encoderProgramName() const = 0;
     virtual QStringList encoderArgs(const Track *track, const QString &outFile) const = 0;

@@ -108,6 +108,9 @@ public:
     PreGapType preGapType = PreGapType::Skip;
     bool extractPregap = false;
     int trackCount = 0;
+    CoverMode coverMode = CoverMode::Disable;
+    int coverImageSize = 0;
+    QString tmpDirName;
 
     void interrupt(TrackState state);
     void startSplitterThread();
@@ -156,7 +159,7 @@ DiskPipeline::DiskPipeline(const Converter::Job &job, const Profile &profile, QO
     mData(new Data(job, profile, this)),
     mTmpDir(nullptr)
 {
-    mData->preGapType =  Settings::i()->createCue() ? Settings::i()->preGapType() : PreGapType::Skip;
+    mData->preGapType = mData->profile.isCreateCue() ? mData->profile.preGapType() : PreGapType::Skip;
 
     // If the first track starts with zero second, doesn't make sense to create pregap track.
     mData->extractPregap = (mData->preGapType == PreGapType::ExtractToFile &&
@@ -191,11 +194,11 @@ DiskPipeline::~DiskPipeline()
  ************************************************/
 bool DiskPipeline::init()
 {
-    if (!Settings::i()->tmpDir().isEmpty())
+    if (!mData->tmpDirName.isEmpty())
     {
-        if (!mData->createDir(Settings::i()->tmpDir()))
+        if (!mData->createDir(mData->tmpDirName))
             return false;
-        mTmpDir = new QTemporaryDir(QString("%1/flacon.").arg(Settings::i()->tmpDir()));
+        mTmpDir = new QTemporaryDir(QString("%1/flacon.").arg(mData->tmpDirName));
         mTmpDir->setAutoRemove(true);
         mData->workDir = mTmpDir->path();
     }
@@ -282,10 +285,10 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
  ************************************************/
 bool DiskPipeline::Data::createCue() const
 {
-    if (!Settings::i()->createCue())
+    if (!profile.isCreateCue())
         return true;
 
-    CueCreator cue(job.disk, preGapType);
+    CueCreator cue(job.disk, preGapType, profile.cueFileName());
     if (!cue.write())
     {
         pipeline->trackError(job.tracks.first(), cue.errorString());
@@ -301,14 +304,12 @@ bool DiskPipeline::Data::createCue() const
  ************************************************/
 bool DiskPipeline::Data::copyCoverImage() const
 {
-    CoverMode mode = Settings::i()->coverMode();
-
-    if (mode == CoverMode::Disable)
+    if (coverMode == CoverMode::Disable)
         return true;
 
     int size = 0;
-    if (mode == CoverMode::Scale)
-        size = Settings::i()->coverImageSize();
+    if (coverMode == CoverMode::Scale)
+        size = coverImageSize;
 
     QString dir = QFileInfo(job.tracks.first()->resultFilePath()).dir().absolutePath();
 
@@ -484,11 +485,11 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFil
 
     // If the original quality is worse than requested, leave it as is.
     req.bitsPerSample = calcQuality(mData->job.disk->audioFile()->bitsPerSample(),
-                                    Settings::i()->value(Settings::Resample_BitsPerSample).toInt(),
+                                    mData->profile.bitsPerSample(),
                                     int(mData->profile.maxBitPerSample()));
 
     req.sampleRate = calcQuality(mData->job.disk->audioFile()->sampleRate(),
-                                 Settings::i()->value(Settings::Resample_SampleRate).toInt(),
+                                 mData->profile.sampleRate(),
                                  int(mData->profile.maxSampleRate()));
 
     mData->encoderRequests << req;
@@ -643,6 +644,60 @@ int DiskPipeline::runningThreadCount() const
             ++res;
     }
     return res;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+CoverMode DiskPipeline::coverMode() const
+{
+    return mData->coverMode;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void DiskPipeline::setCoverMode(CoverMode value)
+{
+    mData->coverMode = value;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+int DiskPipeline::coverImageSize() const
+{
+    return mData->coverImageSize;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void DiskPipeline::setCoverImageSize(int value)
+{
+    mData->coverImageSize = value;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString DiskPipeline::tmpDir() const
+{
+    return mData->tmpDirName;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void DiskPipeline::setTmpDir(QString value)
+{
+    mData->tmpDirName = value;
 }
 
 

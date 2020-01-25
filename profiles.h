@@ -62,6 +62,16 @@ public:
     int sampleRate() const;
     void setSampleRate(int value);
 
+    bool isCreateCue() const;
+    void setCreateCue(bool value);
+
+    QString cueFileName() const;
+    void setCueFileName(const QString &value);
+
+    PreGapType preGapType() const;
+    void setPregapType(PreGapType value);
+
+
     QString formatId() const { return mFormat->id(); }
     QString ext() const { return mFormat->ext(); }
     BitsPerSample maxBitPerSample() const { return mFormat->maxBitPerSample(); }
@@ -77,12 +87,18 @@ public:
     void load(QSettings &settings, const QString &group);
     void save(QSettings &settings, const QString &group) const;
 
+    static constexpr const char *BITS_PER_SAMPLE_KEY = "BitsPerSample";
+    static constexpr const char *SAMPLE_RATE_KEY     = "SampleRate";
+    static constexpr const char *CREATE_CUE_KEY      = "CreateCue";
+    static constexpr const char *CUE_FILE_NAME_KEY   = "CueFileName";
+    static constexpr const char *PREGAP_TYPE_KEY     = "PregapType";
+
 private:
     QString mId;
     const OutFormat *mFormat;
     QString mName;
     QHash<QString, QVariant> mValues;
-
+    void setDefaultValues();
 };
 
 

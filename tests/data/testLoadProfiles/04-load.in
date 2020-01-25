@@ -6,6 +6,9 @@
     UseQuality=false
     BitsPerSample=16
     SampleRate=44100
+    CreateCue=false
+    CueFileName = AAC %a %d - %A.cue
+    PregapType = AddToFirst
 
 [Profiles/FLAC]
     Format=FLAC
@@ -14,6 +17,9 @@
     ReplayGain=Track
     BitsPerSample=16
     SampleRate=44100
+    CreateCue=true
+    CueFileName = FLAC %a %d - %A.cue
+    PregapType = Extract
 
 [Profiles/MP3]
     Format = MP3
@@ -24,6 +30,9 @@
     ReplayGain=Disk
     BitsPerSample=16
     SampleRate=44100
+    CreateCue=false
+    CueFileName = MP3 %a %d - %A.cue
+    PregapType = Disable
 
 [Profiles/OGG]
     Format = OGG
@@ -36,6 +45,9 @@
     UseQuality=false
     BitsPerSample=16
     SampleRate=44100
+    CreateCue=true
+    CueFileName = OGG %a %d - %A.cue
+    PregapType = AddToFirst
 
 [Profiles/OPUS]
     Name = Opus
@@ -44,6 +56,9 @@
     BitrateType=VBR
     BitsPerSample=16
     SampleRate=44100
+    CreateCue=false
+    CueFileName = OPUS %a %d - %A.cue
+    PregapType = Extract
 
 [Profiles/WV]
     Name = WV
@@ -52,3 +67,6 @@
     ReplayGain=Track
     BitsPerSample=16
     SampleRate=44100
+    CreateCue=true
+    CueFileName = WV %a %d - %A.cue
+    PregapType = Disable

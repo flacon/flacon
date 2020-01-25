@@ -65,9 +65,9 @@ PatternHistory=%a - %a%g%A/%d-%D/%n - %t, %a - %A/%n - %t, %a -{ %y }%A/%n - %t,
 
 [PerTrackCue]
 Create=true
-FileName=%a - %A.cue
+FileName=%a %d - %A.cue
 InsertCreatorTag=true
-Pregap=Extract
+Pregap=AddToFirst
 
 [Programs]
 faac=

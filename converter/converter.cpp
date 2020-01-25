@@ -112,6 +112,9 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
             continue;
 
         DiskPipeline * pipeline = new DiskPipeline(job, profile, this);
+        pipeline->setCoverMode(Settings::i()->coverMode());
+        pipeline->setCoverImageSize(Settings::i()->coverImageSize());
+        pipeline->setTmpDir(Settings::i()->tmpDir());
 
         connect(pipeline, SIGNAL(readyStart()),
                 this, SLOT(startThread()));
@@ -220,8 +223,7 @@ bool Converter::check(const Profile &profile) const
     QStringList errors;
     bool ok = profile.check(&errors);
 
-    if (Settings::i()->value(Settings::Resample_BitsPerSample).toInt() ||
-        Settings::i()->value(Settings::Resample_SampleRate).toInt() )
+    if (profile.bitsPerSample() || profile.sampleRate())
     {
         if (!Settings::i()->checkProgram(Resampler::programName()))
         {

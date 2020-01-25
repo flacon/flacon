@@ -1,60 +1,84 @@
 [Profiles/AAC]
-Name=AAC
-Format=AAC
-Bitrate=128
-Quality=112
-UseQuality=false
-BitsPerSample=16
-SampleRate=48000
+    Name=AAC
+    Format=AAC
+    Bitrate=128
+    Quality=112
+    UseQuality=false
+    BitsPerSample=16
+    SampleRate=48000
+    CreateCue=true
+    CueFileName = %a %d - %A.cue
+    PregapType = AddToFirst
 
 [Profiles/FLAC]
-Name=Flac
-Format=FLAC
-Compression=1
-ReplayGain=Album
-BitsPerSample=16
-SampleRate=48000
+    Name=Flac
+    Format=FLAC
+    Compression=1
+    ReplayGain=Album
+    BitsPerSample=16
+    SampleRate=48000
+    CreateCue=true
+    CueFileName = %a %d - %A.cue
+    PregapType = AddToFirst
 
 [Profiles/MP3]
-Name=MP3
-Format=MP3
-Bitrate=128
-Preset=cbrKbps
-Quality=1
-ReplayGain=Album
-BitsPerSample=16
-SampleRate=48000
+    Name=MP3
+    Format=MP3
+    Bitrate=128
+    Preset=cbrKbps
+    Quality=1
+    ReplayGain=Album
+    BitsPerSample=16
+    SampleRate=48000
+    CreateCue=true
+    CueFileName = %a %d - %A.cue
+    PregapType = AddToFirst
 
 [Profiles/OGG]
-Name=OGG
-Format=OGG
-MaxBitrate=196
-MinBitrate=64
-NormBitrate=128
-Quality=2.3
-ReplayGain=Track
-UseQuality=false
-BitsPerSample=16
-SampleRate=48000
+    Name=OGG
+    Format=OGG
+    MaxBitrate=196
+    MinBitrate=64
+    NormBitrate=128
+    Quality=2.3
+    ReplayGain=Track
+    UseQuality=false
+    BitsPerSample=16
+    SampleRate=48000
+    CreateCue=true
+    CueFileName = %a %d - %A.cue
+    PregapType = AddToFirst
 
 [Profiles/OPUS]
-Name=Opus
-Format=OPUS
-Bitrate=125
-BitrateType=VBR
-BitsPerSample=16
-SampleRate=48000
+    Name=Opus
+    Format=OPUS
+    Bitrate=125
+    BitrateType=VBR
+    BitsPerSample=16
+    SampleRate=48000
+    CreateCue=true
+    CueFileName = %a %d - %A.cue
+    PregapType = AddToFirst
 
 [Profiles/WV]
-Name=WavPack
-Format=WV
-Compression=0
-ReplayGain=Track
-BitsPerSample=16
-SampleRate=48000
+    Name=WavPack
+    Format=WV
+    Compression=0
+    ReplayGain=Track
+    BitsPerSample=16
+    SampleRate=48000
+    CreateCue=true
+    CueFileName = %a %d - %A.cue
+    PregapType = AddToFirst
+    CreateCue=true
+    CueFileName = %a %d - %A.cue
+    PregapType = AddToFirst
 
 [Profiles/WAV]
     Format=WAV
     Name=WAV
     BitsPerSample=16
     SampleRate=48000
+    CreateCue=true
+    CueFileName = %a %d - %A.cue
+    PregapType = AddToFirst
