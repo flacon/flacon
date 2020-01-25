@@ -209,6 +209,7 @@ Settings::Settings(const QString &fileName):
  ************************************************/
 void Settings::init()
 {
+    migrateProfiles(this);
 
     setDefaultValue(Tags_DefaultCodepage,   "AUTODETECT");
 
@@ -267,8 +268,6 @@ void Settings::init()
         if (!checkProgram(program))
             setValue("Programs/" + program, findProgram(program));
     }
-
-    migrateProfiles(this);
 }
 
 
