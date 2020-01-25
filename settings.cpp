@@ -53,10 +53,106 @@
 
 #endif
 
-#define PROFILES_PREFIX "Profiles/"
+#define PROFILES_PREFIX "Profiles"
 
 QString Settings::mFileName;
 Settings *Settings::mInstance = nullptr;
+
+/************************************************
+ * Added on 6.0.0 release, remove after 8.0.0 release
+ ************************************************/
+static void migrateKey(Settings *settings, const QString &oldKey, const QString &newKey)
+{
+    if (settings->contains(oldKey) && !settings->contains(newKey))
+        settings->setValue(newKey, settings->value(oldKey));
+}
+
+
+/************************************************
+ * Added on 6.0.0 release, remove after 8.0.0 release
+ ************************************************/
+static void migrateProfile(Settings *settings, const QString &formatId)
+{
+    const OutFormat *format = OutFormat::formatForId(formatId);
+    assert(format != nullptr);
+    if (!format)
+        return;
+
+    QString group = QString("%1/%2/").arg(PROFILES_PREFIX).arg(format->id());
+    settings->setValue(group + "Format", format->id());
+    settings->setValue(group + "Name",   format->name());
+
+    if (format->id() == "AAC") {
+        migrateKey(settings, "Aac/UseQuality",   group + "UseQuality");
+        migrateKey(settings, "Aac/Quality",      group + "Quality");
+        migrateKey(settings, "Aac/Bitrate",      group + "Bitrate");
+    }
+
+    if (format->id() == "FLAC") {
+        migrateKey(settings, "Flac/Compression", group + "Compression");
+        migrateKey(settings, "Flac/ReplayGain",  group + "ReplayGain");
+    }
+
+    if (format->id() == "MP3") {
+        migrateKey(settings, "Mp3/Preset",       group + "Preset");
+        migrateKey(settings, "Mp3/Bitrate",      group + "Bitrate");
+        migrateKey(settings, "Mp3/Quality",      group + "Quality");
+        migrateKey(settings, "Mp3/ReplayGain",   group + "ReplayGain");
+    }
+
+    if (format->id() == "OGG") {
+        migrateKey(settings, "Ogg/UseQuality",   group + "UseQuality");
+        migrateKey(settings, "Ogg/Quality",      group + "Quality");
+        migrateKey(settings, "Ogg/MinBitrate",   group + "MinBitrate");
+        migrateKey(settings, "Ogg/NormBitrate",  group + "NormBitrate");
+        migrateKey(settings, "Ogg/MaxBitrate",   group + "MaxBitrate");
+        migrateKey(settings, "Ogg/ReplayGain",   group + "ReplayGain");
+    }
+
+    if (format->id() == "OPUS") {
+        migrateKey(settings, "Opus/BitrateType", group + "BitrateType");
+        migrateKey(settings, "Opus/Bitrate",     group + "Bitrate");
+    }
+
+    if (format->id() == "WAV") {
+        // No options
+    }
+
+    if (format->id() == "WV") {
+        migrateKey(settings, "WV/Compression",   group + "Compression");
+        migrateKey(settings, "WV/ReplayGain",    group + "ReplayGain");
+    }
+
+    migrateKey(settings, "Resample/BitsPerSample", group + Profile::BITS_PER_SAMPLE_KEY);
+    migrateKey(settings, "Resample/SampleRate",    group + Profile::SAMPLE_RATE_KEY);
+
+    migrateKey(settings, "PerTrackCue/Create",     group + Profile::CREATE_CUE_KEY);
+    migrateKey(settings, "PerTrackCue/FileName",   group + Profile::CUE_FILE_NAME_KEY);
+    migrateKey(settings, "PerTrackCue/Pregap",     group + Profile::PREGAP_TYPE_KEY);
+}
+
+
+/************************************************
+ * Added on 6.0.0 release, remove after 8.0.0 release
+ ************************************************/
+static void migrateProfiles(Settings *settings)
+{
+    settings->allKeys();
+    if (!settings->childGroups().contains(PROFILES_PREFIX)) {
+
+        migrateProfile(settings, "WAV");
+        migrateProfile(settings, "AAC");
+        migrateProfile(settings, "FLAC");
+        migrateProfile(settings, "MP3");
+        migrateProfile(settings, "OGG");
+        migrateProfile(settings, "OPUS");
+        migrateProfile(settings, "WAV");
+        migrateProfile(settings, "WV");
+    }
+
+    if (settings->contains("OutFiles/Format") && !settings->contains("OutFiles/Profile"))
+        settings->setValue("OutFiles/Profile", settings->value("OutFiles/Format"));
+}
 
 /************************************************
 
@@ -171,6 +267,8 @@ void Settings::init()
         if (!checkProgram(program))
             setValue("Programs/" + program, findProgram(program));
     }
+
+    migrateProfiles(this);
 }
 
 
@@ -459,54 +557,6 @@ Profiles Settings::profiles() const
 
 
 /************************************************
- * Added on 6.0.0 release, remove after 8.0.0 release
- ************************************************/
-void loadOldFormatValues(Settings *settings, Profile &profile)
-{
-    // Resample ............................
-    settings->beginGroup("Resample");
-
-    if (settings->contains("BitsPerSample"))
-        profile.setBitsPerSample(settings->value("BitsPerSample").toInt());
-
-    if (settings->contains("SampleRate"))
-        profile.setSampleRate(settings->value("SampleRate").toInt());
-
-    settings->endGroup();
-
-    // Per track cue .......................
-    settings->beginGroup("PerTrackCue");
-
-    if (settings->contains("Create"))
-        profile.setCreateCue(settings->value("Create").toBool());
-
-    if (settings->contains("FileName"))
-        profile.setCueFileName(settings->value("FileName").toString());
-
-    if (settings->contains("Pregap"))
-        profile.setPregapType(strToPreGapType(settings->value("Pregap").toString()));
-
-    settings->endGroup();
-
-
-    // Format values .......................
-    if (profile.formatId() == "WAV")  settings->beginGroup("WAV");
-    if (profile.formatId() == "FLAC") settings->beginGroup("Flac");
-    if (profile.formatId() == "AAC" ) settings->beginGroup("Aac");
-    if (profile.formatId() == "MP3" ) settings->beginGroup("Mp3");
-    if (profile.formatId() == "OGG" ) settings->beginGroup("Ogg");
-    if (profile.formatId() == "OPUS") settings->beginGroup("Opus");
-    if (profile.formatId() == "WV"  ) settings->beginGroup("WV");
-
-    for (const QString &key : settings->allKeys()) {
-        profile.setValue(key, settings->value(key, profile.value(key)));
-    }
-
-    settings->endGroup();
-}
-
-
-/************************************************
  *
  ************************************************/
 void Settings::loadProfiles()
@@ -526,14 +576,6 @@ void Settings::loadProfiles()
         }
     }
     endGroup();
-
-    for (OutFormat *fmt: OutFormat::allFormats()) {
-        if (!loaded.contains(fmt->id())) {
-            Profile profile(*fmt);
-            loadOldFormatValues(this, profile); // Added on 6.0.0 release, remove after 8.0.0 release
-            mProfiles << profile;
-        }
-    }
 }
 
 
@@ -547,10 +589,8 @@ void Settings::setProfiles(const Profiles &profiles)
     QSet<QString> old = QSet<QString>::fromList(childGroups());
 
     for (const Profile &profile: profiles) {
-        if (profile.hasConfigPage()) {
-            old.remove(profile.id());
-            profile.save(*this, profile.id());
-        }
+        old.remove(profile.id());
+        profile.save(*this, profile.id());
     }
 
     for (const QString &id: old) {
@@ -568,4 +608,13 @@ Profile &Settings::currentProfile() const
 {
     int n = profiles().indexOf(value(OutFiles_Profile).toString());
     return profiles()[qMax(0, n)];
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setCurrentProfile(const QString &profileId)
+{
+    setValue(OutFiles_Profile, profileId);
 }

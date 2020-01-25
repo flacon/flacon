@@ -96,7 +96,7 @@ public:
 
     DiskPipeline *pipeline;
     Converter::Job job;
-    const Profile &profile;
+    const Profile profile;
     bool needStartSplitter = true;
     QHash<const Track*, TrackState> trackStates;
     QList<EncoderRequest> encoderRequests;

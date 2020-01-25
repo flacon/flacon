@@ -72,7 +72,7 @@ bool OutFormat_Flac::check(const Profile &profile, QStringList *errors) const
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
 
     QStringList args;
@@ -82,7 +82,7 @@ QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFi
     args << "--silent";     // Suppress progress indicator
 
     // Settings .................................................
-    args << QString("--compression-level-%1").arg(Settings::i()->value("Flac/Compression").toString());
+    args << QString("--compression-level-%1").arg(profile.value("Compression").toString());
 
 
     // Tags .....................................................

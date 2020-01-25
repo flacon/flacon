@@ -63,7 +63,7 @@ private slots:
 
 private:
     const EncoderRequest mRequest;
-    const Profile &mProfile;
+    const Profile mProfile;
     QString mOutFile;
     quint64 mTotal = 0;
     quint64 mReady = 0;

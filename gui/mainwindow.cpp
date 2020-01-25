@@ -401,7 +401,7 @@ void MainWindow::setOutProfile()
 {
     int n = outProfileCombo->currentIndex();
     if (n > -1) {
-        Settings::i()->setValue(Settings::OutFiles_Profile, outProfileCombo->itemData(n));
+        Settings::i()->setCurrentProfile(outProfileCombo->itemData(n).toString());
     }
 }
 
@@ -531,7 +531,7 @@ void MainWindow::refreshOutProfileCombo()
 
     outProfileCombo->blockSignals(false);
 
-    n = outProfileCombo->findData(Settings::i()->value(Settings::OutFiles_Profile).toString());
+    n = outProfileCombo->findData(Settings::i()->currentProfile().id());
     outProfileCombo->setCurrentIndex(qMax(0, n));
 }
 

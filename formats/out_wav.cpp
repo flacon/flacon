@@ -25,7 +25,6 @@
 
 
 #include "out_wav.h"
-//#include <QFile>
 
 
 /************************************************
@@ -42,10 +41,8 @@ OutFormat_Wav::OutFormat_Wav()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wav::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Wav::encoderArgs(const Profile &, const Track *, const QString &) const
 {
-    Q_UNUSED(track);
-    Q_UNUSED(outFile);
     return QStringList();
 }
 

@@ -506,9 +506,7 @@ void TestFlacon::testTrackResultFileName()
 
 
     Settings::i()->setOutFilePattern(pattern);
-    Profiles profiles;
-    profiles << Profile(*OutFormat::formatForId("WAV"));
-    Settings::i()->setProfiles(profiles);
+    Settings::i()->setCurrentProfile("WAV");
 
     project->clear();
 
@@ -1035,9 +1033,7 @@ void TestFlacon::testTrackResultFilePath()
 
     Settings::i()->setOutFileDir(outDir);
     Settings::i()->setOutFilePattern(pattern);
-    Profiles profiles;
-    profiles << Profile(*OutFormat::formatForId("WAV"));
-    Settings::i()->setProfiles(profiles);
+    Settings::i()->setCurrentProfile("WAV");
 
 
     if (!cueFile.isEmpty())

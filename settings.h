@@ -108,6 +108,7 @@ public:
     void setProfiles(const Profiles &profiles);
 
     Profile &currentProfile() const;
+    void setCurrentProfile(const QString &profileId);
 
 signals:
     void changed();

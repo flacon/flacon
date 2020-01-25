@@ -44,7 +44,7 @@ OutFormat_Ogg::OutFormat_Ogg()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Ogg::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -53,21 +53,21 @@ QStringList OutFormat_Ogg::encoderArgs(const Track *track, const QString &outFil
     args << "--quiet";
 
     // Quality settings .........................................
-    if (Settings::i()->value("Ogg/UseQuality").toBool())
+    if (profile.value("UseQuality").toBool())
     {
-        args << "-q" << Settings::i()->value("Ogg/Quality").toString();
+        args << "-q" << profile.value("Quality").toString();
     }
     else
     {
-        QString val = Settings::i()->value("Ogg/NormBitrate").toString();
+        QString val = profile.value("NormBitrate").toString();
         if (!val.isEmpty())
             args << "-b" << val;
 
-        val = Settings::i()->value("Ogg/MinBitrate").toString();
+        val = profile.value("MinBitrate").toString();
         if (!val.isEmpty())
             args << "-m" << val;
 
-        val = Settings::i()->value("Ogg/MaxBitrate").toString();
+        val = profile.value("MaxBitrate").toString();
         if (!val.isEmpty())
             args << "-M" << val;
     }

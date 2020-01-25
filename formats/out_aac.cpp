@@ -43,7 +43,7 @@ OutFormat_Aac::OutFormat_Aac()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Aac::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -51,10 +51,10 @@ QStringList OutFormat_Aac::encoderArgs(const Track *track, const QString &outFil
     args << "-w"; // Wrap  AAC  data  in  an MP4 container.
 
     // Quality settings .........................................
-    if (Settings::i()->value("Aac/UseQuality").toBool())
-        args << "-q" << Settings::i()->value("Aac/Quality").toString();
+    if (profile.value("UseQuality").toBool())
+        args << "-q" << profile.value("Quality").toString();
     else
-        args << "-b" << Settings::i()->value("Aac/Bitrate").toString();
+        args << "-b" << profile.value("Bitrate").toString();
 
 
     // Tags .....................................................

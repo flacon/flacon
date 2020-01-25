@@ -47,7 +47,7 @@ public:
     QString ext() const {return mExt; }
 
     virtual QString encoderProgramName() const = 0;
-    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const = 0;
+    virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const = 0;
 
 
     virtual QString gainProgramName() const = 0;

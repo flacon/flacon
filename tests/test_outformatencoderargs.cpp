@@ -45,27 +45,27 @@ void TestFlacon::testOutFormatEncoderArgs()
 
     applySettings(config);
 
-    foreach (OutFormat *format, OutFormat::allFormats())
+    OutFormat *fmt = OutFormat::formatForId(formatId);
+    if (!fmt)
+        QFAIL(QString("Unknown format \"%1\"").arg(formatId).toLocal8Bit());
+
+    Profile profile(*fmt, formatId);
+    if (!profile.isValid())
+        QFAIL(QString("Invalid profile for \"%1\"").arg(formatId).toLocal8Bit());
+
+
+
+    Disk *disk = standardDisk();
+    QStringList args = profile.encoderArgs(disk->track(0), "OutFile.wav");
+    QString result = args.join(" ");
+    if (result != expected)
     {
-        if (format->id() != formatId)
-            continue;
-
-        Disk *disk = standardDisk();
-        QStringList args = format->encoderArgs(disk->track(0), "OutFile.wav");
-
-        QString result = args.join(" ");
-        if (result != expected)
-        {
-            QString msg = QString("Compared values are not the same\n   Format   %1\n   Actual:   %2\n   Expected: %3").arg(
-                        formatId,
-                        result,
-                        expected);
-            QFAIL(msg.toLocal8Bit());
-        }
-        return;
+        QString msg = QString("Compared values are not the same\n   Format   %1\n   Actual:   %2\n   Expected: %3").arg(
+                    formatId,
+                    result,
+                    expected);
+        QFAIL(msg.toLocal8Bit());
     }
-
-    FAIL(QString("Unknown format \"%1\"").arg(formatId).toLocal8Bit());
 }
 
 

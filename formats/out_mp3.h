@@ -39,7 +39,7 @@ public:
     virtual QString encoderProgramName() const override { return "lame"; }
     virtual QString gainProgramName() const override { return "mp3gain"; }
 
-    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
+    virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const override;
     virtual QStringList gainArgs(const QStringList &files) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;

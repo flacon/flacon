@@ -25,10 +25,11 @@
 
 
 #include "out_wv.h"
-//#include "disk.h"
 #include "settings.h"
 #include <QDebug>
 
+static const constexpr char* COMPRESSION_KEY = "Compression";
+static const constexpr char* REPLAY_GAIN_KEY = "ReplayGain";
 
 /************************************************
 
@@ -44,7 +45,7 @@ OutFormat_Wv::OutFormat_Wv()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -53,7 +54,7 @@ QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile
     args << "-q";            // Suppress progress indicator
 
     // Settings .................................................
-    int compression = Settings::i()->value("WV/Compression").toInt();
+    int compression = profile.value(COMPRESSION_KEY).toInt();
     switch (compression)
     {
     case 0: args << "-f";  break;
@@ -117,8 +118,8 @@ QStringList OutFormat_Wv::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Wv::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Compression",       1);
-    res.insert("ReplayGain",        gainTypeToString(GainType::Disable));
+    res.insert(COMPRESSION_KEY, 1);
+    res.insert(REPLAY_GAIN_KEY, gainTypeToString(GainType::Disable));
     return res;
 }
 
@@ -151,8 +152,8 @@ ConfigPage_Wv::ConfigPage_Wv(Profile *profile, QWidget *parent):
  ************************************************/
 void ConfigPage_Wv::load()
 {
-    loadWidget("Compression", wvCompressionSlider);
-    loadWidget("ReplayGain",  wvGainCbx);
+    loadWidget(COMPRESSION_KEY, wvCompressionSlider);
+    loadWidget(REPLAY_GAIN_KEY, wvGainCbx);
 }
 
 
@@ -161,6 +162,6 @@ void ConfigPage_Wv::load()
  ************************************************/
 void ConfigPage_Wv::save()
 {
-    saveWidget("Compression", wvCompressionSlider);
-    saveWidget("ReplayGain",  wvGainCbx);
+    saveWidget(COMPRESSION_KEY, wvCompressionSlider);
+    saveWidget(REPLAY_GAIN_KEY,  wvGainCbx);
 }

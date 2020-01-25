@@ -79,7 +79,7 @@ public:
     bool hasConfigPage() const { return mFormat->hasConfigPage(); }
     EncoderConfigPage *configPage(QWidget *parent);
     QString encoderProgramName() const { return mFormat->encoderProgramName(); }
-    QStringList encoderArgs(const Track *track, const QString &outFile) const { return mFormat->encoderArgs(track, outFile); }
+    QStringList encoderArgs(const Track *track, const QString &outFile) const { return mFormat->encoderArgs(*this, track, outFile); }
     QString gainProgramName() const { return mFormat->gainProgramName(); }
     QStringList gainArgs(const QStringList &files) const { return mFormat->gainArgs(files); }
     bool check(QStringList *errors) const { return mFormat->check(*this, errors); }

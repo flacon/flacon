@@ -43,7 +43,7 @@ OutFormat_Mp3::OutFormat_Mp3()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -51,7 +51,7 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
     args << "--silent";
 
     // Settings .................................................
-    QString preset = Settings::i()->value("Mp3/Preset").toString();
+    QString preset = profile.value("Preset").toString();
 
     if (preset == "vbrMedium")
     {
@@ -85,22 +85,22 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
 
     else if (preset == "cbrKbps")
     {
-        args << "--preset" << "cbr" << Settings::i()->value("Mp3/Bitrate").toString();
+        args << "--preset" << "cbr" << profile.value("Bitrate").toString();
     }
 
     else if (preset == "abrKbps")
     {
-        args << "--preset" << Settings::i()->value("Mp3/Bitrate").toString();
+        args << "--preset" << profile.value("Bitrate").toString();
     }
 
     else if (preset == "vbrQuality")
     {
-        int quality = Settings::i()->value("Mp3/Quality").toInt();
+        int quality = profile.value("Quality").toInt();
         args << "-V" << QString("%1").arg(9 - quality);
     }
 
     // ReplayGain ...............................................
-    if (strToGainType(Settings::i()->value("Mp3/ReplayGain").toString()) != GainType::Track)
+    if (strToGainType(profile.value("ReplayGain").toString()) != GainType::Track)
     {
         args << "--noreplaygain";
     }

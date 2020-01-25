@@ -29,10 +29,10 @@
 
 #include "worker.h"
 #include <QList>
+#include "profiles.h"
 
 class Disk;
 class Track;
-class Profile;
 
 class Gain: public Worker
 {
@@ -45,7 +45,7 @@ public:
 
 private:
     QList<WorkerRequest> mRequests;
-    const Profile &mProfile;
+    const Profile mProfile;
 };
 
 

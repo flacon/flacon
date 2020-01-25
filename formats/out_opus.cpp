@@ -25,12 +25,11 @@
 
 
 #include "out_opus.h"
-#include "disk.h"
 #include "settings.h"
 #include <QDebug>
 
-#define CONF_OPUS_BITRATETYPE "Opus/BitrateType"
-#define CONF_OPUS_BITRATE "Opus/Bitrate"
+static const constexpr char* BITRATE_TYPE_KEY = "BitrateType";
+static const constexpr char* BITRATE_KEY      = "Bitrate";
 
 /************************************************
 
@@ -46,7 +45,7 @@ OutFormat_Opus::OutFormat_Opus()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -54,14 +53,14 @@ QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFi
 
     args << "--quiet";
 
-    QString type = Settings::i()->value(CONF_OPUS_BITRATETYPE).toString();
+    QString type = profile.value(BITRATE_TYPE_KEY).toString();
     if (type == "VBR")
         args << "--vbr";
 
     if (type == "CBR")
         args << "--cvbr";
 
-    args << "--bitrate" << Settings::i()->value(CONF_OPUS_BITRATE).toString();
+    args << "--bitrate" << profile.value(BITRATE_KEY).toString();
 
     // Tags .....................................................
     if (!track->artist().isEmpty())  args << "--artist"  << track->artist();
@@ -107,8 +106,8 @@ QStringList OutFormat_Opus::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Opus::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("BitrateType",      "VBR");
-    res.insert("Bitrate",          96);
+    res.insert(BITRATE_TYPE_KEY, "VBR");
+    res.insert(BITRATE_KEY,      96);
     return res;
 }
 
@@ -147,8 +146,8 @@ ConfigPage_Opus::ConfigPage_Opus(Profile *profile, QWidget *parent):
  ************************************************/
 void ConfigPage_Opus::load()
 {
-    loadWidget("BitrateType",  opusBitrateTypeCbx);
-    loadWidget("Bitrate",      opusBitrateSlider);
+    loadWidget(BITRATE_TYPE_KEY, opusBitrateTypeCbx);
+    loadWidget(BITRATE_KEY,      opusBitrateSlider);
 }
 
 
@@ -157,6 +156,6 @@ void ConfigPage_Opus::load()
  ************************************************/
 void ConfigPage_Opus::save()
 {
-    saveWidget("BitrateType",  opusBitrateTypeCbx);
-    saveWidget("Bitrate",      opusBitrateSlider);
+    saveWidget(BITRATE_TYPE_KEY, opusBitrateTypeCbx);
+    saveWidget(BITRATE_KEY,      opusBitrateSlider);
 }
