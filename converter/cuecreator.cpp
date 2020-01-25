@@ -26,7 +26,6 @@
 
 #include "cuecreator.h"
 #include "disk.h"
-#include "settings.h"
 #include "patternexpander.h"
 
 #include <QFileInfo>

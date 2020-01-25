@@ -34,7 +34,6 @@
 #include "cuecreator.h"
 #include "copycover.h"
 #include "project.h"
-#include "settings.h"
 #include "inputaudiofile.h"
 
 #include <QThread>
