@@ -57,7 +57,7 @@ public:
         return QStringList();
     }
 
-    virtual QStringList gainArgs(const QStringList &) const override
+    virtual QStringList gainArgs(const QStringList &, const GainType) const override
     {
         return QStringList();
     }

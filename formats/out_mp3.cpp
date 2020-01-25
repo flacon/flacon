@@ -143,7 +143,7 @@ QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const Track *trac
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Mp3::gainArgs(const QStringList &files) const
+QStringList OutFormat_Mp3::gainArgs(const QStringList &files, const GainType) const
 {
     QStringList args;
     args <<  args << Settings::i()->programName(gainProgramName());

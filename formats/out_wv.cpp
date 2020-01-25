@@ -101,7 +101,7 @@ QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const Track *track
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wv::gainArgs(const QStringList &files) const
+QStringList OutFormat_Wv::gainArgs(const QStringList &files, const GainType) const
 {
     QStringList args;
     args <<  args << Settings::i()->programName(gainProgramName());

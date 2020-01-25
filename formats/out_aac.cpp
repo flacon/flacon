@@ -109,9 +109,8 @@ QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const Track *trac
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Aac::gainArgs(const QStringList &files) const
+QStringList OutFormat_Aac::gainArgs(const QStringList &, const GainType) const
 {
-    Q_UNUSED(files);
     return QStringList();
 }
 

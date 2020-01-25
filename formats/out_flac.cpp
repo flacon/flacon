@@ -127,7 +127,7 @@ QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const Track *tra
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Flac::gainArgs(const QStringList &files) const
+QStringList OutFormat_Flac::gainArgs(const QStringList &files, const GainType) const
 {
     QStringList args;
     args << Settings::i()->programName(gainProgramName());

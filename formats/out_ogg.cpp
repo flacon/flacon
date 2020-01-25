@@ -116,11 +116,11 @@ QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const Track *trac
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Ogg::gainArgs(const QStringList &files) const
+QStringList OutFormat_Ogg::gainArgs(const QStringList &files, const GainType gainType) const
 {
     QStringList args;
     args <<  args << Settings::i()->programName(gainProgramName());
-    if (strToGainType(Settings::i()->value("Ogg/ReplayGain").toString()) ==  GainType::Album)
+    if (gainType ==  GainType::Album)
         args << "--album";
 
     args << files;

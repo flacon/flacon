@@ -50,9 +50,8 @@ QStringList OutFormat_Wav::encoderArgs(const Profile &, const Track *, const QSt
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wav::gainArgs(const QStringList &files) const
+QStringList OutFormat_Wav::gainArgs(const QStringList &, const GainType) const
 {
-    Q_UNUSED(files);
     return QStringList();
 }
 

@@ -81,7 +81,7 @@ public:
     QString encoderProgramName() const { return mFormat->encoderProgramName(); }
     QStringList encoderArgs(const Track *track, const QString &outFile) const { return mFormat->encoderArgs(*this, track, outFile); }
     QString gainProgramName() const { return mFormat->gainProgramName(); }
-    QStringList gainArgs(const QStringList &files) const { return mFormat->gainArgs(files); }
+    QStringList gainArgs(const QStringList &files) const { return mFormat->gainArgs(files, gainType()); }
     bool check(QStringList *errors) const { return mFormat->check(*this, errors); }
 
     void load(QSettings &settings, const QString &group);

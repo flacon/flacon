@@ -54,7 +54,6 @@ void TestFlacon::testOutFormatEncoderArgs()
         QFAIL(QString("Invalid profile for \"%1\"").arg(formatId).toLocal8Bit());
 
 
-
     Disk *disk = standardDisk();
     QStringList args = profile.encoderArgs(disk->track(0), "OutFile.wav");
     QString result = args.join(" ");

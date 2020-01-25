@@ -51,7 +51,7 @@ public:
 
 
     virtual QString gainProgramName() const = 0;
-    virtual QStringList gainArgs(const QStringList &files) const = 0;
+    virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const = 0;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const = 0;
