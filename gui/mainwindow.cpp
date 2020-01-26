@@ -401,7 +401,7 @@ void MainWindow::setOutProfile()
 {
     int n = outProfileCombo->currentIndex();
     if (n > -1) {
-        Settings::i()->setCurrentProfile(outProfileCombo->itemData(n).toString());
+        Settings::i()->selectProfile(outProfileCombo->itemData(n).toString());
     }
 }
 
@@ -689,14 +689,14 @@ void MainWindow::startConvert(const Converter::Jobs &jobs)
 
     trackView->setColumnWidth(TrackView::ColumnPercent, 200);
     mConverter = new Converter();
-    connect(mConverter, SIGNAL(finished()),
-            this, SLOT(setControlsEnable()));
+    connect(mConverter, &Converter::finished,
+            this, &MainWindow::setControlsEnable);
 
-    connect(mConverter, SIGNAL(finished()),
-            mConverter, SLOT(deleteLater()));
+    connect(mConverter, &Converter::finished,
+            mConverter, &Converter::deleteLater);
 
-    connect(mConverter,         SIGNAL(trackProgress(Track,TrackState,Percent)),
-            trackView->model(), SLOT(trackProgressChanged(Track,TrackState,Percent)));
+    connect(mConverter,  &Converter::trackProgress,
+            trackView->model(), &TrackViewModel::trackProgressChanged);
 
     mConverter->start(jobs, Settings::i()->currentProfile());
     setControlsEnable();

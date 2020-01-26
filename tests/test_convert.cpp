@@ -154,6 +154,11 @@ void TestFlacon::testConvert()
             a.replace("\"", "\\\"");
             file.write(" \\\n    \"" + a.toLocal8Bit() + "\"");
         }
+
+        file.setPermissions(QFileDevice::ReadUser | QFileDevice::ReadGroup | QFileDevice::ReadOther |
+                            QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther |
+                            QFileDevice::ExeUser);
+
         file.close();
     }
 

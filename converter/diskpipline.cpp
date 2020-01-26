@@ -35,6 +35,7 @@
 #include "copycover.h"
 #include "project.h"
 #include "inputaudiofile.h"
+#include "profiles.h"
 
 #include <QThread>
 #include <QDebug>
@@ -327,7 +328,9 @@ bool DiskPipeline::Data::copyCoverImage() const
  ************************************************/
 void DiskPipeline::Data::startSplitterThread()
 {
-    Splitter *worker = new Splitter(job, tmpFilePrefix, extractPregap, preGapType);
+    Splitter *worker = new Splitter(job.disk, tmpFilePrefix, extractPregap, preGapType);
+    for (const Track *t: job.tracks)
+        worker->addTrack(t);
 
     WorkerThread *thread = new WorkerThread(worker, pipeline);
 

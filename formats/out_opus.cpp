@@ -93,7 +93,7 @@ QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *tra
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Opus::gainArgs(const QStringList &files, const GainType) const
+QStringList OutFormat_Opus::gainArgs(const QStringList &, const GainType) const
 {
     return QStringList();
 }

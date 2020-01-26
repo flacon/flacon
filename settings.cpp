@@ -603,7 +603,7 @@ void Settings::setProfiles(const Profiles &profiles)
 /************************************************
  *
  ************************************************/
-Profile &Settings::currentProfile() const
+Profile Settings::currentProfile() const
 {
     int n = profiles().indexOf(value(OutFiles_Profile).toString());
     return profiles()[qMax(0, n)];
@@ -613,7 +613,11 @@ Profile &Settings::currentProfile() const
 /************************************************
  *
  ************************************************/
-void Settings::setCurrentProfile(const QString &profileId)
+bool Settings::selectProfile(const QString &profileId)
 {
+    if (profiles().indexOf(profileId) < 0)
+        return false;
+
     setValue(OutFiles_Profile, profileId);
+    return true;
 }

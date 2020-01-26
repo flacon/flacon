@@ -506,7 +506,7 @@ void TestFlacon::testTrackResultFileName()
 
 
     Settings::i()->setOutFilePattern(pattern);
-    Settings::i()->setCurrentProfile("WAV");
+    Settings::i()->selectProfile("WAV");
 
     project->clear();
 
@@ -1033,7 +1033,7 @@ void TestFlacon::testTrackResultFilePath()
 
     Settings::i()->setOutFileDir(outDir);
     Settings::i()->setOutFilePattern(pattern);
-    Settings::i()->setCurrentProfile("WAV");
+    Settings::i()->selectProfile("WAV");
 
 
     if (!cueFile.isEmpty())

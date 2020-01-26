@@ -40,7 +40,9 @@ class Splitter: public Worker
 {
     Q_OBJECT
 public:
-    Splitter(const Converter::Job &job, const QString &tmpFilePrefix, bool extractPregap, PreGapType preGapType, QObject *parent = nullptr);
+    Splitter(const Disk *disk, const QString &tmpFilePrefix, bool extractPregap, PreGapType preGapType, QObject *parent = nullptr);
+
+    void addTrack(const Track *track) { mTracks << track;}
 
 public slots:
     void run() override;
@@ -49,11 +51,12 @@ private slots:
     void decoderProgress(int percent);
 
 private:
-    const Converter::Job mJob;
+    const Disk *mDisk;
     const QString mTmpFilePrefix;
-    const PreGapType mPreGapType;
     const bool mExtractPregap;
-    const Track *mCurrentTrack;
+    const PreGapType mPreGapType;
+    const Track *mCurrentTrack = nullptr;
+    QList<const Track*> mTracks;
 };
 
 #endif // SPLITTER_H

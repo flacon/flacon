@@ -221,6 +221,11 @@ void Converter::startThread()
 bool Converter::check(const Profile &profile) const
 {
     QStringList errors;
+    if (!profile.isValid()) {
+        errors << "Incorrect output profile";
+        return false;
+    }
+
     bool ok = profile.check(&errors);
 
     if (profile.bitsPerSample() || profile.sampleRate())

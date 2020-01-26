@@ -107,8 +107,8 @@ public:
     Profiles profiles() const;
     void setProfiles(const Profiles &profiles);
 
-    Profile &currentProfile() const;
-    void setCurrentProfile(const QString &profileId);
+    Profile currentProfile() const;
+    bool selectProfile(const QString &profileId);
 
 signals:
     void changed();
