@@ -108,6 +108,11 @@ public:
     {
     }
 
+    ~Data()
+    {
+        delete workDir;
+    }
+
     DiskPipeline *pipeline;
     Converter::Job job;
     const Profile profile;
@@ -116,15 +121,16 @@ public:
     QList<EncoderRequest> encoderRequests;
     QList<GainRequest> gainRequests;
     bool interrupted = false;
-    QString workDir;
-    QString tmpFilePrefix;
     PreGapType preGapType = PreGapType::Skip;
     bool extractPregap = false;
     int trackCount = 0;
     CoverMode coverMode = CoverMode::Disable;
     int coverImageSize = 0;
     QString tmpDirName;
+    QTemporaryDir *workDir = nullptr;
+    QVector<WorkerThread*> threads;
 
+    bool init();
     void interrupt(TrackState state);
     void startSplitterThread();
     void startEncoderThread(const EncoderRequest &req);
@@ -169,8 +175,7 @@ bool DiskPipeline::Data::createDir(const QString &dirName) const
  ************************************************/
 DiskPipeline::DiskPipeline(const Converter::Job &job, const Profile &profile, QObject *parent) :
     QObject(parent),
-    mData(new Data(job, profile, this)),
-    mTmpDir(nullptr)
+    mData(new Data(job, profile, this))
 {
     mData->preGapType = mData->profile.isCreateCue() ? mData->profile.preGapType() : PreGapType::Skip;
 
@@ -189,16 +194,7 @@ DiskPipeline::DiskPipeline(const Converter::Job &job, const Profile &profile, QO
  ************************************************/
 DiskPipeline::~DiskPipeline()
 {
-    // Remove temporary files
-    QDir dir(QFileInfo(mData->tmpFilePrefix).dir());
-    QStringList filters;
-    filters << QFileInfo(mData->tmpFilePrefix).fileName() + "*";
-
-    foreach (const QString &file, dir.entryList(filters, QDir::Files))
-        dir.remove(file);
-
     delete mData;
-    delete mTmpDir;
 }
 
 
@@ -207,33 +203,29 @@ DiskPipeline::~DiskPipeline()
  ************************************************/
 bool DiskPipeline::init()
 {
-    if (!mData->tmpDirName.isEmpty())
-    {
-        if (!mData->createDir(mData->tmpDirName))
-            return false;
-        mTmpDir = new QTemporaryDir(QString("%1/flacon.").arg(mData->tmpDirName));
-        mTmpDir->setAutoRemove(true);
-        mData->workDir = mTmpDir->path();
-    }
-    else
-        mData->workDir = QFileInfo(mData->job.tracks.first()->resultFilePath()).dir().absolutePath();
+    return mData->init();
+}
 
-    mData->tmpFilePrefix = QDir::toNativeSeparators(QString("%1/flacon_%2-")
-                                                .arg(mData->workDir)
-                                                .arg(QUuid::createUuid().toString().mid(1, 36)));
 
-    foreach (const Track *track, mData->job.tracks)
-    {
-        mData->trackStates.insert(track, TrackState::NotRunning);
-    }
+/************************************************
+ *
+ ************************************************/
+bool DiskPipeline::Data::init()
+{
+    QString dir = !tmpDirName.isEmpty() ?
+                   tmpDirName :
+                   QFileInfo(job.tracks.first()->resultFilePath()).dir().absolutePath();
 
-    if (!mData->createDir(mData->workDir))
+    if (!createDir(dir))
         return false;
 
-    foreach (const Track *track, mData->job.tracks)
-    {
-        QString dir = QFileInfo(track->resultFilePath()).absoluteDir().path();
-        if (!mData->createDir(dir))
+    workDir = new QTemporaryDir(QString("%1/flacon").arg(dir));
+    workDir->setAutoRemove(true);
+
+    foreach (const Track *track, job.tracks) {
+        trackStates.insert(track, TrackState::NotRunning);
+
+        if (!createDir(QFileInfo(track->resultFilePath()).absoluteDir().path()))
             return false;
     }
 
@@ -341,7 +333,7 @@ bool DiskPipeline::Data::copyCoverImage() const
  ************************************************/
 void DiskPipeline::Data::startSplitterThread()
 {
-    Splitter *worker = new Splitter(job.disk, tmpFilePrefix, extractPregap, preGapType);
+    Splitter *worker = new Splitter(job.disk, workDir->path(), extractPregap, preGapType);
     for (const Track *t: job.tracks)
         worker->addTrack(t);
 
@@ -362,7 +354,7 @@ void DiskPipeline::Data::startSplitterThread()
     connect(thread,   SIGNAL(finished()),
             pipeline, SIGNAL(threadFinished()));
 
-    pipeline->mThreads << thread;
+    threads << thread;
     thread->start();
 
     needStartSplitter = false;
@@ -417,7 +409,7 @@ void DiskPipeline::Data::startEncoderThread(const EncoderRequest &req)
     connect(thread,   SIGNAL(finished()),
             pipeline, SIGNAL(threadFinished()));
 
-    pipeline->mThreads << thread;
+    threads << thread;
     thread->start();
 }
 
@@ -447,7 +439,7 @@ void DiskPipeline::Data::startTrackGainThread(const GainRequest &req)
     connect(thread,   SIGNAL(finished()),
             pipeline, SIGNAL(threadFinished()));
 
-    pipeline->mThreads << thread;
+    threads << thread;
     thread->start();
 }
 
@@ -478,7 +470,7 @@ void DiskPipeline::Data::startAlbumGainThread(QList<GainRequest> &reqs)
     connect(thread,   SIGNAL(finished()),
             pipeline, SIGNAL(threadFinished()));
 
-    pipeline->mThreads << thread;
+    threads << thread;
     thread->start();
 }
 
@@ -537,6 +529,7 @@ void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
 void DiskPipeline::trackDone(const Track *track, const QString &outFileName)
 {
     // Track is ready, rename the file to the final name.
+    // Remove old already existing file.
     QFile::remove(track->resultFilePath());
 
     QFile file(outFileName);
@@ -657,7 +650,7 @@ bool DiskPipeline::isRunning() const
 int DiskPipeline::runningThreadCount() const
 {
     int res = 0;
-    foreach (WorkerThread *thread, mThreads)
+    foreach (WorkerThread *thread, mData->threads)
     {
         if (thread->isRunning())
             ++res;

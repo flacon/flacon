@@ -80,8 +80,6 @@ protected:
 private:
     class Data;
     Data *mData;
-    QTemporaryDir *mTmpDir = nullptr;
-    QVector<WorkerThread*> mThreads;
 };
 
 #endif // DISKPIPLINE_H

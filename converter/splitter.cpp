@@ -34,10 +34,10 @@
 /************************************************
  *
  ************************************************/
-Splitter::Splitter(const Disk *disk, const QString &tmpFilePrefix, bool extractPregap, PreGapType preGapType, QObject *parent):
+Splitter::Splitter(const Disk *disk, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent):
     Worker(parent),
     mDisk(disk),
-    mTmpFilePrefix(tmpFilePrefix),
+    mWorkDir(workDir),
     mExtractPregap(extractPregap),
     mPreGapType(preGapType)
 {
@@ -73,7 +73,7 @@ void Splitter::run()
         mCurrentTrack  = mDisk->preGapTrack();
         CueIndex start = mDisk->track(0)->cueIndex(0);
         CueIndex end   = mDisk->track(0)->cueIndex(1);
-        QString outFileName = QString("%1%2.wav").arg(mTmpFilePrefix).arg(0, 2, 10, QLatin1Char('0'));
+        QString outFileName = QString("%1/pregap.wav").arg(mWorkDir);
 
         try
         {
@@ -103,7 +103,7 @@ void Splitter::run()
         if (!mTracks.contains(mCurrentTrack))
             continue;
 
-        QString outFileName = QString("%1%2.wav").arg(mTmpFilePrefix).arg(i+1, 2, 10, QLatin1Char('0'));
+        QString outFileName = QString("%1/track-%2.wav").arg(mWorkDir).arg(i+1, 2, 10, QLatin1Char('0'));
 
         CueIndex start, end;
         if (i==0 && mPreGapType == PreGapType::AddToFirstTrack)
