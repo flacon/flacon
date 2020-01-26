@@ -31,6 +31,7 @@
 #include "outformat.h"
 #include "converter/resampler.h"
 
+#include <assert.h>
 #include <QDir>
 #include <QDebug>
 #include <QProcessEnvironment>
