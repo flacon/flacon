@@ -28,6 +28,7 @@
 #define OUT_WAV_H
 
 #include "outformat.h"
+#include "encoderconfigpage.h"
 
 class OutFormat_Wav: public OutFormat
 {
@@ -44,11 +45,21 @@ public:
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage *configPage(Profile *profile, QWidget *parent) const override;
 
-    virtual bool hasConfigPage() const override { return false; }
-
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_64; }
     virtual SampleRate    maxSampleRate()   const override { return SampleRate::Hz_768000; }
+};
+
+
+class ConfigPage_Wav: public EncoderConfigPage
+{
+    Q_OBJECT
+public:
+    explicit ConfigPage_Wav(Profile *profile, QWidget *parent = nullptr);
+
+    virtual void load() override {}
+    virtual void save() override {}
+
 };
 
 #endif // OUT_WAV_H

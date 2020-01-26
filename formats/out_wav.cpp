@@ -70,7 +70,17 @@ QHash<QString, QVariant> OutFormat_Wav::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Wav::configPage(Profile *, QWidget *) const
+EncoderConfigPage *OutFormat_Wav::configPage(Profile *profile, QWidget *parent) const
 {
-    return nullptr;
+    return new ConfigPage_Wav(profile, parent);
+}
+
+
+/************************************************
+
+ ************************************************/
+ConfigPage_Wav::ConfigPage_Wav(Profile *profile, QWidget *parent):
+    EncoderConfigPage(profile, parent)
+{
+
 }

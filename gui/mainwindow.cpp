@@ -449,7 +449,7 @@ void MainWindow::setControlsEnable()
         actionDownloadTrackInfo->setEnabled(canDownload);
         actionScan->setEnabled(!mScanner);
         actionConfigure->setEnabled(true);
-        actionConfigureEncoder->setEnabled(Settings::i()->currentProfile().hasConfigPage());
+        actionConfigureEncoder->setEnabled(true);
     }
 }
 

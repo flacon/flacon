@@ -72,11 +72,8 @@ public:
         return nullptr;
     }
 
-    virtual bool hasConfigPage() const override { return false; }
-
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::AsSourcee; }
     virtual SampleRate    maxSampleRate()   const override { return SampleRate::AsSource; }
-
 };
 
 static OutFormat_Null *nullFormat() {

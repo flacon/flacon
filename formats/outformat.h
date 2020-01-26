@@ -61,8 +61,6 @@ public:
 
     virtual QHash<QString, QVariant> defaultParameters() const = 0;
     virtual EncoderConfigPage *configPage(Profile *profile, QWidget *parent) const = 0;
-    virtual bool hasConfigPage() const { return true; }
-
 
 protected:
     QString mId;

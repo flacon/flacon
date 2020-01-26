@@ -245,12 +245,10 @@ void ConfigDialog::initUpdatePage()
 void ConfigDialog::fillProfilesList()
 {
     for (const Profile &profile: mProfiles) {
-        if (profile.hasConfigPage()) {
-            QListWidgetItem *item = new QListWidgetItem(profilesList);
-            item->setText(profile.name());
-            item->setData(PROFILE_ID_ROLE, profile.id());
-            item->setFlags(item->flags() | Qt::ItemIsEditable);
-        }
+        QListWidgetItem *item = new QListWidgetItem(profilesList);
+        item->setText(profile.name());
+        item->setData(PROFILE_ID_ROLE, profile.id());
+        item->setFlags(item->flags() | Qt::ItemIsEditable);
     }
 
     if (profilesList->count() > 0) {
@@ -287,7 +285,6 @@ void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem
 
     mEncoderPage = profile.configPage(profileParent);
     qobject_cast<QVBoxLayout*>(profileParent->layout())->insertWidget(0, mEncoderPage);
-
     loadEncoderPage();
 
 
