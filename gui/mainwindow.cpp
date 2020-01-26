@@ -195,8 +195,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(outDirEdit->lineEdit(),     SIGNAL(editingFinished()), this, SLOT(setOutDir()));
     connect(outDirEdit,     SIGNAL(currentIndexChanged(int)), this, SLOT(setOutDir()));
 
-    connect(outProfileCombo, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &MainWindow::setOutProfile);
+    connect(outProfileCombo, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(setOutProfile()));
+
     connect(codepageCombo,   SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
 
     connect(trackView, SIGNAL(selectCueFile(Disk*)),     this, SLOT(setCueForDisc(Disk*)));
