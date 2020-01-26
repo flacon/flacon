@@ -73,9 +73,9 @@
 
 [Profiles/WAV]
     Format=WAV
-    Name=WAV
-    BitsPerSample=0
-    SampleRate=0
-    CreateCue=false
-    CueFileName = %a-%A.cue
-    PregapType = Extract
+    Name=Wav
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = WAV %a %d - %A.cue
+    PregapType = Track

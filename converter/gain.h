@@ -47,7 +47,7 @@ public:
 private:
     struct GainTrack {
         const Track *track;
-        const QString file;
+        QString file;
     };
 
     QVector<GainTrack> mTracks;

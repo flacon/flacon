@@ -70,3 +70,12 @@
     CreateCue=true
     CueFileName = WV %a %d - %A.cue
     PregapType = Disable
+
+[Profiles/WAV]
+    Format=WAV
+    Name=Wav
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = WAV %a %d - %A.cue
+    PregapType = Track
