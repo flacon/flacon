@@ -502,3 +502,15 @@ Disk *loadFromCue(const QString &cueFile)
     }
     return nullptr;
 }
+
+
+/************************************************
+ *
+ ************************************************/
+void TestSettings::apply(const QMap<QString, QVariant> &values)
+{
+    for (auto i=values.constBegin(); i!=values.constEnd(); ++i) {
+        setValue(i.key(), i.value());
+    }
+    sync();
+}

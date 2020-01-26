@@ -88,6 +88,12 @@ struct GainRequest
     QString inputFile;
 };
 
+struct EncoderRequest
+{
+    const Track *track;
+    QString inputFile;
+    QString outFile;
+};
 
 /************************************************
  *
@@ -372,7 +378,20 @@ void DiskPipeline::Data::startSplitterThread()
  ************************************************/
 void DiskPipeline::Data::startEncoderThread(const EncoderRequest &req)
 {
-    Encoder *worker = new Encoder(req, profile);
+    Encoder *worker = new Encoder(req.track, req.inputFile, req.outFile, profile);
+
+    // If the original quality is worse than requested, leave it as is.
+    worker->setBitsPerSample(calcQuality(
+                                 job.disk->audioFile()->bitsPerSample(),
+                                 profile.bitsPerSample(),
+                                 int(profile.maxBitPerSample())));
+
+    worker->setSampleRate(calcQuality(
+                              job.disk->audioFile()->sampleRate(),
+                              profile.sampleRate(),
+                              int(profile.maxSampleRate())));
+
+
     WorkerThread *thread = new WorkerThread(worker, pipeline);
 
     connect(pipeline, SIGNAL(threadQuit()),
@@ -492,21 +511,7 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFil
                 ".encoded." +
                 trackFile.suffix());
 
-    EncoderRequest req;
-    req.track      = track;
-    req.inputFile  = inputFile;
-    req.outFile    = outFile;
-
-    // If the original quality is worse than requested, leave it as is.
-    req.bitsPerSample = calcQuality(mData->job.disk->audioFile()->bitsPerSample(),
-                                    mData->profile.bitsPerSample(),
-                                    int(mData->profile.maxBitPerSample()));
-
-    req.sampleRate = calcQuality(mData->job.disk->audioFile()->sampleRate(),
-                                 mData->profile.sampleRate(),
-                                 int(mData->profile.maxSampleRate()));
-
-    mData->encoderRequests << req;
+    mData->encoderRequests.append({track, inputFile, outFile});
     emit readyStart();
 }
 

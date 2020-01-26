@@ -90,6 +90,7 @@ class TestSettings: public Settings
     Q_OBJECT
 public:
     TestSettings (const QString &fileName): Settings(fileName)  { }
+    void apply(const QMap<QString, QVariant> &values);
 };
 
 
