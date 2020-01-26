@@ -35,22 +35,10 @@
 /************************************************
  *
  ************************************************/
-Gain::Gain(const WorkerRequest &request, const Profile &profile, QObject *parent):
+Gain::Gain(const Profile &profile, QObject *parent):
     Worker(parent),
     mProfile(profile)
 {
-    mRequests << request;
-}
-
-
-/************************************************
- *
- ************************************************/
-Gain::Gain(const QList<WorkerRequest> &requests, const Profile &profile, QObject *parent):
-    Worker(parent),
-    mProfile(profile)
-{
-    mRequests << requests;
 }
 
 
@@ -61,13 +49,11 @@ void Gain::run()
 {
     bool debug = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_GAIN");
 
-    foreach (WorkerRequest req, mRequests)
-        emit trackProgress(req.track(), TrackState::CalcGain, 0);
-
-
     QStringList files;
-    foreach (WorkerRequest req, mRequests)
-        files << QDir::toNativeSeparators(req.inputFile());
+    for (const GainTrack &track: mTracks) {
+        emit trackProgress(track.track, TrackState::CalcGain, 0);
+        files << QDir::toNativeSeparators(track.file);
+    }
 
     QStringList args = mProfile.gainArgs(files);
     QString prog = args.takeFirst();
@@ -80,18 +66,16 @@ void Gain::run()
     process.start(prog, args);
     process.waitForFinished(-1);
 
-    if (process.exitCode() != 0)
-    {
+    if (process.exitCode() != 0) {
         QTextStream(stderr) << "Gain command: ";
         debugArguments(prog, args);
         QString msg = tr("Gain error:\n") +
                 QString::fromLocal8Bit(process.readAllStandardError());
-        error(mRequests.first().track(), msg);
+        error(mTracks.first().track, msg);
     }
 
-    foreach (WorkerRequest req, mRequests)
-    {
-        emit trackProgress(req.track(), TrackState::WriteGain, 100);
-        emit trackReady(req.track(), req.inputFile());
+    for (const GainTrack &track: mTracks) {
+        emit trackProgress(track.track, TrackState::WriteGain, 100);
+        emit trackReady(track.track, track.file);
     }
 }

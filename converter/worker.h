@@ -33,30 +33,6 @@
 class Disk;
 
 
-
-class WorkerRequest {
-public:
-    WorkerRequest(const Track *track, const QString &inputFile, const QString &outFile):
-        mTrack(track),
-        mInputFile(inputFile),
-        mOutFile(outFile)
-    {
-    }
-
-    WorkerRequest(const WorkerRequest &other);
-    WorkerRequest &operator=(const WorkerRequest &other);
-
-    const Track* track() const { return mTrack; }
-    QString inputFile() const { return mInputFile; }
-    QString outFile() const { return mOutFile; }
-
-private:
-    const Track *mTrack;
-    QString mInputFile;
-    QString mOutFile;
-};
-
-
 class Worker : public QObject
 {
     Q_OBJECT

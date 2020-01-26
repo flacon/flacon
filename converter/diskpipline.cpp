@@ -82,6 +82,13 @@ private:
 };
 
 
+struct GainRequest
+{
+    const Track *track;
+    QString inputFile;
+};
+
+
 /************************************************
  *
  ************************************************/
@@ -101,7 +108,7 @@ public:
     bool needStartSplitter = true;
     QHash<const Track*, TrackState> trackStates;
     QList<EncoderRequest> encoderRequests;
-    QList<WorkerRequest> gainRequests;
+    QList<GainRequest> gainRequests;
     bool interrupted = false;
     QString workDir;
     QString tmpFilePrefix;
@@ -115,8 +122,8 @@ public:
     void interrupt(TrackState state);
     void startSplitterThread();
     void startEncoderThread(const EncoderRequest &req);
-    void startTrackGainThread(const WorkerRequest &req);
-    void startAlbumGainThread(QList<WorkerRequest> &reqs);
+    void startTrackGainThread(const GainRequest &req);
+    void startAlbumGainThread(QList<GainRequest> &reqs);
     bool createDir(const QString &dirName) const;
     bool createCue() const;
     bool copyCoverImage() const;
@@ -399,9 +406,11 @@ void DiskPipeline::Data::startEncoderThread(const EncoderRequest &req)
 /************************************************
  *
  ************************************************/
-void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
+void DiskPipeline::Data::startTrackGainThread(const GainRequest &req)
 {
-    Gain *worker = new Gain(req, profile);
+    Gain *worker = new Gain(profile);
+    worker->addTrack(req.track, req.inputFile);
+
     WorkerThread *thread = new WorkerThread(worker, pipeline);
 
     connect(pipeline, SIGNAL(threadQuit()),
@@ -427,11 +436,14 @@ void DiskPipeline::Data::startTrackGainThread(const WorkerRequest &req)
 /************************************************
  *
  ************************************************/
-void DiskPipeline::Data::startAlbumGainThread(QList<WorkerRequest> &reqs)
+void DiskPipeline::Data::startAlbumGainThread(QList<GainRequest> &reqs)
 {
-    Gain *worker = new Gain(reqs, profile);
-    WorkerThread *thread = new WorkerThread(worker, pipeline);
+    Gain *worker = new Gain(profile);
+    for (const GainRequest &req: reqs) {
+        worker->addTrack(req.track, req.inputFile);
+    }
 
+    WorkerThread *thread = new WorkerThread(worker, pipeline);
     connect(pipeline, SIGNAL(threadQuit()),
             thread,   SLOT(terminate()));
 
@@ -509,7 +521,7 @@ void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
     else
         trackProgress(track, TrackState::Queued, 0);
 
-    mData->gainRequests << WorkerRequest(track, fileName, fileName);
+    mData->gainRequests.append({track, fileName});
     emit readyStart();
 }
 

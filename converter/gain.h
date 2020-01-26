@@ -38,13 +38,19 @@ class Gain: public Worker
 {
     Q_OBJECT
 public:   
-    explicit Gain(const WorkerRequest &request, const Profile &profile, QObject *parent = nullptr);
-    explicit Gain(const QList<WorkerRequest> &requests, const Profile &profile, QObject *parent = nullptr);
+    explicit Gain(const Profile &profile, QObject *parent = nullptr);
+
+    void addTrack(const Track *track, const QString &file) { mTracks.append({track, file}); }
 
     void run() override;
 
 private:
-    QList<WorkerRequest> mRequests;
+    struct GainTrack {
+        const Track *track;
+        const QString file;
+    };
+
+    QVector<GainTrack> mTracks;
     const Profile mProfile;
 };
 
