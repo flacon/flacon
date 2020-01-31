@@ -43,6 +43,9 @@ void TestFlacon::testOutFormatEncoderArgs()
     QFETCH(SettingsValues, config);
     QFETCH(QString, expected);
 
+    for (auto prog: Settings::i()->programs()) {
+        Settings::i()->setValue("Programs/" + prog, prog);
+    }
 
     OutFormat *fmt = OutFormat::formatForId(formatId);
     if (!fmt)
@@ -59,10 +62,6 @@ void TestFlacon::testOutFormatEncoderArgs()
 
     Disk *disk = standardDisk();
     QStringList args = profile.encoderArgs(disk->track(0), "OutFile.wav");
-
-    if (!args.isEmpty()) {
-        args.first() = QFileInfo(args.first()).baseName();
-    }
 
     QString result = args.join(" ");
     if (result != expected)
