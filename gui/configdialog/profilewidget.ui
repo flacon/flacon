@@ -52,7 +52,7 @@
     <layout class="QVBoxLayout" name="encoderPlace"/>
    </item>
    <item>
-    <widget class="QGroupBox" name="resampleBox">
+    <widget class="QGroupBox" name="resampleGroup">
      <property name="title">
       <string extracomment="Preferences dialog: group caption">Resampling settings:</string>
      </property>
@@ -84,7 +84,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="gainBox">
+    <widget class="QGroupBox" name="gainGroup">
      <property name="title">
       <string>ReplayGain settings:</string>
      </property>
@@ -93,17 +93,17 @@
      </property>
      <layout class="QFormLayout" name="formLayout_2">
       <item row="0" column="0">
-       <widget class="QLabel" name="flacGainLabel">
+       <widget class="QLabel" name="gainLabel">
         <property name="text">
          <string>Calculate gain:</string>
         </property>
         <property name="buddy">
-         <cstring>flacGainCbx</cstring>
+         <cstring>gainComboBox</cstring>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="flacGainCbx">
+       <widget class="QComboBox" name="gainComboBox">
         <item>
          <property name="text">
           <string>Disabled</string>

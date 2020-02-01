@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>519</width>
-    <height>123</height>
+    <height>77</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,88 +27,63 @@
     <number>0</number>
    </property>
    <item>
-    <layout class="QGridLayout" name="formLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="flacCompressionLabel">
-       <property name="text">
-        <string>Compression:</string>
-       </property>
-       <property name="buddy">
-        <cstring>flacCompressionSlider</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QSlider" name="flacCompressionSlider">
-         <property name="maximum">
-          <number>8</number>
-         </property>
-         <property name="pageStep">
-          <number>1</number>
-         </property>
-         <property name="value">
-          <number>0</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="tickPosition">
-          <enum>QSlider::TicksAbove</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="flacCompressionSpin">
-         <property name="maximum">
-          <number>8</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="flacGainGroup">
+    <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>ReplayGain</string>
+      <string extracomment="Preferences dialog: group caption">Encoder settings:</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_8">
-      <item>
-       <layout class="QGridLayout" name="formLayout_7">
-        <item row="0" column="0">
-         <widget class="QLabel" name="flacGainLabel">
-          <property name="text">
-           <string>Calculate gain:</string>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="flacCompressionLabel">
+        <property name="text">
+         <string>Compression:</string>
+        </property>
+        <property name="buddy">
+         <cstring>flacCompressionSlider</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QSlider" name="flacCompressionSlider">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
           </property>
-          <property name="buddy">
-           <cstring>flacGainCbx</cstring>
+          <property name="maximum">
+           <number>8</number>
           </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="flacGainCbx">
-          <item>
-           <property name="text">
-            <string>Disabled</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <spacer name="horizontalSpacer_3">
+          <property name="pageStep">
+           <number>1</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeHint" stdset="0">
+          <property name="tickPosition">
+           <enum>QSlider::TicksAbove</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="flacCompressionSpin">
+          <property name="minimumSize">
            <size>
-            <width>40</width>
-            <height>20</height>
+            <width>50</width>
+            <height>0</height>
            </size>
           </property>
-         </spacer>
+          <property name="maximum">
+           <number>8</number>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>

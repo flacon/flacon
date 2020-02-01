@@ -170,7 +170,6 @@ ConfigPage_Flac::ConfigPage_Flac(const Profile &profile, QWidget *parent):
 
     setLosslessToolTip(flacCompressionSlider);
     flacCompressionSpin->setToolTip(flacCompressionSlider->toolTip());
-    fillReplayGainComboBox(flacGainCbx);
 }
 
 
@@ -180,7 +179,6 @@ ConfigPage_Flac::ConfigPage_Flac(const Profile &profile, QWidget *parent):
 void ConfigPage_Flac::load()
 {
     loadWidget("Compression",  flacCompressionSlider);
-    loadWidget("ReplayGain", flacGainCbx);
 }
 
 
@@ -190,5 +188,4 @@ void ConfigPage_Flac::load()
 void ConfigPage_Flac::save()
 {
     saveWidget("Compression",  flacCompressionSlider);
-    saveWidget("ReplayGain", flacGainCbx);
 }

@@ -42,8 +42,8 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     ui->formatLabel->setText(tr("%1 encoder", "Preferences dialog: format name label, %1 is a audio format name")
                                  .arg(profile.formatName()));
 
-    ui->gainBox->setVisible(profile.formatOptions()     && FormatOption::SupportGain);
-    ui->resampleBox->setVisible(profile.formatOptions() && FormatOption::Lossless);
+    ui->gainGroup->setVisible(profile.formatOptions()     && FormatOption::SupportGain);
+    ui->resampleGroup->setVisible(profile.formatOptions() && FormatOption::Lossless);
 
 
     if (mEncoderWidget->layout())
@@ -89,6 +89,15 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     ui->sampleRateComboBox->addItem(tr("96000 Hz",       "Item in combobox"), int(SampleRate::Hz_96000));
     ui->sampleRateComboBox->addItem(tr("192000 Hz",      "Item in combobox"), int(SampleRate::Hz_192000));
 
+    ui->gainComboBox->clear();
+    ui->gainComboBox->addItem(tr("Disabled",  "ReplayGain type combobox"), gainTypeToString(GainType::Disable));
+    ui->gainComboBox->addItem(tr("Per Track", "ReplayGain type combobox"), gainTypeToString(GainType::Track));
+    ui->gainComboBox->addItem(tr("Per Album", "ReplayGain type combobox"), gainTypeToString(GainType::Album));
+    ui->gainComboBox->setToolTip(tr("ReplayGain is a standard to normalize the perceived loudness of computer audio formats. \n\n"
+                                    "The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. \n"
+                                    "Using the album-gain analysis will preserve the volume differences within an album."));
+
+
 
     connect(ui->perTrackCueFormatBtn, &OutPatternButton::paternSelected,
             [this](const QString &pattern){ ui->perTrackCueFormatEdit->lineEdit()->insert(pattern);});
@@ -108,7 +117,7 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     }
 
     if (mProfile.formatOptions() && FormatOption::SupportGain) {
-        mEncoderWidget->loadWidget(Profile::REPLAY_GAIN_KEY, ui->flacGainCbx);
+        mEncoderWidget->loadWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
     }
 
     mEncoderWidget->loadWidget(Profile::CREATE_CUE_KEY,    ui->perTrackCueGroup);
@@ -139,7 +148,7 @@ Profile ProfileWidget::profile() const
     }
 
     if (mProfile.formatOptions() && FormatOption::SupportGain) {
-        mEncoderWidget->saveWidget(Profile::REPLAY_GAIN_KEY, ui->flacGainCbx);
+        mEncoderWidget->saveWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
     }
 
     mEncoderWidget->saveWidget(Profile::CREATE_CUE_KEY,    ui->perTrackCueGroup);
