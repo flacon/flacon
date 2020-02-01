@@ -114,7 +114,7 @@ QHash<QString, QVariant> OutFormat_Opus::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Opus::configPage(Profile *profile, QWidget *parent) const
+EncoderConfigPage *OutFormat_Opus::configPage(const Profile &profile, QWidget *parent) const
 {
     return new ConfigPage_Opus(profile, parent);
 }
@@ -123,7 +123,7 @@ EncoderConfigPage *OutFormat_Opus::configPage(Profile *profile, QWidget *parent)
 /************************************************
 
  ************************************************/
-ConfigPage_Opus::ConfigPage_Opus(Profile *profile, QWidget *parent):
+ConfigPage_Opus::ConfigPage_Opus(const Profile &profile, QWidget *parent):
     EncoderConfigPage(profile, parent)
 {
     setupUi(this);

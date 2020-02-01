@@ -153,7 +153,7 @@ QHash<QString, QVariant> OutFormat_Flac::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Flac::configPage(Profile *profile, QWidget *parent) const
+EncoderConfigPage *OutFormat_Flac::configPage(const Profile &profile, QWidget *parent) const
 {
     return new ConfigPage_Flac(profile, parent);
 }
@@ -162,7 +162,7 @@ EncoderConfigPage *OutFormat_Flac::configPage(Profile *profile, QWidget *parent)
 /************************************************
 
  ************************************************/
-ConfigPage_Flac::ConfigPage_Flac(Profile *profile, QWidget *parent):
+ConfigPage_Flac::ConfigPage_Flac(const Profile &profile, QWidget *parent):
     EncoderConfigPage(profile, parent)
 {
     setupUi(this);

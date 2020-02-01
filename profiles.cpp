@@ -67,7 +67,7 @@ public:
         return QHash<QString, QVariant>();
     }
 
-    EncoderConfigPage *configPage(Profile *, QWidget *) const override
+    EncoderConfigPage *configPage(const Profile &, QWidget *) const override
     {
         return nullptr;
     }
@@ -299,9 +299,9 @@ void Profile::setPregapType(PreGapType value)
 /************************************************
  *
  ************************************************/
-EncoderConfigPage *Profile::configPage(QWidget *parent)
+EncoderConfigPage *Profile::configPage(QWidget *parent) const
 {
-    return mFormat->configPage(this, parent);
+    return mFormat->configPage(*this, parent);
 }
 
 

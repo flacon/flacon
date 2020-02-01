@@ -60,7 +60,7 @@ public:
     virtual bool check(const Profile &profile, QStringList *errors) const;
 
     virtual QHash<QString, QVariant> defaultParameters() const = 0;
-    virtual EncoderConfigPage *configPage(Profile *profile, QWidget *parent) const = 0;
+    virtual EncoderConfigPage *configPage(const Profile &profile, QWidget *parent) const = 0;
 
 protected:
     QString mId;

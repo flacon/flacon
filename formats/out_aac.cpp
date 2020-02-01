@@ -131,7 +131,7 @@ QHash<QString, QVariant> OutFormat_Aac::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Aac::configPage(Profile *profile, QWidget *parentr) const
+EncoderConfigPage *OutFormat_Aac::configPage(const Profile &profile, QWidget *parentr) const
 {
     return new ConfigPage_Acc(profile, parentr);
 }
@@ -140,7 +140,7 @@ EncoderConfigPage *OutFormat_Aac::configPage(Profile *profile, QWidget *parentr)
 /************************************************
 
  ************************************************/
-ConfigPage_Acc::ConfigPage_Acc(Profile *profile, QWidget *parent):
+ConfigPage_Acc::ConfigPage_Acc(const Profile &profile, QWidget *parent):
     EncoderConfigPage(profile, parent)
 {
     setupUi(this);

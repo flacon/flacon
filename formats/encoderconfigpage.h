@@ -42,7 +42,7 @@ class EncoderConfigPage: public QWidget
 {
     Q_OBJECT
 public:
-    explicit EncoderConfigPage(Profile *profile, QWidget *parent = nullptr);
+    explicit EncoderConfigPage(const Profile &profile, QWidget *parent = nullptr);
     virtual ~EncoderConfigPage();
 
     virtual void load() = 0;
@@ -81,10 +81,11 @@ public:
 
     static QString toolTipCss();
 
-    Profile *profile() const { return mProfile; }
+    Profile &profile() { return mProfile; }
+    const Profile &profile() const { return mProfile; }
 
 private:
-    Profile *mProfile;
+    Profile mProfile;
 };
 
 #endif // ENCODERCONFIGPAGE_H

@@ -76,7 +76,7 @@ public:
     QString ext() const { return mFormat->ext(); }
     BitsPerSample maxBitPerSample() const { return mFormat->maxBitPerSample(); }
     SampleRate    maxSampleRate() const { return mFormat->maxSampleRate(); }
-    EncoderConfigPage *configPage(QWidget *parent);
+    EncoderConfigPage *configPage(QWidget *parent) const;
     QString encoderProgramName() const { return mFormat->encoderProgramName(); }
     QStringList encoderArgs(const Track *track, const QString &outFile) const { return mFormat->encoderArgs(*this, track, outFile); }
     QString gainProgramName() const { return mFormat->gainProgramName(); }
