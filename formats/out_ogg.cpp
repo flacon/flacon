@@ -171,8 +171,6 @@ ConfigPage_Ogg::ConfigPage_Ogg(const Profile &profile, QWidget *parent):
     connect(oggQualitySlider, SIGNAL(valueChanged(int)), this, SLOT(oggQualitySliderChanged(int)));
     connect(oggQualitySpin, SIGNAL(valueChanged(double)), this, SLOT(oggQualitySpinChanged(double)));
 
-    fillReplayGainComboBox(oggGainCbx);
-
     QList<int> bitrates;
     bitrates << 0 << 64 << 80 << 96 << 128 << 160 << 196 << 256 << 350;
     fillBitrateComboBox(oggMinBitrateCbx,  bitrates);
@@ -191,7 +189,6 @@ void ConfigPage_Ogg::load()
     loadWidget("MinBitrate",  oggMinBitrateCbx);
     loadWidget("NormBitrate", oggNormBitrateCbx);
     loadWidget("MaxBitrate",  oggMaxBitrateCbx);
-    loadWidget("ReplayGain",  oggGainCbx);
 }
 
 
@@ -205,7 +202,6 @@ void ConfigPage_Ogg::save()
     saveWidget("MinBitrate",  oggMinBitrateCbx);
     saveWidget("NormBitrate", oggNormBitrateCbx);
     saveWidget("MaxBitrate",  oggMaxBitrateCbx);
-    saveWidget("ReplayGain",  oggGainCbx);
 }
 
 
