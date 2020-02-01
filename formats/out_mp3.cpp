@@ -220,8 +220,6 @@ ConfigPage_Mp3::ConfigPage_Mp3(const Profile &profile, QWidget *parent):
 
     connect(mp3PresetCbx, SIGNAL(currentIndexChanged(int)), this, SLOT(mp3PresetCbxCanged(int)));
     mp3PresetCbxCanged(mp3PresetCbx->currentIndex());
-
-    fillReplayGainComboBox(mp3GainCbx);
 }
 
 
@@ -234,7 +232,6 @@ void ConfigPage_Mp3::load()
     loadWidget("Bitrate",     mp3BitrateCbx);
     loadWidget("Quality",     mp3QualitySpin);
     mp3QualitySlider->setValue(mp3QualitySpin->value());
-    loadWidget("ReplayGain",  mp3GainCbx);
 }
 
 
@@ -246,7 +243,6 @@ void ConfigPage_Mp3::save()
     saveWidget("Preset",     mp3PresetCbx);
     saveWidget("Bitrate",    mp3BitrateCbx);
     saveWidget("Quality",    mp3QualitySpin);
-    saveWidget("ReplayGain", mp3GainCbx);
 }
 
 
@@ -258,8 +254,11 @@ void ConfigPage_Mp3::mp3PresetCbxCanged(int index)
     QString preset = mp3PresetCbx->itemData(index).toString();
 
     bool enable = (preset == "abrKbps" or preset=="cbrKbps");
-    mp3BitrateBox->setEnabled(enable);
+    mp3BitrateLabel->setEnabled(enable);
+    mp3BitrateCbx->setEnabled(enable);
 
     enable = (preset == "vbrQuality");
-    mp3QualityBox->setEnabled(enable);
+    mp3QualityLabel->setEnabled(enable);
+    mp3QualitySlider->setEnabled(enable);
+    mp3QualitySpin->setEnabled(enable);
 }
