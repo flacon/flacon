@@ -37,6 +37,7 @@ OutFormat_Aac::OutFormat_Aac()
     mId   = "AAC";
     mExt  = "m4a";
     mName = "AAC";
+    mOptions = FormatOption::NoOptions;
 }
 
 
@@ -148,6 +149,9 @@ ConfigPage_Acc::ConfigPage_Acc(const Profile &profile, QWidget *parent):
     setLossyToolTip(aacQualitySpin);
     aacQualitySlider->setToolTip(aacQualitySpin->toolTip());
     fillBitrateComboBox(aacBitrateCbx,  QList<int>() << 64 << 80 << 128 << 160 << 192 << 224 << 256 << 288 << 320);
+
+    connect(aacUseQualityCheck, &QCheckBox::toggled,
+            this, &ConfigPage_Acc::useQualityChecked);
 }
 
 
@@ -170,4 +174,18 @@ void ConfigPage_Acc::save()
     saveWidget("UseQuality", aacUseQualityCheck);
     saveWidget("Quality",    aacQualitySpin);
     saveWidget("Bitrate",    aacBitrateCbx);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ConfigPage_Acc::useQualityChecked(bool checked)
+{
+    qualityLabel->setEnabled(checked);
+    aacQualitySlider->setEnabled(checked);
+    aacQualitySpin->setEnabled(checked);
+
+    bitrateLabel->setEnabled(!checked);
+    aacBitrateCbx->setEnabled(!checked);
 }

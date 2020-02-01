@@ -73,7 +73,9 @@ public:
 
 
     QString formatId() const { return mFormat->id(); }
+    QString formatName() const { return mFormat->name(); }
     QString ext() const { return mFormat->ext(); }
+    FormatOptions formatOptions() const {return mFormat->options(); }
     BitsPerSample maxBitPerSample() const { return mFormat->maxBitPerSample(); }
     SampleRate    maxSampleRate() const { return mFormat->maxSampleRate(); }
     EncoderConfigPage *configPage(QWidget *parent) const;
@@ -91,6 +93,7 @@ public:
     static constexpr const char *CREATE_CUE_KEY      = "CreateCue";
     static constexpr const char *CUE_FILE_NAME_KEY   = "CueFileName";
     static constexpr const char *PREGAP_TYPE_KEY     = "PregapType";
+    static constexpr const char *REPLAY_GAIN_KEY     = "ReplayGain";
 
 private:
     QString mId;
@@ -105,6 +108,7 @@ class Profiles: public QVector<Profile>
 {
 public:
     int indexOf(const QString &id, int from = 0) const;
+    bool update(const Profile &profile);
 };
 
 QDebug operator<<(QDebug dbg, const Profile &profile);

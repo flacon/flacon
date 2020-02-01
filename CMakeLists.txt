@@ -75,6 +75,8 @@ set(HEADERS
     gui/trackviewmodel.h
     gui/trackviewdelegate.h
     gui/configdialog/configdialog.h
+    gui/configdialog/profilewidget.h
+    gui/configdialog/addprofiledialog.h
     gui/aboutdialog/aboutdialog.h
     gui/aboutdialog/translatorsinfo.h
     gui/cuediskselectdialog/cuediskselectdialog.h
@@ -136,6 +138,8 @@ set(SOURCES
     gui/trackviewmodel.cpp
     gui/trackviewdelegate.cpp
     gui/configdialog/configdialog.cpp
+    gui/configdialog/profilewidget.cpp
+    gui/configdialog/addprofiledialog.cpp
     gui/aboutdialog/aboutdialog.cpp
     gui/aboutdialog/translatorsinfo.cpp
     gui/cuediskselectdialog/cuediskselectdialog.cpp

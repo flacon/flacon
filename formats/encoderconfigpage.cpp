@@ -32,7 +32,7 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <QSpinBox>
-
+#include <QGroupBox>
 
 /************************************************
 
@@ -207,6 +207,30 @@ void EncoderConfigPage::loadWidget(const QString &key, QCheckBox *widget) const
 
  ************************************************/
 void EncoderConfigPage::saveWidget(const QString &key, const QCheckBox *widget)
+{
+    mProfile.setValue(key, widget->isChecked());
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void EncoderConfigPage::loadWidget(const QString &key, QGroupBox *widget) const
+{
+    bool wasChecked = widget->isChecked();
+    widget->setChecked(mProfile.value(key).toBool());
+
+    if (widget->isChecked() == wasChecked) {
+        emit widget->toggled(widget->isChecked());
+        emit widget->clicked(widget->isChecked());
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void EncoderConfigPage::saveWidget(const QString &key, const QGroupBox *widget)
 {
     mProfile.setValue(key, widget->isChecked());
 }

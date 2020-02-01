@@ -371,6 +371,20 @@ int Profiles::indexOf(const QString &id, int from) const
 /************************************************
  *
  ************************************************/
+bool Profiles::update(const Profile &profile)
+{
+    int n = indexOf(profile.id());
+    if ( n < 0 )
+        return false;
+
+    this->operator[](n) = profile;
+    return true;
+}
+
+
+/************************************************
+ *
+ ************************************************/
 QDebug operator<<(QDebug dbg, const Profile &profile)
 {
     dbg.nospace().noquote() << "ID:     " << profile.id()       << "\n";

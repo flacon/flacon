@@ -36,6 +36,8 @@ class QDoubleSpinBox;
 class QComboBox;
 class QLineEdit;
 class QCheckBox;
+class QGroupBox;
+
 class Profile;
 
 class EncoderConfigPage: public QWidget
@@ -69,6 +71,9 @@ public:
 
     void loadWidget(const QString &key, QCheckBox *widget) const;
     void saveWidget(const QString &key, const QCheckBox *widget);
+
+    void loadWidget(const QString &key, QGroupBox *widget) const;
+    void saveWidget(const QString &key, const QGroupBox *widget);
 
     void loadWidget(const QString &key, QSpinBox *widget) const;
     void saveWidget(const QString &key, const QSpinBox *widget);

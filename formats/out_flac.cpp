@@ -40,6 +40,7 @@ OutFormat_Flac::OutFormat_Flac()
     mId   = "FLAC";
     mExt  = "flac";
     mName = "Flac";
+    mOptions = FormatOption::Lossless | FormatOption::SupportGain;
 }
 
 

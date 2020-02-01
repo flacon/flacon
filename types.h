@@ -152,6 +152,20 @@ enum class SampleRate
 };
 Q_DECLARE_METATYPE(SampleRate)
 
+enum class FormatOption
+{
+    NoOptions   = 0x0,
+    Lossless    = 0x1,
+    SupportGain = 0x2,
+};
+
+Q_DECLARE_FLAGS(FormatOptions, FormatOption)
+Q_DECLARE_OPERATORS_FOR_FLAGS(FormatOptions)
+inline bool operator&&(const FormatOptions &flags, const FormatOption flag) noexcept
+{
+    return flags.testFlag(flag);
+}
+
 typedef quint8 Percent;
 typedef quint64 TrackId;
 

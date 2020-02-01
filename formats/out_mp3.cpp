@@ -37,6 +37,7 @@ OutFormat_Mp3::OutFormat_Mp3()
     mId   = "MP3";
     mExt  = "mp3";
     mName = "MP3";
+    mOptions = FormatOption::SupportGain;
 }
 
 

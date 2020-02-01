@@ -60,6 +60,8 @@ public:
     virtual void load() override;
     virtual void save() override;
 
+private slots:
+    void useQualityChecked(bool checked);
 };
 
 #endif // OUT_AAC_H

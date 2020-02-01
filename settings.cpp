@@ -607,7 +607,11 @@ void Settings::setProfiles(const Profiles &profiles)
 Profile Settings::currentProfile() const
 {
     int n = profiles().indexOf(value(OutFiles_Profile).toString());
-    return profiles()[qMax(0, n)];
+    if (n > -1) {
+        return profiles()[qMax(0, n)];
+    }
+
+    return Profile();
 }
 
 

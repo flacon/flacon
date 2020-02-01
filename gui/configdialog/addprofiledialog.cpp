@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2020
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -24,64 +24,85 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "out_wav.h"
-
+#include "addprofiledialog.h"
+#include "ui_addprofiledialog.h"
+#include "outformat.h"
+#include <QPushButton>
 
 /************************************************
-
+ *
  ************************************************/
-OutFormat_Wav::OutFormat_Wav()
+AddProfileDialog::AddProfileDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::AddProfileDialog)
 {
-    mId   = "WAV";
-    mExt  = "wav";
-    mName = "WAV";
-    mOptions = FormatOption::Lossless;
+    ui->setupUi(this);
+
+    for (const auto format: OutFormat::allFormats()) {
+        ui->formatCbx->addItem(format->name(), format->id());
+    }
+
+    ui->buttonBox->button(QDialogButtonBox::Ok)
+            ->setText(tr("Create profile", "Button caption"));
+
+    connect(ui->profileNameEd, &QLineEdit::textChanged,
+            this, &AddProfileDialog::setButtonsEnabled);
+
+    setButtonsEnabled();
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-QStringList OutFormat_Wav::encoderArgs(const Profile &, const Track *, const QString &) const
+AddProfileDialog::~AddProfileDialog()
 {
-    return QStringList();
+    delete ui;
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-QStringList OutFormat_Wav::gainArgs(const QStringList &, const GainType) const
+const QString AddProfileDialog::profileName() const
 {
-    return QStringList();
-}
-
-
-
-/************************************************
-
- ************************************************/
-QHash<QString, QVariant> OutFormat_Wav::defaultParameters() const
-{
-    QHash<QString, QVariant> res;
-    return res;
+    return ui->profileNameEd->text();
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-EncoderConfigPage *OutFormat_Wav::configPage(const Profile &profile, QWidget *parent) const
+void AddProfileDialog::setProfileName(const QString &value)
 {
-    return new ConfigPage_Wav(profile, parent);
+    ui->profileNameEd->setText(value);
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-ConfigPage_Wav::ConfigPage_Wav(const Profile &profile, QWidget *parent):
-    EncoderConfigPage(profile, parent)
+const QString AddProfileDialog::formaiId() const
 {
+    return ui->formatCbx->currentData().toString();
+}
 
+
+/************************************************
+ *
+ ************************************************/
+void AddProfileDialog::setFormatId(const QString &value)
+{
+    int n = ui->formatCbx->findData(value);
+    ui->formatCbx->setCurrentIndex(qMax(0, n));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void AddProfileDialog::setButtonsEnabled()
+{
+    auto btn = ui->buttonBox->button(QDialogButtonBox::Ok);
+    btn->setEnabled(!ui->profileNameEd->text().isEmpty());
 }

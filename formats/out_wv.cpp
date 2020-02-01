@@ -39,6 +39,7 @@ OutFormat_Wv::OutFormat_Wv()
     mId   = "WV";
     mExt  = "wv";
     mName = "WavPack";
+    mOptions = FormatOption::Lossless | FormatOption::SupportGain;
 }
 
 

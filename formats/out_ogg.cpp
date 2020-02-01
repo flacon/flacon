@@ -38,6 +38,7 @@ OutFormat_Ogg::OutFormat_Ogg()
     mId   = "OGG";
     mExt  = "ogg";
     mName = "OGG";
+    mOptions = FormatOption::SupportGain;
 }
 
 

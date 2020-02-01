@@ -28,10 +28,11 @@
 #define CONFIGDIALOG_H
 
 #include <QDialog>
+#include <QPointer>
 #include "ui_configdialog.h"
+#include "profilewidget.h"
 
 class OutFormat;
-class EncoderConfigPage;
 class ProgramEdit;
 class QListWidgetItem;
 
@@ -42,6 +43,9 @@ public:
     static ConfigDialog *createAndShow(QWidget *parent = nullptr);
     static ConfigDialog *createAndShow(const QString &profileId, QWidget *parent = nullptr);
 
+    using QDialog::show;
+    void show(const QString &profileId);
+
 signals:
     
 public slots:
@@ -51,7 +55,8 @@ public slots:
 private slots:
     void profileListSelected(QListWidgetItem *current, QListWidgetItem *previous);
     void profileItemChanged(QListWidgetItem *item);
-    void setEnablePerTrackGroup(bool enabled);
+    void deleteProfile();
+    void addProfile();
 
 private:
     explicit ConfigDialog(QWidget *parent = nullptr);
@@ -64,19 +69,16 @@ private:
     void load();
     void save();
 
-    void loadEncoderPage();
-    void saveEncoderPage();
-
     CoverMode coverMode() const;
     void setCoverMode(CoverMode mode);
 
-    void setProfile(const QString &profileId);
-    void fillProfilesList();
+    void refreshProfilesList(const QString &selectedProfileId);
     void updateLastUpdateLbl();
 
     QList<ProgramEdit*> mProgramEdits;
+    Profile mProfile;
     Profiles mProfiles;
-    EncoderConfigPage *mEncoderPage = nullptr;
+    QPointer<ProfileWidget> mProfileWidget;
 };
 
 #endif // CONFIGDIALOG_H
