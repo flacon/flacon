@@ -251,7 +251,7 @@ void ConfigDialog::refreshProfilesList(const QString &selectedProfileId)
 /************************************************
  *
  ************************************************/
-void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem *previous)
+void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem *)
 {
     pages->blockSignals(true);
     if (mProfileWidget && mProfileWidget->profile().isValid()) {
@@ -266,9 +266,9 @@ void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem
 
     if (current) {
         int n = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());
-        mProfile = (n > -1) ? mProfiles[n] : Profile();
+        Profile profile = (n > -1) ? mProfiles[n] : Profile();
 
-        mProfileWidget = new ProfileWidget(mProfile, profileParent);
+        mProfileWidget = new ProfileWidget(profile, profileParent);
         profilePlace->addWidget(mProfileWidget);
         mProfileWidget->show();
         profileParent->show();
@@ -351,6 +351,15 @@ void ConfigDialog::setCoverMode(CoverMode mode)
 /************************************************
  *
  ************************************************/
+Profile ConfigDialog::currentProfile() const
+{
+    return mProfileWidget ? mProfileWidget->profile() : Profile();
+}
+
+
+/************************************************
+ *
+ ************************************************/
 void ConfigDialog::updateLastUpdateLbl()
 {
 #ifdef MAC_UPDATER
@@ -407,8 +416,8 @@ void ConfigDialog::save()
     foreach(ProgramEdit *edit, mProgramEdits)
         Settings::i()->setValue("Programs/" + edit->programName(), edit->text());
 
-    if (mProfile.isValid())
-        mProfiles.update(mProfile);
+    if (currentProfile().isValid())
+        mProfiles.update(currentProfile());
 
     Settings::i()->setProfiles(mProfiles);
 
@@ -444,7 +453,7 @@ void ConfigDialog::addProfile()
     AddProfileDialog dialog(this);
     dialog.setWindowModality(Qt::WindowModal);
 
-    dialog.setFormatId(mProfile.formatId());
+    dialog.setFormatId(currentProfile().formatId());
 
     if (!dialog.exec())
         return;
@@ -471,15 +480,16 @@ void ConfigDialog::addProfile()
  ************************************************/
 void ConfigDialog::deleteProfile()
 {
-    if (!mProfile.isValid())
+    Profile prof = currentProfile();
+    if (!prof.isValid())
         return;
 
-    int n = (mProfiles.indexOf(mProfile.id()));
+    int n = (mProfiles.indexOf(prof.id()));
     if (n<0)
         return;
 
     QMessageBox dialog(this);
-    dialog.setText(tr("Are you sure you want to delete the profile \"%1\"?", "Message box text").arg(mProfile.name()));
+    dialog.setText(tr("Are you sure you want to delete the profile \"%1\"?", "Message box text").arg(prof.name()));
     dialog.setText("<nobr>" + dialog.text() + "</nobr>");
     dialog.setTextFormat(Qt::RichText);
     dialog.setIconPixmap(QPixmap(":/64/mainicon"));

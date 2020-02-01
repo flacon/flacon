@@ -72,11 +72,11 @@ private:
     CoverMode coverMode() const;
     void setCoverMode(CoverMode mode);
 
+    Profile currentProfile() const;
     void refreshProfilesList(const QString &selectedProfileId);
     void updateLastUpdateLbl();
 
     QList<ProgramEdit*> mProgramEdits;
-    Profile mProfile;
     Profiles mProfiles;
     QPointer<ProfileWidget> mProfileWidget;
 };

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>367</width>
+    <width>383</width>
     <height>142</height>
    </rect>
   </property>
@@ -86,6 +86,12 @@
           </item>
           <item>
            <widget class="QSpinBox" name="aacQualitySpin">
+            <property name="minimumSize">
+             <size>
+              <width>50</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="minimum">
              <number>10</number>
             </property>
