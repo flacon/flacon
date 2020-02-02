@@ -31,6 +31,7 @@
 #include "../patternexpander.h"
 #include "../icon.h"
 
+#include <QDebug>
 
 ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     QWidget(parent),
@@ -121,8 +122,47 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     mEncoderWidget->loadWidget(Profile::PREGAP_TYPE_KEY,   ui->preGapComboBox);
     mEncoderWidget->loadWidget(Profile::CUE_FILE_NAME_KEY, ui->perTrackCueFormatEdit);
 
+    fixLayout();
 }
 
+
+/************************************************
+ *
+ ************************************************/
+#ifdef Q_OS_MAC
+void ProfileWidget::fixLayout()
+{
+    QList<QLabel*> labels;
+    int width = 0;
+
+    for (auto *layout: findChildren<QFormLayout*>()) {
+        layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
+        layout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
+
+        for (int r=0; r<layout->count(); ++r) {
+            QLayoutItem *item = layout->itemAt(r, QFormLayout::LabelRole);
+            if (!item) continue;
+
+            QLabel *label = qobject_cast<QLabel*>(item->widget());
+            if (label) {
+                labels << label;
+                width = qMax(width, label->sizeHint().width());
+            }
+        }
+    }
+
+    for (QLabel *label: labels) {
+        label->setAlignment(Qt::AlignRight);
+        label->setMinimumWidth(width);
+    }
+
+    adjustSize();
+}
+#else
+void ProfileWidget::fixLayout()
+{
+}
+#endif
 
 /************************************************
  *

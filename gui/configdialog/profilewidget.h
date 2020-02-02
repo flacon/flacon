@@ -50,6 +50,8 @@ private:
     Ui::ProfileWidget *ui;
     EncoderConfigPage *mEncoderWidget = nullptr;
     Profile &mProfile;
+
+    void fixLayout();
 };
 
 #endif // PROFILEWIDGET_H
