@@ -59,9 +59,7 @@ public:
     static void setLossyToolTip(QSpinBox *widget);
     static void setLossyToolTip(QDoubleSpinBox *widget);
 
-    static void fillReplayGainComboBox(QComboBox *comboBox);
     static void fillBitrateComboBox(QComboBox *comboBox, const QList<int> &bitrates);
-
 
     void loadWidget(const QString &key, QSlider *widget) const;
     void saveWidget(const QString &key, const QSlider *widget);

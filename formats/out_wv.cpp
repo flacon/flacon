@@ -144,7 +144,6 @@ ConfigPage_Wv::ConfigPage_Wv(const Profile &profile, QWidget *parent):
 
     setLosslessToolTip(wvCompressionSlider);
     wvCompressionSpin->setToolTip(wvCompressionSlider->toolTip());
-    fillReplayGainComboBox(wvGainCbx);
 }
 
 
@@ -154,7 +153,6 @@ ConfigPage_Wv::ConfigPage_Wv(const Profile &profile, QWidget *parent):
 void ConfigPage_Wv::load()
 {
     loadWidget(COMPRESSION_KEY, wvCompressionSlider);
-    loadWidget(REPLAY_GAIN_KEY, wvGainCbx);
 }
 
 
@@ -164,5 +162,4 @@ void ConfigPage_Wv::load()
 void ConfigPage_Wv::save()
 {
     saveWidget(COMPRESSION_KEY, wvCompressionSlider);
-    saveWidget(REPLAY_GAIN_KEY,  wvGainCbx);
 }
