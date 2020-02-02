@@ -63,7 +63,7 @@ private:
     ~ConfigDialog();
 
     void initGeneralPage();
-    void initPrograms();
+    void initProgramsPage();
     void initUpdatePage();
 
     void load();

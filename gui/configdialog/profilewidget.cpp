@@ -99,10 +99,10 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
 
 
     connect(ui->perTrackCueFormatBtn, &OutPatternButton::paternSelected,
-            [this](const QString &pattern){ ui->perTrackCueFormatEdit->lineEdit()->insert(pattern);});
+            [this](const QString &pattern){ ui->perTrackCueFormatEdit->insert(pattern);});
 
     connect(ui->perTrackCueFormatBtn, &OutPatternButton::fullPaternSelected,
-            [this](const QString &pattern){ ui->perTrackCueFormatEdit->lineEdit()->setText(pattern);});
+            [this](const QString &pattern){ ui->perTrackCueFormatEdit->setText(pattern);});
 
 
 

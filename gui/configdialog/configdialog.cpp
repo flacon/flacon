@@ -104,7 +104,7 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     int height = Settings::i()->value(Settings::ConfigureDialog_Height).toInt();
     resize(width, height);
 
-    initPrograms();
+    initProgramsPage();
     initUpdatePage();
 
     pages->setCurrentIndex(0);
@@ -162,7 +162,14 @@ void ConfigDialog::initGeneralPage()
     connect(coverKeepSizeButton, &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::OrigSize); });
     connect(coverScaleButton,    &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Scale);    });
 
+    int h = 0;
+    for (int r=0; r < coverImageLayout->rowCount(); ++r) {
+        h = qMax(h, coverImageLayout->cellRect(r, 0).height());
+    }
 
+    for (int r=0; r < coverImageLayout->rowCount(); ++r) {
+        coverImageLayout->setRowMinimumHeight(r, h);
+    }
 }
 
 
@@ -170,12 +177,12 @@ void ConfigDialog::initGeneralPage()
 
  ************************************************/
 #if defined(MAC_BUNDLE) || defined(FLATPAK_BUNDLE)
-void ConfigDialog::initPrograms()
+void ConfigDialog::initProgramsPage()
 {
     pages->removeTab(pages->indexOf(programsPage));
 }
 #else
-void ConfigDialog::initPrograms()
+void ConfigDialog::initProgramsPage()
 {
     QStringList progs = QStringList::fromSet(Settings::i()->programs());
     progs.sort();
@@ -188,11 +195,16 @@ void ConfigDialog::initPrograms()
 
         QLabel *label = new QLabel(prog + ": ");
         label->setBuddy(edit);
+#ifdef Q_OS_MAC
+        label->setAlignment(Qt::AlignRight);
+#endif
         progsLayout->addWidget(label, row, 0);
         progsLayout->addWidget(edit,  row, 1);
         connect(progScanButton, &QPushButton::clicked, edit, &ProgramEdit::find);
         row++;
     }
+
+    progsArea->setStyleSheet("QScrollArea, #scrollAreaWidgetContents { background-color: transparent;}");
 }
 #endif
 

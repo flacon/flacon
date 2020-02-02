@@ -10,6 +10,12 @@
     <height>638</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>Preferences</string>
   </property>
@@ -19,7 +25,7 @@
      <item>
       <widget class="QTabWidget" name="pages">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
          <horstretch>1</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -31,9 +37,15 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="profilesPage">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <attribute name="title">
          <string>Audio formats</string>
         </attribute>
@@ -113,7 +125,7 @@
          <item>
           <widget class="QFrame" name="profileParent">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
              <horstretch>1</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -155,9 +167,12 @@
           <number>10</number>
          </property>
          <item>
-          <layout class="QGridLayout" name="formLayout_6">
+          <layout class="QFormLayout" name="formLayout">
            <property name="sizeConstraint">
             <enum>QLayout::SetMinimumSize</enum>
+           </property>
+           <property name="formAlignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
            </property>
            <item row="0" column="0">
             <widget class="QLabel" name="threadsCountLabel">
@@ -227,6 +242,9 @@
            <property name="title">
             <string>Cover image</string>
            </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
            <property name="checkable">
             <bool>false</bool>
            </property>
@@ -235,21 +253,7 @@
              <enum>QLayout::SetMinimumSize</enum>
             </property>
             <item>
-             <layout class="QGridLayout" name="gridLayout_2">
-              <item row="0" column="0" colspan="2">
-               <widget class="QRadioButton" name="coverDisableButton">
-                <property name="text">
-                 <string>Do not copy image</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0" colspan="2">
-               <widget class="QRadioButton" name="coverKeepSizeButton">
-                <property name="text">
-                 <string>Keep original image size</string>
-                </property>
-               </widget>
-              </item>
+             <layout class="QGridLayout" name="coverImageLayout">
               <item row="2" column="0">
                <widget class="QRadioButton" name="coverScaleButton">
                 <property name="text">
@@ -278,6 +282,33 @@
                  <number>1024</number>
                 </property>
                </widget>
+              </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QRadioButton" name="coverDisableButton">
+                <property name="text">
+                 <string>Do not copy image</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0" colspan="2">
+               <widget class="QRadioButton" name="coverKeepSizeButton">
+                <property name="text">
+                 <string>Keep original image size</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
              </layout>
             </item>
@@ -320,17 +351,25 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>618</width>
+              <width>684</width>
               <height>465</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_12">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
              <item>
-              <layout class="QGridLayout" name="progsLayout">
-               <property name="spacing">
-                <number>0</number>
-               </property>
-              </layout>
+              <layout class="QGridLayout" name="progsLayout"/>
              </item>
              <item>
               <spacer name="verticalSpacer_2">
