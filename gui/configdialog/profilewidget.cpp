@@ -50,8 +50,6 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
         mEncoderWidget->layout()->setMargin(0);
 
     ui->encoderPlace->insertWidget(0, mEncoderWidget);
-    mEncoderWidget->show();
-
 
     ui->perTrackCueFormatBtn->addPattern("%a", tr("Insert \"Artist\""));
     ui->perTrackCueFormatBtn->addPattern("%A", tr("Insert \"Album title\""));
@@ -107,7 +105,6 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
 
 
 
-
     // Load
     mEncoderWidget->load();
 
@@ -123,6 +120,7 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     mEncoderWidget->loadWidget(Profile::CREATE_CUE_KEY,    ui->perTrackCueGroup);
     mEncoderWidget->loadWidget(Profile::PREGAP_TYPE_KEY,   ui->preGapComboBox);
     mEncoderWidget->loadWidget(Profile::CUE_FILE_NAME_KEY, ui->perTrackCueFormatEdit);
+
 }
 
 

@@ -39,7 +39,7 @@ OutFormat_Opus::OutFormat_Opus()
     mId   = "OPUS";
     mExt  = "opus";
     mName = "Opus";
-    mOptions = FormatOption::SupportGain;
+    mOptions = FormatOption::NoOptions;
 }
 
 

@@ -6,138 +6,133 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>519</width>
-    <height>67</height>
+    <width>399</width>
+    <height>124</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Opus encoding configuration</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
    <item>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="opusBitrateTypeLabel">
-       <property name="text">
-        <string>Bitrate type:</string>
-       </property>
-       <property name="buddy">
-        <cstring>opusBitrateTypeCbx</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QComboBox" name="opusBitrateTypeCbx">
-       <property name="toolTip">
-        <string>&lt;dt&gt;VBR&lt;/dt&gt;
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string extracomment="Preferences dialog: group caption">Encoder settings:</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="opusBitrateTypeLabel">
+        <property name="text">
+         <string>Bitrate type:</string>
+        </property>
+        <property name="buddy">
+         <cstring>opusBitrateTypeCbx</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="opusBitrateTypeCbx">
+        <property name="toolTip">
+         <string>&lt;dt&gt;VBR&lt;/dt&gt;
 &lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
 
 &lt;dt&gt;CBR&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <spacer name="horizontalSpacer_8">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="opusBitrateLabel">
-       <property name="toolTip">
-        <string/>
-       </property>
-       <property name="text">
-        <string>Bitrate:</string>
-       </property>
-       <property name="buddy">
-        <cstring>opusBitrateSlider</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1" colspan="2">
-      <layout class="QHBoxLayout" name="horizontalLayout_28">
-       <item>
-        <widget class="QSlider" name="opusBitrateSlider">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Sets the target bitrate in kb/s (6-256 per channel).
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="opusBitrateLabel">
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Bitrate:</string>
+        </property>
+        <property name="buddy">
+         <cstring>opusBitrateSlider</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_28">
+        <item>
+         <widget class="QSlider" name="opusBitrateSlider">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;
 In VBR mode, this sets the average rate for a large and diverse collection of audio.
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </string>
-         </property>
-         <property name="minimum">
-          <number>6</number>
-         </property>
-         <property name="maximum">
-          <number>512</number>
-         </property>
-         <property name="singleStep">
-          <number>1</number>
-         </property>
-         <property name="pageStep">
-          <number>10</number>
-         </property>
-         <property name="value">
-          <number>96</number>
-         </property>
-         <property name="tracking">
-          <bool>true</bool>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="tickPosition">
-          <enum>QSlider::TicksAbove</enum>
-         </property>
-         <property name="tickInterval">
-          <number>40</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="opusBitrateSpin">
-         <property name="minimum">
-          <number>6</number>
-         </property>
-         <property name="maximum">
-          <number>512</number>
-         </property>
-         <property name="value">
-          <number>96</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
+          </property>
+          <property name="minimum">
+           <number>6</number>
+          </property>
+          <property name="maximum">
+           <number>512</number>
+          </property>
+          <property name="singleStep">
+           <number>1</number>
+          </property>
+          <property name="pageStep">
+           <number>10</number>
+          </property>
+          <property name="value">
+           <number>96</number>
+          </property>
+          <property name="tracking">
+           <bool>true</bool>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="tickPosition">
+           <enum>QSlider::TicksAbove</enum>
+          </property>
+          <property name="tickInterval">
+           <number>40</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="opusBitrateSpin">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="minimum">
+           <number>6</number>
+          </property>
+          <property name="maximum">
+           <number>512</number>
+          </property>
+          <property name="value">
+           <number>96</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>
