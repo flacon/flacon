@@ -31,7 +31,7 @@
 #include "types.h"
 #include "converter.h"
 
-class Disk;
+class Disc;
 class Track;
 class Project;
 class Track;
@@ -40,7 +40,7 @@ class Splitter: public Worker
 {
     Q_OBJECT
 public:
-    Splitter(const Disk *disk, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent = nullptr);
+    Splitter(const Disc *disk, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent = nullptr);
 
     void addTrack(const Track *track) { mTracks << track;}
 
@@ -51,7 +51,7 @@ private slots:
     void decoderProgress(int percent);
 
 private:
-    const Disk *mDisk;
+    const Disc *mDisk;
     const QString mWorkDir;
     const bool mExtractPregap;
     const PreGapType mPreGapType;

@@ -31,7 +31,7 @@
 #include <QList>
 #include "profiles.h"
 
-class Disk;
+class Disc;
 class Track;
 
 class Gain: public Worker

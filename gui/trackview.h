@@ -34,7 +34,7 @@ class TrackViewModel;
 class TrackViewDelegate;
 class Project;
 class Track;
-class Disk;
+class Disc;
 
 class TrackView : public QTreeView
 {
@@ -56,26 +56,26 @@ public:
     explicit TrackView(QWidget *parent = nullptr);
 
     QList<Track*> selectedTracks() const;
-    QList<Disk*> selectedDisks() const;
+    QList<Disc*> selectedDisks() const;
 
-    bool isSelected(const Disk &disk) const;
+    bool isSelected(const Disc &disk) const;
     bool isSelected(const Track &track) const;
 
     TrackViewModel *model() const { return mModel; }
 
 public slots:
     void layoutChanged();
-    void selectDisk(const Disk *disk);
-    void downloadStarted(const Disk &disk);
-    void downloadFinished(const Disk &disk);
+    void selectDisk(const Disc *disk);
+    void downloadStarted(const Disc &disk);
+    void downloadFinished(const Disc &disk);
     void update(const Track &track);
-    void update(const Disk &disk);
+    void update(const Disc &disk);
 
 signals:
-    void selectCueFile(Disk *disk);
-    void selectAudioFile(Disk *disk);
-    void selectCoverImage(Disk *disk);
-    void downloadInfo(Disk *disk);
+    void selectCueFile(Disc *disk);
+    void selectAudioFile(Disc *disk);
+    void selectCoverImage(Disc *disk);
+    void downloadInfo(Disc *disk);
 
 protected:
     void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;

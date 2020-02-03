@@ -487,12 +487,12 @@ void testFail(const QString &message, const char *file, int line)
 /************************************************
  *
  ************************************************/
-Disk *loadFromCue(const QString &cueFile)
+Disc *loadFromCue(const QString &cueFile)
 {
     try
     {
         QVector<CueDisk> cue = CueReader().load(cueFile);
-        Disk *res = new Disk();
+        Disc *res = new Disc();
         res->loadFromCue(cue.first());
         return res;
     }

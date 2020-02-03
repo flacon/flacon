@@ -34,18 +34,17 @@
 #include <QImage>
 
 class QFile;
-class Disk;
 class InputAudioFile;
 
 
-class Disk: public QObject
+class Disc: public QObject
 {
     Q_OBJECT
     friend class Track;
 public:
 
-    explicit Disk(QObject *parent = nullptr);
-    virtual ~Disk();
+    explicit Disc(QObject *parent = nullptr);
+    virtual ~Disc();
 
     Track *track(int index) const;
     int count() const { return mTracks.count(); }
@@ -129,7 +128,7 @@ private:
     bool isSameTagValue(TagId tagId);
 };
 
-typedef QList<Disk*> DiskList;
+typedef QList<Disc*> DiscList;
 
 
 #endif // DISC_H

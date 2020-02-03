@@ -36,7 +36,7 @@
 /************************************************
  *
  ************************************************/
-CopyCover::CopyCover(const Disk *disk, const QString &outDir, const QString &outBaseName, int newSize):
+CopyCover::CopyCover(const Disc *disk, const QString &outDir, const QString &outBaseName, int newSize):
     mDisk(disk),
     mSize(newSize),
     mDir(outDir),

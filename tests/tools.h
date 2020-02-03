@@ -34,7 +34,7 @@
 #include "settings.h"
 
 class QIODevice;
-class Disk;
+class Disc;
 
 
 class TestCueFile
@@ -108,6 +108,6 @@ do {\
     testFail(message, __FILE__, __LINE__); \
 } while (0)
 
-Disk *loadFromCue(const QString &cueFile);
+Disc *loadFromCue(const QString &cueFile);
 
 #endif // TOOLS_H

@@ -77,7 +77,7 @@ static void initControlValue(const QList<Track*> &tracks, const QList<TagSpinBox
 /************************************************
  *
  ************************************************/
-TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disk *> &disks, QWidget *parent):
+TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disc *> &disks, QWidget *parent):
     QDialog(parent),
     ui(new Ui::TagEditor),
     mTracks(tracks),
@@ -115,7 +115,7 @@ TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disk *> &disks, QW
     initControlValue(tracks, this->findChildren<TagSpinBox *>());
 
     QSet<int> values;
-    foreach(Disk *disk, disks)
+    foreach(Disc *disk, disks)
     {
         values << disk->startTrackNum();
     }
@@ -188,7 +188,7 @@ void TagEditor::done(int res)
 
     if (mStartTrackSpin->isModified())
     {
-        foreach (Disk *disk, mDisks)
+        foreach (Disc *disk, mDisks)
         {
             disk->setStartTrackNum(mStartTrackSpin->value());
         }

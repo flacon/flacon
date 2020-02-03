@@ -181,7 +181,7 @@ void TestFlacon::applySettings(const SettingsValues &config)
 /************************************************
 
  ************************************************/
-Disk *TestFlacon::standardDisk()
+Disc *TestFlacon::standardDisk()
 {
     if (mStandardDisk == nullptr)
     {
@@ -513,7 +513,7 @@ void TestFlacon::testTrackResultFileName()
     QString cueFile = dir() + "/input.cue";
     writeTextFile(cueFile, cue);
 
-    Disk *disk = loadFromCue(cueFile);
+    Disc *disk = loadFromCue(cueFile);
 
     QString result = disk->track(0)->resultFileName();
     //QCOMPARE(result, expected);
@@ -1041,7 +1041,7 @@ void TestFlacon::testTrackResultFilePath()
     else
         cueFile = mDataDir + "simple.cue";
 
-    Disk *disk = loadFromCue(cueFile);
+    Disc *disk = loadFromCue(cueFile);
 
     QString result = disk->track(0)->resultFilePath();
     if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath())
@@ -1147,7 +1147,7 @@ void TestFlacon::testTrackSetCodepages()
     else
         Settings::i()->setValue(Settings::Tags_DefaultCodepage, "UTF-8");
 
-    Disk *disk = loadFromCue(testCueFile);
+    Disc *disk = loadFromCue(testCueFile);
 
     if (!codepageAfter.isEmpty())
         disk->setCodecName(codepageAfter);

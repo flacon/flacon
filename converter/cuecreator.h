@@ -33,13 +33,13 @@
 #include "track.h"
 
 
-class Disk;
+class Disc;
 class Track;
 
 class CueCreator
 {
 public:
-    explicit CueCreator(const Disk *disk, PreGapType preGapType, const QString &fileTemplate);
+    explicit CueCreator(const Disc *disk, PreGapType preGapType, const QString &fileTemplate);
     bool write();
 
     QString errorString() const { return mErrorString; }
@@ -49,7 +49,7 @@ public:
     void setTextCodecMib(int mib);
 
 private:
-    const Disk *mDisk;
+    const Disc *mDisk;
     const PreGapType mPreGapType;
     QFile mFile;
     QString mErrorString;

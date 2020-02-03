@@ -60,7 +60,7 @@ void TestFlacon::testOutFormatEncoderArgs()
     }
 
 
-    Disk *disk = standardDisk();
+    Disc *disk = standardDisk();
     QStringList args = profile.encoderArgs(disk->track(0), "OutFile.wav");
 
     QString result = args.join(" ");

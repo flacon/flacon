@@ -98,19 +98,19 @@ QList<Track*> TrackView::selectedTracks() const
 /************************************************
 
  ************************************************/
-QList<Disk*> TrackView::selectedDisks() const
+QList<Disc*> TrackView::selectedDisks() const
 {
-    QSet<Disk*> set;
+    QSet<Disc*> set;
     QModelIndexList idxs = selectionModel()->selectedIndexes();
     foreach(QModelIndex index, idxs)
     {
-        Disk *disk =  mModel->diskByIndex(index);
+        Disc *disk =  mModel->diskByIndex(index);
         if (disk)
             set << disk;
     }
 
-    QList<Disk*> res;
-    foreach (Disk *disk, set)
+    QList<Disc*> res;
+    foreach (Disc *disk, set)
     {
         res << disk;
     }
@@ -122,7 +122,7 @@ QList<Disk*> TrackView::selectedDisks() const
 /************************************************
  *
  ************************************************/
-bool TrackView::isSelected(const Disk &disk) const
+bool TrackView::isSelected(const Disc &disk) const
 {
     return selectionModel()->isSelected(mModel->index(disk));
 }
@@ -152,13 +152,13 @@ void TrackView::layoutChanged()
 /************************************************
  *
  ************************************************/
-void TrackView::selectDisk(const Disk *disk)
+void TrackView::selectDisk(const Disc *disk)
 {
     for (int i=0; i<this->model()->rowCount(); ++i)
     {
         QModelIndex index = this->model()->index(i, 0);
 
-        Disk *d =  mModel->diskByIndex(index);
+        Disc *d =  mModel->diskByIndex(index);
         if (d && d == disk)
         {
             this->selectionModel()->select(index, QItemSelectionModel::Clear | QItemSelectionModel::Select);
@@ -171,7 +171,7 @@ void TrackView::selectDisk(const Disk *disk)
 /************************************************
  *
  ************************************************/
-void TrackView::downloadStarted(const Disk &disk)
+void TrackView::downloadStarted(const Disc &disk)
 {
     mModel->downloadStarted(disk);
 }
@@ -180,7 +180,7 @@ void TrackView::downloadStarted(const Disk &disk)
 /************************************************
  *
  ************************************************/
-void TrackView::downloadFinished(const Disk &disk)
+void TrackView::downloadFinished(const Disc &disk)
 {
     mModel->downloadFinished(disk);
 }
@@ -205,7 +205,7 @@ void TrackView::update(const Track &track)
 /************************************************
  *
  ************************************************/
-void TrackView::update(const Disk &disk)
+void TrackView::update(const Disc &disk)
 {
     QModelIndex idx = mModel->index(disk, 0);
     QTreeView::update(idx);
@@ -260,13 +260,13 @@ void TrackView::showHideColumn(bool show)
  ************************************************/
 void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 {
-    Disk *disk = mModel->diskByIndex(index);
+    Disc *disk = mModel->diskByIndex(index);
     if(!disk)
         return;
 
 
     QMenu menu;
-    foreach (const Disk::TagSet &tags, disk->tagSets())
+    foreach (const Disc::TagSet &tags, disk->tagSets())
     {
         QAction *act = new QAction(tags.name, &menu);
         act->setCheckable(true);
@@ -300,7 +300,7 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 void TrackView::emitSelectAudioFile(const QModelIndex &index, const QRect &buttonRect)
 {
     Q_UNUSED(buttonRect);
-    Disk *disk = mModel->diskByIndex(index);
+    Disc *disk = mModel->diskByIndex(index);
     if (disk)
         emit selectAudioFile(disk);
 }
@@ -311,7 +311,7 @@ void TrackView::emitSelectAudioFile(const QModelIndex &index, const QRect &butto
  ************************************************/
 void TrackView::emitSelectCoverImage(const QModelIndex &index)
 {
-    Disk *disk = mModel->diskByIndex(index);
+    Disc *disk = mModel->diskByIndex(index);
     if (disk)
         emit selectCoverImage(disk);
 }

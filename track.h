@@ -31,12 +31,12 @@
 #include "types.h"
 #include "tags.h"
 
-class Disk;
+class Disc;
 
 class Track: public QObject
 {
     Q_OBJECT
-    friend class Disk;
+    friend class Disc;
     friend class CueReader;
 public:
     Track();

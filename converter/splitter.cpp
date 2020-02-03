@@ -34,7 +34,7 @@
 /************************************************
  *
  ************************************************/
-Splitter::Splitter(const Disk *disk, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent):
+Splitter::Splitter(const Disc *disk, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent):
     Worker(parent),
     mDisk(disk),
     mWorkDir(workDir),

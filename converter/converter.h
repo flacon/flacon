@@ -33,7 +33,7 @@
 #include <QVector>
 
 class DiskPipeline;
-class Disk;
+class Disc;
 class Track;
 class Profile;
 
@@ -42,7 +42,7 @@ class Converter : public QObject
     Q_OBJECT
 public:
     struct Job {
-        Disk *disk = nullptr;
+        Disc *disk = nullptr;
         QVector<const Track*> tracks;
     };
 

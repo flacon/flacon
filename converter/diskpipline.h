@@ -32,7 +32,7 @@
 #include "track.h"
 #include "converter.h"
 
-class Disk;
+class Disc;
 class Project;
 class WorkerThread;
 

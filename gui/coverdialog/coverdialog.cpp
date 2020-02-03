@@ -41,7 +41,7 @@
 /************************************************
  *
  ************************************************/
-CoverDialog *CoverDialog::createAndShow(Disk *disk, QWidget *parent)
+CoverDialog *CoverDialog::createAndShow(Disc *disk, QWidget *parent)
 {
     CoverDialog *instance = parent->findChild<CoverDialog*>();
 
@@ -94,7 +94,7 @@ CoverDialog::~CoverDialog()
 /************************************************
  *
  ************************************************/
-void CoverDialog::setDisk(Disk *disk)
+void CoverDialog::setDisk(Disc *disk)
 {
     mDisk = disk;
     connect(mDisk.data(), SIGNAL(destroyed(QObject*)), SLOT(close()));

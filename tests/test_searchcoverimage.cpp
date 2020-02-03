@@ -63,7 +63,7 @@ void TestFlacon::testSearchCoverImage()
         img.save(dir() + "/" + f);
     }
 
-    QString result   = Disk::searchCoverImage(dir());
+    QString result   = Disc::searchCoverImage(dir());
     QString expected;
     if (!test.expected.isEmpty())
         expected = QFileInfo( dir() + "/" + test.expected).absoluteFilePath();

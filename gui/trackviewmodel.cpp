@@ -93,7 +93,7 @@ public:
     int diskNum()  const { return mDiskId  - 1; }
     int trackNum() const { return mTrackId - 1; }
 
-    Disk *disk() const
+    Disc *disk() const
     {
         if (mDiskId && mDiskId-1 < project->count())
             return project->disk(mDiskId - 1);
@@ -105,7 +105,7 @@ public:
     {
         if (mTrackId)
         {
-            Disk *disk = this->disk();
+            Disc *disk = this->disk();
             if (disk && mTrackId -1 < disk->count())
                 return disk->track(mTrackId - 1);
         }
@@ -198,7 +198,7 @@ QModelIndex TrackViewModel::index(int row, int column, const QModelIndex &parent
 /************************************************
 
  ************************************************/
-QModelIndex TrackViewModel::index(const Disk &disk, int col) const
+QModelIndex TrackViewModel::index(const Disc &disk, int col) const
 {
     const int diskNum = project->indexOf(&disk);
     if (diskNum > -1 && diskNum < rowCount(QModelIndex()))
@@ -271,7 +271,7 @@ QVariant TrackViewModel::data(const QModelIndex &index, int role) const
     if (track)
         return trackData(track, index, role);
 
-    Disk *disk = indexData.disk();
+    Disc *disk = indexData.disk();
     if(disk)
         return diskData(disk, index, role);
 
@@ -403,7 +403,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
 /************************************************
 
  ************************************************/
-QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, int role) const
+QVariant TrackViewModel::diskData(const Disc *disk, const QModelIndex &index, int role) const
 {
     // Display & Edit :::::::::::::::::::::::::::::::::::
     if (role == Qt::DisplayRole || role == Qt::EditRole )
@@ -520,7 +520,7 @@ int TrackViewModel::rowCount(const QModelIndex &parent) const
         return 0;
 
 
-    Disk *disk = data.disk();
+    Disc *disk = data.disk();
     if(disk)
         return disk->count();
 
@@ -559,7 +559,7 @@ Qt::ItemFlags TrackViewModel::flags(const QModelIndex &index) const
 /************************************************
 
  ************************************************/
-Disk *TrackViewModel::diskByIndex(const QModelIndex &index)
+Disc *TrackViewModel::diskByIndex(const QModelIndex &index)
 {
     return IndexData(index).disk();
 }
@@ -577,7 +577,7 @@ Track *TrackViewModel::trackByIndex(const QModelIndex &index)
 /************************************************
  *
  ************************************************/
-void TrackViewModel::downloadStarted(const Disk &disk)
+void TrackViewModel::downloadStarted(const Disc &disk)
 {
     mCache->downloadedDisks << index(disk).row();
     diskDataChanged(&disk);
@@ -587,7 +587,7 @@ void TrackViewModel::downloadStarted(const Disk &disk)
 /************************************************
  *
  ************************************************/
-void TrackViewModel::downloadFinished(const Disk &disk)
+void TrackViewModel::downloadFinished(const Disc &disk)
 {
     mCache->downloadedDisks.remove(index(disk).row());
     diskDataChanged(&disk);
@@ -611,7 +611,7 @@ void TrackViewModel::trackProgressChanged(const Track &track, TrackState state, 
 /************************************************
 
  ************************************************/
-void TrackViewModel::diskDataChanged(const Disk *disk)
+void TrackViewModel::diskDataChanged(const Disc *disk)
 {
     QModelIndex index1 = index(*disk, 0);
     QModelIndex index2 = index(*disk, TrackView::ColumnCount);
@@ -622,7 +622,7 @@ void TrackViewModel::diskDataChanged(const Disk *disk)
 /************************************************
 
  ************************************************/
-void TrackViewModel::invalidateCache(const Disk *disk)
+void TrackViewModel::invalidateCache(const Disc *disk)
 {
     mCache->downloadedDisks.remove(index(*disk).row());
 

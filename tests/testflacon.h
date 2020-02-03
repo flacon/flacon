@@ -31,7 +31,7 @@
 #include <QStringList>
 #include <QMap>
 #include <QVariant>
-class Disk;
+class Disc;
 
 #define SettingsValues QMap<QString, QVariant>
 
@@ -134,7 +134,7 @@ private:
     void applySettings(const SettingsValues &config);
     QString dir(const QString &subTest = "");
 
-    Disk *standardDisk();
+    Disc *standardDisk();
 
     QString mFfmpeg;
     QString mAudio_cd_wav;
@@ -155,7 +155,7 @@ private:
 
     const QString mTmpDir;
     const QString mDataDir;
-    Disk *mStandardDisk;
+    Disc *mStandardDisk;
 
     static int mTestNum;
 };

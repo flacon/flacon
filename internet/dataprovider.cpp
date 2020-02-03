@@ -39,7 +39,7 @@
 /************************************************
 
  ************************************************/
-DataProvider::DataProvider(const Disk &disk) :
+DataProvider::DataProvider(const Disc &disk) :
     QObject(),
     mDisk(disk)
 {
@@ -150,7 +150,7 @@ QNetworkAccessManager *DataProvider::networkAccessManager() const
 /************************************************
 
  ************************************************/
-FreeDbProvider::FreeDbProvider(const Disk &disk):
+FreeDbProvider::FreeDbProvider(const Disc &disk):
     DataProvider(disk)
 {
 }

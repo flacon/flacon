@@ -32,7 +32,7 @@
 
 #include "types.h"
 class Project;
-class Disk;
+class Disc;
 class Track;
 class TrackView;
 
@@ -59,10 +59,10 @@ public:
 
     TrackView *view() const { return mView; }
 
-    QModelIndex index(const Disk &disk, int col = 0) const;
+    QModelIndex index(const Disc &disk, int col = 0) const;
     QModelIndex index(const Track &track, int col) const;
 
-    Disk *diskByIndex(const QModelIndex &index);
+    Disc *diskByIndex(const QModelIndex &index);
     Track *trackByIndex(const QModelIndex &index);
 
 public slots:
@@ -103,18 +103,18 @@ protected:
 
 
 public slots:
-    void downloadStarted(const Disk &disk);
-    void downloadFinished(const Disk &disk);
+    void downloadStarted(const Disc &disk);
+    void downloadFinished(const Disc &disk);
 
     void trackProgressChanged(const Track &track, TrackState state, Percent percent);
 
 private slots:
-    void diskDataChanged(const Disk *disk);
-    void invalidateCache(const Disk *disk);
+    void diskDataChanged(const Disc *disk);
+    void invalidateCache(const Disc *disk);
 
 private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;
-    QVariant diskData(const Disk *disk, const QModelIndex &index, int role) const;
+    QVariant diskData(const Disc *disk, const QModelIndex &index, int role) const;
     QString trackDurationToString(uint milliseconds) const;
     class Cache;
     mutable Cache *mCache;

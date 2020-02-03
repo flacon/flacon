@@ -36,7 +36,7 @@
 /************************************************
 
  ************************************************/
-CueCreator::CueCreator(const Disk *disk, PreGapType preGapType, const QString &fileTemplate):
+CueCreator::CueCreator(const Disc *disk, PreGapType preGapType, const QString &fileTemplate):
     mDisk(disk),
     mPreGapType(preGapType)
 {

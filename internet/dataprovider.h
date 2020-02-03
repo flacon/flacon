@@ -33,7 +33,7 @@
 #include <QtNetwork/QNetworkReply>
 #include "track.h"
 
-class Disk;
+class Disc;
 class QNetworkAccessManager;
 
 
@@ -41,10 +41,10 @@ class DataProvider : public QObject
 {
     Q_OBJECT
 public:
-    explicit DataProvider(const Disk &disk);
+    explicit DataProvider(const Disc &disk);
     virtual ~DataProvider();
 
-    const Disk &disk() const { return mDisk; }
+    const Disc &disk() const { return mDisk; }
 
     bool isFinished() const;
 
@@ -67,7 +67,7 @@ private slots:
 
 private:
     QNetworkAccessManager *networkAccessManager() const;
-    const Disk &mDisk;
+    const Disc &mDisk;
     QList<QNetworkReply*> mReplies;
     QVector<Tracks> mResult;
 
@@ -78,7 +78,7 @@ private:
 class FreeDbProvider: public DataProvider
 {
 public:
-    explicit FreeDbProvider(const Disk &disk);
+    explicit FreeDbProvider(const Disc &disk);
 
     void start() override;
 protected:

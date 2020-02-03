@@ -30,7 +30,7 @@
 #include <QObject>
 #include "track.h"
 
-class Disk;
+class Disc;
 
 
 class Worker : public QObject
