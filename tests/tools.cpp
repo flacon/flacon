@@ -37,7 +37,7 @@
 #include <QDebug>
 #include "../settings.h"
 #include "../cue.h"
-#include "../disk.h"
+#include "../disc.h"
 #include "../converter/decoder.h"
 
 class HashDevice: public QIODevice {

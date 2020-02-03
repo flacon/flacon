@@ -30,7 +30,7 @@
 #include <QAbstractItemModel>
 #include <QSet>
 
-#include "disk.h"
+#include "types.h"
 class Project;
 class Disk;
 class Track;

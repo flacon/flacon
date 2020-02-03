@@ -26,7 +26,7 @@
 
 #include "dataprovider.h"
 
-#include "../disk.h"
+#include "../disc.h"
 #include <QtNetwork/QNetworkAccessManager>
 
 #include "settings.h"

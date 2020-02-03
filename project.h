@@ -30,7 +30,7 @@
 #include <QObject>
 #include <QList>
 #include <QIcon>
-#include "disk.h"
+#include "disc.h"
 
 class Disk;
 class Track;

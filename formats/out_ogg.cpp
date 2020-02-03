@@ -25,7 +25,6 @@
 
 
 #include "out_ogg.h"
-#include "disk.h"
 #include "settings.h"
 #include <QDebug>
 #include <math.h>

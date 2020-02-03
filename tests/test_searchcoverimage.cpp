@@ -31,7 +31,7 @@
 #include <QFile>
 #include <QDir>
 #include <QImage>
-#include "../disk.h"
+#include "../disc.h"
 
 
 struct TestSearchCoverImage_Case

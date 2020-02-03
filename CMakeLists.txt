@@ -58,7 +58,7 @@ set(HEADERS
     tags.h
     cue.h
     track.h
-    disk.h
+    disc.h
     project.h
     settings.h
     inputaudiofile.h
@@ -121,7 +121,7 @@ set(SOURCES
     cue.cpp
     main.cpp
     track.cpp
-    disk.cpp
+    disc.cpp
     project.cpp
     settings.cpp
     inputaudiofile.cpp

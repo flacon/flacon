@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "disk.h"
+#include "disc.h"
 #include "track.h"
 #include "project.h"
 #include "settings.h"
@@ -460,7 +460,7 @@ void Disk::findAudioFile(const CueDisk &cueDisk)
         return;
 
     QStringList exts;
-    foreach (const InputFormat *format, InputFormat::inputFormats())
+    foreach (const InputFormat *format, InputFormat::allFormats())
         exts << QString("*.%1").arg(format->ext());
 
     QFileInfo cueFile(mCueFile);

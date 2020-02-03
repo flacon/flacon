@@ -28,7 +28,6 @@
 
 #include <assert.h>
 
-#include "disk.h"
 #include "inputaudiofile.h"
 #include "project.h"
 #include "settings.h"

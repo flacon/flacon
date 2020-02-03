@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "disk.h"
+#include "disc.h"
 #include "trackview.h"
 #include "trackviewmodel.h"
 #include "trackviewdelegate.h"

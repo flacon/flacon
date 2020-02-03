@@ -35,7 +35,7 @@
 #include <QDir>
 #include <QThreadPool>
 
-#include "../disk.h"
+#include "../disc.h"
 #include "../settings.h"
 #include "../project.h"
 #include "../inputaudiofile.h"

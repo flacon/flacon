@@ -25,7 +25,7 @@
 
 
 #include "splitter.h"
-#include "disk.h"
+#include "disc.h"
 #include "decoder.h"
 
 #include <QDebug>

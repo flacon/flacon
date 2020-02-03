@@ -27,7 +27,7 @@
 #include "trackviewmodel.h"
 #include "trackview.h"
 #include "project.h"
-#include "disk.h"
+#include "disc.h"
 #include "settings.h"
 
 #include <QDebug>

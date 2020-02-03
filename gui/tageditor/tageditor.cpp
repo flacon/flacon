@@ -34,7 +34,7 @@
 #include "gui/controls.h"
 
 #include "track.h"
-#include "disk.h"
+#include "disc.h"
 
 
 /************************************************

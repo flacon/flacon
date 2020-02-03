@@ -24,8 +24,8 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef DISK_H
-#define DISK_H
+#ifndef DISC_H
+#define DISC_H
 
 #include "track.h"
 #include "cue.h"
@@ -132,4 +132,4 @@ private:
 typedef QList<Disk*> DiskList;
 
 
-#endif // DISK_H
+#endif // DISC_H

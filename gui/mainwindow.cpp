@@ -26,7 +26,7 @@
 
 #include "mainwindow.h"
 #include "project.h"
-#include "disk.h"
+#include "disc.h"
 #include "settings.h"
 #include "converter/converter.h"
 #include "outformat.h"

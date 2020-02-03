@@ -25,7 +25,7 @@
 
 
 #include "copycover.h"
-#include "disk.h"
+#include "disc.h"
 #include <QFile>
 #include <QDir>
 #include <QImage>

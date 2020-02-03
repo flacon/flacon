@@ -27,7 +27,7 @@
 #include "testflacon.h"
 #include "tools.h"
 #include "outformat.h"
-#include "disk.h"
+#include "disc.h"
 
 #include <QTest>
 #include <QString>

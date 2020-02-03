@@ -32,7 +32,7 @@
 #include <QDialogButtonBox>
 #include <QPushButton>
 
-#include "disk.h"
+#include "disc.h"
 #include "asynclistwidgetitem.h"
 
 
