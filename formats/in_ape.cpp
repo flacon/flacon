@@ -26,7 +26,7 @@
 
 #include "in_ape.h"
 
-REGISTER_FORMAT(Format_Ape)
+REGISTER_INPUT_FORMAT(Format_Ape)
 
 
 /************************************************

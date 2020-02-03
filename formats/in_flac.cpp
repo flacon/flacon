@@ -27,7 +27,7 @@
 #include "in_flac.h"
 #include <QDebug>
 
-REGISTER_FORMAT(Format_Flac)
+REGISTER_INPUT_FORMAT(Format_Flac)
 
 
 /************************************************

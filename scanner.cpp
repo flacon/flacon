@@ -58,7 +58,7 @@ void Scanner::start(const QString &startDir)
     mAbort = false;
 
     QStringList exts;
-    foreach(const AudioFormat *format, AudioFormat::inputFormats())
+    foreach(const InputFormat *format, InputFormat::allFormats())
     {
         exts << QString("*.%1").arg(format->ext());
     }

@@ -230,7 +230,7 @@ QFileInfoList matchedAudioFiles(const CueDisk &cueDisk, const QFileInfoList &aud
     }
 
     QString audioExt;
-    foreach (const AudioFormat *format, AudioFormat::inputFormats())
+    foreach (const InputFormat *format, InputFormat::allFormats())
         audioExt += (audioExt.isEmpty() ? "\\." : "|\\.") + format->ext();
 
 
@@ -460,7 +460,7 @@ void Disk::findAudioFile(const CueDisk &cueDisk)
         return;
 
     QStringList exts;
-    foreach (const AudioFormat *format, AudioFormat::inputFormats())
+    foreach (const InputFormat *format, InputFormat::inputFormats())
         exts << QString("*.%1").arg(format->ext());
 
     QFileInfo cueFile(mCueFile);

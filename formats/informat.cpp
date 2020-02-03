@@ -43,7 +43,7 @@ AudioFormatList &formatList()
 /************************************************
  *
  ************************************************/
-bool AudioFormat::registerFormat(const AudioFormat &f)
+bool InputFormat::registerFormat(const InputFormat &f)
 {
     // Some formats can be embedded as a chunk of RIFF stream.
     // So the WAV format should be last and be checked in the last turn.
@@ -58,7 +58,7 @@ bool AudioFormat::registerFormat(const AudioFormat &f)
 /************************************************
  *
  ************************************************/
-AudioFormat::AudioFormat()
+InputFormat::InputFormat()
 {
 }
 
@@ -66,7 +66,7 @@ AudioFormat::AudioFormat()
 /************************************************
  *
  ************************************************/
-AudioFormat::~AudioFormat()
+InputFormat::~InputFormat()
 {
 }
 
@@ -74,7 +74,7 @@ AudioFormat::~AudioFormat()
 /************************************************
  *
  ************************************************/
-const AudioFormatList &AudioFormat::allFormats()
+const AudioFormatList &InputFormat::allFormats()
 {
     return formatList();
 }
@@ -83,45 +83,7 @@ const AudioFormatList &AudioFormat::allFormats()
 /************************************************
  *
  ************************************************/
-const AudioFormatList &AudioFormat::inputFormats()
-{
-    static AudioFormatList res;
-    if (res.isEmpty())
-    {
-        foreach (const AudioFormat* f, allFormats())
-        {
-            if (f->isInputFormat())
-                res << f;
-        }
-    }
-
-    return res;
-}
-
-
-/************************************************
- *
- ************************************************/
-const AudioFormatList &AudioFormat::outFormats()
-{
-    static AudioFormatList res;
-    if (res.isEmpty())
-    {
-        foreach (const AudioFormat* f, allFormats())
-        {
-            if (f->isOutputFormat())
-                res << f;
-        }
-    }
-
-    return res;
-}
-
-
-/************************************************
- *
- ************************************************/
-bool AudioFormat::checkMagic(const QByteArray &data) const
+bool InputFormat::checkMagic(const QByteArray &data) const
 {
     return data.mid(magicOffset(), magic().length()) == magic();
 }
@@ -130,7 +92,7 @@ bool AudioFormat::checkMagic(const QByteArray &data) const
 /************************************************
  *
  ************************************************/
-QString AudioFormat::filterDecoderStderr(const QString &stdErr) const
+QString InputFormat::filterDecoderStderr(const QString &stdErr) const
 {
     return stdErr;
 }
@@ -139,17 +101,17 @@ QString AudioFormat::filterDecoderStderr(const QString &stdErr) const
 /************************************************
  *
  ************************************************/
-const AudioFormat *AudioFormat::formatForFile(QIODevice *device)
+const InputFormat *InputFormat::formatForFile(QIODevice *device)
 {
     int bufSize = 0;
-    foreach (const AudioFormat *format, allFormats())
+    foreach (const InputFormat *format, allFormats())
         bufSize = qMax(bufSize, int(format->magicOffset() + format->magic().length()));
 
     QByteArray buf = device->read(bufSize);
     if (buf.size() < bufSize)
         return nullptr;
 
-    foreach (const AudioFormat *format, allFormats())
+    foreach (const InputFormat *format, allFormats())
     {
         if (format->checkMagic(buf))
             return format;
@@ -162,7 +124,7 @@ const AudioFormat *AudioFormat::formatForFile(QIODevice *device)
 /************************************************
  *
  ************************************************/
-const AudioFormat *AudioFormat::formatForFile(const QString &fileName)
+const InputFormat *InputFormat::formatForFile(const QString &fileName)
 {
     QFile file(fileName);
     if (! file.open(QFile::ReadOnly))
@@ -170,7 +132,7 @@ const AudioFormat *AudioFormat::formatForFile(const QString &fileName)
         return nullptr;
     }
 
-    const AudioFormat *res = formatForFile(&file);
+    const InputFormat *res = formatForFile(&file);
     file.close();
     return res;
 }

@@ -29,7 +29,7 @@
 
 #include "informat.h"
 
-class Format_Wav: public AudioFormat
+class Format_Wav: public InputFormat
 {
 public:
     virtual QString name() const override { return "WAV"; }

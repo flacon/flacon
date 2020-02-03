@@ -29,7 +29,7 @@
 
 #include "informat.h"
 
-class Format_Ape: public AudioFormat
+class Format_Ape: public InputFormat
 {
 public:
     virtual QString name() const override { return "APE"; }
@@ -43,10 +43,6 @@ public:
     virtual QString decoderProgramName() const override { return "mac"; }
     virtual QStringList decoderArgs(const QString &fileName) const override;
     virtual QString filterDecoderStderr(const QString &stdErr) const override;
-
-    virtual bool isOutputFormat() const override { return false; }
-
-
 };
 
 #endif // IN_APE_H

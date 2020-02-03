@@ -257,7 +257,7 @@ void Settings::init()
     }
 
 
-    foreach (const AudioFormat *format, AudioFormat::inputFormats())
+    foreach (const InputFormat *format, InputFormat::allFormats())
     {
         mPrograms << format->decoderProgramName();
     }

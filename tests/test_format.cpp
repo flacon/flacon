@@ -39,13 +39,8 @@
  ************************************************/
 void TestFlacon::testFormatWavLast()
 {
-    if (AudioFormat::allFormats().last()->ext() != "wav")
+    if (InputFormat::allFormats().last()->ext() != "wav")
         QFAIL("Last format is not wav in allFormats.");
-
-
-    if (AudioFormat::inputFormats().last()->ext() != "wav")
-        QFAIL("Last format is not wav in inputFormats.");
-
 }
 
 
@@ -62,7 +57,7 @@ void TestFlacon::testFormat()
     writeHexString(testdata, &data);
     data.seek(0);
 
-    const AudioFormat *format = AudioFormat::formatForFile(&data);
+    const InputFormat *format = InputFormat::formatForFile(&data);
     if (!format)
         QFAIL("Can't find format");
 
@@ -99,7 +94,7 @@ void TestFlacon::testFormatFromFile()
     QFETCH(QString, filename);
     QFETCH(QString, ext);
 
-    const AudioFormat *format = AudioFormat::formatForFile(filename);
+    const InputFormat *format = InputFormat::formatForFile(filename);
     if (!format)
         QFAIL("Can't find format");
 

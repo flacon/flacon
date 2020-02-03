@@ -757,7 +757,7 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
 
     if (includeAudio)
     {
-        foreach(const AudioFormat *format, AudioFormat::inputFormats())
+        foreach(const InputFormat *format, InputFormat::allFormats())
         {
             allFlt << QString(" *.%1").arg(format->ext());
             flt << fltPattern.arg(format->name(), format->ext());
