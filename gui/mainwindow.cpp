@@ -366,7 +366,7 @@ void MainWindow::setCueForDisc(Disc *disk)
     try
     {
         CueReader reader;
-        QVector<CueDisk> cue = reader.load(fileName);
+        QVector<CueDisc> cue = reader.load(fileName);
 
         int diskNum = 0;
         if (cue.count() > 1)

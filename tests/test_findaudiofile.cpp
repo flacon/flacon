@@ -71,7 +71,7 @@ void TestFlacon::testFindAudioFile()
 
 
     QStringList expectedLists = expected.split(",", QString::SkipEmptyParts);
-    QVector<CueDisk> cue;
+    QVector<CueDisc> cue;
     try
     {
         cue = CueReader().load(cueFile);

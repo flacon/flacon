@@ -180,7 +180,7 @@ DiscList Project::addCueFile(const QString &fileName)
     DiscList res;
     try
     {
-        QVector<CueDisk> disks = CueReader().load(fileName);
+        QVector<CueDisc> disks = CueReader().load(fileName);
 
         for (int i=0; i<disks.count(); ++i)
         {

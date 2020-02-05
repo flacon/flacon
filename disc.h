@@ -50,7 +50,7 @@ public:
     int count() const { return mTracks.count(); }
     const Track *preGapTrack() const;
 
-    void loadFromCue(const CueDisk &cueDisc);
+    void loadFromCue(const CueDisc &cueDisc);
     QString cueFile() const { return mCueFile; }
 
     InputAudioFile *audioFile() const { return mAudioFile; }
@@ -118,7 +118,7 @@ private:
     mutable QImage  mCoverImagePreview;
 
 
-    void findAudioFile(const CueDisk &cueDisc);
+    void findAudioFile(const CueDisc &cueDisc);
     void findCueFile();
     Duration trackDuration(TrackNum trackNum) const;
     void syncTagsFromTracks();

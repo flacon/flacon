@@ -55,7 +55,7 @@ QFile &operator<<(QFile &file, const int &value)
 /************************************************
  *
  ************************************************/
-static void write(const QVector<CueDisk> &cue, const QString &fileName)
+static void write(const QVector<CueDisc> &cue, const QString &fileName)
 {
     QFile f(fileName);
     f.open(QFile::WriteOnly | QFile::Truncate);

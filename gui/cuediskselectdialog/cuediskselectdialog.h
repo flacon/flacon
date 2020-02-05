@@ -41,10 +41,10 @@ class CueDiskSelectDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit CueDiskSelectDialog(const QVector<CueDisk> &cue, int selectedDisk = 0, QWidget *parent = nullptr);
+    explicit CueDiskSelectDialog(const QVector<CueDisc> &cue, int selectedDisk = 0, QWidget *parent = nullptr);
     ~CueDiskSelectDialog();
 
-    static int getDiskNumber(const QVector<CueDisk> &cue, int selectedDisk = 0);
+    static int getDiskNumber(const QVector<CueDisc> &cue, int selectedDisk = 0);
 
     int diskNumber();
 
@@ -53,7 +53,7 @@ private slots:
 
 private:
     Ui::CueDiskSelectDialog *ui;
-    const QVector<CueDisk> &mCue;
+    const QVector<CueDisc> &mCue;
 };
 
 #endif // CUEDISKSELECTDIALOG_H

@@ -145,7 +145,7 @@ bool Disc::canDownloadInfo() const
 /************************************************
 
  ************************************************/
-void Disc::loadFromCue(const CueDisk &cueDisc)
+void Disc::loadFromCue(const CueDisc &cueDisc)
 {
     QString oldDir = QFileInfo(mCueFile).dir().absolutePath();
 
@@ -211,17 +211,17 @@ void Disc::loadFromCue(const CueDisk &cueDisc)
 /************************************************
 
  ************************************************/
-QFileInfoList matchedAudioFiles(const CueDisk &cueDisc, const QFileInfoList &audioFiles)
+QFileInfoList matchedAudioFiles(const CueDisc &cueDisc, const QFileInfoList &audioFiles)
 {
     QFileInfoList res;
     QFileInfo cueFile(cueDisc.fileName());
 
     QStringList patterns;
-    if (cueDisc.diskCount() > 1)
+    if (cueDisc.discCount() > 1)
     {
         patterns << QRegExp::escape(QFileInfo(cueDisc.first().tag(TagId::File)).completeBaseName());
-        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisc.diskNum());
-        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisc.diskNum());
+        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisc.discNum());
+        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisc.discNum());
     }
     else
     {
@@ -279,11 +279,11 @@ void Disc::findCueFile()
     }
 
     unsigned int bestWeight = 99999;
-    CueDisk bestDisc;
+    CueDisc bestDisc;
 
     foreach (const Cue &cue, cues)
     {
-        foreach (const CueDisk &cueDisc, cue)
+        foreach (const CueDisc &cueDisc, cue)
         {
             if (!matchedAudioFiles(cueDisc, QFileInfoList() << audio).isEmpty())
             {
@@ -454,7 +454,7 @@ void Disc::setAudioFile(const InputAudioFile &audio)
 /************************************************
 
  ************************************************/
-void Disc::findAudioFile(const CueDisk &cueDisc)
+void Disc::findAudioFile(const CueDisc &cueDisc)
 {
     if (cueDisc.isEmpty())
         return;
@@ -466,7 +466,7 @@ void Disc::findAudioFile(const CueDisk &cueDisc)
     QFileInfo cueFile(mCueFile);
     QFileInfoList files = cueFile.dir().entryInfoList(exts, QDir::Files | QDir::Readable);
 
-    if (cueDisc.diskCount() == 1 && files.count() == 1)
+    if (cueDisc.discCount() == 1 && files.count() == 1)
     {
         InputAudioFile audio(files.first().filePath());
         if (audio.isValid())

@@ -491,7 +491,7 @@ Disc *loadFromCue(const QString &cueFile)
 {
     try
     {
-        QVector<CueDisk> cue = CueReader().load(cueFile);
+        QVector<CueDisc> cue = CueReader().load(cueFile);
         Disc *res = new Disc();
         res->loadFromCue(cue.first());
         return res;

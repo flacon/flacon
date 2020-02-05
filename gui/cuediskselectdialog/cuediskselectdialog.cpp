@@ -34,7 +34,7 @@
 /************************************************
  *
  ************************************************/
-CueDiskSelectDialog::CueDiskSelectDialog(const QVector<CueDisk> &cue, int selectedDisk, QWidget *parent) :
+CueDiskSelectDialog::CueDiskSelectDialog(const QVector<CueDisc> &cue, int selectedDisk, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CueDiskSelectDialog),
     mCue(cue)
@@ -46,7 +46,7 @@ CueDiskSelectDialog::CueDiskSelectDialog(const QVector<CueDisk> &cue, int select
 
     for (int d=0; d<cue.count(); d++)
     {
-        CueDisk tags = cue.at(d);
+        CueDisc tags = cue.at(d);
         QTreeWidgetItem *diskItem = new QTreeWidgetItem(ui->diskTree);
         assert(!tags.isEmpty());
         diskItem->setText(0, tr("%1 [ disk %2 ]", "Cue disk select dialog, string like 'The Wall [disk 1]'").arg(tags.first().album()).arg(d+1));
@@ -107,7 +107,7 @@ void CueDiskSelectDialog::treeDoubleClicked(const QModelIndex &index)
 /************************************************
  *
  ************************************************/
-int CueDiskSelectDialog::getDiskNumber(const QVector<CueDisk> &cue, int selectedDisk)
+int CueDiskSelectDialog::getDiskNumber(const QVector<CueDisc> &cue, int selectedDisk)
 {
     CueDiskSelectDialog dialog(cue, selectedDisk);
 
