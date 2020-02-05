@@ -45,7 +45,7 @@ struct CacheTrackData
 
     TrackState state;
     Percent percent;
-    DiskNum diskNum;
+    DiscNum diskNum;
     TrackNum trackNum;
 };
 
@@ -54,7 +54,7 @@ class TrackViewModel::Cache
 {
 public:
    Cache()  {}
-   QSet<DiskNum> downloadedDisks;
+   QSet<DiscNum> downloadedDisks;
    QHash<Track, CacheTrackData> tracks;
 };
 

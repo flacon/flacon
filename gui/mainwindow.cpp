@@ -586,7 +586,7 @@ void MainWindow::setDiskTag()
     QList<Disc*> disks = trackView->selectedDisks();
     foreach(Disc *disk, disks)
     {
-        disk->setDiskTag(edit->tagId(), edit->text());
+        disk->setDiscTag(edit->tagId(), edit->text());
         trackView->update(*disk);
     }
 }
@@ -604,7 +604,7 @@ void MainWindow::setDiskTagInt()
     QList<Disc*> disks = trackView->selectedDisks();
     foreach(Disc *disk, disks)
     {
-        disk->setDiskTag(spinBox->tagId(), QString::number(spinBox->value()));
+        disk->setDiscTag(spinBox->tagId(), QString::number(spinBox->value()));
         trackView->update(*disk);
     }
 }

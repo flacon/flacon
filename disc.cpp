@@ -145,7 +145,7 @@ bool Disc::canDownloadInfo() const
 /************************************************
 
  ************************************************/
-void Disc::loadFromCue(const CueDisk &cueDisk)
+void Disc::loadFromCue(const CueDisk &cueDisc)
 {
     QString oldDir = QFileInfo(mCueFile).dir().absolutePath();
 
@@ -154,8 +154,8 @@ void Disc::loadFromCue(const CueDisk &cueDisk)
     syncTagsFromTracks();
     mTagSets.remove(mCueFile);
 
-    int count = cueDisk.count();
-    mCueFile = cueDisk.fileName();
+    int count = cueDisc.count();
+    mCueFile = cueDisc.fileName();
 
     // Remove all tags if number of tracks differ from loaded CUE.
     for(auto it = mTagSets.begin(); it != mTagSets.end();)
@@ -181,7 +181,7 @@ void Disc::loadFromCue(const CueDisk &cueDisk)
 
 
     for (int t=0; t<count; ++t)
-        *mTracks[t] = cueDisk.at(t);
+        *mTracks[t] = cueDisc.at(t);
 
     for (int i=0; i<count; ++i)
     {
@@ -191,10 +191,10 @@ void Disc::loadFromCue(const CueDisk &cueDisk)
 
     mCurrentTagsUri = mCueFile;
     syncTagsFromTracks();
-    mTagSets[mCurrentTagsUri].setTitle(cueDisk.title());
+    mTagSets[mCurrentTagsUri].setTitle(cueDisc.title());
 
     if (!mAudioFile)
-        findAudioFile(cueDisk);
+        findAudioFile(cueDisc);
 
 
     QString dir = QFileInfo(mCueFile).dir().absolutePath();
@@ -211,21 +211,21 @@ void Disc::loadFromCue(const CueDisk &cueDisk)
 /************************************************
 
  ************************************************/
-QFileInfoList matchedAudioFiles(const CueDisk &cueDisk, const QFileInfoList &audioFiles)
+QFileInfoList matchedAudioFiles(const CueDisk &cueDisc, const QFileInfoList &audioFiles)
 {
     QFileInfoList res;
-    QFileInfo cueFile(cueDisk.fileName());
+    QFileInfo cueFile(cueDisc.fileName());
 
     QStringList patterns;
-    if (cueDisk.diskCount() > 1)
+    if (cueDisc.diskCount() > 1)
     {
-        patterns << QRegExp::escape(QFileInfo(cueDisk.first().tag(TagId::File)).completeBaseName());
-        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisk.diskNum());
-        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisk.diskNum());
+        patterns << QRegExp::escape(QFileInfo(cueDisc.first().tag(TagId::File)).completeBaseName());
+        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisc.diskNum());
+        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisc.diskNum());
     }
     else
     {
-        patterns << QRegExp::escape(QFileInfo(cueDisk.first().tag(TagId::File)).completeBaseName());
+        patterns << QRegExp::escape(QFileInfo(cueDisc.first().tag(TagId::File)).completeBaseName());
         patterns << QRegExp::escape(cueFile.completeBaseName()) + ".*";
     }
 
@@ -279,26 +279,26 @@ void Disc::findCueFile()
     }
 
     unsigned int bestWeight = 99999;
-    CueDisk bestDisk;
+    CueDisk bestDisc;
 
     foreach (const Cue &cue, cues)
     {
-        foreach (const CueDisk &cueDisk, cue)
+        foreach (const CueDisk &cueDisc, cue)
         {
-            if (!matchedAudioFiles(cueDisk, QFileInfoList() << audio).isEmpty())
+            if (!matchedAudioFiles(cueDisc, QFileInfoList() << audio).isEmpty())
             {
-                unsigned int weight = levenshteinDistance(QFileInfo(cueDisk.fileName()).baseName(), audio.baseName());
+                unsigned int weight = levenshteinDistance(QFileInfo(cueDisc.fileName()).baseName(), audio.baseName());
                 if (weight < bestWeight)
                 {
                     bestWeight = weight;
-                    bestDisk   = cueDisk;
+                    bestDisc   = cueDisc;
                 }
             }
         }
     }
 
-    if (!bestDisk.uri().isEmpty())
-        loadFromCue(bestDisk);
+    if (!bestDisc.uri().isEmpty())
+        loadFromCue(bestDisc);
 }
 
 
@@ -454,9 +454,9 @@ void Disc::setAudioFile(const InputAudioFile &audio)
 /************************************************
 
  ************************************************/
-void Disc::findAudioFile(const CueDisk &cueDisk)
+void Disc::findAudioFile(const CueDisk &cueDisc)
 {
-    if (cueDisk.isEmpty())
+    if (cueDisc.isEmpty())
         return;
 
     QStringList exts;
@@ -466,7 +466,7 @@ void Disc::findAudioFile(const CueDisk &cueDisk)
     QFileInfo cueFile(mCueFile);
     QFileInfoList files = cueFile.dir().entryInfoList(exts, QDir::Files | QDir::Readable);
 
-    if (cueDisk.diskCount() == 1 && files.count() == 1)
+    if (cueDisc.diskCount() == 1 && files.count() == 1)
     {
         InputAudioFile audio(files.first().filePath());
         if (audio.isValid())
@@ -474,7 +474,7 @@ void Disc::findAudioFile(const CueDisk &cueDisk)
         return;
     }
 
-    QFileInfoList audioFiles = matchedAudioFiles(cueDisk, files);
+    QFileInfoList audioFiles = matchedAudioFiles(cueDisc, files);
     foreach (const QFileInfo &file, audioFiles)
     {
         InputAudioFile audio(file.filePath());
@@ -600,7 +600,7 @@ QString Disc::fileTag() const
 /************************************************
  *
  ************************************************/
-DiskNum Disc::diskNum() const
+DiscNum Disc::discNum() const
 {
     if (!mTracks.isEmpty())
         return mTracks.first()->diskNum();
@@ -612,7 +612,7 @@ DiskNum Disc::diskNum() const
 /************************************************
  *
  ************************************************/
-DiskNum Disc::diskCount() const
+DiscNum Disc::discCount() const
 {
     if (!mTracks.isEmpty())
         return mTracks.first()->diskCount();
@@ -703,29 +703,29 @@ void Disc::activateTagSet(const QString &uri)
 /************************************************
  *
  ************************************************/
-void Disc::addTagSets(const QVector<Tracks> &disks)
+void Disc::addTagSets(const QVector<Tracks> &discs)
 {
-    if (disks.isEmpty())
+    if (discs.isEmpty())
         return;
 
     int minDist = std::numeric_limits<int>::max();
-    int bestDisk = 0;
-    for (int i=0; i<disks.count(); ++i)
+    int bestDisc = 0;
+    for (int i=0; i<discs.count(); ++i)
     {
-        const Tracks &disk = disks.at(i);
-        if (disk.count() < mTracks.count())
+        const Tracks &disc = discs.at(i);
+        if (disc.count() < mTracks.count())
             continue;
 
-        addTagSet(disk, false);
-        int n = distance(disk);
+        addTagSet(disc, false);
+        int n = distance(disc);
         if (n<minDist)
         {
             minDist  = n;
-            bestDisk = i;
+            bestDisc = i;
         }
     }
 
-    activateTagSet(disks.at(bestDisk).uri());
+    activateTagSet(discs.at(bestDisc).uri());
 }
 
 
@@ -772,7 +772,7 @@ QImage Disc::coverImage() const
 /************************************************
  *
  ************************************************/
-QString Disc::diskTag(TagId tagId) const
+QString Disc::discTag(TagId tagId) const
 {
     if (isEmpty())
         return "";
@@ -784,7 +784,7 @@ QString Disc::diskTag(TagId tagId) const
 /************************************************
  *
  ************************************************/
-QByteArray Disc::diskTagData(TagId tagId) const
+QByteArray Disc::discTagData(TagId tagId) const
 {
     if (isEmpty())
         return QByteArray();
@@ -796,7 +796,7 @@ QByteArray Disc::diskTagData(TagId tagId) const
 /************************************************
  *
  ************************************************/
-void Disc::setDiskTag(TagId tagId, const QString &value)
+void Disc::setDiscTag(TagId tagId, const QString &value)
 {
     foreach (auto track,  mTracks)
         track->setTag(tagId, value);
@@ -806,7 +806,7 @@ void Disc::setDiskTag(TagId tagId, const QString &value)
 /************************************************
  *
  ************************************************/
-void Disc::setDiskTag(TagId tagId, const QByteArray &value)
+void Disc::setDiscTag(TagId tagId, const QByteArray &value)
 {
     foreach (auto track,  mTracks)
         track->setTag(tagId, value);

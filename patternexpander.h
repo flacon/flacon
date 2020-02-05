@@ -52,11 +52,11 @@ public:
     TrackNum trackNum() const { return mTrackNum; }
     void setTrackNum(TrackNum value) { mTrackNum = value; }
 
-    DiskCount diskCount() const { return mDiskCount; }
-    void setDiskCount(DiskCount value) { mDiskCount = value; }
+    DiscCount diskCount() const { return mDiskCount; }
+    void setDiskCount(DiscCount value) { mDiskCount = value; }
 
-    DiskNum diskNum() const { return mDiskNum; }
-    void setDiskNum(DiskNum value) { mDiskNum = value; }
+    DiscNum diskNum() const { return mDiskNum; }
+    void setDiskNum(DiscNum value) { mDiskNum = value; }
 
 
     QString artist() const { return mArtist; }
@@ -81,8 +81,8 @@ public:
 private:
     TrackCount mTrackCount;
     TrackNum   mTrackNum;
-    DiskCount  mDiskCount;
-    DiskNum    mDiskNum;
+    DiscCount  mDiskCount;
+    DiscNum    mDiskNum;
     QString mAlbum;
     QString mTrackTitle;
     QString mArtist;

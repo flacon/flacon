@@ -31,8 +31,10 @@
 
 #define CODEC_AUTODETECT "AUTODETECT"
 
-typedef quint16 DiskNum;
+typedef quint16 DiscNum;
+typedef quint16 DiscCount;
 typedef quint16 TrackNum;
+typedef quint16 TrackCount;
 typedef uint    Duration;
 
 enum class PreGapType
@@ -66,12 +68,6 @@ enum class CoverMode
 
 QString coverModeToString(CoverMode mode);
 CoverMode strToCoverMode(const QString &str);
-
-typedef quint16 DiskCount;
-typedef quint16 DiskNum;
-
-typedef quint16 TrackCount;
-typedef quint16 TrackNum;
 
 unsigned int levenshteinDistance(const QString &s1, const QString & s2);
 

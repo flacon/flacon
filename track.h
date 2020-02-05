@@ -85,11 +85,11 @@ public:
     TrackNum trackCount() const;
     void setTrackCount(TrackNum value);
 
-    DiskNum diskNum() const;
-    void setDiskNum(DiskNum value);
+    DiscNum diskNum() const;
+    void setDiskNum(DiscNum value);
 
-    DiskNum diskCount() const;
-    void setDiskCount(DiskNum value);
+    DiscNum diskCount() const;
+    void setDiskCount(DiscNum value);
 
     QString resultFileName() const;
     QString resultFilePath() const;

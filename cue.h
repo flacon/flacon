@@ -40,13 +40,13 @@ class CueDisk: public Tracks
 public:
     CueDisk();
     QString fileName() const { return mFileName; }
-    DiskNum diskCount() const { return mDiskCount; }
-    DiskNum diskNum() const { return mDiskNum; }
+    DiscNum diskCount() const { return mDiskCount; }
+    DiscNum diskNum() const { return mDiskNum; }
 
 private:
     QString mFileName;
-    DiskNum mDiskCount;
-    DiskNum mDiskNum;
+    DiscNum mDiskCount;
+    DiscNum mDiskNum;
 };
 
 

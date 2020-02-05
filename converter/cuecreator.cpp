@@ -45,8 +45,8 @@ CueCreator::CueCreator(const Disc *disk, PreGapType preGapType, const QString &f
     PatternExpander expander(*track);
     expander.setTrackNum(0);
     expander.setTrackCount(mDisk->count());
-    expander.setDiskNum(mDisk->diskNum());
-    expander.setDiskCount(mDisk->diskCount());
+    expander.setDiskNum(mDisk->discNum());
+    expander.setDiskCount(mDisk->discCount());
 
     QString fileName = expander.expand(fileTemplate);
 
