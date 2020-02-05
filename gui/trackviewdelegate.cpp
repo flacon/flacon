@@ -637,8 +637,8 @@ bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, co
 
     if (cache->markBtn.contains(m))
     {
-        QString err  = view->model()->data(index, TrackViewModel::RoleDiskErrors).toString();
-        QString warn = view->model()->data(index, TrackViewModel::RoleDiskWarnings).toStringList().join("<br><br>");
+        QString err  = view->model()->data(index, TrackViewModel::RoleDiscErrors).toString();
+        QString warn = view->model()->data(index, TrackViewModel::RoleDiscWarnings).toStringList().join("<br><br>");
 
         if (!err.isEmpty() || !warn.isEmpty())
         {

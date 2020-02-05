@@ -1007,7 +1007,7 @@ void MainWindow::trackViewMenu(const QPoint &pos)
         return;
 
 
-    Disc *disk = trackView->model()->diskByIndex(index);
+    Disc *disk = trackView->model()->discByIndex(index);
     if (!disk)
         return;
 
