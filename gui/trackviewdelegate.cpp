@@ -668,7 +668,7 @@ void TrackViewDelegate::movieUpdated()
         QModelIndex index = model->index(i, 0, QModelIndex());
         if (mCache->item(index)->isWaiting)
         {
-            project->emitDiskChanged(project->disk(0));
+            project->emitDiscChanged(project->disc(0));
             active = true;
         }
     }

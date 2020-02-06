@@ -215,8 +215,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(project, SIGNAL(layoutChanged()), this, SLOT(refreshEdits()));
     connect(project, SIGNAL(layoutChanged()), this, SLOT(setControlsEnable()));
 
-    connect(project, SIGNAL(diskChanged(Disc*)), this, SLOT(refreshEdits()));
-    connect(project, SIGNAL(diskChanged(Disc*)), this, SLOT(setControlsEnable()));
+    connect(project, SIGNAL(discChanged(Disc*)), this, SLOT(refreshEdits()));
+    connect(project, SIGNAL(discChanged(Disc*)), this, SLOT(setControlsEnable()));
 
     connect(Application::instance(), &Application::visualModeChanged,
         [](){
@@ -236,7 +236,7 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::showEvent(QShowEvent *)
 {
     if (project->count())
-        trackView->selectDisk(project->disk(0));
+        trackView->selectDisk(project->disc(0));
 }
 
 
@@ -374,7 +374,7 @@ void MainWindow::setCueForDisc(Disc *disk)
             int proposal = 0;
             for (int i=0; i<cue.count(); ++i)
             {
-                if (!project->diskExists(cue.at(i).uri()))
+                if (!project->discExists(cue.at(i).uri()))
                 {
                     proposal = i;
                     break;
@@ -619,7 +619,7 @@ void MainWindow::startConvertAll()
     for (int d=0; d<project->count(); ++d)
     {
         Converter::Job job;
-        job.disk = project->disk(d);
+        job.disk = project->disc(d);
         for (int t=0; t<job.disk->count(); ++t)
             job.tracks << job.disk->track(t);
         jobs << job;
@@ -668,7 +668,7 @@ void MainWindow::startConvert(const Converter::Jobs &jobs)
     bool ok = true;
     for (int i=0; i< project->count(); ++i)
     {
-        ok = ok && project->disk(i)->canConvert();
+        ok = ok && project->disc(i)->canConvert();
     }
 
     if (!ok)
@@ -683,7 +683,7 @@ void MainWindow::startConvert(const Converter::Jobs &jobs)
 
     for(int d=0; d<project->count(); ++d)
     {
-        Disc *disk = project->disk(d);
+        Disc *disk = project->disc(d);
         for (int t=0; t<disk->count(); ++t)
             trackView->model()->trackProgressChanged(*disk->track(t), TrackState::NotRunning, 0);
     }
@@ -955,7 +955,7 @@ void MainWindow::addFileOrDir(const QString &fileName)
 void MainWindow::removeDisks()
 {
     QList<Disc*> disks = trackView->selectedDisks();
-    project->removeDisk(&disks);
+    project->removeDisc(&disks);
     setControlsEnable();
 }
 

@@ -42,19 +42,19 @@ class Project : public QObject
 public:
     static Project* instance();
     
-    Disc *disk(int index) const;
+    Disc *disc(int index) const;
     int count() const;
-    int indexOf(const Disc *disk) const;
+    int indexOf(const Disc *disc) const;
 
 
-    void addDisk(Disc *disk) { insertDisk(disk); }
-    int insertDisk(Disc *disk, int index=-1);
-    void removeDisk(const QList<Disc*> *disks);
+    void addDisc(Disc *disc) { insertDisc(disc); }
+    int insertDisc(Disc *disc, int index=-1);
+    void removeDisc(const QList<Disc*> *discs);
 
-    void emitDiskChanged(Disc *disk) const;
+    void emitDiscChanged(Disc *disc) const;
     void emitLayoutChanged() const;
 
-    bool diskExists(const QString &cueUri);
+    bool discExists(const QString &cueUri);
 
 public slots:
     void clear();
@@ -62,15 +62,15 @@ public slots:
     DiscList addCueFile(const QString &fileName);
 
 signals:
-    void diskChanged(Disc *disk) const;
+    void discChanged(Disc *disc) const;
     void layoutChanged() const;
-    void beforeRemoveDisk(Disc *disk);
-    void afterRemoveDisk();
+    void beforeRemoveDisc(Disc *disc);
+    void afterRemoveDisc();
 
 private:
     explicit Project(QObject *parent = nullptr);
 
-    QList<Disc*> mDisks;
+    QList<Disc*> mDiscs;
 };
 
 #define project Project::instance()

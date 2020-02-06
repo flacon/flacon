@@ -69,7 +69,7 @@ void Converter::start(const Profile &profile)
     for (int d=0; d<project->count(); ++d)
     {
         Job job;
-        job.disk = project->disk(d);
+        job.disk = project->disc(d);
 
         for (int t=0; t<job.disk->count(); ++t)
             job.tracks << job.disk->track(t);
@@ -163,7 +163,7 @@ bool Converter::canConvert()
 {
     for(int i=0; i<project->count(); ++i)
     {
-        if (project->disk(i)->canConvert())
+        if (project->disc(i)->canConvert())
             return true;
     }
 

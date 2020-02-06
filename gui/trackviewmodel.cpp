@@ -96,7 +96,7 @@ public:
     Disc *disc() const
     {
         if (mDiscId && mDiscId-1 < project->count())
-            return project->disk(mDiscId - 1);
+            return project->disc(mDiscId - 1);
 
         return nullptr;
     }
@@ -134,13 +134,13 @@ TrackViewModel::TrackViewModel(TrackView *parent) :
     mCache(new Cache()),
     mView(parent)
 {
-    connect(project, &Project::diskChanged,
+    connect(project, &Project::discChanged,
             this, &TrackViewModel::discDataChanged);
 
     connect(project, SIGNAL(layoutChanged()), this, SIGNAL(layoutChanged()));
-    connect(project, SIGNAL(afterRemoveDisk()), this, SIGNAL(layoutChanged()));
+    connect(project, SIGNAL(afterRemoveDisc()), this, SIGNAL(layoutChanged()));
 
-    connect(project, &Project::beforeRemoveDisk,
+    connect(project, &Project::beforeRemoveDisc,
             this, &TrackViewModel::invalidateCache);
 }
 

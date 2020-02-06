@@ -507,7 +507,7 @@ void Disc::setStartTrackNum(int value)
     foreach (auto track, mTracks)
         track->setTrackNum(value++);
 
-    project->emitDiskChanged(this);
+    project->emitDiscChanged(this);
 }
 
 
@@ -547,7 +547,7 @@ void Disc::setCodecName(const QString &codecName)
     }
 
 
-    project->emitDiskChanged(this);
+    project->emitDiscChanged(this);
 }
 
 
