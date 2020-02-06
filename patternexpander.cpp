@@ -70,8 +70,8 @@ PatternExpander::PatternExpander():
 PatternExpander::PatternExpander(const Track &track):
     mTrackCount(track.trackCount()),
     mTrackNum(track.trackNum()),
-    mDiskCount(track.diskCount()),
-    mDiskNum(track.diskNum()),
+    mDiskCount(track.discCount()),
+    mDiskNum(track.discNum()),
     mAlbum(track.album()),
     mTrackTitle(track.title()),
     mArtist(track.artist()),

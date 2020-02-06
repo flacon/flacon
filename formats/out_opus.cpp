@@ -70,7 +70,7 @@ QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *tra
     if (!track->date().isEmpty())    args << "--date"    << track->date();
     if (!track->title().isEmpty())   args << "--title"   << track->title();
     if (!track->comment().isEmpty()) args << "--comment" << QString("COMMENT=%1").arg(track->comment());
-    if (!track->diskId().isEmpty())  args << "--comment" << QString("DISCID=%1").arg(track->diskId());
+    if (!track->discId().isEmpty())  args << "--comment" << QString("DISCID=%1").arg(track->discId());
     if (!track->tag(TagId::AlbumArtist).isEmpty())
     {
         args << "--comment" << QString("album_artist=%1").arg(track->tag(TagId::AlbumArtist));
@@ -79,9 +79,9 @@ QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *tra
     args << "--comment" << QString("tracknumber=%1").arg(track->trackNum());
     args << "--comment" << QString("tracktotal=%1").arg(track->trackCount());
 
-    args << "--comment" << QString("disc=%1").arg(track->diskNum());
-    args << "--comment" << QString("discnumber=%1").arg(track->diskNum());
-    args << "--comment" << QString("disctotal=%1").arg(track->diskCount());
+    args << "--comment" << QString("disc=%1").arg(track->discNum());
+    args << "--comment" << QString("discnumber=%1").arg(track->discNum());
+    args << "--comment" << QString("disctotal=%1").arg(track->discCount());
 
     // Files ....................................................
     args << "-";

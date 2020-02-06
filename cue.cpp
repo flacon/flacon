@@ -406,8 +406,8 @@ QVector<CueDisc> CueReader::load(const QString &fileName)
         track.setTag(TagId::Album,         data.globalTags.value(CTAG_TITLE));
         track.setTrackNum(tags.value(CTAG_TRACK).toInt());
         track.setTrackCount(data.tracks.count());
-        track.setTag(TagId::DiskNum,    QString("1"));
-        track.setTag(TagId::DiskCount,  QString("1"));
+        track.setTag(TagId::DiscNum,    QString("1"));
+        track.setTag(TagId::DiscCount,  QString("1"));
 
         track.setCueIndex(0, CueIndex(tags.value(CTAG_INDEX00)));
         track.setCueIndex(1, CueIndex(tags.value(CTAG_INDEX01)));

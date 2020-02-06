@@ -266,10 +266,10 @@ void Track::setTrackCount(TrackNum value)
 /************************************************
  *
  ************************************************/
-DiscNum Track::diskNum() const
+DiscNum Track::discNum() const
 {
     bool ok;
-    int res = tag(TagId::DiskNum).toInt(&ok);
+    int res = tag(TagId::DiscNum).toInt(&ok);
 
     if (ok)
         return res;
@@ -281,19 +281,19 @@ DiscNum Track::diskNum() const
 /************************************************
  *
  ************************************************/
-void Track::setDiskNum(DiscNum value)
+void Track::setDiscNum(DiscNum value)
 {
-    setTag(TagId::DiskNum, QString::number(value));
+    setTag(TagId::DiscNum, QString::number(value));
 }
 
 
 /************************************************
  *
  ************************************************/
-DiscNum Track::diskCount() const
+DiscNum Track::discCount() const
 {
     bool ok;
-    int res = tag(TagId::DiskCount).toInt(&ok);
+    int res = tag(TagId::DiscCount).toInt(&ok);
 
     if (ok)
         return res;
@@ -306,9 +306,9 @@ DiscNum Track::diskCount() const
 /************************************************
  *
  ************************************************/
-void Track::setDiskCount(DiscNum value)
+void Track::setDiscCount(DiscNum value)
 {
-    setTag(TagId::DiskCount, QString::number(value));
+    setTag(TagId::DiscCount, QString::number(value));
 }
 
 

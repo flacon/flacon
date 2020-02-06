@@ -603,7 +603,7 @@ QString Disc::fileTag() const
 DiscNum Disc::discNum() const
 {
     if (!mTracks.isEmpty())
-        return mTracks.first()->diskNum();
+        return mTracks.first()->discNum();
 
     return 0;
 }
@@ -615,7 +615,7 @@ DiscNum Disc::discNum() const
 DiscNum Disc::discCount() const
 {
     if (!mTracks.isEmpty())
-        return mTracks.first()->diskCount();
+        return mTracks.first()->discCount();
 
     return 0;
 }

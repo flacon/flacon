@@ -83,8 +83,8 @@ static void write(const QVector<CueDisc> &cue, const QString &fileName)
             f << "\t" << "GENRE       = "  << track.tag(TagId::Genre)             << "\n";
             f << "\t" << "TRACKNUM    = " << QString::number(track.trackNum())    << "\n";
             f << "\t" << "TRACKCOUNT  = " << QString::number(track.trackCount())  << "\n";
-            f << "\t" << "DISKNUM     = "  << QString::number(track.diskNum())    << "\n";
-            f << "\t" << "DISKCOUNT   = "  << QString::number(track.diskCount())  << "\n";
+            f << "\t" << "DISKNUM     = "  << QString::number(track.discNum())    << "\n";
+            f << "\t" << "DISKCOUNT   = "  << QString::number(track.discCount())  << "\n";
 
 
             f << "\n";

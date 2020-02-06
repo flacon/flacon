@@ -131,7 +131,7 @@ QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const Track *trac
         args << "--tc" << track->comment();
 
     args << "--tn" << QString("%1/%2").arg(track->trackNum()).arg(track->trackCount());
-    args << "--tv" << QString("TPOS=%1").arg(track->diskNum());
+    args << "--tv" << QString("TPOS=%1").arg(track->discNum());
 
     // Files ....................................................
     args << "-";

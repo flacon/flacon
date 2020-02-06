@@ -104,7 +104,7 @@ TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disc *> &disks, QW
     trackCountSpin->setTagId(TagId::TrackCount);
     this->add2Widget(mStartTrackSpin, trackCountSpin,  tr("Start track number:", "Music tag name"));
 
-    addIntEditNumCount(TagId::DiskNum,  TagId::DiskCount,  tr("Disk number:", "Music tag name"));
+    addIntEditNumCount(TagId::DiscNum,  TagId::DiscCount,  tr("Disk number:", "Music tag name"));
 
     addLineEdit(TagId::Title,       tr("Track title:",    "Music tag name"));
     addTextEdit(TagId::Comment,     tr("Comment:",  "Music tag name"));

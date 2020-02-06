@@ -82,15 +82,15 @@ QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const Track *track
     if (!track->tag(TagId::AlbumArtist).isEmpty())
         args << "-w" << QString("Album Artist=%1").arg(track->tag(TagId::AlbumArtist));
 
-    if (!track->diskId().isEmpty())
-        args << "-w" << QString("DiscId=%1").arg(track->diskId());
+    if (!track->discId().isEmpty())
+        args << "-w" << QString("DiscId=%1").arg(track->discId());
 
     if (!track->comment().isEmpty())
         args << "-w" << QString("Comment=%1").arg(track->comment());
 
 
     args << "-w" << QString("Track=%1/%2").arg(track->trackNum()).arg(track->trackCount());
-    args << "-w" << QString("Part=%1").arg(track->diskNum());
+    args << "-w" << QString("Part=%1").arg(track->discNum());
 
     args << "-";
     args << "-o" << outFile;
