@@ -381,7 +381,7 @@ void MainWindow::setCueForDisc(Disc *disk)
                 }
             }
 
-            diskNum = CueDiskSelectDialog::getDiskNumber(cue, proposal);
+            diskNum = CueDiscSelectDialog::getDiscNumber(cue, proposal);
             if (diskNum < 0)
                 return;
         }

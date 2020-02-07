@@ -33,26 +33,26 @@
 class QModelIndex;
 
 namespace Ui {
-class CueDiskSelectDialog;
+class CueDiscSelectDialog;
 }
 
-class CueDiskSelectDialog : public QDialog
+class CueDiscSelectDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CueDiskSelectDialog(const QVector<CueDisc> &cue, int selectedDisk = 0, QWidget *parent = nullptr);
-    ~CueDiskSelectDialog();
+    explicit CueDiscSelectDialog(const QVector<CueDisc> &cue, int selectedDisc = 0, QWidget *parent = nullptr);
+    ~CueDiscSelectDialog();
 
-    static int getDiskNumber(const QVector<CueDisc> &cue, int selectedDisk = 0);
+    static int getDiscNumber(const QVector<CueDisc> &cue, int selectedDisc = 0);
 
-    int diskNumber();
+    int discNumber();
 
 private slots:
     void treeDoubleClicked(const QModelIndex &index);
 
 private:
-    Ui::CueDiskSelectDialog *ui;
+    Ui::CueDiscSelectDialog *ui;
     const QVector<CueDisc> &mCue;
 };
 
