@@ -91,7 +91,7 @@ set(HEADERS
     converter/encoder.h
     converter/gain.h
     converter/worker.h
-    converter/diskpipline.h
+    converter/discpipline.h
     converter/cuecreator.h
     converter/copycover.h
     converter/resampler.h
@@ -154,7 +154,7 @@ set(SOURCES
     converter/encoder.cpp
     converter/gain.cpp
     converter/worker.cpp
-    converter/diskpipline.cpp
+    converter/discpipline.cpp
     converter/cuecreator.cpp
     converter/copycover.cpp
     converter/resampler.cpp

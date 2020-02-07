@@ -33,7 +33,7 @@
 #include "splitter.h"
 #include "encoder.h"
 #include "gain.h"
-#include "diskpipline.h"
+#include "discpipline.h"
 #include "resampler.h"
 
 #include <iostream>
@@ -111,7 +111,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
         if (!job.disk->canConvert())
             continue;
 
-        DiskPipeline * pipeline = new DiskPipeline(job, profile, this);
+        DiscPipeline *pipeline = new DiscPipeline(job, profile, this);
         pipeline->setCoverMode(Settings::i()->coverMode());
         pipeline->setCoverImageSize(Settings::i()->coverImageSize());
         pipeline->setTmpDir(Settings::i()->tmpDir());
@@ -122,15 +122,15 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
         connect(pipeline, SIGNAL(threadFinished()),
                 this, SLOT(startThread()));
 
-        connect(pipeline, &DiskPipeline::trackProgressChanged,
+        connect(pipeline, &DiscPipeline::trackProgressChanged,
                 this, &Converter::trackProgress);
 
-        mDiskPiplines << pipeline;
+        mDiscPiplines << pipeline;
 
         if (!pipeline->init())
         {
-            qDeleteAll(mDiskPiplines);
-            mDiskPiplines.clear();
+            qDeleteAll(mDiscPiplines);
+            mDiscPiplines.clear();
             emit finished();
             return;
         }
@@ -146,7 +146,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
  ************************************************/
 bool Converter::isRunning()
 {
-    foreach (DiskPipeline *pipe, mDiskPiplines)
+    foreach (DiscPipeline *pipe, mDiscPiplines)
     {
         if (pipe->isRunning())
             return true;
@@ -179,7 +179,7 @@ void Converter::stop()
     if (!isRunning())
         return;
 
-    foreach (DiskPipeline *pipe, mDiskPiplines)
+    foreach (DiscPipeline *pipe, mDiscPiplines)
     {
         pipe->stop();
     }
@@ -194,10 +194,10 @@ void Converter::startThread()
     int count = mThreadCount;
     int splitterCount = qMax(1.0, ceil(count / 2.0));
 
-    foreach (DiskPipeline *pipe, mDiskPiplines)
+    foreach (DiscPipeline *pipe, mDiscPiplines)
         count-=pipe->runningThreadCount();
 
-    foreach (DiskPipeline *pipe, mDiskPiplines)
+    foreach (DiscPipeline *pipe, mDiscPiplines)
     {
         pipe->startWorker(&splitterCount, &count);
         if (count <= 0)
@@ -205,7 +205,7 @@ void Converter::startThread()
     }
 
 
-    foreach (DiskPipeline *pipe, mDiskPiplines)
+    foreach (DiscPipeline *pipe, mDiscPiplines)
     {
         if (pipe->isRunning())
             return;

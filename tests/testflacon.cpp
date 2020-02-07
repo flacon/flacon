@@ -43,7 +43,7 @@
 #include "converter/wavheader.h"
 #include "converter/splitter.h"
 #include "outformat.h"
-#include "converter/diskpipline.h"
+#include "converter/discpipline.h"
 
 
 int TestFlacon::mTestNum = -1;
@@ -1401,17 +1401,17 @@ void TestFlacon::testCueIndex_data()
 }
 
 
-class Test_DiskPipeline: public DiskPipeline {
+class Test_DiscPipeline: public DiscPipeline {
 public:
     static int calcQuality(int input, int preferences, int formatMax)
-            { return DiskPipeline::calcQuality(input, preferences, formatMax) ;}
+            { return DiscPipeline::calcQuality(input, preferences, formatMax) ;}
 
 };
 
 /************************************************
  *
  ************************************************/
-void TestFlacon::testDiskPipelineCalcQuality()
+void TestFlacon::testDiscPipelineCalcQuality()
 {
     QFETCH(int, input);
     QFETCH(int, preferences);
@@ -1419,7 +1419,7 @@ void TestFlacon::testDiskPipelineCalcQuality()
 
     QFETCH(int, expected);
 
-    int res = Test_DiskPipeline::calcQuality(input, preferences, maxFormat);
+    int res = Test_DiscPipeline::calcQuality(input, preferences, maxFormat);
     QCOMPARE(res, expected);
 }
 
@@ -1427,7 +1427,7 @@ void TestFlacon::testDiskPipelineCalcQuality()
 /************************************************
  *
  ************************************************/
-void TestFlacon::testDiskPipelineCalcQuality_data()
+void TestFlacon::testDiscPipelineCalcQuality_data()
 {
     QTest::addColumn<int>("preferences", nullptr);
     QTest::addColumn<int>("maxFormat",   nullptr);

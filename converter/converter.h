@@ -32,7 +32,7 @@
 #include <QDateTime>
 #include <QVector>
 
-class DiskPipeline;
+class DiscPipeline;
 class Disc;
 class Track;
 class Profile;
@@ -68,7 +68,7 @@ private slots:
 
 private:
     int mThreadCount;
-    QVector<DiskPipeline*> mDiskPiplines;
+    QVector<DiscPipeline*> mDiscPiplines;
 
     bool check(const Profile &profile) const;
 };

@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "diskpipline.h"
+#include "discpipline.h"
 
 #include <QUuid>
 
@@ -173,7 +173,7 @@ bool DiscPipeline::Data::createDir(const QString &dirName) const
 /************************************************
  *
  ************************************************/
-DiscPipeline::DiskPipeline(const Converter::Job &job, const Profile &profile, QObject *parent) :
+DiscPipeline::DiscPipeline(const Converter::Job &job, const Profile &profile, QObject *parent) :
     QObject(parent),
     mData(new Data(job, profile, this))
 {
