@@ -181,7 +181,7 @@ DiscPipeline::DiscPipeline(const Converter::Job &job, const Profile &profile, QO
 
     // If the first track starts with zero second, doesn't make sense to create pregap track.
     mData->extractPregap = (mData->preGapType == PreGapType::ExtractToFile &&
-                            job.disk->track(0)->cueIndex(1).milliseconds() > 0);
+                            job.disc->track(0)->cueIndex(1).milliseconds() > 0);
 
     mData->trackCount = mData->job.tracks.count();
     if (mData->extractPregap)
@@ -293,7 +293,7 @@ bool DiscPipeline::Data::createCue() const
     if (!profile.isCreateCue())
         return true;
 
-    CueCreator cue(job.disk, preGapType, profile.cueFileName());
+    CueCreator cue(job.disc, preGapType, profile.cueFileName());
     if (!cue.write())
     {
         pipeline->trackError(job.tracks.first(), cue.errorString());
@@ -318,7 +318,7 @@ bool DiscPipeline::Data::copyCoverImage() const
 
     QString dir = QFileInfo(job.tracks.first()->resultFilePath()).dir().absolutePath();
 
-    CopyCover copyCover(job.disk, dir, "cover", size);
+    CopyCover copyCover(job.disc, dir, "cover", size);
     bool res = copyCover.run();
 
     if (!res)
@@ -333,7 +333,7 @@ bool DiscPipeline::Data::copyCoverImage() const
  ************************************************/
 void DiscPipeline::Data::startSplitterThread()
 {
-    Splitter *worker = new Splitter(job.disk, workDir->path(), extractPregap, preGapType);
+    Splitter *worker = new Splitter(job.disc, workDir->path(), extractPregap, preGapType);
     for (const Track *t: job.tracks)
         worker->addTrack(t);
 
@@ -374,12 +374,12 @@ void DiscPipeline::Data::startEncoderThread(const EncoderRequest &req)
 
     // If the original quality is worse than requested, leave it as is.
     worker->setBitsPerSample(calcQuality(
-                                 job.disk->audioFile()->bitsPerSample(),
+                                 job.disc->audioFile()->bitsPerSample(),
                                  profile.bitsPerSample(),
                                  int(profile.maxBitPerSample())));
 
     worker->setSampleRate(calcQuality(
-                              job.disk->audioFile()->sampleRate(),
+                              job.disc->audioFile()->sampleRate(),
                               profile.sampleRate(),
                               int(profile.maxSampleRate())));
 

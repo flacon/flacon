@@ -42,7 +42,7 @@ class Converter : public QObject
     Q_OBJECT
 public:
     struct Job {
-        Disc *disk = nullptr;
+        Disc *disc = nullptr;
         QVector<const Track*> tracks;
     };
 

@@ -619,9 +619,9 @@ void MainWindow::startConvertAll()
     for (int d=0; d<project->count(); ++d)
     {
         Converter::Job job;
-        job.disk = project->disc(d);
-        for (int t=0; t<job.disk->count(); ++t)
-            job.tracks << job.disk->track(t);
+        job.disc = project->disc(d);
+        for (int t=0; t<job.disc->count(); ++t)
+            job.tracks << job.disc->track(t);
         jobs << job;
     }
 
@@ -638,7 +638,7 @@ void MainWindow::startConvertSelected()
     for (Disc *disc: trackView->selectedDiscs())
     {
         Converter::Job job;
-        job.disk = disc;
+        job.disc = disc;
 
         for (int t=0; t<disc->count(); ++t)
         {

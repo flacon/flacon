@@ -69,10 +69,10 @@ void Converter::start(const Profile &profile)
     for (int d=0; d<project->count(); ++d)
     {
         Job job;
-        job.disk = project->disc(d);
+        job.disc = project->disc(d);
 
-        for (int t=0; t<job.disk->count(); ++t)
-            job.tracks << job.disk->track(t);
+        for (int t=0; t<job.disc->count(); ++t)
+            job.tracks << job.disc->track(t);
 
         jobs << job;
     }
@@ -108,7 +108,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
         if (job.tracks.isEmpty())
             continue;
 
-        if (!job.disk->canConvert())
+        if (!job.disc->canConvert())
             continue;
 
         DiscPipeline *pipeline = new DiscPipeline(job, profile, this);
