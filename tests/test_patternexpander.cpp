@@ -71,8 +71,8 @@ void TestFlacon::testPatternExpander()
 
     expander.setTrackCount(trackValues.value("trackCount").toInt());
     expander.setTrackNum(trackValues.value("trackNum").toInt());
-    expander.setDiscCount(trackValues.value("diskCount").toInt());
-    expander.setDiscNum(trackValues.value("diskNum").toInt());
+    expander.setDiscCount(trackValues.value("discCount").toInt());
+    expander.setDiscNum(trackValues.value("discNum").toInt());
 
     expander.setAlbum(trackValues.value("album"));
     expander.setTrackTtle(trackValues.value("title"));
@@ -108,8 +108,8 @@ void TestFlacon::testPatternExpander_data()
             << R"(
                trackCount: 10
                trackNum:   1
-               diskCount:  2
-               diskNum:    1
+               discCount:  2
+               discNum:    1
                album:      Hits
                title:      Track title
                artist:     Band
@@ -124,8 +124,8 @@ void TestFlacon::testPatternExpander_data()
             << R"(
                trackCount: 10
                trackNum:   1
-               diskCount:  2
-               diskNum:    1
+               discCount:  2
+               discNum:    1
                album:      Hits
                title:      Track title
                artist:     Band
@@ -140,8 +140,8 @@ void TestFlacon::testPatternExpander_data()
             << R"(
                trackCount: 10
                trackNum:   1
-               diskCount:  2
-               diskNum:    1
+               discCount:  2
+               discNum:    1
                album:      Hits
                title:      Track title
                artist:     Band
@@ -155,8 +155,8 @@ void TestFlacon::testPatternExpander_data()
             << R"(
                trackCount: 10
                trackNum:   1
-               diskCount:  2
-               diskNum:    1
+               discCount:  2
+               discNum:    1
                album:      Hits
                title:      Track title
                artist:     Band
@@ -169,8 +169,8 @@ void TestFlacon::testPatternExpander_data()
             << R"(
                trackCount: 10
                trackNum:   1
-               diskCount:  2
-               diskNum:    1
+               discCount:  2
+               discNum:    1
                album:      Hits
                title:      Track title
                artist:     Band
@@ -184,8 +184,8 @@ void TestFlacon::testPatternExpander_data()
             << R"(
                trackCount: 10
                trackNum:   5
-               diskCount:  2
-               diskNum:    1
+               discCount:  2
+               discNum:    1
                album:      Hits
                title:      Track title
                artist:     Band
@@ -200,8 +200,8 @@ void TestFlacon::testPatternExpander_data()
             << R"(
                trackCount: 10
                trackNum:   5
-               diskCount:  1
-               diskNum:    1
+               discCount:  1
+               discNum:    1
                album:      Hits
                title:      Track title
                artist:     Band
@@ -223,8 +223,8 @@ void TestFlacon::testPatternExpander_data()
             << R"(
                trackCount: 1
                trackNum:   1
-               diskCount:  1
-               diskNum:    1
+               discCount:  1
+               discNum:    1
                )"
             << "/01 of 01";
 
@@ -233,8 +233,8 @@ void TestFlacon::testPatternExpander_data()
             << R"(
                trackCount: 10
                trackNum:   5
-               diskCount:  1
-               diskNum:    1
+               discCount:  1
+               discNum:    1
                album:      Hits
                title:      Track title
                artist:     Band
@@ -249,8 +249,8 @@ void TestFlacon::testPatternExpander_data()
             << R"(
                trackCount: 10
                trackNum:   1
-               diskCount:  2
-               diskNum:    1
+               discCount:  2
+               discNum:    1
                album:      Hits
                title:      Track title
                artist:     Band
@@ -265,8 +265,8 @@ void TestFlacon::testPatternExpander_data()
             << R"(
                trackCount: 10
                trackNum:   1
-               diskCount:  2
-               diskNum:    1
+               discCount:  2
+               discNum:    1
                album:      Hits
                title:      Track title
                artist:     Band

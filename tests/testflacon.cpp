@@ -513,9 +513,9 @@ void TestFlacon::testTrackResultFileName()
     QString cueFile = dir() + "/input.cue";
     writeTextFile(cueFile, cue);
 
-    Disc *disk = loadFromCue(cueFile);
+    Disc *disc = loadFromCue(cueFile);
 
-    QString result = disk->track(0)->resultFileName();
+    QString result = disc->track(0)->resultFileName();
     //QCOMPARE(result, expected);
 
     if (result != expected)
@@ -526,7 +526,7 @@ void TestFlacon::testTrackResultFileName()
                     expected);
         QFAIL(msg.toLocal8Bit());
     }
-    disk->deleteLater();
+    disc->deleteLater();
 }
 
 
@@ -1041,9 +1041,9 @@ void TestFlacon::testTrackResultFilePath()
     else
         cueFile = mDataDir + "simple.cue";
 
-    Disc *disk = loadFromCue(cueFile);
+    Disc *disc = loadFromCue(cueFile);
 
-    QString result = disk->track(0)->resultFilePath();
+    QString result = disc->track(0)->resultFilePath();
     if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath())
     {
         QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   CueFile: %4").arg(
@@ -1053,7 +1053,7 @@ void TestFlacon::testTrackResultFilePath()
         QFAIL(msg.toLocal8Bit());
     }
     //QCOMPARE(result, expected);
-    disk->deleteLater();
+    disc->deleteLater();
 }
 
 
@@ -1147,10 +1147,10 @@ void TestFlacon::testTrackSetCodepages()
     else
         Settings::i()->setValue(Settings::Tags_DefaultCodepage, "UTF-8");
 
-    Disc *disk = loadFromCue(testCueFile);
+    Disc *disc = loadFromCue(testCueFile);
 
     if (!codepageAfter.isEmpty())
-        disk->setCodecName(codepageAfter);
+        disc->setCodecName(codepageAfter);
 
     QStringList expected = this->readFile(TEST_DATA_DIR + sampleFile);
 
@@ -1158,11 +1158,11 @@ void TestFlacon::testTrackSetCodepages()
     // Result *************************
     //result << "GENRE:" << tracks.genre() << "\n";
     //resultSl << "ALBUM:" << tracks.album() << "\n";
-    result << "DISCID:" << disk->discId() << "\n";
+    result << "DISCID:" << disc->discId() << "\n";
 
-    for(int i=0; i<disk->count(); ++i)
+    for(int i=0; i<disc->count(); ++i)
     {
-        Track *track = disk->track(i);
+        Track *track = disc->track(i);
         result << "Track " << (i + 1) << "\n";
         result << "  " << "INDEX:"    << i                  << "\n";
         result << "  " << "TRACKNUM:" << track->trackNum()  << "\n";
@@ -1188,7 +1188,7 @@ void TestFlacon::testTrackSetCodepages()
         QFAIL((msg + "\n    " + cmd).toLocal8Bit());
     }
 
-    disk->deleteLater();
+    disc->deleteLater();
 }
 
 
