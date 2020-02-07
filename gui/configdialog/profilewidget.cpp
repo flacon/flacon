@@ -43,8 +43,8 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     ui->formatLabel->setText(tr("%1 encoder", "Preferences dialog: format name label, %1 is a audio format name")
                                  .arg(profile.formatName()));
 
-    ui->gainGroup->setVisible(profile.formatOptions()     && FormatOption::SupportGain);
-    ui->resampleGroup->setVisible(profile.formatOptions() && FormatOption::Lossless);
+    ui->gainGroup->setVisible(profile.formatOptions().testFlag(FormatOption::SupportGain));
+    ui->resampleGroup->setVisible(profile.formatOptions().testFlag(FormatOption::Lossless));
 
 
     if (mEncoderWidget->layout())
@@ -109,12 +109,12 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     // Load
     mEncoderWidget->load();
 
-    if (mProfile.formatOptions() && FormatOption::Lossless) {
+    if (mProfile.formatOptions().testFlag(FormatOption::Lossless)) {
         mEncoderWidget->loadWidget(Profile::BITS_PER_SAMPLE_KEY, ui->bitDepthComboBox);
         mEncoderWidget->loadWidget(Profile::SAMPLE_RATE_KEY,     ui->sampleRateComboBox);
     }
 
-    if (mProfile.formatOptions() && FormatOption::SupportGain) {
+    if (mProfile.formatOptions().testFlag(FormatOption::SupportGain)) {
         mEncoderWidget->loadWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
     }
 
@@ -180,12 +180,12 @@ Profile ProfileWidget::profile() const
 {
     mEncoderWidget->save();
 
-    if (mProfile.formatOptions() && FormatOption::Lossless) {
+    if (mProfile.formatOptions().testFlag(FormatOption::Lossless)) {
         mEncoderWidget->saveWidget(Profile::BITS_PER_SAMPLE_KEY, ui->bitDepthComboBox);
         mEncoderWidget->saveWidget(Profile::SAMPLE_RATE_KEY,     ui->sampleRateComboBox);
     }
 
-    if (mProfile.formatOptions() && FormatOption::SupportGain) {
+    if (mProfile.formatOptions().testFlag(FormatOption::SupportGain)) {
         mEncoderWidget->saveWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
     }
 

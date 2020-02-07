@@ -314,8 +314,13 @@ void Profile::load(QSettings &settings, const QString &group)
 
     if (settings.contains("Format")) {
         auto *fmt = OutFormat::formatForId(settings.value("Format").toString());
-        mFormat = fmt ? fmt : nullFormat();
-        mValues << fmt->defaultParameters();
+        if (fmt) {
+            mFormat = fmt;
+            mValues << fmt->defaultParameters();
+        }
+        else {
+            fmt = nullFormat();
+        }
     }
 
 
