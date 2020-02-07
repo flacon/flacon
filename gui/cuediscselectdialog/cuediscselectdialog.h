@@ -24,8 +24,8 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef CUEDISKSELECTDIALOG_H
-#define CUEDISKSELECTDIALOG_H
+#ifndef CUEDISCSELECTDIALOG_H
+#define CUEDISCSELECTDIALOG_H
 
 #include <QDialog>
 #include "cue.h"
@@ -56,4 +56,4 @@ private:
     const QVector<CueDisc> &mCue;
 };
 
-#endif // CUEDISKSELECTDIALOG_H
+#endif // CUEDISCSELECTDIALOG_H

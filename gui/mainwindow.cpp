@@ -34,7 +34,7 @@
 #include "formats/informat.h"
 #include "configdialog/configdialog.h"
 #include "aboutdialog/aboutdialog.h"
-#include "cuediskselectdialog/cuediskselectdialog.h"
+#include "cuediscselectdialog/cuediscselectdialog.h"
 #include "scanner.h"
 #include "gui/coverdialog/coverdialog.h"
 #include "internet/dataprovider.h"

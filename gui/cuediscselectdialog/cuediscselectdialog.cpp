@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "cuediskselectdialog.h"
+#include "cuediscselectdialog.h"
 #include "ui_cuediskselectdialog.h"
 
 #include <assert.h>
