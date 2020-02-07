@@ -56,8 +56,8 @@ public slots:
     void stopConvert();
 
 signals:
-    void downloadStarted(Disc *disk);
-    void downloadFinished(Disc *disk);
+    void downloadStarted(Disc *disc);
+    void downloadFinished(Disc *disc);
 
 private slots:
     void insertOutPattern(const QString &pattern);
@@ -74,17 +74,17 @@ private slots:
     void openAddFileDialog();
 
     void openOutDirDialog();
-    void setCueForDisc(Disc *disk);
-    void setAudioForDisk(Disc *disk);
-    void setCoverImage(Disc *disk);
-    void downloadDiskInfo(Disc *disk);
+    void setCueForDisc(Disc *disc);
+    void setAudioForDisc(Disc *disc);
+    void setCoverImage(Disc *disc);
+    void downloadDiscInfo(Disc *disc);
 
-    void removeDisks();
+    void removeDiscs();
 
     void setStartTrackNum();
     void setTrackTag();
-    void setDiskTag();
-    void setDiskTagInt();
+    void setDiscTag();
+    void setDiscTagInt();
 
     void configure();
     void configureEncoder();

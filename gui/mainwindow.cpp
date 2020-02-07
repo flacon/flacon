@@ -111,9 +111,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagArtistEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
     connect(tagArtistEdit, SIGNAL(textEdited(QString)), this, SLOT(refreshEdits()));
 
-    tagDiskPerformerEdit->setTagId(TagId::AlbumArtist);
-    connect(tagDiskPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(setDiskTag()));
-    connect(tagDiskPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(refreshEdits()));
+    tagDiscPerformerEdit->setTagId(TagId::AlbumArtist);
+    connect(tagDiscPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(setDiscTag()));
+    connect(tagDiscPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(refreshEdits()));
 
     tagAlbumEdit->setTagId(TagId::Album);
     connect(tagAlbumEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
@@ -146,8 +146,8 @@ MainWindow::MainWindow(QWidget *parent) :
     outPatternButton->addPattern("%t", tr("Insert \"Track title\""));
     outPatternButton->addPattern("%y", tr("Insert \"Year\""));
     outPatternButton->addPattern("%g", tr("Insert \"Genre\""));
-    outPatternButton->addPattern("%d", tr("Insert \"Disk number\""));
-    outPatternButton->addPattern("%D", tr("Insert \"Total number of disks\""));
+    outPatternButton->addPattern("%d", tr("Insert \"Disc number\""));
+    outPatternButton->addPattern("%D", tr("Insert \"Total number of discs\""));
 
 
     const QString patterns[] = {
@@ -201,9 +201,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(codepageCombo,   SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
 
     connect(trackView, SIGNAL(selectCueFile(Disc*)),     this, SLOT(setCueForDisc(Disc*)));
-    connect(trackView, SIGNAL(selectAudioFile(Disc*)),   this, SLOT(setAudioForDisk(Disc*)));
+    connect(trackView, SIGNAL(selectAudioFile(Disc*)),   this, SLOT(setAudioForDisc(Disc*)));
     connect(trackView, SIGNAL(selectCoverImage(Disc*)),  this, SLOT(setCoverImage(Disc*)));
-    connect(trackView, SIGNAL(downloadInfo(Disc*)),      this, SLOT(downloadDiskInfo(Disc*)));
+    connect(trackView, SIGNAL(downloadInfo(Disc*)),      this, SLOT(downloadDiscInfo(Disc*)));
 
     connect(trackView->model(), SIGNAL(layoutChanged()), this, SLOT(refreshEdits()));
     connect(trackView->model(), SIGNAL(layoutChanged()), this, SLOT(setControlsEnable()));
@@ -345,15 +345,15 @@ void MainWindow::openOutDirDialog()
 /************************************************
 
  ************************************************/
-void MainWindow::setCueForDisc(Disc *disk)
+void MainWindow::setCueForDisc(Disc *disc)
 {
     QString flt = getOpenFileFilter(false, true);
 
     QString dir;
-    if (!disk->audioFileName().isEmpty())
-        dir = QFileInfo(disk->audioFileName()).dir().absolutePath();
-    else if (! disk->cueFile().isEmpty())
-        dir = QFileInfo(disk->cueFile()).dir().absolutePath();
+    if (!disc->audioFileName().isEmpty())
+        dir = QFileInfo(disc->audioFileName()).dir().absolutePath();
+    else if (! disc->cueFile().isEmpty())
+        dir = QFileInfo(disc->cueFile()).dir().absolutePath();
     else
         dir = Settings::i()->value(Settings::Misc_LastDir).toString();
 
@@ -368,7 +368,7 @@ void MainWindow::setCueForDisc(Disc *disk)
         CueReader reader;
         QVector<CueDisc> cue = reader.load(fileName);
 
-        int diskNum = 0;
+        int discNum = 0;
         if (cue.count() > 1)
         {
             int proposal = 0;
@@ -381,12 +381,12 @@ void MainWindow::setCueForDisc(Disc *disk)
                 }
             }
 
-            diskNum = CueDiscSelectDialog::getDiscNumber(cue, proposal);
-            if (diskNum < 0)
+            discNum = CueDiscSelectDialog::getDiscNumber(cue, proposal);
+            if (discNum < 0)
                 return;
         }
 
-        disk->loadFromCue(cue.at(diskNum));
+        disc->loadFromCue(cue.at(discNum));
     }
     catch (FlaconError &err)
     {
@@ -419,7 +419,7 @@ void MainWindow::setControlsEnable()
         outFilesBox->setEnabled(false);
         tagsBox->setEnabled(false);
 
-        actionAddDisk->setEnabled(false);
+        actionAddDisc->setEnabled(false);
         actionRemoveDisc->setEnabled(false);
         actionStartConvert->setVisible(false);
         actionAbortConvert->setVisible(true);
@@ -430,19 +430,19 @@ void MainWindow::setControlsEnable()
     }
     else
     {
-        QList<Disc*> selectedDisks = trackView->selectedDiscs();
+        QList<Disc*> selectedDiscs = trackView->selectedDiscs();
 
         bool tracksSelected = trackView->selectedTracks().count() > 0;
         bool discsSelected  = trackView->selectedDiscs().count() > 0;
         bool canConvert = Converter::canConvert();
         bool canDownload = false;
-        foreach (const Disc *disk, selectedDisks)
-            canDownload = canDownload || !disk->discId().isEmpty();
+        foreach (const Disc *disc, selectedDiscs)
+            canDownload = canDownload || !disc->discId().isEmpty();
 
         outFilesBox->setEnabled(true);
         tagsBox->setEnabled(tracksSelected);
 
-        actionAddDisk->setEnabled(true);
+        actionAddDisc->setEnabled(true);
         actionRemoveDisc->setEnabled(discsSelected);
         actionStartConvert->setVisible(true);
         actionAbortConvert->setVisible(false);
@@ -461,17 +461,17 @@ void MainWindow::setControlsEnable()
 void MainWindow::refreshEdits()
 {
 
-    // Disks ...............................
+    // Discs ...............................
     QSet<int> startNums;
-    QSet<QString> diskId;
+    QSet<QString> discId;
     QSet<QString> codePage;
 
-    QList<Disc*> disks = trackView->selectedDiscs();
-    foreach(Disc *disk, disks)
+    QList<Disc*> discs = trackView->selectedDiscs();
+    foreach(Disc *disc, discs)
     {
-        startNums << disk->startTrackNum();
-        diskId << disk->discId();
-        codePage << disk->codecName();
+        startNums << disc->startTrackNum();
+        discId << disc->discId();
+        codePage << disc->codecName();
     }
 
     // Tracks ..............................
@@ -479,7 +479,7 @@ void MainWindow::refreshEdits()
     QSet<QString> artist;
     QSet<QString> album;
     QSet<QString> date;
-    QSet<QString> diskPerformer;
+    QSet<QString> discPerformer;
 
     QList<Track*> tracks = trackView->selectedTracks();
     foreach(Track *track, tracks)
@@ -488,7 +488,7 @@ void MainWindow::refreshEdits()
         artist << track->artist();
         album << track->album();
         date << track->date();
-        diskPerformer << track->tag(TagId::AlbumArtist);
+        discPerformer << track->tag(TagId::AlbumArtist);
     }
 
     tagGenreEdit->setMultiValue(genre);
@@ -496,9 +496,9 @@ void MainWindow::refreshEdits()
     tagArtistEdit->setMultiValue(artist);
     tagAlbumEdit->setMultiValue(album);
     tagStartNumEdit->setMultiValue(startNums);
-    tagDiscIdEdit->setMultiValue(diskId);
+    tagDiscIdEdit->setMultiValue(discId);
     codepageCombo->setMultiValue(codePage);
-    tagDiskPerformerEdit->setMultiValue(diskPerformer);
+    tagDiscPerformerEdit->setMultiValue(discPerformer);
 
     if (outDirEdit->currentText() != Settings::i()->value(Settings::OutFiles_Directory).toString())
         outDirEdit->lineEdit()->setText(Settings::i()->value(Settings::OutFiles_Directory).toString());
@@ -547,9 +547,9 @@ void MainWindow::setCodePage()
     {
         QString codepage = codepageCombo->itemData(n).toString();
 
-        QList<Disc*> disks = trackView->selectedDiscs();
-        foreach(Disc *disk, disks)
-            disk->setCodecName(codepage);
+        QList<Disc*> discs = trackView->selectedDiscs();
+        foreach(Disc *disc, discs)
+            disc->setCodecName(codepage);
 
         Settings::i()->setValue(Settings::Tags_DefaultCodepage, codepage);
     }
@@ -577,17 +577,17 @@ void MainWindow::setTrackTag()
 /************************************************
  *
  ************************************************/
-void MainWindow::setDiskTag()
+void MainWindow::setDiscTag()
 {
     TagLineEdit *edit = qobject_cast<TagLineEdit*>(sender());
     if (!edit)
         return;
 
-    QList<Disc*> disks = trackView->selectedDiscs();
-    foreach(Disc *disk, disks)
+    QList<Disc*> discs = trackView->selectedDiscs();
+    foreach(Disc *disc, discs)
     {
-        disk->setDiscTag(edit->tagId(), edit->text());
-        trackView->update(*disk);
+        disc->setDiscTag(edit->tagId(), edit->text());
+        trackView->update(*disc);
     }
 }
 
@@ -595,17 +595,17 @@ void MainWindow::setDiskTag()
 /************************************************
  *
  ************************************************/
-void MainWindow::setDiskTagInt()
+void MainWindow::setDiscTagInt()
 {
     TagSpinBox *spinBox = qobject_cast<TagSpinBox*>(sender());
     if (!spinBox)
         return;
 
-    QList<Disc*> disks = trackView->selectedDiscs();
-    foreach(Disc *disk, disks)
+    QList<Disc*> discs = trackView->selectedDiscs();
+    foreach(Disc *disc, discs)
     {
-        disk->setDiscTag(spinBox->tagId(), QString::number(spinBox->value()));
-        trackView->update(*disk);
+        disc->setDiscTag(spinBox->tagId(), QString::number(spinBox->value()));
+        trackView->update(*disc);
     }
 }
 
@@ -635,14 +635,14 @@ void MainWindow::startConvertAll()
 void MainWindow::startConvertSelected()
 {
     Converter::Jobs jobs;
-    for (Disc *disk: trackView->selectedDiscs())
+    for (Disc *disc: trackView->selectedDiscs())
     {
         Converter::Job job;
-        job.disk = disk;
+        job.disk = disc;
 
-        for (int t=0; t<disk->count(); ++t)
+        for (int t=0; t<disc->count(); ++t)
         {
-            Track *track = disk->track(t);
+            Track *track = disc->track(t);
             if (trackView->isSelected(*track))
                 job.tracks << track;
 
@@ -683,9 +683,9 @@ void MainWindow::startConvert(const Converter::Jobs &jobs)
 
     for(int d=0; d<project->count(); ++d)
     {
-        Disc *disk = project->disc(d);
-        for (int t=0; t<disk->count(); ++t)
-            trackView->model()->trackProgressChanged(*disk->track(t), TrackState::NotRunning, 0);
+        Disc *disc = project->disc(d);
+        for (int t=0; t<disc->count(); ++t)
+            trackView->model()->trackProgressChanged(*disc->track(t), TrackState::NotRunning, 0);
     }
 
     trackView->setColumnWidth(TrackView::ColumnPercent, 200);
@@ -738,10 +738,10 @@ void MainWindow::configureEncoder()
  ************************************************/
 void MainWindow::downloadInfo()
 {
-    QList<Disc*> disks = trackView->selectedDiscs();
-    foreach(Disc *disk, disks)
+    QList<Disc*> discs = trackView->selectedDiscs();
+    foreach(Disc *disc, discs)
     {
-        this->downloadDiskInfo(disk);
+        this->downloadDiscInfo(disc);
     }
 }
 
@@ -850,16 +850,16 @@ void MainWindow::openAddFileDialog()
 /************************************************
 
  ************************************************/
-void MainWindow::setAudioForDisk(Disc *disk)
+void MainWindow::setAudioForDisc(Disc *disc)
 {
     QString flt = getOpenFileFilter(true, false);
 
     QString dir;
 
-    if (!disk->cueFile().isEmpty())
-        dir = QFileInfo(disk->cueFile()).dir().absolutePath();
-    else if (! disk->audioFileName().isEmpty())
-        dir = QFileInfo(disk->audioFileName()).dir().absolutePath();
+    if (!disc->cueFile().isEmpty())
+        dir = QFileInfo(disc->cueFile()).dir().absolutePath();
+    else if (! disc->audioFileName().isEmpty())
+        dir = QFileInfo(disc->audioFileName()).dir().absolutePath();
     else
         dir = Settings::i()->value(Settings::Misc_LastDir).toString();
 
@@ -871,7 +871,7 @@ void MainWindow::setAudioForDisk(Disc *disk)
 
     InputAudioFile audio(fileName);
     if (audio.isValid())
-        disk->setAudioFile(audio);
+        disc->setAudioFile(audio);
     else
         Messages::error(audio.errorString());
 }
@@ -880,30 +880,30 @@ void MainWindow::setAudioForDisk(Disc *disk)
 /************************************************
  *
  ************************************************/
-void MainWindow::setCoverImage(Disc *disk)
+void MainWindow::setCoverImage(Disc *disc)
 {
-    CoverDialog::createAndShow(disk, this);
+    CoverDialog::createAndShow(disc, this);
 }
 
 
 /************************************************
  *
  ************************************************/
-void MainWindow::downloadDiskInfo(Disc *disk)
+void MainWindow::downloadDiscInfo(Disc *disc)
 {
-    if (!disk->canDownloadInfo())
+    if (!disc->canDownloadInfo())
         return;
 
-    DataProvider *provider = new FreeDbProvider(*disk);
+    DataProvider *provider = new FreeDbProvider(*disc);
     connect(provider, SIGNAL(finished()), provider, SLOT(deleteLater()));
     connect(provider, &DataProvider::finished,
-            [disk, this]() { trackView->downloadFinished(*disk); });
+            [disc, this]() { trackView->downloadFinished(*disc); });
 
     connect(provider, &DataProvider::ready,
-            [disk](const QVector<Tracks> data) { disk->addTagSets(data); });
+            [disc](const QVector<Tracks> data) { disc->addTagSets(data); });
 
     provider->start();
-    trackView->downloadStarted(*disk);
+    trackView->downloadStarted(*disc);
 }
 
 
@@ -912,7 +912,7 @@ void MainWindow::downloadDiskInfo(Disc *disk)
  ************************************************/
 void MainWindow::addFileOrDir(const QString &fileName)
 {
-    DiscList addedDisks;
+    DiscList addedDiscs;
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
     QFileInfo fi = QFileInfo(fileName);
@@ -930,11 +930,11 @@ void MainWindow::addFileOrDir(const QString &fileName)
         }
         else if (fi.size() > 102400)
         {
-            addedDisks << project->addAudioFile(fileName);
+            addedDiscs << project->addAudioFile(fileName);
         }
         else
         {
-            addedDisks << project->addCueFile(fileName);
+            addedDiscs << project->addCueFile(fileName);
         }
     }
     catch (FlaconError &err)
@@ -944,18 +944,18 @@ void MainWindow::addFileOrDir(const QString &fileName)
     }
     QApplication::restoreOverrideCursor();
 
-    if (!addedDisks.isEmpty())
-        this->trackView->selectDisc(addedDisks.first());
+    if (!addedDiscs.isEmpty())
+        this->trackView->selectDisc(addedDiscs.first());
 }
 
 
 /************************************************
 
  ************************************************/
-void MainWindow::removeDisks()
+void MainWindow::removeDiscs()
 {
-    QList<Disc*> disks = trackView->selectedDiscs();
-    project->removeDisc(&disks);
+    QList<Disc*> discs = trackView->selectedDiscs();
+    project->removeDisc(&discs);
     setControlsEnable();
 }
 
@@ -1007,8 +1007,8 @@ void MainWindow::trackViewMenu(const QPoint &pos)
         return;
 
 
-    Disc *disk = trackView->model()->discByIndex(index);
-    if (!disk)
+    Disc *disc = trackView->model()->discByIndex(index);
+    if (!disc)
         return;
 
 
@@ -1020,17 +1020,17 @@ void MainWindow::trackViewMenu(const QPoint &pos)
     menu.addSeparator();
 
     act = new QAction(tr("Select another audio file…", "context menu"), &menu);
-    connect(act, &QAction::triggered, [this, disk](){ this->setAudioForDisk(disk); });
+    connect(act, &QAction::triggered, [this, disc](){ this->setAudioForDisc(disc); });
     menu.addAction(act);
 
 
     act = new QAction(tr("Select another CUE file…", "context menu"), &menu);
-    connect(act, &QAction::triggered, [this, disk](){ this->setCueForDisc(disk); });
+    connect(act, &QAction::triggered, [this, disc](){ this->setCueForDisc(disc); });
     menu.addAction(act);
 
     act = new QAction(tr("Get data from CDDB", "context menu"), &menu);
-    act->setEnabled(disk->canDownloadInfo());
-    connect(act, &QAction::triggered, [this, disk](){ this->downloadDiskInfo(disk);});
+    act->setEnabled(disc->canDownloadInfo());
+    connect(act, &QAction::triggered, [this, disc](){ this->downloadDiscInfo(disc);});
     menu.addAction(act);
 
     menu.exec(trackView->viewport()->mapToGlobal(pos));
@@ -1093,10 +1093,10 @@ void MainWindow::setStartTrackNum()
         return;
 
     int value = tagStartNumEdit->value();
-    QList<Disc*> disks = trackView->selectedDiscs();
-    foreach(Disc *disk, disks)
+    QList<Disc*> discs = trackView->selectedDiscs();
+    foreach(Disc *disc, discs)
     {
-        disk->setStartTrackNum(value);
+        disc->setStartTrackNum(value);
     }
 }
 
@@ -1106,11 +1106,11 @@ void MainWindow::setStartTrackNum()
  ************************************************/
 void MainWindow::initActions()
 {
-    actionAddDisk->setIcon(Icon("add-disk"));
-    connect(actionAddDisk, SIGNAL(triggered()), this, SLOT(openAddFileDialog()));
+    actionAddDisc->setIcon(Icon("add-disk"));
+    connect(actionAddDisc, SIGNAL(triggered()), this, SLOT(openAddFileDialog()));
 
     actionRemoveDisc->setIcon(Icon("remove-disk"));
-    connect(actionRemoveDisc, SIGNAL(triggered()), this, SLOT(removeDisks()));
+    connect(actionRemoveDisc, SIGNAL(triggered()), this, SLOT(removeDiscs()));
 
     actionScan->setIcon(Icon("scan"));
     connect(actionScan, SIGNAL(triggered()), this, SLOT(openScanDialog()));

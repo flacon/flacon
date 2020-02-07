@@ -159,12 +159,12 @@ If you surround sections of text that contain a token with braces, these section
           </property>
           <layout class="QGridLayout" name="formLayout">
            <item row="3" column="0">
-            <widget class="QLabel" name="tagDiskPerformerLabel">
+            <widget class="QLabel" name="tagDiscPerformerLabel">
              <property name="text">
               <string>Album performer:</string>
              </property>
              <property name="buddy">
-              <cstring>tagDiskPerformerEdit</cstring>
+              <cstring>tagDiscPerformerEdit</cstring>
              </property>
             </widget>
            </item>
@@ -172,7 +172,7 @@ If you surround sections of text that contain a token with braces, these section
             <widget class="CodePageComboBox" name="codepageCombo"/>
            </item>
            <item row="3" column="1" colspan="2">
-            <widget class="TagLineEdit" name="tagDiskPerformerEdit"/>
+            <widget class="TagLineEdit" name="tagDiscPerformerEdit"/>
            </item>
            <item row="7" column="1" colspan="2">
             <widget class="TagLineEdit" name="tagDiscIdEdit">
@@ -351,7 +351,7 @@ If you surround sections of text that contain a token with braces, these section
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionAddDisk"/>
+    <addaction name="actionAddDisc"/>
     <addaction name="actionRemoveDisc"/>
     <addaction name="separator"/>
     <addaction name="actionDownloadTrackInfo"/>
@@ -399,7 +399,7 @@ If you surround sections of text that contain a token with braces, these section
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionAddDisk"/>
+   <addaction name="actionAddDisc"/>
    <addaction name="actionRemoveDisc"/>
    <addaction name="separator"/>
    <addaction name="actionScan"/>
@@ -409,9 +409,9 @@ If you surround sections of text that contain a token with braces, these section
    <addaction name="actionStartConvert"/>
    <addaction name="actionAbortConvert"/>
   </widget>
-  <action name="actionAddDisk">
+  <action name="actionAddDisc">
    <property name="text">
-    <string>Add disk…</string>
+    <string>Add disc…</string>
    </property>
    <property name="toolTip">
     <string>Add CUE or audio file</string>
@@ -462,10 +462,10 @@ If you surround sections of text that contain a token with braces, these section
   </action>
   <action name="actionRemoveDisc">
    <property name="text">
-    <string>Remove disk</string>
+    <string>Remove disc</string>
    </property>
    <property name="toolTip">
-    <string>Remove disk from project</string>
+    <string>Remove disc from project</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Del</string>
@@ -583,7 +583,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
   <tabstop>tagGenreEdit</tabstop>
   <tabstop>tagYearEdit</tabstop>
   <tabstop>tagArtistEdit</tabstop>
-  <tabstop>tagDiskPerformerEdit</tabstop>
+  <tabstop>tagDiscPerformerEdit</tabstop>
   <tabstop>tagAlbumEdit</tabstop>
   <tabstop>tagStartNumEdit</tabstop>
   <tabstop>tagDiscIdEdit</tabstop>
