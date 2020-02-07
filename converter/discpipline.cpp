@@ -98,10 +98,10 @@ struct EncoderRequest
 /************************************************
  *
  ************************************************/
-class DiskPipeline::Data
+class DiscPipeline::Data
 {
 public:
-    Data(const Converter::Job &job, const Profile &profile, DiskPipeline *pipeline):
+    Data(const Converter::Job &job, const Profile &profile, DiscPipeline *pipeline):
         pipeline(pipeline),
         job(job),
         profile(profile)
@@ -113,7 +113,7 @@ public:
         delete workDir;
     }
 
-    DiskPipeline *pipeline;
+    DiscPipeline *pipeline;
     Converter::Job job;
     const Profile profile;
     bool needStartSplitter = true;
@@ -146,7 +146,7 @@ public:
 /************************************************
  *
  ************************************************/
-bool DiskPipeline::Data::createDir(const QString &dirName) const
+bool DiscPipeline::Data::createDir(const QString &dirName) const
 {
     QDir dir(dirName);
 
@@ -173,7 +173,7 @@ bool DiskPipeline::Data::createDir(const QString &dirName) const
 /************************************************
  *
  ************************************************/
-DiskPipeline::DiskPipeline(const Converter::Job &job, const Profile &profile, QObject *parent) :
+DiscPipeline::DiskPipeline(const Converter::Job &job, const Profile &profile, QObject *parent) :
     QObject(parent),
     mData(new Data(job, profile, this))
 {
@@ -192,7 +192,7 @@ DiskPipeline::DiskPipeline(const Converter::Job &job, const Profile &profile, QO
 /************************************************
 
  ************************************************/
-DiskPipeline::~DiskPipeline()
+DiscPipeline::~DiscPipeline()
 {
     delete mData;
 }
@@ -201,7 +201,7 @@ DiskPipeline::~DiskPipeline()
 /************************************************
  *
  ************************************************/
-bool DiskPipeline::init()
+bool DiscPipeline::init()
 {
     return mData->init();
 }
@@ -210,7 +210,7 @@ bool DiskPipeline::init()
 /************************************************
  *
  ************************************************/
-bool DiskPipeline::Data::init()
+bool DiscPipeline::Data::init()
 {
     QString dir = !tmpDirName.isEmpty() ?
                    tmpDirName :
@@ -243,7 +243,7 @@ bool DiskPipeline::Data::init()
                                 optional step    optional step
 
  ************************************************/
-void DiskPipeline::startWorker(int *splitterCount, int *count)
+void DiscPipeline::startWorker(int *splitterCount, int *count)
 {
     if (mData->interrupted)
         return;
@@ -288,7 +288,7 @@ void DiskPipeline::startWorker(int *splitterCount, int *count)
 /************************************************
  *
  ************************************************/
-bool DiskPipeline::Data::createCue() const
+bool DiscPipeline::Data::createCue() const
 {
     if (!profile.isCreateCue())
         return true;
@@ -307,7 +307,7 @@ bool DiskPipeline::Data::createCue() const
 /************************************************
  *
  ************************************************/
-bool DiskPipeline::Data::copyCoverImage() const
+bool DiscPipeline::Data::copyCoverImage() const
 {
     if (coverMode == CoverMode::Disable)
         return true;
@@ -331,7 +331,7 @@ bool DiskPipeline::Data::copyCoverImage() const
 /************************************************
  *
  ************************************************/
-void DiskPipeline::Data::startSplitterThread()
+void DiscPipeline::Data::startSplitterThread()
 {
     Splitter *worker = new Splitter(job.disk, workDir->path(), extractPregap, preGapType);
     for (const Track *t: job.tracks)
@@ -368,7 +368,7 @@ void DiskPipeline::Data::startSplitterThread()
 /************************************************
  *
  ************************************************/
-void DiskPipeline::Data::startEncoderThread(const EncoderRequest &req)
+void DiscPipeline::Data::startEncoderThread(const EncoderRequest &req)
 {
     Encoder *worker = new Encoder(req.track, req.inputFile, req.outFile, profile);
 
@@ -417,7 +417,7 @@ void DiskPipeline::Data::startEncoderThread(const EncoderRequest &req)
 /************************************************
  *
  ************************************************/
-void DiskPipeline::Data::startTrackGainThread(const GainRequest &req)
+void DiscPipeline::Data::startTrackGainThread(const GainRequest &req)
 {
     Gain *worker = new Gain(profile);
     worker->addTrack(req.track, req.inputFile);
@@ -447,7 +447,7 @@ void DiskPipeline::Data::startTrackGainThread(const GainRequest &req)
 /************************************************
  *
  ************************************************/
-void DiskPipeline::Data::startAlbumGainThread(QList<GainRequest> &reqs)
+void DiscPipeline::Data::startAlbumGainThread(QList<GainRequest> &reqs)
 {
     Gain *worker = new Gain(profile);
     for (const GainRequest &req: reqs) {
@@ -478,7 +478,7 @@ void DiskPipeline::Data::startAlbumGainThread(QList<GainRequest> &reqs)
 /************************************************
  *
  ************************************************/
-int DiskPipeline::calcQuality(int input, int preferences, int formatMax)
+int DiscPipeline::calcQuality(int input, int preferences, int formatMax)
 {
 
     int min = qMin(qMin(input, formatMax),
@@ -494,7 +494,7 @@ int DiskPipeline::calcQuality(int input, int preferences, int formatMax)
 /************************************************
  *
  ************************************************/
-void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFile)
+void DiscPipeline::addEncoderRequest(const Track *track, const QString &inputFile)
 {
     trackProgress(track, TrackState::Queued, 0);
     QFileInfo trackFile(track->resultFilePath());
@@ -511,7 +511,7 @@ void DiskPipeline::addEncoderRequest(const Track *track, const QString &inputFil
 /************************************************
  *
  ************************************************/
-void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
+void DiscPipeline::addGainRequest(const Track *track, const QString &fileName)
 {
     if (mData->profile.gainType() == GainType::Album)
         trackProgress(track, TrackState::WaitGain, 0);
@@ -526,7 +526,7 @@ void DiskPipeline::addGainRequest(const Track *track, const QString &fileName)
 /************************************************
  *
  ************************************************/
-void DiskPipeline::trackDone(const Track *track, const QString &outFileName)
+void DiscPipeline::trackDone(const Track *track, const QString &outFileName)
 {
     // Track is ready, rename the file to the final name.
     // Remove old already existing file.
@@ -552,7 +552,7 @@ void DiskPipeline::trackDone(const Track *track, const QString &outFileName)
 /************************************************
 
  ************************************************/
-void DiskPipeline::Data::interrupt(TrackState state)
+void DiscPipeline::Data::interrupt(TrackState state)
 {
     interrupted = true;
     encoderRequests.clear();
@@ -587,7 +587,7 @@ void DiskPipeline::Data::interrupt(TrackState state)
 /************************************************
 
  ************************************************/
-void DiskPipeline::stop()
+void DiscPipeline::stop()
 {
     mData->interrupt(TrackState::Aborted);
     emit threadQuit();
@@ -600,7 +600,7 @@ void DiskPipeline::stop()
 /************************************************
 
  ************************************************/
-void DiskPipeline::trackError(const Track *track, const QString &message)
+void DiscPipeline::trackError(const Track *track, const QString &message)
 {
     mData->trackStates.insert(track, TrackState::Error);
     emit trackProgressChanged(*track, TrackState::Error, 0);
@@ -616,7 +616,7 @@ void DiskPipeline::trackError(const Track *track, const QString &message)
 /************************************************
 
  ************************************************/
-bool DiskPipeline::isRunning() const
+bool DiscPipeline::isRunning() const
 {
     QHash<const Track*, TrackState>::const_iterator it;
     for (it = mData->trackStates.begin(); it != mData->trackStates.end(); ++it)
@@ -647,7 +647,7 @@ bool DiskPipeline::isRunning() const
 /************************************************
  *
  ************************************************/
-int DiskPipeline::runningThreadCount() const
+int DiscPipeline::runningThreadCount() const
 {
     int res = 0;
     foreach (WorkerThread *thread, mData->threads)
@@ -662,7 +662,7 @@ int DiskPipeline::runningThreadCount() const
 /************************************************
  *
  ************************************************/
-CoverMode DiskPipeline::coverMode() const
+CoverMode DiscPipeline::coverMode() const
 {
     return mData->coverMode;
 }
@@ -671,7 +671,7 @@ CoverMode DiskPipeline::coverMode() const
 /************************************************
  *
  ************************************************/
-void DiskPipeline::setCoverMode(CoverMode value)
+void DiscPipeline::setCoverMode(CoverMode value)
 {
     mData->coverMode = value;
 }
@@ -680,7 +680,7 @@ void DiskPipeline::setCoverMode(CoverMode value)
 /************************************************
  *
  ************************************************/
-int DiskPipeline::coverImageSize() const
+int DiscPipeline::coverImageSize() const
 {
     return mData->coverImageSize;
 }
@@ -689,7 +689,7 @@ int DiskPipeline::coverImageSize() const
 /************************************************
  *
  ************************************************/
-void DiskPipeline::setCoverImageSize(int value)
+void DiscPipeline::setCoverImageSize(int value)
 {
     mData->coverImageSize = value;
 }
@@ -698,7 +698,7 @@ void DiskPipeline::setCoverImageSize(int value)
 /************************************************
  *
  ************************************************/
-QString DiskPipeline::tmpDir() const
+QString DiscPipeline::tmpDir() const
 {
     return mData->tmpDirName;
 }
@@ -707,7 +707,7 @@ QString DiskPipeline::tmpDir() const
 /************************************************
  *
  ************************************************/
-void DiskPipeline::setTmpDir(QString value)
+void DiscPipeline::setTmpDir(QString value)
 {
     mData->tmpDirName = value;
 }
@@ -716,7 +716,7 @@ void DiskPipeline::setTmpDir(QString value)
 /************************************************
 
  ************************************************/
-void DiskPipeline::trackProgress(const Track *track, TrackState state, int percent)
+void DiscPipeline::trackProgress(const Track *track, TrackState state, int percent)
 {
     if (mData->interrupted)
         return;

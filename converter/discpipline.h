@@ -24,8 +24,8 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef DISKPIPLINE_H
-#define DISKPIPLINE_H
+#ifndef DISCPIPLINE_H
+#define DISCPIPLINE_H
 
 #include <QObject>
 #include <QTemporaryDir>
@@ -36,12 +36,12 @@ class Disc;
 class Project;
 class WorkerThread;
 
-class DiskPipeline : public QObject
+class DiscPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiskPipeline(const Converter::Job &job, const Profile &profile, QObject *parent = nullptr);
-    virtual ~DiskPipeline();
+    explicit DiscPipeline(const Converter::Job &job, const Profile &profile, QObject *parent = nullptr);
+    virtual ~DiscPipeline();
 
     bool init();
     void startWorker(int *splitterCount, int *count);
@@ -82,4 +82,4 @@ private:
     Data *mData;
 };
 
-#endif // DISKPIPLINE_H
+#endif // DISCPIPLINE_H
