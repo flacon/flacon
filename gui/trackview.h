@@ -56,26 +56,26 @@ public:
     explicit TrackView(QWidget *parent = nullptr);
 
     QList<Track*> selectedTracks() const;
-    QList<Disc*> selectedDisks() const;
+    QList<Disc*> selectedDiscs() const;
 
-    bool isSelected(const Disc &disk) const;
+    bool isSelected(const Disc &disc) const;
     bool isSelected(const Track &track) const;
 
     TrackViewModel *model() const { return mModel; }
 
 public slots:
     void layoutChanged();
-    void selectDisk(const Disc *disk);
-    void downloadStarted(const Disc &disk);
-    void downloadFinished(const Disc &disk);
+    void selectDisc(const Disc *disc);
+    void downloadStarted(const Disc &disc);
+    void downloadFinished(const Disc &disc);
     void update(const Track &track);
-    void update(const Disc &disk);
+    void update(const Disc &disc);
 
 signals:
-    void selectCueFile(Disc *disk);
-    void selectAudioFile(Disc *disk);
-    void selectCoverImage(Disc *disk);
-    void downloadInfo(Disc *disk);
+    void selectCueFile(Disc *disc);
+    void selectAudioFile(Disc *disc);
+    void selectCoverImage(Disc *disc);
+    void downloadInfo(Disc *disc);
 
 protected:
     void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
