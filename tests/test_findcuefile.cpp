@@ -88,9 +88,9 @@ void TestFlacon::testFindCueFile()
 
     InputAudioFile audio(dir() + "/" + test.chekAudioFile);
 
-    Disc disk;
-    disk.setAudioFile(audio);
-    QString real = disk.cueFile();
+    Disc disc;
+    disc.setAudioFile(audio);
+    QString real = disc.cueFile();
     QString expected = dir() + "/" + test.expected;
     QCOMPARE(real, expected);
 }

@@ -188,8 +188,8 @@ QString Track::resultFileName() const
 
     }
 
-    // If the disk is a collection, the files fall into different directories.
-    // So we use the tag DiskPerformer for expand the directory path.
+    // If the disc is a collection, the files fall into different directories.
+    // So we use the tag DiscPerformer for expand the directory path.
     PatternExpander albumExpander(*this);
     albumExpander.setArtist(this->tag(TagId::AlbumArtist));
 

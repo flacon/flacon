@@ -45,7 +45,7 @@ class TagEditor : public QDialog
     Q_OBJECT
 
 public:
-    explicit TagEditor(const QList<Track*> &tracks, const QList<Disc *> &disks, QWidget *parent = nullptr);
+    explicit TagEditor(const QList<Track*> &tracks, const QList<Disc *> &discs, QWidget *parent = nullptr);
     ~TagEditor();
 
 public slots:
@@ -59,7 +59,7 @@ private:
     void addIntEdit(TagId tagId, const QString &label);
     void addIntEditNumCount(TagId numTagId, TagId cntTagId, const QString &numLabel);
     const QList<Track*> mTracks;
-    const QList<Disc *> mDisks;
+    const QList<Disc *> mDiscs;
     MultiValuesSpinBox *mStartTrackSpin;
 };
 

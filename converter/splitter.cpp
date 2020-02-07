@@ -34,9 +34,9 @@
 /************************************************
  *
  ************************************************/
-Splitter::Splitter(const Disc *disk, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent):
+Splitter::Splitter(const Disc *disc, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent):
     Worker(parent),
-    mDisk(disk),
+    mDisc(disc),
     mWorkDir(workDir),
     mExtractPregap(extractPregap),
     mPreGapType(preGapType)
@@ -54,14 +54,14 @@ void Splitter::run()
 
     try
     {
-        decoder.open(mDisk->audioFileName());
+        decoder.open(mDisc->audioFileName());
     }
     catch (FlaconError &err)
     {
         error(mTracks.first(),
               tr("I can't read <b>%1</b>:<br>%2",
                  "Splitter error. %1 is a file name, %2 is a system error text.")
-              .arg(mDisk->audioFileName())
+              .arg(mDisc->audioFileName())
               .arg(err.what()));
         return;
     }
@@ -70,9 +70,9 @@ void Splitter::run()
     // Extract pregap to separate file ....................
     if (mExtractPregap)
     {
-        mCurrentTrack  = mDisk->preGapTrack();
-        CueIndex start = mDisk->track(0)->cueIndex(0);
-        CueIndex end   = mDisk->track(0)->cueIndex(1);
+        mCurrentTrack  = mDisc->preGapTrack();
+        CueIndex start = mDisc->track(0)->cueIndex(0);
+        CueIndex end   = mDisc->track(0)->cueIndex(1);
         QString outFileName = QString("%1/pregap.wav").arg(mWorkDir);
 
         try
@@ -97,9 +97,9 @@ void Splitter::run()
     connect(&decoder, SIGNAL(progress(int)),
             this, SLOT(decoderProgress(int)));
 
-    for (int i=0; i<mDisk->count(); ++i)
+    for (int i=0; i<mDisc->count(); ++i)
     {
-        mCurrentTrack = mDisk->track(i);
+        mCurrentTrack = mDisc->track(i);
         if (!mTracks.contains(mCurrentTrack))
             continue;
 
@@ -109,10 +109,10 @@ void Splitter::run()
         if (i==0 && mPreGapType == PreGapType::AddToFirstTrack)
             start = CueTime("00:00:00");
         else
-            start = mDisk->track(i)->cueIndex(1);
+            start = mDisc->track(i)->cueIndex(1);
 
-        if (i<mDisk->count()-1)
-            end = mDisk->track(i+1)->cueIndex(01);
+        if (i<mDisc->count()-1)
+            end = mDisc->track(i+1)->cueIndex(01);
 
         try
         {

@@ -134,12 +134,12 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent):
     QStyledItemDelegate(parent),
     mTrackView(parent),
     mCache(new TrackViewCache),
-    mDiskHeightHint(0)
+    mDiscHeightHint(0)
 {
     mTrackBtnPix   = Icon("cue-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
     mAudioBtnPix   = Icon("audio-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
-    mDiskErrorPix  = Icon("error").pixmap(MARK_HEIGHT, MARK_HEIGHT);
-    mDiskWarnPix   = Icon("warning").pixmap(MARK_HEIGHT, MARK_HEIGHT);
+    mDiscErrorPix  = Icon("error").pixmap(MARK_HEIGHT, MARK_HEIGHT);
+    mDiscWarnPix   = Icon("warning").pixmap(MARK_HEIGHT, MARK_HEIGHT);
     mTrackOkPix    = Icon("track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
     mTrackErrorPix = Icon("track-cancel").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
     mNoCoverImg    = QImage(":noCover");
@@ -208,7 +208,7 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
         return;
     }
 
-    // TrackViewModel::DiskItem
+    // TrackViewModel::DiscItem
     if (index.column() == 0)
     {
         QColor bgColor = mTrackView->palette().base().color();
@@ -222,7 +222,7 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
             drawSelectionMark(painter, rect);
         }
 
-        paintDisk(painter, opt, index);
+        paintDisc(painter, opt, index);
         return;
     }
 }
@@ -343,7 +343,7 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
 /************************************************
 
  ************************************************/
-void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QRect paintRect = option.rect;
     paintRect.setLeft(0);
@@ -456,12 +456,12 @@ void TrackViewDelegate::paintDisk(QPainter *painter, const QStyleOptionViewItem 
     }
     else if (!index.data(TrackViewModel::RoleCanConvert).toBool())
     {
-        painter->drawPixmap(markRect, mDiskErrorPix);
+        painter->drawPixmap(markRect, mDiscErrorPix);
         cache->markBtn = markRect;
     }
     else if (index.data(TrackViewModel::RoleHasWarnings).toBool())
     {
-        painter->drawPixmap(markRect, mDiskWarnPix);
+        painter->drawPixmap(markRect, mDiscWarnPix);
         cache->markBtn = markRect;
     }
     else
@@ -517,7 +517,7 @@ QSize TrackViewDelegate::sizeHint(const QStyleOptionViewItem &option, const QMod
 
     if (!index.parent().isValid())
     {
-        if (!mDiskHeightHint)
+        if (!mDiscHeightHint)
         {
             int h = 8;
 
@@ -525,10 +525,10 @@ QSize TrackViewDelegate::sizeHint(const QStyleOptionViewItem &option, const QMod
             QFont filesFont = this->filesFont(option.font);
             h += QFontMetrics(titleFont).height();
             h += QFontMetrics(filesFont).height() * 2;
-            mDiskHeightHint = qMax(IMG_HEIGHT, h) + 2 * MARGIN + BOTTOM_PADDING; //For Line
+            mDiscHeightHint = qMax(IMG_HEIGHT, h) + 2 * MARGIN + BOTTOM_PADDING; //For Line
         }
 
-        res.rheight() = mDiskHeightHint;
+        res.rheight() = mDiscHeightHint;
         if (index.row())
             res.rheight() += TOP_PADDING;
         if (index.column() == 0)

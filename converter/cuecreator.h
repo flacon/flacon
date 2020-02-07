@@ -39,7 +39,7 @@ class Track;
 class CueCreator
 {
 public:
-    explicit CueCreator(const Disc *disk, PreGapType preGapType, const QString &fileTemplate);
+    explicit CueCreator(const Disc *disc, PreGapType preGapType, const QString &fileTemplate);
     bool write();
 
     QString errorString() const { return mErrorString; }
@@ -49,7 +49,7 @@ public:
     void setTextCodecMib(int mib);
 
 private:
-    const Disc *mDisk;
+    const Disc *mDisc;
     const PreGapType mPreGapType;
     QFile mFile;
     QString mErrorString;

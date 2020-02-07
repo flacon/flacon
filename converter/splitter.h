@@ -40,7 +40,7 @@ class Splitter: public Worker
 {
     Q_OBJECT
 public:
-    Splitter(const Disc *disk, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent = nullptr);
+    Splitter(const Disc *disc, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent = nullptr);
 
     void addTrack(const Track *track) { mTracks << track;}
 
@@ -51,7 +51,7 @@ private slots:
     void decoderProgress(int percent);
 
 private:
-    const Disc *mDisk;
+    const Disc *mDisc;
     const QString mWorkDir;
     const bool mExtractPregap;
     const PreGapType mPreGapType;

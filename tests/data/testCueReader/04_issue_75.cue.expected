@@ -1,13 +1,13 @@
-[ DISK 01 / TRACK 01 ]
+[ DISC 01 / TRACK 01 ]
   FILE        = Paddingtons Finest Hour d1.flac
   ALBUM       = "Paddington's Finest Hour"
   TITLE       = 01
-  DISKID      = 605aePKvRiNqUAth4gpwWnTIkfI-
+  DISCID      = 605aePKvRiNqUAth4gpwWnTIkfI-
   DATE        = 2018
   GENRE	      = Audiobook
   INDEX CD 00 = 00:00:00
   INDEX CD 01 = 00:00:00
   TRACKNUM    = 1
   TRACKCOUNT  = 1
-  DISKNUM     = 1
-  DISKCOUNT   = 1
+  DISCNUM     = 1
+  DISCCOUNT   = 1

@@ -83,15 +83,15 @@ void TestFlacon::testFindAudioFile()
 
     for (int i=0; i<cue.count(); ++i)
     {
-        Disc disk;
-        disk.loadFromCue(cue.at(i));
+        Disc disc;
+        disc.loadFromCue(cue.at(i));
         QString expected = expectedLists.at(i).trimmed();
         if (expected == "''")
             expected = "";
         else
             expected = dir() + "/" + expected;
 
-        QString real = disk.audioFileName();
+        QString real = disc.audioFileName();
         QCOMPARE(real, expected);
 
     }
@@ -124,11 +124,11 @@ void TestFlacon::testFindAudioFile_data()
 
     QTest::newRow("03")
             << "Garbage.wav"
-            << "Disk.cue"
-            << "Disk.ape"
-            << "Disk.ape";
+            << "Disc.cue"
+            << "Disc.ape"
+            << "Disc.ape";
 
-    QTest::newRow("04 Multi disk => CueFile_1.ape")
+    QTest::newRow("04 Multi disc => CueFile_1.ape")
             << "FileTag1.wav, FileTag2.wav"
             << "CueFile.cue"
             << "CueFile.ape," "CueFile_1.ape," "CueFile_2.ape"
