@@ -38,8 +38,8 @@ public:
 
     bool isEmptyForOptional(QChar key) const
     {
-        // If album contains only one disk,
-        // diskCount and diskNum are optional
+        // If album contains only one disc,
+        // discCount and discNum are optional
         if (key == 'd' ||
             key == 'D' )
         {
@@ -57,8 +57,8 @@ public:
 PatternExpander::PatternExpander():
     mTrackCount(0),
     mTrackNum(0),
-    mDiskCount(0),
-    mDiskNum(0)
+    mDiscCount(0),
+    mDiscNum(0)
 {
 
 }
@@ -70,8 +70,8 @@ PatternExpander::PatternExpander():
 PatternExpander::PatternExpander(const Track &track):
     mTrackCount(track.trackCount()),
     mTrackNum(track.trackNum()),
-    mDiskCount(track.discCount()),
-    mDiskNum(track.discNum()),
+    mDiscCount(track.discCount()),
+    mDiscNum(track.discNum()),
     mAlbum(track.album()),
     mTrackTitle(track.title()),
     mArtist(track.artist()),
@@ -189,8 +189,8 @@ QString PatternExpander::expand(const QString &pattern) const
     Tokens tokens;
     tokens.insert(QChar('N'),   QString("%1").arg(mTrackCount, 2, 10, QChar('0')));
     tokens.insert(QChar('n'),   QString("%1").arg(mTrackNum, 2, 10, QChar('0')));
-    tokens.insert(QChar('D'),   QString("%1").arg(mDiskCount, 2, 10, QChar('0')));
-    tokens.insert(QChar('d'),   QString("%1").arg(mDiskNum, 2, 10, QChar('0')));
+    tokens.insert(QChar('D'),   QString("%1").arg(mDiscCount, 2, 10, QChar('0')));
+    tokens.insert(QChar('d'),   QString("%1").arg(mDiscNum, 2, 10, QChar('0')));
     tokens.insert(QChar('A'),   safeString(mAlbum));
     tokens.insert(QChar('t'),   safeString(mTrackTitle));
     tokens.insert(QChar('a'),   safeString(mArtist));
@@ -210,8 +210,8 @@ QString PatternExpander::example(const QString &pattern)
 
     expander.setTrackNum(13);
     expander.setTrackCount(14);
-    expander.setDiskNum(1);
-    expander.setDiskCount(1);
+    expander.setDiscNum(1);
+    expander.setDiscCount(1);
 
     expander.setArtist("The Beatles");
     expander.setAlbum("Help");

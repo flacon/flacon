@@ -35,7 +35,7 @@ class Track;
 
 /************************************************
   %N  Number of tracks       %n  Track number
-  %D  Number of disks        %d  Disk number
+  %D  Number of discs        %d  Disc number
   %a  Artist                 %A  Album title
   %y  Year                   %g  Genre
   %t  Track title
@@ -52,11 +52,11 @@ public:
     TrackNum trackNum() const { return mTrackNum; }
     void setTrackNum(TrackNum value) { mTrackNum = value; }
 
-    DiscCount diskCount() const { return mDiskCount; }
-    void setDiskCount(DiscCount value) { mDiskCount = value; }
+    DiscCount discCount() const { return mDiscCount; }
+    void setDiscCount(DiscCount value) { mDiscCount = value; }
 
-    DiscNum diskNum() const { return mDiskNum; }
-    void setDiskNum(DiscNum value) { mDiskNum = value; }
+    DiscNum discNum() const { return mDiscNum; }
+    void setDiscNum(DiscNum value) { mDiscNum = value; }
 
 
     QString artist() const { return mArtist; }
@@ -81,8 +81,8 @@ public:
 private:
     TrackCount mTrackCount;
     TrackNum   mTrackNum;
-    DiscCount  mDiskCount;
-    DiscNum    mDiskNum;
+    DiscCount  mDiscCount;
+    DiscNum    mDiscNum;
     QString mAlbum;
     QString mTrackTitle;
     QString mArtist;

@@ -71,8 +71,8 @@ void TestFlacon::testPatternExpander()
 
     expander.setTrackCount(trackValues.value("trackCount").toInt());
     expander.setTrackNum(trackValues.value("trackNum").toInt());
-    expander.setDiskCount(trackValues.value("diskCount").toInt());
-    expander.setDiskNum(trackValues.value("diskNum").toInt());
+    expander.setDiscCount(trackValues.value("diskCount").toInt());
+    expander.setDiscNum(trackValues.value("diskNum").toInt());
 
     expander.setAlbum(trackValues.value("album"));
     expander.setTrackTtle(trackValues.value("title"));
