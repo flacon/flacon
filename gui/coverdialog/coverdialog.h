@@ -46,13 +46,13 @@ class CoverDialog : public QDialog
     Q_OBJECT
 
 public:
-    static CoverDialog *createAndShow(Disc *disk, QWidget *parent = nullptr);
+    static CoverDialog *createAndShow(Disc *disc, QWidget *parent = nullptr);
     ~CoverDialog() override;
 
-    Disc *disk() const { return mDisk; }
+    Disc *disc() const { return mDisc; }
 
 public slots:
-    void setDisk(Disc *disk);
+    void setDisc(Disc *disc);
 
 private slots:
     void coverDoubleClicked(QListWidgetItem *item);
@@ -65,7 +65,7 @@ private:
     void scan(const QString &startDir);
 
     Ui::CoverDialog *ui;
-    QPointer<Disc> mDisk;
+    QPointer<Disc> mDisc;
     QIcon mEmptyIcon;
 };
 

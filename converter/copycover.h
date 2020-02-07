@@ -33,13 +33,13 @@ class Disc;
 class CopyCover
 {
 public:
-    CopyCover(const Disc *disk, const QString &outDir, const QString &outBaseName, int newSize);
+    CopyCover(const Disc *disc, const QString &outDir, const QString &outBaseName, int newSize);
     bool run();
 
     QString errorString() const { return mErrorString; }
 
 private:
-    const Disc *mDisk;
+    const Disc *mDisc;
     const int mSize;
     const QString mDir;
     const QString mBaseName;

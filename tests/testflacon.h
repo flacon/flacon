@@ -134,7 +134,7 @@ private:
     void applySettings(const SettingsValues &config);
     QString dir(const QString &subTest = "");
 
-    Disc *standardDisk();
+    Disc *standardDisc();
 
     QString mFfmpeg;
     QString mAudio_cd_wav;
@@ -155,7 +155,7 @@ private:
 
     const QString mTmpDir;
     const QString mDataDir;
-    Disc *mStandardDisk;
+    Disc *mStandardDisc;
 
     static int mTestNum;
 };

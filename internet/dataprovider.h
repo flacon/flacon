@@ -41,10 +41,10 @@ class DataProvider : public QObject
 {
     Q_OBJECT
 public:
-    explicit DataProvider(const Disc &disk);
+    explicit DataProvider(const Disc &disc);
     virtual ~DataProvider();
 
-    const Disc &disk() const { return mDisk; }
+    const Disc &disc() const { return mDisc; }
 
     bool isFinished() const;
 
@@ -67,7 +67,7 @@ private slots:
 
 private:
     QNetworkAccessManager *networkAccessManager() const;
-    const Disc &mDisk;
+    const Disc &mDisc;
     QList<QNetworkReply*> mReplies;
     QVector<Tracks> mResult;
 
@@ -78,7 +78,7 @@ private:
 class FreeDbProvider: public DataProvider
 {
 public:
-    explicit FreeDbProvider(const Disc &disk);
+    explicit FreeDbProvider(const Disc &disc);
 
     void start() override;
 protected:

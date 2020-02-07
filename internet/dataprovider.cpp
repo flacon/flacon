@@ -39,9 +39,9 @@
 /************************************************
 
  ************************************************/
-DataProvider::DataProvider(const Disc &disk) :
+DataProvider::DataProvider(const Disc &disc) :
     QObject(),
-    mDisk(disk)
+    mDisc(disc)
 {
 }
 
@@ -150,8 +150,8 @@ QNetworkAccessManager *DataProvider::networkAccessManager() const
 /************************************************
 
  ************************************************/
-FreeDbProvider::FreeDbProvider(const Disc &disk):
-    DataProvider(disk)
+FreeDbProvider::FreeDbProvider(const Disc &disc):
+    DataProvider(disc)
 {
 }
 
@@ -184,7 +184,7 @@ void FreeDbProvider::start()
         request.setUrl(mask.arg(
                            host,
                            category,
-                           disk().discId(),
+                           disc().discId(),
                            "anonimous",     // Hello user
                            "127.0.0.1",     // Hello host
                            "flacon",        //Hello client name
@@ -282,8 +282,8 @@ Tracks FreeDbProvider::parse(QNetworkReply *reply)
     foreach (QByteArray line, tracks)
     {
         Track &track = res[n++];
-        track.setCodecName(disk().codecName());
-        track.setTag(TagId::DiscId, disk().discId());
+        track.setCodecName(disc().codecName());
+        track.setTag(TagId::DiscId, disc().discId());
         track.setTag(TagId::Date, year);
         track.setTag(TagId::Genre, genre);
         track.setTag(TagId::Album, album);
