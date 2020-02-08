@@ -152,7 +152,7 @@ void ProfileWidget::fixLayout()
     }
 
     for (QLabel *label: labels) {
-        label->setAlignment(Qt::AlignRight);
+        label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
         label->setMinimumWidth(width);
     }
 
