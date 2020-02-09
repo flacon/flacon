@@ -92,7 +92,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setContextMenuPolicy(Qt::NoContextMenu);
 
     outPatternButton->setToolTip(outPatternEdit->toolTip());
-    outDirEdit->setToolTip(actionSelectResultDir->toolTip());
+    outDirButton->setToolTip(outDirEdit->toolTip());
 
     // TrackView ...............................................
     trackView->setRootIsDecorated(false);
@@ -131,53 +131,20 @@ MainWindow::MainWindow(QWidget *parent) :
     initActions();
 
     // Buttons .................................................
-    outDirButton->setAutoRaise(true);
-    outDirButton->setStyleSheet("border: none;");
-    initOutDirButton();
+    outDirButton->setBuddy(outDirEdit);
+    outDirButton->menu()->addSeparator();
+    QAction * act = outDirEdit->deleteItemAction();
+    act->setText(tr("Remove current directory from history"));
+    outDirButton->menu()->addAction(act);
 
     configureProfileBtn->setDefaultAction(actionConfigureEncoder);
-    configureProfileBtn->setAutoRaise(true);
-    configureProfileBtn->setStyleSheet("border: none;");
 
-    outPatternButton->addPattern("%n", tr("Insert \"Track number\""));
-    outPatternButton->addPattern("%N", tr("Insert \"Total number of tracks\""));
-    outPatternButton->addPattern("%a", tr("Insert \"Artist\""));
-    outPatternButton->addPattern("%A", tr("Insert \"Album title\""));
-    outPatternButton->addPattern("%t", tr("Insert \"Track title\""));
-    outPatternButton->addPattern("%y", tr("Insert \"Year\""));
-    outPatternButton->addPattern("%g", tr("Insert \"Genre\""));
-    outPatternButton->addPattern("%d", tr("Insert \"Disc number\""));
-    outPatternButton->addPattern("%D", tr("Insert \"Total number of discs\""));
-
-
-    const QString patterns[] = {
-        "%a/{%y - }%A/%n - %t",
-        "%a -{ %y }%A/%n - %t",
-        "{%y }%A - %a/%n - %t",
-        "%a/%A/%n - %t",
-        "%a - %A/%n - %t",
-        "%A - %a/%n - %t" };
-
-    for (QString pattern: patterns)
-    {
-        outPatternButton->addFullPattern(pattern,
-                                         tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'")
-                                         .arg(pattern)
-                                         + "  ( " + PatternExpander::example(pattern)  + ".flac )");
-    }
-
+    outPatternButton->setBuddy(outPatternEdit);
+    outPatternButton->addStandardPatterns();
     outPatternButton->menu()->addSeparator();
 
     outPatternEdit->deleteItemAction()->setText(tr("Delete current pattern from history"));
     outPatternButton->menu()->addAction(outPatternEdit->deleteItemAction());
-
-    connect(outPatternButton, SIGNAL(paternSelected(QString)),
-            this, SLOT(insertOutPattern(QString)));
-
-    connect(outPatternButton, SIGNAL(fullPaternSelected(QString)),
-            this, SLOT(replaceOutPattern(QString)));
-
-    outPatternButton->setIcon(Icon("pattern-button"));
 
     loadSettings();
 
@@ -227,8 +194,29 @@ MainWindow::MainWindow(QWidget *parent) :
 
     refreshEdits();
     setControlsEnable();
+    polishView();
 }
 
+
+/************************************************
+ *
+ ************************************************/
+#ifdef Q_OS_MAC
+void MainWindow::polishView()
+{
+    QList<QLabel*> labels;
+    labels << outFilesBox->findChildren<QLabel*>();
+    labels << tagsBox->findChildren<QLabel*>();
+
+    for (QLabel *label: labels) {
+        label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    }
+}
+#else
+void MainWindow::polishView()
+{
+}
+#endif
 
 /************************************************
  *
@@ -290,26 +278,6 @@ void MainWindow::dropEvent(QDropEvent * event)
 /************************************************
 
  ************************************************/
-void MainWindow::insertOutPattern(const QString &pattern)
-{
-    outPatternEdit->lineEdit()->insert(pattern);
-    setPattern();
-}
-
-
-/************************************************
-
- ************************************************/
-void MainWindow::replaceOutPattern(const QString &pattern)
-{
-    outPatternEdit->lineEdit()->setText(pattern);
-    setPattern();
-}
-
-
-/************************************************
-
- ************************************************/
 void MainWindow::setPattern()
 {
     Settings::i()->setValue(Settings::OutFiles_Pattern, outPatternEdit->currentText());
@@ -324,21 +292,6 @@ void MainWindow::setOutDir()
 {
     Settings::i()->setValue(Settings::OutFiles_Directory, outDirEdit->currentText());
     Settings::i()->setValue(Settings::OutFiles_DirectoryHistory, outDirEdit->history());
-}
-
-
-/************************************************
-
- ************************************************/
-void MainWindow::openOutDirDialog()
-{
-    QString outDir = QFileDialog::getExistingDirectory(this, tr("Select result directory"), outDirEdit->currentText());
-    if (!outDir.isEmpty())
-    {
-        outDir.replace(QDir::homePath(), "~");
-        outDirEdit->setCurrentText(outDir);
-        setOutDir();
-    }
 }
 
 
@@ -782,55 +735,6 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
 
 
 /************************************************
- *
- ************************************************/
-void MainWindow::initOutDirButton()
-{
-    outDirButton->setIcon(Icon("pattern-button"));
-    QMenu *menu = outDirButton->menu();
-
-    menu->addAction(actionSelectResultDir);
-    menu->addSeparator();
-
-    {
-        QString dir = QStandardPaths::writableLocation(QStandardPaths::MusicLocation);
-        if (!dir.isEmpty() && dir != QDir::homePath())
-        {
-            QAction *act = new QAction(menu);
-            act->setText(tr("Standard music location", "Menu item for output direcory button"));
-            connect(act, &QAction::triggered, [this, dir](){ outDirEdit->setEditText(dir); setOutDir();});
-            menu->addAction(act);
-        }
-    }
-
-    {
-        QString dir = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-        if (!dir.isEmpty())
-        {
-            QAction *act = new QAction(menu);
-            act->setText(tr("Desktop", "Menu item for output direcory button"));
-            connect(act, &QAction::triggered, [this, dir](){ outDirEdit->setCurrentText(dir); setOutDir();});
-            menu->addAction(act);
-        }
-    }
-
-    {
-        QString s = tr("Same directory as CUE file", "Menu item for output direcory button");
-        QAction *act = new QAction(s, menu);
-        outDirEdit->lineEdit()->setPlaceholderText(s);
-        connect(act, &QAction::triggered, [this](){ outDirEdit->setCurrentText(""); setOutDir();});
-        outDirEdit->lineEdit()->editingFinished();
-        menu->addAction(act);
-    }
-
-    menu->addSeparator();
-    QAction * act = outDirEdit->deleteItemAction();
-    act->setText(tr("Remove current directory from history"));
-    menu->addAction(act);
-}
-
-
-/************************************************
 
  ************************************************/
 void MainWindow::openAddFileDialog()
@@ -1126,9 +1030,6 @@ void MainWindow::initActions()
 
     actionAbortConvert->setIcon(Icon("abort-convert"));
     connect(actionAbortConvert, SIGNAL(triggered()), this, SLOT(stopConvert()));
-
-    actionSelectResultDir->setIcon(Icon("folder"));
-    connect(actionSelectResultDir, SIGNAL(triggered()), this, SLOT(openOutDirDialog()));
 
     actionConfigure->setIcon(Icon("configure"));
     connect(actionConfigure, SIGNAL(triggered()), this, SLOT(configure()));

@@ -47,10 +47,45 @@ enum MultiValuesState
     MultiValuesMulti
 };
 
+
+/************************************************
+ *
+ ************************************************/
+class ToolButton: public QToolButton
+{
+    Q_OBJECT
+public:
+    explicit ToolButton(const QIcon &icon, QWidget *parent = nullptr);
+    explicit ToolButton(QWidget *parent = nullptr);
+    virtual ~ToolButton() {}
+
+    /// Returns this label's buddy, or nullptr if no buddy is currently set.
+    QWidget *buddy() const { return mBuddy; }
+
+
+    /// Sets this label's buddy to buddy.
+    ///
+    /// When the user presses the shortcut key indicated by this label,
+    /// the keyboard focus is transferred to the label's buddy widget.
+    void setBuddy(QComboBox *buddy);
+    void setBuddy(QLineEdit *buddy);
+
+protected:
+    void paintEvent(QPaintEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+
+    QLineEdit *buddyLineEdit();
+
+private:
+    QWidget *mBuddy = nullptr;
+};
+
+
+
 /************************************************
 
  ************************************************/
-class OutPatternButton: public QToolButton
+class OutPatternButton: public ToolButton
 {
     Q_OBJECT
 public:
@@ -58,20 +93,19 @@ public:
     void addPattern(const QString &pattern, const QString &title);
     void addFullPattern(const QString &pattern, const QString &title);
 
-    QMenu *menu()  { return &mMenu; }
+    void addStandardPatterns();
 
 signals:
     void paternSelected(const QString &pattern);
     void fullPaternSelected(const QString &pattern);
 
+
 private slots:
     void patternTriggered();
     void fullPatternTriggered();
-    void popupMenu();
 
 private:
     QAction* mSeparator;
-    QMenu mMenu;
 };
 
 
@@ -79,7 +113,25 @@ private:
 /************************************************
  *
  ************************************************/
-class ActionsButton: public QToolButton
+class OutDirButton: public ToolButton
+{
+    Q_OBJECT
+public:
+    explicit OutDirButton(QWidget * parent = nullptr);
+
+private slots:
+    void openSelectDirDialog();
+    void setDirectory(const QString &directory);
+
+private:
+    void fillMenu();
+};
+
+
+/************************************************
+ *
+ ************************************************/
+class ActionsButton: public ToolButton
 {
     Q_OBJECT
 public:

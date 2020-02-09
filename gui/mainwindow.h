@@ -60,9 +60,6 @@ signals:
     void downloadFinished(Disc *disc);
 
 private slots:
-    void insertOutPattern(const QString &pattern);
-    void replaceOutPattern(const QString &pattern);
-
     void setPattern();
     void setOutDir();
     void setOutProfile();
@@ -73,7 +70,6 @@ private slots:
 
     void openAddFileDialog();
 
-    void openOutDirDialog();
     void setCueForDisc(Disc *disc);
     void setAudioForDisc(Disc *disc);
     void setCoverImage(Disc *disc);
@@ -111,7 +107,7 @@ private:
     Scanner *mScanner;
     QString getOpenFileFilter(bool includeAudio, bool includeCue);
 
-    void initOutDirButton();
+    void polishView();
     void initActions();
     void refreshOutProfileCombo();
 

@@ -28,6 +28,7 @@
 #include "project.h"
 #include "settings.h"
 #include "icon.h"
+#include "patternexpander.h"
 
 #include <QMenu>
 #include <QDebug>
@@ -39,20 +40,113 @@
 #include <QCompleter>
 #include <QStringListModel>
 #include <QCheckBox>
+#include <QPaintEvent>
+#include <QStandardPaths>
+
+
+/************************************************
+ *
+ ************************************************/
+ToolButton::ToolButton(const QIcon &icon, QWidget *parent):
+    QToolButton(parent)
+{
+    setAutoRaise(true);
+    setStyleSheet("border: none;");
+    setFixedWidth(sizeHint().width());
+    setIcon(icon);
+    setPopupMode(QToolButton::InstantPopup);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+ToolButton::ToolButton(QWidget *parent):
+    ToolButton(Icon("pattern-button"), parent)
+{
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ToolButton::paintEvent(QPaintEvent *event)
+{
+//    QToolButton::paintEvent(event); return;
+    if (icon().isNull())
+        return;
+
+    QPainter painter(this);
+
+    QRect rect = event->rect();
+    rect.setSize(iconSize());
+    rect.moveCenter(event->rect().center());
+    icon().paint(&painter, rect);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ToolButton::mousePressEvent(QMouseEvent *event)
+{
+    if (mBuddy) {
+        mBuddy->setFocus();
+    }
+
+    QToolButton::mousePressEvent(event);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QLineEdit *ToolButton::buddyLineEdit()
+{
+    if (!buddy())
+        return nullptr;
+
+    QLineEdit *edit = qobject_cast<QLineEdit*>(buddy());
+    if (edit)
+        return edit;
+
+    QComboBox *cbx = qobject_cast<QComboBox*>(buddy());
+    if (cbx)
+        return cbx->lineEdit();
+
+    return nullptr;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ToolButton::setBuddy(QComboBox *buddy)
+{
+    mBuddy = buddy;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ToolButton::setBuddy(QLineEdit *buddy)
+{
+    mBuddy = buddy;
+}
+
+
+
 
 
 /************************************************
 
  ************************************************/
 OutPatternButton::OutPatternButton(QWidget * parent):
-    QToolButton(parent)
+    ToolButton(parent)
 {
-    mSeparator = mMenu.addSeparator();
-    connect(this, SIGNAL(clicked(bool)),
-            this, SLOT(popupMenu()));
-    setAutoRaise(true);
-    setStyleSheet("border: none;");
-    setFixedWidth(sizeHint().width());
+    setMenu(new QMenu(this));
+    mSeparator = menu()->addSeparator();
 }
 
 
@@ -63,8 +157,10 @@ void OutPatternButton::addPattern(const QString &pattern, const QString &title)
 {
     QAction *act = new QAction(title, this);
     act->setData(pattern);
-    connect(act, SIGNAL(triggered()), this, SLOT(patternTriggered()));
-    mMenu.insertAction(mSeparator, act);
+    connect(act, &QAction::triggered,
+            this, &OutPatternButton::patternTriggered);
+
+    menu()->insertAction(mSeparator, act);
 }
 
 
@@ -76,7 +172,40 @@ void OutPatternButton::addFullPattern(const QString &pattern, const QString &tit
     QAction *act = new QAction(title, this);
     act->setData(pattern);
     connect(act, SIGNAL(triggered()), this, SLOT(fullPatternTriggered()));
-    mMenu.addAction(act);
+    menu()->addAction(act);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void OutPatternButton::addStandardPatterns()
+{
+    addPattern("%n", tr("Insert \"Track number\""));
+    addPattern("%N", tr("Insert \"Total number of tracks\""));
+    addPattern("%a", tr("Insert \"Artist\""));
+    addPattern("%A", tr("Insert \"Album title\""));
+    addPattern("%t", tr("Insert \"Track title\""));
+    addPattern("%y", tr("Insert \"Year\""));
+    addPattern("%g", tr("Insert \"Genre\""));
+    addPattern("%d", tr("Insert \"Disc number\""));
+    addPattern("%D", tr("Insert \"Total number of discs\""));
+
+    const static char* patterns[] = {
+        "%a/{%y - }%A/%n - %t",
+        "%a -{ %y }%A/%n - %t",
+        "{%y }%A - %a/%n - %t",
+        "%a/%A/%n - %t",
+        "%a - %A/%n - %t",
+        "%A - %a/%n - %t" };
+
+    for (auto pattern: patterns) {
+
+        addFullPattern(pattern,
+                       tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'")
+                       .arg(pattern)
+                       + "  ( " + PatternExpander::example(pattern)  + ".wav )");
+    }
 }
 
 
@@ -86,8 +215,18 @@ void OutPatternButton::addFullPattern(const QString &pattern, const QString &tit
 void OutPatternButton::patternTriggered()
 {
     QAction *act = qobject_cast<QAction*>(sender());
-    if (act)
-        emit paternSelected(act->data().toString());
+    if (!act)
+        return;
+
+    QString text = act->data().toString();
+    emit paternSelected(text);
+
+    QLineEdit *edit = buddyLineEdit();
+    if (!edit)
+        return;
+
+    edit->insert(text);
+    emit edit->editingFinished();
 }
 
 
@@ -97,20 +236,111 @@ void OutPatternButton::patternTriggered()
 void OutPatternButton::fullPatternTriggered()
 {
     QAction *act = qobject_cast<QAction*>(sender());
-    if (act)
-        emit fullPaternSelected(act->data().toString());
+    if (!act)
+        return;
+
+    QString text = act->data().toString();
+    emit fullPaternSelected(text);
+
+    QLineEdit *edit = buddyLineEdit();
+    if (!edit)
+        return;
+
+    edit->setText(text);
+    emit edit->editingFinished();
 }
 
 
 /************************************************
  *
  ************************************************/
-void OutPatternButton::popupMenu()
+OutDirButton::OutDirButton(QWidget *parent):
+    ToolButton(Icon("pattern-button"), parent)
 {
-    QPoint p = parentWidget()->mapToGlobal(this->pos());
-    p.ry() += height();
-    mMenu.popup(p);
+    fillMenu();
 }
+
+
+/************************************************
+ *
+ ************************************************/
+void OutDirButton::fillMenu()
+{
+    QMenu *menu = new QMenu(this);
+    setMenu(menu);
+
+    {
+        QAction *act = new QAction(menu);
+        act->setText(tr("Select directory…", "Menu item for output direcory button"));
+        connect(act, &QAction::triggered,
+                this, &OutDirButton::openSelectDirDialog);
+        menu->addAction(act);
+    }
+
+    menu->addSeparator();
+
+    {
+        QString dir = QStandardPaths::writableLocation(QStandardPaths::MusicLocation);
+        if (!dir.isEmpty() && dir != QDir::homePath())
+        {
+            QAction *act = new QAction(menu);
+            act->setText(tr("Standard music location", "Menu item for output direcory button"));
+            connect(act, &QAction::triggered, [this, dir](){ setDirectory(dir);});
+            menu->addAction(act);
+        }
+    }
+
+    {
+        QString dir = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+        if (!dir.isEmpty())
+        {
+            QAction *act = new QAction(menu);
+            act->setText(tr("Desktop", "Menu item for output direcory button"));
+            connect(act, &QAction::triggered, [this, dir](){ setDirectory(dir);});
+            menu->addAction(act);
+        }
+    }
+
+    {
+        QAction *act = new QAction(menu);
+        act->setText(tr("Same directory as CUE file", "Menu item for output direcory button"));
+        connect(act, &QAction::triggered, [this](){ setDirectory("");});
+        menu->addAction(act);
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void OutDirButton::openSelectDirDialog()
+{
+    QLineEdit *edit = buddyLineEdit();
+    if (!edit)
+        return;
+
+
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Select result directory"), edit->text());
+    if (!dir.isEmpty())
+        setDirectory(dir);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void OutDirButton::setDirectory(const QString &directory)
+{
+    QLineEdit *edit = buddyLineEdit();
+    if (!edit)
+        return;
+
+    QString dir = directory;
+    dir.replace(QDir::homePath(), "~");
+    edit->setText(dir);
+    emit edit->editingFinished();
+}
+
 
 
 /************************************************
@@ -562,7 +792,7 @@ void HistoryComboBox::addToHistory(const QString &value)
  *
  ************************************************/
 ActionsButton::ActionsButton(QWidget *parent):
-    QToolButton(parent)
+    ToolButton(parent)
 {
     connect(this, &QToolButton::clicked,
             this, &ActionsButton::popupMenu);
@@ -587,7 +817,8 @@ void ActionsButton::popupMenu()
 OutDirComboBox::OutDirComboBox(QWidget *parent):
     HistoryComboBox(parent)
 {
-
+    setEditable(true);
+    lineEdit()->setPlaceholderText(tr("Same directory as CUE file", "Placeholder for output direcory combobox"));
 }
 
 

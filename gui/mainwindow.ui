@@ -48,13 +48,18 @@
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
               <widget class="OutDirComboBox" name="outDirEdit">
+               <property name="toolTip">
+                <string comment="Main form tooltip for &quot;Directory&quot; edit">You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</string>
+               </property>
                <property name="editable">
                 <bool>true</bool>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="ActionsButton" name="outDirButton">
+              <widget class="OutDirButton" name="outDirButton">
                <property name="text">
                 <string notr="true">*</string>
                </property>
@@ -135,7 +140,7 @@ If you surround sections of text that contain a token with braces, these section
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="configureProfileBtn">
+              <widget class="ToolButton" name="configureProfileBtn">
                <property name="text">
                 <string notr="true">*</string>
                </property>
@@ -479,16 +484,6 @@ If you surround sections of text that contain a token with braces, these section
     <string>Configure encoder</string>
    </property>
   </action>
-  <action name="actionSelectResultDir">
-   <property name="text">
-    <string>Select directory…</string>
-   </property>
-   <property name="toolTip">
-    <string comment="Main form tooltip for &quot;Directory&quot; edit">You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</string>
-   </property>
-  </action>
   <action name="actionDownloadTrackInfo">
    <property name="text">
     <string>Get from CDDB</string>
@@ -533,13 +528,18 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CodePageComboBox</class>
+   <class>OutPatternButton</class>
+   <extends>QToolButton</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>HistoryComboBox</class>
    <extends>QComboBox</extends>
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>OutPatternButton</class>
-   <extends>QToolButton</extends>
+   <class>CodePageComboBox</class>
+   <extends>QComboBox</extends>
    <header>controls.h</header>
   </customwidget>
   <customwidget>
@@ -558,18 +558,18 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>HistoryComboBox</class>
+   <class>OutDirComboBox</class>
    <extends>QComboBox</extends>
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>ActionsButton</class>
+   <class>OutDirButton</class>
    <extends>QToolButton</extends>
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>OutDirComboBox</class>
-   <extends>QComboBox</extends>
+   <class>ToolButton</class>
+   <extends>QToolButton</extends>
    <header>controls.h</header>
   </customwidget>
  </customwidgets>
