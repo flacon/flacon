@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>382</width>
-    <height>338</height>
+    <width>384</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,7 +41,7 @@
       </font>
      </property>
      <property name="text">
-      <string notr="true">FLAC encoder</string>
+      <string notr="true">FLAC format</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -49,7 +49,113 @@
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="encoderPlace"/>
+    <widget class="QGroupBox" name="outFilesBox">
+     <property name="title">
+      <string>Result Files</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <layout class="QFormLayout" name="formLayout_4">
+      <item row="0" column="0">
+       <widget class="QLabel" name="outDirLabel">
+        <property name="text">
+         <string>Directory:</string>
+        </property>
+        <property name="buddy">
+         <cstring>outDirEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QComboBox" name="outDirEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="ActionsButton" name="outDirButton">
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="outPatternLabel">
+        <property name="text">
+         <string>TextLabel eeee </string>
+        </property>
+        <property name="buddy">
+         <cstring>outPatternEdit</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="HistoryComboBox" name="outPatternEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string comment="Main form tooltip for &quot;Pattern&quot; edit">&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</string>
+          </property>
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="OutPatternButton" name="outPatternButton">
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="encoderGroup">
+     <property name="title">
+      <string>Encoder settings</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QGroupBox" name="resampleGroup">
@@ -65,6 +171,9 @@
         <property name="text">
          <string>Maximum bit depth:</string>
         </property>
+        <property name="buddy">
+         <cstring>bitDepthComboBox</cstring>
+        </property>
        </widget>
       </item>
       <item row="0" column="1">
@@ -74,6 +183,9 @@
        <widget class="QLabel" name="sampleRateLabel">
         <property name="text">
          <string>Maximum sample rate:</string>
+        </property>
+        <property name="buddy">
+         <cstring>sampleRateComboBox</cstring>
         </property>
        </widget>
       </item>
@@ -131,6 +243,9 @@
         <property name="text">
          <string extracomment="Settings dialog, label for the edit control with name of the created CUE file.">File name format:</string>
         </property>
+        <property name="buddy">
+         <cstring>perTrackCueFormatEdit</cstring>
+        </property>
        </widget>
       </item>
       <item row="0" column="1">
@@ -165,6 +280,9 @@
         <property name="text">
          <string>First track pregap:</string>
         </property>
+        <property name="buddy">
+         <cstring>preGapComboBox</cstring>
+        </property>
        </widget>
       </item>
       <item row="1" column="1">
@@ -194,7 +312,30 @@
    <extends>QToolButton</extends>
    <header>controls.h</header>
   </customwidget>
+  <customwidget>
+   <class>HistoryComboBox</class>
+   <extends>QComboBox</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ActionsButton</class>
+   <extends>QToolButton</extends>
+   <header>controls.h</header>
+  </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>outDirEdit</tabstop>
+  <tabstop>outDirButton</tabstop>
+  <tabstop>outPatternEdit</tabstop>
+  <tabstop>outPatternButton</tabstop>
+  <tabstop>bitDepthComboBox</tabstop>
+  <tabstop>sampleRateComboBox</tabstop>
+  <tabstop>gainComboBox</tabstop>
+  <tabstop>perTrackCueGroup</tabstop>
+  <tabstop>perTrackCueFormatEdit</tabstop>
+  <tabstop>perTrackCueFormatBtn</tabstop>
+  <tabstop>preGapComboBox</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

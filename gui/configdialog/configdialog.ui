@@ -37,7 +37,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="profilesPage">
         <property name="sizePolicy">
@@ -179,10 +179,19 @@
              <property name="text">
               <string>Thread count:</string>
              </property>
+             <property name="buddy">
+              <cstring>threadsCountSpin</cstring>
+             </property>
             </widget>
            </item>
            <item row="0" column="1">
             <widget class="QSpinBox" name="threadsCountSpin">
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="toolTip">
               <string>The number of threads in the conversion process.</string>
              </property>
@@ -201,6 +210,9 @@
              </property>
              <property name="textFormat">
               <enum>Qt::PlainText</enum>
+             </property>
+             <property name="buddy">
+              <cstring>tmpDirEdit</cstring>
              </property>
             </widget>
            </item>
@@ -222,6 +234,9 @@
             <widget class="QLabel" name="codePageLabel">
              <property name="text">
               <string>Default codepage:</string>
+             </property>
+             <property name="buddy">
+              <cstring>codePageComboBox</cstring>
              </property>
             </widget>
            </item>
@@ -508,10 +523,17 @@
   <tabstop>tmpDirEdit</tabstop>
   <tabstop>tmpDirButton</tabstop>
   <tabstop>codePageComboBox</tabstop>
-  <tabstop>progsArea</tabstop>
-  <tabstop>progScanButton</tabstop>
+  <tabstop>coverDisableButton</tabstop>
+  <tabstop>coverKeepSizeButton</tabstop>
+  <tabstop>coverScaleButton</tabstop>
+  <tabstop>coverResizeSpinBox</tabstop>
+  <tabstop>profilesList</tabstop>
+  <tabstop>addProfileButton</tabstop>
+  <tabstop>delProfileButton</tabstop>
   <tabstop>autoUpdateCbk</tabstop>
   <tabstop>updateNowBtn</tabstop>
+  <tabstop>progsArea</tabstop>
+  <tabstop>progScanButton</tabstop>
  </tabstops>
  <resources/>
  <connections>
@@ -522,8 +544,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>271</x>
-     <y>415</y>
+     <x>277</x>
+     <y>633</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -538,8 +560,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>339</x>
-     <y>415</y>
+     <x>345</x>
+     <y>633</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>

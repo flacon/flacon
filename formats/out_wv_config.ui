@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>410</width>
-    <height>88</height>
+    <height>76</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,21 +15,12 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string extracomment="Preferences dialog: group caption">Encoder settings:</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
+    <widget class="QWidget" name="widget" native="true">
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
        <widget class="QLabel" name="wvCompressionLabel">
         <property name="text">
          <string>Compression:</string>
-        </property>
-        <property name="buddy">
-         <cstring>wvCompressionSlider</cstring>
         </property>
        </widget>
       </item>
@@ -81,38 +72,5 @@
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>wvCompressionSlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>wvCompressionSpin</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>411</x>
-     <y>17</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>465</x>
-     <y>17</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>wvCompressionSpin</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>wvCompressionSlider</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>474</x>
-     <y>26</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>427</x>
-     <y>26</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

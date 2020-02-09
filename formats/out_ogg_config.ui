@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>542</width>
-    <height>221</height>
+    <height>209</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,13 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string extracomment="Preferences dialog: group caption">Encoder settings:</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
+    <widget class="QWidget" name="widget" native="true">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QCheckBox" name="oggUseQualityCheck">
@@ -110,18 +104,15 @@
            <widget class="QLabel" name="oggQualityLabel">
             <property name="minimumSize">
              <size>
-              <width>100</width>
+              <width>80</width>
               <height>0</height>
              </size>
-            </property>
-            <property name="toolTip">
-             <string/>
             </property>
             <property name="text">
              <string notr="true">(~160kbps)</string>
             </property>
             <property name="buddy">
-             <cstring>oggQualitySlider</cstring>
+             <cstring>oggQualitySpin</cstring>
             </property>
            </widget>
           </item>
@@ -134,9 +125,6 @@
           </property>
           <property name="text">
            <string>Minimal bitrate:</string>
-          </property>
-          <property name="buddy">
-           <cstring>oggMinBitrateCbx</cstring>
           </property>
          </widget>
         </item>
@@ -158,9 +146,6 @@
           <property name="text">
            <string>Nominal bitrate:</string>
           </property>
-          <property name="buddy">
-           <cstring>oggNormBitrateCbx</cstring>
-          </property>
          </widget>
         </item>
         <item row="2" column="1">
@@ -180,9 +165,6 @@
           </property>
           <property name="text">
            <string>Maximum bitrate:</string>
-          </property>
-          <property name="buddy">
-           <cstring>oggMaxBitrateCbx</cstring>
           </property>
          </widget>
         </item>
@@ -209,166 +191,5 @@
   <tabstop>oggQualitySpin</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>oggUseQualityCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>oggQualitySlider</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>369</x>
-     <y>58</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>372</x>
-     <y>32</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>oggUseQualityCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>oggQualitySpin</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>369</x>
-     <y>58</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>439</x>
-     <y>29</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>oggUseQualityCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>oggQualityLabel</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>369</x>
-     <y>58</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>513</x>
-     <y>32</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>oggUseQualityCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_2</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>306</x>
-     <y>55</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>111</x>
-     <y>116</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>oggUseQualityCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_3</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>256</x>
-     <y>58</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>111</x>
-     <y>144</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>oggUseQualityCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_4</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>214</x>
-     <y>58</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>111</x>
-     <y>172</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>oggUseQualityCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>oggMinBitrateCbx</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>349</x>
-     <y>57</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>193</x>
-     <y>116</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>oggUseQualityCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>oggNormBitrateCbx</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>397</x>
-     <y>58</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>193</x>
-     <y>144</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>oggUseQualityCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>oggMaxBitrateCbx</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>459</x>
-     <y>58</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>193</x>
-     <y>172</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>oggUseQualityCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>qualityLablel</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>271</x>
-     <y>39</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>126</x>
-     <y>70</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

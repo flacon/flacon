@@ -40,7 +40,7 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     mProfile(mEncoderWidget->profile())
 {
     ui->setupUi(this);
-    ui->formatLabel->setText(tr("%1 encoder", "Preferences dialog: format name label, %1 is a audio format name")
+    ui->formatLabel->setText(tr("%1 format", "Preferences dialog: format name label, %1 is a audio format name")
                                  .arg(profile.formatName()));
 
     ui->gainGroup->setVisible(profile.formatOptions().testFlag(FormatOption::SupportGain));
@@ -50,7 +50,8 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     if (mEncoderWidget->layout())
         mEncoderWidget->layout()->setMargin(0);
 
-    ui->encoderPlace->insertWidget(0, mEncoderWidget);
+    ui->encoderGroup->setLayout(new QVBoxLayout(ui->encoderGroup));
+    ui->encoderGroup->layout()->addWidget(mEncoderWidget);
 
     ui->perTrackCueFormatBtn->addPattern("%a", tr("Insert \"Artist\""));
     ui->perTrackCueFormatBtn->addPattern("%A", tr("Insert \"Album title\""));

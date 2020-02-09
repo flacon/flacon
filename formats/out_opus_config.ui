@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>399</width>
-    <height>124</height>
+    <height>112</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,21 +15,12 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string extracomment="Preferences dialog: group caption">Encoder settings:</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
+    <widget class="QWidget" name="widget" native="true">
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
        <widget class="QLabel" name="opusBitrateTypeLabel">
         <property name="text">
          <string>Bitrate type:</string>
-        </property>
-        <property name="buddy">
-         <cstring>opusBitrateTypeCbx</cstring>
         </property>
        </widget>
       </item>
@@ -51,9 +42,6 @@
         </property>
         <property name="text">
          <string>Bitrate:</string>
-        </property>
-        <property name="buddy">
-         <cstring>opusBitrateSlider</cstring>
         </property>
        </widget>
       </item>
@@ -141,38 +129,5 @@ In CBR mode, it sets the specific output bitrate.
   <tabstop>opusBitrateSpin</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>opusBitrateSlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>opusBitrateSpin</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>449</x>
-     <y>157</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>506</x>
-     <y>154</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>opusBitrateSpin</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>opusBitrateSlider</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>506</x>
-     <y>154</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>449</x>
-     <y>157</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

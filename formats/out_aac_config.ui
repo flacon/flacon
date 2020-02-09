@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>383</width>
-    <height>142</height>
+    <height>137</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,13 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string extracomment="Preferences dialog: group caption">Encoder settings:</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
+    <widget class="QWidget" name="widget" native="true">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QCheckBox" name="aacUseQualityCheck">
@@ -113,9 +107,6 @@
           <property name="text">
            <string extracomment="ACC preferences: label caption">Bitrate:</string>
           </property>
-          <property name="buddy">
-           <cstring>aacBitrateCbx</cstring>
-          </property>
          </widget>
         </item>
         <item row="1" column="1">
@@ -141,38 +132,5 @@
   <tabstop>aacQualitySpin</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>aacQualitySlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>aacQualitySpin</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>452</x>
-     <y>40</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>478</x>
-     <y>41</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>aacQualitySpin</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>aacQualitySlider</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>472</x>
-     <y>53</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>440</x>
-     <y>53</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

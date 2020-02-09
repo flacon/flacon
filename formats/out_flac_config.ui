@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>519</width>
-    <height>77</height>
+    <height>52</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,21 +27,12 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string extracomment="Preferences dialog: group caption">Encoder settings:</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
+    <widget class="QWidget" name="widget" native="true">
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
        <widget class="QLabel" name="flacCompressionLabel">
         <property name="text">
          <string>Compression:</string>
-        </property>
-        <property name="buddy">
-         <cstring>flacCompressionSlider</cstring>
         </property>
        </widget>
       </item>
@@ -93,38 +84,5 @@
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>flacCompressionSlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>flacCompressionSpin</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>402</x>
-     <y>55</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>477</x>
-     <y>58</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>flacCompressionSpin</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>flacCompressionSlider</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>481</x>
-     <y>46</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>435</x>
-     <y>46</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
