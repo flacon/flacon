@@ -53,6 +53,10 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     ui->resampleGroup->setVisible(profile.formatOptions().testFlag(FormatOption::Lossless));
 
 
+    ui->encoderGroup->setTitle(
+                tr("%1 encoder settings", "Preferences group title, %1 is a audio format name")
+                .arg(profile.formatName()));
+
     if (mEncoderWidget->layout())
         mEncoderWidget->layout()->setMargin(0);
 
@@ -219,7 +223,7 @@ ProfileWidget::~ProfileWidget()
 /************************************************
  *
  ************************************************/
-Profile ProfileWidget::profile() const
+Profile &ProfileWidget::profile()
 {
     save();
     return mProfile;

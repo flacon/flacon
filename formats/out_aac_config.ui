@@ -132,5 +132,38 @@
   <tabstop>aacQualitySpin</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>aacQualitySlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>aacQualitySpin</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>274</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>316</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>aacQualitySpin</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>aacQualitySlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>311</x>
+     <y>52</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>54</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

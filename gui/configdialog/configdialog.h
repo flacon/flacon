@@ -72,7 +72,7 @@ private:
     CoverMode coverMode() const;
     void setCoverMode(CoverMode mode);
 
-    Profile currentProfile() const;
+    Profile &currentProfile();
     void refreshProfilesList(const QString &selectedProfileId);
     void updateLastUpdateLbl();
 

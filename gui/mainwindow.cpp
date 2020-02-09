@@ -149,8 +149,6 @@ MainWindow::MainWindow(QWidget *parent) :
     loadSettings();
 
     outDirEdit->setHistory(Settings::i()->value(Settings::OutFiles_DirectoryHistory).toStringList());
-    outDirEdit->setCurrentText(Settings::i()->value(Settings::OutFiles_Directory).toString());
-
     outPatternEdit->setHistory(Settings::i()->value(Settings::OutFiles_PatternHistory).toStringList());
 
     // Signals .................................................
@@ -280,7 +278,7 @@ void MainWindow::dropEvent(QDropEvent * event)
  ************************************************/
 void MainWindow::setPattern()
 {
-    Settings::i()->setValue(Settings::OutFiles_Pattern, outPatternEdit->currentText());
+    Settings::i()->currentProfile().setOutFilePattern(outPatternEdit->currentText());
     Settings::i()->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
 }
 
@@ -290,7 +288,7 @@ void MainWindow::setPattern()
  ************************************************/
 void MainWindow::setOutDir()
 {
-    Settings::i()->setValue(Settings::OutFiles_Directory, outDirEdit->currentText());
+    Settings::i()->currentProfile().setOutFileDir(outDirEdit->currentText());
     Settings::i()->setValue(Settings::OutFiles_DirectoryHistory, outDirEdit->history());
 }
 
@@ -453,11 +451,12 @@ void MainWindow::refreshEdits()
     codepageCombo->setMultiValue(codePage);
     tagDiscPerformerEdit->setMultiValue(discPerformer);
 
-    if (outDirEdit->currentText() != Settings::i()->value(Settings::OutFiles_Directory).toString())
-        outDirEdit->lineEdit()->setText(Settings::i()->value(Settings::OutFiles_Directory).toString());
+    const Profile &profile = Settings::i()->currentProfile();
+    if (outDirEdit->currentText() != profile.outFileDir())
+        outDirEdit->lineEdit()->setText(profile.outFileDir());
 
-    if (outPatternEdit->currentText() != Settings::i()->value(Settings::OutFiles_Pattern).toString())
-        outPatternEdit->lineEdit()->setText(Settings::i()->value(Settings::OutFiles_Pattern).toString());
+    if (outPatternEdit->currentText() != profile.outFilePattern())
+        outPatternEdit->lineEdit()->setText(profile.outFilePattern());
 
     refreshOutProfileCombo();
 }

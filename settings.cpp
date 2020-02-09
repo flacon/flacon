@@ -222,12 +222,6 @@ void Settings::init()
     setDefaultValue(Encoder_TmpDir,         "");
 
     // Out Files ********************************
-    setDefaultValue(OutFiles_Pattern,       "%a/{%y - }%A/%n - %t");
-
-    QString outDir = QStandardPaths::standardLocations(QStandardPaths::MusicLocation).first();
-
-    outDir.replace(QDir::homePath(), "~");
-    setDefaultValue(OutFiles_Directory,     outDir);
     setDefaultValue(OutFiles_Profile,       "FLAC");
 
     // Internet *********************************
@@ -293,8 +287,6 @@ QString Settings::keyToString(Settings::Key key) const
     case Encoder_TmpDir:            return "Encoder/TmpDir";
 
     // Out Files ***************************
-    case OutFiles_Pattern:          return "OutFiles/Pattern";
-    case OutFiles_Directory:        return "OutFiles/Directory";
     case OutFiles_Profile:          return "OutFiles/Profile";
     case OutFiles_PatternHistory:   return "OutFiles/PatternHistory";
     case OutFiles_DirectoryHistory: return "OutFiles/DirectoryHistory";
@@ -438,42 +430,6 @@ void Settings::setTmpDir(const QString &value)
 
 
 /************************************************
- *
- ************************************************/
-QString Settings::outFilePattern() const
-{
-    return value(OutFiles_Pattern).toString();
-}
-
-
-/************************************************
- *
- ************************************************/
-void Settings::setOutFilePattern(const QString &value)
-{
-    setValue(OutFiles_Pattern, value);
-}
-
-
-/************************************************
-
- ************************************************/
-QString Settings::outFileDir() const
-{
-    return value(OutFiles_Directory).toString();
-}
-
-
-/************************************************
-
- ************************************************/
-void Settings::setOutFileDir(const QString &value)
-{
-    setValue(OutFiles_Directory, value);
-}
-
-
-/************************************************
 
  ************************************************/
 QString Settings::defaultCodepage() const
@@ -549,7 +505,20 @@ void Settings::setDefaultValue(const QString &key, const QVariant &defaultValue)
 /************************************************
 
  ************************************************/
-Profiles Settings::profiles() const
+const Profiles &Settings::profiles() const
+{
+    if (mProfiles.isEmpty()) {
+        const_cast<Settings*>(this)->loadProfiles();
+    }
+
+    return mProfiles;
+}
+
+
+/************************************************
+
+ ************************************************/
+Profiles &Settings::profiles()
 {
     if (mProfiles.isEmpty()) {
         const_cast<Settings*>(this)->loadProfiles();
@@ -607,14 +576,29 @@ void Settings::setProfiles(const Profiles &profiles)
 /************************************************
  *
  ************************************************/
-Profile Settings::currentProfile() const
-{
+const Profile &Settings::currentProfile() const
+{    
     int n = profiles().indexOf(value(OutFiles_Profile).toString());
     if (n > -1) {
         return profiles()[qMax(0, n)];
     }
 
-    return Profile();
+    return NullProfile();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+Profile &Settings::currentProfile()
+{
+
+    int n = profiles().indexOf(value(OutFiles_Profile).toString());
+    if (n > -1) {
+        return profiles()[qMax(0, n)];
+    }
+
+    return NullProfile();
 }
 
 

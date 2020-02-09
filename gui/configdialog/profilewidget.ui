@@ -149,7 +149,7 @@ If you surround sections of text that contain a token with braces, these section
    <item>
     <widget class="QGroupBox" name="encoderGroup">
      <property name="title">
-      <string>Encoder settings</string>
+      <string notr="true">FLAC encoder settings</string>
      </property>
      <property name="flat">
       <bool>true</bool>

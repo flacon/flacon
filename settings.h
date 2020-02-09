@@ -51,8 +51,6 @@ public:
         Encoder_TmpDir,
 
         // Out Files ****************************
-        OutFiles_Pattern,
-        OutFiles_Directory,
         OutFiles_DirectoryHistory,
         OutFiles_Profile,
         OutFiles_PatternHistory,
@@ -92,22 +90,18 @@ public:
     QString tmpDir() const;
     void setTmpDir(const QString &value);
 
-    QString outFilePattern() const;
-    void setOutFilePattern(const QString &value);
-
-    QString outFileDir() const;
-    void setOutFileDir(const QString &value);
-
     QString defaultCodepage() const;
     void setDefaultCodepage(const QString &value);
 
     CoverMode coverMode() const;
     int coverImageSize() const;
 
-    Profiles profiles() const;
+    Profiles &profiles();
+    const Profiles &profiles() const;
     void setProfiles(const Profiles &profiles);
 
-    Profile currentProfile() const;
+    const Profile &currentProfile() const;
+    Profile &currentProfile();
     bool selectProfile(const QString &profileId);
 
 signals:

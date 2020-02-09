@@ -111,6 +111,7 @@ private:
     void setDefaultValues();
 };
 
+Profile &NullProfile();
 
 class Profiles: public QVector<Profile>
 {

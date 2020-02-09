@@ -463,3 +463,13 @@ QDebug operator<<(QDebug dbg, const Profiles &profiles)
     dbg.nospace().noquote() << "....................................";
     return dbg.space();
 }
+
+
+/************************************************
+ *
+ ************************************************/
+Profile &NullProfile()
+{
+    static Profile res;
+    return res;
+}

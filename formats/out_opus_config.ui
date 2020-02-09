@@ -129,5 +129,38 @@ In CBR mode, it sets the specific output bitrate.
   <tabstop>opusBitrateSpin</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>opusBitrateSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>opusBitrateSpin</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>285</x>
+     <y>71</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>331</x>
+     <y>69</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>opusBitrateSpin</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>opusBitrateSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>332</x>
+     <y>78</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>282</x>
+     <y>81</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -504,9 +504,9 @@ void TestFlacon::testTrackResultFileName()
     QFETCH(QString, pattern);
     QFETCH(QString, expected);
 
-
-    Settings::i()->setOutFilePattern(pattern);
     Settings::i()->selectProfile("WAV");
+    Settings::i()->currentProfile().setOutFilePattern(pattern);
+
 
     project->clear();
 
@@ -1031,9 +1031,10 @@ void TestFlacon::testTrackResultFilePath()
     QFETCH(QString, expected);
     QFETCH(QString, cueFile);
 
-    Settings::i()->setOutFileDir(outDir);
-    Settings::i()->setOutFilePattern(pattern);
     Settings::i()->selectProfile("WAV");
+    Settings::i()->currentProfile().setOutFileDir(outDir);
+    Settings::i()->currentProfile().setOutFilePattern(pattern);
+
 
 
     if (!cueFile.isEmpty())

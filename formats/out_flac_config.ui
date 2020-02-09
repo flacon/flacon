@@ -84,5 +84,38 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>flacCompressionSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>flacCompressionSpin</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>288</x>
+     <y>32</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>401</x>
+     <y>27</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>flacCompressionSpin</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>flacCompressionSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>390</x>
+     <y>19</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>358</x>
+     <y>19</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

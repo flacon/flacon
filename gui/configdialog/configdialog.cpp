@@ -295,11 +295,11 @@ void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem
 void ConfigDialog::profileItemChanged(QListWidgetItem *item)
 {
     QString id = item->data(PROFILE_ID_ROLE).toString();
-    int n = mProfiles.indexOf(id);
-
-    if (n>-1) {
-        mProfiles[n].setName(item->text());
+    if (id == currentProfile().id()) {
+        currentProfile().setName(item->text());
     }
+
+    refreshProfilesList(id);
 }
 
 
@@ -363,9 +363,9 @@ void ConfigDialog::setCoverMode(CoverMode mode)
 /************************************************
  *
  ************************************************/
-Profile ConfigDialog::currentProfile() const
+Profile &ConfigDialog::currentProfile()
 {
-    return mProfileWidget ? mProfileWidget->profile() : Profile();
+    return mProfileWidget ? mProfileWidget->profile() : NullProfile();
 }
 
 

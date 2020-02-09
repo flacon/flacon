@@ -72,5 +72,38 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>wvCompressionSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>wvCompressionSpin</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>322</x>
+     <y>41</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>348</x>
+     <y>41</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>wvCompressionSpin</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>wvCompressionSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>342</x>
+     <y>33</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>285</x>
+     <y>32</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

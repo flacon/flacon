@@ -174,7 +174,7 @@ void Track::setCodecName(const QString &value)
  ************************************************/
 QString Track::resultFileName() const
 {
-    QString pattern = Settings::i()->outFilePattern();
+    QString pattern = Settings::i()->currentProfile().outFilePattern();
     if (pattern.isEmpty())
         pattern = QString("%a/%y - %A/%n - %t");
 
@@ -334,7 +334,7 @@ QString Track::resultFilePath() const
  ************************************************/
 QString Track::calcResultFilePath() const
 {
-    QString dir = Settings::i()->outFileDir();
+    QString dir = Settings::i()->currentProfile().outFileDir();
 
     if (dir == "~" || dir == "~//")
         return QDir::homePath();
@@ -353,6 +353,10 @@ QString Track::calcResultFilePath() const
     return QFileInfo(mCueFileName).dir().absolutePath() + QDir::separator() + dir;
 }
 
+
+/************************************************
+ *
+ ************************************************/
 QString Track::safeFilePathLen(const QString &path) const
 {
     QString file = path;

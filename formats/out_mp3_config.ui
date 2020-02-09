@@ -143,5 +143,38 @@
   <tabstop>mp3QualitySpin</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>mp3QualitySlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>mp3QualitySpin</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>262</x>
+     <y>112</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>321</x>
+     <y>111</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mp3QualitySpin</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>mp3QualitySlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>314</x>
+     <y>105</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>298</x>
+     <y>106</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
