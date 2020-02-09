@@ -155,6 +155,7 @@ void ConfigDialog::initGeneralPage()
 #endif
 
     tmpDirButton->setIcon(Icon("folder"));
+    tmpDirButton->setBuddy(tmpDirEdit);
     connect(tmpDirButton, &QToolButton::clicked, this, &ConfigDialog::tmpDirShowDialog);
 
 

@@ -137,6 +137,7 @@ MainWindow::MainWindow(QWidget *parent) :
     act->setText(tr("Remove current directory from history"));
     outDirButton->menu()->addAction(act);
 
+    configureProfileBtn->setBuddy(outProfileCombo);
     configureProfileBtn->setDefaultAction(actionConfigureEncoder);
 
     outPatternButton->setBuddy(outPatternEdit);
@@ -148,17 +149,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     loadSettings();
 
-    outDirEdit->setHistory(Settings::i()->value(Settings::OutFiles_DirectoryHistory).toStringList());
-    outPatternEdit->setHistory(Settings::i()->value(Settings::OutFiles_PatternHistory).toStringList());
-
     // Signals .................................................
     connect(Settings::i(), SIGNAL(changed()), trackView->model(), SIGNAL(layoutChanged()));
 
-    connect(outPatternEdit->lineEdit(), SIGNAL(editingFinished()), this, SLOT(setPattern()));
-    connect(outPatternEdit, SIGNAL(currentIndexChanged(int)), this, SLOT(setPattern()));
-
-    connect(outDirEdit->lineEdit(),     SIGNAL(editingFinished()), this, SLOT(setOutDir()));
-    connect(outDirEdit,     SIGNAL(currentIndexChanged(int)), this, SLOT(setOutDir()));
+    connect(outDirEdit->lineEdit(), &QLineEdit::textChanged, this, &MainWindow::setOutDir);
+    connect(outPatternEdit->lineEdit(),  &QLineEdit::textChanged, this, &MainWindow::setPattern);
 
     connect(outProfileCombo, SIGNAL(currentIndexChanged(int)),
             this, SLOT(setOutProfile()));
@@ -279,7 +274,7 @@ void MainWindow::dropEvent(QDropEvent * event)
 void MainWindow::setPattern()
 {
     Settings::i()->currentProfile().setOutFilePattern(outPatternEdit->currentText());
-    Settings::i()->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
+    trackView->model()->layoutChanged();
 }
 
 
@@ -289,7 +284,7 @@ void MainWindow::setPattern()
 void MainWindow::setOutDir()
 {
     Settings::i()->currentProfile().setOutFileDir(outDirEdit->currentText());
-    Settings::i()->setValue(Settings::OutFiles_DirectoryHistory, outDirEdit->history());
+    trackView->model()->layoutChanged();
 }
 
 
@@ -355,6 +350,7 @@ void MainWindow::setOutProfile()
     if (n > -1) {
         Settings::i()->selectProfile(outProfileCombo->itemData(n).toString());
     }
+    trackView->model()->layoutChanged();
 }
 
 
@@ -1079,6 +1075,9 @@ void MainWindow::loadSettings()
 
     splitter->restoreState(Settings::i()->value("MainWindow/Splitter").toByteArray());
     trackView->header()->restoreState(Settings::i()->value("MainWindow/TrackView").toByteArray());
+
+    outDirEdit->setHistory(Settings::i()->value(Settings::OutFiles_DirectoryHistory).toStringList());
+    outPatternEdit->setHistory(Settings::i()->value(Settings::OutFiles_PatternHistory).toStringList());
 }
 
 
@@ -1091,6 +1090,9 @@ void MainWindow::saveSettings()
      Settings::i()->setValue("MainWindow/Height",    QVariant(size().height()));
      Settings::i()->setValue("MainWindow/Splitter",  QVariant(splitter->saveState()));
      Settings::i()->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
+
+     Settings::i()->setValue(Settings::OutFiles_DirectoryHistory, outDirEdit->history());
+     Settings::i()->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
 }
 
 
