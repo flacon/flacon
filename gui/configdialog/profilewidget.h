@@ -47,6 +47,9 @@ public:
     Profile profile() const;
 
 private:
+    void load();
+    void save() const;
+
     Ui::ProfileWidget *ui;
     EncoderConfigPage *mEncoderWidget = nullptr;
     Profile &mProfile;

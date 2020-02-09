@@ -112,9 +112,20 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
             [this](const QString &pattern){ ui->perTrackCueFormatEdit->setText(pattern);});
 
 
+    load();
+    fixLayout();
+}
 
-    // Load
+
+/************************************************
+ *
+ ************************************************/
+void ProfileWidget::load()
+{
     mEncoderWidget->load();
+
+    mEncoderWidget->loadWidget(Profile::OUT_DIRECTORY_KEY, ui->outDirEdit);
+    mEncoderWidget->loadWidget(Profile::OUT_PATTERN_KEY,   ui->outPatternEdit);
 
     if (mProfile.formatOptions().testFlag(FormatOption::Lossless)) {
         mEncoderWidget->loadWidget(Profile::BITS_PER_SAMPLE_KEY, ui->bitDepthComboBox);
@@ -128,8 +139,33 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     mEncoderWidget->loadWidget(Profile::CREATE_CUE_KEY,    ui->perTrackCueGroup);
     mEncoderWidget->loadWidget(Profile::PREGAP_TYPE_KEY,   ui->preGapComboBox);
     mEncoderWidget->loadWidget(Profile::CUE_FILE_NAME_KEY, ui->perTrackCueFormatEdit);
+}
 
-    fixLayout();
+
+/************************************************
+ *
+ ************************************************/
+void ProfileWidget::save() const
+{
+    mEncoderWidget->save();
+
+    mEncoderWidget->saveWidget(Profile::OUT_DIRECTORY_KEY, ui->outDirEdit);
+    mEncoderWidget->saveWidget(Profile::OUT_PATTERN_KEY,   ui->outPatternEdit);
+
+
+    if (mProfile.formatOptions().testFlag(FormatOption::Lossless)) {
+        mEncoderWidget->saveWidget(Profile::BITS_PER_SAMPLE_KEY, ui->bitDepthComboBox);
+        mEncoderWidget->saveWidget(Profile::SAMPLE_RATE_KEY,     ui->sampleRateComboBox);
+    }
+
+    if (mProfile.formatOptions().testFlag(FormatOption::SupportGain)) {
+        mEncoderWidget->saveWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
+    }
+
+    mEncoderWidget->saveWidget(Profile::CREATE_CUE_KEY,    ui->perTrackCueGroup);
+    mEncoderWidget->saveWidget(Profile::PREGAP_TYPE_KEY,   ui->preGapComboBox);
+    mEncoderWidget->saveWidget(Profile::CUE_FILE_NAME_KEY, ui->perTrackCueFormatEdit);
+
 }
 
 
@@ -185,20 +221,6 @@ ProfileWidget::~ProfileWidget()
  ************************************************/
 Profile ProfileWidget::profile() const
 {
-    mEncoderWidget->save();
-
-    if (mProfile.formatOptions().testFlag(FormatOption::Lossless)) {
-        mEncoderWidget->saveWidget(Profile::BITS_PER_SAMPLE_KEY, ui->bitDepthComboBox);
-        mEncoderWidget->saveWidget(Profile::SAMPLE_RATE_KEY,     ui->sampleRateComboBox);
-    }
-
-    if (mProfile.formatOptions().testFlag(FormatOption::SupportGain)) {
-        mEncoderWidget->saveWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
-    }
-
-    mEncoderWidget->saveWidget(Profile::CREATE_CUE_KEY,    ui->perTrackCueGroup);
-    mEncoderWidget->saveWidget(Profile::PREGAP_TYPE_KEY,   ui->preGapComboBox);
-    mEncoderWidget->saveWidget(Profile::CUE_FILE_NAME_KEY, ui->perTrackCueFormatEdit);
-
+    save();
     return mProfile;
 }
