@@ -43,6 +43,12 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     ui->formatLabel->setText(tr("%1 format", "Preferences dialog: format name label, %1 is a audio format name")
                                  .arg(profile.formatName()));
 
+    ui->outDirEdit->setPlaceholderText(tr("Same directory as CUE file", "Placeholder for output direcory combobox"));
+    ui->outDirButton->setBuddy(ui->outDirEdit);
+
+    ui->outPatternButton->setBuddy(ui->outPatternEdit);
+    ui->outPatternButton->addStandardPatterns();
+
     ui->gainGroup->setVisible(profile.formatOptions().testFlag(FormatOption::SupportGain));
     ui->resampleGroup->setVisible(profile.formatOptions().testFlag(FormatOption::Lossless));
 

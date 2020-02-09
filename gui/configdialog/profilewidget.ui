@@ -60,7 +60,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="outDirLabel">
         <property name="text">
-         <string>Directory:</string>
+         <string comment="Preferences form label text">Directory:</string>
         </property>
         <property name="buddy">
          <cstring>outDirEdit</cstring>
@@ -70,20 +70,22 @@
       <item row="0" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QComboBox" name="outDirEdit">
+         <widget class="QLineEdit" name="outDirEdit">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="editable">
-           <bool>true</bool>
+          <property name="toolTip">
+           <string comment="Preferences form tooltip for &quot;Directory&quot; edit">You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="ActionsButton" name="outDirButton">
+         <widget class="OutDirButton" name="outDirButton">
           <property name="text">
            <string notr="true">*</string>
           </property>
@@ -94,7 +96,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="outPatternLabel">
         <property name="text">
-         <string>TextLabel eeee </string>
+         <string comment="Preferences form label text">Pattern:</string>
         </property>
         <property name="buddy">
          <cstring>outPatternEdit</cstring>
@@ -104,7 +106,7 @@
       <item row="1" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout_7">
         <item>
-         <widget class="HistoryComboBox" name="outPatternEdit">
+         <widget class="QLineEdit" name="outPatternEdit">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -112,7 +114,7 @@
            </sizepolicy>
           </property>
           <property name="toolTip">
-           <string comment="Main form tooltip for &quot;Pattern&quot; edit">&lt;style type=&quot;text/css&quot;&gt;
+           <string comment="Preferences form tooltip for &quot;Pattern&quot; edit">&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
@@ -129,9 +131,6 @@ Tokens start with %. You can use the following tokens:
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</string>
-          </property>
-          <property name="editable">
-           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -313,12 +312,7 @@ If you surround sections of text that contain a token with braces, these section
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>HistoryComboBox</class>
-   <extends>QComboBox</extends>
-   <header>controls.h</header>
-  </customwidget>
-  <customwidget>
-   <class>ActionsButton</class>
+   <class>OutDirButton</class>
    <extends>QToolButton</extends>
    <header>controls.h</header>
   </customwidget>
