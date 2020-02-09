@@ -27,6 +27,8 @@
 #include "profiles.h"
 #include "outformat.h"
 #include <QSettings>
+#include <QStandardPaths>
+#include <QDir>
 #include <QDebug>
 
 QHash<QString, QVariant> &operator<<(QHash<QString, QVariant> &values, const QHash<QString, QVariant> &other)
@@ -121,6 +123,14 @@ Profile::Profile(OutFormat &format, const QString &id):
  ************************************************/
 void Profile::setDefaultValues()
 {
+    QString outDir = QStandardPaths::writableLocation(QStandardPaths::MusicLocation);
+    if (outDir.isEmpty())
+        outDir = "~/Music";
+
+    outDir.replace(QDir::homePath(), "~");
+
+    mValues[OUT_DIRECTORY_KEY]   = outDir;
+    mValues[OUT_PATTERN_KEY]     = "%a/{%y - }%A/%n - %t";
     mValues[BITS_PER_SAMPLE_KEY] = 0;
     mValues[SAMPLE_RATE_KEY]     = 0;
     mValues[CREATE_CUE_KEY]      = false;
@@ -191,7 +201,43 @@ void Profile::setValue(const QString &key, const QVariant &value)
 bool Profile::isValid() const noexcept
 {
     return !mId.isEmpty() &&
-           !mFormat->id().isEmpty();
+            !mFormat->id().isEmpty();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Profile::outFileDir() const
+{
+    return value(OUT_DIRECTORY_KEY).toString();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setOutFileDir(const QString &value)
+{
+    setValue(OUT_DIRECTORY_KEY, value);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QString Profile::outFilePattern() const
+{
+    return value(OUT_PATTERN_KEY).toString();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setOutFilePattern(const QString &value)
+{
+    setValue(OUT_PATTERN_KEY, value);
 }
 
 
@@ -200,7 +246,7 @@ bool Profile::isValid() const noexcept
  ************************************************/
 GainType Profile::gainType() const
 {
-    QString s = value("ReplayGain").toString();
+    QString s = value(REPLAY_GAIN_KEY).toString();
     return strToGainType(s);
 }
 

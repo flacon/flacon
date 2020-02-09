@@ -1,4 +1,6 @@
 [Profiles/AAC]
+    OutDirectory=~/Music2
+    OutPattern=%a - %a%g%A/%d-%D/%n - %t
     Name=AAC
     Format=AAC
     Bitrate=128
@@ -11,6 +13,8 @@
     PregapType = AddToFirst
 
 [Profiles/FLAC]
+    OutDirectory=~/Music2
+    OutPattern=%a - %a%g%A/%d-%D/%n - %t
     Name=Flac
     Format=FLAC
     Compression=1
@@ -22,6 +26,8 @@
     PregapType = AddToFirst
 
 [Profiles/MP3]
+    OutDirectory=~/Music2
+    OutPattern=%a - %a%g%A/%d-%D/%n - %t
     Name=MP3
     Format=MP3
     Bitrate=128
@@ -35,6 +41,8 @@
     PregapType = AddToFirst
 
 [Profiles/OGG]
+    OutDirectory=~/Music2
+    OutPattern=%a - %a%g%A/%d-%D/%n - %t
     Name=OGG
     Format=OGG
     MaxBitrate=196
@@ -50,6 +58,8 @@
     PregapType = AddToFirst
 
 [Profiles/OPUS]
+    OutDirectory=~/Music2
+    OutPattern=%a - %a%g%A/%d-%D/%n - %t
     Name=Opus
     Format=OPUS
     Bitrate=125
@@ -61,6 +71,8 @@
     PregapType = AddToFirst
 
 [Profiles/WV]
+    OutDirectory=~/Music2
+    OutPattern=%a - %a%g%A/%d-%D/%n - %t
     Name=WavPack
     Format=WV
     Compression=0
@@ -75,6 +87,8 @@
     PregapType = AddToFirst
 
 [Profiles/WAV]
+    OutDirectory=~/Music2
+    OutPattern=%a - %a%g%A/%d-%D/%n - %t
     Format=WAV
     Name=WAV
     BitsPerSample=16

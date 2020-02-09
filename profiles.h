@@ -54,6 +54,12 @@ public:
 
     bool isValid() const noexcept;
 
+    QString outFileDir() const;
+    void setOutFileDir(const QString &value);
+
+    QString outFilePattern() const;
+    void setOutFilePattern(const QString &value);
+
     GainType gainType() const;
 
     int bitsPerSample() const;
@@ -88,6 +94,8 @@ public:
     void load(QSettings &settings, const QString &group);
     void save(QSettings &settings, const QString &group) const;
 
+    static constexpr const char *OUT_DIRECTORY_KEY   = "OutDirectory";
+    static constexpr const char *OUT_PATTERN_KEY     = "OutPattern";
     static constexpr const char *BITS_PER_SAMPLE_KEY = "BitsPerSample";
     static constexpr const char *SAMPLE_RATE_KEY     = "SampleRate";
     static constexpr const char *CREATE_CUE_KEY      = "CreateCue";

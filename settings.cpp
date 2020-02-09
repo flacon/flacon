@@ -124,6 +124,9 @@ static void migrateProfile(Settings *settings, const QString &formatId)
         migrateKey(settings, "WV/ReplayGain",    group + "ReplayGain");
     }
 
+    migrateKey(settings, "OutFiles/Directory",     group + Profile::OUT_DIRECTORY_KEY);
+    migrateKey(settings, "OutFiles/Pattern",       group + Profile::OUT_PATTERN_KEY);
+
     migrateKey(settings, "Resample/BitsPerSample", group + Profile::BITS_PER_SAMPLE_KEY);
     migrateKey(settings, "Resample/SampleRate",    group + Profile::SAMPLE_RATE_KEY);
 
