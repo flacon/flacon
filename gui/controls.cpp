@@ -43,6 +43,7 @@
 #include <QPaintEvent>
 #include <QStandardPaths>
 
+static constexpr int HISTORY_COUNT = 10;
 
 /************************************************
  *
@@ -72,7 +73,6 @@ ToolButton::ToolButton(QWidget *parent):
  ************************************************/
 void ToolButton::paintEvent(QPaintEvent *event)
 {
-//    QToolButton::paintEvent(event); return;
     if (icon().isNull())
         return;
 
@@ -714,11 +714,16 @@ void ProgramEdit::openDialog()
  ************************************************/
 HistoryComboBox::HistoryComboBox(QWidget *parent):
     QComboBox(parent),
-    mDeleteItemAct(nullptr)
+    mModel(new QStringListModel(this))
 {
-    setInsertPolicy(QComboBox::InsertAtTop);
+    setEditable(true);
+    setModel(mModel);
+
+    setInsertPolicy(QComboBox::NoInsert);
     setMaxCount(10);
-    setAutoCompletionCaseSensitivity(Qt::CaseSensitive);
+
+    connect(this->lineEdit(), &QLineEdit::editingFinished,
+            this, &HistoryComboBox::addToHistory);
 
     connect(&mDeleteItemAct, &QAction::triggered,
             this, &HistoryComboBox::deleteItem);
@@ -730,11 +735,7 @@ HistoryComboBox::HistoryComboBox(QWidget *parent):
  ************************************************/
 QStringList HistoryComboBox::history() const
 {
-    QStringList res;
-    for (int i=0; i<count(); ++i)
-        res << itemText(i);
-
-    return res;
+    return mModel->stringList();
 }
 
 
@@ -743,19 +744,8 @@ QStringList HistoryComboBox::history() const
  ************************************************/
 void HistoryComboBox::setHistory(const QStringList &value)
 {
-    clear();
-    foreach(QString s, value)
-        addItem(s);
-}
-
-
-/************************************************
- *
- ************************************************/
-void HistoryComboBox::showPopup()
-{
-    addToHistory(lineEdit()->text());
-    QComboBox::showPopup();
+    mModel->setStringList(value);
+    setCurrentIndex(0);
 }
 
 
@@ -779,11 +769,23 @@ void HistoryComboBox::deleteItem()
 /************************************************
  *
  ************************************************/
-void HistoryComboBox::addToHistory(const QString &value)
+void HistoryComboBox::addToHistory()
 {
-    QStringList hist = this->history();
-    hist.removeAll(value);
-    hist.insert(0, value);
+    QString s = currentText();
+    if (s.isEmpty())
+        return;
+
+    QStringList hist = history();
+
+    if (!hist.isEmpty() && hist.first() == s)
+        return;
+
+    hist.removeAll(s);
+    hist.prepend(s);
+
+    while (hist.count() > HISTORY_COUNT)
+        hist.removeLast();
+
     setHistory(hist);
 }
 

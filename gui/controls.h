@@ -346,14 +346,13 @@ public:
 
     QAction * deleteItemAction() { return &mDeleteItemAct; }
 
-    void showPopup() override;
-
 private slots:
+    void addToHistory();
     void deleteItem();
 
 private:
+    QStringListModel *mModel;
     QAction mDeleteItemAct;
-    void addToHistory(const QString &value);
 };
 
 
