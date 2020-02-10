@@ -714,7 +714,8 @@ void ProgramEdit::openDialog()
  ************************************************/
 HistoryComboBox::HistoryComboBox(QWidget *parent):
     QComboBox(parent),
-    mModel(new QStringListModel(this))
+    mModel(new QStringListModel(this)),
+    mDeleteItemAct(nullptr)
 {
     setEditable(true);
     setModel(mModel);
