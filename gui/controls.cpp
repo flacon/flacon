@@ -101,6 +101,20 @@ void ToolButton::mousePressEvent(QMouseEvent *event)
 /************************************************
  *
  ************************************************/
+void ToolButton::changeEvent(QEvent *event)
+{
+    // Workaround, already created menu doesn't change
+    // your color when theme change in MacOS.
+    if (event->type() == QEvent::PaletteChange) {
+        if (menu())
+            menu()->setStyle(menu()->style());
+    }
+}
+
+
+/************************************************
+ *
+ ************************************************/
 QLineEdit *ToolButton::buddyLineEdit()
 {
     if (!buddy())

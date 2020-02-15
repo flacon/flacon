@@ -34,7 +34,7 @@
 	<string>????</string>
 
 	<key>NSRequiresAquaSystemAppearance</key>
-	<string>True</string>
+	<string>False</string>
 	
 	<key>CFBundleDocumentTypes</key>
 	<array>

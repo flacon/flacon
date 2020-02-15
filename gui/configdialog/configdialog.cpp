@@ -104,6 +104,10 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     int height = Settings::i()->value(Settings::ConfigureDialog_Height).toInt();
     resize(width, height);
 
+    int h = addProfileButton->sizeHint().height();
+    addProfileButton->setFixedSize(h, h);
+    delProfileButton->setFixedSize(h, h);
+
     initProgramsPage();
     initUpdatePage();
 
@@ -129,7 +133,6 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
 #ifdef Q_OS_MAC
     buttonBox->hide();
-    line->hide();
 #endif
 }
 
@@ -463,10 +466,11 @@ CoverMode ConfigDialog::coverMode() const
  ************************************************/
 void ConfigDialog::addProfile()
 {
+    const Profile &cur = currentProfile();
     AddProfileDialog dialog(this);
     dialog.setWindowModality(Qt::WindowModal);
 
-    dialog.setFormatId(currentProfile().formatId());
+    dialog.setFormatId(cur.formatId());
 
     if (!dialog.exec())
         return;
@@ -482,6 +486,9 @@ void ConfigDialog::addProfile()
 
     Profile profile(*format, id);
     profile.setName(dialog.profileName());
+    profile.setOutFileDir(cur.outFileDir());
+    profile.setOutFilePattern(cur.outFilePattern());
+
     mProfiles.append(profile);
 
     refreshProfilesList(profile.id());

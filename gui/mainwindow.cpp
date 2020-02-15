@@ -84,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowIcon(QIcon());
 
     trackView->setFrameShape(QFrame::NoFrame);
-    splitter->setStyleSheet("::handle{ border-right: 1px solid #b6b6b6;}");
+    splitter->setStyleSheet("::handle{ border-right: 1px solid #7F7F7F7F;}");
 #endif
 
     setAcceptDrops(true);

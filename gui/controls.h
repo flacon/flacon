@@ -71,8 +71,9 @@ public:
     void setBuddy(QLineEdit *buddy);
 
 protected:
-    void paintEvent(QPaintEvent *event);
-    void mousePressEvent(QMouseEvent *event);
+    void paintEvent(QPaintEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void changeEvent(QEvent *event) override;
 
     QLineEdit *buddyLineEdit();
 

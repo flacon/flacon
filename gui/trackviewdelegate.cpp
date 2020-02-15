@@ -166,7 +166,13 @@ void TrackViewDelegate::drawSelectionMark(QPainter *painter, const QRect &rect) 
     QRect r=rect;
     r.setWidth(SELECTION_MARK);
 #ifdef Q_OS_MAC
-    painter->fillRect(r, QColor(117,182, 247));
+    QColor hi = mTrackView->palette().color(QPalette::Active, QPalette::Highlight);
+    int h, s, l;
+    hi.getHsv(&h,&s,&l);
+    s = s * 0.6;
+    QColor c = QColor::fromHsv(h,s,l);
+    c.setAlphaF(0.75);
+    painter->fillRect(r, c);
 #else
     painter->fillRect(r, mTrackView->palette().highlight().color());
 #endif
@@ -440,7 +446,7 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
 
 
     // Draw bottom line ................................
-    painter->setPen(mTrackView->palette().dark().color());
+    painter->setPen(QColor("#7F7F7F7F"));
     int y = option.rect.height() - BOTTOM_PADDING - 2;
     painter->drawLine(MARGIN * 2, y, windowRect.right(), y);
 
