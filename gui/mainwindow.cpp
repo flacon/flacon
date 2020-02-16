@@ -359,46 +359,34 @@ void MainWindow::setOutProfile()
  ************************************************/
 void MainWindow::setControlsEnable()
 {
-    bool running = mConverter && mConverter->isRunning();
+    bool convert = mConverter && mConverter->isRunning();
+    bool scan    = mScanner;
+    bool running = scan || convert;
 
-    if (running)
-    {
-        outFilesBox->setEnabled(false);
-        tagsBox->setEnabled(false);
+    bool tracksSelected = !trackView->selectedTracks().isEmpty();
+    bool discsSelected  = !trackView->selectedDiscs().isEmpty();
+    bool canConvert = Converter::canConvert();
 
-        actionAddDisc->setEnabled(false);
-        actionRemoveDisc->setEnabled(false);
-        actionStartConvert->setVisible(false);
-        actionAbortConvert->setVisible(true);
-        actionDownloadTrackInfo->setEnabled(false);
-        actionScan->setEnabled(false);
-        actionConfigure->setEnabled(false);
-        actionConfigureEncoder->setEnabled(false);
-    }
-    else
-    {
-        QList<Disc*> selectedDiscs = trackView->selectedDiscs();
+    bool canDownload = false;
+    foreach (const Disc *disc, trackView->selectedDiscs())
+        canDownload = canDownload || !disc->discId().isEmpty();
 
-        bool tracksSelected = trackView->selectedTracks().count() > 0;
-        bool discsSelected  = trackView->selectedDiscs().count() > 0;
-        bool canConvert = Converter::canConvert();
-        bool canDownload = false;
-        foreach (const Disc *disc, selectedDiscs)
-            canDownload = canDownload || !disc->discId().isEmpty();
 
-        outFilesBox->setEnabled(true);
-        tagsBox->setEnabled(tracksSelected);
+    outFilesBox->setEnabled(!running);
+    tagsBox->setEnabled(!running && tracksSelected);
+    actionAddDisc->setEnabled(!running);
+    actionRemoveDisc->setEnabled(!running && discsSelected);
+    actionStartConvert->setEnabled(!running && canConvert);
+    actionDownloadTrackInfo->setEnabled(!running && canDownload);
+    actionScan->setEnabled(!running);
+    actionConfigure->setEnabled(!running);
+    actionConfigureEncoder->setEnabled(!running);
 
-        actionAddDisc->setEnabled(true);
-        actionRemoveDisc->setEnabled(discsSelected);
-        actionStartConvert->setVisible(true);
-        actionAbortConvert->setVisible(false);
-        actionStartConvert->setEnabled(canConvert);
-        actionDownloadTrackInfo->setEnabled(canDownload);
-        actionScan->setEnabled(!mScanner);
-        actionConfigure->setEnabled(true);
-        actionConfigureEncoder->setEnabled(true);
-    }
+    actionStartConvert->setEnabled(!scan && canConvert);
+    actionAbortConvert->setEnabled(convert);
+
+    actionStartConvert->setVisible(!convert);
+    actionAbortConvert->setVisible(convert);
 }
 
 
@@ -822,7 +810,7 @@ void MainWindow::addFileOrDir(const QString &fileName)
         {
             mScanner = new Scanner;
             setControlsEnable();
-            mScanner->start(fi.absoluteFilePath());
+            addedDiscs = mScanner->start(fi.absoluteFilePath());
             delete mScanner;
             mScanner = nullptr;
             setControlsEnable();
@@ -854,7 +842,16 @@ void MainWindow::addFileOrDir(const QString &fileName)
 void MainWindow::removeDiscs()
 {
     QList<Disc*> discs = trackView->selectedDiscs();
+    if (discs.isEmpty())
+        return;
+
+    int n = project->indexOf(discs.first());
     project->removeDisc(&discs);
+
+    n = qMin(n, project->count() - 1);
+    if (n > -1)
+        trackView->selectDisc(project->disc(n));
+
     setControlsEnable();
 }
 

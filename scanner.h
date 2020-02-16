@@ -28,6 +28,7 @@
 #define SCANNER_H
 
 #include <QObject>
+#include "disc.h"
 
 class Scanner : public QObject
 {
@@ -36,7 +37,7 @@ public:
     explicit Scanner(QObject *parent = nullptr);
 
 public slots:
-    void start(const QString &startDir);
+    DiscList start(const QString &startDir);
     void stop();
 
 private:

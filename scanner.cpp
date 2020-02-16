@@ -52,14 +52,14 @@ Scanner::Scanner(QObject *parent) :
 /************************************************
 
  ************************************************/
-void Scanner::start(const QString &startDir)
+DiscList Scanner::start(const QString &startDir)
 {
+    DiscList res;
     mActive = true;
     mAbort = false;
 
     QStringList exts;
-    foreach(const InputFormat *format, InputFormat::allFormats())
-    {
+    foreach(const InputFormat *format, InputFormat::allFormats()) {
         exts << QString("*.%1").arg(format->ext());
     }
 
@@ -67,44 +67,41 @@ void Scanner::start(const QString &startDir)
     query << startDir;
 
     QSet<QString> processed;
-    while (!query.isEmpty())
-    {
+    while (!query.isEmpty()) {
         QDir dir(query.dequeue());
 
         QFileInfoList dirs = dir.entryInfoList(QDir::Dirs | QDir::Readable | QDir::NoDotAndDotDot);
-        foreach(QFileInfo d, dirs)
-        {
+        foreach(QFileInfo d, dirs) {
             qApp->processEvents();
             if (mAbort)
-                return;
+                return res;
 
             if (d.isSymLink())
                 d = QFileInfo(d.symLinkTarget());
 
-            if (!processed.contains(d.absoluteFilePath()))
-            {
+            if (!processed.contains(d.absoluteFilePath())) {
                 processed << d.absoluteFilePath();
                 query << d.absoluteFilePath();
             }
         }
 
         QFileInfoList files = dir.entryInfoList(exts, QDir::Files | QDir::Readable);
-        foreach(QFileInfo f, files)
-        {
+        foreach(QFileInfo f, files) {
             qApp->processEvents();
             if (mAbort)
-                return;
-            try
-            {
-                project->addAudioFile(f.absoluteFilePath());
+                return res;
+
+            try {
+                res << project->addAudioFile(f.absoluteFilePath());
             }
-            catch (FlaconError&)
-            {
+            catch (FlaconError&) {
                 // Silently skip corrupted files
                 Q_UNUSED(startDir);
             }
         }
     }
+
+    return res;
 }
 
 
