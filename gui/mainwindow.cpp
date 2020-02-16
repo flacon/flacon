@@ -799,40 +799,45 @@ void MainWindow::downloadDiscInfo(Disc *disc)
  ************************************************/
 void MainWindow::addFileOrDir(const QString &fileName)
 {
-    DiscList addedDiscs;
+    bool isFirst = true;
+    auto addFile = [&](const QString &file, bool showError = false) {
+        try {
+            QFileInfo fi = QFileInfo(file);
+            DiscList discs;
+            if (fi.size() > 102400)
+                discs << project->addAudioFile(file);
+            else
+                discs << project->addCueFile(file);
+
+            if (!discs.isEmpty() && isFirst) {
+                isFirst = false;
+                this->trackView->selectDisc(discs.first());
+            }
+        }
+
+        catch (FlaconError &err)
+        {
+            if (showError)
+                showErrorMessage(err.what());
+        }
+    };
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
     QFileInfo fi = QFileInfo(fileName);
 
-    try
-    {
-        if (fi.isDir())
-        {
-            mScanner = new Scanner;
-            setControlsEnable();
-            addedDiscs = mScanner->start(fi.absoluteFilePath());
-            delete mScanner;
-            mScanner = nullptr;
-            setControlsEnable();
-        }
-        else if (fi.size() > 102400)
-        {
-            addedDiscs << project->addAudioFile(fileName);
-        }
-        else
-        {
-            addedDiscs << project->addCueFile(fileName);
-        }
+    if (fi.isDir())  {
+        mScanner = new Scanner;
+        setControlsEnable();
+        connect(mScanner, &Scanner::found, addFile);
+        mScanner->start(fi.absoluteFilePath());
+        delete mScanner;
+        mScanner = nullptr;
+        setControlsEnable();
     }
-    catch (FlaconError &err)
-    {
-        QApplication::restoreOverrideCursor();
-        showErrorMessage(err.what());
+    else {
+        addFile(fileName, true);
     }
     QApplication::restoreOverrideCursor();
-
-    if (!addedDiscs.isEmpty())
-        this->trackView->selectDisc(addedDiscs.first());
 }
 
 

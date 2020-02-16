@@ -52,7 +52,7 @@ Scanner::Scanner(QObject *parent) :
 /************************************************
 
  ************************************************/
-DiscList Scanner::start(const QString &startDir)
+void Scanner::start(const QString &startDir)
 {
     DiscList res;
     mActive = true;
@@ -74,7 +74,7 @@ DiscList Scanner::start(const QString &startDir)
         foreach(QFileInfo d, dirs) {
             qApp->processEvents();
             if (mAbort)
-                return res;
+                return;
 
             if (d.isSymLink())
                 d = QFileInfo(d.symLinkTarget());
@@ -89,19 +89,11 @@ DiscList Scanner::start(const QString &startDir)
         foreach(QFileInfo f, files) {
             qApp->processEvents();
             if (mAbort)
-                return res;
+                return;
 
-            try {
-                res << project->addAudioFile(f.absoluteFilePath());
-            }
-            catch (FlaconError&) {
-                // Silently skip corrupted files
-                Q_UNUSED(startDir);
-            }
+            emit found(f.absoluteFilePath());
         }
     }
-
-    return res;
 }
 
 
