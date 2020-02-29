@@ -58,8 +58,7 @@ void Scanner::start(const QString &startDir)
     mAbort = false;
 
     QStringList exts;
-    foreach(const AudioFormat *format, AudioFormat::inputFormats())
-    {
+    foreach(const InputFormat *format, InputFormat::allFormats()) {
         exts << QString("*.%1").arg(format->ext());
     }
 
@@ -67,13 +66,11 @@ void Scanner::start(const QString &startDir)
     query << startDir;
 
     QSet<QString> processed;
-    while (!query.isEmpty())
-    {
+    while (!query.isEmpty()) {
         QDir dir(query.dequeue());
 
         QFileInfoList dirs = dir.entryInfoList(QDir::Dirs | QDir::Readable | QDir::NoDotAndDotDot);
-        foreach(QFileInfo d, dirs)
-        {
+        foreach(QFileInfo d, dirs) {
             qApp->processEvents();
             if (mAbort)
                 return;
@@ -81,28 +78,19 @@ void Scanner::start(const QString &startDir)
             if (d.isSymLink())
                 d = QFileInfo(d.symLinkTarget());
 
-            if (!processed.contains(d.absoluteFilePath()))
-            {
+            if (!processed.contains(d.absoluteFilePath())) {
                 processed << d.absoluteFilePath();
                 query << d.absoluteFilePath();
             }
         }
 
         QFileInfoList files = dir.entryInfoList(exts, QDir::Files | QDir::Readable);
-        foreach(QFileInfo f, files)
-        {
+        foreach(QFileInfo f, files) {
             qApp->processEvents();
             if (mAbort)
                 return;
-            try
-            {
-                project->addAudioFile(f.absoluteFilePath());
-            }
-            catch (FlaconError&)
-            {
-                // Silently skip corrupted files
-                Q_UNUSED(startDir);
-            }
+
+            emit found(f.absoluteFilePath());
         }
     }
 }

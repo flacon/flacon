@@ -25,12 +25,11 @@
 
 
 #include "out_opus.h"
-#include "disk.h"
 #include "settings.h"
 #include <QDebug>
 
-#define CONF_OPUS_BITRATETYPE "Opus/BitrateType"
-#define CONF_OPUS_BITRATE "Opus/Bitrate"
+static const constexpr char* BITRATE_TYPE_KEY = "BitrateType";
+static const constexpr char* BITRATE_KEY      = "Bitrate";
 
 /************************************************
 
@@ -40,14 +39,14 @@ OutFormat_Opus::OutFormat_Opus()
     mId   = "OPUS";
     mExt  = "opus";
     mName = "Opus";
-    mSettingsGroup = "Opus";
+    mOptions = FormatOption::NoOptions;
 }
 
 
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -55,14 +54,14 @@ QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFi
 
     args << "--quiet";
 
-    QString type = Settings::i()->value(CONF_OPUS_BITRATETYPE).toString();
+    QString type = profile.value(BITRATE_TYPE_KEY).toString();
     if (type == "VBR")
         args << "--vbr";
 
     if (type == "CBR")
         args << "--cvbr";
 
-    args << "--bitrate" << Settings::i()->value(CONF_OPUS_BITRATE).toString();
+    args << "--bitrate" << profile.value(BITRATE_KEY).toString();
 
     // Tags .....................................................
     if (!track->artist().isEmpty())  args << "--artist"  << track->artist();
@@ -71,7 +70,7 @@ QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFi
     if (!track->date().isEmpty())    args << "--date"    << track->date();
     if (!track->title().isEmpty())   args << "--title"   << track->title();
     if (!track->comment().isEmpty()) args << "--comment" << QString("COMMENT=%1").arg(track->comment());
-    if (!track->diskId().isEmpty())  args << "--comment" << QString("DISCID=%1").arg(track->diskId());
+    if (!track->discId().isEmpty())  args << "--comment" << QString("DISCID=%1").arg(track->discId());
     if (!track->tag(TagId::AlbumArtist).isEmpty())
     {
         args << "--comment" << QString("album_artist=%1").arg(track->tag(TagId::AlbumArtist));
@@ -80,9 +79,9 @@ QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFi
     args << "--comment" << QString("tracknumber=%1").arg(track->trackNum());
     args << "--comment" << QString("tracktotal=%1").arg(track->trackCount());
 
-    args << "--comment" << QString("disc=%1").arg(track->diskNum());
-    args << "--comment" << QString("discnumber=%1").arg(track->diskNum());
-    args << "--comment" << QString("disctotal=%1").arg(track->diskCount());
+    args << "--comment" << QString("disc=%1").arg(track->discNum());
+    args << "--comment" << QString("discnumber=%1").arg(track->discNum());
+    args << "--comment" << QString("disctotal=%1").arg(track->discCount());
 
     // Files ....................................................
     args << "-";
@@ -95,9 +94,8 @@ QStringList OutFormat_Opus::encoderArgs(const Track *track, const QString &outFi
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Opus::gainArgs(const QStringList &files) const
+QStringList OutFormat_Opus::gainArgs(const QStringList &, const GainType) const
 {
-    Q_UNUSED(files);
     return QStringList();
 }
 
@@ -108,8 +106,8 @@ QStringList OutFormat_Opus::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Opus::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Opus/BitrateType",      "VBR");
-    res.insert("Opus/Bitrate",          96);
+    res.insert(BITRATE_TYPE_KEY, "VBR");
+    res.insert(BITRATE_KEY,      96);
     return res;
 }
 
@@ -117,17 +115,17 @@ QHash<QString, QVariant> OutFormat_Opus::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Opus::configPage(QWidget *parent) const
+EncoderConfigPage *OutFormat_Opus::configPage(const Profile &profile, QWidget *parent) const
 {
-    return new ConfigPage_Opus(parent);
+    return new ConfigPage_Opus(profile, parent);
 }
 
 
 /************************************************
 
  ************************************************/
-ConfigPage_Opus::ConfigPage_Opus(QWidget *parent):
-    EncoderConfigPage(parent)
+ConfigPage_Opus::ConfigPage_Opus(const Profile &profile, QWidget *parent):
+    EncoderConfigPage(profile, parent)
 {
     setupUi(this);
 
@@ -148,16 +146,16 @@ ConfigPage_Opus::ConfigPage_Opus(QWidget *parent):
  ************************************************/
 void ConfigPage_Opus::load()
 {
-    loadWidget("Opus/BitrateType",  opusBitrateTypeCbx);
-    loadWidget("Opus/Bitrate",      opusBitrateSlider);
+    loadWidget(BITRATE_TYPE_KEY, opusBitrateTypeCbx);
+    loadWidget(BITRATE_KEY,      opusBitrateSlider);
 }
 
 
 /************************************************
 
  ************************************************/
-void ConfigPage_Opus::write()
+void ConfigPage_Opus::save()
 {
-    writeWidget("Opus/BitrateType",  opusBitrateTypeCbx);
-    writeWidget("Opus/Bitrate",      opusBitrateSlider);
+    saveWidget(BITRATE_TYPE_KEY, opusBitrateTypeCbx);
+    saveWidget(BITRATE_KEY,      opusBitrateSlider);
 }

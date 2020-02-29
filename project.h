@@ -30,9 +30,9 @@
 #include <QObject>
 #include <QList>
 #include <QIcon>
-#include "disk.h"
+#include "disc.h"
 
-class Disk;
+class Disc;
 class Track;
 class DataProvider;
 
@@ -42,35 +42,35 @@ class Project : public QObject
 public:
     static Project* instance();
     
-    Disk *disk(int index) const;
+    Disc *disc(int index) const;
     int count() const;
-    int indexOf(const Disk *disk) const;
+    int indexOf(const Disc *disc) const;
 
 
-    void addDisk(Disk *disk) { insertDisk(disk); }
-    int insertDisk(Disk *disk, int index=-1);
-    void removeDisk(const QList<Disk*> *disks);
+    void addDisc(Disc *disc) { insertDisc(disc); }
+    int insertDisc(Disc *disc, int index=-1);
+    void removeDisc(const QList<Disc*> *discs);
 
-    void emitDiskChanged(Disk *disk) const;
+    void emitDiscChanged(Disc *disc) const;
     void emitLayoutChanged() const;
 
-    bool diskExists(const QString &cueUri);
+    bool discExists(const QString &cueUri);
 
 public slots:
     void clear();
-    Disk *addAudioFile(const QString &fileName);
-    DiskList addCueFile(const QString &fileName);
+    Disc *addAudioFile(const QString &fileName);
+    DiscList addCueFile(const QString &fileName);
 
 signals:
-    void diskChanged(Disk *disk) const;
+    void discChanged(Disc *disc) const;
     void layoutChanged() const;
-    void beforeRemoveDisk(Disk *disk);
-    void afterRemoveDisk();
+    void beforeRemoveDisc(Disc *disc);
+    void afterRemoveDisc();
 
 private:
     explicit Project(QObject *parent = nullptr);
 
-    QList<Disk*> mDisks;
+    QList<Disc*> mDiscs;
 };
 
 #define project Project::instance()

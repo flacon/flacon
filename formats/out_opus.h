@@ -28,7 +28,7 @@
 #define OUT_OPUS_H
 
 #include "outformat.h"
-#include "configdialog.h"
+#include "encoderconfigpage.h"
 #include "ui_out_opus_config.h"
 
 class OutFormat_Opus: public OutFormat
@@ -39,11 +39,11 @@ public:
     virtual QString encoderProgramName() const override { return "opusenc"; }
     virtual QString gainProgramName() const override { return ""; }
 
-    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
-    virtual QStringList gainArgs(const QStringList &files) const override;
+    virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const override;
+    virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(QWidget *parent = nullptr) const override;
+    EncoderConfigPage *configPage(const Profile &profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
@@ -56,10 +56,10 @@ class ConfigPage_Opus: public EncoderConfigPage, private Ui::ConfigPage_Opus
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Opus(QWidget *parent = nullptr);
+    explicit ConfigPage_Opus(const Profile &profile, QWidget *parent = nullptr);
 
     virtual void load() override;
-    virtual void write() override;
+    virtual void save() override;
 };
 
 #endif // OUT_OPUS_H

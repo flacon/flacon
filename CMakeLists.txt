@@ -58,7 +58,7 @@ set(HEADERS
     tags.h
     cue.h
     track.h
-    disk.h
+    disc.h
     project.h
     settings.h
     inputaudiofile.h
@@ -66,6 +66,7 @@ set(HEADERS
     scanner.h
     patternexpander.h
     consoleout.h
+    profiles.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -74,9 +75,11 @@ set(HEADERS
     gui/trackviewmodel.h
     gui/trackviewdelegate.h
     gui/configdialog/configdialog.h
+    gui/configdialog/profilewidget.h
+    gui/configdialog/addprofiledialog.h
     gui/aboutdialog/aboutdialog.h
     gui/aboutdialog/translatorsinfo.h
-    gui/cuediskselectdialog/cuediskselectdialog.h
+    gui/cuediscselectdialog/cuediscselectdialog.h
     gui/coverdialog/coverdialog.h
     gui/coverdialog/asynclistwidgetitem.h
     gui/tageditor/tageditor.h
@@ -88,7 +91,7 @@ set(HEADERS
     converter/encoder.h
     converter/gain.h
     converter/worker.h
-    converter/diskpipline.h
+    converter/discpipline.h
     converter/cuecreator.h
     converter/copycover.h
     converter/resampler.h
@@ -100,6 +103,7 @@ set(HEADERS
     formats/in_wav.h
     formats/in_wv.h
 
+    formats/encoderconfigpage.h
     formats/outformat.h
     formats/out_aac.h
     formats/out_flac.h
@@ -117,7 +121,7 @@ set(SOURCES
     cue.cpp
     main.cpp
     track.cpp
-    disk.cpp
+    disc.cpp
     project.cpp
     settings.cpp
     inputaudiofile.cpp
@@ -125,6 +129,7 @@ set(SOURCES
     scanner.cpp
     patternexpander.cpp
     consoleout.cpp
+    profiles.cpp
 
     gui/icon.cpp
     gui/mainwindow.cpp
@@ -133,9 +138,11 @@ set(SOURCES
     gui/trackviewmodel.cpp
     gui/trackviewdelegate.cpp
     gui/configdialog/configdialog.cpp
+    gui/configdialog/profilewidget.cpp
+    gui/configdialog/addprofiledialog.cpp
     gui/aboutdialog/aboutdialog.cpp
     gui/aboutdialog/translatorsinfo.cpp
-    gui/cuediskselectdialog/cuediskselectdialog.cpp
+    gui/cuediscselectdialog/cuediscselectdialog.cpp
     gui/coverdialog/coverdialog.cpp
     gui/coverdialog/asynclistwidgetitem.cpp
     gui/tageditor/tageditor.cpp
@@ -147,7 +154,7 @@ set(SOURCES
     converter/encoder.cpp
     converter/gain.cpp
     converter/worker.cpp
-    converter/diskpipline.cpp
+    converter/discpipline.cpp
     converter/cuecreator.cpp
     converter/copycover.cpp
     converter/resampler.cpp
@@ -159,6 +166,7 @@ set(SOURCES
     formats/in_wav.cpp
     formats/in_wv.cpp
 
+    formats/encoderconfigpage.cpp
     formats/outformat.cpp
     formats/out_aac.cpp
     formats/out_flac.cpp

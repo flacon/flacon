@@ -40,11 +40,11 @@
  ************************************************/
 void Project::clear()
 {
-    QList<Disk*> disks;
+    QList<Disc*> discs;
     for (int i=0; i<count(); ++i)
-        disks << disk(i);
+        discs << disc(i);
 
-    removeDisk(&disks);
+    removeDisc(&discs);
 }
 
 
@@ -73,9 +73,9 @@ Project::Project(QObject *parent) :
 /************************************************
 
  ************************************************/
-Disk *Project::disk(int index) const
+Disc *Project::disc(int index) const
 {
-    return mDisks.at(index);
+    return mDiscs.at(index);
 }
 
 
@@ -84,19 +84,19 @@ Disk *Project::disk(int index) const
  ************************************************/
 int Project::count() const
 {
-    return mDisks.count();
+    return mDiscs.count();
 }
 
 
 /************************************************
 
  ************************************************/
-int Project::insertDisk(Disk *disk, int index)
+int Project::insertDisc(Disc *disc, int index)
 {
     if (index < 0)
-        index = mDisks.count();
+        index = mDiscs.count();
 
-    mDisks.insert(index, disk);
+    mDiscs.insert(index, disc);
 
     emit layoutChanged();
     return index;
@@ -106,16 +106,16 @@ int Project::insertDisk(Disk *disk, int index)
 /************************************************
 
  ************************************************/
-void Project::removeDisk(const QList<Disk*> *disks)
+void Project::removeDisc(const QList<Disc*> *discs)
 {
-    for (int i=0; i<disks->count(); ++i)
+    for (int i=0; i<discs->count(); ++i)
     {
-        Disk *disk = disks->at(i);
-        emit beforeRemoveDisk(disk);
-        if (mDisks.removeAll(disk))
-            disk->deleteLater();
+        Disc *disc = discs->at(i);
+        emit beforeRemoveDisc(disc);
+        if (mDiscs.removeAll(disc))
+            disc->deleteLater();
 
-        emit afterRemoveDisk();
+        emit afterRemoveDisc();
     }
 }
 
@@ -123,18 +123,18 @@ void Project::removeDisk(const QList<Disk*> *disks)
 /************************************************
 
  ************************************************/
-int Project::indexOf(const Disk *disk) const
+int Project::indexOf(const Disc *disc) const
 {
-    return mDisks.indexOf(const_cast<Disk*>(disk));
+    return mDiscs.indexOf(const_cast<Disc*>(disc));
 }
 
 
 /************************************************
  *
  ************************************************/
-bool Project::diskExists(const QString &cueUri)
+bool Project::discExists(const QString &cueUri)
 {
-    foreach (const Disk *d, mDisks)
+    foreach (const Disc *d, mDiscs)
     {
         if (d->cueFile() == cueUri)
             return true;
@@ -146,14 +146,14 @@ bool Project::diskExists(const QString &cueUri)
 /************************************************
 
  ************************************************/
-Disk *Project::addAudioFile(const QString &fileName)
+Disc *Project::addAudioFile(const QString &fileName)
 {
 
     QString canonicalFileName = QFileInfo(fileName).canonicalFilePath();
 
     for(int i=0; i<count(); ++i )
     {
-        if (disk(i)->audioFileName() == canonicalFileName)
+        if (disc(i)->audioFileName() == canonicalFileName)
             return nullptr;
     }
 
@@ -163,11 +163,11 @@ Disk *Project::addAudioFile(const QString &fileName)
         throw FlaconError(audio.errorString());
     }
 
-    Disk *disk = new Disk();
-    disk->setAudioFile(audio);
-    addDisk(disk);
+    Disc *disc = new Disc();
+    disc->setAudioFile(audio);
+    addDisc(disc);
 
-    return disk;
+    return disc;
 }
 
 
@@ -175,22 +175,22 @@ Disk *Project::addAudioFile(const QString &fileName)
 /************************************************
 
  ************************************************/
-DiskList Project::addCueFile(const QString &fileName)
+DiscList Project::addCueFile(const QString &fileName)
 {
-    DiskList res;
+    DiscList res;
     try
     {
-        QVector<CueDisk> disks = CueReader().load(fileName);
+        QVector<CueDisc> discs = CueReader().load(fileName);
 
-        for (int i=0; i<disks.count(); ++i)
+        for (int i=0; i<discs.count(); ++i)
         {
-            if (diskExists(disks.at(i).uri()))
+            if (discExists(discs.at(i).uri()))
                 continue;
 
-            Disk *disk = new Disk();
-            disk->loadFromCue(disks.at(i));
-            mDisks << disk;
-            res << disk;
+            Disc *disc = new Disc();
+            disc->loadFromCue(discs.at(i));
+            mDiscs << disc;
+            res << disc;
         }
         emit layoutChanged();
     }
@@ -208,9 +208,9 @@ DiskList Project::addCueFile(const QString &fileName)
 /************************************************
 
  ************************************************/
-void Project::emitDiskChanged(Disk *disk) const
+void Project::emitDiscChanged(Disc *disc) const
 {
-    emit diskChanged(disk);
+    emit discChanged(disc);
 }
 
 

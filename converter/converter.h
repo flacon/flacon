@@ -32,17 +32,17 @@
 #include <QDateTime>
 #include <QVector>
 
-class DiskPipeline;
-class OutFormat;
-class Disk;
+class DiscPipeline;
+class Disc;
 class Track;
+class Profile;
 
 class Converter : public QObject
 {
     Q_OBJECT
 public:
     struct Job {
-        Disk *disk = nullptr;
+        Disc *disc = nullptr;
         QVector<const Track*> tracks;
     };
 
@@ -59,8 +59,8 @@ signals:
     void trackProgress(const Track &track, TrackState state, Percent percent);
 
 public slots:
-    void start();
-    void start(const Jobs &jobs);
+    void start(const Profile &profile);
+    void start(const Jobs &jobs, const Profile &profile);
     void stop();
 
 private slots:
@@ -68,9 +68,9 @@ private slots:
 
 private:
     int mThreadCount;
-    QVector<DiskPipeline*> mDiskPiplines;
+    QVector<DiscPipeline*> mDiscPiplines;
 
-    bool check(OutFormat *format) const;
+    bool check(const Profile &profile) const;
 };
 
 #endif // CONVERTER_H

@@ -32,7 +32,7 @@
 #include <QDialogButtonBox>
 #include <QPushButton>
 
-#include "disk.h"
+#include "disc.h"
 #include "asynclistwidgetitem.h"
 
 
@@ -41,7 +41,7 @@
 /************************************************
  *
  ************************************************/
-CoverDialog *CoverDialog::createAndShow(Disk *disk, QWidget *parent)
+CoverDialog *CoverDialog::createAndShow(Disc *disc, QWidget *parent)
 {
     CoverDialog *instance = parent->findChild<CoverDialog*>();
 
@@ -49,7 +49,7 @@ CoverDialog *CoverDialog::createAndShow(Disk *disk, QWidget *parent)
         instance = new CoverDialog(parent);
 
     instance->setAttribute(Qt::WA_DeleteOnClose);
-    instance->setDisk(disk);
+    instance->setDisc(disc);
     instance->show();
     instance->raise();
     instance->activateWindow();
@@ -64,7 +64,7 @@ CoverDialog *CoverDialog::createAndShow(Disk *disk, QWidget *parent)
 CoverDialog::CoverDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CoverDialog),
-    mDisk(nullptr)
+    mDisc(nullptr)
 {
     ui->setupUi(this);
     ui->buttonBox->button(QDialogButtonBox::Reset)->setText(tr("Without cover image"));
@@ -94,12 +94,12 @@ CoverDialog::~CoverDialog()
 /************************************************
  *
  ************************************************/
-void CoverDialog::setDisk(Disk *disk)
+void CoverDialog::setDisc(Disc *disc)
 {
-    mDisk = disk;
-    connect(mDisk.data(), SIGNAL(destroyed(QObject*)), SLOT(close()));
+    mDisc = disc;
+    connect(mDisc.data(), SIGNAL(destroyed(QObject*)), SLOT(close()));
     ui->coverView->clear();
-    scan(QFileInfo(disk->cueFile()).absoluteDir().absolutePath());
+    scan(QFileInfo(disc->cueFile()).absoluteDir().absolutePath());
     ui->coverView->setGridSize(QSize(140, 160));
 }
 
@@ -118,7 +118,7 @@ void CoverDialog::coverDoubleClicked(QListWidgetItem *)
  ************************************************/
 void CoverDialog::buttonClicked(QAbstractButton *button)
 {
-    if (!mDisk)
+    if (!mDisc)
     {
         this->reject();
         return;
@@ -130,7 +130,7 @@ void CoverDialog::buttonClicked(QAbstractButton *button)
         QListWidgetItem *item = ui->coverView->currentItem();
         if (!item)
             return;
-        mDisk->setCoverImageFile(item->data(FileNameRole).toString());
+        mDisc->setCoverImageFile(item->data(FileNameRole).toString());
         this->accept();
         return;
     }
@@ -138,7 +138,7 @@ void CoverDialog::buttonClicked(QAbstractButton *button)
 
     if (button == ui->buttonBox->button(QDialogButtonBox::Reset))
     {
-        mDisk->setCoverImageFile("");
+        mDisc->setCoverImageFile("");
         this->accept();
         return;
     }
@@ -150,8 +150,8 @@ void CoverDialog::buttonClicked(QAbstractButton *button)
  ************************************************/
 void CoverDialog::scan(const QString &startDir)
 {
-    QString curFile = mDisk->coverImageFile();
-    foreach (QString f, mDisk->searchCoverImages(startDir))
+    QString curFile = mDisc->coverImageFile();
+    foreach (QString f, mDisc->searchCoverImages(startDir))
     {
         QFileInfo file(f);
         AsyncListWidgetItem *item = new AsyncListWidgetItem(ui->coverView);

@@ -36,6 +36,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include "tags.h"
+#include "settings.h"
 
 class QStringListModel;
 
@@ -46,10 +47,46 @@ enum MultiValuesState
     MultiValuesMulti
 };
 
+
+/************************************************
+ *
+ ************************************************/
+class ToolButton: public QToolButton
+{
+    Q_OBJECT
+public:
+    explicit ToolButton(const QIcon &icon, QWidget *parent = nullptr);
+    explicit ToolButton(QWidget *parent = nullptr);
+    virtual ~ToolButton() {}
+
+    /// Returns this label's buddy, or nullptr if no buddy is currently set.
+    QWidget *buddy() const { return mBuddy; }
+
+
+    /// Sets this label's buddy to buddy.
+    ///
+    /// When the user presses the shortcut key indicated by this label,
+    /// the keyboard focus is transferred to the label's buddy widget.
+    void setBuddy(QComboBox *buddy);
+    void setBuddy(QLineEdit *buddy);
+
+protected:
+    void paintEvent(QPaintEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void changeEvent(QEvent *event) override;
+
+    QLineEdit *buddyLineEdit();
+
+private:
+    QWidget *mBuddy = nullptr;
+};
+
+
+
 /************************************************
 
  ************************************************/
-class OutPatternButton: public QToolButton
+class OutPatternButton: public ToolButton
 {
     Q_OBJECT
 public:
@@ -57,20 +94,19 @@ public:
     void addPattern(const QString &pattern, const QString &title);
     void addFullPattern(const QString &pattern, const QString &title);
 
-    QMenu *menu()  { return &mMenu; }
+    void addStandardPatterns();
 
 signals:
     void paternSelected(const QString &pattern);
     void fullPaternSelected(const QString &pattern);
 
+
 private slots:
     void patternTriggered();
     void fullPatternTriggered();
-    void popupMenu();
 
 private:
     QAction* mSeparator;
-    QMenu mMenu;
 };
 
 
@@ -78,7 +114,25 @@ private:
 /************************************************
  *
  ************************************************/
-class ActionsButton: public QToolButton
+class OutDirButton: public ToolButton
+{
+    Q_OBJECT
+public:
+    explicit OutDirButton(QWidget * parent = nullptr);
+
+private slots:
+    void openSelectDirDialog();
+    void setDirectory(const QString &directory);
+
+private:
+    void fillMenu();
+};
+
+
+/************************************************
+ *
+ ************************************************/
+class ActionsButton: public ToolButton
 {
     Q_OBJECT
 public:
@@ -293,14 +347,13 @@ public:
 
     QAction * deleteItemAction() { return &mDeleteItemAct; }
 
-    void showPopup() override;
-
 private slots:
+    void addToHistory();
     void deleteItem();
 
 private:
+    QStringListModel *mModel;
     QAction mDeleteItemAct;
-    void addToHistory(const QString &value);
 };
 
 
@@ -333,4 +386,25 @@ private:
     QStringList mMessgaes;
 };
 
+namespace Controls {
+
+void loadFromSettings(QSlider *widget, Settings::Key key);
+void saveToSettings(const QSlider *widget, Settings::Key key);
+
+void loadFromSettings(QLineEdit *widget, Settings::Key key);
+void saveToSettings(const QLineEdit *widget, Settings::Key key);
+
+void loadFromSettings(QCheckBox *widget, Settings::Key key);
+void saveToSettings(const QCheckBox *widget, Settings::Key key);
+
+void loadFromSettings(QSpinBox *widget, Settings::Key key);
+void saveToSettings(const QSpinBox *widget, Settings::Key key);
+
+void loadFromSettings(QDoubleSpinBox *widget, Settings::Key key);
+void saveToSettings(const QDoubleSpinBox *widget, Settings::Key key);
+
+void loadFromSettings(QComboBox *widget, Settings::Key key);
+void saveToSettings(const QComboBox *widget, Settings::Key key);
+
+} // namespace
 #endif // CONTROLS_H

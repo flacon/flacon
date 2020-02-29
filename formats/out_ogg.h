@@ -28,7 +28,7 @@
 #define OUT_OGG_H
 
 #include "outformat.h"
-#include "configdialog.h"
+#include "encoderconfigpage.h"
 #include "ui_out_ogg_config.h"
 
 class OutFormat_Ogg: public OutFormat
@@ -39,11 +39,11 @@ public:
     virtual QString encoderProgramName() const override { return "oggenc"; }
     virtual QString gainProgramName() const override { return "vorbisgain"; }
 
-    virtual QStringList encoderArgs(const Track *track, const QString &outFile) const override;
-    virtual QStringList gainArgs(const QStringList &files) const override;
+    virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const override;
+    virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(QWidget *parent = nullptr) const override;
+    EncoderConfigPage *configPage(const Profile &profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
@@ -51,14 +51,14 @@ public:
 };
 
 
-class ConfigPage_Ogg: public EncoderConfigPage, private Ui::ConfigPage_Ogg
+class ConfigPage_Ogg: public EncoderConfigPage, private Ui::oggConfigPage
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Ogg(QWidget *parent = nullptr);
+    explicit ConfigPage_Ogg(const Profile &profile, QWidget *parent = nullptr);
 
     virtual void load() override;
-    virtual void write() override;
+    virtual void save() override;
 
 private slots:
     void oggQualitySliderChanged(int value);

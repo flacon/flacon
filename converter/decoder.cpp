@@ -86,7 +86,7 @@ void Decoder::open(const QString &fileName)
 {
     mInputFile = fileName;
     if (!mFormat)
-        mFormat = AudioFormat::formatForFile(fileName);
+        mFormat = InputFormat::formatForFile(fileName);
 
     if (!mFormat)
         throw FlaconError("Unknown format");

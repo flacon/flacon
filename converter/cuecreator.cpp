@@ -25,8 +25,7 @@
 
 
 #include "cuecreator.h"
-#include "disk.h"
-#include "settings.h"
+#include "disc.h"
 #include "patternexpander.h"
 
 #include <QFileInfo>
@@ -37,19 +36,19 @@
 /************************************************
 
  ************************************************/
-CueCreator::CueCreator(const Disk *disk, PreGapType preGapType):
-    mDisk(disk),
+CueCreator::CueCreator(const Disc *disc, PreGapType preGapType, const QString &fileTemplate):
+    mDisc(disc),
     mPreGapType(preGapType)
 {
-    Track *track = mDisk->track(0);
+    Track *track = mDisc->track(0);
     QString dir = QFileInfo(track->resultFilePath()).dir().absolutePath();
     PatternExpander expander(*track);
     expander.setTrackNum(0);
-    expander.setTrackCount(mDisk->count());
-    expander.setDiskNum(mDisk->diskNum());
-    expander.setDiskCount(mDisk->diskCount());
+    expander.setTrackCount(mDisc->count());
+    expander.setDiscNum(mDisc->discNum());
+    expander.setDiscCount(mDisc->discCount());
 
-    QString fileName = expander.expand(Settings::i()->value(Settings::PerTrackCue_FileName).toString());
+    QString fileName = expander.expand(fileTemplate);
 
     if (!fileName.endsWith(".cue"))
         fileName += ".cue";
@@ -97,15 +96,15 @@ void CueCreator::initGlobalTags()
 
     mGlobalTags.setCodecName(mTextCodec->name());
 
-    Track *firstTrack = mDisk->track(0);
+    Track *firstTrack = mDisc->track(0);
     for (uint t=0; t<sizeof(tags)/sizeof(TagId); ++t)
     {
         TagId tagId = tags[t];
         QString value = firstTrack->tag(tagId);
 
-        for (int i=1; i<mDisk->count(); ++i)
+        for (int i=1; i<mDisc->count(); ++i)
         {
-            if (mDisk->track(i)->tag(tagId) != value)
+            if (mDisc->track(i)->tag(tagId) != value)
             {
                 value.clear();
                 break;
@@ -159,7 +158,7 @@ bool CueCreator::write()
 {
     // If the first track starts with zero second, doesn't make sense to create pregap track.
     bool createPreGapFile = mPreGapType == PreGapType::ExtractToFile &&
-                            mDisk->track(0)->cueIndex(1).milliseconds() > 0;
+                            mDisc->track(0)->cueIndex(1).milliseconds() > 0;
 
     if (!mFile.open(QIODevice::WriteOnly | QIODevice::Text))
     {
@@ -181,15 +180,15 @@ bool CueCreator::write()
     writeGlobalTag("TITLE \"%1\"",      TagId::Album);
 
     if (createPreGapFile)
-        writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisk->preGapTrack()->resultFilePath()).fileName()));
+        writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->preGapTrack()->resultFilePath()).fileName()));
     else
-        writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisk->track(0)->resultFilePath()).fileName()));
+        writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->track(0)->resultFilePath()).fileName()));
 
     // Tracks ...........................
     CueIndex prevIndex("00:00:00");
-    for(int i=0; i<mDisk->count(); ++i)
+    for(int i=0; i<mDisc->count(); ++i)
     {
-        Track *track = mDisk->track(i);
+        Track *track = mDisc->track(i);
         CueIndex index0 = track->cueIndex(0);
         CueIndex index1 = track->cueIndex(1);
 

@@ -30,6 +30,7 @@
 #include <QSettings>
 #include <QSet>
 #include "types.h"
+#include "profiles.h"
 
 class OutFormat;
 
@@ -50,10 +51,8 @@ public:
         Encoder_TmpDir,
 
         // Out Files ****************************
-        OutFiles_Pattern,
-        OutFiles_Directory,
         OutFiles_DirectoryHistory,
-        OutFiles_Format,
+        OutFiles_Profile,
         OutFiles_PatternHistory,
 
         // Internet *****************************
@@ -62,11 +61,6 @@ public:
         // Misc *********************************
         Misc_LastDir,
 
-        // PerTrackCue **************************
-        PerTrackCue_Create,
-        PerTrackCue_Pregap,
-        PerTrackCue_FileName,
-
         // ConfigureDialog **********************
         ConfigureDialog_Width,
         ConfigureDialog_Height,
@@ -74,10 +68,6 @@ public:
         // Cover image **************************
         Cover_Mode,
         Cover_Size,
-
-        // Resampling ***************************
-        Resample_BitsPerSample,
-        Resample_SampleRate,
     };
 
     static Settings *i();
@@ -96,23 +86,9 @@ public:
     QString findProgram(const QString &program) const;
 
     OutFormat *outFormat() const;
-    void setOutFormat(const OutFormat *format);
-    void setOutFormat(const QString &formatId);
 
     QString tmpDir() const;
     void setTmpDir(const QString &value);
-
-    bool createCue() const;
-    void setCreateCue(bool value);
-
-    PreGapType preGapType() const;
-    void setPregapType(PreGapType value);
-
-    QString outFilePattern() const;
-    void setOutFilePattern(const QString &value);
-
-    QString outFileDir() const;
-    void setOutFileDir(const QString &value);
 
     QString defaultCodepage() const;
     void setDefaultCodepage(const QString &value);
@@ -120,23 +96,34 @@ public:
     CoverMode coverMode() const;
     int coverImageSize() const;
 
+    Profiles &profiles();
+    const Profiles &profiles() const;
+    void setProfiles(const Profiles &profiles);
+
+    const Profile &currentProfile() const;
+    Profile &currentProfile();
+    bool selectProfile(const QString &profileId);
+
 signals:
     void changed();
 
-public slots:
-private:
+protected:
     explicit Settings(const QString &organization, const QString &application);
     explicit Settings(const QString &fileName);
     virtual ~Settings();
 
+private:
     void init();
     void setDefaultValue(const QString &key, const QVariant &defaultValue);
     void setDefaultValue(Key key, const QVariant &defaultValue);
     QString keyToString(Key key) const;
+    QStringList groups(const QString &parentGroup) const;
+    void loadProfiles();
 
     QSet<QString> mPrograms;
     static QString mFileName;
     static Settings *mInstance;
+    Profiles mProfiles;
 };
 
 #endif // SETTINGS_H

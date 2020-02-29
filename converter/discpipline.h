@@ -24,30 +24,39 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef DISKPIPLINE_H
-#define DISKPIPLINE_H
+#ifndef DISCPIPLINE_H
+#define DISCPIPLINE_H
 
 #include <QObject>
 #include <QTemporaryDir>
 #include "track.h"
 #include "converter.h"
 
-class Disk;
+class Disc;
 class Project;
 class WorkerThread;
 
-class DiskPipeline : public QObject
+class DiscPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiskPipeline(const Converter::Job &job, QObject *parent = nullptr);
-    virtual ~DiskPipeline();
+    explicit DiscPipeline(const Converter::Job &job, const Profile &profile, QObject *parent = nullptr);
+    virtual ~DiscPipeline();
 
     bool init();
     void startWorker(int *splitterCount, int *count);
     void stop();
     bool isRunning() const;
     int runningThreadCount() const;
+
+    CoverMode coverMode() const;
+    void setCoverMode(CoverMode value);
+
+    int coverImageSize() const;
+    void setCoverImageSize(int value);
+
+    QString tmpDir() const;
+    void setTmpDir(QString value);
 
 signals:
     void readyStart();
@@ -71,8 +80,6 @@ protected:
 private:
     class Data;
     Data *mData;
-    QTemporaryDir *mTmpDir;
-    QVector<WorkerThread*> mThreads;
 };
 
-#endif // DISKPIPLINE_H
+#endif // DISCPIPLINE_H

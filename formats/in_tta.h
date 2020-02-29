@@ -29,7 +29,7 @@
 
 #include "informat.h"
 
-class Format_Tta: public AudioFormat
+class Format_Tta: public InputFormat
 {
 public:
     virtual QString name() const override { return "TTA"; }
@@ -42,10 +42,6 @@ public:
     virtual QString decoderProgramName() const override { return "ttaenc"; }
     virtual QStringList decoderArgs(const QString &fileName) const override;
     virtual QString filterDecoderStderr(const QString &stdErr) const override;
-
-    virtual bool isOutputFormat() const override { return false; }
-
-
 };
 
 #endif // IN_TTA_H

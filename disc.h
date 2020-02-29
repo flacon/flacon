@@ -24,8 +24,8 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef DISK_H
-#define DISK_H
+#ifndef DISC_H
+#define DISC_H
 
 #include "track.h"
 #include "cue.h"
@@ -34,24 +34,23 @@
 #include <QImage>
 
 class QFile;
-class Disk;
 class InputAudioFile;
 
 
-class Disk: public QObject
+class Disc: public QObject
 {
     Q_OBJECT
     friend class Track;
 public:
 
-    explicit Disk(QObject *parent = nullptr);
-    virtual ~Disk();
+    explicit Disc(QObject *parent = nullptr);
+    virtual ~Disc();
 
     Track *track(int index) const;
     int count() const { return mTracks.count(); }
     const Track *preGapTrack() const;
 
-    void loadFromCue(const CueDisk &cueDisk);
+    void loadFromCue(const CueDisc &cueDisc);
     QString cueFile() const { return mCueFile; }
 
     InputAudioFile *audioFile() const { return mAudioFile; }
@@ -69,8 +68,8 @@ public:
     QString tagsUri() const;
     QString discId() const;
     QString fileTag() const;
-    DiskNum diskNum() const;
-    DiskNum diskCount() const;
+    DiscNum discNum() const;
+    DiscNum discCount() const;
 
     QStringList warnings() const;
     bool canConvert(QString *description = nullptr) const;
@@ -84,7 +83,7 @@ public:
 
     QVector<TagSet> tagSets() const;
     void addTagSet(const Tracks &tags, bool activate);
-    void addTagSets(const QVector<Tracks> &disks);
+    void addTagSets(const QVector<Tracks> &discs);
     void activateTagSet(const QString &uri);
 
     QString coverImageFile() const { return mCoverImageFile; }
@@ -92,10 +91,10 @@ public:
     QImage coverImagePreview() const;
     QImage coverImage() const;
 
-    QString diskTag(TagId tagId) const;
-    QByteArray diskTagData(TagId tagId) const;
-    void setDiskTag(TagId tagId, const QString &value);
-    void setDiskTag(TagId tagId, const QByteArray &value);
+    QString discTag(TagId tagId) const;
+    QByteArray discTagData(TagId tagId) const;
+    void setDiscTag(TagId tagId, const QString &value);
+    void setDiscTag(TagId tagId, const QByteArray &value);
 
     static QStringList searchCoverImages(const QString &startDir);
     static QString searchCoverImage(const QString &startDir);
@@ -119,7 +118,7 @@ private:
     mutable QImage  mCoverImagePreview;
 
 
-    void findAudioFile(const CueDisk &cueDisk);
+    void findAudioFile(const CueDisc &cueDisc);
     void findCueFile();
     Duration trackDuration(TrackNum trackNum) const;
     void syncTagsFromTracks();
@@ -129,7 +128,7 @@ private:
     bool isSameTagValue(TagId tagId);
 };
 
-typedef QList<Disk*> DiskList;
+typedef QList<Disc*> DiscList;
 
 
-#endif // DISK_H
+#endif // DISC_H

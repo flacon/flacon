@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CueDiskSelectDialog</class>
- <widget class="QDialog" name="CueDiskSelectDialog">
+ <class>CueDiscSelectDialog</class>
+ <widget class="QDialog" name="CueDiscSelectDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Select disk</string>
+   <string>Select disc</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="text">
      <property name="text">
-      <string>The CUE file contains information about multiple disks. Which disk do you want to use?</string>
+      <string>The CUE file contains information about multiple discs. Which disc do you want to use?</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -25,7 +25,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTreeWidget" name="diskTree">
+    <widget class="QTreeWidget" name="discTree">
      <property name="rootIsDecorated">
       <bool>false</bool>
      </property>
@@ -65,7 +65,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>CueDiskSelectDialog</receiver>
+   <receiver>CueDiscSelectDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -81,7 +81,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>CueDiskSelectDialog</receiver>
+   <receiver>CueDiscSelectDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

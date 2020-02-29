@@ -164,31 +164,35 @@ int runConsole(int argc, char *argv[], const QStringList &files)
 {
     QCoreApplication app(argc, argv);
 
-    foreach(QString file, files)
-    {
-        QFileInfo fi = QFileInfo(file);
-        try
-        {
-            if (fi.isDir())
-            {
-                Scanner scanner;
-                scanner.start(fi.absoluteFilePath());
-            }
-            else if (fi.size() > 102400)
-            {
-                project->addAudioFile(file);
-            }
+    auto addFile = [&](const QString &file, bool showError = false) {
+        try {
+            QFileInfo fi = QFileInfo(file);
+            DiscList discs;
+            if (fi.size() > 102400)
+                discs << project->addAudioFile(file);
             else
-            {
-                project->addCueFile(file);
-            }
+                discs << project->addCueFile(file);
         }
-        catch (FlaconError& err)
+
+        catch (FlaconError &err)
         {
-            qWarning() << "Error: " <<  err.what();
+            if (showError)
+                qWarning() << "Error: " <<  err.what();
+        }
+    };
+
+    for (QString file: files) {
+        QFileInfo fi = QFileInfo(file);
+
+        if (fi.isDir())  {
+            Scanner scanner;
+            scanner.connect(&scanner, &Scanner::found, addFile);
+            scanner.start(fi.absoluteFilePath());
+        }
+        else {
+            addFile(file, true);
         }
     }
-
 
     if (project->count() == 0)
         return 10;
@@ -196,7 +200,6 @@ int runConsole(int argc, char *argv[], const QStringList &files)
     ConsoleOut out;
     Converter converter;
     if (!quiet) {
-        qDebug() << Q_FUNC_INFO << "START_FINISH";
         QObject::connect(&converter, &Converter::started,
                          &out, &ConsoleOut::converterStarted);
 
@@ -216,7 +219,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
                 &app, SLOT(quit()));
 
 
-    converter.start();
+    converter.start(Settings::i()->currentProfile());
     if (!converter.isRunning())
         return 11;
 

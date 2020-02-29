@@ -56,16 +56,13 @@ public slots:
     void stopConvert();
 
 signals:
-    void downloadStarted(Disk *disk);
-    void downloadFinished(Disk *disk);
+    void downloadStarted(Disc *disc);
+    void downloadFinished(Disc *disc);
 
 private slots:
-    void insertOutPattern(const QString &pattern);
-    void replaceOutPattern(const QString &pattern);
-
     void setPattern();
     void setOutDir();
-    void setOutFormat();
+    void setOutProfile();
     void setCodePage();
 
     void setControlsEnable();
@@ -73,18 +70,17 @@ private slots:
 
     void openAddFileDialog();
 
-    void openOutDirDialog();
-    void setCueForDisc(Disk *disk);
-    void setAudioForDisk(Disk *disk);
-    void setCoverImage(Disk *disk);
-    void downloadDiskInfo(Disk *disk);
+    void setCueForDisc(Disc *disc);
+    void setAudioForDisc(Disc *disc);
+    void setCoverImage(Disc *disc);
+    void downloadDiscInfo(Disc *disc);
 
-    void removeDisks();
+    void removeDiscs();
 
     void setStartTrackNum();
     void setTrackTag();
-    void setDiskTag();
-    void setDiskTagInt();
+    void setDiscTag();
+    void setDiscTagInt();
 
     void configure();
     void configureEncoder();
@@ -111,9 +107,9 @@ private:
     Scanner *mScanner;
     QString getOpenFileFilter(bool includeAudio, bool includeCue);
 
-    void initOutDirButton();
+    void polishView();
     void initActions();
-    void initOutFormatCombo();
+    void refreshOutProfileCombo();
 
     void loadSettings();
     void saveSettings();

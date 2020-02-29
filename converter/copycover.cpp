@@ -25,7 +25,7 @@
 
 
 #include "copycover.h"
-#include "disk.h"
+#include "disc.h"
 #include <QFile>
 #include <QDir>
 #include <QImage>
@@ -36,8 +36,8 @@
 /************************************************
  *
  ************************************************/
-CopyCover::CopyCover(const Disk *disk, const QString &outDir, const QString &outBaseName, int newSize):
-    mDisk(disk),
+CopyCover::CopyCover(const Disc *disc, const QString &outDir, const QString &outBaseName, int newSize):
+    mDisc(disc),
     mSize(newSize),
     mDir(outDir),
     mBaseName(outBaseName)
@@ -50,10 +50,10 @@ CopyCover::CopyCover(const Disk *disk, const QString &outDir, const QString &out
  ************************************************/
 bool CopyCover::run()
 {
-    if (mDisk->coverImageFile().isEmpty())
+    if (mDisc->coverImageFile().isEmpty())
         return true;
 
-    QFileInfo inFile(mDisk->coverImageFile());
+    QFileInfo inFile(mDisc->coverImageFile());
 
     QString outName = QDir(mDir).absoluteFilePath(QString("%1.%2").arg(mBaseName).arg(inFile.suffix()));
 
@@ -72,7 +72,7 @@ bool CopyCover::run()
  ************************************************/
 bool CopyCover::copyImage(const QString &outFileName)
 {
-    QFile f(mDisk->coverImageFile());
+    QFile f(mDisc->coverImageFile());
     bool res = f.copy(outFileName);
 
     if (!res)
@@ -96,13 +96,13 @@ bool CopyCover::copyImage(const QString &outFileName)
  ************************************************/
 bool CopyCover::resizeImage(const QString &outFileName)
 {
-    QImageReader reader(mDisk->coverImageFile());
+    QImageReader reader(mDisc->coverImageFile());
     QImage img = reader.read();
     if (img.isNull())
     {
         mErrorString = QObject::tr("I can't read cover image <b>%1</b>:<br>%2",
                                    "%1 - is a file name, %2 - an error text")
-                .arg(mDisk->coverImageFile())
+                .arg(mDisc->coverImageFile())
                 .arg(reader.errorString());
 
         return false;

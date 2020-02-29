@@ -25,7 +25,6 @@
 
 
 #include "out_ogg.h"
-#include "disk.h"
 #include "settings.h"
 #include <QDebug>
 #include <math.h>
@@ -38,14 +37,14 @@ OutFormat_Ogg::OutFormat_Ogg()
     mId   = "OGG";
     mExt  = "ogg";
     mName = "OGG";
-    mSettingsGroup = "Ogg";
+    mOptions = FormatOption::SupportGain;
 }
 
 
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Ogg::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -54,21 +53,21 @@ QStringList OutFormat_Ogg::encoderArgs(const Track *track, const QString &outFil
     args << "--quiet";
 
     // Quality settings .........................................
-    if (Settings::i()->value("Ogg/UseQuality").toBool())
+    if (profile.value("UseQuality").toBool())
     {
-        args << "-q" << Settings::i()->value("Ogg/Quality").toString();
+        args << "-q" << profile.value("Quality").toString();
     }
     else
     {
-        QString val = Settings::i()->value("Ogg/NormBitrate").toString();
+        QString val = profile.value("NormBitrate").toString();
         if (!val.isEmpty())
             args << "-b" << val;
 
-        val = Settings::i()->value("Ogg/MinBitrate").toString();
+        val = profile.value("MinBitrate").toString();
         if (!val.isEmpty())
             args << "-m" << val;
 
-        val = Settings::i()->value("Ogg/MaxBitrate").toString();
+        val = profile.value("MaxBitrate").toString();
         if (!val.isEmpty())
             args << "-M" << val;
     }
@@ -95,17 +94,17 @@ QStringList OutFormat_Ogg::encoderArgs(const Track *track, const QString &outFil
     if (!track->comment().isEmpty())
         args << "--comment" << QString("COMMENT=%1").arg(track->comment());
 
-    if (!track->diskId().isEmpty())
-        args << "--comment" << QString("DISCID=%1").arg(track->diskId());
+    if (!track->discId().isEmpty())
+        args << "--comment" << QString("DISCID=%1").arg(track->discId());
 
 
     args << "--tracknum" << QString("%1").arg(track->trackNum());
     args << "--comment" << QString("totaltracks=%1").arg(track->trackCount());
     args << "--comment" << QString("tracktotal=%1").arg(track->trackCount());
 
-    args << "--comment" << QString("disc=%1").arg(track->diskNum());
-    args << "--comment" << QString("discnumber=%1").arg(track->diskNum());
-    args << "--comment" << QString("disctotal=%1").arg(track->diskCount());
+    args << "--comment" << QString("disc=%1").arg(track->discNum());
+    args << "--comment" << QString("discnumber=%1").arg(track->discNum());
+    args << "--comment" << QString("disctotal=%1").arg(track->discCount());
 
     // Files ....................................................
     args << "-o" << outFile;
@@ -117,11 +116,11 @@ QStringList OutFormat_Ogg::encoderArgs(const Track *track, const QString &outFil
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Ogg::gainArgs(const QStringList &files) const
+QStringList OutFormat_Ogg::gainArgs(const QStringList &files, const GainType gainType) const
 {
     QStringList args;
     args <<  args << Settings::i()->programName(gainProgramName());
-    if (strToGainType(Settings::i()->value("Ogg/ReplayGain").toString()) ==  GainType::Album)
+    if (gainType ==  GainType::Album)
         args << "--album";
 
     args << files;
@@ -136,12 +135,12 @@ QStringList OutFormat_Ogg::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Ogg::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Ogg/UseQuality",       true);
-    res.insert("Ogg/Quality",          7);
-    res.insert("Ogg/MinBitrate",       "");
-    res.insert("Ogg/NormBitrate",      "");
-    res.insert("Ogg/MaxBitrate",       "");
-    res.insert("Ogg/ReplayGain",       gainTypeToString(GainType::Disable));
+    res.insert("UseQuality",       true);
+    res.insert("Quality",          7);
+    res.insert("MinBitrate",       "");
+    res.insert("NormBitrate",      "");
+    res.insert("MaxBitrate",       "");
+    res.insert("ReplayGain",       gainTypeToString(GainType::Disable));
     return res;
 }
 
@@ -149,17 +148,17 @@ QHash<QString, QVariant> OutFormat_Ogg::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Ogg::configPage(QWidget *parent) const
+EncoderConfigPage *OutFormat_Ogg::configPage(const Profile &profile, QWidget *parent) const
 {
-    return new ConfigPage_Ogg(parent);
+    return new ConfigPage_Ogg(profile, parent);
 }
 
 
 /************************************************
 
  ************************************************/
-ConfigPage_Ogg::ConfigPage_Ogg(QWidget *parent):
-    EncoderConfigPage(parent)
+ConfigPage_Ogg::ConfigPage_Ogg(const Profile &profile, QWidget *parent):
+    EncoderConfigPage(profile, parent)
 {
     setupUi(this);
 
@@ -170,8 +169,6 @@ ConfigPage_Ogg::ConfigPage_Ogg(QWidget *parent):
 
     connect(oggQualitySlider, SIGNAL(valueChanged(int)), this, SLOT(oggQualitySliderChanged(int)));
     connect(oggQualitySpin, SIGNAL(valueChanged(double)), this, SLOT(oggQualitySpinChanged(double)));
-
-    fillReplayGainComboBox(oggGainCbx);
 
     QList<int> bitrates;
     bitrates << 0 << 64 << 80 << 96 << 128 << 160 << 196 << 256 << 350;
@@ -186,26 +183,24 @@ ConfigPage_Ogg::ConfigPage_Ogg(QWidget *parent):
  ************************************************/
 void ConfigPage_Ogg::load()
 {
-    loadWidget("Ogg/UseQuality",  oggUseQualityCheck);
-    loadWidget("Ogg/Quality",     oggQualitySpin);
-    loadWidget("Ogg/MinBitrate",  oggMinBitrateCbx);
-    loadWidget("Ogg/NormBitrate", oggNormBitrateCbx);
-    loadWidget("Ogg/MaxBitrate",  oggMaxBitrateCbx);
-    loadWidget("Ogg/ReplayGain",  oggGainCbx);
+    loadWidget("UseQuality",  oggUseQualityCheck);
+    loadWidget("Quality",     oggQualitySpin);
+    loadWidget("MinBitrate",  oggMinBitrateCbx);
+    loadWidget("NormBitrate", oggNormBitrateCbx);
+    loadWidget("MaxBitrate",  oggMaxBitrateCbx);
 }
 
 
 /************************************************
 
  ************************************************/
-void ConfigPage_Ogg::write()
+void ConfigPage_Ogg::save()
 {
-    writeWidget("Ogg/UseQuality",  oggUseQualityCheck);
-    writeWidget("Ogg/Quality",     oggQualitySpin);
-    writeWidget("Ogg/MinBitrate",  oggMinBitrateCbx);
-    writeWidget("Ogg/NormBitrate", oggNormBitrateCbx);
-    writeWidget("Ogg/MaxBitrate",  oggMaxBitrateCbx);
-    writeWidget("Ogg/ReplayGain",  oggGainCbx);
+    saveWidget("UseQuality",  oggUseQualityCheck);
+    saveWidget("Quality",     oggQualitySpin);
+    saveWidget("MinBitrate",  oggMinBitrateCbx);
+    saveWidget("NormBitrate", oggNormBitrateCbx);
+    saveWidget("MaxBitrate",  oggMaxBitrateCbx);
 }
 
 

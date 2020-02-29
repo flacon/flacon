@@ -35,7 +35,7 @@
 #include <QDir>
 #include <QThreadPool>
 
-#include "../disk.h"
+#include "../disc.h"
 #include "../settings.h"
 #include "../project.h"
 #include "../inputaudiofile.h"
@@ -43,11 +43,11 @@
 #include "converter/wavheader.h"
 #include "converter/splitter.h"
 #include "outformat.h"
-#include "converter/diskpipline.h"
+#include "converter/discpipline.h"
 
 
 int TestFlacon::mTestNum = -1;
-
+Q_DECLARE_METATYPE(GainType)
 
 /************************************************
 
@@ -56,7 +56,7 @@ TestFlacon::TestFlacon(QObject *parent) :
     QObject(parent),
     mTmpDir(TEST_OUT_DIR),
     mDataDir(TEST_DATA_DIR),
-    mStandardDisk(nullptr)
+    mStandardDisc(nullptr)
 {
 }
 
@@ -181,9 +181,9 @@ void TestFlacon::applySettings(const SettingsValues &config)
 /************************************************
 
  ************************************************/
-Disk *TestFlacon::standardDisk()
+Disc *TestFlacon::standardDisc()
 {
-    if (mStandardDisk == nullptr)
+    if (mStandardDisc == nullptr)
     {
         QString cueFile = dir() + "testTrackResultFileName.cue";
 
@@ -209,10 +209,10 @@ Disk *TestFlacon::standardDisk()
         cue << "    INDEX 01 12:04:72";
 
         writeTextFile(cueFile, cue);
-        mStandardDisk = loadFromCue(cueFile);
+        mStandardDisc = loadFromCue(cueFile);
     }
 
-    return mStandardDisk;
+    return mStandardDisc;
 }
 
 
@@ -504,18 +504,18 @@ void TestFlacon::testTrackResultFileName()
     QFETCH(QString, pattern);
     QFETCH(QString, expected);
 
+    Settings::i()->selectProfile("WAV");
+    Settings::i()->currentProfile().setOutFilePattern(pattern);
 
-    Settings::i()->setOutFilePattern(pattern);
-    Settings::i()->setOutFormat("WAV");
 
     project->clear();
 
     QString cueFile = dir() + "/input.cue";
     writeTextFile(cueFile, cue);
 
-    Disk *disk = loadFromCue(cueFile);
+    Disc *disc = loadFromCue(cueFile);
 
-    QString result = disk->track(0)->resultFileName();
+    QString result = disc->track(0)->resultFileName();
     //QCOMPARE(result, expected);
 
     if (result != expected)
@@ -526,7 +526,7 @@ void TestFlacon::testTrackResultFileName()
                     expected);
         QFAIL(msg.toLocal8Bit());
     }
-    disk->deleteLater();
+    disc->deleteLater();
 }
 
 
@@ -1031,9 +1031,10 @@ void TestFlacon::testTrackResultFilePath()
     QFETCH(QString, expected);
     QFETCH(QString, cueFile);
 
-    Settings::i()->setOutFileDir(outDir);
-    Settings::i()->setOutFilePattern(pattern);
-    Settings::i()->setOutFormat("WAV");
+    Settings::i()->selectProfile("WAV");
+    Settings::i()->currentProfile().setOutFileDir(outDir);
+    Settings::i()->currentProfile().setOutFilePattern(pattern);
+
 
 
     if (!cueFile.isEmpty())
@@ -1041,9 +1042,9 @@ void TestFlacon::testTrackResultFilePath()
     else
         cueFile = mDataDir + "simple.cue";
 
-    Disk *disk = loadFromCue(cueFile);
+    Disc *disc = loadFromCue(cueFile);
 
-    QString result = disk->track(0)->resultFilePath();
+    QString result = disc->track(0)->resultFilePath();
     if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath())
     {
         QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   CueFile: %4").arg(
@@ -1053,7 +1054,7 @@ void TestFlacon::testTrackResultFilePath()
         QFAIL(msg.toLocal8Bit());
     }
     //QCOMPARE(result, expected);
-    disk->deleteLater();
+    disc->deleteLater();
 }
 
 
@@ -1147,10 +1148,10 @@ void TestFlacon::testTrackSetCodepages()
     else
         Settings::i()->setValue(Settings::Tags_DefaultCodepage, "UTF-8");
 
-    Disk *disk = loadFromCue(testCueFile);
+    Disc *disc = loadFromCue(testCueFile);
 
     if (!codepageAfter.isEmpty())
-        disk->setCodecName(codepageAfter);
+        disc->setCodecName(codepageAfter);
 
     QStringList expected = this->readFile(TEST_DATA_DIR + sampleFile);
 
@@ -1158,11 +1159,11 @@ void TestFlacon::testTrackSetCodepages()
     // Result *************************
     //result << "GENRE:" << tracks.genre() << "\n";
     //resultSl << "ALBUM:" << tracks.album() << "\n";
-    result << "DISCID:" << disk->discId() << "\n";
+    result << "DISCID:" << disc->discId() << "\n";
 
-    for(int i=0; i<disk->count(); ++i)
+    for(int i=0; i<disc->count(); ++i)
     {
-        Track *track = disk->track(i);
+        Track *track = disc->track(i);
         result << "Track " << (i + 1) << "\n";
         result << "  " << "INDEX:"    << i                  << "\n";
         result << "  " << "TRACKNUM:" << track->trackNum()  << "\n";
@@ -1188,7 +1189,7 @@ void TestFlacon::testTrackSetCodepages()
         QFAIL((msg + "\n    " + cmd).toLocal8Bit());
     }
 
-    disk->deleteLater();
+    disc->deleteLater();
 }
 
 
@@ -1222,32 +1223,30 @@ void TestFlacon::testTrackSetCodepages_data()
  ************************************************/
 void TestFlacon::testOutFormatGainArgs()
 {
-    QFETCH(QString, formatId);
-    QFETCH(SettingsValues, config);
-    QFETCH(QString, expected);
+    QFETCH(QString,  formatId);
+    QFETCH(GainType, gainType);
+    QFETCH(QString,  expected);
 
-    applySettings(config);
+    Settings::i()->setValue("Programs/metaflac",   "/opt/metaflac");
+    Settings::i()->setValue("Programs/mp3gain",    "/opt/mp3gain");
+    Settings::i()->setValue("Programs/vorbisgain", "/opt/vorbisgain");
+    Settings::i()->setValue("Programs/wvgain",     "/opt/wvgain");
 
-    foreach (OutFormat *format, OutFormat::allFormats())
+    OutFormat *format = OutFormat::formatForId(formatId);
+    if (!format)
+        QFAIL(QString("Unknown format \"%1\"").arg(formatId).toLocal8Bit());
+
+    QStringList args = format->gainArgs(QStringList() << "OutFile_01.wav" << "OutFile_02.wav" << "OutFile_03.wav", gainType);
+
+    QString result = args.join(" ");
+    if (result != expected)
     {
-        if (format->id() != formatId)
-            continue;
-
-        QStringList args = format->gainArgs(QStringList() << "OutFile_01.wav" << "OutFile_02.wav" << "OutFile_03.wav");
-
-        QString result = args.join(" ");
-        if (result != expected)
-        {
-            QString msg = QString("Compared values are not the same\n   Format   %1\n   Actual:   %2\n   Expected: %3").arg(
-                        formatId,
-                        result,
-                        expected);
-            QFAIL(msg.toLocal8Bit());
-        }
-        return;
+        QString msg = QString("Compared values are not the same\n   Format   %1, gaintype: %2\n   Actual:   %3\n   Expected: %4").arg(
+                    formatId, gainTypeToString(gainType),
+                    result,
+                    expected);
+        QFAIL(msg.toLocal8Bit());
     }
-
-    FAIL(QString("Unknown format \"%1\"").arg(formatId).toLocal8Bit());
 }
 
 
@@ -1257,31 +1256,23 @@ void TestFlacon::testOutFormatGainArgs()
 void TestFlacon::testOutFormatGainArgs_data()
 {
     QTest::addColumn<QString>("formatId",      nullptr);
-    QTest::addColumn<SettingsValues>("config", nullptr);
+    QTest::addColumn<GainType>("gainType", nullptr);
     QTest::addColumn<QString>("expected",      nullptr);
-
-    SettingsValues cfg;
 
     //*******************************************
     // FLAC
     //*******************************************
-    cfg.clear();
-    cfg.insert("Programs/metaflac", "/opt/metaflac");
-    cfg.insert("Flac/ReplayGain",   "Track");
-
-    QTest::newRow("Flac_Track")
+    QTest::newRow("Flac Track")
             << "FLAC"
-            << cfg
+            << GainType::Track
             << "/opt/metaflac --add-replay-gain "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
 
     //*******************************************
-    cfg.insert("Flac/ReplayGain",   "Album");
-
-    QTest::newRow("Flac_Album")
+    QTest::newRow("Flac Album")
             << "FLAC"
-            << cfg
+            << GainType::Album
             << "/opt/metaflac --add-replay-gain "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
@@ -1290,23 +1281,17 @@ void TestFlacon::testOutFormatGainArgs_data()
     //*******************************************
     // MP3
     //*******************************************
-    cfg.clear();
-    cfg.insert("Programs/mp3gain",  "/opt/mp3gain");
-    cfg.insert("Mp3/ReplayGain",    "Track");
-
-    QTest::newRow("Mp3_Track")
+    QTest::newRow("Mp3 Track")
             << "MP3"
-            << cfg
+            << GainType::Track
             << "/opt/mp3gain -a -c "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
 
     //*******************************************
-    cfg.insert("Mp3/ReplayGain",    "Album");
-
-    QTest::newRow("Mp3_Track")
+    QTest::newRow("Mp3 Track")
             << "MP3"
-            << cfg
+            << GainType::Album
             << "/opt/mp3gain -a -c "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
@@ -1314,22 +1299,16 @@ void TestFlacon::testOutFormatGainArgs_data()
     //*******************************************
     // Ogg
     //*******************************************
-    cfg.clear();
-    cfg.insert("Programs/vorbisgain",   "/opt/vorbisgain");
-    cfg.insert("Ogg/ReplayGain",        "Track");
-
     QTest::newRow("Ogg Track")
             << "OGG"
-            << cfg
+            << GainType::Track
             << "/opt/vorbisgain "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
     //*******************************************
-    cfg.insert("Ogg/ReplayGain",        "Album");
-
     QTest::newRow("Ogg Album")
             << "OGG"
-            << cfg
+            << GainType::Album
             << "/opt/vorbisgain --album "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
@@ -1338,23 +1317,17 @@ void TestFlacon::testOutFormatGainArgs_data()
     //*******************************************
     // WavPack
     //*******************************************
-    cfg.clear();
-    cfg.insert("Programs/wvgain",   "/opt/wvgain");
-    cfg.insert("Ogg/ReplayGain",    "Track");
-
     QTest::newRow("WavPack Track")
             << "WV"
-            << cfg
+            << GainType::Track
             << "/opt/wvgain "
                "-a "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
     //*******************************************
-    cfg.insert("Ogg/ReplayGain",    "Album");
-
     QTest::newRow("WavPack Album")
             << "WV"
-            << cfg
+            << GainType::Album
             << "/opt/wvgain "
                "-a "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
@@ -1429,17 +1402,17 @@ void TestFlacon::testCueIndex_data()
 }
 
 
-class Test_DiskPipeline: public DiskPipeline {
+class Test_DiscPipeline: public DiscPipeline {
 public:
     static int calcQuality(int input, int preferences, int formatMax)
-            { return DiskPipeline::calcQuality(input, preferences, formatMax) ;}
+            { return DiscPipeline::calcQuality(input, preferences, formatMax) ;}
 
 };
 
 /************************************************
  *
  ************************************************/
-void TestFlacon::testDiskPipelineCalcQuality()
+void TestFlacon::testDiscPipelineCalcQuality()
 {
     QFETCH(int, input);
     QFETCH(int, preferences);
@@ -1447,7 +1420,7 @@ void TestFlacon::testDiskPipelineCalcQuality()
 
     QFETCH(int, expected);
 
-    int res = Test_DiskPipeline::calcQuality(input, preferences, maxFormat);
+    int res = Test_DiscPipeline::calcQuality(input, preferences, maxFormat);
     QCOMPARE(res, expected);
 }
 
@@ -1455,7 +1428,7 @@ void TestFlacon::testDiskPipelineCalcQuality()
 /************************************************
  *
  ************************************************/
-void TestFlacon::testDiskPipelineCalcQuality_data()
+void TestFlacon::testDiscPipelineCalcQuality_data()
 {
     QTest::addColumn<int>("preferences", nullptr);
     QTest::addColumn<int>("maxFormat",   nullptr);

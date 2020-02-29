@@ -30,7 +30,7 @@
 #include <QString>
 #include <QList>
 
-class AudioFormat;
+class InputFormat;
 
 class InputAudioFile
 {
@@ -47,12 +47,12 @@ public:
     QString errorString() const { return mErrorString; }
     uint duration() const { return mDuration; }
 
-    const AudioFormat *format() const { return mFormat; }
+    const InputFormat *format() const { return mFormat; }
 private:
 
     QString mFileName;
     QString mErrorString;
-    const AudioFormat *mFormat;
+    const InputFormat *mFormat;
     int mSampleRate;
     int mBitsPerSample;
     uint mDuration;

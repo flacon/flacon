@@ -26,7 +26,7 @@
 
 #include "in_wav.h"
 
-REGISTER_FORMAT(Format_Wav)
+REGISTER_INPUT_FORMAT(Format_Wav)
 
 /************************************************
  *

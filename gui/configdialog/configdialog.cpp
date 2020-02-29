@@ -25,60 +25,42 @@
 
 
 #include "configdialog.h"
-#include "outformat.h"
-#include "../types.h"
-#include "settings.h"
-#include "project.h"
-#include "../controls.h"
 #include "../icon.h"
-#include "../patternexpander.h"
+#include "addprofiledialog.h"
 
-#include <QStringList>
-#include <QSet>
 #include <QFileDialog>
 #include <QDebug>
-#include <QCheckBox>
-#include <QComboBox>
-#include <QLineEdit>
-#include <QSpinBox>
+#include <QDateTime>
 
 #ifdef MAC_UPDATER
 #include "updater/updater.h"
 #endif
 
-
-/************************************************
- *
- ************************************************/
-static void loadWidget(Settings::Key  key, QComboBox *widget)
-{
-    int n = qMax(0, widget->findData(Settings::i()->value(key)));
-    widget->setCurrentIndex(n);
-}
+static const int PROFILE_ID_ROLE = Qt::UserRole;
 
 
 /************************************************
  *
  ************************************************/
-static void writeWidget(Settings::Key key, QComboBox *widget)
+ConfigDialog *ConfigDialog::createAndShow(QWidget *parent)
 {
-    QVariant data = widget->itemData(widget->currentIndex());
-    Settings::i()->setValue(key, data);
+    return createAndShow("", parent);
 }
 
 
 /************************************************
 
  ************************************************/
-ConfigDialog *ConfigDialog::createAndShow(const OutFormat *format, QWidget *parent)
+ConfigDialog *ConfigDialog::createAndShow(const QString &profileId, QWidget *parent)
 {
     ConfigDialog *instance = parent->findChild<ConfigDialog*>();
 
     if (!instance)
         instance = new ConfigDialog(parent);
 
-    instance->setPage(format);
-    instance->show();
+    instance->pages->setCurrentWidget(instance->profilesPage);
+
+    instance->show(profileId);
     instance->raise();
     instance->activateWindow();
     instance->setAttribute(Qt::WA_DeleteOnClose);
@@ -86,6 +68,22 @@ ConfigDialog *ConfigDialog::createAndShow(const OutFormat *format, QWidget *pare
     return instance;
 }
 
+
+/************************************************
+ *
+ ************************************************/
+void ConfigDialog::show(const QString &profileId)
+{
+    for (int i=0; i<profilesList->count(); ++i) {
+        QListWidgetItem *item = profilesList->item(i);
+        if (item->data(PROFILE_ID_ROLE).toString() == profileId) {
+            profilesList->setCurrentItem(item);
+            break;
+        }
+    }
+
+    QDialog::show();
+}
 
 
 /************************************************
@@ -101,50 +99,41 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     generalPage->setWindowTitle(tr("General configuration"));
     programsPage->setWindowTitle(tr("Full path of the external applications"));
 
-    connect(pages, SIGNAL(currentChanged(int)), this, SLOT(setPage(int)));
-
     initGeneralPage();
     int width = Settings::i()->value(Settings::ConfigureDialog_Width).toInt();
     int height = Settings::i()->value(Settings::ConfigureDialog_Height).toInt();
     resize(width, height);
 
-    initFormatPages();
-    initPrograms();
+    int h = addProfileButton->sizeHint().height();
+    addProfileButton->setFixedSize(h, h);
+    delProfileButton->setFixedSize(h, h);
+
+    initProgramsPage();
     initUpdatePage();
 
     pages->setCurrentIndex(0);
     load();
 
-    preGapComboBox->setEnabled(perTrackCueCheck->isChecked());
+
+    connect(profilesList, &QListWidget::currentItemChanged,
+            this, &ConfigDialog::profileListSelected);
+
+    connect(profilesList, &QListWidget::itemChanged,
+            this, &ConfigDialog::profileItemChanged);
+
+    connect(addProfileButton, &QToolButton::clicked,
+            this, &ConfigDialog::addProfile);
+
+    connect(delProfileButton, &QToolButton::clicked,
+            this, &ConfigDialog::deleteProfile);
 
 
-    perTrackCueFormatBtn->addPattern("%a", tr("Insert \"Artist\""));
-    perTrackCueFormatBtn->addPattern("%A", tr("Insert \"Album title\""));
-    perTrackCueFormatBtn->addPattern("%y", tr("Insert \"Year\""));
-    perTrackCueFormatBtn->addPattern("%g", tr("Insert \"Genre\""));
+    profileParent->hide();
+    refreshProfilesList("");
 
-    const QString patterns[] = {
-        "%a-%A.cue",
-        "%a - %A.cue",
-        "%a - %y - %A.cue"};
-
-
-    for (QString pattern: patterns)
-    {
-        perTrackCueFormatBtn->addFullPattern(pattern,
-                                             tr("Use \"%1\"", "Predefined CUE file name, string like 'Use \"%a/%A/%n - %t.cue\"'")
-                                             .arg(pattern)
-                                             + "  ( " + PatternExpander::example(pattern) + " )");
-    }
-
-    connect(perTrackCueFormatBtn, &OutPatternButton::paternSelected,
-            [this](const QString &pattern){ perTrackCueFormatEdit->lineEdit()->insert(pattern);});
-
-    connect(perTrackCueFormatBtn, &OutPatternButton::fullPaternSelected,
-            [this](const QString &pattern){ perTrackCueFormatEdit->lineEdit()->setText(pattern);});
-
-
-    perTrackCueFormatBtn->setIcon(Icon("pattern-button"));
+#ifdef Q_OS_MAC
+    buttonBox->hide();
+#endif
 }
 
 
@@ -169,48 +158,21 @@ void ConfigDialog::initGeneralPage()
 #endif
 
     tmpDirButton->setIcon(Icon("folder"));
-    connect(tmpDirButton, SIGNAL(clicked()), this, SLOT(tmpDirShowDialog()));
+    tmpDirButton->setBuddy(tmpDirEdit);
+    connect(tmpDirButton, &QToolButton::clicked, this, &ConfigDialog::tmpDirShowDialog);
 
 
     connect(coverDisableButton,  &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Disable);  });
     connect(coverKeepSizeButton, &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::OrigSize); });
     connect(coverScaleButton,    &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Scale);    });
 
-    preGapComboBox->addItem(tr("Extract to separate file"), preGapTypeToString(PreGapType::ExtractToFile));
-    preGapComboBox->addItem(tr("Add to first track"),       preGapTypeToString(PreGapType::AddToFirstTrack));
+    int h = 0;
+    for (int r=0; r < coverImageLayout->rowCount(); ++r) {
+        h = qMax(h, coverImageLayout->cellRect(r, 0).height());
+    }
 
-
-    bitDepthComboBox->addItem(tr("Same as source", "Item in combobox"), int(BitsPerSample::AsSourcee));
-    bitDepthComboBox->addItem(tr("16-bit",         "Item in combobox"), int(BitsPerSample::Bit_16));
-    bitDepthComboBox->addItem(tr("24-bit",         "Item in combobox"), int(BitsPerSample::Bit_24));
-    bitDepthComboBox->addItem(tr("32-bit",         "Item in combobox"), int(BitsPerSample::Bit_32));
-
-    sampleRateComboBox->addItem(tr("Same as source", "Item in combobox"), int(SampleRate::AsSource));
-    sampleRateComboBox->addItem(tr("44100 Hz",       "Item in combobox"), int(SampleRate::Hz_44100));
-    sampleRateComboBox->addItem(tr("48000 Hz",       "Item in combobox"), int(SampleRate::Hz_48000));
-    sampleRateComboBox->addItem(tr("96000 Hz",       "Item in combobox"), int(SampleRate::Hz_96000));
-    sampleRateComboBox->addItem(tr("192000 Hz",      "Item in combobox"), int(SampleRate::Hz_192000));
-
-}
-
-
-/************************************************
-
- ************************************************/
-void ConfigDialog::initFormatPages()
-{
-    int n = 1;
-    foreach(OutFormat *format, OutFormat::allFormats())
-    {
-        EncoderConfigPage *page = format->configPage(this);
-        if (!page)
-            continue;
-
-        mEncodersPages << page;
-
-        page->setObjectName(format->id());
-        pages->insertTab(n, page, format->name());
-        n++;
+    for (int r=0; r < coverImageLayout->rowCount(); ++r) {
+        coverImageLayout->setRowMinimumHeight(r, h);
     }
 }
 
@@ -219,12 +181,12 @@ void ConfigDialog::initFormatPages()
 
  ************************************************/
 #if defined(MAC_BUNDLE) || defined(FLATPAK_BUNDLE)
-void ConfigDialog::initPrograms()
+void ConfigDialog::initProgramsPage()
 {
     pages->removeTab(pages->indexOf(programsPage));
 }
 #else
-void ConfigDialog::initPrograms()
+void ConfigDialog::initProgramsPage()
 {
     QStringList progs = QStringList::fromSet(Settings::i()->programs());
     progs.sort();
@@ -237,11 +199,16 @@ void ConfigDialog::initPrograms()
 
         QLabel *label = new QLabel(prog + ": ");
         label->setBuddy(edit);
+#ifdef Q_OS_MAC
+        label->setAlignment(Qt::AlignRight);
+#endif
         progsLayout->addWidget(label, row, 0);
         progsLayout->addWidget(edit,  row, 1);
-        connect(progScanButton, SIGNAL(clicked()), edit, SLOT(find()));
+        connect(progScanButton, &QPushButton::clicked, edit, &ProgramEdit::find);
         row++;
     }
+
+    progsArea->setStyleSheet("QScrollArea, #scrollAreaWidgetContents { background-color: transparent;}");
 }
 #endif
 
@@ -266,30 +233,77 @@ void ConfigDialog::initUpdatePage()
 }
 #endif
 
+
 /************************************************
-
+ *
  ************************************************/
-void ConfigDialog::setPage(const OutFormat *format)
+void ConfigDialog::refreshProfilesList(const QString &selectedProfileId)
 {
-    int n = 0;
-    if (format)
-    {
-        EncoderConfigPage *page = pages->findChild<EncoderConfigPage*>(format->id());
-        if (page)
-            n = pages->indexOf(page);
-    }
+    QListWidgetItem *sel = nullptr;
 
-    setPage(n);
+    profilesList->blockSignals(true);
+    profilesList->clear();
+
+    for (const Profile &profile: mProfiles) {
+        QListWidgetItem *item = new QListWidgetItem(profilesList);
+        item->setText(profile.name());
+        item->setData(PROFILE_ID_ROLE, profile.id());
+        item->setFlags(item->flags() | Qt::ItemIsEditable);
+        if (profile.id() == selectedProfileId) {
+            sel = item;
+        }
+
+    }
+    profilesList->sortItems();
+    profilesList->blockSignals(false);
+
+    if (profilesList->count() > 0) {
+        if (sel) profilesList->setCurrentItem(sel);
+        else     profilesList->setCurrentRow(0);
+    }
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-void ConfigDialog::setPage(int pageIndex)
+void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem *)
 {
-    pageTitle->setText(pages->currentWidget()->windowTitle());
-    pages->setCurrentIndex(pageIndex);
+    pages->blockSignals(true);
+    if (mProfileWidget && mProfileWidget->profile().isValid()) {
+        mProfiles.update(mProfileWidget->profile());
+    }
+
+    if (mProfileWidget) {
+        profilePlace->removeWidget(mProfileWidget);
+        delete mProfileWidget;
+        mProfileWidget = nullptr;
+    }
+
+    if (current) {
+        int n = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());
+        Profile profile = (n > -1) ? mProfiles[n] : Profile();
+
+        mProfileWidget = new ProfileWidget(profile, profileParent);
+        profilePlace->addWidget(mProfileWidget);
+        mProfileWidget->show();
+        profileParent->show();
+    }
+    pages->blockSignals(false);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ConfigDialog::profileItemChanged(QListWidgetItem *item)
+{
+    QString id = item->data(PROFILE_ID_ROLE).toString();
+    if (id == currentProfile().id()) {
+        currentProfile().setName(item->text());
+    }
+
+    refreshProfilesList(id);
 }
 
 
@@ -301,9 +315,11 @@ void ConfigDialog::done(int res)
     Settings::i()->setValue(Settings::ConfigureDialog_Width,  size().width());
     Settings::i()->setValue(Settings::ConfigureDialog_Height, size().height());
 
+#ifndef Q_OS_MAC
     if (res)
+#endif
     {
-        write();
+        save();
         Settings::i()->sync();
     }
 
@@ -351,6 +367,15 @@ void ConfigDialog::setCoverMode(CoverMode mode)
 /************************************************
  *
  ************************************************/
+Profile &ConfigDialog::currentProfile()
+{
+    return mProfileWidget ? mProfileWidget->profile() : NullProfile();
+}
+
+
+/************************************************
+ *
+ ************************************************/
 void ConfigDialog::updateLastUpdateLbl()
 {
 #ifdef MAC_UPDATER
@@ -368,73 +393,27 @@ void ConfigDialog::updateLastUpdateLbl()
 
 
 /************************************************
- *
- ************************************************/
-void loadWidget(Settings::Key key, QCheckBox *widget)
-{
-    widget->setChecked(Settings::i()->value(key).toBool());
-}
-
-
-/************************************************
- *
- ************************************************/
-void loadWidget(Settings::Key key, QSpinBox *widget)
-{
-    bool ok;
-    int value = Settings::i()->value(key).toInt(&ok);
-    if (ok)
-        widget->setValue(value);
-}
-
-
-/************************************************
- *
- ************************************************/
-void writeWidget(Settings::Key key, QCheckBox *widget)
-{
-    Settings::i()->setValue(key, widget->isChecked());
-}
-
-
-/************************************************
-
- ************************************************/
-void writeWidget(Settings::Key key, QSpinBox *widget)
-{
-    Settings::i()->setValue(key, widget->value());
-}
-
-
-/************************************************
 
  ************************************************/
 void ConfigDialog::load()
 {
-    EncoderConfigPage::loadWidget("Tags/DefaultCodepage",  codePageComboBox);
-    EncoderConfigPage::loadWidget("Encoder/ThreadCount",   threadsCountSpin);
-    EncoderConfigPage::loadWidget("PerTrackCue/Create",    perTrackCueCheck);
-    EncoderConfigPage::loadWidget("PerTrackCue/Pregap",    preGapComboBox);
-    perTrackCueFormatEdit->setEditText(Settings::i()->value(Settings::PerTrackCue_FileName).toString());
-
-    loadWidget(Settings::Resample_BitsPerSample,   bitDepthComboBox);
-    loadWidget(Settings::Resample_SampleRate, sampleRateComboBox);
+    Controls::loadFromSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
+    Controls::loadFromSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
 
     setCoverMode(Settings::i()->coverMode());
-    loadWidget(Settings::Cover_Size,   coverResizeSpinBox);
-
-    foreach(EncoderConfigPage *page, mEncodersPages)
-        page->load();
+    Controls::loadFromSettings(coverResizeSpinBox, Settings::Cover_Size);
 
     foreach(ProgramEdit *edit, mProgramEdits)
         edit->setText(Settings::i()->value("Programs/" + edit->programName()).toString());
+
+    mProfiles = Settings::i()->profiles();
 
 #ifdef MAC_UPDATER
     autoUpdateCbk->setChecked(Updater::sharedUpdater().automaticallyChecksForUpdates());
 #endif
 
 #ifndef FLATPAK_BUNDLE
-    EncoderConfigPage::loadWidget("Encoder/TmpDir",        tmpDirEdit);
+    Controls::loadFromSettings(tmpDirEdit, Settings::Encoder_TmpDir);
 #endif
 }
 
@@ -442,26 +421,21 @@ void ConfigDialog::load()
 /************************************************
 
  ************************************************/
-void ConfigDialog::write()
+void ConfigDialog::save()
 {
-    EncoderConfigPage::writeWidget("Tags/DefaultCodepage",  codePageComboBox);
-    EncoderConfigPage::writeWidget("Encoder/ThreadCount",   threadsCountSpin);
-    EncoderConfigPage::writeWidget("PerTrackCue/Create",    perTrackCueCheck);
-    EncoderConfigPage::writeWidget("PerTrackCue/Pregap",    preGapComboBox);
-
-    Settings::i()->setValue(Settings::PerTrackCue_FileName, perTrackCueFormatEdit->currentText());
-
-    writeWidget(Settings::Resample_BitsPerSample,   bitDepthComboBox);
-    writeWidget(Settings::Resample_SampleRate, sampleRateComboBox);
+    Controls::saveToSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
+    Controls::saveToSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
 
     Settings::i()->setValue(Settings::Cover_Mode, coverModeToString(coverMode()));
-    writeWidget(Settings::Cover_Size,   coverResizeSpinBox);
-
-    foreach(EncoderConfigPage *page, mEncodersPages)
-        page->write();
+    Controls::saveToSettings(coverResizeSpinBox, Settings::Cover_Size);
 
     foreach(ProgramEdit *edit, mProgramEdits)
         Settings::i()->setValue("Programs/" + edit->programName(), edit->text());
+
+    if (currentProfile().isValid())
+        mProfiles.update(currentProfile());
+
+    Settings::i()->setProfiles(mProfiles);
 
 #ifdef MAC_UPDATER
     Updater::sharedUpdater().setAutomaticallyChecksForUpdates(
@@ -469,10 +443,9 @@ void ConfigDialog::write()
 #endif
 
 #ifndef FLATPAK_BUNDLE
-    EncoderConfigPage::writeWidget("Encoder/TmpDir",        tmpDirEdit);
+    Controls::saveToSettings(tmpDirEdit, Settings::Encoder_TmpDir);
 #endif
 }
-
 
 
 /************************************************
@@ -489,247 +462,70 @@ CoverMode ConfigDialog::coverMode() const
 
 
 /************************************************
-
+ *
  ************************************************/
-EncoderConfigPage::EncoderConfigPage(QWidget *parent):
-    QWidget(parent)
+void ConfigDialog::addProfile()
 {
+    const Profile &cur = currentProfile();
+    AddProfileDialog dialog(this);
+    dialog.setWindowModality(Qt::WindowModal);
+
+    dialog.setFormatId(cur.formatId());
+
+    if (!dialog.exec())
+        return;
+
+    OutFormat *format = OutFormat::formatForId(dialog.formaiId());
+    if (!format)
+        return;
+
+    QString id = QString("%1_%2")
+            .arg(format->id())
+            .arg(QDateTime::currentMSecsSinceEpoch());
+
+
+    Profile profile(*format, id);
+    profile.setName(dialog.profileName());
+    profile.setOutFileDir(cur.outFileDir());
+    profile.setOutFilePattern(cur.outFilePattern());
+
+    mProfiles.append(profile);
+
+    refreshProfilesList(profile.id());
 }
 
 
 /************************************************
-
+ *
  ************************************************/
-EncoderConfigPage::~EncoderConfigPage()
+void ConfigDialog::deleteProfile()
 {
-}
+    Profile prof = currentProfile();
+    if (!prof.isValid())
+        return;
 
+    int n = (mProfiles.indexOf(prof.id()));
+    if (n<0)
+        return;
 
-/************************************************
+    QMessageBox dialog(this);
+    dialog.setText(tr("Are you sure you want to delete the profile \"%1\"?", "Message box text").arg(prof.name()));
+    dialog.setText("<nobr>" + dialog.text() + "</nobr>");
+    dialog.setTextFormat(Qt::RichText);
+    dialog.setIconPixmap(QPixmap(":/64/mainicon"));
 
- ************************************************/
-QString EncoderConfigPage::lossyCompressionToolTip(int min, int max)
-{
-    return tr("Sets encoding quality, between %1 (lowest) and %2 (highest)."
-              ).arg(min).arg(max);
-}
+    dialog.setStandardButtons(QMessageBox::Cancel | QMessageBox::Yes);
+    dialog.setButtonText(QMessageBox::Yes, tr("Delete profile", "Button caption"));
+    dialog.setDefaultButton(QMessageBox::Yes);
 
+    dialog.setWindowModality(Qt::WindowModal);
 
+    int ret = dialog.exec();
 
-/************************************************
+    if (ret != QMessageBox::Yes)
+        return;
 
- ************************************************/
-void EncoderConfigPage::setLossyToolTip(QSlider *widget)
-{
-    widget->setToolTip(lossyCompressionToolTip(widget->minimum(), widget->maximum()));
-}
 
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::setLossyToolTip(QSpinBox *widget)
-{
-    widget->setToolTip(lossyCompressionToolTip(widget->minimum(), widget->maximum()));
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::setLossyToolTip(QDoubleSpinBox *widget)
-{
-    widget->setToolTip(lossyCompressionToolTip(widget->minimum(), widget->maximum()));
-}
-
-
-/************************************************
-
- ************************************************/
-QString EncoderConfigPage::losslessCompressionToolTip(int min, int max)
-{
-    return tr("Sets compression level, between %1 (fastest) and %2 (highest compression).\n"
-              "This only affects the file size. All settings are lossless."
-             ).arg(min).arg(max);
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::setLosslessToolTip(QSlider *widget)
-{
-    widget->setToolTip(losslessCompressionToolTip(widget->minimum(), widget->maximum()));
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::setLosslessToolTip(QSpinBox *widget)
-{
-    widget->setToolTip(losslessCompressionToolTip(widget->minimum(), widget->maximum()));
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::fillReplayGainComboBox(QComboBox *comboBox)
-{
-    comboBox->clear();
-    comboBox->addItem(tr("Disabled",  "ReplayGain type combobox"), gainTypeToString(GainType::Disable));
-    comboBox->addItem(tr("Per Track", "ReplayGain type combobox"), gainTypeToString(GainType::Track));
-    comboBox->addItem(tr("Per Album", "ReplayGain type combobox"), gainTypeToString(GainType::Album));
-    comboBox->setToolTip(tr("ReplayGain is a standard to normalize the perceived loudness of computer audio formats. \n\n"
-                            "The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. \n"
-                            "Using the album-gain analysis will preserve the volume differences within an album."));
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::fillBitrateComboBox(QComboBox *comboBox, const QList<int> &bitrates)
-{
-    foreach(int bitrate, bitrates)
-    {
-        if (bitrate)
-            comboBox->addItem(tr("%1 kbps").arg(bitrate), QVariant(bitrate));
-        else
-            comboBox->addItem(tr("Default"), QVariant());
-    }
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QSlider *widget)
-{
-    bool ok;
-    int value = Settings::i()->value(key).toInt(&ok);
-    if (ok)
-        widget->setValue(value);
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QSlider *widget)
-{
-    Settings::i()->setValue(key, widget->value());
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QLineEdit *widget)
-{
-    widget->setText(Settings::i()->value(key).toString());
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QLineEdit *widget)
-{
-    Settings::i()->setValue(key, widget->text());
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QCheckBox *widget)
-{
-    widget->setChecked(Settings::i()->value(key).toBool());
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QCheckBox *widget)
-{
-    Settings::i()->setValue(key, widget->isChecked());
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QSpinBox *widget)
-{
-    bool ok;
-    int value = Settings::i()->value(key).toInt(&ok);
-    if (ok)
-        widget->setValue(value);
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QSpinBox *widget)
-{
-    Settings::i()->setValue(key, widget->value());
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QDoubleSpinBox *widget)
-{
-    bool ok;
-    int value = Settings::i()->value(key).toDouble(&ok);
-    if (ok)
-        widget->setValue(value);
-
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QDoubleSpinBox *widget)
-{
-    Settings::i()->setValue(key, widget->value());
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::loadWidget(const QString &key, QComboBox *widget)
-{
-    int n = qMax(0, widget->findData(Settings::i()->value(key)));
-    widget->setCurrentIndex(n);
-}
-
-
-/************************************************
-
- ************************************************/
-void EncoderConfigPage::writeWidget(const QString &key, QComboBox *widget)
-{
-    QVariant data = widget->itemData(widget->currentIndex());
-    Settings::i()->setValue(key, data);
-}
-
-
-/************************************************
-
- ************************************************/
-QString EncoderConfigPage::toolTipCss()
-{
-    return "<style type='text/css'>\n"
-          "qbody { font-size: 9px; }\n"
-          "dt { font-weight: bold; }\n"
-          "dd { margin-left: 8px; margin-bottom: 8px; }\n"
-          "</style>\n";
+    delete profilesList->takeItem(profilesList->currentRow());
+    mProfiles.removeAt(n);
 }

@@ -34,29 +34,29 @@
 
 class QFile;
 
-class CueDisk: public Tracks
+class CueDisc: public Tracks
 {
     friend class CueReader;
 public:
-    CueDisk();
+    CueDisc();
     QString fileName() const { return mFileName; }
-    DiskNum diskCount() const { return mDiskCount; }
-    DiskNum diskNum() const { return mDiskNum; }
+    DiscNum discCount() const { return mDiscCount; }
+    DiscNum discNum() const { return mDiscNum; }
 
 private:
     QString mFileName;
-    DiskNum mDiskCount;
-    DiskNum mDiskNum;
+    DiscNum mDiscCount;
+    DiscNum mDiscNum;
 };
 
 
-typedef QVector<CueDisk> Cue;
+typedef QVector<CueDisc> Cue;
 
 class CueReader
 {
 public:
     CueReader();
-    QVector<CueDisk> load(const QString &fileName) noexcept(false);
+    QVector<CueDisc> load(const QString &fileName) noexcept(false);
 };
 
 

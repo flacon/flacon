@@ -29,7 +29,7 @@
 
 #include "informat.h"
 
-class Format_Wv: public AudioFormat
+class Format_Wv: public InputFormat
 {
 public:
     virtual QString name() const override { return "WavPack"; }
@@ -41,8 +41,6 @@ public:
     virtual bool isInputFormat() const override { return true; }
     virtual QString decoderProgramName() const override { return "wvunpack"; }
     virtual QStringList decoderArgs(const QString &fileName) const override;
-
-    virtual bool isOutputFormat() const override { return false; }
 
 protected:
     virtual bool checkMagic(const QByteArray &data) const override;

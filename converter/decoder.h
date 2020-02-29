@@ -55,13 +55,13 @@ public:
 
     WavHeader wavHeader() const { return mWavHeader; }
 
-    const AudioFormat *audioFormat() const { return mFormat; }
+    const InputFormat *audioFormat() const { return mFormat; }
 
 signals:
     void progress(int percent);
 
 private:
-    const AudioFormat *mFormat;
+    const InputFormat *mFormat;
     QProcess  *mProcess;
     QString    mInputFile;
     QFile     *mFile;

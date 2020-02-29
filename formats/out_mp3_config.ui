@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ConfigPage_Mp3</class>
+ <class>mp3ConfigPage</class>
  <widget class="QWidget" name="mp3ConfigPage">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>519</width>
-    <height>380</height>
+    <width>401</width>
+    <height>148</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,21 +15,19 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QLabel" name="mp3PresetLabel">
-       <property name="text">
-        <string>Preset:</string>
-       </property>
-       <property name="buddy">
-        <cstring>mp3PresetCbx</cstring>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="mp3PresetCbx">
-       <property name="toolTip">
-        <string extracomment="ererere">&lt;dt&gt;VBR medium&lt;/dt&gt;
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="mp3PresetLabel">
+        <property name="text">
+         <string>Preset:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="mp3PresetCbx">
+        <property name="toolTip">
+         <string extracomment="ererere">&lt;dt&gt;VBR medium&lt;/dt&gt;
 &lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
 
 &lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
@@ -53,80 +51,31 @@
 &lt;dt&gt;ABR kbps&lt;/dt&gt;
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="mp3BitrateBox">
-     <property name="title">
-      <string>Use bitrate</string>
-     </property>
-     <layout class="QGridLayout" name="formLayout_4">
-      <item row="0" column="0">
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
        <widget class="QLabel" name="mp3BitrateLabel">
         <property name="text">
          <string>Bitrate:</string>
         </property>
-        <property name="buddy">
-         <cstring>mp3BitrateCbx</cstring>
-        </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item row="1" column="1">
        <widget class="QComboBox" name="mp3BitrateCbx">
         <property name="toolTip">
          <string>Sets target bitrate (in kb/s).</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="2">
-       <spacer name="horizontalSpacer_8">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="mp3QualityBox">
-     <property name="title">
-      <string>Use quality</string>
-     </property>
-     <layout class="QGridLayout" name="formLayout_5">
-      <item row="0" column="0">
+      <item row="2" column="0">
        <widget class="QLabel" name="mp3QualityLabel">
         <property name="text">
          <string>Quality:</string>
         </property>
-        <property name="buddy">
-         <cstring>mp3QualitySlider</cstring>
-        </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item row="2" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout_28">
         <item>
          <widget class="QSlider" name="mp3QualitySlider">
@@ -135,6 +84,12 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
           </property>
           <property name="minimum">
            <number>0</number>
@@ -164,6 +119,12 @@
         </item>
         <item>
          <widget class="QSpinBox" name="mp3QualitySpin">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="maximum">
            <number>9</number>
           </property>
@@ -174,66 +135,12 @@
      </layout>
     </widget>
    </item>
-   <item>
-    <widget class="QGroupBox" name="oggGainGroup_2">
-     <property name="title">
-      <string>ReplayGain</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
-      <item>
-       <layout class="QGridLayout" name="formLayout_8">
-        <item row="0" column="0">
-         <widget class="QLabel" name="mp3GainLabel">
-          <property name="text">
-           <string>Calculate gain:</string>
-          </property>
-          <property name="buddy">
-           <cstring>mp3GainCbx</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="mp3GainCbx"/>
-        </item>
-        <item row="0" column="2">
-         <spacer name="horizontalSpacer_7">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <spacer name="verticalSpacer_4">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>136</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
   </layout>
  </widget>
  <tabstops>
   <tabstop>mp3PresetCbx</tabstop>
-  <tabstop>mp3BitrateCbx</tabstop>
   <tabstop>mp3QualitySlider</tabstop>
   <tabstop>mp3QualitySpin</tabstop>
-  <tabstop>mp3GainCbx</tabstop>
  </tabstops>
  <resources/>
  <connections>
@@ -244,12 +151,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>449</x>
-     <y>157</y>
+     <x>262</x>
+     <y>112</y>
     </hint>
     <hint type="destinationlabel">
-     <x>506</x>
-     <y>154</y>
+     <x>321</x>
+     <y>111</y>
     </hint>
    </hints>
   </connection>
@@ -260,12 +167,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>506</x>
-     <y>154</y>
+     <x>314</x>
+     <y>105</y>
     </hint>
     <hint type="destinationlabel">
-     <x>449</x>
-     <y>157</y>
+     <x>298</x>
+     <y>106</y>
     </hint>
    </hints>
   </connection>

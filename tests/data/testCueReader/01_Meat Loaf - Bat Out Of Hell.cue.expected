@@ -1,4 +1,4 @@
-[ DISK 01 / TRACK 01]
+[ DISC 01 / TRACK 01]
 	FILE        = Side 1.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 00:00:00
@@ -6,13 +6,13 @@
 	ALBUM       = Bat Out Of Hell
 	PERFORMER   = Meat Loaf
 	DATE        = 1977
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 1
 	TRACKCOUNT  = 7
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
-[ DISK 01 / TRACK 02]
+[ DISC 01 / TRACK 02]
 	FILE        = Side 1.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 09:52:00
@@ -20,14 +20,14 @@
 	ALBUM       = Bat Out Of Hell
 	PERFORMER   = Meat Loaf
 	DATE        = 1977
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 2
 	TRACKCOUNT  = 7
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 03]
+[ DISC 01 / TRACK 03]
 	FILE        = Side 1.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 14:57:00
@@ -35,14 +35,14 @@
 	ALBUM       = Bat Out Of Hell
 	PERFORMER   = Meat Loaf
 	DATE        = 1977
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 3
 	TRACKCOUNT  = 7
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 04]
+[ DISC 01 / TRACK 04]
 	FILE        = Side 1.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 19:39:00
@@ -50,14 +50,14 @@
 	ALBUM       = Bat Out Of Hell
 	PERFORMER   = Meat Loaf
 	DATE        = 1977
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 4
 	TRACKCOUNT  = 7
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 02 / TRACK 01]
+[ DISC 02 / TRACK 01]
 	FILE        = Side 2.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 00:00:00
@@ -65,14 +65,14 @@
 	ALBUM       = Bat Out Of Hell
 	PERFORMER   = Meat Loaf
 	DATE        = 1977
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 5
 	TRACKCOUNT  = 7
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 02 / TRACK 02]
+[ DISC 02 / TRACK 02]
 	FILE        = Side 2.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 05:24:00
@@ -80,14 +80,14 @@
 	ALBUM       = Bat Out Of Hell
 	PERFORMER   = Meat Loaf
 	DATE        = 1977
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 6
 	TRACKCOUNT  = 7
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 02 / TRACK 03]
+[ DISC 02 / TRACK 03]
 	FILE        = Side 2.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 13:49:00
@@ -95,8 +95,8 @@
 	ALBUM       = Bat Out Of Hell
 	PERFORMER   = Meat Loaf
 	DATE        = 1977
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 7
 	TRACKCOUNT  = 7
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1

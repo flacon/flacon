@@ -25,7 +25,7 @@
 
 
 #include "splitter.h"
-#include "disk.h"
+#include "disc.h"
 #include "decoder.h"
 
 #include <QDebug>
@@ -34,13 +34,12 @@
 /************************************************
  *
  ************************************************/
-Splitter::Splitter(const Converter::Job &job, const QString &tmpFilePrefix, bool extractPregap, PreGapType preGapType, QObject *parent):
+Splitter::Splitter(const Disc *disc, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent):
     Worker(parent),
-    mJob(job),
-    mTmpFilePrefix(tmpFilePrefix),
-    mPreGapType(preGapType),
+    mDisc(disc),
+    mWorkDir(workDir),
     mExtractPregap(extractPregap),
-    mCurrentTrack(nullptr)
+    mPreGapType(preGapType)
 {
 }
 
@@ -55,14 +54,14 @@ void Splitter::run()
 
     try
     {
-        decoder.open(mJob.disk->audioFileName());
+        decoder.open(mDisc->audioFileName());
     }
     catch (FlaconError &err)
     {
-        error(mJob.tracks.first(),
+        error(mTracks.first(),
               tr("I can't read <b>%1</b>:<br>%2",
                  "Splitter error. %1 is a file name, %2 is a system error text.")
-              .arg(mJob.disk->audioFileName())
+              .arg(mDisc->audioFileName())
               .arg(err.what()));
         return;
     }
@@ -71,10 +70,10 @@ void Splitter::run()
     // Extract pregap to separate file ....................
     if (mExtractPregap)
     {
-        mCurrentTrack = mJob.disk->preGapTrack();
-        CueIndex start = mJob.disk->track(0)->cueIndex(0);
-        CueIndex end   = mJob.disk->track(0)->cueIndex(1);
-        QString outFileName = QString("%1%2.wav").arg(mTmpFilePrefix).arg(0, 2, 10, QLatin1Char('0'));
+        mCurrentTrack  = mDisc->preGapTrack();
+        CueIndex start = mDisc->track(0)->cueIndex(0);
+        CueIndex end   = mDisc->track(0)->cueIndex(1);
+        QString outFileName = QString("%1/pregap.wav").arg(mWorkDir);
 
         try
         {
@@ -98,22 +97,22 @@ void Splitter::run()
     connect(&decoder, SIGNAL(progress(int)),
             this, SLOT(decoderProgress(int)));
 
-    for (int i=0; i<mJob.disk->count(); ++i)
+    for (int i=0; i<mDisc->count(); ++i)
     {
-        mCurrentTrack = mJob.disk->track(i);
-        if (!mJob.tracks.contains(mCurrentTrack))
+        mCurrentTrack = mDisc->track(i);
+        if (!mTracks.contains(mCurrentTrack))
             continue;
 
-        QString outFileName = QString("%1%2.wav").arg(mTmpFilePrefix).arg(i+1, 2, 10, QLatin1Char('0'));
+        QString outFileName = QString("%1/track-%2.wav").arg(mWorkDir).arg(i+1, 2, 10, QLatin1Char('0'));
 
         CueIndex start, end;
         if (i==0 && mPreGapType == PreGapType::AddToFirstTrack)
             start = CueTime("00:00:00");
         else
-            start = mJob.disk->track(i)->cueIndex(1);
+            start = mDisc->track(i)->cueIndex(1);
 
-        if (i<mJob.disk->count()-1)
-            end = mJob.disk->track(i+1)->cueIndex(01);
+        if (i<mDisc->count()-1)
+            end = mDisc->track(i+1)->cueIndex(01);
 
         try
         {

@@ -25,7 +25,6 @@
 
 
 #include "out_wav.h"
-//#include <QFile>
 
 
 /************************************************
@@ -36,17 +35,15 @@ OutFormat_Wav::OutFormat_Wav()
     mId   = "WAV";
     mExt  = "wav";
     mName = "WAV";
-    mSettingsGroup = "Wav";
+    mOptions = FormatOption::Lossless;
 }
 
 
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wav::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Wav::encoderArgs(const Profile &, const Track *, const QString &) const
 {
-    Q_UNUSED(track);
-    Q_UNUSED(outFile);
     return QStringList();
 }
 
@@ -54,9 +51,8 @@ QStringList OutFormat_Wav::encoderArgs(const Track *track, const QString &outFil
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wav::gainArgs(const QStringList &files) const
+QStringList OutFormat_Wav::gainArgs(const QStringList &, const GainType) const
 {
-    Q_UNUSED(files);
     return QStringList();
 }
 
@@ -75,8 +71,17 @@ QHash<QString, QVariant> OutFormat_Wav::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Wav::configPage(QWidget *parent) const
+EncoderConfigPage *OutFormat_Wav::configPage(const Profile &profile, QWidget *parent) const
 {
-    Q_UNUSED(parent);
-    return nullptr;
+    return new ConfigPage_Wav(profile, parent);
+}
+
+
+/************************************************
+
+ ************************************************/
+ConfigPage_Wav::ConfigPage_Wav(const Profile &profile, QWidget *parent):
+    EncoderConfigPage(profile, parent)
+{
+
 }

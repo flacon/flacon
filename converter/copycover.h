@@ -28,18 +28,18 @@
 #define COPYCOVER_H
 
 #include <QString>
-class Disk;
+class Disc;
 
 class CopyCover
 {
 public:
-    CopyCover(const Disk *disk, const QString &outDir, const QString &outBaseName, int newSize);
+    CopyCover(const Disc *disc, const QString &outDir, const QString &outBaseName, int newSize);
     bool run();
 
     QString errorString() const { return mErrorString; }
 
 private:
-    const Disk *mDisk;
+    const Disc *mDisc;
     const int mSize;
     const QString mDir;
     const QString mBaseName;

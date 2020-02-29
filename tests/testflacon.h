@@ -31,7 +31,7 @@
 #include <QStringList>
 #include <QMap>
 #include <QVariant>
-class Disk;
+class Disc;
 
 #define SettingsValues QMap<QString, QVariant>
 
@@ -104,8 +104,8 @@ private slots:
     void testCueIndex_data();
     void testCueIndex();
 
-    void testDiskPipelineCalcQuality_data();
-    void testDiskPipelineCalcQuality();
+    void testDiscPipelineCalcQuality_data();
+    void testDiscPipelineCalcQuality();
 
     void testFindAudioFile_data();
     void testFindAudioFile();
@@ -119,6 +119,9 @@ private slots:
     void testConvert();
     void testConvert_data();
 
+    void testLoadProfiles();
+    void testLoadProfiles_data();
+
 private:
     void writeTextFile( const QString &fileName, const QString &content);
     void writeTextFile( const QString &fileName, const QStringList &content);
@@ -131,7 +134,7 @@ private:
     void applySettings(const SettingsValues &config);
     QString dir(const QString &subTest = "");
 
-    Disk *standardDisk();
+    Disc *standardDisc();
 
     QString mFfmpeg;
     QString mAudio_cd_wav;
@@ -152,7 +155,7 @@ private:
 
     const QString mTmpDir;
     const QString mDataDir;
-    Disk *mStandardDisk;
+    Disc *mStandardDisc;
 
     static int mTestNum;
 };

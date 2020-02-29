@@ -37,14 +37,14 @@ OutFormat_Aac::OutFormat_Aac()
     mId   = "AAC";
     mExt  = "m4a";
     mName = "AAC";
-    mSettingsGroup = "Aac";
+    mOptions = FormatOption::NoOptions;
 }
 
 
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Aac::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -52,10 +52,10 @@ QStringList OutFormat_Aac::encoderArgs(const Track *track, const QString &outFil
     args << "-w"; // Wrap  AAC  data  in  an MP4 container.
 
     // Quality settings .........................................
-    if (Settings::i()->value("Aac/UseQuality").toBool())
-        args << "-q" << Settings::i()->value("Aac/Quality").toString();
+    if (profile.value("UseQuality").toBool())
+        args << "-q" << profile.value("Quality").toString();
     else
-        args << "-b" << Settings::i()->value("Aac/Bitrate").toString();
+        args << "-b" << profile.value("Bitrate").toString();
 
 
     // Tags .....................................................
@@ -87,7 +87,7 @@ QStringList OutFormat_Aac::encoderArgs(const Track *track, const QString &outFil
 
     // --disc disc
     //     Set disc to disc in the format “number/total”
-    args << "--disc" << QString("%1/%2").arg(track->diskNum()).arg(track->diskCount());
+    args << "--disc" << QString("%1/%2").arg(track->discNum()).arg(track->discCount());
 
     // --year year
     //     Set year to year
@@ -110,9 +110,8 @@ QStringList OutFormat_Aac::encoderArgs(const Track *track, const QString &outFil
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Aac::gainArgs(const QStringList &files) const
+QStringList OutFormat_Aac::gainArgs(const QStringList &, const GainType) const
 {
-    Q_UNUSED(files);
     return QStringList();
 }
 
@@ -123,9 +122,9 @@ QStringList OutFormat_Aac::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Aac::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Aac/UseQuality",  true);
-    res.insert("Aac/Quality",   100);
-    res.insert("Aac/Bitrate", 256);
+    res.insert("UseQuality",  true);
+    res.insert("Quality",   100);
+    res.insert("Bitrate", 256);
     return res;
 }
 
@@ -133,23 +132,26 @@ QHash<QString, QVariant> OutFormat_Aac::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Aac::configPage(QWidget *parent) const
+EncoderConfigPage *OutFormat_Aac::configPage(const Profile &profile, QWidget *parentr) const
 {
-    return new ConfigPage_Acc(parent);
+    return new ConfigPage_Acc(profile, parentr);
 }
 
 
 /************************************************
 
  ************************************************/
-ConfigPage_Acc::ConfigPage_Acc(QWidget *parent):
-    EncoderConfigPage(parent)
+ConfigPage_Acc::ConfigPage_Acc(const Profile &profile, QWidget *parent):
+    EncoderConfigPage(profile, parent)
 {
     setupUi(this);
 
     setLossyToolTip(aacQualitySpin);
     aacQualitySlider->setToolTip(aacQualitySpin->toolTip());
     fillBitrateComboBox(aacBitrateCbx,  QList<int>() << 64 << 80 << 128 << 160 << 192 << 224 << 256 << 288 << 320);
+
+    connect(aacUseQualityCheck, &QCheckBox::toggled,
+            this, &ConfigPage_Acc::useQualityChecked);
 }
 
 
@@ -158,18 +160,32 @@ ConfigPage_Acc::ConfigPage_Acc(QWidget *parent):
  ************************************************/
 void ConfigPage_Acc::load()
 {
-    loadWidget("Aac/UseQuality", aacUseQualityCheck);
-    loadWidget("Aac/Quality",    aacQualitySpin);
-    loadWidget("Aac/Bitrate",    aacBitrateCbx);
+    loadWidget("UseQuality", aacUseQualityCheck);
+    loadWidget("Quality",    aacQualitySpin);
+    loadWidget("Bitrate",    aacBitrateCbx);
 }
 
 
 /************************************************
 
  ************************************************/
-void ConfigPage_Acc::write()
+void ConfigPage_Acc::save()
 {
-    writeWidget("Aac/UseQuality", aacUseQualityCheck);
-    writeWidget("Aac/Quality",    aacQualitySpin);
-    writeWidget("Aac/Bitrate",    aacBitrateCbx);
+    saveWidget("UseQuality", aacUseQualityCheck);
+    saveWidget("Quality",    aacQualitySpin);
+    saveWidget("Bitrate",    aacBitrateCbx);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ConfigPage_Acc::useQualityChecked(bool checked)
+{
+    qualityLabel->setEnabled(checked);
+    aacQualitySlider->setEnabled(checked);
+    aacQualitySpin->setEnabled(checked);
+
+    bitrateLabel->setEnabled(!checked);
+    aacBitrateCbx->setEnabled(!checked);
 }

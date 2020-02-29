@@ -31,8 +31,10 @@
 
 #define CODEC_AUTODETECT "AUTODETECT"
 
-typedef quint16 DiskNum;
+typedef quint16 DiscNum;
+typedef quint16 DiscCount;
 typedef quint16 TrackNum;
+typedef quint16 TrackCount;
 typedef uint    Duration;
 
 enum class PreGapType
@@ -66,12 +68,6 @@ enum class CoverMode
 
 QString coverModeToString(CoverMode mode);
 CoverMode strToCoverMode(const QString &str);
-
-typedef quint16 DiskCount;
-typedef quint16 DiskNum;
-
-typedef quint16 TrackCount;
-typedef quint16 TrackNum;
 
 unsigned int levenshteinDistance(const QString &s1, const QString & s2);
 
@@ -151,6 +147,20 @@ enum class SampleRate
     Hz_768000 = 768000,
 };
 Q_DECLARE_METATYPE(SampleRate)
+
+enum class FormatOption
+{
+    NoOptions   = 0x0,
+    Lossless    = 0x1,
+    SupportGain = 0x2,
+};
+
+Q_DECLARE_FLAGS(FormatOptions, FormatOption)
+Q_DECLARE_OPERATORS_FOR_FLAGS(FormatOptions)
+inline bool operator&&(const FormatOptions &flags, const FormatOption flag) noexcept
+{
+    return flags.testFlag(flag);
+}
 
 typedef quint8 Percent;
 typedef quint64 TrackId;

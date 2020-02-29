@@ -37,7 +37,7 @@
 #include <QDebug>
 #include "../settings.h"
 #include "../cue.h"
-#include "../disk.h"
+#include "../disc.h"
 #include "../converter/decoder.h"
 
 class HashDevice: public QIODevice {
@@ -487,12 +487,12 @@ void testFail(const QString &message, const char *file, int line)
 /************************************************
  *
  ************************************************/
-Disk *loadFromCue(const QString &cueFile)
+Disc *loadFromCue(const QString &cueFile)
 {
     try
     {
-        QVector<CueDisk> cue = CueReader().load(cueFile);
-        Disk *res = new Disk();
+        QVector<CueDisc> cue = CueReader().load(cueFile);
+        Disc *res = new Disc();
         res->loadFromCue(cue.first());
         return res;
     }
@@ -501,4 +501,16 @@ Disk *loadFromCue(const QString &cueFile)
         FAIL(err.what());
     }
     return nullptr;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void TestSettings::apply(const QMap<QString, QVariant> &values)
+{
+    for (auto i=values.constBegin(); i!=values.constEnd(); ++i) {
+        setValue(i.key(), i.value());
+    }
+    sync();
 }

@@ -31,7 +31,7 @@
 #include <QIcon>
 #include <QPointer>
 
-class Disk;
+class Disc;
 class QAbstractButton;
 class QListWidgetItem;
 
@@ -46,13 +46,13 @@ class CoverDialog : public QDialog
     Q_OBJECT
 
 public:
-    static CoverDialog *createAndShow(Disk *disk, QWidget *parent = nullptr);
+    static CoverDialog *createAndShow(Disc *disc, QWidget *parent = nullptr);
     ~CoverDialog() override;
 
-    Disk *disk() const { return mDisk; }
+    Disc *disc() const { return mDisc; }
 
 public slots:
-    void setDisk(Disk *disk);
+    void setDisc(Disc *disc);
 
 private slots:
     void coverDoubleClicked(QListWidgetItem *item);
@@ -65,7 +65,7 @@ private:
     void scan(const QString &startDir);
 
     Ui::CoverDialog *ui;
-    QPointer<Disk> mDisk;
+    QPointer<Disc> mDisc;
     QIcon mEmptyIcon;
 };
 

@@ -25,10 +25,11 @@
 
 
 #include "out_wv.h"
-//#include "disk.h"
 #include "settings.h"
 #include <QDebug>
 
+static const constexpr char* COMPRESSION_KEY = "Compression";
+static const constexpr char* REPLAY_GAIN_KEY = "ReplayGain";
 
 /************************************************
 
@@ -38,14 +39,14 @@ OutFormat_Wv::OutFormat_Wv()
     mId   = "WV";
     mExt  = "wv";
     mName = "WavPack";
-    mSettingsGroup = "WV";
+    mOptions = FormatOption::Lossless | FormatOption::SupportGain;
 }
 
 
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -54,7 +55,7 @@ QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile
     args << "-q";            // Suppress progress indicator
 
     // Settings .................................................
-    int compression = Settings::i()->value("WV/Compression").toInt();
+    int compression = profile.value(COMPRESSION_KEY).toInt();
     switch (compression)
     {
     case 0: args << "-f";  break;
@@ -81,15 +82,15 @@ QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile
     if (!track->tag(TagId::AlbumArtist).isEmpty())
         args << "-w" << QString("Album Artist=%1").arg(track->tag(TagId::AlbumArtist));
 
-    if (!track->diskId().isEmpty())
-        args << "-w" << QString("DiscId=%1").arg(track->diskId());
+    if (!track->discId().isEmpty())
+        args << "-w" << QString("DiscId=%1").arg(track->discId());
 
     if (!track->comment().isEmpty())
         args << "-w" << QString("Comment=%1").arg(track->comment());
 
 
     args << "-w" << QString("Track=%1/%2").arg(track->trackNum()).arg(track->trackCount());
-    args << "-w" << QString("Part=%1").arg(track->diskNum());
+    args << "-w" << QString("Part=%1").arg(track->discNum());
 
     args << "-";
     args << "-o" << outFile;
@@ -101,7 +102,7 @@ QStringList OutFormat_Wv::encoderArgs(const Track *track, const QString &outFile
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wv::gainArgs(const QStringList &files) const
+QStringList OutFormat_Wv::gainArgs(const QStringList &files, const GainType) const
 {
     QStringList args;
     args <<  args << Settings::i()->programName(gainProgramName());
@@ -118,8 +119,8 @@ QStringList OutFormat_Wv::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Wv::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("WV/Compression",       1);
-    res.insert("WV/ReplayGain",        gainTypeToString(GainType::Disable));
+    res.insert(COMPRESSION_KEY, 1);
+    res.insert(REPLAY_GAIN_KEY, gainTypeToString(GainType::Disable));
     return res;
 }
 
@@ -127,23 +128,22 @@ QHash<QString, QVariant> OutFormat_Wv::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Wv::configPage(QWidget *parent) const
+EncoderConfigPage *OutFormat_Wv::configPage(const Profile &profile, QWidget *parent) const
 {
-    return new ConfigPage_Wv(parent);
+    return new ConfigPage_Wv(profile, parent);
 }
 
 
 /************************************************
 
  ************************************************/
-ConfigPage_Wv::ConfigPage_Wv(QWidget *parent):
-    EncoderConfigPage(parent)
+ConfigPage_Wv::ConfigPage_Wv(const Profile &profile, QWidget *parent):
+    EncoderConfigPage(profile, parent)
 {
     setupUi(this);
 
     setLosslessToolTip(wvCompressionSlider);
     wvCompressionSpin->setToolTip(wvCompressionSlider->toolTip());
-    fillReplayGainComboBox(wvGainCbx);
 }
 
 
@@ -152,16 +152,14 @@ ConfigPage_Wv::ConfigPage_Wv(QWidget *parent):
  ************************************************/
 void ConfigPage_Wv::load()
 {
-    loadWidget("WV/Compression", wvCompressionSlider);
-    loadWidget("WV/ReplayGain",  wvGainCbx);
+    loadWidget(COMPRESSION_KEY, wvCompressionSlider);
 }
 
 
 /************************************************
 
  ************************************************/
-void ConfigPage_Wv::write()
+void ConfigPage_Wv::save()
 {
-    writeWidget("WV/Compression", wvCompressionSlider);
-    writeWidget("WV/ReplayGain",  wvGainCbx);
+    saveWidget(COMPRESSION_KEY, wvCompressionSlider);
 }

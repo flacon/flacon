@@ -29,27 +29,29 @@
 
 #include "worker.h"
 #include <QList>
+#include "profiles.h"
 
-class Disk;
+class Disc;
 class Track;
-class OutFormat;
 
 class Gain: public Worker
 {
     Q_OBJECT
-public:
-    struct Request {
-        const Track *track;
-        QString file;
-    };
-    explicit Gain(const Request &request, const OutFormat *format, QObject *parent = nullptr);
-    explicit Gain(const QList<Request> &requests, const OutFormat *format, QObject *parent = nullptr);
+public:   
+    explicit Gain(const Profile &profile, QObject *parent = nullptr);
+
+    void addTrack(const Track *track, const QString &file) { mTracks.append({track, file}); }
 
     void run() override;
 
 private:
-    QList<Request> mRequests;
-    const OutFormat *mFormat;
+    struct GainTrack {
+        const Track *track;
+        QString file;
+    };
+
+    QVector<GainTrack> mTracks;
+    const Profile mProfile;
 };
 
 

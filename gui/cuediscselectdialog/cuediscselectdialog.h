@@ -24,8 +24,8 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#ifndef CUEDISKSELECTDIALOG_H
-#define CUEDISKSELECTDIALOG_H
+#ifndef CUEDISCSELECTDIALOG_H
+#define CUEDISCSELECTDIALOG_H
 
 #include <QDialog>
 #include "cue.h"
@@ -33,27 +33,27 @@
 class QModelIndex;
 
 namespace Ui {
-class CueDiskSelectDialog;
+class CueDiscSelectDialog;
 }
 
-class CueDiskSelectDialog : public QDialog
+class CueDiscSelectDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CueDiskSelectDialog(const QVector<CueDisk> &cue, int selectedDisk = 0, QWidget *parent = nullptr);
-    ~CueDiskSelectDialog();
+    explicit CueDiscSelectDialog(const QVector<CueDisc> &cue, int selectedDisc = 0, QWidget *parent = nullptr);
+    ~CueDiscSelectDialog();
 
-    static int getDiskNumber(const QVector<CueDisk> &cue, int selectedDisk = 0);
+    static int getDiscNumber(const QVector<CueDisc> &cue, int selectedDisc = 0);
 
-    int diskNumber();
+    int discNumber();
 
 private slots:
     void treeDoubleClicked(const QModelIndex &index);
 
 private:
-    Ui::CueDiskSelectDialog *ui;
-    const QVector<CueDisk> &mCue;
+    Ui::CueDiscSelectDialog *ui;
+    const QVector<CueDisc> &mCue;
 };
 
-#endif // CUEDISKSELECTDIALOG_H
+#endif // CUEDISCSELECTDIALOG_H

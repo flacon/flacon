@@ -31,12 +31,12 @@
 #include "types.h"
 #include "tags.h"
 
-class Disk;
+class Disc;
 
 class Track: public QObject
 {
     Q_OBJECT
-    friend class Disk;
+    friend class Disc;
     friend class CueReader;
 public:
     Track();
@@ -77,7 +77,7 @@ public:
     QString date() const              { return tag(TagId::Date) ;}
     void setDate(const QString &value)    { setTag(TagId::Date, value); }
 
-    QString diskId() const              { return tag(TagId::DiscId) ;}
+    QString discId() const              { return tag(TagId::DiscId) ;}
 
     TrackNum trackNum() const;
     void setTrackNum(TrackNum value);
@@ -85,11 +85,11 @@ public:
     TrackNum trackCount() const;
     void setTrackCount(TrackNum value);
 
-    DiskNum diskNum() const;
-    void setDiskNum(DiskNum value);
+    DiscNum discNum() const;
+    void setDiscNum(DiscNum value);
 
-    DiskNum diskCount() const;
-    void setDiskCount(DiskNum value);
+    DiscNum discCount() const;
+    void setDiscCount(DiscNum value);
 
     QString resultFileName() const;
     QString resultFilePath() const;

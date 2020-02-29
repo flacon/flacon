@@ -31,6 +31,7 @@
 #include "outformat.h"
 #include "converter/resampler.h"
 
+#include <assert.h>
 #include <QDir>
 #include <QDebug>
 #include <QProcessEnvironment>
@@ -53,8 +54,109 @@
 
 #endif
 
+#define PROFILES_PREFIX "Profiles"
+
 QString Settings::mFileName;
 Settings *Settings::mInstance = nullptr;
+
+/************************************************
+ * Added on 6.0.0 release, remove after 8.0.0 release
+ ************************************************/
+static void migrateKey(Settings *settings, const QString &oldKey, const QString &newKey)
+{
+    if (settings->contains(oldKey) && !settings->contains(newKey))
+        settings->setValue(newKey, settings->value(oldKey));
+}
+
+
+/************************************************
+ * Added on 6.0.0 release, remove after 8.0.0 release
+ ************************************************/
+static void migrateProfile(Settings *settings, const QString &formatId)
+{
+    const OutFormat *format = OutFormat::formatForId(formatId);
+    assert(format != nullptr);
+    if (!format)
+        return;
+
+    QString group = QString("%1/%2/").arg(PROFILES_PREFIX).arg(format->id());
+    settings->setValue(group + "Format", format->id());
+    settings->setValue(group + "Name",   format->name());
+
+    if (format->id() == "AAC") {
+        migrateKey(settings, "Aac/UseQuality",   group + "UseQuality");
+        migrateKey(settings, "Aac/Quality",      group + "Quality");
+        migrateKey(settings, "Aac/Bitrate",      group + "Bitrate");
+    }
+
+    if (format->id() == "FLAC") {
+        migrateKey(settings, "Flac/Compression", group + "Compression");
+        migrateKey(settings, "Flac/ReplayGain",  group + "ReplayGain");
+    }
+
+    if (format->id() == "MP3") {
+        migrateKey(settings, "Mp3/Preset",       group + "Preset");
+        migrateKey(settings, "Mp3/Bitrate",      group + "Bitrate");
+        migrateKey(settings, "Mp3/Quality",      group + "Quality");
+        migrateKey(settings, "Mp3/ReplayGain",   group + "ReplayGain");
+    }
+
+    if (format->id() == "OGG") {
+        migrateKey(settings, "Ogg/UseQuality",   group + "UseQuality");
+        migrateKey(settings, "Ogg/Quality",      group + "Quality");
+        migrateKey(settings, "Ogg/MinBitrate",   group + "MinBitrate");
+        migrateKey(settings, "Ogg/NormBitrate",  group + "NormBitrate");
+        migrateKey(settings, "Ogg/MaxBitrate",   group + "MaxBitrate");
+        migrateKey(settings, "Ogg/ReplayGain",   group + "ReplayGain");
+    }
+
+    if (format->id() == "OPUS") {
+        migrateKey(settings, "Opus/BitrateType", group + "BitrateType");
+        migrateKey(settings, "Opus/Bitrate",     group + "Bitrate");
+    }
+
+    if (format->id() == "WAV") {
+        // No options
+    }
+
+    if (format->id() == "WV") {
+        migrateKey(settings, "WV/Compression",   group + "Compression");
+        migrateKey(settings, "WV/ReplayGain",    group + "ReplayGain");
+    }
+
+    migrateKey(settings, "OutFiles/Directory",     group + Profile::OUT_DIRECTORY_KEY);
+    migrateKey(settings, "OutFiles/Pattern",       group + Profile::OUT_PATTERN_KEY);
+
+    migrateKey(settings, "Resample/BitsPerSample", group + Profile::BITS_PER_SAMPLE_KEY);
+    migrateKey(settings, "Resample/SampleRate",    group + Profile::SAMPLE_RATE_KEY);
+
+    migrateKey(settings, "PerTrackCue/Create",     group + Profile::CREATE_CUE_KEY);
+    migrateKey(settings, "PerTrackCue/FileName",   group + Profile::CUE_FILE_NAME_KEY);
+    migrateKey(settings, "PerTrackCue/Pregap",     group + Profile::PREGAP_TYPE_KEY);
+}
+
+
+/************************************************
+ * Added on 6.0.0 release, remove after 8.0.0 release
+ ************************************************/
+static void migrateProfiles(Settings *settings)
+{
+    settings->allKeys();
+    if (!settings->childGroups().contains(PROFILES_PREFIX)) {
+
+        migrateProfile(settings, "WAV");
+        migrateProfile(settings, "AAC");
+        migrateProfile(settings, "FLAC");
+        migrateProfile(settings, "MP3");
+        migrateProfile(settings, "OGG");
+        migrateProfile(settings, "OPUS");
+        migrateProfile(settings, "WAV");
+        migrateProfile(settings, "WV");
+    }
+
+    if (settings->contains("OutFiles/Format") && !settings->contains("OutFiles/Profile"))
+        settings->setValue("OutFiles/Profile", settings->value("OutFiles/Format"));
+}
 
 /************************************************
 
@@ -111,6 +213,7 @@ Settings::Settings(const QString &fileName):
  ************************************************/
 void Settings::init()
 {
+    migrateProfiles(this);
 
     setDefaultValue(Tags_DefaultCodepage,   "AUTODETECT");
 
@@ -119,24 +222,13 @@ void Settings::init()
     setDefaultValue(Encoder_TmpDir,         "");
 
     // Out Files ********************************
-    setDefaultValue(OutFiles_Pattern,       "%a/{%y - }%A/%n - %t");
-
-    QString outDir = QStandardPaths::standardLocations(QStandardPaths::MusicLocation).first();
-
-    outDir.replace(QDir::homePath(), "~");
-    setDefaultValue(OutFiles_Directory,     outDir);
-    setDefaultValue(OutFiles_Format,        "FLAC");
+    setDefaultValue(OutFiles_Profile,       "FLAC");
 
     // Internet *********************************
     setDefaultValue(Inet_CDDBHost,          "freedb.freedb.org");
 
     // Misc *************************************
     setDefaultValue(Misc_LastDir,           QDir::homePath());
-
-    // PerTrackCue **************************
-    setDefaultValue(PerTrackCue_Create,     false);
-    setDefaultValue(PerTrackCue_Pregap,     preGapTypeToString(PreGapType::ExtractToFile));
-    setDefaultValue(PerTrackCue_FileName,   "%a-%A.cue");
 
     // Cover image **************************
     setDefaultValue(Cover_Mode,             coverModeToString(CoverMode::Scale));
@@ -145,10 +237,6 @@ void Settings::init()
     // ConfigureDialog **********************
     setDefaultValue(ConfigureDialog_Width,  645);
     setDefaultValue(ConfigureDialog_Height, 425);
-
-    // Resampling ***************************
-    setDefaultValue(Resample_BitsPerSample, 0);
-    setDefaultValue(Resample_SampleRate,    0);
 
     mPrograms << Resampler::programName();
 
@@ -166,7 +254,7 @@ void Settings::init()
     }
 
 
-    foreach (const AudioFormat *format, AudioFormat::inputFormats())
+    foreach (const InputFormat *format, InputFormat::allFormats())
     {
         mPrograms << format->decoderProgramName();
     }
@@ -199,39 +287,26 @@ QString Settings::keyToString(Settings::Key key) const
     case Encoder_TmpDir:            return "Encoder/TmpDir";
 
     // Out Files ***************************
-    case OutFiles_Pattern:          return "OutFiles/Pattern";
-    case OutFiles_Directory:        return "OutFiles/Directory";
-    case OutFiles_Format:           return "OutFiles/Format";
+    case OutFiles_Profile:          return "OutFiles/Profile";
     case OutFiles_PatternHistory:   return "OutFiles/PatternHistory";
     case OutFiles_DirectoryHistory: return "OutFiles/DirectoryHistory";
 
     // Internet ****************************
     case Inet_CDDBHost:             return "Inet/CDDBHost";
 
-
     // Misc *********************************
     case Misc_LastDir:              return "Misc/LastDirectory";
-
-
-    // PerTrackCue **************************
-    case PerTrackCue_Create:        return "PerTrackCue/Create";
-    case PerTrackCue_Pregap:        return "PerTrackCue/Pregap";
-    case PerTrackCue_FileName:      return "PerTrackCue/FileName";
 
     // ConfigureDialog **********************
     case ConfigureDialog_Width:     return "ConfigureDialog/Width";
     case ConfigureDialog_Height:    return "ConfigureDialog/Height";
 
-
     // Cover image **************************
     case Cover_Mode:                return "Cover/Mode";
     case Cover_Size:                return "Cover/Size";
-
-    // Resampling ***************************
-    case Resample_BitsPerSample:    return "Resample/BitsPerSample";
-    case Resample_SampleRate:       return "Resample/SampleRate";
     }
 
+    assert(false);
     return "";
 }
 
@@ -260,6 +335,22 @@ QVariant Settings::value(Key key, const QVariant &defaultValue) const
 QVariant Settings::value(const QString &key, const QVariant &defaultValue) const
 {
     return QSettings::value(key, defaultValue);
+}
+
+
+/************************************************
+ *
+ ************************************************/
+QStringList Settings::groups(const QString &parentGroup) const
+{
+    QStringList res;
+    for (const QString &key: allKeys()) {
+        if (key.startsWith(parentGroup)) {
+            res << key.section("/", 1, 1);
+        }
+    }
+    res.removeDuplicates();
+    return res;
 }
 
 
@@ -312,29 +403,11 @@ QString Settings::findProgram(const QString &program) const
  ************************************************/
 OutFormat *Settings::outFormat() const
 {
-    OutFormat *format = OutFormat::formatForId(value(OutFiles_Format).toString());
+    OutFormat *format = OutFormat::formatForId(currentProfile().formatId());
     if (format)
         return format;
 
     return OutFormat::allFormats().first();
-}
-
-
-/************************************************
- *
- ************************************************/
-void Settings::setOutFormat(const OutFormat *format)
-{
-    setOutFormat(format->id());
-}
-
-
-/************************************************
- *
- ************************************************/
-void Settings::setOutFormat(const QString &formatId)
-{
-    setValue(OutFiles_Format, formatId);
 }
 
 
@@ -353,78 +426,6 @@ QString Settings::tmpDir() const
 void Settings::setTmpDir(const QString &value)
 {
     setValue(Encoder_TmpDir, value);
-}
-
-
-/************************************************
-
- ************************************************/
-bool Settings::createCue() const
-{
-    return value(PerTrackCue_Create).toBool();
-}
-
-
-/************************************************
-
- ************************************************/
-void Settings::setCreateCue(bool value)
-{
-    setValue(PerTrackCue_Create, value);
-}
-
-
-/************************************************
-
- ************************************************/
-PreGapType Settings::preGapType() const
-{
-    return strToPreGapType(value(Settings::PerTrackCue_Pregap).toString());
-}
-
-
-/************************************************
-
- ************************************************/
-void Settings::setPregapType(PreGapType value)
-{
-    setValue(Settings::PerTrackCue_Pregap, preGapTypeToString(value));
-}
-
-
-/************************************************
- *
- ************************************************/
-QString Settings::outFilePattern() const
-{
-    return value(OutFiles_Pattern).toString();
-}
-
-
-/************************************************
- *
- ************************************************/
-void Settings::setOutFilePattern(const QString &value)
-{
-    setValue(OutFiles_Pattern, value);
-}
-
-
-/************************************************
-
- ************************************************/
-QString Settings::outFileDir() const
-{
-    return value(OutFiles_Directory).toString();
-}
-
-
-/************************************************
-
- ************************************************/
-void Settings::setOutFileDir(const QString &value)
-{
-    setValue(OutFiles_Directory, value);
 }
 
 
@@ -501,5 +502,114 @@ void Settings::setDefaultValue(const QString &key, const QVariant &defaultValue)
 }
 
 
+/************************************************
+
+ ************************************************/
+const Profiles &Settings::profiles() const
+{
+    if (mProfiles.isEmpty()) {
+        const_cast<Settings*>(this)->loadProfiles();
+    }
+
+    return mProfiles;
+}
 
 
+/************************************************
+
+ ************************************************/
+Profiles &Settings::profiles()
+{
+    if (mProfiles.isEmpty()) {
+        const_cast<Settings*>(this)->loadProfiles();
+    }
+
+    return mProfiles;
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::loadProfiles()
+{
+    QSet<QString> loaded;
+    allKeys();
+    beginGroup(PROFILES_PREFIX);
+    for (QString id: childGroups()) {
+
+        Profile profile(id);
+        profile.load(*this, id);
+
+        if (profile.isValid())
+        {
+            mProfiles << profile;
+            loaded << profile.formatId();
+        }
+    }
+    endGroup();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setProfiles(const Profiles &profiles)
+{
+    allKeys();
+    beginGroup(PROFILES_PREFIX);
+    QSet<QString> old = QSet<QString>::fromList(childGroups());
+
+    for (const Profile &profile: profiles) {
+        old.remove(profile.id());
+        profile.save(*this, profile.id());
+    }
+
+    for (const QString &id: old) {
+        remove(id);
+    }
+    endGroup();
+    mProfiles.clear();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+const Profile &Settings::currentProfile() const
+{    
+    int n = profiles().indexOf(value(OutFiles_Profile).toString());
+    if (n > -1) {
+        return profiles()[qMax(0, n)];
+    }
+
+    return NullProfile();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+Profile &Settings::currentProfile()
+{
+
+    int n = profiles().indexOf(value(OutFiles_Profile).toString());
+    if (n > -1) {
+        return profiles()[qMax(0, n)];
+    }
+
+    return NullProfile();
+}
+
+
+/************************************************
+ *
+ ************************************************/
+bool Settings::selectProfile(const QString &profileId)
+{
+    if (profiles().indexOf(profileId) < 0)
+        return false;
+
+    setValue(OutFiles_Profile, profileId);
+    return true;
+}

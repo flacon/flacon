@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ConfigPage_Wv</class>
+ <class>wvConfigPage</class>
  <widget class="QWidget" name="wvConfigPage">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>519</width>
-    <height>380</height>
+    <width>410</width>
+    <height>76</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,106 +15,59 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QGridLayout" name="formLayout_9">
-     <item row="0" column="0">
-      <widget class="QLabel" name="wvCompressionLabel">
-       <property name="text">
-        <string>Compression:</string>
-       </property>
-       <property name="buddy">
-        <cstring>wvCompressionSlider</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout_7">
-       <item>
-        <widget class="QSlider" name="wvCompressionSlider">
-         <property name="maximum">
-          <number>2</number>
-         </property>
-         <property name="pageStep">
-          <number>1</number>
-         </property>
-         <property name="value">
-          <number>0</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="tickPosition">
-          <enum>QSlider::TicksAbove</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="wvCompressionSpin">
-         <property name="maximum">
-          <number>2</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="wvGainGroup">
-     <property name="title">
-      <string>ReplayGain</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_10">
-      <item>
-       <layout class="QGridLayout" name="formLayout_10">
-        <item row="0" column="0">
-         <widget class="QLabel" name="wvGainLabel">
-          <property name="text">
-           <string>Calculate gain:</string>
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="wvCompressionLabel">
+        <property name="text">
+         <string>Compression:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="QSlider" name="wvCompressionSlider">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
           </property>
-          <property name="buddy">
-           <cstring>wvGainCbx</cstring>
+          <property name="maximum">
+           <number>2</number>
           </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="wvGainCbx">
-          <item>
-           <property name="text">
-            <string>Disabled</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <spacer name="horizontalSpacer_4">
+          <property name="pageStep">
+           <number>1</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeHint" stdset="0">
+          <property name="tickPosition">
+           <enum>QSlider::TicksAbove</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="wvCompressionSpin">
+          <property name="minimumSize">
            <size>
-            <width>40</width>
-            <height>20</height>
+            <width>50</width>
+            <height>0</height>
            </size>
           </property>
-         </spacer>
+          <property name="maximum">
+           <number>2</number>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
      </layout>
     </widget>
-   </item>
-   <item>
-    <spacer name="verticalSpacer_6">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>266</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
@@ -127,12 +80,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>411</x>
-     <y>17</y>
+     <x>322</x>
+     <y>41</y>
     </hint>
     <hint type="destinationlabel">
-     <x>465</x>
-     <y>17</y>
+     <x>348</x>
+     <y>41</y>
     </hint>
    </hints>
   </connection>
@@ -143,12 +96,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>474</x>
-     <y>26</y>
+     <x>342</x>
+     <y>33</y>
     </hint>
     <hint type="destinationlabel">
-     <x>427</x>
-     <y>26</y>
+     <x>285</x>
+     <y>32</y>
     </hint>
    </hints>
   </connection>

@@ -37,14 +37,14 @@ OutFormat_Mp3::OutFormat_Mp3()
     mId   = "MP3";
     mExt  = "mp3";
     mName = "MP3";
-    mSettingsGroup = "Mp3";
+    mOptions = FormatOption::SupportGain;
 }
 
 
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
     QStringList args;
 
@@ -52,7 +52,7 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
     args << "--silent";
 
     // Settings .................................................
-    QString preset = Settings::i()->value("Mp3/Preset").toString();
+    QString preset = profile.value("Preset").toString();
 
     if (preset == "vbrMedium")
     {
@@ -86,22 +86,22 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
 
     else if (preset == "cbrKbps")
     {
-        args << "--preset" << "cbr" << Settings::i()->value("Mp3/Bitrate").toString();
+        args << "--preset" << "cbr" << profile.value("Bitrate").toString();
     }
 
     else if (preset == "abrKbps")
     {
-        args << "--preset" << Settings::i()->value("Mp3/Bitrate").toString();
+        args << "--preset" << profile.value("Bitrate").toString();
     }
 
     else if (preset == "vbrQuality")
     {
-        int quality = Settings::i()->value("Mp3/Quality").toInt();
+        int quality = profile.value("Quality").toInt();
         args << "-V" << QString("%1").arg(9 - quality);
     }
 
     // ReplayGain ...............................................
-    if (strToGainType(Settings::i()->value("Mp3/ReplayGain").toString()) != GainType::Track)
+    if (strToGainType(profile.value("ReplayGain").toString()) != GainType::Track)
     {
         args << "--noreplaygain";
     }
@@ -131,7 +131,7 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
         args << "--tc" << track->comment();
 
     args << "--tn" << QString("%1/%2").arg(track->trackNum()).arg(track->trackCount());
-    args << "--tv" << QString("TPOS=%1").arg(track->diskNum());
+    args << "--tv" << QString("TPOS=%1").arg(track->discNum());
 
     // Files ....................................................
     args << "-";
@@ -144,7 +144,7 @@ QStringList OutFormat_Mp3::encoderArgs(const Track *track, const QString &outFil
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Mp3::gainArgs(const QStringList &files) const
+QStringList OutFormat_Mp3::gainArgs(const QStringList &files, const GainType) const
 {
     QStringList args;
     args <<  args << Settings::i()->programName(gainProgramName());
@@ -163,10 +163,10 @@ QStringList OutFormat_Mp3::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Mp3::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Mp3/Preset",           "vbrStandardFast");
-    res.insert("Mp3/Bitrate",          320);
-    res.insert("Mp3/Quality",          4);
-    res.insert("Mp3/ReplayGain",       gainTypeToString(GainType::Disable));
+    res.insert("Preset",           "vbrStandardFast");
+    res.insert("Bitrate",          320);
+    res.insert("Quality",          4);
+    res.insert("ReplayGain",       gainTypeToString(GainType::Disable));
     return res;
 }
 
@@ -174,17 +174,17 @@ QHash<QString, QVariant> OutFormat_Mp3::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Mp3::configPage(QWidget *parent) const
+EncoderConfigPage *OutFormat_Mp3::configPage(const Profile &profile, QWidget *parent) const
 {
-    return new ConfigPage_Mp3(parent);
+    return new ConfigPage_Mp3(profile, parent);
 }
 
 
 /************************************************
 
  ************************************************/
-ConfigPage_Mp3::ConfigPage_Mp3(QWidget *parent):
-    EncoderConfigPage(parent)
+ConfigPage_Mp3::ConfigPage_Mp3(const Profile &profile, QWidget *parent):
+    EncoderConfigPage(profile, parent)
 {
     setupUi(this);
 
@@ -220,8 +220,6 @@ ConfigPage_Mp3::ConfigPage_Mp3(QWidget *parent):
 
     connect(mp3PresetCbx, SIGNAL(currentIndexChanged(int)), this, SLOT(mp3PresetCbxCanged(int)));
     mp3PresetCbxCanged(mp3PresetCbx->currentIndex());
-
-    fillReplayGainComboBox(mp3GainCbx);
 }
 
 
@@ -230,23 +228,21 @@ ConfigPage_Mp3::ConfigPage_Mp3(QWidget *parent):
  ************************************************/
 void ConfigPage_Mp3::load()
 {
-    loadWidget("Mp3/Preset",      mp3PresetCbx);
-    loadWidget("Mp3/Bitrate",     mp3BitrateCbx);
-    loadWidget("Mp3/Quality",     mp3QualitySpin);
+    loadWidget("Preset",      mp3PresetCbx);
+    loadWidget("Bitrate",     mp3BitrateCbx);
+    loadWidget("Quality",     mp3QualitySpin);
     mp3QualitySlider->setValue(mp3QualitySpin->value());
-    loadWidget("Mp3/ReplayGain",  mp3GainCbx);
 }
 
 
 /************************************************
 
  ************************************************/
-void ConfigPage_Mp3::write()
+void ConfigPage_Mp3::save()
 {
-    writeWidget("Mp3/Preset",     mp3PresetCbx);
-    writeWidget("Mp3/Bitrate",    mp3BitrateCbx);
-    writeWidget("Mp3/Quality",    mp3QualitySpin);
-    writeWidget("Mp3/ReplayGain", mp3GainCbx);
+    saveWidget("Preset",     mp3PresetCbx);
+    saveWidget("Bitrate",    mp3BitrateCbx);
+    saveWidget("Quality",    mp3QualitySpin);
 }
 
 
@@ -258,8 +254,11 @@ void ConfigPage_Mp3::mp3PresetCbxCanged(int index)
     QString preset = mp3PresetCbx->itemData(index).toString();
 
     bool enable = (preset == "abrKbps" or preset=="cbrKbps");
-    mp3BitrateBox->setEnabled(enable);
+    mp3BitrateLabel->setEnabled(enable);
+    mp3BitrateCbx->setEnabled(enable);
 
     enable = (preset == "vbrQuality");
-    mp3QualityBox->setEnabled(enable);
+    mp3QualityLabel->setEnabled(enable);
+    mp3QualitySlider->setEnabled(enable);
+    mp3QualitySpin->setEnabled(enable);
 }

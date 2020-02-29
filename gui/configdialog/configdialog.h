@@ -28,94 +28,57 @@
 #define CONFIGDIALOG_H
 
 #include <QDialog>
+#include <QPointer>
 #include "ui_configdialog.h"
-#include "types.h"
+#include "profilewidget.h"
 
 class OutFormat;
-class EncoderConfigPage;
 class ProgramEdit;
+class QListWidgetItem;
 
 class ConfigDialog : public QDialog, private Ui::ConfigDialog
 {
     Q_OBJECT
 public:
-    static ConfigDialog *createAndShow(const OutFormat *format, QWidget *parent = nullptr);
+    static ConfigDialog *createAndShow(QWidget *parent = nullptr);
+    static ConfigDialog *createAndShow(const QString &profileId, QWidget *parent = nullptr);
+
+    using QDialog::show;
+    void show(const QString &profileId);
 
 signals:
     
 public slots:
-    void setPage(int pageIndex);
-    void setPage(const OutFormat *format);
-
     void done(int res);
     void tmpDirShowDialog();
+
+private slots:
+    void profileListSelected(QListWidgetItem *current, QListWidgetItem *previous);
+    void profileItemChanged(QListWidgetItem *item);
+    void deleteProfile();
+    void addProfile();
 
 private:
     explicit ConfigDialog(QWidget *parent = nullptr);
     ~ConfigDialog();
 
     void initGeneralPage();
-    void initFormatPages();
-    void initPrograms();
+    void initProgramsPage();
     void initUpdatePage();
 
     void load();
-    void write();
+    void save();
 
     CoverMode coverMode() const;
     void setCoverMode(CoverMode mode);
 
-
+    Profile &currentProfile();
+    void refreshProfilesList(const QString &selectedProfileId);
     void updateLastUpdateLbl();
 
-    QList<EncoderConfigPage*> mEncodersPages;
     QList<ProgramEdit*> mProgramEdits;
+    Profiles mProfiles;
+    QPointer<ProfileWidget> mProfileWidget;
 };
-
-
-class EncoderConfigPage: public QWidget
-{
-    Q_OBJECT
-public:
-    explicit EncoderConfigPage(QWidget *parent = nullptr);
-    virtual ~EncoderConfigPage();
-
-    virtual void load() = 0;
-    virtual void write() = 0;
-
-    static QString losslessCompressionToolTip(int min, int max);
-    static void setLosslessToolTip(QSlider *widget);
-    static void setLosslessToolTip(QSpinBox *widget);
-
-    static QString lossyCompressionToolTip(int min, int max);
-    static void setLossyToolTip(QSlider *widget);
-    static void setLossyToolTip(QSpinBox *widget);
-    static void setLossyToolTip(QDoubleSpinBox *widget);
-
-    static void fillReplayGainComboBox(QComboBox *comboBox);
-    static void fillBitrateComboBox(QComboBox *comboBox, const QList<int> &bitrates);
-
-
-    static void loadWidget(const QString &key, QSlider *widget);
-    static void writeWidget(const QString &key, QSlider *widget);
-
-    static void loadWidget(const QString &key, QLineEdit *widget);
-    static void writeWidget(const QString &key, QLineEdit *widget);
-
-    static void loadWidget(const QString &key, QCheckBox *widget);
-    static void writeWidget(const QString &key, QCheckBox *widget);
-
-    static void loadWidget(const QString &key, QSpinBox *widget);
-    static void writeWidget(const QString &key, QSpinBox *widget);
-
-    static void loadWidget(const QString &key, QDoubleSpinBox *widget);
-    static void writeWidget(const QString &key, QDoubleSpinBox *widget);
-
-    static void loadWidget(const QString &key, QComboBox *widget);
-    static void writeWidget(const QString &key, QComboBox *widget);
-
-    static QString toolTipCss();
-};
-
 
 #endif // CONFIGDIALOG_H

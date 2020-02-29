@@ -1,0 +1,95 @@
+[Profiles/AAC]
+    OutDirectory=~/Music
+    OutPattern=%a/{%y - }%A/%n - %t
+    Format=AAC
+    Name=AAC
+    Bitrate=256
+    Quality=100
+    UseQuality=true
+    BitsPerSample=0
+    SampleRate=0
+    CreateCue=false
+    CueFileName = %a-%A.cue
+    PregapType = Extract
+
+[Profiles/FLAC]
+    OutDirectory=~/Music
+    OutPattern=%a/{%y - }%A/%n - %t
+    Format = FLAC
+    Name = Flac
+    Compression=5
+    ReplayGain=Disable
+    BitsPerSample=0
+    SampleRate=0
+    CreateCue=false
+    CueFileName = %a-%A.cue
+    PregapType = Extract
+
+[Profiles/MP3]
+    OutDirectory=~/Music
+    OutPattern=%a/{%y - }%A/%n - %t
+    Format = MP3
+    Name = MP3
+    Bitrate=320
+    Preset=vbrStandardFast
+    Quality=4
+    ReplayGain=Disable
+    BitsPerSample=0
+    SampleRate=0
+    CreateCue=false
+    CueFileName = %a-%A.cue
+    PregapType = Extract
+
+[Profiles/OGG]
+    OutDirectory=~/Music
+    OutPattern=%a/{%y - }%A/%n - %t
+    Format = OGG
+    Name = OGG
+    MaxBitrate=
+    MinBitrate=
+    NormBitrate=
+    Quality=7
+    ReplayGain=Disable
+    UseQuality=true
+    BitsPerSample=0
+    SampleRate=0
+    CreateCue=false
+    CueFileName = %a-%A.cue
+    PregapType = Extract
+
+[Profiles/OPUS]
+    OutDirectory=~/Music
+    OutPattern=%a/{%y - }%A/%n - %t
+    Name = Opus
+    Format = OPUS
+    Bitrate=96
+    BitrateType=VBR
+    BitsPerSample=0
+    SampleRate=0
+    CreateCue=false
+    CueFileName = %a-%A.cue
+    PregapType = Extract
+
+[Profiles/WV]
+    OutDirectory=~/Music
+    OutPattern=%a/{%y - }%A/%n - %t
+    Name = WavPack
+    Format = WV
+    Compression=1
+    ReplayGain=Disable
+    BitsPerSample=0
+    SampleRate=0
+    CreateCue=false
+    CueFileName = %a-%A.cue
+    PregapType = Extract
+
+[Profiles/WAV]
+    OutDirectory=~/Music
+    OutPattern=%a/{%y - }%A/%n - %t
+    Format=WAV
+    Name=WAV
+    BitsPerSample=0
+    SampleRate=0
+    CreateCue=false
+    CueFileName = %a-%A.cue
+    PregapType = Extract

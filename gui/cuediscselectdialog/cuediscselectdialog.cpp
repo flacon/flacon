@@ -24,8 +24,8 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "cuediskselectdialog.h"
-#include "ui_cuediskselectdialog.h"
+#include "cuediscselectdialog.h"
+#include "ui_cuediscselectdialog.h"
 
 #include <assert.h>
 #include "../cue.h"
@@ -34,44 +34,44 @@
 /************************************************
  *
  ************************************************/
-CueDiskSelectDialog::CueDiskSelectDialog(const QVector<CueDisk> &cue, int selectedDisk, QWidget *parent) :
+CueDiscSelectDialog::CueDiscSelectDialog(const QVector<CueDisc> &cue, int selectedDisc, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CueDiskSelectDialog),
+    ui(new Ui::CueDiscSelectDialog),
     mCue(cue)
 {
-    if (selectedDisk < 0 || selectedDisk >= cue.count())
-        selectedDisk = 0;
+    if (selectedDisc < 0 || selectedDisc >= cue.count())
+        selectedDisc = 0;
 
     ui->setupUi(this);
 
     for (int d=0; d<cue.count(); d++)
     {
-        CueDisk tags = cue.at(d);
-        QTreeWidgetItem *diskItem = new QTreeWidgetItem(ui->diskTree);
+        CueDisc tags = cue.at(d);
+        QTreeWidgetItem *discItem = new QTreeWidgetItem(ui->discTree);
         assert(!tags.isEmpty());
-        diskItem->setText(0, tr("%1 [ disk %2 ]", "Cue disk select dialog, string like 'The Wall [disk 1]'").arg(tags.first().album()).arg(d+1));
-        diskItem->setData(0,Qt::UserRole, d);
-        if (d == selectedDisk)
+        discItem->setText(0, tr("%1 [ disc %2 ]", "Cue disc select dialog, string like 'The Wall [disc 1]'").arg(tags.first().album()).arg(d+1));
+        discItem->setData(0,Qt::UserRole, d);
+        if (d == selectedDisc)
         {
-            diskItem->setSelected(true);
-            ui->diskTree->setCurrentItem(diskItem, 0);
+            discItem->setSelected(true);
+            ui->discTree->setCurrentItem(discItem, 0);
         }
 
-        QFont font = diskItem->font(0);
+        QFont font = discItem->font(0);
         font.setBold(true);
-        diskItem->setFont(0, font);
+        discItem->setFont(0, font);
 
         for (int t=0; t<tags.count(); ++t)
         {
-            QTreeWidgetItem *trackItem = new QTreeWidgetItem(diskItem);
+            QTreeWidgetItem *trackItem = new QTreeWidgetItem(discItem);
             trackItem->setText(0, tags.at(t).title());
             trackItem->setFlags(Qt::NoItemFlags );
         }
     }
-    ui->diskTree->expandAll();
+    ui->discTree->expandAll();
 
 
-    connect(ui->diskTree, SIGNAL(doubleClicked(QModelIndex)),
+    connect(ui->discTree, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(treeDoubleClicked(QModelIndex)));
 }
 
@@ -79,7 +79,7 @@ CueDiskSelectDialog::CueDiskSelectDialog(const QVector<CueDisk> &cue, int select
 /************************************************
  *
  ************************************************/
-CueDiskSelectDialog::~CueDiskSelectDialog()
+CueDiscSelectDialog::~CueDiscSelectDialog()
 {
     delete ui;
 }
@@ -88,16 +88,16 @@ CueDiskSelectDialog::~CueDiskSelectDialog()
 /************************************************
  *
  ************************************************/
-int CueDiskSelectDialog::diskNumber()
+int CueDiscSelectDialog::discNumber()
 {
-    return ui->diskTree->currentIndex().row();
+    return ui->discTree->currentIndex().row();
 }
 
 
 /************************************************
  *
  ************************************************/
-void CueDiskSelectDialog::treeDoubleClicked(const QModelIndex &index)
+void CueDiscSelectDialog::treeDoubleClicked(const QModelIndex &index)
 {
     if (!index.parent().isValid())
         accept();
@@ -107,12 +107,12 @@ void CueDiskSelectDialog::treeDoubleClicked(const QModelIndex &index)
 /************************************************
  *
  ************************************************/
-int CueDiskSelectDialog::getDiskNumber(const QVector<CueDisk> &cue, int selectedDisk)
+int CueDiscSelectDialog::getDiscNumber(const QVector<CueDisc> &cue, int selectedDisc)
 {
-    CueDiskSelectDialog dialog(cue, selectedDisk);
+    CueDiscSelectDialog dialog(cue, selectedDisc);
 
     if (dialog.exec() == QDialog::Accepted)
-        return dialog.diskNumber();
+        return dialog.discNumber();
     else
         return -1;
 }

@@ -1,0 +1,95 @@
+[Profiles/AAC]
+    OutDirectory=~/Music/aac
+    OutPattern=aac-%a/{%y - }%A/%n - %t
+    Format=AAC
+    Name=Aac
+    Bitrate=128
+    Quality=90
+    UseQuality=false
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=false
+    CueFileName = AAC %a %d - %A.cue
+    PregapType = AddToFirst
+
+[Profiles/FLAC]
+    OutDirectory=~/Music/flac
+    OutPattern=flac-%a/{%y - }%A/%n - %t
+    Format=FLAC
+    Name=Flac
+    Compression=3
+    ReplayGain=Track
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = FLAC %a %d - %A.cue
+    PregapType = Extract
+
+[Profiles/MP3]
+    OutDirectory=~/Music/mp3
+    OutPattern=mp3-%a/{%y - }%A/%n - %t
+    Format = MP3
+    Name = Mp3
+    Bitrate=320
+    Preset=vbrStandardFast
+    Quality=4
+    ReplayGain=Disk
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=false
+    CueFileName = MP3 %a %d - %A.cue
+    PregapType = Disable
+
+[Profiles/OGG]
+    OutDirectory=~/Music/ogg
+    OutPattern=ogg-%a/{%y - }%A/%n - %t
+    Format = OGG
+    Name = Ogg
+    MaxBitrate=1
+    MinBitrate=1
+    NormBitrate=1
+    Quality=2
+    ReplayGain=Disable
+    UseQuality=false
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = OGG %a %d - %A.cue
+    PregapType = AddToFirst
+
+[Profiles/OPUS]
+    OutDirectory=~/Music/opus
+    OutPattern=opus-%a/{%y - }%A/%n - %t
+    Name = Opus
+    Format = OPUS
+    Bitrate=128
+    BitrateType=VBR
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=false
+    CueFileName = OPUS %a %d - %A.cue
+    PregapType = Extract
+
+[Profiles/WV]
+    OutDirectory=~/Music/wv
+    OutPattern=wv-%a/{%y - }%A/%n - %t
+    Name = WV
+    Format = WV
+    Compression=2
+    ReplayGain=Track
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = WV %a %d - %A.cue
+    PregapType = Disable
+
+[Profiles/WAV]
+    OutDirectory=~/Music/wav
+    OutPattern=wav-%a/{%y - }%A/%n - %t
+    Format=WAV
+    Name=Wav
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = WAV %a %d - %A.cue
+    PregapType = Track

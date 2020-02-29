@@ -70,17 +70,17 @@ private:
     mutable QImage mNoCoverImg;
     QPixmap mTrackBtnPix;
     QPixmap mAudioBtnPix;
-    QPixmap mDiskErrorPix;
-    QPixmap mDiskWarnPix;
+    QPixmap mDiscErrorPix;
+    QPixmap mDiscWarnPix;
     QPixmap mTrackOkPix;
     QPixmap mTrackErrorPix;
     mutable QMovie mDownloadMovie;
-    mutable int mDiskHeightHint;
+    mutable int mDiscHeightHint;
 
     QFont titleFont(const QFont &font) const;
     QFont filesFont(const QFont &font) const;
     void paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    void paintDisk(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void paintDisc(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     QRect drawLabel(const QString &text, const QRect &rect, QPainter *painter) const;
     QRect drawFile(const QString &text, const QRect &rect, QPainter *painter) const;
     void drawSelectionMark(QPainter *painter, const QRect &rect) const;

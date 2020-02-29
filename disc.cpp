@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 
-#include "disk.h"
+#include "disc.h"
 #include "track.h"
 #include "project.h"
 #include "settings.h"
@@ -47,7 +47,7 @@
 /************************************************
 
  ************************************************/
-Disk::Disk(QObject *parent) :
+Disc::Disc(QObject *parent) :
     QObject(parent),
     mAudioFile(nullptr)
 {
@@ -58,7 +58,7 @@ Disk::Disk(QObject *parent) :
 /************************************************
 
  ************************************************/
-Disk::~Disk()
+Disc::~Disc()
 {
     delete mAudioFile;
     qDeleteAll(mTracks);
@@ -68,7 +68,7 @@ Disk::~Disk()
 /************************************************
 
  ************************************************/
-Track *Disk::track(int index) const
+Track *Disc::track(int index) const
 {
     return mTracks.at(index);
 }
@@ -77,7 +77,7 @@ Track *Disk::track(int index) const
 /************************************************
  *
  ************************************************/
-const Track *Disk::preGapTrack() const
+const Track *Disc::preGapTrack() const
 {
     if (!mTracks.isEmpty())
     {
@@ -94,7 +94,7 @@ const Track *Disk::preGapTrack() const
 /************************************************
 
  ************************************************/
-bool Disk::canConvert(QString *description) const
+bool Disc::canConvert(QString *description) const
 {
     bool res = true;
     QStringList msg;
@@ -136,7 +136,7 @@ bool Disk::canConvert(QString *description) const
 /************************************************
 
  ************************************************/
-bool Disk::canDownloadInfo() const
+bool Disc::canDownloadInfo() const
 {
     return !discId().isEmpty();
 }
@@ -145,7 +145,7 @@ bool Disk::canDownloadInfo() const
 /************************************************
 
  ************************************************/
-void Disk::loadFromCue(const CueDisk &cueDisk)
+void Disc::loadFromCue(const CueDisc &cueDisc)
 {
     QString oldDir = QFileInfo(mCueFile).dir().absolutePath();
 
@@ -154,8 +154,8 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
     syncTagsFromTracks();
     mTagSets.remove(mCueFile);
 
-    int count = cueDisk.count();
-    mCueFile = cueDisk.fileName();
+    int count = cueDisc.count();
+    mCueFile = cueDisc.fileName();
 
     // Remove all tags if number of tracks differ from loaded CUE.
     for(auto it = mTagSets.begin(); it != mTagSets.end();)
@@ -171,7 +171,7 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
     for (int i=mTracks.count(); i<count; ++i)
     {
         Track *track = new Track();
-        connect(track, &Track::tagChanged, this, &Disk::trackChanged);
+        connect(track, &Track::tagChanged, this, &Disc::trackChanged);
         mTracks.append(track);
 
     }
@@ -181,7 +181,7 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
 
 
     for (int t=0; t<count; ++t)
-        *mTracks[t] = cueDisk.at(t);
+        *mTracks[t] = cueDisc.at(t);
 
     for (int i=0; i<count; ++i)
     {
@@ -191,10 +191,10 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
 
     mCurrentTagsUri = mCueFile;
     syncTagsFromTracks();
-    mTagSets[mCurrentTagsUri].setTitle(cueDisk.title());
+    mTagSets[mCurrentTagsUri].setTitle(cueDisc.title());
 
     if (!mAudioFile)
-        findAudioFile(cueDisk);
+        findAudioFile(cueDisc);
 
 
     QString dir = QFileInfo(mCueFile).dir().absolutePath();
@@ -211,26 +211,26 @@ void Disk::loadFromCue(const CueDisk &cueDisk)
 /************************************************
 
  ************************************************/
-QFileInfoList matchedAudioFiles(const CueDisk &cueDisk, const QFileInfoList &audioFiles)
+QFileInfoList matchedAudioFiles(const CueDisc &cueDisc, const QFileInfoList &audioFiles)
 {
     QFileInfoList res;
-    QFileInfo cueFile(cueDisk.fileName());
+    QFileInfo cueFile(cueDisc.fileName());
 
     QStringList patterns;
-    if (cueDisk.diskCount() > 1)
+    if (cueDisc.discCount() > 1)
     {
-        patterns << QRegExp::escape(QFileInfo(cueDisk.first().tag(TagId::File)).completeBaseName());
-        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisk.diskNum());
-        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisk.diskNum());
+        patterns << QRegExp::escape(QFileInfo(cueDisc.first().tag(TagId::File)).completeBaseName());
+        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisc.discNum());
+        patterns << QString(".*" "(disk|disc|side)" "(.*\\D)?" "0*" "%1" "(.*\\D)?").arg(cueDisc.discNum());
     }
     else
     {
-        patterns << QRegExp::escape(QFileInfo(cueDisk.first().tag(TagId::File)).completeBaseName());
+        patterns << QRegExp::escape(QFileInfo(cueDisc.first().tag(TagId::File)).completeBaseName());
         patterns << QRegExp::escape(cueFile.completeBaseName()) + ".*";
     }
 
     QString audioExt;
-    foreach (const AudioFormat *format, AudioFormat::inputFormats())
+    foreach (const InputFormat *format, InputFormat::allFormats())
         audioExt += (audioExt.isEmpty() ? "\\." : "|\\.") + format->ext();
 
 
@@ -251,7 +251,7 @@ QFileInfoList matchedAudioFiles(const CueDisk &cueDisk, const QFileInfoList &aud
 /************************************************
 
  ************************************************/
-void Disk::findCueFile()
+void Disc::findCueFile()
 {
     if (!mAudioFile)
         return;
@@ -279,33 +279,33 @@ void Disk::findCueFile()
     }
 
     unsigned int bestWeight = 99999;
-    CueDisk bestDisk;
+    CueDisc bestDisc;
 
     foreach (const Cue &cue, cues)
     {
-        foreach (const CueDisk &cueDisk, cue)
+        foreach (const CueDisc &cueDisc, cue)
         {
-            if (!matchedAudioFiles(cueDisk, QFileInfoList() << audio).isEmpty())
+            if (!matchedAudioFiles(cueDisc, QFileInfoList() << audio).isEmpty())
             {
-                unsigned int weight = levenshteinDistance(QFileInfo(cueDisk.fileName()).baseName(), audio.baseName());
+                unsigned int weight = levenshteinDistance(QFileInfo(cueDisc.fileName()).baseName(), audio.baseName());
                 if (weight < bestWeight)
                 {
                     bestWeight = weight;
-                    bestDisk   = cueDisk;
+                    bestDisc   = cueDisc;
                 }
             }
         }
     }
 
-    if (!bestDisk.uri().isEmpty())
-        loadFromCue(bestDisk);
+    if (!bestDisc.uri().isEmpty())
+        loadFromCue(bestDisc);
 }
 
 
 /************************************************
  *
  ************************************************/
-Duration Disk::trackDuration(TrackNum trackNum) const
+Duration Disc::trackDuration(TrackNum trackNum) const
 {
     const Track *track = mTracks[trackNum];
     uint start = track->cueIndex(1).milliseconds();
@@ -327,7 +327,7 @@ Duration Disk::trackDuration(TrackNum trackNum) const
 /************************************************
  *
  ************************************************/
-void Disk::syncTagsFromTracks()
+void Disc::syncTagsFromTracks()
 {
     if (mTagSets.isEmpty())
         return;
@@ -349,7 +349,7 @@ void Disk::syncTagsFromTracks()
 /************************************************
  *
  ************************************************/
-void Disk::syncTagsToTracks()
+void Disc::syncTagsToTracks()
 {
     if (mTagSets.isEmpty())
         return;
@@ -378,7 +378,7 @@ void Disk::syncTagsToTracks()
 /************************************************
  *
  ************************************************/
-int Disk::distance(const Tracks &other)
+int Disc::distance(const Tracks &other)
 {
     if (mTracks.isEmpty() || other.empty())
         return std::numeric_limits<int>::max();
@@ -400,7 +400,7 @@ int Disk::distance(const Tracks &other)
 /************************************************
  *
  ************************************************/
-bool Disk::isSameTagValue(TagId tagId)
+bool Disc::isSameTagValue(TagId tagId)
 {
     if (mTracks.isEmpty())
         return false;
@@ -424,7 +424,7 @@ bool Disk::isSameTagValue(TagId tagId)
 /************************************************
 
  ************************************************/
-QString Disk::audioFileName() const
+QString Disc::audioFileName() const
 {
     if (mAudioFile)
         return mAudioFile->fileName();
@@ -436,7 +436,7 @@ QString Disk::audioFileName() const
 /************************************************
 
  ************************************************/
-void Disk::setAudioFile(const InputAudioFile &audio)
+void Disc::setAudioFile(const InputAudioFile &audio)
 {
     if (mAudioFile)
         delete mAudioFile;
@@ -454,19 +454,19 @@ void Disk::setAudioFile(const InputAudioFile &audio)
 /************************************************
 
  ************************************************/
-void Disk::findAudioFile(const CueDisk &cueDisk)
+void Disc::findAudioFile(const CueDisc &cueDisc)
 {
-    if (cueDisk.isEmpty())
+    if (cueDisc.isEmpty())
         return;
 
     QStringList exts;
-    foreach (const AudioFormat *format, AudioFormat::inputFormats())
+    foreach (const InputFormat *format, InputFormat::allFormats())
         exts << QString("*.%1").arg(format->ext());
 
     QFileInfo cueFile(mCueFile);
     QFileInfoList files = cueFile.dir().entryInfoList(exts, QDir::Files | QDir::Readable);
 
-    if (cueDisk.diskCount() == 1 && files.count() == 1)
+    if (cueDisc.discCount() == 1 && files.count() == 1)
     {
         InputAudioFile audio(files.first().filePath());
         if (audio.isValid())
@@ -474,7 +474,7 @@ void Disk::findAudioFile(const CueDisk &cueDisk)
         return;
     }
 
-    QFileInfoList audioFiles = matchedAudioFiles(cueDisk, files);
+    QFileInfoList audioFiles = matchedAudioFiles(cueDisc, files);
     foreach (const QFileInfo &file, audioFiles)
     {
         InputAudioFile audio(file.filePath());
@@ -490,7 +490,7 @@ void Disk::findAudioFile(const CueDisk &cueDisk)
 /************************************************
  *
  ************************************************/
-int Disk::startTrackNum() const
+int Disc::startTrackNum() const
 {
     if (mTracks.isEmpty())
         return 0;
@@ -502,19 +502,19 @@ int Disk::startTrackNum() const
 /************************************************
 
  ************************************************/
-void Disk::setStartTrackNum(int value)
+void Disc::setStartTrackNum(int value)
 {
     foreach (auto track, mTracks)
         track->setTrackNum(value++);
 
-    project->emitDiskChanged(this);
+    project->emitDiscChanged(this);
 }
 
 
 /************************************************
 
  ************************************************/
-QString Disk::codecName() const
+QString Disc::codecName() const
 {
     if (!mTracks.isEmpty())
         return mTracks.first()->codecName();
@@ -526,7 +526,7 @@ QString Disk::codecName() const
 /************************************************
 
  ************************************************/
-void Disk::setCodecName(const QString &codecName)
+void Disc::setCodecName(const QString &codecName)
 {
 
     QString codec = codecName;
@@ -547,19 +547,19 @@ void Disk::setCodecName(const QString &codecName)
     }
 
 
-    project->emitDiskChanged(this);
+    project->emitDiscChanged(this);
 }
 
 
 /************************************************
 
  ************************************************/
-QString Disk::tagSetTitle() const
+QString Disc::tagSetTitle() const
 {
     if (mCurrentTagsUri.isEmpty())
         return "";
 
-    const_cast<Disk*>(this)->syncTagsFromTracks();
+    const_cast<Disc*>(this)->syncTagsFromTracks();
     return mTagSets[mCurrentTagsUri].title();
 }
 
@@ -567,7 +567,7 @@ QString Disk::tagSetTitle() const
 /************************************************
 
  ************************************************/
-QString Disk::tagsUri() const
+QString Disc::tagsUri() const
 {
     return mCurrentTagsUri;
 }
@@ -576,7 +576,7 @@ QString Disk::tagsUri() const
 /************************************************
  *
  ************************************************/
-QString Disk::discId() const
+QString Disc::discId() const
 {
     if (!mTracks.isEmpty())
         return mTracks.first()->tag(TagId::DiscId);
@@ -588,7 +588,7 @@ QString Disk::discId() const
 /************************************************
  *
  ************************************************/
-QString Disk::fileTag() const
+QString Disc::fileTag() const
 {
     if (!mTracks.isEmpty())
         return mTracks.first()->tag(TagId::File);
@@ -600,10 +600,10 @@ QString Disk::fileTag() const
 /************************************************
  *
  ************************************************/
-DiskNum Disk::diskNum() const
+DiscNum Disc::discNum() const
 {
     if (!mTracks.isEmpty())
-        return mTracks.first()->diskNum();
+        return mTracks.first()->discNum();
 
     return 0;
 }
@@ -612,10 +612,10 @@ DiskNum Disk::diskNum() const
 /************************************************
  *
  ************************************************/
-DiskNum Disk::diskCount() const
+DiscNum Disc::discCount() const
 {
     if (!mTracks.isEmpty())
-        return mTracks.first()->diskCount();
+        return mTracks.first()->discCount();
 
     return 0;
 }
@@ -624,18 +624,18 @@ DiskNum Disk::diskCount() const
 /************************************************
  *
  ************************************************/
-QStringList Disk::warnings() const
+QStringList Disc::warnings() const
 {
     QStringList res;
     if (audioFile())
     {
-        if (audioFile()->bitsPerSample() > int(Settings::i()->outFormat()->maxBitPerSample()))
+        if (audioFile()->bitsPerSample() > int(Settings::i()->currentProfile().maxBitPerSample()))
             res << tr("A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.", "Warning message")
-                      .arg(int(Settings::i()->outFormat()->maxBitPerSample()));
+                      .arg(int(Settings::i()->currentProfile().maxBitPerSample()));
 
-        if (audioFile()->sampleRate() > int(Settings::i()->outFormat()->maxSampleRate()))
+        if (audioFile()->sampleRate() > int(Settings::i()->currentProfile().maxSampleRate()))
             res << tr("A maximum sample rate of %1 is supported by this format. This value will be used for encoding.", "Warning message")
-                      .arg(int(Settings::i()->outFormat()->maxSampleRate()));
+                      .arg(int(Settings::i()->currentProfile().maxSampleRate()));
     }
     return res;
 }
@@ -644,7 +644,7 @@ QStringList Disk::warnings() const
 /************************************************
  *
  ************************************************/
-QVector<Disk::TagSet> Disk::tagSets() const
+QVector<Disc::TagSet> Disc::tagSets() const
 {
     if (mTagSets.isEmpty())
         return QVector<TagSet>();
@@ -672,7 +672,7 @@ QVector<Disk::TagSet> Disk::tagSets() const
 /************************************************
  *
  ************************************************/
-void Disk::addTagSet(const Tracks &tags, bool activate)
+void Disc::addTagSet(const Tracks &tags, bool activate)
 {
     mTagSets[tags.uri()] = tags;
     // Sometimes CDDB response contains an additional
@@ -688,7 +688,7 @@ void Disk::addTagSet(const Tracks &tags, bool activate)
 /************************************************
  *
  ************************************************/
-void Disk::activateTagSet(const QString &uri)
+void Disc::activateTagSet(const QString &uri)
 {
     if (!mTagSets.contains(uri))
         return;
@@ -703,36 +703,36 @@ void Disk::activateTagSet(const QString &uri)
 /************************************************
  *
  ************************************************/
-void Disk::addTagSets(const QVector<Tracks> &disks)
+void Disc::addTagSets(const QVector<Tracks> &discs)
 {
-    if (disks.isEmpty())
+    if (discs.isEmpty())
         return;
 
     int minDist = std::numeric_limits<int>::max();
-    int bestDisk = 0;
-    for (int i=0; i<disks.count(); ++i)
+    int bestDisc = 0;
+    for (int i=0; i<discs.count(); ++i)
     {
-        const Tracks &disk = disks.at(i);
-        if (disk.count() < mTracks.count())
+        const Tracks &disc = discs.at(i);
+        if (disc.count() < mTracks.count())
             continue;
 
-        addTagSet(disk, false);
-        int n = distance(disk);
+        addTagSet(disc, false);
+        int n = distance(disc);
         if (n<minDist)
         {
             minDist  = n;
-            bestDisk = i;
+            bestDisc = i;
         }
     }
 
-    activateTagSet(disks.at(bestDisk).uri());
+    activateTagSet(discs.at(bestDisc).uri());
 }
 
 
 /************************************************
 
  ************************************************/
-void Disk::setCoverImageFile(const QString &fileName)
+void Disc::setCoverImageFile(const QString &fileName)
 {
     mCoverImageFile = fileName;
     mCoverImagePreview = QImage();
@@ -742,7 +742,7 @@ void Disk::setCoverImageFile(const QString &fileName)
 /************************************************
 
  ************************************************/
-QImage Disk::coverImagePreview() const
+QImage Disc::coverImagePreview() const
 {
     if (!mCoverImageFile.isEmpty() && mCoverImagePreview.isNull())
     {
@@ -760,7 +760,7 @@ QImage Disk::coverImagePreview() const
 /************************************************
 
  ************************************************/
-QImage Disk::coverImage() const
+QImage Disc::coverImage() const
 {
     if (mCoverImageFile.isEmpty())
         return QImage();
@@ -772,7 +772,7 @@ QImage Disk::coverImage() const
 /************************************************
  *
  ************************************************/
-QString Disk::diskTag(TagId tagId) const
+QString Disc::discTag(TagId tagId) const
 {
     if (isEmpty())
         return "";
@@ -784,7 +784,7 @@ QString Disk::diskTag(TagId tagId) const
 /************************************************
  *
  ************************************************/
-QByteArray Disk::diskTagData(TagId tagId) const
+QByteArray Disc::discTagData(TagId tagId) const
 {
     if (isEmpty())
         return QByteArray();
@@ -796,7 +796,7 @@ QByteArray Disk::diskTagData(TagId tagId) const
 /************************************************
  *
  ************************************************/
-void Disk::setDiskTag(TagId tagId, const QString &value)
+void Disc::setDiscTag(TagId tagId, const QString &value)
 {
     foreach (auto track,  mTracks)
         track->setTag(tagId, value);
@@ -806,7 +806,7 @@ void Disk::setDiskTag(TagId tagId, const QString &value)
 /************************************************
  *
  ************************************************/
-void Disk::setDiskTag(TagId tagId, const QByteArray &value)
+void Disc::setDiscTag(TagId tagId, const QByteArray &value)
 {
     foreach (auto track,  mTracks)
         track->setTag(tagId, value);
@@ -848,7 +848,7 @@ bool compareCoverImages(const QFileInfo &f1, const QFileInfo &f2)
 /************************************************
 
  ************************************************/
-QStringList Disk::searchCoverImages(const QString &startDir)
+QStringList Disc::searchCoverImages(const QString &startDir)
 {
     QFileInfoList files;
 
@@ -897,7 +897,7 @@ QStringList Disk::searchCoverImages(const QString &startDir)
 /************************************************
 
  ************************************************/
-QString Disk::searchCoverImage(const QString &startDir)
+QString Disc::searchCoverImage(const QString &startDir)
 {
     QStringList l = searchCoverImages(startDir);
     foreach (QString file, l)
@@ -913,7 +913,7 @@ QString Disk::searchCoverImage(const QString &startDir)
 /************************************************
  *
  ************************************************/
-void Disk::trackChanged(TagId tagId)
+void Disc::trackChanged(TagId tagId)
 {
     if (mTracks.isEmpty())
         return;

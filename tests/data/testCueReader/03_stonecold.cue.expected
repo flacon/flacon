@@ -1,4 +1,4 @@
-[ DISK 01 / TRACK 01 ]
+[ DISC 01 / TRACK 01 ]
 	FILE        = stonecold.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 00:00:00
@@ -6,14 +6,14 @@
 	ALBUM       = Tribute To Queen - Stone Cold Queen
 	PERFORMER   = Robin Zander
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 1
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 02 ]
+[ DISC 01 / TRACK 02 ]
 	FILE        = stonecold.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 03:38:30
@@ -21,14 +21,14 @@
 	ALBUM       = Tribute To Queen - Stone Cold Queen
 	PERFORMER   = Mickey Thomas
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 2
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 03 ]
+[ DISC 01 / TRACK 03 ]
 	FILE        = stonecold.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 08:35:35
@@ -36,14 +36,14 @@
 	ALBUM       = Tribute To Queen - Stone Cold Queen
 	PERFORMER   = Joe Lynn Turner
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 3
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 04 ]
+[ DISC 01 / TRACK 04 ]
 	FILE        = stonecold.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 13:02:10
@@ -51,14 +51,14 @@
 	ALBUM       = Tribute To Queen - Stone Cold Queen
 	PERFORMER   = Geoff Tate
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 4
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 05 ]
+[ DISC 01 / TRACK 05 ]
 	FILE        = stonecold.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 17:47:17
@@ -66,14 +66,14 @@
 	ALBUM       = Tribute To Queen - Stone Cold Queen
 	PERFORMER   = Gunnar & Mathew Nelson
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 5
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 06 ]
+[ DISC 01 / TRACK 06 ]
 	FILE        = stonecold.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 20:55:62
@@ -81,14 +81,14 @@
 	ALBUM       = Tribute To Queen - Stone Cold Queen
 	PERFORMER   = Jack Blades
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 6
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 07 ]
+[ DISC 01 / TRACK 07 ]
 	FILE        = stonecold.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 24:48:12
@@ -96,14 +96,14 @@
 	ALBUM       = Tribute To Queen - Stone Cold Queen
 	PERFORMER   = Jason Scheff
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 7
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 08 ]
+[ DISC 01 / TRACK 08 ]
 	FILE        = stonecold.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 27:57:45
@@ -111,14 +111,14 @@
 	ALBUM       = Tribute To Queen - Stone Cold Queen
 	PERFORMER   = Kip Winger
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 8
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 09 ]
+[ DISC 01 / TRACK 09 ]
 	FILE        = stonecold.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 31:42:05
@@ -126,14 +126,14 @@
 	ALBUM       = Tribute To Queen - Stone Cold Queen
 	PERFORMER   = Glenn Hughes
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 9
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 10 ]
+[ DISC 01 / TRACK 10 ]
 	FILE        = stonecold.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 35:12:15
@@ -141,14 +141,14 @@
 	ALBUM       = Tribute To Queen - Stone Cold Queen
 	PERFORMER   = Tommy Shaw
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 10
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 11 ]
+[ DISC 01 / TRACK 11 ]
 	FILE        = stonecold.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 39:58:10
@@ -156,8 +156,8 @@
 	ALBUM       = Tribute To Queen - Stone Cold Queen
 	PERFORMER   = Jack Russel
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 11
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1

@@ -27,7 +27,7 @@
 #include "in_tta.h"
 #include <QDebug>
 
-REGISTER_FORMAT(Format_Tta)
+REGISTER_INPUT_FORMAT(Format_Tta)
 
 
 /************************************************

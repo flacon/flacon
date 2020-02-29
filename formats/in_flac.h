@@ -30,7 +30,7 @@
 #include "informat.h"
 
 
-class Format_Flac: public AudioFormat
+class Format_Flac: public InputFormat
 {
 public:
     virtual QString name() const override { return "FLAC"; }

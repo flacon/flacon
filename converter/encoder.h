@@ -30,44 +30,39 @@
 #include <QProcess>
 
 #include "worker.h"
-
+#include "profiles.h"
 class QProcess;
-class OutFormat;
-
-struct EncoderRequest
-{
-    const Track *track;
-    QString      inputFile;
-    QString      outFile;
-    int          bitsPerSample;
-    int          sampleRate;
-    OutFormat   *format;
-};
 
 class Encoder: public Worker
 {
     Q_OBJECT
 public:
-    Encoder(const EncoderRequest &request, QObject *parent = nullptr);
+    Encoder(const Track *track, const QString &inputFile, const QString &outFile, const Profile &profile, QObject *parent = nullptr);
 
-    QString outFile() const { return mOutFile; }
+    int bitsPerSample() const { return mBitsPerSample; }
+    void setBitsPerSample(int value) { mBitsPerSample = value; }
+
+    int sampleRate() const { return mSampleRate; }
+    void setSampleRate(int value) { mSampleRate = value; }
+
 
 public slots:
     void run() override;
 
-signals:
-
-
 private slots:
     void processBytesWritten(qint64 bytes);
 
-
 private:
-    const EncoderRequest mRequest;
-    QString mOutFile;
-    quint64 mTotal;
-    quint64 mReady;
-    int mProgress;
+    const Track *mTrack = nullptr;
+    const QString mInputFile;
+    const QString mOutFile;
+    int mBitsPerSample = 0;
+    int mSampleRate = 0;
+    const Profile mProfile;
+
+    quint64 mTotal = 0;
+    quint64 mReady = 0;
+    int mProgress  = 0;
 
     void readInputFile(QProcess *process);
     void runWav();

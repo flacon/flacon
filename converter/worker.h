@@ -28,9 +28,10 @@
 #define WORKER_H
 
 #include <QObject>
+#include "track.h"
 
-class Track;
-enum class TrackState;
+class Disc;
+
 
 class Worker : public QObject
 {

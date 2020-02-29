@@ -1,4 +1,4 @@
-[ DISK 01 / TRACK 01 ]
+[ DISC 01 / TRACK 01 ]
 	FILE        = dragonattack.wav
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 00:00:30
@@ -6,14 +6,14 @@
 	ALBUM       = Dragon Attack - A Tribute to Queen
 	PERFORMER   = McAuley, Impellitteri, Kulick, Roth, Phillips, Schellen
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 1
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 02 ]
+[ DISC 01 / TRACK 02 ]
 	FILE        = dragonattack.wav
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 04:08:02
@@ -21,14 +21,14 @@
 	ALBUM       = Dragon Attack - A Tribute to Queen
 	PERFORMER   = LaBrie, Friedman, Franklin, Appice
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 2
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 03 ]
+[ DISC 01 / TRACK 03 ]
 	FILE        = dragonattack.wav
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 07:35:59
@@ -36,14 +36,14 @@
 	ALBUM       = Dragon Attack - A Tribute to Queen
 	PERFORMER   = Adam, Petrucci, Sarzo, Aldridge
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 3
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 04 ]
+[ DISC 01 / TRACK 04 ]
 	FILE        = dragonattack.wav
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 11:01:62
@@ -51,14 +51,14 @@
 	ALBUM       = Dragon Attack - A Tribute to Queen
 	PERFORMER   = Sato, Kulick, Kulick, Sherwood, Phillips, Singer
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 4
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 05 ]
+[ DISC 01 / TRACK 05 ]
 	FILE        = dragonattack.wav
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 15:13:54
@@ -66,14 +66,14 @@
 	ALBUM       = Dragon Attack - A Tribute to Queen
 	PERFORMER   = Shortino, Kulick, Schellen, Laurent, Dio
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 5
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 06 ]
+[ DISC 01 / TRACK 06 ]
 	FILE        = dragonattack.wav
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 17:16:21
@@ -81,14 +81,14 @@
 	ALBUM       = Dragon Attack - A Tribute to Queen
 	PERFORMER   = Shortino, Krieger, Kulick, Sherwood, Franklin, Appice, Laurent, Dio
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 6
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 07 ]
+[ DISC 01 / TRACK 07 ]
 	FILE        = dragonattack.wav
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 20:57:08
@@ -96,14 +96,14 @@
 	ALBUM       = Dragon Attack - A Tribute to Queen
 	PERFORMER   = Kilmister, Nugent, Kilmister, Kulick, Sarzo, Aldridge
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 7
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 08 ]
+[ DISC 01 / TRACK 08 ]
 	FILE        = dragonattack.wav
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 24:43:15
@@ -111,14 +111,14 @@
 	ALBUM       = Dragon Attack - A Tribute to Queen
 	PERFORMER   = Hughes, Lee, Kulick, Franklin, Appice
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 8
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 09 ]
+[ DISC 01 / TRACK 09 ]
 	FILE        = dragonattack.wav
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 28:53:69
@@ -126,14 +126,14 @@
 	ALBUM       = Dragon Attack - A Tribute to Queen
 	PERFORMER   = Boals, Malmsteen, Sarza, Aldridge
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 9
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 10 ]
+[ DISC 01 / TRACK 10 ]
 	FILE        = dragonattack.wav
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 32:42:60
@@ -141,14 +141,14 @@
 	ALBUM       = Dragon Attack - A Tribute to Queen
 	PERFORMER   = LaBrie, Bouillet, Bouillet, Kulick, Phillips, Schellen
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 10
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1
 
 
-[ DISK 01 / TRACK 11 ]
+[ DISC 01 / TRACK 11 ]
 	FILE        = dragonattack.wav
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 36:27:64
@@ -156,8 +156,8 @@
 	ALBUM       = Dragon Attack - A Tribute to Queen
 	PERFORMER   = Bush, Ian, Throne, Vera, Ian
 	DATE        =
-	DISKID      =
+	DISCID      =
 	TRACKNUM    = 11
 	TRACKCOUNT  = 11
-	DISKNUM     = 1
-	DISKCOUNT   = 1
+	DISCNUM     = 1
+	DISCCOUNT   = 1

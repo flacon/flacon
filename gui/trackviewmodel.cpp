@@ -27,7 +27,7 @@
 #include "trackviewmodel.h"
 #include "trackview.h"
 #include "project.h"
-#include "disk.h"
+#include "disc.h"
 #include "settings.h"
 
 #include <QDebug>
@@ -38,14 +38,14 @@ struct CacheTrackData
     CacheTrackData():
         state(TrackState::NotRunning),
         percent(0),
-        diskNum(-1),
+        discNum(-1),
         trackNum(-1)
     {
     }
 
     TrackState state;
     Percent percent;
-    DiskNum diskNum;
+    DiscNum discNum;
     TrackNum trackNum;
 };
 
@@ -54,7 +54,7 @@ class TrackViewModel::Cache
 {
 public:
    Cache()  {}
-   QSet<DiskNum> downloadedDisks;
+   QSet<DiscNum> downloadedDiscs;
    QHash<Track, CacheTrackData> tracks;
 };
 
@@ -64,39 +64,39 @@ class IndexData
 public:
     explicit IndexData(const QModelIndex &index)
     {
-        mDiskId  = (quint32(index.internalId()) & 0xFFFFFF);
+        mDiscId  = (quint32(index.internalId()) & 0xFFFFFF);
         mTrackId = (quint32(index.internalId()) >> 16);
     }
 
-    explicit IndexData(quint16 diskNum, quint16 trackNum)
+    explicit IndexData(quint16 discNum, quint16 trackNum)
     {
-        mDiskId  = diskNum  + 1;
+        mDiscId  = discNum  + 1;
         mTrackId = trackNum + 1;
     }
 
-    explicit IndexData(quint16 diskNum)
+    explicit IndexData(quint16 discNum)
     {
-        mDiskId  = diskNum + 1;
+        mDiscId  = discNum + 1;
         mTrackId = 0;
     }
 
 
     quintptr asPtr()
     {
-        return quintptr((mTrackId << 16) |  mDiskId);
+        return quintptr((mTrackId << 16) |  mDiscId);
     }
 
 
-    bool isDisk()  const { return mDiskId  > 0; }
+    bool isDisc()  const { return mDiscId  > 0; }
     bool isTrack() const { return mTrackId > 0; }
 
-    int diskNum()  const { return mDiskId  - 1; }
+    int discNum()  const { return mDiscId  - 1; }
     int trackNum() const { return mTrackId - 1; }
 
-    Disk *disk() const
+    Disc *disc() const
     {
-        if (mDiskId && mDiskId-1 < project->count())
-            return project->disk(mDiskId - 1);
+        if (mDiscId && mDiscId-1 < project->count())
+            return project->disc(mDiscId - 1);
 
         return nullptr;
     }
@@ -105,15 +105,15 @@ public:
     {
         if (mTrackId)
         {
-            Disk *disk = this->disk();
-            if (disk && mTrackId -1 < disk->count())
-                return disk->track(mTrackId - 1);
+            Disc *disc = this->disc();
+            if (disc && mTrackId -1 < disc->count())
+                return disc->track(mTrackId - 1);
         }
         return nullptr;
     }
 
 private:
-    quint16 mDiskId;
+    quint16 mDiscId;
     quint16 mTrackId;
 };
 
@@ -134,13 +134,13 @@ TrackViewModel::TrackViewModel(TrackView *parent) :
     mCache(new Cache()),
     mView(parent)
 {
-    connect(project, &Project::diskChanged,
-            this, &TrackViewModel::diskDataChanged);
+    connect(project, &Project::discChanged,
+            this, &TrackViewModel::discDataChanged);
 
     connect(project, SIGNAL(layoutChanged()), this, SIGNAL(layoutChanged()));
-    connect(project, SIGNAL(afterRemoveDisk()), this, SIGNAL(layoutChanged()));
+    connect(project, SIGNAL(afterRemoveDisc()), this, SIGNAL(layoutChanged()));
 
-    connect(project, &Project::beforeRemoveDisk,
+    connect(project, &Project::beforeRemoveDisc,
             this, &TrackViewModel::invalidateCache);
 }
 
@@ -188,7 +188,7 @@ QModelIndex TrackViewModel::index(int row, int column, const QModelIndex &parent
     if (IndexData(parent).isTrack())
         return QModelIndex();
 
-    if (IndexData(parent).isDisk())
+    if (IndexData(parent).isDisc())
         return createIndex(row, column, IndexData(parent.row(), row).asPtr());
 
     return createIndex(row, column, IndexData(row).asPtr());
@@ -198,11 +198,11 @@ QModelIndex TrackViewModel::index(int row, int column, const QModelIndex &parent
 /************************************************
 
  ************************************************/
-QModelIndex TrackViewModel::index(const Disk &disk, int col) const
+QModelIndex TrackViewModel::index(const Disc &disc, int col) const
 {
-    const int diskNum = project->indexOf(&disk);
-    if (diskNum > -1 && diskNum < rowCount(QModelIndex()))
-        return index(diskNum, col, QModelIndex());
+    const int discNum = project->indexOf(&disc);
+    if (discNum > -1 && discNum < rowCount(QModelIndex()))
+        return index(discNum, col, QModelIndex());
 
     return QModelIndex();
 }
@@ -215,24 +215,24 @@ QModelIndex TrackViewModel::index(const Track &track, int col) const
 {
     CacheTrackData &cache = mCache->tracks[track];
 
-    const IndexData indexData(cache.diskNum, cache.trackNum);
+    const IndexData indexData(cache.discNum, cache.trackNum);
     if (indexData.track() && *indexData.track() == track)
     {
-        return index(cache.trackNum, col, index(cache.diskNum, 0));
+        return index(cache.trackNum, col, index(cache.discNum, 0));
     }
 
     // Update cache
     for (int d=0; d<rowCount(); ++d)
     {
-        QModelIndex diskIndex = index(d, 0);
-        for (int t=0; t<rowCount(diskIndex); ++t)
+        QModelIndex discIndex = index(d, 0);
+        for (int t=0; t<rowCount(discIndex); ++t)
         {
             IndexData indexData(d, t);
             if (indexData.track() && *indexData.track() == track)
             {
-                cache.diskNum  = d;
+                cache.discNum  = d;
                 cache.trackNum = t;
-                return index(cache.trackNum, col, diskIndex);
+                return index(cache.trackNum, col, discIndex);
             }
         }
     }
@@ -251,7 +251,7 @@ QModelIndex TrackViewModel::parent(const QModelIndex &child) const
 
     IndexData data(child);
     if (data.isTrack())
-        return index(data.diskNum(), 0, QModelIndex());
+        return index(data.discNum(), 0, QModelIndex());
 
     return QModelIndex();
 }
@@ -271,9 +271,9 @@ QVariant TrackViewModel::data(const QModelIndex &index, int role) const
     if (track)
         return trackData(track, index, role);
 
-    Disk *disk = indexData.disk();
-    if(disk)
-        return diskData(disk, index, role);
+    Disc *disc = indexData.disc();
+    if(disc)
+        return discData(disc, index, role);
 
     return QVariant();
 }
@@ -403,12 +403,12 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
 /************************************************
 
  ************************************************/
-QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, int role) const
+QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, int role) const
 {
     // Display & Edit :::::::::::::::::::::::::::::::::::
     if (role == Qt::DisplayRole || role == Qt::EditRole )
     {
-        if (!disk->count())
+        if (!disc->count())
             return QVariant();
 
         QSet<QString> values;
@@ -416,18 +416,18 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
         switch (index.column())
         {
         case TrackView::ColumnTitle:
-            for (int i=0; i<disk->count(); ++i)
-                values << disk->track(i)->title();
+            for (int i=0; i<disc->count(); ++i)
+                values << disc->track(i)->title();
             break;
 
         case TrackView::ColumnArtist:
-            for (int i=0; i<disk->count(); ++i)
-                values << disk->track(i)->tag(TagId::AlbumArtist);
+            for (int i=0; i<disc->count(); ++i)
+                values << disc->track(i)->tag(TagId::AlbumArtist);
             break;
 
         case TrackView::ColumnAlbum:
-            for (int i=0; i<disk->count(); ++i)
-                values << disk->track(i)->album();
+            for (int i=0; i<disc->count(); ++i)
+                values << disc->track(i)->album();
             break;
         }
 
@@ -446,21 +446,21 @@ QVariant TrackViewModel::diskData(const Disk *disk, const QModelIndex &index, in
 
     switch (role)
     {
-    case RoleItemType:      return DiskItem;
-    case RoleTagSetTitle:   return disk->tagSetTitle();
-    case RoleAudioFileName: return disk->audioFileName();
-    case RoleHasWarnings:   return !disk->warnings().isEmpty();
-    case RoleCanConvert:    return disk->canConvert();
-    case RoleIsDownloads:   return mCache->downloadedDisks.contains(index.row());
-    case RoleCoverFile:     return disk->coverImageFile();
-    case RoleCoverImg:      return disk->coverImagePreview();
-    case RoleCueFilePath:   return disk->cueFile();
-    case RoleAudioFilePath: return disk->audioFileName();
-    case RoleDiskWarnings:  return disk->warnings();
-    case RoleDiskErrors:
+    case RoleItemType:      return DiscItem;
+    case RoleTagSetTitle:   return disc->tagSetTitle();
+    case RoleAudioFileName: return disc->audioFileName();
+    case RoleHasWarnings:   return !disc->warnings().isEmpty();
+    case RoleCanConvert:    return disc->canConvert();
+    case RoleIsDownloads:   return mCache->downloadedDiscs.contains(index.row());
+    case RoleCoverFile:     return disc->coverImageFile();
+    case RoleCoverImg:      return disc->coverImagePreview();
+    case RoleCueFilePath:   return disc->cueFile();
+    case RoleAudioFilePath: return disc->audioFileName();
+    case RoleDiscWarnings:  return disc->warnings();
+    case RoleDiscErrors:
                         {
                             QString s;
-                            if (!disk->canConvert(&s))
+                            if (!disc->canConvert(&s))
                                 return QVariant(tr("The conversion is not possible.\n%1").arg(s));
                             else
                                 return QVariant();
@@ -520,9 +520,9 @@ int TrackViewModel::rowCount(const QModelIndex &parent) const
         return 0;
 
 
-    Disk *disk = data.disk();
-    if(disk)
-        return disk->count();
+    Disc *disc = data.disc();
+    if(disc)
+        return disc->count();
 
     return 0;
 }
@@ -559,9 +559,9 @@ Qt::ItemFlags TrackViewModel::flags(const QModelIndex &index) const
 /************************************************
 
  ************************************************/
-Disk *TrackViewModel::diskByIndex(const QModelIndex &index)
+Disc *TrackViewModel::discByIndex(const QModelIndex &index)
 {
-    return IndexData(index).disk();
+    return IndexData(index).disc();
 }
 
 
@@ -577,20 +577,20 @@ Track *TrackViewModel::trackByIndex(const QModelIndex &index)
 /************************************************
  *
  ************************************************/
-void TrackViewModel::downloadStarted(const Disk &disk)
+void TrackViewModel::downloadStarted(const Disc &disc)
 {
-    mCache->downloadedDisks << index(disk).row();
-    diskDataChanged(&disk);
+    mCache->downloadedDiscs << index(disc).row();
+    discDataChanged(&disc);
 }
 
 
 /************************************************
  *
  ************************************************/
-void TrackViewModel::downloadFinished(const Disk &disk)
+void TrackViewModel::downloadFinished(const Disc &disc)
 {
-    mCache->downloadedDisks.remove(index(disk).row());
-    diskDataChanged(&disk);
+    mCache->downloadedDiscs.remove(index(disc).row());
+    discDataChanged(&disc);
 }
 
 
@@ -611,10 +611,10 @@ void TrackViewModel::trackProgressChanged(const Track &track, TrackState state, 
 /************************************************
 
  ************************************************/
-void TrackViewModel::diskDataChanged(const Disk *disk)
+void TrackViewModel::discDataChanged(const Disc *disc)
 {
-    QModelIndex index1 = index(*disk, 0);
-    QModelIndex index2 = index(*disk, TrackView::ColumnCount);
+    QModelIndex index1 = index(*disc, 0);
+    QModelIndex index2 = index(*disc, TrackView::ColumnCount);
     emit dataChanged(index1, index2);
 }
 
@@ -622,10 +622,10 @@ void TrackViewModel::diskDataChanged(const Disk *disk)
 /************************************************
 
  ************************************************/
-void TrackViewModel::invalidateCache(const Disk *disk)
+void TrackViewModel::invalidateCache(const Disc *disc)
 {
-    mCache->downloadedDisks.remove(index(*disk).row());
+    mCache->downloadedDiscs.remove(index(*disc).row());
 
-    for (int i=0; i<disk->count(); ++i)
-        mCache->tracks.remove(*(disk->track(i)));
+    for (int i=0; i<disc->count(); ++i)
+        mCache->tracks.remove(*(disc->track(i)));
 }

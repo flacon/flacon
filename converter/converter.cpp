@@ -30,11 +30,10 @@
 #include "converter.h"
 #include "project.h"
 #include "settings.h"
-#include "outformat.h"
 #include "splitter.h"
 #include "encoder.h"
 #include "gain.h"
-#include "diskpipline.h"
+#include "discpipline.h"
 #include "resampler.h"
 
 #include <iostream>
@@ -64,28 +63,28 @@ Converter::~Converter()
 /************************************************
 
  ************************************************/
-void Converter::start()
+void Converter::start(const Profile &profile)
 {
     Jobs jobs;
     for (int d=0; d<project->count(); ++d)
     {
         Job job;
-        job.disk = project->disk(d);
+        job.disc = project->disc(d);
 
-        for (int t=0; t<job.disk->count(); ++t)
-            job.tracks << job.disk->track(t);
+        for (int t=0; t<job.disc->count(); ++t)
+            job.tracks << job.disc->track(t);
 
         jobs << job;
     }
 
-    start(jobs);
+    start(jobs, profile);
 }
 
 
 /************************************************
  *
  ************************************************/
-void Converter::start(const Converter::Jobs &jobs)
+void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
 {
     if (jobs.isEmpty())
     {
@@ -93,7 +92,7 @@ void Converter::start(const Converter::Jobs &jobs)
         return;
     }
 
-    if (!check(Settings::i()->outFormat()))
+    if (!check(profile))
     {
         emit finished();
         return;
@@ -109,10 +108,13 @@ void Converter::start(const Converter::Jobs &jobs)
         if (job.tracks.isEmpty())
             continue;
 
-        if (!job.disk->canConvert())
+        if (!job.disc->canConvert())
             continue;
 
-        DiskPipeline * pipeline = new DiskPipeline(job, this);
+        DiscPipeline *pipeline = new DiscPipeline(job, profile, this);
+        pipeline->setCoverMode(Settings::i()->coverMode());
+        pipeline->setCoverImageSize(Settings::i()->coverImageSize());
+        pipeline->setTmpDir(Settings::i()->tmpDir());
 
         connect(pipeline, SIGNAL(readyStart()),
                 this, SLOT(startThread()));
@@ -120,15 +122,15 @@ void Converter::start(const Converter::Jobs &jobs)
         connect(pipeline, SIGNAL(threadFinished()),
                 this, SLOT(startThread()));
 
-        connect(pipeline, &DiskPipeline::trackProgressChanged,
+        connect(pipeline, &DiscPipeline::trackProgressChanged,
                 this, &Converter::trackProgress);
 
-        mDiskPiplines << pipeline;
+        mDiscPiplines << pipeline;
 
         if (!pipeline->init())
         {
-            qDeleteAll(mDiskPiplines);
-            mDiskPiplines.clear();
+            qDeleteAll(mDiscPiplines);
+            mDiscPiplines.clear();
             emit finished();
             return;
         }
@@ -144,7 +146,7 @@ void Converter::start(const Converter::Jobs &jobs)
  ************************************************/
 bool Converter::isRunning()
 {
-    foreach (DiskPipeline *pipe, mDiskPiplines)
+    foreach (DiscPipeline *pipe, mDiscPiplines)
     {
         if (pipe->isRunning())
             return true;
@@ -161,7 +163,7 @@ bool Converter::canConvert()
 {
     for(int i=0; i<project->count(); ++i)
     {
-        if (project->disk(i)->canConvert())
+        if (project->disc(i)->canConvert())
             return true;
     }
 
@@ -177,7 +179,7 @@ void Converter::stop()
     if (!isRunning())
         return;
 
-    foreach (DiskPipeline *pipe, mDiskPiplines)
+    foreach (DiscPipeline *pipe, mDiscPiplines)
     {
         pipe->stop();
     }
@@ -192,10 +194,10 @@ void Converter::startThread()
     int count = mThreadCount;
     int splitterCount = qMax(1.0, ceil(count / 2.0));
 
-    foreach (DiskPipeline *pipe, mDiskPiplines)
+    foreach (DiscPipeline *pipe, mDiscPiplines)
         count-=pipe->runningThreadCount();
 
-    foreach (DiskPipeline *pipe, mDiskPiplines)
+    foreach (DiscPipeline *pipe, mDiscPiplines)
     {
         pipe->startWorker(&splitterCount, &count);
         if (count <= 0)
@@ -203,7 +205,7 @@ void Converter::startThread()
     }
 
 
-    foreach (DiskPipeline *pipe, mDiskPiplines)
+    foreach (DiscPipeline *pipe, mDiscPiplines)
     {
         if (pipe->isRunning())
             return;
@@ -216,13 +218,17 @@ void Converter::startThread()
 /************************************************
 
  ************************************************/
-bool Converter::check(OutFormat *format) const
+bool Converter::check(const Profile &profile) const
 {
     QStringList errors;
-    bool ok = format->check(&errors);
+    if (!profile.isValid()) {
+        errors << "Incorrect output profile";
+        return false;
+    }
 
-    if (Settings::i()->value(Settings::Resample_BitsPerSample).toInt() ||
-        Settings::i()->value(Settings::Resample_SampleRate).toInt() )
+    bool ok = profile.check(&errors);
+
+    if (profile.bitsPerSample() || profile.sampleRate())
     {
         if (!Settings::i()->checkProgram(Resampler::programName()))
         {

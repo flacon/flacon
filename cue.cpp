@@ -58,10 +58,10 @@ enum CueTagId
 /************************************************
  *
  ************************************************/
-CueDisk::CueDisk():
+CueDisc::CueDisc():
     Tracks(),
-    mDiskCount(0),
-    mDiskNum(0)
+    mDiscCount(0),
+    mDiscNum(0)
 {
 
 }
@@ -332,7 +332,7 @@ void CueData::parseLine(const QByteArray &line, CueTagId &tag, QByteArray &value
  Complete CUE sheet syntax documentation
  https://github.com/flacon/flacon/blob/master/cuesheet_syntax.md
  ************************************************/
-QVector<CueDisk> CueReader::load(const QString &fileName)
+QVector<CueDisc> CueReader::load(const QString &fileName)
 {
     CueData data(fileName);
     if (data.tracks.isEmpty())
@@ -341,7 +341,7 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
     bool splitByDash      = true;
     bool splitBySlash     = true;
     bool splitByBackSlash = true;
-    int diskCount         = 0;
+    int discCount         = 0;
     QByteArray albumArtist = data.tracks.first().value(CTAG_PERFORMER);
     {
         QByteArray audioFile;
@@ -366,7 +366,7 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
 
             if (audioFile != tags.value(CTAG_FILE))
             {
-                diskCount++;
+                discCount++;
                 audioFile = tags.value(CTAG_FILE);
             }
         }
@@ -378,7 +378,7 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
     QFileInfo cueFileInfo(fileName);
     QString fullPath = QFileInfo(fileName).absoluteFilePath();
 
-    QVector<CueDisk> res;
+    QVector<CueDisc> res;
     QByteArray audioFile;
     for (int i=0; i<data.tracks.count(); ++i)
     {
@@ -389,25 +389,25 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
         if (audioFile != tags.value(CTAG_FILE))
         {
             audioFile = tags.value(CTAG_FILE);
-            CueDisk disk;
-            disk.setTitle(cueFileInfo.fileName());
-            disk.mFileName  = fullPath;
-            disk.mDiskCount = diskCount;
-            disk.mDiskNum   = res.count() + 1;
-            disk.setUri(fullPath + QString(" [%1]").arg(res.count() + 1));
-            res << disk;
+            CueDisc disc;
+            disc.setTitle(cueFileInfo.fileName());
+            disc.mFileName  = fullPath;
+            disc.mDiscCount = discCount;
+            disc.mDiscNum   = res.count() + 1;
+            disc.setUri(fullPath + QString(" [%1]").arg(res.count() + 1));
+            res << disc;
         }
 
-        CueDisk &disk = res.last();
-        disk << Track();
-        Track &track = disk.last();
+        CueDisc &disc = res.last();
+        disc << Track();
+        Track &track = disc.last();
 
         track.setTag(TagId::File,          audioFile);
         track.setTag(TagId::Album,         data.globalTags.value(CTAG_TITLE));
         track.setTrackNum(tags.value(CTAG_TRACK).toInt());
         track.setTrackCount(data.tracks.count());
-        track.setTag(TagId::DiskNum,    QString("1"));
-        track.setTag(TagId::DiskCount,  QString("1"));
+        track.setTag(TagId::DiscNum,    QString("1"));
+        track.setTag(TagId::DiscCount,  QString("1"));
 
         track.setCueIndex(0, CueIndex(tags.value(CTAG_INDEX00)));
         track.setCueIndex(1, CueIndex(tags.value(CTAG_INDEX01)));
@@ -437,9 +437,9 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
     if (codecName.isEmpty())
     {
         UcharDet charDet;
-        foreach (const CueDisk &disk, res)
+        foreach (const CueDisc &disc, res)
         {
-            foreach (const Track &track, disk)
+            foreach (const Track &track, disc)
                 charDet << track;
         }
 
@@ -449,16 +449,16 @@ QVector<CueDisk> CueReader::load(const QString &fileName)
 
     for (int d=0; d<res.count(); ++d)
       {
-          CueDisk &disk = res[d];
+          CueDisc &disc = res[d];
 
-          if (disk.count() == 0)
+          if (disc.count() == 0)
           {
-              throw CueReaderError(QObject::tr("<b>%1</b> is not a valid CUE file. Disk %2 has no tags.").arg(fileName).arg(d));
+              throw CueReaderError(QObject::tr("<b>%1</b> is not a valid CUE file. Disc %2 has no tags.").arg(fileName).arg(d));
           }
 
-          for (int t=0; t<disk.count(); ++t)
+          for (int t=0; t<disc.count(); ++t)
           {
-              Track &track = disk[t];
+              Track &track = disc[t];
               track.setCodecName(codecName);
           }
       }

@@ -26,7 +26,7 @@
 
 #include "in_wv.h"
 
-REGISTER_FORMAT(Format_Wv)
+REGISTER_INPUT_FORMAT(Format_Wv)
 
 /************************************************
  * As I understand WavPack can be embedded as a chunk of a RIFF stream.

@@ -154,6 +154,11 @@ void TestFlacon::testConvert()
             a.replace("\"", "\\\"");
             file.write(" \\\n    \"" + a.toLocal8Bit() + "\"");
         }
+
+        file.setPermissions(QFileDevice::ReadUser | QFileDevice::ReadGroup | QFileDevice::ReadOther |
+                            QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther |
+                            QFileDevice::ExeUser);
+
         file.close();
     }
 
@@ -167,8 +172,9 @@ void TestFlacon::testConvert()
 
     if (proc.exitCode() != 0)
     {
-        QFAIL(QString("Can't start converter: %1")
-              .arg(QString::fromLocal8Bit(proc.readAllStandardError())).toLocal8Bit());
+        QFAIL(QString("flacon returned non-zero exit status %1: %2")
+              .arg(proc.exitCode())
+              .arg(QString::fromLocal8Bit(proc.readAll())).toLocal8Bit());
     }
     // ..........................................
 

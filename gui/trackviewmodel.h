@@ -30,9 +30,9 @@
 #include <QAbstractItemModel>
 #include <QSet>
 
-#include "disk.h"
+#include "types.h"
 class Project;
-class Disk;
+class Disc;
 class Track;
 class TrackView;
 
@@ -59,10 +59,10 @@ public:
 
     TrackView *view() const { return mView; }
 
-    QModelIndex index(const Disk &disk, int col = 0) const;
+    QModelIndex index(const Disc &disc, int col = 0) const;
     QModelIndex index(const Track &track, int col) const;
 
-    Disk *diskByIndex(const QModelIndex &index);
+    Disc *discByIndex(const QModelIndex &index);
     Track *trackByIndex(const QModelIndex &index);
 
 public slots:
@@ -70,7 +70,7 @@ public slots:
 protected:
     enum ItemType {
         TrackItem = 1,
-        DiskItem = 2
+        DiscItem = 2
     };
 
     enum Roles{
@@ -95,26 +95,26 @@ protected:
         RoleCoverImg,
         RoleCueFilePath,
         RoleAudioFilePath,
-        RoleDiskWarnings,
-        RoleDiskErrors,
-        RoleDiskPerformer
+        RoleDiscWarnings,
+        RoleDiscErrors,
+        RoleDiscPerformer
     };
 
 
 
 public slots:
-    void downloadStarted(const Disk &disk);
-    void downloadFinished(const Disk &disk);
+    void downloadStarted(const Disc &disc);
+    void downloadFinished(const Disc &disc);
 
     void trackProgressChanged(const Track &track, TrackState state, Percent percent);
 
 private slots:
-    void diskDataChanged(const Disk *disk);
-    void invalidateCache(const Disk *disk);
+    void discDataChanged(const Disc *disc);
+    void invalidateCache(const Disc *disc);
 
 private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;
-    QVariant diskData(const Disk *disk, const QModelIndex &index, int role) const;
+    QVariant discData(const Disc *disc, const QModelIndex &index, int role) const;
     QString trackDurationToString(uint milliseconds) const;
     class Cache;
     mutable Cache *mCache;

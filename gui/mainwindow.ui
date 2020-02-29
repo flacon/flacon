@@ -48,13 +48,18 @@
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
               <widget class="OutDirComboBox" name="outDirEdit">
+               <property name="toolTip">
+                <string comment="Main form tooltip for &quot;Directory&quot; edit">You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</string>
+               </property>
                <property name="editable">
                 <bool>true</bool>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="ActionsButton" name="outDirButton">
+              <widget class="OutDirButton" name="outDirButton">
                <property name="text">
                 <string notr="true">*</string>
                </property>
@@ -110,19 +115,19 @@ If you surround sections of text that contain a token with braces, these section
             </layout>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="outFormatLabel">
+            <widget class="QLabel" name="outProfileLabel">
              <property name="text">
               <string>Format:</string>
              </property>
              <property name="buddy">
-              <cstring>outFormatCombo</cstring>
+              <cstring>outProfileCombo</cstring>
              </property>
             </widget>
            </item>
            <item row="2" column="1">
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
-              <widget class="QComboBox" name="outFormatCombo">
+              <widget class="QComboBox" name="outProfileCombo">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -135,7 +140,7 @@ If you surround sections of text that contain a token with braces, these section
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="configureEncoderBtn">
+              <widget class="ToolButton" name="configureProfileBtn">
                <property name="text">
                 <string notr="true">*</string>
                </property>
@@ -159,12 +164,12 @@ If you surround sections of text that contain a token with braces, these section
           </property>
           <layout class="QGridLayout" name="formLayout">
            <item row="3" column="0">
-            <widget class="QLabel" name="tagDiskPerformerLabel">
+            <widget class="QLabel" name="tagDiscPerformerLabel">
              <property name="text">
               <string>Album performer:</string>
              </property>
              <property name="buddy">
-              <cstring>tagDiskPerformerEdit</cstring>
+              <cstring>tagDiscPerformerEdit</cstring>
              </property>
             </widget>
            </item>
@@ -172,7 +177,7 @@ If you surround sections of text that contain a token with braces, these section
             <widget class="CodePageComboBox" name="codepageCombo"/>
            </item>
            <item row="3" column="1" colspan="2">
-            <widget class="TagLineEdit" name="tagDiskPerformerEdit"/>
+            <widget class="TagLineEdit" name="tagDiscPerformerEdit"/>
            </item>
            <item row="7" column="1" colspan="2">
             <widget class="TagLineEdit" name="tagDiscIdEdit">
@@ -344,14 +349,14 @@ If you surround sections of text that contain a token with braces, these section
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionAddDisk"/>
+    <addaction name="actionAddDisc"/>
     <addaction name="actionRemoveDisc"/>
     <addaction name="separator"/>
     <addaction name="actionDownloadTrackInfo"/>
@@ -399,7 +404,7 @@ If you surround sections of text that contain a token with braces, these section
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionAddDisk"/>
+   <addaction name="actionAddDisc"/>
    <addaction name="actionRemoveDisc"/>
    <addaction name="separator"/>
    <addaction name="actionScan"/>
@@ -409,9 +414,9 @@ If you surround sections of text that contain a token with braces, these section
    <addaction name="actionStartConvert"/>
    <addaction name="actionAbortConvert"/>
   </widget>
-  <action name="actionAddDisk">
+  <action name="actionAddDisc">
    <property name="text">
-    <string>Add disk…</string>
+    <string>Add disc…</string>
    </property>
    <property name="toolTip">
     <string>Add CUE or audio file</string>
@@ -462,10 +467,10 @@ If you surround sections of text that contain a token with braces, these section
   </action>
   <action name="actionRemoveDisc">
    <property name="text">
-    <string>Remove disk</string>
+    <string>Remove disc</string>
    </property>
    <property name="toolTip">
-    <string>Remove disk from project</string>
+    <string>Remove disc from project</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Del</string>
@@ -477,16 +482,6 @@ If you surround sections of text that contain a token with braces, these section
    </property>
    <property name="toolTip">
     <string>Configure encoder</string>
-   </property>
-  </action>
-  <action name="actionSelectResultDir">
-   <property name="text">
-    <string>Select directory…</string>
-   </property>
-   <property name="toolTip">
-    <string comment="Main form tooltip for &quot;Directory&quot; edit">You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</string>
    </property>
   </action>
   <action name="actionDownloadTrackInfo">
@@ -533,6 +528,16 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
  </widget>
  <customwidgets>
   <customwidget>
+   <class>OutPatternButton</class>
+   <extends>QToolButton</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>HistoryComboBox</class>
+   <extends>QComboBox</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
    <class>CodePageComboBox</class>
    <extends>QComboBox</extends>
    <header>controls.h</header>
@@ -548,28 +553,23 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>OutPatternButton</class>
-   <extends>QToolButton</extends>
-   <header>controls.h</header>
-  </customwidget>
-  <customwidget>
    <class>TagLineEdit</class>
    <extends>QLineEdit</extends>
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>HistoryComboBox</class>
+   <class>OutDirComboBox</class>
    <extends>QComboBox</extends>
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>ActionsButton</class>
+   <class>OutDirButton</class>
    <extends>QToolButton</extends>
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>OutDirComboBox</class>
-   <extends>QComboBox</extends>
+   <class>ToolButton</class>
+   <extends>QToolButton</extends>
    <header>controls.h</header>
   </customwidget>
  </customwidgets>
@@ -578,12 +578,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
   <tabstop>outDirButton</tabstop>
   <tabstop>outPatternEdit</tabstop>
   <tabstop>outPatternButton</tabstop>
-  <tabstop>outFormatCombo</tabstop>
-  <tabstop>configureEncoderBtn</tabstop>
+  <tabstop>outProfileCombo</tabstop>
+  <tabstop>configureProfileBtn</tabstop>
   <tabstop>tagGenreEdit</tabstop>
   <tabstop>tagYearEdit</tabstop>
   <tabstop>tagArtistEdit</tabstop>
-  <tabstop>tagDiskPerformerEdit</tabstop>
+  <tabstop>tagDiscPerformerEdit</tabstop>
   <tabstop>tagAlbumEdit</tabstop>
   <tabstop>tagStartNumEdit</tabstop>
   <tabstop>tagDiscIdEdit</tabstop>

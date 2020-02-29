@@ -40,7 +40,7 @@ OutFormat_Flac::OutFormat_Flac()
     mId   = "FLAC";
     mExt  = "flac";
     mName = "Flac";
-    mSettingsGroup = "Flac";
+    mOptions = FormatOption::Lossless | FormatOption::SupportGain;
 }
 
 
@@ -48,15 +48,15 @@ OutFormat_Flac::OutFormat_Flac()
 /************************************************
 
  ************************************************/
-bool OutFormat_Flac::check(QStringList *errors) const
+bool OutFormat_Flac::check(const Profile &profile, QStringList *errors) const
 {
-    bool res = OutFormat::check(errors);
+    bool res = OutFormat::check(profile, errors);
 
-    if (gainType() != GainType::Disable)
+    if (profile.gainType() != GainType::Disable)
     {
         for (int i=0; i<project->count(); ++i)
         {
-            if (project->disk(i)->audioFile()->sampleRate() > 48000)
+            if (project->disc(i)->audioFile()->sampleRate() > 48000)
             {
                 *errors << QObject::tr("you can't use 'ReplayGain' for files with sample rates above 48kHz. Metaflac doesn't support such files.",
                                        "This string should begin with a lowercase letter. This is a part of the complex sentence.");
@@ -73,7 +73,7 @@ bool OutFormat_Flac::check(QStringList *errors) const
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFile) const
+QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
 {
 
     QStringList args;
@@ -83,7 +83,7 @@ QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFi
     args << "--silent";     // Suppress progress indicator
 
     // Settings .................................................
-    args << QString("--compression-level-%1").arg(Settings::i()->value("Flac/Compression").toString());
+    args << QString("--compression-level-%1").arg(profile.value("Compression").toString());
 
 
     // Tags .....................................................
@@ -108,16 +108,16 @@ QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFi
     if (!track->comment().isEmpty())
         args << "--tag" << QString("comment=%1").arg(track->comment());
 
-    if (!track->diskId().isEmpty())
-        args << "--tag" << QString("discId=%1").arg(track->diskId());
+    if (!track->discId().isEmpty())
+        args << "--tag" << QString("discId=%1").arg(track->discId());
 
     args << "--tag" << QString("tracknumber=%1").arg(track->trackNum());
     args << "--tag" << QString("totaltracks=%1").arg(track->trackCount());
     args << "--tag" << QString("tracktotal=%1").arg(track->trackCount());
 
-    args << "--tag" << QString("disc=%1").arg(track->diskNum());
-    args << "--tag" << QString("discnumber=%1").arg(track->diskNum());
-    args << "--tag" << QString("disctotal=%1").arg(track->diskCount());
+    args << "--tag" << QString("disc=%1").arg(track->discNum());
+    args << "--tag" << QString("discnumber=%1").arg(track->discNum());
+    args << "--tag" << QString("disctotal=%1").arg(track->discCount());
 
     args << "-";
     args << "-o" << outFile;
@@ -128,7 +128,7 @@ QStringList OutFormat_Flac::encoderArgs(const Track *track, const QString &outFi
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Flac::gainArgs(const QStringList &files) const
+QStringList OutFormat_Flac::gainArgs(const QStringList &files, const GainType) const
 {
     QStringList args;
     args << Settings::i()->programName(gainProgramName());
@@ -145,8 +145,8 @@ QStringList OutFormat_Flac::gainArgs(const QStringList &files) const
 QHash<QString, QVariant> OutFormat_Flac::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Flac/Compression",  5);
-    res.insert("Flac/ReplayGain",   gainTypeToString(GainType::Disable));
+    res.insert("Compression",  5);
+    res.insert("ReplayGain",   gainTypeToString(GainType::Disable));
     return res;
 }
 
@@ -154,23 +154,22 @@ QHash<QString, QVariant> OutFormat_Flac::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Flac::configPage(QWidget *parent) const
+EncoderConfigPage *OutFormat_Flac::configPage(const Profile &profile, QWidget *parent) const
 {
-    return new ConfigPage_Flac(parent);
+    return new ConfigPage_Flac(profile, parent);
 }
 
 
 /************************************************
 
  ************************************************/
-ConfigPage_Flac::ConfigPage_Flac(QWidget *parent):
-    EncoderConfigPage(parent)
+ConfigPage_Flac::ConfigPage_Flac(const Profile &profile, QWidget *parent):
+    EncoderConfigPage(profile, parent)
 {
     setupUi(this);
 
     setLosslessToolTip(flacCompressionSlider);
     flacCompressionSpin->setToolTip(flacCompressionSlider->toolTip());
-    fillReplayGainComboBox(flacGainCbx);
 }
 
 
@@ -179,16 +178,14 @@ ConfigPage_Flac::ConfigPage_Flac(QWidget *parent):
  ************************************************/
 void ConfigPage_Flac::load()
 {
-    loadWidget("Flac/Compression",  flacCompressionSlider);
-    loadWidget("Flac/ReplayGain", flacGainCbx);
+    loadWidget("Compression",  flacCompressionSlider);
 }
 
 
 /************************************************
 
  ************************************************/
-void ConfigPage_Flac::write()
+void ConfigPage_Flac::save()
 {
-    writeWidget("Flac/Compression",  flacCompressionSlider);
-    writeWidget("Flac/ReplayGain", flacGainCbx);
+    saveWidget("Compression",  flacCompressionSlider);
 }

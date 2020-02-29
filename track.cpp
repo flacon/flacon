@@ -28,7 +28,6 @@
 
 #include <assert.h>
 
-#include "disk.h"
 #include "inputaudiofile.h"
 #include "project.h"
 #include "settings.h"
@@ -175,7 +174,7 @@ void Track::setCodecName(const QString &value)
  ************************************************/
 QString Track::resultFileName() const
 {
-    QString pattern = Settings::i()->outFilePattern();
+    QString pattern = Settings::i()->currentProfile().outFilePattern();
     if (pattern.isEmpty())
         pattern = QString("%a/%y - %A/%n - %t");
 
@@ -184,13 +183,13 @@ QString Track::resultFileName() const
     {
         PatternExpander expander(*this);
         return safeFilePathLen(expander.expand(pattern) +
-                "." + Settings::i()->outFormat()->ext());
+                "." + Settings::i()->currentProfile().ext());
 
 
     }
 
-    // If the disk is a collection, the files fall into different directories.
-    // So we use the tag DiskPerformer for expand the directory path.
+    // If the disc is a collection, the files fall into different directories.
+    // So we use the tag DiscPerformer for expand the directory path.
     PatternExpander albumExpander(*this);
     albumExpander.setArtist(this->tag(TagId::AlbumArtist));
 
@@ -199,7 +198,7 @@ QString Track::resultFileName() const
     return safeFilePathLen(
             albumExpander.expand(pattern.left(n)) +
             trackExpander.expand(pattern.mid(n)) +
-            "." + Settings::i()->outFormat()->ext());
+            "." + Settings::i()->currentProfile().ext());
 
 }
 
@@ -267,10 +266,10 @@ void Track::setTrackCount(TrackNum value)
 /************************************************
  *
  ************************************************/
-DiskNum Track::diskNum() const
+DiscNum Track::discNum() const
 {
     bool ok;
-    int res = tag(TagId::DiskNum).toInt(&ok);
+    int res = tag(TagId::DiscNum).toInt(&ok);
 
     if (ok)
         return res;
@@ -282,19 +281,19 @@ DiskNum Track::diskNum() const
 /************************************************
  *
  ************************************************/
-void Track::setDiskNum(DiskNum value)
+void Track::setDiscNum(DiscNum value)
 {
-    setTag(TagId::DiskNum, QString::number(value));
+    setTag(TagId::DiscNum, QString::number(value));
 }
 
 
 /************************************************
  *
  ************************************************/
-DiskNum Track::diskCount() const
+DiscNum Track::discCount() const
 {
     bool ok;
-    int res = tag(TagId::DiskCount).toInt(&ok);
+    int res = tag(TagId::DiscCount).toInt(&ok);
 
     if (ok)
         return res;
@@ -307,9 +306,9 @@ DiskNum Track::diskCount() const
 /************************************************
  *
  ************************************************/
-void Track::setDiskCount(DiskNum value)
+void Track::setDiscCount(DiscNum value)
 {
-    setTag(TagId::DiskCount, QString::number(value));
+    setTag(TagId::DiscCount, QString::number(value));
 }
 
 
@@ -335,7 +334,7 @@ QString Track::resultFilePath() const
  ************************************************/
 QString Track::calcResultFilePath() const
 {
-    QString dir = Settings::i()->outFileDir();
+    QString dir = Settings::i()->currentProfile().outFileDir();
 
     if (dir == "~" || dir == "~//")
         return QDir::homePath();
@@ -354,6 +353,10 @@ QString Track::calcResultFilePath() const
     return QFileInfo(mCueFileName).dir().absolutePath() + QDir::separator() + dir;
 }
 
+
+/************************************************
+ *
+ ************************************************/
 QString Track::safeFilePathLen(const QString &path) const
 {
     QString file = path;
