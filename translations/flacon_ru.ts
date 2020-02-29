@@ -90,6 +90,34 @@
     </message>
 </context>
 <context>
+    <name>AddProfileDialog</name>
+    <message>
+        <source>To create a profile, fill out the following information:</source>
+        <extracomment>Add profile dialog, capton</extracomment>
+        <translation>Для создания профиля укажите следующую информацию:</translation>
+    </message>
+    <message>
+        <source>Create profile</source>
+        <comment>Button caption</comment>
+        <translation>Создать профиль</translation>
+    </message>
+    <message>
+        <source>Add profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation>Добавление нового профиля</translation>
+    </message>
+    <message>
+        <source>New profile name:</source>
+        <extracomment>Add profile dialog, profile name label</extracomment>
+        <translation>Имя профиля:</translation>
+    </message>
+    <message>
+        <source>Audio format:</source>
+        <extracomment>Add profile dialog, audio format label</extracomment>
+        <translation>Аудио формат:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -224,10 +252,6 @@
         <translation>Количество потоков в процессе конвертации.</translation>
     </message>
     <message>
-        <source>First track pregap:</source>
-        <translation>Прегап первого трека:</translation>
-    </message>
-    <message>
         <source>Rescan</source>
         <translation>Искать</translation>
     </message>
@@ -236,19 +260,13 @@
         <translation>Полный путь к внешним программам</translation>
     </message>
     <message>
-        <source>Extract to separate file</source>
-        <translation>Извлекать в отдельный файл</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Добавить к первому треку</translation>
-    </message>
-    <message>
         <source>General</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Общие</translation>
     </message>
     <message>
         <source>Programs</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Программы</translation>
     </message>
     <message>
@@ -307,176 +325,31 @@
         <translation>Масштабировать если картинка больше чем</translation>
     </message>
     <message>
-        <source>Resampling</source>
-        <translation>Передискретизация</translation>
+        <source>Audio formats</source>
+        <extracomment>Config fialog tab title</extracomment>
+        <translation>Аудио форматы</translation>
     </message>
     <message>
-        <source>44100 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>44100 Hz</translation>
+        <source>+</source>
+        <translation>+</translation>
     </message>
     <message>
-        <source>48000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>48000 Hz</translation>
+        <source>-</source>
+        <translation>-</translation>
     </message>
     <message>
-        <source>96000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>96000 Hz</translation>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation>Вы уверены, что хотите удалить профиль %1?</translation>
     </message>
     <message>
-        <source>192000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>192000 Hz</translation>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation>Максимальный битрейт:</translation>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation>Макс. частота дискретизации:</translation>
-    </message>
-    <message>
-        <source>Per track CUE sheet</source>
-        <translation>Потрековый CUE</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation>Создавать потрековый CUE</translation>
-    </message>
-    <message>
-        <source>Same as source</source>
-        <comment>Item in combobox</comment>
-        <translation>Как в исходном файле</translation>
-    </message>
-    <message>
-        <source>16-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>16 бит</translation>
-    </message>
-    <message>
-        <source>24-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>24 бит</translation>
-    </message>
-    <message>
-        <source>32-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>32 бит</translation>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation>Имя файла:</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Вставить имя артиста</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Вставить название альбома</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Вставить год</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Вставить жанр</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Использовать &quot;%1&quot;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Aac</name>
-    <message>
-        <source>AAC encoding configuration</source>
-        <translation>Настройки конвертации в AAC</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Установить качество (рекомендуется)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Установить битрейт</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Битрейт:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Задает необходимый битрейт (в kb/s).</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Flac</name>
-    <message>
-        <source>Compression:</source>
-        <translation>Сжатие:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>Выравнивание громкости</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Расчет громкости:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Отключен</translation>
-    </message>
-    <message>
-        <source>FLAC encoding configuration</source>
-        <translation>Настройки конвертации во FLAC</translation>
+        <source>Delete profile</source>
+        <comment>Button caption</comment>
+        <translation>Удалить профиль</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Настройки конвертации в MP3</translation>
-    </message>
-    <message>
-        <source>Preset:</source>
-        <translation>Пресет:</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Установить битрейт</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Битрейт:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Задает необходимый битрейт (в kb/s).</translation>
-    </message>
-    <message>
-        <source>Use quality</source>
-        <translation>Установить качество</translation>
-    </message>
-    <message>
-        <source>Quality:</source>
-        <translation>Качество:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>Выравнивание громкости</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Расчет громкости:</translation>
-    </message>
     <message>
         <source>VBR medium</source>
         <translation>VBR medium</translation>
@@ -512,103 +385,6 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;При использовании режима со средним переменным битрейтом, большинство людей не услышат искажений на большинстве музыки.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;При использовании режима со страндартным переменным битрейтом, большинство людей не услышат искажений на большинстве музыки. Этот режим обеспечивает довольно высокое качество.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;Этот режим дает более высокое качество чем VBR standard. Вы заметите это, если у вас очень хороший слух, или аппаратура высокого класса.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;В этом режиме Вы можете сами задать качество звука, при этом используется переменный битрейт.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Рекомендуем использовать режимы с &quot;fast option&quot;, они используют новый, быстрый алгоритм VBR.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;Если Вы хотите получить максимальное качество звука, а размер файла значения не имеет, используйте этот режим с постоянным битрейтом.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Использование этого режима с постоянным битрейтом, даст хорошее качество при фиксированном битейте.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Обычно, этот режим с усредненным битрейтом дает лучшее качество чем режимы с постоянным битрейтом.&lt;/dd&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Ogg</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Настройки конвертации в Ogg</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Установить качество (рекомендуется)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Установить битрейт</translation>
-    </message>
-    <message>
-        <source>Minimal bitrate:</source>
-        <translation>Минимальный битрейт:</translation>
-    </message>
-    <message>
-        <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Задает мимнимальный битрейт (в kb/s).</translation>
-    </message>
-    <message>
-        <source>Nominal bitrate:</source>
-        <translation>Средний битрейт:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Задает необходимый битрейт (в kb/s).</translation>
-    </message>
-    <message>
-        <source>Maximum bitrate:</source>
-        <translation>Максимальный битрейт:</translation>
-    </message>
-    <message>
-        <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Задает максимальный битрейт (в kb/s).</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>Выравнивание громкости</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Расчет громкости:</translation>
     </message>
 </context>
 <context>
@@ -661,29 +437,6 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>ConfigPage_Wv</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Настройки конвертации в WavPack</translation>
-    </message>
-    <message>
-        <source>Compression:</source>
-        <translation>Сжатие:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>Выравнивание громкости</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Расчет громкости:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Отключен</translation>
-    </message>
-</context>
-<context>
     <name>Converter</name>
     <message>
         <source>Conversion is not possible:</source>
@@ -702,19 +455,19 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>CueDiskSelectDialog</name>
+    <name>CueDiscSelectDialog</name>
     <message>
-        <source>Select disk</source>
+        <source>Select disc</source>
         <translation>Выберите диск</translation>
     </message>
     <message>
-        <source>%1 [ disk %2 ]</source>
-        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [ диск %2 ]</translation>
+        <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
+        <translation>CUE содержит несколько дисков. Какой диск Вы хотите использовать?</translation>
     </message>
     <message>
-        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation>CUE содержит несколько дисков. Какой диск Вы хотите использовать?</translation>
+        <source>%1 [ disc %2 ]</source>
+        <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
+        <translation>%1 [ диск %2 ]</translation>
     </message>
 </context>
 <context>
@@ -726,7 +479,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>Disk</name>
+    <name>Disc</name>
     <message>
         <source>Audio file not set.</source>
         <translation>Не задан аудиофайл.</translation>
@@ -751,7 +504,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>DiskPipeline</name>
+    <name>DiscPipeline</name>
     <message>
         <source>I can't rename file:
 %1 to %2
@@ -793,31 +546,6 @@ In CBR mode, it sets the specific output bitrate.
 This only affects the file size. All settings are lossless.</source>
         <translation>Задает уровень сжатия, между %1 (быстрейшее) и %2 (максимальное сжатие).
 Это влияет только на размер файла, все режимы сжимают без потери качества.</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Отключен</translation>
-    </message>
-    <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>По трекам</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Для всего альбома</translation>
-    </message>
-    <message>
-        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
-
-The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
-Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>Выравнивание громкости (ReplayGain) - стандарт , позволяющей аудиоплеерам, воспроизводить файлы с однородной громкостью.
-
-Если анализ проводится для каждого трека в отдельности, то все треки будут звучать с одинаковой громкостью.
-Использование метода &quot;для всего альбома&quot; сохранит разницу в громкости между отдельными песнями в альбоме.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -956,10 +684,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>Настроить кодек</translation>
     </message>
     <message>
-        <source>Select result directory</source>
-        <translation>Выбрать директорию назначения</translation>
-    </message>
-    <message>
         <source>Get from CDDB</source>
         <translation>Получить с CDDB</translation>
     </message>
@@ -978,34 +702,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Recursive album search</source>
         <translation>Рекурсивно искать альбомы</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track number&quot;</source>
-        <translation>Вставить номер трека</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Вставить количество треков</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Вставить имя артиста</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Вставить название альбома</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track title&quot;</source>
-        <translation>Вставить название трека</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Вставить год</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Вставить жанр</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -1084,21 +780,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники. </translation>
     </message>
     <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Использовать &quot;%1&quot;</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Удалить текущий шаблон из истории.</translation>
-    </message>
-    <message>
-        <source>Remove disk</source>
-        <translation>Удалить диск</translation>
-    </message>
-    <message>
-        <source>Remove disk from project</source>
-        <translation>Удалить диск из проекта</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1107,21 +790,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>About Flacon</source>
         <translation>О программе Flacon</translation>
-    </message>
-    <message>
-        <source>Standard music location</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Стандартная директория для музыки</translation>
-    </message>
-    <message>
-        <source>Desktop</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Рабочий стол</translation>
-    </message>
-    <message>
-        <source>Same directory as CUE file</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Там же, где и CUE файл</translation>
     </message>
     <message>
         <source>Remove current directory from history</source>
@@ -1146,14 +814,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>Edit all tags…</source>
         <comment>Button text</comment>
         <translation>Редактировать все теги…</translation>
-    </message>
-    <message>
-        <source>Add disk…</source>
-        <translation>Добавить диск…</translation>
-    </message>
-    <message>
-        <source>Select directory…</source>
-        <translation>Выбрать директорию…</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
@@ -1194,12 +854,16 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Insert &quot;Disk number&quot;</source>
-        <translation>Вставить номер диска</translation>
+        <source>Add disc…</source>
+        <translation>Добавить диск…</translation>
     </message>
     <message>
-        <source>Insert &quot;Total number of disks&quot;</source>
-        <translation>Вставить количество дисков</translation>
+        <source>Remove disc</source>
+        <translation>Удалить диск</translation>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation>Удалить диск из проекта</translation>
     </message>
 </context>
 <context>
@@ -1221,6 +885,296 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Multiple values</source>
         <translation>Несколько значений</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirButton</name>
+    <message>
+        <source>Select directory…</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Выбрать директорию…</translation>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Стандартная директория для музыки</translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Рабочий стол</translation>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Там же, где и CUE файл</translation>
+    </message>
+    <message>
+        <source>Select result directory</source>
+        <translation>Выбрать директорию назначения</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirComboBox</name>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>Там же, где и CUE файл</translation>
+    </message>
+</context>
+<context>
+    <name>OutPatternButton</name>
+    <message>
+        <source>Insert &quot;Track number&quot;</source>
+        <translation>Вставить номер трека</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of tracks&quot;</source>
+        <translation>Вставить количество треков</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Вставить имя артиста</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Вставить название альбома</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Track title&quot;</source>
+        <translation>Вставить название трека</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Вставить год</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Вставить жанр</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disc number&quot;</source>
+        <translation>Вставить номер диска</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of discs&quot;</source>
+        <translation>Вставить количество дисков</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>Использовать &quot;%1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
+        <source>Resampling settings:</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation>Настройки передискретизации:</translation>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation>Максимальный битрейт:</translation>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation>Макс. частота дискретизации:</translation>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation>Настройки выравнивания громкости:</translation>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Расчет громкости:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Отключен</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation>Создавать потрековый CUE</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <translation>Имя файла:</translation>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Прегап первого трека:</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Вставить имя артиста</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Вставить название альбома</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Вставить год</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Вставить жанр</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Использовать &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Извлекать в отдельный файл</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Добавить к первому треку</translation>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation>Как в исходном файле</translation>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16 бит</translation>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24 бит</translation>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32 бит</translation>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>44100 Hz</translation>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>48000 Hz</translation>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>96000 Hz</translation>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>192000 Hz</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Отключен</translation>
+    </message>
+    <message>
+        <source>Per Track</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>По трекам</translation>
+    </message>
+    <message>
+        <source>Per Album</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Для всего альбома</translation>
+    </message>
+    <message>
+        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
+
+The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
+Using the album-gain analysis will preserve the volume differences within an album.</source>
+        <translation>Выравнивание громкости (ReplayGain) - стандарт , позволяющей аудиоплеерам, воспроизводить файлы с однородной громкостью.
+
+Если анализ проводится для каждого трека в отдельности, то все треки будут звучать с одинаковой громкостью.
+Использование метода &quot;для всего альбома&quot; сохранит разницу в громкости между отдельными песнями в альбоме.</translation>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Выходные файлы</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Директория:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Вы можете выбрать директорию для выходных файлов, или указать ее руками.
+
+Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники. </translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Шаблон:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Поля начинаются со знака %. Вы можете использовать следующие поля: 
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Номер трека&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Количество треков&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Артист&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название альбома&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название трека&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Год&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Жанр&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Если Вы окружили часть текста фигурными скобками, то эта часть не будет видна, если значения полей будут пустыми.</translation>
+    </message>
+    <message>
+        <source>%1 format</source>
+        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
+        <translation>%1 формат</translation>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>Там же, где и CUE файл</translation>
+    </message>
+    <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation>Настройки кодирования в %1:</translation>
     </message>
 </context>
 <context>
@@ -1312,13 +1266,13 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Он не содержит тега FILE.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Диск %2 не содержит тегов.</translation>
-    </message>
-    <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation>Не получается записать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Диск %2 не содержит тегов.</translation>
     </message>
 </context>
 <context>
@@ -1361,11 +1315,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Год:</translation>
     </message>
     <message>
-        <source>Disk number:</source>
-        <comment>Music tag name</comment>
-        <translation>Номер диска:</translation>
-    </message>
-    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation>Название трека:</translation>
@@ -1384,6 +1333,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>Album performer:</source>
         <comment>Music tag name</comment>
         <translation>Исполнитель альбома:</translation>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation>Номер диска:</translation>
     </message>
 </context>
 <context>
@@ -1500,6 +1454,166 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 %1</source>
         <translation>Конвертация невозможна.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>aacConfigPage</name>
+    <message>
+        <source>AAC encoding configuration</source>
+        <translation>Настройки конвертации в AAC</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Установить качество (рекомендуется)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Качество:</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Битрейт:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Задает необходимый битрейт (в kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>flacConfigPage</name>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation>Настройки конвертации во FLAC</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Сжатие:</translation>
+    </message>
+</context>
+<context>
+    <name>mp3ConfigPage</name>
+    <message>
+        <source>MP3 encoding configuration</source>
+        <translation>Настройки конвертации в MP3</translation>
+    </message>
+    <message>
+        <source>Preset:</source>
+        <translation>Пресет:</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+</source>
+        <extracomment>ererere</extracomment>
+        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;При использовании режима со средним переменным битрейтом, большинство людей не услышат искажений на большинстве музыки.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;При использовании режима со страндартным переменным битрейтом, большинство людей не услышат искажений на большинстве музыки. Этот режим обеспечивает довольно высокое качество.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;Этот режим дает более высокое качество чем VBR standard. Вы заметите это, если у вас очень хороший слух, или аппаратура высокого класса.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;В этом режиме Вы можете сами задать качество звука, при этом используется переменный битрейт.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Рекомендуем использовать режимы с &quot;fast option&quot;, они используют новый, быстрый алгоритм VBR.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;Если Вы хотите получить максимальное качество звука, а размер файла значения не имеет, используйте этот режим с постоянным битрейтом.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Использование этого режима с постоянным битрейтом, даст хорошее качество при фиксированном битейте.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Обычно, этот режим с усредненным битрейтом дает лучшее качество чем режимы с постоянным битрейтом.&lt;/dd&gt;</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation>Битрейт:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Задает необходимый битрейт (в kb/s).</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <translation>Качество:</translation>
+    </message>
+</context>
+<context>
+    <name>oggConfigPage</name>
+    <message>
+        <source>Ogg encoding configuration</source>
+        <translation>Настройки конвертации в Ogg</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Установить качество (рекомендуется)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>OGG preferences: label caption</extracomment>
+        <translation>Качество:</translation>
+    </message>
+    <message>
+        <source>Minimal bitrate:</source>
+        <translation>Минимальный битрейт:</translation>
+    </message>
+    <message>
+        <source>Sets minimum bitrate (in kb/s).</source>
+        <translation>Задает мимнимальный битрейт (в kb/s).</translation>
+    </message>
+    <message>
+        <source>Nominal bitrate:</source>
+        <translation>Средний битрейт:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Задает необходимый битрейт (в kb/s).</translation>
+    </message>
+    <message>
+        <source>Maximum bitrate:</source>
+        <translation>Максимальный битрейт:</translation>
+    </message>
+    <message>
+        <source>Sets maximum bitrate (in kb/s).</source>
+        <translation>Задает максимальный битрейт (в kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>wvConfigPage</name>
+    <message>
+        <source>WavPack encoding configuration</source>
+        <translation>Настройки конвертации в WavPack</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Сжатие:</translation>
     </message>
 </context>
 </TS>

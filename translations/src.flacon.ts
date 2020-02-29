@@ -94,27 +94,28 @@
 <context>
     <name>AddProfileDialog</name>
     <message>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>New profile name</source>
+        <source>Create profile</source>
+        <comment>Button caption</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Audio format</source>
+        <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Create profile</source>
-        <comment>Button caption</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -262,10 +263,12 @@
     </message>
     <message>
         <source>General</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Programs</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -325,6 +328,7 @@
     </message>
     <message>
         <source>Audio formats</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -422,11 +426,6 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Encoder settings:</source>
-        <extracomment>Preferences dialog: group caption</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -673,10 +672,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select result directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Get from CDDB</source>
         <translation type="unfinished"></translation>
     </message>
@@ -694,34 +689,6 @@ This only affects the file size. All settings are lossless.</source>
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track number&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track title&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -782,11 +749,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern, string like &apos;Use &quot;%a/%A/%n - %t&quot;&apos;</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation type="unfinished"></translation>
     </message>
@@ -796,21 +758,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>About Flacon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Standard music location</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Desktop</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Same directory as CUE file</source>
-        <comment>Menu item for output direcory button</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -835,10 +782,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Edit all tags…</source>
         <comment>Button text</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select directory…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -891,14 +834,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>Remove disc from project</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Insert &quot;Disc number&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Total number of discs&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -922,11 +857,86 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
+    <name>OutDirButton</name>
     <message>
-        <source>Form</source>
+        <source>Select directory…</source>
+        <comment>Menu item for output direcory button</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select result directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OutDirComboBox</name>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OutPatternButton</name>
+    <message>
+        <source>Insert &quot;Track number&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of tracks&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Track title&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disc number&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of discs&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern, string like &apos;Use &quot;%a/%A/%n - %t&quot;&apos;</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
@@ -964,11 +974,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 encoder</source>
-        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1060,6 +1065,63 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 format</source>
+        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1348,11 +1410,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Encoder settings:</source>
-        <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1378,11 +1435,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Encoder settings:</source>
-        <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1391,11 +1443,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <name>mp3ConfigPage</name>
     <message>
         <source>MP3 encoding configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Encoder settings:</source>
-        <extracomment>Preferences dialog: group caption</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1450,11 +1497,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Encoder settings:</source>
-        <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1492,11 +1534,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <name>wvConfigPage</name>
     <message>
         <source>WavPack encoding configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Encoder settings:</source>
-        <extracomment>Preferences dialog: group caption</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>

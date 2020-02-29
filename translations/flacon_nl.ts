@@ -90,6 +90,34 @@
     </message>
 </context>
 <context>
+    <name>AddProfileDialog</name>
+    <message>
+        <source>To create a profile, fill out the following information:</source>
+        <extracomment>Add profile dialog, capton</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create profile</source>
+        <comment>Button caption</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New profile name:</source>
+        <extracomment>Add profile dialog, profile name label</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio format:</source>
+        <extracomment>Add profile dialog, audio format label</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -224,10 +252,6 @@
         <translation>Het aantal draden in het conversieproces.</translation>
     </message>
     <message>
-        <source>First track pregap:</source>
-        <translation>Pregap voor eerste nummer:</translation>
-    </message>
-    <message>
         <source>Rescan</source>
         <translation>Opnieuw scannen</translation>
     </message>
@@ -236,19 +260,13 @@
         <translation>Volledig pad van de externe toepassingen</translation>
     </message>
     <message>
-        <source>Extract to separate file</source>
-        <translation>Uitpakken naar apart bestand</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Toevoegen aan eerste nummer</translation>
-    </message>
-    <message>
         <source>General</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Algemeen</translation>
     </message>
     <message>
         <source>Programs</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Programma’s</translation>
     </message>
     <message>
@@ -307,176 +325,31 @@
         <translation>Schalen indien afbeelding groter is dan</translation>
     </message>
     <message>
-        <source>Resampling</source>
-        <translation>Resamplen</translation>
+        <source>Audio formats</source>
+        <extracomment>Config fialog tab title</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>44100 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>44100 Hz</translation>
+        <source>+</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>48000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>48000 Hz</translation>
+        <source>-</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>96000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>96000 Hz</translation>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>192000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>192000 Hz</translation>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation>Maximale bitdiepte:</translation>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation>Maximale bemonsteringsfrequentie:</translation>
-    </message>
-    <message>
-        <source>Per track CUE sheet</source>
-        <translation>Cueblad per nummer</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation>Cueblad aanmaken per nummer</translation>
-    </message>
-    <message>
-        <source>Same as source</source>
-        <comment>Item in combobox</comment>
-        <translation>Gelijk aan bron</translation>
-    </message>
-    <message>
-        <source>16-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>16-bit</translation>
-    </message>
-    <message>
-        <source>24-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>24-bit</translation>
-    </message>
-    <message>
-        <source>32-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>32-bit</translation>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation>Bestandsnaamformaat:</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>‘Artiest’ invoegen</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>‘Albumtitel’ invoegen</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>‘Jaar’ invoegen</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>‘Genre’ invoegen</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Gebruik ‘%1’</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Aac</name>
-    <message>
-        <source>AAC encoding configuration</source>
-        <translation>AAC-coderingsconfiguratie</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Gebruik kwaliteitsinstelling (aanbevolen)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Gebruik bitsnelheid</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Bitsnelheid:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Flac</name>
-    <message>
-        <source>Compression:</source>
-        <translation>Compressie:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Geluidssterkte berekenen:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Uitgeschakeld</translation>
-    </message>
-    <message>
-        <source>FLAC encoding configuration</source>
-        <translation>FLAC-coderingsconfiguratie</translation>
+        <source>Delete profile</source>
+        <comment>Button caption</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>MP3-coderingsconfiguratie</translation>
-    </message>
-    <message>
-        <source>Preset:</source>
-        <translation>Vooraf ingesteld</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Gebruik bitsnelheid</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Bitsnelheid:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
-    </message>
-    <message>
-        <source>Use quality</source>
-        <translation>Gebruik kwaliteit</translation>
-    </message>
-    <message>
-        <source>Quality:</source>
-        <translation>Kwaliteit:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Geluidssterkte berekenen:</translation>
-    </message>
     <message>
         <source>VBR medium</source>
         <translation>VBR medium</translation>
@@ -512,104 +385,6 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;Deze voorinstelling is voor de meeste mensen en de meeste muziek normaal gezien transparant.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standaard, VBR standaard snel&lt;/dt&gt;
-&lt;dd&gt;Deze voorinstelling is voor de meeste mensen en de meeste muziek normaal gezien transparant, en is al van vrij hoge kwaliteit.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreem, VBR extreme snel&lt;/dt&gt;
-&lt;dd&gt;Deze voorinstelling biedt iets hogere kwaliteit dan de standaardmodus als u een uitzonderlijk goed gehoor of high-end audio-apparatuur hebt.&lt;/dd&gt;
-
-&lt;dt&gt;VBR kwaliteit&lt;/dt&gt;
-&lt;dd&gt;Deze optie laat u de uitvoerkwaliteit opgeven.&lt;/dd&gt;
-
-&lt;dt&gt;snelle optie&lt;/dt&gt;
-&lt;dd&gt;Schakelt de nieuwe snelle VBR voor een specifiek profiel in. Dit is aanbevolen.&lt;/dd&gt;
-
-&lt;dt&gt;CBR waanzinnig&lt;/dt&gt;
-&lt;dd&gt;Als u absoluut de hoogste kwaliteit nodig hebt ongeacht bestandsgrootte, zal u dat met deze constante bitsnelheid bereiken.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Deze voorinstelling geeft u normaal gezien goede kwaliteit voor een vooraf opgegeven bitsnelheid.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Deze voorinstelling geeft u normaal gezien hogere kwaliteit dan de constante bitsnelheid voor een vooraf opgegeven bitsnelheid.&lt;/dd&gt;
-</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Ogg</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Ogg-coderingsconfiguratie</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Gebruik kwaliteitsinstelling (aanbevolen)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Bitsnelheid:</translation>
-    </message>
-    <message>
-        <source>Minimal bitrate:</source>
-        <translation>Minimale bitsnelheid:</translation>
-    </message>
-    <message>
-        <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Stelt minimale bitsnelheid in (in kb/s).</translation>
-    </message>
-    <message>
-        <source>Nominal bitrate:</source>
-        <translation>Nominale bitsnelheid:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
-    </message>
-    <message>
-        <source>Maximum bitrate:</source>
-        <translation>Maximale bitsnelheid:</translation>
-    </message>
-    <message>
-        <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Stelt maximale bitsnelheid in (in kb/s).</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Geluidssterkte berekenen:</translation>
     </message>
 </context>
 <context>
@@ -662,29 +437,6 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     </message>
 </context>
 <context>
-    <name>ConfigPage_Wv</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>WavPack-coderingsconfiguratie</translation>
-    </message>
-    <message>
-        <source>Compression:</source>
-        <translation>Compressie:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Geluidssterkte berekenen:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Uitgeschakeld</translation>
-    </message>
-</context>
-<context>
     <name>Converter</name>
     <message>
         <source>Conversion is not possible:</source>
@@ -703,19 +455,19 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     </message>
 </context>
 <context>
-    <name>CueDiskSelectDialog</name>
+    <name>CueDiscSelectDialog</name>
     <message>
-        <source>Select disk</source>
-        <translation>Kies schijf</translation>
+        <source>Select disc</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 [ disk %2 ]</source>
-        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [ schijf %2 ]</translation>
+        <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation>Het CUE-bestand bevat informatie over meerdere schijven. Welke schijf wil u gebruiken?</translation>
+        <source>%1 [ disc %2 ]</source>
+        <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -727,7 +479,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     </message>
 </context>
 <context>
-    <name>Disk</name>
+    <name>Disc</name>
     <message>
         <source>Audio file not set.</source>
         <translation>Audiobestand niet ingesteld.</translation>
@@ -752,7 +504,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     </message>
 </context>
 <context>
-    <name>DiskPipeline</name>
+    <name>DiscPipeline</name>
     <message>
         <source>I can't rename file:
 %1 to %2
@@ -795,31 +547,6 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
 This only affects the file size. All settings are lossless.</source>
         <translation>Stelt compressieniveau in, tussen %1 (snelst) en %2 (hoogste compressie).
 Dit heeft enkel een invloed op de bestandsgrootte, alle instellingen zijn zonder kwaliteitsverlies.</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Uitgeschakeld</translation>
-    </message>
-    <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Per nummer</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Per album</translation>
-    </message>
-    <message>
-        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
-
-The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
-Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain is een standaard om de waargenomen luidheid van computeraudioformaten te normaliseren.
-
-De analyse kan worden uitgevoerd op individuele nummers, zodat alle nummers eenzelfde volume krijgen bij het afspelen.
-De analyse per album zal de verschillen in volume binnen een album bewaren.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -959,10 +686,6 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <translation>Configureer encoder</translation>
     </message>
     <message>
-        <source>Select result directory</source>
-        <translation>Kies resultaatmap</translation>
-    </message>
-    <message>
         <source>Get from CDDB</source>
         <translation>Ophalen van CDDB</translation>
     </message>
@@ -981,34 +704,6 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     <message>
         <source>Recursive album search</source>
         <translation>Recursief albumzoeken</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track number&quot;</source>
-        <translation>‘Tracknummer’ invoegen</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>‘Aantal nummers’ invoegen</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>‘Artiest’ invoegen</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>‘Albumtitel’ invoegen</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track title&quot;</source>
-        <translation>‘Nummertitel’ invoegen</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>‘Jaar’ invoegen</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>‘Genre’ invoegen</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -1087,21 +782,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
     </message>
     <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Gebruik ‘%1’</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Huidig patroon van geschiedenis verwijderen</translation>
-    </message>
-    <message>
-        <source>Remove disk</source>
-        <translation>Schijf verwijderen</translation>
-    </message>
-    <message>
-        <source>Remove disk from project</source>
-        <translation>Schijf verwijderen van project</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1110,21 +792,6 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>About Flacon</source>
         <translation>Over Flacon</translation>
-    </message>
-    <message>
-        <source>Standard music location</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Standaardlocatie voor muziek</translation>
-    </message>
-    <message>
-        <source>Desktop</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Bureaublad</translation>
-    </message>
-    <message>
-        <source>Same directory as CUE file</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Zelfde map als cuebestand</translation>
     </message>
     <message>
         <source>Remove current directory from history</source>
@@ -1149,14 +816,6 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
         <source>Edit all tags…</source>
         <comment>Button text</comment>
         <translation>Alle tags bewerken…</translation>
-    </message>
-    <message>
-        <source>Add disk…</source>
-        <translation>Schijf toevoegen…</translation>
-    </message>
-    <message>
-        <source>Select directory…</source>
-        <translation>Kies map…</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
@@ -1197,12 +856,16 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Insert &quot;Disk number&quot;</source>
-        <translation>‘Schijfnummer’ invoegen</translation>
+        <source>Add disc…</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Insert &quot;Total number of disks&quot;</source>
-        <translation>‘Aantal schijven’ invoegen</translation>
+        <source>Remove disc</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1224,6 +887,296 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
     <message>
         <source>Multiple values</source>
         <translation>Meerdere waarden</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirButton</name>
+    <message>
+        <source>Select directory…</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Kies map…</translation>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Standaardlocatie voor muziek</translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Bureaublad</translation>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Zelfde map als cuebestand</translation>
+    </message>
+    <message>
+        <source>Select result directory</source>
+        <translation>Kies resultaatmap</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirComboBox</name>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>Zelfde map als cuebestand</translation>
+    </message>
+</context>
+<context>
+    <name>OutPatternButton</name>
+    <message>
+        <source>Insert &quot;Track number&quot;</source>
+        <translation>‘Tracknummer’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of tracks&quot;</source>
+        <translation>‘Aantal nummers’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>‘Artiest’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>‘Albumtitel’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Track title&quot;</source>
+        <translation>‘Nummertitel’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>‘Jaar’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>‘Genre’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disc number&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of discs&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>Gebruik ‘%1’</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
+        <source>Resampling settings:</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation>Maximale bitdiepte:</translation>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation>Maximale bemonsteringsfrequentie:</translation>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Geluidssterkte berekenen:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Uitgeschakeld</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation>Cueblad aanmaken per nummer</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <translation>Bestandsnaamformaat:</translation>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Pregap voor eerste nummer:</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>‘Artiest’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>‘Albumtitel’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>‘Jaar’ invoegen</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>‘Genre’ invoegen</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Gebruik ‘%1’</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Uitpakken naar apart bestand</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Toevoegen aan eerste nummer</translation>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation>Gelijk aan bron</translation>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16-bit</translation>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24-bit</translation>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32-bit</translation>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>44100 Hz</translation>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>48000 Hz</translation>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>96000 Hz</translation>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>192000 Hz</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Uitgeschakeld</translation>
+    </message>
+    <message>
+        <source>Per Track</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Per nummer</translation>
+    </message>
+    <message>
+        <source>Per Album</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Per album</translation>
+    </message>
+    <message>
+        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
+
+The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
+Using the album-gain analysis will preserve the volume differences within an album.</source>
+        <translation>ReplayGain is een standaard om de waargenomen luidheid van computeraudioformaten te normaliseren.
+
+De analyse kan worden uitgevoerd op individuele nummers, zodat alle nummers eenzelfde volume krijgen bij het afspelen.
+De analyse per album zal de verschillen in volume binnen een album bewaren.</translation>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Resultaatbestanden</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Map:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>U kan naar de doelmap bladeren of ze manueel ingeven.
+
+Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Patroon:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens beginnen met %. U kan volgende tokens gebruiken:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tracknummer&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Aantal nummers&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artiest&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumtitel&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nummertitel&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Jaar&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Als u delen van tekst die een token bevatten met accolades omsluit zullen deze delen worden verborgen als het token leeg is.</translation>
+    </message>
+    <message>
+        <source>%1 format</source>
+        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>Zelfde map als cuebestand</translation>
+    </message>
+    <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1315,13 +1268,13 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
         <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Het cueblad heeft geen FILE-tag.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Schijf %2 heeft geen tags.</translation>
-    </message>
-    <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation>Ik kan het albumhoesbestand &lt;b&gt;%1&lt;/b&gt; niet opslaan:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1364,11 +1317,6 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
         <translation>Jaar:</translation>
     </message>
     <message>
-        <source>Disk number:</source>
-        <comment>Music tag name</comment>
-        <translation>Schijfnummer:</translation>
-    </message>
-    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation>Nummertitel:</translation>
@@ -1387,6 +1335,11 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
         <source>Album performer:</source>
         <comment>Music tag name</comment>
         <translation>Albumperformer:</translation>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1503,6 +1456,167 @@ Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaat
 %1</source>
         <translation>De conversie is niet mogelijk.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>aacConfigPage</name>
+    <message>
+        <source>AAC encoding configuration</source>
+        <translation>AAC-coderingsconfiguratie</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Gebruik kwaliteitsinstelling (aanbevolen)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Kwaliteit:</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Bitsnelheid:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>flacConfigPage</name>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation>FLAC-coderingsconfiguratie</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Compressie:</translation>
+    </message>
+</context>
+<context>
+    <name>mp3ConfigPage</name>
+    <message>
+        <source>MP3 encoding configuration</source>
+        <translation>MP3-coderingsconfiguratie</translation>
+    </message>
+    <message>
+        <source>Preset:</source>
+        <translation>Vooraf ingesteld</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+</source>
+        <extracomment>ererere</extracomment>
+        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling is voor de meeste mensen en de meeste muziek normaal gezien transparant.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standaard, VBR standaard snel&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling is voor de meeste mensen en de meeste muziek normaal gezien transparant, en is al van vrij hoge kwaliteit.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreem, VBR extreme snel&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling biedt iets hogere kwaliteit dan de standaardmodus als u een uitzonderlijk goed gehoor of high-end audio-apparatuur hebt.&lt;/dd&gt;
+
+&lt;dt&gt;VBR kwaliteit&lt;/dt&gt;
+&lt;dd&gt;Deze optie laat u de uitvoerkwaliteit opgeven.&lt;/dd&gt;
+
+&lt;dt&gt;snelle optie&lt;/dt&gt;
+&lt;dd&gt;Schakelt de nieuwe snelle VBR voor een specifiek profiel in. Dit is aanbevolen.&lt;/dd&gt;
+
+&lt;dt&gt;CBR waanzinnig&lt;/dt&gt;
+&lt;dd&gt;Als u absoluut de hoogste kwaliteit nodig hebt ongeacht bestandsgrootte, zal u dat met deze constante bitsnelheid bereiken.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling geeft u normaal gezien goede kwaliteit voor een vooraf opgegeven bitsnelheid.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling geeft u normaal gezien hogere kwaliteit dan de constante bitsnelheid voor een vooraf opgegeven bitsnelheid.&lt;/dd&gt;
+</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation>Bitsnelheid:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <translation>Kwaliteit:</translation>
+    </message>
+</context>
+<context>
+    <name>oggConfigPage</name>
+    <message>
+        <source>Ogg encoding configuration</source>
+        <translation>Ogg-coderingsconfiguratie</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Gebruik kwaliteitsinstelling (aanbevolen)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>OGG preferences: label caption</extracomment>
+        <translation>Kwaliteit:</translation>
+    </message>
+    <message>
+        <source>Minimal bitrate:</source>
+        <translation>Minimale bitsnelheid:</translation>
+    </message>
+    <message>
+        <source>Sets minimum bitrate (in kb/s).</source>
+        <translation>Stelt minimale bitsnelheid in (in kb/s).</translation>
+    </message>
+    <message>
+        <source>Nominal bitrate:</source>
+        <translation>Nominale bitsnelheid:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
+    </message>
+    <message>
+        <source>Maximum bitrate:</source>
+        <translation>Maximale bitsnelheid:</translation>
+    </message>
+    <message>
+        <source>Sets maximum bitrate (in kb/s).</source>
+        <translation>Stelt maximale bitsnelheid in (in kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>wvConfigPage</name>
+    <message>
+        <source>WavPack encoding configuration</source>
+        <translation>WavPack-coderingsconfiguratie</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Compressie:</translation>
     </message>
 </context>
 </TS>

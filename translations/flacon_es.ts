@@ -90,6 +90,34 @@
     </message>
 </context>
 <context>
+    <name>AddProfileDialog</name>
+    <message>
+        <source>To create a profile, fill out the following information:</source>
+        <extracomment>Add profile dialog, capton</extracomment>
+        <translation>Para crear un perfil, completa la siguiente información:</translation>
+    </message>
+    <message>
+        <source>Create profile</source>
+        <comment>Button caption</comment>
+        <translation>Crear perfil</translation>
+    </message>
+    <message>
+        <source>Add profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation>Añadir perfil</translation>
+    </message>
+    <message>
+        <source>New profile name:</source>
+        <extracomment>Add profile dialog, profile name label</extracomment>
+        <translation>Nombre del nuevo perfil:</translation>
+    </message>
+    <message>
+        <source>Audio format:</source>
+        <extracomment>Add profile dialog, audio format label</extracomment>
+        <translation>Formato de audio:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -224,10 +252,6 @@
         <translation>El número de subprocesos en el proceso de conversión.</translation>
     </message>
     <message>
-        <source>First track pregap:</source>
-        <translation>Pista pregap:</translation>
-    </message>
-    <message>
         <source>Rescan</source>
         <translation>Volver a explorar:</translation>
     </message>
@@ -236,19 +260,13 @@
         <translation>Ruta completa de las aplicaciones externas:</translation>
     </message>
     <message>
-        <source>Extract to separate file</source>
-        <translation>Extraer a un archivo independiente</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Agregar a la primera pista</translation>
-    </message>
-    <message>
         <source>General</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>General</translation>
     </message>
     <message>
         <source>Programs</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Programas</translation>
     </message>
     <message>
@@ -307,176 +325,31 @@
         <translation>Ajustar tamaño si la imagen es mayor de</translation>
     </message>
     <message>
-        <source>Resampling</source>
-        <translation>Remuestreo</translation>
+        <source>Audio formats</source>
+        <extracomment>Config fialog tab title</extracomment>
+        <translation>Formatos de audio</translation>
     </message>
     <message>
-        <source>44100 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>44100 Hz</translation>
+        <source>+</source>
+        <translation>+</translation>
     </message>
     <message>
-        <source>48000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>48000 Hz</translation>
+        <source>-</source>
+        <translation>-</translation>
     </message>
     <message>
-        <source>96000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>96000 Hz</translation>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation>¿Estás seguro de querer borrar el perfil &quot;%1&quot;?</translation>
     </message>
     <message>
-        <source>192000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>192000 Hz</translation>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation>Máxima profundidad de bits:</translation>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation>Máxima tasa de muestreo:</translation>
-    </message>
-    <message>
-        <source>Per track CUE sheet</source>
-        <translation>Hoja CUE por pista</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation>Crear hoja CUE por pista</translation>
-    </message>
-    <message>
-        <source>Same as source</source>
-        <comment>Item in combobox</comment>
-        <translation>Igual a la fuente</translation>
-    </message>
-    <message>
-        <source>16-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>16-bit</translation>
-    </message>
-    <message>
-        <source>24-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>24-bit</translation>
-    </message>
-    <message>
-        <source>32-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>32-bit</translation>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation>Formato de nombre de archivo</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Insertar &quot;Artista&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Insertar &quot;Título de álbum&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Insertar &quot;Año&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Insertar &quot;Género&quot;</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Usar &quot;%1&quot;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Aac</name>
-    <message>
-        <source>AAC encoding configuration</source>
-        <translation>Configuración de la codificación AAC</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Usar ajustes por calidad (recomendado)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Usar bitrate</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Tasa de bits:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Establece el bitrate objetivo (en kb/s)</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Flac</name>
-    <message>
-        <source>Compression:</source>
-        <translation>Compresión:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Calcular ganancia:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Deshabilitado</translation>
-    </message>
-    <message>
-        <source>FLAC encoding configuration</source>
-        <translation>Configuración de la codificación Flac</translation>
+        <source>Delete profile</source>
+        <comment>Button caption</comment>
+        <translation>Borrar perfil</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Configuración de la codificación MP3</translation>
-    </message>
-    <message>
-        <source>Preset:</source>
-        <translation>Preajuste:</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Usar Tasa de Bits</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Tasa de Bits:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Establece una Tasa de Bits objetivo (en kb/s).</translation>
-    </message>
-    <message>
-        <source>Use quality</source>
-        <translation>Usar calidad</translation>
-    </message>
-    <message>
-        <source>Quality:</source>
-        <translation>Calidad:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Calcular ganancia:</translation>
-    </message>
     <message>
         <source>VBR medium</source>
         <translation>VBR medio</translation>
@@ -512,104 +385,6 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
-&lt;dd&gt;Usando un Bitrate Variable medio, este preajuste debe ser casi transparente para la mayoría de gente y la mayoría de música.&lt;/dd&gt;
-
-&lt;dt&gt;VBR estándar, VBR estándar rápido&lt;/dt&gt;
-&lt;dd&gt;Usando un Bitrate Variable estándar, este preajuste debería se transparente para la mayoría de la música y es ya un nivel alto de calidad.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extremo, VBR extremo rápido&lt;/dt&gt;
-&lt;dd&gt;Usando el Bitrate Variable más alto, este preajuste ofrece algo más de calidad si usted tiene muy buen oído o un equipo de audio de gama alta.&lt;/dd&gt;
-
-&lt;dt&gt;Calidad VBR&lt;/dt&gt;
-&lt;dd&gt;Este valor le permite establecer la calidad de salida.&lt;/dd&gt;
-
-&lt;dt&gt;opción rápida&lt;/dt&gt;
-&lt;dd&gt;Establece el nuevo VBR rápido para un fichero en particular. Recomendado.&lt;/dd&gt;
-
-&lt;dt&gt;CBR máximo&lt;/dt&gt;
-&lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando este Bitrate Constante.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Usando este Bitrate Constante, el preajuste le dará una buena calidad al bitrate especificado.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Usando este Bitrate Promedio, este preajuste le dará una calidad más alta que el Bitrate Constante para un bitrate específico.&lt;/dd&gt;
-</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Ogg</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Configuración de la codificación Ogg</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Usar la configuración de calidad (recomendado)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Usar Tasa de Bits</translation>
-    </message>
-    <message>
-        <source>Minimal bitrate:</source>
-        <translation>Tasa de Bits mínima:</translation>
-    </message>
-    <message>
-        <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Establece la Tasa de Bits mínima (en kb/s).</translation>
-    </message>
-    <message>
-        <source>Nominal bitrate:</source>
-        <translation>Tasa de Bits nominal:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Establece la Tasa de Bits objetivo (en kb/s).</translation>
-    </message>
-    <message>
-        <source>Maximum bitrate:</source>
-        <translation>Máxima Tasa de Bits:</translation>
-    </message>
-    <message>
-        <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Establece la máxima Tasa de Bits (en kb/s).</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Calcular ganancia:</translation>
     </message>
 </context>
 <context>
@@ -662,29 +437,6 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     </message>
 </context>
 <context>
-    <name>ConfigPage_Wv</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Configuración de la codificación WavPack</translation>
-    </message>
-    <message>
-        <source>Compression:</source>
-        <translation>Compresión:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Calcular ganancia:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Deshabilitado</translation>
-    </message>
-</context>
-<context>
     <name>Converter</name>
     <message>
         <source>Conversion is not possible:</source>
@@ -703,19 +455,19 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     </message>
 </context>
 <context>
-    <name>CueDiskSelectDialog</name>
+    <name>CueDiscSelectDialog</name>
     <message>
-        <source>Select disk</source>
+        <source>Select disc</source>
         <translation>Seleccione disco</translation>
     </message>
     <message>
-        <source>%1 [ disk %2 ]</source>
-        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [ disco %2 ]</translation>
+        <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
+        <translation>El archivo CUE contiene información de multiples discos. ¿Cuál quiere usar?</translation>
     </message>
     <message>
-        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation>El archivo CUE contiene información de multiples discos. ¿Cuál quiere usar?</translation>
+        <source>%1 [ disc %2 ]</source>
+        <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
+        <translation>%1 [ disco %2 ]</translation>
     </message>
 </context>
 <context>
@@ -727,7 +479,7 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     </message>
 </context>
 <context>
-    <name>Disk</name>
+    <name>Disc</name>
     <message>
         <source>Audio file not set.</source>
         <translation>Archivo de audio no seleccionado.</translation>
@@ -752,7 +504,7 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     </message>
 </context>
 <context>
-    <name>DiskPipeline</name>
+    <name>DiscPipeline</name>
     <message>
         <source>I can't rename file:
 %1 to %2
@@ -795,31 +547,6 @@ En el modo CBR, se establece la tasa de bits específica de salida.
 This only affects the file size. All settings are lossless.</source>
         <translation>Establece el nivel de compresión, entre %1 (más rápido) y %2 (más compresión).
 Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdida.</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Deshabilitado</translation>
-    </message>
-    <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Por Pista</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Por Álbum</translation>
-    </message>
-    <message>
-        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
-
-The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
-Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain es un estándar para normalizar la percepción del volumen del sonido en los formatos de audio de los ordenadores.
-
-El análisis puede ser realizado por pistas individuales, de modo que todas tengan el mismo volumen al reproducirlas.
-Usando el análisis de ganancia-álbum se preservarán las diferencias de volumen dentro de un álbum.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -959,10 +686,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>Configurar codificador</translation>
     </message>
     <message>
-        <source>Select result directory</source>
-        <translation>Seleccione el directorio de destino</translation>
-    </message>
-    <message>
         <source>Get from CDDB</source>
         <translation>Obtener desde CDDB</translation>
     </message>
@@ -981,34 +704,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>Recursive album search</source>
         <translation>Búsqueda recursiva de álbum</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track number&quot;</source>
-        <translation>Insertar &quot;Número de pista&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Insertar &quot;Número total de pistas&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Insertar &quot;Artista&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Insertar &quot;Título de álbum&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track title&quot;</source>
-        <translation>Insertar &quot;Título de pista&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Insertar &quot;Año&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Insertar &quot;Género&quot;</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -1087,21 +782,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de salida se guardarán en el mismo directorio que el origen.</translation>
     </message>
     <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Usar &quot;%1&quot;</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Eliminar el patrón actual del historial</translation>
-    </message>
-    <message>
-        <source>Remove disk</source>
-        <translation>Eliminar disco</translation>
-    </message>
-    <message>
-        <source>Remove disk from project</source>
-        <translation>Eliminar disco del proyecto</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1110,21 +792,6 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>About Flacon</source>
         <translation>Acerca de Flacon</translation>
-    </message>
-    <message>
-        <source>Standard music location</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Ubicación habitual de la música</translation>
-    </message>
-    <message>
-        <source>Desktop</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Escritorio</translation>
-    </message>
-    <message>
-        <source>Same directory as CUE file</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>El mismo directorio que el archivo CUE</translation>
     </message>
     <message>
         <source>Remove current directory from history</source>
@@ -1149,14 +816,6 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <source>Edit all tags…</source>
         <comment>Button text</comment>
         <translation>Editar todas las etiquetas...</translation>
-    </message>
-    <message>
-        <source>Add disk…</source>
-        <translation>Agregar disco...</translation>
-    </message>
-    <message>
-        <source>Select directory…</source>
-        <translation>Seleccione directorio...</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
@@ -1197,12 +856,16 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>Ctrl+Mayúsculas+W</translation>
     </message>
     <message>
-        <source>Insert &quot;Disk number&quot;</source>
-        <translation>Insertar &quot;Número de disco&quot;</translation>
+        <source>Add disc…</source>
+        <translation>Agregar disco...</translation>
     </message>
     <message>
-        <source>Insert &quot;Total number of disks&quot;</source>
-        <translation>Insertar &quot;Número total de discos&quot;</translation>
+        <source>Remove disc</source>
+        <translation>Eliminar disco</translation>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation>Eliminar disco del proyecto</translation>
     </message>
 </context>
 <context>
@@ -1224,6 +887,296 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>Multiple values</source>
         <translation>Múltiples valores</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirButton</name>
+    <message>
+        <source>Select directory…</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Seleccione directorio...</translation>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Ubicación habitual de la música</translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Escritorio</translation>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>El mismo directorio que el archivo CUE</translation>
+    </message>
+    <message>
+        <source>Select result directory</source>
+        <translation>Seleccione directorio de destino</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirComboBox</name>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>El mismo directorio que el archivo CUE</translation>
+    </message>
+</context>
+<context>
+    <name>OutPatternButton</name>
+    <message>
+        <source>Insert &quot;Track number&quot;</source>
+        <translation>Insertar &quot;Número de pista&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of tracks&quot;</source>
+        <translation>Insertar &quot;Número total de pistas&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Insertar &quot;Artista&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Insertar &quot;Título de álbum&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Track title&quot;</source>
+        <translation>Insertar &quot;Título de pista&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Insertar &quot;Año&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Insertar &quot;Género&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disc number&quot;</source>
+        <translation>Insertar &quot;Número de disco&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of discs&quot;</source>
+        <translation>Insertar &quot;Número total de discos&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>Usar &quot;%1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
+        <source>Resampling settings:</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation>Configuración de remuestreo:</translation>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation>Máxima profundidad de bits:</translation>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation>Máxima tasa de muestreo:</translation>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation>Configuración de ReplayGain:</translation>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Calcular ganancia:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Deshabilitado</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation>Crear hoja CUE por pista</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <translation>Formato de nombre de archivo</translation>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Pista pregap:</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Insertar &quot;Artista&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Insertar &quot;Título de álbum&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Insertar &quot;Año&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Insertar &quot;Género&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Usar &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Extraer a un archivo independiente</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Agregar a la primera pista</translation>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation>Igual a la fuente</translation>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16-bit</translation>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24-bit</translation>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32-bit</translation>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>44100 Hz</translation>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>48000 Hz</translation>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>96000 Hz</translation>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>192000 Hz</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Deshabilitado</translation>
+    </message>
+    <message>
+        <source>Per Track</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Por Pista</translation>
+    </message>
+    <message>
+        <source>Per Album</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Por Álbum</translation>
+    </message>
+    <message>
+        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
+
+The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
+Using the album-gain analysis will preserve the volume differences within an album.</source>
+        <translation>ReplayGain es un estándar para normalizar la percepción del volumen del sonido en los formatos de audio de los ordenadores.
+
+El análisis puede ser realizado por pistas individuales, de modo que todas tengan el mismo volumen al reproducirlas.
+Usando el análisis de ganancia-álbum se preservarán las diferencias de volumen dentro de un álbum.</translation>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Archivos Procesados</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Directorio:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Puede navegar al directorio de destino. También puede introducirlo manualmente.
+
+Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de salida se guardarán en el mismo directorio que el origen.</translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Patrón:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Las variables comienzan con %. Puedes usar las siguientes variables:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número de pista  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número total de pistas&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artista&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título del álbum&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título de Pista&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Año&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Género&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Si usa entre llaves secciones de texto que contengan una variable, dichas secciones serán omitidas si el valor de la variable está vacio.</translation>
+    </message>
+    <message>
+        <source>%1 format</source>
+        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
+        <translation>Formato %1</translation>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>El mismo directorio que el archivo CUE</translation>
+    </message>
+    <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1315,13 +1268,13 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. La hoja CUE no tiene la etiqueta FILE.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. El disco %2 no tiene etiquetas.</translation>
-    </message>
-    <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation>No puedo guardar la imagen de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. El disco %2 no tiene etiquetas.</translation>
     </message>
 </context>
 <context>
@@ -1364,11 +1317,6 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>Año:</translation>
     </message>
     <message>
-        <source>Disk number:</source>
-        <comment>Music tag name</comment>
-        <translation>Número de disco:</translation>
-    </message>
-    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation>Título de pista:</translation>
@@ -1387,6 +1335,11 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <source>Album performer:</source>
         <comment>Music tag name</comment>
         <translation>Artista del Álbum:</translation>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation>Número de disco:</translation>
     </message>
 </context>
 <context>
@@ -1503,6 +1456,167 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
 %1</source>
         <translation>La conversión no es posible.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>aacConfigPage</name>
+    <message>
+        <source>AAC encoding configuration</source>
+        <translation>Configuración de la codificación AAC</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Usar ajustes por calidad (recomendado)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Calidad:</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Tasa de Bits:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Establece la Tasa de Bits objetivo (en kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>flacConfigPage</name>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation>Configuración de la codificación Flac</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Compresión:</translation>
+    </message>
+</context>
+<context>
+    <name>mp3ConfigPage</name>
+    <message>
+        <source>MP3 encoding configuration</source>
+        <translation>Configuración de la codificación MP3</translation>
+    </message>
+    <message>
+        <source>Preset:</source>
+        <translation>Preajuste:</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+</source>
+        <extracomment>ererere</extracomment>
+        <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
+&lt;dd&gt;Usando un Bitrate Variable medio, este preajuste debe ser casi transparente para la mayoría de gente y la mayoría de música.&lt;/dd&gt;
+
+&lt;dt&gt;VBR estándar, VBR estándar rápido&lt;/dt&gt;
+&lt;dd&gt;Usando un Bitrate Variable estándar, este preajuste debería se transparente para la mayoría de la música y es ya un nivel alto de calidad.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extremo, VBR extremo rápido&lt;/dt&gt;
+&lt;dd&gt;Usando el Bitrate Variable más alto, este preajuste ofrece algo más de calidad si usted tiene muy buen oído o un equipo de audio de gama alta.&lt;/dd&gt;
+
+&lt;dt&gt;Calidad VBR&lt;/dt&gt;
+&lt;dd&gt;Este valor le permite establecer la calidad de salida.&lt;/dd&gt;
+
+&lt;dt&gt;opción rápida&lt;/dt&gt;
+&lt;dd&gt;Establece el nuevo VBR rápido para un fichero en particular. Recomendado.&lt;/dd&gt;
+
+&lt;dt&gt;CBR máximo&lt;/dt&gt;
+&lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando este Bitrate Constante.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Usando este Bitrate Constante, el preajuste le dará una buena calidad al bitrate especificado.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Usando este Bitrate Promedio, este preajuste le dará una calidad más alta que el Bitrate Constante para un bitrate específico.&lt;/dd&gt;
+</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation>Tasa de Bits:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Establece la Tasa de Bits objetivo (en kb/s).</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <translation>Calidad:</translation>
+    </message>
+</context>
+<context>
+    <name>oggConfigPage</name>
+    <message>
+        <source>Ogg encoding configuration</source>
+        <translation>Configuración de la codificación Ogg</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Usar ajustes por calidad (recomendado)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>OGG preferences: label caption</extracomment>
+        <translation>Calidad:</translation>
+    </message>
+    <message>
+        <source>Minimal bitrate:</source>
+        <translation>Tasa de Bits mínima:</translation>
+    </message>
+    <message>
+        <source>Sets minimum bitrate (in kb/s).</source>
+        <translation>Establece la Tasa de Bits mínima (en kb/s).</translation>
+    </message>
+    <message>
+        <source>Nominal bitrate:</source>
+        <translation>Tasa de Bits nominal:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Establece la Tasa de Bits objetivo (en kb/s).</translation>
+    </message>
+    <message>
+        <source>Maximum bitrate:</source>
+        <translation>Máxima Tasa de Bits:</translation>
+    </message>
+    <message>
+        <source>Sets maximum bitrate (in kb/s).</source>
+        <translation>Establece la máxima Tasa de Bits (en kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>wvConfigPage</name>
+    <message>
+        <source>WavPack encoding configuration</source>
+        <translation>Configuración de la codificación WavPack</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Compresión:</translation>
     </message>
 </context>
 </TS>

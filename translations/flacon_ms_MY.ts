@@ -90,6 +90,34 @@
     </message>
 </context>
 <context>
+    <name>AddProfileDialog</name>
+    <message>
+        <source>To create a profile, fill out the following information:</source>
+        <extracomment>Add profile dialog, capton</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create profile</source>
+        <comment>Button caption</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New profile name:</source>
+        <extracomment>Add profile dialog, profile name label</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio format:</source>
+        <extracomment>Add profile dialog, audio format label</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -224,10 +252,6 @@
         <translation>Bilangan bebenang dalam proses penukaran.</translation>
     </message>
     <message>
-        <source>First track pregap:</source>
-        <translation>Prasela trek pertama:</translation>
-    </message>
-    <message>
         <source>Rescan</source>
         <translation>Imbas semula</translation>
     </message>
@@ -236,19 +260,13 @@
         <translation>Laluan penuh ke aplikasi luar</translation>
     </message>
     <message>
-        <source>Extract to separate file</source>
-        <translation>Ekstrak menjadi fail berasingan</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Tambah ke trek pertama</translation>
-    </message>
-    <message>
         <source>General</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Am</translation>
     </message>
     <message>
         <source>Programs</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Program</translation>
     </message>
     <message>
@@ -307,176 +325,31 @@
         <translation>Saiz semula jika saiz imej lebih besar</translation>
     </message>
     <message>
-        <source>Resampling</source>
-        <translation>Persampelan Semula</translation>
+        <source>Audio formats</source>
+        <extracomment>Config fialog tab title</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>44100 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>44100 Hz</translation>
+        <source>+</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>48000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>48000 Hz</translation>
+        <source>-</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>96000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>96000 Hz</translation>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>192000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>192000 Hz</translation>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation>Kedalaman bit maksimum:</translation>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation>Kadar sampel maksimum:</translation>
-    </message>
-    <message>
-        <source>Per track CUE sheet</source>
-        <translation>Per lembar CUE trek</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation>Cipta per lembar CUE trek</translation>
-    </message>
-    <message>
-        <source>Same as source</source>
-        <comment>Item in combobox</comment>
-        <translation>Sama seperti sumber</translation>
-    </message>
-    <message>
-        <source>16-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>16-bit</translation>
-    </message>
-    <message>
-        <source>24-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>24-bit</translation>
-    </message>
-    <message>
-        <source>32-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>32-bit</translation>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation>Format nama fail:</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Sisip &quot;Artis&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Sisip &quot;Tajuk album&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Sisip &quot;Tahun&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Sisip &quot;Genre&quot;</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Guna &quot;%1&quot;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Aac</name>
-    <message>
-        <source>AAC encoding configuration</source>
-        <translation>Konfigurasi pengekodan AAC</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Guna tetapan kualiti (disarankan)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Guna kadar bit</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Kadar bit:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Tetapkan kadar bit sasaran (dalam kb/s).</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Flac</name>
-    <message>
-        <source>Compression:</source>
-        <translation>Pemampatan:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>GandaanUlangSemula</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Kiran gandaan:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Dilumpuhkan</translation>
-    </message>
-    <message>
-        <source>FLAC encoding configuration</source>
-        <translation>Konfigurasi pengekodan FLAC</translation>
+        <source>Delete profile</source>
+        <comment>Button caption</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Konfigurasi pengekodan MP3</translation>
-    </message>
-    <message>
-        <source>Preset:</source>
-        <translation>Praset:</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Guna kadar bit</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Kadar bit:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Tetapkan kadar bit sasaran (dalam kb/s).</translation>
-    </message>
-    <message>
-        <source>Use quality</source>
-        <translation>Guna kualiti</translation>
-    </message>
-    <message>
-        <source>Quality:</source>
-        <translation>Kualiti:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>GandaanUlangSemula</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Kiran gandaan:</translation>
-    </message>
     <message>
         <source>VBR medium</source>
         <translation>VBR medium</translation>
@@ -512,104 +385,6 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;Dengan menggunakan Kadar Bit Pembolehubah medium, praset ini dapat hasilkan ketelusan pada kebanyakan pendengar dan muzik.&lt;/dd&gt;
-
-&lt;dt&gt;VBR piawai, VBR piawai pantas&lt;/dt&gt;
-&lt;dd&gt;Dengan menggunakan Kadar Bit Pembolehubah medium, praset  amnya menjadi telus pada kebanyakan pendengar dengan kebanyakan muzik dan berkualiti tinggi.&lt;/dd&gt;
-
-&lt;dt&gt;VBR ekstrim, VBR esktrim pantas&lt;/dt&gt;
-&lt;dd&gt;Dengan menggunakan Kadar Bit Pembolehubah medium, praset ini dapat menghasilkan kualiti lebih tinggi berbanding mod piawai jika anda memiliki pendengaran terbaik atau peralatan audio berprestasi-tinggi.&lt;/dd&gt;
-
-&lt;dt&gt;Kualiti VBR&lt;/dt&gt;
-&lt;dd&gt;Pilihan Kadar Bit Pembolehubah ini membiarkan anda tentukan kualiti output.&lt;/dd&gt;
-
-&lt;dt&gt;pilihan pantas&lt;/dt&gt;
-&lt;dd&gt;Benarkan VBR pantas baharu untuk profil tertentu. Disarankan.&lt;/dd&gt;
-
-&lt;dt&gt;CBR gila&lt;/dt&gt;
-&lt;dd&gt;Jika anda mahu kualiti terbaik gila tanpa mengira saiz fail, dapat dicapai dengan menggunakan Kadar Bit Malar ini.&lt;/dd&gt;
-
-&lt;dt&gt;kbps CBR&lt;/dt&gt;
-&lt;dd&gt;Dengan menggunakan Kadar Bit Malar, praset ini dapat hasilkan kualiti terbaik pada kadar bit yang ditentukan.&lt;/dd&gt;
-
-&lt;dt&gt;kbps ABR&lt;/dt&gt;
-&lt;dd&gt;Dengan menggunakan Kadar Bit Purata, praset ini dapat hasilkan kualiti lebih tinggi berbanding pilihan Kadar Bit Malar bagi kadar bit yang ditentukan.&lt;/dd&gt;
-</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Ogg</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Konfigurasi pengekodan Ogg</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Guna tetapan kualiti (disarankan)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Guna kadar bit</translation>
-    </message>
-    <message>
-        <source>Minimal bitrate:</source>
-        <translation>Kadar bit minimum:</translation>
-    </message>
-    <message>
-        <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Tetapkan kadar bit minimum (dalam kb/s).</translation>
-    </message>
-    <message>
-        <source>Nominal bitrate:</source>
-        <translation>Kadar bit nominal:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Tetapkan kadar bit sasaran (dalam kb/s).</translation>
-    </message>
-    <message>
-        <source>Maximum bitrate:</source>
-        <translation>Kadar bit maksimum:</translation>
-    </message>
-    <message>
-        <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Tetapkan kadar bit maksimum (dalam kb/s).</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>GandaanUlangSemula</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Kiran gandaan:</translation>
     </message>
 </context>
 <context>
@@ -662,29 +437,6 @@ Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
     </message>
 </context>
 <context>
-    <name>ConfigPage_Wv</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Konfigurasi pengekodan WavPack</translation>
-    </message>
-    <message>
-        <source>Compression:</source>
-        <translation>Pemampatan:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>GandaanUlangSemula</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Kiran gandaan:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Dilumpuhkan</translation>
-    </message>
-</context>
-<context>
     <name>Converter</name>
     <message>
         <source>Conversion is not possible:</source>
@@ -703,19 +455,19 @@ Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
     </message>
 </context>
 <context>
-    <name>CueDiskSelectDialog</name>
+    <name>CueDiscSelectDialog</name>
     <message>
-        <source>Select disk</source>
-        <translation>Pilih cakera</translation>
+        <source>Select disc</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 [ disk %2 ]</source>
-        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [ cakera %2 ]</translation>
+        <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation>Fail CUE mengandungi maklumat berkenaan cakera berbilang. Cakera yang manakah mahu digunakan?</translation>
+        <source>%1 [ disc %2 ]</source>
+        <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -727,7 +479,7 @@ Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
     </message>
 </context>
 <context>
-    <name>Disk</name>
+    <name>Disc</name>
     <message>
         <source>Audio file not set.</source>
         <translation>Fail audio tidak ditetapkan</translation>
@@ -752,7 +504,7 @@ Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
     </message>
 </context>
 <context>
-    <name>DiskPipeline</name>
+    <name>DiscPipeline</name>
     <message>
         <source>I can't rename file:
 %1 to %2
@@ -795,32 +547,6 @@ Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
 This only affects the file size. All settings are lossless.</source>
         <translation>Tetapkan aras pemampatan, diantara %1 (terpantas) hingga %2 (pemampatan tertinggi).
 Ia hanya memberi kesan pada saiz fail. Semua tetapan adalah tak hilang.</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Dilumpuhkan</translation>
-    </message>
-    <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Per Trek</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Per Albu</translation>
-    </message>
-    <message>
-        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
-
-The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
-Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>GandaanUlangSemula atau ReplayGain merupakan piawaian untuk normalkan kelantangan diterima bagi format audio komputer.
-
-Analisis boleh dilakukan pada trek secara individu, supaya semua trek akan mempunyai volum yang setara ketika mainbalik.
-
-Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam sesebuah album.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -960,10 +686,6 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
         <translation>Konfigur pengekod</translation>
     </message>
     <message>
-        <source>Select result directory</source>
-        <translation>Pilih direktori hasil</translation>
-    </message>
-    <message>
         <source>Get from CDDB</source>
         <translation>Dapatkan dari CDDB</translation>
     </message>
@@ -982,34 +704,6 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
     <message>
         <source>Recursive album search</source>
         <translation>Gelintar album secara rekursif</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track number&quot;</source>
-        <translation>Sisip &quot;Nombor trek&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Sisip &quot;Jumlah bilangan trek&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Sisip &quot;Artis&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Sisip &quot;Tajuk album&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track title&quot;</source>
-        <translation>Sisip &quot;Tajuk trek&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Sisip &quot;Tahun&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Sisip &quot;Genre&quot;</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -1088,21 +782,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), fail hasil akan diganti dengan direktori yang sama sebagai sumber.</translation>
     </message>
     <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Guna &quot;%1&quot;</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Padam pola semasa dari sejarah</translation>
-    </message>
-    <message>
-        <source>Remove disk</source>
-        <translation>Tanggalkan cakera</translation>
-    </message>
-    <message>
-        <source>Remove disk from project</source>
-        <translation>Tanggalkan cakera dari projek</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1111,21 +792,6 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
     <message>
         <source>About Flacon</source>
         <translation>Perihal Flacon</translation>
-    </message>
-    <message>
-        <source>Standard music location</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Lokasi muzik piawai</translation>
-    </message>
-    <message>
-        <source>Desktop</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Desktop</translation>
-    </message>
-    <message>
-        <source>Same directory as CUE file</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Sama direktori sebagai fail CUE</translation>
     </message>
     <message>
         <source>Remove current directory from history</source>
@@ -1150,14 +816,6 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
         <source>Edit all tags…</source>
         <comment>Button text</comment>
         <translation>Sunting semua tag...</translation>
-    </message>
-    <message>
-        <source>Add disk…</source>
-        <translation>Tambah cakera...</translation>
-    </message>
-    <message>
-        <source>Select directory…</source>
-        <translation>Pilih direktori...</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
@@ -1198,12 +856,16 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Insert &quot;Disk number&quot;</source>
-        <translation>Sisip &quot;Nombor cakera&quot;</translation>
+        <source>Add disc…</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Insert &quot;Total number of disks&quot;</source>
-        <translation>Sisip &quot;Jumlah bilangan cakera&quot;</translation>
+        <source>Remove disc</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1225,6 +887,297 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
     <message>
         <source>Multiple values</source>
         <translation>Nilai berbilang</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirButton</name>
+    <message>
+        <source>Select directory…</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Pilih direktori...</translation>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Lokasi muzik piawai</translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Desktop</translation>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Sama direktori sebagai fail CUE</translation>
+    </message>
+    <message>
+        <source>Select result directory</source>
+        <translation>Pilih direktori hasil</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirComboBox</name>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>Sama direktori sebagai fail CUE</translation>
+    </message>
+</context>
+<context>
+    <name>OutPatternButton</name>
+    <message>
+        <source>Insert &quot;Track number&quot;</source>
+        <translation>Sisip &quot;Nombor trek&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of tracks&quot;</source>
+        <translation>Sisip &quot;Jumlah bilangan trek&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Sisip &quot;Artis&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Sisip &quot;Tajuk album&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Track title&quot;</source>
+        <translation>Sisip &quot;Tajuk trek&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Sisip &quot;Tahun&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Sisip &quot;Genre&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disc number&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of discs&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>Guna &quot;%1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
+        <source>Resampling settings:</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation>Kedalaman bit maksimum:</translation>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation>Kadar sampel maksimum:</translation>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Kiran gandaan:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Dilumpuhkan</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation>Cipta per lembar CUE trek</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <translation>Format nama fail:</translation>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Prasela trek pertama:</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Sisip &quot;Artis&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Sisip &quot;Tajuk album&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Sisip &quot;Tahun&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Sisip &quot;Genre&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Guna &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Ekstrak menjadi fail berasingan</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Tambah ke trek pertama</translation>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation>Sama seperti sumber</translation>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16-bit</translation>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24-bit</translation>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32-bit</translation>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>44100 Hz</translation>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>48000 Hz</translation>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>96000 Hz</translation>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>192000 Hz</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Dilumpuhkan</translation>
+    </message>
+    <message>
+        <source>Per Track</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Per Trek</translation>
+    </message>
+    <message>
+        <source>Per Album</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Per Albu</translation>
+    </message>
+    <message>
+        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
+
+The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
+Using the album-gain analysis will preserve the volume differences within an album.</source>
+        <translation>GandaanUlangSemula atau ReplayGain merupakan piawaian untuk normalkan kelantangan diterima bagi format audio komputer.
+
+Analisis boleh dilakukan pada trek secara individu, supaya semua trek akan mempunyai volum yang setara ketika mainbalik.
+
+Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam sesebuah album.</translation>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Hasil Fail</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>DIrektori:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Anda boleh layari direktori destinasi. Anda juga boleh menginputnya secara manual.
+
+Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), fail hasil akan diganti dengan direktori yang sama sebagai sumber.</translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Pola:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Token bermula dengan %. Anda boleh guna token berikut:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Bilangan trek  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Jumlah bilangan trek&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artis&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tajuk album&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tajuk trek&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tahun&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Jika anda terkurung teks seksyen yang mengandungi token dengan tanda kurungan, seksyen ini akan disembunyikan jika token tiada.</translation>
+    </message>
+    <message>
+        <source>%1 format</source>
+        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>Sama direktori sebagai fail CUE</translation>
+    </message>
+    <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1316,13 +1269,13 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
         <translation>&lt;b&gt;%1&lt;/b&gt; bukanlah fail CUE yang sah. Lembar CUE tidak mempunyai tag FILE.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; bukanlah fail CUE yang sah. Cakera %2 tidak mempunyai tag.</translation>
-    </message>
-    <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation>Tidak dapat simpan imej kulit hadapan &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1365,11 +1318,6 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
         <translation>Tahun:</translation>
     </message>
     <message>
-        <source>Disk number:</source>
-        <comment>Music tag name</comment>
-        <translation>Nombor cakera:</translation>
-    </message>
-    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation>Tajuk trek:</translation>
@@ -1388,6 +1336,11 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
         <source>Album performer:</source>
         <comment>Music tag name</comment>
         <translation>Pelaku album:</translation>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1504,6 +1457,167 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
 %1</source>
         <translation>Penukaran adalah mustahil.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>aacConfigPage</name>
+    <message>
+        <source>AAC encoding configuration</source>
+        <translation>Konfigurasi pengekodan AAC</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Guna tetapan kualiti (disarankan)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Kualiti:</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Kadar bit:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Tetapkan kadar bit sasaran (dalam kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>flacConfigPage</name>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation>Konfigurasi pengekodan FLAC</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Pemampatan:</translation>
+    </message>
+</context>
+<context>
+    <name>mp3ConfigPage</name>
+    <message>
+        <source>MP3 encoding configuration</source>
+        <translation>Konfigurasi pengekodan MP3</translation>
+    </message>
+    <message>
+        <source>Preset:</source>
+        <translation>Praset:</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+</source>
+        <extracomment>ererere</extracomment>
+        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;Dengan menggunakan Kadar Bit Pembolehubah medium, praset ini dapat hasilkan ketelusan pada kebanyakan pendengar dan muzik.&lt;/dd&gt;
+
+&lt;dt&gt;VBR piawai, VBR piawai pantas&lt;/dt&gt;
+&lt;dd&gt;Dengan menggunakan Kadar Bit Pembolehubah medium, praset  amnya menjadi telus pada kebanyakan pendengar dengan kebanyakan muzik dan berkualiti tinggi.&lt;/dd&gt;
+
+&lt;dt&gt;VBR ekstrim, VBR esktrim pantas&lt;/dt&gt;
+&lt;dd&gt;Dengan menggunakan Kadar Bit Pembolehubah medium, praset ini dapat menghasilkan kualiti lebih tinggi berbanding mod piawai jika anda memiliki pendengaran terbaik atau peralatan audio berprestasi-tinggi.&lt;/dd&gt;
+
+&lt;dt&gt;Kualiti VBR&lt;/dt&gt;
+&lt;dd&gt;Pilihan Kadar Bit Pembolehubah ini membiarkan anda tentukan kualiti output.&lt;/dd&gt;
+
+&lt;dt&gt;pilihan pantas&lt;/dt&gt;
+&lt;dd&gt;Benarkan VBR pantas baharu untuk profil tertentu. Disarankan.&lt;/dd&gt;
+
+&lt;dt&gt;CBR gila&lt;/dt&gt;
+&lt;dd&gt;Jika anda mahu kualiti terbaik gila tanpa mengira saiz fail, dapat dicapai dengan menggunakan Kadar Bit Malar ini.&lt;/dd&gt;
+
+&lt;dt&gt;kbps CBR&lt;/dt&gt;
+&lt;dd&gt;Dengan menggunakan Kadar Bit Malar, praset ini dapat hasilkan kualiti terbaik pada kadar bit yang ditentukan.&lt;/dd&gt;
+
+&lt;dt&gt;kbps ABR&lt;/dt&gt;
+&lt;dd&gt;Dengan menggunakan Kadar Bit Purata, praset ini dapat hasilkan kualiti lebih tinggi berbanding pilihan Kadar Bit Malar bagi kadar bit yang ditentukan.&lt;/dd&gt;
+</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation>Kadar bit:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Tetapkan kadar bit sasaran (dalam kb/s).</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <translation>Kualiti:</translation>
+    </message>
+</context>
+<context>
+    <name>oggConfigPage</name>
+    <message>
+        <source>Ogg encoding configuration</source>
+        <translation>Konfigurasi pengekodan Ogg</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Guna tetapan kualiti (disarankan)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>OGG preferences: label caption</extracomment>
+        <translation>Kualiti:</translation>
+    </message>
+    <message>
+        <source>Minimal bitrate:</source>
+        <translation>Kadar bit minimum:</translation>
+    </message>
+    <message>
+        <source>Sets minimum bitrate (in kb/s).</source>
+        <translation>Tetapkan kadar bit minimum (dalam kb/s).</translation>
+    </message>
+    <message>
+        <source>Nominal bitrate:</source>
+        <translation>Kadar bit nominal:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Tetapkan kadar bit sasaran (dalam kb/s).</translation>
+    </message>
+    <message>
+        <source>Maximum bitrate:</source>
+        <translation>Kadar bit maksimum:</translation>
+    </message>
+    <message>
+        <source>Sets maximum bitrate (in kb/s).</source>
+        <translation>Tetapkan kadar bit maksimum (dalam kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>wvConfigPage</name>
+    <message>
+        <source>WavPack encoding configuration</source>
+        <translation>Konfigurasi pengekodan WavPack</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Pemampatan:</translation>
     </message>
 </context>
 </TS>

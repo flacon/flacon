@@ -90,6 +90,34 @@
     </message>
 </context>
 <context>
+    <name>AddProfileDialog</name>
+    <message>
+        <source>To create a profile, fill out the following information:</source>
+        <extracomment>Add profile dialog, capton</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create profile</source>
+        <comment>Button caption</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New profile name:</source>
+        <extracomment>Add profile dialog, profile name label</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio format:</source>
+        <extracomment>Add profile dialog, audio format label</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -224,10 +252,6 @@
         <translation>Počet vláken při převodu.</translation>
     </message>
     <message>
-        <source>First track pregap:</source>
-        <translation>Předmezera před první skladbou:</translation>
-    </message>
-    <message>
         <source>Rescan</source>
         <translation>Prohledat znovu</translation>
     </message>
@@ -236,19 +260,13 @@
         <translation>Celá cesta k vnějšímu programu</translation>
     </message>
     <message>
-        <source>Extract to separate file</source>
-        <translation>Vytáhnout do samostatného souboru</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Přidat k první skladbě</translation>
-    </message>
-    <message>
         <source>General</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Obecné</translation>
     </message>
     <message>
         <source>Programs</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Programy</translation>
     </message>
     <message>
@@ -307,176 +325,31 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Resampling</source>
+        <source>Audio formats</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>44100 Hz</source>
-        <comment>Item in combobox</comment>
+        <source>+</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>48000 Hz</source>
-        <comment>Item in combobox</comment>
+        <source>-</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>96000 Hz</source>
-        <comment>Item in combobox</comment>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>192000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Per track CUE sheet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Same as source</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>16-bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>24-bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>32-bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Vložit &quot;Umělec&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Vložit &quot;Název alba&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Vložit &quot;Rok&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Vložit &quot;Žánr&quot;</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Použít &quot;%1&quot;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Aac</name>
-    <message>
-        <source>AAC encoding configuration</source>
-        <translation>Nastavení kódování AAC</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Použít nastavení kvality (doporučeno)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Použít datový tok</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Datový tok:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Nastaví cílový datový tok (v kb/s).</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Flac</name>
-    <message>
-        <source>Compression:</source>
-        <translation>Zhuštění:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>Vyrovnání hlasitosti</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Spočítat zesílení:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Zakázáno</translation>
-    </message>
-    <message>
-        <source>FLAC encoding configuration</source>
+        <source>Delete profile</source>
+        <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Nastavení kódování MP3</translation>
-    </message>
-    <message>
-        <source>Preset:</source>
-        <translation>Přednastavení:</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Použít datový tok</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Datový tok:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Nastaví cílový datový tok (v kb/s).</translation>
-    </message>
-    <message>
-        <source>Use quality</source>
-        <translation>Použít kvalitu</translation>
-    </message>
-    <message>
-        <source>Quality:</source>
-        <translation>Kvalita:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>Vyrovnání hlasitosti</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Spočítat zesílení:</translation>
-    </message>
     <message>
         <source>VBR medium</source>
         <translation>Proměnlivý datový tok (VBR), střední</translation>
@@ -512,104 +385,6 @@
     <message>
         <source>ABR kbps</source>
         <translation>Kb/s průměrného datového toku (ABR)</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;Proměnlivý datový tok (VBR) Střední&lt;/dt&gt;
-&lt;dd&gt;Při použití středního proměnlivého datového toku by toto přednastavení mělo většině lidí u většiny hudby poskytnout téměř průzračnost.&lt;/dd&gt;
-
-&lt;dt&gt;Proměnlivý datový tok (VBR), obvyklý, Proměnlivý datový tok (VBR), obvyklý, rychle&lt;/dt&gt;
-&lt;dd&gt;Při použití obvyklého proměnlivého datového toku by toto přednastavení mělo obecně pro většinu lidí u většiny hudby být průzračné a jakost záznamu je již docela vysoká.&lt;/dd&gt;
-
-&lt;dt&gt;Proměnlivý datový tok (VBR), dokonalý, Proměnlivý datový tok (VBR), dokonalý, rychle&lt;/dt&gt;
-&lt;dd&gt;Pokud máte hodně dobrý sluch nebo  velice dobré zařízení, toto přednastavení vám poskytne lehce vyšší jakost, než jakou obdržíte při režimu běžné kvality.&lt;/dd&gt;
-
-&lt;dt&gt;Proměnlivý datový tok (VBR), jakost&lt;/dt&gt;
-&lt;dd&gt;Tato volba pro proměnlivý datový tok (VBR) vám umožní zadat jakost výstupu.&lt;/dd&gt;
-
-&lt;dt&gt;Rychlá volba&lt;/dt&gt;
-&lt;dd&gt;Povolí nový rychlý proměnlivý datový tok (VBR) pro zvláštní profil. Toto se doporučuje.&lt;/dd&gt;
-
-&lt;dt&gt;Stálý datový tok (CBR), zázračný&lt;/dt&gt;
-&lt;dd&gt;Pokud musíte mít naprosto nejvyšší kvalitu bez ohledu na velikost souboru, dosáhnete toho použitím tohoto stálého datového toku.&lt;/dd&gt;
-
-&lt;dt&gt;Kb/s stálého datového toku (CBR )&lt;/dt&gt;
-&lt;dd&gt;Použití tohoto přednastavení pro stálý datový tok vám obvykle dá dobrou kvalitu při zadaném datovém toku.&lt;/dd&gt;
-
-&lt;dt&gt;Kb/s průměrného datového toku (ABR )&lt;/dt&gt;
-&lt;dd&gt;Použití tohoto přednastavení pro průměrný datový tok vám obvykle dá vyšší kvalitu, než jakou vám dá volba pro stálý datový tok pro zadaný datový tok.&lt;/dd&gt;
-</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Ogg</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Nastavení kódování Ogg</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Použít nastavení kvality (doporučeno)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Použít datový tok</translation>
-    </message>
-    <message>
-        <source>Minimal bitrate:</source>
-        <translation>Nejmenší datový tok:</translation>
-    </message>
-    <message>
-        <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Nastaví nejmenší datový tok (v kb/s).</translation>
-    </message>
-    <message>
-        <source>Nominal bitrate:</source>
-        <translation>Jmenovitý datový tok:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Nastaví cílový datový tok (v kb/s).</translation>
-    </message>
-    <message>
-        <source>Maximum bitrate:</source>
-        <translation>Největší datový tok:</translation>
-    </message>
-    <message>
-        <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Nastaví největší datový tok (v kb/s).</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>Vyrovnání hlasitosti</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Spočítat zesílení:</translation>
     </message>
 </context>
 <context>
@@ -661,29 +436,6 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     </message>
 </context>
 <context>
-    <name>ConfigPage_Wv</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Nastavení kódování WavPack</translation>
-    </message>
-    <message>
-        <source>Compression:</source>
-        <translation>Komprese:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>Vyrovnání hlasitosti</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Spočítat zesílení:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Zakázáno</translation>
-    </message>
-</context>
-<context>
     <name>Converter</name>
     <message>
         <source>Conversion is not possible:</source>
@@ -702,18 +454,18 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     </message>
 </context>
 <context>
-    <name>CueDiskSelectDialog</name>
+    <name>CueDiscSelectDialog</name>
     <message>
-        <source>Select disk</source>
-        <translation>Vybrat disk</translation>
+        <source>Select disc</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 [ disk %2 ]</source>
-        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [disk %2]</translation>
+        <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
+        <source>%1 [ disc %2 ]</source>
+        <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -726,7 +478,7 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     </message>
 </context>
 <context>
-    <name>Disk</name>
+    <name>Disc</name>
     <message>
         <source>Audio file not set.</source>
         <translation>Zvukový soubor nenastaven.</translation>
@@ -751,7 +503,7 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     </message>
 </context>
 <context>
-    <name>DiskPipeline</name>
+    <name>DiscPipeline</name>
     <message>
         <source>I can't rename file:
 %1 to %2
@@ -793,31 +545,6 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
 This only affects the file size. All settings are lossless.</source>
         <translation>Nastaví úroveň zhuštění mezi %1 (nejrychlejší) a %2 (nejvyšší zhuštění).
 Ovlivní to jenom velikost souboru. Všechna nastavení jsou bezztrátová.</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Zakázáno</translation>
-    </message>
-    <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>U skladby</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>U alba</translation>
-    </message>
-    <message>
-        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
-
-The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
-Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>Vyrovnání hlasitosti je běžným postupem při normalizaci vnímané hlasitosti počítačových zvukových formátů.
-
-Zpracování je možné provést u jednotlivých skladeb, takže při přehrávání budou mít všechny skladby tutéž úroveň hlasitosti. 
-Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci alba.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -956,10 +683,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <translation>Nastavit kodek</translation>
     </message>
     <message>
-        <source>Select result directory</source>
-        <translation>Vybrat adresář s výsledky</translation>
-    </message>
-    <message>
         <source>Get from CDDB</source>
         <translation>Získat z CDDB</translation>
     </message>
@@ -978,34 +701,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
     <message>
         <source>Recursive album search</source>
         <translation>Rekurzivní hledání alb</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track number&quot;</source>
-        <translation>Vložit &quot;Číslo skladby&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Vložit &quot;Celkový počet skladeb&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Vložit &quot;Umělec&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Vložit &quot;Název alba&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track title&quot;</source>
-        <translation>Vložit &quot;Název skladby&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Vložit &quot;Rok&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Vložit &quot;Žánr&quot;</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -1084,21 +779,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výsledné soubory budou umístěny ve stejném adresáři jako zdroj.</translation>
     </message>
     <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Použít &quot;%1&quot;</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Smazat nynější vzor z historie</translation>
-    </message>
-    <message>
-        <source>Remove disk</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove disk from project</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Preferences</source>
@@ -1107,21 +789,6 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>About Flacon</source>
         <translation>O programu Flacon</translation>
-    </message>
-    <message>
-        <source>Standard music location</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Desktop</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Same directory as CUE file</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove current directory from history</source>
@@ -1145,14 +812,6 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>Edit all tags…</source>
         <comment>Button text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add disk…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select directory…</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1194,11 +853,15 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Insert &quot;Disk number&quot;</source>
+        <source>Add disc…</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Insert &quot;Total number of disks&quot;</source>
+        <source>Remove disc</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1221,6 +884,296 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>Multiple values</source>
         <translation>Více hodnot</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirButton</name>
+    <message>
+        <source>Select directory…</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select result directory</source>
+        <translation>Vybrat adresář s výsledky</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirComboBox</name>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>OutPatternButton</name>
+    <message>
+        <source>Insert &quot;Track number&quot;</source>
+        <translation>Vložit &quot;Číslo skladby&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of tracks&quot;</source>
+        <translation>Vložit &quot;Celkový počet skladeb&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Vložit &quot;Umělec&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Vložit &quot;Název alba&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Track title&quot;</source>
+        <translation>Vložit &quot;Název skladby&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Vložit &quot;Rok&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Vložit &quot;Žánr&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disc number&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of discs&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>Použít &quot;%1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
+        <source>Resampling settings:</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Spočítat zesílení:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Zakázáno</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Předmezera před první skladbou:</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Vložit &quot;Umělec&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Vložit &quot;Název alba&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Vložit &quot;Rok&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Vložit &quot;Žánr&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Použít &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Vytáhnout do samostatného souboru</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Přidat k první skladbě</translation>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Zakázáno</translation>
+    </message>
+    <message>
+        <source>Per Track</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>U skladby</translation>
+    </message>
+    <message>
+        <source>Per Album</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>U alba</translation>
+    </message>
+    <message>
+        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
+
+The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
+Using the album-gain analysis will preserve the volume differences within an album.</source>
+        <translation>Vyrovnání hlasitosti je běžným postupem při normalizaci vnímané hlasitosti počítačových zvukových formátů.
+
+Zpracování je možné provést u jednotlivých skladeb, takže při přehrávání budou mít všechny skladby tutéž úroveň hlasitosti. 
+Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci alba.</translation>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Výsledné soubory</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Adresář:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Můžete procházet adresáři do cílového adresáře. Také jej můžete zadat ručně.
+
+Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výsledné soubory budou umístěny ve stejném adresáři jako zdroj.</translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Vzor:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Symboly začínají %. Můžete použít následující symboly:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Číslo skladby  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Celkový počet skladeb&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Umělec&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název alba&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název skladby&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Rok&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Žánr&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
+    </message>
+    <message>
+        <source>%1 format</source>
+        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1312,12 +1265,12 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1361,11 +1314,6 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
         <translation>Rok:</translation>
     </message>
     <message>
-        <source>Disk number:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation type="unfinished"/>
@@ -1382,6 +1330,11 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     </message>
     <message>
         <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disc number:</source>
         <comment>Music tag name</comment>
         <translation type="unfinished"/>
     </message>
@@ -1500,6 +1453,167 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
 %1</source>
         <translation>Převod není možný.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>aacConfigPage</name>
+    <message>
+        <source>AAC encoding configuration</source>
+        <translation>Nastavení kódování AAC</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Použít nastavení kvality (doporučeno)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Kvalita:</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Datový tok:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Nastaví cílový datový tok (v kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>flacConfigPage</name>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Komprese:</translation>
+    </message>
+</context>
+<context>
+    <name>mp3ConfigPage</name>
+    <message>
+        <source>MP3 encoding configuration</source>
+        <translation>Nastavení kódování MP3</translation>
+    </message>
+    <message>
+        <source>Preset:</source>
+        <translation>Přednastavení:</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+</source>
+        <extracomment>ererere</extracomment>
+        <translation>&lt;dt&gt;Proměnlivý datový tok (VBR) Střední&lt;/dt&gt;
+&lt;dd&gt;Při použití středního proměnlivého datového toku by toto přednastavení mělo většině lidí u většiny hudby poskytnout téměř průzračnost.&lt;/dd&gt;
+
+&lt;dt&gt;Proměnlivý datový tok (VBR), obvyklý, Proměnlivý datový tok (VBR), obvyklý, rychle&lt;/dt&gt;
+&lt;dd&gt;Při použití obvyklého proměnlivého datového toku by toto přednastavení mělo obecně pro většinu lidí u většiny hudby být průzračné a jakost záznamu je již docela vysoká.&lt;/dd&gt;
+
+&lt;dt&gt;Proměnlivý datový tok (VBR), dokonalý, Proměnlivý datový tok (VBR), dokonalý, rychle&lt;/dt&gt;
+&lt;dd&gt;Pokud máte hodně dobrý sluch nebo  velice dobré zařízení, toto přednastavení vám poskytne lehce vyšší jakost, než jakou obdržíte při režimu běžné kvality.&lt;/dd&gt;
+
+&lt;dt&gt;Proměnlivý datový tok (VBR), jakost&lt;/dt&gt;
+&lt;dd&gt;Tato volba pro proměnlivý datový tok (VBR) vám umožní zadat jakost výstupu.&lt;/dd&gt;
+
+&lt;dt&gt;Rychlá volba&lt;/dt&gt;
+&lt;dd&gt;Povolí nový rychlý proměnlivý datový tok (VBR) pro zvláštní profil. Toto se doporučuje.&lt;/dd&gt;
+
+&lt;dt&gt;Stálý datový tok (CBR), zázračný&lt;/dt&gt;
+&lt;dd&gt;Pokud musíte mít naprosto nejvyšší kvalitu bez ohledu na velikost souboru, dosáhnete toho použitím tohoto stálého datového toku.&lt;/dd&gt;
+
+&lt;dt&gt;Kb/s stálého datového toku (CBR )&lt;/dt&gt;
+&lt;dd&gt;Použití tohoto přednastavení pro stálý datový tok vám obvykle dá dobrou kvalitu při zadaném datovém toku.&lt;/dd&gt;
+
+&lt;dt&gt;Kb/s průměrného datového toku (ABR )&lt;/dt&gt;
+&lt;dd&gt;Použití tohoto přednastavení pro průměrný datový tok vám obvykle dá vyšší kvalitu, než jakou vám dá volba pro stálý datový tok pro zadaný datový tok.&lt;/dd&gt;
+</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation>Datový tok:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Nastaví cílový datový tok (v kb/s).</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <translation>Kvalita:</translation>
+    </message>
+</context>
+<context>
+    <name>oggConfigPage</name>
+    <message>
+        <source>Ogg encoding configuration</source>
+        <translation>Nastavení kódování Ogg</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Použít nastavení kvality (doporučeno)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>OGG preferences: label caption</extracomment>
+        <translation>Kvalita:</translation>
+    </message>
+    <message>
+        <source>Minimal bitrate:</source>
+        <translation>Nejmenší datový tok:</translation>
+    </message>
+    <message>
+        <source>Sets minimum bitrate (in kb/s).</source>
+        <translation>Nastaví nejmenší datový tok (v kb/s).</translation>
+    </message>
+    <message>
+        <source>Nominal bitrate:</source>
+        <translation>Jmenovitý datový tok:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Nastaví cílový datový tok (v kb/s).</translation>
+    </message>
+    <message>
+        <source>Maximum bitrate:</source>
+        <translation>Největší datový tok:</translation>
+    </message>
+    <message>
+        <source>Sets maximum bitrate (in kb/s).</source>
+        <translation>Nastaví největší datový tok (v kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>wvConfigPage</name>
+    <message>
+        <source>WavPack encoding configuration</source>
+        <translation>Nastavení kódování WavPack</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Komprese:</translation>
     </message>
 </context>
 </TS>

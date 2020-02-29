@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string extracomment="Add profile dialog title">Add profile</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -48,14 +48,14 @@
      <item row="0" column="0">
       <widget class="QLabel" name="profileNameLbl">
        <property name="text">
-        <string extracomment="Add profile dialog, profile name label">New profile name</string>
+        <string extracomment="Add profile dialog, profile name label">New profile name:</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string extracomment="Add profile dialog, audio format label">Audio format</string>
+        <string extracomment="Add profile dialog, audio format label">Audio format:</string>
        </property>
       </widget>
      </item>

@@ -47,7 +47,7 @@
          </sizepolicy>
         </property>
         <attribute name="title">
-         <string>Audio formats</string>
+         <string extracomment="Config fialog tab title">Audio formats</string>
         </attribute>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <property name="sizeConstraint">
@@ -157,7 +157,7 @@
        </widget>
        <widget class="QWidget" name="generalPage">
         <attribute name="title">
-         <string>General</string>
+         <string extracomment="Config fialog tab title">General</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_6">
          <property name="sizeConstraint">
@@ -356,7 +356,7 @@
        </widget>
        <widget class="QWidget" name="programsPage">
         <attribute name="title">
-         <string>Programs</string>
+         <string extracomment="Config fialog tab title">Programs</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
@@ -373,7 +373,7 @@
               <x>0</x>
               <y>0</y>
               <width>684</width>
-              <height>465</height>
+              <height>478</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_12">

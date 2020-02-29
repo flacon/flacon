@@ -54,7 +54,7 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
 
 
     ui->encoderGroup->setTitle(
-                tr("%1 encoder settings", "Preferences group title, %1 is a audio format name")
+                tr("%1 encoder settings:", "Preferences group title, %1 is a audio format name")
                 .arg(profile.formatName()));
 
     if (mEncoderWidget->layout())

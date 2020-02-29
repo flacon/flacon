@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
@@ -149,7 +149,7 @@ If you surround sections of text that contain a token with braces, these section
    <item>
     <widget class="QGroupBox" name="encoderGroup">
      <property name="title">
-      <string notr="true">FLAC encoder settings</string>
+      <string notr="true">FLAC encoder settings:</string>
      </property>
      <property name="flat">
       <bool>true</bool>

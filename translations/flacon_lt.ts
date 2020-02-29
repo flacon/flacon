@@ -90,6 +90,34 @@
     </message>
 </context>
 <context>
+    <name>AddProfileDialog</name>
+    <message>
+        <source>To create a profile, fill out the following information:</source>
+        <extracomment>Add profile dialog, capton</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create profile</source>
+        <comment>Button caption</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New profile name:</source>
+        <extracomment>Add profile dialog, profile name label</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio format:</source>
+        <extracomment>Add profile dialog, audio format label</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -224,10 +252,6 @@
         <translation>Gijų skaičius konvertavimo procese.</translation>
     </message>
     <message>
-        <source>First track pregap:</source>
-        <translation>Pirmo takelio &quot;pregap&quot;:</translation>
-    </message>
-    <message>
         <source>Rescan</source>
         <translation>Peržiūrėti iš naujo</translation>
     </message>
@@ -236,19 +260,13 @@
         <translation>Pilnas kelias į išorines programas</translation>
     </message>
     <message>
-        <source>Extract to separate file</source>
-        <translation>Išskleisti į atskirą failą</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Pridėti prie pirmo takelio</translation>
-    </message>
-    <message>
         <source>General</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Bendra</translation>
     </message>
     <message>
         <source>Programs</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Programos</translation>
     </message>
     <message>
@@ -307,176 +325,31 @@
         <translation>Keisti dydį, jei paveikslo dydis didesnis nei</translation>
     </message>
     <message>
-        <source>Resampling</source>
-        <translation>Ėminių atrankos keitimas</translation>
+        <source>Audio formats</source>
+        <extracomment>Config fialog tab title</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>44100 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>44100 Hz</translation>
+        <source>+</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>48000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>48000 Hz</translation>
+        <source>-</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>96000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>96000 Hz</translation>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>192000 Hz</source>
-        <comment>Item in combobox</comment>
-        <translation>192000 Hz</translation>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation>Didžiausias bitų gylis:</translation>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation>Didžiausias skaitmeninimo dažnis:</translation>
-    </message>
-    <message>
-        <source>Per track CUE sheet</source>
-        <translation>Kiekvieno takelio CUE lapas</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation>Kurti kiekvieno takelio CUE lapą</translation>
-    </message>
-    <message>
-        <source>Same as source</source>
-        <comment>Item in combobox</comment>
-        <translation>Toks pats kaip šaltinio</translation>
-    </message>
-    <message>
-        <source>16-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>16-bitų</translation>
-    </message>
-    <message>
-        <source>24-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>24-bitų</translation>
-    </message>
-    <message>
-        <source>32-bit</source>
-        <comment>Item in combobox</comment>
-        <translation>32-bitų</translation>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation>Failo pavadinimo formatas:</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Įterpti &quot;Atlikėją&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Įterpti &quot;Albumo pavadinimą&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Įterpti &quot;Metus&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Įterpti &quot;Žanrą&quot;</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Naudoti &quot;%1&quot;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Aac</name>
-    <message>
-        <source>AAC encoding configuration</source>
-        <translation>AAC kodavimo konfigūracija</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Naudoti kokybės nustatymą (rekomenduojama)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Naudojamas pralaidumas</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Pralaidumas:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Nustato reikiamą pralaidumą (kb/s).</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Flac</name>
-    <message>
-        <source>Compression:</source>
-        <translation>Glaudinimas:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Apskaičiuoti stiprinimą:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Išjungta</translation>
-    </message>
-    <message>
-        <source>FLAC encoding configuration</source>
-        <translation>FLAC kodavimo konfigūracija</translation>
+        <source>Delete profile</source>
+        <comment>Button caption</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>MP3 kodavimo konfigūracija</translation>
-    </message>
-    <message>
-        <source>Preset:</source>
-        <translation>Parinktis:</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Naudojamas pralaidumas</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Pralaidumas:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Nustato reikiamą pralaidumą (kb/s).</translation>
-    </message>
-    <message>
-        <source>Use quality</source>
-        <translation>Naudojama kokybė</translation>
-    </message>
-    <message>
-        <source>Quality:</source>
-        <translation>Kokybė:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Apskaičiuoti stiprinimą:</translation>
-    </message>
     <message>
         <source>VBR medium</source>
         <translation>VBR vidutinė</translation>
@@ -512,104 +385,6 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR vidutinė&lt;/dt&gt;
-&lt;dd&gt;Naudojant vidutinį kintamąjį pralaidumą, daugelis žmonių neišgirs kokybės iškraipymų daugumoje muzikos įrašų.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standartinė, VBR standartinė greita&lt;/dt&gt;
-&lt;dd&gt;Naudojant standartinį kintamąjį pralaidumą, daugelis žmonių neišgirs kokybės iškraipymų daugumoje muzikos įrašų ir be to, yra pateikiama ganėtinai aukšta kokybė.&lt;/dd&gt;
-
-&lt;dt&gt;VBR ekstremali, VBR ekstremali greita&lt;/dt&gt;
-&lt;dd&gt;Naudojant aukščiausią, koks tik įmanomas, kintamąjį pralaidumą, ši parinktis pateiks šiek tiek geresnę kokybę nei standartinė veiksena. Tai pastebėsite tik tuo atveju, jei turite gerą klausą ar aukštos klasės muzikinę įrangą.&lt;/dd&gt;
-
-&lt;dt&gt;VBR kokybė&lt;/dt&gt;
-&lt;dd&gt;Ši kintamojo pralaidumo parinktis leidžia jums nurodyti išvesties kokybę.&lt;/dd&gt;
-
-&lt;dt&gt;greita parinktis&lt;/dt&gt;
-&lt;dd&gt;Įjungia tam tikram profiliui naują, greitąją VBR parinktį. Tai yra rekomenduojama.&lt;/dd&gt;
-
-&lt;dt&gt;CBR beprotiška&lt;/dt&gt;
-&lt;dd&gt;Jeigu jūs privalote turėti pačią aukščiausią kokybę, neatsižvelgiant į failo dydį, tai pasieksite, naudodami šį pastovųjį pralaidumą.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Naudojant šį pastovųjį pralaidumą, gausite gerą kokybę su nurodytu pralaidumu.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Naudojant šį vidutinį pralaidumą, dažniausiai, gausite aukštesnę nurodyto pralaidumo kokybę, negu tą, kurią gautumėte, naudodami pastoviojo pralaidumo parinktį.&lt;/dd&gt;
-</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Ogg</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Ogg kodavimo konfigūracija</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Naudoti kokybės nustatymą (rekomenduojama)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Naudojamas pralaidumas</translation>
-    </message>
-    <message>
-        <source>Minimal bitrate:</source>
-        <translation>Mažiausias pralaidumas:</translation>
-    </message>
-    <message>
-        <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Nustato mažiausią pralaidumą (kb/s).</translation>
-    </message>
-    <message>
-        <source>Nominal bitrate:</source>
-        <translation>Nominalus pralaidumas:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Nustato reikiamą pralaidumą (kb/s).</translation>
-    </message>
-    <message>
-        <source>Maximum bitrate:</source>
-        <translation>Didžiausias pralaidumas:</translation>
-    </message>
-    <message>
-        <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Nustato didžiausią pralaidumą (kb/s).</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Apskaičiuoti stiprinimą:</translation>
     </message>
 </context>
 <context>
@@ -662,29 +437,6 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     </message>
 </context>
 <context>
-    <name>ConfigPage_Wv</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>WavPack kodavimo konfigūracija</translation>
-    </message>
-    <message>
-        <source>Compression:</source>
-        <translation>Glaudinimas:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Apskaičiuoti stiprinimą:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Išjungta</translation>
-    </message>
-</context>
-<context>
     <name>Converter</name>
     <message>
         <source>Conversion is not possible:</source>
@@ -703,19 +455,19 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     </message>
 </context>
 <context>
-    <name>CueDiskSelectDialog</name>
+    <name>CueDiscSelectDialog</name>
     <message>
-        <source>Select disk</source>
-        <translation>Pasirinkti diską</translation>
+        <source>Select disc</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 [ disk %2 ]</source>
-        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [ diskas %2 ]</translation>
+        <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation>CUE faile yra informacija apie kelis diskus. Kurį diską norėtumėte naudoti?</translation>
+        <source>%1 [ disc %2 ]</source>
+        <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -727,7 +479,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     </message>
 </context>
 <context>
-    <name>Disk</name>
+    <name>Disc</name>
     <message>
         <source>Audio file not set.</source>
         <translation>Nenustatytas garso failas.</translation>
@@ -752,7 +504,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     </message>
 </context>
 <context>
-    <name>DiskPipeline</name>
+    <name>DiscPipeline</name>
     <message>
         <source>I can't rename file:
 %1 to %2
@@ -795,31 +547,6 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
 This only affects the file size. All settings are lossless.</source>
         <translation>Nustato glaudinimo lygį, tarp %1 (greičiausias) ir %2 (didžiausias glaudinimas).
 Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Išjungta</translation>
-    </message>
-    <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Kiekvienam takeliui</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Kiekvienam albumui</translation>
-    </message>
-    <message>
-        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
-
-The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
-Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain yra standartas, kuris yra skirtas normalizuoti girdimą kompiuterio garso formatų garsumą.
-
-Gali būti vykdoma atskirų takelių analizė, kurios dėka, visų takelių grojimo garsis bus vienodas.
-Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -959,10 +686,6 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <translation>Konfigūruoti koduotuvą</translation>
     </message>
     <message>
-        <source>Select result directory</source>
-        <translation>Pasirinkite galutinį katalogą</translation>
-    </message>
-    <message>
         <source>Get from CDDB</source>
         <translation>Gauti iš CDDB</translation>
     </message>
@@ -981,34 +704,6 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Recursive album search</source>
         <translation>Rekursinė albumų paieška</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track number&quot;</source>
-        <translation>Įterpti &quot;Takelio numerį&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Įterpti &quot;Bendrą takelių skaičių&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Įterpti &quot;Atlikėją&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Įterpti &quot;Albumo pavadinimą&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track title&quot;</source>
-        <translation>Įterpti &quot;Takelio pavadinimą&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Įterpti &quot;Metus&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Įterpti &quot;Žanrą&quot;</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -1087,21 +782,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
     </message>
     <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Naudoti &quot;%1&quot;</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Ištrinti esamą šabloną iš istorijos</translation>
-    </message>
-    <message>
-        <source>Remove disk</source>
-        <translation>Šalinti diską</translation>
-    </message>
-    <message>
-        <source>Remove disk from project</source>
-        <translation>Šalinti diską iš projekto</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1110,21 +792,6 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     <message>
         <source>About Flacon</source>
         <translation>Apie Flacon</translation>
-    </message>
-    <message>
-        <source>Standard music location</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Standartinė muzikos vieta</translation>
-    </message>
-    <message>
-        <source>Desktop</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Darbalaukis</translation>
-    </message>
-    <message>
-        <source>Same directory as CUE file</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation>Tas pats katalogas kaip ir CUE failo</translation>
     </message>
     <message>
         <source>Remove current directory from history</source>
@@ -1149,14 +816,6 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <source>Edit all tags…</source>
         <comment>Button text</comment>
         <translation>Taisyti visas žymes…</translation>
-    </message>
-    <message>
-        <source>Add disk…</source>
-        <translation>Pridėti diską…</translation>
-    </message>
-    <message>
-        <source>Select directory…</source>
-        <translation>Pasirinkti katalogą…</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
@@ -1197,12 +856,16 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Insert &quot;Disk number&quot;</source>
-        <translation>Įterpti &quot;Disko numerį&quot;</translation>
+        <source>Add disc…</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Insert &quot;Total number of disks&quot;</source>
-        <translation>Įterpti &quot;Bendrą diskų skaičių&quot;</translation>
+        <source>Remove disc</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1224,6 +887,296 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     <message>
         <source>Multiple values</source>
         <translation>Kelios reikšmės</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirButton</name>
+    <message>
+        <source>Select directory…</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Pasirinkti katalogą…</translation>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Standartinė muzikos vieta</translation>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Darbalaukis</translation>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation>Tas pats katalogas kaip ir CUE failo</translation>
+    </message>
+    <message>
+        <source>Select result directory</source>
+        <translation>Pasirinkite galutinį katalogą</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirComboBox</name>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>Tas pats katalogas kaip ir CUE failo</translation>
+    </message>
+</context>
+<context>
+    <name>OutPatternButton</name>
+    <message>
+        <source>Insert &quot;Track number&quot;</source>
+        <translation>Įterpti &quot;Takelio numerį&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of tracks&quot;</source>
+        <translation>Įterpti &quot;Bendrą takelių skaičių&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Įterpti &quot;Atlikėją&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Įterpti &quot;Albumo pavadinimą&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Track title&quot;</source>
+        <translation>Įterpti &quot;Takelio pavadinimą&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Įterpti &quot;Metus&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Įterpti &quot;Žanrą&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disc number&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of discs&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>Naudoti &quot;%1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
+        <source>Resampling settings:</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation>Didžiausias bitų gylis:</translation>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation>Didžiausias skaitmeninimo dažnis:</translation>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Apskaičiuoti stiprinimą:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Išjungta</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation>Kurti kiekvieno takelio CUE lapą</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <translation>Failo pavadinimo formatas:</translation>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Pirmo takelio &quot;pregap&quot;:</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Įterpti &quot;Atlikėją&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Įterpti &quot;Albumo pavadinimą&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Įterpti &quot;Metus&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Įterpti &quot;Žanrą&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Naudoti &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Išskleisti į atskirą failą</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Pridėti prie pirmo takelio</translation>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation>Toks pats kaip šaltinio</translation>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>16-bitų</translation>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>24-bitų</translation>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation>32-bitų</translation>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>44100 Hz</translation>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>48000 Hz</translation>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>96000 Hz</translation>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation>192000 Hz</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Išjungta</translation>
+    </message>
+    <message>
+        <source>Per Track</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Kiekvienam takeliui</translation>
+    </message>
+    <message>
+        <source>Per Album</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Kiekvienam albumui</translation>
+    </message>
+    <message>
+        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
+
+The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
+Using the album-gain analysis will preserve the volume differences within an album.</source>
+        <translation>ReplayGain yra standartas, kuris yra skirtas normalizuoti girdimą kompiuterio garso formatų garsumą.
+
+Gali būti vykdoma atskirų takelių analizė, kurios dėka, visų takelių grojimo garsis bus vienodas.
+Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</translation>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Galutiniai failai</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Katalogas:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
+
+Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Šablonas:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Ženklai prasideda nuo %. Galite naudoti sekančius ženklus:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Takelio numeris  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Bendras takelių skaičius&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Atlikėjas&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumo pavadinimas&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Takelio pavadinimas&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Metai&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Žanras&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, tuomet, jei ženklas yra tuščias, tos sekcijos bus paslėptos.</translation>
+    </message>
+    <message>
+        <source>%1 format</source>
+        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>Tas pats katalogas kaip ir CUE failo</translation>
+    </message>
+    <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1315,13 +1268,13 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>&lt;b&gt;%1&lt;/b&gt; nėra taisyklingas CUE failas. CUE lapas neturi FILE žymės.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; nėra taisyklingas CUE failas. Diskas %2 neturi žymių.</translation>
-    </message>
-    <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <translation>Nepavyksta įrašyti viršelio paveikslą &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1364,11 +1317,6 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>Metai:</translation>
     </message>
     <message>
-        <source>Disk number:</source>
-        <comment>Music tag name</comment>
-        <translation>Disko numeris:</translation>
-    </message>
-    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation>Takelio pavadinimas:</translation>
@@ -1387,6 +1335,11 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <source>Album performer:</source>
         <comment>Music tag name</comment>
         <translation>Albumo atlikėjas:</translation>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1503,6 +1456,167 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
 %1</source>
         <translation>Konvertavimas neįmanomas.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>aacConfigPage</name>
+    <message>
+        <source>AAC encoding configuration</source>
+        <translation>AAC kodavimo konfigūracija</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Naudoti kokybės nustatymą (rekomenduojama)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Kokybė:</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Pralaidumas:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Nustato reikiamą pralaidumą (kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>flacConfigPage</name>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation>FLAC kodavimo konfigūracija</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Glaudinimas:</translation>
+    </message>
+</context>
+<context>
+    <name>mp3ConfigPage</name>
+    <message>
+        <source>MP3 encoding configuration</source>
+        <translation>MP3 kodavimo konfigūracija</translation>
+    </message>
+    <message>
+        <source>Preset:</source>
+        <translation>Parinktis:</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+</source>
+        <extracomment>ererere</extracomment>
+        <translation>&lt;dt&gt;VBR vidutinė&lt;/dt&gt;
+&lt;dd&gt;Naudojant vidutinį kintamąjį pralaidumą, daugelis žmonių neišgirs kokybės iškraipymų daugumoje muzikos įrašų.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standartinė, VBR standartinė greita&lt;/dt&gt;
+&lt;dd&gt;Naudojant standartinį kintamąjį pralaidumą, daugelis žmonių neišgirs kokybės iškraipymų daugumoje muzikos įrašų ir be to, yra pateikiama ganėtinai aukšta kokybė.&lt;/dd&gt;
+
+&lt;dt&gt;VBR ekstremali, VBR ekstremali greita&lt;/dt&gt;
+&lt;dd&gt;Naudojant aukščiausią, koks tik įmanomas, kintamąjį pralaidumą, ši parinktis pateiks šiek tiek geresnę kokybę nei standartinė veiksena. Tai pastebėsite tik tuo atveju, jei turite gerą klausą ar aukštos klasės muzikinę įrangą.&lt;/dd&gt;
+
+&lt;dt&gt;VBR kokybė&lt;/dt&gt;
+&lt;dd&gt;Ši kintamojo pralaidumo parinktis leidžia jums nurodyti išvesties kokybę.&lt;/dd&gt;
+
+&lt;dt&gt;greita parinktis&lt;/dt&gt;
+&lt;dd&gt;Įjungia tam tikram profiliui naują, greitąją VBR parinktį. Tai yra rekomenduojama.&lt;/dd&gt;
+
+&lt;dt&gt;CBR beprotiška&lt;/dt&gt;
+&lt;dd&gt;Jeigu jūs privalote turėti pačią aukščiausią kokybę, neatsižvelgiant į failo dydį, tai pasieksite, naudodami šį pastovųjį pralaidumą.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Naudojant šį pastovųjį pralaidumą, gausite gerą kokybę su nurodytu pralaidumu.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Naudojant šį vidutinį pralaidumą, dažniausiai, gausite aukštesnę nurodyto pralaidumo kokybę, negu tą, kurią gautumėte, naudodami pastoviojo pralaidumo parinktį.&lt;/dd&gt;
+</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation>Pralaidumas:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Nustato reikiamą pralaidumą (kb/s).</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <translation>Kokybė:</translation>
+    </message>
+</context>
+<context>
+    <name>oggConfigPage</name>
+    <message>
+        <source>Ogg encoding configuration</source>
+        <translation>Ogg kodavimo konfigūracija</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Naudoti kokybės nustatymą (rekomenduojama)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>OGG preferences: label caption</extracomment>
+        <translation>Kokybė:</translation>
+    </message>
+    <message>
+        <source>Minimal bitrate:</source>
+        <translation>Mažiausias pralaidumas:</translation>
+    </message>
+    <message>
+        <source>Sets minimum bitrate (in kb/s).</source>
+        <translation>Nustato mažiausią pralaidumą (kb/s).</translation>
+    </message>
+    <message>
+        <source>Nominal bitrate:</source>
+        <translation>Nominalus pralaidumas:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Nustato reikiamą pralaidumą (kb/s).</translation>
+    </message>
+    <message>
+        <source>Maximum bitrate:</source>
+        <translation>Didžiausias pralaidumas:</translation>
+    </message>
+    <message>
+        <source>Sets maximum bitrate (in kb/s).</source>
+        <translation>Nustato didžiausią pralaidumą (kb/s).</translation>
+    </message>
+</context>
+<context>
+    <name>wvConfigPage</name>
+    <message>
+        <source>WavPack encoding configuration</source>
+        <translation>WavPack kodavimo konfigūracija</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Glaudinimas:</translation>
     </message>
 </context>
 </TS>

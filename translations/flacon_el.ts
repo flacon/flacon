@@ -90,6 +90,34 @@
     </message>
 </context>
 <context>
+    <name>AddProfileDialog</name>
+    <message>
+        <source>To create a profile, fill out the following information:</source>
+        <extracomment>Add profile dialog, capton</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create profile</source>
+        <comment>Button caption</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>New profile name:</source>
+        <extracomment>Add profile dialog, profile name label</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio format:</source>
+        <extracomment>Add profile dialog, audio format label</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -224,10 +252,6 @@
         <translation>Ο αριθμός των νημάτων κατά τη διαδικασία μετατροπής.</translation>
     </message>
     <message>
-        <source>First track pregap:</source>
-        <translation>Πρώτο κομμάτι pregap:</translation>
-    </message>
-    <message>
         <source>Rescan</source>
         <translation>Εκ νέου σάρωση</translation>
     </message>
@@ -236,19 +260,13 @@
         <translation>Πλήρης διαδρομή των εξωτερικών εφαρμογών</translation>
     </message>
     <message>
-        <source>Extract to separate file</source>
-        <translation>Εξαγωγή σε ξεχωριστό αρχείο</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Προσθήκη στο πρώτο κομμάτι</translation>
-    </message>
-    <message>
         <source>General</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Γενικά</translation>
     </message>
     <message>
         <source>Programs</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation>Προγράμματα</translation>
     </message>
     <message>
@@ -307,176 +325,31 @@
         <translation>Αλλαγή μεγέθους, αν το μέγεθος της εικόνας είναι μεγαλύτερο από</translation>
     </message>
     <message>
-        <source>Resampling</source>
+        <source>Audio formats</source>
+        <extracomment>Config fialog tab title</extracomment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>44100 Hz</source>
-        <comment>Item in combobox</comment>
+        <source>+</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>48000 Hz</source>
-        <comment>Item in combobox</comment>
+        <source>-</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>96000 Hz</source>
-        <comment>Item in combobox</comment>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>192000 Hz</source>
-        <comment>Item in combobox</comment>
+        <source>Delete profile</source>
+        <comment>Button caption</comment>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Per track CUE sheet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Same as source</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>16-bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>24-bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>32-bit</source>
-        <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Εισαγωγή &quot;Καλλιτέχνης&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Εισαγωγή &quot;Τίτλος άλμπουμ&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Εισαγωγή &quot;Έτος&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Εισαγωγή &quot;Είδος&quot;</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Χρήση τού &quot;%1&quot;</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Aac</name>
-    <message>
-        <source>AAC encoding configuration</source>
-        <translation>AAC ρύθμιση παραμέτρων κωδικοποίησης</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Χρήση της ρύθμισης ποιότητας (συνιστάται)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Χρήση bitrate</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Bitrate:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Ορισμός στόχου bitrate (σε kb/δευ).</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Flac</name>
-    <message>
-        <source>Compression:</source>
-        <translation>Συμπίεση:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Υπολογισμός:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Απενεργοποιήθηκε</translation>
-    </message>
-    <message>
-        <source>FLAC encoding configuration</source>
-        <translation>FLAC παράμετροι κωδικοποίησης</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>MP3 παράμετροι κωδικοποίησης</translation>
-    </message>
-    <message>
-        <source>Preset:</source>
-        <translation>Προρυθμίσεις:</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Χρήση bitrate</translation>
-    </message>
-    <message>
-        <source>Bitrate:</source>
-        <translation>Bitrate:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Ορισμός στόχου bitrate (σε kb/δευ).</translation>
-    </message>
-    <message>
-        <source>Use quality</source>
-        <translation>Χρήση ποιότητας</translation>
-    </message>
-    <message>
-        <source>Quality:</source>
-        <translation>Ποιότητα:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Υπολογισμός:</translation>
-    </message>
     <message>
         <source>VBR medium</source>
         <translation>VBR μεσαίο</translation>
@@ -512,104 +385,6 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR πολυμέσα&lt;/dt&gt;
-&lt;dd&gt;Χρησιμοποιώντας μιά μέση μεταβλητή BitRate, αυτή η προκαθορισμένη ρύθμιση θα πρέπει να παρέχει διαφάνεια για τους περισσότερους ανθρώπους και τα περισσότερα είδη μουσικής.&lt;/dd&gt;
-
-&lt;dt&gt;Κανονικό VBR, γρήγορο VBR&lt;/dt&gt; 
-&lt;dd&gt;Χρησιμοποιώντας μιά μεταβλητή BitRate, αυτή η προκαθορισμένη ρύθμιση θα πρέπει, γενικά, να είναι διαφανής για τους περισσότερους ανθρώπους και να είναι αρκετά υψηλής ποιότητας.&lt;/dd&gt;
-
-&lt;dt&gt;Εντονο VBR, έντονο και γρήγορο VBR&lt;/dt&gt;
-&lt;dd&gt;Χρησιμοποιώντας την υψηλότερη δυνατή μεταβλητή BitRate, παρέχει ελαφρώς υψηλότερη ποιότητα από την τυπική λειτουργία, αν έχετε εξαιρετικά καλή ακοή η έναν υψηλής ποιότητας εξοπλισμό ήχου.&lt;/dd&gt;
-
-&lt;dt&gt;VBR ποιότητα&lt;/dt&gt;
-&lt;dd&gt;Αυτή η μεταβλητή BitRate επιλογή, σας επιτρέπει να καθορίσετε την ποιότητα εξόδου.&lt;/dd&gt;
-
-&lt;dt&gt;γρήγορη επιλογή&lt;/dt&gt;
-&lt;dd&gt;Ενεργοποίηση τού νέου γρήγορου VBR για συγκεκριμένα προφίλ. Αυτό συνιστάται.&lt;/dd&gt;
-
-Εντονο CBR &lt;dt&gt;
-&lt;dd&gt;Αν θέλετε να έχετε την απόλυτη υψηλότερη ποιότητα όσον αφορά το μέγεθος του αρχείου, θα το πετύχετε χρησιμοποιώντας αυτή την σταθερή BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Χρησιμοποιώντας αυτό το προκαθορισμένο σταθερό BitRate, είναι συνήθως καλής ποιότητας.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Χρησιμοποιώντας αυτή την μέση προκαθορισμένη BitRate, είναι συνήθως υψηλότερης ποιότητας από την σταθερή BitRate επιλογή.&lt;/dd&gt;
-</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigPage_Ogg</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Παράμετροι κωδικοποίησης Ogg</translation>
-    </message>
-    <message>
-        <source>Use quality setting (recommended)</source>
-        <translation>Χρήση της ρύθμισης ποιότητας (συνιστάται)</translation>
-    </message>
-    <message>
-        <source>Use bitrate</source>
-        <translation>Χρήση bitrate</translation>
-    </message>
-    <message>
-        <source>Minimal bitrate:</source>
-        <translation>Ελάχιστο bitrate:</translation>
-    </message>
-    <message>
-        <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Ορισμός τού ελάχιστου bitrate (σε kb/δευ).</translation>
-    </message>
-    <message>
-        <source>Nominal bitrate:</source>
-        <translation>Συμβολικό bitrate:</translation>
-    </message>
-    <message>
-        <source>Sets target bitrate (in kb/s).</source>
-        <translation>Ορισμός στόχου bitrate (σε kb/δευ).</translation>
-    </message>
-    <message>
-        <source>Maximum bitrate:</source>
-        <translation>Μέγιστο bitrate:</translation>
-    </message>
-    <message>
-        <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Ορισμός τού μέγιστου bitrate (σε kb/δευ).</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Υπολογισμός:</translation>
     </message>
 </context>
 <context>
@@ -662,29 +437,6 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>ConfigPage_Wv</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Παράμετροι κωδικοποίησης WavPack</translation>
-    </message>
-    <message>
-        <source>Compression:</source>
-        <translation>Συμπίεση:</translation>
-    </message>
-    <message>
-        <source>ReplayGain</source>
-        <translation>ReplayGain</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Υπολογισμός:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Απενεργοποιήθηκε</translation>
-    </message>
-</context>
-<context>
     <name>Converter</name>
     <message>
         <source>Conversion is not possible:</source>
@@ -703,19 +455,19 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>CueDiskSelectDialog</name>
+    <name>CueDiscSelectDialog</name>
     <message>
-        <source>Select disk</source>
-        <translation>Επιλογή δίσκου</translation>
+        <source>Select disc</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 [ disk %2 ]</source>
-        <comment>Cue disk select dialog, string like 'The Wall [disk 1]'</comment>
-        <translation>%1 [ δίσκος %2 ]</translation>
+        <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The CUE file contains information about multiple disks. Which disk do you want to use?</source>
-        <translation>Το αρχείο CUE περιέχει πληροφορίες σχετικά με πολλούς δίσκους. Ποιον δίσκος θέλετε να χρησιμοποιήσετε;</translation>
+        <source>%1 [ disc %2 ]</source>
+        <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -727,7 +479,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>Disk</name>
+    <name>Disc</name>
     <message>
         <source>Audio file not set.</source>
         <translation>Το αρχείο ήχου δεν έχει οριστεί.</translation>
@@ -752,7 +504,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>DiskPipeline</name>
+    <name>DiscPipeline</name>
     <message>
         <source>I can't rename file:
 %1 to %2
@@ -795,31 +547,6 @@ In CBR mode, it sets the specific output bitrate.
 This only affects the file size. All settings are lossless.</source>
         <translation>Σύνολα επιπέδου συμπίεσης, μεταξύ %1 (ταχύτερη) και %2 (υψηλότερη συμπίεση).
 Αυτό επηρεάζει μόνο το μέγεθος του αρχείου. Όλες οι ρυθμίσεις είναι χωρίς απώλειες.</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Απενεργοποιήθηκε</translation>
-    </message>
-    <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Ανα κομμάτι</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <translation>Ανα Άλμπουμ</translation>
-    </message>
-    <message>
-        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
-
-The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
-Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain είναι ένα πρότυπο ομαλοποιήσεις της αντιληπτής έντασης ήχου του υπολογιστή.
-
-Η ανάλυση μπορεί να εκτελεστεί σε μεμονωμένα κομμάτια, έτσι ώστε όλα τα κομμάτια θα είναι ίσης έντασης ήχου κατά την αναπαραγωγή.
-Χρησιμοποιώντας την ανάλυση θα διατηρηθεί η διαφορά ήχου μέσα σε ένα άλμπουμ.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -959,10 +686,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>Ρύθμιση κωδικοποιητή</translation>
     </message>
     <message>
-        <source>Select result directory</source>
-        <translation>Επιλέξτε το αποτέλεσμα directory</translation>
-    </message>
-    <message>
         <source>Get from CDDB</source>
         <translation>Παροχή από το CDDB</translation>
     </message>
@@ -981,34 +704,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Recursive album search</source>
         <translation>Αναδρομική αναζήτηση άλμπουμ</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track number&quot;</source>
-        <translation>Εισαγωγή &quot;Αριθμός κομματιού&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Εισαγωγή &quot;Συνολικός αριθμός κομματιών&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Εισαγωγή &quot;Καλλιτέχνης&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Εισαγωγή &quot;Τίτλος άλμπουμ&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Track title&quot;</source>
-        <translation>Εισαγωγή &quot;Τίτλος κομματιού&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Εισαγωγή &quot;Έτος&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Εισαγωγή &quot;Είδος&quot;</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -1087,21 +782,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 Εάν η διαδρομή είναι κενή η ξεκινά με &quot;.&quot; (dot), τα αποτελέσματα θα τοποθετούνται στον ίδιο κατάλογο με την πηγή.</translation>
     </message>
     <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Χρήση τού &quot;%1&quot;</translation>
-    </message>
-    <message>
         <source>Delete current pattern from history</source>
         <translation>Διαγραφή τού τρέχον σχεδίου από το ιστορικό</translation>
-    </message>
-    <message>
-        <source>Remove disk</source>
-        <translation>Αφαίρεση δίσκου</translation>
-    </message>
-    <message>
-        <source>Remove disk from project</source>
-        <translation>Αφαίρεση δίσκου από το έργο</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -1110,21 +792,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>About Flacon</source>
         <translation>Σχετκά με το Flacon</translation>
-    </message>
-    <message>
-        <source>Standard music location</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Desktop</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Same directory as CUE file</source>
-        <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove current directory from history</source>
@@ -1148,14 +815,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Edit all tags…</source>
         <comment>Button text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add disk…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select directory…</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1197,11 +856,15 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Insert &quot;Disk number&quot;</source>
+        <source>Add disc…</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Insert &quot;Total number of disks&quot;</source>
+        <source>Remove disc</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1224,6 +887,296 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Multiple values</source>
         <translation>Πολλαπλές τιμές</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirButton</name>
+    <message>
+        <source>Select directory…</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Standard music location</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Desktop</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Menu item for output direcory button</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select result directory</source>
+        <translation>Επιλέξτε το αποτέλεσμα directory</translation>
+    </message>
+</context>
+<context>
+    <name>OutDirComboBox</name>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>OutPatternButton</name>
+    <message>
+        <source>Insert &quot;Track number&quot;</source>
+        <translation>Εισαγωγή &quot;Αριθμός κομματιού&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of tracks&quot;</source>
+        <translation>Εισαγωγή &quot;Συνολικός αριθμός κομματιών&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Εισαγωγή &quot;Καλλιτέχνης&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Εισαγωγή &quot;Τίτλος άλμπουμ&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Track title&quot;</source>
+        <translation>Εισαγωγή &quot;Τίτλος κομματιού&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Εισαγωγή &quot;Έτος&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Εισαγωγή &quot;Είδος&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Disc number&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Total number of discs&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <translation>Χρήση τού &quot;%1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
+        <source>Resampling settings:</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum bit depth:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Υπολογισμός:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Απενεργοποιήθηκε</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <extracomment>Preferences dialog: group caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Πρώτο κομμάτι pregap:</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Εισαγωγή &quot;Καλλιτέχνης&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Εισαγωγή &quot;Τίτλος άλμπουμ&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Εισαγωγή &quot;Έτος&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Εισαγωγή &quot;Είδος&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Χρήση τού &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Εξαγωγή σε ξεχωριστό αρχείο</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Προσθήκη στο πρώτο κομμάτι</translation>
+    </message>
+    <message>
+        <source>Same as source</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>16-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>24-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>32-bit</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>44100 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>48000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>96000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>192000 Hz</source>
+        <comment>Item in combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Απενεργοποιήθηκε</translation>
+    </message>
+    <message>
+        <source>Per Track</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Ανα κομμάτι</translation>
+    </message>
+    <message>
+        <source>Per Album</source>
+        <comment>ReplayGain type combobox</comment>
+        <translation>Ανα Άλμπουμ</translation>
+    </message>
+    <message>
+        <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
+
+The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
+Using the album-gain analysis will preserve the volume differences within an album.</source>
+        <translation>ReplayGain είναι ένα πρότυπο ομαλοποιήσεις της αντιληπτής έντασης ήχου του υπολογιστή.
+
+Η ανάλυση μπορεί να εκτελεστεί σε μεμονωμένα κομμάτια, έτσι ώστε όλα τα κομμάτια θα είναι ίσης έντασης ήχου κατά την αναπαραγωγή.
+Χρησιμοποιώντας την ανάλυση θα διατηρηθεί η διαφορά ήχου μέσα σε ένα άλμπουμ.</translation>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Αποτέλεσμα Αρχείων</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Κατάλογος:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Μπορείτε να περιηγηθείτε στον κατάλογο προορισμού. Μπορείτε επίσης να εισάγετε χειροκίνητα.
+
+Εάν η διαδρομή είναι κενή η ξεκινά με &quot;.&quot; (dot), τα αποτελέσματα θα τοποθετούνται στον ίδιο κατάλογο με την πηγή.</translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Πρότυπο:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def { white-space: nowrap; }
+&lt;/style&gt;
+Μάρκες που ξεκινούν με %. Μπορείτε να χρησιμοποιήσετε τις ακόλουθες μάρκες:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Αριθμός κομματιού&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Συνολικός αριθμός κομματιών&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Καλλιτέχνης&lt;/td&gt;
+         &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;-Τίτλος Αλμπουμ&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Τίτλος κομματιού&lt;/td&gt;
+         &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Έτος&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Είδος&lt;/td&gt;
+         &lt;td class=&quot;term&quot;&gt;&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Αν τα περιβάλλοντα τμήματα του κειμένου περιέχουν ένα κουπόνι με τα σιδεράκια, τα τμήματα αυτά θα είναι κρυμμένα, άρα το δείγμα είναι άδειο.</translation>
+    </message>
+    <message>
+        <source>%1 format</source>
+        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1315,12 +1268,12 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disk %2 has no tags.</source>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1364,11 +1317,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Έτος:</translation>
     </message>
     <message>
-        <source>Disk number:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation type="unfinished"/>
@@ -1385,6 +1333,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disc number:</source>
         <comment>Music tag name</comment>
         <translation type="unfinished"/>
     </message>
@@ -1503,6 +1456,167 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
 %1</source>
         <translation>Αδυναμία μετατροπής.
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>aacConfigPage</name>
+    <message>
+        <source>AAC encoding configuration</source>
+        <translation>AAC ρύθμιση παραμέτρων κωδικοποίησης</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Χρήση της ρύθμισης ποιότητας (συνιστάται)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Ποιότητα:</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <extracomment>ACC preferences: label caption</extracomment>
+        <translation>Bitrate:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Ορισμός στόχου bitrate (σε kb/δευ).</translation>
+    </message>
+</context>
+<context>
+    <name>flacConfigPage</name>
+    <message>
+        <source>FLAC encoding configuration</source>
+        <translation>FLAC παράμετροι κωδικοποίησης</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Συμπίεση:</translation>
+    </message>
+</context>
+<context>
+    <name>mp3ConfigPage</name>
+    <message>
+        <source>MP3 encoding configuration</source>
+        <translation>MP3 παράμετροι κωδικοποίησης</translation>
+    </message>
+    <message>
+        <source>Preset:</source>
+        <translation>Προρυθμίσεις:</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
+&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
+&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+&lt;dt&gt;fast option&lt;/dt&gt;
+&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+</source>
+        <extracomment>ererere</extracomment>
+        <translation>&lt;dt&gt;VBR πολυμέσα&lt;/dt&gt;
+&lt;dd&gt;Χρησιμοποιώντας μιά μέση μεταβλητή BitRate, αυτή η προκαθορισμένη ρύθμιση θα πρέπει να παρέχει διαφάνεια για τους περισσότερους ανθρώπους και τα περισσότερα είδη μουσικής.&lt;/dd&gt;
+
+&lt;dt&gt;Κανονικό VBR, γρήγορο VBR&lt;/dt&gt; 
+&lt;dd&gt;Χρησιμοποιώντας μιά μεταβλητή BitRate, αυτή η προκαθορισμένη ρύθμιση θα πρέπει, γενικά, να είναι διαφανής για τους περισσότερους ανθρώπους και να είναι αρκετά υψηλής ποιότητας.&lt;/dd&gt;
+
+&lt;dt&gt;Εντονο VBR, έντονο και γρήγορο VBR&lt;/dt&gt;
+&lt;dd&gt;Χρησιμοποιώντας την υψηλότερη δυνατή μεταβλητή BitRate, παρέχει ελαφρώς υψηλότερη ποιότητα από την τυπική λειτουργία, αν έχετε εξαιρετικά καλή ακοή η έναν υψηλής ποιότητας εξοπλισμό ήχου.&lt;/dd&gt;
+
+&lt;dt&gt;VBR ποιότητα&lt;/dt&gt;
+&lt;dd&gt;Αυτή η μεταβλητή BitRate επιλογή, σας επιτρέπει να καθορίσετε την ποιότητα εξόδου.&lt;/dd&gt;
+
+&lt;dt&gt;γρήγορη επιλογή&lt;/dt&gt;
+&lt;dd&gt;Ενεργοποίηση τού νέου γρήγορου VBR για συγκεκριμένα προφίλ. Αυτό συνιστάται.&lt;/dd&gt;
+
+Εντονο CBR &lt;dt&gt;
+&lt;dd&gt;Αν θέλετε να έχετε την απόλυτη υψηλότερη ποιότητα όσον αφορά το μέγεθος του αρχείου, θα το πετύχετε χρησιμοποιώντας αυτή την σταθερή BitRate.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Χρησιμοποιώντας αυτό το προκαθορισμένο σταθερό BitRate, είναι συνήθως καλής ποιότητας.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Χρησιμοποιώντας αυτή την μέση προκαθορισμένη BitRate, είναι συνήθως υψηλότερης ποιότητας από την σταθερή BitRate επιλογή.&lt;/dd&gt;
+</translation>
+    </message>
+    <message>
+        <source>Bitrate:</source>
+        <translation>Bitrate:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Ορισμός στόχου bitrate (σε kb/δευ).</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <translation>Ποιότητα:</translation>
+    </message>
+</context>
+<context>
+    <name>oggConfigPage</name>
+    <message>
+        <source>Ogg encoding configuration</source>
+        <translation>Παράμετροι κωδικοποίησης Ogg</translation>
+    </message>
+    <message>
+        <source>Use quality setting (recommended)</source>
+        <translation>Χρήση της ρύθμισης ποιότητας (συνιστάται)</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <extracomment>OGG preferences: label caption</extracomment>
+        <translation>Ποιότητα:</translation>
+    </message>
+    <message>
+        <source>Minimal bitrate:</source>
+        <translation>Ελάχιστο bitrate:</translation>
+    </message>
+    <message>
+        <source>Sets minimum bitrate (in kb/s).</source>
+        <translation>Ορισμός τού ελάχιστου bitrate (σε kb/δευ).</translation>
+    </message>
+    <message>
+        <source>Nominal bitrate:</source>
+        <translation>Συμβολικό bitrate:</translation>
+    </message>
+    <message>
+        <source>Sets target bitrate (in kb/s).</source>
+        <translation>Ορισμός στόχου bitrate (σε kb/δευ).</translation>
+    </message>
+    <message>
+        <source>Maximum bitrate:</source>
+        <translation>Μέγιστο bitrate:</translation>
+    </message>
+    <message>
+        <source>Sets maximum bitrate (in kb/s).</source>
+        <translation>Ορισμός τού μέγιστου bitrate (σε kb/δευ).</translation>
+    </message>
+</context>
+<context>
+    <name>wvConfigPage</name>
+    <message>
+        <source>WavPack encoding configuration</source>
+        <translation>Παράμετροι κωδικοποίησης WavPack</translation>
+    </message>
+    <message>
+        <source>Compression:</source>
+        <translation>Συμπίεση:</translation>
     </message>
 </context>
 </TS>
