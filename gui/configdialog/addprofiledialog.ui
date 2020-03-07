@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string extracomment="Add profile dialog title">Add profile</string>
+   <string extracomment="Add profile dialog title">Create a profile</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

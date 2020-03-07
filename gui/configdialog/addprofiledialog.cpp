@@ -43,7 +43,7 @@ AddProfileDialog::AddProfileDialog(QWidget *parent) :
     }
 
     ui->buttonBox->button(QDialogButtonBox::Ok)
-            ->setText(tr("Create profile", "Button caption"));
+            ->setText(tr("Create a profile", "Button caption"));
 
     connect(ui->profileNameEd, &QLineEdit::textChanged,
             this, &AddProfileDialog::setButtonsEnabled);
