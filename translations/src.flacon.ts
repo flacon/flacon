@@ -99,16 +99,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Create profile</source>
-        <comment>Button caption</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add profile</source>
-        <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
         <translation type="unfinished"></translation>
@@ -116,6 +106,16 @@
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <comment>Button caption</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -345,7 +345,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete profile</source>
+        <source>Delete the profile</source>
         <comment>Button caption</comment>
         <translation type="unfinished"></translation>
     </message>

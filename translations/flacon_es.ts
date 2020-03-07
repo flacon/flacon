@@ -97,16 +97,6 @@
         <translation>Para crear un perfil, completa la siguiente información:</translation>
     </message>
     <message>
-        <source>Create profile</source>
-        <comment>Button caption</comment>
-        <translation>Crear perfil</translation>
-    </message>
-    <message>
-        <source>Add profile</source>
-        <extracomment>Add profile dialog title</extracomment>
-        <translation>Añadir perfil</translation>
-    </message>
-    <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
         <translation>Nombre del nuevo perfil:</translation>
@@ -115,6 +105,16 @@
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
         <translation>Formato de audio:</translation>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <comment>Button caption</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -343,9 +343,9 @@
         <translation>¿Estás seguro de querer borrar el perfil &quot;%1&quot;?</translation>
     </message>
     <message>
-        <source>Delete profile</source>
+        <source>Delete the profile</source>
         <comment>Button caption</comment>
-        <translation>Borrar perfil</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1176,7 +1176,7 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
     <message>
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>Configuración del codificador %1:</translation>
     </message>
 </context>
 <context>

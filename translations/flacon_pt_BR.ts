@@ -94,26 +94,26 @@
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Create profile</source>
-        <comment>Button caption</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add profile</source>
-        <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Forneça as informações seguintes para criar um perfil:</translation>
     </message>
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Nome do novo perfil:</translation>
     </message>
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
+        <translation>Formato de áudio:</translation>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -327,23 +327,23 @@
     <message>
         <source>Audio formats</source>
         <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Formatos de áudio</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished"/>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>Tem certeza que deseja deletar o perfil &quot;%1&quot;?</translation>
     </message>
     <message>
-        <source>Delete profile</source>
+        <source>Delete the profile</source>
         <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
@@ -458,16 +458,16 @@ No modo CBR, define a taxa de bits de saída específica.
     <name>CueDiscSelectDialog</name>
     <message>
         <source>Select disc</source>
-        <translation type="unfinished"/>
+        <translation>Selecionar disco</translation>
     </message>
     <message>
         <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>O arquivo CUE contém informações de vários discos. Qual disco deseja usar?</translation>
     </message>
     <message>
         <source>%1 [ disc %2 ]</source>
         <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 [ disco %2 ]</translation>
     </message>
 </context>
 <context>
@@ -856,15 +856,15 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     </message>
     <message>
         <source>Add disc…</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar disco...</translation>
     </message>
     <message>
         <source>Remove disc</source>
-        <translation type="unfinished"/>
+        <translation>Remover  disco</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
-        <translation type="unfinished"/>
+        <translation>Remover disco do projeto</translation>
     </message>
 </context>
 <context>
@@ -955,11 +955,11 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     </message>
     <message>
         <source>Insert &quot;Disc number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insira o &quot;Número do disco&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of discs&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insira o &quot;Número total de discos&quot;</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
@@ -972,7 +972,7 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Configurações de reamostragem:</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
@@ -984,7 +984,7 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
+        <translation>Configurações do ReplayGain:</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1165,7 +1165,7 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
     <message>
         <source>%1 format</source>
         <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>Formato %1</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
@@ -1175,7 +1175,7 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
     <message>
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>Configurações do codificador %1:</translation>
     </message>
 </context>
 <context>
@@ -1273,7 +1273,7 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation> &lt;b&gt;%1&lt;/b&gt; não é um arquivo CUE válido. O disco %2 não possui etiquetas.</translation>
     </message>
 </context>
 <context>
@@ -1338,7 +1338,7 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
     <message>
         <source>Disc number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Número do disco:</translation>
     </message>
 </context>
 <context>

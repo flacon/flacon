@@ -43,7 +43,7 @@
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Extrait individuellement les plages d’un fichier audio volumineux contenant l’album entier.</translation>
+        <translation>Extrait individuellement les plages d’un fichier son volumineux qui comprend l’album entier.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
@@ -56,7 +56,7 @@
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon est traduit en plusieurs langues grâce au travail des équipes de traduction Flacon sur &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+        <translation>Flacon est traduit en plusieurs langues grâce au travail des équipes de traduction de Flacon sur &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -94,26 +94,26 @@
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Create profile</source>
-        <comment>Button caption</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add profile</source>
-        <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Pour créer un profil, remplissez les renseignements suivants :</translation>
     </message>
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Nom du nouveau profil :</translation>
     </message>
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
+        <translation>Format audio :</translation>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -327,23 +327,23 @@
     <message>
         <source>Audio formats</source>
         <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Formats audio</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished"/>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>Souhaitez-vous vraiment supprimer le profil « %1 » ?</translation>
     </message>
     <message>
-        <source>Delete profile</source>
+        <source>Delete the profile</source>
         <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
@@ -458,16 +458,16 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     <name>CueDiscSelectDialog</name>
     <message>
         <source>Select disc</source>
-        <translation type="unfinished"/>
+        <translation>Sélectionner un disque</translation>
     </message>
     <message>
         <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Le fichier CUE comprend des renseignements relatifs à plusieurs disques. Quel disque voulez-vous utiliser ?</translation>
     </message>
     <message>
         <source>%1 [ disc %2 ]</source>
         <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 [ disque %2 ]</translation>
     </message>
 </context>
 <context>
@@ -482,7 +482,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     <name>Disc</name>
     <message>
         <source>Audio file not set.</source>
-        <translation>Le fichier audio n’est pas défini.</translation>
+        <translation>Le fichier son n’est pas défini.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
@@ -490,7 +490,7 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>Le fichier audio est plus court que prévu d’après le fichier CUE.</translation>
+        <translation>Le fichier son est plus court que prévu d’après le fichier CUE.</translation>
     </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
@@ -707,7 +707,7 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation>Certains albums ne seront pas convertis, ils contiennent des erreurs.
+        <translation>Certains albums ne seront pas convertis, ils présentent des erreurs.
 Voulez-vous continuer ?</translation>
     </message>
     <message>
@@ -728,7 +728,7 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Sélectionner le fichier audio</translation>
+        <translation>Sélectionner le fichier son</translation>
     </message>
     <message>
         <source>Select directory</source>
@@ -769,7 +769,7 @@ Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants  
  &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
  &lt;/table&gt;
  &lt;br&gt;&lt;br&gt;
-Si vous entourez des sections de texte contenant un marqueur avec des accolades, ces sections seront cachées si le marqueur est vide.</translation>
+Si vous entourez des sections de texte qui comprennent un marqueur avec des accolades, ces sections seront cachées si le marqueur est vide.</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
@@ -828,7 +828,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>Select another audio file…</source>
         <comment>context menu</comment>
-        <translation>Sélectionner un autre fichier audio…</translation>
+        <translation>Sélectionner un autre fichier son…</translation>
     </message>
     <message>
         <source>Select another CUE file…</source>
@@ -856,15 +856,15 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>Add disc…</source>
-        <translation type="unfinished"/>
+        <translation>Ajouter un disque…</translation>
     </message>
     <message>
         <source>Remove disc</source>
-        <translation type="unfinished"/>
+        <translation>Supprimer le disque</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
-        <translation type="unfinished"/>
+        <translation>Supprimer le disque du projet</translation>
     </message>
 </context>
 <context>
@@ -955,11 +955,11 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>Insert &quot;Disc number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insérer le « Numéro de disque »</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of discs&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insérer le « Nombre total de disques »</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
@@ -972,7 +972,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Paramètres de rééchantillonnage :</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
@@ -984,7 +984,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
+        <translation>Paramètres ReplayGain :</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1097,14 +1097,14 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain est une norme permettant d’égaliser l’intensité perçue du son des formats de fichiers audio sur ordinateur.
+        <translation>ReplayGain est une norme qui permet d’égaliser l’intensité perçue du son des formats de fichiers son sur ordinateur.
 
 L’analyse peut être effectuée sur des plages individuelles de manière à ce que toutes les plages soient jouées à un volume sonore équivalent.
 L’utilisation de l’analyse par album permet de préserver les différences de volume pour un même album.</translation>
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Fichiers résultats</translation>
+        <translation>Fichiers de résultat</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1160,12 +1160,12 @@ Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants  
  &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
  &lt;/table&gt;
  &lt;br&gt;&lt;br&gt;
-Si vous entourez des sections de texte contenant un marqueur avec des accolades, ces sections seront cachées si le marqueur est vide.</translation>
+Si vous entourez des sections de texte qui comprennent un marqueur avec des accolades, ces sections seront cachées si le marqueur est vide.</translation>
     </message>
     <message>
         <source>%1 format</source>
         <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>Format %</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
@@ -1175,7 +1175,7 @@ Si vous entourez des sections de texte contenant un marqueur avec des accolades,
     <message>
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>Paramètres de l’encodeur %1 :</translation>
     </message>
 </context>
 <context>
@@ -1203,7 +1203,7 @@ Si vous entourez des sections de texte contenant un marqueur avec des accolades,
     </message>
     <message>
         <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n’est pas un fichier audio pris en charge. &lt;br&gt;&lt;br&gt;Vérifiez que tous les programmes requis sont installés, et vérifiez aussi vos préférences.</translation>
+        <translation>Le fichier &lt;b&gt;%1&lt;/b&gt; n’est pas un fichier son pris en charge. &lt;br&gt;&lt;br&gt;Vérifiez que tous les programmes requis sont installés, et vérifiez aussi vos préférences.</translation>
     </message>
     <message>
         <source>Flacon</source>
@@ -1216,7 +1216,7 @@ Si vous entourez des sections de texte contenant un marqueur avec des accolades,
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation>Le nom du fichier audio n’est pas défini</translation>
+        <translation>Le nom du fichier son n’est pas défini</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
@@ -1225,7 +1225,7 @@ Si vous entourez des sections de texte contenant un marqueur avec des accolades,
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Le fichier audio &lt;b&gt;« %1 »&lt;/b&gt; n’existe pas</translation>
+        <translation>Le fichier son &lt;b&gt;« %1 »&lt;/b&gt; n’existe pas</translation>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
@@ -1264,7 +1264,7 @@ Si vous entourez des sections de texte contenant un marqueur avec des accolades,
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. Il ne contient de balise FILE.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. Il ne comporte pas de balise FILE.</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1273,7 +1273,7 @@ Si vous entourez des sections de texte contenant un marqueur avec des accolades,
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. Le disque %2 ne comporte pas de balise.</translation>
     </message>
 </context>
 <context>
@@ -1338,7 +1338,7 @@ Si vous entourez des sections de texte contenant un marqueur avec des accolades,
     <message>
         <source>Disc number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Numéro de disque :</translation>
     </message>
 </context>
 <context>
@@ -1536,7 +1536,7 @@ Si vous entourez des sections de texte contenant un marqueur avec des accolades,
 &lt;dd&gt;En utilisant un Débit Binaire Variable standard, ces présélections devraient être transparentes pour la plupart des personnes et la plupart des musiques, et donnent déjà des résultats de haute qualité.&lt;/dd&gt;
 
 &lt;dt&gt;DBV extrême, DBV extrême rapide&lt;/dt&gt;
-&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, ces préselections fournissent une qualité légèrement supérieure au mode standard si vous avec une très bonne ouïe et un équipement audio haut de gamme.&lt;/dd&gt;
+&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, ces présélections fournissent une qualité légèrement supérieure au mode standard si vous avec une très bonne ouïe et un matériel audio haut de gamme.&lt;/dd&gt;
 
 &lt;dt&gt;DBV qualité&lt;/dt&gt;
 &lt;dd&gt;Cette option à Débit Binaire Variable vous permet de choisir le niveau final de qualité.&lt;/dd&gt;
@@ -1548,7 +1548,7 @@ Si vous entourez des sections de texte contenant un marqueur avec des accolades,
 &lt;dd&gt;Si vous devez obtenir la plus haute qualité sans vous soucier de la taille du fichier, vous l’obtiendrez en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
 
 &lt;dt&gt;DBC kbit/s&lt;/dt&gt;
-&lt;dd&gt;Cette préselection à Débit Binaire Constant vous donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
+&lt;dd&gt;Cette présélection à Débit Binaire Constant vous donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
 
 &lt;dt&gt;&gt;DBM kbit&lt;/dt&gt;
 &lt;dd&gt;Cette présélection à Débit Binaire Moyen vous donnera généralement une meilleure qualité pour un débit donné qu’en utilisant l’option à Débit Binaire Constant.&lt;/dd&gt;</translation>

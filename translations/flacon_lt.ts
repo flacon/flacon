@@ -94,26 +94,26 @@
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Create profile</source>
-        <comment>Button caption</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add profile</source>
-        <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Norėdami sukurti profilį, užpildykite sekančią informaciją:</translation>
     </message>
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Naujo profilio pavadinimas:</translation>
     </message>
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
+        <translation>Garso formatas:</translation>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -327,23 +327,23 @@
     <message>
         <source>Audio formats</source>
         <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Garso formatai</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished"/>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite ištrinti profilį &quot;%1&quot;?</translation>
     </message>
     <message>
-        <source>Delete profile</source>
+        <source>Delete the profile</source>
         <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
@@ -458,16 +458,16 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <name>CueDiscSelectDialog</name>
     <message>
         <source>Select disc</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkti diską</translation>
     </message>
     <message>
         <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>CUE faile yra informacija apie kelis diskus. Kurį diską norėtumėte naudoti?</translation>
     </message>
     <message>
         <source>%1 [ disc %2 ]</source>
         <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 [ diskas %2 ]</translation>
     </message>
 </context>
 <context>
@@ -857,15 +857,15 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     </message>
     <message>
         <source>Add disc…</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti diską…</translation>
     </message>
     <message>
         <source>Remove disc</source>
-        <translation type="unfinished"/>
+        <translation>Šalinti diską</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
-        <translation type="unfinished"/>
+        <translation>Šalinti diską iš projekto</translation>
     </message>
 </context>
 <context>
@@ -956,11 +956,11 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     </message>
     <message>
         <source>Insert &quot;Disc number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Įterpti &quot;Disko numerį&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of discs&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Įterpti &quot;Bendrą diskų skaičių&quot;</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
@@ -973,7 +973,7 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ėminių atrankos nustatymai:</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
@@ -985,7 +985,7 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain nustatymai:</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1166,7 +1166,7 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>%1 format</source>
         <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>%1 formatas</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
@@ -1176,7 +1176,7 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>%1 koduotuvo nustatymai:</translation>
     </message>
 </context>
 <context>
@@ -1274,7 +1274,7 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; nėra taisyklingas CUE failas. Diskas %2 neturi žymių.</translation>
     </message>
 </context>
 <context>
@@ -1339,7 +1339,7 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>Disc number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Disko numeris:</translation>
     </message>
 </context>
 <context>

@@ -97,16 +97,6 @@
         <translation>Для создания профиля укажите следующую информацию:</translation>
     </message>
     <message>
-        <source>Create profile</source>
-        <comment>Button caption</comment>
-        <translation>Создать профиль</translation>
-    </message>
-    <message>
-        <source>Add profile</source>
-        <extracomment>Add profile dialog title</extracomment>
-        <translation>Добавление нового профиля</translation>
-    </message>
-    <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
         <translation>Имя профиля:</translation>
@@ -115,6 +105,16 @@
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
         <translation>Аудио формат:</translation>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation>Создать профиль</translation>
+    </message>
+    <message>
+        <source>Create a profile</source>
+        <comment>Button caption</comment>
+        <translation>Создать профиль</translation>
     </message>
 </context>
 <context>
@@ -343,7 +343,7 @@
         <translation>Вы уверены, что хотите удалить профиль %1?</translation>
     </message>
     <message>
-        <source>Delete profile</source>
+        <source>Delete the profile</source>
         <comment>Button caption</comment>
         <translation>Удалить профиль</translation>
     </message>
