@@ -94,27 +94,27 @@
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
-        <translation type="unfinished"/>
+        <translation>ליצירת פרופיל, נא להזין את המידע הבא:</translation>
     </message>
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation type="unfinished"/>
+        <translation>שם פרופיל חדש:</translation>
     </message>
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"/>
+        <translation>תבנית שמע:</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>יצירת פרופיל</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <comment>Button caption</comment>
-        <translation type="unfinished"/>
+        <translation>יצירת פרופיל</translation>
     </message>
 </context>
 <context>
@@ -327,25 +327,25 @@
     <message>
         <source>Audio formats</source>
         <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"/>
+        <translation>תבניות שמע</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished"/>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>האם למחוק פרופיל &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Delete the profile</source>
         <comment>Button caption</comment>
-        <translation type="unfinished"/>
+        <translation>מחיקת הפרופיל</translation>
     </message>
 </context>
 <context>
@@ -458,16 +458,16 @@ In CBR mode, it sets the specific output bitrate.
     <name>CueDiscSelectDialog</name>
     <message>
         <source>Select disc</source>
-        <translation type="unfinished"/>
+        <translation>בחירת תקליטור</translation>
     </message>
     <message>
         <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>גליון ה cue מכיל מידע אודות מספר תקליטורים. באיזה תקליטור לבחור לשימוש?</translation>
     </message>
     <message>
         <source>%1 [ disc %2 ]</source>
         <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 [ disc %2 ]</translation>
     </message>
 </context>
 <context>
@@ -860,15 +860,15 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Add disc…</source>
-        <translation type="unfinished"/>
+        <translation>הוספת תקליטור...</translation>
     </message>
     <message>
         <source>Remove disc</source>
-        <translation type="unfinished"/>
+        <translation>הסרת תקליטור</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
-        <translation type="unfinished"/>
+        <translation>הסרת תקליטור מהפרויקט</translation>
     </message>
 </context>
 <context>
@@ -959,11 +959,11 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Insert &quot;Disc number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>הזנת &apos;מספר תקליטור&apos;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of discs&quot;</source>
-        <translation type="unfinished"/>
+        <translation>הזנת &apos;מספר תקליטורים כולל&apos;</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
@@ -976,7 +976,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>הגדרות דגימה:</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
@@ -988,7 +988,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
+        <translation>הגדרות ריפלאיגאיין:</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1170,7 +1170,7 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>%1 format</source>
         <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>תבנית %1</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
@@ -1180,7 +1180,7 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>הגדרות מקודד %1:</translation>
     </message>
 </context>
 <context>
@@ -1278,7 +1278,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; אינו קובץ CUE תקין. תקליטור %2 אינו מכיל תגים.</translation>
     </message>
 </context>
 <context>
@@ -1343,7 +1343,7 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Disc number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>מספר תקליטור:</translation>
     </message>
 </context>
 <context>

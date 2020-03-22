@@ -94,27 +94,27 @@
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
-        <translation type="unfinished"/>
+        <translation>Para crear un perfil, llene la siguiente información:</translation>
     </message>
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Nombre del nuevo perfil:</translation>
     </message>
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Formato de audio:</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Crear un perfil</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <comment>Button caption</comment>
-        <translation type="unfinished"/>
+        <translation>Crear un perfil</translation>
     </message>
 </context>
 <context>
@@ -327,25 +327,25 @@
     <message>
         <source>Audio formats</source>
         <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Formatos de audio</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished"/>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>¿Está seguro que quiere borrar el perfil &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Delete the profile</source>
         <comment>Button caption</comment>
-        <translation type="unfinished"/>
+        <translation>Borrar el perfil</translation>
     </message>
 </context>
 <context>
@@ -458,16 +458,16 @@ En el modo CBR, establece la tasa de bits específica de salida.
     <name>CueDiscSelectDialog</name>
     <message>
         <source>Select disc</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione disco</translation>
     </message>
     <message>
         <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>El archivo CUE contiene información de varios discos. ¿Cuál disco desea usar?</translation>
     </message>
     <message>
         <source>%1 [ disc %2 ]</source>
         <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 [disco %2]</translation>
     </message>
 </context>
 <context>
@@ -856,15 +856,15 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     </message>
     <message>
         <source>Add disc…</source>
-        <translation type="unfinished"/>
+        <translation>Agregar disco...</translation>
     </message>
     <message>
         <source>Remove disc</source>
-        <translation type="unfinished"/>
+        <translation>Remover disco</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
-        <translation type="unfinished"/>
+        <translation>Remover disco del proyecto</translation>
     </message>
 </context>
 <context>
@@ -955,11 +955,11 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     </message>
     <message>
         <source>Insert &quot;Disc number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca &quot;número de disco&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of discs&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca &quot;número total de discos&quot;</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
@@ -972,7 +972,7 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Configurar Remuestreo:</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
@@ -984,7 +984,7 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
+        <translation>Configurar RePlayGain:</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1165,7 +1165,7 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
     <message>
         <source>%1 format</source>
         <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>Formato %1</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
@@ -1175,7 +1175,7 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
     <message>
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>Configurar codificador %1:</translation>
     </message>
 </context>
 <context>
@@ -1264,7 +1264,7 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo cue válido.  La hoja cue no posee etiqueta FILE.</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1273,7 +1273,7 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo cue válido. Disco %2 no tiene etiquetas.</translation>
     </message>
 </context>
 <context>
@@ -1338,7 +1338,7 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
     <message>
         <source>Disc number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Número de disco:</translation>
     </message>
 </context>
 <context>
@@ -1529,7 +1529,30 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
 &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
 </source>
         <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
+&lt;dd&gt;Usando un BitRate Variable medio, esta definición debe proveer una transparencia cercana para la mayoría de la gente en la mayoría de música.&lt;/dd&gt;
+
+&lt;dt&gt;VBR estándar, VBR estándar rápida&lt;/dt&gt;
+&lt;dd&gt;Usando un BitRate Variable estándar, esta definición generalmente debe ser transparente para la mayoría de la gente en la mayoría de la música y ya es bastante alta en calidad.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extremo, VBR extremo rápido&lt;/dt&gt;
+&lt;dd&gt;Usando un BitRate Variable lo mas alto posible, esta definición ofrece una calidad ligeramente superior a la del modo estándar, si tiene muy buen oido o equipos de gama alta de audio .&lt;/dd&gt;
+
+&lt;dt&gt;VBR calidad&lt;/dt&gt;
+&lt;dd&gt;Esta opción de BitRate Variable le permite especificar la calidad de salida.&lt;/dd&gt;
+
+&lt;dt&gt;opción más rápido&lt;/dt&gt;
+&lt;dd&gt;Habilita el nuevo VBR rápido para un perfil particular. Es recomendada.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insano&lt;/dt&gt;
+&lt;dd&gt;Si quiere tener la calidad más alta posible sin remordimientos sobre el tamaño de archivo, lo logrará usando este BitRate Constante.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Usanfo esta definición de BitRate Constante usualmente le dará buena calidad con el bitrate especificado.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Usando esta definición de BitRate Promedio usualmente le dará una calidad más alta que la opción de BitRate Constante para el bitrate especificado.&lt;/dd&gt;
+</translation>
     </message>
     <message>
         <source>Bitrate:</source>

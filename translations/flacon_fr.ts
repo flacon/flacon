@@ -109,12 +109,12 @@
     <message>
         <source>Create a profile</source>
         <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Créer un profil</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <comment>Button caption</comment>
-        <translation type="unfinished"/>
+        <translation>Créer un profil</translation>
     </message>
 </context>
 <context>
@@ -345,7 +345,7 @@
     <message>
         <source>Delete the profile</source>
         <comment>Button caption</comment>
-        <translation type="unfinished"/>
+        <translation>Supprimer le profil</translation>
     </message>
 </context>
 <context>
