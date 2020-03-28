@@ -63,6 +63,7 @@ public:
 private slots:
     void oggQualitySliderChanged(int value);
     void oggQualitySpinChanged(double value);
+    void setUseQualityMode(bool checked);
 };
 
 #endif // OUT_OGG_H

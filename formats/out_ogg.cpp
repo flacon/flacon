@@ -162,6 +162,7 @@ ConfigPage_Ogg::ConfigPage_Ogg(const Profile &profile, QWidget *parent):
 {
     setupUi(this);
 
+    connect(oggUseQualityCheck, &QCheckBox::clicked, this, &ConfigPage_Ogg::setUseQualityMode);
 
     setLossyToolTip(oggQualitySpin);
     oggQualitySlider->setToolTip(oggQualitySpin->toolTip());
@@ -188,6 +189,8 @@ void ConfigPage_Ogg::load()
     loadWidget("MinBitrate",  oggMinBitrateCbx);
     loadWidget("NormBitrate", oggNormBitrateCbx);
     loadWidget("MaxBitrate",  oggMaxBitrateCbx);
+
+    setUseQualityMode(oggUseQualityCheck->isChecked());
 }
 
 
@@ -227,4 +230,25 @@ void ConfigPage_Ogg::oggQualitySpinChanged(double value)
     double y2= kbps[x1 + 2];
     int bitrate = round((y2 - y1) * (value - x1) + y1);
     oggQualityLabel->setText(QString("(~%1 kbps)").arg(bitrate));
+}
+
+
+/************************************************
+ *
+ ************************************************/
+void ConfigPage_Ogg::setUseQualityMode(bool checked)
+{
+    qualityLabel->setEnabled(checked);
+    oggQualitySlider->setEnabled(checked);
+    oggQualitySpin->setEnabled(checked);
+    oggQualityLabel->setEnabled(checked);
+
+    oggMinBitrateCbx->setEnabled(!checked);
+    oggNormBitrateCbx->setEnabled(!checked);
+    oggMaxBitrateCbx->setEnabled(!checked);
+
+    oggMinBitrateLabel->setEnabled(!checked);
+    oggNormBitrateLabel->setEnabled(!checked);
+    oggMaxBitrateLabel->setEnabled(!checked);
+
 }
