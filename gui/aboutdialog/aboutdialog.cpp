@@ -189,7 +189,7 @@ AboutInfo AboutDialog::thanksInfo() const
                tr("Packaging, testing", "Thanks on the about page"));
 
     result.add("",
-               "mailto:yahoe.001@gmail.com",
+               "mailto:ao.french.l10n@rbox.me",
                tr("Improvements in the UI", "Thanks on the about page"));
 
     result.add("Taras Sokol",

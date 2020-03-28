@@ -263,43 +263,43 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
         break;
 
     case TrackState::Error:
-        txt = tr("Error");
+        txt = tr("Error", "Status of the track conversion.");
         icon = &mTrackErrorPix;
         break;
 
     case TrackState::Aborted:
-        txt = tr("Aborted");
+        txt = tr("Aborted", "Status of the track conversion.");
         break;
 
     case TrackState::OK:
-        txt = tr("OK");
+        txt = tr("OK", "Status of the track conversion.");
         icon = &mTrackOkPix;
         break;
 
     case TrackState::Splitting:
-        txt = tr("Extracting");
+        txt = tr("Extracting", "Status of the track conversion.");
         showProgress = true;
         break;
 
     case TrackState::Encoding:
-        txt = tr("Encoding");
+        txt = tr("Encoding", "Status of the track conversion.");
         showProgress = true;
         break;
 
     case TrackState::Queued:
-        txt = tr("Queued");
+        txt = tr("Queued", "Status of the track conversion.");
         break;
 
     case TrackState::CalcGain:
-        txt = tr("Calculate gain");
+        txt = tr("Calculate gain", "Status of the track conversion.");
         break;
 
     case TrackState::WaitGain:
-        txt = tr("Wait gain");
+        txt = tr("Wait gain", "Status of the track conversion.");
         break;
 
     case TrackState::WriteGain:
-        txt = tr("Write gain");
+        txt = tr("Write gain", "Status of the track conversion.");
         break;
     }
 
