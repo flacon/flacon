@@ -28,6 +28,13 @@
 #include "settings.h"
 #include <QDebug>
 
+static constexpr char VBR_MEDIUM[]   = "vbrMedium";
+static constexpr char VBR_STATDARD[] = "vbrStandard";
+static constexpr char VBR_EXTRIME[]  = "vbrExtreme";
+static constexpr char VBR_QUALITY[]  = "vbrQuality";
+static constexpr char CBR_INSANE[]   = "cbrInsane";
+static constexpr char CBR_KBPS[]     = "cbrKbps";
+static constexpr char ABR_KBPS[]     = "abrKbps";
 
 /************************************************
 
@@ -54,48 +61,31 @@ QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const Track *trac
     // Settings .................................................
     QString preset = profile.value("Preset").toString();
 
-    if (preset == "vbrMedium")
-    {
+    if (preset == VBR_MEDIUM) {
         args << "--preset" << "medium";
     }
 
-    else if (preset == "vbrStandard")
-    {
+    else if (preset == VBR_STATDARD) {
         args << "--preset" << "standard";
     }
 
-    else if (preset == "vbrStandardFast")
-    {
-        args << "--preset" << "fast" << "standard";
-    }
-
-    else if (preset == "vbrExtreme")
-    {
+    else if (preset == VBR_EXTRIME) {
         args << "--preset" << "extreme";
     }
 
-    else if (preset == "vbrExtremeFast")
-    {
-        args << "--preset" << "fast" << "extreme";
-    }
-
-    else if (preset == "cbrInsane")
-    {
+    else if (preset == CBR_INSANE) {
         args << "--preset" << "insane";
     }
 
-    else if (preset == "cbrKbps")
-    {
+    else if (preset == CBR_KBPS) {
         args << "--preset" << "cbr" << profile.value("Bitrate").toString();
     }
 
-    else if (preset == "abrKbps")
-    {
+    else if (preset == ABR_KBPS) {
         args << "--preset" << profile.value("Bitrate").toString();
     }
 
-    else if (preset == "vbrQuality")
-    {
+    else if (preset == VBR_QUALITY) {
         int quality = profile.value("Quality").toInt();
         args << "-V" << QString("%1").arg(9 - quality);
     }
@@ -163,7 +153,7 @@ QStringList OutFormat_Mp3::gainArgs(const QStringList &files, const GainType) co
 QHash<QString, QVariant> OutFormat_Mp3::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Preset",           "vbrStandardFast");
+    res.insert("Preset",           VBR_STATDARD);
     res.insert("Bitrate",          320);
     res.insert("Quality",          4);
     res.insert("ReplayGain",       gainTypeToString(GainType::Disable));
@@ -188,17 +178,13 @@ ConfigPage_Mp3::ConfigPage_Mp3(const Profile &profile, QWidget *parent):
 {
     setupUi(this);
 
-    mp3PresetCbx->addItem(tr("VBR medium"),       "vbrMedium");
-    mp3PresetCbx->addItem(tr("VBR standard"),      "vbrStandard");
-    mp3PresetCbx->addItem(tr("VBR standard fast"), "vbrStandardFast");
-    mp3PresetCbx->addItem(tr("VBR extreme"),       "vbrExtreme");
-    mp3PresetCbx->addItem(tr("VBR extreme fast"),  "vbrExtremeFast");
-    mp3PresetCbx->addItem(tr("VBR quality"),       "vbrQuality");
-    mp3PresetCbx->addItem(tr("CBR insane"),        "cbrInsane");
-    mp3PresetCbx->addItem(tr("CBR kbps"),          "cbrKbps");
-    mp3PresetCbx->addItem(tr("ABR kbps"),          "abrKbps");
-
-
+    mp3PresetCbx->addItem(tr("VBR medium"),     VBR_MEDIUM);
+    mp3PresetCbx->addItem(tr("VBR standard"),   VBR_STATDARD);
+    mp3PresetCbx->addItem(tr("VBR extreme"),    VBR_EXTRIME);
+    mp3PresetCbx->addItem(tr("VBR quality"),    VBR_QUALITY);
+    mp3PresetCbx->addItem(tr("CBR insane"),     CBR_INSANE);
+    mp3PresetCbx->addItem(tr("CBR kbps"),       CBR_KBPS);
+    mp3PresetCbx->addItem(tr("ABR kbps"),       ABR_KBPS);
 
     fillBitrateComboBox(mp3BitrateCbx,  QList<int>() << 32 << 40 << 48 << 56
                                                      << 64 << 80 << 96 << 112
@@ -212,7 +198,31 @@ ConfigPage_Mp3::ConfigPage_Mp3(const Profile &profile, QWidget *parent):
           "dd { margin-left: 8px; margin-bottom: 8px; }\n"
           "</style>\n";
 
-    mp3PresetCbx->setToolTip(css + mp3PresetCbx->toolTip());
+    QString toolTip = tr(
+      R"(<dt>VBR medium</dt>
+      <dd>By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.</dd>
+
+      <dt>VBR standard</dt>
+      <dd>By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.</dd>
+
+      <dt>VBR extreme</dt>
+      <dd>By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.</dd>
+
+      <dt>VBR quality</dt>
+      <dd>This Variable BitRate option lets you specify the output quality.</dd>
+
+      <dt>CBR insane</dt>
+      <dd>If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.</dd>
+
+      <dt>CBR kbps</dt>
+      <dd>Using this Constant BitRate preset will usually give you good quality at a specified bitrate.</dd>
+
+      <dt>ABR kbps</dt>
+      <dd>Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.</dd>
+      )",
+      "Tooltip for the Mp3 presets combobox on preferences dialog." );
+
+    mp3PresetCbx->setToolTip(css + toolTip);
 
     setLossyToolTip(mp3QualitySlider);
     mp3QualitySpin->setToolTip(mp3QualitySlider->toolTip());
@@ -253,11 +263,11 @@ void ConfigPage_Mp3::mp3PresetCbxCanged(int index)
 {
     QString preset = mp3PresetCbx->itemData(index).toString();
 
-    bool enable = (preset == "abrKbps" or preset=="cbrKbps");
+    bool enable = (preset == ABR_KBPS or preset==CBR_KBPS);
     mp3BitrateLabel->setEnabled(enable);
     mp3BitrateCbx->setEnabled(enable);
 
-    enable = (preset == "vbrQuality");
+    enable = (preset == VBR_QUALITY);
     mp3QualityLabel->setEnabled(enable);
     mp3QualitySlider->setEnabled(enable);
     mp3QualitySpin->setEnabled(enable);

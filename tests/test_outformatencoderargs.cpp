@@ -196,21 +196,6 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "- OutFile.wav";
 
 
-
-    //*******************************************
-    cfg.clear();
-    cfg.insert("Preset",     "vbrStandardFast");
-
-    QTest::newRow("04 MP3_vbrStandardFast")
-            << "MP3"
-            << cfg
-            << "lame --silent "
-               "--preset fast standard "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
-               "- OutFile.wav";
-
-
     //*******************************************
     cfg.clear();
     cfg.insert("Preset",     "vbrExtreme");
@@ -220,19 +205,6 @@ void TestFlacon::testOutFormatEncoderArgs_data()
             << cfg
             << "lame --silent "
                "--preset extreme "
-               "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
-               "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
-               "- OutFile.wav";
-
-    //*******************************************
-    cfg.clear();
-    cfg.insert("Preset",     "vbrExtremeFast");
-
-    QTest::newRow("06 MP3_vbrExtremeFast")
-            << "MP3"
-            << cfg
-            << "lame --silent "
-               "--preset fast extreme "
                "--noreplaygain --add-id3v2 --ta Artist --tl Album --tg Genre --ty 2013 --tt Song01 --tv TPE2=Artist "
                "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
                "- OutFile.wav";
