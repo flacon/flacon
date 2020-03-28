@@ -800,7 +800,8 @@ void MainWindow::downloadDiscInfo(Disc *disc)
 void MainWindow::addFileOrDir(const QString &fileName)
 {
     bool isFirst = true;
-    auto addFile = [&](const QString &file, bool showError = false) {
+    bool showError = false;
+    auto addFile = [&](const QString &file) {
         try {
             QFileInfo fi = QFileInfo(file);
             DiscList discs;
@@ -828,6 +829,7 @@ void MainWindow::addFileOrDir(const QString &fileName)
     if (fi.isDir())  {
         mScanner = new Scanner;
         setControlsEnable();
+        showError = false;
         connect(mScanner, &Scanner::found, addFile);
         mScanner->start(fi.absoluteFilePath());
         delete mScanner;
@@ -835,7 +837,8 @@ void MainWindow::addFileOrDir(const QString &fileName)
         setControlsEnable();
     }
     else {
-        addFile(fileName, true);
+        showError = true;
+        addFile(fileName);
     }
     QApplication::restoreOverrideCursor();
 }
