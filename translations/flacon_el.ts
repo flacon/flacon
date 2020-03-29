@@ -359,16 +359,8 @@
         <translation>VBR κανονικά</translation>
     </message>
     <message>
-        <source>VBR standard fast</source>
-        <translation>VBR κανονικά γρήγορα</translation>
-    </message>
-    <message>
         <source>VBR extreme</source>
         <translation>VBR έντονα</translation>
-    </message>
-    <message>
-        <source>VBR extreme fast</source>
-        <translation>VBR έντονα γρήγορα</translation>
     </message>
     <message>
         <source>VBR quality</source>
@@ -385,6 +377,31 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+      &lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR standard&lt;/dt&gt;
+      &lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR extreme&lt;/dt&gt;
+      &lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR quality&lt;/dt&gt;
+      &lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR insane&lt;/dt&gt;
+      &lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR kbps&lt;/dt&gt;
+      &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+      &lt;dt&gt;ABR kbps&lt;/dt&gt;
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+      </source>
+        <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1356,48 +1373,57 @@ If you surround sections of text that contain a token with braces, these section
 <context>
     <name>TrackViewDelegate</name>
     <message>
-        <source>Error</source>
-        <translation>Σφάλμα</translation>
-    </message>
-    <message>
-        <source>Aborted</source>
-        <translation>Ματαίωση</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-    <message>
-        <source>Extracting</source>
-        <translation>Εξαγωγή</translation>
-    </message>
-    <message>
-        <source>Encoding</source>
-        <translation>Κωδικοποίηση</translation>
-    </message>
-    <message>
-        <source>Queued</source>
-        <translation>Αναμονή</translation>
-    </message>
-    <message>
-        <source>Calculate gain</source>
-        <translation>Υπολογισμός</translation>
-    </message>
-    <message>
-        <source>Wait gain</source>
-        <translation>Αναμονή</translation>
-    </message>
-    <message>
-        <source>Write gain</source>
-        <translation>Εγγραφή</translation>
-    </message>
-    <message>
         <source>Tracks:</source>
         <translation>Κομμάτια:</translation>
     </message>
     <message>
         <source>Audio:</source>
         <translation>Ήχος:</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Σφάλμα</translation>
+    </message>
+    <message>
+        <source>Aborted</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Ματαίωση</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <source>Extracting</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Εξαγωγή</translation>
+    </message>
+    <message>
+        <source>Encoding</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Κωδικοποίηση</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Αναμονή</translation>
+    </message>
+    <message>
+        <source>Calculate gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Υπολογισμός</translation>
+    </message>
+    <message>
+        <source>Wait gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Αναμονή</translation>
+    </message>
+    <message>
+        <source>Write gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Εγγραφή</translation>
     </message>
 </context>
 <context>
@@ -1503,57 +1529,6 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Preset:</source>
         <translation>Προρυθμίσεις:</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR πολυμέσα&lt;/dt&gt;
-&lt;dd&gt;Χρησιμοποιώντας μιά μέση μεταβλητή BitRate, αυτή η προκαθορισμένη ρύθμιση θα πρέπει να παρέχει διαφάνεια για τους περισσότερους ανθρώπους και τα περισσότερα είδη μουσικής.&lt;/dd&gt;
-
-&lt;dt&gt;Κανονικό VBR, γρήγορο VBR&lt;/dt&gt; 
-&lt;dd&gt;Χρησιμοποιώντας μιά μεταβλητή BitRate, αυτή η προκαθορισμένη ρύθμιση θα πρέπει, γενικά, να είναι διαφανής για τους περισσότερους ανθρώπους και να είναι αρκετά υψηλής ποιότητας.&lt;/dd&gt;
-
-&lt;dt&gt;Εντονο VBR, έντονο και γρήγορο VBR&lt;/dt&gt;
-&lt;dd&gt;Χρησιμοποιώντας την υψηλότερη δυνατή μεταβλητή BitRate, παρέχει ελαφρώς υψηλότερη ποιότητα από την τυπική λειτουργία, αν έχετε εξαιρετικά καλή ακοή η έναν υψηλής ποιότητας εξοπλισμό ήχου.&lt;/dd&gt;
-
-&lt;dt&gt;VBR ποιότητα&lt;/dt&gt;
-&lt;dd&gt;Αυτή η μεταβλητή BitRate επιλογή, σας επιτρέπει να καθορίσετε την ποιότητα εξόδου.&lt;/dd&gt;
-
-&lt;dt&gt;γρήγορη επιλογή&lt;/dt&gt;
-&lt;dd&gt;Ενεργοποίηση τού νέου γρήγορου VBR για συγκεκριμένα προφίλ. Αυτό συνιστάται.&lt;/dd&gt;
-
-Εντονο CBR &lt;dt&gt;
-&lt;dd&gt;Αν θέλετε να έχετε την απόλυτη υψηλότερη ποιότητα όσον αφορά το μέγεθος του αρχείου, θα το πετύχετε χρησιμοποιώντας αυτή την σταθερή BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Χρησιμοποιώντας αυτό το προκαθορισμένο σταθερό BitRate, είναι συνήθως καλής ποιότητας.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Χρησιμοποιώντας αυτή την μέση προκαθορισμένη BitRate, είναι συνήθως υψηλότερης ποιότητας από την σταθερή BitRate επιλογή.&lt;/dd&gt;
-</translation>
     </message>
     <message>
         <source>Bitrate:</source>

@@ -47,7 +47,7 @@
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation>Tous droits réservés : %1-%2 %3</translation>
+        <translation>Tous droits réservés : %1 à %2 %3</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
@@ -104,7 +104,7 @@
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation>Format audio :</translation>
+        <translation>Format son :</translation>
     </message>
     <message>
         <source>Create a profile</source>
@@ -327,7 +327,7 @@
     <message>
         <source>Audio formats</source>
         <extracomment>Config fialog tab title</extracomment>
-        <translation>Formats audio</translation>
+        <translation>Formats son</translation>
     </message>
     <message>
         <source>+</source>
@@ -335,7 +335,7 @@
     </message>
     <message>
         <source>-</source>
-        <translation>-</translation>
+        <translation>–</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
@@ -359,16 +359,8 @@
         <translation>DBV standard</translation>
     </message>
     <message>
-        <source>VBR standard fast</source>
-        <translation>DBV standard rapide</translation>
-    </message>
-    <message>
         <source>VBR extreme</source>
         <translation>DBV extrême</translation>
-    </message>
-    <message>
-        <source>VBR extreme fast</source>
-        <translation>DBV extrême rapide</translation>
     </message>
     <message>
         <source>VBR quality</source>
@@ -385,6 +377,31 @@
     <message>
         <source>ABR kbps</source>
         <translation>DBM kbit/s</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+      &lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR standard&lt;/dt&gt;
+      &lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR extreme&lt;/dt&gt;
+      &lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR quality&lt;/dt&gt;
+      &lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR insane&lt;/dt&gt;
+      &lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR kbps&lt;/dt&gt;
+      &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+      &lt;dt&gt;ABR kbps&lt;/dt&gt;
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+      </source>
+        <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -403,11 +420,11 @@
     </message>
     <message>
         <source>VBR - variable bitrate</source>
-        <translation>DBV - débit binaire variable</translation>
+        <translation>DBV – débit binaire variable</translation>
     </message>
     <message>
         <source>CBR - constrained bitrate</source>
-        <translation>DBC - débit binaire constant</translation>
+        <translation>DBC – débit binaire constant</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR&lt;/dt&gt;
@@ -428,7 +445,7 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation>Définit le débit binaire cible en kbit/s (6-256 par canal).
+        <translation>Définit le débit binaire cible en kbit/s (6 à 256 par canal).
 &lt;p&gt;
 En mode DBV, cela définit le débit moyen pour une grande collection audio diversifiée. 
 &lt;p&gt;
@@ -618,7 +635,7 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>ID de disque :</translation>
+        <translation>ID du disque :</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -759,13 +776,13 @@ If you surround sections of text that contain a token with braces, these section
  &lt;/style&gt;
 Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants  :
  &lt;table&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numéro de plage &lt;/td&gt;
- &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nombre total de plages&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artiste&lt;/td&gt;
- &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titre de l’album&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titre de la plage&lt;/td&gt;
-&lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Année&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Numéro de plage &lt;/td&gt;
+ &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; –Nombre total de plages&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Artiste&lt;/td&gt;
+ &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; –Titre de l’album&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Titre de la plage&lt;/td&gt;
+&lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Année&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Genre&lt;/td&gt;
  &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
  &lt;/table&gt;
  &lt;br&gt;&lt;br&gt;
@@ -1097,7 +1114,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain est une norme qui permet d’égaliser l’intensité perçue du son des formats de fichiers son sur ordinateur.
+        <translation>ReplayGain est une norme qui permet d’égaliser le niveau sonore perçu des formats son sur ordinateur.
 
 L’analyse peut être effectuée sur des plages individuelles de manière à ce que toutes les plages soient jouées à un volume sonore équivalent.
 L’utilisation de l’analyse par album permet de préserver les différences de volume pour un même album.</translation>
@@ -1150,13 +1167,13 @@ If you surround sections of text that contain a token with braces, these section
  &lt;/style&gt;
 Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants  :
  &lt;table&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numéro de plage &lt;/td&gt;
- &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nombre total de plages&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artiste&lt;/td&gt;
- &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titre de l’album&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titre de la plage&lt;/td&gt;
-&lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Année&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Numéro de plage &lt;/td&gt;
+ &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; –Nombre total de plages&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Artiste&lt;/td&gt;
+ &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; –Titre de l’album&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Titre de la plage&lt;/td&gt;
+&lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Année&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Genre&lt;/td&gt;
  &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
  &lt;/table&gt;
  &lt;br&gt;&lt;br&gt;
@@ -1165,7 +1182,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>%1 format</source>
         <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation>Format %</translation>
+        <translation>Format %1</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
@@ -1355,48 +1372,57 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
 <context>
     <name>TrackViewDelegate</name>
     <message>
-        <source>Error</source>
-        <translation>Erreur</translation>
-    </message>
-    <message>
-        <source>Aborted</source>
-        <translation>Interrompu</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>Validé</translation>
-    </message>
-    <message>
-        <source>Extracting</source>
-        <translation>Extraction</translation>
-    </message>
-    <message>
-        <source>Encoding</source>
-        <translation>Encodage</translation>
-    </message>
-    <message>
-        <source>Queued</source>
-        <translation>En attente</translation>
-    </message>
-    <message>
-        <source>Calculate gain</source>
-        <translation>Calcul du gain</translation>
-    </message>
-    <message>
-        <source>Wait gain</source>
-        <translation>En attente du gain</translation>
-    </message>
-    <message>
-        <source>Write gain</source>
-        <translation>Écriture du gain</translation>
-    </message>
-    <message>
         <source>Tracks:</source>
         <translation>Plages :</translation>
     </message>
     <message>
         <source>Audio:</source>
         <translation>Audio :</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Erreur</translation>
+    </message>
+    <message>
+        <source>Aborted</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Interrompu</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Validé</translation>
+    </message>
+    <message>
+        <source>Extracting</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Extraction</translation>
+    </message>
+    <message>
+        <source>Encoding</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Encodage</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>En attente</translation>
+    </message>
+    <message>
+        <source>Calculate gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Calcul du gain</translation>
+    </message>
+    <message>
+        <source>Wait gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>En attente du gain</translation>
+    </message>
+    <message>
+        <source>Write gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Écriture du gain</translation>
     </message>
 </context>
 <context>
@@ -1502,56 +1528,6 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>Preset:</source>
         <translation>Préréglage :</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;DBV moyen&lt;/dt&gt;
-&lt;dd&gt;En utilisant un Débit Binaire Variable moyen, cette présélection devrait fournir une quasi transparence à la plupart des personnes pour la plupart des musiques.&lt;/dd&gt;
-
-&lt;dt&gt;DBV standard, DBV standard rapide&lt;/dt&gt;
-&lt;dd&gt;En utilisant un Débit Binaire Variable standard, ces présélections devraient être transparentes pour la plupart des personnes et la plupart des musiques, et donnent déjà des résultats de haute qualité.&lt;/dd&gt;
-
-&lt;dt&gt;DBV extrême, DBV extrême rapide&lt;/dt&gt;
-&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, ces présélections fournissent une qualité légèrement supérieure au mode standard si vous avec une très bonne ouïe et un matériel audio haut de gamme.&lt;/dd&gt;
-
-&lt;dt&gt;DBV qualité&lt;/dt&gt;
-&lt;dd&gt;Cette option à Débit Binaire Variable vous permet de choisir le niveau final de qualité.&lt;/dd&gt;
-
-&lt;dt&gt;option rapide&lt;/dt&gt;
-&lt;dd&gt;Active la nouvelle option DBV rapide pour un profil donné. Ceci est recommandé.&lt;/dd&gt;
-
-&lt;dt&gt;DBC insensé&lt;/dt&gt;
-&lt;dd&gt;Si vous devez obtenir la plus haute qualité sans vous soucier de la taille du fichier, vous l’obtiendrez en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
-
-&lt;dt&gt;DBC kbit/s&lt;/dt&gt;
-&lt;dd&gt;Cette présélection à Débit Binaire Constant vous donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
-
-&lt;dt&gt;&gt;DBM kbit&lt;/dt&gt;
-&lt;dd&gt;Cette présélection à Débit Binaire Moyen vous donnera généralement une meilleure qualité pour un débit donné qu’en utilisant l’option à Débit Binaire Constant.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Bitrate:</source>

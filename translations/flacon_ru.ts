@@ -359,16 +359,8 @@
         <translation>VBR standard</translation>
     </message>
     <message>
-        <source>VBR standard fast</source>
-        <translation>VBR standard fast</translation>
-    </message>
-    <message>
         <source>VBR extreme</source>
         <translation>VBR extreme</translation>
-    </message>
-    <message>
-        <source>VBR extreme fast</source>
-        <translation>VBR extreme fast</translation>
     </message>
     <message>
         <source>VBR quality</source>
@@ -385,6 +377,50 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+      &lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR standard&lt;/dt&gt;
+      &lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR extreme&lt;/dt&gt;
+      &lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR quality&lt;/dt&gt;
+      &lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR insane&lt;/dt&gt;
+      &lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR kbps&lt;/dt&gt;
+      &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+      &lt;dt&gt;ABR kbps&lt;/dt&gt;
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+      </source>
+        <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
+        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;При использовании режима со средним переменным битрейтом, большинство людей не услышат искажений на большинстве музыки.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standard&lt;/dt&gt;
+&lt;dd&gt;При использовании режима со стандартным переменным битрейтом, большинство людей не услышат искажений на большинстве музыки. Этот режим обеспечивает довольно высокое качество.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreme&lt;/dt&gt;
+&lt;dd&gt;Этот режим дает более высокое качество чем VBR standard. Вы заметите это, если у вас очень хороший слух, или аппаратура высокого класса.&lt;/dd&gt;
+
+&lt;dt&gt;VBR quality&lt;/dt&gt;
+&lt;dd&gt;В этом режиме Вы можете сами задать качество звука, при этом используется переменный битрейт.&lt;/dd&gt;
+
+&lt;dt&gt;CBR insane&lt;/dt&gt;
+&lt;dd&gt;Если Вы хотите получить максимальное качество звука, а размер файла значения не имеет, используйте этот режим с постоянным битрейтом.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Использование этого режима с постоянным битрейтом, даст хорошее качество при фиксированном битейте.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Обычно, этот режим с усредненным битрейтом дает лучшее качество чем режимы с постоянным битрейтом.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -1354,48 +1390,57 @@ If you surround sections of text that contain a token with braces, these section
 <context>
     <name>TrackViewDelegate</name>
     <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Aborted</source>
-        <translation>Прервано</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-    <message>
-        <source>Extracting</source>
-        <translation>Извлечение</translation>
-    </message>
-    <message>
-        <source>Encoding</source>
-        <translation>Кодирование</translation>
-    </message>
-    <message>
-        <source>Queued</source>
-        <translation>В очереди</translation>
-    </message>
-    <message>
-        <source>Calculate gain</source>
-        <translation>Расчет громкости</translation>
-    </message>
-    <message>
-        <source>Wait gain</source>
-        <translation>Ожидание громкости</translation>
-    </message>
-    <message>
-        <source>Write gain</source>
-        <translation>Запись громкости</translation>
-    </message>
-    <message>
         <source>Tracks:</source>
         <translation>Треки:</translation>
     </message>
     <message>
         <source>Audio:</source>
         <translation>Аудио:</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Ошибка</translation>
+    </message>
+    <message>
+        <source>Aborted</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Прервано</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <source>Extracting</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Извлечение</translation>
+    </message>
+    <message>
+        <source>Encoding</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Кодирование</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>В очереди</translation>
+    </message>
+    <message>
+        <source>Calculate gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Расчет громкости</translation>
+    </message>
+    <message>
+        <source>Wait gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Ожидание громкости</translation>
+    </message>
+    <message>
+        <source>Write gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Запись громкости</translation>
     </message>
 </context>
 <context>
@@ -1501,56 +1546,6 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Preset:</source>
         <translation>Пресет:</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;При использовании режима со средним переменным битрейтом, большинство людей не услышат искажений на большинстве музыки.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;При использовании режима со страндартным переменным битрейтом, большинство людей не услышат искажений на большинстве музыки. Этот режим обеспечивает довольно высокое качество.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;Этот режим дает более высокое качество чем VBR standard. Вы заметите это, если у вас очень хороший слух, или аппаратура высокого класса.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;В этом режиме Вы можете сами задать качество звука, при этом используется переменный битрейт.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Рекомендуем использовать режимы с &quot;fast option&quot;, они используют новый, быстрый алгоритм VBR.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;Если Вы хотите получить максимальное качество звука, а размер файла значения не имеет, используйте этот режим с постоянным битрейтом.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Использование этого режима с постоянным битрейтом, даст хорошее качество при фиксированном битейте.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Обычно, этот режим с усредненным битрейтом дает лучшее качество чем режимы с постоянным битрейтом.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Bitrate:</source>

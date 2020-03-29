@@ -359,16 +359,8 @@
         <translation>标准 VBR 模式</translation>
     </message>
     <message>
-        <source>VBR standard fast</source>
-        <translation>快速标准 VBR 模式</translation>
-    </message>
-    <message>
         <source>VBR extreme</source>
         <translation>极佳 VBR 模式</translation>
-    </message>
-    <message>
-        <source>VBR extreme fast</source>
-        <translation>快速极佳 VBR 模式</translation>
     </message>
     <message>
         <source>VBR quality</source>
@@ -385,6 +377,31 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+      &lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR standard&lt;/dt&gt;
+      &lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR extreme&lt;/dt&gt;
+      &lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR quality&lt;/dt&gt;
+      &lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR insane&lt;/dt&gt;
+      &lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR kbps&lt;/dt&gt;
+      &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+      &lt;dt&gt;ABR kbps&lt;/dt&gt;
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+      </source>
+        <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1355,48 +1372,57 @@ If you surround sections of text that contain a token with braces, these section
 <context>
     <name>TrackViewDelegate</name>
     <message>
-        <source>Error</source>
-        <translation>错误</translation>
-    </message>
-    <message>
-        <source>Aborted</source>
-        <translation>终止</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>确定</translation>
-    </message>
-    <message>
-        <source>Extracting</source>
-        <translation>正在提取</translation>
-    </message>
-    <message>
-        <source>Encoding</source>
-        <translation>正在编码</translation>
-    </message>
-    <message>
-        <source>Queued</source>
-        <translation>排队</translation>
-    </message>
-    <message>
-        <source>Calculate gain</source>
-        <translation>计算增益</translation>
-    </message>
-    <message>
-        <source>Wait gain</source>
-        <translation>等待增益</translation>
-    </message>
-    <message>
-        <source>Write gain</source>
-        <translation>写入增益</translation>
-    </message>
-    <message>
         <source>Tracks:</source>
         <translation>音轨：</translation>
     </message>
     <message>
         <source>Audio:</source>
         <translation>音频：</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <source>Aborted</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>终止</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <source>Extracting</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>正在提取</translation>
+    </message>
+    <message>
+        <source>Encoding</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>正在编码</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>排队</translation>
+    </message>
+    <message>
+        <source>Calculate gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>计算增益</translation>
+    </message>
+    <message>
+        <source>Wait gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>等待增益</translation>
+    </message>
+    <message>
+        <source>Write gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>写入增益</translation>
     </message>
 </context>
 <context>
@@ -1502,34 +1528,6 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Preset:</source>
         <translation>预设:</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bitrate:</source>

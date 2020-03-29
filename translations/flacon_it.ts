@@ -359,16 +359,8 @@
         <translation>VBR standard</translation>
     </message>
     <message>
-        <source>VBR standard fast</source>
-        <translation>VBR standard veloce</translation>
-    </message>
-    <message>
         <source>VBR extreme</source>
         <translation>VBR estremo</translation>
-    </message>
-    <message>
-        <source>VBR extreme fast</source>
-        <translation>VBR estremamente veloce</translation>
     </message>
     <message>
         <source>VBR quality</source>
@@ -385,6 +377,31 @@
     <message>
         <source>ABR kbps</source>
         <translation>ABR kbps</translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
+      &lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR standard&lt;/dt&gt;
+      &lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR extreme&lt;/dt&gt;
+      &lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR quality&lt;/dt&gt;
+      &lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR insane&lt;/dt&gt;
+      &lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR kbps&lt;/dt&gt;
+      &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+
+      &lt;dt&gt;ABR kbps&lt;/dt&gt;
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
+      </source>
+        <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1343,48 +1360,57 @@ Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, quest
 <context>
     <name>TrackViewDelegate</name>
     <message>
-        <source>Error</source>
-        <translation>Errore</translation>
-    </message>
-    <message>
-        <source>Aborted</source>
-        <translation>Cancellato</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-    <message>
-        <source>Extracting</source>
-        <translation>Estraendo</translation>
-    </message>
-    <message>
-        <source>Encoding</source>
-        <translation>Registrazione</translation>
-    </message>
-    <message>
-        <source>Queued</source>
-        <translation>Accodato</translation>
-    </message>
-    <message>
-        <source>Calculate gain</source>
-        <translation>Calcola guadagno</translation>
-    </message>
-    <message>
-        <source>Wait gain</source>
-        <translation>Attendi guadagno</translation>
-    </message>
-    <message>
-        <source>Write gain</source>
-        <translation>Scrivi guadagno</translation>
-    </message>
-    <message>
         <source>Tracks:</source>
         <translation>Tracce:</translation>
     </message>
     <message>
         <source>Audio:</source>
         <translation>Audio:</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Errore</translation>
+    </message>
+    <message>
+        <source>Aborted</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Cancellato</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <source>Extracting</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Estraendo</translation>
+    </message>
+    <message>
+        <source>Encoding</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Registrazione</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Accodato</translation>
+    </message>
+    <message>
+        <source>Calculate gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Calcola guadagno</translation>
+    </message>
+    <message>
+        <source>Wait gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Attendi guadagno</translation>
+    </message>
+    <message>
+        <source>Write gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Scrivi guadagno</translation>
     </message>
 </context>
 <context>
@@ -1489,57 +1515,6 @@ Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, quest
     <message>
         <source>Preset:</source>
         <translation>Presettato:</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard fast&lt;/dt&gt;
-&lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extreme, VBR extreme fast&lt;/dt&gt;
-&lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
-
-&lt;dt&gt;VBR quality&lt;/dt&gt;
-&lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
-
-&lt;dt&gt;fast option&lt;/dt&gt;
-&lt;dd&gt;Enables the new fast VBR for a particular profile. This is recommended.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insane&lt;/dt&gt;
-&lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-</source>
-        <extracomment>ererere</extracomment>
-        <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
-&lt;dd&gt;Usando un VariableBitRate medio, si dovrebbe ottenere maggiore trasparenza verso le persone e la musica.&lt;/dd&gt;
-
-&lt;dt&gt;VBR standard, VBR standard veloce&lt;/dt&gt;
-&lt;dd&gt;Usando un Variable BitRate standard, si dovrebbe garantire maggiore trasparenza verso le persone e la musica, e si dovrebbe ottenere una qualità alta.&lt;/dd&gt;
-
-&lt;dt&gt;VBR estremoe, VBR estremo veloce&lt;/dt&gt;
-&lt;dd&gt;Usando il più veloce Variable BitRate, si dovrebbe fornire una qualità leggermente superiore alla versione standard se si ascolta con buone orecchie o con apparecchi high-end.&lt;/dd&gt;
-
-&lt;dt&gt;Qualità VBR&lt;/dt&gt;
-&lt;dd&gt;Questa opzione di Variable BitRate ti consente di stabilire la qualità dell&apos;output prodotto.&lt;/dd&gt;
-
-&lt;dt&gt;opzione veloce&lt;/dt&gt;
-&lt;dd&gt;Abilita il nuovo fast VBR per un profilo particolare. Questo è altamente raccomandato.&lt;/dd&gt;
-
-&lt;dt&gt;CBR insano&lt;/dt&gt;
-&lt;dd&gt;Se si vuole ottenere la massima qualità assoluta senza alcun riguardo per la dimensione del file, la si può ottenere utilizzando questo Constant BitRate.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Usando questo Constant BitRate si ottiene una buona qualità rispetto al bitrate specificato.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Usando questo Average BitRate si ottiene una qualità leggermente superiore la Constatnt BitRate rispetto al bitrate specificato.&lt;/dd&gt;
-</translation>
     </message>
     <message>
         <source>Bitrate:</source>
