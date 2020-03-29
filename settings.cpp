@@ -99,6 +99,17 @@ static void migrateProfile(Settings *settings, const QString &formatId)
         migrateKey(settings, "Mp3/Bitrate",      group + "Bitrate");
         migrateKey(settings, "Mp3/Quality",      group + "Quality");
         migrateKey(settings, "Mp3/ReplayGain",   group + "ReplayGain");
+
+        // Replace vbrStandardFast to vbrStandard
+        if (settings->value(group + "Preset", "") == "vbrStandardFast") {
+            settings->setValue(group + "Preset", "vbrStandard");
+        }
+
+        // Replace vbrExtremeFast to vbrExtreme
+        if (settings->value(group + "Preset", "") == "vbrExtremeFast") {
+            settings->setValue(group + "Preset", "vbrExtreme");
+        }
+
     }
 
     if (format->id() == "OGG") {

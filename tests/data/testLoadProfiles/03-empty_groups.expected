@@ -31,7 +31,7 @@
     Format = MP3
     Name = MP3
     Bitrate=320
-    Preset=vbrStandardFast
+    Preset=vbrStandard
     Quality=4
     ReplayGain=Disable
     BitsPerSample=0
