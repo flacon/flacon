@@ -291,15 +291,15 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
         break;
 
     case TrackState::CalcGain:
-        txt = tr("Calculate gain", "Status of the track conversion.");
+        txt = tr("Calculating gain", "Status of the track conversion.");
         break;
 
     case TrackState::WaitGain:
-        txt = tr("Wait gain", "Status of the track conversion.");
+        txt = tr("Waiting gain", "Status of the track conversion.");
         break;
 
     case TrackState::WriteGain:
-        txt = tr("Write gain", "Status of the track conversion.");
+        txt = tr("Writing gain", "Status of the track conversion.");
         break;
     }
 

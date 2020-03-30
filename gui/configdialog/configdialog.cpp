@@ -197,7 +197,7 @@ void ConfigDialog::initProgramsPage()
         ProgramEdit *edit = new ProgramEdit(prog, programsPage);
         mProgramEdits << edit;
 
-        QLabel *label = new QLabel(prog + ": ");
+        QLabel *label = new QLabel(tr("%1:", "Template for the program name label on the preferences form. %1 is a program name.").arg(prog));
         label->setBuddy(edit);
 #ifdef Q_OS_MAC
         label->setAlignment(Qt::AlignRight);
