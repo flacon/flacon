@@ -510,7 +510,6 @@ void ConfigDialog::deleteProfile()
 
     QMessageBox dialog(this);
     dialog.setText(tr("Are you sure you want to delete the profile \"%1\"?", "Message box text").arg(prof.name()));
-    dialog.setText("<nobr>" + dialog.text() + "</nobr>");
     dialog.setTextFormat(Qt::RichText);
     dialog.setIconPixmap(QPixmap(":/64/mainicon"));
 

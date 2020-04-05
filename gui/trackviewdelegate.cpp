@@ -295,7 +295,7 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
         break;
 
     case TrackState::WaitGain:
-        txt = tr("Waiting gain", "Status of the track conversion.");
+        txt = tr("Waiting for gain", "Status of the track conversion.");
         break;
 
     case TrackState::WriteGain:
