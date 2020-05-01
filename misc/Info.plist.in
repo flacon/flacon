@@ -40,7 +40,7 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeExtensions</key><array><string>cue</string></array>
-			<key>CFBundleTypeIconFile</key><string>flacon.icns</string>
+			<key>CFBundleTypeIconFile</key><string>Flacon.icns</string>
 			<key>CFBundleTypeName</key><string>CUE file</string>
 			<key>CFBundleTypeRole</key><string>Viewer</string>
 		</dict>
