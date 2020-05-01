@@ -92,6 +92,10 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>profileNameEd</tabstop>
+  <tabstop>formatCbx</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

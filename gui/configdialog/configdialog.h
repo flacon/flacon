@@ -49,7 +49,7 @@ public:
 signals:
     
 public slots:
-    void done(int res);
+    void done(int res) override;
     void tmpDirShowDialog();
 
 private slots:
