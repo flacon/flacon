@@ -56,7 +56,6 @@ public:
 
     bool discExists(const QString &cueUri);
 
-public slots:
     void clear();
     Disc *addAudioFile(const QString &fileName);
     DiscList addCueFile(const QString &fileName);
