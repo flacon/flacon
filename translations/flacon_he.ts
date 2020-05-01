@@ -347,6 +347,11 @@
         <comment>Button caption</comment>
         <translation>מחיקת הפרופיל</translation>
     </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation>%1:</translation>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -401,7 +406,26 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
       </source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR בינוני&lt;/dt&gt;
+&lt;dd&gt;קצב סיביות משתנה בינוני, הגדרה קבועה מראש זו, אמורה לספק שקיפות למירב המשתמשים ומירב המוזיקה.&lt;/dd&gt;
+
+&lt;dt&gt;VBR סטנדרטי, VBR סטנדרטי מהיר&lt;/dt&gt;
+&lt;dd&gt;קצב סיביות סטנדרטי משתנה, הגדרה קבועה מראש זו, לרבו יהיה שקוף למירב המשתמשים ולמירב המוזיקה, הגדרה זו תספק מוזיקה באיכות גבוהה למדי.&lt;/dd&gt;
+
+&lt;dt&gt;VBR קיצוני, VBR קיצוני מהיר &lt;/dt&gt;
+&lt;dd&gt;קצב סיביות משתנה מירבי, הגדרה קבוע מראש זו תספק מוזיקה באיכות מעט גבוהה יותר מאשר במצב רגיל, זאת בתלות בשמיעה מעולה וציוד שמע באיכות גבוהה.&lt;/dd&gt;
+
+&lt;/dt&gt;איכות VBR&lt;/dt&gt;
+&lt;dd&gt;אפשרות קצב סיביות משתנה זו מאפשרת לקבוע את איכות הפלט.&lt;/dd&gt;
+
+&lt;dt&gt;CBR מטורף&lt;/dt&gt;
+&lt;dd&gt;קצב סיביות קבוע, מאפשר מוזיקה באיכות הגבוהה ביותר ללא התחשבות בגודל הקובץ.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;קצב סיות קבוע, יספק בדרך כלל איכות טובה בבקצב סיביות מוגדר.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;קצב סיביות ממוצע, הגדרה קבועה מראש זו תספק בדרך כלל איכות מוזיקה גבוהה יותר מאשר האפשרות של קצב סיביות קבוע, עבור קצב סיביות מוגדר.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -1392,7 +1416,7 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Aborted</source>
         <comment>Status of the track conversion.</comment>
-        <translation>בוטל</translation>
+        <translation>ביטול</translation>
     </message>
     <message>
         <source>OK</source>
@@ -1415,19 +1439,19 @@ If you surround sections of text that contain a token with braces, these section
         <translation>ממתין בתור</translation>
     </message>
     <message>
-        <source>Calculate gain</source>
+        <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>מחשב מרווח</translation>
+        <translation>חישוב מרווח</translation>
     </message>
     <message>
-        <source>Wait gain</source>
+        <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>מרווח המתנה</translation>
+        <translation>כתיבת מרווח</translation>
     </message>
     <message>
-        <source>Write gain</source>
+        <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>כותב מרווח</translation>
+        <translation>המתנה למרווח</translation>
     </message>
 </context>
 <context>

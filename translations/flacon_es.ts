@@ -347,6 +347,11 @@
         <comment>Button caption</comment>
         <translation>Borrar el perfil</translation>
     </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation>%1:</translation>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -401,7 +406,26 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
       </source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
+&lt;dd&gt;Usando un Bitrate Variable medio, este preajuste debe ser casi transparente para la mayoría de gente y la mayoría de música.&lt;/dd&gt;
+
+&lt;dt&gt;VBR estándar&lt;/dt&gt;
+&lt;dd&gt;Usando un Bitrate Variable estándar, este preajuste debería se transparente para la mayoría de la música y es ya un nivel alto de calidad.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extremo&lt;/dt&gt;
+&lt;dd&gt;Usando el Bitrate Variable más alto, este preajuste ofrece algo más de calidad si usted tiene muy buen oído o un equipo de audio de gama alta.&lt;/dd&gt;
+
+&lt;dt&gt;Calidad VBR&lt;/dt&gt;
+&lt;dd&gt;Este valor le permite establecer la calidad de salida.&lt;/dd&gt;
+
+&lt;dt&gt;CBR máximo&lt;/dt&gt;
+&lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando este Bitrate Constante.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Usando este Bitrate Constante, el preajuste le dará una buena calidad al bitrate especificado.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Usando este Bitrate Promedio, este preajuste le dará una calidad más alta que el Bitrate Constante para un bitrate específico.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -1411,19 +1435,19 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>En cola</translation>
     </message>
     <message>
-        <source>Calculate gain</source>
+        <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Calcular ganancia</translation>
+        <translation>Calculando ganancia</translation>
     </message>
     <message>
-        <source>Wait gain</source>
+        <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Esperar ganancia</translation>
+        <translation>Escribiendo ganancia</translation>
     </message>
     <message>
-        <source>Write gain</source>
+        <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Escribir ganancia</translation>
+        <translation>Esperando ganancia</translation>
     </message>
 </context>
 <context>

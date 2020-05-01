@@ -347,6 +347,11 @@
         <comment>Button caption</comment>
         <translation>Borrar el perfil</translation>
     </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -1410,19 +1415,19 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
         <translation>En cola</translation>
     </message>
     <message>
-        <source>Calculate gain</source>
+        <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Calcular ganancia</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Wait gain</source>
+        <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Esperar ganancia</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Write gain</source>
+        <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Escribir ganancia</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

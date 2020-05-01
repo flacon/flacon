@@ -109,7 +109,7 @@
     <message>
         <source>Create a profile</source>
         <extracomment>Add profile dialog title</extracomment>
-        <translation>Créer un profil</translation>
+        <translation>Créer le profil</translation>
     </message>
     <message>
         <source>Create a profile</source>
@@ -347,6 +347,11 @@
         <comment>Button caption</comment>
         <translation>Supprimer le profil</translation>
     </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation>%1 :</translation>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -401,7 +406,26 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
       </source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;DBV moyen&lt;/dt&gt;
+&lt;dd&gt;En utilisant un Débit Binaire Variable moyen, cette présélection devrait offrir une quasi-transparence à la plupart des personnes, pour la plupart des musiques.&lt;/dd&gt;
+
+&lt;dt&gt;DBV standard&lt;/dt&gt;
+&lt;dd&gt;En utilisant un Débit Binaire Variable standard, cette présélection devrait généralement être transparente pour la plupart des personnes, pour la plupart des musiques et donne déjà des résultats de haute qualité.&lt;/dd&gt;
+
+&lt;dt&gt;DBV extrême&lt;/dt&gt;
+&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, cette présélection offre une qualité légèrement supérieure au mode standard si vous avec une très bonne ouïe et un équipement audio haut de gamme.&lt;/dd&gt;
+
+&lt;dt&gt;DBV qualité&lt;/dt&gt;
+&lt;dd&gt;Cette option à Débit Binaire Variable vous permet de choisir la qualité de sortie.&lt;/dd&gt;
+
+&lt;dt&gt;DBC insensé&lt;/dt&gt;
+&lt;dd&gt;Si vous devez obtenir la plus haute qualité sans vous soucier de la taille du fichier, vous l’obtiendrez en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
+
+&lt;dt&gt;DBC kbit/s&lt;/dt&gt;
+&lt;dd&gt;Cette présélection à Débit Binaire Constant vous donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
+
+&lt;dt&gt;DBM kbit&lt;/dt&gt;
+&lt;dd&gt;Cette présélection à Débit Binaire Moyen vous donnera généralement une meilleure qualité que l’option à Débit Binaire Constant. pour un débit donné.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -1387,12 +1411,12 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>Aborted</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Interrompu</translation>
+        <translation>Interrompue</translation>
     </message>
     <message>
         <source>OK</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Validé</translation>
+        <translation>Validée</translation>
     </message>
     <message>
         <source>Extracting</source>
@@ -1410,19 +1434,19 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
         <translation>En attente</translation>
     </message>
     <message>
-        <source>Calculate gain</source>
+        <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
         <translation>Calcul du gain</translation>
     </message>
     <message>
-        <source>Wait gain</source>
-        <comment>Status of the track conversion.</comment>
-        <translation>En attente du gain</translation>
-    </message>
-    <message>
-        <source>Write gain</source>
+        <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
         <translation>Écriture du gain</translation>
+    </message>
+    <message>
+        <source>Waiting for gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>En attente du gain</translation>
     </message>
 </context>
 <context>

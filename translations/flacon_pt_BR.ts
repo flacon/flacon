@@ -347,6 +347,11 @@
         <comment>Button caption</comment>
         <translation>Deletar o perfil</translation>
     </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation>%1:</translation>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -1410,19 +1415,19 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>Na fila</translation>
     </message>
     <message>
-        <source>Calculate gain</source>
+        <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Calcular ganho</translation>
+        <translation>Calculando o ganho</translation>
     </message>
     <message>
-        <source>Wait gain</source>
+        <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Esperar ganho</translation>
+        <translation>Gravando o ganho</translation>
     </message>
     <message>
-        <source>Write gain</source>
+        <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Escrever ganho</translation>
+        <translation>Esperando pelo ganho</translation>
     </message>
 </context>
 <context>

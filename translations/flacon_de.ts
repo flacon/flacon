@@ -94,27 +94,27 @@
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
-        <translation type="unfinished"/>
+        <translation>Füllen Sie die folgenden Informationen aus, um ein Profil zu erstellen:</translation>
     </message>
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Neuer Profilname:</translation>
     </message>
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Audioformat:</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Profil erstellen</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <comment>Button caption</comment>
-        <translation type="unfinished"/>
+        <translation>Profil erstellen</translation>
     </message>
 </context>
 <context>
@@ -287,7 +287,7 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation>Cover</translation>
+        <translation>Cover-Bild</translation>
     </message>
     <message>
         <source>Do not copy image</source>
@@ -327,24 +327,29 @@
     <message>
         <source>Audio formats</source>
         <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Audioformate</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished"/>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>Sind Sie sicher, dass Sie das Profil „%1“ löschen möchten?</translation>
     </message>
     <message>
         <source>Delete the profile</source>
         <comment>Button caption</comment>
+        <translation>Profil löschen</translation>
+    </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -464,11 +469,11 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation>Cover auswählen</translation>
+        <translation>Cover-Bild auswählen</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation>Ohne Cover</translation>
+        <translation>Ohne Cover-Bild</translation>
     </message>
 </context>
 <context>
@@ -503,7 +508,7 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>Kein Cue Sheet ausgewählt. </translation>
+        <translation>Cue-Datei nicht festgelegt.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
@@ -870,7 +875,7 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     <message>
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
-        <translation>Ctrl+Shift+W</translation>
+        <translation>Strg+Umschalt+W</translation>
     </message>
     <message>
         <source>Add disc…</source>
@@ -990,7 +995,7 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Abtastratenkonvertierungs-Einstellungen:</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
@@ -1002,7 +1007,7 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain-Einstellungen:</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1020,7 +1025,7 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
     <message>
         <source>File name format:</source>
         <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation>Dateinameformat:</translation>
+        <translation>Dateinamenformat:</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -1234,7 +1239,7 @@ Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werd
     </message>
     <message>
         <source>The audio file name is not set</source>
-        <translation>Audiodateiname ist nicht festgelegt</translation>
+        <translation>Der Audiodateiname ist nicht festgelegt</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
@@ -1243,7 +1248,7 @@ Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werd
     </message>
     <message>
         <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Audiodatei &lt;b&gt;&quot;%1&quot;&lt;/b&gt; ist nicht vorhanden</translation>
+        <translation>Die Audiodatei &lt;b&gt;„%1“&lt;/b&gt; ist nicht vorhanden</translation>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
@@ -1287,7 +1292,7 @@ Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werd
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>Coverbild konnte nicht gespeichert werden &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Cover-Bild konnte nicht gespeichert werden &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
@@ -1346,7 +1351,7 @@ Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werd
     <message>
         <source>Start track number:</source>
         <comment>Music tag name</comment>
-        <translation>Start Track Nummer:</translation>
+        <translation>Starttitelnummer:</translation>
     </message>
     <message>
         <source>Album performer:</source>
@@ -1411,19 +1416,19 @@ Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werd
         <translation>In die Warteschlange eingereiht</translation>
     </message>
     <message>
-        <source>Calculate gain</source>
+        <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Verstärkung berechnen</translation>
+        <translation>Verstärkung wird berechnet</translation>
     </message>
     <message>
-        <source>Wait gain</source>
-        <comment>Status of the track conversion.</comment>
-        <translation>Wartezeitzunahme</translation>
-    </message>
-    <message>
-        <source>Write gain</source>
+        <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
         <translation>Schreibverstärkung</translation>
+    </message>
+    <message>
+        <source>Waiting for gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

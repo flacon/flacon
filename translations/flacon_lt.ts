@@ -347,6 +347,11 @@
         <comment>Button caption</comment>
         <translation>Ištrinti profilį</translation>
     </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation>%1:</translation>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -1411,19 +1416,19 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Eilėje</translation>
     </message>
     <message>
-        <source>Calculate gain</source>
+        <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Stiprinimo apskaičiavimas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Wait gain</source>
+        <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Laukiama stiprinimo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Write gain</source>
+        <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Stiprinimo įrašymas</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

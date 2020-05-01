@@ -347,6 +347,11 @@
         <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -1398,19 +1403,19 @@ Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, quest
         <translation>Accodato</translation>
     </message>
     <message>
-        <source>Calculate gain</source>
+        <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Calcola guadagno</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Wait gain</source>
+        <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Attendi guadagno</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Write gain</source>
+        <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Scrivi guadagno</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

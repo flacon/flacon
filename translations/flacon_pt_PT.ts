@@ -347,6 +347,11 @@
         <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -1403,19 +1408,19 @@ Se colocar chavetas numa porção de texto que contenha um campo, esse texto fic
         <translation>Em espera</translation>
     </message>
     <message>
-        <source>Calculate gain</source>
+        <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Calcular ganho</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Wait gain</source>
+        <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Esperar pelo ganho</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Write gain</source>
+        <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Escrever ganho</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

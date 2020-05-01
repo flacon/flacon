@@ -347,6 +347,11 @@
         <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -1412,19 +1417,19 @@ Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, h
         <translation>Sorbaállított</translation>
     </message>
     <message>
-        <source>Calculate gain</source>
+        <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Erősítés számítása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Wait gain</source>
+        <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Késleltetéserősítés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Write gain</source>
+        <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation>Íráserősítés</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
