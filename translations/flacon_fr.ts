@@ -443,26 +443,6 @@
         <translation>Débit binaire :</translation>
     </message>
     <message>
-        <source>VBR - variable bitrate</source>
-        <translation>DBV – débit binaire variable</translation>
-    </message>
-    <message>
-        <source>CBR - constrained bitrate</source>
-        <translation>DBC – débit binaire constant</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR&lt;/dt&gt;
-&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
-
-&lt;dt&gt;CBR&lt;/dt&gt;
-&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation>&lt;dt&gt;DBV&lt;/dt&gt;
-&lt;dd&gt;Utiliser un encodage à Débit Binaire Variable (recommandé). En mode DBV, le débit binaire peut fluctuer librement d’après le contenu afin d’assurer une qualité constante.&lt;/dd&gt;
-
-&lt;dt&gt;DBC&lt;/dt&gt;
-&lt;dd&gt;Utiliser un encodage à Débit Variable Contraint. Génère un débit binaire spécifique. Ce mode est semblable au mode DBC des encodeurs AAC/MP3 et au mode géré des encodeurs Vorbis. La qualité n’est pas aussi constante qu’en mode DBV, mais le débit binaire l’est.&lt;/dd&gt;</translation>
-    </message>
-    <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;
 In VBR mode, this sets the average rate for a large and diverse collection of audio.
@@ -475,6 +455,24 @@ En mode DBV, cela définit le débit moyen pour une grande collection audio dive
 &lt;p&gt;
 En mode DBC, cela définit le débit binaire spécifique de sortie.
 </translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VBR - variable bitrate</source>
+        <comment>Opus encoding mode</comment>
+        <translation>DBV – débit binaire variable</translation>
+    </message>
+    <message>
+        <source>CVBR - constrained variable bitrate</source>
+        <comment>Opus encoding mode</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -614,7 +612,7 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Fichiers résultats</translation>
+        <translation>Fichiers de résultat</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -801,9 +799,9 @@ If you surround sections of text that contain a token with braces, these section
 Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants  :
  &lt;table&gt;
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Numéro de plage &lt;/td&gt;
- &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; –Nombre total de plages&lt;/td&gt;&lt;/tr&gt;
+ &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Nombre total de plages&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Artiste&lt;/td&gt;
- &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; –Titre de l’album&lt;/td&gt;&lt;/tr&gt;
+ &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Titre de l’album&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Titre de la plage&lt;/td&gt;
 &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Année&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; – Genre&lt;/td&gt;

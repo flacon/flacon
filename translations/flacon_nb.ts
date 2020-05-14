@@ -424,26 +424,6 @@
         <translation>Bithastighet:</translation>
     </message>
     <message>
-        <source>VBR - variable bitrate</source>
-        <translation>VBR - variabel bithastighet</translation>
-    </message>
-    <message>
-        <source>CBR - constrained bitrate</source>
-        <translation>CBR - avgrenset bithastighet</translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR&lt;/dt&gt;
-&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
-
-&lt;dt&gt;CBR&lt;/dt&gt;
-&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
-&lt;dd&gt;Bruk variabel bitratekoding (anbefalt). I VBR-modus vil bitraten gå opp og ned fritt avhengig av innholdet for å forsikre gjennomgående kvalitet.&lt;/dd&gt;
-
-&lt;dt&gt;CBR&lt;/dt&gt;
-&lt;dd&gt;Bruk bundet variabel bitratekoding. Utdata med en gitt bitrate. Dette moduset tilsvarer CBR i AAC/MP3-kodere og administrert modus i vorbis-kodere. Dette gir mindre gjennomgående kvalitet enn VBR-modus men konsistent bitrate.&lt;/dd&gt;</translation>
-    </message>
-    <message>
         <source>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;
 In VBR mode, this sets the average rate for a large and diverse collection of audio.
@@ -456,6 +436,24 @@ I VBR-modus setter dette gjennomsnittlig rate for en stor og mangfoldig ansamlin
 &lt;p&gt;
 I CBR-modus, setter angitt utdatabitrate.
 </translation>
+    </message>
+    <message>
+        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>VBR - variable bitrate</source>
+        <comment>Opus encoding mode</comment>
+        <translation>VBR - variabel bithastighet</translation>
+    </message>
+    <message>
+        <source>CVBR - constrained variable bitrate</source>
+        <comment>Opus encoding mode</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
