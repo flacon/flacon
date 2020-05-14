@@ -58,7 +58,7 @@ QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *tra
     if (type == "VBR")
         args << "--vbr";
 
-    if (type == "CBR")
+    if (type == "CVBR")
         args << "--cvbr";
 
     args << "--bitrate" << profile.value(BITRATE_KEY).toString();
@@ -129,8 +129,9 @@ ConfigPage_Opus::ConfigPage_Opus(const Profile &profile, QWidget *parent):
 {
     setupUi(this);
 
-    opusBitrateTypeCbx->addItem(tr("VBR - variable bitrate"),    "VBR");
-    opusBitrateTypeCbx->addItem(tr("CBR - constrained bitrate"), "CBR");
+
+    opusBitrateTypeCbx->addItem(tr("VBR - variable bitrate", "Opus encoding mode"), "VBR");
+    opusBitrateTypeCbx->addItem(tr("CVBR - constrained variable bitrate", "Opus encoding mode"), "CVBR");
 
     opusBitrateTypeCbx->setToolTip(toolTipCss() + opusBitrateTypeCbx->toolTip());
     opusBitrateTypeLabel->setToolTip(opusBitrateTypeCbx->toolTip());
