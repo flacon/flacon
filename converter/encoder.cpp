@@ -27,6 +27,7 @@
 #include "encoder.h"
 #include "resampler.h"
 #include "profiles.h"
+#include "debug.h"
 
 #include <QFileInfo>
 #include <QDir>
@@ -55,12 +56,11 @@ void Encoder::check(QProcess *process)
 {
     if (process->exitCode() != 0)
     {
-        QTextStream(stderr) << "Encoder command: ";
-        debugArguments(process->program(), process->arguments());
+        qWarning() << "Encoder command failed: " << debugProgramArgs(process->program(), process->arguments());
         QString msg = tr("Encoder error:\n") + "<pre>" +
             QString::fromLocal8Bit(process->readAllStandardError()) +
             "</pre>";
-        error(mTrack, msg);
+        emit error(mTrack, msg);
     }
 }
 
@@ -109,7 +109,6 @@ void Encoder::runTwoProcess(QProcess *resampler, QProcess *encoder)
 void Encoder::run()
 {
     emit trackProgress(mTrack, TrackState::Encoding, 0);
-    bool debug  = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_ENCODER");
 
     const qint8 COPY_FILE=0, RESAMPLE=1, ENCODE=2, RESAMPLE_ENCODE=3;
 
@@ -122,8 +121,7 @@ void Encoder::run()
         QStringList args = mProfile.encoderArgs(mTrack, QDir::toNativeSeparators(mOutFile));
         QString prog = args.takeFirst();
 
-        if (debug)
-            debugArguments(prog, args);
+        qDebug() << "Start encoder:" << debugProgramArgs(prog, args);
 
         encoder.setProgram(prog);
         encoder.setArguments(args);
@@ -142,8 +140,7 @@ void Encoder::run()
         QStringList args = Resampler::args(mBitsPerSample, mSampleRate, outFile);
         QString prog = args.takeFirst();
 
-        if (debug)
-            debugArguments(prog, args);
+        qDebug() << "Start resampler:" << debugProgramArgs(prog, args);
 
         resampler.setProgram(prog);
         resampler.setArguments(args);
@@ -197,7 +194,7 @@ void Encoder::readInputFile(QProcess *process)
     QFile file(mInputFile);
     if (!file.open(QFile::ReadOnly))
     {
-        error(mTrack, tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mInputFile));
+        emit error(mTrack, tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mInputFile));
     }
 
     mProgress = -1;
@@ -224,7 +221,7 @@ void Encoder::runWav()
 
     if (!res)
     {
-        error(mTrack,
+        emit error(mTrack,
               tr("I can't rename file:\n%1 to %2\n%3").arg(
                   mInputFile,
                   mOutFile,

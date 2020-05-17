@@ -61,26 +61,3 @@ bool Worker::deleteFile(const QString &fileName) const
     else
         return true;
 }
-
-
-/************************************************
-
- ************************************************/
-void Worker::debugArguments(const QString &prog, const QStringList &args)
-{
-    QTextStream out(stderr);
-    out << prog << " ";
-    foreach (QString arg, args)
-    {
-        if (arg.contains(' ') || arg.contains('\t'))
-        {
-            out << "'" << arg << "' ";
-        }
-        else
-        {
-            out << arg << " ";
-        }
-
-    }
-    out << endl;
-}

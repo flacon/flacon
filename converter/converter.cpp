@@ -26,6 +26,7 @@
 
 #include <QThread>
 #include <QDebug>
+#include "debug.h"
 
 #include "converter.h"
 #include "project.h"
@@ -86,6 +87,9 @@ void Converter::start(const Profile &profile)
  ************************************************/
 void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
 {
+    qDebug() << "Start converter:" << jobs.length() << profile;
+    qDebug() << "Temp dir =" << Settings::i()->tmpDir();
+
     if (jobs.isEmpty())
     {
         emit finished();
@@ -102,6 +106,8 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
     mThreadCount = Settings::i()->value(Settings::Encoder_ThreadCount).toInt(&ok);
     if (!ok || mThreadCount < 1)
         mThreadCount = qMax(6, QThread::idealThreadCount());
+
+    qDebug() << "Threads count" << mThreadCount;
 
     for (const Job &job: jobs)
     {

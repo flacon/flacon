@@ -58,7 +58,7 @@ void Splitter::run()
     }
     catch (FlaconError &err)
     {
-        error(mTracks.first(),
+        emit error(mTracks.first(),
               tr("I can't read <b>%1</b>:<br>%2",
                  "Splitter error. %1 is a file name, %2 is a system error text.")
               .arg(mDisc->audioFileName())
@@ -83,7 +83,7 @@ void Splitter::run()
         {
             qWarning() << "Splitter error for pregap track : " <<  err.what();
             deleteFile(outFileName);
-            error(mCurrentTrack, err.what());
+            emit error(mCurrentTrack, err.what());
             return;
         }
 
@@ -122,7 +122,7 @@ void Splitter::run()
         {
             qWarning() << "Splitter error for track " << mCurrentTrack->trackNum() << ": " <<  err.what();
             deleteFile(outFileName);
-            error(mCurrentTrack, err.what());
+            emit error(mCurrentTrack, err.what());
 
         }
 

@@ -25,6 +25,7 @@
 
 
 #include "discpipline.h"
+#include "debug.h"
 
 #include <QUuid>
 
@@ -216,8 +217,12 @@ bool DiscPipeline::Data::init()
                    tmpDirName :
                    QFileInfo(job.tracks.first()->resultFilePath()).dir().absolutePath();
 
-    if (!createDir(dir))
+    qDebug() << "Create tmp dir" << dir;
+
+    if (!createDir(dir)) {
+        qWarning() << "Can't create tmp dir" << dir;
         return false;
+    }
 
     workDir = new QTemporaryDir(QString("%1/flacon").arg(dir));
     workDir->setAutoRemove(true);
@@ -225,8 +230,10 @@ bool DiscPipeline::Data::init()
     foreach (const Track *track, job.tracks) {
         trackStates.insert(track, TrackState::NotRunning);
 
-        if (!createDir(QFileInfo(track->resultFilePath()).absoluteDir().path()))
+        if (!createDir(QFileInfo(track->resultFilePath()).absoluteDir().path())) {
+            qWarning() << "Can't create out dir" << QFileInfo(track->resultFilePath()).absoluteDir().path();
             return false;
+        }
     }
 
     return true;
@@ -528,6 +535,10 @@ void DiscPipeline::addGainRequest(const Track *track, const QString &fileName)
  ************************************************/
 void DiscPipeline::trackDone(const Track *track, const QString &outFileName)
 {
+    qDebug() << "Track done:\n"
+             << "track" << track->discNum() << "." << track->trackNum() << "of" << track->trackCount() << "\n"
+             << "outFileName:" << outFileName;
+
     // Track is ready, rename the file to the final name.
     // Remove old already existing file.
     QFile::remove(track->resultFilePath());
@@ -543,6 +554,8 @@ void DiscPipeline::trackDone(const Track *track, const QString &outFileName)
     mData->trackStates.insert(track, TrackState::OK);
     emit trackProgressChanged(*track, TrackState::OK, 0);
     emit threadFinished();
+
+    qDebug() << "finished:" << (!isRunning());
 
     if (!isRunning())
         emit finished();

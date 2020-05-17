@@ -51,8 +51,6 @@ signals:
 
 protected:
     bool deleteFile(const QString &fileName) const;
-
-    void debugArguments(const QString &prog, const QStringList &args);
 };
 
 

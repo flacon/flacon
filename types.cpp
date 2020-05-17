@@ -296,7 +296,7 @@ void Messages::error(const QString &message)
     msg.replace("<br>", " ", Qt::CaseInsensitive);
     msg.remove(QRegExp("<[^>]*>"));
     msg.replace("\\n", "\n");
-    QTextStream(stderr) << msg.toLocal8Bit() << endl;
+    qCritical() << msg;
 
     if (mHandler)
         mHandler->showErrorMessage(message);

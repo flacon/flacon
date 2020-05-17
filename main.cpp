@@ -72,20 +72,14 @@ Generic options:
     out << endl;
   -h, --help                Show help about options
   --version                 Show version information
+  --debug                   Enable debug output
 
 Arguments:
   file                      CUE or Audio file
 
 Environment variables:
-  FLACON_DEBUG=LEVEL     Sets the debugging level to LEVEL. If the LEVEL is
-                         greater than 0, flacon prints debugging information
-                         to the console.
-
-  FLACON_DEBUG_ENCODER   If variable is set, flacon print the encoder program
-                         arguments.
-
-  FLACON_DEBUG_GAIN      If variable is set, flacon print the gain program
-                         arguments.)";
+  FLACON_DEBUG           If variable is set, flacon prints debugging information
+                         to the console.)";
     out << endl;
 }
 
@@ -259,39 +253,6 @@ int runGui(int argc, char *argv[], const QStringList &files)
     return app.exec();
 }
 
-static bool setDebugLevels(const QString &debugArg)
-{
-    int level = 0;
-    if (!debugArg.isEmpty()) {
-        bool ok;
-        level = debugArg.toInt(&ok);
-
-        if (!ok) {
-            qCritical() << "Incorrect debug level argument " << debugArg;
-            printHelp(stdout);
-            exit(1);
-        }
-    }
-    else {
-        const char *levelStr = getenv("FLACON_DEBUG");
-        if (levelStr) {
-            bool ok;
-            level = QString(levelStr).toInt(&ok);
-
-            if (!ok) {
-                qWarning() << "Incorrect debug level environment variable DEBUG_LEVEL=" << levelStr;
-            }
-        }
-
-    }
-
-    QString filter;
-    filter += QString("DEBUG.1.debug=%1").arg(level>=1 ? "true" : "false");
-    QLoggingCategory::setFilterRules(filter);
-
-    return true;
-}
-
 
 /************************************************
  *
@@ -309,7 +270,7 @@ int main(int argc, char *argv[])
     parser.addOption(QCommandLineOption(QStringList() << "c" << "config",   "", "config file"));
     parser.addOption(QCommandLineOption(QStringList() << "q" << "quiet",    ""));
     parser.addOption(QCommandLineOption(QStringList() << "p" << "progress", ""));
-    parser.addOption(QCommandLineOption(                        "debug",    "",  "level"));
+    parser.addOption(QCommandLineOption(                        "debug",    ""));
 
     QStringList args;
     for (int i=0; i<argc; ++i)
@@ -339,9 +300,24 @@ int main(int argc, char *argv[])
         Settings::setFileName(parser.value("config"));
     }
 
-    setDebugLevels(parser.value("debug"));
+#ifdef QT_DEBUG
+     qInstallMessageHandler(debugMessageHandler);
+#else
+    if (parser.isSet("debug") || getenv("FLACON_DEBUG"))
+        qInstallMessageHandler(debugMessageHandler);
+    else
+        qInstallMessageHandler(noDebugMessageHandler);
+#endif
+
+
     quiet = parser.isSet("quiet");
     progress = parser.isSet("progress");
+
+#ifndef GIT_BRANCH
+    qInfo() << "Start flacon " << FLACON_VERSION;
+#else
+    qInfo() << "Start flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " "  << GIT_COMMIT_HASH;
+#endif
 
     if (parser.isSet("start"))
         return runConsole(argc, argv, parser.positionalArguments());

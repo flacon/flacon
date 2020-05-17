@@ -26,6 +26,7 @@
 
 #include "gain.h"
 #include "profiles.h"
+#include "debug.h"
 
 #include <QProcess>
 #include <QDir>
@@ -47,8 +48,6 @@ Gain::Gain(const Profile &profile, QObject *parent):
  ************************************************/
 void Gain::run()
 {
-    bool debug = QProcessEnvironment::systemEnvironment().contains("FLACON_DEBUG_GAIN");
-
     QStringList files;
     for (const GainTrack &track: mTracks) {
         emit trackProgress(track.track, TrackState::CalcGain, 0);
@@ -58,8 +57,7 @@ void Gain::run()
     QStringList args = mProfile.gainArgs(files);
     QString prog = args.takeFirst();
 
-    if (debug)
-        debugArguments(prog, args);
+    qDebug() << "Start gain:" << debugProgramArgs(prog, args);
 
     QProcess process;
 
@@ -67,11 +65,10 @@ void Gain::run()
     process.waitForFinished(-1);
 
     if (process.exitCode() != 0) {
-        QTextStream(stderr) << "Gain command: ";
-        debugArguments(prog, args);
+        qWarning() << "Gain command failed: " << debugProgramArgs(prog, args);
         QString msg = tr("Gain error:\n") +
                 QString::fromLocal8Bit(process.readAllStandardError());
-        error(mTracks.first().track, msg);
+        emit error(mTracks.first().track, msg);
     }
 
     for (const GainTrack &track: mTracks) {
