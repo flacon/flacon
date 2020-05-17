@@ -1148,6 +1148,8 @@ void MainWindow::showErrorMessage(const QString &message)
         box->setAttribute(Qt::WA_DeleteOnClose, true);
     }
 
-    box->addMessage(message);
+    QString msg = message;
+    msg.replace('\n', "<br>\n");
+    box->addMessage(msg);
     box->open();
 }

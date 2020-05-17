@@ -33,6 +33,7 @@
 #include "project.h"
 #include "scanner.h"
 #include "consoleout.h"
+#include "debug.h"
 
 #include <QString>
 #include <QLocale>
@@ -55,34 +56,37 @@ static bool progress;
 /************************************************
  *
  ************************************************/
-void printHelp()
+void printHelp(FILE *file)
 {
-    QTextStream out(stdout);
-    out << "Usage: flacon [options] [file]" << endl;
-    out << "Flacon extracts individual tracks from one big audio file" << endl;
+    QTextStream out(file);
+    out << R"(
+Usage: flacon [options] [file]
+Flacon extracts individual tracks from one big audio file
     out << endl;
 
-    out << "Generic options:" << endl;
-    out << "  -s --start                Start to convert immediately." << endl;
-    out << "  -c --config <file>        Specify an alternative configuration file." << endl;
-    out << "  -q --quiet                Quiet mode (no output)." << endl;
-    out << "  -p --progress             Show progress during conversion." << endl;
+Generic options:
+  -s --start                Start to convert immediately.
+  -c --config <file>        Specify an alternative configuration file.
+  -q --quiet                Quiet mode (no output).
+  -p --progress             Show progress during conversion.
     out << endl;
-    out << "  -h, --help                Show help about options" << endl;
-    out << "  --version                 Show version information" << endl;
+  -h, --help                Show help about options
+  --version                 Show version information
 
+Arguments:
+  file                      CUE or Audio file
 
+Environment variables:
+  FLACON_DEBUG=LEVEL     Sets the debugging level to LEVEL. If the LEVEL is
+                         greater than 0, flacon prints debugging information
+                         to the console.
+
+  FLACON_DEBUG_ENCODER   If variable is set, flacon print the encoder program
+                         arguments.
+
+  FLACON_DEBUG_GAIN      If variable is set, flacon print the gain program
+                         arguments.)";
     out << endl;
-    out << "Arguments:" << endl;
-    out << "  file                      CUE or Audio file" << endl;
-
-    out << endl;
-    out << "ENVIRONMENT" << endl;
-    out << "  FLACON_DEBUG_ENCODER      If variable is set, flacon print the encoder" << endl;
-    out << "                            program arguments." << endl;
-    out << "  FLACON_DEBUG_GAIN         If variable is set, flacon print the gain" << endl;
-    out << "                            program arguments." << endl;
-
 }
 
 
@@ -255,6 +259,39 @@ int runGui(int argc, char *argv[], const QStringList &files)
     return app.exec();
 }
 
+static bool setDebugLevels(const QString &debugArg)
+{
+    int level = 0;
+    if (!debugArg.isEmpty()) {
+        bool ok;
+        level = debugArg.toInt(&ok);
+
+        if (!ok) {
+            qCritical() << "Incorrect debug level argument " << debugArg;
+            printHelp(stdout);
+            exit(1);
+        }
+    }
+    else {
+        const char *levelStr = getenv("FLACON_DEBUG");
+        if (levelStr) {
+            bool ok;
+            level = QString(levelStr).toInt(&ok);
+
+            if (!ok) {
+                qWarning() << "Incorrect debug level environment variable DEBUG_LEVEL=" << levelStr;
+            }
+        }
+
+    }
+
+    QString filter;
+    filter += QString("DEBUG.1.debug=%1").arg(level>=1 ? "true" : "false");
+    QLoggingCategory::setFilterRules(filter);
+
+    return true;
+}
+
 
 /************************************************
  *
@@ -266,12 +303,13 @@ int main(int argc, char *argv[])
 
     parser.addPositionalArgument("file", "CUE or Audio file.");
 
-    parser.addOption(QCommandLineOption(QStringList() << "h" << "help",     "Show help about options."));
-    parser.addOption(QCommandLineOption(                        "version",  "Show version information."));
-    parser.addOption(QCommandLineOption(QStringList() << "s" << "start",    "Start to convert immediately."));
-    parser.addOption(QCommandLineOption(QStringList() << "c" << "config",   "Specify an alternative configuration file.", "config file"));
-    parser.addOption(QCommandLineOption(QStringList() << "q" << "quiet",    "Quiet mode (no output)."));
-    parser.addOption(QCommandLineOption(QStringList() << "p" << "progress", "Show progress during conversion."));
+    parser.addOption(QCommandLineOption(QStringList() << "h" << "help",     ""));
+    parser.addOption(QCommandLineOption(                        "version",  ""));
+    parser.addOption(QCommandLineOption(QStringList() << "s" << "start",    ""));
+    parser.addOption(QCommandLineOption(QStringList() << "c" << "config",   "", "config file"));
+    parser.addOption(QCommandLineOption(QStringList() << "q" << "quiet",    ""));
+    parser.addOption(QCommandLineOption(QStringList() << "p" << "progress", ""));
+    parser.addOption(QCommandLineOption(                        "debug",    "",  "level"));
 
     QStringList args;
     for (int i=0; i<argc; ++i)
@@ -280,13 +318,13 @@ int main(int argc, char *argv[])
     if (!parser.parse(args))
     {
         QTextStream(stderr) << parser.errorText() << endl << endl;
-        printHelp();
+        printHelp(stderr);
         return 1;
     }
 
     if (parser.isSet("help"))
     {
-        printHelp();
+        printHelp(stdout);
         return 0;
     }
 
@@ -301,6 +339,7 @@ int main(int argc, char *argv[])
         Settings::setFileName(parser.value("config"));
     }
 
+    setDebugLevels(parser.value("debug"));
     quiet = parser.isSet("quiet");
     progress = parser.isSet("progress");
 

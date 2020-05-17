@@ -67,6 +67,7 @@ set(HEADERS
     patternexpander.h
     consoleout.h
     profiles.h
+    debug.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -130,6 +131,7 @@ set(SOURCES
     patternexpander.cpp
     consoleout.cpp
     profiles.cpp
+    debug.cpp
 
     gui/icon.cpp
     gui/mainwindow.cpp
