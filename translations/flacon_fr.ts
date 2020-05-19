@@ -462,7 +462,11 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
 
 &lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;DBV – débit binaire variable&lt;/dt&gt;
+&lt;dd&gt;Utiliser un encodage à débit binaire variable (recommandé). En mode DBV, le débit binaire peut fluctuer librement d’après le contenu afin d’assurer une qualité constante.&lt;/dd&gt;
+
+&lt;dt&gt;DBVC – débit binaire variable contraint&lt;/dt&gt;
+&lt;dd&gt;Utiliser un encodage à débit variable contraint. Génère un débit binaire précis. Ce mode est semblable au mode DBC des encodeurs AAC/MP3 et au mode géré des encodeurs Vorbis. La qualité n’est pas aussi constante qu’en mode DBV, mais le débit binaire l’est.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -472,7 +476,8 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     <message>
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
-        <translation type="unfinished"/>
+        <translation>
+DBVC – débit binaire variable contraint</translation>
     </message>
 </context>
 <context>

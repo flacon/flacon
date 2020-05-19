@@ -350,7 +350,7 @@
     <message>
         <source>%1:</source>
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
-        <translation type="unfinished"/>
+        <translation>%1:</translation>
     </message>
 </context>
 <context>
