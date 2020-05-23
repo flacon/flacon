@@ -583,3 +583,19 @@ QTextCodec *determineTextCodec(const QVector<Track*> &tracks)
 
     return res;
 }
+
+
+QDebug operator<<(QDebug debug, const Track &track)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace()  <<  " Track {"
+                     << " trackNum: " << track.trackNum()
+                     << " trackCount:" << track.trackCount()
+                     << " diskId:" << track.discId()
+                     << " Artist:" << track.artist()
+                     << " Album:" << track.album()
+                     << " Title:" << track.title()
+                     << " cueFile:" << track.cueFileName()
+                     << "}";
+    return debug;
+}

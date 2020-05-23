@@ -126,6 +126,7 @@ void Splitter::run()
 
         }
 
+        qDebug() << "Splitter trackReady:" << *mCurrentTrack << outFileName;
         emit trackReady(mCurrentTrack, outFileName);
     }
 }

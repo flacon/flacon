@@ -25,7 +25,6 @@
 
 
 #include "discpipline.h"
-#include "debug.h"
 
 #include <QUuid>
 
@@ -535,8 +534,8 @@ void DiscPipeline::addGainRequest(const Track *track, const QString &fileName)
  ************************************************/
 void DiscPipeline::trackDone(const Track *track, const QString &outFileName)
 {
-    qDebug() << "Track done:\n"
-             << "track" << track->discNum() << "." << track->trackNum() << "of" << track->trackCount() << "\n"
+    qDebug() << "Track done: "
+             << *track
              << "outFileName:" << outFileName;
 
     // Track is ready, rename the file to the final name.

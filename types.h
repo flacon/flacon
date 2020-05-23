@@ -170,6 +170,7 @@ QByteArray rightPart(const QByteArray &line, const QChar separator);
 void initTypes();
 
 QString safeString(const QString &str);
+QString debugProgramArgs(const QString &prog, const QStringList &args);
 
 
 class Messages

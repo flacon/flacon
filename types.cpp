@@ -381,3 +381,19 @@ QString safeString(const QString &str)
 
     return res;
 }
+
+
+QString debugProgramArgs(const QString &prog, const QStringList &args)
+{
+    QStringList res;
+
+    res << prog;
+    foreach (QString arg, args)
+    {
+        if (arg.contains(' ') || arg.contains('\t'))
+            res << ("'" + arg + "'");
+        else
+            res << arg;
+    }
+    return res.join(" ");
+}

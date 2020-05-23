@@ -33,7 +33,6 @@
 #include "project.h"
 #include "scanner.h"
 #include "consoleout.h"
-#include "debug.h"
 
 #include <QString>
 #include <QLocale>
@@ -44,6 +43,8 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QDir>
+#include <QLoggingCategory>
+
 
 #ifdef MAC_UPDATER
 #include "updater/updater.h"
@@ -301,13 +302,18 @@ int main(int argc, char *argv[])
     }
 
 #ifdef QT_DEBUG
-     qInstallMessageHandler(debugMessageHandler);
+    bool debugEnabled = true;
 #else
-    if (parser.isSet("debug") || getenv("FLACON_DEBUG"))
-        qInstallMessageHandler(debugMessageHandler);
-    else
-        qInstallMessageHandler(noDebugMessageHandler);
+    bool debugEnabled = parser.isSet("debug") || getenv("FLACON_DEBUG");
 #endif
+
+    if (debugEnabled) {
+        qSetMessagePattern("::: [%{category}]%{type} [%{threadid}] %{file}:%{line}\n%{message}");
+    }
+    else {
+        qSetMessagePattern("%{if-warning}Warning: %{endif}%{if-critical}Error: %{endif}%{if-fatal}Error: %{endif}%{message}");
+        QLoggingCategory::setFilterRules("*.debug=false");
+    }
 
 
     quiet = parser.isSet("quiet");

@@ -30,6 +30,7 @@
 #include <QObject>
 #include "types.h"
 #include "tags.h"
+#include <QDebug>
 
 class Disc;
 
@@ -160,5 +161,7 @@ private:
 };
 
 QTextCodec *determineTextCodec(const QVector<Track *> &tracks);
+
+QDebug operator<<(QDebug debug, const Track &track);
 
 #endif // TRACK_H

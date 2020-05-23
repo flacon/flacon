@@ -27,7 +27,6 @@
 #include "encoder.h"
 #include "resampler.h"
 #include "profiles.h"
-#include "debug.h"
 
 #include <QFileInfo>
 #include <QDir>

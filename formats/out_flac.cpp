@@ -83,6 +83,7 @@ QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const Track *tra
     args << "--silent";     // Suppress progress indicator
 
     // Settings .................................................
+    // Compression parametr really looks like --compression-level-N
     args << QString("--compression-level-%1").arg(profile.value("Compression").toString());
 
 

@@ -26,7 +26,6 @@
 
 #include "gain.h"
 #include "profiles.h"
-#include "debug.h"
 
 #include <QProcess>
 #include <QDir>

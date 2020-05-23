@@ -26,7 +26,6 @@
 
 #include <QThread>
 #include <QDebug>
-#include "debug.h"
 
 #include "converter.h"
 #include "project.h"
