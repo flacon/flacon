@@ -49,6 +49,9 @@ Splitter::Splitter(const Disc *disc, const QString &workDir, bool extractPregap,
  ************************************************/
 void Splitter::run()
 {
+    static QAtomicInteger<quint64> globalUid(1);
+    QString uid = QString("%1").arg(globalUid.fetchAndAddRelaxed(1), 4, 10, QLatin1Char('0'));
+
     mCurrentTrack = nullptr;
     Decoder decoder;
 
@@ -73,7 +76,7 @@ void Splitter::run()
         mCurrentTrack  = mDisc->preGapTrack();
         CueIndex start = mDisc->track(0)->cueIndex(0);
         CueIndex end   = mDisc->track(0)->cueIndex(1);
-        QString outFileName = QString("%1/pregap.wav").arg(mWorkDir);
+        QString outFileName = QString("%1/pregap-%2.wav").arg(mWorkDir).arg(uid);
 
         try
         {
@@ -97,13 +100,14 @@ void Splitter::run()
     connect(&decoder, SIGNAL(progress(int)),
             this, SLOT(decoderProgress(int)));
 
+    qDebug() << "Start splitting" << mDisc->count() << "tracks from" << mDisc->audioFileName();
     for (int i=0; i<mDisc->count(); ++i)
     {
         mCurrentTrack = mDisc->track(i);
         if (!mTracks.contains(mCurrentTrack))
             continue;
 
-        QString outFileName = QString("%1/track-%2.wav").arg(mWorkDir).arg(i+1, 2, 10, QLatin1Char('0'));
+        QString outFileName = QString("%1/track-%2_%3.wav").arg(mWorkDir).arg(uid).arg(i+1, 2, 10, QLatin1Char('0'));
 
         CueIndex start, end;
         if (i==0 && mPreGapType == PreGapType::AddToFirstTrack)
