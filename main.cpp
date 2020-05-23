@@ -308,7 +308,7 @@ int main(int argc, char *argv[])
 #endif
 
     if (debugEnabled) {
-        qSetMessagePattern("::: [%{category}]%{type} [%{threadid}] %{file}:%{line}\n%{message}");
+        qSetMessagePattern(":::%{if-category}%{category}: %{endif}%{if-warning}Warning: %{endif}%{if-critical}Error: %{endif}%{if-fatal}Error: %{endif} [%{threadid}] %{message}");
     }
     else {
         qSetMessagePattern("%{if-warning}Warning: %{endif}%{if-critical}Error: %{endif}%{if-fatal}Error: %{endif}%{message}");
