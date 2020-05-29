@@ -166,8 +166,11 @@ bool Converter::isRunning()
  ************************************************/
 bool Converter::canConvert()
 {
-    for(int i=0; i<project->count(); ++i)
-    {
+    if (!Settings::i()->currentProfile().isValid()) {
+        return false;
+    }
+
+    for(int i=0; i<project->count(); ++i) {
         if (project->disc(i)->canConvert())
             return true;
     }

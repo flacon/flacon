@@ -365,7 +365,7 @@ void Profile::load(QSettings &settings, const QString &group)
             mValues << fmt->defaultParameters();
         }
         else {
-            fmt = nullFormat();
+            mFormat = nullFormat();
         }
     }
 
