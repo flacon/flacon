@@ -28,6 +28,7 @@
 #include "../icon.h"
 #include "addprofiledialog.h"
 
+#include <QtGlobal>
 #include <QFileDialog>
 #include <QDebug>
 #include <QDateTime>
@@ -188,7 +189,14 @@ void ConfigDialog::initProgramsPage()
 #else
 void ConfigDialog::initProgramsPage()
 {
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
     QStringList progs = QStringList::fromSet(Settings::i()->programs());
+#else
+    // After 5.14.0, QT has stated range constructors are available and preferred.
+    // See: https://doc.qt.io/qt-5/qlist.html#fromSet
+    QSet<QString> program_set = Settings::i()->programs();
+    QStringList progs = QStringList(program_set.begin(), program_set.end());
+#endif
     progs.sort();
 
     int row = 0;
