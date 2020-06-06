@@ -32,6 +32,7 @@
 #include "converter/resampler.h"
 
 #include <assert.h>
+#include <QtGlobal>
 #include <QDir>
 #include <QDebug>
 #include <QProcessEnvironment>
@@ -569,7 +570,14 @@ void Settings::setProfiles(const Profiles &profiles)
 {
     allKeys();
     beginGroup(PROFILES_PREFIX);
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
     QSet<QString> old = QSet<QString>::fromList(childGroups());
+#else
+    // After 5.14.0, QT has stated range constructors are available and preferred.
+    // See: https://doc.qt.io/qt-5/qset.html#toList
+    QList<QString> groups = childGroups();
+    QSet<QString> old = QSet<QString>(groups.begin(), groups.end());
+#endif
 
     for (const Profile &profile: profiles) {
         old.remove(profile.id());

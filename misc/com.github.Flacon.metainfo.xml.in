@@ -16,16 +16,17 @@
   <url type="help">https://github.com/flacon/flacon/wiki</url>
   <url type="donation">https://flacon.github.io/donate/</url>
 
-  <launchable type="desktop-id">io.github.Flacon.desktop</launchable>
+  <launchable type="desktop-id">com.github.Flacon.desktop</launchable>
 
   <description>
     <p>Flacon extracts individual tracks from one big audio file containing the entire album of music and saves them as separate audio files. To do this, it uses information from the appropriate CUE file. Besides, Flacon makes it possible to conveniently revise or specify tags both for all tracks at once or for each tag separately.
     </p>
     <ul>
       <li>Supported input formats: WAV, FLAC, APE, WavPack, True Audio (TTA)</li>
-      <li>Supported out formats: FLAC, WAV, WavPack, AAC, OGG or MP3.</li>
+      <li>Supported output formats: FLAC, WAV, WavPack, AAC, OGG or MP3</li>
+      <li>Support of profiles, you can have different encoding options for different cases, such as maximum quality for your computer, and CD quality for your phone</li>
       <li>Replay Gain analysis (album-gain and track-gain modes)</li>
-      <li>Multi-threaded conversion process.</li>
+      <li>Multi-threaded conversion process</li>
       <li>Automatic character set detection for CUE files</li>
       <li>Generation of the pertrack CUE file in the output dir</li>
     </ul>
@@ -39,7 +40,14 @@
   </screenshots>
 
   <releases>
-    <release version="@FLACON_VERSION@" date="@BUILD_DATE@" />
+    <release version="6.0.0" date="2020-05-30">
+      <description>
+        <p>Latest version of Flacon on Flathub.</p>
+      </description>
+    </release>
+    <release version="5.5.1" date="2019-09-28"/>
+    <release version="5.5.0" date="2019-09-28"/>
+    <release version="5.4.0" date="2019-09-26"/>
   </releases>
 
   <content_rating type="oars-1.1">
