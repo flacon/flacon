@@ -30,6 +30,7 @@
 #include "icon.h"
 #include "patternexpander.h"
 
+#include <QtGlobal>
 #include <QMenu>
 #include <QDebug>
 #include <QTextCodec>
@@ -489,7 +490,14 @@ void MultiValuesSpinBox::stepBy(int steps)
 
     lineEdit()->setModified(true);
     emit valueChanged(this->value());
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+    // valueChanged marked deprecated after version 5.14.x
     emit valueChanged(lineEdit()->text());
+#else
+    // replacement for QSpinBox:valueChanged(QString)
+    // https://doc.qt.io/qt-5/qspinbox.html#textChanged
+    emit textChanged(lineEdit()->text());
+#endif
 }
 
 
@@ -589,7 +597,13 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
         mMultiState = MultiValuesEmpty;
         QLineEdit::setText(*(value.constBegin()));
         setPlaceholderText("");
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
         mCompleterModel->setStringList(value.toList());
+#else
+        // After 5.14.0, QT has stated range constructors are available and preferred.
+        // See: https://doc.qt.io/qt-5/qset.html#toList
+        mCompleterModel->setStringList(QStringList(value.begin(), value.end()));
+#endif
     }
 
     else
@@ -597,7 +611,13 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
         mMultiState = MultiValuesMulti;
         QLineEdit::setText("");
         setPlaceholderText(tr("Multiple values"));
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
         mCompleterModel->setStringList(value.toList());
+#else
+        // After 5.14.0, QT has stated range constructors are available and preferred.
+        // See: https://doc.qt.io/qt-5/qset.html#toList
+        mCompleterModel->setStringList(QStringList(value.begin(), value.end()));
+#endif
     }
 }
 
