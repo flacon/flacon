@@ -51,7 +51,9 @@ enum CueTagId
     CTAG_GENRE,
     CTAG_ISRC,
     CTAG_PERFORMER,
-    CTAG_SONGWRITER
+    CTAG_SONGWRITER,
+    CTAG_TOTALDISCS,
+    CTAG_DISCNUMBER,
 };
 
 
@@ -324,6 +326,8 @@ void CueData::parseLine(const QByteArray &line, CueTagId &tag, QByteArray &value
     else if (tagStr == "ISRC")       tag = CTAG_ISRC;
     else if (tagStr == "PERFORMER")  tag = CTAG_PERFORMER;
     else if (tagStr == "SONGWRITER") tag = CTAG_SONGWRITER;
+    else if (tagStr == "TOTALDISCS") tag = CTAG_TOTALDISCS;
+    else if (tagStr == "DISCNUMBER") tag = CTAG_DISCNUMBER;
     else                             tag = CTAG_UNKNOWN;
 }
 
@@ -406,8 +410,8 @@ QVector<CueDisc> CueReader::load(const QString &fileName)
         track.setTag(TagId::Album,         data.globalTags.value(CTAG_TITLE));
         track.setTrackNum(tags.value(CTAG_TRACK).toInt());
         track.setTrackCount(data.tracks.count());
-        track.setTag(TagId::DiscNum,    QString("1"));
-        track.setTag(TagId::DiscCount,  QString("1"));
+        track.setTag(TagId::DiscNum,       data.globalTags.value(CTAG_DISCNUMBER, "1"));
+        track.setTag(TagId::DiscCount,     data.globalTags.value(CTAG_TOTALDISCS, "1"));
 
         track.setCueIndex(0, CueIndex(tags.value(CTAG_INDEX00)));
         track.setCueIndex(1, CueIndex(tags.value(CTAG_INDEX01)));

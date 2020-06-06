@@ -1,0 +1,211 @@
+[DISC 01 / TRACK 01]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 00:00:00
+	 TITLE       = Track 1.1
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 1
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 01 / TRACK 02]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 04:38:00
+	 TITLE       = Track 1.2
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 2
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 01 / TRACK 03]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 10:07:50
+	 TITLE       = Track 1.3
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 3
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 01 / TRACK 04]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 16:31:50
+	 TITLE       = Track 1.4
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 4
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 01 / TRACK 05]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 22:00:00
+	 TITLE       = Track 1.5
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 5
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 01 / TRACK 06]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 26:10:00
+	 TITLE       = Track 1.6
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 6
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 01 / TRACK 07]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 31:43:50
+	 TITLE       = Track 1.7
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 7
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 01 / TRACK 08]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 37:10:50
+	 TITLE       = Track 1.8
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 8
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+
+
+[DISC 02 / TRACK 01]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 00:00:00
+	 TITLE       = Track 2.1
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 9
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 02 / TRACK 02]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 05:24:00
+	 TITLE       = Track 2.2
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 10
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 02 / TRACK 03]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 14:11:00
+	 TITLE       = Track 2.3
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 11
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 02 / TRACK 04]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 20:15:00
+	 TITLE       = Track 2.4
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 12
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 02 / TRACK 05]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 26:04:00
+	 TITLE       = Track 2.5
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 13
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 02 / TRACK 06]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 30:49:00
+	 TITLE       = Track 2.6
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 14
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
+
+[DISC 02 / TRACK 07]
+	 FILE        = Artist - Album, 2001 (LP1).flac
+	 INDEX CD 00 = 00:00:00
+	 INDEX CD 01 = 35:57:50
+	 TITLE       = Track 2.7
+	 ALBUM       = Album
+	 PERFORMER   = Artist
+	 DATE        = 2001
+	 DISCID      = 
+	 TRACKNUM    = 15
+	 TRACKCOUNT  = 15
+	 DISCNUM     = 1
+	 DISCCOUNT   = 1
