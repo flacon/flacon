@@ -269,6 +269,28 @@ void TestFlacon::testReadWavHeader_data()
                         << "187944"         // data size
                         << "00:00:02.936";  // duration
 
+
+    QTest::newRow("06 zero duration") <<
+                            "52 49 46 46"   // RIFF
+                            "24 00 00 00"   // ChunkSize 36
+                            "57 41 56 45"   // Format WAVE
+
+                            "66 6D 74 20"   // Chunk ID
+                            "10 00 00 00"   // Chunk size
+                                  "01 00"   // Format code
+                                  "01 00"   // NumChannels
+                            "80 BB 00 00"   // SampleRate
+                            "00 77 01 00"   // ByteRate
+                                  "02 00"   // BlockAlign
+                                  "10 00"   // BitsPerSample
+
+                            "64 61 74 61"   // data Chunk ID
+                            "00 00 00 00"   // Chunk size
+
+                        << "44"             // file size
+                        << "0"              // data size
+                        << "00:00:00.000";  // duration
+
 }
 
 

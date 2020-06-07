@@ -224,33 +224,30 @@ WavHeader::WavHeader(QIODevice *stream):
 
     char    chunkID[5];
     quint64 pos=12;
-    while (pos < this->mFileSize)
-    {
+    while (pos < this->mFileSize) {
         if (!readTag(stream, chunkID))
             throw FlaconError("[WAV] can't read chunk ID");
 
         quint32 chunkSize = readUInt32(stream);
-        if (chunkSize < 1) {
-            throw FlaconError(QString("[WAV] incorrect chunk size %1 at %2").arg(chunkSize).arg(pos));
-        }
-        pos+=8;
+        pos += 8;
 
-        if (strcmp(chunkID, WAV_FMT) == 0)
-        {
-            loadFmtChunk(stream, chunkSize);
-
-            pos+=chunkSize;
-        }
-
-        else if (strcmp(chunkID, WAV_DATA) == 0)
-        {
+        if (strcmp(chunkID, WAV_DATA) == 0) {
             this->mDataSize = chunkSize;
             this->mDataStartPos = pos;
             return;
         }
 
-        else
-        {
+        if (chunkSize < 1) {
+            throw FlaconError(QString("[WAV] incorrect chunk size %1 at %2").arg(chunkSize).arg(pos - 4));
+        }
+
+
+        if (strcmp(chunkID, WAV_FMT) == 0) {
+            loadFmtChunk(stream, chunkSize);
+
+            pos+=chunkSize;
+        }
+        else {
             mOtherCunks << chunkID;
             mOtherCunks << chunkSize;
             mOtherCunks.append(stream->read(chunkSize));
