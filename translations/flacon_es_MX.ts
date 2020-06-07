@@ -718,10 +718,6 @@ Esto sólo afectará el tamaño de archivo. Todos los parámetros son sin pérdi
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <source>Scan</source>
-        <translation>Explorar</translation>
-    </message>
-    <message>
         <source>Recursive album search</source>
         <translation>Búsqueda recursiva de álbum</translation>
     </message>
@@ -875,16 +871,36 @@ Si la ruta queda vacía o inicia con &quot;.&quot; (punto), el archivo resultant
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <translation>Agregar disco...</translation>
-    </message>
-    <message>
         <source>Remove disc</source>
         <translation>Remover disco</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
         <translation>Remover disco del proyecto</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation>Agregar disco...</translation>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

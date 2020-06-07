@@ -707,10 +707,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <source>Scan</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Recursive album search</source>
         <translation type="unfinished"/>
     </message>
@@ -846,15 +842,35 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add disc…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remove disc</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove disc from project</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
         <translation type="unfinished"/>
     </message>
 </context>

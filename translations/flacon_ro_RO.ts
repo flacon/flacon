@@ -738,10 +738,6 @@ Aceasta are efect doar asupra mărimii fișierului rezultat. Calitatea va fi ace
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <source>Scan</source>
-        <translation>Scanare</translation>
-    </message>
-    <message>
         <source>Recursive album search</source>
         <translation>Căutare în album recursivă</translation>
     </message>
@@ -896,16 +892,36 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <translation>Adăugare disc...</translation>
-    </message>
-    <message>
         <source>Remove disc</source>
         <translation>Eliminare disc</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
         <translation>Eliminare disc din proiect</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation>Adăugare disc...</translation>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

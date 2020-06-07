@@ -718,10 +718,6 @@ Ia hanya memberi kesan pada saiz fail. Semua tetapan adalah tak hilang.</transla
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <source>Scan</source>
-        <translation>Imbas</translation>
-    </message>
-    <message>
         <source>Recursive album search</source>
         <translation>Gelintar album secara rekursif</translation>
     </message>
@@ -876,15 +872,35 @@ Jika laluan dibiarkan kosong atau bermulla dengan tanda &quot;.&quot; (noktah), 
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remove disc</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove disc from project</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
         <translation type="unfinished"/>
     </message>
 </context>

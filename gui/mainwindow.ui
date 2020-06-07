@@ -417,10 +417,10 @@ If you surround sections of text that contain a token with braces, these section
   </widget>
   <action name="actionAddDisc">
    <property name="text">
-    <string>Add disc…</string>
+    <string comment="Main menu item">Add disc…</string>
    </property>
    <property name="iconText">
-    <string>Add disc</string>
+    <string comment="Toolbar item">Add disc</string>
    </property>
    <property name="toolTip">
     <string>Add CUE or audio file</string>
@@ -501,10 +501,10 @@ If you surround sections of text that contain a token with braces, these section
   </action>
   <action name="actionAddFolder">
    <property name="text">
-    <string>Add folder…</string>
+    <string comment="Main menu item">Add folder…</string>
    </property>
    <property name="iconText">
-    <string>Add folder</string>
+    <string comment="Toolbar item">Add folder</string>
    </property>
    <property name="toolTip">
     <string>Recursive album search</string>

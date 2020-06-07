@@ -718,10 +718,6 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <source>Scan</source>
-        <translation>Peržiūrėti</translation>
-    </message>
-    <message>
         <source>Recursive album search</source>
         <translation>Rekursinė albumų paieška</translation>
     </message>
@@ -876,16 +872,36 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <translation>Pridėti diską…</translation>
-    </message>
-    <message>
         <source>Remove disc</source>
         <translation>Šalinti diską</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
         <translation>Šalinti diską iš projekto</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation>Pridėti diską…</translation>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

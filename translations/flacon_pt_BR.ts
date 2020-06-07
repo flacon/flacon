@@ -717,10 +717,6 @@ Isso afeta somente o tamanho do arquivo. Todas as configurações são sem perda
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <source>Scan</source>
-        <translation>Analisar</translation>
-    </message>
-    <message>
         <source>Recursive album search</source>
         <translation>Pesquisa recursiva de álbum</translation>
     </message>
@@ -875,16 +871,36 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <translation>Adicionar disco...</translation>
-    </message>
-    <message>
         <source>Remove disc</source>
         <translation>Remover  disco</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
         <translation>Remover disco do projeto</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation>Adicionar disco...</translation>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -715,10 +715,6 @@ Ovlivní to jenom velikost souboru. Všechna nastavení jsou bezztrátová.</tra
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <source>Scan</source>
-        <translation>Prohledat</translation>
-    </message>
-    <message>
         <source>Recursive album search</source>
         <translation>Rekurzivní hledání alb</translation>
     </message>
@@ -873,15 +869,35 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Add disc…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remove disc</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove disc from project</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
         <translation type="unfinished"/>
     </message>
 </context>

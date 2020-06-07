@@ -741,10 +741,6 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <source>Scan</source>
-        <translation>Analyser</translation>
-    </message>
-    <message>
         <source>Recursive album search</source>
         <translation>Recherche récursive d’albums</translation>
     </message>
@@ -899,16 +895,36 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
         <translation>Ctrl+Maj+W</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <translation>Ajouter un disque…</translation>
-    </message>
-    <message>
         <source>Remove disc</source>
         <translation>Supprimer le disque</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
         <translation>Supprimer le disque du projet</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation>Ajouter un disque…</translation>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

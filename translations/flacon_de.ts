@@ -718,10 +718,6 @@ Diese Einstellung wirkt sich nur auf die Dateigröße aus. Alle Einstellungen si
         <translation>Strg+I</translation>
     </message>
     <message>
-        <source>Scan</source>
-        <translation>Durchsuchen</translation>
-    </message>
-    <message>
         <source>Recursive album search</source>
         <translation>Rekursive Albumsuche</translation>
     </message>
@@ -876,15 +872,35 @@ Wird kein Zielverzeichnis angegeben oder beginnt es mit &quot;.&quot; (Punkt), w
         <translation>Strg+Umschalt+W</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remove disc</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove disc from project</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
         <translation type="unfinished"/>
     </message>
 </context>
