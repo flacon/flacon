@@ -357,6 +357,7 @@ If you surround sections of text that contain a token with braces, these section
      <string>&amp;File</string>
     </property>
     <addaction name="actionAddDisc"/>
+    <addaction name="actionAddFolder"/>
     <addaction name="actionRemoveDisc"/>
     <addaction name="separator"/>
     <addaction name="actionDownloadTrackInfo"/>
@@ -407,7 +408,7 @@ If you surround sections of text that contain a token with braces, these section
    <addaction name="actionAddDisc"/>
    <addaction name="actionRemoveDisc"/>
    <addaction name="separator"/>
-   <addaction name="actionScan"/>
+   <addaction name="actionAddFolder"/>
    <addaction name="separator"/>
    <addaction name="actionDownloadTrackInfo"/>
    <addaction name="separator"/>
@@ -417,6 +418,9 @@ If you surround sections of text that contain a token with braces, these section
   <action name="actionAddDisc">
    <property name="text">
     <string>Add disc…</string>
+   </property>
+   <property name="iconText">
+    <string>Add disc</string>
    </property>
    <property name="toolTip">
     <string>Add CUE or audio file</string>
@@ -495,12 +499,18 @@ If you surround sections of text that contain a token with braces, these section
     <string>Ctrl+I</string>
    </property>
   </action>
-  <action name="actionScan">
+  <action name="actionAddFolder">
    <property name="text">
-    <string>Scan</string>
+    <string>Add folder…</string>
+   </property>
+   <property name="iconText">
+    <string>Add folder</string>
    </property>
    <property name="toolTip">
     <string>Recursive album search</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
    </property>
   </action>
   <action name="actionUpdates">

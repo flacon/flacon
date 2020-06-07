@@ -378,7 +378,7 @@ void MainWindow::setControlsEnable()
     actionRemoveDisc->setEnabled(!running && discsSelected);
     actionStartConvert->setEnabled(!running && canConvert);
     actionDownloadTrackInfo->setEnabled(!running && canDownload);
-    actionScan->setEnabled(!running);
+    actionAddFolder->setEnabled(!running);
     actionConfigure->setEnabled(!running);
     actionConfigureEncoder->setEnabled(!running);
 
@@ -1016,8 +1016,8 @@ void MainWindow::initActions()
     actionRemoveDisc->setIcon(Icon("remove-disk"));
     connect(actionRemoveDisc, SIGNAL(triggered()), this, SLOT(removeDiscs()));
 
-    actionScan->setIcon(Icon("scan"));
-    connect(actionScan, SIGNAL(triggered()), this, SLOT(openScanDialog()));
+    actionAddFolder->setIcon(Icon("scan"));
+    connect(actionAddFolder, SIGNAL(triggered()), this, SLOT(openScanDialog()));
 
     actionDownloadTrackInfo->setIcon(Icon("download-info"));
     connect(actionDownloadTrackInfo, SIGNAL(triggered()), this, SLOT(downloadInfo()));
