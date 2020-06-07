@@ -326,7 +326,7 @@ void TestFlacon::testResizeWavHeader_data()
 
     QTest::newRow("01")
             << "52 49 46 46"    // RIFF
-               "10 00 00 00"    // file size - 8
+               "10 FF 00 00"    // file size - 8
                "57 41 56 45"    // WAVE
 
                "66 6D 74 20"    // "fmt "
@@ -340,7 +340,7 @@ void TestFlacon::testResizeWavHeader_data()
                "10 00"          // mBitsPerSample
 
                "64 61 74 61"    // data
-               "00 00 00 00"    // data size
+               "00 FF 00 00"    // data size
 
             << "38648064"       // new duration
             << "24 B9 4D 02"    // expected chunk size
