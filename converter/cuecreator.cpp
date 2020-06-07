@@ -91,7 +91,9 @@ void CueCreator::initGlobalTags()
         TagId::Album,
         TagId::Catalog,
         TagId::CDTextfile,
-        TagId::DiscId
+        TagId::DiscId,
+        TagId::DiscCount,
+        TagId::DiscNum
     };
 
     mGlobalTags.setCodecName(mTextCodec->name());
@@ -113,6 +115,12 @@ void CueCreator::initGlobalTags()
 
         if (!value.isEmpty())
             mGlobalTags.setTag(tagId, value);
+    }
+
+    // Don't write defaults values
+    if (mGlobalTags.tag(TagId::DiscCount) == 1 && mGlobalTags.tag(TagId::DiscNum) == 1) {
+        mGlobalTags.setTag(TagId::DiscCount, QByteArray());
+        mGlobalTags.setTag(TagId::DiscNum,   QByteArray());
     }
 }
 
@@ -168,16 +176,19 @@ bool CueCreator::write()
 
     initGlobalTags();
 
+
     // Common ...........................
-    writeGlobalTag("CATALOG %1",        TagId::Catalog);
-    writeGlobalTag("CDTEXTFILE \"%1\"", TagId::CDTextfile);
-    writeGlobalTag("REM GENRE \"%1\"",  TagId::Genre);
-    writeGlobalTag("REM DATE %1",       TagId::Date);
-    writeGlobalTag("REM DISCID %1",     TagId::DiscId);
+    writeGlobalTag("CATALOG %1",            TagId::Catalog);
+    writeGlobalTag("CDTEXTFILE \"%1\"",     TagId::CDTextfile);
+    writeGlobalTag("REM GENRE \"%1\"",      TagId::Genre);
+    writeGlobalTag("REM DATE %1",           TagId::Date);
+    writeGlobalTag("REM DISCID %1",         TagId::DiscId);
     writeLine(QString("REM COMMENT \"Flacon v%1\"").arg(FLACON_VERSION));
-    writeGlobalTag("PERFORMER \"%1\"",  TagId::Artist);
-    writeGlobalTag("SONGWRITER \"%1\"", TagId::SongWriter);
-    writeGlobalTag("TITLE \"%1\"",      TagId::Album);
+    writeGlobalTag("REM TOTALDISCS %1",     TagId::DiscCount);
+    writeGlobalTag("REM DISCNUMBER %1",     TagId::DiscNum);
+    writeGlobalTag("PERFORMER \"%1\"",      TagId::Artist);
+    writeGlobalTag("SONGWRITER \"%1\"",     TagId::SongWriter);
+    writeGlobalTag("TITLE \"%1\"",          TagId::Album);
 
     if (createPreGapFile)
         writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->preGapTrack()->resultFilePath()).fileName()));

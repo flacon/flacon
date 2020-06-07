@@ -301,13 +301,7 @@ int main(int argc, char *argv[])
         Settings::setFileName(parser.value("config"));
     }
 
-#ifdef QT_DEBUG
-    bool debugEnabled = true;
-#else
-    bool debugEnabled = parser.isSet("debug") || getenv("FLACON_DEBUG");
-#endif
-
-    if (debugEnabled) {
+    if (parser.isSet("debug") || getenv("FLACON_DEBUG")) {
         qSetMessagePattern(":::%{if-category}%{category}: %{endif}%{if-warning}Warning: %{endif}%{if-critical}Error: %{endif}%{if-fatal}Error: %{endif} [%{threadid}] %{message}");
     }
     else {

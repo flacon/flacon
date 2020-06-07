@@ -53,6 +53,66 @@ static QStringList findFiles(const QString &dir, const QString &pattern)
 /************************************************
  *
  ************************************************/
+static void createStartSh(const QString fileName, const QString flaconBin,  const QStringList &args)
+{
+    QFile file(fileName);
+    file.open(QIODevice::WriteOnly);
+    file.write("\"" + flaconBin.toLocal8Bit() + "\"");
+    for (QString a: args)
+    {
+        a.replace("\"", "\\\"");
+        file.write(" \\\n    \"" + a.toLocal8Bit() + "\"");
+    }
+
+    file.setPermissions(QFileDevice::ReadUser | QFileDevice::ReadGroup | QFileDevice::ReadOther |
+                        QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther |
+                        QFileDevice::ExeUser);
+
+    file.close();
+
+}
+
+
+/************************************************
+ *
+ ************************************************/
+static bool runConvert(const QString &dir, const QString &inDir, const QString &cfgFile)
+{
+    QString flacon = QCoreApplication::applicationDirPath() + "/../flacon";
+    QStringList args;
+    args << "--config" << cfgFile;
+    args << "--start";
+    args << "--quiet";
+    args << inDir.toLocal8Bit().data();
+
+    createStartSh(dir + "/start.sh", flacon, args);
+
+    QProcess proc;
+    proc.start(flacon, args);
+
+    if (!proc.waitForFinished(30 * 1000))
+    {
+        FAIL(QString("The program timed out waiting for the result: %1.")
+              .arg(QString::fromLocal8Bit(proc.readAllStandardError())).toLocal8Bit());
+        return false;
+    }
+
+    if (proc.exitCode() != 0)
+    {
+        FAIL(QString("flacon returned non-zero exit status %1: %2")
+              .arg(proc.exitCode())
+              .arg(QString::fromLocal8Bit(proc.readAll())).toLocal8Bit());
+        return false;
+    }
+
+    return true;
+}
+
+
+
+/************************************************
+ *
+ ************************************************/
 void TestFlacon::testConvert()
 {
     QFETCH(QString, dataDir);
@@ -138,45 +198,10 @@ void TestFlacon::testConvert()
     // ..........................................
 
     // Run flacon ...............................
-    QString flacon = QCoreApplication::applicationDirPath() + "/../flacon";
-    QStringList args;
-    args << "--config" << cfgFile;
-    args << "--start";
-    args << "--quiet";
-    args << inDir.toLocal8Bit().data();
-
-    {
-        QFile file(dir() + "/start.sh");
-        file.open(QIODevice::WriteOnly);
-        file.write("\"" + flacon.toLocal8Bit() + "\"");
-        for (QString a: args)
-        {
-            a.replace("\"", "\\\"");
-            file.write(" \\\n    \"" + a.toLocal8Bit() + "\"");
-        }
-
-        file.setPermissions(QFileDevice::ReadUser | QFileDevice::ReadGroup | QFileDevice::ReadOther |
-                            QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther |
-                            QFileDevice::ExeUser);
-
-        file.close();
+    if (!runConvert(dir(), inDir, cfgFile)) {
+        return;
     }
 
-    QProcess proc;
-    proc.start(flacon, args);
-    if (!proc.waitForFinished(30 * 1000))
-    {
-        QFAIL(QString("The program timed out waiting for the result: %1.")
-              .arg(QString::fromLocal8Bit(proc.readAllStandardError())).toLocal8Bit());
-    }
-
-    if (proc.exitCode() != 0)
-    {
-        QFAIL(QString("flacon returned non-zero exit status %1: %2")
-              .arg(proc.exitCode())
-              .arg(QString::fromLocal8Bit(proc.readAll())).toLocal8Bit());
-    }
-    // ..........................................
 
     // Check ____________________________________
     QString msg = "";
