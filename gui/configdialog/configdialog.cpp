@@ -113,6 +113,8 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     initUpdatePage();
 
     pages->setCurrentIndex(0);
+    cddbComboBox->addItem("http://www.gnudb.org");
+
     load();
 
 
@@ -410,6 +412,7 @@ void ConfigDialog::load()
 
     setCoverMode(Settings::i()->coverMode());
     Controls::loadFromSettings(coverResizeSpinBox, Settings::Cover_Size);
+    cddbComboBox->setCurrentText(Settings::i()->value(Settings::Inet_CDDBHost).toString());
 
     foreach(ProgramEdit *edit, mProgramEdits)
         edit->setText(Settings::i()->value("Programs/" + edit->programName()).toString());
@@ -436,6 +439,7 @@ void ConfigDialog::save()
 
     Settings::i()->setValue(Settings::Cover_Mode, coverModeToString(coverMode()));
     Controls::saveToSettings(coverResizeSpinBox, Settings::Cover_Size);
+    Settings::i()->setValue(Settings::Inet_CDDBHost, cddbComboBox->currentText());
 
     foreach(ProgramEdit *edit, mProgramEdits)
         Settings::i()->setValue("Programs/" + edit->programName(), edit->text());

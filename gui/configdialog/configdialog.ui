@@ -37,7 +37,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="profilesPage">
         <property name="sizePolicy">
@@ -250,6 +250,20 @@
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="cddbLabel">
+                <property name="text">
+                 <string comment="Preferences dialog label">CDDB server: </string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QComboBox" name="cddbComboBox">
+                <property name="editable">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>

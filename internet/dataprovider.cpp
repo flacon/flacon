@@ -161,36 +161,43 @@ FreeDbProvider::FreeDbProvider(const Disc &disc):
  ************************************************/
 void FreeDbProvider::start()
 {
-    QString host= Settings::i()->value(Settings::Inet_CDDBHost).toString();
+    QUrl settingsUrl= Settings::i()->value(Settings::Inet_CDDBHost).toString();
 
     // Categories from http://freedb.freedb.org/~cddb/cddb.cgi?cmd=CDDB+LSCAT&hello=n+h+c+1&proto=6
-    QStringList categories;
-    categories << "folk";
-    categories << "jazz";
-    categories << "misc";
-    categories << "rock";
-    categories << "country";
-    categories << "blues";
-    categories << "newage";
-    categories << "reggae";
-    categories << "classical";
-    categories << "soundtrack";
+    constexpr char const * categories[] = {
+        "folk",
+        "jazz",
+        "misc",
+        "rock",
+        "country",
+        "blues",
+        "newage",
+        "reggae",
+        "classical",
+        "soundtrack" };
 
-    QString mask = "http://%1/~cddb/cddb.cgi?cmd=CDDB+READ+%2+%3&hello=%4+%5+%6+%7&proto=5";
 
-    foreach (QString category, categories)
-    {
+    for (const auto category: categories) {
+        QUrl url = QString("https://127.0.0.1/~cddb/cddb.cgi?cmd=CDDB+READ+%1+%2&hello=%3+%4+%5+%6&proto=5")
+                .arg(category)
+                .arg(disc().discId())
+                .arg("anonimous")     // Hello user
+                .arg("127.0.0.1")     // Hello host
+                .arg("flacon")        // Hello client name
+                .arg(FLACON_VERSION); // Hello client version
+
+        if (!settingsUrl.scheme().isEmpty())
+            url.setScheme(settingsUrl.scheme());
+
+        if (settingsUrl.port(-1) == -1)
+            url.setPort(settingsUrl.port());
+
+
+        url.setHost(settingsUrl.host());
         QNetworkRequest request;
-        request.setUrl(mask.arg(
-                           host,
-                           category,
-                           disc().discId(),
-                           "anonimous",     // Hello user
-                           "127.0.0.1",     // Hello host
-                           "flacon",        //Hello client name
-                           FLACON_VERSION   // Hello client version
-                           ));
+        request.setUrl(url);
         request.setAttribute(QNetworkRequest::User, category);
+        qDebug() << "CDDB:" << url.toString();
         get(request);
     }
 }
