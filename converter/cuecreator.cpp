@@ -118,7 +118,7 @@ void CueCreator::initGlobalTags()
     }
 
     // Don't write defaults values
-    if (mGlobalTags.tag(TagId::DiscCount) == 1 && mGlobalTags.tag(TagId::DiscNum) == 1) {
+    if (mGlobalTags.tag(TagId::DiscCount) == "1" && mGlobalTags.tag(TagId::DiscNum) == "1") {
         mGlobalTags.setTag(TagId::DiscCount, QByteArray());
         mGlobalTags.setTag(TagId::DiscNum,   QByteArray());
     }
