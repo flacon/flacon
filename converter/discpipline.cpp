@@ -504,7 +504,7 @@ void DiscPipeline::addEncoderRequest(const Track *track, const QString &inputFil
 {
     trackProgress(track, TrackState::Queued, 0);
     QFileInfo trackFile(track->resultFilePath());
-    QString outFile = trackFile.dir().filePath(
+    QString outFile = mData->workDir->filePath(
                 QFileInfo(inputFile).baseName() +
                 ".encoded." +
                 trackFile.suffix());
