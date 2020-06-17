@@ -352,6 +352,11 @@
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
         <translation>%1:</translation>
     </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -406,7 +411,27 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
       </source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR médio&lt;/dt&gt;
+      &lt;dd&gt;Essa pré-configuração deve fornecer boa clareza para a maioria das pessoas e das músicas.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR padrão&lt;/dt&gt;
+      &lt;dd&gt;Essa pré-configuração deve fornecer boa clareza para a maioria das pessoas e das músicas e já possui alta qualidade.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR extremo&lt;/dt&gt;
+      &lt;dd&gt;Essa pré-configuração fornece uma qualidade um pouco maior que o modo padrão caso você possua uma audição muito boa ou um equipamento de áudio de qualidade.&lt;/dd&gt;
+
+      &lt;dt&gt;Qualidade da VBR&lt;/dt&gt;
+      &lt;dd&gt;Essa opção lhe permite especificar a qualidade de saída.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR insano&lt;/dt&gt;
+      &lt;dd&gt;Se você precisa ter a maior qualidade possível independentemente do tamanho do arquivo, você terá isso usando a Taxa de Bits Constante.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR kbps&lt;/dt&gt;
+      &lt;dd&gt;Essa pré-configuração geralmente lhe fornecerá uma boa qualidade usando a taxa de bits especificada.&lt;/dd&gt;
+
+      &lt;dt&gt;ABR kbps&lt;/dt&gt;
+      &lt;dd&gt;Essa pré-configuração geralmente lhe fornecerá uma qualidade mais alta que a opção CBR usando a taxa de bits especificada.&lt;/dd&gt;
+      </translation>
     </message>
 </context>
 <context>
@@ -443,7 +468,11 @@ No modo CBR, define a taxa de bits de saída específica.
 
 &lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR - taxa de bits variável&lt;/dt&gt;
+&lt;dd&gt;Usar a codificação com taxa de bits variável (recomendado). No modo VBR, a taxa de bits aumenta e diminui livremente dependendo do conteúdo, garantindo uma qualidade consistente.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - taxa de bits variável estrita&lt;/dt&gt;
+&lt;dd&gt;Usar a codificação com taxa de bits variável estrita. Resulta numa taxa de bits específica. Esse modo é análogo ao CBR em codificadores AAC/MP3 e ao modo gerenciado em codificadores vorbis. Fornece uma qualidade menos consistente que o modo VBR mas com uma taxa de bits consistente.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -453,7 +482,7 @@ No modo CBR, define a taxa de bits de saída específica.
     <message>
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
-        <translation type="unfinished"/>
+        <translation>CVBR - taxa de bits variável estrita</translation>
     </message>
 </context>
 <context>
@@ -880,7 +909,7 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     </message>
     <message>
         <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
         <source>Add disc…</source>
@@ -890,17 +919,17 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>Adicionar disco</translation>
     </message>
     <message>
         <source>Add folder…</source>
         <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <translation>Adicionar pasta...</translation>
     </message>
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>Adicionar pasta</translation>
     </message>
 </context>
 <context>

@@ -81,12 +81,12 @@
     <message>
         <source>Icon for application</source>
         <comment>Thanks on the about page</comment>
-        <translation type="unfinished"/>
+        <translation>Ikona pro program</translation>
     </message>
     <message>
         <source>Icons for application</source>
         <comment>Thanks on the about page</comment>
-        <translation type="unfinished"/>
+        <translation>Ikony pro program</translation>
     </message>
 </context>
 <context>
@@ -94,27 +94,27 @@
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
-        <translation type="unfinished"/>
+        <translation>Pro vytvoření profilu vyplňte následující údaje:</translation>
     </message>
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Název nového profilu:</translation>
     </message>
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Zvukový formát:</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Vytvořit profil</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <comment>Button caption</comment>
-        <translation type="unfinished"/>
+        <translation>Vytvořit profil</translation>
     </message>
 </context>
 <context>
@@ -275,7 +275,7 @@
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -287,69 +287,74 @@
     </message>
     <message>
         <source>Cover image</source>
-        <translation type="unfinished"/>
+        <translation>Obrázek obalu</translation>
     </message>
     <message>
         <source>Do not copy image</source>
-        <translation type="unfinished"/>
+        <translation>Nekopírovat obrázek</translation>
     </message>
     <message>
         <source>Update</source>
         <extracomment>Preferences tab title </extracomment>
-        <translation type="unfinished"/>
+        <translation>Aktualizovat</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky zkontrolovat aktualizace</translation>
     </message>
     <message>
         <source>Check now</source>
-        <translation type="unfinished"/>
+        <translation>Zkontrolovat nyní</translation>
     </message>
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Poslední kontrola proběhla %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
-        <translation type="unfinished"/>
+        <translation>Nikdy neprověřeno</translation>
     </message>
     <message>
         <source>Keep original image size</source>
-        <translation type="unfinished"/>
+        <translation>Zachovat původní velikost obrázku</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
-        <translation type="unfinished"/>
+        <translation>Změnit velikost, pokud je velikost obrázku větší než</translation>
     </message>
     <message>
         <source>Audio formats</source>
         <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Zvukové formáty</translation>
     </message>
     <message>
         <source>+</source>
-        <translation type="unfinished"/>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>Opravdu chcete smazat profil &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Delete the profile</source>
         <comment>Button caption</comment>
-        <translation type="unfinished"/>
+        <translation>Smazat profil</translation>
     </message>
     <message>
         <source>%1:</source>
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation>%1:</translation>
+    </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -406,7 +411,29 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
       </source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;Proměnlivý datový tok (VBR) Střední&lt;/dt&gt;
+&lt;dd&gt;Při použití středního proměnlivého datového toku by toto přednastavení mělo většině lidí u většiny hudby poskytnout téměř průzračnost.&lt;/dd&gt;
+
+&lt;dt&gt;Proměnlivý datový tok (VBR), obvyklý, Proměnlivý datový tok (VBR), obvyklý, rychle&lt;/dt&gt;
+&lt;dd&gt;Při použití obvyklého proměnlivého datového toku by toto přednastavení mělo obecně pro většinu lidí u většiny hudby být průzračné a jakost záznamu je již docela vysoká.&lt;/dd&gt;
+
+&lt;dt&gt;Proměnlivý datový tok (VBR), dokonalý, Proměnlivý datový tok (VBR), dokonalý, rychle&lt;/dt&gt;
+&lt;dd&gt;Pokud máte hodně dobrý sluch nebo  velice dobré zařízení, toto přednastavení vám poskytne lehce vyšší jakost, než jakou obdržíte při režimu běžné kvality.&lt;/dd&gt;
+
+&lt;dt&gt;Proměnlivý datový tok (VBR), jakost&lt;/dt&gt;
+&lt;dd&gt;Tato volba pro proměnlivý datový tok (VBR) vám umožní zadat jakost výstupu.&lt;/dd&gt;
+
+&lt;dt&gt;Rychlá volba&lt;/dt&gt;
+&lt;dd&gt;Povolí nový rychlý proměnlivý datový tok (VBR) pro zvláštní profil. Toto se doporučuje.&lt;/dd&gt;
+
+&lt;dt&gt;Stálý datový tok (CBR), zázračný&lt;/dt&gt;
+&lt;dd&gt;Pokud musíte mít naprosto nejvyšší kvalitu bez ohledu na velikost souboru, dosáhnete toho použitím tohoto stálého datového toku.&lt;/dd&gt;
+
+&lt;dt&gt;Kb/s stálého datového toku (CBR )&lt;/dt&gt;
+&lt;dd&gt;Použití tohoto přednastavení pro stálý datový tok vám obvykle dá dobrou kvalitu při zadaném datovém toku.&lt;/dd&gt;
+
+&lt;dt&gt;Kb/s průměrného datového toku (ABR )&lt;/dt&gt;
+&lt;dd&gt;Použití tohoto přednastavení pro průměrný datový tok vám obvykle dá vyšší kvalitu, než jakou vám dá volba pro stálý datový tok pro zadaný datový tok.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -442,7 +469,11 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
 
 &lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR - proměnlivý datový tok&lt;/dt&gt;
+&lt;dd&gt;Použít kódování proměnlivého datového toku (doporučeno). V režimu proměnlivého datového toku (PDT; VBR) může jít datový tok volně nahoru a dolů v závislosti v závistlosti na důslednosti zajištění jakosti obsahu.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - vynucený proměnlivý datový tok &lt;/dt&gt;
+&lt;dd&gt;Použít  kódování vynuceného datového toku. Výstup je prováděn do určitého datového toku. Tento režim je obdobou stálého datového toku v kodérech AAC/MP3 (CBR) a řízenému režimu v kodérech Vorbis. Dává méně stálou jakost než režim proměnlivého datového toku, ale stálý datový tok.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -452,7 +483,7 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     <message>
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
-        <translation type="unfinished"/>
+        <translation>CVBR - vynucený proměnlivý datový tok</translation>
     </message>
 </context>
 <context>
@@ -466,27 +497,27 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat obrázek obalu</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Bez obrázku obalu</translation>
     </message>
 </context>
 <context>
     <name>CueDiscSelectDialog</name>
     <message>
         <source>Select disc</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat disk</translation>
     </message>
     <message>
         <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
-        <translation type="unfinished"/>
+        <translation>Soubor CUE obsahuje údaje o více discích. Který disk chcete použít?</translation>
     </message>
     <message>
         <source>%1 [ disc %2 ]</source>
         <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
-        <translation type="unfinished"/>
+        <translation>%1 [disk %2]</translation>
     </message>
 </context>
 <context>
@@ -494,7 +525,7 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
-        <translation type="unfinished"/>
+        <translation>Nelze zapisovat soubor &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -509,17 +540,17 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation type="unfinished"/>
+        <translation>Zvukový soubor je kratší než očekáváno podle listu CUE.</translation>
     </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Tímto formátem je podporováno nejvíce %1 bitů na vzorek. Tato hodnota se použije pro zakódování.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Tímto formátem je podporován největší vzorkovací formát %1. Tato hodnota se použije pro zakódování.</translation>
     </message>
 </context>
 <context>
@@ -808,7 +839,7 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     </message>
     <message>
         <source>Remove current directory from history</source>
-        <translation type="unfinished"/>
+        <translation>Smazat nynější adresář z historie</translation>
     </message>
     <message>
         <source>Get data from CDDB</source>
@@ -818,7 +849,7 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Vybrat soubor CUE</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -828,77 +859,77 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>Edit all tags…</source>
         <comment>Button text</comment>
-        <translation type="unfinished"/>
+        <translation>Upravit všechny značky...</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
-        <translation type="unfinished"/>
+        <translation>Zkontrolovat aktualizace...</translation>
     </message>
     <message>
         <source>Edit tags…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Upravit značky...</translation>
     </message>
     <message>
         <source>Select another audio file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Vybrat jiný zvukový soubor...</translation>
     </message>
     <message>
         <source>Select another CUE file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Vybrat jiný soubor CUE...</translation>
     </message>
     <message>
         <source>Album performer:</source>
-        <translation type="unfinished"/>
+        <translation>Účinkující na albu:</translation>
     </message>
     <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Převést vybrané</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
         <extracomment>Main menu item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Spustit převod pro vybrané stopy</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
         <source>Remove disc</source>
-        <translation type="unfinished"/>
+        <translation>Odstranit disk</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
-        <translation type="unfinished"/>
+        <translation>Odstranit disk z projektu</translation>
     </message>
     <message>
         <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
         <source>Add disc…</source>
         <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <translation>Přidat disk...</translation>
     </message>
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>Přidat disk</translation>
     </message>
     <message>
         <source>Add folder…</source>
         <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <translation>Přidat složku...</translation>
     </message>
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>Přidat složku</translation>
     </message>
 </context>
 <context>
@@ -927,22 +958,22 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>Select directory…</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Vybrat adresář...</translation>
     </message>
     <message>
         <source>Standard music location</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Obvyklé umístění hudby</translation>
     </message>
     <message>
         <source>Desktop</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Pracovní plocha</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Menu item for output direcory button</comment>
-        <translation type="unfinished"/>
+        <translation>Stejný adresář jako soubor CUE</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -954,7 +985,7 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Stejný adresář jako soubor CUE</translation>
     </message>
 </context>
 <context>
@@ -989,11 +1020,11 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     </message>
     <message>
         <source>Insert &quot;Disc number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Vložit &quot;Číslo disku&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of discs&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Vložit &quot;Celkový počet disků&quot;</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
@@ -1006,19 +1037,19 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Nastavení převzorkování:</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
+        <translation>Největší bitová hloubka:</translation>
     </message>
     <message>
         <source>Maximum sample rate:</source>
-        <translation type="unfinished"/>
+        <translation>Největší vzorkovací kmitočet:</translation>
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
+        <translation>Nastavení vyrovnání hlasitosti:</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1031,12 +1062,12 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>Create per track CUE sheet</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Vytvořit list CUE u skladby</translation>
     </message>
     <message>
         <source>File name format:</source>
         <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Formát názvu souboru:</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -1074,42 +1105,42 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
     <message>
         <source>Same as source</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Stejný jako zdroj</translation>
     </message>
     <message>
         <source>16-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>16 bitů</translation>
     </message>
     <message>
         <source>24-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>24 bitů</translation>
     </message>
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>32 bitů</translation>
     </message>
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>44100 Hz</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>48000 Hz</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>96000 Hz</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
-        <translation type="unfinished"/>
+        <translation>192000 Hz</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -1199,17 +1230,17 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>%1 format</source>
         <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>%1 formát</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Stejný adresář jako soubor CUE</translation>
     </message>
     <message>
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>%1 nastavení kodéru:</translation>
     </message>
 </context>
 <context>
@@ -1271,12 +1302,12 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Nelze kopírovat soubor obalu &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Nelze přečíst obrázek obalu &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>Multiple values</source>
@@ -1284,30 +1315,30 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
+        <translation>Nelze zapsat soubor CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; není platným souborem CUE. Nesprávné číslo skladby na %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; není platným souborem CUE. Nesprávné číslo skladby na %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; není platným souborem CUE. List CUE nemá žádnou značku SOUBOR (FILE).</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <translation>Nelze uložit obrázek obalu &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; není platným souborem CUE. Disk %2 nemá žádné značky.</translation>
     </message>
 </context>
 <context>
@@ -1315,7 +1346,7 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-        <translation type="unfinished"/>
+        <translation>Nelze přečíst &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -1323,11 +1354,11 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Edit tags</source>
         <comment>Dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>Upravit značky</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished"/>
+        <translation>z</translation>
     </message>
     <message>
         <source>Artist:</source>
@@ -1352,27 +1383,27 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Název skladby</translation>
     </message>
     <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Poznámka:</translation>
     </message>
     <message>
         <source>Start track number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Začít číslem skladby:</translation>
     </message>
     <message>
         <source>Album performer:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Účinkující na albu:</translation>
     </message>
     <message>
         <source>Disc number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Číslo disku</translation>
     </message>
 </context>
 <context>
@@ -1383,7 +1414,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Select another CUE file…</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat jiný soubor CUE...</translation>
     </message>
 </context>
 <context>
@@ -1429,17 +1460,17 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
+        <translation>Počítá se zesílení</translation>
     </message>
     <message>
         <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
+        <translation>Zapisuje se zesílení</translation>
     </message>
     <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
+        <translation>Čeká se na zesílení</translation>
     </message>
 </context>
 <context>
@@ -1529,7 +1560,7 @@ If you surround sections of text that contain a token with braces, these section
     <name>flacConfigPage</name>
     <message>
         <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
+        <translation>Nastavení kódování FLAC</translation>
     </message>
     <message>
         <source>Compression:</source>

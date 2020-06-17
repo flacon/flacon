@@ -352,6 +352,11 @@
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
         <translation>%1:</translation>
     </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -891,17 +896,17 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>Pridėti diską</translation>
     </message>
     <message>
         <source>Add folder…</source>
         <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <translation>Pridėti aplanką…</translation>
     </message>
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>Pridėti aplanką</translation>
     </message>
 </context>
 <context>
@@ -1432,17 +1437,17 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
+        <translation>Apskaičiuojamas stiprinimas</translation>
     </message>
     <message>
         <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
+        <translation>Rašomas stiprinimas</translation>
     </message>
     <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
+        <translation>Laukiama stiprinimo</translation>
     </message>
 </context>
 <context>

@@ -352,6 +352,11 @@
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
         <translation>%1:</translation>
     </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>

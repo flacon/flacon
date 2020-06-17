@@ -352,6 +352,11 @@
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
         <translation>%1:</translation>
     </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigPage_Mp3</name>
@@ -904,7 +909,7 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     </message>
     <message>
         <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Mayúsculas+O</translation>
     </message>
     <message>
         <source>Add disc…</source>
@@ -914,17 +919,17 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>Agregar disco</translation>
     </message>
     <message>
         <source>Add folder…</source>
         <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <translation>Añadir carpeta...</translation>
     </message>
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>Añadir carpeta</translation>
     </message>
 </context>
 <context>
