@@ -223,7 +223,7 @@ bool DiscPipeline::Data::init()
         return false;
     }
 
-    workDir = new QTemporaryDir(QString("%1/flacon").arg(dir));
+    workDir = new QTemporaryDir(QString("%1/tmp").arg(dir));
     workDir->setAutoRemove(true);
 
     foreach (const Track *track, job.tracks) {
