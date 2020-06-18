@@ -49,7 +49,7 @@ Splitter::Splitter(const Disc *disc, const QString &workDir, bool extractPregap,
  ************************************************/
 void Splitter::run()
 {
-    static QAtomicInteger<quint64> globalUid(1);
+    static QAtomicInteger<quint32> globalUid(1);
     QString uid = QString("%1").arg(globalUid.fetchAndAddRelaxed(1), 4, 10, QLatin1Char('0'));
 
     mCurrentTrack = nullptr;
