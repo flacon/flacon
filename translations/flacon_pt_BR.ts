@@ -355,7 +355,7 @@
     <message>
         <source>CDDB server: </source>
         <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
+        <translation>Servidor do CDDB:</translation>
     </message>
 </context>
 <context>

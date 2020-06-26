@@ -355,7 +355,7 @@
     <message>
         <source>CDDB server: </source>
         <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
+        <translation>CDDB serveris: </translation>
     </message>
 </context>
 <context>
@@ -886,7 +886,7 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     </message>
     <message>
         <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
         <source>Add disc…</source>
