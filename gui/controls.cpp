@@ -404,6 +404,11 @@ CodePageComboBox::CodePageComboBox(QWidget *parent):
     addCodecName(tr("Windows 1257"), "windows-1257");
     addCodecName(tr("Windows 1258"), "windows-1258");
 
+    insertSeparator(9999);
+    addCodecName(tr("Simplified Chinese (GB18030)"), "GB18030");
+    addCodecName(tr("Traditional Chinese (BIG5)"), "Big5");
+    addCodecName(tr("Japanese (CP932)"), "windows-31j");
+
 }
 
 
