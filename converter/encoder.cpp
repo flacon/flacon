@@ -124,7 +124,9 @@ void Encoder::run()
 
         encoder.setProgram(prog);
         encoder.setArguments(args);
+#ifdef MAC_BUNDLE
         encoder.setEnvironment(QStringList("LANG=en_US.UTF-8"));
+#endif
         mode += ENCODE;
     }
 
@@ -134,7 +136,7 @@ void Encoder::run()
         if (mode == COPY_FILE)
             outFile = mOutFile; // Input file already WAV, so for WAV output format we just rename file.
         else
-            outFile = "-";              // Write to STDOUT
+            outFile = "-";      // Write to STDOUT
 
         QStringList args = Resampler::args(mBitsPerSample, mSampleRate, outFile);
         QString prog = args.takeFirst();
