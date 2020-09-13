@@ -26,12 +26,15 @@
 
 #include "application.h"
 #include <QFileOpenEvent>
+#include <QDebug>
+#include <QStyle>
 
 
 Application::Application(int &argc, char **argv):
     QApplication(argc, argv)
 {
     init();
+    mDarkMode = isDarkVisualMode();
 }
 
 Application::~Application()
@@ -47,11 +50,29 @@ Application *Application::instance()
 
 bool Application::event(QEvent *event)
 {
+
     if (event->type() == QEvent::FileOpen)
     {
         QFileOpenEvent *e = static_cast<QFileOpenEvent*>(event);
         emit openFile(e->file());
     }
 
+#ifndef Q_OS_MAC
+    if (event->type() == QEvent::ApplicationPaletteChange) {
+        bool dark = isDarkVisualMode();
+        if (dark != mDarkMode) {
+            mDarkMode = isDarkVisualMode();
+            emit visualModeChanged();
+        }
+    }
+#endif
     return QApplication::event(event);
 }
+
+#ifndef Q_OS_MAC
+bool Application::isDarkVisualMode() const
+{
+    return qApp->style()->standardPalette().window().color().lightness() <
+           qApp->style()->standardPalette().windowText().color().lightness();
+}
+#endif

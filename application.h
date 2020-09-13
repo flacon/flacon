@@ -41,7 +41,7 @@ public:
 #ifdef Q_OS_MAC
     bool isDarkVisualMode() const;
 #else
-    bool isDarkVisualMode() const { return false; }
+    bool isDarkVisualMode() const;
 #endif
 
 protected:
@@ -59,6 +59,7 @@ private:
     void init() {}
     void free() {}
 #endif
+    bool mDarkMode = false;
 };
 
 

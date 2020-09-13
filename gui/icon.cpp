@@ -45,9 +45,7 @@ public:
     ************************************************/
     IconEngine(const IconEngine &other):
         QIconEngine(other),
-#ifdef Q_OS_MAC
         mIconDark(other.mIconDark),
-#endif
         mIconLight(other.mIconLight)
     {
     }
@@ -68,11 +66,9 @@ public:
     void addFile(const QString &fileName, const QSize &size, QIcon::Mode mode, QIcon::State state) override
     {
         mIconLight.addFile(fileName, size, mode, state);
-#ifdef Q_OS_MAC
         QString d = fileName;
         d.replace("/light/", "/dark/");
         mIconDark.addFile(d, size, mode, state);
-#endif
     }
 
 
@@ -107,7 +103,6 @@ public:
 
 private:
 
-#ifdef Q_OS_MAC
     QIcon &icon()
     {
         if (mDarkMode)
@@ -118,15 +113,6 @@ private:
 
     QIcon mIconDark;
     QIcon mIconLight;
-
-#else
-    QIcon &icon()
-    {
-        return mIconLight;
-    }
-
-    QIcon mIconLight;
-#endif
 };
 
 bool IconEngine::mDarkMode = false;
@@ -152,28 +138,6 @@ Icon::Icon(const QString &fileName):
                 .arg(size, 3, 10, QChar('0'))
                 .arg(fileName), QSize(size, size), QIcon::Disabled);
     }
-/*
-    QVector<int> sizes;
-    sizes << 16 << 22 << 24 << 32 << 48 << 64 << 128 << 256 << 512;
-
-    foreach (int size, sizes)
-        addFile(QString(":icons/light/%1/%2.png")
-                .arg(size, 3, 10, QChar("0"))
-                .arg(fileName), QSize(size, size), QIcon::Normal);
-
-    foreach (int size, sizes)
-        addFile(QString(":icons/light/%1/%2-disabled.png")
-                .arg(size, 3, 10, QChar("0"))
-                .arg(fileName), QSize(size, size), QIcon::Normal);
-
-        addFile(QString(":%2/%1_disable").arg(fileName).arg(size), QSize(size, size), QIcon::Disabled);
-
-    foreach (int size, sizes)
-        addFile(QString(":%2/%1").arg(fileName).arg(size), QSize(size, size), QIcon::Normal);
-
-    foreach (int size, sizes)
-        addFile(QString(":%2/%1_disable").arg(fileName).arg(size), QSize(size, size), QIcon::Disabled);
-*/
 }
 
 
