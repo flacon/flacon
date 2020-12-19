@@ -12,6 +12,12 @@
   <url type="bugtracker">https://github.com/flacon/flacon</url>
   <url type="help">https://github.com/flacon/flacon/wiki</url>
   <url type="donation">https://flacon.github.io/donate/</url>
+  
+  <categories>
+    <category>AudioVideo</category>
+    <category>Audio</category>
+    <category>AudioVideoEditing</category>
+  </categories>
 
   <launchable type="desktop-id">com.github.Flacon.desktop</launchable>
 
@@ -31,8 +37,20 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://flacon.github.io/screenshots/flacon-main.png</image>
+      <image>https://raw.githubusercontent.com/flacon/flacon.github.io/b76825f411f8de0ad4e4de6d46fd912a13a6e980/images/flacon-main.png</image>
       <caption>Main view</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/flacon/flacon.github.io/b76825f411f8de0ad4e4de6d46fd912a13a6e980/images/flacon-convert.png</image>
+      <caption>Conversion process</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/flacon/flacon.github.io/b76825f411f8de0ad4e4de6d46fd912a13a6e980/images/flacon-cover.png</image>
+      <caption>Disk cover dialog</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/flacon/flacon.github.io/b76825f411f8de0ad4e4de6d46fd912a13a6e980/images/flacon-config.png</image>
+      <caption>Preferences dialog</caption>
     </screenshot>
   </screenshots>
 
