@@ -51,52 +51,48 @@ QFile &operator<<(QFile &file, const int &value)
 /************************************************
  *
  ************************************************/
-static void write(const QVector<CueDisc> &cue, const QString &fileName)
+static void write(const CueDisc &cue, const QString &fileName)
 {
     QFile f(fileName);
     f.open(QFile::WriteOnly | QFile::Truncate);
 
-    for (int d = 0; d < cue.count(); ++d) {
-        auto disc = cue.at(d);
+    int t = -1;
+    foreach (const Track &track, cue) {
+        t++;
+        f << QString("[DISC 01 / TRACK %2]\n").arg(t + 1, 2, 10, QChar('0'));
 
-        int t = -1;
-        foreach (const Track &track, disc) {
-            t++;
-            f << QString("[DISC %1 / TRACK %2]\n").arg(d + 1, 2, 10, QChar('0')).arg(t + 1, 2, 10, QChar('0'));
+        f << "\t"
+          << "FILE        = " << track.tag(TagId::File) << "\n";
+        f << "\t"
+          << "INDEX CD 00 = " << track.cueIndex(0).toString(true) << "\n";
+        f << "\t"
+          << "INDEX CD 01 = " << track.cueIndex(1).toString(true) << "\n";
+        f << "\t"
+          << "INDEX HI 00 = " << track.cueIndex(0).toString(false) << "\n";
+        f << "\t"
+          << "INDEX HI 01 = " << track.cueIndex(1).toString(false) << "\n";
+        f << "\t"
+          << "TITLE       = " << track.tag(TagId::Title) << "\n";
+        f << "\t"
+          << "ALBUM       = " << track.tag(TagId::Album) << "\n";
+        f << "\t"
+          << "PERFORMER   = " << track.tag(TagId::Artist) << "\n";
+        f << "\t"
+          << "DATE        = " << track.tag(TagId::Date) << "\n";
+        f << "\t"
+          << "DISCID      = " << track.tag(TagId::DiscId) << "\n";
+        f << "\t"
+          << "GENRE       = " << track.tag(TagId::Genre) << "\n";
+        f << "\t"
+          << "TRACKNUM    = " << QString::number(track.trackNum()) << "\n";
+        f << "\t"
+          << "TRACKCOUNT  = " << QString::number(track.trackCount()) << "\n";
+        f << "\t"
+          << "DISCNUM     = " << QString::number(track.discNum()) << "\n";
+        f << "\t"
+          << "DISCCOUNT   = " << QString::number(track.discCount()) << "\n";
 
-            f << "\t"
-              << "FILE        = " << track.tag(TagId::File) << "\n";
-            f << "\t"
-              << "INDEX CD 00 = " << track.cueIndex(0).toString(true) << "\n";
-            f << "\t"
-              << "INDEX CD 01 = " << track.cueIndex(1).toString(true) << "\n";
-            f << "\t"
-              << "INDEX HI 00 = " << track.cueIndex(0).toString(false) << "\n";
-            f << "\t"
-              << "INDEX HI 01 = " << track.cueIndex(1).toString(false) << "\n";
-            f << "\t"
-              << "TITLE       = " << track.tag(TagId::Title) << "\n";
-            f << "\t"
-              << "ALBUM       = " << track.tag(TagId::Album) << "\n";
-            f << "\t"
-              << "PERFORMER   = " << track.tag(TagId::Artist) << "\n";
-            f << "\t"
-              << "DATE        = " << track.tag(TagId::Date) << "\n";
-            f << "\t"
-              << "DISCID      = " << track.tag(TagId::DiscId) << "\n";
-            f << "\t"
-              << "GENRE       = " << track.tag(TagId::Genre) << "\n";
-            f << "\t"
-              << "TRACKNUM    = " << QString::number(track.trackNum()) << "\n";
-            f << "\t"
-              << "TRACKCOUNT  = " << QString::number(track.trackCount()) << "\n";
-            f << "\t"
-              << "DISCNUM     = " << QString::number(track.discNum()) << "\n";
-            f << "\t"
-              << "DISCCOUNT   = " << QString::number(track.discCount()) << "\n";
-
-            f << "\n";
-        }
+        f << "\n";
     }
 
     f.close();
@@ -126,11 +122,11 @@ static void compare(const QString &resFile, const QString &expectedFile)
 /************************************************
  *
  ************************************************/
-void TestFlacon::testCueReader()
+void TestFlacon::testCue()
 {
     QFETCH(QString, cue);
 
-    QString srcDir = mDataDir + "testCueReader";
+    QString srcDir = mDataDir + "testCue";
 
     QString cueFile      = dir() + "/" + cue;
     QString expectedFile = cueFile + ".expected";
@@ -140,8 +136,7 @@ void TestFlacon::testCueReader()
     QFile::copy(srcDir + "/" + cue + ".expected", expectedFile);
 
     try {
-        CueReader reader;
-        auto      cue = reader.load(cueFile);
+        CueDisc cue(cueFile);
         write(cue, resultFile);
 
         compare(resultFile, expectedFile);
@@ -154,10 +149,10 @@ void TestFlacon::testCueReader()
 /************************************************
  *
  ************************************************/
-void TestFlacon::testCueReader_data()
+void TestFlacon::testCue_data()
 {
     QTest::addColumn<QString>("cue", nullptr);
-    QString srcDir = mDataDir + "testCueReader";
+    QString srcDir = mDataDir + "testCue";
 
     foreach (QString f, QDir(srcDir).entryList(QStringList("*.cue"), QDir::Files, QDir::Name)) {
         QTest::newRow(f.toLocal8Bit()) << f;

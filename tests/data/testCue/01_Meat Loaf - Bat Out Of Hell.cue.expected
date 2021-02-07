@@ -57,7 +57,7 @@
 	DISCCOUNT   = 1
 
 
-[ DISC 02 / TRACK 01]
+[ DISC 01 / TRACK 05]
 	FILE        = Side 2.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 00:00:00
@@ -72,7 +72,7 @@
 	DISCCOUNT   = 1
 
 
-[ DISC 02 / TRACK 02]
+[ DISC 01 / TRACK 06]
 	FILE        = Side 2.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 05:24:00
@@ -87,7 +87,7 @@
 	DISCCOUNT   = 1
 
 
-[ DISC 02 / TRACK 03]
+[ DISC 01 / TRACK 07]
 	FILE        = Side 2.flac
 	INDEX CD 00 = 00:00:00
 	INDEX CD 01 = 13:49:00

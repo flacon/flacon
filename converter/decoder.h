@@ -35,6 +35,7 @@
 
 class QIODevice;
 class QProcess;
+class QFile;
 
 class Decoder : public QObject
 {

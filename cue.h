@@ -31,7 +31,7 @@
 #include "types.h"
 #include "track.h"
 
-class QFile;
+class CueData;
 
 class CueDisc : public Tracks
 {
@@ -39,14 +39,22 @@ class CueDisc : public Tracks
 
 public:
     CueDisc();
+    explicit CueDisc(const QString &fileName) noexcept(false);
+
     QString fileName() const { return mFileName; }
     DiscNum discCount() const { return mDiscCount; }
     DiscNum discNum() const { return mDiscNum; }
 
+    bool isMutiplyAudio() const;
+
 private:
     QString mFileName;
-    DiscNum mDiscCount;
-    DiscNum mDiscNum;
+    DiscNum mDiscCount = 0;
+    DiscNum mDiscNum   = 0;
+
+    QByteArray getAlbumPerformer(const CueData &data);
+    void       splitTitleTag(const CueData &data);
+    void       setCodecName(const CueData &data);
 };
 
 typedef QVector<CueDisc> Cue;

@@ -112,7 +112,7 @@
 
 
 
-[DISC 02 / TRACK 01]
+[DISC 01 / TRACK 09]
 	 FILE        = Artist - Album, 2001 (LP1).flac
 	 INDEX CD 00 = 00:00:00
 	 INDEX CD 01 = 00:00:00
@@ -126,7 +126,7 @@
 	 DISCNUM     = 1
 	 DISCCOUNT   = 1
 
-[DISC 02 / TRACK 02]
+[DISC 01 / TRACK 10]
 	 FILE        = Artist - Album, 2001 (LP1).flac
 	 INDEX CD 00 = 00:00:00
 	 INDEX CD 01 = 05:24:00
@@ -140,7 +140,7 @@
 	 DISCNUM     = 1
 	 DISCCOUNT   = 1
 
-[DISC 02 / TRACK 03]
+[DISC 01 / TRACK 11]
 	 FILE        = Artist - Album, 2001 (LP1).flac
 	 INDEX CD 00 = 00:00:00
 	 INDEX CD 01 = 14:11:00
@@ -154,7 +154,7 @@
 	 DISCNUM     = 1
 	 DISCCOUNT   = 1
 
-[DISC 02 / TRACK 04]
+[DISC 01 / TRACK 12]
 	 FILE        = Artist - Album, 2001 (LP1).flac
 	 INDEX CD 00 = 00:00:00
 	 INDEX CD 01 = 20:15:00
@@ -168,7 +168,7 @@
 	 DISCNUM     = 1
 	 DISCCOUNT   = 1
 
-[DISC 02 / TRACK 05]
+[DISC 01 / TRACK 13]
 	 FILE        = Artist - Album, 2001 (LP1).flac
 	 INDEX CD 00 = 00:00:00
 	 INDEX CD 01 = 26:04:00
@@ -182,7 +182,7 @@
 	 DISCNUM     = 1
 	 DISCCOUNT   = 1
 
-[DISC 02 / TRACK 06]
+[DISC 01 / TRACK 14]
 	 FILE        = Artist - Album, 2001 (LP1).flac
 	 INDEX CD 00 = 00:00:00
 	 INDEX CD 01 = 30:49:00
@@ -196,7 +196,7 @@
 	 DISCNUM     = 1
 	 DISCCOUNT   = 1
 
-[DISC 02 / TRACK 07]
+[DISC 01 / TRACK 15]
 	 FILE        = Artist - Album, 2001 (LP1).flac
 	 INDEX CD 00 = 00:00:00
 	 INDEX CD 01 = 35:57:50

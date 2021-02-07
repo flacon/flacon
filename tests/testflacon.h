@@ -51,8 +51,8 @@ private slots:
     void initTestCase();
     void init();
 
-    void testCueReader();
-    void testCueReader_data();
+    void testCue();
+    void testCue_data();
 
     void testCueData();
     void testCueData_data();

@@ -9,7 +9,7 @@
   DISCNUM     = 1
   DISCCOUNT   = 1
 
-[ DISC 02 / TRACK 01 ]
+[ DISC 01 / TRACK 02 ]
   FILE        = 02. Track02.flac
   ALBUM       = "AlbumName"
   PERFORMER   = ArtistName

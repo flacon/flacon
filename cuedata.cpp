@@ -54,7 +54,8 @@ static QByteArray extractFileFromFileTag(const QByteArray &value)
 }
 
 /************************************************
- *
+ Complete CUE sheet syntax documentation
+ https://github.com/flacon/flacon/blob/master/cuesheet_syntax.md
  ************************************************/
 CueData::CueData(const QString &fileName) :
     mFileName(fileName)
