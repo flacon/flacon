@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef TRANSLATORSINFO_H
 #define TRANSLATORSINFO_H
 #include <QtCore/QString>
@@ -41,7 +40,7 @@ public:
 
     QString info() const { return mInfo; }
 
-    void addLanguage(QString langId);
+    void    addLanguage(QString langId);
     QString asHtml();
 
 private:
@@ -49,9 +48,8 @@ private:
     QString mNativeName;
     QString mContact;
 
-    QString mInfo;
+    QString     mInfo;
     QStringList mLanguages;
-
 };
 
 class TranslatorsInfo
@@ -62,8 +60,8 @@ public:
     QString asHtml() const;
 
 private:
-    QMap<QString, Translator*> mItems;
-    void process(const QString &lang, const QString &englishName, const QString &nativeName, const QString &contact);
+    QMap<QString, Translator *> mItems;
+    void                        process(const QString &lang, const QString &englishName, const QString &nativeName, const QString &contact);
 };
 
 #endif // TRANSLATORSINFO_H

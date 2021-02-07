@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "out_ogg.h"
 #include "settings.h"
 #include <QDebug>
@@ -34,12 +33,11 @@
  ************************************************/
 OutFormat_Ogg::OutFormat_Ogg()
 {
-    mId   = "OGG";
-    mExt  = "ogg";
-    mName = "OGG";
+    mId      = "OGG";
+    mExt     = "ogg";
+    mName    = "OGG";
     mOptions = FormatOption::SupportGain;
 }
-
 
 /************************************************
 
@@ -53,12 +51,10 @@ QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const Track *trac
     args << "--quiet";
 
     // Quality settings .........................................
-    if (profile.value("UseQuality").toBool())
-    {
+    if (profile.value("UseQuality").toBool()) {
         args << "-q" << profile.value("Quality").toString();
     }
-    else
-    {
+    else {
         QString val = profile.value("NormBitrate").toString();
         if (!val.isEmpty())
             args << "-b" << val;
@@ -74,19 +70,19 @@ QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const Track *trac
 
     // Tags .....................................................
     if (!track->artist().isEmpty())
-        args << "--artist"  << track->artist();
+        args << "--artist" << track->artist();
 
     if (!track->album().isEmpty())
-        args << "--album"   << track->album();
+        args << "--album" << track->album();
 
     if (!track->genre().isEmpty())
-        args << "--genre"   << track->genre();
+        args << "--genre" << track->genre();
 
     if (!track->date().isEmpty())
-        args << "--date"    << track->date();
+        args << "--date" << track->date();
 
     if (!track->title().isEmpty())
-        args << "--title"   << track->title();
+        args << "--title" << track->title();
 
     if (!track->tag(TagId::AlbumArtist).isEmpty())
         args << "--comment" << QString("album_artist=%1").arg(track->tag(TagId::AlbumArtist));
@@ -96,7 +92,6 @@ QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const Track *trac
 
     if (!track->discId().isEmpty())
         args << "--comment" << QString("DISCID=%1").arg(track->discId());
-
 
     args << "--tracknum" << QString("%1").arg(track->trackNum());
     args << "--comment" << QString("totaltracks=%1").arg(track->trackCount());
@@ -112,15 +107,14 @@ QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const Track *trac
     return args;
 }
 
-
 /************************************************
 
  ************************************************/
 QStringList OutFormat_Ogg::gainArgs(const QStringList &files, const GainType gainType) const
 {
     QStringList args;
-    args <<  args << Settings::i()->programName(gainProgramName());
-    if (gainType ==  GainType::Album)
+    args << args << Settings::i()->programName(gainProgramName());
+    if (gainType == GainType::Album)
         args << "--album";
 
     args << files;
@@ -128,22 +122,20 @@ QStringList OutFormat_Ogg::gainArgs(const QStringList &files, const GainType gai
     return args;
 }
 
-
 /************************************************
 
  ************************************************/
 QHash<QString, QVariant> OutFormat_Ogg::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("UseQuality",       true);
-    res.insert("Quality",          7);
-    res.insert("MinBitrate",       "");
-    res.insert("NormBitrate",      "");
-    res.insert("MaxBitrate",       "");
-    res.insert("ReplayGain",       gainTypeToString(GainType::Disable));
+    res.insert("UseQuality", true);
+    res.insert("Quality", 7);
+    res.insert("MinBitrate", "");
+    res.insert("NormBitrate", "");
+    res.insert("MaxBitrate", "");
+    res.insert("ReplayGain", gainTypeToString(GainType::Disable));
     return res;
 }
-
 
 /************************************************
 
@@ -153,11 +145,10 @@ EncoderConfigPage *OutFormat_Ogg::configPage(const Profile &profile, QWidget *pa
     return new ConfigPage_Ogg(profile, parent);
 }
 
-
 /************************************************
 
  ************************************************/
-ConfigPage_Ogg::ConfigPage_Ogg(const Profile &profile, QWidget *parent):
+ConfigPage_Ogg::ConfigPage_Ogg(const Profile &profile, QWidget *parent) :
     EncoderConfigPage(profile, parent)
 {
     setupUi(this);
@@ -173,39 +164,36 @@ ConfigPage_Ogg::ConfigPage_Ogg(const Profile &profile, QWidget *parent):
 
     QList<int> bitrates;
     bitrates << 0 << 64 << 80 << 96 << 128 << 160 << 196 << 256 << 350;
-    fillBitrateComboBox(oggMinBitrateCbx,  bitrates);
+    fillBitrateComboBox(oggMinBitrateCbx, bitrates);
     fillBitrateComboBox(oggNormBitrateCbx, bitrates);
-    fillBitrateComboBox(oggMaxBitrateCbx,  bitrates);
+    fillBitrateComboBox(oggMaxBitrateCbx, bitrates);
 }
-
 
 /************************************************
 
  ************************************************/
 void ConfigPage_Ogg::load()
 {
-    loadWidget("UseQuality",  oggUseQualityCheck);
-    loadWidget("Quality",     oggQualitySpin);
-    loadWidget("MinBitrate",  oggMinBitrateCbx);
+    loadWidget("UseQuality", oggUseQualityCheck);
+    loadWidget("Quality", oggQualitySpin);
+    loadWidget("MinBitrate", oggMinBitrateCbx);
     loadWidget("NormBitrate", oggNormBitrateCbx);
-    loadWidget("MaxBitrate",  oggMaxBitrateCbx);
+    loadWidget("MaxBitrate", oggMaxBitrateCbx);
 
     setUseQualityMode(oggUseQualityCheck->isChecked());
 }
-
 
 /************************************************
 
  ************************************************/
 void ConfigPage_Ogg::save()
 {
-    saveWidget("UseQuality",  oggUseQualityCheck);
-    saveWidget("Quality",     oggQualitySpin);
-    saveWidget("MinBitrate",  oggMinBitrateCbx);
+    saveWidget("UseQuality", oggUseQualityCheck);
+    saveWidget("Quality", oggQualitySpin);
+    saveWidget("MinBitrate", oggMinBitrateCbx);
     saveWidget("NormBitrate", oggNormBitrateCbx);
-    saveWidget("MaxBitrate",  oggMaxBitrateCbx);
+    saveWidget("MaxBitrate", oggMaxBitrateCbx);
 }
-
 
 /************************************************
 
@@ -215,7 +203,6 @@ void ConfigPage_Ogg::oggQualitySliderChanged(int value)
     oggQualitySpin->setValue(value / 10.0);
 }
 
-
 /************************************************
 
  ************************************************/
@@ -224,14 +211,13 @@ void ConfigPage_Ogg::oggQualitySpinChanged(double value)
     oggQualitySlider->setValue(value * 10);
 
     //            -1  0   1   2   3    4    5    6    7    8    9    10   fake
-    int kbps[] = {45, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 500, 500};
-    int x1 = int(value);
-    double y1= kbps[x1 + 1];
-    double y2= kbps[x1 + 2];
-    int bitrate = round((y2 - y1) * (value - x1) + y1);
+    int    kbps[]  = { 45, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 500, 500 };
+    int    x1      = int(value);
+    double y1      = kbps[x1 + 1];
+    double y2      = kbps[x1 + 2];
+    int    bitrate = round((y2 - y1) * (value - x1) + y1);
     oggQualityLabel->setText(QString("(~%1 kbps)").arg(bitrate));
 }
-
 
 /************************************************
  *
@@ -250,5 +236,4 @@ void ConfigPage_Ogg::setUseQualityMode(bool checked)
     oggMinBitrateLabel->setEnabled(!checked);
     oggNormBitrateLabel->setEnabled(!checked);
     oggMaxBitrateLabel->setEnabled(!checked);
-
 }

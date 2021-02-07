@@ -23,25 +23,23 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "out_wv.h"
 #include "settings.h"
 #include <QDebug>
 
-static const constexpr char* COMPRESSION_KEY = "Compression";
-static const constexpr char* REPLAY_GAIN_KEY = "ReplayGain";
+static const constexpr char *COMPRESSION_KEY = "Compression";
+static const constexpr char *REPLAY_GAIN_KEY = "ReplayGain";
 
 /************************************************
 
  ************************************************/
 OutFormat_Wv::OutFormat_Wv()
 {
-    mId   = "WV";
-    mExt  = "wv";
-    mName = "WavPack";
+    mId      = "WV";
+    mExt     = "wv";
+    mName    = "WavPack";
     mOptions = FormatOption::Lossless | FormatOption::SupportGain;
 }
-
 
 /************************************************
 
@@ -52,15 +50,20 @@ QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const Track *track
 
     args << Settings::i()->programName(encoderProgramName());
 
-    args << "-q";            // Suppress progress indicator
+    args << "-q"; // Suppress progress indicator
 
     // Settings .................................................
     int compression = profile.value(COMPRESSION_KEY).toInt();
-    switch (compression)
-    {
-    case 0: args << "-f";  break;
-    case 1: args << "-h";  break;
-    case 2: args << "-hh"; break;
+    switch (compression) {
+        case 0:
+            args << "-f";
+            break;
+        case 1:
+            args << "-h";
+            break;
+        case 2:
+            args << "-hh";
+            break;
     }
 
     // Tags .....................................................
@@ -88,7 +91,6 @@ QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const Track *track
     if (!track->comment().isEmpty())
         args << "-w" << QString("Comment=%1").arg(track->comment());
 
-
     args << "-w" << QString("Track=%1/%2").arg(track->trackNum()).arg(track->trackCount());
     args << "-w" << QString("Part=%1").arg(track->discNum());
 
@@ -98,20 +100,18 @@ QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const Track *track
     return args;
 }
 
-
 /************************************************
 
  ************************************************/
 QStringList OutFormat_Wv::gainArgs(const QStringList &files, const GainType) const
 {
     QStringList args;
-    args <<  args << Settings::i()->programName(gainProgramName());
+    args << args << Settings::i()->programName(gainProgramName());
     args << "-a";
     args << files;
 
     return args;
 }
-
 
 /************************************************
 
@@ -124,7 +124,6 @@ QHash<QString, QVariant> OutFormat_Wv::defaultParameters() const
     return res;
 }
 
-
 /************************************************
 
  ************************************************/
@@ -133,11 +132,10 @@ EncoderConfigPage *OutFormat_Wv::configPage(const Profile &profile, QWidget *par
     return new ConfigPage_Wv(profile, parent);
 }
 
-
 /************************************************
 
  ************************************************/
-ConfigPage_Wv::ConfigPage_Wv(const Profile &profile, QWidget *parent):
+ConfigPage_Wv::ConfigPage_Wv(const Profile &profile, QWidget *parent) :
     EncoderConfigPage(profile, parent)
 {
     setupUi(this);
@@ -146,7 +144,6 @@ ConfigPage_Wv::ConfigPage_Wv(const Profile &profile, QWidget *parent):
     wvCompressionSpin->setToolTip(wvCompressionSlider->toolTip());
 }
 
-
 /************************************************
 
  ************************************************/
@@ -154,7 +151,6 @@ void ConfigPage_Wv::load()
 {
     loadWidget(COMPRESSION_KEY, wvCompressionSlider);
 }
-
 
 /************************************************
 

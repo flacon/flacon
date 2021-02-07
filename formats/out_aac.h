@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef OUT_AAC_H
 #define OUT_AAC_H
 
@@ -31,7 +30,7 @@
 #include "encoderconfigpage.h"
 #include "ui_out_aac_config.h"
 
-class OutFormat_Aac: public OutFormat
+class OutFormat_Aac : public OutFormat
 {
 public:
     OutFormat_Aac();
@@ -43,15 +42,14 @@ public:
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(const Profile &profile, QWidget *parentr) const override;
+    EncoderConfigPage *      configPage(const Profile &profile, QWidget *parentr) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
-    virtual SampleRate    maxSampleRate()   const override { return SampleRate::Hz_192000; }
+    virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_192000; }
 };
 
-
-class ConfigPage_Acc: public EncoderConfigPage, private Ui::aacConfigPage
+class ConfigPage_Acc : public EncoderConfigPage, private Ui::aacConfigPage
 {
     Q_OBJECT
 public:

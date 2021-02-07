@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef PROJECT_H
 #define PROJECT_H
 
@@ -40,24 +39,23 @@ class Project : public QObject
 {
     Q_OBJECT
 public:
-    static Project* instance();
-    
-    Disc *disc(int index) const;
-    int count() const;
-    int indexOf(const Disc *disc) const;
+    static Project *instance();
 
+    Disc *disc(int index) const;
+    int   count() const;
+    int   indexOf(const Disc *disc) const;
 
     void addDisc(Disc *disc) { insertDisc(disc); }
-    int insertDisc(Disc *disc, int index=-1);
-    void removeDisc(const QList<Disc*> *discs);
+    int  insertDisc(Disc *disc, int index = -1);
+    void removeDisc(const QList<Disc *> *discs);
 
     void emitDiscChanged(Disc *disc) const;
     void emitLayoutChanged() const;
 
     bool discExists(const QString &cueUri);
 
-    void clear();
-    Disc *addAudioFile(const QString &fileName);
+    void     clear();
+    Disc *   addAudioFile(const QString &fileName);
     DiscList addCueFile(const QString &fileName);
 
 signals:
@@ -69,7 +67,7 @@ signals:
 private:
     explicit Project(QObject *parent = nullptr);
 
-    QList<Disc*> mDiscs;
+    QList<Disc *> mDiscs;
 };
 
 #define project Project::instance()

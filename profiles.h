@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef PROFILES_H
 #define PROFILES_H
 
@@ -37,59 +36,59 @@ class QSettings;
 class Profile
 {
     friend QDebug operator<<(QDebug dbg, const Profile &profile);
+
 public:
     Profile();
     explicit Profile(const QString &id);
-    explicit Profile(OutFormat &format, const QString &id ="" );
+    explicit Profile(OutFormat &format, const QString &id = "");
     Profile(const Profile &other);
-    Profile &operator =(const Profile &other);
+    Profile &operator=(const Profile &other);
 
     QString id() const { return mId; }
 
     QString name() const { return mName; }
-    void setName(const QString &value);
+    void    setName(const QString &value);
 
     QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
-    void setValue(const QString &key, const QVariant &value);
+    void     setValue(const QString &key, const QVariant &value);
 
     bool isValid() const noexcept;
 
     QString outFileDir() const;
-    void setOutFileDir(const QString &value);
+    void    setOutFileDir(const QString &value);
 
     QString outFilePattern() const;
-    void setOutFilePattern(const QString &value);
+    void    setOutFilePattern(const QString &value);
 
     GainType gainType() const;
 
-    int bitsPerSample() const;
+    int  bitsPerSample() const;
     void setBitsPerSample(int value);
 
-    int sampleRate() const;
+    int  sampleRate() const;
     void setSampleRate(int value);
 
     bool isCreateCue() const;
     void setCreateCue(bool value);
 
     QString cueFileName() const;
-    void setCueFileName(const QString &value);
+    void    setCueFileName(const QString &value);
 
     PreGapType preGapType() const;
-    void setPregapType(PreGapType value);
+    void       setPregapType(PreGapType value);
 
-
-    QString formatId() const { return mFormat->id(); }
-    QString formatName() const { return mFormat->name(); }
-    QString ext() const { return mFormat->ext(); }
-    FormatOptions formatOptions() const {return mFormat->options(); }
-    BitsPerSample maxBitPerSample() const { return mFormat->maxBitPerSample(); }
-    SampleRate    maxSampleRate() const { return mFormat->maxSampleRate(); }
+    QString            formatId() const { return mFormat->id(); }
+    QString            formatName() const { return mFormat->name(); }
+    QString            ext() const { return mFormat->ext(); }
+    FormatOptions      formatOptions() const { return mFormat->options(); }
+    BitsPerSample      maxBitPerSample() const { return mFormat->maxBitPerSample(); }
+    SampleRate         maxSampleRate() const { return mFormat->maxSampleRate(); }
     EncoderConfigPage *configPage(QWidget *parent) const;
-    QString encoderProgramName() const { return mFormat->encoderProgramName(); }
-    QStringList encoderArgs(const Track *track, const QString &outFile) const { return mFormat->encoderArgs(*this, track, outFile); }
-    QString gainProgramName() const { return mFormat->gainProgramName(); }
-    QStringList gainArgs(const QStringList &files) const { return mFormat->gainArgs(files, gainType()); }
-    bool check(QStringList *errors) const { return mFormat->check(*this, errors); }
+    QString            encoderProgramName() const { return mFormat->encoderProgramName(); }
+    QStringList        encoderArgs(const Track *track, const QString &outFile) const { return mFormat->encoderArgs(*this, track, outFile); }
+    QString            gainProgramName() const { return mFormat->gainProgramName(); }
+    QStringList        gainArgs(const QStringList &files) const { return mFormat->gainArgs(files, gainType()); }
+    bool               check(QStringList *errors) const { return mFormat->check(*this, errors); }
 
     void load(QSettings &settings, const QString &group);
     void save(QSettings &settings, const QString &group) const;
@@ -104,19 +103,19 @@ public:
     static constexpr const char *REPLAY_GAIN_KEY     = "ReplayGain";
 
 private:
-    QString mId;
-    const OutFormat *mFormat;
-    QString mName;
+    QString                  mId;
+    const OutFormat *        mFormat;
+    QString                  mName;
     QHash<QString, QVariant> mValues;
-    void setDefaultValues();
+    void                     setDefaultValues();
 };
 
 Profile &NullProfile();
 
-class Profiles: public QVector<Profile>
+class Profiles : public QVector<Profile>
 {
 public:
-    int indexOf(const QString &id, int from = 0) const;
+    int  indexOf(const QString &id, int from = 0) const;
     bool update(const Profile &profile);
 };
 

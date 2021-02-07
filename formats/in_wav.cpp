@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "in_wav.h"
 
 REGISTER_INPUT_FORMAT(Format_Wav)

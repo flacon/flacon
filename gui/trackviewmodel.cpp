@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "trackviewmodel.h"
 #include "trackview.h"
 #include "project.h"
@@ -35,7 +34,7 @@
 
 struct CacheTrackData
 {
-    CacheTrackData():
+    CacheTrackData() :
         state(TrackState::NotRunning),
         percent(0),
         discNum(-1),
@@ -44,20 +43,18 @@ struct CacheTrackData
     }
 
     TrackState state;
-    Percent percent;
-    DiscNum discNum;
-    TrackNum trackNum;
+    Percent    percent;
+    DiscNum    discNum;
+    TrackNum   trackNum;
 };
-
 
 class TrackViewModel::Cache
 {
 public:
-   Cache()  {}
-   QSet<DiscNum> downloadedDiscs;
-   QHash<Track, CacheTrackData> tracks;
+    Cache() { }
+    QSet<DiscNum>                downloadedDiscs;
+    QHash<Track, CacheTrackData> tracks;
 };
-
 
 class IndexData
 {
@@ -70,7 +67,7 @@ public:
 
     explicit IndexData(quint16 discNum, quint16 trackNum)
     {
-        mDiscId  = discNum  + 1;
+        mDiscId  = discNum + 1;
         mTrackId = trackNum + 1;
     }
 
@@ -80,22 +77,20 @@ public:
         mTrackId = 0;
     }
 
-
     quintptr asPtr()
     {
-        return quintptr((mTrackId << 16) |  mDiscId);
+        return quintptr((mTrackId << 16) | mDiscId);
     }
 
-
-    bool isDisc()  const { return mDiscId  > 0; }
+    bool isDisc() const { return mDiscId > 0; }
     bool isTrack() const { return mTrackId > 0; }
 
-    int discNum()  const { return mDiscId  - 1; }
+    int discNum() const { return mDiscId - 1; }
     int trackNum() const { return mTrackId - 1; }
 
     Disc *disc() const
     {
-        if (mDiscId && mDiscId-1 < project->count())
+        if (mDiscId && mDiscId - 1 < project->count())
             return project->disc(mDiscId - 1);
 
         return nullptr;
@@ -103,10 +98,9 @@ public:
 
     Track *track() const
     {
-        if (mTrackId)
-        {
+        if (mTrackId) {
             Disc *disc = this->disc();
-            if (disc && mTrackId -1 < disc->count())
+            if (disc && mTrackId - 1 < disc->count())
                 return disc->track(mTrackId - 1);
         }
         return nullptr;
@@ -117,14 +111,13 @@ private:
     quint16 mTrackId;
 };
 
-
 /************************************************
  *
  ************************************************/
-inline uint qHash(const Track &track, uint seed) {
+inline uint qHash(const Track &track, uint seed)
+{
     return qHash(QPair<int, QString>(track.trackNum(), track.cueFileName()), seed);
 }
-
 
 /************************************************
 
@@ -144,7 +137,6 @@ TrackViewModel::TrackViewModel(TrackView *parent) :
             this, &TrackViewModel::invalidateCache);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -152,7 +144,6 @@ TrackViewModel::~TrackViewModel()
 {
     delete mCache;
 }
-
 
 /************************************************
 
@@ -162,19 +153,24 @@ QVariant TrackViewModel::headerData(int section, Qt::Orientation orientation, in
     if (orientation != Qt::Horizontal || role != Qt::DisplayRole)
         return QVariant();
 
-    switch(section)
-    {
-    case TrackView::ColumnTracknum:   return QVariant(tr("Track",   "Table header."));
-    case TrackView::ColumnDuration:   return QVariant(tr("Length",  "Table header."));
-    case TrackView::ColumnTitle:      return QVariant(tr("Title",   "Table header."));
-    case TrackView::ColumnArtist:     return QVariant(tr("Artist",  "Table header."));
-    case TrackView::ColumnAlbum:      return QVariant(tr("Album",   "Table header."));
-    case TrackView::ColumnComment:    return QVariant(tr("Comment", "Table header."));
-    case TrackView::ColumnFileName:   return QVariant(tr("File",    "Table header."));
+    switch (section) {
+        case TrackView::ColumnTracknum:
+            return QVariant(tr("Track", "Table header."));
+        case TrackView::ColumnDuration:
+            return QVariant(tr("Length", "Table header."));
+        case TrackView::ColumnTitle:
+            return QVariant(tr("Title", "Table header."));
+        case TrackView::ColumnArtist:
+            return QVariant(tr("Artist", "Table header."));
+        case TrackView::ColumnAlbum:
+            return QVariant(tr("Album", "Table header."));
+        case TrackView::ColumnComment:
+            return QVariant(tr("Comment", "Table header."));
+        case TrackView::ColumnFileName:
+            return QVariant(tr("File", "Table header."));
     }
     return QVariant();
 }
-
 
 /************************************************
 
@@ -184,7 +180,6 @@ QModelIndex TrackViewModel::index(int row, int column, const QModelIndex &parent
     if (!hasIndex(row, column, parent))
         return QModelIndex();
 
-
     if (IndexData(parent).isTrack())
         return QModelIndex();
 
@@ -193,7 +188,6 @@ QModelIndex TrackViewModel::index(int row, int column, const QModelIndex &parent
 
     return createIndex(row, column, IndexData(row).asPtr());
 }
-
 
 /************************************************
 
@@ -207,7 +201,6 @@ QModelIndex TrackViewModel::index(const Disc &disc, int col) const
     return QModelIndex();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -216,20 +209,16 @@ QModelIndex TrackViewModel::index(const Track &track, int col) const
     CacheTrackData &cache = mCache->tracks[track];
 
     const IndexData indexData(cache.discNum, cache.trackNum);
-    if (indexData.track() && *indexData.track() == track)
-    {
+    if (indexData.track() && *indexData.track() == track) {
         return index(cache.trackNum, col, index(cache.discNum, 0));
     }
 
     // Update cache
-    for (int d=0; d<rowCount(); ++d)
-    {
+    for (int d = 0; d < rowCount(); ++d) {
         QModelIndex discIndex = index(d, 0);
-        for (int t=0; t<rowCount(discIndex); ++t)
-        {
+        for (int t = 0; t < rowCount(discIndex); ++t) {
             IndexData indexData(d, t);
-            if (indexData.track() && *indexData.track() == track)
-            {
+            if (indexData.track() && *indexData.track() == track) {
                 cache.discNum  = d;
                 cache.trackNum = t;
                 return index(cache.trackNum, col, discIndex);
@@ -239,7 +228,6 @@ QModelIndex TrackViewModel::index(const Track &track, int col) const
 
     return QModelIndex();
 }
-
 
 /************************************************
 
@@ -256,7 +244,6 @@ QModelIndex TrackViewModel::parent(const QModelIndex &child) const
     return QModelIndex();
 }
 
-
 /************************************************
 
  ************************************************/
@@ -272,12 +259,11 @@ QVariant TrackViewModel::data(const QModelIndex &index, int role) const
         return trackData(track, index, role);
 
     Disc *disc = indexData.disc();
-    if(disc)
+    if (disc)
         return discData(disc, index, role);
 
     return QVariant();
 }
-
 
 /************************************************
 
@@ -290,27 +276,24 @@ bool TrackViewModel::setData(const QModelIndex &index, const QVariant &value, in
     if (role != Qt::EditRole)
         return false;
 
+    QList<Track *> tracks = view()->selectedTracks();
+    foreach (Track *track, tracks) {
+        switch (index.column()) {
+            case TrackView::ColumnTitle:
+                track->setTitle(value.toString());
+                break;
 
-    QList<Track*> tracks = view()->selectedTracks();
-    foreach(Track *track, tracks)
-    {
-        switch (index.column())
-        {
-        case TrackView::ColumnTitle:
-            track->setTitle(value.toString());
-            break;
+            case TrackView::ColumnArtist:
+                track->setArtist(value.toString());
+                break;
 
-        case TrackView::ColumnArtist:
-            track->setArtist(value.toString());
-            break;
+            case TrackView::ColumnAlbum:
+                track->setAlbum(value.toString());
+                break;
 
-        case TrackView::ColumnAlbum:
-            track->setAlbum(value.toString());
-            break;
-
-        case TrackView::ColumnComment:
-            track->setComment(value.toString());
-            break;
+            case TrackView::ColumnComment:
+                track->setComment(value.toString());
+                break;
         }
     }
 
@@ -318,87 +301,87 @@ bool TrackViewModel::setData(const QModelIndex &index, const QVariant &value, in
     return true;
 }
 
-
 /************************************************
 
  ************************************************/
 QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index, int role) const
 {
     // Display & Edit :::::::::::::::::::::::::::::::::::
-    if (role == Qt::DisplayRole || role == Qt::EditRole )
-    {
-        switch (index.column())
-        {
-        case TrackView::ColumnTracknum:
-            return QVariant(QString("%1").arg(track->trackNum(), 2, 10, QChar('0')));
+    if (role == Qt::DisplayRole || role == Qt::EditRole) {
+        switch (index.column()) {
+            case TrackView::ColumnTracknum:
+                return QVariant(QString("%1").arg(track->trackNum(), 2, 10, QChar('0')));
 
-        case TrackView::ColumnDuration:
-            return QVariant(trackDurationToString(track->duration()) + " ");
+            case TrackView::ColumnDuration:
+                return QVariant(trackDurationToString(track->duration()) + " ");
 
-        case TrackView::ColumnTitle:
-            return QVariant(track->title());
+            case TrackView::ColumnTitle:
+                return QVariant(track->title());
 
-        case TrackView::ColumnArtist:
-            return QVariant(track->artist());
+            case TrackView::ColumnArtist:
+                return QVariant(track->artist());
 
-        case TrackView::ColumnAlbum:
-            return QVariant(track->album());
+            case TrackView::ColumnAlbum:
+                return QVariant(track->album());
 
-        case TrackView::ColumnComment:
-            return QVariant(track->comment());
+            case TrackView::ColumnComment:
+                return QVariant(track->comment());
 
-        case TrackView::ColumnFileName:
-            return QVariant(track->resultFileName());
+            case TrackView::ColumnFileName:
+                return QVariant(track->resultFileName());
         }
 
         return QVariant();
     }
 
     // ToolTip ::::::::::::::::::::::::::::::::::::::::::
-    if (role == Qt::ToolTipRole)
-    {
-        switch (index.column())
-        {
-        case TrackView::ColumnFileName:
-            return QVariant(track->resultFilePath());
+    if (role == Qt::ToolTipRole) {
+        switch (index.column()) {
+            case TrackView::ColumnFileName:
+                return QVariant(track->resultFilePath());
 
-        default:
-            return QVariant();
+            default:
+                return QVariant();
         }
     }
 
     // TextAlignmen :::::::::::::::::::::::::::::::::::::
-    if (role == Qt::TextAlignmentRole)
-    {
-        switch (index.column())
-        {
-        case TrackView::ColumnDuration:
-            return  Qt::AlignRight + Qt::AlignVCenter;
+    if (role == Qt::TextAlignmentRole) {
+        switch (index.column()) {
+            case TrackView::ColumnDuration:
+                return Qt::AlignRight + Qt::AlignVCenter;
         }
 
         return QVariant();
-
     }
 
-
-    switch (role)
-    {
-    case RoleItemType:  return TrackItem;
-    case RolePercent:   return     mCache->tracks[*track].percent;
-    case RoleStatus:    return int(mCache->tracks[*track].state);
-    case RoleTracknum:  return track->trackNum();
-    case RoleDuration:  return track->duration();
-    case RoleTitle:     return track->title();
-    case RoleArtist:    return track->tag(TagId::AlbumArtist);
-    case RoleAlbum:     return track->album();
-    case RoleComment:   return track->album();
-    case RoleFileName:  return track->resultFileName();
-    default:            return QVariant();
+    switch (role) {
+        case RoleItemType:
+            return TrackItem;
+        case RolePercent:
+            return mCache->tracks[*track].percent;
+        case RoleStatus:
+            return int(mCache->tracks[*track].state);
+        case RoleTracknum:
+            return track->trackNum();
+        case RoleDuration:
+            return track->duration();
+        case RoleTitle:
+            return track->title();
+        case RoleArtist:
+            return track->tag(TagId::AlbumArtist);
+        case RoleAlbum:
+            return track->album();
+        case RoleComment:
+            return track->album();
+        case RoleFileName:
+            return track->resultFileName();
+        default:
+            return QVariant();
     }
 
     return QVariant();
 }
-
 
 /************************************************
 
@@ -406,96 +389,96 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
 QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, int role) const
 {
     // Display & Edit :::::::::::::::::::::::::::::::::::
-    if (role == Qt::DisplayRole || role == Qt::EditRole )
-    {
+    if (role == Qt::DisplayRole || role == Qt::EditRole) {
         if (!disc->count())
             return QVariant();
 
         QSet<QString> values;
 
-        switch (index.column())
-        {
-        case TrackView::ColumnTitle:
-            for (int i=0; i<disc->count(); ++i)
-                values << disc->track(i)->title();
-            break;
+        switch (index.column()) {
+            case TrackView::ColumnTitle:
+                for (int i = 0; i < disc->count(); ++i)
+                    values << disc->track(i)->title();
+                break;
 
-        case TrackView::ColumnArtist:
-            for (int i=0; i<disc->count(); ++i)
-                values << disc->track(i)->tag(TagId::AlbumArtist);
-            break;
+            case TrackView::ColumnArtist:
+                for (int i = 0; i < disc->count(); ++i)
+                    values << disc->track(i)->tag(TagId::AlbumArtist);
+                break;
 
-        case TrackView::ColumnAlbum:
-            for (int i=0; i<disc->count(); ++i)
-                values << disc->track(i)->album();
-            break;
+            case TrackView::ColumnAlbum:
+                for (int i = 0; i < disc->count(); ++i)
+                    values << disc->track(i)->album();
+                break;
         }
 
-        if (values.count() > 1)
-        {
+        if (values.count() > 1) {
             return QVariant(tr("Multiple values"));
         }
-        else if (values.count() == 1)
-        {
+        else if (values.count() == 1) {
             return QVariant(*(values.begin()));
         }
 
         return QVariant();
     }
 
-
-    switch (role)
-    {
-    case RoleItemType:      return DiscItem;
-    case RoleTagSetTitle:   return disc->tagSetTitle();
-    case RoleAudioFileName: return disc->audioFileName();
-    case RoleHasWarnings:   return !disc->warnings().isEmpty();
-    case RoleCanConvert:    return disc->canConvert();
-    case RoleIsDownloads:   return mCache->downloadedDiscs.contains(index.row());
-    case RoleCoverFile:     return disc->coverImageFile();
-    case RoleCoverImg:      return disc->coverImagePreview();
-    case RoleCueFilePath:   return disc->cueFile();
-    case RoleAudioFilePath: return disc->audioFileName();
-    case RoleDiscWarnings:  return disc->warnings();
-    case RoleDiscErrors:
-                        {
-                            QString s;
-                            if (!disc->canConvert(&s))
-                                return QVariant(tr("The conversion is not possible.\n%1").arg(s));
-                            else
-                                return QVariant();
-                        }
-    default:                return QVariant();
+    switch (role) {
+        case RoleItemType:
+            return DiscItem;
+        case RoleTagSetTitle:
+            return disc->tagSetTitle();
+        case RoleAudioFileName:
+            return disc->audioFileName();
+        case RoleHasWarnings:
+            return !disc->warnings().isEmpty();
+        case RoleCanConvert:
+            return disc->canConvert();
+        case RoleIsDownloads:
+            return mCache->downloadedDiscs.contains(index.row());
+        case RoleCoverFile:
+            return disc->coverImageFile();
+        case RoleCoverImg:
+            return disc->coverImagePreview();
+        case RoleCueFilePath:
+            return disc->cueFile();
+        case RoleAudioFilePath:
+            return disc->audioFileName();
+        case RoleDiscWarnings:
+            return disc->warnings();
+        case RoleDiscErrors: {
+            QString s;
+            if (!disc->canConvert(&s))
+                return QVariant(tr("The conversion is not possible.\n%1").arg(s));
+            else
+                return QVariant();
+        }
+        default:
+            return QVariant();
     }
 
     return QVariant();
 }
-
 
 /************************************************
  *
  ************************************************/
 QString TrackViewModel::trackDurationToString(uint milliseconds) const
 {
-    if (milliseconds > 0)
-    {
+    if (milliseconds > 0) {
         uint l = milliseconds / 1000;
         uint h = l / 3600;
         uint m = (l % 3600) / 60;
         uint s = l % 60;
-
 
         if (h > 0)
             return tr("%1:%2:%3", "Track length, string like '01:02:56'").arg(h).arg(m, 2, 10, QChar('0')).arg(s, 2, 10, QChar('0'));
         else
             return tr("%1:%2", "Track length, string like '02:56'").arg(m).arg(s, 2, 10, QChar('0'));
     }
-    else
-    {
+    else {
         return "??";
     }
 }
-
 
 /************************************************
 
@@ -505,7 +488,6 @@ int TrackViewModel::columnCount(const QModelIndex &parent) const
     Q_UNUSED(parent);
     return TrackView::ColumnCount;
 }
-
 
 /************************************************
 
@@ -519,42 +501,36 @@ int TrackViewModel::rowCount(const QModelIndex &parent) const
     if (data.isTrack())
         return 0;
 
-
     Disc *disc = data.disc();
-    if(disc)
+    if (disc)
         return disc->count();
 
     return 0;
 }
-
 
 /************************************************
 
  ************************************************/
 Qt::ItemFlags TrackViewModel::flags(const QModelIndex &index) const
 {
-    if (! index.isValid())
+    if (!index.isValid())
         return Qt::ItemIsEnabled;
 
     Qt::ItemFlags res = Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 
-    if (IndexData(index).isTrack())
-    {
-        switch (index.column())
-        {
-        case TrackView::ColumnTitle:
-        case TrackView::ColumnArtist:
-        case TrackView::ColumnAlbum:
-        case TrackView::ColumnComment:
-            res = res | Qt::ItemIsEditable;
-            break;
+    if (IndexData(index).isTrack()) {
+        switch (index.column()) {
+            case TrackView::ColumnTitle:
+            case TrackView::ColumnArtist:
+            case TrackView::ColumnAlbum:
+            case TrackView::ColumnComment:
+                res = res | Qt::ItemIsEditable;
+                break;
         }
-
     }
 
     return res;
 }
-
 
 /************************************************
 
@@ -564,7 +540,6 @@ Disc *TrackViewModel::discByIndex(const QModelIndex &index)
     return IndexData(index).disc();
 }
 
-
 /************************************************
 
  ************************************************/
@@ -572,7 +547,6 @@ Track *TrackViewModel::trackByIndex(const QModelIndex &index)
 {
     return IndexData(index).track();
 }
-
 
 /************************************************
  *
@@ -583,7 +557,6 @@ void TrackViewModel::downloadStarted(const Disc &disc)
     discDataChanged(&disc);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -593,20 +566,18 @@ void TrackViewModel::downloadFinished(const Disc &disc)
     discDataChanged(&disc);
 }
 
-
 /************************************************
  *
  ************************************************/
 void TrackViewModel::trackProgressChanged(const Track &track, TrackState state, Percent percent)
 {
     CacheTrackData &cache = mCache->tracks[track];
-    cache.state   = state;
-    cache.percent = percent;
+    cache.state           = state;
+    cache.percent         = percent;
 
     QModelIndex idx = index(track, TrackView::ColumnPercent);
-    emit dataChanged(idx, idx);
+    emit        dataChanged(idx, idx);
 }
-
 
 /************************************************
 
@@ -615,9 +586,8 @@ void TrackViewModel::discDataChanged(const Disc *disc)
 {
     QModelIndex index1 = index(*disc, 0);
     QModelIndex index2 = index(*disc, TrackView::ColumnCount);
-    emit dataChanged(index1, index2);
+    emit        dataChanged(index1, index2);
 }
-
 
 /************************************************
 
@@ -626,6 +596,6 @@ void TrackViewModel::invalidateCache(const Disc *disc)
 {
     mCache->downloadedDiscs.remove(index(*disc).row());
 
-    for (int i=0; i<disc->count(); ++i)
+    for (int i = 0; i < disc->count(); ++i)
         mCache->tracks.remove(*(disc->track(i)));
 }

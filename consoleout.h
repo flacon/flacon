@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef CONSOLEOUT_H
 #define CONSOLEOUT_H
 

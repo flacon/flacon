@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
@@ -37,12 +36,12 @@ struct AboutInfoItem
     QString description;
 };
 
-class AboutInfo: public QList<AboutInfoItem>
+class AboutInfo : public QList<AboutInfoItem>
 {
 public:
     AboutInfo();
     QString asString() const;
-    void add(const QString &name, const QString &url, const QString &description = nullptr);
+    void    add(const QString &name, const QString &url, const QString &description = nullptr);
 };
 
 class AboutDialog : public QDialog, private Ui::AboutDialog
@@ -64,7 +63,7 @@ private:
 
     AboutInfo authorsInfo() const;
     AboutInfo thanksInfo() const;
-    QString translationsText() const;
+    QString   translationsText() const;
     AboutInfo programsInfo() const;
 };
 

@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef SPLITTER_H
 #define SPLITTER_H
 
@@ -36,13 +35,13 @@ class Track;
 class Project;
 class Track;
 
-class Splitter: public Worker
+class Splitter : public Worker
 {
     Q_OBJECT
 public:
     Splitter(const Disc *disc, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent = nullptr);
 
-    void addTrack(const Track *track) { mTracks << track;}
+    void addTrack(const Track *track) { mTracks << track; }
 
 public slots:
     void run() override;
@@ -51,12 +50,12 @@ private slots:
     void decoderProgress(int percent);
 
 private:
-    const Disc *mDisc;
-    const QString mWorkDir;
-    const bool mExtractPregap;
-    const PreGapType mPreGapType;
-    const Track *mCurrentTrack = nullptr;
-    QList<const Track*> mTracks;
+    const Disc *         mDisc;
+    const QString        mWorkDir;
+    const bool           mExtractPregap;
+    const PreGapType     mPreGapType;
+    const Track *        mCurrentTrack = nullptr;
+    QList<const Track *> mTracks;
 };
 
 #endif // SPLITTER_H

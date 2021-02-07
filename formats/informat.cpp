@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "informat.h"
 
 #include <QDebug>
@@ -39,7 +38,6 @@ AudioFormatList &formatList()
     return *afl;
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -54,7 +52,6 @@ bool InputFormat::registerFormat(const InputFormat &f)
     return true;
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -62,14 +59,12 @@ InputFormat::InputFormat()
 {
 }
 
-
 /************************************************
  *
  ************************************************/
 InputFormat::~InputFormat()
 {
 }
-
 
 /************************************************
  *
@@ -79,7 +74,6 @@ const AudioFormatList &InputFormat::allFormats()
     return formatList();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -88,7 +82,6 @@ bool InputFormat::checkMagic(const QByteArray &data) const
     return data.mid(magicOffset(), magic().length()) == magic();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -96,7 +89,6 @@ QString InputFormat::filterDecoderStderr(const QString &stdErr) const
 {
     return stdErr;
 }
-
 
 /************************************************
  *
@@ -111,8 +103,7 @@ const InputFormat *InputFormat::formatForFile(QIODevice *device)
     if (buf.size() < bufSize)
         return nullptr;
 
-    foreach (const InputFormat *format, allFormats())
-    {
+    foreach (const InputFormat *format, allFormats()) {
         if (format->checkMagic(buf))
             return format;
     }
@@ -120,15 +111,13 @@ const InputFormat *InputFormat::formatForFile(QIODevice *device)
     return nullptr;
 }
 
-
 /************************************************
  *
  ************************************************/
 const InputFormat *InputFormat::formatForFile(const QString &fileName)
 {
     QFile file(fileName);
-    if (! file.open(QFile::ReadOnly))
-    {
+    if (!file.open(QFile::ReadOnly)) {
         return nullptr;
     }
 
@@ -136,4 +125,3 @@ const InputFormat *InputFormat::formatForFile(const QString &fileName)
     file.close();
     return res;
 }
-

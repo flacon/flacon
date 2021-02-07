@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "asynclistwidgetitem.h"
 #include <QtConcurrent/QtConcurrent>
 #include <QListWidgetItem>
@@ -41,19 +40,19 @@ QImage *loadImage(const QString &fileName, const QSize &size)
     if (img.isNull())
         return nullptr;
 
-    QSize imgSize = img.size();
-    QImage *res = new QImage(size, QImage::Format_ARGB32);
+    QSize   imgSize = img.size();
+    QImage *res     = new QImage(size, QImage::Format_ARGB32);
     res->fill(Qt::transparent);
 
     QPainter painter(res);
 
-    img = img.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    img         = img.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QRectF rect = img.rect();
     rect.moveCenter(res->rect().center());
     painter.drawImage(rect, img);
 
     //....................................
-    QString sizeStr =  QString("%1x%2").arg(imgSize.width()).arg(imgSize.height());
+    QString sizeStr = QString("%1x%2").arg(imgSize.width()).arg(imgSize.height());
 
     QFont font = painter.font();
     font.setPointSize(font.pointSize() * 0.8);
@@ -68,7 +67,7 @@ QImage *loadImage(const QString &fileName, const QSize &size)
     rect.adjust(-5, -4, 5, 4);
     rect.moveBottomRight(res->rect().bottomRight());
 
-    painter.fillRect(rect.adjusted(1,1,-1,-1), QColor(0, 0, 0, 128));
+    painter.fillRect(rect.adjusted(1, 1, -1, -1), QColor(0, 0, 0, 128));
     painter.drawText(rect, Qt::AlignCenter, sizeStr);
 
     pen.setColor(QColor(255, 255, 255, 128));
@@ -78,64 +77,55 @@ QImage *loadImage(const QString &fileName, const QSize &size)
     return res;
 }
 
-
 /************************************************
  *
  ************************************************/
-AsyncListWidgetItem::AsyncListWidgetItem(QListWidget *view, int type):
+AsyncListWidgetItem::AsyncListWidgetItem(QListWidget *view, int type) :
     QListWidgetItem(view, type),
     mWatcher(nullptr)
 {
-
 }
-
 
 /************************************************
  *
  ************************************************/
-AsyncListWidgetItem::AsyncListWidgetItem(const QString &text, QListWidget *view, int type):
+AsyncListWidgetItem::AsyncListWidgetItem(const QString &text, QListWidget *view, int type) :
     QListWidgetItem(text, view, type),
     mWatcher(nullptr)
 {
-
 }
-
 
 /************************************************
  *
  ************************************************/
 AsyncListWidgetItem::~AsyncListWidgetItem()
 {
-    if (mWatcher)
-    {
+    if (mWatcher) {
         QObject::disconnect(mWatcher, nullptr, nullptr, nullptr);
         mWatcher->deleteLater();
     }
 }
-
 
 /************************************************
  *
  ************************************************/
 void AsyncListWidgetItem::setIconAsync(const QString &fileName)
 {
-    if (mWatcher)
-    {
+    if (mWatcher) {
         QObject::disconnect(mWatcher, nullptr, nullptr, nullptr);
         mWatcher->deleteLater();
     }
 
-    mWatcher = new QFutureWatcher<QImage*>(nullptr);
+    mWatcher = new QFutureWatcher<QImage *>(nullptr);
 
-    mWatcher->connect(mWatcher, &QFutureWatcher<QImage*>::finished,
-                     [this](){this->imageReady();});
+    mWatcher->connect(mWatcher, &QFutureWatcher<QImage *>::finished,
+                      [this]() { this->imageReady(); });
 
     mWatcher->setFuture(QtConcurrent::run(
-                            loadImage,
-                            fileName,
-                            listWidget()->iconSize()));
+            loadImage,
+            fileName,
+            listWidget()->iconSize()));
 }
-
 
 /************************************************
  *

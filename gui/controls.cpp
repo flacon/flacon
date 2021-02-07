@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "controls.h"
 #include "project.h"
 #include "settings.h"
@@ -49,7 +48,7 @@ static constexpr int HISTORY_COUNT = 10;
 /************************************************
  *
  ************************************************/
-ToolButton::ToolButton(const QIcon &icon, QWidget *parent):
+ToolButton::ToolButton(const QIcon &icon, QWidget *parent) :
     QToolButton(parent)
 {
     setAutoRaise(true);
@@ -59,15 +58,13 @@ ToolButton::ToolButton(const QIcon &icon, QWidget *parent):
     setPopupMode(QToolButton::InstantPopup);
 }
 
-
 /************************************************
  *
  ************************************************/
-ToolButton::ToolButton(QWidget *parent):
+ToolButton::ToolButton(QWidget *parent) :
     ToolButton(Icon("pattern-button"), parent)
 {
 }
-
 
 /************************************************
  *
@@ -85,7 +82,6 @@ void ToolButton::paintEvent(QPaintEvent *event)
     icon().paint(&painter, rect);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -97,7 +93,6 @@ void ToolButton::mousePressEvent(QMouseEvent *event)
 
     QToolButton::mousePressEvent(event);
 }
-
 
 /************************************************
  *
@@ -112,7 +107,6 @@ void ToolButton::changeEvent(QEvent *event)
     }
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -121,17 +115,16 @@ QLineEdit *ToolButton::buddyLineEdit()
     if (!buddy())
         return nullptr;
 
-    QLineEdit *edit = qobject_cast<QLineEdit*>(buddy());
+    QLineEdit *edit = qobject_cast<QLineEdit *>(buddy());
     if (edit)
         return edit;
 
-    QComboBox *cbx = qobject_cast<QComboBox*>(buddy());
+    QComboBox *cbx = qobject_cast<QComboBox *>(buddy());
     if (cbx)
         return cbx->lineEdit();
 
     return nullptr;
 }
-
 
 /************************************************
  *
@@ -141,7 +134,6 @@ void ToolButton::setBuddy(QComboBox *buddy)
     mBuddy = buddy;
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -150,20 +142,15 @@ void ToolButton::setBuddy(QLineEdit *buddy)
     mBuddy = buddy;
 }
 
-
-
-
-
 /************************************************
 
  ************************************************/
-OutPatternButton::OutPatternButton(QWidget * parent):
+OutPatternButton::OutPatternButton(QWidget *parent) :
     ToolButton(parent)
 {
     setMenu(new QMenu(this));
     mSeparator = menu()->addSeparator();
 }
-
 
 /************************************************
 
@@ -178,7 +165,6 @@ void OutPatternButton::addPattern(const QString &pattern, const QString &title)
     menu()->insertAction(mSeparator, act);
 }
 
-
 /************************************************
 
  ************************************************/
@@ -189,7 +175,6 @@ void OutPatternButton::addFullPattern(const QString &pattern, const QString &tit
     connect(act, SIGNAL(triggered()), this, SLOT(fullPatternTriggered()));
     menu()->addAction(act);
 }
-
 
 /************************************************
  *
@@ -206,35 +191,35 @@ void OutPatternButton::addStandardPatterns()
     addPattern("%d", tr("Insert \"Disc number\""));
     addPattern("%D", tr("Insert \"Total number of discs\""));
 
-    const static char* patterns[] = {
+    const static char *patterns[] = {
         "%a/{%y - }%A/%n - %t",
         "%a -{ %y }%A/%n - %t",
         "{%y }%A - %a/%n - %t",
         "%a/%A/%n - %t",
         "%a - %A/%n - %t",
-        "%A - %a/%n - %t" };
+        "%A - %a/%n - %t"
+    };
 
-    for (auto pattern: patterns) {
+    for (auto pattern : patterns) {
 
         addFullPattern(pattern,
                        tr("Use \"%1\"", "Predefined out file pattern, string like 'Use \"%a/%A/%n - %t\"'")
-                       .arg(pattern)
-                       + "  ( " + PatternExpander::example(pattern)  + ".wav )");
+                                       .arg(pattern)
+                               + "  ( " + PatternExpander::example(pattern) + ".wav )");
     }
 }
-
 
 /************************************************
 
  ************************************************/
 void OutPatternButton::patternTriggered()
 {
-    QAction *act = qobject_cast<QAction*>(sender());
+    QAction *act = qobject_cast<QAction *>(sender());
     if (!act)
         return;
 
     QString text = act->data().toString();
-    emit paternSelected(text);
+    emit    paternSelected(text);
 
     QLineEdit *edit = buddyLineEdit();
     if (!edit)
@@ -244,18 +229,17 @@ void OutPatternButton::patternTriggered()
     emit edit->editingFinished();
 }
 
-
 /************************************************
 
  ************************************************/
 void OutPatternButton::fullPatternTriggered()
 {
-    QAction *act = qobject_cast<QAction*>(sender());
+    QAction *act = qobject_cast<QAction *>(sender());
     if (!act)
         return;
 
     QString text = act->data().toString();
-    emit fullPaternSelected(text);
+    emit    fullPaternSelected(text);
 
     QLineEdit *edit = buddyLineEdit();
     if (!edit)
@@ -265,16 +249,14 @@ void OutPatternButton::fullPatternTriggered()
     emit edit->editingFinished();
 }
 
-
 /************************************************
  *
  ************************************************/
-OutDirButton::OutDirButton(QWidget *parent):
+OutDirButton::OutDirButton(QWidget *parent) :
     ToolButton(Icon("pattern-button"), parent)
 {
     fillMenu();
 }
-
 
 /************************************************
  *
@@ -296,22 +278,20 @@ void OutDirButton::fillMenu()
 
     {
         QString dir = QStandardPaths::writableLocation(QStandardPaths::MusicLocation);
-        if (!dir.isEmpty() && dir != QDir::homePath())
-        {
+        if (!dir.isEmpty() && dir != QDir::homePath()) {
             QAction *act = new QAction(menu);
             act->setText(tr("Standard music location", "Menu item for output direcory button"));
-            connect(act, &QAction::triggered, [this, dir](){ setDirectory(dir);});
+            connect(act, &QAction::triggered, [this, dir]() { setDirectory(dir); });
             menu->addAction(act);
         }
     }
 
     {
         QString dir = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-        if (!dir.isEmpty())
-        {
+        if (!dir.isEmpty()) {
             QAction *act = new QAction(menu);
             act->setText(tr("Desktop", "Menu item for output direcory button"));
-            connect(act, &QAction::triggered, [this, dir](){ setDirectory(dir);});
+            connect(act, &QAction::triggered, [this, dir]() { setDirectory(dir); });
             menu->addAction(act);
         }
     }
@@ -319,11 +299,10 @@ void OutDirButton::fillMenu()
     {
         QAction *act = new QAction(menu);
         act->setText(tr("Same directory as CUE file", "Menu item for output direcory button"));
-        connect(act, &QAction::triggered, [this](){ setDirectory("");});
+        connect(act, &QAction::triggered, [this]() { setDirectory(""); });
         menu->addAction(act);
     }
 }
-
 
 /************************************************
  *
@@ -334,12 +313,10 @@ void OutDirButton::openSelectDirDialog()
     if (!edit)
         return;
 
-
     QString dir = QFileDialog::getExistingDirectory(this, tr("Select result directory"), edit->text());
     if (!dir.isEmpty())
         setDirectory(dir);
 }
-
 
 /************************************************
  *
@@ -356,37 +333,35 @@ void OutDirButton::setDirectory(const QString &directory)
     emit edit->editingFinished();
 }
 
-
-
 /************************************************
 
  ************************************************/
-CodePageComboBox::CodePageComboBox(QWidget *parent):
+CodePageComboBox::CodePageComboBox(QWidget *parent) :
     MultiValuesComboBox(parent)
 {
-    addItem(tr("Auto detect", "Codepage auto detection"),  CODEC_AUTODETECT);
+    addItem(tr("Auto detect", "Codepage auto detection"), CODEC_AUTODETECT);
     insertSeparator(9999);
 
-    addCodecName(tr("Unicode (UTF-8)"),     "UTF-8");
-    addCodecName(tr("Unicode (UTF-16LE)"),  "UTF-16LE");
-    addCodecName(tr("Unicode (UTF-16BE)"),  "UTF-16BE");
+    addCodecName(tr("Unicode (UTF-8)"), "UTF-8");
+    addCodecName(tr("Unicode (UTF-16LE)"), "UTF-16LE");
+    addCodecName(tr("Unicode (UTF-16BE)"), "UTF-16BE");
 
     insertSeparator(9999);
 
     addCodecName(tr("Cyrillic (Win-1251)"), "windows-1251");
-    addCodecName(tr("Cyrillic (CP-866)"),   "IBM866");
+    addCodecName(tr("Cyrillic (CP-866)"), "IBM866");
 
     insertSeparator(9999);
 
-    addCodecName(tr("Latin-1 (ISO-8859-1)"),   "ISO-8859-1");
-    addCodecName(tr("Latin-2 (ISO-8859-2)"),   "ISO-8859-2");
-    addCodecName(tr("Latin-3 (ISO-8859-3)"),   "ISO-8859-3");
-    addCodecName(tr("Latin-4 (ISO-8859-4)"),   "ISO-8859-4");
-    addCodecName(tr("Latin-5 (ISO-8859-5)"),   "ISO-8859-5");
-    addCodecName(tr("Latin-6 (ISO-8859-6)"),   "ISO-8859-6");
-    addCodecName(tr("Latin-7 (ISO-8859-7)"),   "ISO-8859-7");
-    addCodecName(tr("Latin-8 (ISO-8859-8)"),   "ISO-8859-8");
-    addCodecName(tr("Latin-9 (ISO-8859-9)"),   "ISO-8859-9");
+    addCodecName(tr("Latin-1 (ISO-8859-1)"), "ISO-8859-1");
+    addCodecName(tr("Latin-2 (ISO-8859-2)"), "ISO-8859-2");
+    addCodecName(tr("Latin-3 (ISO-8859-3)"), "ISO-8859-3");
+    addCodecName(tr("Latin-4 (ISO-8859-4)"), "ISO-8859-4");
+    addCodecName(tr("Latin-5 (ISO-8859-5)"), "ISO-8859-5");
+    addCodecName(tr("Latin-6 (ISO-8859-6)"), "ISO-8859-6");
+    addCodecName(tr("Latin-7 (ISO-8859-7)"), "ISO-8859-7");
+    addCodecName(tr("Latin-8 (ISO-8859-8)"), "ISO-8859-8");
+    addCodecName(tr("Latin-9 (ISO-8859-9)"), "ISO-8859-9");
     addCodecName(tr("Latin-10 (ISO-8859-10)"), "ISO-8859-10");
 
     addCodecName(tr("Latin-13 (ISO-8859-13)"), "ISO-8859-13");
@@ -408,9 +383,7 @@ CodePageComboBox::CodePageComboBox(QWidget *parent):
     addCodecName(tr("Simplified Chinese (GB18030)"), "GB18030");
     addCodecName(tr("Traditional Chinese (BIG5)"), "Big5");
     addCodecName(tr("Japanese (CP932)"), "windows-31j");
-
 }
-
 
 /************************************************
 
@@ -421,58 +394,59 @@ void CodePageComboBox::addCodecName(const QString &title, const QString &codecNa
         addItem(title, codecName);
 }
 
-
 /************************************************
 
  ************************************************/
-MultiValuesSpinBox::MultiValuesSpinBox(QWidget *parent):
+MultiValuesSpinBox::MultiValuesSpinBox(QWidget *parent) :
     QSpinBox(parent),
     mMultiState(MultiValuesEmpty)
 {
 }
-
 
 /************************************************
  *
  ************************************************/
 static MultiValuesState getTagEditState(const QSet<QString> &values)
 {
-    switch (values.count())
-    {
-    case 0:  return MultiValuesEmpty;
-    case 1:  return MultiValuesSingle;
-    default: return MultiValuesMulti;
+    switch (values.count()) {
+        case 0:
+            return MultiValuesEmpty;
+        case 1:
+            return MultiValuesSingle;
+        default:
+            return MultiValuesMulti;
     }
 }
-
 
 /************************************************
  *
  ************************************************/
 static QString getTagEditText(const QSet<QString> &values)
 {
-    switch (values.count())
-    {
-    case 0:  return "";
-    case 1:  return *(values.constBegin());
-    default: return "";
+    switch (values.count()) {
+        case 0:
+            return "";
+        case 1:
+            return *(values.constBegin());
+        default:
+            return "";
     }
 }
-
 
 /************************************************
  *
  ************************************************/
 static QString getTagEditPlaceHolder(const QSet<QString> &values)
 {
-    switch (values.count())
-    {
-    case 0:  return "";
-    case 1:  return "";
-    default: return QObject::tr("Multiple values");
+    switch (values.count()) {
+        case 0:
+            return "";
+        case 1:
+            return "";
+        default:
+            return QObject::tr("Multiple values");
     }
 }
-
 
 /************************************************
 
@@ -482,13 +456,11 @@ void MultiValuesSpinBox::stepBy(int steps)
     // The QSpinBox::stepBy resets the lineEdit.isModified value.
     // So we blockSignals, set modified and then emit the signals manually.
     this->blockSignals(true);
-    if (mMultiState != MultiValuesSingle && steps > 0)
-    {
+    if (mMultiState != MultiValuesSingle && steps > 0) {
         mMultiState = MultiValuesSingle;
         QSpinBox::stepBy(0);
     }
-    else
-    {
+    else {
         QSpinBox::stepBy(steps);
     }
     this->blockSignals(false);
@@ -505,38 +477,32 @@ void MultiValuesSpinBox::stepBy(int steps)
 #endif
 }
 
-
-
 /************************************************
 
  ************************************************/
 void MultiValuesSpinBox::setMultiValue(QSet<int> value)
 {
-    if (value.count() == 0)
-    {
+    if (value.count() == 0) {
         mMultiState = MultiValuesEmpty;
         QSpinBox::setValue(minimum());
         if (lineEdit())
             lineEdit()->setPlaceholderText("");
     }
 
-    else if (value.count() == 1)
-    {
+    else if (value.count() == 1) {
         mMultiState = MultiValuesSingle;
         QSpinBox::setValue(*(value.constBegin()));
         if (lineEdit())
             lineEdit()->setPlaceholderText("");
     }
 
-    else
-    {
+    else {
         mMultiState = MultiValuesMulti;
         QSpinBox::setValue(minimum());
         if (lineEdit())
             lineEdit()->setPlaceholderText(tr("Multiple values"));
     }
 }
-
 
 /************************************************
  *
@@ -546,33 +512,29 @@ void MultiValuesSpinBox::setModified(bool modified)
     lineEdit()->setModified(modified);
 }
 
-
 /************************************************
 
  ************************************************/
 QString MultiValuesSpinBox::textFromValue(int val) const
 {
-    switch (mMultiState)
-    {
-    case MultiValuesEmpty:
-        return "";
+    switch (mMultiState) {
+        case MultiValuesEmpty:
+            return "";
 
-    case MultiValuesSingle:
-        return QSpinBox::textFromValue(val);
+        case MultiValuesSingle:
+            return QSpinBox::textFromValue(val);
 
-    case MultiValuesMulti:
-        return "";
+        case MultiValuesMulti:
+            return "";
     }
 
     return "";
 }
 
-
-
 /************************************************
 
  ************************************************/
-MultiValuesLineEdit::MultiValuesLineEdit(QWidget *parent):
+MultiValuesLineEdit::MultiValuesLineEdit(QWidget *parent) :
     QLineEdit(parent),
     mMultiState(MultiValuesEmpty),
     mCompleterModel(new QStringListModel(this))
@@ -583,22 +545,19 @@ MultiValuesLineEdit::MultiValuesLineEdit(QWidget *parent):
     completer()->setCompletionMode(QCompleter::PopupCompletion);
 }
 
-
 /************************************************
 
  ************************************************/
 void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
 {
-    if (value.count() == 0)
-    {
+    if (value.count() == 0) {
         mMultiState = MultiValuesEmpty;
         QLineEdit::setText("");
         setPlaceholderText("");
         mCompleterModel->setStringList(QStringList());
     }
 
-    else if (value.count() == 1)
-    {
+    else if (value.count() == 1) {
         mMultiState = MultiValuesEmpty;
         QLineEdit::setText(*(value.constBegin()));
         setPlaceholderText("");
@@ -611,8 +570,7 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
 #endif
     }
 
-    else
-    {
+    else {
         mMultiState = MultiValuesMulti;
         QLineEdit::setText("");
         setPlaceholderText(tr("Multiple values"));
@@ -630,22 +588,20 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
  *
  ************************************************/
 
-TagLineEdit::TagLineEdit(QWidget *parent):
+TagLineEdit::TagLineEdit(QWidget *parent) :
     MultiValuesLineEdit(parent),
     mTagId(TagId())
 {
 }
 
-
 /************************************************
 
  ************************************************/
-MultiValuesComboBox::MultiValuesComboBox(QWidget *parent):
+MultiValuesComboBox::MultiValuesComboBox(QWidget *parent) :
     QComboBox(parent),
     mMultiState(MultiValuesEmpty)
 {
 }
-
 
 /************************************************
 
@@ -655,19 +611,17 @@ void MultiValuesComboBox::setMultiValue(QSet<QString> value)
     QSet<QString> v = value;
     v.remove("");
 
-    if (v.count() == 0)
-    {
+    if (v.count() == 0) {
         mMultiState = MultiValuesEmpty;
         setCurrentIndex(-1);
         if (lineEdit())
             lineEdit()->setPlaceholderText("");
     }
 
-    else if (v.count() == 1)
-    {
+    else if (v.count() == 1) {
         int n = this->findData(*(v.begin()));
         setCurrentIndex(n);
-        if (n >-1)
+        if (n > -1)
             mMultiState = MultiValuesSingle;
         else
             mMultiState = MultiValuesEmpty;
@@ -676,8 +630,7 @@ void MultiValuesComboBox::setMultiValue(QSet<QString> value)
             lineEdit()->setPlaceholderText("");
     }
 
-    else
-    {
+    else {
         mMultiState = MultiValuesMulti;
         setCurrentIndex(-1);
         if (lineEdit())
@@ -685,11 +638,10 @@ void MultiValuesComboBox::setMultiValue(QSet<QString> value)
     }
 }
 
-
 /************************************************
 
  ************************************************/
-ProgramEdit::ProgramEdit(const QString &programName, QWidget *parent):
+ProgramEdit::ProgramEdit(const QString &programName, QWidget *parent) :
     QLineEdit(parent),
     mProgramName(programName)
 {
@@ -702,7 +654,6 @@ ProgramEdit::ProgramEdit(const QString &programName, QWidget *parent):
     connect(mBtn, SIGNAL(clicked()), this, SLOT(openDialog()));
 }
 
-
 /************************************************
 
  ************************************************/
@@ -712,23 +663,21 @@ void ProgramEdit::find()
         setText(Settings::i()->findProgram(mProgramName));
 }
 
-
 /************************************************
 
  ************************************************/
 void ProgramEdit::resizeEvent(QResizeEvent *)
 {
-    int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-    QRect btnRect = QRect(QPoint(0,0), QSize(rect().height(), rect().height()));
+    int   frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
+    QRect btnRect    = QRect(QPoint(0, 0), QSize(rect().height(), rect().height()));
 
     btnRect.moveCenter(rect().center());
     btnRect.moveRight(rect().right());
 
-    btnRect.adjust(frameWidth + 4, frameWidth + 4 , -frameWidth - 4, -frameWidth - 4);
+    btnRect.adjust(frameWidth + 4, frameWidth + 4, -frameWidth - 4, -frameWidth - 4);
 
     mBtn->setGeometry(btnRect);
 }
-
 
 /************************************************
 
@@ -736,22 +685,19 @@ void ProgramEdit::resizeEvent(QResizeEvent *)
 void ProgramEdit::openDialog()
 {
     QString flt = tr("%1 program",
-                     "This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'"
-                     ).arg(mProgramName)  +
-                    QString(" (%1);;").arg(mProgramName) +
-                  tr("All files", "This is part of filter for 'select program' dialog. 'All files (*)'") +
-                    " (*)";
+                     "This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'")
+                          .arg(mProgramName)
+            + QString(" (%1);;").arg(mProgramName) + tr("All files", "This is part of filter for 'select program' dialog. 'All files (*)'") + " (*)";
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select program file"), "/usr/bin/", flt);
     if (!fileName.isEmpty())
         setText(fileName);
 }
 
-
 /************************************************
 
  ************************************************/
-HistoryComboBox::HistoryComboBox(QWidget *parent):
+HistoryComboBox::HistoryComboBox(QWidget *parent) :
     QComboBox(parent),
     mModel(new QStringListModel(this)),
     mDeleteItemAct(nullptr)
@@ -769,7 +715,6 @@ HistoryComboBox::HistoryComboBox(QWidget *parent):
             this, &HistoryComboBox::deleteItem);
 }
 
-
 /************************************************
 
  ************************************************/
@@ -777,7 +722,6 @@ QStringList HistoryComboBox::history() const
 {
     return mModel->stringList();
 }
-
 
 /************************************************
 
@@ -788,14 +732,13 @@ void HistoryComboBox::setHistory(const QStringList &value)
     setCurrentIndex(0);
 }
 
-
 /************************************************
  *
  ************************************************/
 void HistoryComboBox::deleteItem()
 {
     QStringList hist = this->history();
-    QString s = currentText();
+    QString     s    = currentText();
     hist.removeOne(s);
 
     lineEdit()->setText(hist.isEmpty() ? "" : hist.first());
@@ -804,7 +747,6 @@ void HistoryComboBox::deleteItem()
     emit currentIndexChanged(currentText());
     emit currentIndexChanged(currentIndex());
 }
-
 
 /************************************************
  *
@@ -829,18 +771,15 @@ void HistoryComboBox::addToHistory()
     setHistory(hist);
 }
 
-
 /************************************************
  *
  ************************************************/
-ActionsButton::ActionsButton(QWidget *parent):
+ActionsButton::ActionsButton(QWidget *parent) :
     ToolButton(parent)
 {
     connect(this, &QToolButton::clicked,
             this, &ActionsButton::popupMenu);
-
 }
-
 
 /************************************************
  *
@@ -852,37 +791,33 @@ void ActionsButton::popupMenu()
     mMenu.popup(p);
 }
 
-
 /************************************************
  *
  ************************************************/
-OutDirComboBox::OutDirComboBox(QWidget *parent):
+OutDirComboBox::OutDirComboBox(QWidget *parent) :
     HistoryComboBox(parent)
 {
     setEditable(true);
     lineEdit()->setPlaceholderText(tr("Same directory as CUE file", "Placeholder for output direcory combobox"));
 }
 
-
 /************************************************
  *
  ************************************************/
-TagSpinBox::TagSpinBox(QWidget *parent):
+TagSpinBox::TagSpinBox(QWidget *parent) :
     MultiValuesSpinBox(parent),
     mTagId(TagId())
 {
 }
 
-
 /************************************************
  *
  ************************************************/
-MultiValuesTextEdit::MultiValuesTextEdit(QWidget *parent):
+MultiValuesTextEdit::MultiValuesTextEdit(QWidget *parent) :
     QPlainTextEdit(parent),
     mMultiState(MultiValuesEmpty)
 {
 }
-
 
 /************************************************
  *
@@ -891,7 +826,6 @@ bool MultiValuesTextEdit::isModified() const
 {
     return this->document()->isModified();
 }
-
 
 /************************************************
  *
@@ -905,22 +839,19 @@ void MultiValuesTextEdit::setMultiValue(QSet<QString> value)
 #endif
 }
 
-
 /************************************************
  *
  ************************************************/
-TagTextEdit::TagTextEdit(QWidget *parent):
+TagTextEdit::TagTextEdit(QWidget *parent) :
     MultiValuesTextEdit(parent),
     mTagId(TagId())
 {
-
 }
-
 
 /************************************************
  *
  ************************************************/
-ErrorBox::ErrorBox(QWidget *parent):
+ErrorBox::ErrorBox(QWidget *parent) :
     QMessageBox(parent)
 {
     setIcon(QMessageBox::Critical);
@@ -928,29 +859,25 @@ ErrorBox::ErrorBox(QWidget *parent):
     setStandardButtons(QMessageBox::Ok);
 }
 
-
 /************************************************
  *
  ************************************************/
 void ErrorBox::setMessages(const QStringList &messages)
 {
     mMessgaes = messages;
-    if (mMessgaes.count() == 1)
-    {
+    if (mMessgaes.count() == 1) {
         setText(mMessgaes.first());
         return;
     }
 
     QString txt;
-    foreach (QString s, mMessgaes)
-    {
+    foreach (QString s, mMessgaes) {
         s.replace("\n", "<p>");
         txt += QString("<li>%1</li>").arg(s);
     }
 
     setText("<ul>" + txt + "</ul>");
 }
-
 
 /************************************************
  *
@@ -962,18 +889,16 @@ void ErrorBox::addMessage(const QString &message)
     this->setMessages(msgs);
 }
 
-
 /************************************************
 
  ************************************************/
 void Controls::loadFromSettings(QSlider *widget, Settings::Key key)
 {
     bool ok;
-    int value = Settings::i()->value(key).toInt(&ok);
+    int  value = Settings::i()->value(key).toInt(&ok);
     if (ok)
         widget->setValue(value);
 }
-
 
 /************************************************
 
@@ -983,7 +908,6 @@ void Controls::saveToSettings(const QSlider *widget, Settings::Key key)
     Settings::i()->setValue(key, widget->value());
 }
 
-
 /************************************************
 
  ************************************************/
@@ -991,7 +915,6 @@ void Controls::loadFromSettings(QLineEdit *widget, Settings::Key key)
 {
     widget->setText(Settings::i()->value(key).toString());
 }
-
 
 /************************************************
 
@@ -1001,7 +924,6 @@ void Controls::saveToSettings(const QLineEdit *widget, Settings::Key key)
     Settings::i()->setValue(key, widget->text());
 }
 
-
 /************************************************
 
  ************************************************/
@@ -1009,7 +931,6 @@ void Controls::loadFromSettings(QCheckBox *widget, Settings::Key key)
 {
     widget->setChecked(Settings::i()->value(key).toBool());
 }
-
 
 /************************************************
 
@@ -1019,18 +940,16 @@ void Controls::saveToSettings(const QCheckBox *widget, Settings::Key key)
     Settings::i()->setValue(key, widget->isChecked());
 }
 
-
 /************************************************
 
  ************************************************/
 void Controls::loadFromSettings(QSpinBox *widget, Settings::Key key)
 {
     bool ok;
-    int value = Settings::i()->value(key).toInt(&ok);
+    int  value = Settings::i()->value(key).toInt(&ok);
     if (ok)
         widget->setValue(value);
 }
-
 
 /************************************************
 
@@ -1040,19 +959,16 @@ void Controls::saveToSettings(const QSpinBox *widget, Settings::Key key)
     Settings::i()->setValue(key, widget->value());
 }
 
-
 /************************************************
 
  ************************************************/
 void Controls::loadFromSettings(QDoubleSpinBox *widget, Settings::Key key)
 {
     bool ok;
-    int value = Settings::i()->value(key).toDouble(&ok);
+    int  value = Settings::i()->value(key).toDouble(&ok);
     if (ok)
         widget->setValue(value);
-
 }
-
 
 /************************************************
 
@@ -1062,7 +978,6 @@ void Controls::saveToSettings(const QDoubleSpinBox *widget, Settings::Key key)
     Settings::i()->setValue(key, widget->value());
 }
 
-
 /************************************************
 
  ************************************************/
@@ -1071,7 +986,6 @@ void Controls::loadFromSettings(QComboBox *widget, Settings::Key key)
     int n = qMax(0, widget->findData(Settings::i()->value(key)));
     widget->setCurrentIndex(n);
 }
-
 
 /************************************************
 

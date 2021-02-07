@@ -34,51 +34,43 @@
 #include <QDirIterator>
 #include <QSettings>
 
-
 /************************************************
  *
  ************************************************/
 static QStringList findFiles(const QString &dir, const QString &pattern)
 {
-    QStringList res;
+    QStringList  res;
     QDirIterator it(dir, QStringList() << pattern, QDir::Files, QDirIterator::Subdirectories);
-    while (it.hasNext())
-    {
+    while (it.hasNext()) {
         res << (it.next()).remove(dir + "/");
     }
     return res;
 }
 
-
 /************************************************
  *
  ************************************************/
-static void createStartSh(const QString fileName, const QString flaconBin,  const QStringList &args)
+static void createStartSh(const QString fileName, const QString flaconBin, const QStringList &args)
 {
     QFile file(fileName);
     file.open(QIODevice::WriteOnly);
     file.write("\"" + flaconBin.toLocal8Bit() + "\"");
-    for (QString a: args)
-    {
+    for (QString a : args) {
         a.replace("\"", "\\\"");
         file.write(" \\\n    \"" + a.toLocal8Bit() + "\"");
     }
 
-    file.setPermissions(QFileDevice::ReadUser | QFileDevice::ReadGroup | QFileDevice::ReadOther |
-                        QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther |
-                        QFileDevice::ExeUser);
+    file.setPermissions(QFileDevice::ReadUser | QFileDevice::ReadGroup | QFileDevice::ReadOther | QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther | QFileDevice::ExeUser);
 
     file.close();
-
 }
-
 
 /************************************************
  *
  ************************************************/
 static bool runConvert(const QString &dir, const QString &inDir, const QString &cfgFile)
 {
-    QString flacon = QCoreApplication::applicationDirPath() + "/../flacon";
+    QString     flacon = QCoreApplication::applicationDirPath() + "/../flacon";
     QStringList args;
     args << "--config" << cfgFile;
     args << "--start";
@@ -90,25 +82,23 @@ static bool runConvert(const QString &dir, const QString &inDir, const QString &
     QProcess proc;
     proc.start(flacon, args);
 
-    if (!proc.waitForFinished(30 * 1000))
-    {
+    if (!proc.waitForFinished(30 * 1000)) {
         FAIL(QString("The program timed out waiting for the result: %1.")
-              .arg(QString::fromLocal8Bit(proc.readAllStandardError())).toLocal8Bit());
+                     .arg(QString::fromLocal8Bit(proc.readAllStandardError()))
+                     .toLocal8Bit());
         return false;
     }
 
-    if (proc.exitCode() != 0)
-    {
+    if (proc.exitCode() != 0) {
         FAIL(QString("flacon returned non-zero exit status %1: %2")
-              .arg(proc.exitCode())
-              .arg(QString::fromLocal8Bit(proc.readAll())).toLocal8Bit());
+                     .arg(proc.exitCode())
+                     .arg(QString::fromLocal8Bit(proc.readAll()))
+                     .toLocal8Bit());
         return false;
     }
 
     return true;
 }
-
-
 
 /************************************************
  *
@@ -122,16 +112,15 @@ void TestFlacon::testConvert()
     spec.setIniCodec("UTF-8");
 
     const QString cfgFile(dir() + "/flacon.conf");
-    const QString inDir(dir()  + "/IN");
+    const QString inDir(dir() + "/IN");
     const QString outDir(dir() + "/OUT");
     QDir(inDir).mkpath(".");
     QDir(outDir).mkpath(".");
 
-
     // Create config ............................
     {
         QString src = dataDir + "/flacon.conf";
-        if (!QFile::copy(src,  cfgFile))
+        if (!QFile::copy(src, cfgFile))
             QFAIL(QString("Can't copy config file \"%1\"").arg(src).toLocal8Bit());
 
         QSettings cfg(cfgFile, QSettings::IniFormat);
@@ -141,23 +130,23 @@ void TestFlacon::testConvert()
     }
     // ..........................................
 
-
     // Prepare source audio files ...............
-    for (QString group: spec.childGroups()) {
+    for (QString group : spec.childGroups()) {
         if (!group.toUpper().startsWith("SOURCE_AUDIO"))
             continue;
 
         spec.beginGroup(group);
-        QString dest = inDir   + "/" + spec.value("destination").toString();
+        QString dest = inDir + "/" + spec.value("destination").toString();
         QFileInfo(dest).dir().mkpath(".");
 
         QString method = spec.value("method", "copy").toString().toLower();
 
         // Copy audio file ......................
-        if ( method == "copy") {
-            QString src  = mTmpDir + "/" + spec.value("source").toString();;
+        if (method == "copy") {
+            QString src = mTmpDir + "/" + spec.value("source").toString();
+            ;
 
-            if (!QFile::copy(src,  dest))
+            if (!QFile::copy(src, dest))
                 QFAIL(QString("Can't copy audio file \"%1\"").arg(src).toLocal8Bit());
         }
 
@@ -172,13 +161,12 @@ void TestFlacon::testConvert()
 
     // Copy source CUE files ....................
     spec.beginGroup("Source_CUE");
-    foreach (auto key, spec.allKeys())
-    {
+    foreach (auto key, spec.allKeys()) {
         QString src  = dataDir + "/" + key;
-        QString dest = inDir   + "/" + spec.value(key).toString();
+        QString dest = inDir + "/" + spec.value(key).toString();
 
         QFileInfo(dest).dir().mkpath(".");
-        if (!QFile::copy(src,  dest))
+        if (!QFile::copy(src, dest))
             QFAIL(QString("Can't copy CUE file \"%1\"").arg(src).toLocal8Bit());
     }
     spec.endGroup();
@@ -186,12 +174,11 @@ void TestFlacon::testConvert()
 
     // Copy expected CUE files ....................
     spec.beginGroup("Result_CUE");
-    foreach (auto key, spec.allKeys())
-    {
-        QString dest = dir()   + "/" + spec.value(key).toString();
+    foreach (auto key, spec.allKeys()) {
+        QString dest = dir() + "/" + spec.value(key).toString();
         QString src  = dataDir + "/" + spec.value(key).toString();
         QFileInfo(dest).dir().mkpath(".");
-        if (!QFile::copy(src,  dest))
+        if (!QFile::copy(src, dest))
             QFAIL(QString("Can't copy CUE file \"%1\"").arg(src).toLocal8Bit());
     }
     spec.endGroup();
@@ -202,21 +189,18 @@ void TestFlacon::testConvert()
         return;
     }
 
-
     // Check ____________________________________
-    QString msg = "";
+    QString     msg   = "";
     QStringList files = findFiles(outDir, "*");
     QStringList missing;
 
     // ..........................................
     spec.beginGroup("Result_Audio");
-    foreach (auto key, spec.allKeys())
-    {
+    foreach (auto key, spec.allKeys()) {
         QString file = key;
         QString hash = spec.value(key).toString();
 
-        if (files.removeAll(file) == 0)
-        {
+        if (files.removeAll(file) == 0) {
             missing << file;
             continue;
         }
@@ -224,20 +208,17 @@ void TestFlacon::testConvert()
         if (!hash.isEmpty())
             if (!compareAudioHash(outDir + "/" + file, hash))
                 QFAIL("");
-
     }
     spec.endGroup();
     // ..........................................
 
     // ..........................................
     spec.beginGroup("Result_CUE");
-    foreach (auto key, spec.allKeys())
-    {
-        QString file = key;
+    foreach (auto key, spec.allKeys()) {
+        QString file     = key;
         QString expected = dir() + "/" + spec.value(key).toString();
 
-        if (files.removeAll(file) == 0)
-        {
+        if (files.removeAll(file) == 0) {
             missing << file;
             continue;
         }
@@ -249,26 +230,23 @@ void TestFlacon::testConvert()
     spec.endGroup();
     // ..........................................
 
-
     if (!missing.isEmpty())
         msg += QString("\nFiles not exists in %1:\n  * %2")
-                .arg(outDir)
-                .arg(missing.join("\n  * "));
+                       .arg(outDir)
+                       .arg(missing.join("\n  * "));
 
     if (!files.isEmpty())
         msg += QString("\nFiles exists in %1:\n  * %2")
-                .arg(outDir)
-                .arg(files.join("\n  * "));
+                       .arg(outDir)
+                       .arg(files.join("\n  * "));
 
     if (!msg.isEmpty())
         QFAIL(QString("%1\n%2").arg(QTest::currentDataTag()).arg(msg).toLocal8Bit().data());
-
 
     // ..........................................
 
     clearDir(dir());
 }
-
 
 /************************************************
  *
@@ -278,16 +256,13 @@ void TestFlacon::testConvert_data()
     if (QProcessEnvironment::systemEnvironment().contains("FLACON_SKIP_CONVERT_TEST"))
         QTest::qSkip("Skipping testConvert", __FILE__, __LINE__);
 
-
     QTest::addColumn<QString>("dataDir", nullptr);
 
     QString dataDir = mDataDir + "/testConvert/";
 
     static const QStringList mask("*");
-    foreach (auto dir, QDir(dataDir).entryList(mask, QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name))
-    {
+    foreach (auto dir, QDir(dataDir).entryList(mask, QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name)) {
         if (QDir(dataDir + "/" + dir).exists("spec.ini"))
             QTest::newRow(dir.toUtf8()) << dataDir + "/" + dir;
     }
 }
-

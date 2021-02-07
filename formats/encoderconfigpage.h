@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef ENCODERCONFIGPAGE_H
 #define ENCODERCONFIGPAGE_H
 
@@ -40,7 +39,7 @@ class QGroupBox;
 
 class Profile;
 
-class EncoderConfigPage: public QWidget
+class EncoderConfigPage : public QWidget
 {
     Q_OBJECT
 public:
@@ -51,13 +50,13 @@ public:
     virtual void save() = 0;
 
     static QString losslessCompressionToolTip(int min, int max);
-    static void setLosslessToolTip(QSlider *widget);
-    static void setLosslessToolTip(QSpinBox *widget);
+    static void    setLosslessToolTip(QSlider *widget);
+    static void    setLosslessToolTip(QSpinBox *widget);
 
     static QString lossyCompressionToolTip(int min, int max);
-    static void setLossyToolTip(QSlider *widget);
-    static void setLossyToolTip(QSpinBox *widget);
-    static void setLossyToolTip(QDoubleSpinBox *widget);
+    static void    setLossyToolTip(QSlider *widget);
+    static void    setLossyToolTip(QSpinBox *widget);
+    static void    setLossyToolTip(QDoubleSpinBox *widget);
 
     static void fillBitrateComboBox(QComboBox *comboBox, const QList<int> &bitrates);
 
@@ -84,7 +83,7 @@ public:
 
     static QString toolTipCss();
 
-    Profile &profile() { return mProfile; }
+    Profile &      profile() { return mProfile; }
     const Profile &profile() const { return mProfile; }
 
 private:

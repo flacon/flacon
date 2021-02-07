@@ -23,33 +23,30 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "icon.h"
 #include <QIconEngine>
 #include <QDebug>
 
-class IconEngine: public QIconEngine
+class IconEngine : public QIconEngine
 {
 public:
     /************************************************
     *
     ************************************************/
-    IconEngine():
+    IconEngine() :
         QIconEngine()
     {
     }
 
-
     /************************************************
     *
     ************************************************/
-    IconEngine(const IconEngine &other):
+    IconEngine(const IconEngine &other) :
         QIconEngine(other),
         mIconDark(other.mIconDark),
         mIconLight(other.mIconLight)
     {
     }
-
 
     /************************************************
     *
@@ -58,7 +55,6 @@ public:
     {
         return new IconEngine(*this);
     }
-
 
     /************************************************
     *
@@ -71,7 +67,6 @@ public:
         mIconDark.addFile(d, size, mode, state);
     }
 
-
     /************************************************
     *
     ************************************************/
@@ -79,7 +74,6 @@ public:
     {
         mIconLight.addPixmap(pixmap, mode, state);
     }
-
 
     /************************************************
     *
@@ -89,7 +83,6 @@ public:
         icon().paint(painter, rect, Qt::AlignCenter, mode, state);
     }
 
-
     /************************************************
     *
     ************************************************/
@@ -98,11 +91,9 @@ public:
         return icon().pixmap(size, mode, state);
     }
 
-
     static bool mDarkMode;
 
 private:
-
     QIcon &icon()
     {
         if (mDarkMode)
@@ -117,38 +108,35 @@ private:
 
 bool IconEngine::mDarkMode = false;
 
-
-
-Icon::Icon():
-    QIcon(new IconEngine())
-{    
-}
-
-Icon::Icon(const QString &fileName):
+Icon::Icon() :
     QIcon(new IconEngine())
 {
-    const auto sizes = {16, 22, 24, 32, 48, 64, 128, 256, 512};
-    for (auto size: sizes)
-    {
-        addFile(QString(":icons/light/%1/%2.png")
-                .arg(size, 3, 10, QChar('0'))
-                .arg(fileName), QSize(size, size), QIcon::Normal);
-
-        addFile(QString(":icons/light/%1/%2-disabled.png")
-                .arg(size, 3, 10, QChar('0'))
-                .arg(fileName), QSize(size, size), QIcon::Disabled);
-    }
 }
 
+Icon::Icon(const QString &fileName) :
+    QIcon(new IconEngine())
+{
+    const auto sizes = { 16, 22, 24, 32, 48, 64, 128, 256, 512 };
+    for (auto size : sizes) {
+        addFile(QString(":icons/light/%1/%2.png")
+                        .arg(size, 3, 10, QChar('0'))
+                        .arg(fileName),
+                QSize(size, size), QIcon::Normal);
+
+        addFile(QString(":icons/light/%1/%2-disabled.png")
+                        .arg(size, 3, 10, QChar('0'))
+                        .arg(fileName),
+                QSize(size, size), QIcon::Disabled);
+    }
+}
 
 /************************************************
  *
  ************************************************/
-Icon::Icon(const Icon &other):
+Icon::Icon(const Icon &other) :
     QIcon(other)
 {
 }
-
 
 /************************************************
  *
@@ -157,7 +145,6 @@ bool Icon::isDarkMode()
 {
     return IconEngine::mDarkMode;
 }
-
 
 /************************************************
  *

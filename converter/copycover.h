@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef COPYCOVER_H
 #define COPYCOVER_H
 
@@ -39,11 +38,11 @@ public:
     QString errorString() const { return mErrorString; }
 
 private:
-    const Disc *mDisc;
-    const int mSize;
+    const Disc *  mDisc;
+    const int     mSize;
     const QString mDir;
     const QString mBaseName;
-    QString mErrorString;
+    QString       mErrorString;
 
     bool copyImage(const QString &outFileName);
     bool resizeImage(const QString &outFileName);

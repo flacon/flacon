@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "configdialog.h"
 #include "../icon.h"
 #include "addprofiledialog.h"
@@ -39,7 +38,6 @@
 
 static const int PROFILE_ID_ROLE = Qt::UserRole;
 
-
 /************************************************
  *
  ************************************************/
@@ -48,13 +46,12 @@ ConfigDialog *ConfigDialog::createAndShow(QWidget *parent)
     return createAndShow("", parent);
 }
 
-
 /************************************************
 
  ************************************************/
 ConfigDialog *ConfigDialog::createAndShow(const QString &profileId, QWidget *parent)
 {
-    ConfigDialog *instance = parent->findChild<ConfigDialog*>();
+    ConfigDialog *instance = parent->findChild<ConfigDialog *>();
 
     if (!instance)
         instance = new ConfigDialog(parent);
@@ -69,13 +66,12 @@ ConfigDialog *ConfigDialog::createAndShow(const QString &profileId, QWidget *par
     return instance;
 }
 
-
 /************************************************
  *
  ************************************************/
 void ConfigDialog::show(const QString &profileId)
 {
-    for (int i=0; i<profilesList->count(); ++i) {
+    for (int i = 0; i < profilesList->count(); ++i) {
         QListWidgetItem *item = profilesList->item(i);
         if (item->data(PROFILE_ID_ROLE).toString() == profileId) {
             profilesList->setCurrentItem(item);
@@ -85,7 +81,6 @@ void ConfigDialog::show(const QString &profileId)
 
     QDialog::show();
 }
-
 
 /************************************************
 
@@ -101,7 +96,7 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     programsPage->setWindowTitle(tr("Full path of the external applications"));
 
     initGeneralPage();
-    int width = Settings::i()->value(Settings::ConfigureDialog_Width).toInt();
+    int width  = Settings::i()->value(Settings::ConfigureDialog_Width).toInt();
     int height = Settings::i()->value(Settings::ConfigureDialog_Height).toInt();
     resize(width, height);
 
@@ -117,7 +112,6 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
     load();
 
-
     connect(profilesList, &QListWidget::currentItemChanged,
             this, &ConfigDialog::profileListSelected);
 
@@ -130,7 +124,6 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
     connect(delProfileButton, &QToolButton::clicked,
             this, &ConfigDialog::deleteProfile);
 
-
     profileParent->hide();
     refreshProfilesList("");
 
@@ -139,15 +132,12 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 #endif
 }
 
-
 /************************************************
 
  ************************************************/
 ConfigDialog::~ConfigDialog()
 {
-
 }
-
 
 /************************************************
  *
@@ -164,21 +154,19 @@ void ConfigDialog::initGeneralPage()
     tmpDirButton->setBuddy(tmpDirEdit);
     connect(tmpDirButton, &QToolButton::clicked, this, &ConfigDialog::tmpDirShowDialog);
 
-
-    connect(coverDisableButton,  &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Disable);  });
-    connect(coverKeepSizeButton, &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::OrigSize); });
-    connect(coverScaleButton,    &QRadioButton::clicked,  [=](){this->setCoverMode(CoverMode::Scale);    });
+    connect(coverDisableButton, &QRadioButton::clicked, [=]() { this->setCoverMode(CoverMode::Disable); });
+    connect(coverKeepSizeButton, &QRadioButton::clicked, [=]() { this->setCoverMode(CoverMode::OrigSize); });
+    connect(coverScaleButton, &QRadioButton::clicked, [=]() { this->setCoverMode(CoverMode::Scale); });
 
     int h = 0;
-    for (int r=0; r < coverImageLayout->rowCount(); ++r) {
+    for (int r = 0; r < coverImageLayout->rowCount(); ++r) {
         h = qMax(h, coverImageLayout->cellRect(r, 0).height());
     }
 
-    for (int r=0; r < coverImageLayout->rowCount(); ++r) {
+    for (int r = 0; r < coverImageLayout->rowCount(); ++r) {
         coverImageLayout->setRowMinimumHeight(r, h);
     }
 }
-
 
 /************************************************
 
@@ -197,13 +185,12 @@ void ConfigDialog::initProgramsPage()
     // After 5.14.0, QT has stated range constructors are available and preferred.
     // See: https://doc.qt.io/qt-5/qlist.html#fromSet
     QSet<QString> program_set = Settings::i()->programs();
-    QStringList progs = QStringList(program_set.begin(), program_set.end());
+    QStringList   progs       = QStringList(program_set.begin(), program_set.end());
 #endif
     progs.sort();
 
     int row = 0;
-    foreach (QString prog, progs)
-    {
+    foreach (QString prog, progs) {
         ProgramEdit *edit = new ProgramEdit(prog, programsPage);
         mProgramEdits << edit;
 
@@ -213,7 +200,7 @@ void ConfigDialog::initProgramsPage()
         label->setAlignment(Qt::AlignRight);
 #endif
         progsLayout->addWidget(label, row, 0);
-        progsLayout->addWidget(edit,  row, 1);
+        progsLayout->addWidget(edit, row, 1);
         connect(progScanButton, &QPushButton::clicked, edit, &ProgramEdit::find);
         row++;
     }
@@ -243,7 +230,6 @@ void ConfigDialog::initUpdatePage()
 }
 #endif
 
-
 /************************************************
  *
  ************************************************/
@@ -254,7 +240,7 @@ void ConfigDialog::refreshProfilesList(const QString &selectedProfileId)
     profilesList->blockSignals(true);
     profilesList->clear();
 
-    for (const Profile &profile: mProfiles) {
+    for (const Profile &profile : mProfiles) {
         QListWidgetItem *item = new QListWidgetItem(profilesList);
         item->setText(profile.name());
         item->setData(PROFILE_ID_ROLE, profile.id());
@@ -262,17 +248,17 @@ void ConfigDialog::refreshProfilesList(const QString &selectedProfileId)
         if (profile.id() == selectedProfileId) {
             sel = item;
         }
-
     }
     profilesList->sortItems();
     profilesList->blockSignals(false);
 
     if (profilesList->count() > 0) {
-        if (sel) profilesList->setCurrentItem(sel);
-        else     profilesList->setCurrentRow(0);
+        if (sel)
+            profilesList->setCurrentItem(sel);
+        else
+            profilesList->setCurrentRow(0);
     }
 }
-
 
 /************************************************
  *
@@ -291,7 +277,7 @@ void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem
     }
 
     if (current) {
-        int n = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());
+        int     n       = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());
         Profile profile = (n > -1) ? mProfiles[n] : Profile();
 
         mProfileWidget = new ProfileWidget(profile, profileParent);
@@ -301,7 +287,6 @@ void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem
     }
     pages->blockSignals(false);
 }
-
 
 /************************************************
  *
@@ -316,13 +301,12 @@ void ConfigDialog::profileItemChanged(QListWidgetItem *item)
     refreshProfilesList(id);
 }
 
-
 /************************************************
 
  ************************************************/
 void ConfigDialog::done(int res)
 {
-    Settings::i()->setValue(Settings::ConfigureDialog_Width,  size().width());
+    Settings::i()->setValue(Settings::ConfigureDialog_Width, size().width());
     Settings::i()->setValue(Settings::ConfigureDialog_Height, size().height());
 
 #ifndef Q_OS_MAC
@@ -336,7 +320,6 @@ void ConfigDialog::done(int res)
     QDialog::done(res);
 }
 
-
 /************************************************
 
  ************************************************/
@@ -347,32 +330,28 @@ void ConfigDialog::tmpDirShowDialog()
         tmpDirEdit->setText(tmpDir);
 }
 
-
-
 /************************************************
  *
  ************************************************/
 void ConfigDialog::setCoverMode(CoverMode mode)
 {
-    switch (mode)
-    {
-    case CoverMode::Disable:
-        coverDisableButton->setChecked(true);
-        coverResizeSpinBox->setEnabled(false);
-        break;
+    switch (mode) {
+        case CoverMode::Disable:
+            coverDisableButton->setChecked(true);
+            coverResizeSpinBox->setEnabled(false);
+            break;
 
-    case CoverMode::OrigSize:
-        coverKeepSizeButton->setChecked(true);
-        coverResizeSpinBox->setEnabled(false);
-        break;
+        case CoverMode::OrigSize:
+            coverKeepSizeButton->setChecked(true);
+            coverResizeSpinBox->setEnabled(false);
+            break;
 
-    case CoverMode::Scale:
-        coverScaleButton->setChecked(true);
-        coverResizeSpinBox->setEnabled(true);
-        break;
+        case CoverMode::Scale:
+            coverScaleButton->setChecked(true);
+            coverResizeSpinBox->setEnabled(true);
+            break;
     }
 }
-
 
 /************************************************
  *
@@ -382,7 +361,6 @@ Profile &ConfigDialog::currentProfile()
     return mProfileWidget ? mProfileWidget->profile() : NullProfile();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -390,17 +368,16 @@ void ConfigDialog::updateLastUpdateLbl()
 {
 #ifdef MAC_UPDATER
     QDateTime date = Updater::sharedUpdater().lastUpdateCheckDate();
-    QString s;
+    QString   s;
     if (!date.isNull())
         s = tr("Last check was %1", "Information about last update")
-                .arg(date.toString(Qt::DefaultLocaleLongDate));
+                    .arg(date.toString(Qt::DefaultLocaleLongDate));
     else
         s = tr("Never checked", "Information about last update");
 
     lastUpdateLbl->setText(s);
 #endif
 }
-
 
 /************************************************
 
@@ -414,7 +391,7 @@ void ConfigDialog::load()
     Controls::loadFromSettings(coverResizeSpinBox, Settings::Cover_Size);
     cddbComboBox->setCurrentText(Settings::i()->value(Settings::Inet_CDDBHost).toString());
 
-    foreach(ProgramEdit *edit, mProgramEdits)
+    foreach (ProgramEdit *edit, mProgramEdits)
         edit->setText(Settings::i()->value("Programs/" + edit->programName()).toString());
 
     mProfiles = Settings::i()->profiles();
@@ -428,7 +405,6 @@ void ConfigDialog::load()
 #endif
 }
 
-
 /************************************************
 
  ************************************************/
@@ -441,7 +417,7 @@ void ConfigDialog::save()
     Controls::saveToSettings(coverResizeSpinBox, Settings::Cover_Size);
     Settings::i()->setValue(Settings::Inet_CDDBHost, cddbComboBox->currentText());
 
-    foreach(ProgramEdit *edit, mProgramEdits)
+    foreach (ProgramEdit *edit, mProgramEdits)
         Settings::i()->setValue("Programs/" + edit->programName(), edit->text());
 
     if (currentProfile().isValid())
@@ -451,7 +427,7 @@ void ConfigDialog::save()
 
 #ifdef MAC_UPDATER
     Updater::sharedUpdater().setAutomaticallyChecksForUpdates(
-        autoUpdateCbk->isChecked());
+            autoUpdateCbk->isChecked());
 #endif
 
 #ifndef FLATPAK_BUNDLE
@@ -459,26 +435,27 @@ void ConfigDialog::save()
 #endif
 }
 
-
 /************************************************
 
  ************************************************/
 CoverMode ConfigDialog::coverMode() const
 {
-    if (coverDisableButton->isChecked())  return CoverMode::Disable;
-    if (coverKeepSizeButton->isChecked()) return CoverMode::OrigSize;
-    if (coverScaleButton->isChecked())    return CoverMode::Scale;
+    if (coverDisableButton->isChecked())
+        return CoverMode::Disable;
+    if (coverKeepSizeButton->isChecked())
+        return CoverMode::OrigSize;
+    if (coverScaleButton->isChecked())
+        return CoverMode::Scale;
 
     return CoverMode::Disable;
 }
-
 
 /************************************************
  *
  ************************************************/
 void ConfigDialog::addProfile()
 {
-    const Profile &cur = currentProfile();
+    const Profile &  cur = currentProfile();
     AddProfileDialog dialog(this);
     dialog.setWindowModality(Qt::WindowModal);
 
@@ -492,9 +469,8 @@ void ConfigDialog::addProfile()
         return;
 
     QString id = QString("%1_%2")
-            .arg(format->id())
-            .arg(QDateTime::currentMSecsSinceEpoch());
-
+                         .arg(format->id())
+                         .arg(QDateTime::currentMSecsSinceEpoch());
 
     Profile profile(*format, id);
     profile.setName(dialog.profileName());
@@ -506,7 +482,6 @@ void ConfigDialog::addProfile()
     refreshProfilesList(profile.id());
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -517,7 +492,7 @@ void ConfigDialog::deleteProfile()
         return;
 
     int n = (mProfiles.indexOf(prof.id()));
-    if (n<0)
+    if (n < 0)
         return;
 
     QMessageBox dialog(this);
@@ -535,7 +510,6 @@ void ConfigDialog::deleteProfile()
 
     if (ret != QMessageBox::Yes)
         return;
-
 
     delete profilesList->takeItem(profilesList->currentRow());
     mProfiles.removeAt(n);

@@ -38,39 +38,37 @@ class Profile;
 class OutFormat
 {
 public:
-    static QList<OutFormat*> allFormats();
-    static OutFormat * formatForId(const QString &id);
-    virtual ~OutFormat() {}
+    static QList<OutFormat *> allFormats();
+    static OutFormat *        formatForId(const QString &id);
+    virtual ~OutFormat() { }
 
-    QString id() const { return mId; }
-    QString name() const { return mName; }
-    QString ext() const {return mExt; }
-    FormatOptions options() const  { return mOptions; }
+    QString       id() const { return mId; }
+    QString       name() const { return mName; }
+    QString       ext() const { return mExt; }
+    FormatOptions options() const { return mOptions; }
 
-    virtual QString encoderProgramName() const = 0;
+    virtual QString     encoderProgramName() const                                                            = 0;
     virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const = 0;
 
-    virtual QString gainProgramName() const = 0;
+    virtual QString     gainProgramName() const                                           = 0;
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const = 0;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const = 0;
-    virtual SampleRate    maxSampleRate()   const = 0;
+    virtual SampleRate    maxSampleRate() const   = 0;
 
     virtual bool check(const Profile &profile, QStringList *errors) const;
 
-    virtual QHash<QString, QVariant> defaultParameters() const = 0;
-    virtual EncoderConfigPage *configPage(const Profile &profile, QWidget *parent) const = 0;
-
+    virtual QHash<QString, QVariant> defaultParameters() const                                 = 0;
+    virtual EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const = 0;
 
 protected:
-    QString mId;
-    QString mName;
-    QString mExt;
+    QString       mId;
+    QString       mName;
+    QString       mExt;
     FormatOptions mOptions;
 
     bool checkProgram(const QString &program, QStringList *errors) const;
 };
-
 
 #endif // OUTFORMAT_H

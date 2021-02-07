@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "mainwindow.h"
 #include "project.h"
 #include "disc.h"
@@ -75,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qApp->setWindowIcon(loadMainIcon());
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    toolBar->setIconSize(QSize(24,24));
+    toolBar->setIconSize(QSize(24, 24));
     qApp->setAttribute(Qt::AA_DontShowIconsInMenus, true);
     qApp->setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
@@ -118,12 +117,11 @@ MainWindow::MainWindow(QWidget *parent) :
     tagAlbumEdit->setTagId(TagId::Album);
     connect(tagAlbumEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
 
-
     tagDiscIdEdit->setTagId(TagId::DiscId);
     connect(tagStartNumEdit, SIGNAL(editingFinished()), this, SLOT(setStartTrackNum()));
     connect(tagStartNumEdit, SIGNAL(valueChanged(int)), this, SLOT(setStartTrackNum()));
 
-    connect(trackView->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)), this, SLOT(refreshEdits()));
+    connect(trackView->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(refreshEdits()));
     connect(trackView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(trackViewMenu(QPoint)));
 
     connect(editTagsButton, &QPushButton::clicked, this, &MainWindow::openEditTagsDialog);
@@ -133,7 +131,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Buttons .................................................
     outDirButton->setBuddy(outDirEdit);
     outDirButton->menu()->addSeparator();
-    QAction * act = outDirEdit->deleteItemAction();
+    QAction *act = outDirEdit->deleteItemAction();
     act->setText(tr("Remove current directory from history"));
     outDirButton->menu()->addAction(act);
 
@@ -153,35 +151,35 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(Settings::i(), SIGNAL(changed()), trackView->model(), SIGNAL(layoutChanged()));
 
     connect(outDirEdit->lineEdit(), &QLineEdit::textChanged, this, &MainWindow::setOutDir);
-    connect(outPatternEdit->lineEdit(),  &QLineEdit::textChanged, this, &MainWindow::setPattern);
+    connect(outPatternEdit->lineEdit(), &QLineEdit::textChanged, this, &MainWindow::setPattern);
 
     connect(outProfileCombo, SIGNAL(currentIndexChanged(int)),
             this, SLOT(setOutProfile()));
 
-    connect(codepageCombo,   SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
+    connect(codepageCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
 
-    connect(trackView, SIGNAL(selectCueFile(Disc*)),     this, SLOT(setCueForDisc(Disc*)));
-    connect(trackView, SIGNAL(selectAudioFile(Disc*)),   this, SLOT(setAudioForDisc(Disc*)));
-    connect(trackView, SIGNAL(selectCoverImage(Disc*)),  this, SLOT(setCoverImage(Disc*)));
-    connect(trackView, SIGNAL(downloadInfo(Disc*)),      this, SLOT(downloadDiscInfo(Disc*)));
+    connect(trackView, SIGNAL(selectCueFile(Disc *)), this, SLOT(setCueForDisc(Disc *)));
+    connect(trackView, SIGNAL(selectAudioFile(Disc *)), this, SLOT(setAudioForDisc(Disc *)));
+    connect(trackView, SIGNAL(selectCoverImage(Disc *)), this, SLOT(setCoverImage(Disc *)));
+    connect(trackView, SIGNAL(downloadInfo(Disc *)), this, SLOT(downloadDiscInfo(Disc *)));
 
     connect(trackView->model(), SIGNAL(layoutChanged()), this, SLOT(refreshEdits()));
     connect(trackView->model(), SIGNAL(layoutChanged()), this, SLOT(setControlsEnable()));
 
-    connect(trackView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(refreshEdits()));
-    connect(trackView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(setControlsEnable()));
+    connect(trackView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(refreshEdits()));
+    connect(trackView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(setControlsEnable()));
 
     connect(project, SIGNAL(layoutChanged()), trackView, SLOT(layoutChanged()));
     connect(project, SIGNAL(layoutChanged()), this, SLOT(refreshEdits()));
     connect(project, SIGNAL(layoutChanged()), this, SLOT(setControlsEnable()));
 
-    connect(project, SIGNAL(discChanged(Disc*)), this, SLOT(refreshEdits()));
-    connect(project, SIGNAL(discChanged(Disc*)), this, SLOT(setControlsEnable()));
+    connect(project, SIGNAL(discChanged(Disc *)), this, SLOT(refreshEdits()));
+    connect(project, SIGNAL(discChanged(Disc *)), this, SLOT(setControlsEnable()));
 
     connect(Application::instance(), &Application::visualModeChanged,
-        [](){
-            Icon::setDarkMode(Application::instance()->isDarkVisualMode());
-    });
+            []() {
+                Icon::setDarkMode(Application::instance()->isDarkVisualMode());
+            });
 
     Icon::setDarkMode(Application::instance()->isDarkVisualMode());
 
@@ -190,18 +188,17 @@ MainWindow::MainWindow(QWidget *parent) :
     polishView();
 }
 
-
 /************************************************
  *
  ************************************************/
 #ifdef Q_OS_MAC
 void MainWindow::polishView()
 {
-    QList<QLabel*> labels;
-    labels << outFilesBox->findChildren<QLabel*>();
-    labels << tagsBox->findChildren<QLabel*>();
+    QList<QLabel *> labels;
+    labels << outFilesBox->findChildren<QLabel *>();
+    labels << tagsBox->findChildren<QLabel *>();
 
-    for (QLabel *label: labels) {
+    for (QLabel *label : labels) {
         label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     }
 }
@@ -220,13 +217,11 @@ void MainWindow::showEvent(QShowEvent *)
         trackView->selectDisc(project->disc(0));
 }
 
-
 /************************************************
 
  ************************************************/
 MainWindow::~MainWindow()
 {
-
 }
 
 /************************************************
@@ -239,34 +234,28 @@ void MainWindow::closeEvent(QCloseEvent *)
     saveSettings();
 }
 
-
 /************************************************
 
  ************************************************/
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
-    foreach(QUrl url, event->mimeData()->urls())
-    {
-        if (url.isLocalFile())
-        {
+    foreach (QUrl url, event->mimeData()->urls()) {
+        if (url.isLocalFile()) {
             event->acceptProposedAction();
             return;
         }
     }
 }
 
-
 /************************************************
 
  ************************************************/
-void MainWindow::dropEvent(QDropEvent * event)
+void MainWindow::dropEvent(QDropEvent *event)
 {
-    foreach(QUrl url, event->mimeData()->urls())
-    {
+    foreach (QUrl url, event->mimeData()->urls()) {
         addFileOrDir(url.toLocalFile());
     }
 }
-
 
 /************************************************
 
@@ -277,7 +266,6 @@ void MainWindow::setPattern()
     trackView->model()->layoutChanged();
 }
 
-
 /************************************************
 
  ************************************************/
@@ -286,7 +274,6 @@ void MainWindow::setOutDir()
     Settings::i()->currentProfile().setOutFileDir(outDirEdit->currentText());
     trackView->model()->layoutChanged();
 }
-
 
 /************************************************
 
@@ -298,30 +285,25 @@ void MainWindow::setCueForDisc(Disc *disc)
     QString dir;
     if (!disc->audioFileName().isEmpty())
         dir = QFileInfo(disc->audioFileName()).dir().absolutePath();
-    else if (! disc->cueFile().isEmpty())
+    else if (!disc->cueFile().isEmpty())
         dir = QFileInfo(disc->cueFile()).dir().absolutePath();
     else
         dir = Settings::i()->value(Settings::Misc_LastDir).toString();
-
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select CUE file", "OpenFile dialog title"), dir, flt);
 
     if (fileName.isEmpty())
         return;
 
-    try
-    {
-        CueReader reader;
+    try {
+        CueReader        reader;
         QVector<CueDisc> cue = reader.load(fileName);
 
         int discNum = 0;
-        if (cue.count() > 1)
-        {
+        if (cue.count() > 1) {
             int proposal = 0;
-            for (int i=0; i<cue.count(); ++i)
-            {
-                if (!project->discExists(cue.at(i).uri()))
-                {
+            for (int i = 0; i < cue.count(); ++i) {
+                if (!project->discExists(cue.at(i).uri())) {
                     proposal = i;
                     break;
                 }
@@ -334,12 +316,10 @@ void MainWindow::setCueForDisc(Disc *disc)
 
         disc->loadFromCue(cue.at(discNum));
     }
-    catch (FlaconError &err)
-    {
+    catch (FlaconError &err) {
         Messages::error(err.what());
     }
 }
-
 
 /************************************************
 
@@ -353,7 +333,6 @@ void MainWindow::setOutProfile()
     trackView->model()->layoutChanged();
 }
 
-
 /************************************************
 
  ************************************************/
@@ -365,12 +344,11 @@ void MainWindow::setControlsEnable()
 
     bool tracksSelected = !trackView->selectedTracks().isEmpty();
     bool discsSelected  = !trackView->selectedDiscs().isEmpty();
-    bool canConvert = Converter::canConvert();
+    bool canConvert     = Converter::canConvert();
 
     bool canDownload = false;
     foreach (const Disc *disc, trackView->selectedDiscs())
         canDownload = canDownload || !disc->discId().isEmpty();
-
 
     outFilesBox->setEnabled(!running);
     tagsBox->setEnabled(!running && tracksSelected);
@@ -389,7 +367,6 @@ void MainWindow::setControlsEnable()
     actionAbortConvert->setVisible(convert);
 }
 
-
 /************************************************
 
  ************************************************/
@@ -397,13 +374,12 @@ void MainWindow::refreshEdits()
 {
 
     // Discs ...............................
-    QSet<int> startNums;
+    QSet<int>     startNums;
     QSet<QString> discId;
     QSet<QString> codePage;
 
-    QList<Disc*> discs = trackView->selectedDiscs();
-    foreach(Disc *disc, discs)
-    {
+    QList<Disc *> discs = trackView->selectedDiscs();
+    foreach (Disc *disc, discs) {
         startNums << disc->startTrackNum();
         discId << disc->discId();
         codePage << disc->codecName();
@@ -416,9 +392,8 @@ void MainWindow::refreshEdits()
     QSet<QString> date;
     QSet<QString> discPerformer;
 
-    QList<Track*> tracks = trackView->selectedTracks();
-    foreach(Track *track, tracks)
-    {
+    QList<Track *> tracks = trackView->selectedTracks();
+    foreach (Track *track, tracks) {
         genre << track->genre();
         artist << track->artist();
         album << track->album();
@@ -445,16 +420,15 @@ void MainWindow::refreshEdits()
     refreshOutProfileCombo();
 }
 
-
 /************************************************
 
  ************************************************/
 void MainWindow::refreshOutProfileCombo()
 {
     outProfileCombo->blockSignals(true);
-    int n=0;
-    for (const Profile &p: Settings::i()->profiles()) {
-        if (n<outProfileCombo->count()) {
+    int n = 0;
+    for (const Profile &p : Settings::i()->profiles()) {
+        if (n < outProfileCombo->count()) {
             outProfileCombo->setItemText(n, p.name());
             outProfileCombo->setItemData(n, p.id());
         }
@@ -464,7 +438,7 @@ void MainWindow::refreshOutProfileCombo()
         n++;
     }
     while (outProfileCombo->count() > n)
-        outProfileCombo->removeItem(outProfileCombo->count()-1);
+        outProfileCombo->removeItem(outProfileCombo->count() - 1);
 
     outProfileCombo->blockSignals(false);
 
@@ -472,79 +446,70 @@ void MainWindow::refreshOutProfileCombo()
     outProfileCombo->setCurrentIndex(qMax(0, n));
 }
 
-
 /************************************************
 
  ************************************************/
 void MainWindow::setCodePage()
 {
     int n = codepageCombo->currentIndex();
-    if (n > -1)
-    {
+    if (n > -1) {
         QString codepage = codepageCombo->itemData(n).toString();
 
-        QList<Disc*> discs = trackView->selectedDiscs();
-        foreach(Disc *disc, discs)
+        QList<Disc *> discs = trackView->selectedDiscs();
+        foreach (Disc *disc, discs)
             disc->setCodecName(codepage);
 
         Settings::i()->setValue(Settings::Tags_DefaultCodepage, codepage);
     }
 }
 
-
 /************************************************
 
  ************************************************/
 void MainWindow::setTrackTag()
 {
-    TagLineEdit *edit = qobject_cast<TagLineEdit*>(sender());
+    TagLineEdit *edit = qobject_cast<TagLineEdit *>(sender());
     if (!edit)
         return;
 
-    QList<Track*> tracks = trackView->selectedTracks();
-    foreach(Track *track, tracks)
-    {
+    QList<Track *> tracks = trackView->selectedTracks();
+    foreach (Track *track, tracks) {
         track->setTag(edit->tagId(), edit->text());
         trackView->update(*track);
     }
 }
-
 
 /************************************************
  *
  ************************************************/
 void MainWindow::setDiscTag()
 {
-    TagLineEdit *edit = qobject_cast<TagLineEdit*>(sender());
+    TagLineEdit *edit = qobject_cast<TagLineEdit *>(sender());
     if (!edit)
         return;
 
-    QList<Disc*> discs = trackView->selectedDiscs();
-    foreach(Disc *disc, discs)
-    {
+    QList<Disc *> discs = trackView->selectedDiscs();
+    foreach (Disc *disc, discs) {
         disc->setDiscTag(edit->tagId(), edit->text());
         trackView->update(*disc);
     }
 }
-
 
 /************************************************
  *
  ************************************************/
 void MainWindow::setDiscTagInt()
 {
-    TagSpinBox *spinBox = qobject_cast<TagSpinBox*>(sender());
+    TagSpinBox *spinBox = qobject_cast<TagSpinBox *>(sender());
     if (!spinBox)
         return;
 
-    QList<Disc*> discs = trackView->selectedDiscs();
-    foreach(Disc *disc, discs)
-    {
+    QList<Disc *> discs = trackView->selectedDiscs();
+    foreach (Disc *disc, discs) {
         disc->setDiscTag(spinBox->tagId(), QString::number(spinBox->value()));
         trackView->update(*disc);
     }
 }
-
 
 /************************************************
  *
@@ -552,11 +517,10 @@ void MainWindow::setDiscTagInt()
 void MainWindow::startConvertAll()
 {
     Converter::Jobs jobs;
-    for (int d=0; d<project->count(); ++d)
-    {
+    for (int d = 0; d < project->count(); ++d) {
         Converter::Job job;
         job.disc = project->disc(d);
-        for (int t=0; t<job.disc->count(); ++t)
+        for (int t = 0; t < job.disc->count(); ++t)
             job.tracks << job.disc->track(t);
         jobs << job;
     }
@@ -564,24 +528,20 @@ void MainWindow::startConvertAll()
     startConvert(jobs);
 }
 
-
 /************************************************
  *
  ************************************************/
 void MainWindow::startConvertSelected()
 {
     Converter::Jobs jobs;
-    for (Disc *disc: trackView->selectedDiscs())
-    {
+    for (Disc *disc : trackView->selectedDiscs()) {
         Converter::Job job;
         job.disc = disc;
 
-        for (int t=0; t<disc->count(); ++t)
-        {
+        for (int t = 0; t < disc->count(); ++t) {
             Track *track = disc->track(t);
             if (trackView->isSelected(*track))
                 job.tracks << track;
-
         }
 
         jobs << job;
@@ -589,7 +549,6 @@ void MainWindow::startConvertSelected()
 
     startConvert(jobs);
 }
-
 
 /************************************************
 
@@ -602,25 +561,22 @@ void MainWindow::startConvert(const Converter::Jobs &jobs)
     trackView->setFocus();
 
     bool ok = true;
-    for (int i=0; i< project->count(); ++i)
-    {
+    for (int i = 0; i < project->count(); ++i) {
         ok = ok && project->disc(i)->canConvert();
     }
 
-    if (!ok)
-    {
+    if (!ok) {
         int res = QMessageBox::warning(this,
                                        windowTitle(),
                                        tr("Some albums will not be converted, they contain errors.\nDo you want to continue?"),
                                        QMessageBox::Ok | QMessageBox::Cancel);
-        if (res !=  QMessageBox::Ok)
+        if (res != QMessageBox::Ok)
             return;
     }
 
-    for(int d=0; d<project->count(); ++d)
-    {
+    for (int d = 0; d < project->count(); ++d) {
         Disc *disc = project->disc(d);
-        for (int t=0; t<disc->count(); ++t)
+        for (int t = 0; t < disc->count(); ++t)
             trackView->model()->trackProgressChanged(*disc->track(t), TrackState::NotRunning, 0);
     }
 
@@ -632,13 +588,12 @@ void MainWindow::startConvert(const Converter::Jobs &jobs)
     connect(mConverter, &Converter::finished,
             mConverter, &Converter::deleteLater);
 
-    connect(mConverter,  &Converter::trackProgress,
+    connect(mConverter, &Converter::trackProgress,
             trackView->model(), &TrackViewModel::trackProgressChanged);
 
     mConverter->start(jobs, Settings::i()->currentProfile());
     setControlsEnable();
 }
-
 
 /************************************************
 
@@ -650,7 +605,6 @@ void MainWindow::stopConvert()
     setControlsEnable();
 }
 
-
 /************************************************
 
  ************************************************/
@@ -658,7 +612,6 @@ void MainWindow::configure()
 {
     ConfigDialog::createAndShow(nullptr, this);
 }
-
 
 /************************************************
 
@@ -668,19 +621,16 @@ void MainWindow::configureEncoder()
     ConfigDialog::createAndShow(Settings::i()->currentProfile().id(), this);
 }
 
-
 /************************************************
 
  ************************************************/
 void MainWindow::downloadInfo()
 {
-    QList<Disc*> discs = trackView->selectedDiscs();
-    foreach(Disc *disc, discs)
-    {
+    QList<Disc *> discs = trackView->selectedDiscs();
+    foreach (Disc *disc, discs) {
         this->downloadDiscInfo(disc);
     }
 }
-
 
 /************************************************
 
@@ -689,12 +639,10 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
 {
     QStringList flt;
     QStringList allFlt;
-    QString fltPattern = tr("%1 files", "OpenFile dialog filter line, like \"WAV files\"") + " (*.%2)";
+    QString     fltPattern = tr("%1 files", "OpenFile dialog filter line, like \"WAV files\"") + " (*.%2)";
 
-    if (includeAudio)
-    {
-        foreach(const InputFormat *format, InputFormat::allFormats())
-        {
+    if (includeAudio) {
+        foreach (const InputFormat *format, InputFormat::allFormats()) {
             allFlt << QString(" *.%1").arg(format->ext());
             flt << fltPattern.arg(format->name(), format->ext());
         }
@@ -702,37 +650,33 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
 
     flt.sort();
 
-    if (includeCue)
-    {
+    if (includeCue) {
         allFlt << QString("*.cue");
         flt.insert(0, fltPattern.arg("CUE", "cue"));
     }
 
-    if (allFlt.count()  > 1)
-        flt.insert(0, tr("All supported formats", "OpenFile dialog filter line") + " (" + allFlt.join(" ")  + ")");
+    if (allFlt.count() > 1)
+        flt.insert(0, tr("All supported formats", "OpenFile dialog filter line") + " (" + allFlt.join(" ") + ")");
 
     flt << tr("All files", "OpenFile dialog filter line like \"All files\"") + " (*)";
 
     return flt.join(";;");
 }
 
-
 /************************************************
 
  ************************************************/
 void MainWindow::openAddFileDialog()
 {
-    QString flt = getOpenFileFilter(true, true);
-    QString lastDir = Settings::i()->value(Settings::Misc_LastDir).toString();
+    QString     flt       = getOpenFileFilter(true, true);
+    QString     lastDir   = Settings::i()->value(Settings::Misc_LastDir).toString();
     QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Add CUE or audio file", "OpenFile dialog title"), lastDir, flt);
 
-    foreach(const QString &fileName, fileNames)
-    {
+    foreach (const QString &fileName, fileNames) {
         Settings::i()->setValue(Settings::Misc_LastDir, QFileInfo(fileName).dir().path());
         addFileOrDir(fileName);
     }
 }
-
 
 /************************************************
 
@@ -745,11 +689,10 @@ void MainWindow::setAudioForDisc(Disc *disc)
 
     if (!disc->cueFile().isEmpty())
         dir = QFileInfo(disc->cueFile()).dir().absolutePath();
-    else if (! disc->audioFileName().isEmpty())
+    else if (!disc->audioFileName().isEmpty())
         dir = QFileInfo(disc->audioFileName()).dir().absolutePath();
     else
         dir = Settings::i()->value(Settings::Misc_LastDir).toString();
-
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select audio file", "OpenFile dialog title"), dir, flt);
 
@@ -763,7 +706,6 @@ void MainWindow::setAudioForDisc(Disc *disc)
         Messages::error(audio.errorString());
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -771,7 +713,6 @@ void MainWindow::setCoverImage(Disc *disc)
 {
     CoverDialog::createAndShow(disc, this);
 }
-
 
 /************************************************
  *
@@ -793,18 +734,17 @@ void MainWindow::downloadDiscInfo(Disc *disc)
     trackView->downloadStarted(*disc);
 }
 
-
 /************************************************
 
  ************************************************/
 void MainWindow::addFileOrDir(const QString &fileName)
 {
-    bool isFirst = true;
+    bool isFirst   = true;
     bool showError = false;
-    auto addFile = [&](const QString &file) {
+    auto addFile   = [&](const QString &file) {
         try {
             QFileInfo fi = QFileInfo(file);
-            DiscList discs;
+            DiscList  discs;
             if (fi.size() > 102400)
                 discs << project->addAudioFile(file);
             else
@@ -816,8 +756,7 @@ void MainWindow::addFileOrDir(const QString &fileName)
             }
         }
 
-        catch (FlaconError &err)
-        {
+        catch (FlaconError &err) {
             if (showError)
                 showErrorMessage(err.what());
         }
@@ -826,7 +765,7 @@ void MainWindow::addFileOrDir(const QString &fileName)
     QApplication::setOverrideCursor(Qt::WaitCursor);
     QFileInfo fi = QFileInfo(fileName);
 
-    if (fi.isDir())  {
+    if (fi.isDir()) {
         mScanner = new Scanner;
         setControlsEnable();
         showError = false;
@@ -843,13 +782,12 @@ void MainWindow::addFileOrDir(const QString &fileName)
     QApplication::restoreOverrideCursor();
 }
 
-
 /************************************************
 
  ************************************************/
 void MainWindow::removeDiscs()
 {
-    QList<Disc*> discs = trackView->selectedDiscs();
+    QList<Disc *> discs = trackView->selectedDiscs();
     if (discs.isEmpty())
         return;
 
@@ -863,22 +801,19 @@ void MainWindow::removeDiscs()
     setControlsEnable();
 }
 
-
 /************************************************
 
  ************************************************/
 void MainWindow::openScanDialog()
 {
     QString lastDir = Settings::i()->value(Settings::Misc_LastDir).toString();
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Select directory"), lastDir);
+    QString dir     = QFileDialog::getExistingDirectory(this, tr("Select directory"), lastDir);
 
-    if (!dir.isEmpty())
-    {
+    if (!dir.isEmpty()) {
         Settings::i()->setValue(Settings::Misc_LastDir, dir);
         addFileOrDir(dir);
     }
 }
-
 
 /************************************************
 
@@ -888,7 +823,6 @@ void MainWindow::openAboutDialog()
     AboutDialog dlg;
     dlg.exec();
 }
-
 
 /************************************************
 
@@ -900,7 +834,6 @@ void MainWindow::checkUpdates()
 #endif
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -910,13 +843,11 @@ void MainWindow::trackViewMenu(const QPoint &pos)
     if (!index.isValid())
         return;
 
-
     Disc *disc = trackView->model()->discByIndex(index);
     if (!disc)
         return;
 
-
-    QMenu menu;
+    QMenu    menu;
     QAction *act = new QAction(tr("Edit tags…", "context menu"), &menu);
     connect(act, &QAction::triggered, this, &MainWindow::openEditTagsDialog);
     menu.addAction(act);
@@ -924,22 +855,20 @@ void MainWindow::trackViewMenu(const QPoint &pos)
     menu.addSeparator();
 
     act = new QAction(tr("Select another audio file…", "context menu"), &menu);
-    connect(act, &QAction::triggered, [this, disc](){ this->setAudioForDisc(disc); });
+    connect(act, &QAction::triggered, [this, disc]() { this->setAudioForDisc(disc); });
     menu.addAction(act);
 
-
     act = new QAction(tr("Select another CUE file…", "context menu"), &menu);
-    connect(act, &QAction::triggered, [this, disc](){ this->setCueForDisc(disc); });
+    connect(act, &QAction::triggered, [this, disc]() { this->setCueForDisc(disc); });
     menu.addAction(act);
 
     act = new QAction(tr("Get data from CDDB", "context menu"), &menu);
     act->setEnabled(disc->canDownloadInfo());
-    connect(act, &QAction::triggered, [this, disc](){ this->downloadDiscInfo(disc);});
+    connect(act, &QAction::triggered, [this, disc]() { this->downloadDiscInfo(disc); });
     menu.addAction(act);
 
     menu.exec(trackView->viewport()->mapToGlobal(pos));
 }
-
 
 /************************************************
  *
@@ -951,42 +880,37 @@ void MainWindow::openEditTagsDialog()
     refreshEdits();
 }
 
-
 /************************************************
 
  ************************************************/
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Escape)
-    {
+    if (event->key() == Qt::Key_Escape) {
         if (mScanner)
             mScanner->stop();
     }
 }
-
 
 /************************************************
 
  ************************************************/
 bool MainWindow::event(QEvent *event)
 {
-    switch (event->type())
-    {
+    switch (event->type()) {
 #ifdef Q_OS_MAC
-    case QEvent::WindowActivate:
-        toolBar->setEnabled(true);
-        break;
+        case QEvent::WindowActivate:
+            toolBar->setEnabled(true);
+            break;
 
-    case QEvent::WindowDeactivate:
-        toolBar->setEnabled(false);
-        break;
+        case QEvent::WindowDeactivate:
+            toolBar->setEnabled(false);
+            break;
 #endif
-    default:
-        break;
+        default:
+            break;
     }
     return QMainWindow::event(event);
 }
-
 
 /************************************************
 
@@ -996,14 +920,12 @@ void MainWindow::setStartTrackNum()
     if (!tagStartNumEdit->isModified())
         return;
 
-    int value = tagStartNumEdit->value();
-    QList<Disc*> discs = trackView->selectedDiscs();
-    foreach(Disc *disc, discs)
-    {
+    int           value = tagStartNumEdit->value();
+    QList<Disc *> discs = trackView->selectedDiscs();
+    foreach (Disc *disc, discs) {
         disc->setStartTrackNum(value);
     }
 }
-
 
 /************************************************
 
@@ -1038,20 +960,18 @@ void MainWindow::initActions()
     actionConfigureEncoder->setIcon(actionConfigure->icon());
     connect(actionConfigureEncoder, SIGNAL(triggered()), this, SLOT(configureEncoder()));
 
-    connect(actionAbout, SIGNAL(triggered()), this,  SLOT(openAboutDialog()));
+    connect(actionAbout, SIGNAL(triggered()), this, SLOT(openAboutDialog()));
     actionAbout->setMenuRole(QAction::AboutRole);
 
     int w = 0;
-    foreach (QAction *act, toolBar->actions())
-    {
-        QToolButton *btn = qobject_cast<QToolButton*>(toolBar->widgetForAction(act));
+    foreach (QAction *act, toolBar->actions()) {
+        QToolButton *btn = qobject_cast<QToolButton *>(toolBar->widgetForAction(act));
         if (btn)
             w = qMax(w, btn->sizeHint().width());
     }
 
-    foreach (QAction *act, toolBar->actions())
-    {
-        QToolButton *btn = qobject_cast<QToolButton*>(toolBar->widgetForAction(act));
+    foreach (QAction *act, toolBar->actions()) {
+        QToolButton *btn = qobject_cast<QToolButton *>(toolBar->widgetForAction(act));
         if (btn)
             btn->setMinimumWidth(w);
     }
@@ -1067,14 +987,13 @@ void MainWindow::initActions()
 #endif
 }
 
-
 /************************************************
   Load settings
  ************************************************/
 void MainWindow::loadSettings()
 {
-     // MainWindow geometry
-    int width = Settings::i()->value(Settings::MainWindow_Width,  QVariant(987)).toInt();
+    // MainWindow geometry
+    int width  = Settings::i()->value(Settings::MainWindow_Width, QVariant(987)).toInt();
     int height = Settings::i()->value(Settings::MainWindow_Height, QVariant(450)).toInt();
     this->resize(width, height);
 
@@ -1085,29 +1004,26 @@ void MainWindow::loadSettings()
     outPatternEdit->setHistory(Settings::i()->value(Settings::OutFiles_PatternHistory).toStringList());
 }
 
-
 /************************************************
   Write settings
  ************************************************/
 void MainWindow::saveSettings()
 {
-     Settings::i()->setValue("MainWindow/Width",     QVariant(size().width()));
-     Settings::i()->setValue("MainWindow/Height",    QVariant(size().height()));
-     Settings::i()->setValue("MainWindow/Splitter",  QVariant(splitter->saveState()));
-     Settings::i()->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
+    Settings::i()->setValue("MainWindow/Width", QVariant(size().width()));
+    Settings::i()->setValue("MainWindow/Height", QVariant(size().height()));
+    Settings::i()->setValue("MainWindow/Splitter", QVariant(splitter->saveState()));
+    Settings::i()->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
 
-     Settings::i()->setValue(Settings::OutFiles_DirectoryHistory, outDirEdit->history());
-     Settings::i()->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
+    Settings::i()->setValue(Settings::OutFiles_DirectoryHistory, outDirEdit->history());
+    Settings::i()->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
 }
-
 
 /************************************************
  *
  ************************************************/
 QIcon MainWindow::loadMainIcon()
 {
-    if (QIcon::themeName() == "hicolor")
-    {
+    if (QIcon::themeName() == "hicolor") {
         QStringList failback;
         failback << "oxygen";
         failback << "Tango";
@@ -1116,13 +1032,10 @@ QIcon MainWindow::loadMainIcon()
         failback << "elementary";
         failback << "gnome";
 
-
         QDir usrDir("/usr/share/icons/");
         QDir usrLocalDir("/usr/local/share/icons/");
-        foreach (QString s, failback)
-        {
-            if (usrDir.exists(s) || usrLocalDir.exists(s))
-            {
+        foreach (QString s, failback) {
+            if (usrDir.exists(s) || usrLocalDir.exists(s)) {
                 QIcon::setThemeName(s);
                 break;
             }
@@ -1132,16 +1045,14 @@ QIcon MainWindow::loadMainIcon()
     return QIcon::fromTheme("flacon", Icon("mainicon"));
 }
 
-
 /************************************************
  *
  ************************************************/
 void MainWindow::showErrorMessage(const QString &message)
 {
     const QString name = "errorMessage";
-    ErrorBox *box = this->findChild<ErrorBox *>(name);
-    if (!box)
-    {
+    ErrorBox *    box  = this->findChild<ErrorBox *>(name);
+    if (!box) {
         box = new ErrorBox(this);
         box->setObjectName(name);
         box->setWindowTitle(QObject::tr("Flacon", "Error"));

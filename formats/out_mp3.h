@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef OUT_MP3_H
 #define OUT_MP3_H
 
@@ -31,7 +30,7 @@
 #include "encoderconfigpage.h"
 #include "ui_out_mp3_config.h"
 
-class OutFormat_Mp3: public OutFormat
+class OutFormat_Mp3 : public OutFormat
 {
 public:
     OutFormat_Mp3();
@@ -43,15 +42,14 @@ public:
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(const Profile &profile, QWidget *parent) const override;
+    EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_64; }
-    virtual SampleRate    maxSampleRate()   const override { return SampleRate::Hz_768000; }
+    virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 };
 
-
-class ConfigPage_Mp3: public EncoderConfigPage, private Ui::mp3ConfigPage
+class ConfigPage_Mp3 : public EncoderConfigPage, private Ui::mp3ConfigPage
 {
     Q_OBJECT
 public:

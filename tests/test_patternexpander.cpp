@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "testflacon.h"
 #include "tools.h"
 #include <QTest>
@@ -32,7 +31,6 @@
 #include "types.h"
 #include "patternexpander.h"
 
-
 /************************************************
  *
  ************************************************/
@@ -40,8 +38,7 @@ static QMap<QString, QString> parseTrackData(const QString &str)
 {
     QMap<QString, QString> res;
 
-    foreach (QString line, str.split("\n"))
-    {
+    foreach (QString line, str.split("\n")) {
         line = line.trimmed();
         if (line.isEmpty())
             continue;
@@ -54,7 +51,6 @@ static QMap<QString, QString> parseTrackData(const QString &str)
 
     return res;
 }
-
 
 /************************************************
  *
@@ -80,28 +76,24 @@ void TestFlacon::testPatternExpander()
     expander.setGenre(trackValues.value("genre"));
     expander.setDate(trackValues.value("date"));
 
-
     QString result = expander.expand(pattern);
 
     QCOMPARE(result, expected);
 }
-
 
 /************************************************
  *
  ************************************************/
 void TestFlacon::testPatternExpander_data()
 {
-    QTest::addColumn<QString>("pattern",   nullptr);
+    QTest::addColumn<QString>("pattern", nullptr);
     QTest::addColumn<QString>("trackData", nullptr);
-    QTest::addColumn<QString>("expected",  nullptr);
-
+    QTest::addColumn<QString>("expected", nullptr);
 
     QTest::newRow("01")
             << ""
             << ""
             << "";
-
 
     QTest::newRow("02")
             << "static"
@@ -118,7 +110,6 @@ void TestFlacon::testPatternExpander_data()
                )"
             << "static";
 
-
     QTest::newRow("03")
             << "%a/{%y - }%A/%n - %t"
             << R"(
@@ -133,7 +124,6 @@ void TestFlacon::testPatternExpander_data()
                date:       1999
                )"
             << "Band/1999 - Hits/01 - Track title";
-
 
     QTest::newRow("04")
             << "%a -{ %y }%A/%n - %t"
@@ -178,7 +168,6 @@ void TestFlacon::testPatternExpander_data()
                )"
             << "Band/ - Hits/01 - Track title";
 
-
     QTest::newRow("06")
             << "%a/{%y - }%A/%d of %D/%n - %t"
             << R"(
@@ -193,7 +182,6 @@ void TestFlacon::testPatternExpander_data()
                date:       1999
                )"
             << "Band/1999 - Hits/01 of 02/05 - Track title";
-
 
     QTest::newRow("07")
             << "%a/{%y - }%A/%d of %D/%n - %t"
@@ -210,13 +198,11 @@ void TestFlacon::testPatternExpander_data()
                )"
             << "Band/1999 - Hits/01 of 01/05 - Track title";
 
-
     QTest::newRow("08")
             << "%d of %D/%n of %N"
             << R"(
                )"
             << "00 of 00/00 of 00";
-
 
     QTest::newRow("09")
             << "{%d of %D}/{%n of %N}"
@@ -243,7 +229,6 @@ void TestFlacon::testPatternExpander_data()
                )"
             << "Band/1999 - Hits/05 - Track title";
 
-
     QTest::newRow("11")
             << "%a/{Music}%A/%n - %t"
             << R"(
@@ -258,7 +243,6 @@ void TestFlacon::testPatternExpander_data()
                date:       1999
                )"
             << "Band/{Music}Hits/01 - Track title";
-
 
     QTest::newRow("12")
             << "%a/{Music}%%A/%n - %t"

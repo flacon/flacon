@@ -23,25 +23,23 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef IN_FLAC_H
 #define IN_FLAC_H
 
 #include "informat.h"
 
-
-class Format_Flac: public InputFormat
+class Format_Flac : public InputFormat
 {
 public:
     virtual QString name() const override { return "FLAC"; }
     virtual QString ext() const override { return "flac"; }
-    virtual bool isInputFormat() const override { return true; }
+    virtual bool    isInputFormat() const override { return true; }
 
-    virtual QString decoderProgramName() const override { return "flac"; }
+    virtual QString     decoderProgramName() const override { return "flac"; }
     virtual QStringList decoderArgs(const QString &fileName) const override;
 
     virtual QByteArray magic() const override { return "fLaC"; }
-    virtual uint magicOffset() const override { return 0; }
+    virtual uint       magicOffset() const override { return 0; }
 };
 
 #endif // IN_FLAC_H

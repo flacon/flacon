@@ -23,14 +23,12 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "application.h"
 #include <QFileOpenEvent>
 #include <QDebug>
 #include <QStyle>
 
-
-Application::Application(int &argc, char **argv):
+Application::Application(int &argc, char **argv) :
     QApplication(argc, argv)
 {
     init();
@@ -44,17 +42,15 @@ Application::~Application()
 
 Application *Application::instance()
 {
-    return qobject_cast<Application*>(qApp);
+    return qobject_cast<Application *>(qApp);
 }
-
 
 bool Application::event(QEvent *event)
 {
 
-    if (event->type() == QEvent::FileOpen)
-    {
-        QFileOpenEvent *e = static_cast<QFileOpenEvent*>(event);
-        emit openFile(e->file());
+    if (event->type() == QEvent::FileOpen) {
+        QFileOpenEvent *e = static_cast<QFileOpenEvent *>(event);
+        emit            openFile(e->file());
     }
 
 #ifndef Q_OS_MAC
@@ -72,7 +68,6 @@ bool Application::event(QEvent *event)
 #ifndef Q_OS_MAC
 bool Application::isDarkVisualMode() const
 {
-    return qApp->style()->standardPalette().window().color().lightness() <
-           qApp->style()->standardPalette().windowText().color().lightness();
+    return qApp->style()->standardPalette().window().color().lightness() < qApp->style()->standardPalette().windowText().color().lightness();
 }
 #endif

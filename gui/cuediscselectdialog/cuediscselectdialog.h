@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef CUEDISCSELECTDIALOG_H
 #define CUEDISCSELECTDIALOG_H
 
@@ -53,7 +52,7 @@ private slots:
 
 private:
     Ui::CueDiscSelectDialog *ui;
-    const QVector<CueDisc> &mCue;
+    const QVector<CueDisc> & mCue;
 };
 
 #endif // CUEDISCSELECTDIALOG_H

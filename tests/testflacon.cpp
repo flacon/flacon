@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include <QTest>
 #include "testflacon.h"
 #include "tools.h"
@@ -45,7 +44,6 @@
 #include "outformat.h"
 #include "converter/discpipline.h"
 
-
 int TestFlacon::mTestNum = -1;
 Q_DECLARE_METATYPE(GainType)
 
@@ -60,7 +58,6 @@ TestFlacon::TestFlacon(QObject *parent) :
 {
 }
 
-
 /************************************************
 
  ************************************************/
@@ -72,7 +69,6 @@ void TestFlacon::writeTextFile(const QString &fileName, const QString &content)
     file.close();
 }
 
-
 /************************************************
 
  ************************************************/
@@ -80,14 +76,12 @@ void TestFlacon::writeTextFile(const QString &fileName, const QStringList &conte
 {
     QFile file(fileName);
     file.open(QFile::WriteOnly | QFile::Truncate);
-    for(int i=0; i<content.count(); ++i)
-    {
+    for (int i = 0; i < content.count(); ++i) {
         file.write(content.at(i).toLocal8Bit());
         file.write("\n");
     }
     file.close();
 }
-
 
 /************************************************
 
@@ -99,8 +93,7 @@ bool TestFlacon::removeDir(const QString &dirName) const
         return true;
 
     bool res = false;
-    foreach(QFileInfo fi, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::AllDirs | QDir::Files, QDir::DirsFirst))
-    {
+    foreach (QFileInfo fi, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
         if (fi.isDir())
             res = removeDir(fi.absoluteFilePath());
         else
@@ -113,7 +106,6 @@ bool TestFlacon::removeDir(const QString &dirName) const
     return dir.rmdir(dirName);
 }
 
-
 /************************************************
 
  ************************************************/
@@ -124,8 +116,7 @@ bool TestFlacon::clearDir(const QString &dirName) const
         return true;
 
     bool res = false;
-    foreach(QFileInfo fi, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::AllDirs | QDir::Files, QDir::DirsFirst))
-    {
+    foreach (QFileInfo fi, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
         if (fi.isDir())
             res = removeDir(fi.absoluteFilePath());
         else
@@ -138,7 +129,6 @@ bool TestFlacon::clearDir(const QString &dirName) const
     return true;
 }
 
-
 /************************************************
 
  ************************************************/
@@ -148,7 +138,6 @@ void TestFlacon::checkFileExists(const QString &fileName)
     if (!fi.exists())
         QFAIL(QString("File not exists:\n\t%1").arg(fi.absoluteFilePath()).toLocal8Bit());
 }
-
 
 /************************************************
 
@@ -160,7 +149,6 @@ void TestFlacon::checkFileNotExists(const QString &fileName)
         QFAIL(QString("File exists:\n\t%1").arg(fi.absoluteFilePath()).toLocal8Bit());
 }
 
-
 /************************************************
 
  ************************************************/
@@ -168,23 +156,18 @@ void TestFlacon::applySettings(const SettingsValues &config)
 {
     SettingsValues::const_iterator i;
     i = config.begin();
-    for (i = config.begin(); i != config.end(); ++i)
-    {
+    for (i = config.begin(); i != config.end(); ++i) {
         Settings::i()->setValue(i.key(), i.value());
     }
     Settings::i()->sync();
 }
-
-
-
 
 /************************************************
 
  ************************************************/
 Disc *TestFlacon::standardDisc()
 {
-    if (mStandardDisc == nullptr)
-    {
+    if (mStandardDisc == nullptr) {
         QString cueFile = dir() + "testTrackResultFileName.cue";
 
         QStringList cue;
@@ -215,19 +198,16 @@ Disc *TestFlacon::standardDisc()
     return mStandardDisc;
 }
 
-
 void removeEmptyLines(QByteArray &data)
 {
     data = data.trimmed();
-    while (true)
-    {
+    while (true) {
         int n = data.length();
         data.replace("\n\n", "\n");
         if (n == data.length())
             break;
     }
 }
-
 
 /************************************************
  *
@@ -240,8 +220,7 @@ static QByteArray readCue(const QString &fileName, bool skipEmptyLines)
 
     QByteArray res;
     res.reserve(file.size());
-    while (!file.atEnd())
-    {
+    while (!file.atEnd()) {
         QByteArray line = file.readLine().trimmed();
         if (line.startsWith("REM COMMENT"))
             continue;
@@ -264,26 +243,24 @@ bool TestFlacon::compareCue(const QString &result, const QString &expected, QStr
     QByteArray resData = readCue(result, skipEmptyLines);
     QByteArray expData = readCue(expected, skipEmptyLines);
 
-    if (resData != expData)
-    {
+    if (resData != expData) {
         QString s = "The result is different from the expected. Use the following command for details: \n diff %1 %2";
-        *error = s.arg(expected, result);
+        *error    = s.arg(expected, result);
         return false;
     }
 
     return true;
 }
 
-
 /************************************************
 
  ************************************************/
 void TestFlacon::testByteArraySplit()
 {
-    QFETCH(QByteArray,  inArray);
-    QFETCH(char,        separator);
-    QFETCH(QByteArray,  expectedLeft);
-    QFETCH(QByteArray,  expectedRight);
+    QFETCH(QByteArray, inArray);
+    QFETCH(char, separator);
+    QFETCH(QByteArray, expectedLeft);
+    QFETCH(QByteArray, expectedRight);
 
     QByteArray left = leftPart(inArray, separator);
     QCOMPARE(left, expectedLeft);
@@ -292,14 +269,13 @@ void TestFlacon::testByteArraySplit()
     QCOMPARE(right, expectedRight);
 }
 
-
 /************************************************
 
  ************************************************/
 void TestFlacon::testByteArraySplit_data()
 {
-    QTest::addColumn<QByteArray>("inArray",      nullptr);
-    QTest::addColumn<char>("separator",          nullptr);
+    QTest::addColumn<QByteArray>("inArray", nullptr);
+    QTest::addColumn<char>("separator", nullptr);
     QTest::addColumn<QByteArray>("expectedLeft", nullptr);
     QTest::addColumn<QByteArray>("expectedRight", nullptr);
 
@@ -309,13 +285,11 @@ void TestFlacon::testByteArraySplit_data()
             << QByteArray()
             << QByteArray();
 
-
     QTest::newRow("'Test' split by ' '")
             << QByteArray("Test")
             << ' '
             << QByteArray("Test")
             << QByteArray();
-
 
     QTest::newRow("'REM GENRE Pop' split by ' '")
             << QByteArray("REM GENRE Pop")
@@ -323,13 +297,11 @@ void TestFlacon::testByteArraySplit_data()
             << QByteArray("REM")
             << QByteArray("GENRE Pop");
 
-
     QTest::newRow("'TITLE Рок группа' split by ' '")
             << QByteArray("TITLE Рок группа")
             << ' '
             << QByteArray("TITLE")
             << QByteArray("Рок группа");
-
 
     QTest::newRow("'Название Рок группа' split by ' '")
             << QByteArray("Название Рок группа")
@@ -337,75 +309,87 @@ void TestFlacon::testByteArraySplit_data()
             << QByteArray("Название")
             << QByteArray("Рок группа");
 
-
     QTest::newRow("'Название=Рок группа' split by '='")
             << QByteArray("Название=Рок группа")
             << '='
             << QByteArray("Название")
             << QByteArray("Рок группа");
-
 }
-
 
 /************************************************
 
  ************************************************/
 void TestFlacon::testSafeString()
 {
-    QFETCH(QString,  string);
-    QFETCH(QString,  expected);
+    QFETCH(QString, string);
+    QFETCH(QString, expected);
     QString result = safeString(string);
     QCOMPARE(result, expected);
 }
-
 
 /************************************************
 
  ************************************************/
 void TestFlacon::testSafeString_data()
 {
-    QTest::addColumn<QString>("string",   nullptr);
+    QTest::addColumn<QString>("string", nullptr);
     QTest::addColumn<QString>("expected", nullptr);
 
-    for (char c=1; c<=31; ++c )
-    {
+    for (char c = 1; c <= 31; ++c) {
         if (c != '\t' && c != '\n')
             QTest::newRow(QString("01 - \\%1").arg(int(c), 2, 16, QChar('0')).toLocal8Bit())
                     << QString(c)
                     << "";
     }
 
-    QTest::newRow("01 - \\t") << "\t"  << " ";
-    QTest::newRow("01 - \\n") << "\n"  << " ";
-    QTest::newRow("01 - /")   << "/"   << "-";
-    QTest::newRow("01 - \\")  << "\\"  << "-";
-    QTest::newRow("01 - *")   << "*"   << "_";
-    QTest::newRow("01 - :")   << ":"   << "_";
-    QTest::newRow("01 - ?")   << "?"   << "";
-    QTest::newRow("01 - <")   << "<"   << "[";
-    QTest::newRow("01 - >")   << ">"   << "]";
-    QTest::newRow("01 - \"")  << "\""  << "'";
+    QTest::newRow("01 - \\t") << "\t"
+                              << " ";
+    QTest::newRow("01 - \\n") << "\n"
+                              << " ";
+    QTest::newRow("01 - /") << "/"
+                            << "-";
+    QTest::newRow("01 - \\") << "\\"
+                             << "-";
+    QTest::newRow("01 - *") << "*"
+                            << "_";
+    QTest::newRow("01 - :") << ":"
+                            << "_";
+    QTest::newRow("01 - ?") << "?"
+                            << "";
+    QTest::newRow("01 - <") << "<"
+                            << "[";
+    QTest::newRow("01 - >") << ">"
+                            << "]";
+    QTest::newRow("01 - \"") << "\""
+                             << "'";
 
-
-    for (char c=1; c<=31; ++c )
-    {
+    for (char c = 1; c <= 31; ++c) {
         if (c != '\t' && c != '\n')
             QTest::newRow(QString("02 - A\\%1B").arg(int(c), 2, 16, QChar('0')).toLocal8Bit())
                     << "A" + QString(c) + "B"
                     << "AB";
     }
 
-    QTest::newRow("02 - A\\tB") << "A\tB"  << "A B";
-    QTest::newRow("02 - A\\nB") << "A\nB"  << "A B";
-    QTest::newRow("02 - A/B")   << "A/B"   << "A-B";
-    QTest::newRow("02 - A\\B")  << "A\\B"  << "A-B";
-    QTest::newRow("02 - A*B")   << "A*B"   << "A_B";
-    QTest::newRow("02 - A:B")   << "A:B"   << "A_B";
-    QTest::newRow("02 - A?B")   << "A?B"   << "AB";
-    QTest::newRow("02 - A<B")   << "A<B"   << "A[B";
-    QTest::newRow("02 - A>B")   << "A>B"   << "A]B";
-    QTest::newRow("02 - A\"B")  << "A\"B"  << "A'B";
-
+    QTest::newRow("02 - A\\tB") << "A\tB"
+                                << "A B";
+    QTest::newRow("02 - A\\nB") << "A\nB"
+                                << "A B";
+    QTest::newRow("02 - A/B") << "A/B"
+                              << "A-B";
+    QTest::newRow("02 - A\\B") << "A\\B"
+                               << "A-B";
+    QTest::newRow("02 - A*B") << "A*B"
+                              << "A_B";
+    QTest::newRow("02 - A:B") << "A:B"
+                              << "A_B";
+    QTest::newRow("02 - A?B") << "A?B"
+                              << "AB";
+    QTest::newRow("02 - A<B") << "A<B"
+                              << "A[B";
+    QTest::newRow("02 - A>B") << "A>B"
+                              << "A]B";
+    QTest::newRow("02 - A\"B") << "A\"B"
+                               << "A'B";
 
     QTest::newRow("03.1 single dot")
             << "."
@@ -428,25 +412,22 @@ void TestFlacon::testSafeString_data()
             << "Русский текст";
 }
 
-
 /************************************************
 
  ************************************************/
 QStringList TestFlacon::readFile(const QString &fileName)
 {
     QStringList res;
-    QFile file(fileName);
+    QFile       file(fileName);
     file.open(QIODevice::ReadOnly);
 
-    if (!file.isOpen())
-    {
+    if (!file.isOpen()) {
         FAIL(QString("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
         return res;
     }
 
     QTextStream stream(&file);
-    while(!stream.atEnd())
-    {
+    while (!stream.atEnd()) {
         QString str = stream.readLine();
         res << str << "\n";
     }
@@ -454,7 +435,6 @@ QStringList TestFlacon::readFile(const QString &fileName)
     file.close();
     return res;
 }
-
 
 /************************************************
 
@@ -467,24 +447,18 @@ void TestFlacon::writeFile(const QStringList &strings, const QString &fileName)
     if (!file.isOpen())
         QFAIL(QString("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
 
-    foreach(const QString &string, strings)
-    {
+    foreach (const QString &string, strings) {
         file.write(string.toLocal8Bit());
     }
 }
-
 
 /************************************************
 
  ************************************************/
 QString TestFlacon::stigListToString(const QStringList &strings, const QString divider)
 {
-    return  "\n--------------------------\n" +
-            strings.join(divider) +
-            "\n--------------------------\n";
+    return "\n--------------------------\n" + strings.join(divider) + "\n--------------------------\n";
 }
-
-
 
 /************************************************
 
@@ -493,7 +467,6 @@ QStringList &operator<<(QStringList &list, int value)
 {
     return list << QString("%1").arg(value);
 }
-
 
 /************************************************
 
@@ -507,7 +480,6 @@ void TestFlacon::testTrackResultFileName()
     Settings::i()->selectProfile("WAV");
     Settings::i()->currentProfile().setOutFilePattern(pattern);
 
-
     project->clear();
 
     QString cueFile = dir() + "/input.cue";
@@ -518,242 +490,233 @@ void TestFlacon::testTrackResultFileName()
     QString result = disc->track(0)->resultFileName();
     //QCOMPARE(result, expected);
 
-    if (result != expected)
-    {
-        QString msg = QString("Compared values are not the same\n   Pattern   %1\n   Actual:   %2\n   Expected: %3").arg(
-                    pattern,
-                    result,
-                    expected);
+    if (result != expected) {
+        QString msg = QString("Compared values are not the same\n   Pattern   %1\n   Actual:   %2\n   Expected: %3").arg(pattern, result, expected);
         QFAIL(msg.toLocal8Bit());
     }
     disc->deleteLater();
 }
-
 
 /************************************************
 
  ************************************************/
 void TestFlacon::testTrackResultFileName_data()
 {
-    QTest::addColumn<QString>("cue",      nullptr);
-    QTest::addColumn<QString>("pattern",  nullptr);
+    QTest::addColumn<QString>("cue", nullptr);
+    QTest::addColumn<QString>("pattern", nullptr);
     QTest::addColumn<QString>("expected", nullptr);
 
-
     QTest::newRow("1.1")
-            <<  "REM GENRE \"Genre\"\n"
-                "REM DATE 2013\n"
-                "REM DISCID 123456789\n"
-                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
-                "PERFORMER \"Artist\"\n"
-                "TITLE \"Album\"\n"
-                "FILE \"en.wav\" WAVE\n"
-                "  TRACK 01 AUDIO\n"
-                "    TITLE \"Song01\"\n"
-                "    INDEX 01 00:00:00\n"
-                "  TRACK 02 AUDIO\n"
-                "    TITLE \"Song02\"\n"
-                "    INDEX 01 03:39:10\n"
-                "  TRACK 03 AUDIO\n"
-                "    TITLE \"Song03\"\n"
-                "    INDEX 01 07:25:42\n"
-                "  TRACK 04 AUDIO\n"
-                "    TITLE \"Song04\"\n"
-                "    INDEX 01 12:04:72\n"
+            << "REM GENRE \"Genre\"\n"
+               "REM DATE 2013\n"
+               "REM DISCID 123456789\n"
+               "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+               "PERFORMER \"Artist\"\n"
+               "TITLE \"Album\"\n"
+               "FILE \"en.wav\" WAVE\n"
+               "  TRACK 01 AUDIO\n"
+               "    TITLE \"Song01\"\n"
+               "    INDEX 01 00:00:00\n"
+               "  TRACK 02 AUDIO\n"
+               "    TITLE \"Song02\"\n"
+               "    INDEX 01 03:39:10\n"
+               "  TRACK 03 AUDIO\n"
+               "    TITLE \"Song03\"\n"
+               "    INDEX 01 07:25:42\n"
+               "  TRACK 04 AUDIO\n"
+               "    TITLE \"Song04\"\n"
+               "    INDEX 01 12:04:72\n"
             << "%a/%y - %A/%n - %t"
             << "Artist/2013 - Album/01 - Song01.wav";
 
     QTest::newRow("1.2")
-            <<  "REM GENRE \"Genre\"\n"
-                "REM DATE 2013\n"
-                "REM DISCID 123456789\n"
-                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
-                "PERFORMER \"Artist\"\n"
-                "TITLE \"Album\"\n"
-                "FILE \"en.wav\" WAVE\n"
-                "  TRACK 01 AUDIO\n"
-                "    TITLE \"Song01\"\n"
-                "    INDEX 01 00:00:00\n"
-                "  TRACK 02 AUDIO\n"
-                "    TITLE \"Song02\"\n"
-                "    INDEX 01 03:39:10\n"
-                "  TRACK 03 AUDIO\n"
-                "    TITLE \"Song03\"\n"
-                "    INDEX 01 07:25:42\n"
-                "  TRACK 04 AUDIO\n"
-                "    TITLE \"Song04\"\n"
-                "    INDEX 01 12:04:72\n"
+            << "REM GENRE \"Genre\"\n"
+               "REM DATE 2013\n"
+               "REM DISCID 123456789\n"
+               "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+               "PERFORMER \"Artist\"\n"
+               "TITLE \"Album\"\n"
+               "FILE \"en.wav\" WAVE\n"
+               "  TRACK 01 AUDIO\n"
+               "    TITLE \"Song01\"\n"
+               "    INDEX 01 00:00:00\n"
+               "  TRACK 02 AUDIO\n"
+               "    TITLE \"Song02\"\n"
+               "    INDEX 01 03:39:10\n"
+               "  TRACK 03 AUDIO\n"
+               "    TITLE \"Song03\"\n"
+               "    INDEX 01 07:25:42\n"
+               "  TRACK 04 AUDIO\n"
+               "    TITLE \"Song04\"\n"
+               "    INDEX 01 12:04:72\n"
 
             << "N/n/A/a/t/y/g"
             << "N/n/A/a/t/y/g.wav";
 
     QTest::newRow("1.3")
-            <<  "REM GENRE \"Genre\"\n"
-                "REM DATE 2013\n"
-                "REM DISCID 123456789\n"
-                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
-                "PERFORMER \"Artist\"\n"
-                "TITLE \"Album\"\n"
-                "FILE \"en.wav\" WAVE\n"
-                "  TRACK 01 AUDIO\n"
-                "    TITLE \"Song01\"\n"
-                "    INDEX 01 00:00:00\n"
-                "  TRACK 02 AUDIO\n"
-                "    TITLE \"Song02\"\n"
-                "    INDEX 01 03:39:10\n"
-                "  TRACK 03 AUDIO\n"
-                "    TITLE \"Song03\"\n"
-                "    INDEX 01 07:25:42\n"
-                "  TRACK 04 AUDIO\n"
-                "    TITLE \"Song04\"\n"
-                "    INDEX 01 12:04:72\n"
+            << "REM GENRE \"Genre\"\n"
+               "REM DATE 2013\n"
+               "REM DISCID 123456789\n"
+               "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+               "PERFORMER \"Artist\"\n"
+               "TITLE \"Album\"\n"
+               "FILE \"en.wav\" WAVE\n"
+               "  TRACK 01 AUDIO\n"
+               "    TITLE \"Song01\"\n"
+               "    INDEX 01 00:00:00\n"
+               "  TRACK 02 AUDIO\n"
+               "    TITLE \"Song02\"\n"
+               "    INDEX 01 03:39:10\n"
+               "  TRACK 03 AUDIO\n"
+               "    TITLE \"Song03\"\n"
+               "    INDEX 01 07:25:42\n"
+               "  TRACK 04 AUDIO\n"
+               "    TITLE \"Song04\"\n"
+               "    INDEX 01 12:04:72\n"
 
             << "N/n/A/a/t/y/g"
             << "N/n/A/a/t/y/g.wav";
 
     QTest::newRow("1.4")
-            <<  "REM GENRE \"Genre\"\n"
-                "REM DATE 2013\n"
-                "REM DISCID 123456789\n"
-                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
-                "PERFORMER \"Artist\"\n"
-                "TITLE \"Album\"\n"
-                "FILE \"en.wav\" WAVE\n"
-                "  TRACK 01 AUDIO\n"
-                "    TITLE \"Song01\"\n"
-                "    INDEX 01 00:00:00\n"
-                "  TRACK 02 AUDIO\n"
-                "    TITLE \"Song02\"\n"
-                "    INDEX 01 03:39:10\n"
-                "  TRACK 03 AUDIO\n"
-                "    TITLE \"Song03\"\n"
-                "    INDEX 01 07:25:42\n"
-                "  TRACK 04 AUDIO\n"
-                "    TITLE \"Song04\"\n"
-                "    INDEX 01 12:04:72\n"
+            << "REM GENRE \"Genre\"\n"
+               "REM DATE 2013\n"
+               "REM DISCID 123456789\n"
+               "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+               "PERFORMER \"Artist\"\n"
+               "TITLE \"Album\"\n"
+               "FILE \"en.wav\" WAVE\n"
+               "  TRACK 01 AUDIO\n"
+               "    TITLE \"Song01\"\n"
+               "    INDEX 01 00:00:00\n"
+               "  TRACK 02 AUDIO\n"
+               "    TITLE \"Song02\"\n"
+               "    INDEX 01 03:39:10\n"
+               "  TRACK 03 AUDIO\n"
+               "    TITLE \"Song03\"\n"
+               "    INDEX 01 07:25:42\n"
+               "  TRACK 04 AUDIO\n"
+               "    TITLE \"Song04\"\n"
+               "    INDEX 01 12:04:72\n"
 
             << "/%%/%Q/%N/%n/%A/%a/%t/%y/%g/%%"
             << "/%/%Q/04/01/Album/Artist/Song01/2013/Genre/%.wav";
 
-
     QTest::newRow("1.5")
-            <<  "REM GENRE \"Genre\"\n"
-                "REM DATE 2013\n"
-                "REM DISCID 123456789\n"
-                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
-                "PERFORMER \"Artist\"\n"
-                "TITLE \"Album\"\n"
-                "FILE \"en.wav\" WAVE\n"
-                "  TRACK 01 AUDIO\n"
-                "    TITLE \"Song01\"\n"
-                "    INDEX 01 00:00:00\n"
-                "  TRACK 02 AUDIO\n"
-                "    TITLE \"Song02\"\n"
-                "    INDEX 01 03:39:10\n"
-                "  TRACK 03 AUDIO\n"
-                "    TITLE \"Song03\"\n"
-                "    INDEX 01 07:25:42\n"
-                "  TRACK 04 AUDIO\n"
-                "    TITLE \"Song04\"\n"
-                "    INDEX 01 12:04:72\n"
+            << "REM GENRE \"Genre\"\n"
+               "REM DATE 2013\n"
+               "REM DISCID 123456789\n"
+               "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+               "PERFORMER \"Artist\"\n"
+               "TITLE \"Album\"\n"
+               "FILE \"en.wav\" WAVE\n"
+               "  TRACK 01 AUDIO\n"
+               "    TITLE \"Song01\"\n"
+               "    INDEX 01 00:00:00\n"
+               "  TRACK 02 AUDIO\n"
+               "    TITLE \"Song02\"\n"
+               "    INDEX 01 03:39:10\n"
+               "  TRACK 03 AUDIO\n"
+               "    TITLE \"Song03\"\n"
+               "    INDEX 01 07:25:42\n"
+               "  TRACK 04 AUDIO\n"
+               "    TITLE \"Song04\"\n"
+               "    INDEX 01 12:04:72\n"
 
             << "%%Q/%%N/%%n/%%A/%%a/%%t/%%y/%%g"
             << "%Q/%N/%n/%A/%a/%t/%y/%g.wav";
 
     QTest::newRow("1.6")
-            <<  "REM GENRE \"Genre\"\n"
-                "REM DATE 2013\n"
-                "REM DISCID 123456789\n"
-                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
-                "PERFORMER \"Artist\"\n"
-                "TITLE \"Album\"\n"
-                "FILE \"en.wav\" WAVE\n"
-                "  TRACK 01 AUDIO\n"
-                "    TITLE \"Song01\"\n"
-                "    INDEX 01 00:00:00\n"
-                "  TRACK 02 AUDIO\n"
-                "    TITLE \"Song02\"\n"
-                "    INDEX 01 03:39:10\n"
-                "  TRACK 03 AUDIO\n"
-                "    TITLE \"Song03\"\n"
-                "    INDEX 01 07:25:42\n"
-                "  TRACK 04 AUDIO\n"
-                "    TITLE \"Song04\"\n"
-                "    INDEX 01 12:04:72\n"
+            << "REM GENRE \"Genre\"\n"
+               "REM DATE 2013\n"
+               "REM DISCID 123456789\n"
+               "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+               "PERFORMER \"Artist\"\n"
+               "TITLE \"Album\"\n"
+               "FILE \"en.wav\" WAVE\n"
+               "  TRACK 01 AUDIO\n"
+               "    TITLE \"Song01\"\n"
+               "    INDEX 01 00:00:00\n"
+               "  TRACK 02 AUDIO\n"
+               "    TITLE \"Song02\"\n"
+               "    INDEX 01 03:39:10\n"
+               "  TRACK 03 AUDIO\n"
+               "    TITLE \"Song03\"\n"
+               "    INDEX 01 07:25:42\n"
+               "  TRACK 04 AUDIO\n"
+               "    TITLE \"Song04\"\n"
+               "    INDEX 01 12:04:72\n"
 
             << "%%%Q/%%%N/%%%n/%%%A/%%%a/%%%t/%%%y/%%%g/%%%"
             << "%%Q/%04/%01/%Album/%Artist/%Song01/%2013/%Genre/%%.wav";
 
     QTest::newRow("2.1")
-            <<  "REM DATE 2013\n"
-                "REM DISCID 123456789\n"
-                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
-                "PERFORMER \"Artist\"\n"
-                "FILE \"en.wav\" WAVE\n"
-                "  TRACK 01 AUDIO\n"
-                "    TITLE \"Song01\"\n"
-                "    INDEX 01 00:00:00\n"
-                "  TRACK 02 AUDIO\n"
-                "    TITLE \"Song02\"\n"
-                "    INDEX 01 03:39:10\n"
-                "  TRACK 03 AUDIO\n"
-                "    TITLE \"Song03\"\n"
-                "    INDEX 01 07:25:42\n"
-                "  TRACK 04 AUDIO\n"
-                "    TITLE \"Song04\"\n"
-                "    INDEX 01 12:04:72\n"
+            << "REM DATE 2013\n"
+               "REM DISCID 123456789\n"
+               "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+               "PERFORMER \"Artist\"\n"
+               "FILE \"en.wav\" WAVE\n"
+               "  TRACK 01 AUDIO\n"
+               "    TITLE \"Song01\"\n"
+               "    INDEX 01 00:00:00\n"
+               "  TRACK 02 AUDIO\n"
+               "    TITLE \"Song02\"\n"
+               "    INDEX 01 03:39:10\n"
+               "  TRACK 03 AUDIO\n"
+               "    TITLE \"Song03\"\n"
+               "    INDEX 01 07:25:42\n"
+               "  TRACK 04 AUDIO\n"
+               "    TITLE \"Song04\"\n"
+               "    INDEX 01 12:04:72\n"
 
             << "{}/{Text}/{%n}/{%n Text}/{%A}/{%A Text}"
             << "{}/{Text}/01/01 Text//.wav";
 
-
     QTest::newRow("2.2")
-            <<  "REM DATE 2013\n"
-                "REM DISCID 123456789\n"
-                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
-                "PERFORMER \"Artist\"\n"
-                "FILE \"en.wav\" WAVE\n"
-                "  TRACK 01 AUDIO\n"
-                "    TITLE \"Song01\"\n"
-                "    INDEX 01 00:00:00\n"
-                "  TRACK 02 AUDIO\n"
-                "    TITLE \"Song02\"\n"
-                "    INDEX 01 03:39:10\n"
-                "  TRACK 03 AUDIO\n"
-                "    TITLE \"Song03\"\n"
-                "    INDEX 01 07:25:42\n"
-                "  TRACK 04 AUDIO\n"
-                "    TITLE \"Song04\"\n"
-                "    INDEX 01 12:04:72\n"
+            << "REM DATE 2013\n"
+               "REM DISCID 123456789\n"
+               "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+               "PERFORMER \"Artist\"\n"
+               "FILE \"en.wav\" WAVE\n"
+               "  TRACK 01 AUDIO\n"
+               "    TITLE \"Song01\"\n"
+               "    INDEX 01 00:00:00\n"
+               "  TRACK 02 AUDIO\n"
+               "    TITLE \"Song02\"\n"
+               "    INDEX 01 03:39:10\n"
+               "  TRACK 03 AUDIO\n"
+               "    TITLE \"Song03\"\n"
+               "    INDEX 01 07:25:42\n"
+               "  TRACK 04 AUDIO\n"
+               "    TITLE \"Song04\"\n"
+               "    INDEX 01 12:04:72\n"
 
             << "Test{Text/{%n}/{%n Text}/{%A}/{%A Text}"
             << "Test{Text/01/01 Text//.wav";
 
-
     QTest::newRow("2.3")
-            <<  "REM DATE 2013\n"
-                "REM DISCID 123456789\n"
-                "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
-                "PERFORMER \"Artist\"\n"
-                "FILE \"en.wav\" WAVE\n"
-                "  TRACK 01 AUDIO\n"
-                "    TITLE \"Song01\"\n"
-                "    INDEX 01 00:00:00\n"
-                "  TRACK 02 AUDIO\n"
-                "    TITLE \"Song02\"\n"
-                "    INDEX 01 03:39:10\n"
-                "  TRACK 03 AUDIO\n"
-                "    TITLE \"Song03\"\n"
-                "    INDEX 01 07:25:42\n"
-                "  TRACK 04 AUDIO\n"
-                "    TITLE \"Song04\"\n"
-                "    INDEX 01 12:04:72\n"
+            << "REM DATE 2013\n"
+               "REM DISCID 123456789\n"
+               "REM COMMENT \"ExactAudioCopy v0.99pb4\"\n"
+               "PERFORMER \"Artist\"\n"
+               "FILE \"en.wav\" WAVE\n"
+               "  TRACK 01 AUDIO\n"
+               "    TITLE \"Song01\"\n"
+               "    INDEX 01 00:00:00\n"
+               "  TRACK 02 AUDIO\n"
+               "    TITLE \"Song02\"\n"
+               "    INDEX 01 03:39:10\n"
+               "  TRACK 03 AUDIO\n"
+               "    TITLE \"Song03\"\n"
+               "    INDEX 01 07:25:42\n"
+               "  TRACK 04 AUDIO\n"
+               "    TITLE \"Song04\"\n"
+               "    INDEX 01 12:04:72\n"
 
             << "Text}/{%n}/{%n Text}/{%A}/{%A Text}"
             << "Text}/01/01 Text//.wav";
 
     QTest::newRow("3.1")
-            <<  R"( REM GENRE Genre
+            << R"( REM GENRE Genre
                     REM DATE 2013
                     REM DISCID 123456789
                     REM COMMENT "ExactAudioCopy v0.99pb4"
@@ -772,12 +735,11 @@ void TestFlacon::testTrackResultFileName_data()
                     TRACK 04 AUDIO
                         TITLE "Song04"
                         INDEX 01 12:04:72)"
-             << "%a/%A/%n - %t"
-             << "Artist/_/01 - Song01.wav";
-
+            << "%a/%A/%n - %t"
+            << "Artist/_/01 - Song01.wav";
 
     QTest::newRow("3.2")
-            <<  R"( REM GENRE Genre
+            << R"( REM GENRE Genre
                     REM DATE 2013
                     REM DISCID 123456789
                     REM COMMENT "ExactAudioCopy v0.99pb4"
@@ -796,12 +758,11 @@ void TestFlacon::testTrackResultFileName_data()
                     TRACK 04 AUDIO
                         TITLE "Song04"
                         INDEX 01 12:04:72)"
-             << "%a/%A/%n - %t"
-             << "Artist/__/01 - Song01.wav";
-
+            << "%a/%A/%n - %t"
+            << "Artist/__/01 - Song01.wav";
 
     QTest::newRow("3.3")
-            <<  R"( REM GENRE Genre
+            << R"( REM GENRE Genre
                     REM DATE 2013
                     REM DISCID 123456789
                     REM COMMENT "ExactAudioCopy v0.99pb4"
@@ -820,12 +781,11 @@ void TestFlacon::testTrackResultFileName_data()
                     TRACK 04 AUDIO
                         TITLE "Song04"
                         INDEX 01 12:04:72)"
-             << "%a%A/%n - %t"
-             << "___/01 - Song01.wav";
-
+            << "%a%A/%n - %t"
+            << "___/01 - Song01.wav";
 
     QTest::newRow("4.1")
-            <<  R"( REM GENRE Genre
+            << R"( REM GENRE Genre
                     REM DATE 2013
                     REM DISCID 123456789
                     REM COMMENT "ExactAudioCopy v0.99pb4"
@@ -844,12 +804,11 @@ void TestFlacon::testTrackResultFileName_data()
                     TRACK 04 AUDIO
                         TITLE "Song04"
                         INDEX 01 12:04:72)"
-             << "%a_%A/%n - %t"
-             << "Автор_Альбом/01 - Песнь.wav";
-
+            << "%a_%A/%n - %t"
+            << "Автор_Альбом/01 - Песнь.wav";
 
     QTest::newRow("5.1")
-            <<  R"(
+            << R"(
                 REM GENRE "Genre"
                 REM DATE 2013
                 REM DISCID 123456789
@@ -870,14 +829,13 @@ void TestFlacon::testTrackResultFileName_data()
                     TITLE "Song04"
                     INDEX 01 12:04:72
                 )"
-            <<  "%A%a%t"
-            <<  "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
-                "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
-                "123456789_123456789_123456789_123456789_123456789_.wav";
-
+            << "%A%a%t"
+            << "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+               "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+               "123456789_123456789_123456789_123456789_123456789_.wav";
 
     QTest::newRow("5.2")
-            <<  R"(
+            << R"(
                 REM GENRE "Genre"
                 REM DATE 2013
                 REM DISCID 123456789
@@ -898,14 +856,13 @@ void TestFlacon::testTrackResultFileName_data()
                     TITLE "Song04"
                     INDEX 01 12:04:72
                 )"
-             << "%y - %n - [%a] - [%A]  - %t/%n"
-             << "2013 - 01 - [artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_] - "
-                "[album----_album----_album----_album----_album----_album----_album----_album----_album----_album----_]  - "
-                "track----_track----_track--/01.wav";
-
+            << "%y - %n - [%a] - [%A]  - %t/%n"
+            << "2013 - 01 - [artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_artist---_] - "
+               "[album----_album----_album----_album----_album----_album----_album----_album----_album----_album----_]  - "
+               "track----_track----_track--/01.wav";
 
     QTest::newRow("5.3")
-            <<  R"(
+            << R"(
                 REM GENRE "Genre"
                 REM DATE 2013
                 REM DISCID 123456789
@@ -934,9 +891,8 @@ void TestFlacon::testTrackResultFileName_data()
                "other long artis name] - [Long album title, long album title, long album title]  - Long first track"
                " tile, long first track tile, long first track .wav";
 
-
     QTest::newRow("5.4 UTF-8")
-            <<  R"(
+            << R"(
                 REM GENRE "Genre"
                 REM DATE 2013
                 REM DISCID 123456789
@@ -957,14 +913,13 @@ void TestFlacon::testTrackResultFileName_data()
                     TITLE "Song04"
                     INDEX 01 12:04:72
                 )"
-            <<  "%A%a%t"
-            <<  "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
-                "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
-                "123456789_123456789_123456789_123456789_Русск.wav";
-
+            << "%A%a%t"
+            << "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+               "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+               "123456789_123456789_123456789_123456789_Русск.wav";
 
     QTest::newRow("5.5 UTF-8")
-            <<  R"(
+            << R"(
                 REM GENRE "Genre"
                 REM DATE 2013
                 REM DISCID 123456789
@@ -985,14 +940,13 @@ void TestFlacon::testTrackResultFileName_data()
                     TITLE "Song04"
                     INDEX 01 12:04:72
                 )"
-            <<  "%A%a%t"
-            <<  "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
-                "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
-                "123456789_123456789_123456789_123456789_1Русс.wav";
-
+            << "%A%a%t"
+            << "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+               "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+               "123456789_123456789_123456789_123456789_1Русс.wav";
 
     QTest::newRow("5.6 UTF-8")
-            <<  R"(
+            << R"(
                 REM GENRE "Genre"
                 REM DATE 2013
                 REM DISCID 123456789
@@ -1013,13 +967,11 @@ void TestFlacon::testTrackResultFileName_data()
                     TITLE "Song04"
                     INDEX 01 12:04:72
                 )"
-            <<  "%A%a%t"
-            <<  "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
-                "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
-                "123456789_123456789_123456789_123456789_12Русс.wav";
-
+            << "%A%a%t"
+            << "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+               "123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_"
+               "123456789_123456789_123456789_123456789_12Русс.wav";
 }
-
 
 /************************************************
 
@@ -1035,8 +987,6 @@ void TestFlacon::testTrackResultFilePath()
     Settings::i()->currentProfile().setOutFileDir(outDir);
     Settings::i()->currentProfile().setOutFilePattern(pattern);
 
-
-
     if (!cueFile.isEmpty())
         QFile::copy(mDataDir + "simple.cue", cueFile);
     else
@@ -1045,18 +995,13 @@ void TestFlacon::testTrackResultFilePath()
     Disc *disc = loadFromCue(cueFile);
 
     QString result = disc->track(0)->resultFilePath();
-    if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath())
-    {
-        QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   CueFile: %4").arg(
-                    QFileInfo(result).absoluteFilePath(), result,
-                    expected,
-                    cueFile);
+    if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath()) {
+        QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   CueFile: %4").arg(QFileInfo(result).absoluteFilePath(), result, expected, cueFile);
         QFAIL(msg.toLocal8Bit());
     }
     //QCOMPARE(result, expected);
     disc->deleteLater();
 }
-
 
 /************************************************
 
@@ -1064,11 +1009,10 @@ void TestFlacon::testTrackResultFilePath()
 void TestFlacon::testTrackResultFilePath_data()
 {
     //QTest::addColumn<QString>("cueFile");
-    QTest::addColumn<QString>("outDir",   nullptr);
-    QTest::addColumn<QString>("pattern",  nullptr);
+    QTest::addColumn<QString>("outDir", nullptr);
+    QTest::addColumn<QString>("pattern", nullptr);
     QTest::addColumn<QString>("expected", nullptr);
-    QTest::addColumn<QString>("cueFile",  nullptr);
-
+    QTest::addColumn<QString>("cueFile", nullptr);
 
     QTest::newRow("1: /home/user/music")
             << "/home/user/music"
@@ -1076,13 +1020,11 @@ void TestFlacon::testTrackResultFilePath_data()
             << "/home/user/music/Artist/2013 - Album/01 - Song01.wav"
             << "";
 
-
     QTest::newRow("2: ~/music")
             << "~/music"
             << "%a/%y - %A/%n - %t"
             << QDir::homePath() + "/music/Artist/2013 - Album/01 - Song01.wav"
             << "";
-
 
     QTest::newRow("3: /music")
             << "/music"
@@ -1090,13 +1032,11 @@ void TestFlacon::testTrackResultFilePath_data()
             << "/music/Artist/2013 - Album/01 - Song01.wav"
             << "";
 
-
     QTest::newRow("4: empty")
             << ""
             << "%a/%y - %A/%n - %t"
             << mDataDir + "/Artist/2013 - Album/01 - Song01.wav"
             << "";
-
 
     QTest::newRow("5: dot (.) with CdAudioFile")
             << "."
@@ -1104,22 +1044,18 @@ void TestFlacon::testTrackResultFilePath_data()
             << dir("5: dot (.) with CdAudioFile") + "/Artist/2013 - Album/01 - Song01.wav"
             << dir("5: dot (.) with CdAudioFile") + "/simple.cue";
 
-
     QTest::newRow("6. empty with CdAudioFile")
             << ""
             << "%a/%y - %A/%n - %t"
             << dir("6. empty with CdAudioFile") + "/Artist/2013 - Album/01 - Song01.wav"
             << dir("6. empty with CdAudioFile") + "/simple.cue";
 
-
     QTest::newRow("7: ~")
             << "~"
             << "%a/%y - %A/%n - %t"
             << QDir::homePath() + "/Artist/2013 - Album/01 - Song01.wav"
             << "";
-
 }
-
 
 /************************************************
 
@@ -1161,29 +1097,31 @@ void TestFlacon::testTrackSetCodepages()
     //resultSl << "ALBUM:" << tracks.album() << "\n";
     result << "DISCID:" << disc->discId() << "\n";
 
-    for(int i=0; i<disc->count(); ++i)
-    {
+    for (int i = 0; i < disc->count(); ++i) {
         Track *track = disc->track(i);
         result << "Track " << (i + 1) << "\n";
-        result << "  " << "INDEX:"    << i                  << "\n";
-        result << "  " << "TRACKNUM:" << track->trackNum()  << "\n";
-        result << "  " << "ALBUM:"    << track->album()     << "\n";
-        result << "  " << "TITLE:"    << track->title()     << "\n";
-        result << "  " << "ARTIST:"   << track->artist()    << "\n";
-        result << "  " << "GENRE:"    << track->genre()     << "\n";
-        result << "  " << "YEAR:"     << track->date()      << "\n";
+        result << "  "
+               << "INDEX:" << i << "\n";
+        result << "  "
+               << "TRACKNUM:" << track->trackNum() << "\n";
+        result << "  "
+               << "ALBUM:" << track->album() << "\n";
+        result << "  "
+               << "TITLE:" << track->title() << "\n";
+        result << "  "
+               << "ARTIST:" << track->artist() << "\n";
+        result << "  "
+               << "GENRE:" << track->genre() << "\n";
+        result << "  "
+               << "YEAR:" << track->date() << "\n";
     }
 
     // Result *************************
 
-
-
-
     writeFile(result, resultFile);
     writeFile(expected, expectedFile);
 
-    if (result.join("") != expected.join(""))
-    {
+    if (result.join("") != expected.join("")) {
         QString msg = "The result is different from the expected. Use the following command for details:";
         QString cmd = QString("diff %1 %2").arg(expectedFile, resultFile);
         QFAIL((msg + "\n    " + cmd).toLocal8Bit());
@@ -1192,72 +1130,73 @@ void TestFlacon::testTrackSetCodepages()
     disc->deleteLater();
 }
 
-
 /************************************************
 
  ************************************************/
 void TestFlacon::testTrackSetCodepages_data()
 {
-    QTest::addColumn<QString>("cueFile",        nullptr);
-    QTest::addColumn<QString>("sampleFile",     nullptr);
+    QTest::addColumn<QString>("cueFile", nullptr);
+    QTest::addColumn<QString>("sampleFile", nullptr);
     QTest::addColumn<QString>("codepageBefore", nullptr);
-    QTest::addColumn<QString>("codepageAfter",  nullptr);
-
+    QTest::addColumn<QString>("codepageAfter", nullptr);
 
     QTest::newRow("01 TrackSet_UTF-8")
-            << "ru_utf8.cue"    << "ru.result"  << "Big5"   << "UTF-8";
+            << "ru_utf8.cue"
+            << "ru.result"
+            << "Big5"
+            << "UTF-8";
 
     QTest::newRow("02 TrackSet_UTF-8_BOM")
-            << "ru_utf8_BOM.cue"<< "ru.result"  << "Big5"   << "";
+            << "ru_utf8_BOM.cue"
+            << "ru.result"
+            << "Big5"
+            << "";
 
     QTest::newRow("03 TrackSet_CP1251")
-            << "ru_cp1251.cue"  << "ru.result"  << "UTF-8"  << "Windows-1251";
+            << "ru_cp1251.cue"
+            << "ru.result"
+            << "UTF-8"
+            << "Windows-1251";
 }
-
-
-
-
 
 /************************************************
 
  ************************************************/
 void TestFlacon::testOutFormatGainArgs()
 {
-    QFETCH(QString,  formatId);
+    QFETCH(QString, formatId);
     QFETCH(GainType, gainType);
-    QFETCH(QString,  expected);
+    QFETCH(QString, expected);
 
-    Settings::i()->setValue("Programs/metaflac",   "/opt/metaflac");
-    Settings::i()->setValue("Programs/mp3gain",    "/opt/mp3gain");
+    Settings::i()->setValue("Programs/metaflac", "/opt/metaflac");
+    Settings::i()->setValue("Programs/mp3gain", "/opt/mp3gain");
     Settings::i()->setValue("Programs/vorbisgain", "/opt/vorbisgain");
-    Settings::i()->setValue("Programs/wvgain",     "/opt/wvgain");
+    Settings::i()->setValue("Programs/wvgain", "/opt/wvgain");
 
     OutFormat *format = OutFormat::formatForId(formatId);
     if (!format)
         QFAIL(QString("Unknown format \"%1\"").arg(formatId).toLocal8Bit());
 
-    QStringList args = format->gainArgs(QStringList() << "OutFile_01.wav" << "OutFile_02.wav" << "OutFile_03.wav", gainType);
+    QStringList args = format->gainArgs(QStringList() << "OutFile_01.wav"
+                                                      << "OutFile_02.wav"
+                                                      << "OutFile_03.wav",
+                                        gainType);
 
     QString result = args.join(" ");
-    if (result != expected)
-    {
-        QString msg = QString("Compared values are not the same\n   Format   %1, gaintype: %2\n   Actual:   %3\n   Expected: %4").arg(
-                    formatId, gainTypeToString(gainType),
-                    result,
-                    expected);
+    if (result != expected) {
+        QString msg = QString("Compared values are not the same\n   Format   %1, gaintype: %2\n   Actual:   %3\n   Expected: %4").arg(formatId, gainTypeToString(gainType), result, expected);
         QFAIL(msg.toLocal8Bit());
     }
 }
-
 
 /************************************************
 
  ************************************************/
 void TestFlacon::testOutFormatGainArgs_data()
 {
-    QTest::addColumn<QString>("formatId",      nullptr);
+    QTest::addColumn<QString>("formatId", nullptr);
     QTest::addColumn<GainType>("gainType", nullptr);
-    QTest::addColumn<QString>("expected",      nullptr);
+    QTest::addColumn<QString>("expected", nullptr);
 
     //*******************************************
     // FLAC
@@ -1268,15 +1207,12 @@ void TestFlacon::testOutFormatGainArgs_data()
             << "/opt/metaflac --add-replay-gain "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
-
     //*******************************************
     QTest::newRow("Flac Album")
             << "FLAC"
             << GainType::Album
             << "/opt/metaflac --add-replay-gain "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
-
-
 
     //*******************************************
     // MP3
@@ -1287,14 +1223,12 @@ void TestFlacon::testOutFormatGainArgs_data()
             << "/opt/mp3gain -a -c "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
-
     //*******************************************
     QTest::newRow("Mp3 Track")
             << "MP3"
             << GainType::Album
             << "/opt/mp3gain -a -c "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
-
 
     //*******************************************
     // Ogg
@@ -1311,8 +1245,6 @@ void TestFlacon::testOutFormatGainArgs_data()
             << GainType::Album
             << "/opt/vorbisgain --album "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
-
-
 
     //*******************************************
     // WavPack
@@ -1333,7 +1265,6 @@ void TestFlacon::testOutFormatGainArgs_data()
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -1343,15 +1274,13 @@ void TestFlacon::testCueIndex()
     QFETCH(QString, expected);
 
     bool cdQuality = string.toUpper().startsWith("CD");
-    string = string.mid(2).trimmed();
+    string         = string.mid(2).trimmed();
 
-
-    QString id1Str = string.section("-", 0, 0).trimmed();
+    QString  id1Str = string.section("-", 0, 0).trimmed();
     CueIndex idx1(id1Str);
 
     QString id2Str = string.section("-", 1, 1).trimmed();
-    if (!id2Str.isEmpty())
-    {
+    if (!id2Str.isEmpty()) {
         CueIndex idx2(id2Str);
         idx1 = idx1 - idx2;
     }
@@ -1360,7 +1289,6 @@ void TestFlacon::testCueIndex()
     QCOMPARE(result, expected);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -1368,45 +1296,45 @@ void TestFlacon::testCueIndex_data()
 {
     QTest::addColumn<QString>("expected", nullptr);
 
+    QTest::newRow("CD") << "00:00:00";
+    QTest::newRow("HI") << "00:00.000";
 
-    QTest::newRow("CD")             << "00:00:00";
-    QTest::newRow("HI")             << "00:00.000";
+    QTest::newRow("CD 00:00:00") << "00:00:00";
+    QTest::newRow("HI 00:00:00") << "00:00.000";
 
-    QTest::newRow("CD 00:00:00")    << "00:00:00";
-    QTest::newRow("HI 00:00:00")    << "00:00.000";
+    QTest::newRow("CD 00:00:000") << "00:00:00";
+    QTest::newRow("HI 00:00:000") << "00:00.000";
+    QTest::newRow("HI 00:00.000") << "00:00.000";
 
-    QTest::newRow("CD 00:00:000")   << "00:00:00";
-    QTest::newRow("HI 00:00:000")   << "00:00.000";
-    QTest::newRow("HI 00:00.000")   << "00:00.000";
+    QTest::newRow("CD 1:02:3") << "01:02:30";
+    QTest::newRow("HI 1:02:3") << "01:02.300";
+    QTest::newRow("HI 1:02.3") << "01:02.300";
 
-    QTest::newRow("CD 1:02:3")      << "01:02:30";
-    QTest::newRow("HI 1:02:3")      << "01:02.300";
-    QTest::newRow("HI 1:02.3")      << "01:02.300";
+    QTest::newRow("CD 1:02:03") << "01:02:03";
+    QTest::newRow("HI 1:02:03") << "01:02.030";
+    QTest::newRow("HI 1:02.03") << "01:02.030";
 
-    QTest::newRow("CD 1:02:03")     << "01:02:03";
-    QTest::newRow("HI 1:02:03")     << "01:02.030";
-    QTest::newRow("HI 1:02.03")     << "01:02.030";
+    QTest::newRow("HI 1:02:030") << "01:02.030";
+    QTest::newRow("HI 1:02.030") << "01:02.030";
 
-    QTest::newRow("HI 1:02:030")    << "01:02.030";
-    QTest::newRow("HI 1:02.030")    << "01:02.030";
+    QTest::newRow("CD 1:02:74") << "01:02:74";
+    QTest::newRow("HI 1:02:999") << "01:02.999";
+    QTest::newRow("HI 1:02.999") << "01:02.999";
 
-    QTest::newRow("CD 1:02:74")     << "01:02:74";
-    QTest::newRow("HI 1:02:999")    << "01:02.999";
-    QTest::newRow("HI 1:02.999")    << "01:02.999";
+    QTest::newRow("CD 40:50:74 - 10:20:30") << "30:30:44";
+    QTest::newRow("CD 40:20:24 - 10:30:30") << "29:49:69";
 
-    QTest::newRow("CD 40:50:74 - 10:20:30")    << "30:30:44";
-    QTest::newRow("CD 40:20:24 - 10:30:30")    << "29:49:69";
-
-    QTest::newRow("HI 40:50:740 - 10:20:300")  << "30:30.440";
-    QTest::newRow("HI 40:20:240 - 10:30:300")  << "29:49.940";
+    QTest::newRow("HI 40:50:740 - 10:20:300") << "30:30.440";
+    QTest::newRow("HI 40:20:240 - 10:30:300") << "29:49.940";
 }
 
-
-class Test_DiscPipeline: public DiscPipeline {
+class Test_DiscPipeline : public DiscPipeline
+{
 public:
     static int calcQuality(int input, int preferences, int formatMax)
-            { return DiscPipeline::calcQuality(input, preferences, formatMax) ;}
-
+    {
+        return DiscPipeline::calcQuality(input, preferences, formatMax);
+    }
 };
 
 /************************************************
@@ -1424,67 +1352,64 @@ void TestFlacon::testDiscPipelineCalcQuality()
     QCOMPARE(res, expected);
 }
 
-
 /************************************************
  *
  ************************************************/
 void TestFlacon::testDiscPipelineCalcQuality_data()
 {
     QTest::addColumn<int>("preferences", nullptr);
-    QTest::addColumn<int>("maxFormat",   nullptr);
-    QTest::addColumn<int>("input",       nullptr);
-    QTest::addColumn<int>("expected",    nullptr);
+    QTest::addColumn<int>("maxFormat", nullptr);
+    QTest::addColumn<int>("input", nullptr);
+    QTest::addColumn<int>("expected", nullptr);
 
     //                      preferences maxFormat   input   expected
-    QTest::newRow("Bits 01") << 0       << 16       << 16   <<  0;
-    QTest::newRow("Bits 02") << 0       << 16       << 24   << 16;
-    QTest::newRow("Bits 03") << 0       << 16       << 32   << 16;
+    QTest::newRow("Bits 01") << 0 << 16 << 16 << 0;
+    QTest::newRow("Bits 02") << 0 << 16 << 24 << 16;
+    QTest::newRow("Bits 03") << 0 << 16 << 32 << 16;
 
-    QTest::newRow("Bits 04") << 16      << 16       << 16   <<  0;
-    QTest::newRow("Bits 05") << 16      << 16       << 24   << 16;
-    QTest::newRow("Bits 06") << 16      << 16       << 32   << 16;
+    QTest::newRow("Bits 04") << 16 << 16 << 16 << 0;
+    QTest::newRow("Bits 05") << 16 << 16 << 24 << 16;
+    QTest::newRow("Bits 06") << 16 << 16 << 32 << 16;
 
-    QTest::newRow("Bits 07") << 24      << 16       << 16   <<  0;
-    QTest::newRow("Bits 08") << 24      << 16       << 24   << 16;
-    QTest::newRow("Bits 09") << 24      << 16       << 32   << 16;
+    QTest::newRow("Bits 07") << 24 << 16 << 16 << 0;
+    QTest::newRow("Bits 08") << 24 << 16 << 24 << 16;
+    QTest::newRow("Bits 09") << 24 << 16 << 32 << 16;
 
-    QTest::newRow("Bits 10") << 32      << 16       << 16   <<  0;
-    QTest::newRow("Bits 11") << 32      << 16       << 24   << 16;
-    QTest::newRow("Bits 12") << 32      << 16       << 32   << 16;
+    QTest::newRow("Bits 10") << 32 << 16 << 16 << 0;
+    QTest::newRow("Bits 11") << 32 << 16 << 24 << 16;
+    QTest::newRow("Bits 12") << 32 << 16 << 32 << 16;
 
+    QTest::newRow("Bits 13") << 0 << 24 << 16 << 0;
+    QTest::newRow("Bits 14") << 0 << 24 << 24 << 0;
+    QTest::newRow("Bits 15") << 0 << 24 << 32 << 24;
 
-    QTest::newRow("Bits 13") << 0       << 24       << 16   <<  0;
-    QTest::newRow("Bits 14") << 0       << 24       << 24   <<  0;
-    QTest::newRow("Bits 15") << 0       << 24       << 32   << 24;
+    QTest::newRow("Bits 16") << 16 << 24 << 16 << 0;
+    QTest::newRow("Bits 17") << 16 << 24 << 24 << 16;
+    QTest::newRow("Bits 18") << 16 << 24 << 32 << 16;
 
-    QTest::newRow("Bits 16") << 16      << 24       << 16   <<  0;
-    QTest::newRow("Bits 17") << 16      << 24       << 24   << 16;
-    QTest::newRow("Bits 18") << 16      << 24       << 32   << 16;
+    QTest::newRow("Bits 19") << 24 << 24 << 16 << 0;
+    QTest::newRow("Bits 20") << 24 << 24 << 24 << 0;
+    QTest::newRow("Bits 21") << 24 << 24 << 32 << 24;
 
-    QTest::newRow("Bits 19") << 24      << 24       << 16   <<  0;
-    QTest::newRow("Bits 20") << 24      << 24       << 24   <<  0;
-    QTest::newRow("Bits 21") << 24      << 24       << 32   << 24;
+    QTest::newRow("Bits 22") << 32 << 24 << 16 << 0;
+    QTest::newRow("Bits 23") << 32 << 24 << 24 << 0;
+    QTest::newRow("Bits 24") << 32 << 24 << 32 << 24;
 
-    QTest::newRow("Bits 22") << 32      << 24       << 16   <<  0;
-    QTest::newRow("Bits 23") << 32      << 24       << 24   <<  0;
-    QTest::newRow("Bits 24") << 32      << 24       << 32   << 24;
+    QTest::newRow("Bits 25") << 0 << 32 << 16 << 0;
+    QTest::newRow("Bits 26") << 0 << 32 << 24 << 0;
+    QTest::newRow("Bits 27") << 0 << 32 << 32 << 0;
 
+    QTest::newRow("Bits 28") << 16 << 32 << 16 << 0;
+    QTest::newRow("Bits 29") << 16 << 32 << 24 << 16;
+    QTest::newRow("Bits 30") << 16 << 32 << 32 << 16;
 
-    QTest::newRow("Bits 25") << 0       << 32       << 16   <<  0;
-    QTest::newRow("Bits 26") << 0       << 32       << 24   <<  0;
-    QTest::newRow("Bits 27") << 0       << 32       << 32   <<  0;
+    QTest::newRow("Bits 31") << 24 << 32 << 16 << 0;
+    QTest::newRow("Bits 32") << 24 << 32 << 24 << 0;
+    QTest::newRow("Bits 33") << 24 << 32 << 32 << 24;
 
-    QTest::newRow("Bits 28") << 16      << 32       << 16   <<  0;
-    QTest::newRow("Bits 29") << 16      << 32       << 24   << 16;
-    QTest::newRow("Bits 30") << 16      << 32       << 32   << 16;
-
-    QTest::newRow("Bits 31") << 24      << 32       << 16   <<  0;
-    QTest::newRow("Bits 32") << 24      << 32       << 24   <<  0;
-    QTest::newRow("Bits 33") << 24      << 32       << 32   << 24;
-
-    QTest::newRow("Bits 34") << 32      << 32       << 16   <<  0;
-    QTest::newRow("Bits 35") << 32      << 32       << 24   <<  0;
-    QTest::newRow("Bits 36") << 32      << 32       << 32   <<  0;
+    QTest::newRow("Bits 34") << 32 << 32 << 16 << 0;
+    QTest::newRow("Bits 35") << 32 << 32 << 24 << 0;
+    QTest::newRow("Bits 36") << 32 << 32 << 32 << 0;
 }
 
 QTEST_GUILESS_MAIN(TestFlacon)

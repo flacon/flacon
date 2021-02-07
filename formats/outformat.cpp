@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "outformat.h"
 #include "settings.h"
 #include "encoder.h"
@@ -39,11 +38,10 @@
 
 #include <QDebug>
 
-
 /************************************************
 
  ************************************************/
-void initOutFormats(QList<OutFormat*> *formats)
+void initOutFormats(QList<OutFormat *> *formats)
 {
     *formats << new OutFormat_Wav();
     *formats << new OutFormat_Flac();
@@ -54,34 +52,30 @@ void initOutFormats(QList<OutFormat*> *formats)
     *formats << new OutFormat_Opus();
 }
 
-
 /************************************************
 
  ************************************************/
 QList<OutFormat *> OutFormat::allFormats()
 {
-    static QList<OutFormat*> res;
+    static QList<OutFormat *> res;
     if (!res.count())
         initOutFormats(&res);
 
     return res;
 }
 
-
 /************************************************
  *
  ************************************************/
 OutFormat *OutFormat::formatForId(const QString &id)
 {
-    foreach (OutFormat *format, allFormats())
-    {
+    foreach (OutFormat *format, allFormats()) {
         if (format->id() == id)
             return format;
     }
 
     return nullptr;
 }
-
 
 /************************************************
 
@@ -91,15 +85,13 @@ bool OutFormat::checkProgram(const QString &program, QStringList *errors) const
     if (program.isEmpty())
         return true;
 
-    if (!Settings::i()->checkProgram(program))
-    {
+    if (!Settings::i()->checkProgram(program)) {
         *errors << QObject::tr("I can't find program <b>%1</b>.").arg(program);
         return false;
     }
 
     return true;
 }
-
 
 /************************************************
 

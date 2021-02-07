@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "disc.h"
 #include "trackview.h"
 #include "trackviewmodel.h"
@@ -43,16 +42,16 @@
 /************************************************
 
  ************************************************/
-TrackView::TrackView(QWidget *parent):
+TrackView::TrackView(QWidget *parent) :
     QTreeView(parent)
 {
     mDelegate = new TrackViewDelegate(this);
     setItemDelegate(mDelegate);
 
-    connect(mDelegate, SIGNAL(trackButtonClicked(QModelIndex,QRect)),
-            this, SLOT(showTrackMenu(QModelIndex,QRect)));
+    connect(mDelegate, SIGNAL(trackButtonClicked(QModelIndex, QRect)),
+            this, SLOT(showTrackMenu(QModelIndex, QRect)));
 
-    connect(mDelegate, SIGNAL(audioButtonClicked(QModelIndex,QRect)),
+    connect(mDelegate, SIGNAL(audioButtonClicked(QModelIndex, QRect)),
             this, SLOT(emitSelectAudioFile(QModelIndex, QRect)));
 
     connect(mDelegate, SIGNAL(coverImageClicked(QModelIndex)),
@@ -73,18 +72,15 @@ TrackView::TrackView(QWidget *parent):
     connect(header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(headerContextMenu(QPoint)));
 }
 
-
 /************************************************
 
  ************************************************/
-QList<Track*> TrackView::selectedTracks() const
+QList<Track *> TrackView::selectedTracks() const
 {
-    QList<Track*> res;
+    QList<Track *>  res;
     QModelIndexList idxs = selectionModel()->selectedIndexes();
-    foreach(QModelIndex index, idxs)
-    {
-        if (index.column() == 0)
-        {
+    foreach (QModelIndex index, idxs) {
+        if (index.column() == 0) {
             Track *track = mModel->trackByIndex(index);
             if (track)
                 res << track;
@@ -94,30 +90,26 @@ QList<Track*> TrackView::selectedTracks() const
     return res;
 }
 
-
 /************************************************
 
  ************************************************/
-QList<Disc*> TrackView::selectedDiscs() const
+QList<Disc *> TrackView::selectedDiscs() const
 {
-    QSet<Disc*> set;
+    QSet<Disc *>    set;
     QModelIndexList idxs = selectionModel()->selectedIndexes();
-    foreach(QModelIndex index, idxs)
-    {
-        Disc *disc =  mModel->discByIndex(index);
+    foreach (QModelIndex index, idxs) {
+        Disc *disc = mModel->discByIndex(index);
         if (disc)
             set << disc;
     }
 
-    QList<Disc*> res;
-    foreach (Disc *disc, set)
-    {
+    QList<Disc *> res;
+    foreach (Disc *disc, set) {
         res << disc;
     }
 
     return res;
 }
-
 
 /************************************************
  *
@@ -127,7 +119,6 @@ bool TrackView::isSelected(const Disc &disc) const
     return selectionModel()->isSelected(mModel->index(disc));
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -136,37 +127,32 @@ bool TrackView::isSelected(const Track &track) const
     return selectionModel()->isSelected(mModel->index(track, 0));
 }
 
-
 /************************************************
 
  ************************************************/
 void TrackView::layoutChanged()
 {
-    for(int i=0; i < project->count(); ++i)
+    for (int i = 0; i < project->count(); ++i)
         setFirstColumnSpanned(i, QModelIndex(), true);
 
     expandAll();
 }
-
 
 /************************************************
  *
  ************************************************/
 void TrackView::selectDisc(const Disc *disc)
 {
-    for (int i=0; i<this->model()->rowCount(); ++i)
-    {
+    for (int i = 0; i < this->model()->rowCount(); ++i) {
         QModelIndex index = this->model()->index(i, 0);
 
-        Disc *d =  mModel->discByIndex(index);
-        if (d && d == disc)
-        {
+        Disc *d = mModel->discByIndex(index);
+        if (d && d == disc) {
             this->selectionModel()->select(index, QItemSelectionModel::Clear | QItemSelectionModel::Select);
             break;
         }
     }
 }
-
 
 /************************************************
  *
@@ -176,7 +162,6 @@ void TrackView::downloadStarted(const Disc &disc)
     mModel->downloadStarted(disc);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -184,7 +169,6 @@ void TrackView::downloadFinished(const Disc &disc)
 {
     mModel->downloadFinished(disc);
 }
-
 
 /************************************************
  *
@@ -195,12 +179,11 @@ void TrackView::update(const Track &track)
     QTreeView::update(idx);
 
     int cnt = mModel->columnCount(idx.parent());
-    for (int i=1; i<cnt; ++i)
+    for (int i = 1; i < cnt; ++i)
         QTreeView::update(mModel->index(track, i));
 
     QTreeView::update(idx.parent());
 }
-
 
 /************************************************
  *
@@ -212,15 +195,12 @@ void TrackView::update(const Disc &disc)
 
     int rows = mModel->rowCount(idx);
     int cols = mModel->columnCount(idx);
-    for (int r=0; r<rows; ++r)
-    {
-        for (int c=0; c<cols; ++c)
-        {
+    for (int r = 0; r < rows; ++r) {
+        for (int c = 0; c < cols; ++c) {
             QTreeView::update(mModel->index(r, c, idx));
         }
     }
 }
-
 
 /************************************************
 
@@ -229,13 +209,12 @@ void TrackView::headerContextMenu(QPoint pos)
 {
     QMenu menu;
 
-    for (int i=1; i < model()->columnCount(QModelIndex()); ++i)
-    {
+    for (int i = 1; i < model()->columnCount(QModelIndex()); ++i) {
         QAction *act = new QAction(&menu);
         act->setText(model()->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
         act->setData(i);
         act->setCheckable(true);
-        act->setChecked(! isColumnHidden(i));
+        act->setChecked(!isColumnHidden(i));
         connect(act, SIGNAL(toggled(bool)), this, SLOT(showHideColumn(bool)));
         menu.addAction(act);
     }
@@ -243,17 +222,15 @@ void TrackView::headerContextMenu(QPoint pos)
     menu.exec(mapToGlobal(pos));
 }
 
-
 /************************************************
 
  ************************************************/
 void TrackView::showHideColumn(bool show)
 {
-    QAction *act = qobject_cast<QAction*>(sender());
+    QAction *act = qobject_cast<QAction *>(sender());
     if (act)
         setColumnHidden(act->data().toInt(), !show);
 }
-
 
 /************************************************
 
@@ -261,17 +238,15 @@ void TrackView::showHideColumn(bool show)
 void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 {
     Disc *disc = mModel->discByIndex(index);
-    if(!disc)
+    if (!disc)
         return;
 
-
     QMenu menu;
-    foreach (const Disc::TagSet &tags, disc->tagSets())
-    {
+    foreach (const Disc::TagSet &tags, disc->tagSets()) {
         QAction *act = new QAction(tags.name, &menu);
         act->setCheckable(true);
         act->setChecked(tags.uri == disc->tagsUri());
-        connect(act, &QAction::triggered, [disc, tags](){ disc->activateTagSet(tags.uri); });
+        connect(act, &QAction::triggered, [disc, tags]() { disc->activateTagSet(tags.uri); });
         menu.addAction(act);
     }
 
@@ -280,19 +255,18 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
     QAction *act;
 
     act = new QAction(tr("Select another CUE file…"), &menu);
-    connect(act, &QAction::triggered, [this, disc] { this->selectCueFile(disc);});
+    connect(act, &QAction::triggered, [this, disc] { this->selectCueFile(disc); });
     menu.addAction(act);
 
     act = new QAction(tr("Get data from CDDB"), &menu);
     act->setEnabled(disc->canDownloadInfo());
-    connect(act, &QAction::triggered, [this, disc](){ emit downloadInfo(disc);});
+    connect(act, &QAction::triggered, [this, disc]() { emit downloadInfo(disc); });
     menu.addAction(act);
 
     QPoint vpPos = viewport()->pos() + visualRect(index).topLeft();
-    QPoint p = buttonRect.bottomLeft() + vpPos + QPoint(0, 2);
+    QPoint p     = buttonRect.bottomLeft() + vpPos + QPoint(0, 2);
     menu.exec(mapToGlobal(p));
 }
-
 
 /************************************************
 
@@ -305,7 +279,6 @@ void TrackView::emitSelectAudioFile(const QModelIndex &index, const QRect &butto
         emit selectAudioFile(disc);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -316,15 +289,13 @@ void TrackView::emitSelectCoverImage(const QModelIndex &index)
         emit selectCoverImage(disc);
 }
 
-
 /************************************************
 
  ************************************************/
-TrackViewSelectionModel::TrackViewSelectionModel(QAbstractItemModel *model, QObject *parent):
+TrackViewSelectionModel::TrackViewSelectionModel(QAbstractItemModel *model, QObject *parent) :
     QItemSelectionModel(model, parent)
 {
 }
-
 
 /************************************************
 
@@ -336,21 +307,18 @@ void TrackViewSelectionModel::select(const QItemSelection &selection, SelectionF
 
     QItemSelection newSelection = selection;
 
-
     QModelIndexList idxs = selection.indexes();
-    foreach (const QModelIndex &index, idxs)
-    {
+    foreach (const QModelIndex &index, idxs) {
         if (index.parent().isValid())
             continue;
 
         QModelIndex index1 = model()->index(0, 0, index);
-        QModelIndex index2 = model()->index(model()->rowCount(index)-1, model()->columnCount(index)-1, index);
+        QModelIndex index2 = model()->index(model()->rowCount(index) - 1, model()->columnCount(index) - 1, index);
         newSelection.select(index1, index2);
     }
 
     QItemSelectionModel::select(newSelection, command);
 }
-
 
 /************************************************
 
@@ -360,50 +328,41 @@ void TrackView::drawBranches(QPainter *painter, const QRect &rect, const QModelI
     mDelegate->drawBranch(painter, rect, index);
 }
 
-
-
 /************************************************
 
  ************************************************/
 void TrackView::keyPressEvent(QKeyEvent *event)
 {
-    switch (event->key())
-    {
-    case Qt::Key_Left:
-    {
-        QModelIndex parent = selectionModel()->currentIndex().parent();
-        int row = selectionModel()->currentIndex().row();
-        for (int i=selectionModel()->currentIndex().column() - 1; i>=0; --i)
-        {
-            QModelIndex idx = model()->index(row, i, parent);
-            if (idx.isValid() && !isColumnHidden(i))
-            {
-                selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
-                return;
+    switch (event->key()) {
+        case Qt::Key_Left: {
+            QModelIndex parent = selectionModel()->currentIndex().parent();
+            int         row    = selectionModel()->currentIndex().row();
+            for (int i = selectionModel()->currentIndex().column() - 1; i >= 0; --i) {
+                QModelIndex idx = model()->index(row, i, parent);
+                if (idx.isValid() && !isColumnHidden(i)) {
+                    selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+                    return;
+                }
             }
+            break;
         }
-        break;
-    }
 
-    case Qt::Key_Right:
-    {
+        case Qt::Key_Right: {
 
-        QModelIndex parent = selectionModel()->currentIndex().parent();
-        int cnt = model()->columnCount(parent);
-        int row = selectionModel()->currentIndex().row();
-        for (int i=selectionModel()->currentIndex().column() + 1; i<cnt ; ++i)
-        {
-            QModelIndex idx = model()->index(row, i, parent);
-            if (idx.isValid() && !isColumnHidden(i))
-            {
-                selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
-                return;
+            QModelIndex parent = selectionModel()->currentIndex().parent();
+            int         cnt    = model()->columnCount(parent);
+            int         row    = selectionModel()->currentIndex().row();
+            for (int i = selectionModel()->currentIndex().column() + 1; i < cnt; ++i) {
+                QModelIndex idx = model()->index(row, i, parent);
+                if (idx.isValid() && !isColumnHidden(i)) {
+                    selectionModel()->setCurrentIndex(idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+                    return;
+                }
             }
+            break;
         }
-        break;
-    }
 
-    default:
-        QTreeView::keyPressEvent(event);
+        default:
+            QTreeView::keyPressEvent(event);
     }
 }

@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef TOOLS_H
 #define TOOLS_H
 
@@ -36,7 +35,6 @@
 class QIODevice;
 class Disc;
 
-
 class TestCueFile
 {
 public:
@@ -44,7 +42,7 @@ public:
 
     QString fileName() const { return mFileName; }
 
-    void setWavFile(const QString &value);
+    void    setWavFile(const QString &value);
     QString wavFile() const { return mWavFile; }
 
     void addTrack(const QString &index0, const QString &index1);
@@ -53,60 +51,57 @@ public:
     void write();
 
 private:
-    struct TestCueTrack {
+    struct TestCueTrack
+    {
         QString index0;
         QString index1;
 
-        TestCueTrack():
+        TestCueTrack() :
             index0(""),
             index1("")
         {
         }
 
-
-        explicit TestCueTrack(const QString &index1):
+        explicit TestCueTrack(const QString &index1) :
             index0(""),
             index1(index1)
         {
         }
 
-
-        TestCueTrack(const QString &index0, const QString &index1):
+        TestCueTrack(const QString &index0, const QString &index1) :
             index0(index0),
             index1(index1)
         {
         }
-
-
     };
 
-    QString mFileName;
-    QString mWavFile;
+    QString               mFileName;
+    QString               mWavFile;
     QVector<TestCueTrack> mTracks;
 };
 
-class TestSettings: public Settings
+class TestSettings : public Settings
 {
     Q_OBJECT
 public:
-    TestSettings (const QString &fileName): Settings(fileName)  { }
+    TestSettings(const QString &fileName) :
+        Settings(fileName) { }
     void apply(const QMap<QString, QVariant> &values);
 };
 
-
-QString calcAudioHash(const QString &fileName);
-bool  compareAudioHash(const QString &file1, const QString &expected);
-void writeHexString(const QString &str, QIODevice *out);
+QString    calcAudioHash(const QString &fileName);
+bool       compareAudioHash(const QString &file1, const QString &expected);
+void       writeHexString(const QString &str, QIODevice *out);
 QByteArray writeHexString(const QString &str);
-void createWavFile(const QString &fileName, const QString &header, const int duration = 0);
-void createWavFile(const QString &fileName, quint16 bitsPerSample, quint32 sampleRate, uint durationSec);
-void encodeAudioFile(const QString &wavFileName, const QString &outFileName);
-void testFail(const QString &message, const char *file, int line);
+void       createWavFile(const QString &fileName, const QString &header, const int duration = 0);
+void       createWavFile(const QString &fileName, quint16 bitsPerSample, quint32 sampleRate, uint durationSec);
+void       encodeAudioFile(const QString &wavFileName, const QString &outFileName);
+void       testFail(const QString &message, const char *file, int line);
 
-#define FAIL(message) \
-do {\
-    testFail(message, __FILE__, __LINE__); \
-} while (0)
+#define FAIL(message)                          \
+    do {                                       \
+        testFail(message, __FILE__, __LINE__); \
+    } while (0)
 
 Disc *loadFromCue(const QString &cueFile);
 

@@ -23,12 +23,10 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "in_tta.h"
 #include <QDebug>
 
 REGISTER_INPUT_FORMAT(Format_Tta)
-
 
 /************************************************
  *
@@ -38,11 +36,11 @@ QStringList Format_Tta::decoderArgs(const QString &fileName) const
     QStringList args;
     args << "-d";
     args << fileName;
-    args << "-o" << "-";
+    args << "-o"
+         << "-";
 
     return args;
 }
-
 
 /************************************************
  *
@@ -51,7 +49,7 @@ QString Format_Tta::filterDecoderStderr(const QString &stdErr) const
 {
 
     int pos = stdErr.indexOf("Error:");
-    if (pos>-1)
+    if (pos > -1)
         return stdErr.mid(pos + 6).trimmed();
 
     return "";

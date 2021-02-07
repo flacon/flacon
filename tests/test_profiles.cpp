@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "testflacon.h"
 #include <QTest>
 #include "tools.h"
@@ -31,7 +30,6 @@
 #include <QDebug>
 #include <QDir>
 #include "settings.h"
-
 
 /************************************************
  *
@@ -43,8 +41,8 @@ void TestFlacon::testLoadProfiles()
 
     QString srcDir = mDataDir + "testLoadProfiles";
 
-    QString baseName = dir()  + "/" + QFileInfo(input).baseName();
-    QString inFile       = baseName + ".in" ;
+    QString baseName     = dir() + "/" + QFileInfo(input).baseName();
+    QString inFile       = baseName + ".in";
     QString confFile     = baseName + ".conf";
     QString expectedFile = baseName + ".expected";
     QString resultFile   = baseName + ".result";
@@ -55,13 +53,12 @@ void TestFlacon::testLoadProfiles()
     }
     QFile::copy(srcDir + "/" + expect, expectedFile);
 
-
     TestSettings settings(confFile);
-    QSettings expected(expectedFile, QSettings::IniFormat);
-    QSettings result(resultFile, QSettings::IniFormat);
+    QSettings    expected(expectedFile, QSettings::IniFormat);
+    QSettings    result(resultFile, QSettings::IniFormat);
 
     result.beginGroup("Profiles");
-    for (Profile profile: settings.profiles()) {
+    for (Profile profile : settings.profiles()) {
         profile.save(result, profile.id());
     }
     result.endGroup();
@@ -73,15 +70,14 @@ void TestFlacon::testLoadProfiles()
     keys.removeDuplicates();
 
     bool pass = true;
-    foreach (auto key, keys)
-    {
+    foreach (auto key, keys) {
         if (result.value(key).toString() == expected.value(key).toString())
             continue;
 
         QString msg = QString("Compared values are not the same\n\tKey\t%1\n\tActual\t%2\n\tExpected\t%3")
-                .arg(key)
-                .arg(result.value(key).toString())
-                .arg(expected.value(key).toString());
+                              .arg(key)
+                              .arg(result.value(key).toString())
+                              .arg(expected.value(key).toString());
 
         QWARN(msg.toLocal8Bit());
         pass = false;
@@ -91,17 +87,16 @@ void TestFlacon::testLoadProfiles()
         QFAIL("Result not the same");
 }
 
-
 /************************************************
  *
  ************************************************/
 void TestFlacon::testLoadProfiles_data()
 {
-    QTest::addColumn<QString>("input",  nullptr);
+    QTest::addColumn<QString>("input", nullptr);
     QTest::addColumn<QString>("expect", nullptr);
     QString srcDir = mDataDir + "testLoadProfiles";
 
-    foreach(QString f, QDir(srcDir).entryList(QStringList("*.expected"), QDir::Files, QDir::Name)) {
+    foreach (QString f, QDir(srcDir).entryList(QStringList("*.expected"), QDir::Files, QDir::Name)) {
         QString name = QFileInfo(f).baseName();
         QTest::newRow(name.toLocal8Bit()) << QFileInfo(f).baseName() + ".in" << f;
     }

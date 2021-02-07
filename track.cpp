@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "track.h"
 
 #include <assert.h>
@@ -39,22 +38,20 @@
 #include <QTextCodec>
 #include <QDebug>
 
-
 /************************************************
 
  ************************************************/
-Track::Track():
+Track::Track() :
     QObject(nullptr),
     mTextCodec(nullptr),
     mDuration(0)
 {
 }
 
-
 /************************************************
  *
  ************************************************/
-Track::Track(const Track &other):
+Track::Track(const Track &other) :
     QObject(nullptr),
     mTags(other.mTags),
     mTextCodec(other.mTextCodec),
@@ -64,21 +61,19 @@ Track::Track(const Track &other):
 {
 }
 
-
 /************************************************
  *
  ************************************************/
-Track &Track::operator =(const Track &other)
+Track &Track::operator=(const Track &other)
 {
-    mTags       = other.mTags;
-    mTextCodec  = other.mTextCodec;
-    mCueIndexes = other.mCueIndexes;
-    mDuration   = other.mDuration;
-    mCueFileName= other.mCueFileName;
+    mTags        = other.mTags;
+    mTextCodec   = other.mTextCodec;
+    mCueIndexes  = other.mCueIndexes;
+    mDuration    = other.mDuration;
+    mCueFileName = other.mCueFileName;
 
     return *this;
 }
-
 
 /************************************************
 
@@ -86,7 +81,6 @@ Track &Track::operator =(const Track &other)
 Track::~Track()
 {
 }
-
 
 /************************************************
  *
@@ -96,7 +90,6 @@ QString Track::tag(const TagId &tagId) const
     return mTags.value(static_cast<int>(tagId)).asString(mTextCodec);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -105,7 +98,6 @@ QByteArray Track::tagData(const TagId &tagId) const
     return mTags.value(static_cast<int>(tagId)).value();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -113,7 +105,6 @@ TagValue Track::tagValue(TagId tagId) const
 {
     return mTags.value(static_cast<int>(tagId));
 }
-
 
 /************************************************
  *
@@ -124,7 +115,6 @@ void Track::setTag(const TagId &tagId, const QString &value)
     emit tagChanged(tagId);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -134,7 +124,6 @@ void Track::setTag(const TagId &tagId, const QByteArray &value)
     emit tagChanged(tagId);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -143,7 +132,6 @@ void Track::setTag(TagId tagId, const TagValue &value)
     mTags.insert(static_cast<int>(tagId), value);
     emit tagChanged(tagId);
 }
-
 
 /************************************************
  *
@@ -156,7 +144,6 @@ QString Track::codecName() const
     return "";
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -168,7 +155,6 @@ void Track::setCodecName(const QString &value)
         mTextCodec = nullptr;
 }
 
-
 /************************************************
 
  ************************************************/
@@ -179,13 +165,9 @@ QString Track::resultFileName() const
         pattern = QString("%a/%y - %A/%n - %t");
 
     int n = pattern.lastIndexOf(QDir::separator());
-    if (n < 0)
-    {
+    if (n < 0) {
         PatternExpander expander(*this);
-        return safeFilePathLen(expander.expand(pattern) +
-                "." + Settings::i()->currentProfile().ext());
-
-
+        return safeFilePathLen(expander.expand(pattern) + "." + Settings::i()->currentProfile().ext());
     }
 
     // If the disc is a collection, the files fall into different directories.
@@ -196,24 +178,19 @@ QString Track::resultFileName() const
     PatternExpander trackExpander(*this);
 
     return safeFilePathLen(
-            albumExpander.expand(pattern.left(n)) +
-            trackExpander.expand(pattern.mid(n)) +
-            "." + Settings::i()->currentProfile().ext());
-
+            albumExpander.expand(pattern.left(n)) + trackExpander.expand(pattern.mid(n)) + "." + Settings::i()->currentProfile().ext());
 }
-
 
 /************************************************
  *
  ************************************************/
-bool Track::operator ==(const Track &other) const
+bool Track::operator==(const Track &other) const
 {
     if (this->mCueFileName != other.mCueFileName)
         return false;
 
-    return mTags ==(other.mTags);
+    return mTags == (other.mTags);
 }
-
 
 /************************************************
  *
@@ -221,14 +198,13 @@ bool Track::operator ==(const Track &other) const
 TrackNum Track::trackNum() const
 {
     bool ok;
-    int res = tag(TagId::TrackNum).toInt(&ok);
+    int  res = tag(TagId::TrackNum).toInt(&ok);
 
     if (ok)
         return res;
 
     return 1;
 }
-
 
 /************************************************
  *
@@ -238,21 +214,19 @@ void Track::setTrackNum(TrackNum value)
     setTag(TagId::TrackNum, QString::number(value));
 }
 
-
 /************************************************
  *
  ************************************************/
 TrackNum Track::trackCount() const
 {
     bool ok;
-    int res = tag(TagId::TrackCount).toInt(&ok);
+    int  res = tag(TagId::TrackCount).toInt(&ok);
 
     if (ok)
         return res;
 
     return 1;
 }
-
 
 /************************************************
  *
@@ -262,21 +236,19 @@ void Track::setTrackCount(TrackNum value)
     setTag(TagId::TrackCount, QString::number(value));
 }
 
-
 /************************************************
  *
  ************************************************/
 DiscNum Track::discNum() const
 {
     bool ok;
-    int res = tag(TagId::DiscNum).toInt(&ok);
+    int  res = tag(TagId::DiscNum).toInt(&ok);
 
     if (ok)
         return res;
 
     return 1;
 }
-
 
 /************************************************
  *
@@ -286,22 +258,19 @@ void Track::setDiscNum(DiscNum value)
     setTag(TagId::DiscNum, QString::number(value));
 }
 
-
 /************************************************
  *
  ************************************************/
 DiscNum Track::discCount() const
 {
     bool ok;
-    int res = tag(TagId::DiscCount).toInt(&ok);
+    int  res = tag(TagId::DiscCount).toInt(&ok);
 
     if (ok)
         return res;
 
     return 1;
-
 }
-
 
 /************************************************
  *
@@ -310,7 +279,6 @@ void Track::setDiscCount(DiscNum value)
 {
     setTag(TagId::DiscCount, QString::number(value));
 }
-
 
 /************************************************
 
@@ -327,7 +295,6 @@ QString Track::resultFilePath() const
     else
         return calcResultFilePath() + "/" + fileName;
 }
-
 
 /************************************************
 
@@ -353,7 +320,6 @@ QString Track::calcResultFilePath() const
     return QFileInfo(mCueFileName).dir().absolutePath() + QDir::separator() + dir;
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -367,15 +333,14 @@ QString Track::safeFilePathLen(const QString &path) const
     }
 
     QStringList res;
-    for (QString f :file.split(QDir::separator())) {
+    for (QString f : file.split(QDir::separator())) {
         while (f.toUtf8().length() > 250) {
             f.resize(f.length() - 1);
         }
         res << f;
     }
-    return res.join(QDir::separator()) +  ext;
+    return res.join(QDir::separator()) + ext;
 }
-
 
 /************************************************
 
@@ -388,72 +353,61 @@ CueIndex Track::cueIndex(int indexNum) const
     return CueIndex();
 }
 
-
 /************************************************
 
  ************************************************/
 void Track::setCueIndex(int indexNum, const CueIndex &value)
 {
     if (indexNum >= mCueIndexes.length())
-        mCueIndexes.resize(indexNum+1);
+        mCueIndexes.resize(indexNum + 1);
 
     mCueIndexes[indexNum] = value;
 }
 
-
-
 /************************************************
  *
  ************************************************/
-Tracks::Tracks():
+Tracks::Tracks() :
     QVector<Track>()
 {
-
 }
-
 
 /************************************************
  *
  ************************************************/
-Tracks::Tracks(int size):
+Tracks::Tracks(int size) :
     QVector<Track>(size)
 {
-
 }
-
 
 /************************************************
  *
  ************************************************/
-Tracks::Tracks(const Tracks &other):
+Tracks::Tracks(const Tracks &other) :
     QVector<Track>(other),
     mUri(other.mUri),
     mTitle(other.mTitle)
 {
-
 }
 
 /************************************************
  *
  ************************************************/
-Tracks& Tracks::operator=(const Tracks &other)
+Tracks &Tracks::operator=(const Tracks &other)
 {
-    QVector<Track>::operator =(other);
-    mUri   = other.mUri;
-    mTitle = other.mTitle;
+    QVector<Track>::operator=(other);
+    mUri                    = other.mUri;
+    mTitle                  = other.mTitle;
 
     return *this;
 }
-
 
 /************************************************
  *
  ************************************************/
 Tracks::~Tracks()
 {
-
 }
-
 
 /************************************************
  *
@@ -464,7 +418,6 @@ QString Tracks::title() const
     return mTitle.asString(first().codec());
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -472,7 +425,6 @@ void Tracks::setTitle(const QByteArray &value)
 {
     mTitle.setValue(value);
 }
-
 
 /************************************************
  *
@@ -482,26 +434,22 @@ void Tracks::setTitle(const QString &value)
     mTitle.setValue(value);
 }
 
-
 /************************************************
  *
  ************************************************/
 struct UcharDet::Data
 {
     uchardet_t mUchcharDet;
-
 };
-
 
 /************************************************
  *
  ************************************************/
-UcharDet::UcharDet():
+UcharDet::UcharDet() :
     mData(new Data())
 {
     mData->mUchcharDet = uchardet_new();
 }
-
 
 /************************************************
  *
@@ -512,16 +460,14 @@ UcharDet::~UcharDet()
     delete mData;
 }
 
-
 /************************************************
  *
  ************************************************/
 UcharDet &UcharDet::operator<<(const Track &track)
 {
-    TagId tags[] = {TagId::Artist, TagId::Title};
+    TagId tags[] = { TagId::Artist, TagId::Title };
 
-    for (uint i=0; i<sizeof(tags)/sizeof(TagId); ++i)
-    {
+    for (uint i = 0; i < sizeof(tags) / sizeof(TagId); ++i) {
         TagValue tv = track.tagValue(tags[i]);
         if (!tv.encoded())
             uchardet_handle_data(mData->mUchcharDet, tv.value().data(), tv.value().length());
@@ -530,7 +476,6 @@ UcharDet &UcharDet::operator<<(const Track &track)
     return *this;
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -538,7 +483,6 @@ QString UcharDet::textCodecName() const
 {
     return textCodec()->name();
 }
-
 
 /************************************************
  *
@@ -556,22 +500,20 @@ QTextCodec *UcharDet::textCodec() const
     return res;
 }
 
-
 /************************************************
  *
  ************************************************/
-QTextCodec *determineTextCodec(const QVector<Track*> &tracks)
+QTextCodec *determineTextCodec(const QVector<Track *> &tracks)
 {
     QTextCodec *res;
-    uchardet_t uc = uchardet_new();
+    uchardet_t  uc = uchardet_new();
 
-    foreach(const Track *track, tracks)
-    {
+    foreach (const Track *track, tracks) {
         const QByteArray &performer = track->tagData(TagId::Artist);
         const QByteArray &title     = track->tagData(TagId::Title);
 
         uchardet_handle_data(uc, performer.data(), performer.length());
-        uchardet_handle_data(uc, title.data(),     title.length());
+        uchardet_handle_data(uc, title.data(), title.length());
     }
 
     uchardet_data_end(uc);
@@ -584,18 +526,17 @@ QTextCodec *determineTextCodec(const QVector<Track*> &tracks)
     return res;
 }
 
-
 QDebug operator<<(QDebug debug, const Track &track)
 {
     QDebugStateSaver saver(debug);
-    debug.nospace()  <<  " Track {"
-                     << " trackNum: " << track.trackNum()
-                     << " trackCount:" << track.trackCount()
-                     << " diskId:" << track.discId()
-                     << " Artist:" << track.artist()
-                     << " Album:" << track.album()
-                     << " Title:" << track.title()
-                     << " cueFile:" << track.cueFileName()
-                     << "}";
+    debug.nospace() << " Track {"
+                    << " trackNum: " << track.trackNum()
+                    << " trackCount:" << track.trackCount()
+                    << " diskId:" << track.discId()
+                    << " Artist:" << track.artist()
+                    << " Album:" << track.album()
+                    << " Title:" << track.title()
+                    << " cueFile:" << track.cueFileName()
+                    << "}";
     return debug;
 }

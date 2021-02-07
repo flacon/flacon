@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "testflacon.h"
 #include "tools.h"
 #include "cue.h"
@@ -32,7 +31,6 @@
 #include <QTest>
 #include <QString>
 #include <QDebug>
-
 
 /************************************************
 
@@ -44,7 +42,6 @@ void TestFlacon::testFindAudioFile()
     QFETCH(QString, audioFiles);
     QFETCH(QString, expected);
 
-
     QStringList fileTags = fileTag.split(",", QString::SkipEmptyParts);
 
     QString cueFile = dir() + "/" + cueFileName;
@@ -54,9 +51,8 @@ void TestFlacon::testFindAudioFile()
         cue << "REM DISCID 123456789";
         cue << "REM COMMENT \"ExactAudioCopy v0.99pb4\"";
         cue << "PERFORMER \"Artist\"";
-        for (int i=0; i<fileTags.count(); ++i)
-        {
-            cue << "FILE \"" + fileTags[i].trimmed() +"\" WAVE";
+        for (int i = 0; i < fileTags.count(); ++i) {
+            cue << "FILE \"" + fileTags[i].trimmed() + "\" WAVE";
             cue << "  TRACK 01 AUDIO";
             cue << "    TITLE \"Song01\"";
             cue << "    INDEX 01 00:00:00";
@@ -64,25 +60,20 @@ void TestFlacon::testFindAudioFile()
         writeTextFile(cueFile, cue);
     }
 
-    foreach (QString f, audioFiles.split(","))
-    {
+    foreach (QString f, audioFiles.split(",")) {
         QFile(mAudio_cd_wav).link(dir() + "/" + f.trimmed());
     }
 
-
-    QStringList expectedLists = expected.split(",", QString::SkipEmptyParts);
+    QStringList      expectedLists = expected.split(",", QString::SkipEmptyParts);
     QVector<CueDisc> cue;
-    try
-    {
+    try {
         cue = CueReader().load(cueFile);
     }
-    catch (FlaconError &err)
-    {
+    catch (FlaconError &err) {
         FAIL(QString("Cue isn't valid: %1").arg(err.what()).toLocal8Bit());
     }
 
-    for (int i=0; i<cue.count(); ++i)
-    {
+    for (int i = 0; i < cue.count(); ++i) {
         Disc disc;
         disc.loadFromCue(cue.at(i));
         QString expected = expectedLists.at(i).trimmed();
@@ -93,20 +84,18 @@ void TestFlacon::testFindAudioFile()
 
         QString real = disc.audioFileName();
         QCOMPARE(real, expected);
-
     }
 }
-
 
 /************************************************
 
  ************************************************/
 void TestFlacon::testFindAudioFile_data()
 {
-    QTest::addColumn<QString>("fileTag",     nullptr);
+    QTest::addColumn<QString>("fileTag", nullptr);
     QTest::addColumn<QString>("cueFileName", nullptr);
-    QTest::addColumn<QString>("audioFiles",  nullptr);
-    QTest::addColumn<QString>("expected",    nullptr);
+    QTest::addColumn<QString>("audioFiles", nullptr);
+    QTest::addColumn<QString>("expected", nullptr);
 
     QTest::newRow("01")
             << "Album.wav"
@@ -114,13 +103,11 @@ void TestFlacon::testFindAudioFile_data()
             << "Album.ape"
             << "Album.ape";
 
-
     QTest::newRow("02")
             << "Album.wav"
             << "Garbage.cue"
             << "Album.ape, Garbage.ape"
             << "Album.ape";
-
 
     QTest::newRow("03")
             << "Garbage.wav"
@@ -131,8 +118,11 @@ void TestFlacon::testFindAudioFile_data()
     QTest::newRow("04 Multi disc => CueFile_1.ape")
             << "FileTag1.wav, FileTag2.wav"
             << "CueFile.cue"
-            << "CueFile.ape," "CueFile_1.ape," "CueFile_2.ape"
-            << "CueFile_1.ape," "CueFile_2.ape";
+            << "CueFile.ape,"
+               "CueFile_1.ape,"
+               "CueFile_2.ape"
+            << "CueFile_1.ape,"
+               "CueFile_2.ape";
 
     QTest::newRow("05")
             << "Garbage1.wav, Garbage2.wav"
@@ -199,10 +189,13 @@ void TestFlacon::testFindAudioFile_data()
                "FileTag2.wav";
 
     QTest::newRow("14 Not confuse 1 and 11")
-            << "FileTag1.wav,"  "FileTag2.wav"
+            << "FileTag1.wav,"
+               "FileTag2.wav"
             << "CueFile.cue"
-            << "CueFile_11.flac,"  "CueFile_2.flac"
-            << "''," "CueFile_2.flac";
+            << "CueFile_11.flac,"
+               "CueFile_2.flac"
+            << "'',"
+               "CueFile_2.flac";
 
     QTest::newRow("15 Multi disk => Side 1")
             << "Garbage1.wav,"

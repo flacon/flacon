@@ -23,20 +23,16 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "consoleout.h"
 #include <QTextStream>
-
 
 /************************************************
  *
  ************************************************/
-ConsoleOut::ConsoleOut(QObject *parent):
+ConsoleOut::ConsoleOut(QObject *parent) :
     QObject(parent)
 {
-
 }
-
 
 /************************************************
  *
@@ -46,7 +42,6 @@ void ConsoleOut::converterStarted()
     mStartTime = QDateTime::currentDateTime();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -55,7 +50,6 @@ void ConsoleOut::converterFinished()
     mFinishTime = QDateTime::currentDateTime();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -63,18 +57,26 @@ void ConsoleOut::trackProgress(const Track &track, TrackState state, Percent)
 {
     QString status;
     switch (state) {
-        case TrackState::Canceled: status = "Canceled"; break;
-        case TrackState::Error:    status = "Error";    break;
-        case TrackState::Aborted:  status = "Aborted";  break;
-        case TrackState::OK:       status = "Done";     break;
-        default:       return;
+        case TrackState::Canceled:
+            status = "Canceled";
+            break;
+        case TrackState::Error:
+            status = "Error";
+            break;
+        case TrackState::Aborted:
+            status = "Aborted";
+            break;
+        case TrackState::OK:
+            status = "Done";
+            break;
+        default:
+            return;
     }
 
     QTextStream(stdout)
             << status << " "
             << track.resultFilePath() << "\n";
 }
-
 
 /************************************************
  *
@@ -87,7 +89,7 @@ void ConsoleOut::printStatistic()
 
     int h = duration / 3600;
     int m = (duration - (h * 3600)) / 60;
-    int s =  duration - (h * 3600) - (m * 60);
+    int s = duration - (h * 3600) - (m * 60);
 
     QString str;
 

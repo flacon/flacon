@@ -23,24 +23,23 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef IN_WAV_H
 #define IN_WAV_H
 
 #include "informat.h"
 
-class Format_Wav: public InputFormat
+class Format_Wav : public InputFormat
 {
 public:
     virtual QString name() const override { return "WAV"; }
     virtual QString ext() const override { return "wav"; }
-    virtual bool isInputFormat() const override { return true; }
+    virtual bool    isInputFormat() const override { return true; }
 
-    virtual QString decoderProgramName() const override { return ""; }
+    virtual QString     decoderProgramName() const override { return ""; }
     virtual QStringList decoderArgs(const QString &fileName) const override;
 
     virtual QByteArray magic() const override { return "RIFF"; }
-    virtual uint magicOffset() const override { return 0; }
+    virtual uint       magicOffset() const override { return 0; }
 };
 
 #endif // IN_WAV_H

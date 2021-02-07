@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -44,7 +43,7 @@ class Scanner;
 class MainWindow : public QMainWindow, private Ui::MainWindow, private Messages::Handler
 {
     Q_OBJECT
-    
+
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -98,14 +97,14 @@ protected:
     void closeEvent(QCloseEvent *) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
     void dropEvent(QDropEvent *event) override;
-    void showEvent(QShowEvent * event) override;
+    void showEvent(QShowEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
     bool event(QEvent *event) override;
 
 private:
     QPointer<Converter> mConverter;
-    Scanner *mScanner;
-    QString getOpenFileFilter(bool includeAudio, bool includeCue);
+    Scanner *           mScanner;
+    QString             getOpenFileFilter(bool includeAudio, bool includeCue);
 
     void polishView();
     void initActions();

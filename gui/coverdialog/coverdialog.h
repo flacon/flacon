@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef COVERDIALOG_H
 #define COVERDIALOG_H
 
@@ -35,11 +34,9 @@ class Disc;
 class QAbstractButton;
 class QListWidgetItem;
 
-namespace Ui
-{
-    class CoverDialog;
+namespace Ui {
+class CoverDialog;
 }
-
 
 class CoverDialog : public QDialog
 {
@@ -61,12 +58,11 @@ private slots:
 private:
     explicit CoverDialog(QWidget *parent = nullptr);
 
-
     void scan(const QString &startDir);
 
     Ui::CoverDialog *ui;
-    QPointer<Disc> mDisc;
-    QIcon mEmptyIcon;
+    QPointer<Disc>   mDisc;
+    QIcon            mEmptyIcon;
 };
 
 #endif // COVERDIALOG_H

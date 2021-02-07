@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef CUECREATOR_H
 #define CUECREATOR_H
 
@@ -31,7 +30,6 @@
 #include <QFile>
 #include <QString>
 #include "track.h"
-
 
 class Disc;
 class Track;
@@ -45,22 +43,21 @@ public:
     QString errorString() const { return mErrorString; }
 
     QTextCodec *textCodec() const { return mTextCodec; }
-    void setTextCodecName(const QString &codecName);
-    void setTextCodecMib(int mib);
+    void        setTextCodecName(const QString &codecName);
+    void        setTextCodecMib(int mib);
 
 private:
-    const Disc *mDisc;
+    const Disc *     mDisc;
     const PreGapType mPreGapType;
-    QFile mFile;
-    QString mErrorString;
-    QTextCodec *mTextCodec;
-    Track mGlobalTags;
+    QFile            mFile;
+    QString          mErrorString;
+    QTextCodec *     mTextCodec;
+    Track            mGlobalTags;
 
     void initGlobalTags();
     void writeLine(const QString &text);
     void writeGlobalTag(const QString &format, TagId tagId);
     void writeTrackTag(const Track *track, const QString &prefix, TagId tagId);
-
 };
 
 #endif // CUECREATOR_H

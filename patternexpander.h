@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef PATTERNEXPANDER_H
 #define PATTERNEXPANDER_H
 
@@ -47,32 +46,31 @@ public:
     PatternExpander(const Track &track);
 
     TrackCount trackCount() const { return mTrackCount; }
-    void setTrackCount(TrackCount value) { mTrackCount = value; }
+    void       setTrackCount(TrackCount value) { mTrackCount = value; }
 
     TrackNum trackNum() const { return mTrackNum; }
-    void setTrackNum(TrackNum value) { mTrackNum = value; }
+    void     setTrackNum(TrackNum value) { mTrackNum = value; }
 
     DiscCount discCount() const { return mDiscCount; }
-    void setDiscCount(DiscCount value) { mDiscCount = value; }
+    void      setDiscCount(DiscCount value) { mDiscCount = value; }
 
     DiscNum discNum() const { return mDiscNum; }
-    void setDiscNum(DiscNum value) { mDiscNum = value; }
-
+    void    setDiscNum(DiscNum value) { mDiscNum = value; }
 
     QString artist() const { return mArtist; }
-    void setArtist(const QString &value) { mArtist = value; }
+    void    setArtist(const QString &value) { mArtist = value; }
 
     QString album() const { return mAlbum; }
-    void setAlbum(const QString &value) { mAlbum = value; }
+    void    setAlbum(const QString &value) { mAlbum = value; }
 
     QString trackTitle() const { return mTrackTitle; }
-    void setTrackTtle(const QString &value) { mTrackTitle = value; }
+    void    setTrackTtle(const QString &value) { mTrackTitle = value; }
 
-    QString genre() const { return mGenre;}
-    void setGenre(const QString &value) { mGenre = value; }
+    QString genre() const { return mGenre; }
+    void    setGenre(const QString &value) { mGenre = value; }
 
     QString date() const { return mDate; }
-    void setDate(const QString &value) { mDate = value; }
+    void    setDate(const QString &value) { mDate = value; }
 
     QString expand(const QString &pattern) const;
 
@@ -83,11 +81,11 @@ private:
     TrackNum   mTrackNum;
     DiscCount  mDiscCount;
     DiscNum    mDiscNum;
-    QString mAlbum;
-    QString mTrackTitle;
-    QString mArtist;
-    QString mGenre;
-    QString mDate;
+    QString    mAlbum;
+    QString    mTrackTitle;
+    QString    mArtist;
+    QString    mGenre;
+    QString    mDate;
 };
 
 #endif // PATTERNEXPANDER_H

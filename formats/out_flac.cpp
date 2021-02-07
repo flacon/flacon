@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "out_flac.h"
 #include "settings.h"
 #include "project.h"
@@ -31,19 +30,16 @@
 
 #include <QDebug>
 
-
 /************************************************
  *
  ************************************************/
 OutFormat_Flac::OutFormat_Flac()
 {
-    mId   = "FLAC";
-    mExt  = "flac";
-    mName = "Flac";
+    mId      = "FLAC";
+    mExt     = "flac";
+    mName    = "Flac";
     mOptions = FormatOption::Lossless | FormatOption::SupportGain;
 }
-
-
 
 /************************************************
 
@@ -52,12 +48,9 @@ bool OutFormat_Flac::check(const Profile &profile, QStringList *errors) const
 {
     bool res = OutFormat::check(profile, errors);
 
-    if (profile.gainType() != GainType::Disable)
-    {
-        for (int i=0; i<project->count(); ++i)
-        {
-            if (project->disc(i)->audioFile()->sampleRate() > 48000)
-            {
+    if (profile.gainType() != GainType::Disable) {
+        for (int i = 0; i < project->count(); ++i) {
+            if (project->disc(i)->audioFile()->sampleRate() > 48000) {
                 *errors << QObject::tr("you can't use 'ReplayGain' for files with sample rates above 48kHz. Metaflac doesn't support such files.",
                                        "This string should begin with a lowercase letter. This is a part of the complex sentence.");
                 res = false;
@@ -69,7 +62,6 @@ bool OutFormat_Flac::check(const Profile &profile, QStringList *errors) const
     return res;
 }
 
-
 /************************************************
 
  ************************************************/
@@ -79,13 +71,12 @@ QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const Track *tra
     QStringList args;
 
     args << Settings::i()->programName(encoderProgramName());
-    args << "--force";      // Force overwriting of output files.
-    args << "--silent";     // Suppress progress indicator
+    args << "--force";  // Force overwriting of output files.
+    args << "--silent"; // Suppress progress indicator
 
     // Settings .................................................
     // Compression parametr really looks like --compression-level-N
     args << QString("--compression-level-%1").arg(profile.value("Compression").toString());
-
 
     // Tags .....................................................
     if (!track->artist().isEmpty())
@@ -125,7 +116,6 @@ QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const Track *tra
     return args;
 }
 
-
 /************************************************
 
  ************************************************/
@@ -139,18 +129,16 @@ QStringList OutFormat_Flac::gainArgs(const QStringList &files, const GainType) c
     return args;
 }
 
-
 /************************************************
 
  ************************************************/
 QHash<QString, QVariant> OutFormat_Flac::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("Compression",  5);
-    res.insert("ReplayGain",   gainTypeToString(GainType::Disable));
+    res.insert("Compression", 5);
+    res.insert("ReplayGain", gainTypeToString(GainType::Disable));
     return res;
 }
-
 
 /************************************************
 
@@ -160,11 +148,10 @@ EncoderConfigPage *OutFormat_Flac::configPage(const Profile &profile, QWidget *p
     return new ConfigPage_Flac(profile, parent);
 }
 
-
 /************************************************
 
  ************************************************/
-ConfigPage_Flac::ConfigPage_Flac(const Profile &profile, QWidget *parent):
+ConfigPage_Flac::ConfigPage_Flac(const Profile &profile, QWidget *parent) :
     EncoderConfigPage(profile, parent)
 {
     setupUi(this);
@@ -173,20 +160,18 @@ ConfigPage_Flac::ConfigPage_Flac(const Profile &profile, QWidget *parent):
     flacCompressionSpin->setToolTip(flacCompressionSlider->toolTip());
 }
 
-
 /************************************************
 
  ************************************************/
 void ConfigPage_Flac::load()
 {
-    loadWidget("Compression",  flacCompressionSlider);
+    loadWidget("Compression", flacCompressionSlider);
 }
-
 
 /************************************************
 
  ************************************************/
 void ConfigPage_Flac::save()
 {
-    saveWidget("Compression",  flacCompressionSlider);
+    saveWidget("Compression", flacCompressionSlider);
 }

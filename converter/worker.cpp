@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "worker.h"
 
 #include <QDebug>
@@ -31,24 +30,20 @@
 #include <QDir>
 #include "project.h"
 
-
 /************************************************
 
  ************************************************/
-Worker::Worker(QObject *parent) : QObject(parent)
+Worker::Worker(QObject *parent) :
+    QObject(parent)
 {
-
 }
-
 
 /************************************************
 
  ************************************************/
 Worker::~Worker()
 {
-
 }
-
 
 /************************************************
 

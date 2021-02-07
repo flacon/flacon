@@ -23,28 +23,25 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef IN_WV_H
 #define IN_WV_H
 
 #include "informat.h"
 
-class Format_Wv: public InputFormat
+class Format_Wv : public InputFormat
 {
 public:
-    virtual QString name() const override { return "WavPack"; }
-    virtual QString ext() const override { return "wv"; }
+    virtual QString    name() const override { return "WavPack"; }
+    virtual QString    ext() const override { return "wv"; }
     virtual QByteArray magic() const override { return "wvpk"; }
-    virtual uint magicOffset() const override { return 0; }
+    virtual uint       magicOffset() const override { return 0; }
 
-
-    virtual bool isInputFormat() const override { return true; }
-    virtual QString decoderProgramName() const override { return "wvunpack"; }
+    virtual bool        isInputFormat() const override { return true; }
+    virtual QString     decoderProgramName() const override { return "wvunpack"; }
     virtual QStringList decoderArgs(const QString &fileName) const override;
 
 protected:
     virtual bool checkMagic(const QByteArray &data) const override;
-
 };
 
 #endif // IN_WV_H

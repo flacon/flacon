@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef CONVERTER_H
 #define CONVERTER_H
 
@@ -41,16 +40,17 @@ class Converter : public QObject
 {
     Q_OBJECT
 public:
-    struct Job {
-        Disc *disc = nullptr;
-        QVector<const Track*> tracks;
+    struct Job
+    {
+        Disc *                 disc = nullptr;
+        QVector<const Track *> tracks;
     };
 
     typedef QVector<Job> Jobs;
     explicit Converter(QObject *parent = nullptr);
     virtual ~Converter();
 
-    bool isRunning();
+    bool        isRunning();
     static bool canConvert();
 
 signals:
@@ -67,8 +67,8 @@ private slots:
     void startThread();
 
 private:
-    int mThreadCount;
-    QVector<DiscPipeline*> mDiscPiplines;
+    int                     mThreadCount;
+    QVector<DiscPipeline *> mDiscPiplines;
 
     bool check(const Profile &profile) const;
 };

@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef OUT_OPUS_H
 #define OUT_OPUS_H
 
@@ -31,7 +30,7 @@
 #include "encoderconfigpage.h"
 #include "ui_out_opus_config.h"
 
-class OutFormat_Opus: public OutFormat
+class OutFormat_Opus : public OutFormat
 {
 public:
     OutFormat_Opus();
@@ -43,16 +42,14 @@ public:
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(const Profile &profile, QWidget *parent) const override;
+    EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
-    virtual SampleRate    maxSampleRate()   const override { return SampleRate::Hz_768000; }
-
+    virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 };
 
-
-class ConfigPage_Opus: public EncoderConfigPage, private Ui::ConfigPage_Opus
+class ConfigPage_Opus : public EncoderConfigPage, private Ui::ConfigPage_Opus
 {
     Q_OBJECT
 public:

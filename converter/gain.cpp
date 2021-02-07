@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "gain.h"
 #include "profiles.h"
 
@@ -35,12 +34,11 @@
 /************************************************
  *
  ************************************************/
-Gain::Gain(const Profile &profile, QObject *parent):
+Gain::Gain(const Profile &profile, QObject *parent) :
     Worker(parent),
     mProfile(profile)
 {
 }
-
 
 /************************************************
  *
@@ -48,13 +46,13 @@ Gain::Gain(const Profile &profile, QObject *parent):
 void Gain::run()
 {
     QStringList files;
-    for (const GainTrack &track: mTracks) {
+    for (const GainTrack &track : mTracks) {
         emit trackProgress(track.track, TrackState::CalcGain, 0);
         files << QDir::toNativeSeparators(track.file);
     }
 
     QStringList args = mProfile.gainArgs(files);
-    QString prog = args.takeFirst();
+    QString     prog = args.takeFirst();
 
     qDebug() << "Start gain:" << debugProgramArgs(prog, args);
 
@@ -65,12 +63,11 @@ void Gain::run()
 
     if (process.exitCode() != 0) {
         qWarning() << "Gain command failed: " << debugProgramArgs(prog, args);
-        QString msg = tr("Gain error:\n") +
-                QString::fromLocal8Bit(process.readAllStandardError());
-        emit error(mTracks.first().track, msg);
+        QString msg = tr("Gain error:\n") + QString::fromLocal8Bit(process.readAllStandardError());
+        emit    error(mTracks.first().track, msg);
     }
 
-    for (const GainTrack &track: mTracks) {
+    for (const GainTrack &track : mTracks) {
         emit trackProgress(track.track, TrackState::WriteGain, 100);
         emit trackReady(track.track, track.file);
     }

@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "resampler.h"
 #include "settings.h"
 
@@ -31,26 +30,24 @@
 
 Resampler::Resampler()
 {
-
 }
 
 QStringList Resampler::args(int bitsPerSample, int sampleRate, const QString &outFile)
 {
-    QString prog = Settings::i()->programName(programName());
+    QString     prog = Settings::i()->programName(programName());
     QStringList args;
     args << QDir::toNativeSeparators(prog);
 
     args << "-"; // Read from STDIN
-    if (bitsPerSample)
-    {
-        args << "-b" <<  QString("%1").arg(bitsPerSample);
+    if (bitsPerSample) {
+        args << "-b" << QString("%1").arg(bitsPerSample);
     }
 
-    args << "--type" << "wav";
+    args << "--type"
+         << "wav";
     args << outFile; // Input file already WAV, so for WAV output format we just rename file.
 
-    if (sampleRate)
-    {
+    if (sampleRate) {
         args << "rate";
         args << "-v"; // very high quality
         args << QString("%1").arg(sampleRate);
@@ -58,4 +55,3 @@ QStringList Resampler::args(int bitsPerSample, int sampleRate, const QString &ou
 
     return args;
 }
-

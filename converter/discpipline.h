@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef DISCPIPLINE_H
 #define DISCPIPLINE_H
 
@@ -47,16 +46,16 @@ public:
     void startWorker(int *splitterCount, int *count);
     void stop();
     bool isRunning() const;
-    int runningThreadCount() const;
+    int  runningThreadCount() const;
 
     CoverMode coverMode() const;
-    void setCoverMode(CoverMode value);
+    void      setCoverMode(CoverMode value);
 
-    int coverImageSize() const;
+    int  coverImageSize() const;
     void setCoverImageSize(int value);
 
     QString tmpDir() const;
-    void setTmpDir(QString value);
+    void    setTmpDir(QString value);
 
 signals:
     void readyStart();
@@ -64,7 +63,6 @@ signals:
     void finished();
     void threadQuit();
     void trackProgressChanged(const Track &track, TrackState status, Percent percent);
-
 
 private slots:
     void trackProgress(const Track *track, TrackState state, int percent);
@@ -75,7 +73,7 @@ private slots:
     void trackDone(const Track *track, const QString &outFileName);
 
 protected:
-   static int calcQuality(int input, int preferences, int formatMax);
+    static int calcQuality(int input, int preferences, int formatMax);
 
 private:
     class Data;

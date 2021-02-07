@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "scanner.h"
 #include "formats/informat.h"
 #include "inputaudiofile.h"
@@ -36,7 +35,6 @@
 #include <QDir>
 #include <QApplication>
 
-
 /************************************************
 
  ************************************************/
@@ -45,9 +43,7 @@ Scanner::Scanner(QObject *parent) :
     mActive(false),
     mAbort(false)
 {
-
 }
-
 
 /************************************************
 
@@ -55,10 +51,10 @@ Scanner::Scanner(QObject *parent) :
 void Scanner::start(const QString &startDir)
 {
     mActive = true;
-    mAbort = false;
+    mAbort  = false;
 
     QStringList exts;
-    foreach(const InputFormat *format, InputFormat::allFormats()) {
+    foreach (const InputFormat *format, InputFormat::allFormats()) {
         exts << QString("*.%1").arg(format->ext());
     }
 
@@ -70,7 +66,7 @@ void Scanner::start(const QString &startDir)
         QDir dir(query.dequeue());
 
         QFileInfoList dirs = dir.entryInfoList(QDir::Dirs | QDir::Readable | QDir::NoDotAndDotDot);
-        foreach(QFileInfo d, dirs) {
+        foreach (QFileInfo d, dirs) {
             qApp->processEvents();
             if (mAbort)
                 return;
@@ -85,7 +81,7 @@ void Scanner::start(const QString &startDir)
         }
 
         QFileInfoList files = dir.entryInfoList(exts, QDir::Files | QDir::Readable);
-        foreach(QFileInfo f, files) {
+        foreach (QFileInfo f, files) {
             qApp->processEvents();
             if (mAbort)
                 return;
@@ -95,7 +91,6 @@ void Scanner::start(const QString &startDir)
     }
 }
 
-
 /************************************************
 
  ************************************************/
@@ -103,4 +98,3 @@ void Scanner::stop()
 {
     mAbort = true;
 }
-

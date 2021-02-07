@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "addprofiledialog.h"
 #include "ui_addprofiledialog.h"
 #include "outformat.h"
@@ -38,7 +37,7 @@ AddProfileDialog::AddProfileDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    for (const auto format: OutFormat::allFormats()) {
+    for (const auto format : OutFormat::allFormats()) {
         ui->formatCbx->addItem(format->name(), format->id());
     }
 
@@ -51,7 +50,6 @@ AddProfileDialog::AddProfileDialog(QWidget *parent) :
     setButtonsEnabled();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -59,7 +57,6 @@ AddProfileDialog::~AddProfileDialog()
 {
     delete ui;
 }
-
 
 /************************************************
  *
@@ -69,7 +66,6 @@ const QString AddProfileDialog::profileName() const
     return ui->profileNameEd->text();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -77,7 +73,6 @@ void AddProfileDialog::setProfileName(const QString &value)
 {
     ui->profileNameEd->setText(value);
 }
-
 
 /************************************************
  *
@@ -87,7 +82,6 @@ const QString AddProfileDialog::formaiId() const
     return ui->formatCbx->currentData().toString();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -96,7 +90,6 @@ void AddProfileDialog::setFormatId(const QString &value)
     int n = ui->formatCbx->findData(value);
     ui->formatCbx->setCurrentIndex(qMax(0, n));
 }
-
 
 /************************************************
  *

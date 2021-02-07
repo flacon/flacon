@@ -23,12 +23,10 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "in_flac.h"
 #include <QDebug>
 
 REGISTER_INPUT_FORMAT(Format_Flac)
-
 
 /************************************************
  *

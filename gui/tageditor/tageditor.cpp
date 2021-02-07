@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "tageditor.h"
 #include "ui_tageditor.h"
 
@@ -36,18 +35,15 @@
 #include "track.h"
 #include "disc.h"
 
-
 /************************************************
  *
  ************************************************/
 template <class Control>
-static void initControlValue(const QList<Track*> &tracks, const QList<Control*> &controls)
+static void initControlValue(const QList<Track *> &tracks, const QList<Control *> &controls)
 {
-    foreach (auto *control, controls)
-    {
+    foreach (auto *control, controls) {
         QSet<QString> values;
-        foreach(Track *track, tracks)
-        {
+        foreach (Track *track, tracks) {
             values << track->tag(control->tagId());
         }
 
@@ -55,17 +51,14 @@ static void initControlValue(const QList<Track*> &tracks, const QList<Control*> 
     }
 }
 
-
 /************************************************
  *
  ************************************************/
-static void initControlValue(const QList<Track*> &tracks, const QList<TagSpinBox*> &controls)
+static void initControlValue(const QList<Track *> &tracks, const QList<TagSpinBox *> &controls)
 {
-    foreach (auto *control, controls)
-    {
+    foreach (auto *control, controls) {
         QSet<int> values;
-        foreach(Track *track, tracks)
-        {
+        foreach (Track *track, tracks) {
             values << track->tag(control->tagId()).toInt();
         }
 
@@ -73,11 +66,10 @@ static void initControlValue(const QList<Track*> &tracks, const QList<TagSpinBox
     }
 }
 
-
 /************************************************
  *
  ************************************************/
-TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disc *> &discs, QWidget *parent):
+TagEditor::TagEditor(const QList<Track *> &tracks, const QList<Disc *> &discs, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TagEditor),
     mTracks(tracks),
@@ -87,12 +79,11 @@ TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disc *> &discs, QW
     ui->setupUi(this);
     setWindowModality(Qt::WindowModal);
 
-    addLineEdit(TagId::Artist,      tr("Artist:", "Music tag name"));
+    addLineEdit(TagId::Artist, tr("Artist:", "Music tag name"));
     addLineEdit(TagId::AlbumArtist, tr("Album performer:", "Music tag name"));
-    addLineEdit(TagId::Album,       tr("Album:", "Music tag name"));
-    addLineEdit(TagId::Genre,       tr("Genre:", "Music tag name"));
-    addLineEdit(TagId::Date,        tr("Year:",  "Music tag name"));
-
+    addLineEdit(TagId::Album, tr("Album:", "Music tag name"));
+    addLineEdit(TagId::Genre, tr("Genre:", "Music tag name"));
+    addLineEdit(TagId::Date, tr("Year:", "Music tag name"));
 
     mStartTrackSpin = new MultiValuesSpinBox(this);
     mStartTrackSpin->setMinimum(1);
@@ -102,12 +93,12 @@ TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disc *> &discs, QW
     trackCountSpin->setMinimum(1);
     trackCountSpin->setMaximum(99);
     trackCountSpin->setTagId(TagId::TrackCount);
-    this->add2Widget(mStartTrackSpin, trackCountSpin,  tr("Start track number:", "Music tag name"));
+    this->add2Widget(mStartTrackSpin, trackCountSpin, tr("Start track number:", "Music tag name"));
 
-    addIntEditNumCount(TagId::DiscNum,  TagId::DiscCount,  tr("Disc number:", "Music tag name"));
+    addIntEditNumCount(TagId::DiscNum, TagId::DiscCount, tr("Disc number:", "Music tag name"));
 
-    addLineEdit(TagId::Title,       tr("Track title:",    "Music tag name"));
-    addTextEdit(TagId::Comment,     tr("Comment:",  "Music tag name"));
+    addLineEdit(TagId::Title, tr("Track title:", "Music tag name"));
+    addTextEdit(TagId::Comment, tr("Comment:", "Music tag name"));
 
     // Set values ______________________________________________
     initControlValue(tracks, this->findChildren<TagLineEdit *>());
@@ -115,14 +106,12 @@ TagEditor::TagEditor(const QList<Track*> &tracks, const QList<Disc *> &discs, QW
     initControlValue(tracks, this->findChildren<TagSpinBox *>());
 
     QSet<int> values;
-    foreach(Disc *disc, discs)
-    {
+    foreach (Disc *disc, discs) {
         values << disc->startTrackNum();
     }
 
     mStartTrackSpin->setMultiValue(values);
 }
-
 
 /************************************************
  *
@@ -132,71 +121,59 @@ TagEditor::~TagEditor()
     delete ui;
 }
 
-
 /************************************************
  *
  ************************************************/
 template <class Control>
-static void setValue(const QList<Track*> &tracks, const QList<Control*> &controls)
+static void setValue(const QList<Track *> &tracks, const QList<Control *> &controls)
 {
-    foreach (Control *edit, controls)
-    {
+    foreach (Control *edit, controls) {
         if (!edit->isModified())
             continue;
 
-        foreach (Track *track, tracks)
-        {
+        foreach (Track *track, tracks) {
             track->setTag(edit->tagId(), edit->text());
         }
     }
 }
-
 
 /************************************************
  *
  ************************************************/
-static void setValue(const QList<Track*> &tracks, const QList<TagSpinBox*> &controls)
+static void setValue(const QList<Track *> &tracks, const QList<TagSpinBox *> &controls)
 {
-    foreach (TagSpinBox *edit, controls)
-    {
+    foreach (TagSpinBox *edit, controls) {
         if (!edit->isModified())
             continue;
 
-        foreach (Track *track, tracks)
-        {
+        foreach (Track *track, tracks) {
             track->setTag(edit->tagId(), edit->text());
         }
     }
 }
-
 
 /************************************************
  *
  ************************************************/
 void TagEditor::done(int res)
 {
-    if (!res)
-    {
+    if (!res) {
         QDialog::done(res);
         return;
     }
 
     setValue(mTracks, this->findChildren<TagLineEdit *>());
     setValue(mTracks, this->findChildren<TagTextEdit *>());
-    setValue(mTracks, this->findChildren<TagSpinBox  *>());
+    setValue(mTracks, this->findChildren<TagSpinBox *>());
 
-
-    if (mStartTrackSpin->isModified())
-    {
-        foreach (Disc *disc, mDiscs)
-        {
+    if (mStartTrackSpin->isModified()) {
+        foreach (Disc *disc, mDiscs) {
             disc->setStartTrackNum(mStartTrackSpin->value());
         }
     }
 
     QDialog::done(res);
 }
-
 
 /************************************************
  *
@@ -223,8 +200,6 @@ void TagEditor::add2Widget(QWidget *widget1, QWidget *widget2, const QString &la
     ui->layout->addWidget(widget2, row, 3);
 }
 
-
-
 /************************************************
  *
  ************************************************/
@@ -242,7 +217,6 @@ void TagEditor::addLineEdit(TagId tagId, const QString &label)
     layout->addWidget(edit, layout->rowCount() - 1, 1, 1, 3);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -259,7 +233,6 @@ void TagEditor::addTextEdit(TagId tagId, const QString &label)
     edit->setTagId(tagId);
     layout->addWidget(edit, layout->rowCount() - 1, 1, 1, 3);
 }
-
 
 /************************************************
  *
@@ -295,7 +268,6 @@ void TagEditor::addIntEditNumCount(TagId numTagId, TagId cntTagId, const QString
         ui->layout->addWidget(edit, row, 3);
     }
 }
-
 
 /************************************************
  *

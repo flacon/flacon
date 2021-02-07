@@ -23,18 +23,16 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "splitter.h"
 #include "disc.h"
 #include "decoder.h"
 
 #include <QDebug>
 
-
 /************************************************
  *
  ************************************************/
-Splitter::Splitter(const Disc *disc, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent):
+Splitter::Splitter(const Disc *disc, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent) :
     Worker(parent),
     mDisc(disc),
     mWorkDir(workDir),
@@ -43,48 +41,41 @@ Splitter::Splitter(const Disc *disc, const QString &workDir, bool extractPregap,
 {
 }
 
-
 /************************************************
  *
  ************************************************/
 void Splitter::run()
 {
     static QAtomicInteger<quint32> globalUid(1);
-    QString uid = QString("%1").arg(globalUid.fetchAndAddRelaxed(1), 4, 10, QLatin1Char('0'));
+    QString                        uid = QString("%1").arg(globalUid.fetchAndAddRelaxed(1), 4, 10, QLatin1Char('0'));
 
     mCurrentTrack = nullptr;
     Decoder decoder;
 
-    try
-    {
+    try {
         decoder.open(mDisc->audioFileName());
     }
-    catch (FlaconError &err)
-    {
+    catch (FlaconError &err) {
         emit error(mTracks.first(),
-              tr("I can't read <b>%1</b>:<br>%2",
-                 "Splitter error. %1 is a file name, %2 is a system error text.")
-              .arg(mDisc->audioFileName())
-              .arg(err.what()));
+                   tr("I can't read <b>%1</b>:<br>%2",
+                      "Splitter error. %1 is a file name, %2 is a system error text.")
+                           .arg(mDisc->audioFileName())
+                           .arg(err.what()));
         return;
     }
 
-
     // Extract pregap to separate file ....................
-    if (mExtractPregap)
-    {
-        mCurrentTrack  = mDisc->preGapTrack();
-        CueIndex start = mDisc->track(0)->cueIndex(0);
-        CueIndex end   = mDisc->track(0)->cueIndex(1);
-        QString outFileName = QString("%1/pregap-%2.wav").arg(mWorkDir).arg(uid);
+    if (mExtractPregap) {
+        mCurrentTrack        = mDisc->preGapTrack();
+        CueIndex start       = mDisc->track(0)->cueIndex(0);
+        CueIndex end         = mDisc->track(0)->cueIndex(1);
+        QString  outFileName = QString("%1/pregap-%2.wav").arg(mWorkDir).arg(uid);
 
-        try
-        {
+        try {
             decoder.extract(start, end, outFileName);
         }
-        catch (FlaconError &err)
-        {
-            qWarning() << "Splitter error for pregap track : " <<  err.what();
+        catch (FlaconError &err) {
+            qWarning() << "Splitter error for pregap track : " << err.what();
             deleteFile(outFileName);
             emit error(mCurrentTrack, err.what());
             return;
@@ -94,47 +85,40 @@ void Splitter::run()
     }
     // Extract pregap to separate file ....................
 
-
-
     // We havn't pregap in the GUI and pregap is short so we suppress progress for pregap track
     connect(&decoder, SIGNAL(progress(int)),
             this, SLOT(decoderProgress(int)));
 
     qDebug() << "Start splitting" << mDisc->count() << "tracks from" << mDisc->audioFileName();
-    for (int i=0; i<mDisc->count(); ++i)
-    {
+    for (int i = 0; i < mDisc->count(); ++i) {
         mCurrentTrack = mDisc->track(i);
         if (!mTracks.contains(mCurrentTrack))
             continue;
 
-        QString outFileName = QString("%1/track-%2_%3.wav").arg(mWorkDir).arg(uid).arg(i+1, 2, 10, QLatin1Char('0'));
+        QString outFileName = QString("%1/track-%2_%3.wav").arg(mWorkDir).arg(uid).arg(i + 1, 2, 10, QLatin1Char('0'));
 
         CueIndex start, end;
-        if (i==0 && mPreGapType == PreGapType::AddToFirstTrack)
+        if (i == 0 && mPreGapType == PreGapType::AddToFirstTrack)
             start = CueTime("00:00:00");
         else
             start = mDisc->track(i)->cueIndex(1);
 
-        if (i<mDisc->count()-1)
-            end = mDisc->track(i+1)->cueIndex(01);
+        if (i < mDisc->count() - 1)
+            end = mDisc->track(i + 1)->cueIndex(01);
 
-        try
-        {
+        try {
             decoder.extract(start, end, outFileName);
         }
-        catch (FlaconError &err)
-        {
-            qWarning() << "Splitter error for track " << mCurrentTrack->trackNum() << ": " <<  err.what();
+        catch (FlaconError &err) {
+            qWarning() << "Splitter error for track " << mCurrentTrack->trackNum() << ": " << err.what();
             deleteFile(outFileName);
             emit error(mCurrentTrack, err.what());
-
         }
 
         qDebug() << "Splitter trackReady:" << *mCurrentTrack << outFileName;
         emit trackReady(mCurrentTrack, outFileName);
     }
 }
-
 
 /************************************************
  *

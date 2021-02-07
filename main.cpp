@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include <QCommandLineParser>
 #include <QApplication>
 #include <application.h>
@@ -45,14 +44,12 @@
 #include <QDir>
 #include <QLoggingCategory>
 
-
 #ifdef MAC_UPDATER
 #include "updater/updater.h"
 #endif
 
 static bool quiet;
 static bool progress;
-
 
 /************************************************
  *
@@ -84,7 +81,6 @@ Environment variables:
     out << endl;
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -95,7 +91,7 @@ void printVersion()
 #ifndef GIT_BRANCH
     out << "flacon " << FLACON_VERSION << endl;
 #else
-    out << "flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " "  << GIT_COMMIT_HASH << endl;
+    out << "flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " " << GIT_COMMIT_HASH << endl;
 #endif
     out << "Copyright (c) 2013-" << QDate::currentDate().year() << " Alexander Sokolov" << endl;
     out << "   https://github.com/flacon/flacon" << endl;
@@ -105,7 +101,6 @@ void printVersion()
     out << "This is free software: you are free to change and redistribute it." << endl;
     out << "There is NO WARRANTY, to the extent permitted by law." << endl;
 }
-
 
 /************************************************
  *
@@ -118,7 +113,6 @@ void consoleErroHandler(const QString &message)
     QTextStream(stderr) << msg.toLocal8Bit() << endl;
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -130,7 +124,6 @@ void guiErrorHandler(const QString &message)
     msg.replace(" ", "&nbsp;");
     QMessageBox::critical(nullptr, QObject::tr("Flacon", "Error"), "<html>" + msg + "</html>");
 }
-
 
 /************************************************
  *
@@ -150,11 +143,9 @@ void translate(QApplication *app)
     app->installTranslator(qtTranslator);
 
     QTranslator *appTranslator = new QTranslator(app);
-    appTranslator->load(QString("flacon_%2.qm").arg(locale)) ||
-            appTranslator->load(QString("%1/flacon_%2.qm").arg(appDir, locale));
+    appTranslator->load(QString("flacon_%2.qm").arg(locale)) || appTranslator->load(QString("%1/flacon_%2.qm").arg(appDir, locale));
     app->installTranslator(appTranslator);
 }
-
 
 /************************************************
  *
@@ -166,24 +157,23 @@ int runConsole(int argc, char *argv[], const QStringList &files)
     auto addFile = [&](const QString &file, bool showError = false) {
         try {
             QFileInfo fi = QFileInfo(file);
-            DiscList discs;
+            DiscList  discs;
             if (fi.size() > 102400)
                 discs << project->addAudioFile(file);
             else
                 discs << project->addCueFile(file);
         }
 
-        catch (FlaconError &err)
-        {
+        catch (FlaconError &err) {
             if (showError)
-                qWarning() << "Error: " <<  err.what();
+                qWarning() << "Error: " << err.what();
         }
     };
 
-    for (QString file: files) {
+    for (QString file : files) {
         QFileInfo fi = QFileInfo(file);
 
-        if (fi.isDir())  {
+        if (fi.isDir()) {
             Scanner scanner;
             scanner.connect(&scanner, &Scanner::found, addFile);
             scanner.start(fi.absoluteFilePath());
@@ -197,7 +187,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
         return 10;
 
     ConsoleOut out;
-    Converter converter;
+    Converter  converter;
     if (!quiet) {
         QObject::connect(&converter, &Converter::started,
                          &out, &ConsoleOut::converterStarted);
@@ -210,22 +200,19 @@ int runConsole(int argc, char *argv[], const QStringList &files)
 
         if (progress) {
             QObject::connect(&converter, &Converter::trackProgress,
-                         &out, &ConsoleOut::trackProgress);
+                             &out, &ConsoleOut::trackProgress);
         }
     }
 
     app.connect(&converter, SIGNAL(finished()),
                 &app, SLOT(quit()));
 
-
     converter.start(Settings::i()->currentProfile());
     if (!converter.isRunning())
         return 11;
 
     return app.exec();
-
 }
-
 
 /************************************************
  *
@@ -237,11 +224,11 @@ int runGui(int argc, char *argv[], const QStringList &files)
 
     MainWindow window;
 
-    foreach(QString file, files)
+    foreach (QString file, files)
         window.addFileOrDir(file);
 
     QObject::connect(&app, SIGNAL(openFile(QString)),
-            &window, SLOT(addFileOrDir(QString)));
+                     &window, SLOT(addFileOrDir(QString)));
 
     window.show();
 
@@ -254,7 +241,6 @@ int runGui(int argc, char *argv[], const QStringList &files)
     return app.exec();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -265,39 +251,46 @@ int main(int argc, char *argv[])
 
     parser.addPositionalArgument("file", "CUE or Audio file.");
 
-    parser.addOption(QCommandLineOption(QStringList() << "h" << "help",     ""));
-    parser.addOption(QCommandLineOption(                        "version",  ""));
-    parser.addOption(QCommandLineOption(QStringList() << "s" << "start",    ""));
-    parser.addOption(QCommandLineOption(QStringList() << "c" << "config",   "", "config file"));
-    parser.addOption(QCommandLineOption(QStringList() << "q" << "quiet",    ""));
-    parser.addOption(QCommandLineOption(QStringList() << "p" << "progress", ""));
-    parser.addOption(QCommandLineOption(                        "debug",    ""));
+    parser.addOption(QCommandLineOption(QStringList() << "h"
+                                                      << "help",
+                                        ""));
+    parser.addOption(QCommandLineOption("version", ""));
+    parser.addOption(QCommandLineOption(QStringList() << "s"
+                                                      << "start",
+                                        ""));
+    parser.addOption(QCommandLineOption(QStringList() << "c"
+                                                      << "config",
+                                        "", "config file"));
+    parser.addOption(QCommandLineOption(QStringList() << "q"
+                                                      << "quiet",
+                                        ""));
+    parser.addOption(QCommandLineOption(QStringList() << "p"
+                                                      << "progress",
+                                        ""));
+    parser.addOption(QCommandLineOption("debug", ""));
 
     QStringList args;
-    for (int i=0; i<argc; ++i)
+    for (int i = 0; i < argc; ++i)
         args << QString::fromLocal8Bit(argv[i]);
 
-    if (!parser.parse(args))
-    {
-        QTextStream(stderr) << parser.errorText() << endl << endl;
+    if (!parser.parse(args)) {
+        QTextStream(stderr) << parser.errorText() << endl
+                            << endl;
         printHelp(stderr);
         return 1;
     }
 
-    if (parser.isSet("help"))
-    {
+    if (parser.isSet("help")) {
         printHelp(stdout);
         return 0;
     }
 
-    if (parser.isSet("version"))
-    {
+    if (parser.isSet("version")) {
         printVersion();
         return 0;
     }
 
-    if (!parser.value("config").isEmpty())
-    {
+    if (!parser.value("config").isEmpty()) {
         Settings::setFileName(parser.value("config"));
     }
 
@@ -309,14 +302,13 @@ int main(int argc, char *argv[])
         QLoggingCategory::setFilterRules("*.debug=false");
     }
 
-
-    quiet = parser.isSet("quiet");
+    quiet    = parser.isSet("quiet");
     progress = parser.isSet("progress");
 
 #ifndef GIT_BRANCH
     qInfo() << "Start flacon " << FLACON_VERSION;
 #else
-    qInfo() << "Start flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " "  << GIT_COMMIT_HASH;
+    qInfo() << "Start flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " " << GIT_COMMIT_HASH;
 #endif
 
     if (parser.isSet("start"))

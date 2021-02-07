@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef ADDPROFILEDIALOG_H
 #define ADDPROFILEDIALOG_H
 
@@ -42,10 +41,10 @@ public:
     ~AddProfileDialog();
 
     const QString profileName() const;
-    void setProfileName(const QString &value);
+    void          setProfileName(const QString &value);
 
     const QString formaiId() const;
-    void setFormatId(const QString &value);
+    void          setFormatId(const QString &value);
 
 private slots:
     void setButtonsEnabled();

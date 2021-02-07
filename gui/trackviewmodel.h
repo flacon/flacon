@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef TRACKVIEWMODEL_H
 #define TRACKVIEWMODEL_H
 
@@ -36,7 +35,6 @@ class Disc;
 class Track;
 class TrackView;
 
-
 class TrackViewModel : public QAbstractItemModel
 {
     friend class TrackView;
@@ -46,15 +44,15 @@ public:
     explicit TrackViewModel(TrackView *parent = nullptr);
     virtual ~TrackViewModel();
 
-    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+    QVariant    headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
     QModelIndex parent(const QModelIndex &child) const override;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-    bool setData( const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
+    bool     setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
 
-    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int           columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    int           rowCount(const QModelIndex &parent = QModelIndex()) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
 
     TrackView *view() const { return mView; }
@@ -62,7 +60,7 @@ public:
     QModelIndex index(const Disc &disc, int col = 0) const;
     QModelIndex index(const Track &track, int col) const;
 
-    Disc *discByIndex(const QModelIndex &index);
+    Disc * discByIndex(const QModelIndex &index);
     Track *trackByIndex(const QModelIndex &index);
 
 public slots:
@@ -70,11 +68,11 @@ public slots:
 protected:
     enum ItemType {
         TrackItem = 1,
-        DiscItem = 2
+        DiscItem  = 2
     };
 
-    enum Roles{
-        RoleItemType   = Qt::UserRole + 1,
+    enum Roles {
+        RoleItemType = Qt::UserRole + 1,
         RolePercent,
         RoleStatus,
         RoleTracknum,
@@ -100,8 +98,6 @@ protected:
         RoleDiscPerformer
     };
 
-
-
 public slots:
     void downloadStarted(const Disc &disc);
     void downloadFinished(const Disc &disc);
@@ -115,10 +111,10 @@ private slots:
 private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;
     QVariant discData(const Disc *disc, const QModelIndex &index, int role) const;
-    QString trackDurationToString(uint milliseconds) const;
+    QString  trackDurationToString(uint milliseconds) const;
     class Cache;
     mutable Cache *mCache;
-    TrackView *mView;
+    TrackView *    mView;
 };
 
 #endif // TRACKVIEWMODEL_H

@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef TAGEDITOR_H
 #define TAGEDITOR_H
 
@@ -35,7 +34,6 @@ class Track;
 class Disc;
 class MultiValuesSpinBox;
 
-
 namespace Ui {
 class TagEditor;
 }
@@ -45,22 +43,22 @@ class TagEditor : public QDialog
     Q_OBJECT
 
 public:
-    explicit TagEditor(const QList<Track*> &tracks, const QList<Disc *> &discs, QWidget *parent = nullptr);
+    explicit TagEditor(const QList<Track *> &tracks, const QList<Disc *> &discs, QWidget *parent = nullptr);
     ~TagEditor();
 
 public slots:
     void done(int res) override;
 
 private:
-    Ui::TagEditor *ui;
-    void add2Widget(QWidget *widget1, QWidget *widget2, const QString &label);
-    void addLineEdit(TagId tagId, const QString &label);
-    void addTextEdit(TagId tagId, const QString &label);
-    void addIntEdit(TagId tagId, const QString &label);
-    void addIntEditNumCount(TagId numTagId, TagId cntTagId, const QString &numLabel);
-    const QList<Track*> mTracks;
-    const QList<Disc *> mDiscs;
-    MultiValuesSpinBox *mStartTrackSpin;
+    Ui::TagEditor *      ui;
+    void                 add2Widget(QWidget *widget1, QWidget *widget2, const QString &label);
+    void                 addLineEdit(TagId tagId, const QString &label);
+    void                 addTextEdit(TagId tagId, const QString &label);
+    void                 addIntEdit(TagId tagId, const QString &label);
+    void                 addIntEditNumCount(TagId numTagId, TagId cntTagId, const QString &numLabel);
+    const QList<Track *> mTracks;
+    const QList<Disc *>  mDiscs;
+    MultiValuesSpinBox * mStartTrackSpin;
 };
 
 #endif // TAGEDITOR_H

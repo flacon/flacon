@@ -23,23 +23,20 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "out_aac.h"
 #include "settings.h"
 #include "inputaudiofile.h"
-
 
 /************************************************
 
  ************************************************/
 OutFormat_Aac::OutFormat_Aac()
 {
-    mId   = "AAC";
-    mExt  = "m4a";
-    mName = "AAC";
+    mId      = "AAC";
+    mExt     = "m4a";
+    mName    = "AAC";
     mOptions = FormatOption::NoOptions;
 }
-
 
 /************************************************
 
@@ -57,26 +54,29 @@ QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const Track *trac
     else
         args << "-b" << profile.value("Bitrate").toString();
 
-
     // Tags .....................................................
     // --artist artist
     //     Set artist to artist
-    if (!track->artist().isEmpty())        args << "--artist"  << track->artist();
+    if (!track->artist().isEmpty())
+        args << "--artist" << track->artist();
 
     // --writer writer
     //     Set writer to writer
 
     // --title title
     //     Set title to title
-    if (!track->title().isEmpty())        args << "--title"   << track->title();
+    if (!track->title().isEmpty())
+        args << "--title" << track->title();
 
     // --genre genre
     //     Set genre to genre
-    if (!track->genre().isEmpty())        args << "--genre"   << track->genre();
+    if (!track->genre().isEmpty())
+        args << "--genre" << track->genre();
 
     // --album album
     //     Set album to album
-    if (!track->album().isEmpty())        args << "--album"   << track->album();
+    if (!track->album().isEmpty())
+        args << "--album" << track->album();
 
     // --compilation
     //     Set compilation
@@ -91,21 +91,21 @@ QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const Track *trac
 
     // --year year
     //     Set year to year
-    if (!track->date().isEmpty())   args << "--year"   << track->date();
+    if (!track->date().isEmpty())
+        args << "--year" << track->date();
 
     // --cover-art file
     //     Set cover art to image in file; supported formats are GIF, JPEG, and PNG.
 
     // --comment comment
     //     Set comment to comment
-    if (!track->comment().isEmpty())   args << "--comment"   << track->comment();
-
+    if (!track->comment().isEmpty())
+        args << "--comment" << track->comment();
 
     args << "-o" << outFile;
     args << "-";
     return args;
 }
-
 
 /************************************************
 
@@ -115,19 +115,17 @@ QStringList OutFormat_Aac::gainArgs(const QStringList &, const GainType) const
     return QStringList();
 }
 
-
 /************************************************
 
  ************************************************/
 QHash<QString, QVariant> OutFormat_Aac::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("UseQuality",  true);
-    res.insert("Quality",   100);
+    res.insert("UseQuality", true);
+    res.insert("Quality", 100);
     res.insert("Bitrate", 256);
     return res;
 }
-
 
 /************************************************
 
@@ -137,23 +135,21 @@ EncoderConfigPage *OutFormat_Aac::configPage(const Profile &profile, QWidget *pa
     return new ConfigPage_Acc(profile, parentr);
 }
 
-
 /************************************************
 
  ************************************************/
-ConfigPage_Acc::ConfigPage_Acc(const Profile &profile, QWidget *parent):
+ConfigPage_Acc::ConfigPage_Acc(const Profile &profile, QWidget *parent) :
     EncoderConfigPage(profile, parent)
 {
     setupUi(this);
 
     setLossyToolTip(aacQualitySpin);
     aacQualitySlider->setToolTip(aacQualitySpin->toolTip());
-    fillBitrateComboBox(aacBitrateCbx,  QList<int>() << 64 << 80 << 128 << 160 << 192 << 224 << 256 << 288 << 320);
+    fillBitrateComboBox(aacBitrateCbx, QList<int>() << 64 << 80 << 128 << 160 << 192 << 224 << 256 << 288 << 320);
 
     connect(aacUseQualityCheck, &QCheckBox::toggled,
             this, &ConfigPage_Acc::useQualityChecked);
 }
-
 
 /************************************************
 
@@ -161,10 +157,9 @@ ConfigPage_Acc::ConfigPage_Acc(const Profile &profile, QWidget *parent):
 void ConfigPage_Acc::load()
 {
     loadWidget("UseQuality", aacUseQualityCheck);
-    loadWidget("Quality",    aacQualitySpin);
-    loadWidget("Bitrate",    aacBitrateCbx);
+    loadWidget("Quality", aacQualitySpin);
+    loadWidget("Bitrate", aacBitrateCbx);
 }
-
 
 /************************************************
 
@@ -172,10 +167,9 @@ void ConfigPage_Acc::load()
 void ConfigPage_Acc::save()
 {
     saveWidget("UseQuality", aacUseQualityCheck);
-    saveWidget("Quality",    aacQualitySpin);
-    saveWidget("Bitrate",    aacBitrateCbx);
+    saveWidget("Quality", aacQualitySpin);
+    saveWidget("Bitrate", aacBitrateCbx);
 }
-
 
 /************************************************
  *

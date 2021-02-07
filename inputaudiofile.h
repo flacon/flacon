@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef INPUTAUDIOFILE_H
 #define INPUTAUDIOFILE_H
 
@@ -37,27 +36,27 @@ class InputAudioFile
 public:
     explicit InputAudioFile(const QString &fileName);
     InputAudioFile(const InputAudioFile &other);
-    InputAudioFile &operator =(const InputAudioFile &other);
+    InputAudioFile &operator=(const InputAudioFile &other);
 
     QString fileName() const { return mFileName; }
-    bool isValid() const { return mValid; }
-    bool isCdQuality() const { return mCdQuality; }
-    int sampleRate() const { return mSampleRate; }
-    int bitsPerSample() const { return mBitsPerSample; }
+    bool    isValid() const { return mValid; }
+    bool    isCdQuality() const { return mCdQuality; }
+    int     sampleRate() const { return mSampleRate; }
+    int     bitsPerSample() const { return mBitsPerSample; }
     QString errorString() const { return mErrorString; }
-    uint duration() const { return mDuration; }
+    uint    duration() const { return mDuration; }
 
     const InputFormat *format() const { return mFormat; }
-private:
 
-    QString mFileName;
-    QString mErrorString;
+private:
+    QString            mFileName;
+    QString            mErrorString;
     const InputFormat *mFormat;
-    int mSampleRate;
-    int mBitsPerSample;
-    uint mDuration;
-    bool mValid;
-    bool mCdQuality;
+    int                mSampleRate;
+    int                mBitsPerSample;
+    uint               mDuration;
+    bool               mValid;
+    bool               mCdQuality;
 
     bool load();
 };

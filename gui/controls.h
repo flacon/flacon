@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef CONTROLS_H
 #define CONTROLS_H
 
@@ -40,28 +39,25 @@
 
 class QStringListModel;
 
-enum MultiValuesState
-{
+enum MultiValuesState {
     MultiValuesEmpty,
     MultiValuesSingle,
     MultiValuesMulti
 };
 
-
 /************************************************
  *
  ************************************************/
-class ToolButton: public QToolButton
+class ToolButton : public QToolButton
 {
     Q_OBJECT
 public:
     explicit ToolButton(const QIcon &icon, QWidget *parent = nullptr);
     explicit ToolButton(QWidget *parent = nullptr);
-    virtual ~ToolButton() {}
+    virtual ~ToolButton() { }
 
     /// Returns this label's buddy, or nullptr if no buddy is currently set.
     QWidget *buddy() const { return mBuddy; }
-
 
     /// Sets this label's buddy to buddy.
     ///
@@ -81,16 +77,14 @@ private:
     QWidget *mBuddy = nullptr;
 };
 
-
-
 /************************************************
 
  ************************************************/
-class OutPatternButton: public ToolButton
+class OutPatternButton : public ToolButton
 {
     Q_OBJECT
 public:
-    explicit OutPatternButton(QWidget * parent = nullptr);
+    explicit OutPatternButton(QWidget *parent = nullptr);
     void addPattern(const QString &pattern, const QString &title);
     void addFullPattern(const QString &pattern, const QString &title);
 
@@ -100,25 +94,22 @@ signals:
     void paternSelected(const QString &pattern);
     void fullPaternSelected(const QString &pattern);
 
-
 private slots:
     void patternTriggered();
     void fullPatternTriggered();
 
 private:
-    QAction* mSeparator;
+    QAction *mSeparator;
 };
-
-
 
 /************************************************
  *
  ************************************************/
-class OutDirButton: public ToolButton
+class OutDirButton : public ToolButton
 {
     Q_OBJECT
 public:
-    explicit OutDirButton(QWidget * parent = nullptr);
+    explicit OutDirButton(QWidget *parent = nullptr);
 
 private slots:
     void openSelectDirDialog();
@@ -128,30 +119,27 @@ private:
     void fillMenu();
 };
 
-
 /************************************************
  *
  ************************************************/
-class ActionsButton: public ToolButton
+class ActionsButton : public ToolButton
 {
     Q_OBJECT
 public:
-    explicit ActionsButton(QWidget * parent = nullptr);
-    QMenu *menu()  { return &mMenu; }
+    explicit ActionsButton(QWidget *parent = nullptr);
+    QMenu *menu() { return &mMenu; }
 
 private slots:
     void popupMenu();
 
 private:
-
     QMenu mMenu;
 };
-
 
 /************************************************
 
  ************************************************/
-class MultiValuesSpinBox: public QSpinBox
+class MultiValuesSpinBox : public QSpinBox
 {
     Q_OBJECT
 public:
@@ -159,7 +147,7 @@ public:
     bool multi() const { return mMultiState == MultiValuesMulti; }
     void stepBy(int steps);
 
-    bool isModified() const { return lineEdit()->isModified();}
+    bool isModified() const { return lineEdit()->isModified(); }
 
 public slots:
     void setMultiValue(QSet<int> value);
@@ -172,37 +160,33 @@ private:
     MultiValuesState mMultiState;
 };
 
-
-
 /************************************************
 
  ************************************************/
-class MultiValuesLineEdit: public QLineEdit
+class MultiValuesLineEdit : public QLineEdit
 {
     Q_OBJECT
 public:
     explicit MultiValuesLineEdit(QWidget *parent = nullptr);
 
-
 public slots:
     void setMultiValue(QSet<QString> value);
 
 private:
-    MultiValuesState mMultiState;
+    MultiValuesState  mMultiState;
     QStringListModel *mCompleterModel;
 };
-
 
 /************************************************
 
  ************************************************/
-class MultiValuesTextEdit: public QPlainTextEdit
+class MultiValuesTextEdit : public QPlainTextEdit
 {
     Q_OBJECT
 public:
     explicit MultiValuesTextEdit(QWidget *parent = nullptr);
 
-    bool isModified() const;
+    bool    isModified() const;
     QString text() const { return this->toPlainText(); }
 
 public slots:
@@ -212,62 +196,58 @@ private:
     MultiValuesState mMultiState;
 };
 
-
 /************************************************
  *
  ************************************************/
-class TagTextEdit: public MultiValuesTextEdit
+class TagTextEdit : public MultiValuesTextEdit
 {
     Q_OBJECT
 public:
     explicit TagTextEdit(QWidget *parent = nullptr);
 
     TagId tagId() const { return mTagId; }
-    void setTagId(TagId tagId) { mTagId = tagId; }
-
+    void  setTagId(TagId tagId) { mTagId = tagId; }
 
 private:
-    TagId   mTagId;
+    TagId mTagId;
 };
 
 /************************************************
 
  ************************************************/
-class TagLineEdit: public MultiValuesLineEdit
+class TagLineEdit : public MultiValuesLineEdit
 {
     Q_OBJECT
 public:
     explicit TagLineEdit(QWidget *parent = nullptr);
 
     TagId tagId() const { return mTagId; }
-    void setTagId(TagId tagId) { mTagId = tagId; }
+    void  setTagId(TagId tagId) { mTagId = tagId; }
 
 private:
-    TagId   mTagId;
+    TagId mTagId;
 };
-
 
 /************************************************
  *
  ************************************************/
-class TagSpinBox: public MultiValuesSpinBox
+class TagSpinBox : public MultiValuesSpinBox
 {
     Q_OBJECT
 public:
     explicit TagSpinBox(QWidget *parent = nullptr);
 
     TagId tagId() const { return mTagId; }
-    void setTagId(TagId tagId) { mTagId = tagId; }
+    void  setTagId(TagId tagId) { mTagId = tagId; }
 
 private:
-    TagId   mTagId;
+    TagId mTagId;
 };
-
 
 /************************************************
 
  ************************************************/
-class MultiValuesComboBox: public QComboBox
+class MultiValuesComboBox : public QComboBox
 {
     Q_OBJECT
 public:
@@ -281,12 +261,10 @@ private:
     MultiValuesState mMultiState;
 };
 
-
-
 /************************************************
 
  ************************************************/
-class CodePageComboBox: public MultiValuesComboBox
+class CodePageComboBox : public MultiValuesComboBox
 {
     Q_OBJECT
 public:
@@ -296,27 +274,24 @@ private:
     void addCodecName(const QString &title, const QString &codecName);
 };
 
+/************************************************
+
+ ************************************************/
+#define YearSpinBox MultiValuesSpinBox
+
+#define ActionPushButton QPushButton
+#define ItemsLabel QLabel
 
 /************************************************
 
  ************************************************/
-#define YearSpinBox         MultiValuesSpinBox
-
-
-#define ActionPushButton    QPushButton
-#define ItemsLabel          QLabel
-
-
-/************************************************
-
- ************************************************/
-class ProgramEdit: public QLineEdit
+class ProgramEdit : public QLineEdit
 {
     Q_OBJECT
 public:
     ProgramEdit(const QString &programName, QWidget *parent = nullptr);
 
-    QString programName() const { return mProgramName;}
+    QString programName() const { return mProgramName; }
 
 public slots:
     void find();
@@ -328,24 +303,22 @@ private slots:
     void openDialog();
 
 private:
-    QString mProgramName;
+    QString      mProgramName;
     QToolButton *mBtn;
 };
-
-
 
 /************************************************
  *
  ************************************************/
-class HistoryComboBox: public QComboBox
+class HistoryComboBox : public QComboBox
 {
     Q_OBJECT
 public:
     explicit HistoryComboBox(QWidget *parent = nullptr);
     QStringList history() const;
-    void setHistory(const QStringList &value);
+    void        setHistory(const QStringList &value);
 
-    QAction * deleteItemAction() { return &mDeleteItemAct; }
+    QAction *deleteItemAction() { return &mDeleteItemAct; }
 
 private slots:
     void addToHistory();
@@ -353,9 +326,8 @@ private slots:
 
 private:
     QStringListModel *mModel;
-    QAction mDeleteItemAct;
+    QAction           mDeleteItemAct;
 };
-
 
 /************************************************
  *
@@ -367,20 +339,18 @@ public:
     explicit OutDirComboBox(QWidget *parent = nullptr);
 };
 
-
-
 /************************************************
  *
  ************************************************/
-class ErrorBox: public QMessageBox
+class ErrorBox : public QMessageBox
 {
     Q_OBJECT
 public:
     explicit ErrorBox(QWidget *parent = nullptr);
 
     QStringList messages() const { return mMessgaes; }
-    void setMessages(const QStringList &messages);
-    void addMessage( const QString &message);
+    void        setMessages(const QStringList &messages);
+    void        addMessage(const QString &message);
 
 private:
     QStringList mMessgaes;

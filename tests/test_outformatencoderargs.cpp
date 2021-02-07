@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "testflacon.h"
 #include "tools.h"
 #include "outformat.h"
@@ -32,7 +31,6 @@
 #include <QTest>
 #include <QString>
 #include <QDebug>
-
 
 /************************************************
 
@@ -43,7 +41,7 @@ void TestFlacon::testOutFormatEncoderArgs()
     QFETCH(SettingsValues, config);
     QFETCH(QString, expected);
 
-    for (auto prog: Settings::i()->programs()) {
+    for (auto prog : Settings::i()->programs()) {
         Settings::i()->setValue("Programs/" + prog, prog);
     }
 
@@ -55,43 +53,37 @@ void TestFlacon::testOutFormatEncoderArgs()
     if (!profile.isValid())
         QFAIL(QString("Invalid profile for \"%1\"").arg(formatId).toLocal8Bit());
 
-    for (auto i=config.constBegin(); i!=config.constEnd(); ++i) {
+    for (auto i = config.constBegin(); i != config.constEnd(); ++i) {
         profile.setValue(i.key(), i.value());
     }
 
-
-    Disc *disc = standardDisc();
+    Disc *      disc = standardDisc();
     QStringList args = profile.encoderArgs(disc->track(0), "OutFile.wav");
 
     QString result = args.join(" ");
-    if (result != expected)
-    {
-        QString msg = QString("Compared values are not the same\n   Format   %1\n   Actual:   %2\n   Expected: %3").arg(
-                    formatId,
-                    result,
-                    expected);
+    if (result != expected) {
+        QString msg = QString("Compared values are not the same\n   Format   %1\n   Actual:   %2\n   Expected: %3").arg(formatId, result, expected);
         QFAIL(msg.toLocal8Bit());
     }
 }
-
 
 /************************************************
 
  ************************************************/
 void TestFlacon::testOutFormatEncoderArgs_data()
 {
-    QTest::addColumn<QString>("formatId",      nullptr);
+    QTest::addColumn<QString>("formatId", nullptr);
     QTest::addColumn<SettingsValues>("config", nullptr);
-    QTest::addColumn<QString>("expected",      nullptr);
+    QTest::addColumn<QString>("expected", nullptr);
 
     SettingsValues cfg;
 
     //*******************************************
     // FLAC
-    //*******************************************  
+    //*******************************************
     cfg.clear();
     cfg.insert("Compression", 5);
-    cfg.insert("ReplayGain",  "Disable");
+    cfg.insert("ReplayGain", "Disable");
 
     QTest::newRow("Flac_1")
             << "FLAC"
@@ -107,7 +99,7 @@ void TestFlacon::testOutFormatEncoderArgs_data()
     //*******************************************
     cfg.clear();
     cfg.insert("Compression", 1);
-    cfg.insert("ReplayGain",  "Disable");
+    cfg.insert("ReplayGain", "Disable");
 
     QTest::newRow("Flac_2")
             << "FLAC"
@@ -120,13 +112,12 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--tag disc=1 --tag discnumber=1 --tag disctotal=1 "
                "- -o OutFile.wav";
 
-
     //*******************************************
     // AAC
     //*******************************************
     cfg.clear();
-    cfg.insert("UseQuality",   true);
-    cfg.insert("Quality",      500);
+    cfg.insert("UseQuality", true);
+    cfg.insert("Quality", 500);
 
     QTest::newRow("01 AAC_1")
             << "AAC"
@@ -136,11 +127,10 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --disc 1/1 --year 2013 "
                "--comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
 
-
     //*******************************************
     cfg.clear();
     cfg.insert("UseQuality", true);
-    cfg.insert("Quality",    10);
+    cfg.insert("Quality", 10);
 
     QTest::newRow("02 AAC_2")
             << "AAC"
@@ -153,8 +143,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
     //*******************************************
     cfg.clear();
     cfg.insert("UseQuality", false);
-    cfg.insert("Quality",    500);
-    cfg.insert("Bitrate",    64);
+    cfg.insert("Quality", 500);
+    cfg.insert("Bitrate", 64);
 
     QTest::newRow("03 AAC_3")
             << "AAC"
@@ -164,12 +154,11 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--artist Artist --title Song01 --genre Genre --album Album --track 1/4 --disc 1/1 --year 2013 "
                "--comment ExactAudioCopy v0.99pb4 -o OutFile.wav -";
 
-
     //*******************************************
     // MP3
     //*******************************************
     cfg.clear();
-    cfg.insert("Preset",     "vbrMedium");
+    cfg.insert("Preset", "vbrMedium");
 
     QTest::newRow("01 MP3_vbrMedium")
             << "MP3"
@@ -180,10 +169,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
                "- OutFile.wav";
 
-
     //*******************************************
     cfg.clear();
-    cfg.insert("Preset",     "vbrStandard");
+    cfg.insert("Preset", "vbrStandard");
 
     QTest::newRow("02 MP3_vbrStandard")
             << "MP3"
@@ -195,10 +183,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
                "- OutFile.wav";
 
-
     //*******************************************
     cfg.clear();
-    cfg.insert("Preset",     "vbrExtreme");
+    cfg.insert("Preset", "vbrExtreme");
 
     QTest::newRow("05 MP3_vbrExtreme")
             << "MP3"
@@ -209,10 +196,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
                "- OutFile.wav";
 
-
     //*******************************************
     cfg.clear();
-    cfg.insert("Preset",     "cbrInsane");
+    cfg.insert("Preset", "cbrInsane");
 
     QTest::newRow("07 MP3_cbrInsane")
             << "MP3"
@@ -225,8 +211,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
 
     //*******************************************
     cfg.clear();
-    cfg.insert("Preset",     "cbrKbps");
-    cfg.insert("Bitrate",    64);
+    cfg.insert("Preset", "cbrKbps");
+    cfg.insert("Bitrate", 64);
 
     QTest::newRow("08 MP3_cbrKbps64")
             << "MP3"
@@ -239,8 +225,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
 
     //*******************************************
     cfg.clear();
-    cfg.insert("Preset",     "cbrKbps");
-    cfg.insert("Bitrate",    128);
+    cfg.insert("Preset", "cbrKbps");
+    cfg.insert("Bitrate", 128);
 
     QTest::newRow("09 MP3_cbrKbps128")
             << "MP3"
@@ -251,11 +237,10 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
                "- OutFile.wav";
 
-
     //*******************************************
     cfg.clear();
-    cfg.insert("Preset",     "abrKbps");
-    cfg.insert("Bitrate",    64);
+    cfg.insert("Preset", "abrKbps");
+    cfg.insert("Bitrate", 64);
 
     QTest::newRow("10 MP3_abrKbps64")
             << "MP3"
@@ -268,8 +253,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
 
     //*******************************************
     cfg.clear();
-    cfg.insert("Preset",     "abrKbps");
-    cfg.insert("Bitrate",    128);
+    cfg.insert("Preset", "abrKbps");
+    cfg.insert("Bitrate", 128);
 
     QTest::newRow("11 MP3_abrKbps128")
             << "MP3"
@@ -280,11 +265,10 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
                "- OutFile.wav";
 
-
     //*******************************************
     cfg.clear();
-    cfg.insert("Preset",     "vbrQuality");
-    cfg.insert("Quality",    0);
+    cfg.insert("Preset", "vbrQuality");
+    cfg.insert("Quality", 0);
 
     QTest::newRow("12 MP3_vbrQuality0")
             << "MP3"
@@ -297,8 +281,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
 
     //*******************************************
     cfg.clear();
-    cfg.insert("Preset",     "vbrQuality");
-    cfg.insert("Quality",    4);
+    cfg.insert("Preset", "vbrQuality");
+    cfg.insert("Quality", 4);
 
     QTest::newRow("13 MP3_vbrQuality4")
             << "MP3"
@@ -311,8 +295,8 @@ void TestFlacon::testOutFormatEncoderArgs_data()
 
     //*******************************************
     cfg.clear();
-    cfg.insert("Preset",     "vbrQuality");
-    cfg.insert("Quality",    9);
+    cfg.insert("Preset", "vbrQuality");
+    cfg.insert("Quality", 9);
 
     QTest::newRow("14 MP3_vbrQuality9")
             << "MP3"
@@ -323,17 +307,15 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--tc ExactAudioCopy v0.99pb4 --tn 1/4 --tv TPOS=1 "
                "- OutFile.wav";
 
-
-
     //*******************************************
     // Ogg
     //*******************************************
     cfg.clear();
-    cfg.insert("UseQuality",    true);
-    cfg.insert("Quality",       5);
-    cfg.insert("MinBitrate",    "");
-    cfg.insert("NormBitrate",   "");
-    cfg.insert("MaxBitrate",    "");
+    cfg.insert("UseQuality", true);
+    cfg.insert("Quality", 5);
+    cfg.insert("MinBitrate", "");
+    cfg.insert("NormBitrate", "");
+    cfg.insert("MaxBitrate", "");
 
     QTest::newRow("01 Ogg Quality 5")
             << "OGG"
@@ -346,10 +328,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--comment disc=1 --comment discnumber=1 --comment disctotal=1 "
                "-o OutFile.wav -";
 
-
     //*******************************************
     cfg.clear();
-    cfg.insert("Quality",       10);
+    cfg.insert("Quality", 10);
 
     QTest::newRow("02 Ogg Quality 10")
             << "OGG"
@@ -362,13 +343,12 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--comment disc=1 --comment discnumber=1 --comment disctotal=1 "
                "-o OutFile.wav -";
 
-
     //*******************************************
     cfg.clear();
-    cfg.insert("UseQuality",    false);
-    cfg.insert("MinBitrate",    "");
-    cfg.insert("NormBitrate",   "");
-    cfg.insert("MaxBitrate",    "");
+    cfg.insert("UseQuality", false);
+    cfg.insert("MinBitrate", "");
+    cfg.insert("NormBitrate", "");
+    cfg.insert("MaxBitrate", "");
 
     QTest::newRow("03 Ogg Bitrate 0 0 0")
             << "OGG"
@@ -382,10 +362,10 @@ void TestFlacon::testOutFormatEncoderArgs_data()
 
     //*******************************************
     cfg.clear();
-    cfg.insert("UseQuality",    false);
-    cfg.insert("MinBitrate",    64);
-    cfg.insert("NormBitrate",   128);
-    cfg.insert("MaxBitrate",    350);
+    cfg.insert("UseQuality", false);
+    cfg.insert("MinBitrate", 64);
+    cfg.insert("NormBitrate", 128);
+    cfg.insert("MaxBitrate", 350);
 
     QTest::newRow("04 Ogg Bitrate 64 128 350")
             << "OGG"
@@ -397,7 +377,6 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "--tracknum 1 --comment totaltracks=4 --comment tracktotal=4 "
                "--comment disc=1 --comment discnumber=1 --comment disctotal=1 "
                "-o OutFile.wav -";
-
 
     //*******************************************
     // WavPack
@@ -415,10 +394,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "-w Track=1/4 -w Part=1 "
                "- -o OutFile.wav";
 
-
     //*******************************************
     cfg.clear();
-    cfg.insert("Compression",   1);
+    cfg.insert("Compression", 1);
 
     QTest::newRow("02 WavPack Quality 1")
             << "WV"
@@ -430,10 +408,9 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "-w Track=1/4 -w Part=1 "
                "- -o OutFile.wav";
 
-
     //*******************************************
     cfg.clear();
-    cfg.insert("Compression",   2);
+    cfg.insert("Compression", 2);
 
     QTest::newRow("03 WavPack Quality 2")
             << "WV"
@@ -444,5 +421,4 @@ void TestFlacon::testOutFormatEncoderArgs_data()
                "-w DiscId=123456789 -w Comment=ExactAudioCopy v0.99pb4 "
                "-w Track=1/4 -w Part=1 "
                "- -o OutFile.wav";
-
 }

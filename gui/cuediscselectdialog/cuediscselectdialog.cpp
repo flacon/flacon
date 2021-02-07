@@ -23,13 +23,11 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "cuediscselectdialog.h"
 #include "ui_cuediscselectdialog.h"
 
 #include <assert.h>
 #include "../cue.h"
-
 
 /************************************************
  *
@@ -44,15 +42,13 @@ CueDiscSelectDialog::CueDiscSelectDialog(const QVector<CueDisc> &cue, int select
 
     ui->setupUi(this);
 
-    for (int d=0; d<cue.count(); d++)
-    {
-        CueDisc tags = cue.at(d);
+    for (int d = 0; d < cue.count(); d++) {
+        CueDisc          tags     = cue.at(d);
         QTreeWidgetItem *discItem = new QTreeWidgetItem(ui->discTree);
         assert(!tags.isEmpty());
-        discItem->setText(0, tr("%1 [ disc %2 ]", "Cue disc select dialog, string like 'The Wall [disc 1]'").arg(tags.first().album()).arg(d+1));
-        discItem->setData(0,Qt::UserRole, d);
-        if (d == selectedDisc)
-        {
+        discItem->setText(0, tr("%1 [ disc %2 ]", "Cue disc select dialog, string like 'The Wall [disc 1]'").arg(tags.first().album()).arg(d + 1));
+        discItem->setData(0, Qt::UserRole, d);
+        if (d == selectedDisc) {
             discItem->setSelected(true);
             ui->discTree->setCurrentItem(discItem, 0);
         }
@@ -61,20 +57,17 @@ CueDiscSelectDialog::CueDiscSelectDialog(const QVector<CueDisc> &cue, int select
         font.setBold(true);
         discItem->setFont(0, font);
 
-        for (int t=0; t<tags.count(); ++t)
-        {
+        for (int t = 0; t < tags.count(); ++t) {
             QTreeWidgetItem *trackItem = new QTreeWidgetItem(discItem);
             trackItem->setText(0, tags.at(t).title());
-            trackItem->setFlags(Qt::NoItemFlags );
+            trackItem->setFlags(Qt::NoItemFlags);
         }
     }
     ui->discTree->expandAll();
 
-
     connect(ui->discTree, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(treeDoubleClicked(QModelIndex)));
 }
-
 
 /************************************************
  *
@@ -84,7 +77,6 @@ CueDiscSelectDialog::~CueDiscSelectDialog()
     delete ui;
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -92,7 +84,6 @@ int CueDiscSelectDialog::discNumber()
 {
     return ui->discTree->currentIndex().row();
 }
-
 
 /************************************************
  *
@@ -102,7 +93,6 @@ void CueDiscSelectDialog::treeDoubleClicked(const QModelIndex &index)
     if (!index.parent().isValid())
         accept();
 }
-
 
 /************************************************
  *

@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef TAGS_H
 #define TAGS_H
 
@@ -35,8 +34,7 @@
 
 class QTextCodec;
 
-enum class TagId
-{
+enum class TagId {
     Album,
     Catalog,
     CDTextfile,
@@ -58,16 +56,15 @@ enum class TagId
     TrackCount,
 };
 
-
 class TagValue
 {
 public:
-    TagValue():
+    TagValue() :
         mEncoded(false)
     {
     }
 
-    TagValue(const QByteArray &val, bool encoded):
+    TagValue(const QByteArray &val, bool encoded) :
         mValue(val),
         mEncoded(encoded)
     {
@@ -75,21 +72,20 @@ public:
 
     explicit TagValue(const QString &val);
 
-    bool encoded() const { return mEncoded; }
+    bool    encoded() const { return mEncoded; }
     QString asString(const QTextCodec *codec) const;
 
     const QByteArray &value() const { return mValue; }
-    void setValue(const QByteArray &value);
-    void setValue(const QString &value);
+    void              setValue(const QByteArray &value);
+    void              setValue(const QString &value);
 
-    bool operator ==(const TagValue &other) const;
+    bool operator==(const TagValue &other) const;
 
     bool isEmpty() const { return mValue.isEmpty(); }
 
 private:
     QByteArray mValue;
-    bool mEncoded;
+    bool       mEncoded;
 };
-
 
 #endif // TAGS_H

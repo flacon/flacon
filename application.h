@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
@@ -56,11 +55,12 @@ private:
     void init();
     void free();
 #else
-    void init() {}
-    void free() {}
+    void init()
+    {
+    }
+    void free() { }
 #endif
     bool mDarkMode = false;
 };
-
 
 #endif // APPLICATION_H

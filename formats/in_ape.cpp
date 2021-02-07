@@ -23,11 +23,9 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "in_ape.h"
 
 REGISTER_INPUT_FORMAT(Format_Ape)
-
 
 /************************************************
  *
@@ -41,7 +39,6 @@ QStringList Format_Ape::decoderArgs(const QString &fileName) const
 
     return args;
 }
-
 
 /************************************************
  *
@@ -58,5 +55,4 @@ QString Format_Ape::filterDecoderStderr(const QString &stdErr) const
         return "";
 
     return stdErr;
-
 }

@@ -24,7 +24,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #define ENCODER_H
 
 #include <QProcess>
@@ -33,18 +32,17 @@
 #include "profiles.h"
 class QProcess;
 
-class Encoder: public Worker
+class Encoder : public Worker
 {
     Q_OBJECT
 public:
     Encoder(const Track *track, const QString &inputFile, const QString &outFile, const Profile &profile, QObject *parent = nullptr);
 
-    int bitsPerSample() const { return mBitsPerSample; }
+    int  bitsPerSample() const { return mBitsPerSample; }
     void setBitsPerSample(int value) { mBitsPerSample = value; }
 
-    int sampleRate() const { return mSampleRate; }
+    int  sampleRate() const { return mSampleRate; }
     void setSampleRate(int value) { mSampleRate = value; }
-
 
 public slots:
     void run() override;
@@ -53,16 +51,16 @@ private slots:
     void processBytesWritten(qint64 bytes);
 
 private:
-    const Track *mTrack = nullptr;
+    const Track * mTrack = nullptr;
     const QString mInputFile;
     const QString mOutFile;
-    int mBitsPerSample = 0;
-    int mSampleRate = 0;
+    int           mBitsPerSample = 0;
+    int           mSampleRate    = 0;
     const Profile mProfile;
 
-    quint64 mTotal = 0;
-    quint64 mReady = 0;
-    int mProgress  = 0;
+    quint64 mTotal    = 0;
+    quint64 mReady    = 0;
+    int     mProgress = 0;
 
     void readInputFile(QProcess *process);
     void runWav();

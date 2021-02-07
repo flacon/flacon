@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef WORKER_H
 #define WORKER_H
 
@@ -31,7 +30,6 @@
 #include "track.h"
 
 class Disc;
-
 
 class Worker : public QObject
 {
@@ -52,6 +50,5 @@ signals:
 protected:
     bool deleteFile(const QString &fileName) const;
 };
-
 
 #endif // WORKER_H

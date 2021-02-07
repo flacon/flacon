@@ -23,13 +23,12 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef ICON_H
 #define ICON_H
 
 #include <QIcon>
 
-class Icon: public QIcon
+class Icon : public QIcon
 {
 public:
     Icon();

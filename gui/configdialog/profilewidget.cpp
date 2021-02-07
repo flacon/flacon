@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "profilewidget.h"
 #include "ui_profilewidget.h"
 #include "profiles.h"
@@ -41,7 +40,7 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
 {
     ui->setupUi(this);
     ui->formatLabel->setText(tr("%1 format", "Preferences dialog: format name label, %1 is a audio format name")
-                                 .arg(profile.formatName()));
+                                     .arg(profile.formatName()));
 
     ui->outDirEdit->setPlaceholderText(tr("Same directory as CUE file", "Placeholder for output direcory combobox"));
     ui->outDirButton->setBuddy(ui->outDirEdit);
@@ -52,10 +51,9 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     ui->gainGroup->setVisible(profile.formatOptions().testFlag(FormatOption::SupportGain));
     ui->resampleGroup->setVisible(profile.formatOptions().testFlag(FormatOption::Lossless));
 
-
     ui->encoderGroup->setTitle(
-                tr("%1 encoder settings:", "Preferences group title, %1 is a audio format name")
-                .arg(profile.formatName()));
+            tr("%1 encoder settings:", "Preferences group title, %1 is a audio format name")
+                    .arg(profile.formatName()));
 
     if (mEncoderWidget->layout())
         mEncoderWidget->layout()->setMargin(0);
@@ -71,55 +69,49 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     const QString patterns[] = {
         "%a-%A.cue",
         "%a - %A.cue",
-        "%a - %y - %A.cue"};
+        "%a - %y - %A.cue"
+    };
 
-
-    for (QString pattern: patterns)
-    {
+    for (QString pattern : patterns) {
         ui->perTrackCueFormatBtn->addFullPattern(pattern,
-                                             tr("Use \"%1\"", "Predefined CUE file name, string like 'Use \"%a/%A/%n - %t.cue\"'")
-                                             .arg(pattern)
-                                             + "  ( " + PatternExpander::example(pattern) + " )");
+                                                 tr("Use \"%1\"", "Predefined CUE file name, string like 'Use \"%a/%A/%n - %t.cue\"'")
+                                                                 .arg(pattern)
+                                                         + "  ( " + PatternExpander::example(pattern) + " )");
     }
 
     ui->perTrackCueFormatBtn->setIcon(Icon("pattern-button"));
 
     ui->preGapComboBox->addItem(tr("Extract to separate file"), preGapTypeToString(PreGapType::ExtractToFile));
-    ui->preGapComboBox->addItem(tr("Add to first track"),       preGapTypeToString(PreGapType::AddToFirstTrack));
-
+    ui->preGapComboBox->addItem(tr("Add to first track"), preGapTypeToString(PreGapType::AddToFirstTrack));
 
     ui->bitDepthComboBox->addItem(tr("Same as source", "Item in combobox"), int(BitsPerSample::AsSourcee));
-    ui->bitDepthComboBox->addItem(tr("16-bit",         "Item in combobox"), int(BitsPerSample::Bit_16));
-    ui->bitDepthComboBox->addItem(tr("24-bit",         "Item in combobox"), int(BitsPerSample::Bit_24));
-    ui->bitDepthComboBox->addItem(tr("32-bit",         "Item in combobox"), int(BitsPerSample::Bit_32));
+    ui->bitDepthComboBox->addItem(tr("16-bit", "Item in combobox"), int(BitsPerSample::Bit_16));
+    ui->bitDepthComboBox->addItem(tr("24-bit", "Item in combobox"), int(BitsPerSample::Bit_24));
+    ui->bitDepthComboBox->addItem(tr("32-bit", "Item in combobox"), int(BitsPerSample::Bit_32));
 
     ui->sampleRateComboBox->addItem(tr("Same as source", "Item in combobox"), int(SampleRate::AsSource));
-    ui->sampleRateComboBox->addItem(tr("44100 Hz",       "Item in combobox"), int(SampleRate::Hz_44100));
-    ui->sampleRateComboBox->addItem(tr("48000 Hz",       "Item in combobox"), int(SampleRate::Hz_48000));
-    ui->sampleRateComboBox->addItem(tr("96000 Hz",       "Item in combobox"), int(SampleRate::Hz_96000));
-    ui->sampleRateComboBox->addItem(tr("192000 Hz",      "Item in combobox"), int(SampleRate::Hz_192000));
+    ui->sampleRateComboBox->addItem(tr("44100 Hz", "Item in combobox"), int(SampleRate::Hz_44100));
+    ui->sampleRateComboBox->addItem(tr("48000 Hz", "Item in combobox"), int(SampleRate::Hz_48000));
+    ui->sampleRateComboBox->addItem(tr("96000 Hz", "Item in combobox"), int(SampleRate::Hz_96000));
+    ui->sampleRateComboBox->addItem(tr("192000 Hz", "Item in combobox"), int(SampleRate::Hz_192000));
 
     ui->gainComboBox->clear();
-    ui->gainComboBox->addItem(tr("Disabled",  "ReplayGain type combobox"), gainTypeToString(GainType::Disable));
+    ui->gainComboBox->addItem(tr("Disabled", "ReplayGain type combobox"), gainTypeToString(GainType::Disable));
     ui->gainComboBox->addItem(tr("Per Track", "ReplayGain type combobox"), gainTypeToString(GainType::Track));
     ui->gainComboBox->addItem(tr("Per Album", "ReplayGain type combobox"), gainTypeToString(GainType::Album));
     ui->gainComboBox->setToolTip(tr("ReplayGain is a standard to normalize the perceived loudness of computer audio formats. \n\n"
                                     "The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. \n"
                                     "Using the album-gain analysis will preserve the volume differences within an album."));
 
-
-
     connect(ui->perTrackCueFormatBtn, &OutPatternButton::paternSelected,
-            [this](const QString &pattern){ ui->perTrackCueFormatEdit->insert(pattern);});
+            [this](const QString &pattern) { ui->perTrackCueFormatEdit->insert(pattern); });
 
     connect(ui->perTrackCueFormatBtn, &OutPatternButton::fullPaternSelected,
-            [this](const QString &pattern){ ui->perTrackCueFormatEdit->setText(pattern);});
-
+            [this](const QString &pattern) { ui->perTrackCueFormatEdit->setText(pattern); });
 
     load();
     fixLayout();
 }
-
 
 /************************************************
  *
@@ -129,22 +121,21 @@ void ProfileWidget::load()
     mEncoderWidget->load();
 
     mEncoderWidget->loadWidget(Profile::OUT_DIRECTORY_KEY, ui->outDirEdit);
-    mEncoderWidget->loadWidget(Profile::OUT_PATTERN_KEY,   ui->outPatternEdit);
+    mEncoderWidget->loadWidget(Profile::OUT_PATTERN_KEY, ui->outPatternEdit);
 
     if (mProfile.formatOptions().testFlag(FormatOption::Lossless)) {
         mEncoderWidget->loadWidget(Profile::BITS_PER_SAMPLE_KEY, ui->bitDepthComboBox);
-        mEncoderWidget->loadWidget(Profile::SAMPLE_RATE_KEY,     ui->sampleRateComboBox);
+        mEncoderWidget->loadWidget(Profile::SAMPLE_RATE_KEY, ui->sampleRateComboBox);
     }
 
     if (mProfile.formatOptions().testFlag(FormatOption::SupportGain)) {
         mEncoderWidget->loadWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
     }
 
-    mEncoderWidget->loadWidget(Profile::CREATE_CUE_KEY,    ui->perTrackCueGroup);
-    mEncoderWidget->loadWidget(Profile::PREGAP_TYPE_KEY,   ui->preGapComboBox);
+    mEncoderWidget->loadWidget(Profile::CREATE_CUE_KEY, ui->perTrackCueGroup);
+    mEncoderWidget->loadWidget(Profile::PREGAP_TYPE_KEY, ui->preGapComboBox);
     mEncoderWidget->loadWidget(Profile::CUE_FILE_NAME_KEY, ui->perTrackCueFormatEdit);
 }
-
 
 /************************************************
  *
@@ -154,24 +145,21 @@ void ProfileWidget::save() const
     mEncoderWidget->save();
 
     mEncoderWidget->saveWidget(Profile::OUT_DIRECTORY_KEY, ui->outDirEdit);
-    mEncoderWidget->saveWidget(Profile::OUT_PATTERN_KEY,   ui->outPatternEdit);
-
+    mEncoderWidget->saveWidget(Profile::OUT_PATTERN_KEY, ui->outPatternEdit);
 
     if (mProfile.formatOptions().testFlag(FormatOption::Lossless)) {
         mEncoderWidget->saveWidget(Profile::BITS_PER_SAMPLE_KEY, ui->bitDepthComboBox);
-        mEncoderWidget->saveWidget(Profile::SAMPLE_RATE_KEY,     ui->sampleRateComboBox);
+        mEncoderWidget->saveWidget(Profile::SAMPLE_RATE_KEY, ui->sampleRateComboBox);
     }
 
     if (mProfile.formatOptions().testFlag(FormatOption::SupportGain)) {
         mEncoderWidget->saveWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
     }
 
-    mEncoderWidget->saveWidget(Profile::CREATE_CUE_KEY,    ui->perTrackCueGroup);
-    mEncoderWidget->saveWidget(Profile::PREGAP_TYPE_KEY,   ui->preGapComboBox);
+    mEncoderWidget->saveWidget(Profile::CREATE_CUE_KEY, ui->perTrackCueGroup);
+    mEncoderWidget->saveWidget(Profile::PREGAP_TYPE_KEY, ui->preGapComboBox);
     mEncoderWidget->saveWidget(Profile::CUE_FILE_NAME_KEY, ui->perTrackCueFormatEdit);
-
 }
-
 
 /************************************************
  *
@@ -179,18 +167,19 @@ void ProfileWidget::save() const
 #ifdef Q_OS_MAC
 void ProfileWidget::fixLayout()
 {
-    QList<QLabel*> labels;
-    int width = 0;
+    QList<QLabel *> labels;
+    int             width = 0;
 
-    for (auto *layout: findChildren<QFormLayout*>()) {
+    for (auto *layout : findChildren<QFormLayout *>()) {
         layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
         layout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
 
-        for (int r=0; r<layout->count(); ++r) {
+        for (int r = 0; r < layout->count(); ++r) {
             QLayoutItem *item = layout->itemAt(r, QFormLayout::LabelRole);
-            if (!item) continue;
+            if (!item)
+                continue;
 
-            QLabel *label = qobject_cast<QLabel*>(item->widget());
+            QLabel *label = qobject_cast<QLabel *>(item->widget());
             if (label) {
                 labels << label;
                 width = qMax(width, label->sizeHint().width());
@@ -198,7 +187,7 @@ void ProfileWidget::fixLayout()
         }
     }
 
-    for (QLabel *label: labels) {
+    for (QLabel *label : labels) {
         label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
         label->setMinimumWidth(width);
     }
@@ -218,7 +207,6 @@ ProfileWidget::~ProfileWidget()
 {
     delete ui;
 }
-
 
 /************************************************
  *

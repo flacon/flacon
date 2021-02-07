@@ -33,7 +33,6 @@
 #include <QImage>
 #include "../disc.h"
 
-
 struct TestSearchCoverImage_Case
 {
     QStringList imgFiles;
@@ -47,8 +46,6 @@ struct TestSearchCoverImage_Case
 };
 Q_DECLARE_METATYPE(TestSearchCoverImage_Case)
 
-
-
 /************************************************
  *
  ************************************************/
@@ -56,22 +53,19 @@ void TestFlacon::testSearchCoverImage()
 {
     QFETCH(TestSearchCoverImage_Case, test);
 
-    foreach (QString f, test.imgFiles)
-    {
-        QFileInfo( dir() + "/" + f).dir().mkpath(".");
-        QImage img(QSize(1,1), QImage::Format_RGB32);
+    foreach (QString f, test.imgFiles) {
+        QFileInfo(dir() + "/" + f).dir().mkpath(".");
+        QImage img(QSize(1, 1), QImage::Format_RGB32);
         img.save(dir() + "/" + f);
     }
 
-    QString result   = Disc::searchCoverImage(dir());
+    QString result = Disc::searchCoverImage(dir());
     QString expected;
     if (!test.expected.isEmpty())
-        expected = QFileInfo( dir() + "/" + test.expected).absoluteFilePath();
+        expected = QFileInfo(dir() + "/" + test.expected).absoluteFilePath();
 
     QCOMPARE(result, expected);
 }
-
-
 
 /************************************************
  *
@@ -87,71 +81,59 @@ void TestFlacon::testSearchCoverImage_data()
 
     QTest::newRow("01") << req;
 
-
-
     // .....................................
     req.clear();
     req.imgFiles
-                << "cover.jpg";
+            << "cover.jpg";
     req.expected = "cover.jpg";
 
     QTest::newRow("02") << req;
 
-
     // .....................................
     req.clear();
     req.imgFiles
-                << "Cover.jpg";
+            << "Cover.jpg";
     req.expected = "Cover.jpg";
 
     QTest::newRow("03") << req;
 
-
     // .....................................
     req.clear();
     req.imgFiles
-                << "Covers/Cover.jpg";
+            << "Covers/Cover.jpg";
     req.expected = "Covers/Cover.jpg";
 
     QTest::newRow("03") << req;
 
-
-
     // .....................................
     req.clear();
     req.imgFiles
-                << "AAA.jpg"
-                << "Cover.jpg";
+            << "AAA.jpg"
+            << "Cover.jpg";
     req.expected = "Cover.jpg";
 
     QTest::newRow("04") << req;
 
-
-
     // .....................................
     req.clear();
     req.imgFiles
-                << "CoVeR.Jpg"
-                << "Folder.png";
+            << "CoVeR.Jpg"
+            << "Folder.png";
     req.expected = "CoVeR.Jpg";
 
     QTest::newRow("04") << req;
 
-
-
     // .....................................
     req.clear();
     req.imgFiles
-        << "Covers/folder.jpg"
-        << "Covers/Back.jpg"
-        << "Covers/Front_inside.jpg"
-        << "Covers/Matrix.jpg"
-        << "Covers/CD.jpg"
-        << "Covers/Front.jpg"
-        << "Front.JPG";
+            << "Covers/folder.jpg"
+            << "Covers/Back.jpg"
+            << "Covers/Front_inside.jpg"
+            << "Covers/Matrix.jpg"
+            << "Covers/CD.jpg"
+            << "Covers/Front.jpg"
+            << "Front.JPG";
     req.expected = "Front.JPG";
 
     QTest::newRow("05") << req;
-
 }
-

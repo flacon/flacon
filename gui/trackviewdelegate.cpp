@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "trackviewdelegate.h"
 #include "trackview.h"
 #include "trackviewmodel.h"
@@ -43,15 +42,14 @@
 
 #include <QDebug>
 
-#define SELECTION_MARK      4
-#define MARGIN              6
-#define TOP_PADDING        16
-#define BOTTOM_PADDING      2
-#define IMG_HEIGHT         60
-#define MARK_HEIGHT        32
-#define LINE_MARK_HEIGHT   22
-#define BUTTON_SIZE        10
-
+#define SELECTION_MARK 4
+#define MARGIN 6
+#define TOP_PADDING 16
+#define BOTTOM_PADDING 2
+#define IMG_HEIGHT 60
+#define MARK_HEIGHT 32
+#define LINE_MARK_HEIGHT 22
+#define BUTTON_SIZE 10
 
 struct TrackViewCacheItem
 {
@@ -66,7 +64,7 @@ struct TrackViewCacheItem
     QRect audioLbl;
     QRect markBtn;
     QRect coverRect;
-    bool isWaiting;
+    bool  isWaiting;
 };
 
 class TrackViewCache
@@ -86,38 +84,34 @@ public:
     }
 
     TrackViewCacheItem *item(const QModelIndex &index);
-    Keys clickType(const QModelIndex &index, const QPoint &point);
+    Keys                clickType(const QModelIndex &index, const QPoint &point);
 
 private:
-    TrackViewCacheItem nullItemCache;
-    QHash<QModelIndex, TrackViewCacheItem*> mItems;
-    QModelIndex currentIndex;
-    TrackViewCacheItem *currentItem;
+    TrackViewCacheItem                       nullItemCache;
+    QHash<QModelIndex, TrackViewCacheItem *> mItems;
+    QModelIndex                              currentIndex;
+    TrackViewCacheItem *                     currentItem;
 };
-
 
 /************************************************
 
  ************************************************/
-TrackViewCache::TrackViewCache():
+TrackViewCache::TrackViewCache() :
     currentIndex(QModelIndex()),
     currentItem(&nullItemCache)
 {
 }
-
 
 /************************************************
 
  ************************************************/
 TrackViewCacheItem *TrackViewCache::item(const QModelIndex &index)
 {
-    if (currentIndex != index)
-    {
+    if (currentIndex != index) {
         currentIndex = index;
-        currentItem = mItems.value(index, nullptr);
+        currentItem  = mItems.value(index, nullptr);
 
-        if (!currentItem)
-        {
+        if (!currentItem) {
             currentItem = new TrackViewCacheItem();
             mItems.insert(currentIndex, currentItem);
         }
@@ -126,11 +120,10 @@ TrackViewCacheItem *TrackViewCache::item(const QModelIndex &index)
     return currentItem;
 }
 
-
 /************************************************
 
  ************************************************/
-TrackViewDelegate::TrackViewDelegate(TrackView *parent):
+TrackViewDelegate::TrackViewDelegate(TrackView *parent) :
     QStyledItemDelegate(parent),
     mTrackView(parent),
     mCache(new TrackViewCache),
@@ -148,7 +141,6 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent):
     connect(&mDownloadMovie, SIGNAL(updated(QRect)), this, SLOT(movieUpdated()));
 }
 
-
 /************************************************
 
  ************************************************/
@@ -157,27 +149,25 @@ TrackViewDelegate::~TrackViewDelegate()
     delete mCache;
 }
 
-
 /************************************************
 
  ************************************************/
 void TrackViewDelegate::drawSelectionMark(QPainter *painter, const QRect &rect) const
 {
-    QRect r=rect;
+    QRect r = rect;
     r.setWidth(SELECTION_MARK);
 #ifdef Q_OS_MAC
     QColor hi = mTrackView->palette().color(QPalette::Active, QPalette::Highlight);
-    int h, s, l;
-    hi.getHsv(&h,&s,&l);
-    s = s * 0.6;
-    QColor c = QColor::fromHsv(h,s,l);
+    int    h, s, l;
+    hi.getHsv(&h, &s, &l);
+    s        = s * 0.6;
+    QColor c = QColor::fromHsv(h, s, l);
     c.setAlphaF(0.75);
     painter->fillRect(r, c);
 #else
     painter->fillRect(r, mTrackView->palette().highlight().color());
 #endif
 }
-
 
 /************************************************
 
@@ -188,10 +178,9 @@ void TrackViewDelegate::drawBranch(QPainter *painter, const QRect &rect, const Q
     if (rect.isValid())
         painter->fillRect(rect, bgColor);
 
-    if (mTrackView-> selectionModel()->isRowSelected(index.row(), index.parent()))
+    if (mTrackView->selectionModel()->isRowSelected(index.row(), index.parent()))
         drawSelectionMark(painter, rect);
 }
-
 
 /************************************************
 
@@ -203,8 +192,7 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
 
     TrackViewModel::ItemType type = TrackViewModel::ItemType(index.data(TrackViewModel::RoleItemType).toInt());
 
-    if (type == TrackViewModel::TrackItem)
-    {
+    if (type == TrackViewModel::TrackItem) {
         if (index.row() % 2)
             opt.features &= ~QStyleOptionViewItem::Alternate;
         else
@@ -215,13 +203,11 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
     }
 
     // TrackViewModel::DiscItem
-    if (index.column() == 0)
-    {
+    if (index.column() == 0) {
         QColor bgColor = mTrackView->palette().base().color();
         painter->fillRect(opt.rect, bgColor);
 
-        if (mTrackView-> selectionModel()->isSelected(index))
-        {
+        if (mTrackView->selectionModel()->isSelected(index)) {
             QRect rect = opt.rect;
             if (index.row() > 0)
                 rect.setTop(rect.top() + TOP_PADDING);
@@ -232,7 +218,6 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
         return;
     }
 }
-
 
 /************************************************
 
@@ -248,83 +233,78 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
         return;
 
     const QPixmap *icon = nullptr;
-    QString txt;
-    int progress = index.data(TrackViewModel::RolePercent).toInt();
-    bool showProgress = false;
+    QString        txt;
+    int            progress     = index.data(TrackViewModel::RolePercent).toInt();
+    bool           showProgress = false;
 
-    switch (TrackState(index.data(TrackViewModel::RoleStatus).toInt()))
-    {
-    case TrackState::NotRunning:
-        txt = "";
-        break;
+    switch (TrackState(index.data(TrackViewModel::RoleStatus).toInt())) {
+        case TrackState::NotRunning:
+            txt = "";
+            break;
 
-    case TrackState::Canceled:
-        txt = "";
-        break;
+        case TrackState::Canceled:
+            txt = "";
+            break;
 
-    case TrackState::Error:
-        txt = tr("Error", "Status of the track conversion.");
-        icon = &mTrackErrorPix;
-        break;
+        case TrackState::Error:
+            txt  = tr("Error", "Status of the track conversion.");
+            icon = &mTrackErrorPix;
+            break;
 
-    case TrackState::Aborted:
-        txt = tr("Aborted", "Status of the track conversion.");
-        break;
+        case TrackState::Aborted:
+            txt = tr("Aborted", "Status of the track conversion.");
+            break;
 
-    case TrackState::OK:
-        txt = tr("OK", "Status of the track conversion.");
-        icon = &mTrackOkPix;
-        break;
+        case TrackState::OK:
+            txt  = tr("OK", "Status of the track conversion.");
+            icon = &mTrackOkPix;
+            break;
 
-    case TrackState::Splitting:
-        txt = tr("Extracting", "Status of the track conversion.");
-        showProgress = true;
-        break;
+        case TrackState::Splitting:
+            txt          = tr("Extracting", "Status of the track conversion.");
+            showProgress = true;
+            break;
 
-    case TrackState::Encoding:
-        txt = tr("Encoding", "Status of the track conversion.");
-        showProgress = true;
-        break;
+        case TrackState::Encoding:
+            txt          = tr("Encoding", "Status of the track conversion.");
+            showProgress = true;
+            break;
 
-    case TrackState::Queued:
-        txt = tr("Queued", "Status of the track conversion.");
-        break;
+        case TrackState::Queued:
+            txt = tr("Queued", "Status of the track conversion.");
+            break;
 
-    case TrackState::CalcGain:
-        txt = tr("Calculating gain", "Status of the track conversion.");
-        break;
+        case TrackState::CalcGain:
+            txt = tr("Calculating gain", "Status of the track conversion.");
+            break;
 
-    case TrackState::WaitGain:
-        txt = tr("Waiting for gain", "Status of the track conversion.");
-        break;
+        case TrackState::WaitGain:
+            txt = tr("Waiting for gain", "Status of the track conversion.");
+            break;
 
-    case TrackState::WriteGain:
-        txt = tr("Writing gain", "Status of the track conversion.");
-        break;
+        case TrackState::WriteGain:
+            txt = tr("Writing gain", "Status of the track conversion.");
+            break;
     }
-
 
     painter->save();
     painter->translate(option.rect.left() + 30, option.rect.top());
     QRect windowRect(0, 0, option.rect.width() - 31, option.rect.height());
     painter->setClipRect(windowRect);
 
-    if (showProgress)
-    {
+    if (showProgress) {
         QStyleOptionProgressBar opt;
-        opt.rect = windowRect.adjusted(4, 3, -4, -3);
-        opt.minimum = 0;
-        opt.maximum = 100;
+        opt.rect     = windowRect.adjusted(4, 3, -4, -3);
+        opt.minimum  = 0;
+        opt.maximum  = 100;
         opt.progress = progress;
-        opt.text = QString("%1 %2%").arg(txt).arg(opt.progress);
+        opt.text     = QString("%1 %2%").arg(txt).arg(opt.progress);
 
         QApplication::style()->drawControl(QStyle::CE_ProgressBarContents, &opt, painter);
         QApplication::style()->drawControl(QStyle::CE_ProgressBarLabel, &opt, painter);
     }
-    else
-    {
-        if (icon)
-        {
+    else {
+        if (icon) {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
             int textWidth = painter->fontMetrics().horizontalAdvance(txt);
 #else
@@ -336,15 +316,13 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
             QRect textRect(QPoint(imgLeft + LINE_MARK_HEIGHT + 4, 0), windowRect.bottomRight());
             painter->drawText(textRect, Qt::AlignLeft | Qt::AlignVCenter, txt);
         }
-        else
-        {
+        else {
             painter->drawText(windowRect, Qt::AlignCenter | Qt::AlignVCenter, txt);
         }
     }
 
     painter->restore();
 }
-
 
 /************************************************
 
@@ -359,15 +337,13 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     QFont titleFont = this->titleFont(painter->font());
     QFont filesFont = this->filesFont(painter->font());
 
-
     painter->translate(option.rect.topLeft());
 
-    int topPadding = index.row() ? TOP_PADDING : 0;
+    int   topPadding = index.row() ? TOP_PADDING : 0;
     QRect windowRect(MARGIN,
                      MARGIN + topPadding,
                      option.rect.right() - 2 * MARGIN,
                      option.rect.height() - 2 * MARGIN - topPadding - BOTTOM_PADDING);
-
 
     TrackViewCacheItem *cache = mCache->item(index);
 
@@ -391,14 +367,14 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
 
     // Draw album & artist .............................
     painter->setFont(titleFont);
-    QString album =  index.sibling(index.row(), TrackView::ColumnAlbum).data().toString();
+    QString album  = index.sibling(index.row(), TrackView::ColumnAlbum).data().toString();
     QString artist = index.sibling(index.row(), TrackView::ColumnArtist).data().toString();
     if (!album.isEmpty() || !artist.isEmpty())
         painter->drawText(textRect, Qt::AlignLeft, QString("%1 / %2").arg(artist, album));
 
     // Draw audio filename .............................
     painter->setFont(filesFont);
-    int th = painter->fontMetrics().height();
+    int th   = painter->fontMetrics().height();
     int tTop = windowRect.bottom() - 2 * th - 2;
     int aTop = windowRect.bottom() - th + 1;
 
@@ -407,17 +383,16 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     QRect aLabelRect(textRect.left(), aTop, windowRect.width(), th);
 
     tLabelRect = drawLabel(tr("Tracks:"), tLabelRect, painter);
-    aLabelRect = drawLabel(tr("Audio:"),  aLabelRect, painter);
+    aLabelRect = drawLabel(tr("Audio:"), aLabelRect, painter);
 
     // Draw filenames .....
-    int l = qMax(tLabelRect.right(), aLabelRect.right()) + 6;
+    int   l = qMax(tLabelRect.right(), aLabelRect.right()) + 6;
     QRect tFileRect(l, tTop, windowRect.width(), th);
     QRect aFileRect(l, aTop, windowRect.width(), th);
 
     tFileRect = drawFile(index.data(TrackViewModel::RoleTagSetTitle).toString(), tFileRect, painter);
     QFileInfo fi(index.data(TrackViewModel::RoleAudioFileName).toString());
     aFileRect = drawFile(fi.fileName(), aFileRect, painter);
-
 
     // Draw buttons ......
     l = qMax(tLabelRect.right() + 80, qMax(tFileRect.right(), aFileRect.right()) + 8);
@@ -432,18 +407,16 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     aBtnRect.moveLeft(l);
     painter->drawPixmap(aBtnRect, mAudioBtnPix);
 
-
     QRect tClickRect = tBtnRect.united(tLabelRect).adjusted(0, -3, 4, 1);
-    cache->trackBtn = tClickRect;
+    cache->trackBtn  = tClickRect;
     //painter->drawRect(tClickRect);
 
     QRect aClickRect = aBtnRect.united(aLabelRect).adjusted(0, -3, 4, 1);
-    cache->audioBtn = aClickRect;
+    cache->audioBtn  = aClickRect;
     //painter->drawRect(aClickRect);
 
     cache->trackLbl = QRect(tFileRect.topLeft(), tBtnRect.bottomLeft());
     cache->audioLbl = QRect(aFileRect.topLeft(), aBtnRect.bottomLeft());
-
 
     // Draw bottom line ................................
     painter->setPen(QColor("#7F7F7F7F"));
@@ -454,30 +427,25 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     QRect markRect(imgRect.right() - MARK_HEIGHT, imgRect.bottom() - MARK_HEIGHT, MARK_HEIGHT, MARK_HEIGHT);
     cache->isWaiting = index.data(TrackViewModel::RoleIsDownloads).toBool();
 
-    if (cache->isWaiting)
-    {
+    if (cache->isWaiting) {
         mDownloadMovie.start();
         painter->drawPixmap(markRect, mDownloadMovie.currentPixmap());
         cache->markBtn = markRect;
     }
-    else if (!index.data(TrackViewModel::RoleCanConvert).toBool())
-    {
+    else if (!index.data(TrackViewModel::RoleCanConvert).toBool()) {
         painter->drawPixmap(markRect, mDiscErrorPix);
         cache->markBtn = markRect;
     }
-    else if (index.data(TrackViewModel::RoleHasWarnings).toBool())
-    {
+    else if (index.data(TrackViewModel::RoleHasWarnings).toBool()) {
         painter->drawPixmap(markRect, mDiscWarnPix);
         cache->markBtn = markRect;
     }
-    else
-    {
+    else {
         cache->markBtn = QRect();
     }
 
-    painter->restore();    
+    painter->restore();
 }
-
 
 /************************************************
 
@@ -492,27 +460,23 @@ QRect TrackViewDelegate::drawLabel(const QString &text, const QRect &rect, QPain
     return res;
 }
 
-
 /************************************************
 
  ************************************************/
 QRect TrackViewDelegate::drawFile(const QString &text, const QRect &rect, QPainter *painter) const
 {
     QRect res;
-    if (!text.isEmpty())
-    {
+    if (!text.isEmpty()) {
         painter->save();
         painter->drawText(rect, Qt::AlignLeft | Qt::AlignVCenter, text, &res);
         painter->restore();
     }
-    else
-    {
+    else {
         res = rect;
         res.setWidth(0);
     }
     return res;
 }
-
 
 /************************************************
 
@@ -521,10 +485,8 @@ QSize TrackViewDelegate::sizeHint(const QStyleOptionViewItem &option, const QMod
 {
     QSize res = QStyledItemDelegate::sizeHint(option, index);
 
-    if (!index.parent().isValid())
-    {
-        if (!mDiscHeightHint)
-        {
+    if (!index.parent().isValid()) {
+        if (!mDiscHeightHint) {
             int h = 8;
 
             QFont titleFont = this->titleFont(option.font);
@@ -542,59 +504,50 @@ QSize TrackViewDelegate::sizeHint(const QStyleOptionViewItem &option, const QMod
         else
             res.rwidth() = 0;
     }
-    else
-    {
+    else {
         res.rheight() = res.height() + 8;
     }
 
     return res;
 }
 
-
 /************************************************
 
  ************************************************/
 bool TrackViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
-    if (index.parent().isValid())
-    {
+    if (index.parent().isValid()) {
         return QStyledItemDelegate::editorEvent(event, model, option, index);
     }
 
-    if (event->type() == QEvent::MouseButtonPress ||
-        event->type() == QEvent::MouseButtonRelease)
-    {
-        QMouseEvent *ev = static_cast<QMouseEvent*>(event);
-        QPoint m = ev->pos() - option.rect.topLeft();
+    if (event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonRelease) {
+        QMouseEvent *ev = static_cast<QMouseEvent *>(event);
+        QPoint       m  = ev->pos() - option.rect.topLeft();
 
         TrackViewCacheItem *cache = mCache->item(index);
 
-        if (cache->trackBtn.contains(m))
-        {
+        if (cache->trackBtn.contains(m)) {
             if (event->type() == QEvent::MouseButtonRelease)
                 emit trackButtonClicked(index, cache->trackBtn);
 
             return true;
         }
 
-        if (cache->audioBtn.contains(m))
-        {
+        if (cache->audioBtn.contains(m)) {
             if (event->type() == QEvent::MouseButtonRelease)
                 emit audioButtonClicked(index, cache->audioBtn);
 
             return true;
         }
 
-        if (cache->markBtn.contains(m))
-        {
+        if (cache->markBtn.contains(m)) {
             if (event->type() == QEvent::MouseButtonRelease)
                 emit markClicked(index, cache->markBtn);
 
             return true;
         }
 
-        if (cache->coverRect.contains(m))
-        {
+        if (cache->coverRect.contains(m)) {
             if (event->type() == QEvent::MouseButtonRelease)
                 emit coverImageClicked(index);
 
@@ -606,7 +559,6 @@ bool TrackViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, co
 
     return true;
 }
-
 
 /************************************************
 
@@ -622,32 +574,27 @@ bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, co
 
     QPoint m = event->pos() - option.rect.topLeft();
 
-    if (cache->trackLbl.contains(m))
-    {
+    if (cache->trackLbl.contains(m)) {
         QToolTip::showText(
-                    event->globalPos(),
-                    view->model()->data(index, TrackViewModel::RoleCueFilePath).toString(),
-                    view);
+                event->globalPos(),
+                view->model()->data(index, TrackViewModel::RoleCueFilePath).toString(),
+                view);
         return true;
     }
 
-
-    if (cache->audioLbl.contains(m))
-    {
+    if (cache->audioLbl.contains(m)) {
         QToolTip::showText(
-                    event->globalPos(),
-                    view->model()->data(index, TrackViewModel::RoleAudioFilePath).toString(),
-                    view);
+                event->globalPos(),
+                view->model()->data(index, TrackViewModel::RoleAudioFilePath).toString(),
+                view);
         return true;
     }
 
-    if (cache->markBtn.contains(m))
-    {
+    if (cache->markBtn.contains(m)) {
         QString err  = view->model()->data(index, TrackViewModel::RoleDiscErrors).toString();
         QString warn = view->model()->data(index, TrackViewModel::RoleDiscWarnings).toStringList().join("<br><br>");
 
-        if (!err.isEmpty() || !warn.isEmpty())
-        {
+        if (!err.isEmpty() || !warn.isEmpty()) {
             QToolTip::showText(
                     event->globalPos(),
                     warn + (!warn.isEmpty() && !err.isEmpty() ? "<br><hr><br>" : "") + err,
@@ -658,22 +605,19 @@ bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, co
     return false;
 }
 
-
 /************************************************
 
  ************************************************/
 void TrackViewDelegate::movieUpdated()
 {
-    TrackViewModel *model = qobject_cast<TrackViewModel*>(mTrackView->model());
+    TrackViewModel *model = qobject_cast<TrackViewModel *>(mTrackView->model());
     if (!model)
         return;
 
     bool active = false;
-    for(int i=0; i<model->rowCount(QModelIndex()); ++i)
-    {
+    for (int i = 0; i < model->rowCount(QModelIndex()); ++i) {
         QModelIndex index = model->index(i, 0, QModelIndex());
-        if (mCache->item(index)->isWaiting)
-        {
+        if (mCache->item(index)->isWaiting) {
             project->emitDiscChanged(project->disc(0));
             active = true;
         }
@@ -682,7 +626,6 @@ void TrackViewDelegate::movieUpdated()
     if (!active)
         mDownloadMovie.stop();
 }
-
 
 /************************************************
 
@@ -695,7 +638,6 @@ QFont TrackViewDelegate::titleFont(const QFont &font) const
     return res;
 }
 
-
 /************************************************
 
  ************************************************/
@@ -704,5 +646,3 @@ QFont TrackViewDelegate::filesFont(const QFont &font) const
     QFont res = font;
     return res;
 }
-
-

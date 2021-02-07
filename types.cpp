@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "types.h"
 #include <QVector>
 #include <QTextStream>
@@ -34,14 +33,15 @@
  ************************************************/
 QString preGapTypeToString(PreGapType type)
 {
-    switch(type)
-    {
-    case PreGapType::ExtractToFile:   return "Extract";
-    case PreGapType::AddToFirstTrack: return "AddToFirst";
-    default:                          return "Disable";
+    switch (type) {
+        case PreGapType::ExtractToFile:
+            return "Extract";
+        case PreGapType::AddToFirstTrack:
+            return "AddToFirst";
+        default:
+            return "Disable";
     }
 }
-
 
 /************************************************
 
@@ -50,29 +50,30 @@ PreGapType strToPreGapType(const QString &str)
 {
     QString s = str.toUpper();
 
-    if (s == "EXTRACT")     return PreGapType::ExtractToFile;
-    if (s == "ADDTOFIRST")  return PreGapType::AddToFirstTrack;
+    if (s == "EXTRACT")
+        return PreGapType::ExtractToFile;
+    if (s == "ADDTOFIRST")
+        return PreGapType::AddToFirstTrack;
 
     return PreGapType::AddToFirstTrack;
 }
-
-
 
 /************************************************
 
  ************************************************/
 QString gainTypeToString(GainType type)
 {
-    switch(type)
-    {
-    case GainType::Disable: return "Disable";
-    case GainType::Track:   return "Track";
-    case GainType::Album:   return "Album";
+    switch (type) {
+        case GainType::Disable:
+            return "Disable";
+        case GainType::Track:
+            return "Track";
+        case GainType::Album:
+            return "Album";
     }
 
     return "Disable";
 }
-
 
 /************************************************
 
@@ -81,29 +82,30 @@ GainType strToGainType(const QString &str)
 {
     QString s = str.toUpper();
 
-    if (s == "TRACK")   return GainType::Track;
-    if (s == "ALBUM")   return GainType::Album;
+    if (s == "TRACK")
+        return GainType::Track;
+    if (s == "ALBUM")
+        return GainType::Album;
 
     return GainType::Disable;
 }
-
 
 /************************************************
 
  ************************************************/
 QString coverModeToString(CoverMode mode)
 {
-    switch(mode)
-    {
-    case CoverMode::Disable:  return "Disable";
-    case CoverMode::OrigSize: return "OrigSize";
-    case CoverMode::Scale:    return "Scale";
+    switch (mode) {
+        case CoverMode::Disable:
+            return "Disable";
+        case CoverMode::OrigSize:
+            return "OrigSize";
+        case CoverMode::Scale:
+            return "Scale";
     }
 
     return "Disable";
-
 }
-
 
 /************************************************
 
@@ -112,40 +114,39 @@ CoverMode strToCoverMode(const QString &str)
 {
     QString s = str.toUpper();
 
-    if (s == "ORIGSIZE") return CoverMode::OrigSize;
-    if (s == "SCALE")    return CoverMode::Scale;
+    if (s == "ORIGSIZE")
+        return CoverMode::OrigSize;
+    if (s == "SCALE")
+        return CoverMode::Scale;
 
     return CoverMode::Disable;
 }
 
-
 /************************************************
 
  ************************************************/
-unsigned int levenshteinDistance(const QString &s1, const QString & s2)
+unsigned int levenshteinDistance(const QString &s1, const QString &s2)
 {
-    const unsigned int len1 = s1.size(), len2 = s2.size();
-    QVector<unsigned int> col(len2+1), prevCol(len2+1);
+    const unsigned int    len1 = s1.size(), len2 = s2.size();
+    QVector<unsigned int> col(len2 + 1), prevCol(len2 + 1);
 
     for (int i = 0; i < prevCol.size(); i++)
         prevCol[i] = i;
 
-    for (unsigned int i = 0; i < len1; i++)
-    {
-        col[0] = i+1;
+    for (unsigned int i = 0; i < len1; i++) {
+        col[0] = i + 1;
         for (unsigned int j = 0; j < len2; j++)
-            col[j+1] = qMin( qMin( 1 + col[j], 1 + prevCol[1 + j]),
-                            prevCol[j] + (s1[i]==s2[j] ? 0 : 1) );
+            col[j + 1] = qMin(qMin(1 + col[j], 1 + prevCol[1 + j]),
+                              prevCol[j] + (s1[i] == s2[j] ? 0 : 1));
         col.swap(prevCol);
     }
     return prevCol[len2];
 }
 
-
 /************************************************
 
  ************************************************/
-CueIndex::CueIndex(const QString &str):
+CueIndex::CueIndex(const QString &str) :
     mNull(true),
     mCdValue(0),
     mHiValue(0)
@@ -154,68 +155,60 @@ CueIndex::CueIndex(const QString &str):
         mNull = !parse(str);
 }
 
-
 /************************************************
 
  ************************************************/
 QString CueIndex::toString(bool cdQuality) const
 {
-    if (cdQuality)
-    {
-        int min =  mCdValue / (60 * 75);
+    if (cdQuality) {
+        int min = mCdValue / (60 * 75);
         int sec = (mCdValue - min * 60 * 75) / 75;
-        int frm =  mCdValue - (min * 60 + sec) * 75;
+        int frm = mCdValue - (min * 60 + sec) * 75;
 
         return QString("%1:%2:%3")
                 .arg(min, 2, 10, QChar('0'))
                 .arg(sec, 2, 10, QChar('0'))
                 .arg(frm, 2, 10, QChar('0'));
     }
-    else
-    {
-        int min = mHiValue / (60 * 1000);
-        int sec = (mHiValue - min * 60 * 1000) / 1000;
+    else {
+        int min  = mHiValue / (60 * 1000);
+        int sec  = (mHiValue - min * 60 * 1000) / 1000;
         int msec = mHiValue - (min * 60 + sec) * 1000;
 
         return QString("%1:%2.%3")
-                .arg(min,  2, 10, QChar('0'))
-                .arg(sec,  2, 10, QChar('0'))
+                .arg(min, 2, 10, QChar('0'))
+                .arg(sec, 2, 10, QChar('0'))
                 .arg(msec, 3, 10, QChar('0'));
     }
-
 }
-
 
 /************************************************
 
  ************************************************/
-CueIndex CueIndex::operator -(const CueIndex &other) const
+CueIndex CueIndex::operator-(const CueIndex &other) const
 {
     CueIndex res;
     res.mCdValue = this->mCdValue - other.mCdValue;
     res.mHiValue = this->mHiValue - other.mHiValue;
-    res.mNull = false;
+    res.mNull    = false;
     return res;
 }
-
 
 /************************************************
 
  ************************************************/
-bool CueIndex::operator ==(const CueIndex &other) const
+bool CueIndex::operator==(const CueIndex &other) const
 {
     return this->mHiValue == other.mHiValue;
 }
 
-
 /************************************************
 
  ************************************************/
-bool CueIndex::operator !=(const CueIndex &other) const
+bool CueIndex::operator!=(const CueIndex &other) const
 {
     return this->mHiValue != other.mHiValue;
 }
-
 
 /************************************************
 
@@ -224,11 +217,11 @@ bool CueIndex::parse(const QString &str)
 {
     QStringList sl = str.split(QRegExp("\\D"), QString::KeepEmptyParts);
 
-    if (sl.length()<3)
+    if (sl.length() < 3)
         return false;
 
     bool ok;
-    int min = sl[0].toInt(&ok);
+    int  min = sl[0].toInt(&ok);
     if (!ok)
         return false;
 
@@ -249,7 +242,6 @@ bool CueIndex::parse(const QString &str)
     return true;
 }
 
-
 /************************************************
 
  ************************************************/
@@ -261,7 +253,6 @@ QByteArray leftPart(const QByteArray &line, const QChar separator)
     else
         return line;
 }
-
 
 /************************************************
 
@@ -275,7 +266,6 @@ QByteArray rightPart(const QByteArray &line, const QChar separator)
         return QByteArray();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -283,7 +273,6 @@ void initTypes()
 {
     qRegisterMetaType<TrackState>("TrackState");
 }
-
 
 Messages::Handler *Messages::mHandler = nullptr;
 
@@ -302,7 +291,6 @@ void Messages::error(const QString &message)
         mHandler->showErrorMessage(message);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -310,7 +298,6 @@ void Messages::setHandler(Messages::Handler *handler)
 {
     mHandler = handler;
 }
-
 
 /************************************************
 	Windows special symbols
@@ -348,22 +335,34 @@ QString safeString(const QString &str)
 
     foreach (const QChar c, str) {
         switch (c.unicode()) {
-        case '\t':
-        case '\n':	res += " ";	continue;
+            case '\t':
+            case '\n':
+                res += " ";
+                continue;
 
-        case '\\':
-        case '/':	res += "-";	continue;
+            case '\\':
+            case '/':
+                res += "-";
+                continue;
 
-        case ':':
-        case '*':   res += "_"; continue;
+            case ':':
+            case '*':
+                res += "_";
+                continue;
 
-        case '<':   res += "[";	continue;
-        case '>':   res += "]";	continue;
+            case '<':
+                res += "[";
+                continue;
+            case '>':
+                res += "]";
+                continue;
 
-        case '?':
-            continue;
+            case '?':
+                continue;
 
-        case '"':   res += "'"; continue;
+            case '"':
+                res += "'";
+                continue;
         }
 
         if (c <= 31)
@@ -371,7 +370,6 @@ QString safeString(const QString &str)
 
         res += c;
     }
-
 
     if (res == ".")
         return "_";
@@ -382,14 +380,12 @@ QString safeString(const QString &str)
     return res;
 }
 
-
 QString debugProgramArgs(const QString &prog, const QStringList &args)
 {
     QStringList res;
 
     res << prog;
-    foreach (QString arg, args)
-    {
+    foreach (QString arg, args) {
         if (arg.contains(' ') || arg.contains('\t'))
             res << ("'" + arg + "'");
         else

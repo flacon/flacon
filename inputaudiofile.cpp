@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "inputaudiofile.h"
 #include "decoder.h"
 #include "informat.h"
@@ -36,11 +35,10 @@
 #include <QFileInfo>
 #include <QDir>
 
-
 /************************************************
 
  ************************************************/
-InputAudioFile::InputAudioFile(const QString &fileName):
+InputAudioFile::InputAudioFile(const QString &fileName) :
     mFileName(fileName),
     mFormat(nullptr),
     mSampleRate(0),
@@ -52,20 +50,18 @@ InputAudioFile::InputAudioFile(const QString &fileName):
     mValid = load();
 }
 
-
 /************************************************
 
  ************************************************/
 InputAudioFile::InputAudioFile(const InputAudioFile &other)
 {
-    operator =(other);
+    operator=(other);
 }
-
 
 /************************************************
  *
  ************************************************/
-InputAudioFile &InputAudioFile::operator =(const InputAudioFile &other)
+InputAudioFile &InputAudioFile::operator=(const InputAudioFile &other)
 {
     mFileName      = other.mFileName;
     mValid         = other.mValid;
@@ -78,29 +74,24 @@ InputAudioFile &InputAudioFile::operator =(const InputAudioFile &other)
     return *this;
 }
 
-
 /************************************************
 
  ************************************************/
 bool InputAudioFile::load()
 {
-    if (mFileName == "")
-    {
+    if (mFileName == "") {
         qWarning() << "The audio file name is not set";
         mErrorString = QObject::tr("The audio file name is not set");
         return false;
     }
 
-    if (!QFileInfo(mFileName).exists())
-    {
+    if (!QFileInfo(mFileName).exists()) {
         qWarning() << QString("The audio file <b>\"%1\"</b> does not exist").arg(mFileName);
         mErrorString = QObject::tr("The audio file <b>\"%1\"</b> does not exist").arg(mFileName);
         return false;
     }
 
-
-    try
-    {
+    try {
         Decoder dec;
         dec.open(mFileName);
         mFormat = dec.audioFormat();
@@ -111,14 +102,12 @@ bool InputAudioFile::load()
         mDuration      = dec.duration();
         return true;
     }
-    catch (FlaconError &err)
-    {
+    catch (FlaconError &err) {
         mErrorString = QObject::tr("File <b>%1</b> is not a supported audio file. <br>"
                                    "<br>Verify that all required programs are installed and in your preferences.")
-                                   .arg(mFileName);
+                               .arg(mFileName);
         mErrorString += ": ";
         mErrorString += err.what();
         return false;
     }
 }
-

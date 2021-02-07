@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef TEST_FLACON_H
 #define TEST_FLACON_H
 
@@ -43,11 +42,10 @@ public:
 
     static bool compareCue(const QString &result, const QString &expected, QString *error, bool skipEmptyLines = false);
 
-    
 private:
     QStringList readFile(const QString &fileName);
-    void writeFile(const QStringList &strings, const QString &fileName);
-    QString stigListToString(const QStringList &strings, const QString divider = "");
+    void        writeFile(const QStringList &strings, const QString &fileName);
+    QString     stigListToString(const QStringList &strings, const QString divider = "");
 
 private slots:
     void initTestCase();
@@ -58,7 +56,6 @@ private slots:
 
     void testSearchCoverImage();
     void testSearchCoverImage_data();
-
 
     void testReadWavHeader();
     void testReadWavHeader_data();
@@ -123,15 +120,15 @@ private slots:
     void testLoadProfiles_data();
 
 private:
-    void writeTextFile( const QString &fileName, const QString &content);
-    void writeTextFile( const QString &fileName, const QStringList &content);
+    void writeTextFile(const QString &fileName, const QString &content);
+    void writeTextFile(const QString &fileName, const QStringList &content);
 
     bool removeDir(const QString &dirName) const;
     bool clearDir(const QString &dirName) const;
     void checkFileExists(const QString &fileName);
     void checkFileNotExists(const QString &fileName);
 
-    void applySettings(const SettingsValues &config);
+    void    applySettings(const SettingsValues &config);
     QString dir(const QString &subTest = "");
 
     Disc *standardDisc();
@@ -142,7 +139,6 @@ private:
 
     QString mAudio_cd_ape;
     QString mAudio_24x96_ape;
-
 
     QString mAudio_cd_flac;
     QString mAudio_24x96_flac;
@@ -155,14 +151,11 @@ private:
 
     const QString mTmpDir;
     const QString mDataDir;
-    Disc *mStandardDisc;
+    Disc *        mStandardDisc;
 
     static int mTestNum;
 };
 
-
-
 QStringList &operator<<(QStringList &list, int value);
-
 
 #endif // TEST_FLACON_H

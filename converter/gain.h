@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef GAIN_H
 #define GAIN_H
 
@@ -34,25 +33,25 @@
 class Disc;
 class Track;
 
-class Gain: public Worker
+class Gain : public Worker
 {
     Q_OBJECT
-public:   
+public:
     explicit Gain(const Profile &profile, QObject *parent = nullptr);
 
-    void addTrack(const Track *track, const QString &file) { mTracks.append({track, file}); }
+    void addTrack(const Track *track, const QString &file) { mTracks.append({ track, file }); }
 
     void run() override;
 
 private:
-    struct GainTrack {
+    struct GainTrack
+    {
         const Track *track;
-        QString file;
+        QString      file;
     };
 
     QVector<GainTrack> mTracks;
-    const Profile mProfile;
+    const Profile      mProfile;
 };
-
 
 #endif // GAIN_H

@@ -23,26 +23,24 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef IN_APE_H
 #define IN_APE_H
 
 #include "informat.h"
 
-class Format_Ape: public InputFormat
+class Format_Ape : public InputFormat
 {
 public:
     virtual QString name() const override { return "APE"; }
     virtual QString ext() const override { return "ape"; }
-    virtual bool isInputFormat() const override { return true; }
+    virtual bool    isInputFormat() const override { return true; }
 
     virtual QByteArray magic() const override { return "MAC "; }
-    virtual uint magicOffset() const override { return 0; }
+    virtual uint       magicOffset() const override { return 0; }
 
-
-    virtual QString decoderProgramName() const override { return "mac"; }
+    virtual QString     decoderProgramName() const override { return "mac"; }
     virtual QStringList decoderArgs(const QString &fileName) const override;
-    virtual QString filterDecoderStderr(const QString &stdErr) const override;
+    virtual QString     filterDecoderStderr(const QString &stdErr) const override;
 };
 
 #endif // IN_APE_H

@@ -23,15 +23,13 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef ASYNCLISTWIDGETITEM_H
 #define ASYNCLISTWIDGETITEM_H
 
 #include <QListWidgetItem>
 #include <QtConcurrent/QtConcurrent>
 
-
-class AsyncListWidgetItem: public QListWidgetItem
+class AsyncListWidgetItem : public QListWidgetItem
 {
 public:
     explicit AsyncListWidgetItem(QListWidget *view = Q_NULLPTR, int type = Type);
@@ -43,11 +41,8 @@ public:
 private:
     AsyncListWidgetItem(const AsyncListWidgetItem &other) = delete;
 
-    QFutureWatcher<QImage*> *mWatcher;
-    void imageReady();
+    QFutureWatcher<QImage *> *mWatcher;
+    void                      imageReady();
 };
 
-
 #endif // ASYNCLISTWIDGETITEM_H
-
-

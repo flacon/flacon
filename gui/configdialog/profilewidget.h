@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef PROFILEWIDGET_H
 #define PROFILEWIDGET_H
 
@@ -52,7 +51,7 @@ private:
 
     Ui::ProfileWidget *ui;
     EncoderConfigPage *mEncoderWidget = nullptr;
-    Profile &mProfile;
+    Profile &          mProfile;
 
     void fixLayout();
 };

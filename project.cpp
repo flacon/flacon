@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "project.h"
 #include "settings.h"
 #include "cue.h"
@@ -34,19 +33,17 @@
 #include <QMessageBox>
 #include <QDir>
 
-
 /************************************************
 
  ************************************************/
 void Project::clear()
 {
-    QList<Disc*> discs;
-    for (int i=0; i<count(); ++i)
+    QList<Disc *> discs;
+    for (int i = 0; i < count(); ++i)
         discs << disc(i);
 
     removeDisc(&discs);
 }
-
 
 /************************************************
 
@@ -60,7 +57,6 @@ Project *Project::instance()
     return inst;
 }
 
-
 /************************************************
 
  ************************************************/
@@ -68,7 +64,6 @@ Project::Project(QObject *parent) :
     QObject(parent)
 {
 }
-
 
 /************************************************
 
@@ -78,7 +73,6 @@ Disc *Project::disc(int index) const
     return mDiscs.at(index);
 }
 
-
 /************************************************
 
  ************************************************/
@@ -86,7 +80,6 @@ int Project::count() const
 {
     return mDiscs.count();
 }
-
 
 /************************************************
 
@@ -102,16 +95,14 @@ int Project::insertDisc(Disc *disc, int index)
     return index;
 }
 
-
 /************************************************
 
  ************************************************/
-void Project::removeDisc(const QList<Disc*> *discs)
+void Project::removeDisc(const QList<Disc *> *discs)
 {
-    for (int i=0; i<discs->count(); ++i)
-    {
+    for (int i = 0; i < discs->count(); ++i) {
         Disc *disc = discs->at(i);
-        emit beforeRemoveDisc(disc);
+        emit  beforeRemoveDisc(disc);
         if (mDiscs.removeAll(disc))
             disc->deleteLater();
 
@@ -119,29 +110,25 @@ void Project::removeDisc(const QList<Disc*> *discs)
     }
 }
 
-
 /************************************************
 
  ************************************************/
 int Project::indexOf(const Disc *disc) const
 {
-    return mDiscs.indexOf(const_cast<Disc*>(disc));
+    return mDiscs.indexOf(const_cast<Disc *>(disc));
 }
-
 
 /************************************************
  *
  ************************************************/
 bool Project::discExists(const QString &cueUri)
 {
-    foreach (const Disc *d, mDiscs)
-    {
+    foreach (const Disc *d, mDiscs) {
         if (d->cueFile() == cueUri)
             return true;
     }
     return false;
 }
-
 
 /************************************************
 
@@ -151,15 +138,13 @@ Disc *Project::addAudioFile(const QString &fileName)
 
     QString canonicalFileName = QFileInfo(fileName).canonicalFilePath();
 
-    for(int i=0; i<count(); ++i )
-    {
+    for (int i = 0; i < count(); ++i) {
         if (disc(i)->audioFileName() == canonicalFileName)
             return nullptr;
     }
 
     InputAudioFile audio(QFileInfo(fileName).absoluteFilePath());
-    if (!audio.isValid())
-    {
+    if (!audio.isValid()) {
         throw FlaconError(audio.errorString());
     }
 
@@ -170,20 +155,16 @@ Disc *Project::addAudioFile(const QString &fileName)
     return disc;
 }
 
-
-
 /************************************************
 
  ************************************************/
 DiscList Project::addCueFile(const QString &fileName)
 {
     DiscList res;
-    try
-    {
+    try {
         QVector<CueDisc> discs = CueReader().load(fileName);
 
-        for (int i=0; i<discs.count(); ++i)
-        {
+        for (int i = 0; i < discs.count(); ++i) {
             if (discExists(discs.at(i).uri()))
                 continue;
 
@@ -194,8 +175,7 @@ DiscList Project::addCueFile(const QString &fileName)
         }
         emit layoutChanged();
     }
-    catch (FlaconError &err)
-    {
+    catch (FlaconError &err) {
         emit layoutChanged();
         qWarning() << err.what();
         throw err;
@@ -204,7 +184,6 @@ DiscList Project::addCueFile(const QString &fileName)
     return res;
 }
 
-
 /************************************************
 
  ************************************************/
@@ -212,7 +191,6 @@ void Project::emitDiscChanged(Disc *disc) const
 {
     emit discChanged(disc);
 }
-
 
 /************************************************
 

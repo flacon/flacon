@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "decoder.h"
 #include "../cue.h"
 #include "../settings.h"
@@ -37,22 +36,18 @@
 static const int MAX_BUF_SIZE = 4096;
 static const int READ_DELAY   = 1000;
 
-
 /************************************************
  *
  ************************************************/
 static qint64 timeToBytes(const CueTime &time, const WavHeader &wav)
 {
-    if (wav.isCdQuality())
-    {
+    if (wav.isCdQuality()) {
         return (qint64)((((double)time.frames() * (double)wav.byteRate()) / 75.0) + 0.5);
     }
-    else
-    {
+    else {
         return (qint64)((((double)time.milliseconds() * (double)wav.byteRate()) / 1000.0) + 0.5);
     }
 }
-
 
 /************************************************
  *
@@ -64,9 +59,7 @@ Decoder::Decoder(QObject *parent) :
     mFile(nullptr),
     mPos(0)
 {
-
 }
-
 
 /************************************************
  *
@@ -77,7 +70,6 @@ Decoder::~Decoder()
     delete mFile;
     delete mProcess;
 }
-
 
 /************************************************
  *
@@ -97,7 +89,6 @@ void Decoder::open(const QString &fileName)
         return openFile();
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -108,9 +99,8 @@ void Decoder::openFile()
         throw FlaconError(mFile->errorString());
 
     mWavHeader = WavHeader(mFile);
-    mPos = mWavHeader.dataStartPos();
+    mPos       = mWavHeader.dataStartPos();
 }
-
 
 /************************************************
  *
@@ -122,17 +112,15 @@ void Decoder::openProcess()
     QString program = Settings::i()->programName(mFormat->decoderProgramName());
     mProcess->setReadChannel(QProcess::StandardOutput);
 
-
     mProcess->start(QDir::toNativeSeparators(program), mFormat->decoderArgs(mInputFile));
     bool res = mProcess->waitForStarted();
-    if(!res)
+    if (!res)
         throw FlaconError(QString("[Decoder] Can't start '%1': %2")
-                          .arg(program, mProcess->errorString()));
+                                  .arg(program, mProcess->errorString()));
 
     mWavHeader = WavHeader(mProcess);
-    mPos = mWavHeader.dataStartPos();
+    mPos       = mWavHeader.dataStartPos();
 }
-
 
 /************************************************
  *
@@ -142,14 +130,12 @@ void Decoder::close()
     if (mFile)
         mFile->close();
 
-    if (mProcess)
-    {
+    if (mProcess) {
         mProcess->terminate();
         mProcess->waitForFinished();
         mProcess->close();
     }
 }
-
 
 /************************************************
  *
@@ -157,14 +143,13 @@ void Decoder::close()
 void mustWrite(const char *buf, qint64 maxSize, QIODevice *outDevice)
 {
     qint64 done = 0;
-    while (done < maxSize)
-    {
+    while (done < maxSize) {
         outDevice->waitForBytesWritten(10000);
         qint64 n = outDevice->write(buf + done, maxSize - done);
         if (n < 0)
             throw FlaconError(QString("Can't write %1 bytes. %2")
-                    .arg(maxSize - done)
-                    .arg(outDevice->errorString()));
+                                      .arg(maxSize - done)
+                                      .arg(outDevice->errorString()));
 
         done += n;
     }
@@ -180,13 +165,12 @@ bool mustSkip(QIODevice *device, qint64 size, int msecs = READ_DELAY)
     if (size == 0)
         return true;
 
-    char buf[BUF_SIZE];
+    char   buf[BUF_SIZE];
     qint64 left = size;
-    while (left > 0)
-    {
+    while (left > 0) {
         device->bytesAvailable() || device->waitForReadyRead(msecs);
         qint64 n = device->read(buf, qMin(qint64(BUF_SIZE), left));
-        if (n<0)
+        if (n < 0)
             return false;
 
         left -= n;
@@ -195,14 +179,12 @@ bool mustSkip(QIODevice *device, qint64 size, int msecs = READ_DELAY)
     return true;
 }
 
-
 /************************************************
  *
  ************************************************/
 void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDevice)
 {
-    try
-    {
+    try {
         emit progress(0);
 
         QIODevice *input;
@@ -217,7 +199,7 @@ void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         if (end.isNull())
             be = mWavHeader.dataStartPos() + mWavHeader.dataSize();
         else
-            be = timeToBytes(end,   mWavHeader) + mWavHeader.dataStartPos();
+            be = timeToBytes(end, mWavHeader) + mWavHeader.dataStartPos();
 
         WavHeader hdr = mWavHeader;
         hdr.resizeData(be - bs);
@@ -243,16 +225,15 @@ void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
 
         pos += len;
         qint64 remains = len;
-        int percent = 0;
+        int    percent = 0;
 
         char buf[MAX_BUF_SIZE];
-        while (remains > 0)
-        {
+        while (remains > 0) {
             input->bytesAvailable() || input->waitForReadyRead(10000);
 
             qint64 n = qMin(qint64(MAX_BUF_SIZE), remains);
-            n = input->read(buf, n);
-            if (n<0)
+            n        = input->read(buf, n);
+            if (n < 0)
                 throw FlaconError(QString("Can't read %1 bytes").arg(remains));
 
             remains -= n;
@@ -260,33 +241,27 @@ void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
             // Write to OutDevice .........................
             mustWrite(buf, n, outDevice);
 
-
             // Calc progrress .............................
-            if (remains == 0)
-            {
+            if (remains == 0) {
                 emit progress(100);
                 break;
             }
-            else
-            {
+            else {
                 int prev = percent;
-                percent = (len - remains) * 100.0 / len;
-                if (percent != prev)
-                {
+                percent  = (len - remains) * 100.0 / len;
+                if (percent != prev) {
                     emit progress(percent);
                 }
             }
         }
         // Read bytes from start to end of track ..........
-        mPos= pos;
+        mPos = pos;
     }
-    catch(FlaconError &err)
-    {
+    catch (FlaconError &err) {
         close();
         throw err;
     }
 }
-
 
 /************************************************
  *
@@ -294,11 +269,11 @@ void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
 void Decoder::extract(const CueTime &start, const CueTime &end, const QString &outFileName)
 {
     QFile file(outFileName);
-    if (! file.open(QFile::WriteOnly | QFile::Truncate))
+    if (!file.open(QFile::WriteOnly | QFile::Truncate))
         throw FlaconError(tr("I can't write file <b>%1</b>:<br>%2",
                              "Error string, %1 is a filename, %2 error message")
-                          .arg(file.fileName())
-                          .arg(file.errorString()));
+                                  .arg(file.fileName())
+                                  .arg(file.errorString()));
 
     extract(start, end, &file);
     file.close();

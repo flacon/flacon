@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef CONFIGDIALOG_H
 #define CONFIGDIALOG_H
 
@@ -47,7 +46,7 @@ public:
     void show(const QString &profileId);
 
 signals:
-    
+
 public slots:
     void done(int res) override;
     void tmpDirShowDialog();
@@ -70,14 +69,14 @@ private:
     void save();
 
     CoverMode coverMode() const;
-    void setCoverMode(CoverMode mode);
+    void      setCoverMode(CoverMode mode);
 
     Profile &currentProfile();
-    void refreshProfilesList(const QString &selectedProfileId);
-    void updateLastUpdateLbl();
+    void     refreshProfilesList(const QString &selectedProfileId);
+    void     updateLastUpdateLbl();
 
-    QList<ProgramEdit*> mProgramEdits;
-    Profiles mProfiles;
+    QList<ProgramEdit *>    mProgramEdits;
+    Profiles                mProfiles;
     QPointer<ProfileWidget> mProfileWidget;
 };
 

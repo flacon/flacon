@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "encoderconfigpage.h"
 #include "types.h"
 
@@ -37,12 +36,11 @@
 /************************************************
 
  ************************************************/
-EncoderConfigPage::EncoderConfigPage(const Profile &profile, QWidget *parent):
+EncoderConfigPage::EncoderConfigPage(const Profile &profile, QWidget *parent) :
     QWidget(parent),
     mProfile(profile)
 {
 }
-
 
 /************************************************
 
@@ -51,17 +49,13 @@ EncoderConfigPage::~EncoderConfigPage()
 {
 }
 
-
 /************************************************
 
  ************************************************/
 QString EncoderConfigPage::lossyCompressionToolTip(int min, int max)
 {
-    return tr("Sets encoding quality, between %1 (lowest) and %2 (highest)."
-              ).arg(min).arg(max);
+    return tr("Sets encoding quality, between %1 (lowest) and %2 (highest).").arg(min).arg(max);
 }
-
-
 
 /************************************************
 
@@ -71,7 +65,6 @@ void EncoderConfigPage::setLossyToolTip(QSlider *widget)
     widget->setToolTip(lossyCompressionToolTip(widget->minimum(), widget->maximum()));
 }
 
-
 /************************************************
 
  ************************************************/
@@ -79,7 +72,6 @@ void EncoderConfigPage::setLossyToolTip(QSpinBox *widget)
 {
     widget->setToolTip(lossyCompressionToolTip(widget->minimum(), widget->maximum()));
 }
-
 
 /************************************************
 
@@ -89,17 +81,16 @@ void EncoderConfigPage::setLossyToolTip(QDoubleSpinBox *widget)
     widget->setToolTip(lossyCompressionToolTip(widget->minimum(), widget->maximum()));
 }
 
-
 /************************************************
 
  ************************************************/
 QString EncoderConfigPage::losslessCompressionToolTip(int min, int max)
 {
     return tr("Sets compression level, between %1 (fastest) and %2 (highest compression).\n"
-              "This only affects the file size. All settings are lossless."
-             ).arg(min).arg(max);
+              "This only affects the file size. All settings are lossless.")
+            .arg(min)
+            .arg(max);
 }
-
 
 /************************************************
 
@@ -109,7 +100,6 @@ void EncoderConfigPage::setLosslessToolTip(QSlider *widget)
     widget->setToolTip(losslessCompressionToolTip(widget->minimum(), widget->maximum()));
 }
 
-
 /************************************************
 
  ************************************************/
@@ -118,15 +108,12 @@ void EncoderConfigPage::setLosslessToolTip(QSpinBox *widget)
     widget->setToolTip(losslessCompressionToolTip(widget->minimum(), widget->maximum()));
 }
 
-
-
 /************************************************
 
  ************************************************/
 void EncoderConfigPage::fillBitrateComboBox(QComboBox *comboBox, const QList<int> &bitrates)
 {
-    foreach(int bitrate, bitrates)
-    {
+    foreach (int bitrate, bitrates) {
         if (bitrate)
             comboBox->addItem(tr("%1 kbps").arg(bitrate), QVariant(bitrate));
         else
@@ -134,18 +121,16 @@ void EncoderConfigPage::fillBitrateComboBox(QComboBox *comboBox, const QList<int
     }
 }
 
-
 /************************************************
 
  ************************************************/
 void EncoderConfigPage::loadWidget(const QString &key, QSlider *widget) const
 {
     bool ok;
-    int value = mProfile.value(key).toInt(&ok);
+    int  value = mProfile.value(key).toInt(&ok);
     if (ok)
         widget->setValue(value);
 }
-
 
 /************************************************
 
@@ -155,7 +140,6 @@ void EncoderConfigPage::saveWidget(const QString &key, const QSlider *widget)
     mProfile.setValue(key, widget->value());
 }
 
-
 /************************************************
 
  ************************************************/
@@ -164,7 +148,6 @@ void EncoderConfigPage::loadWidget(const QString &key, QLineEdit *widget) const
     widget->setText(mProfile.value(key).toString());
 }
 
-
 /************************************************
 
  ************************************************/
@@ -172,7 +155,6 @@ void EncoderConfigPage::saveWidget(const QString &key, const QLineEdit *widget)
 {
     mProfile.setValue(key, widget->text());
 }
-
 
 /************************************************
 
@@ -188,7 +170,6 @@ void EncoderConfigPage::loadWidget(const QString &key, QCheckBox *widget) const
     }
 }
 
-
 /************************************************
 
  ************************************************/
@@ -196,7 +177,6 @@ void EncoderConfigPage::saveWidget(const QString &key, const QCheckBox *widget)
 {
     mProfile.setValue(key, widget->isChecked());
 }
-
 
 /************************************************
  *
@@ -212,7 +192,6 @@ void EncoderConfigPage::loadWidget(const QString &key, QGroupBox *widget) const
     }
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -221,18 +200,16 @@ void EncoderConfigPage::saveWidget(const QString &key, const QGroupBox *widget)
     mProfile.setValue(key, widget->isChecked());
 }
 
-
 /************************************************
 
  ************************************************/
 void EncoderConfigPage::loadWidget(const QString &key, QSpinBox *widget) const
 {
     bool ok;
-    int value = mProfile.value(key).toInt(&ok);
+    int  value = mProfile.value(key).toInt(&ok);
     if (ok)
         widget->setValue(value);
 }
-
 
 /************************************************
 
@@ -242,19 +219,16 @@ void EncoderConfigPage::saveWidget(const QString &key, const QSpinBox *widget)
     mProfile.setValue(key, widget->value());
 }
 
-
 /************************************************
 
  ************************************************/
 void EncoderConfigPage::loadWidget(const QString &key, QDoubleSpinBox *widget) const
 {
     bool ok;
-    int value = mProfile.value(key).toDouble(&ok);
+    int  value = mProfile.value(key).toDouble(&ok);
     if (ok)
         widget->setValue(value);
-
 }
-
 
 /************************************************
 
@@ -264,7 +238,6 @@ void EncoderConfigPage::saveWidget(const QString &key, const QDoubleSpinBox *wid
     mProfile.setValue(key, widget->value());
 }
 
-
 /************************************************
 
  ************************************************/
@@ -272,14 +245,12 @@ void EncoderConfigPage::loadWidget(const QString &key, QComboBox *widget) const
 {
     if (widget->isEditable()) {
         widget->setEditText(mProfile.value(key).toString());
-
     }
     else {
         int n = qMax(0, widget->findData(mProfile.value(key)));
         widget->setCurrentIndex(n);
     }
 }
-
 
 /************************************************
 
@@ -288,7 +259,6 @@ void EncoderConfigPage::saveWidget(const QString &key, const QComboBox *widget)
 {
     if (widget->isEditable()) {
         mProfile.setValue(key, widget->currentText());
-
     }
     else {
         QVariant data = widget->itemData(widget->currentIndex());
@@ -296,15 +266,14 @@ void EncoderConfigPage::saveWidget(const QString &key, const QComboBox *widget)
     }
 }
 
-
 /************************************************
 
  ************************************************/
 QString EncoderConfigPage::toolTipCss()
 {
     return "<style type='text/css'>\n"
-          "qbody { font-size: 9px; }\n"
-          "dt { font-weight: bold; }\n"
-          "dd { margin-left: 8px; margin-bottom: 8px; }\n"
-          "</style>\n";
+           "qbody { font-size: 9px; }\n"
+           "dt { font-weight: bold; }\n"
+           "dd { margin-left: 8px; margin-bottom: 8px; }\n"
+           "</style>\n";
 }

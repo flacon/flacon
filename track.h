@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef TRACK_H
 #define TRACK_H
 
@@ -34,63 +33,62 @@
 
 class Disc;
 
-class Track: public QObject
+class Track : public QObject
 {
     Q_OBJECT
     friend class Disc;
     friend class CueReader;
+
 public:
     Track();
     Track(const Track &other);
-    Track &operator =(const Track &other);
+    Track &operator=(const Track &other);
     ~Track();
 
-    QString tag(const TagId &tagId) const;
+    QString    tag(const TagId &tagId) const;
     QByteArray tagData(const TagId &tagId) const;
-    TagValue tagValue(TagId tagId) const;
-    void setTag(const TagId &tagId, const QString &value);
-    void setTag(const TagId &tagId, const QByteArray &value);
-    void setTag(TagId tagId, const TagValue &value);
+    TagValue   tagValue(TagId tagId) const;
+    void       setTag(const TagId &tagId, const QString &value);
+    void       setTag(const TagId &tagId, const QByteArray &value);
+    void       setTag(TagId tagId, const TagValue &value);
 
-
-    QString codecName() const;
-    void setCodecName(const QString &value);
+    QString           codecName() const;
+    void              setCodecName(const QString &value);
     const QTextCodec *codec() const { return mTextCodec; }
 
-    bool operator ==(const Track &other) const;
+    bool operator==(const Track &other) const;
 
+    QString artist() const { return tag(TagId::Artist); }
+    void    setArtist(const QString &value) { setTag(TagId::Artist, value); }
 
-    QString artist() const            { return tag(TagId::Artist); }
-    void setArtist(const QString &value)  { setTag(TagId::Artist, value); }
+    QString album() const { return tag(TagId::Album); }
+    void    setAlbum(const QString &value) { setTag(TagId::Album, value); }
 
-    QString album() const             { return tag(TagId::Album); }
-    void setAlbum(const QString &value)   { setTag(TagId::Album, value); }
+    QString comment() const { return tag(TagId::Comment); }
+    void    setComment(const QString &value) { setTag(TagId::Comment, value); }
 
-    QString comment() const           { return tag(TagId::Comment) ;}
-    void setComment(const QString &value)   { setTag(TagId::Comment, value); }
+    QString title() const { return tag(TagId::Title); }
+    void    setTitle(const QString &value) { setTag(TagId::Title, value); }
 
-    QString title() const             { return tag(TagId::Title) ;}
-    void setTitle(const QString &value)   { setTag(TagId::Title, value); }
+    QString genre() const { return tag(TagId::Genre); }
+    void    setGenre(const QString &value) { setTag(TagId::Genre, value); }
 
-    QString genre() const             { return tag(TagId::Genre) ;}
-    void setGenre(const QString &value)   { setTag(TagId::Genre, value); }
+    QString date() const { return tag(TagId::Date); }
+    void    setDate(const QString &value) { setTag(TagId::Date, value); }
 
-    QString date() const              { return tag(TagId::Date) ;}
-    void setDate(const QString &value)    { setTag(TagId::Date, value); }
-
-    QString discId() const              { return tag(TagId::DiscId) ;}
+    QString discId() const { return tag(TagId::DiscId); }
 
     TrackNum trackNum() const;
-    void setTrackNum(TrackNum value);
+    void     setTrackNum(TrackNum value);
 
     TrackNum trackCount() const;
-    void setTrackCount(TrackNum value);
+    void     setTrackCount(TrackNum value);
 
     DiscNum discNum() const;
-    void setDiscNum(DiscNum value);
+    void    setDiscNum(DiscNum value);
 
     DiscNum discCount() const;
-    void setDiscCount(DiscNum value);
+    void    setDiscCount(DiscNum value);
 
     QString resultFileName() const;
     QString resultFilePath() const;
@@ -98,27 +96,26 @@ public:
     Duration duration() const { return mDuration; }
 
     CueIndex cueIndex(int indexNum) const;
-    void setCueIndex(int indexNum, const CueIndex &value);
+    void     setCueIndex(int indexNum, const CueIndex &value);
 
     QString cueFileName() const { return mCueFileName; }
-    void setCueFileName(const QString &value) { mCueFileName = value; }
+    void    setCueFileName(const QString &value) { mCueFileName = value; }
 
 signals:
     void tagChanged(TagId tagId);
 
 private:
     QHash<int, TagValue> mTags;
-    QTextCodec *mTextCodec;
-    QVector<CueIndex> mCueIndexes;
-    Duration mDuration;
-    QString mCueFileName;
+    QTextCodec *         mTextCodec;
+    QVector<CueIndex>    mCueIndexes;
+    Duration             mDuration;
+    QString              mCueFileName;
 
     QString calcResultFilePath() const;
     QString safeFilePathLen(const QString &path) const;
 };
 
-
-class Tracks: public QVector<Track>
+class Tracks : public QVector<Track>
 {
 public:
     Tracks();
@@ -128,14 +125,14 @@ public:
     virtual ~Tracks();
 
     QString uri() const { return mUri; }
-    void setUri(const QString &value) { mUri = value ;}
+    void    setUri(const QString &value) { mUri = value; }
 
     QString title() const;
-    void setTitle(const QByteArray &value);
-    void setTitle(const QString &value);
+    void    setTitle(const QByteArray &value);
+    void    setTitle(const QString &value);
 
 private:
-    QString mUri;
+    QString  mUri;
     TagValue mTitle;
 };
 
@@ -144,16 +141,15 @@ class UcharDet
 
 public:
     UcharDet();
-    UcharDet(const UcharDet &) =delete;
-    UcharDet &operator =(const UcharDet &) =delete;
+    UcharDet(const UcharDet &) = delete;
+    UcharDet &operator=(const UcharDet &) = delete;
     ~UcharDet();
 
-    void add(const Track &track);
-    UcharDet& operator<<(const Track &track);
+    void      add(const Track &track);
+    UcharDet &operator<<(const Track &track);
 
-
-    QString textCodecName() const;
-    QTextCodec* textCodec() const;
+    QString     textCodecName() const;
+    QTextCodec *textCodec() const;
 
 private:
     struct Data;

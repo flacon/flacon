@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "testflacon.h"
 #include "tools.h"
 #include "../formats/informat.h"
@@ -35,7 +34,6 @@
 #include <QBuffer>
 #include <QDebug>
 
-
 void TestFlacon::testInputAudioFile()
 {
     QFETCH(QString, fileName);
@@ -44,11 +42,9 @@ void TestFlacon::testInputAudioFile()
 
     uint dur = duration.toInt();
 
-    try
-    {
+    try {
         InputAudioFile ia(fileName);
-        if (!ia.isValid())
-        {
+        if (!ia.isValid()) {
             FAIL(QString("Can't open '%1': %2").arg(fileName, ia.errorString()));
             return;
         }
@@ -56,18 +52,16 @@ void TestFlacon::testInputAudioFile()
         QCOMPARE(ia.duration(), dur);
         QCOMPARE(ia.format()->name(), format);
     }
-    catch (FlaconError &err)
-    {
+    catch (FlaconError &err) {
         FAIL(err.what());
     }
 }
-
 
 void TestFlacon::testInputAudioFile_data()
 {
     QTest::addColumn<QString>("fileName", nullptr);
     QTest::addColumn<QString>("duration", nullptr);
-    QTest::addColumn<QString>("format",   nullptr);
+    QTest::addColumn<QString>("format", nullptr);
 
     QTest::newRow("01 mAudio_cd_ape")
             << mAudio_cd_ape
@@ -78,7 +72,6 @@ void TestFlacon::testInputAudioFile_data()
             << mAudio_cd_flac
             << "900000"
             << "FLAC";
-
 
     QTest::newRow("03 mAudio_cd_tta")
             << mAudio_cd_tta
@@ -95,8 +88,6 @@ void TestFlacon::testInputAudioFile_data()
             << "900000"
             << "WavPack";
 
-
-
     QTest::newRow("06 mAudio_24x96_ape")
             << mAudio_24x96_ape
             << "900000"
@@ -106,7 +97,6 @@ void TestFlacon::testInputAudioFile_data()
             << mAudio_24x96_flac
             << "900000"
             << "FLAC";
-
 
     QTest::newRow("08 mAudio_24x96_tta")
             << mAudio_24x96_tta
@@ -122,5 +112,4 @@ void TestFlacon::testInputAudioFile_data()
             << mAudio_24x96_wv
             << "900000"
             << "WavPack";
-
 }

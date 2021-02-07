@@ -23,21 +23,18 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "out_wav.h"
-
 
 /************************************************
 
  ************************************************/
 OutFormat_Wav::OutFormat_Wav()
 {
-    mId   = "WAV";
-    mExt  = "wav";
-    mName = "WAV";
+    mId      = "WAV";
+    mExt     = "wav";
+    mName    = "WAV";
     mOptions = FormatOption::Lossless;
 }
-
 
 /************************************************
 
@@ -47,7 +44,6 @@ QStringList OutFormat_Wav::encoderArgs(const Profile &, const Track *, const QSt
     return QStringList();
 }
 
-
 /************************************************
 
  ************************************************/
@@ -55,8 +51,6 @@ QStringList OutFormat_Wav::gainArgs(const QStringList &, const GainType) const
 {
     return QStringList();
 }
-
-
 
 /************************************************
 
@@ -67,7 +61,6 @@ QHash<QString, QVariant> OutFormat_Wav::defaultParameters() const
     return res;
 }
 
-
 /************************************************
 
  ************************************************/
@@ -76,12 +69,10 @@ EncoderConfigPage *OutFormat_Wav::configPage(const Profile &profile, QWidget *pa
     return new ConfigPage_Wav(profile, parent);
 }
 
-
 /************************************************
 
  ************************************************/
-ConfigPage_Wav::ConfigPage_Wav(const Profile &profile, QWidget *parent):
+ConfigPage_Wav::ConfigPage_Wav(const Profile &profile, QWidget *parent) :
     EncoderConfigPage(profile, parent)
 {
-
 }

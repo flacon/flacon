@@ -23,14 +23,13 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef OUT_WAV_H
 #define OUT_WAV_H
 
 #include "outformat.h"
 #include "encoderconfigpage.h"
 
-class OutFormat_Wav: public OutFormat
+class OutFormat_Wav : public OutFormat
 {
 public:
     OutFormat_Wav();
@@ -41,25 +40,22 @@ public:
     virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const override;
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
-
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(const Profile &profile, QWidget *parent) const override;
+    EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_64; }
-    virtual SampleRate    maxSampleRate()   const override { return SampleRate::Hz_768000; }
+    virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 };
 
-
-class ConfigPage_Wav: public EncoderConfigPage
+class ConfigPage_Wav : public EncoderConfigPage
 {
     Q_OBJECT
 public:
     explicit ConfigPage_Wav(const Profile &profile, QWidget *parent = nullptr);
 
-    virtual void load() override {}
-    virtual void save() override {}
-
+    virtual void load() override { }
+    virtual void save() override { }
 };
 
 #endif // OUT_WAV_H

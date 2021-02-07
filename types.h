@@ -37,97 +37,89 @@ typedef quint16 TrackNum;
 typedef quint16 TrackCount;
 typedef uint    Duration;
 
-enum class PreGapType
-{
+enum class PreGapType {
     Skip,
     ExtractToFile,
     AddToFirstTrack
 };
 
-QString preGapTypeToString(PreGapType type);
+QString    preGapTypeToString(PreGapType type);
 PreGapType strToPreGapType(const QString &str);
 
-
-enum class GainType
-{
+enum class GainType {
     Disable,
     Track,
     Album
 };
 
-QString gainTypeToString(GainType type);
+QString  gainTypeToString(GainType type);
 GainType strToGainType(const QString &str);
 
-
-enum class CoverMode
-{
+enum class CoverMode {
     Disable,
     OrigSize,
     Scale
 };
 
-QString coverModeToString(CoverMode mode);
+QString   coverModeToString(CoverMode mode);
 CoverMode strToCoverMode(const QString &str);
 
-unsigned int levenshteinDistance(const QString &s1, const QString & s2);
+unsigned int levenshteinDistance(const QString &s1, const QString &s2);
 
-
-class FlaconError: public std::runtime_error
+class FlaconError : public std::runtime_error
 {
 public:
-    explicit FlaconError(const char *msg): std::runtime_error(msg){}
-    explicit FlaconError(const std::string &msg): std::runtime_error(msg){}
-    explicit FlaconError(const QString &msg): std::runtime_error(msg.toStdString()){}
+    explicit FlaconError(const char *msg) :
+        std::runtime_error(msg) { }
+    explicit FlaconError(const std::string &msg) :
+        std::runtime_error(msg) { }
+    explicit FlaconError(const QString &msg) :
+        std::runtime_error(msg.toStdString()) { }
 };
-
 
 class CueIndex
 {
 public:
     explicit CueIndex(const QString &str = "");
 
-    bool isNull() const { return mNull; }
+    bool    isNull() const { return mNull; }
     QString toString(bool cdQuality = true) const;
 
     CueIndex operator-(const CueIndex &other) const;
-    bool operator==(const CueIndex &other) const;
-    bool operator!=(const CueIndex &other) const;
+    bool     operator==(const CueIndex &other) const;
+    bool     operator!=(const CueIndex &other) const;
 
     uint milliseconds() const { return mHiValue; }
     uint frames() const { return mCdValue; }
 
 private:
     bool mNull;
-    int mCdValue;
-    int mHiValue;
+    int  mCdValue;
+    int  mHiValue;
 
     bool parse(const QString &str);
 };
 
 typedef CueIndex CueTime;
 
-
-enum class TrackState
-{
-    NotRunning  = 0,
-    Canceled    = 1,
-    Error       = 2,
-    Aborted     = 3,
-    OK          = 4,
-    Splitting   = 5,
-    Encoding    = 6,
-    Queued      = 7,
-    WaitGain    = 8,
-    CalcGain    = 9,
-    WriteGain   = 10
+enum class TrackState {
+    NotRunning = 0,
+    Canceled   = 1,
+    Error      = 2,
+    Aborted    = 3,
+    OK         = 4,
+    Splitting  = 5,
+    Encoding   = 6,
+    Queued     = 7,
+    WaitGain   = 8,
+    CalcGain   = 9,
+    WriteGain  = 10
 };
 
 Q_DECLARE_METATYPE(TrackState)
 
-
-enum class BitsPerSample
-{
-    AsSourcee =  0,
+enum class BitsPerSample {
+    AsSourcee = 0,
     Bit_16    = 16,
     Bit_24    = 24,
     Bit_32    = 32,
@@ -135,21 +127,18 @@ enum class BitsPerSample
 };
 Q_DECLARE_METATYPE(BitsPerSample)
 
-
-enum class SampleRate
-{
-    AsSource  =      0,
-    Hz_44100  =  44100,
-    Hz_48000  =  48000,
-    Hz_96000  =  96000,
+enum class SampleRate {
+    AsSource  = 0,
+    Hz_44100  = 44100,
+    Hz_48000  = 48000,
+    Hz_96000  = 96000,
     Hz_192000 = 192000,
     Hz_384000 = 384000,
     Hz_768000 = 768000,
 };
 Q_DECLARE_METATYPE(SampleRate)
 
-enum class FormatOption
-{
+enum class FormatOption {
     NoOptions   = 0x0,
     Lossless    = 0x1,
     SupportGain = 0x2,
@@ -162,16 +151,15 @@ inline bool operator&&(const FormatOptions &flags, const FormatOption flag) noex
     return flags.testFlag(flag);
 }
 
-typedef quint8 Percent;
+typedef quint8  Percent;
 typedef quint64 TrackId;
 
 QByteArray leftPart(const QByteArray &line, const QChar separator);
 QByteArray rightPart(const QByteArray &line, const QChar separator);
-void initTypes();
+void       initTypes();
 
 QString safeString(const QString &str);
 QString debugProgramArgs(const QString &prog, const QStringList &args);
-
 
 class Messages
 {

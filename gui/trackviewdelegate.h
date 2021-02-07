@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef TRACKVIEWDELEGATE_H
 #define TRACKVIEWDELEGATE_H
 
@@ -64,26 +63,26 @@ private slots:
     void movieUpdated();
 
 private:
-    TrackView *mTrackView;
+    TrackView *     mTrackView;
     TrackViewCache *mCache;
 
     mutable QImage mNoCoverImg;
-    QPixmap mTrackBtnPix;
-    QPixmap mAudioBtnPix;
-    QPixmap mDiscErrorPix;
-    QPixmap mDiscWarnPix;
-    QPixmap mTrackOkPix;
-    QPixmap mTrackErrorPix;
+    QPixmap        mTrackBtnPix;
+    QPixmap        mAudioBtnPix;
+    QPixmap        mDiscErrorPix;
+    QPixmap        mDiscWarnPix;
+    QPixmap        mTrackOkPix;
+    QPixmap        mTrackErrorPix;
     mutable QMovie mDownloadMovie;
-    mutable int mDiscHeightHint;
+    mutable int    mDiscHeightHint;
 
     QFont titleFont(const QFont &font) const;
     QFont filesFont(const QFont &font) const;
-    void paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    void paintDisc(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void  paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void  paintDisc(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     QRect drawLabel(const QString &text, const QRect &rect, QPainter *painter) const;
     QRect drawFile(const QString &text, const QRect &rect, QPainter *painter) const;
-    void drawSelectionMark(QPainter *painter, const QRect &rect) const;
+    void  drawSelectionMark(QPainter *painter, const QRect &rect) const;
 };
 
 #endif // TRACKVIEWDELEGATE_H

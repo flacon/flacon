@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "wavheader.h"
 #include "types.h"
 
@@ -31,10 +30,10 @@
 #include <QtEndian>
 #include <QDebug>
 
-static const char* WAV_RIFF = "RIFF";
-static const char* WAV_WAVE = "WAVE";
-static const char* WAV_FMT  = "fmt ";
-static const char* WAV_DATA = "data";
+static const char *WAV_RIFF = "RIFF";
+static const char *WAV_WAVE = "WAVE";
+static const char *WAV_FMT  = "fmt ";
+static const char *WAV_DATA = "data";
 
 static const int READ_DELAY = 1000;
 
@@ -43,13 +42,12 @@ static const int READ_DELAY = 1000;
  ************************************************/
 inline bool mustRead(QIODevice *device, char *data, qint64 size, int msecs = READ_DELAY)
 {
-    char *d = data;
+    char * d    = data;
     qint64 left = size;
-    while (left > 0)
-    {
-        device->bytesAvailable() ||  device->waitForReadyRead(msecs);
+    while (left > 0) {
+        device->bytesAvailable() || device->waitForReadyRead(msecs);
         qint64 n = device->read(d, left);
-        if (n<0)
+        if (n < 0)
             return false;
 
         d += n;
@@ -59,25 +57,23 @@ inline bool mustRead(QIODevice *device, char *data, qint64 size, int msecs = REA
     return true;
 }
 
-
 /************************************************
  *
  ************************************************/
-QByteArray& operator<<(QByteArray& out, const char val[4])
+QByteArray &operator<<(QByteArray &out, const char val[4])
 {
     out += val;
     return out;
 }
 
-
 /************************************************
  *
  ************************************************/
-QByteArray& operator<<(QByteArray& out, quint32 val)
+QByteArray &operator<<(QByteArray &out, quint32 val)
 {
     union {
         quint32 n;
-        char bytes[4];
+        char    bytes[4];
     };
 
     n = qToLittleEndian(val);
@@ -89,15 +85,14 @@ QByteArray& operator<<(QByteArray& out, quint32 val)
     return out;
 }
 
-
 /************************************************
  *
  ************************************************/
-QByteArray& operator<<(QByteArray& out, quint16 val)
+QByteArray &operator<<(QByteArray &out, quint16 val)
 {
     union {
         quint32 n;
-        char bytes[2];
+        char    bytes[2];
     };
 
     n = qToLittleEndian(val);
@@ -106,7 +101,6 @@ QByteArray& operator<<(QByteArray& out, quint16 val)
 
     return out;
 }
-
 
 /************************************************
  *
@@ -117,21 +111,20 @@ bool readTag(QIODevice *device, char tag[5])
     return mustRead(device, tag, 4);
 }
 
-
 /************************************************
  *
  ************************************************/
-struct SplitterError {
-    int        trackNum;
-    QString    msg;
+struct SplitterError
+{
+    int     trackNum;
+    QString msg;
 
-    SplitterError(int num, QString msg):
+    SplitterError(int num, QString msg) :
         trackNum(num),
         msg(msg)
     {
     }
 };
-
 
 /************************************************
  *
@@ -139,11 +132,10 @@ struct SplitterError {
 quint32 readUInt32(QIODevice *stream)
 {
     quint32 n;
-    if (stream->read((char*)&n, 4) != 4)
+    if (stream->read((char *)&n, 4) != 4)
         throw FlaconError("Unexpected end of file");
     return qFromLittleEndian(n);
 }
-
 
 /************************************************
  *
@@ -151,11 +143,10 @@ quint32 readUInt32(QIODevice *stream)
 quint16 readUInt16(QIODevice *stream)
 {
     quint16 n;
-    if (stream->read((char*)&n, 2) != 2)
+    if (stream->read((char *)&n, 2) != 2)
         throw FlaconError("Unexpected end of file");
     return qFromLittleEndian(n);
 }
-
 
 /************************************************
  * 52 49 46 46      RIFF
@@ -175,7 +166,7 @@ quint16 readUInt16(QIODevice *stream)
  *   64 61 74 61 	SubchunkID 		"data"
  *   00 B9 4D 02 	SubchunkSize
  ************************************************/
-WavHeader::WavHeader():
+WavHeader::WavHeader() :
     mFileSize(0),
     mFmtSize(0),
     mFormat(WavHeader::Format_Unknown),
@@ -192,13 +183,12 @@ WavHeader::WavHeader():
 {
 }
 
-
 /************************************************
  * See WAV specoification
  *   http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html
  *   https://en.wikipedia.org/wiki/WAV
  ************************************************/
-WavHeader::WavHeader(QIODevice *stream):
+WavHeader::WavHeader(QIODevice *stream) :
     mFormat(WavHeader::Format_Unknown),
     mNumChannels(0),
     mSampleRate(0),
@@ -221,9 +211,8 @@ WavHeader::WavHeader(QIODevice *stream):
     if (!readTag(stream, tag) || strcmp(tag, WAV_WAVE) != 0)
         throw FlaconError("WAVE header is missing WAVE tag while processing file");
 
-
     char    chunkID[5];
-    quint64 pos=12;
+    quint64 pos = 12;
     while (pos < this->mFileSize) {
         if (!readTag(stream, chunkID))
             throw FlaconError("[WAV] can't read chunk ID");
@@ -232,7 +221,7 @@ WavHeader::WavHeader(QIODevice *stream):
         pos += 8;
 
         if (strcmp(chunkID, WAV_DATA) == 0) {
-            this->mDataSize = chunkSize;
+            this->mDataSize     = chunkSize;
             this->mDataStartPos = pos;
             return;
         }
@@ -241,23 +230,21 @@ WavHeader::WavHeader(QIODevice *stream):
             throw FlaconError(QString("[WAV] incorrect chunk size %1 at %2").arg(chunkSize).arg(pos - 4));
         }
 
-
         if (strcmp(chunkID, WAV_FMT) == 0) {
             loadFmtChunk(stream, chunkSize);
 
-            pos+=chunkSize;
+            pos += chunkSize;
         }
         else {
             mOtherCunks << chunkID;
             mOtherCunks << chunkSize;
             mOtherCunks.append(stream->read(chunkSize));
-            pos+=chunkSize;
+            pos += chunkSize;
         }
     }
 
     throw FlaconError("data chunk not found");
 }
-
 
 /************************************************
  *
@@ -266,7 +253,6 @@ WavHeader::WavHeader(const WavHeader &other)
 {
     this->operator=(other);
 }
-
 
 /************************************************
  *
@@ -292,7 +278,6 @@ WavHeader &WavHeader::operator=(const WavHeader &other)
     return *this;
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -303,12 +288,8 @@ bool WavHeader::isCdQuality() const
     static const int CD_SAMPLE_RATE     = 44100;
     static const int CD_BYTE_RATE       = 176400;
 
-    return mNumChannels   == CD_NUM_CHANNELS &&
-           mBitsPerSample == CD_BITS_PER_SAMPLE &&
-           mSampleRate    == CD_SAMPLE_RATE &&
-           mByteRate      == CD_BYTE_RATE;
+    return mNumChannels == CD_NUM_CHANNELS && mBitsPerSample == CD_BITS_PER_SAMPLE && mSampleRate == CD_SAMPLE_RATE && mByteRate == CD_BYTE_RATE;
 }
-
 
 /************************************************
  *
@@ -318,21 +299,21 @@ quint64 WavHeader::duration() const
     return (mDataSize * 1000ull) / mByteRate;
 }
 
-
 /************************************************
  *
  ************************************************/
 quint32 WavHeader::bytesPerSecond(WavHeader::Quality quality)
 {
-    switch (quality)
-    {
-    case Quality_Stereo_CD:     return 2 * 16 *  44100 / 8;
-    case Quality_Stereo_24_96:  return 2 * 24 *  96000 / 8;
-    case Quality_Stereo_24_192: return 2 * 24 * 192000 / 8;
+    switch (quality) {
+        case Quality_Stereo_CD:
+            return 2 * 16 * 44100 / 8;
+        case Quality_Stereo_24_96:
+            return 2 * 24 * 96000 / 8;
+        case Quality_Stereo_24_192:
+            return 2 * 24 * 192000 / 8;
     }
     return 0;
 }
-
 
 /************************************************
  *
@@ -342,40 +323,39 @@ quint32 WavHeader::bytesPerSecond()
     return mNumChannels * mBitsPerSample * mSampleRate / 8;
 }
 
-
 /************************************************
  *
  ************************************************/
-void checkFormat(quint16 format) {
+void checkFormat(quint16 format)
+{
 
     switch (format) {
-    case WavHeader::Format_Unknown:
-    case WavHeader::Format_PCM:
-    case WavHeader::Format_ADPCM:
-    case WavHeader::Format_IEEE_FLOAT:
-    case WavHeader::Format_ALAW:
-    case WavHeader::Format_MULAW:
-    case WavHeader::Format_OKI_ADPCM:
-    case WavHeader::Format_IMA_ADPCM:
-    case WavHeader::Format_DIGISTD:
-    case WavHeader::Format_DIGIFIX:
-    case WavHeader::Format_DOLBY_AC2:
-    case WavHeader::Format_GSM610:
-    case WavHeader::Format_ROCKWELL_ADPCM:
-    case WavHeader::Format_ROCKWELL_DIGITALK:
-    case WavHeader::Format_G721_ADPCM:
-    case WavHeader::Format_G728_CELP:
-    case WavHeader::Format_MPEG:
-    case WavHeader::Format_MPEGLAYER3:
-    case WavHeader::Format_G726_ADPCM:
-    case WavHeader::Format_G722_ADPCM:
-    case WavHeader::Format_Extensible:
-        return;
+        case WavHeader::Format_Unknown:
+        case WavHeader::Format_PCM:
+        case WavHeader::Format_ADPCM:
+        case WavHeader::Format_IEEE_FLOAT:
+        case WavHeader::Format_ALAW:
+        case WavHeader::Format_MULAW:
+        case WavHeader::Format_OKI_ADPCM:
+        case WavHeader::Format_IMA_ADPCM:
+        case WavHeader::Format_DIGISTD:
+        case WavHeader::Format_DIGIFIX:
+        case WavHeader::Format_DOLBY_AC2:
+        case WavHeader::Format_GSM610:
+        case WavHeader::Format_ROCKWELL_ADPCM:
+        case WavHeader::Format_ROCKWELL_DIGITALK:
+        case WavHeader::Format_G721_ADPCM:
+        case WavHeader::Format_G728_CELP:
+        case WavHeader::Format_MPEG:
+        case WavHeader::Format_MPEGLAYER3:
+        case WavHeader::Format_G726_ADPCM:
+        case WavHeader::Format_G722_ADPCM:
+        case WavHeader::Format_Extensible:
+            return;
     }
 
     throw FlaconError(QString("unknown format (%1) in WAVE header").arg(format, 0, 16));
 }
-
 
 /************************************************
  *
@@ -389,7 +369,7 @@ void WavHeader::loadFmtChunk(QIODevice *stream, const quint32 chunkSize)
 
     quint16 format = readUInt16(stream);
 
-    this->mFormat        = static_cast<Format>(format);
+    this->mFormat = static_cast<Format>(format);
     checkFormat(format);
     this->mNumChannels   = readUInt16(stream);
     this->mSampleRate    = readUInt32(stream);
@@ -400,7 +380,7 @@ void WavHeader::loadFmtChunk(QIODevice *stream, const quint32 chunkSize)
     if (chunkSize == 16)
         return;
 
-    mExtSize = readUInt16(stream);              // Size of the extension:
+    mExtSize = readUInt16(stream); // Size of the extension:
     if (chunkSize == 18)
         return;
 
@@ -408,12 +388,9 @@ void WavHeader::loadFmtChunk(QIODevice *stream, const quint32 chunkSize)
         throw FlaconError("Size of the extension in WAVE header hase incorrect length");
 
     mValidBitsPerSample = readUInt16(stream); // at most 8*M
-    mChannelMask = readUInt32(stream);        // Speaker position mask
-    mSubFormat = stream->read(16);            // GUID (first two bytes are the data format code)
+    mChannelMask        = readUInt32(stream); // Speaker position mask
+    mSubFormat          = stream->read(16);   // GUID (first two bytes are the data format code)
 }
-
-
-
 
 /************************************************
  * 52 49 46 46      RIFF
@@ -436,7 +413,7 @@ void WavHeader::loadFmtChunk(QIODevice *stream, const quint32 chunkSize)
 QByteArray WavHeader::toByteArray() const
 {
     QByteArray res;
-    res.reserve(mDataStartPos -1);
+    res.reserve(mDataStartPos - 1);
     res << WAV_RIFF;
     res << (mFileSize - 8);
     res << WAV_WAVE;
@@ -465,7 +442,6 @@ QByteArray WavHeader::toByteArray() const
     return res;
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -475,38 +451,77 @@ void WavHeader::resizeData(quint32 dataSize)
     mFileSize = mDataStartPos + mDataSize;
 }
 
-
 /************************************************
  *
  ************************************************/
 QDebug operator<<(QDebug dbg, const WavHeader &header)
 {
     QString format;
-    switch (header.format())
-    {
-    case WavHeader::Format_Unknown:             format = "Unknown";            break;
-    case WavHeader::Format_PCM:                 format = "PCM";                break;
-    case WavHeader::Format_ADPCM:               format = "ADPCM";              break;
-    case WavHeader::Format_IEEE_FLOAT:          format = "IEEE_FLOAT";         break;
-    case WavHeader::Format_ALAW:                format = "ALAW";               break;
-    case WavHeader::Format_MULAW:               format = "MULAW";              break;
-    case WavHeader::Format_OKI_ADPCM:           format = "OKI_ADPCM";          break;
-    case WavHeader::Format_IMA_ADPCM:           format = "IMA_ADPCM";          break;
-    case WavHeader::Format_DIGISTD:             format = "DIGISTD";            break;
-    case WavHeader::Format_DIGIFIX:             format = "DIGIFIX";            break;
-    case WavHeader::Format_DOLBY_AC2:           format = "DOLBY_AC2";          break;
-    case WavHeader::Format_GSM610:              format = "Unknown";            break;
-    case WavHeader::Format_ROCKWELL_ADPCM:      format = "ROCKWELL_ADPCM";     break;
-    case WavHeader::Format_ROCKWELL_DIGITALK:   format = "ROCKWELL_DIGITALK";  break;
-    case WavHeader::Format_G721_ADPCM:          format = "G721_ADPCM";         break;
-    case WavHeader::Format_G728_CELP:           format = "G728_CELP";          break;
-    case WavHeader::Format_MPEG:                format = "MPEG";               break;
-    case WavHeader::Format_MPEGLAYER3:          format = "MPEGLAYER3";         break;
-    case WavHeader::Format_G726_ADPCM:          format = "G726_ADPCM";         break;
-    case WavHeader::Format_G722_ADPCM:          format = "G722_ADPCM";         break;
-    case WavHeader::Format_Extensible:          format = "Extensible";         break;
+    switch (header.format()) {
+        case WavHeader::Format_Unknown:
+            format = "Unknown";
+            break;
+        case WavHeader::Format_PCM:
+            format = "PCM";
+            break;
+        case WavHeader::Format_ADPCM:
+            format = "ADPCM";
+            break;
+        case WavHeader::Format_IEEE_FLOAT:
+            format = "IEEE_FLOAT";
+            break;
+        case WavHeader::Format_ALAW:
+            format = "ALAW";
+            break;
+        case WavHeader::Format_MULAW:
+            format = "MULAW";
+            break;
+        case WavHeader::Format_OKI_ADPCM:
+            format = "OKI_ADPCM";
+            break;
+        case WavHeader::Format_IMA_ADPCM:
+            format = "IMA_ADPCM";
+            break;
+        case WavHeader::Format_DIGISTD:
+            format = "DIGISTD";
+            break;
+        case WavHeader::Format_DIGIFIX:
+            format = "DIGIFIX";
+            break;
+        case WavHeader::Format_DOLBY_AC2:
+            format = "DOLBY_AC2";
+            break;
+        case WavHeader::Format_GSM610:
+            format = "Unknown";
+            break;
+        case WavHeader::Format_ROCKWELL_ADPCM:
+            format = "ROCKWELL_ADPCM";
+            break;
+        case WavHeader::Format_ROCKWELL_DIGITALK:
+            format = "ROCKWELL_DIGITALK";
+            break;
+        case WavHeader::Format_G721_ADPCM:
+            format = "G721_ADPCM";
+            break;
+        case WavHeader::Format_G728_CELP:
+            format = "G728_CELP";
+            break;
+        case WavHeader::Format_MPEG:
+            format = "MPEG";
+            break;
+        case WavHeader::Format_MPEGLAYER3:
+            format = "MPEGLAYER3";
+            break;
+        case WavHeader::Format_G726_ADPCM:
+            format = "G726_ADPCM";
+            break;
+        case WavHeader::Format_G722_ADPCM:
+            format = "G722_ADPCM";
+            break;
+        case WavHeader::Format_Extensible:
+            format = "Extensible";
+            break;
     }
-
 
     dbg.nospace() << "file size:       " << header.fileSize() << "\n";
     dbg.nospace() << "format:          " << format << "\n";

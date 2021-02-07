@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "types.h"
 #include "tags.h"
 
@@ -31,9 +30,7 @@
 #include <QTextCodec>
 #include <QDebug>
 
-
 #define ENC_CODEC "UTF-8"
-
 
 /************************************************
  *
@@ -44,17 +41,14 @@ static QTextCodec *encCodec()
     return res;
 }
 
-
-
 /************************************************
  *
  ************************************************/
-TagValue::TagValue(const QString &value):
+TagValue::TagValue(const QString &value) :
     mValue(encCodec()->fromUnicode(value)),
     mEncoded(true)
 {
 }
-
 
 /************************************************
  *
@@ -71,7 +65,6 @@ QString TagValue::asString(const QTextCodec *codec) const
     return encCodec()->toUnicode(mValue);
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -80,7 +73,6 @@ void TagValue::setValue(const QByteArray &value)
     mValue   = value;
     mEncoded = false;
 }
-
 
 /************************************************
  *
@@ -91,12 +83,10 @@ void TagValue::setValue(const QString &value)
     mEncoded = true;
 }
 
-
 /************************************************
  *
  ************************************************/
-bool TagValue::operator ==(const TagValue &other) const
+bool TagValue::operator==(const TagValue &other) const
 {
-    return this->mEncoded == other.mEncoded &&
-           this->mValue   == other.mValue;
+    return this->mEncoded == other.mEncoded && this->mValue == other.mValue;
 }

@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef CUE_H
 #define CUE_H
 
@@ -34,9 +33,10 @@
 
 class QFile;
 
-class CueDisc: public Tracks
+class CueDisc : public Tracks
 {
     friend class CueReader;
+
 public:
     CueDisc();
     QString fileName() const { return mFileName; }
@@ -49,7 +49,6 @@ private:
     DiscNum mDiscNum;
 };
 
-
 typedef QVector<CueDisc> Cue;
 
 class CueReader
@@ -59,11 +58,11 @@ public:
     QVector<CueDisc> load(const QString &fileName) noexcept(false);
 };
 
-
-class CueReaderError: public FlaconError
+class CueReaderError : public FlaconError
 {
 public:
-    explicit CueReaderError(const QString &msg): FlaconError(msg) {}
+    explicit CueReaderError(const QString &msg) :
+        FlaconError(msg) { }
 };
 
 #endif // CUE_H

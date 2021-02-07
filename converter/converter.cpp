@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include <QThread>
 #include <QDebug>
 
@@ -41,7 +40,6 @@
 #include <QFileInfo>
 #include <QDir>
 
-
 /************************************************
 
  ************************************************/
@@ -51,7 +49,6 @@ Converter::Converter(QObject *parent) :
 {
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -59,19 +56,17 @@ Converter::~Converter()
 {
 }
 
-
 /************************************************
 
  ************************************************/
 void Converter::start(const Profile &profile)
 {
     Jobs jobs;
-    for (int d=0; d<project->count(); ++d)
-    {
+    for (int d = 0; d < project->count(); ++d) {
         Job job;
         job.disc = project->disc(d);
 
-        for (int t=0; t<job.disc->count(); ++t)
+        for (int t = 0; t < job.disc->count(); ++t)
             job.tracks << job.disc->track(t);
 
         jobs << job;
@@ -79,7 +74,6 @@ void Converter::start(const Profile &profile)
 
     start(jobs, profile);
 }
-
 
 /************************************************
  *
@@ -89,14 +83,12 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
     qDebug() << "Start converter:" << jobs.length() << profile;
     qDebug() << "Temp dir =" << Settings::i()->tmpDir();
 
-    if (jobs.isEmpty())
-    {
+    if (jobs.isEmpty()) {
         emit finished();
         return;
     }
 
-    if (!check(profile))
-    {
+    if (!check(profile)) {
         emit finished();
         return;
     }
@@ -108,8 +100,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
 
     qDebug() << "Threads count" << mThreadCount;
 
-    for (const Job &job: jobs)
-    {
+    for (const Job &job : jobs) {
         if (job.tracks.isEmpty())
             continue;
 
@@ -132,8 +123,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
 
         mDiscPiplines << pipeline;
 
-        if (!pipeline->init())
-        {
+        if (!pipeline->init()) {
             qDeleteAll(mDiscPiplines);
             mDiscPiplines.clear();
             emit finished();
@@ -145,21 +135,18 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
     emit started();
 }
 
-
 /************************************************
 
  ************************************************/
 bool Converter::isRunning()
 {
-    foreach (DiscPipeline *pipe, mDiscPiplines)
-    {
+    foreach (DiscPipeline *pipe, mDiscPiplines) {
         if (pipe->isRunning())
             return true;
     }
 
     return false;
 }
-
 
 /************************************************
 
@@ -170,14 +157,13 @@ bool Converter::canConvert()
         return false;
     }
 
-    for(int i=0; i<project->count(); ++i) {
+    for (int i = 0; i < project->count(); ++i) {
         if (project->disc(i)->canConvert())
             return true;
     }
 
     return false;
 }
-
 
 /************************************************
 
@@ -187,41 +173,35 @@ void Converter::stop()
     if (!isRunning())
         return;
 
-    foreach (DiscPipeline *pipe, mDiscPiplines)
-    {
+    foreach (DiscPipeline *pipe, mDiscPiplines) {
         pipe->stop();
     }
 }
-
 
 /************************************************
 
  ************************************************/
 void Converter::startThread()
 {
-    int count = mThreadCount;
+    int count         = mThreadCount;
     int splitterCount = qMax(1.0, ceil(count / 2.0));
 
     foreach (DiscPipeline *pipe, mDiscPiplines)
-        count-=pipe->runningThreadCount();
+        count -= pipe->runningThreadCount();
 
-    foreach (DiscPipeline *pipe, mDiscPiplines)
-    {
+    foreach (DiscPipeline *pipe, mDiscPiplines) {
         pipe->startWorker(&splitterCount, &count);
         if (count <= 0)
             break;
     }
 
-
-    foreach (DiscPipeline *pipe, mDiscPiplines)
-    {
+    foreach (DiscPipeline *pipe, mDiscPiplines) {
         if (pipe->isRunning())
             return;
     }
 
     emit finished();
 }
-
 
 /************************************************
 
@@ -236,25 +216,21 @@ bool Converter::check(const Profile &profile) const
 
     bool ok = profile.check(&errors);
 
-    if (profile.bitsPerSample() || profile.sampleRate())
-    {
-        if (!Settings::i()->checkProgram(Resampler::programName()))
-        {
+    if (profile.bitsPerSample() || profile.sampleRate()) {
+        if (!Settings::i()->checkProgram(Resampler::programName())) {
             errors << QObject::tr("I can't find program <b>%1</b>.").arg(Resampler::programName());
             ok = false;
         }
     }
 
-    if (!ok)
-    {
+    if (!ok) {
         QString s;
-        foreach (QString e, errors)
-        {
+        foreach (QString e, errors) {
             s += QString("<li style='margin-top: 4px;'> %1</li>").arg(e);
         }
 
         Messages::error(QString("<html>%1<ul>%2</ul></html>")
-                      .arg(tr("Conversion is not possible:"), s));
+                                .arg(tr("Conversion is not possible:"), s));
     }
 
     return ok;

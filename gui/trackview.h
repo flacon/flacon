@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef TRACKVIEW_H
 #define TRACKVIEW_H
 
@@ -40,23 +39,22 @@ class TrackView : public QTreeView
 {
     Q_OBJECT
 public:
-    enum Columns
-    {
-        ColumnPercent   = 0,
-        ColumnTracknum  = 0,
-        ColumnDuration  = 1,
-        ColumnTitle     = 2,
-        ColumnArtist    = 3,
-        ColumnAlbum     = 4,
-        ColumnComment   = 5,
-        ColumnFileName  = 6,
-        ColumnCount     = 7
+    enum Columns {
+        ColumnPercent  = 0,
+        ColumnTracknum = 0,
+        ColumnDuration = 1,
+        ColumnTitle    = 2,
+        ColumnArtist   = 3,
+        ColumnAlbum    = 4,
+        ColumnComment  = 5,
+        ColumnFileName = 6,
+        ColumnCount    = 7
     };
 
     explicit TrackView(QWidget *parent = nullptr);
 
-    QList<Track*> selectedTracks() const;
-    QList<Disc*> selectedDiscs() const;
+    QList<Track *> selectedTracks() const;
+    QList<Disc *>  selectedDiscs() const;
 
     bool isSelected(const Disc &disc) const;
     bool isSelected(const Track &track) const;
@@ -90,12 +88,11 @@ private slots:
     void emitSelectCoverImage(const QModelIndex &index);
 
 private:
-    TrackViewModel *mModel;
+    TrackViewModel *   mModel;
     TrackViewDelegate *mDelegate;
 };
 
-
-class TrackViewSelectionModel: public QItemSelectionModel
+class TrackViewSelectionModel : public QItemSelectionModel
 {
     Q_OBJECT
 public:

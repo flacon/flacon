@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef OUT_OGG_H
 #define OUT_OGG_H
 
@@ -31,7 +30,7 @@
 #include "encoderconfigpage.h"
 #include "ui_out_ogg_config.h"
 
-class OutFormat_Ogg: public OutFormat
+class OutFormat_Ogg : public OutFormat
 {
 public:
     OutFormat_Ogg();
@@ -43,15 +42,14 @@ public:
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(const Profile &profile, QWidget *parent) const override;
+    EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
-    virtual SampleRate    maxSampleRate()   const override { return SampleRate::Hz_192000; }
+    virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_192000; }
 };
 
-
-class ConfigPage_Ogg: public EncoderConfigPage, private Ui::oggConfigPage
+class ConfigPage_Ogg : public EncoderConfigPage, private Ui::oggConfigPage
 {
     Q_OBJECT
 public:

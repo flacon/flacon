@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef OUT_FLAC_H
 #define OUT_FLAC_H
 
@@ -31,7 +30,7 @@
 #include "encoderconfigpage.h"
 #include "ui_out_flac_config.h"
 
-class OutFormat_Flac: public OutFormat
+class OutFormat_Flac : public OutFormat
 {
 public:
     OutFormat_Flac();
@@ -44,16 +43,14 @@ public:
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *configPage(const Profile &profile, QWidget *parent) const override;
+    EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
-    virtual SampleRate    maxSampleRate()   const override { return SampleRate::Hz_768000; }
-
+    virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 };
 
-
-class ConfigPage_Flac: public EncoderConfigPage, private Ui::flacConfigPage
+class ConfigPage_Flac : public EncoderConfigPage, private Ui::flacConfigPage
 {
     Q_OBJECT
 public:
@@ -61,7 +58,6 @@ public:
 
     virtual void load() override;
     virtual void save() override;
-
 };
 
 #endif // OUT_FLAC_H

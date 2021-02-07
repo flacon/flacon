@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef DECODER_H
 #define DECODER_H
 
@@ -62,18 +61,14 @@ signals:
 
 private:
     const InputFormat *mFormat;
-    QProcess  *mProcess;
-    QString    mInputFile;
-    QFile     *mFile;
-    WavHeader  mWavHeader;
-    quint64    mPos;
+    QProcess *         mProcess;
+    QString            mInputFile;
+    QFile *            mFile;
+    WavHeader          mWavHeader;
+    quint64            mPos;
 
     void openFile();
     void openProcess();
 };
-
-
-
-
 
 #endif // DECODER_H

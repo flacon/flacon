@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "in_wv.h"
 
 REGISTER_INPUT_FORMAT(Format_Wv)
@@ -37,7 +36,6 @@ bool Format_Wv::checkMagic(const QByteArray &data) const
     return data.contains(magic());
 }
 
-
 /************************************************
  *
  ************************************************/
@@ -47,7 +45,8 @@ QStringList Format_Wv::decoderArgs(const QString &fileName) const
     args << "-q";
     args << "-y";
     args << fileName;
-    args << "-o" << "-";
+    args << "-o"
+         << "-";
 
     return args;
 }

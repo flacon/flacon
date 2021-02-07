@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef DATAPROVIDER_H
 #define DATAPROVIDER_H
 
@@ -35,7 +34,6 @@
 
 class Disc;
 class QNetworkAccessManager;
-
 
 class DataProvider : public QObject
 {
@@ -52,14 +50,13 @@ public slots:
     virtual void start() = 0;
     virtual void stop();
 
-
 signals:
     void finished();
     void ready(const QVector<Tracks> result);
 
 protected:
-    void get(const QNetworkRequest &request);
-    void error(const QString &message);
+    void                    get(const QNetworkRequest &request);
+    void                    error(const QString &message);
     virtual QVector<Tracks> dataReady(QNetworkReply *reply) = 0;
 
 private slots:
@@ -67,20 +64,20 @@ private slots:
 
 private:
     QNetworkAccessManager *networkAccessManager() const;
-    const Disc &mDisc;
-    QList<QNetworkReply*> mReplies;
-    QVector<Tracks> mResult;
+    const Disc &           mDisc;
+    QList<QNetworkReply *> mReplies;
+    QVector<Tracks>        mResult;
 
-    void addReply(QNetworkReply* reply);
+    void addReply(QNetworkReply *reply);
 };
 
-
-class FreeDbProvider: public DataProvider
+class FreeDbProvider : public DataProvider
 {
 public:
     explicit FreeDbProvider(const Disc &disc);
 
     void start() override;
+
 protected:
     QVector<Tracks> dataReady(QNetworkReply *reply) override;
 

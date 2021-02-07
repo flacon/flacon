@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
@@ -38,8 +37,7 @@ class Settings : public QSettings
 {
     Q_OBJECT
 public:
-
-    enum Key{
+    enum Key {
         Tags_DefaultCodepage,
 
         // MainWindow ***************************
@@ -71,38 +69,38 @@ public:
     };
 
     static Settings *i();
-    static void setFileName(const QString &fileName);
+    static void      setFileName(const QString &fileName);
 
     QVariant value(Key key, const QVariant &defaultValue = QVariant()) const;
-    void setValue(Key key, const QVariant &value);
+    void     setValue(Key key, const QVariant &value);
 
-    void setValue(const QString &key, const QVariant &value);
+    void     setValue(const QString &key, const QVariant &value);
     QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
 
-    bool checkProgram(const QString &program) const;
+    bool    checkProgram(const QString &program) const;
     QString programName(const QString &program) const;
 
     QSet<QString> programs() const { return mPrograms; }
-    QString findProgram(const QString &program) const;
+    QString       findProgram(const QString &program) const;
 
     OutFormat *outFormat() const;
 
     QString tmpDir() const;
-    void setTmpDir(const QString &value);
+    void    setTmpDir(const QString &value);
 
     QString defaultCodepage() const;
-    void setDefaultCodepage(const QString &value);
+    void    setDefaultCodepage(const QString &value);
 
     CoverMode coverMode() const;
-    int coverImageSize() const;
+    int       coverImageSize() const;
 
-    Profiles &profiles();
+    Profiles &      profiles();
     const Profiles &profiles() const;
-    void setProfiles(const Profiles &profiles);
+    void            setProfiles(const Profiles &profiles);
 
     const Profile &currentProfile() const;
-    Profile &currentProfile();
-    bool selectProfile(const QString &profileId);
+    Profile &      currentProfile();
+    bool           selectProfile(const QString &profileId);
 
 signals:
     void changed();
@@ -113,17 +111,17 @@ protected:
     virtual ~Settings();
 
 private:
-    void init();
-    void setDefaultValue(const QString &key, const QVariant &defaultValue);
-    void setDefaultValue(Key key, const QVariant &defaultValue);
-    QString keyToString(Key key) const;
+    void        init();
+    void        setDefaultValue(const QString &key, const QVariant &defaultValue);
+    void        setDefaultValue(Key key, const QVariant &defaultValue);
+    QString     keyToString(Key key) const;
     QStringList groups(const QString &parentGroup) const;
-    void loadProfiles();
+    void        loadProfiles();
 
-    QSet<QString> mPrograms;
-    static QString mFileName;
+    QSet<QString>    mPrograms;
+    static QString   mFileName;
     static Settings *mInstance;
-    Profiles mProfiles;
+    Profiles         mProfiles;
 };
 
 #endif // SETTINGS_H

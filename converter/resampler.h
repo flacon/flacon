@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef RESAMPLER_H
 #define RESAMPLER_H
 
@@ -34,7 +33,7 @@ class Resampler
 public:
     explicit Resampler();
 
-    static QString programName() { return "sox"; }
+    static QString     programName() { return "sox"; }
     static QStringList args(int bitsPerSample, int sampleRate, const QString &outFile);
 };
 

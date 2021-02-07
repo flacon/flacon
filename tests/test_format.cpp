@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "testflacon.h"
 #include "tools.h"
 #include "../formats/informat.h"
@@ -42,7 +41,6 @@ void TestFlacon::testFormatWavLast()
     if (InputFormat::allFormats().last()->ext() != "wav")
         QFAIL("Last format is not wav in allFormats.");
 }
-
 
 /************************************************
  *
@@ -63,9 +61,7 @@ void TestFlacon::testFormat()
 
     if (format->ext() != ext)
         QFAIL(QString("Incorrect format found:\n    found    '%1',\n    expected '%2' ").arg(format->ext(), ext).toLocal8Bit());
-
 }
-
 
 /************************************************
  *
@@ -73,18 +69,16 @@ void TestFlacon::testFormat()
 void TestFlacon::testFormat_data()
 {
     QTest::addColumn<QString>("testdata", nullptr);
-    QTest::addColumn<QString>("ext",      nullptr);
+    QTest::addColumn<QString>("ext", nullptr);
 
     QTest::newRow("01 WAV")
-            << "52 49 46 46"  // RIFF
+            << "52 49 46 46" // RIFF
             << "wav";
 
     QTest::newRow("02 FLAC")
-            << "66 4C 61 43"  // fLaC
+            << "66 4C 61 43" // fLaC
             << "flac";
-
 }
-
 
 /************************************************
  *
@@ -102,33 +96,31 @@ void TestFlacon::testFormatFromFile()
         QFAIL(QString("Incorrect format found:\n    found    '%1',\n    expected '%2' ").arg(format->ext(), ext).toLocal8Bit());
 }
 
-
 /************************************************
  *
  ************************************************/
 void TestFlacon::testFormatFromFile_data()
 {
     QTest::addColumn<QString>("filename", nullptr);
-    QTest::addColumn<QString>("ext",      nullptr);
+    QTest::addColumn<QString>("ext", nullptr);
 
     // WAV ______________________________________
-    QTest::newRow("WAV 01")     << mAudio_cd_wav        << "wav";
-    QTest::newRow("WAV 02")     << mAudio_24x96_wav     << "wav";
+    QTest::newRow("WAV 01") << mAudio_cd_wav << "wav";
+    QTest::newRow("WAV 02") << mAudio_24x96_wav << "wav";
 
     // FLAC _____________________________________
-    QTest::newRow("FLAC 01")    << mAudio_cd_flac       << "flac";
-    QTest::newRow("FLAC 02")    << mAudio_24x96_flac    << "flac";
+    QTest::newRow("FLAC 01") << mAudio_cd_flac << "flac";
+    QTest::newRow("FLAC 02") << mAudio_24x96_flac << "flac";
 
     // APE ______________________________________
-    QTest::newRow("APE 01")     << mAudio_cd_ape        << "ape";
-    QTest::newRow("APE 02")     << mAudio_24x96_ape     << "ape";
+    QTest::newRow("APE 01") << mAudio_cd_ape << "ape";
+    QTest::newRow("APE 02") << mAudio_24x96_ape << "ape";
 
     // TTA ______________________________________
-    QTest::newRow("TTA 01")     << mAudio_cd_tta        << "tta";
-    QTest::newRow("TTA 02")     << mAudio_24x96_tta     << "tta";
+    QTest::newRow("TTA 01") << mAudio_cd_tta << "tta";
+    QTest::newRow("TTA 02") << mAudio_24x96_tta << "tta";
 
     // WV ______________________________________
-    QTest::newRow("WV 01")      << mAudio_cd_wv         << "wv";
-    QTest::newRow("WV 02")      << mAudio_24x96_wv      << "wv";
-
+    QTest::newRow("WV 01") << mAudio_cd_wv << "wv";
+    QTest::newRow("WV 02") << mAudio_24x96_wv << "wv";
 }

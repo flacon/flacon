@@ -23,25 +23,23 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #include "out_opus.h"
 #include "settings.h"
 #include <QDebug>
 
-static const constexpr char* BITRATE_TYPE_KEY = "BitrateType";
-static const constexpr char* BITRATE_KEY      = "Bitrate";
+static const constexpr char *BITRATE_TYPE_KEY = "BitrateType";
+static const constexpr char *BITRATE_KEY      = "Bitrate";
 
 /************************************************
 
  ************************************************/
 OutFormat_Opus::OutFormat_Opus()
 {
-    mId   = "OPUS";
-    mExt  = "opus";
-    mName = "Opus";
+    mId      = "OPUS";
+    mExt     = "opus";
+    mName    = "Opus";
     mOptions = FormatOption::NoOptions;
 }
-
 
 /************************************************
 
@@ -64,15 +62,21 @@ QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *tra
     args << "--bitrate" << profile.value(BITRATE_KEY).toString();
 
     // Tags .....................................................
-    if (!track->artist().isEmpty())  args << "--artist"  << track->artist();
-    if (!track->album().isEmpty())   args << "--album"   << track->album();
-    if (!track->genre().isEmpty())   args << "--genre"   << track->genre();
-    if (!track->date().isEmpty())    args << "--date"    << track->date();
-    if (!track->title().isEmpty())   args << "--title"   << track->title();
-    if (!track->comment().isEmpty()) args << "--comment" << QString("COMMENT=%1").arg(track->comment());
-    if (!track->discId().isEmpty())  args << "--comment" << QString("DISCID=%1").arg(track->discId());
-    if (!track->tag(TagId::AlbumArtist).isEmpty())
-    {
+    if (!track->artist().isEmpty())
+        args << "--artist" << track->artist();
+    if (!track->album().isEmpty())
+        args << "--album" << track->album();
+    if (!track->genre().isEmpty())
+        args << "--genre" << track->genre();
+    if (!track->date().isEmpty())
+        args << "--date" << track->date();
+    if (!track->title().isEmpty())
+        args << "--title" << track->title();
+    if (!track->comment().isEmpty())
+        args << "--comment" << QString("COMMENT=%1").arg(track->comment());
+    if (!track->discId().isEmpty())
+        args << "--comment" << QString("DISCID=%1").arg(track->discId());
+    if (!track->tag(TagId::AlbumArtist).isEmpty()) {
         args << "--comment" << QString("album_artist=%1").arg(track->tag(TagId::AlbumArtist));
     }
 
@@ -90,7 +94,6 @@ QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *tra
     return args;
 }
 
-
 /************************************************
 
  ************************************************/
@@ -99,7 +102,6 @@ QStringList OutFormat_Opus::gainArgs(const QStringList &, const GainType) const
     return QStringList();
 }
 
-
 /************************************************
 
  ************************************************/
@@ -107,10 +109,9 @@ QHash<QString, QVariant> OutFormat_Opus::defaultParameters() const
 {
     QHash<QString, QVariant> res;
     res.insert(BITRATE_TYPE_KEY, "VBR");
-    res.insert(BITRATE_KEY,      96);
+    res.insert(BITRATE_KEY, 96);
     return res;
 }
-
 
 /************************************************
 
@@ -120,15 +121,13 @@ EncoderConfigPage *OutFormat_Opus::configPage(const Profile &profile, QWidget *p
     return new ConfigPage_Opus(profile, parent);
 }
 
-
 /************************************************
 
  ************************************************/
-ConfigPage_Opus::ConfigPage_Opus(const Profile &profile, QWidget *parent):
+ConfigPage_Opus::ConfigPage_Opus(const Profile &profile, QWidget *parent) :
     EncoderConfigPage(profile, parent)
 {
     setupUi(this);
-
 
     opusBitrateTypeCbx->addItem(tr("VBR - variable bitrate", "Opus encoding mode"), "VBR");
     opusBitrateTypeCbx->addItem(tr("CVBR - constrained variable bitrate", "Opus encoding mode"), "CVBR");
@@ -141,16 +140,14 @@ ConfigPage_Opus::ConfigPage_Opus(const Profile &profile, QWidget *parent):
     opusBitrateLabel->setToolTip(opusBitrateSlider->toolTip());
 }
 
-
 /************************************************
 
  ************************************************/
 void ConfigPage_Opus::load()
 {
     loadWidget(BITRATE_TYPE_KEY, opusBitrateTypeCbx);
-    loadWidget(BITRATE_KEY,      opusBitrateSlider);
+    loadWidget(BITRATE_KEY, opusBitrateSlider);
 }
-
 
 /************************************************
 
@@ -158,5 +155,5 @@ void ConfigPage_Opus::load()
 void ConfigPage_Opus::save()
 {
     saveWidget(BITRATE_TYPE_KEY, opusBitrateTypeCbx);
-    saveWidget(BITRATE_KEY,      opusBitrateSlider);
+    saveWidget(BITRATE_KEY, opusBitrateSlider);
 }

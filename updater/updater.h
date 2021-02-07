@@ -23,7 +23,6 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
 #ifndef UPDATER_H
 #define UPDATER_H
 
@@ -33,7 +32,7 @@
 #include <QUrl>
 #include <QDateTime>
 
-class Updater: public QObject
+class Updater : public QObject
 {
     Q_OBJECT
 public:
@@ -117,8 +116,8 @@ protected:
     virtual ~Updater();
 
 private:
-        class Private;
-        Private* d;
+    class Private;
+    Private *d;
 };
 
 #endif
