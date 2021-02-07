@@ -202,67 +202,6 @@ CueReader::CueReader()
 }
 
 
-/************************************************
- Complete CUE sheet syntax documentation
- https://github.com/flacon/flacon/blob/master/cuesheet_syntax.md
- ************************************************/
-/*CueDisc CueReader::load(const QString &fileName)
-{
-    CueData data(fileName);
-    if (data.isEmpty()) {
-        throw CueReaderError(QObject::tr("<b>%1</b> is not a valid CUE file. The CUE sheet has no FILE tag.").arg(fileName));
-    }
-
-    QFileInfo cueFileInfo(fileName);
-    QString fullPath = QFileInfo(fileName).absoluteFilePath();
-    CueDisc res;
-    res.mFileName  = fullPath;
-    res.mDiscCount = 1;
-    res.mDiscNum   = 1;
-    res.setUri(fullPath);
-
-
-    QByteArray albumPerformer = getAlbumPerformer(data);
-    const CueData::Tags &global = data.globalTags();
-
-    for (const CueData::Tags &t: data.tracks()) {
-        Track track;
-        track.setTag(TagId::File,          t.value(CueData::FILE_TAG));
-        track.setTag(TagId::Album,         global.value(CueData::TITLE_TAG));
-
-        track.setCueIndex(0, CueIndex(t.value("INDEX 00")));
-        track.setCueIndex(1, CueIndex(t.value("INDEX 01")));
-
-        track.setTag(TagId::Catalog,       global.value("CATALOG"));
-        track.setTag(TagId::CDTextfile,    global.value("CDTEXTFILE"));
-        track.setTag(TagId::Comment,       global.value("COMMENT"));
-
-
-        track.setTag(TagId::Flags,         t.value("FLAGS"));
-        track.setTag(TagId::Genre,         global.value("GENRE"));
-        track.setTag(TagId::ISRC,          t.value("ISRC"));
-        track.setTag(TagId::Title,         t.value("TITLE"));
-        track.setTag(TagId::Artist,        t.value("PERFORMER", global.value("PERFORMER")));
-        track.setTag(TagId::SongWriter,    t.value("SONGWRITER", global.value("SONGWRITER")));
-        track.setTag(TagId::DiscId,        global.value("DISCID"));
-
-        track.setTag(TagId::Date,          global.value("DATE"));
-        track.setTag(TagId::AlbumArtist,   albumPerformer);
-
-        track.setTrackNum(TrackNum(t.value(CueData::TRACK_TAG).toUInt()));
-        track.setTrackCount(TrackNum(data.tracks().count()));
-        track.setTag(TagId::DiscNum,       global.value("DISCNUMBER", "1"));
-        track.setTag(TagId::DiscCount,     global.value("TOTALDISCS", "1"));
-        track.setCueFileName(fullPath);
-
-        res << track;
-    }
-
-    splitTitleTag(data, res);
-    setCodecName(data, res);
-
-    return res;
-}*/
 
 QVector<CueDisc> CueReader::load(const QString &fileName)
 {
