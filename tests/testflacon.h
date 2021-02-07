@@ -54,6 +54,9 @@ private slots:
     void testCueReader();
     void testCueReader_data();
 
+    void testCueData();
+    void testCueData_data();
+
     void testSearchCoverImage();
     void testSearchCoverImage_data();
 

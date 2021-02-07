@@ -57,6 +57,7 @@ set(HEADERS
     types.h
     tags.h
     cue.h
+    cuedata.h
     track.h
     disc.h
     project.h
@@ -119,6 +120,7 @@ set(SOURCES
     types.cpp
     tags.cpp
     cue.cpp
+    cuedata.cpp
     main.cpp
     track.cpp
     disc.cpp

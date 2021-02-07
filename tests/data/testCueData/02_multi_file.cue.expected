@@ -1,0 +1,95 @@
+[GLOBAL]
+	PERFORMER = Artist
+	TITLE = Album
+	GENRE = Heavy Metal
+	DATE = 2001
+
+[TRACK 01]
+	TRACK = 01
+	FILE = Artist - Album. 2001 (LP1).flac
+	INDEX 01 = 00:00:00
+	TITLE       = Track 1.1
+
+[TRACK 02]
+	TRACK = 02
+	 FILE        = Artist - Album. 2001 (LP1).flac
+	 INDEX 01 = 04:38:00
+	 TITLE       = Track 1.2
+
+[TRACK 03]
+	TRACK = 03
+	 FILE        = Artist - Album. 2001 (LP1).flac
+	 INDEX 01 = 10:07:50
+	 TITLE       = Track 1.3
+
+[TRACK 04]
+	TRACK = 04
+	 FILE        = Artist - Album. 2001 (LP1).flac
+	 INDEX 01 = 16:31:50
+	 TITLE       = Track 1.4
+
+[TRACK 05]
+	TRACK = 05
+	 FILE        = Artist - Album. 2001 (LP1).flac
+	 INDEX 01 = 22:00:00
+	 TITLE       = Track 1.5
+
+[TRACK 06]
+	TRACK = 06
+	 FILE        = Artist - Album. 2001 (LP1).flac
+	 INDEX 01 = 26:10:00
+	 TITLE       = Track 1.6
+
+[TRACK 07]
+	TRACK = 07
+	 FILE        = Artist - Album. 2001 (LP1).flac
+	 INDEX 01 = 31:43:50
+	 TITLE       = Track 1.7
+
+[TRACK 08]
+	TRACK = 08
+	 FILE        = Artist - Album. 2001 (LP1).flac
+	 INDEX 01 = 37:10:50
+	 TITLE       = Track 1.8
+
+[TRACK 09]
+	TRACK = 09
+	 FILE        = Artist - Album. 2001 (LP2).flac
+	 INDEX 01 = 00:00:00
+	 TITLE       = Track 2.1
+
+[TRACK 10]
+	TRACK = 10
+	 FILE        = Artist - Album. 2001 (LP2).flac
+	 INDEX 01 = 05:24:00
+	 TITLE       = Track 2.2
+
+[TRACK 11]
+	TRACK = 11
+	 FILE        = Artist - Album. 2001 (LP2).flac
+	 INDEX 01 = 14:11:00
+	 TITLE       = Track 2.3
+
+[TRACK 12]
+	TRACK = 12
+	 FILE        = Artist - Album. 2001 (LP2).flac
+	 INDEX 01 = 20:15:00
+	 TITLE       = Track 2.4
+
+[TRACK 13]
+	TRACK = 13
+	 FILE        = Artist - Album. 2001 (LP2).flac
+	 INDEX 01 = 26:04:00
+	 TITLE       = Track 2.5
+
+[TRACK 14]
+	TRACK = 14
+	 FILE        = Artist - Album. 2001 (LP2).flac
+	 INDEX 01 = 30:49:00
+	 TITLE       = Track 2.6
+
+[TRACK 15]
+	TRACK = 15
+	 FILE        = Artist - Album. 2001 (LP2).flac
+	 INDEX 01 = 35:57:50
+	 TITLE       = Track 2.7
