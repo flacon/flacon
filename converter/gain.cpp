@@ -30,6 +30,11 @@
 #include <QDir>
 #include <QTextStream>
 #include <QDebug>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG, "Converter");
+}
 
 /************************************************
  *
@@ -54,7 +59,7 @@ void Gain::run()
     QStringList args = mProfile.gainArgs(files);
     QString     prog = args.takeFirst();
 
-    qDebug() << "Start gain:" << debugProgramArgs(prog, args);
+    qCDebug(LOG) << "Start gain:" << debugProgramArgs(prog, args);
 
     QProcess process;
 

@@ -34,6 +34,11 @@
 #include <QStringList>
 #include <QDebug>
 #include <QTextCodec>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG, "DataProvider");
+}
 
 /************************************************
 
@@ -181,7 +186,7 @@ void FreeDbProvider::start()
         QNetworkRequest request;
         request.setUrl(url);
         request.setAttribute(QNetworkRequest::User, category);
-        qDebug() << "CDDB:" << url.toString();
+        qCDebug(LOG) << "CDDB:" << url.toString();
         get(request);
     }
 }

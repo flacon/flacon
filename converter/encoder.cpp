@@ -30,6 +30,11 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QDebug>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG, "Converter");
+}
 
 const quint64 MIN_BUF_SIZE = 4 * 1024;
 const quint64 MAX_BUF_SIZE = 1024 * 1024;
@@ -111,7 +116,7 @@ void Encoder::run()
         QStringList args = mProfile.encoderArgs(mTrack, QDir::toNativeSeparators(mOutFile));
         QString     prog = args.takeFirst();
 
-        qDebug() << "Start encoder:" << debugProgramArgs(prog, args);
+        qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog, args);
 
         encoder.setProgram(prog);
         encoder.setArguments(args);
@@ -131,7 +136,7 @@ void Encoder::run()
         QStringList args = Resampler::args(mBitsPerSample, mSampleRate, outFile);
         QString     prog = args.takeFirst();
 
-        qDebug() << "Start resampler:" << debugProgramArgs(prog, args);
+        qCDebug(LOG) << "Start resampler:" << debugProgramArgs(prog, args);
 
         resampler.setProgram(prog);
         resampler.setArguments(args);

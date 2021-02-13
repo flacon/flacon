@@ -39,6 +39,11 @@
 #include <math.h>
 #include <QFileInfo>
 #include <QDir>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG, "Converter");
+}
 
 /************************************************
 
@@ -80,8 +85,8 @@ void Converter::start(const Profile &profile)
  ************************************************/
 void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
 {
-    qDebug() << "Start converter:" << jobs.length() << profile;
-    qDebug() << "Temp dir =" << Settings::i()->tmpDir();
+    qCDebug(LOG) << "Start converter:" << jobs.length() << profile;
+    qCDebug(LOG) << "Temp dir =" << Settings::i()->tmpDir();
 
     if (jobs.isEmpty()) {
         emit finished();
@@ -98,7 +103,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
     if (!ok || mThreadCount < 1)
         mThreadCount = qMax(6, QThread::idealThreadCount());
 
-    qDebug() << "Threads count" << mThreadCount;
+    qCDebug(LOG) << "Threads count" << mThreadCount;
 
     for (const Job &job : jobs) {
         if (job.tracks.isEmpty())

@@ -42,6 +42,11 @@
 #include <QFileInfo>
 #include <QCoreApplication>
 #include <errno.h>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG, "Converter");
+}
 
 /************************************************
  *
@@ -200,7 +205,7 @@ bool DiscPipeline::Data::init()
 {
     QString dir = !tmpDirName.isEmpty() ? tmpDirName : QFileInfo(job.tracks.first()->resultFilePath()).dir().absolutePath();
 
-    qDebug() << "Create tmp dir" << dir;
+    qCDebug(LOG) << "Create tmp dir" << dir;
 
     if (!createDir(dir)) {
         qWarning() << "Can't create tmp dir" << dir;
@@ -494,9 +499,9 @@ void DiscPipeline::addGainRequest(const Track *track, const QString &fileName)
  ************************************************/
 void DiscPipeline::trackDone(const Track *track, const QString &outFileName)
 {
-    qDebug() << "Track done: "
-             << *track
-             << "outFileName:" << outFileName;
+    qCDebug(LOG) << "Track done: "
+                 << *track
+                 << "outFileName:" << outFileName;
 
     // Track is ready, rename the file to the final name.
     // Remove old already existing file.
@@ -511,7 +516,7 @@ void DiscPipeline::trackDone(const Track *track, const QString &outFileName)
     emit trackProgressChanged(*track, TrackState::OK, 0);
     emit threadFinished();
 
-    qDebug() << "finished:" << (!isRunning());
+    qCDebug(LOG) << "finished:" << (!isRunning());
 
     if (!isRunning())
         emit finished();

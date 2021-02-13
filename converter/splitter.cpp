@@ -28,6 +28,11 @@
 #include "decoder.h"
 
 #include <QDebug>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG, "Converter");
+}
 
 /************************************************
  *
@@ -89,7 +94,7 @@ void Splitter::run()
     connect(&decoder, SIGNAL(progress(int)),
             this, SLOT(decoderProgress(int)));
 
-    qDebug() << "Start splitting" << mDisc->count() << "tracks from" << mDisc->audioFileName();
+    qCDebug(LOG) << "Start splitting" << mDisc->count() << "tracks from" << mDisc->audioFileName();
     for (int i = 0; i < mDisc->count(); ++i) {
         mCurrentTrack = mDisc->track(i);
         if (!mTracks.contains(mCurrentTrack))
@@ -115,7 +120,7 @@ void Splitter::run()
             emit error(mCurrentTrack, err.what());
         }
 
-        qDebug() << "Splitter trackReady:" << *mCurrentTrack << outFileName;
+        qCDebug(LOG) << "Splitter trackReady:" << *mCurrentTrack << outFileName;
         emit trackReady(mCurrentTrack, outFileName);
     }
 }
