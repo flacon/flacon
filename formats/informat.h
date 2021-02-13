@@ -56,6 +56,7 @@ public:
     virtual uint       magicOffset() const { return 0; }
 
     static const AudioFormatList &allFormats();
+    static const QStringList      allFileExts();
 
     static const InputFormat *formatForFile(QIODevice *device);
     static const InputFormat *formatForFile(const QString &fileName);

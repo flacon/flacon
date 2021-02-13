@@ -77,6 +77,18 @@ const AudioFormatList &InputFormat::allFormats()
 /************************************************
  *
  ************************************************/
+const QStringList InputFormat::allFileExts()
+{
+    QStringList res;
+    foreach (const InputFormat *format, allFormats()) {
+        res << QString("*.%1").arg(format->ext());
+    }
+    return res;
+}
+
+/************************************************
+ *
+ ************************************************/
 bool InputFormat::checkMagic(const QByteArray &data) const
 {
     return data.mid(magicOffset(), magic().length()) == magic();

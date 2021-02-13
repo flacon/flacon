@@ -68,6 +68,7 @@ set(HEADERS
     patternexpander.h
     consoleout.h
     profiles.h
+    audiofilematcher.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -132,6 +133,7 @@ set(SOURCES
     patternexpander.cpp
     consoleout.cpp
     profiles.cpp
+    audiofilematcher.cpp
 
     gui/icon.cpp
     gui/mainwindow.cpp

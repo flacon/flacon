@@ -122,6 +122,9 @@ private slots:
     void testLoadProfiles();
     void testLoadProfiles_data();
 
+    void testAudioFileMatcher();
+    void testAudioFileMatcher_data();
+
 private:
     void writeTextFile(const QString &fileName, const QString &content);
     void writeTextFile(const QString &fileName, const QStringList &content);

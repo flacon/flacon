@@ -37,20 +37,14 @@ set(TEST_SOURCES
     tools.cpp
     inittestcase.cpp
     testflacon.cpp
-    test_cue.cpp
-    test_cuedata.cpp
-    test_decoder.cpp
-    test_wavheader.cpp
-    test_format.cpp
-    test_inputaudiofile.cpp
-    test_convert.cpp
-    test_searchcoverimage.cpp
-    test_findcuefile.cpp
-    test_findaudiofile.cpp
-    test_outformatencoderargs.cpp
-    test_patternexpander.cpp
-    test_profiles.cpp
 )
+
+file(GLOB TEST_CPP_FILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/test_*.cpp
+)
+
+list(APPEND TEST_SOURCES ${TEST_CPP_FILES})
+
 
 
 foreach(FILE ${SOURCES})
@@ -63,7 +57,6 @@ endforeach()
 foreach(FILE ${HEADERS})
     set(TEST_HEADERS ${TEST_HEADERS} "../${FILE}")
 endforeach()
-
 
 
 add_definitions(-DTEST_DATA_DIR=\"${CMAKE_CURRENT_SOURCE_DIR}/data/\")
