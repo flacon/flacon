@@ -107,9 +107,6 @@ private slots:
     void testDiscPipelineCalcQuality_data();
     void testDiscPipelineCalcQuality();
 
-    void testFindAudioFile_data();
-    void testFindAudioFile();
-
     void testFindCueFile_data();
     void testFindCueFile();
 
