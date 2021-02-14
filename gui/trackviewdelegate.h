@@ -41,11 +41,11 @@ class TrackViewDelegate : public QStyledItemDelegate
     Q_OBJECT
 public:
     explicit TrackViewDelegate(TrackView *parent);
-    ~TrackViewDelegate();
+    ~TrackViewDelegate() override;
 
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
-    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
     void drawBranch(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
 
@@ -56,8 +56,8 @@ signals:
     void coverImageClicked(const QModelIndex &index);
 
 protected:
-    bool editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index);
-    bool helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index);
+    bool editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index) override;
+    bool helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index) override;
 
 private slots:
     void movieUpdated();
