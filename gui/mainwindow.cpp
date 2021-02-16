@@ -702,7 +702,6 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
     if (fileName.isEmpty())
         return;
 
-    qDebug() << Q_FUNC_INFO << fileName;
     InputAudioFile audio(fileName);
     if (!audio.isValid()) {
         Messages::error(audio.errorString());
@@ -714,7 +713,6 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
     }
 
     for (Track *track : tracksList[audioFileNum]) {
-        qDebug() << track->trackNum() << audio.fileName();
         track->setAudioFile(audio);
     }
 }
