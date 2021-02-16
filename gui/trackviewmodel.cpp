@@ -428,7 +428,7 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
         case RoleTagSetTitle:
             return disc->tagSetTitle();
         case RoleAudioFileName:
-            return disc->audioFileName();
+            return disc->audioFileNames();
         case RoleHasWarnings:
             return !disc->warnings().isEmpty();
         case RoleCanConvert:
@@ -442,7 +442,7 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
         case RoleCueFilePath:
             return disc->cueFile();
         case RoleAudioFilePath:
-            return disc->audioFileName();
+            return disc->audioFilePaths();
         case RoleDiscWarnings:
             return disc->warnings();
         case RoleDiscErrors: {
@@ -452,8 +452,6 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
             else
                 return QVariant();
         }
-        default:
-            return QVariant();
     }
 
     return QVariant();

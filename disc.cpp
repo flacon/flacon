@@ -30,6 +30,7 @@
 #include "inputaudiofile.h"
 #include "formats/informat.h"
 #include "outformat.h"
+#include "audiofilematcher.h"
 
 #include "assert.h"
 #include <QTextCodec>
@@ -162,7 +163,7 @@ void Disc::loadFromCue(const CueDisc &cueDisc)
     for (int t = 0; t < count; ++t)
         *mTracks[t] = cueDisc.at(t);
 
-    for (int i = 0; i < count; ++i) {
+    for (TrackNum i = 0; i < count; ++i) {
         Track *track     = mTracks[i];
         track->mDuration = this->trackDuration(i);
     }
@@ -171,8 +172,23 @@ void Disc::loadFromCue(const CueDisc &cueDisc)
     syncTagsFromTracks();
     mTagSets[mCurrentTagsUri].setTitle(cueDisc.title());
 
-    if (!mAudioFile)
-        findAudioFile(cueDisc);
+    Tracks tracks;
+    for (const Track *t : mTracks) {
+        tracks << *t;
+    }
+
+    AudioFileMatcher              matcher(QFileInfo(cueDisc.fileName()).filePath(), tracks);
+    QMap<QString, InputAudioFile> audioFiles;
+
+    for (auto i = matcher.result().constBegin(); i != matcher.result().constEnd(); ++i) {
+        audioFiles[i.key()] = InputAudioFile(i.value());
+    }
+
+    for (Track *track : mTracks) {
+        if (track->audioFile().isNull()) {
+            track->setAudioFile(audioFiles[track->tag(TagId::File)]);
+        }
+    }
 
     QString dir = QFileInfo(mCueFile).dir().absolutePath();
     if (dir != oldDir) {
@@ -181,50 +197,6 @@ void Disc::loadFromCue(const CueDisc &cueDisc)
     }
 
     project->emitLayoutChanged();
-}
-
-/************************************************
-
- ************************************************/
-QFileInfoList matchedAudioFiles(const CueDisc &cueDisc, const QFileInfoList &audioFiles)
-{
-    QFileInfoList res;
-    QFileInfo     cueFile(cueDisc.fileName());
-
-    QStringList patterns;
-    if (cueDisc.discCount() > 1) {
-        patterns << QRegExp::escape(QFileInfo(cueDisc.first().tag(TagId::File)).completeBaseName());
-        patterns << QRegExp::escape(cueFile.completeBaseName()) + QString("(.*\\D)?"
-                                                                          "0*"
-                                                                          "%1"
-                                                                          "(.*\\D)?")
-                                                                          .arg(cueDisc.discNum());
-        patterns << QString(".*"
-                            "(disk|disc|side)"
-                            "(.*\\D)?"
-                            "0*"
-                            "%1"
-                            "(.*\\D)?")
-                            .arg(cueDisc.discNum());
-    }
-    else {
-        patterns << QRegExp::escape(QFileInfo(cueDisc.first().tag(TagId::File)).completeBaseName());
-        patterns << QRegExp::escape(cueFile.completeBaseName()) + ".*";
-    }
-
-    QString audioExt;
-    foreach (const InputFormat *format, InputFormat::allFormats())
-        audioExt += (audioExt.isEmpty() ? "\\." : "|\\.") + format->ext();
-
-    foreach (const QString &pattern, patterns) {
-        QRegExp re(QString("%1(%2)+").arg(pattern).arg(audioExt), Qt::CaseInsensitive, QRegExp::RegExp2);
-        foreach (const QFileInfo &audio, audioFiles) {
-            if (re.exactMatch(audio.fileName()))
-                res << audio;
-        }
-    }
-
-    return res;
 }
 
 /************************************************
@@ -392,12 +364,12 @@ QString Disc::audioFileName() const
 /************************************************
 
  ************************************************/
-void Disc::setAudioFile(const InputAudioFile &audio)
+void Disc::setAudioFile(const InputAudioFile_OLD &audio)
 {
     if (mAudioFile)
         delete mAudioFile;
 
-    mAudioFile = new InputAudioFile(audio);
+    mAudioFile = new InputAudioFile_OLD(audio);
 
     if (mTracks.isEmpty())
         findCueFile();
@@ -408,34 +380,68 @@ void Disc::setAudioFile(const InputAudioFile &audio)
 
 /************************************************
 
- ************************************************/
-void Disc::findAudioFile(const CueDisc &cueDisc)
+************************************************/
+QList<TrackPtrList> Disc::tracksByFileTag() const
 {
-    if (cueDisc.isEmpty())
-        return;
-
-    QStringList exts;
-    foreach (const InputFormat *format, InputFormat::allFormats())
-        exts << QString("*.%1").arg(format->ext());
-
-    QFileInfo     cueFile(mCueFile);
-    QFileInfoList files = cueFile.dir().entryInfoList(exts, QDir::Files | QDir::Readable);
-
-    if (cueDisc.discCount() == 1 && files.count() == 1) {
-        InputAudioFile audio(files.first().filePath());
-        if (audio.isValid())
-            setAudioFile(audio);
-        return;
+    QList<TrackPtrList> res;
+    if (mTracks.isEmpty()) {
+        return res;
     }
 
-    QFileInfoList audioFiles = matchedAudioFiles(cueDisc, files);
-    foreach (const QFileInfo &file, audioFiles) {
-        InputAudioFile audio(file.filePath());
-        if (audio.isValid()) {
-            setAudioFile(audio);
-            return;
+    int n = 0;
+    int b = 0;
+    while (b < mTracks.count()) {
+        int e = b;
+        res.append(TrackPtrList());
+        TrackPtrList &list = res.last();
+
+        QString prev = mTracks[b]->tag(TagId::File);
+        for (; e < count() && mTracks[e]->tag(TagId::File) == prev; ++e) {
+            list << mTracks[e];
         }
+
+        b = e;
+        ++n;
     }
+
+    return res;
+}
+
+/************************************************
+
+************************************************/
+InputAudioFileList Disc::audioFiles() const
+{
+    InputAudioFileList res;
+
+    for (const TrackPtrList &l : tracksByFileTag()) {
+        res << l.first()->audioFile();
+    }
+    return res;
+}
+
+/************************************************
+
+************************************************/
+QStringList Disc::audioFileNames() const
+{
+    QStringList res;
+    for (const InputAudioFile &a : audioFiles()) {
+        res << a.fileName();
+    }
+    return res;
+}
+
+/************************************************
+
+************************************************/
+QStringList Disc::audioFilePaths() const
+{
+    QStringList res;
+    for (const InputAudioFile &a : audioFiles()) {
+        res << a.filePath();
+    }
+    return res;
 }
 
 /************************************************

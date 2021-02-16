@@ -62,12 +62,13 @@ CueDisc::CueDisc(const QString &fileName)
     }
 
     QFileInfo cueFileInfo(fileName);
-    QString   fullPath = QFileInfo(fileName).absoluteFilePath();
+    QString   fullPath = cueFileInfo.absoluteFilePath();
     //CueDisc res;
     mFileName  = fullPath;
     mDiscCount = 1;
     mDiscNum   = 1;
     setUri(fullPath);
+    setTitle(cueFileInfo.fileName());
 
     QByteArray           albumPerformer = getAlbumPerformer(data);
     const CueData::Tags &global         = data.globalTags();

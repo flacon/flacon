@@ -71,7 +71,7 @@ public slots:
 
 signals:
     void selectCueFile(Disc *disc);
-    void selectAudioFile(Disc *disc);
+    void selectAudioFile(Disc *disc, int audioFileNum);
     void selectCoverImage(Disc *disc);
     void downloadInfo(Disc *disc);
 
@@ -84,7 +84,7 @@ private slots:
     void showHideColumn(bool show);
 
     void showTrackMenu(const QModelIndex &index, const QRect &buttonRect);
-    void emitSelectAudioFile(const QModelIndex &index, const QRect &buttonRect);
+    void emitSelectAudioFile(const QModelIndex &index, int audioFileNum);
     void emitSelectCoverImage(const QModelIndex &index);
 
 private:

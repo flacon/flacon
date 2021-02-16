@@ -48,14 +48,14 @@ TrackView::TrackView(QWidget *parent) :
     mDelegate = new TrackViewDelegate(this);
     setItemDelegate(mDelegate);
 
-    connect(mDelegate, SIGNAL(trackButtonClicked(QModelIndex, QRect)),
-            this, SLOT(showTrackMenu(QModelIndex, QRect)));
+    connect(mDelegate, &TrackViewDelegate::trackButtonClicked,
+            this, &TrackView::showTrackMenu);
 
-    connect(mDelegate, SIGNAL(audioButtonClicked(QModelIndex, QRect)),
-            this, SLOT(emitSelectAudioFile(QModelIndex, QRect)));
+    connect(mDelegate, &TrackViewDelegate::audioButtonClicked,
+            this, &TrackView::emitSelectAudioFile);
 
-    connect(mDelegate, SIGNAL(coverImageClicked(QModelIndex)),
-            this, SLOT(emitSelectCoverImage(QModelIndex)));
+    connect(mDelegate, &TrackViewDelegate::coverImageClicked,
+            this, &TrackView::emitSelectCoverImage);
 
     mModel = new TrackViewModel(this);
     setModel(mModel);
@@ -69,7 +69,9 @@ TrackView::TrackView(QWidget *parent) :
     setContextMenuPolicy(Qt::CustomContextMenu);
 
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(headerContextMenu(QPoint)));
+
+    connect(header(), &QHeaderView::customContextMenuRequested,
+            this, &TrackView::headerContextMenu);
 }
 
 /************************************************
@@ -271,12 +273,12 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 /************************************************
 
  ************************************************/
-void TrackView::emitSelectAudioFile(const QModelIndex &index, const QRect &buttonRect)
+void TrackView::emitSelectAudioFile(const QModelIndex &index, int audioFileNum)
 {
-    Q_UNUSED(buttonRect);
     Disc *disc = mModel->discByIndex(index);
-    if (disc)
-        emit selectAudioFile(disc);
+    if (disc) {
+        emit selectAudioFile(disc, audioFileNum);
+    }
 }
 
 /************************************************

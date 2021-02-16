@@ -82,6 +82,11 @@ Track::~Track()
 {
 }
 
+void Track::setAudioFile(const InputAudioFile &file)
+{
+    mAudiofile = file;
+}
+
 /************************************************
  *
  ************************************************/

@@ -33,7 +33,7 @@
 #include <QImage>
 
 class QFile;
-class InputAudioFile;
+class InputAudioFile_OLD;
 
 class Disc : public QObject
 {
@@ -51,9 +51,15 @@ public:
     void    loadFromCue(const CueDisc &cueDisc);
     QString cueFile() const { return mCueFile; }
 
-    InputAudioFile *audioFile() const { return mAudioFile; }
-    QString         audioFileName() const;
-    void            setAudioFile(const InputAudioFile &audio);
+    QString             audioFileName() const;
+    InputAudioFile_OLD *audioFile() const { return mAudioFile; }
+    void                setAudioFile(const InputAudioFile_OLD &audio);
+
+    QList<TrackPtrList> tracksByFileTag() const;
+
+    InputAudioFileList audioFiles() const;
+    QStringList        audioFileNames() const;
+    QStringList        audioFilePaths() const;
 
     int  startTrackNum() const;
     void setStartTrackNum(int value);
@@ -108,13 +114,12 @@ private:
     QString        mCueFile;
     QString        mCurrentTagsUri;
 
-    InputAudioFile *mAudioFile;
-    mutable Track   mPreGapTrack;
+    InputAudioFile_OLD *mAudioFile;
+    mutable Track       mPreGapTrack;
 
     QString        mCoverImageFile;
     mutable QImage mCoverImagePreview;
 
-    void     findAudioFile(const CueDisc &cueDisc);
     void     findCueFile();
     Duration trackDuration(TrackNum trackNum) const;
     void     syncTagsFromTracks();

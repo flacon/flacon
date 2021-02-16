@@ -159,7 +159,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(codepageCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
 
     connect(trackView, SIGNAL(selectCueFile(Disc *)), this, SLOT(setCueForDisc(Disc *)));
-    connect(trackView, SIGNAL(selectAudioFile(Disc *)), this, SLOT(setAudioForDisc(Disc *)));
+    connect(trackView, &TrackView::selectAudioFile, this, &MainWindow::setAudioForDisc);
     connect(trackView, SIGNAL(selectCoverImage(Disc *)), this, SLOT(setCoverImage(Disc *)));
     connect(trackView, SIGNAL(downloadInfo(Disc *)), this, SLOT(downloadDiscInfo(Disc *)));
 
@@ -681,29 +681,42 @@ void MainWindow::openAddFileDialog()
 /************************************************
 
  ************************************************/
-void MainWindow::setAudioForDisc(Disc *disc)
+void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
 {
     QString flt = getOpenFileFilter(true, false);
 
     QString dir;
 
-    if (!disc->cueFile().isEmpty())
+    if (!disc->cueFile().isEmpty()) {
         dir = QFileInfo(disc->cueFile()).dir().absolutePath();
-    else if (!disc->audioFileName().isEmpty())
+    }
+    else if (!disc->audioFileName().isEmpty()) {
         dir = QFileInfo(disc->audioFileName()).dir().absolutePath();
-    else
+    }
+    else {
         dir = Settings::i()->value(Settings::Misc_LastDir).toString();
+    }
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select audio file", "OpenFile dialog title"), dir, flt);
 
     if (fileName.isEmpty())
         return;
 
+    qDebug() << Q_FUNC_INFO << fileName;
     InputAudioFile audio(fileName);
-    if (audio.isValid())
-        disc->setAudioFile(audio);
-    else
+    if (!audio.isValid()) {
         Messages::error(audio.errorString());
+    }
+
+    QList<TrackPtrList> tracksList = disc->tracksByFileTag();
+    if (audioFileNum >= tracksList.count()) {
+        return;
+    }
+
+    for (Track *track : tracksList[audioFileNum]) {
+        qDebug() << track->trackNum() << audio.fileName();
+        track->setAudioFile(audio);
+    }
 }
 
 /************************************************
@@ -854,9 +867,32 @@ void MainWindow::trackViewMenu(const QPoint &pos)
 
     menu.addSeparator();
 
-    act = new QAction(tr("Select another audio file…", "context menu"), &menu);
-    connect(act, &QAction::triggered, [this, disc]() { this->setAudioForDisc(disc); });
-    menu.addAction(act);
+    if (disc->audioFiles().count() == 1) {
+        act = new QAction(tr("Select another audio file…", "context menu"), &menu);
+        connect(act, &QAction::triggered, [this, disc]() { this->setAudioForDisc(disc, 0); });
+        menu.addAction(act);
+    }
+    else {
+        int n = 0;
+        for (TrackPtrList &l : disc->tracksByFileTag()) {
+            QString msg;
+            if (l.count() == 1) {
+                msg = tr("Select another audio file for %1 track…", "context menu. Placeholders are track number")
+                              .arg(l.first()->trackNum());
+            }
+            else {
+                msg = tr("Select another audio file for tracks (%1 to %2)…", "context menu. Placeholders are track numbers")
+                              .arg(l.first()->trackNum())
+                              .arg(l.last()->trackNum());
+            }
+
+            act = new QAction(msg, &menu);
+            connect(act, &QAction::triggered, [this, disc, n]() { this->setAudioForDisc(disc, n); });
+            menu.addAction(act);
+
+            n++;
+        }
+    }
 
     act = new QAction(tr("Select another CUE file…", "context menu"), &menu);
     connect(act, &QAction::triggered, [this, disc]() { this->setCueForDisc(disc); });

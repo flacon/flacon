@@ -29,6 +29,7 @@
 #include <QObject>
 #include "types.h"
 #include "tags.h"
+#include "inputaudiofile.h"
 #include <QDebug>
 
 class Disc;
@@ -44,6 +45,10 @@ public:
     Track(const Track &other);
     Track &operator=(const Track &other);
     ~Track();
+
+    const InputAudioFile &audioFile() const { return mAudiofile; }
+    void                  setAudioFile(const InputAudioFile &file);
+    QString               audioFileName() const { return mAudiofile.fileName(); }
 
     QString    tag(const TagId &tagId) const;
     QByteArray tagData(const TagId &tagId) const;
@@ -110,6 +115,7 @@ private:
     QVector<CueIndex>    mCueIndexes;
     Duration             mDuration;
     QString              mCueFileName;
+    InputAudioFile       mAudiofile;
 
     QString calcResultFilePath() const;
     QString safeFilePathLen(const QString &path) const;
@@ -135,6 +141,8 @@ private:
     QString  mUri;
     TagValue mTitle;
 };
+
+using TrackPtrList = QList<Track *>;
 
 class UcharDet
 {

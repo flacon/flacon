@@ -70,7 +70,7 @@ private slots:
     void openAddFileDialog();
 
     void setCueForDisc(Disc *disc);
-    void setAudioForDisc(Disc *disc);
+    void setAudioForDisc(Disc *disc, int audioFileNum);
     void setCoverImage(Disc *disc);
     void downloadDiscInfo(Disc *disc);
 

@@ -38,7 +38,7 @@
 /************************************************
 
  ************************************************/
-InputAudioFile::InputAudioFile(const QString &fileName) :
+InputAudioFile_OLD::InputAudioFile_OLD(const QString &fileName) :
     mFileName(fileName),
     mFormat(nullptr),
     mSampleRate(0),
@@ -53,7 +53,7 @@ InputAudioFile::InputAudioFile(const QString &fileName) :
 /************************************************
 
  ************************************************/
-InputAudioFile::InputAudioFile(const InputAudioFile &other)
+InputAudioFile_OLD::InputAudioFile_OLD(const InputAudioFile_OLD &other)
 {
     operator=(other);
 }
@@ -61,7 +61,7 @@ InputAudioFile::InputAudioFile(const InputAudioFile &other)
 /************************************************
  *
  ************************************************/
-InputAudioFile &InputAudioFile::operator=(const InputAudioFile &other)
+InputAudioFile_OLD &InputAudioFile_OLD::operator=(const InputAudioFile_OLD &other)
 {
     mFileName      = other.mFileName;
     mValid         = other.mValid;
@@ -77,7 +77,7 @@ InputAudioFile &InputAudioFile::operator=(const InputAudioFile &other)
 /************************************************
 
  ************************************************/
-bool InputAudioFile::load()
+bool InputAudioFile_OLD::load()
 {
     if (mFileName == "") {
         qWarning() << "The audio file name is not set";
@@ -110,4 +110,87 @@ bool InputAudioFile::load()
         mErrorString += err.what();
         return false;
     }
+}
+
+InputAudioFile::Data::Data()
+{
+}
+
+InputAudioFile::Data::Data(const InputAudioFile::Data &other) :
+    QSharedData(other),
+    mFilePath(other.mFilePath),
+    mFileName(other.mFileName),
+    mErrorString(other.mErrorString),
+    mFormat(other.mFormat),
+    mSampleRate(other.mSampleRate),
+    mBitsPerSample(other.mBitsPerSample),
+    mDuration(other.mDuration),
+    mValid(other.mValid),
+    mCdQuality(other.mCdQuality)
+{
+}
+
+void InputAudioFile::Data::load(const QString &filePath)
+{
+    mFilePath = filePath;
+
+    if (mFilePath.isEmpty()) {
+        qWarning() << "The audio file name is not set";
+        mErrorString = QObject::tr("The audio file name is not set");
+        mValid       = false;
+        mFileName.clear();
+        return;
+    }
+
+    QFileInfo fi(filePath);
+    mFileName = fi.fileName();
+
+    if (!fi.exists()) {
+        qWarning() << QString("The audio file <b>\"%1\"</b> does not exist").arg(mFilePath);
+        mErrorString = QObject::tr("The audio file <b>\"%1\"</b> does not exist").arg(mFilePath);
+        mValid       = false;
+        return;
+    }
+
+    try {
+        Decoder dec;
+        dec.open(mFilePath);
+        mFormat = dec.audioFormat();
+
+        mSampleRate    = dec.wavHeader().sampleRate();
+        mBitsPerSample = dec.wavHeader().bitsPerSample();
+        mCdQuality     = dec.wavHeader().isCdQuality();
+        mDuration      = dec.duration();
+        mValid         = true;
+    }
+    catch (FlaconError &err) {
+        mErrorString = QObject::tr("File <b>%1</b> is not a supported audio file. <br>"
+                                   "<br>Verify that all required programs are installed and in your preferences.")
+                               .arg(mFilePath);
+        mErrorString += ": ";
+        mErrorString += err.what();
+        mValid = false;
+    }
+}
+
+InputAudioFile::InputAudioFile() :
+    mData(new Data())
+{
+}
+
+InputAudioFile::InputAudioFile(const QString &fileName) :
+    mData(new Data())
+{
+    mData->load(fileName);
+}
+
+InputAudioFile::InputAudioFile(const InputAudioFile &other) :
+    mData(other.mData)
+{
+}
+
+InputAudioFile &InputAudioFile::operator=(const InputAudioFile &other)
+{
+    mData = other.mData;
+    return *this;
 }

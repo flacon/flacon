@@ -51,7 +51,7 @@ public:
 
 signals:
     void trackButtonClicked(const QModelIndex &index, const QRect &buttonRect);
-    void audioButtonClicked(const QModelIndex &index, const QRect &buttonRect);
+    void audioButtonClicked(const QModelIndex &index, int fileNum);
     void markClicked(const QModelIndex &index, const QRect &buttonRect);
     void coverImageClicked(const QModelIndex &index);
 
@@ -74,12 +74,19 @@ private:
     QPixmap        mTrackOkPix;
     QPixmap        mTrackErrorPix;
     mutable QMovie mDownloadMovie;
-    mutable int    mDiscHeightHint;
+    mutable int    mDiscHeightHint  = 0;
+    mutable int    mAudioFileHeight = 0;
 
     QFont titleFont(const QFont &font) const;
     QFont filesFont(const QFont &font) const;
     void  paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void  paintDisc(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+
+    QRect drawCoverImage(QPainter *painter, QRect windowRect, const QModelIndex &index) const;
+    QRect drawTitle(QPainter *painter, QRect windowRect, const QModelIndex &index) const;
+    QRect drawMark(QPainter *painter, bool isWaiting, QRect imgRect, const QModelIndex &index) const;
+
+    QRect drawButton(const QPixmap &pixmap, QRect windowRect, QPainter *painter) const;
     QRect drawLabel(const QString &text, const QRect &rect, QPainter *painter) const;
     QRect drawFile(const QString &text, const QRect &rect, QPainter *painter) const;
     void  drawSelectionMark(QPainter *painter, const QRect &rect) const;

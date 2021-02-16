@@ -158,30 +158,26 @@ Disc *Project::addAudioFile(const QString &fileName)
 /************************************************
 
  ************************************************/
-DiscList Project::addCueFile(const QString &fileName)
+Disc *Project::addCueFile(const QString &fileName)
 {
-    DiscList res;
     try {
-        QVector<CueDisc> discs = CueReader().load(fileName);
+        CueDisc cue(fileName);
 
-        for (int i = 0; i < discs.count(); ++i) {
-            if (discExists(discs.at(i).uri()))
-                continue;
-
-            Disc *disc = new Disc();
-            disc->loadFromCue(discs.at(i));
-            mDiscs << disc;
-            res << disc;
+        if (discExists(cue.uri())) {
+            return nullptr;
         }
+
+        Disc *disc = new Disc();
+        disc->loadFromCue(cue);
+        mDiscs << disc;
         emit layoutChanged();
+        return disc;
     }
     catch (FlaconError &err) {
         emit layoutChanged();
         qWarning() << err.what();
         throw err;
     }
-
-    return res;
 }
 
 /************************************************
