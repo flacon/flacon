@@ -93,7 +93,7 @@ CueDisc::CueDisc(const QString &fileName)
         track.setTag(TagId::SongWriter, t.value("SONGWRITER", global.value("SONGWRITER")));
         track.setTag(TagId::DiscId, global.value("DISCID"));
 
-        track.setTag(TagId::Date, global.value("DATE"));
+        track.setTag(TagId::Date, t.value("DATE", global.value("DATE")));
         track.setTag(TagId::AlbumArtist, albumPerformer);
 
         track.setTrackNum(TrackNum(t.value(CueData::TRACK_TAG).toUInt()));

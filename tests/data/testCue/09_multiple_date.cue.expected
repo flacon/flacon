@@ -1,0 +1,55 @@
+[DISC 01 / TRACK 01]
+    FILE        = short.wav
+    INDEX CD 00 = 00:00:00
+    INDEX CD 01 = 00:00:33
+    TITLE       = Short track 1
+    ALBUM       = Short file
+    PERFORMER   = Test for flacon
+    DATE        = 2012
+    DISCID      = 12345678
+    TRACKNUM    = 1
+    TRACKCOUNT  = 4
+    DISCNUM     = 1
+    DISCCOUNT   = 1
+
+[DISC 01 / TRACK 02]
+    FILE        = short.wav
+    INDEX CD 00 = 00:00:00
+    INDEX CD 01 = 00:46:00
+    TITLE       = Short track 2
+    ALBUM       = Short file
+    PERFORMER   = Test for flacon
+    DATE        = 01.02.2003
+    DISCID      = 12345678
+    TRACKNUM    = 2
+    TRACKCOUNT  = 4
+    DISCNUM     = 1
+    DISCCOUNT   = 1
+
+[DISC 01 / TRACK 03]
+    FILE        = short.wav
+    INDEX CD 00 = 01:22:22
+    INDEX CD 01 = 01:25:10
+    TITLE       = Short track 3
+    ALBUM       = Short file
+    PERFORMER   = Test for flacon
+    DATE        = 01/02/2014
+    DISCID      = 12345678
+    TRACKNUM    = 3
+    TRACKCOUNT  = 4
+    DISCNUM     = 1
+    DISCCOUNT   = 1
+
+[DISC 01 / TRACK 04]
+    FILE        = short.wav
+    INDEX CD 00 = 02:39:54
+    INDEX CD 01 = 02:41:05
+    TITLE       = Short track 4
+    ALBUM       = Short file
+    PERFORMER   = Test for flacon
+    DATE        = 2011
+    DISCID      = 12345678
+    TRACKNUM    = 4
+    TRACKCOUNT  = 4
+    DISCNUM     = 1
+    DISCCOUNT   = 1
