@@ -56,7 +56,7 @@ void TestFlacon::testAudioFileMatcher()
         QString cueFile      = findFile(dir, "*.cue");
         QString expectedFile = findFile(dir, "*.expected");
 
-        CueDisc disc(cueFile);
+        Cue disc(cueFile);
 
         AudioFileMatcher matcher(cueFile, disc);
 

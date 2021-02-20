@@ -51,7 +51,7 @@ QFile &operator<<(QFile &file, const int &value)
 /************************************************
  *
  ************************************************/
-static void write(const CueDisc &cue, const QString &fileName)
+static void write(const Cue &cue, const QString &fileName)
 {
     QFile f(fileName);
     f.open(QFile::WriteOnly | QFile::Truncate);
@@ -136,7 +136,7 @@ void TestFlacon::testCue()
     QFile::copy(srcDir + "/" + cue + ".expected", expectedFile);
 
     try {
-        CueDisc cue(cueFile);
+        Cue cue(cueFile);
         write(cue, resultFile);
 
         compare(resultFile, expectedFile);

@@ -33,13 +33,12 @@
 
 class CueData;
 
-class CueDisc : public Tracks
+class Cue : public Tracks
 {
-    friend class CueReader;
 
 public:
-    CueDisc();
-    explicit CueDisc(const QString &fileName) noexcept(false);
+    Cue();
+    explicit Cue(const QString &fileName) noexcept(false);
 
     QString fileName() const { return mFileName; }
     DiscNum discCount() const { return mDiscCount; }
@@ -57,20 +56,13 @@ private:
     void       setCodecName(const CueData &data);
 };
 
-typedef QVector<CueDisc> Cue;
-
-class CueReader
+class CueError : public FlaconError
 {
 public:
-    CueReader();
-    QVector<CueDisc> load(const QString &fileName) noexcept(false);
-};
-
-class CueReaderError : public FlaconError
-{
-public:
-    explicit CueReaderError(const QString &msg) :
+    explicit CueError(const QString &msg) :
         FlaconError(msg) { }
+
+    virtual ~CueError();
 };
 
 #endif // CUE_H

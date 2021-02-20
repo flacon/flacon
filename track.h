@@ -38,7 +38,6 @@ class Track : public QObject
 {
     Q_OBJECT
     friend class Disc;
-    friend class CueReader;
 
 public:
     Track();

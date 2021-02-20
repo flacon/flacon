@@ -303,7 +303,7 @@ void MainWindow::setCueForDisc(Disc *disc)
         return;
 
     try {
-        CueDisc cue(fileName);
+        Cue     cue(fileName);
         QString oldDir = QFileInfo(disc->cueFilePath()).dir().path();
         disc->setCueFile(cue);
         QString newDir = QFileInfo(disc->cueFilePath()).dir().path();

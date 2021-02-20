@@ -163,7 +163,7 @@ Disc *Project::addAudioFile(const QString &fileName)
 Disc *Project::addCueFile(const QString &fileName)
 {
     try {
-        CueDisc cue(fileName);
+        Cue cue(fileName);
 
         if (discExists(cue.uri())) {
             return nullptr;

@@ -46,7 +46,7 @@ static void splitTitle(Track *track, char separator)
 /************************************************
  *
  ************************************************/
-CueDisc::CueDisc() :
+Cue::Cue() :
     Tracks()
 {
 }
@@ -54,11 +54,11 @@ CueDisc::CueDisc() :
 /************************************************
  *
  ************************************************/
-CueDisc::CueDisc(const QString &fileName)
+Cue::Cue(const QString &fileName)
 {
     CueData data(fileName);
     if (data.isEmpty()) {
-        throw CueReaderError(QObject::tr("<b>%1</b> is not a valid CUE file. The CUE sheet has no FILE tag.").arg(fileName));
+        throw CueError(QObject::tr("<b>%1</b> is not a valid CUE file. The CUE sheet has no FILE tag.").arg(fileName));
     }
 
     QFileInfo cueFileInfo(fileName);
@@ -112,7 +112,7 @@ CueDisc::CueDisc(const QString &fileName)
 /************************************************
  *
  ************************************************/
-bool CueDisc::isMutiplyAudio() const
+bool Cue::isMutiplyAudio() const
 {
     if (isEmpty())
         return false;
@@ -129,7 +129,7 @@ bool CueDisc::isMutiplyAudio() const
 /************************************************
 *
 ************************************************/
-QByteArray CueDisc::getAlbumPerformer(const CueData &data)
+QByteArray Cue::getAlbumPerformer(const CueData &data)
 {
     QByteArray res = data.globalTags().value(CueData::PERFORMER_TAG);
 
@@ -148,7 +148,7 @@ QByteArray CueDisc::getAlbumPerformer(const CueData &data)
 /************************************************
 *
 ************************************************/
-void CueDisc::splitTitleTag(const CueData &data)
+void Cue::splitTitleTag(const CueData &data)
 {
     bool splitByDash      = true;
     bool splitBySlash     = true;
@@ -177,7 +177,7 @@ void CueDisc::splitTitleTag(const CueData &data)
 /************************************************
 * Auto detect codepage
 ************************************************/
-void CueDisc::setCodecName(const CueData &data)
+void Cue::setCodecName(const CueData &data)
 {
     QString codecName = data.codecName();
 
@@ -198,14 +198,7 @@ void CueDisc::setCodecName(const CueData &data)
 /************************************************
  *
  ************************************************/
-CueReader::CueReader()
+CueError::~CueError()
 {
+
 }
-
-
-
-QVector<CueDisc> CueReader::load(const QString &fileName)
-{
-    return QVector<CueDisc>();
-}
-

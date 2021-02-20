@@ -43,7 +43,7 @@ class Disc : public QObject
 public:
     explicit Disc(QObject *parent = nullptr);
     explicit Disc(InputAudioFile &audio, QObject *parent = nullptr);
-    explicit Disc(CueDisc &cue, QObject *parent = nullptr);
+    explicit Disc(Cue &cue, QObject *parent = nullptr);
 
     virtual ~Disc();
 
@@ -56,11 +56,10 @@ public:
     const Track *preGapTrack() const;
 
     QString cueFilePath() const { return mCueFilePath; }
-    void    setCueFile(const CueDisc &cueDisc);
+    void    setCueFile(const Cue &cueDisc);
 
     QString             audioFileName_OLD() const { return ""; }
     InputAudioFile_OLD *audioFile_OLD() const { return nullptr; }
-    void                setAudioFile_OLD(const InputAudioFile_OLD &audio) { }
 
     QList<TrackPtrList> tracksByFileTag() const;
 

@@ -63,7 +63,7 @@ Disc::Disc(InputAudioFile &audioFile, QObject *parent) :
 /************************************************
 
 ************************************************/
-Disc::Disc(CueDisc &cue, QObject *parent) :
+Disc::Disc(Cue &cue, QObject *parent) :
     QObject(parent)
 {
     mTracks.reserve(cue.count());
@@ -102,12 +102,12 @@ void Disc::searchCueFile(bool replaceExisting)
         return;
     }
 
-    QFileInfo      audioFile = QFileInfo(audioFiles.first());
-    QList<CueDisc> cues;
-    QFileInfoList  files = audioFile.dir().entryInfoList(QStringList("*.cue"), QDir::Files | QDir::Readable);
+    QFileInfo     audioFile = QFileInfo(audioFiles.first());
+    QList<Cue>    cues;
+    QFileInfoList files = audioFile.dir().entryInfoList(QStringList("*.cue"), QDir::Files | QDir::Readable);
     foreach (QFileInfo f, files) {
         try {
-            cues << CueDisc(f.absoluteFilePath());
+            cues << Cue(f.absoluteFilePath());
         }
         catch (FlaconError &) {
             continue; // Just skipping the incorrect files.
@@ -115,9 +115,9 @@ void Disc::searchCueFile(bool replaceExisting)
     }
 
     unsigned int bestWeight = 99999;
-    CueDisc      bestDisc;
+    Cue          bestDisc;
 
-    foreach (const CueDisc &cue, cues) {
+    foreach (const Cue &cue, cues) {
         AudioFileMatcher matcher(cue.fileName(), cue);
         if (matcher.result().contains(audioFile.filePath())) {
             unsigned int weight = levenshteinDistance(QFileInfo(cue.fileName()).baseName(), audioFile.baseName());
@@ -256,7 +256,7 @@ bool Disc::canDownloadInfo() const
 /************************************************
 
  ************************************************/
-void Disc::setCueFile(const CueDisc &cueDisc)
+void Disc::setCueFile(const Cue &cueDisc)
 {
     InputAudioFileList audioFiles = this->audioFiles();
 

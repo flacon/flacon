@@ -443,8 +443,8 @@ void testFail(const QString &message, const char *file, int line)
 Disc *loadFromCue(const QString &cueFile)
 {
     try {
-        CueDisc cue(cueFile);
-        Disc *  res = new Disc(cue);
+        Cue   cue(cueFile);
+        Disc *res = new Disc(cue);
         return res;
     }
     catch (FlaconError &err) {
