@@ -91,7 +91,7 @@ void CoverDialog::setDisc(Disc *disc)
     mDisc = disc;
     connect(mDisc.data(), SIGNAL(destroyed(QObject *)), SLOT(close()));
     ui->coverView->clear();
-    scan(QFileInfo(disc->cueFile()).absoluteDir().absolutePath());
+    scan(QFileInfo(disc->cueFilePath()).absoluteDir().absolutePath());
     ui->coverView->setGridSize(QSize(140, 160));
 }
 

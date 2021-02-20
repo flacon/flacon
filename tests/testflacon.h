@@ -113,14 +113,17 @@ private slots:
     void testPatternExpander_data();
     void testPatternExpander();
 
-    void testConvert();
-    void testConvert_data();
-
     void testLoadProfiles();
     void testLoadProfiles_data();
 
     void testAudioFileMatcher();
     void testAudioFileMatcher_data();
+
+    void testLoadDiscFromAudio();
+    void testLoadDiscFromAudio_data();
+
+    void testConvert();
+    void testConvert_data();
 
 private:
     void writeTextFile(const QString &fileName, const QString &content);
@@ -133,6 +136,7 @@ private:
 
     void    applySettings(const SettingsValues &config);
     QString dir(const QString &subTest = "");
+    QString sourceDir(const QString &subTest = "");
 
     Disc *standardDisc();
 

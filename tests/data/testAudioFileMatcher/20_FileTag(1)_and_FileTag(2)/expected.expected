@@ -1,2 +1,2 @@
-FileTag(1).wav = FileTag(1).wav
-FileTag(2).wav = FileTag(2).wav
+01 = FileTag(1).wav
+02 = FileTag(2).wav

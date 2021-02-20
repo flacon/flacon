@@ -161,6 +161,20 @@ QString TestFlacon::dir(const QString &subTest)
 /************************************************
  *
  ************************************************/
+QString TestFlacon::sourceDir(const QString &subTest)
+{
+    QString test    = QString::fromLocal8Bit(QTest::currentTestFunction());
+    QString subtest = subTest.isEmpty() ? QString::fromLocal8Bit(QTest::currentDataTag()) : subTest;
+
+    return QDir::cleanPath(QString("%1/%2/%3")
+                                   .arg(mDataDir)
+                                   .arg(safePath(test))
+                                   .arg(safePath(subtest)));
+}
+
+/************************************************
+ *
+ ************************************************/
 void TestFlacon::init()
 {
     static QString prevTestFunction;

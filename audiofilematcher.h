@@ -37,14 +37,15 @@ public:
 
     const Tracks &tracks() const { return mTracks; }
 
-    const QMap<QString, QString> &result() { return mResult; }
+    const QStringList &fileTags() const { return mFileTags; }
+    const QStringList &result() const { return mResult; }
 
 private:
-    QString                mCueFilePath;
-    Tracks                 mTracks;
-    QStringList            mFileTags;
-    QFileInfoList          mAudioFiles;
-    QMap<QString, QString> mResult;
+    QString       mCueFilePath;
+    Tracks        mTracks;
+    QStringList   mFileTags;
+    QFileInfoList mAudioFiles;
+    QStringList   mResult;
 
     void                   fillFileTags();
     QMap<QString, QString> run();

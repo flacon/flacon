@@ -443,9 +443,8 @@ void testFail(const QString &message, const char *file, int line)
 Disc *loadFromCue(const QString &cueFile)
 {
     try {
-        QVector<CueDisc> cue = CueReader().load(cueFile);
-        Disc *           res = new Disc();
-        res->loadFromCue(cue.first());
+        CueDisc cue(cueFile);
+        Disc *  res = new Disc(cue);
         return res;
     }
     catch (FlaconError &err) {

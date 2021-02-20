@@ -31,12 +31,14 @@ cmake_policy(SET CMP0028 NEW)
 set(TEST_HEADERS
     tools.h
     testflacon.h
+    discspec.h
 )
 
 set(TEST_SOURCES
     tools.cpp
     inittestcase.cpp
     testflacon.cpp
+    discspec.cpp
 )
 
 file(GLOB TEST_CPP_FILES

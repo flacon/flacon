@@ -37,7 +37,11 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tra
     QStringList exts = InputFormat::allFileExts();
     mAudioFiles      = dir.entryInfoList(exts, QDir::Files | QDir::Readable);
 
-    mResult = run();
+    QMap<QString, QString> res = run();
+    mResult.reserve(mFileTags.count());
+    for (const QString &tag : mFileTags) {
+        mResult << res[tag];
+    }
 }
 
 void AudioFileMatcher::fillFileTags()

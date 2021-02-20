@@ -1,0 +1,181 @@
+CUE FILE = h.cue
+
+[TRACKS/01]
+    TITLE = Химера
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP1).flac"
+    PERFORMER = Ария
+    TITLE = Химера
+    INDEX 00 = 00:00.000
+    INDEX 01 = 00:00.000
+    AUDIO FILE = "Ария - Химера, 2001 (LP1).flac"
+
+[TRACKS/02]
+    TITLE = Небо Тебя Найдёт
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP1).flac"
+    PERFORMER = Ария
+    TITLE = Небо Тебя Найдёт
+    INDEX 00 = 00:00.000
+    INDEX 01 = 04:38.000
+    AUDIO FILE = "Ария - Химера, 2001 (LP1).flac"
+
+[TRACKS/03]
+    TITLE = Я Не Сошёл С Ума
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP1).flac"
+    PERFORMER = Ария
+    TITLE = Я Не Сошёл С Ума
+    INDEX 00 = 00:00.000
+    INDEX 01 = 10:07.500
+    AUDIO FILE = "Ария - Химера, 2001 (LP1).flac"
+
+[TRACKS/04]
+    TITLE = Вампир
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP1).flac"
+    PERFORMER = Ария
+    TITLE = Вампир
+    INDEX 00 = 00:00.000
+    INDEX 01 = 16:31.500
+    AUDIO FILE = "Ария - Химера, 2001 (LP1).flac"
+
+[TRACKS/05]
+    TITLE = Горящая Стрела
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP1).flac"
+    PERFORMER = Ария
+    TITLE = Горящая Стрела
+    INDEX 00 = 00:00.000
+    INDEX 01 = 22:00.000
+    AUDIO FILE = "Ария - Химера, 2001 (LP1).flac"
+
+[TRACKS/06]
+    TITLE = Штиль
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP1).flac"
+    PERFORMER = Ария
+    TITLE = Штиль
+    INDEX 00 = 00:00.000
+    INDEX 01 = 26:10.000
+    AUDIO FILE = "Ария - Химера, 2001 (LP1).flac"
+
+[TRACKS/07]
+    TITLE = Путь В Никуда
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP1).flac"
+    PERFORMER = Ария
+    TITLE = Путь В Никуда
+    INDEX 00 = 00:00.000
+    INDEX 01 = 31:43.500
+    AUDIO FILE = "Ария - Химера, 2001 (LP1).flac"
+
+[TRACKS/08]
+    TITLE = Ворон
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP1).flac"
+    PERFORMER = Ария
+    TITLE = Ворон
+    INDEX 00 = 00:00.000
+    INDEX 01 = 37:10.500
+    AUDIO FILE = "Ария - Химера, 2001 (LP1).flac"
+
+[TRACKS/09]
+    TITLE = Осколок Льда
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP2).flac"
+    PERFORMER = Ария
+    TITLE = Осколок Льда
+    INDEX 00 = 00:00.000
+    INDEX 01 = 00:00.000
+    AUDIO FILE = "Ария - Химера, 2001 (LP2).flac"
+
+[TRACKS/10]
+    TITLE = Тебе Дадут Знак
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP2).flac"
+    PERFORMER = Ария
+    TITLE = Тебе Дадут Знак
+    INDEX 00 = 00:00.000
+    INDEX 01 = 05:24.000
+    AUDIO FILE = "Ария - Химера, 2001 (LP2).flac"
+
+[TRACKS/11]
+    TITLE = Небо тебя найдет (Версия 2002г.)
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP2).flac"
+    PERFORMER = Ария
+    TITLE = Небо тебя найдет (Версия 2002г.)
+    INDEX 00 = 00:00.000
+    INDEX 01 = 14:11.000
+    AUDIO FILE = "Ария - Химера, 2001 (LP2).flac"
+
+[TRACKS/12]
+    TITLE = Потерянный рай
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP2).flac"
+    PERFORMER = Ария
+    TITLE = Потерянный рай
+    INDEX 00 = 00:00.000
+    INDEX 01 = 20:15.000
+    AUDIO FILE = "Ария - Химера, 2001 (LP2).flac"
+
+[TRACKS/13]
+    TITLE = Кто ты?
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP2).flac"
+    PERFORMER = Ария
+    TITLE = Кто ты?
+    INDEX 00 = 00:00.000
+    INDEX 01 = 26:04.000
+    AUDIO FILE = "Ария - Химера, 2001 (LP2).flac"
+
+[TRACKS/14]
+    TITLE = Штиль (с Удо Диркшнайдером)
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP2).flac"
+    PERFORMER = Ария
+    TITLE = Штиль (с Удо Диркшнайдером)
+    INDEX 00 = 00:00.000
+    INDEX 01 = 30:49.000
+    AUDIO FILE = "Ария - Химера, 2001 (LP2).flac"
+
+[TRACKS/15]
+    TITLE = Потерянный рай (Симфо-версия)
+    DATE = 2001
+    DISCID = 
+    COMMENT = 
+    FILE = "Ария - Химера, 2001 (LP2).flac"
+    PERFORMER = Ария
+    TITLE = Потерянный рай (Симфо-версия)
+    INDEX 00 = 00:00.000
+    INDEX 01 = 35:57.500
+    AUDIO FILE = "Ария - Химера, 2001 (LP2).flac"

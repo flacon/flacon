@@ -58,13 +58,13 @@ void Splitter::run()
     Decoder decoder;
 
     try {
-        decoder.open(mDisc->audioFileName());
+        decoder.open(mDisc->audioFileName_OLD());
     }
     catch (FlaconError &err) {
         emit error(mTracks.first(),
                    tr("I can't read <b>%1</b>:<br>%2",
                       "Splitter error. %1 is a file name, %2 is a system error text.")
-                           .arg(mDisc->audioFileName())
+                           .arg(mDisc->audioFileName_OLD())
                            .arg(err.what()));
         return;
     }
@@ -94,7 +94,7 @@ void Splitter::run()
     connect(&decoder, SIGNAL(progress(int)),
             this, SLOT(decoderProgress(int)));
 
-    qCDebug(LOG) << "Start splitting" << mDisc->count() << "tracks from" << mDisc->audioFileName();
+    qCDebug(LOG) << "Start splitting" << mDisc->count() << "tracks from" << mDisc->audioFileName_OLD();
     for (int i = 0; i < mDisc->count(); ++i) {
         mCurrentTrack = mDisc->track(i);
         if (!mTracks.contains(mCurrentTrack))

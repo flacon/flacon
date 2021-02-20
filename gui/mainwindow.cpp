@@ -33,7 +33,6 @@
 #include "formats/informat.h"
 #include "configdialog/configdialog.h"
 #include "aboutdialog/aboutdialog.h"
-#include "cuediscselectdialog/cuediscselectdialog.h"
 #include "scanner.h"
 #include "gui/coverdialog/coverdialog.h"
 #include "internet/dataprovider.h"
@@ -283,12 +282,20 @@ void MainWindow::setCueForDisc(Disc *disc)
     QString flt = getOpenFileFilter(false, true);
 
     QString dir;
-    if (!disc->audioFileName().isEmpty())
-        dir = QFileInfo(disc->audioFileName()).dir().absolutePath();
-    else if (!disc->cueFile().isEmpty())
-        dir = QFileInfo(disc->cueFile()).dir().absolutePath();
-    else
-        dir = Settings::i()->value(Settings::Misc_LastDir).toString();
+    {
+        QStringList audioFiles = disc->audioFilePaths();
+        audioFiles.removeAll("");
+
+        if (!audioFiles.isEmpty()) {
+            dir = QFileInfo(audioFiles.first()).dir().absolutePath();
+        }
+        else if (!disc->cueFilePath().isEmpty()) {
+            dir = QFileInfo(disc->cueFilePath()).dir().absolutePath();
+        }
+        else {
+            dir = Settings::i()->value(Settings::Misc_LastDir).toString();
+        }
+    }
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select CUE file", "OpenFile dialog title"), dir, flt);
 
@@ -296,25 +303,18 @@ void MainWindow::setCueForDisc(Disc *disc)
         return;
 
     try {
-        CueReader        reader;
-        QVector<CueDisc> cue = reader.load(fileName);
+        CueDisc cue(fileName);
+        QString oldDir = QFileInfo(disc->cueFilePath()).dir().path();
+        disc->setCueFile(cue);
+        QString newDir = QFileInfo(disc->cueFilePath()).dir().path();
 
-        int discNum = 0;
-        if (cue.count() > 1) {
-            int proposal = 0;
-            for (int i = 0; i < cue.count(); ++i) {
-                if (!project->discExists(cue.at(i).uri())) {
-                    proposal = i;
-                    break;
-                }
-            }
-
-            discNum = CueDiscSelectDialog::getDiscNumber(cue, proposal);
-            if (discNum < 0)
-                return;
+        if (disc->isMultiAudio()) {
+            disc->searchAudioFiles(false);
         }
 
-        disc->loadFromCue(cue.at(discNum));
+        if (newDir != oldDir) {
+            disc->searchCoverImage(false);
+        }
     }
     catch (FlaconError &err) {
         Messages::error(err.what());
@@ -686,15 +686,18 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
     QString flt = getOpenFileFilter(true, false);
 
     QString dir;
+    {
+        QStringList audioFiles = disc->audioFilePaths();
 
-    if (!disc->cueFile().isEmpty()) {
-        dir = QFileInfo(disc->cueFile()).dir().absolutePath();
-    }
-    else if (!disc->audioFileName().isEmpty()) {
-        dir = QFileInfo(disc->audioFileName()).dir().absolutePath();
-    }
-    else {
-        dir = Settings::i()->value(Settings::Misc_LastDir).toString();
+        if (!disc->cueFilePath().isEmpty()) {
+            dir = QFileInfo(disc->cueFilePath()).dir().absolutePath();
+        }
+        else if (audioFileNum < audioFiles.count() && !audioFiles[audioFileNum].isEmpty()) {
+            dir = QFileInfo(audioFiles[audioFileNum]).dir().absolutePath();
+        }
+        else {
+            dir = Settings::i()->value(Settings::Misc_LastDir).toString();
+        }
     }
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select audio file", "OpenFile dialog title"), dir, flt);
@@ -707,14 +710,8 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
         Messages::error(audio.errorString());
     }
 
-    QList<TrackPtrList> tracksList = disc->tracksByFileTag();
-    if (audioFileNum >= tracksList.count()) {
-        return;
-    }
-
-    for (Track *track : tracksList[audioFileNum]) {
-        track->setAudioFile(audio);
-    }
+    disc->setAudioFile(audio, audioFileNum);
+    trackView->update(*disc);
 }
 
 /************************************************

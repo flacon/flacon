@@ -440,7 +440,7 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
         case RoleCoverImg:
             return disc->coverImagePreview();
         case RoleCueFilePath:
-            return disc->cueFile();
+            return disc->cueFilePath();
         case RoleAudioFilePath:
             return disc->audioFilePaths();
         case RoleDiscWarnings:

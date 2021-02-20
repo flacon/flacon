@@ -1,0 +1,110 @@
+CUE FILE = Street_Legal.cue
+COVER FILE = folder.JPG
+
+[TRACKS/01]
+    TITLE = Changing of the Guards
+    DATE = 
+    DISCID = 
+    COMMENT = 
+    FILE = Side A.wv
+    PERFORMER = Bob Dylan
+    TITLE = Changing of the Guards
+    INDEX 00 = 00:00.000
+    INDEX 01 = 00:00.000
+    AUDIO FILE = Side A.wv
+
+[TRACKS/02]
+    TITLE = New Pony
+    DATE = 
+    DISCID = 
+    COMMENT = 
+    FILE = Side A.wv
+    PERFORMER = Bob Dylan
+    TITLE = New Pony
+    INDEX 00 = 00:00.000
+    INDEX 01 = 06:35.000
+    AUDIO FILE = Side A.wv
+
+[TRACKS/03]
+    TITLE = No Time to Think
+    DATE = 
+    DISCID = 
+    COMMENT = 
+    FILE = Side A.wv
+    PERFORMER = Bob Dylan
+    TITLE = No Time to Think
+    INDEX 00 = 00:00.000
+    INDEX 01 = 11:03.000
+    AUDIO FILE = Side A.wv
+
+[TRACKS/04]
+    TITLE = "Baby, Stop Crying"
+    DATE = 
+    DISCID = 
+    COMMENT = 
+    FILE = Side A.wv
+    PERFORMER = Bob Dylan
+    TITLE = "Baby, Stop Crying"
+    INDEX 00 = 00:00.000
+    INDEX 01 = 19:23.500
+    AUDIO FILE = Side A.wv
+
+[TRACKS/05]
+    TITLE = Is Your Love in Vain?
+    DATE = 
+    DISCID = 
+    COMMENT = 
+    FILE = Side B.wv
+    PERFORMER = Bob Dylan
+    TITLE = Is Your Love in Vain?
+    INDEX 00 = 00:00.000
+    INDEX 01 = 00:00.000
+    AUDIO FILE = Side B.wv
+
+[TRACKS/06]
+    TITLE = SeĆ±or (Tales of Yankee Power)
+    DATE = 
+    DISCID = 
+    COMMENT = 
+    FILE = Side B.wv
+    PERFORMER = Bob Dylan
+    TITLE = SeĆ±or (Tales of Yankee Power)
+    INDEX 00 = 00:00.000
+    INDEX 01 = 04:31.000
+    AUDIO FILE = Side B.wv
+
+[TRACKS/07]
+    TITLE = True Love Tends to Forget
+    DATE = 
+    DISCID = 
+    COMMENT = 
+    FILE = Side B.wv
+    PERFORMER = Bob Dylan
+    TITLE = True Love Tends to Forget
+    INDEX 00 = 00:00.000
+    INDEX 01 = 10:12.000
+    AUDIO FILE = Side B.wv
+
+[TRACKS/08]
+    TITLE = We Better Talk This Over
+    DATE = 
+    DISCID = 
+    COMMENT = 
+    FILE = Side B.wv
+    PERFORMER = Bob Dylan
+    TITLE = We Better Talk This Over
+    INDEX 00 = 00:00.000
+    INDEX 01 = 14:27.000
+    AUDIO FILE = Side B.wv
+
+[TRACKS/09]
+    TITLE = Where Are You Tonight? (Journey Through Dark Heat)
+    DATE = 
+    DISCID = 
+    COMMENT = 
+    FILE = Side B.wv
+    PERFORMER = Bob Dylan
+    TITLE = Where Are You Tonight? (Journey Through Dark Heat)
+    INDEX 00 = 00:00.000
+    INDEX 01 = 18:32.500
+    AUDIO FILE = Side B.wv

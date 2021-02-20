@@ -126,6 +126,7 @@ class Tracks : public QVector<Track>
 public:
     Tracks();
     explicit Tracks(int size);
+    explicit Tracks(const QList<Track *> &other);
     Tracks(const Tracks &other);
     Tracks &operator=(const Tracks &other);
     virtual ~Tracks();

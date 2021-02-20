@@ -54,9 +54,9 @@ public:
 
     bool discExists(const QString &cueUri);
 
-    void     clear();
-    Disc *   addAudioFile(const QString &fileName);
-    DiscList addCueFile(const QString &fileName);
+    void  clear();
+    Disc *addAudioFile(const QString &fileName);
+    Disc *addCueFile(const QString &fileName);
 
 signals:
     void discChanged(Disc *disc) const;
@@ -64,9 +64,10 @@ signals:
     void beforeRemoveDisc(Disc *disc);
     void afterRemoveDisc();
 
-private:
+protected:
     explicit Project(QObject *parent = nullptr);
 
+private:
     QList<Disc *> mDiscs;
 };
 

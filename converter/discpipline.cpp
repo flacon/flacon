@@ -357,12 +357,12 @@ void DiscPipeline::Data::startEncoderThread(const EncoderRequest &req)
 
     // If the original quality is worse than requested, leave it as is.
     worker->setBitsPerSample(calcQuality(
-            job.disc->audioFile()->bitsPerSample(),
+            job.disc->audioFile_OLD()->bitsPerSample(),
             profile.bitsPerSample(),
             int(profile.maxBitPerSample())));
 
     worker->setSampleRate(calcQuality(
-            job.disc->audioFile()->sampleRate(),
+            job.disc->audioFile_OLD()->sampleRate(),
             profile.sampleRate(),
             int(profile.maxSampleRate())));
 

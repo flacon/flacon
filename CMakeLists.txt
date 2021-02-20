@@ -81,7 +81,6 @@ set(HEADERS
     gui/configdialog/addprofiledialog.h
     gui/aboutdialog/aboutdialog.h
     gui/aboutdialog/translatorsinfo.h
-    gui/cuediscselectdialog/cuediscselectdialog.h
     gui/coverdialog/coverdialog.h
     gui/coverdialog/asynclistwidgetitem.h
     gui/tageditor/tageditor.h
@@ -146,7 +145,6 @@ set(SOURCES
     gui/configdialog/addprofiledialog.cpp
     gui/aboutdialog/aboutdialog.cpp
     gui/aboutdialog/translatorsinfo.cpp
-    gui/cuediscselectdialog/cuediscselectdialog.cpp
     gui/coverdialog/coverdialog.cpp
     gui/coverdialog/asynclistwidgetitem.cpp
     gui/tageditor/tageditor.cpp

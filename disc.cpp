@@ -47,9 +47,37 @@
 
  ************************************************/
 Disc::Disc(QObject *parent) :
-    QObject(parent),
-    mAudioFile(nullptr)
+    QObject(parent)
 {
+}
+
+/************************************************
+
+ ************************************************/
+Disc::Disc(InputAudioFile &audioFile, QObject *parent) :
+    QObject(parent),
+    mAudioFile(audioFile)
+{
+}
+
+/************************************************
+
+************************************************/
+Disc::Disc(CueDisc &cue, QObject *parent) :
+    QObject(parent)
+{
+    mTracks.reserve(cue.count());
+    for (const Track &cueTrack : cue) {
+        Track *track = new Track(cueTrack);
+        mTracks << track;
+        connect(track, &Track::tagChanged, this, &Disc::trackChanged);
+    }
+
+    mCueFilePath = cue.fileName();
+
+    mCurrentTagsUri = mCueFilePath;
+    syncTagsFromTracks();
+    mTagSets[mCurrentTagsUri].setTitle(cue.title());
 }
 
 /************************************************
@@ -57,8 +85,86 @@ Disc::Disc(QObject *parent) :
  ************************************************/
 Disc::~Disc()
 {
-    delete mAudioFile;
     qDeleteAll(mTracks);
+}
+
+/************************************************
+
+************************************************/
+void Disc::searchCueFile(bool replaceExisting)
+{
+    if (!replaceExisting && !mCueFilePath.isEmpty()) {
+        return;
+    }
+
+    QStringList audioFiles = audioFilePaths();
+    if (audioFiles.isEmpty()) {
+        return;
+    }
+
+    QFileInfo      audioFile = QFileInfo(audioFiles.first());
+    QList<CueDisc> cues;
+    QFileInfoList  files = audioFile.dir().entryInfoList(QStringList("*.cue"), QDir::Files | QDir::Readable);
+    foreach (QFileInfo f, files) {
+        try {
+            cues << CueDisc(f.absoluteFilePath());
+        }
+        catch (FlaconError &) {
+            continue; // Just skipping the incorrect files.
+        }
+    }
+
+    unsigned int bestWeight = 99999;
+    CueDisc      bestDisc;
+
+    foreach (const CueDisc &cue, cues) {
+        AudioFileMatcher matcher(cue.fileName(), cue);
+        if (matcher.result().contains(audioFile.filePath())) {
+            unsigned int weight = levenshteinDistance(QFileInfo(cue.fileName()).baseName(), audioFile.baseName());
+            if (weight < bestWeight) {
+                bestWeight = weight;
+                bestDisc   = cue;
+            }
+        }
+    }
+
+    if (!bestDisc.uri().isEmpty()) {
+        setCueFile(bestDisc);
+    }
+}
+
+/************************************************
+
+************************************************/
+void Disc::searchAudioFiles(bool replaceExisting)
+{
+    QString dir = QFileInfo(cueFilePath()).filePath();
+
+    AudioFileMatcher matcher(dir, Tracks(mTracks));
+    for (int i = 0; i < audioFiles().count(); ++i) {
+        if (audioFiles()[i].isNull() || replaceExisting) {
+            setAudioFile(InputAudioFile(matcher.result()[i]), i);
+        }
+    }
+}
+
+/************************************************
+
+************************************************/
+void Disc::searchCoverImage(bool replaceExisting)
+{
+    if (!replaceExisting && !mCoverImageFile.isEmpty()) {
+        return;
+    }
+
+    if (mCueFilePath.isEmpty()) {
+        return;
+    }
+
+    // Search cover ...................
+    QString dir        = QFileInfo(mCueFilePath).dir().absolutePath();
+    mCoverImagePreview = QImage();
+    mCoverImageFile    = searchCoverImage(dir);
 }
 
 /************************************************
@@ -89,34 +195,54 @@ const Track *Disc::preGapTrack() const
  ************************************************/
 bool Disc::canConvert(QString *description) const
 {
-    bool        res = true;
     QStringList msg;
-
-    if (!mAudioFile || !mAudioFile->isValid()) {
-        msg << tr("Audio file not set.");
-        res = false;
-    }
 
     if (count() < 1) {
         msg << tr("Cue file not set.");
-        res = false;
     }
 
-    if (res) {
-        uint duration = 0;
-        for (int i = 0; i < mTracks.count() - 1; ++i)
-            duration += track(i)->duration();
+    const QList<TrackPtrList> &audioFileTracks = tracksByFileTag();
+    for (const TrackPtrList &tracks : audioFileTracks) {
+        if (tracks.first()->audioFile().isNull()) {
+            if (audioFileTracks.count() == 1) {
+                msg << tr("Audio file not set.");
+                continue;
+            }
 
-        if (mAudioFile->duration() <= duration) {
-            msg << tr("Audio file shorter than expected from CUE sheet.");
-            res = false;
+            if (tracks.count() == 1) {
+                msg << tr("Audio file not set for track %1.", "Warning message, Placeholders is a track number")
+                                .arg(tracks.first()->trackNum());
+                continue;
+            }
+
+            msg << tr("Audio file not set for tracks %1-%2.", "Warning message, Placeholders is a track numbers")
+                            .arg(tracks.first()->trackNum())
+                            .arg(tracks.last()->trackNum());
         }
     }
 
-    if (description)
-        *description = msg.join("\n");
+    for (const TrackPtrList &tracks : audioFileTracks) {
+        InputAudioFile audio = tracks.first()->audioFile();
+        if (audio.isNull()) {
+            continue;
+        }
 
-    return res;
+        uint duration = 0;
+        for (int i = 0; i < tracks.count() - 1; ++i) {
+            duration += tracks[i]->duration();
+        }
+
+        if (audio.duration() <= duration) {
+            msg << tr("Audio file shorter than expected from CUE sheet.");
+            break;
+        }
+    }
+
+    if (description) {
+        *description = msg.join("\n");
+    }
+
+    return msg.isEmpty();
 }
 
 /************************************************
@@ -130,17 +256,19 @@ bool Disc::canDownloadInfo() const
 /************************************************
 
  ************************************************/
-void Disc::loadFromCue(const CueDisc &cueDisc)
+void Disc::setCueFile(const CueDisc &cueDisc)
 {
-    QString oldDir = QFileInfo(mCueFile).dir().absolutePath();
+    InputAudioFileList audioFiles = this->audioFiles();
+
+    QString oldDir = QFileInfo(mCueFilePath).dir().absolutePath();
 
     // If the tracks contain tags from the Internet and the
     // tags have been changed, we must save the changes.
     syncTagsFromTracks();
-    mTagSets.remove(mCueFile);
+    mTagSets.remove(mCueFilePath);
 
-    int count = cueDisc.count();
-    mCueFile  = cueDisc.fileName();
+    int count    = cueDisc.count();
+    mCueFilePath = cueDisc.fileName();
 
     // Remove all tags if number of tracks differ from loaded CUE.
     for (auto it = mTagSets.begin(); it != mTagSets.end();) {
@@ -160,107 +288,41 @@ void Disc::loadFromCue(const CueDisc &cueDisc)
     while (mTracks.count() > count)
         delete mTracks.takeLast();
 
-    for (int t = 0; t < count; ++t)
+    for (int t = 0; t < count; ++t) {
         *mTracks[t] = cueDisc.at(t);
-
-    for (TrackNum i = 0; i < count; ++i) {
-        Track *track     = mTracks[i];
-        track->mDuration = this->trackDuration(i);
     }
 
-    mCurrentTagsUri = mCueFile;
+    mCurrentTagsUri = mCueFilePath;
     syncTagsFromTracks();
     mTagSets[mCurrentTagsUri].setTitle(cueDisc.title());
 
-    Tracks tracks;
-    for (const Track *t : mTracks) {
-        tracks << *t;
-    }
-
-    AudioFileMatcher              matcher(QFileInfo(cueDisc.fileName()).filePath(), tracks);
-    QMap<QString, InputAudioFile> audioFiles;
-
-    for (auto i = matcher.result().constBegin(); i != matcher.result().constEnd(); ++i) {
-        audioFiles[i.key()] = InputAudioFile(i.value());
-    }
-
-    for (Track *track : mTracks) {
-        if (track->audioFile().isNull()) {
-            track->setAudioFile(audioFiles[track->tag(TagId::File)]);
+    for (int i = 0; i < qMin(audioFiles.count(), mTracks.count()); ++i) {
+        if (!audioFiles[i].isNull()) {
+            setAudioFile(InputAudioFile(audioFiles[i]), i);
         }
-    }
-
-    QString dir = QFileInfo(mCueFile).dir().absolutePath();
-    if (dir != oldDir) {
-        mCoverImagePreview = QImage();
-        mCoverImageFile    = searchCoverImage(dir);
     }
 
     project->emitLayoutChanged();
 }
 
 /************************************************
-
- ************************************************/
-void Disc::findCueFile()
-{
-    if (!mAudioFile)
-        return;
-
-    QFileInfo     audio(mAudioFile->fileName());
-    QList<Cue>    cues;
-    QFileInfoList files = audio.dir().entryInfoList(QStringList() << "*.cue", QDir::Files | QDir::Readable);
-    foreach (QFileInfo f, files) {
-        try {
-            CueReader c;
-            cues << c.load(f.absoluteFilePath());
-        }
-        catch (FlaconError &) {
-            continue; // Just skipping the incorrect files.
-        }
-    }
-
-    if (cues.count() == 1 && cues.first().count() == 1) {
-        loadFromCue(cues.first().first());
-        return;
-    }
-
-    unsigned int bestWeight = 99999;
-    CueDisc      bestDisc;
-
-    foreach (const Cue &cue, cues) {
-        foreach (const CueDisc &cueDisc, cue) {
-            if (!matchedAudioFiles(cueDisc, QFileInfoList() << audio).isEmpty()) {
-                unsigned int weight = levenshteinDistance(QFileInfo(cueDisc.fileName()).baseName(), audio.baseName());
-                if (weight < bestWeight) {
-                    bestWeight = weight;
-                    bestDisc   = cueDisc;
-                }
-            }
-        }
-    }
-
-    if (!bestDisc.uri().isEmpty())
-        loadFromCue(bestDisc);
-}
-
-/************************************************
  *
  ************************************************/
-Duration Disc::trackDuration(TrackNum trackNum) const
+void Disc::updateDurations(TrackPtrList &tracks)
 {
-    const Track *track = mTracks[trackNum];
-    uint         start = track->cueIndex(1).milliseconds();
-    uint         end   = 0;
+    for (int i = 0; i < tracks.count() - 1; ++i) {
+        Track *track = tracks[i];
 
-    if (trackNum < mTracks.count() - 1) {
-        end = mTracks.at(trackNum + 1)->cueIndex(1).milliseconds();
-    }
-    else if (audioFile() != nullptr) {
-        end = audioFile()->duration();
+        uint start = track->cueIndex(1).milliseconds();
+        uint end   = mTracks.at(i + 1)->cueIndex(1).milliseconds();
+
+        track->mDuration = end > start ? end - start : 0;
     }
 
-    return end > start ? end - start : 0;
+    Track *track     = tracks.last();
+    uint   start     = track->cueIndex(1).milliseconds();
+    uint   end       = track->audioFile().duration();
+    track->mDuration = end > start ? end - start : 0;
 }
 
 /************************************************
@@ -352,34 +414,6 @@ bool Disc::isSameTagValue(TagId tagId)
 
 /************************************************
 
- ************************************************/
-QString Disc::audioFileName() const
-{
-    if (mAudioFile)
-        return mAudioFile->fileName();
-    else
-        return "";
-}
-
-/************************************************
-
- ************************************************/
-void Disc::setAudioFile(const InputAudioFile_OLD &audio)
-{
-    if (mAudioFile)
-        delete mAudioFile;
-
-    mAudioFile = new InputAudioFile_OLD(audio);
-
-    if (mTracks.isEmpty())
-        findCueFile();
-
-    if (!mTracks.isEmpty())
-        mTracks.last()->mDuration = trackDuration(mTracks.count() - 1);
-}
-
-/************************************************
-
 ************************************************/
 QList<TrackPtrList> Disc::tracksByFileTag() const
 {
@@ -414,9 +448,15 @@ InputAudioFileList Disc::audioFiles() const
 {
     InputAudioFileList res;
 
+    if (mTracks.isEmpty() && !mAudioFile.isNull()) {
+        res << mAudioFile;
+        return res;
+    }
+
     for (const TrackPtrList &l : tracksByFileTag()) {
         res << l.first()->audioFile();
     }
+
     return res;
 }
 
@@ -445,6 +485,38 @@ QStringList Disc::audioFilePaths() const
 }
 
 /************************************************
+
+************************************************/
+void Disc::setAudioFile(const InputAudioFile &file, int fileNum)
+{
+    if (mTracks.isEmpty()) {
+        assert(fileNum == 0);
+        mAudioFile = file;
+        return;
+    }
+
+    QList<TrackPtrList> tracksList = tracksByFileTag();
+    if (fileNum >= tracksList.count()) {
+        return;
+    }
+
+    TrackPtrList &tracks = tracksList[fileNum];
+    for (Track *track : tracks) {
+        track->setAudioFile(file);
+    }
+
+    updateDurations(tracks);
+}
+
+/************************************************
+
+************************************************/
+bool Disc::isMultiAudio() const
+{
+    return audioFiles().count() > 0;
+}
+
+/************************************************
  *
  ************************************************/
 int Disc::startTrackNum() const
@@ -458,10 +530,11 @@ int Disc::startTrackNum() const
 /************************************************
 
  ************************************************/
-void Disc::setStartTrackNum(int value)
+void Disc::setStartTrackNum(TrackNum value)
 {
-    foreach (auto track, mTracks)
+    foreach (auto track, mTracks) {
         track->setTrackNum(value++);
+    }
 
     project->emitDiscChanged(this);
 }
@@ -570,12 +643,12 @@ DiscNum Disc::discCount() const
 QStringList Disc::warnings() const
 {
     QStringList res;
-    if (audioFile()) {
-        if (audioFile()->bitsPerSample() > int(Settings::i()->currentProfile().maxBitPerSample()))
+    for (const InputAudioFile &audioFile : audioFiles()) {
+        if (audioFile.bitsPerSample() > int(Settings::i()->currentProfile().maxBitPerSample()))
             res << tr("A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.", "Warning message")
                             .arg(int(Settings::i()->currentProfile().maxBitPerSample()));
 
-        if (audioFile()->sampleRate() > int(Settings::i()->currentProfile().maxSampleRate()))
+        if (audioFile.sampleRate() > int(Settings::i()->currentProfile().maxSampleRate()))
             res << tr("A maximum sample rate of %1 is supported by this format. This value will be used for encoding.", "Warning message")
                             .arg(int(Settings::i()->currentProfile().maxSampleRate()));
     }
@@ -591,9 +664,9 @@ QVector<Disc::TagSet> Disc::tagSets() const
         return QVector<TagSet>();
 
     QStringList keys = mTagSets.keys();
-    keys.removeAll(mCueFile);
+    keys.removeAll(mCueFilePath);
     std::sort(keys.begin(), keys.end());
-    keys.prepend(mCueFile);
+    keys.prepend(mCueFilePath);
 
     QVector<TagSet> res;
     foreach (const QString &key, keys) {

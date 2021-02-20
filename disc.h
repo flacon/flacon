@@ -42,27 +42,38 @@ class Disc : public QObject
 
 public:
     explicit Disc(QObject *parent = nullptr);
+    explicit Disc(InputAudioFile &audio, QObject *parent = nullptr);
+    explicit Disc(CueDisc &cue, QObject *parent = nullptr);
+
     virtual ~Disc();
+
+    void searchCueFile(bool replaceExisting = false);
+    void searchAudioFiles(bool replaceExisting = false);
+    void searchCoverImage(bool replaceExisting = false);
 
     Track *      track(int index) const;
     int          count() const { return mTracks.count(); }
     const Track *preGapTrack() const;
 
-    void    loadFromCue(const CueDisc &cueDisc);
-    QString cueFile() const { return mCueFile; }
+    QString cueFilePath() const { return mCueFilePath; }
+    void    setCueFile(const CueDisc &cueDisc);
 
-    QString             audioFileName() const;
-    InputAudioFile_OLD *audioFile() const { return mAudioFile; }
-    void                setAudioFile(const InputAudioFile_OLD &audio);
+    QString             audioFileName_OLD() const { return ""; }
+    InputAudioFile_OLD *audioFile_OLD() const { return nullptr; }
+    void                setAudioFile_OLD(const InputAudioFile_OLD &audio) { }
 
     QList<TrackPtrList> tracksByFileTag() const;
 
     InputAudioFileList audioFiles() const;
     QStringList        audioFileNames() const;
-    QStringList        audioFilePaths() const;
+
+    /// If some tracks don't have audio, result will have empty item.
+    QStringList audioFilePaths() const;
+    void        setAudioFile(const InputAudioFile &file, int fileNum);
+    bool        isMultiAudio() const;
 
     int  startTrackNum() const;
-    void setStartTrackNum(int value);
+    void setStartTrackNum(TrackNum value);
 
     QString codecName() const;
     void    setCodecName(const QString &codecName);
@@ -111,19 +122,18 @@ private:
     QHash<QString, Tracks> mTagSets;
 
     QList<Track *> mTracks;
-    QString        mCueFile;
+    QString        mCueFilePath;
     QString        mCurrentTagsUri;
 
-    InputAudioFile_OLD *mAudioFile;
-    mutable Track       mPreGapTrack;
+    InputAudioFile mAudioFile;
+    mutable Track  mPreGapTrack;
 
     QString        mCoverImageFile;
     mutable QImage mCoverImagePreview;
 
-    void     findCueFile();
-    Duration trackDuration(TrackNum trackNum) const;
-    void     syncTagsFromTracks();
-    void     syncTagsToTracks();
+    void updateDurations(TrackPtrList &tracks);
+    void syncTagsFromTracks();
+    void syncTagsToTracks();
 
     int  distance(const Tracks &other);
     bool isSameTagValue(TagId tagId);

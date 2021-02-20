@@ -48,9 +48,15 @@ bool OutFormat_Flac::check(const Profile &profile, QStringList *errors) const
 {
     bool res = OutFormat::check(profile, errors);
 
-    if (profile.gainType() != GainType::Disable) {
-        for (int i = 0; i < project->count(); ++i) {
-            if (project->disc(i)->audioFile()->sampleRate() > 48000) {
+    if (profile.gainType() == GainType::Disable) {
+        return res;
+    }
+
+    for (int i = 0; i < project->count(); ++i) {
+        const Disc *const disc = project->disc(i);
+
+        for (const InputAudioFile &audioFile : disc->audioFiles()) {
+            if (audioFile.sampleRate() > 48000) {
                 *errors << QObject::tr("you can't use 'ReplayGain' for files with sample rates above 48kHz. Metaflac doesn't support such files.",
                                        "This string should begin with a lowercase letter. This is a part of the complex sentence.");
                 res = false;

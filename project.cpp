@@ -124,7 +124,7 @@ int Project::indexOf(const Disc *disc) const
 bool Project::discExists(const QString &cueUri)
 {
     foreach (const Disc *d, mDiscs) {
-        if (d->cueFile() == cueUri)
+        if (d->cueFilePath() == cueUri)
             return true;
     }
     return false;
@@ -135,11 +135,10 @@ bool Project::discExists(const QString &cueUri)
  ************************************************/
 Disc *Project::addAudioFile(const QString &fileName)
 {
-
     QString canonicalFileName = QFileInfo(fileName).canonicalFilePath();
 
     for (int i = 0; i < count(); ++i) {
-        if (disc(i)->audioFileName() == canonicalFileName)
+        if (disc(i)->audioFilePaths().contains(canonicalFileName))
             return nullptr;
     }
 
@@ -148,10 +147,13 @@ Disc *Project::addAudioFile(const QString &fileName)
         throw FlaconError(audio.errorString());
     }
 
-    Disc *disc = new Disc();
-    disc->setAudioFile(audio);
+    Disc *disc = new Disc(audio);
+    disc->searchCueFile();
+    if (!disc->cueFilePath().isEmpty()) {
+        disc->searchAudioFiles(false);
+    }
+    disc->searchCoverImage();
     addDisc(disc);
-
     return disc;
 }
 
@@ -167,8 +169,9 @@ Disc *Project::addCueFile(const QString &fileName)
             return nullptr;
         }
 
-        Disc *disc = new Disc();
-        disc->loadFromCue(cue);
+        Disc *disc = new Disc(cue);
+        disc->searchAudioFiles();
+        disc->searchCoverImage();
         mDiscs << disc;
         emit layoutChanged();
         return disc;

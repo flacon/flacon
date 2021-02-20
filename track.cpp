@@ -398,6 +398,16 @@ Tracks::Tracks(const Tracks &other) :
 /************************************************
  *
  ************************************************/
+Tracks::Tracks(const QList<Track *> &other)
+{
+    for (const Track *t : other) {
+        *this << *t;
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
 Tracks &Tracks::operator=(const Tracks &other)
 {
     QVector<Track>::operator=(other);

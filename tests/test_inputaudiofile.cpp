@@ -40,7 +40,7 @@ void TestFlacon::testInputAudioFile()
     QFETCH(QString, duration);
     QFETCH(QString, format);
 
-    uint dur = duration.toInt();
+    uint dur = uint(duration.toInt());
 
     try {
         InputAudioFile ia(fileName);

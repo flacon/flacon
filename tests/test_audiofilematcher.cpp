@@ -65,8 +65,13 @@ void TestFlacon::testAudioFileMatcher()
 
         QCOMPARE(matcher.result().count(), exp.allKeys().count());
         for (const QString &key : exp.allKeys()) {
+            bool ok;
+            int  n = key.toInt(&ok);
+            if (!ok) {
+                QFAIL(QString("Incorrect key %1").arg(key).toLocal8Bit());
+            }
 
-            QString actualAudio   = matcher.result()[key];
+            QString actualAudio   = matcher.result()[n - 1];
             QString expectedAudio = exp.value(key).toString().isEmpty() ? "" : QDir(dir).filePath(exp.value(key).toString());
             if (!QTest::qCompare(
                         actualAudio, expectedAudio,
