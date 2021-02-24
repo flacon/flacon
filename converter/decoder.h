@@ -37,6 +37,8 @@ class QIODevice;
 class QProcess;
 class QFile;
 
+namespace Conv {
+
 class Decoder : public QObject
 {
     Q_OBJECT
@@ -72,4 +74,5 @@ private:
     void openProcess();
 };
 
+} // namespace
 #endif // DECODER_H

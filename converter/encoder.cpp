@@ -33,8 +33,10 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(LOG, "Converter");
+Q_LOGGING_CATEGORY(LOG, "Converter")
 }
+
+using namespace Conv;
 
 const quint64 MIN_BUF_SIZE = 4 * 1024;
 const quint64 MAX_BUF_SIZE = 1024 * 1024;

@@ -85,18 +85,6 @@ set(HEADERS
     gui/coverdialog/asynclistwidgetitem.h
     gui/tageditor/tageditor.h
 
-    converter/wavheader.h
-    converter/decoder.h
-    converter/converter.h
-    converter/splitter.h
-    converter/encoder.h
-    converter/gain.h
-    converter/worker.h
-    converter/discpipline.h
-    converter/cuecreator.h
-    converter/copycover.h
-    converter/resampler.h
-
     formats/informat.h
     formats/in_ape.h
     formats/in_flac.h
@@ -148,18 +136,6 @@ set(SOURCES
     gui/coverdialog/coverdialog.cpp
     gui/coverdialog/asynclistwidgetitem.cpp
     gui/tageditor/tageditor.cpp
-
-    converter/wavheader.cpp
-    converter/decoder.cpp
-    converter/converter.cpp
-    converter/splitter.cpp
-    converter/encoder.cpp
-    converter/gain.cpp
-    converter/worker.cpp
-    converter/discpipline.cpp
-    converter/cuecreator.cpp
-    converter/copycover.cpp
-    converter/resampler.cpp
 
     formats/informat.cpp
     formats/in_ape.cpp
@@ -295,8 +271,10 @@ if (FLATPAK_BUNDLE)
 	add_definitions(-DFLATPAK_BUNDLE=Yes)
 endif()
 
+add_subdirectory(converter)
+
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${QM_FILES} ${QRC_SOURCES} ${ENGINES_CPP} ${ENGINES_H} ${RESOURCES} ${TRANSLATORS_INFO_QRC})
-target_link_libraries(${PROJECT_NAME} ${LIBRARIES} ${QT_LIBRARIES} Qt5::Widgets Qt5::Network)
+target_link_libraries(${PROJECT_NAME} ${LIBRARIES} converter ${QT_LIBRARIES} Qt5::Widgets Qt5::Network)
 
 
 function(CREATE_DESKTOP_FILE _IN_FILE _OUT_FILE _TRANSLATIONS_PATTERN)

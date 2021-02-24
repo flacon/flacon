@@ -243,7 +243,7 @@ void Settings::init()
     setDefaultValue(ConfigureDialog_Width, 645);
     setDefaultValue(ConfigureDialog_Height, 425);
 
-    mPrograms << Resampler::programName();
+    mPrograms << Conv::Resampler::programName();
 
     foreach (OutFormat *format, OutFormat::allFormats()) {
         QHashIterator<QString, QVariant> i(format->defaultParameters());

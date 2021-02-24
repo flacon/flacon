@@ -81,7 +81,7 @@ private:
  ************************************************/
 QString calcAudioHash(const QString &fileName)
 {
-    Decoder decoder;
+    Conv::Decoder decoder;
     try {
         decoder.open(fileName);
     }
@@ -316,12 +316,12 @@ void createWavFile(const QString &fileName, const QString &header, const int dur
 /************************************************
  *
  ************************************************/
-class TestWavHeader : public WavHeader
+class TestWavHeader : public Conv::WavHeader
 {
 public:
     TestWavHeader(quint16 bitsPerSample, quint32 sampleRate, quint16 numChannels, uint durationSec)
     {
-        mFormat        = WavHeader::Format_PCM;
+        mFormat        = Conv::WavHeader::Format_PCM;
         mNumChannels   = numChannels;
         mSampleRate    = sampleRate;
         mBitsPerSample = bitsPerSample;

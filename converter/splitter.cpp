@@ -31,8 +31,10 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(LOG, "Converter");
+Q_LOGGING_CATEGORY(LOG, "Converter")
 }
+
+using namespace Conv;
 
 /************************************************
  *

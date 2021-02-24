@@ -187,19 +187,19 @@ int runConsole(int argc, char *argv[], const QStringList &files)
         return 10;
 
     ConsoleOut out;
-    Converter  converter;
+    Conv::Converter  converter;
     if (!quiet) {
-        QObject::connect(&converter, &Converter::started,
+        QObject::connect(&converter, &Conv::Converter::started,
                          &out, &ConsoleOut::converterStarted);
 
-        QObject::connect(&converter, &Converter::finished,
+        QObject::connect(&converter, &Conv::Converter::finished,
                          &out, &ConsoleOut::converterFinished);
 
-        QObject::connect(&converter, &Converter::destroyed,
+        QObject::connect(&converter, &Conv::Converter::destroyed,
                          &out, &ConsoleOut::printStatistic);
 
         if (progress) {
-            QObject::connect(&converter, &Converter::trackProgress,
+            QObject::connect(&converter, &Conv::Converter::trackProgress,
                              &out, &ConsoleOut::trackProgress);
         }
     }

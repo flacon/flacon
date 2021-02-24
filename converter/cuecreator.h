@@ -34,6 +34,8 @@
 class Disc;
 class Track;
 
+namespace Conv {
+
 class CueCreator
 {
 public:
@@ -60,4 +62,5 @@ private:
     void writeTrackTag(const Track *track, const QString &prefix, TagId tagId);
 };
 
+} // namepace
 #endif // CUECREATOR_H

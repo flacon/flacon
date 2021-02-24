@@ -102,7 +102,7 @@ protected:
     bool event(QEvent *event) override;
 
 private:
-    QPointer<Converter> mConverter;
+    QPointer<Conv::Converter> mConverter;
     Scanner *           mScanner;
     QString             getOpenFileFilter(bool includeAudio, bool includeCue);
 
@@ -113,7 +113,7 @@ private:
     void loadSettings();
     void saveSettings();
 
-    void startConvert(const Converter::Jobs &jobs);
+    void startConvert(const Conv::Converter::Jobs &jobs);
 
     QIcon loadMainIcon();
 

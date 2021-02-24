@@ -29,6 +29,8 @@
 #include <QString>
 class Disc;
 
+namespace Conv {
+
 class CopyCover
 {
 public:
@@ -47,5 +49,7 @@ private:
     bool copyImage(const QString &outFileName);
     bool resizeImage(const QString &outFileName);
 };
+
+} // namespace
 
 #endif // COPYCOVER_H

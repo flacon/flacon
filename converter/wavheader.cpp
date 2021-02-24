@@ -30,6 +30,8 @@
 #include <QtEndian>
 #include <QDebug>
 
+using namespace Conv;
+
 static const char *WAV_RIFF = "RIFF";
 static const char *WAV_WAVE = "WAVE";
 static const char *WAV_FMT  = "fmt ";

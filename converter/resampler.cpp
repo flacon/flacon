@@ -28,6 +28,8 @@
 
 #include <QDir>
 
+using namespace Conv;
+
 Resampler::Resampler()
 {
 }

@@ -45,13 +45,15 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(LOG, "Converter");
+Q_LOGGING_CATEGORY(LOG, "Converter")
 }
+
+using namespace Conv;
 
 /************************************************
  *
  ************************************************/
-class WorkerThread : public QThread
+class Conv::WorkerThread : public QThread
 {
 public:
     explicit WorkerThread(Worker *worker, QObject *parent = nullptr) :

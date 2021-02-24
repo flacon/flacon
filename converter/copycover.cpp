@@ -31,6 +31,8 @@
 #include <QImageReader>
 #include <QImageWriter>
 
+using namespace Conv;
+
 /************************************************
  *
  ************************************************/

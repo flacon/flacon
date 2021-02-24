@@ -33,6 +33,9 @@
 
 class Disc;
 class Project;
+
+namespace Conv {
+
 class WorkerThread;
 
 class DiscPipeline : public QObject
@@ -79,5 +82,7 @@ private:
     class Data;
     Data *mData;
 };
+
+} // Namespace
 
 #endif // DISCPIPLINE_H

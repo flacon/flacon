@@ -33,6 +33,8 @@
 class Disc;
 class Track;
 
+namespace Conv {
+
 class Gain : public Worker
 {
     Q_OBJECT
@@ -54,4 +56,6 @@ private:
     const Profile      mProfile;
 };
 
+
+} // namespace
 #endif // GAIN_H

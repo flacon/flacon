@@ -85,5 +85,5 @@ find_package(Qt5 REQUIRED
 
 
 add_executable(${PROJECT_NAME} ${TEST_HEADERS} ${TEST_SOURCES})
-target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES}  ${LIBRARIES} Qt5::Core Qt5::Test Qt5::Widgets Qt5::Network)
+target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES}  ${LIBRARIES} converter Qt5::Core Qt5::Test Qt5::Widgets Qt5::Network)
 add_test(${PROJECT_NAME} ${PROJECT_NAME})

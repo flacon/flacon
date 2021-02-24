@@ -28,6 +28,8 @@
 
 #include <QProcess>
 
+namespace Conv {
+
 class Resampler
 {
 public:
@@ -37,4 +39,5 @@ public:
     static QStringList args(int bitsPerSample, int sampleRate, const QString &outFile);
 };
 
+} // namespace
 #endif // RESAMPLER_H

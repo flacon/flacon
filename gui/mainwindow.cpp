@@ -344,7 +344,7 @@ void MainWindow::setControlsEnable()
 
     bool tracksSelected = !trackView->selectedTracks().isEmpty();
     bool discsSelected  = !trackView->selectedDiscs().isEmpty();
-    bool canConvert     = Converter::canConvert();
+    bool canConvert     = Conv::Converter::canConvert();
 
     bool canDownload = false;
     foreach (const Disc *disc, trackView->selectedDiscs())
@@ -516,9 +516,9 @@ void MainWindow::setDiscTagInt()
  ************************************************/
 void MainWindow::startConvertAll()
 {
-    Converter::Jobs jobs;
+    Conv::Converter::Jobs jobs;
     for (int d = 0; d < project->count(); ++d) {
-        Converter::Job job;
+        Conv::Converter::Job job;
         job.disc = project->disc(d);
         for (int t = 0; t < job.disc->count(); ++t)
             job.tracks << job.disc->track(t);
@@ -533,9 +533,9 @@ void MainWindow::startConvertAll()
  ************************************************/
 void MainWindow::startConvertSelected()
 {
-    Converter::Jobs jobs;
+    Conv::Converter::Jobs jobs;
     for (Disc *disc : trackView->selectedDiscs()) {
-        Converter::Job job;
+        Conv::Converter::Job job;
         job.disc = disc;
 
         for (int t = 0; t < disc->count(); ++t) {
@@ -553,7 +553,7 @@ void MainWindow::startConvertSelected()
 /************************************************
 
  ************************************************/
-void MainWindow::startConvert(const Converter::Jobs &jobs)
+void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
 {
     if (!Settings::i()->currentProfile().isValid())
         return;
@@ -581,14 +581,14 @@ void MainWindow::startConvert(const Converter::Jobs &jobs)
     }
 
     trackView->setColumnWidth(TrackView::ColumnPercent, 200);
-    mConverter = new Converter();
-    connect(mConverter, &Converter::finished,
+    mConverter = new Conv::Converter();
+    connect(mConverter, &Conv::Converter::finished,
             this, &MainWindow::setControlsEnable);
 
-    connect(mConverter, &Converter::finished,
-            mConverter, &Converter::deleteLater);
+    connect(mConverter, &Conv::Converter::finished,
+            mConverter, &Conv::Converter::deleteLater);
 
-    connect(mConverter, &Converter::trackProgress,
+    connect(mConverter, &Conv::Converter::trackProgress,
             trackView->model(), &TrackViewModel::trackProgressChanged);
 
     mConverter->start(jobs, Settings::i()->currentProfile());

@@ -31,6 +31,8 @@
 
 class Disc;
 
+namespace Conv {
+
 class Worker : public QObject
 {
     Q_OBJECT
@@ -51,4 +53,5 @@ protected:
     bool deleteFile(const QString &fileName) const;
 };
 
+} // namespace
 #endif // WORKER_H

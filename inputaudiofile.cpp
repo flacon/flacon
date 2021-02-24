@@ -92,7 +92,7 @@ bool InputAudioFile_OLD::load()
     }
 
     try {
-        Decoder dec;
+        Conv::Decoder dec;
         dec.open(mFileName);
         mFormat = dec.audioFormat();
 
@@ -153,7 +153,7 @@ void InputAudioFile::Data::load(const QString &filePath)
     }
 
     try {
-        Decoder dec;
+        Conv::Decoder dec;
         dec.open(mFilePath);
         mFormat = dec.audioFormat();
 

@@ -35,6 +35,8 @@ class Track;
 class Project;
 class Track;
 
+namespace Conv {
+
 class Splitter : public Worker
 {
     Q_OBJECT
@@ -58,4 +60,5 @@ private:
     QList<const Track *> mTracks;
 };
 
+} // namespace
 #endif // SPLITTER_H

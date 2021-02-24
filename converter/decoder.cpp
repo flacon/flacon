@@ -33,6 +33,8 @@
 #include <QDir>
 #include <QDebug>
 
+using namespace Conv;
+
 static const int MAX_BUF_SIZE = 4096;
 static const int READ_DELAY   = 1000;
 

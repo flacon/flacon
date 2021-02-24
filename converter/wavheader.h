@@ -30,6 +30,8 @@
 #include <QIODevice>
 #include <QTime>
 
+namespace Conv {
+
 /************************************************
  * Info for format tags can be found at:
  *   http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html
@@ -121,6 +123,8 @@ private:
     void loadFmtChunk(QIODevice *stream, const quint32 chunkSize);
 };
 
-QDebug operator<<(QDebug dbg, const WavHeader &header);
+} // namespace
+
+QDebug operator<<(QDebug dbg, const Conv::WavHeader &header);
 
 #endif // WAVHEADER_H

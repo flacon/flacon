@@ -31,10 +31,13 @@
 #include <QDateTime>
 #include <QVector>
 
-class DiscPipeline;
 class Disc;
 class Track;
 class Profile;
+
+namespace Conv {
+
+class DiscPipeline;
 
 class Converter : public QObject
 {
@@ -73,4 +76,5 @@ private:
     bool check(const Profile &profile) const;
 };
 
+}
 #endif // CONVERTER_H

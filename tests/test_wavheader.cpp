@@ -51,7 +51,7 @@ void TestFlacon::testReadWavHeader()
         writeHexString(testdata, &data);
 
         data.seek(0);
-        WavHeader header(&data);
+        Conv::WavHeader header(&data);
 
         QCOMPARE(header.toByteArray().toHex(), data.buffer().toHex());
 
@@ -60,11 +60,11 @@ void TestFlacon::testReadWavHeader()
         QCOMPARE(QTime::fromMSecsSinceStartOfDay(header.duration()), expectedDuration);
 
         // Test copy operator
-        WavHeader copyOperator = header;
+        Conv::WavHeader copyOperator = header;
         QCOMPARE(copyOperator.toByteArray().toHex(), data.buffer().toHex());
 
         // Test copy constructor
-        WavHeader copyConstructor(header);
+        Conv::WavHeader copyConstructor(header);
         QCOMPARE(copyConstructor.toByteArray().toHex(), data.buffer().toHex());
     }
     catch (FlaconError &err) {
@@ -293,7 +293,7 @@ void TestFlacon::testResizeWavHeader()
         writeHexString(header, &data);
 
         data.seek(0);
-        WavHeader wavHeader(&data);
+        Conv::WavHeader wavHeader(&data);
         wavHeader.resizeData(dSize);
 
         QByteArray res          = wavHeader.toByteArray();

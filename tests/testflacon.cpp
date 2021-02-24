@@ -1328,12 +1328,12 @@ void TestFlacon::testCueIndex_data()
     QTest::newRow("HI 40:20:240 - 10:30:300") << "29:49.940";
 }
 
-class Test_DiscPipeline : public DiscPipeline
+class Test_DiscPipeline : public Conv::DiscPipeline
 {
 public:
     static int calcQuality(int input, int preferences, int formatMax)
     {
-        return DiscPipeline::calcQuality(input, preferences, formatMax);
+        return Conv::DiscPipeline::calcQuality(input, preferences, formatMax);
     }
 };
 

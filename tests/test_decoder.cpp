@@ -53,7 +53,7 @@ void TestFlacon::testDecoder()
     }
 
     // Flacon decoder ___________________________
-    Decoder decoder;
+    Conv::Decoder decoder;
     try {
         decoder.open(inputFile);
     }

@@ -32,6 +32,8 @@
 #include "profiles.h"
 class QProcess;
 
+namespace Conv {
+
 class Encoder : public Worker
 {
     Q_OBJECT
@@ -70,4 +72,5 @@ private:
     void runTwoProcess(QProcess *resampler, QProcess *encoder);
 };
 
+} //namespace
 #endif // ENCODER_H
