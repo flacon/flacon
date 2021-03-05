@@ -31,10 +31,15 @@ function(CREATE_PLIST_FILE _IN_FILE _OUT_FILE)
 endfunction()
 
 
+
 # Homebrew has issues, fix it
 macro(add_homebrew_qt_prefix_path)
     if (APPLE)
-        file (GLOB dirs  /usr/local/Cellar/qt/*)
+        if ( ${CMAKE_SYSTEM_PROCESSOR} STREQUAL arm64 ) 
+            file (GLOB dirs  /opt/homebrew/Cellar/qt@5/*)
+        else() 
+            file (GLOB dirs  /usr/local/Cellar/qt/*)
+        endif()
         list(APPEND CMAKE_PREFIX_PATH ${dirs})
     endif()
 endmacro()
