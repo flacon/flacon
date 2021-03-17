@@ -26,7 +26,7 @@
 #ifndef CONVERTER_H
 #define CONVERTER_H
 
-#include "types.h"
+#include "../types.h"
 #include <QObject>
 #include <QDateTime>
 #include <QVector>
@@ -70,8 +70,9 @@ private slots:
     void startThread();
 
 private:
-    int                     mThreadCount;
-    QVector<DiscPipeline *> mDiscPiplines;
+    class Data;
+
+    Data *mData = nullptr;
 
     bool check(const Profile &profile) const;
 };

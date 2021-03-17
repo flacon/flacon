@@ -39,12 +39,9 @@ using namespace Conv;
 /************************************************
  *
  ************************************************/
-Splitter::Splitter(const Disc *disc, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent) :
+Splitter::Splitter(const SplitterJob &job, QObject *parent) :
     Worker(parent),
-    mDisc(disc),
-    mWorkDir(workDir),
-    mExtractPregap(extractPregap),
-    mPreGapType(preGapType)
+    mJob(job)
 {
 }
 
@@ -56,81 +53,60 @@ void Splitter::run()
     static QAtomicInteger<quint32> globalUid(1);
     QString                        uid = QString("%1").arg(globalUid.fetchAndAddRelaxed(1), 4, 10, QLatin1Char('0'));
 
-    mCurrentTrack = nullptr;
-    Decoder decoder;
+    ConvTrack currentTrack;
+    Decoder   decoder;
 
     try {
-        decoder.open(mDisc->audioFileName_OLD());
+        decoder.open(mJob.audio.filePath());
     }
     catch (FlaconError &err) {
-        emit error(mTracks.first(),
+        emit error(mJob.track(0),
                    tr("I can't read <b>%1</b>:<br>%2",
                       "Splitter error. %1 is a file name, %2 is a system error text.")
-                           .arg(mDisc->audioFileName_OLD())
+                           .arg(mJob.audio.fileName())
                            .arg(err.what()));
         return;
     }
 
     // Extract pregap to separate file ....................
-    if (mExtractPregap) {
-        mCurrentTrack        = mDisc->preGapTrack();
-        CueIndex start       = mDisc->track(0)->cueIndex(0);
-        CueIndex end         = mDisc->track(0)->cueIndex(1);
-        QString  outFileName = QString("%1/pregap-%2.wav").arg(mWorkDir).arg(uid);
+    if (mJob.preGapType == PreGapType::ExtractToFile) {
+        currentTrack        = mJob.pregapTrack;
+        QString outFileName = QString("%1/pregap-%2.wav").arg(mJob.outDir).arg(uid);
 
         try {
-            decoder.extract(start, end, outFileName);
+            decoder.extract(currentTrack.start(), currentTrack.end(), outFileName);
         }
         catch (FlaconError &err) {
             qWarning() << "Splitter error for pregap track : " << err.what();
             deleteFile(outFileName);
-            emit error(mCurrentTrack, err.what());
+            emit error(currentTrack, err.what());
             return;
         }
 
-        emit trackReady(mCurrentTrack, outFileName);
+        emit trackReady(currentTrack, outFileName);
     }
     // Extract pregap to separate file ....................
 
     // We havn't pregap in the GUI and pregap is short so we suppress progress for pregap track
-    connect(&decoder, SIGNAL(progress(int)),
-            this, SLOT(decoderProgress(int)));
+    connect(&decoder, &Decoder::progress, [this, &currentTrack](int percent) {
+        emit trackProgress(currentTrack, TrackState::Splitting, percent);
+    });
 
-    qCDebug(LOG) << "Start splitting" << mDisc->count() << "tracks from" << mDisc->audioFileName_OLD();
-    for (int i = 0; i < mDisc->count(); ++i) {
-        mCurrentTrack = mDisc->track(i);
-        if (!mTracks.contains(mCurrentTrack))
-            continue;
-
-        QString outFileName = QString("%1/track-%2_%3.wav").arg(mWorkDir).arg(uid).arg(i + 1, 2, 10, QLatin1Char('0'));
-
-        CueIndex start, end;
-        if (i == 0 && mPreGapType == PreGapType::AddToFirstTrack)
-            start = CueTime("00:00:00");
-        else
-            start = mDisc->track(i)->cueIndex(1);
-
-        if (i < mDisc->count() - 1)
-            end = mDisc->track(i + 1)->cueIndex(01);
+    qCDebug(LOG) << "Start splitting" << mJob.tracks.count() << "tracks from" << mJob.audio.fileName();
+    for (int i = 0; i < mJob.tracks.count(); ++i) {
+        currentTrack        = mJob.track(i);
+        QString outFileName = QString("%1/track-%2_%3.wav").arg(mJob.outDir).arg(uid).arg(i + 1, 2, 10, QLatin1Char('0'));
 
         try {
-            decoder.extract(start, end, outFileName);
+            decoder.extract(currentTrack.start(), currentTrack.end(), outFileName);
         }
         catch (FlaconError &err) {
-            qWarning() << "Splitter error for track " << mCurrentTrack->trackNum() << ": " << err.what();
+            qWarning() << "Splitter error for track " << currentTrack.trackNum() << ": " << err.what();
             deleteFile(outFileName);
-            emit error(mCurrentTrack, err.what());
+            emit error(currentTrack, err.what());
         }
 
-        qCDebug(LOG) << "Splitter trackReady:" << *mCurrentTrack << outFileName;
-        emit trackReady(mCurrentTrack, outFileName);
+        qCDebug(LOG) << "Splitter trackReady:" << currentTrack << outFileName;
+        emit trackReady(currentTrack, outFileName);
     }
-}
-
-/************************************************
- *
- ************************************************/
-void Splitter::decoderProgress(int percent)
-{
-    emit trackProgress(mCurrentTrack, TrackState::Splitting, percent);
 }

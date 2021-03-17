@@ -30,53 +30,55 @@
 #include <QTemporaryDir>
 #include "track.h"
 #include "converter.h"
+#include "convertertypes.h"
+#include "profiles.h"
 
-class Disc;
 class Project;
 
 namespace Conv {
 
 class WorkerThread;
 
+struct DiscPipelineJob
+{
+    ConvTracks tracks;
+    QString    workDir;
+    GainType   gainType = GainType::Disable;
+
+    QString coverImage;
+    int     coverImageSize = 0;
+
+    Profile       profile;
+    EncoderFormat format;
+};
+
 class DiscPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiscPipeline(const Converter::Job &job, const Profile &profile, QObject *parent = nullptr);
+    explicit DiscPipeline(const DiscPipelineJob &job, QObject *parent = nullptr);
     virtual ~DiscPipeline();
 
-    bool init();
+    void init() noexcept(false);
     void startWorker(int *splitterCount, int *count);
     void stop();
     bool isRunning() const;
     int  runningThreadCount() const;
-
-    CoverMode coverMode() const;
-    void      setCoverMode(CoverMode value);
-
-    int  coverImageSize() const;
-    void setCoverImageSize(int value);
-
-    QString tmpDir() const;
-    void    setTmpDir(QString value);
 
 signals:
     void readyStart();
     void threadFinished();
     void finished();
     void threadQuit();
-    void trackProgressChanged(const Track &track, TrackState status, Percent percent);
+    void trackProgressChanged(const Conv::ConvTrack &track, TrackState status, Percent percent);
 
 private slots:
-    void trackProgress(const Track *track, TrackState state, int percent);
-    void trackError(const Track *track, const QString &message);
+    void trackProgress(const Conv::ConvTrack &track, TrackState state, int percent);
+    void trackError(const Conv::ConvTrack &track, const QString &message);
 
-    void addEncoderRequest(const Track *track, const QString &inputFile);
-    void addGainRequest(const Track *track, const QString &fileName);
-    void trackDone(const Track *track, const QString &outFileName);
-
-protected:
-    static int calcQuality(int input, int preferences, int formatMax);
+    void addEncoderRequest(const Conv::ConvTrack &track, const QString &inputFile);
+    void addGainRequest(const Conv::ConvTrack &track, const QString &fileName);
+    void trackDone(const Conv::ConvTrack &track, const QString &outFileName);
 
 private:
     class Data;

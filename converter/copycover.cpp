@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "copycover.h"
-#include "disc.h"
 #include <QFile>
 #include <QDir>
 #include <QImage>
@@ -36,8 +35,8 @@ using namespace Conv;
 /************************************************
  *
  ************************************************/
-CopyCover::CopyCover(const Disc *disc, const QString &outDir, const QString &outBaseName, int newSize) :
-    mDisc(disc),
+CopyCover::CopyCover(const QString &inFile, const QString &outDir, const QString &outBaseName, int newSize) :
+    mInFile(inFile),
     mSize(newSize),
     mDir(outDir),
     mBaseName(outBaseName)
@@ -49,10 +48,10 @@ CopyCover::CopyCover(const Disc *disc, const QString &outDir, const QString &out
  ************************************************/
 bool CopyCover::run()
 {
-    if (mDisc->coverImageFile().isEmpty())
+    if (mInFile.isEmpty())
         return true;
 
-    QFileInfo inFile(mDisc->coverImageFile());
+    QFileInfo inFile(mInFile);
 
     QString outName = QDir(mDir).absoluteFilePath(QString("%1.%2").arg(mBaseName).arg(inFile.suffix()));
 
@@ -69,13 +68,18 @@ bool CopyCover::run()
  ************************************************/
 bool CopyCover::copyImage(const QString &outFileName)
 {
-    QFile f(mDisc->coverImageFile());
+    QFile f(mInFile);
     bool  res = f.copy(outFileName);
 
     if (!res)
         mErrorString = QObject::tr("I can't copy cover file <b>%1</b>:<br>%2").arg(outFileName, f.errorString());
 
-    const QFileDevice::Permissions perm = QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::ReadUser | QFileDevice::WriteUser | QFileDevice::ReadGroup | QFileDevice::WriteGroup | QFileDevice::ReadOther;
+    // clang-format off
+    const QFileDevice::Permissions perm = QFileDevice::ReadOwner | QFileDevice::WriteOwner |
+                                          QFileDevice::ReadUser  | QFileDevice::WriteUser  |
+                                          QFileDevice::ReadGroup | QFileDevice::WriteGroup |
+                                          QFileDevice::ReadOther ;
+    // clang-format on
 
     res = QFile::setPermissions(outFileName, perm);
     if (!res)
@@ -89,12 +93,12 @@ bool CopyCover::copyImage(const QString &outFileName)
  ************************************************/
 bool CopyCover::resizeImage(const QString &outFileName)
 {
-    QImageReader reader(mDisc->coverImageFile());
+    QImageReader reader(mInFile);
     QImage       img = reader.read();
     if (img.isNull()) {
         mErrorString = QObject::tr("I can't read cover image <b>%1</b>:<br>%2",
                                    "%1 - is a file name, %2 - an error text")
-                               .arg(mDisc->coverImageFile())
+                               .arg(mInFile)
                                .arg(reader.errorString());
 
         return false;

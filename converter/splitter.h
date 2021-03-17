@@ -26,38 +26,33 @@
 #ifndef SPLITTER_H
 #define SPLITTER_H
 
+#include "convertertypes.h"
 #include "worker.h"
-#include "types.h"
-#include "converter.h"
-
-class Disc;
-class Track;
-class Project;
-class Track;
 
 namespace Conv {
+
+struct SplitterJob
+{
+    InputAudioFile audio;
+    ConvTracks     tracks;
+    PreGapType     preGapType = PreGapType::Skip;
+    ConvTrack      pregapTrack;
+    QString        outDir;
+
+    const ConvTrack &track(int index) const { return tracks.at(index); }
+};
 
 class Splitter : public Worker
 {
     Q_OBJECT
 public:
-    Splitter(const Disc *disc, const QString &workDir, bool extractPregap, PreGapType preGapType, QObject *parent = nullptr);
-
-    void addTrack(const Track *track) { mTracks << track; }
+    Splitter(const SplitterJob &job, QObject *parent = nullptr);
 
 public slots:
     void run() override;
 
-private slots:
-    void decoderProgress(int percent);
-
 private:
-    const Disc *         mDisc;
-    const QString        mWorkDir;
-    const bool           mExtractPregap;
-    const PreGapType     mPreGapType;
-    const Track *        mCurrentTrack = nullptr;
-    QList<const Track *> mTracks;
+    const SplitterJob mJob;
 };
 
 } // namespace

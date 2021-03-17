@@ -86,15 +86,8 @@ private:
 
 struct GainRequest
 {
-    const Track *track;
-    QString      inputFile;
-};
-
-struct EncoderRequest
-{
-    const Track *track;
-    QString      inputFile;
-    QString      outFile;
+    ConvTrack track;
+    QString   inputFile;
 };
 
 /************************************************
@@ -103,44 +96,37 @@ struct EncoderRequest
 class DiscPipeline::Data
 {
 public:
-    Data(const Converter::Job &job, const Profile &profile, DiscPipeline *pipeline) :
-        pipeline(pipeline),
-        job(job),
-        profile(profile)
+    Data(const DiscPipelineJob &job, DiscPipeline *pipeline) :
+        mPipeline(pipeline),
+        mJob(job)
     {
     }
 
     ~Data()
     {
-        delete workDir;
+        delete mTmpDir;
     }
 
-    DiscPipeline *                   pipeline;
-    Converter::Job                   job;
-    const Profile                    profile;
-    bool                             needStartSplitter = true;
-    QHash<const Track *, TrackState> trackStates;
-    QList<EncoderRequest>            encoderRequests;
-    QList<GainRequest>               gainRequests;
-    bool                             interrupted    = false;
-    PreGapType                       preGapType     = PreGapType::Skip;
-    bool                             extractPregap  = false;
-    int                              trackCount     = 0;
-    CoverMode                        coverMode      = CoverMode::Disable;
-    int                              coverImageSize = 0;
-    QString                          tmpDirName;
-    QTemporaryDir *                  workDir = nullptr;
-    QVector<WorkerThread *>          threads;
+    DiscPipeline *           mPipeline;
+    DiscPipelineJob          mJob;
+    QMap<TrackId, ConvTrack> mTracks;
+    QList<SplitterJob>       mSplitterRequests;
+    QList<EncoderJob>        mEncoderRequests;
+    QList<GainRequest>       mGainRequests;
+    bool                     mInterrupted = false;
+    QTemporaryDir *          mTmpDir      = nullptr;
+    QVector<WorkerThread *>  mThreads;
 
-    bool init();
     void interrupt(TrackState state);
-    void startSplitterThread();
-    void startEncoderThread(const EncoderRequest &req);
+
+    void startEncoderThread(const EncoderJob &req);
     void startTrackGainThread(const GainRequest &req);
     void startAlbumGainThread(QList<GainRequest> &reqs);
     bool createDir(const QString &dirName) const;
-    bool createCue() const;
     bool copyCoverImage() const;
+
+    void addSpliterRequest(const InputAudioFile &audio);
+    void startSplitterThread(const SplitterJob &req);
 };
 
 /************************************************
@@ -170,18 +156,41 @@ bool DiscPipeline::Data::createDir(const QString &dirName) const
 /************************************************
  *
  ************************************************/
-DiscPipeline::DiscPipeline(const Converter::Job &job, const Profile &profile, QObject *parent) :
-    QObject(parent),
-    mData(new Data(job, profile, this))
+void DiscPipeline::Data::addSpliterRequest(const InputAudioFile &audio)
 {
-    mData->preGapType = mData->profile.isCreateCue() ? mData->profile.preGapType() : PreGapType::Skip;
+    SplitterJob request;
+    request.audio  = audio;
+    request.outDir = mTmpDir->path();
+    //TODO: pregapTrack & parapType
+    for (const ConvTrack &t : mJob.tracks) {
+        if (t.isEnabled() && t.audioFile().filePath() == audio.filePath()) {
+            request.tracks << t;
+        }
+    }
 
-    // If the first track starts with zero second, doesn't make sense to create pregap track.
-    mData->extractPregap = (mData->preGapType == PreGapType::ExtractToFile && job.disc->track(0)->cueIndex(1).milliseconds() > 0);
+    mSplitterRequests << request;
+}
 
-    mData->trackCount = mData->job.tracks.count();
-    if (mData->extractPregap)
-        mData->trackCount += 1;
+/************************************************
+ *
+ ************************************************/
+DiscPipeline::DiscPipeline(const DiscPipelineJob &job, QObject *parent) :
+    QObject(parent),
+    mData(new Data(job, this))
+{
+    // A disk can contain several audio files,
+    // so we create several splitter requests.
+    QString prev;
+    for (const ConvTrack &t : job.tracks) {
+        if (!t.isEnabled()) {
+            continue;
+        }
+
+        if (t.audioFile().filePath() != prev) {
+            mData->addSpliterRequest(t.audioFile());
+            prev = t.audioFile().filePath();
+        }
+    }
 }
 
 /************************************************
@@ -195,38 +204,29 @@ DiscPipeline::~DiscPipeline()
 /************************************************
  *
  ************************************************/
-bool DiscPipeline::init()
+void DiscPipeline::init()
 {
-    return mData->init();
-}
-
-/************************************************
- *
- ************************************************/
-bool DiscPipeline::Data::init()
-{
-    QString dir = !tmpDirName.isEmpty() ? tmpDirName : QFileInfo(job.tracks.first()->resultFilePath()).dir().absolutePath();
-
+    QString dir = QFileInfo(mData->mJob.workDir).dir().absolutePath();
     qCDebug(LOG) << "Create tmp dir" << dir;
 
-    if (!createDir(dir)) {
-        qWarning() << "Can't create tmp dir" << dir;
-        return false;
+    if (!mData->createDir(dir)) {
+        throw FlaconError(tr("Can't create tmp dir %1").arg(dir));
     }
 
-    workDir = new QTemporaryDir(QString("%1/tmp").arg(dir));
-    workDir->setAutoRemove(true);
+    mData->mTmpDir = new QTemporaryDir(QString("%1/tmp").arg(dir));
+    mData->mTmpDir->setAutoRemove(true);
 
-    foreach (const Track *track, job.tracks) {
-        trackStates.insert(track, TrackState::NotRunning);
+    for (const ConvTrack &track : mData->mJob.tracks) {
+        if (!track.isEnabled()) {
+            continue;
+        }
 
-        if (!createDir(QFileInfo(track->resultFilePath()).absoluteDir().path())) {
-            qWarning() << "Can't create out dir" << QFileInfo(track->resultFilePath()).absoluteDir().path();
-            return false;
+        mData->mTracks[track.id()] = track;
+
+        if (!mData->createDir(QFileInfo(track.resultFilePath()).absoluteDir().path())) {
+            throw FlaconError(tr("Can't create output dir %1").arg(QFileInfo(track.resultFilePath()).absoluteDir().path()));
         }
     }
-
-    return true;
 }
 
 /************************************************
@@ -241,54 +241,39 @@ bool DiscPipeline::Data::init()
  ************************************************/
 void DiscPipeline::startWorker(int *splitterCount, int *count)
 {
-    if (mData->interrupted)
+    if (mData->mInterrupted) {
         return;
+    }
 
-    if (*count <= 0)
+    if (*count <= 0) {
         return;
+    }
 
-    if (*splitterCount > 0 && mData->needStartSplitter) {
-        mData->startSplitterThread();
+    if (*splitterCount > 0 && !mData->mSplitterRequests.isEmpty()) {
+        mData->startSplitterThread(mData->mSplitterRequests.takeFirst());
         --(*splitterCount);
         --(*count);
         return;
     }
 
-    if (mData->profile.gainType() == GainType::Track) {
-        while (*count > 0 && !mData->gainRequests.isEmpty()) {
-            mData->startTrackGainThread(mData->gainRequests.takeFirst());
+    if (mData->mJob.gainType == GainType::Track) {
+        while (*count > 0 && !mData->mGainRequests.isEmpty()) {
+            mData->startTrackGainThread(mData->mGainRequests.takeFirst());
             --(*count);
         }
     }
-    else if (mData->profile.gainType() == GainType::Album) {
-        if (*count > 0 && mData->gainRequests.count() == mData->trackCount) {
-            mData->startAlbumGainThread(mData->gainRequests);
-            mData->gainRequests.clear();
+    else if (mData->mJob.gainType == GainType::Album) {
+        if (*count > 0 && mData->mGainRequests.count() == mData->mTracks.count()) {
+            mData->startAlbumGainThread(mData->mGainRequests);
+            mData->mGainRequests.clear();
             --(*count);
         }
     }
 
-    while (*count > 0 && !mData->encoderRequests.isEmpty()) {
-        mData->startEncoderThread(mData->encoderRequests.takeFirst());
+    while (*count > 0 && !mData->mEncoderRequests.isEmpty()) {
+        mData->startEncoderThread(mData->mEncoderRequests.takeFirst());
         --(*count);
     }
-}
-
-/************************************************
- *
- ************************************************/
-bool DiscPipeline::Data::createCue() const
-{
-    if (!profile.isCreateCue())
-        return true;
-
-    CueCreator cue(job.disc, preGapType, profile.cueFileName());
-    if (!cue.write()) {
-        pipeline->trackError(job.tracks.first(), cue.errorString());
-        return false;
-    }
-
-    return true;
 }
 
 /************************************************
@@ -296,20 +281,14 @@ bool DiscPipeline::Data::createCue() const
  ************************************************/
 bool DiscPipeline::Data::copyCoverImage() const
 {
-    if (coverMode == CoverMode::Disable)
-        return true;
+    QString dir = QFileInfo(mJob.tracks.first().resultFilePath()).dir().absolutePath();
 
-    int size = 0;
-    if (coverMode == CoverMode::Scale)
-        size = coverImageSize;
-
-    QString dir = QFileInfo(job.tracks.first()->resultFilePath()).dir().absolutePath();
-
-    CopyCover copyCover(job.disc, dir, "cover", size);
+    CopyCover copyCover(mJob.coverImage, dir, "cover", mJob.coverImageSize);
     bool      res = copyCover.run();
 
-    if (!res)
+    if (!res) {
         Messages::error(copyCover.errorString());
+    }
 
     return res;
 }
@@ -317,81 +296,49 @@ bool DiscPipeline::Data::copyCoverImage() const
 /************************************************
  *
  ************************************************/
-void DiscPipeline::Data::startSplitterThread()
+void DiscPipeline::Data::startSplitterThread(const SplitterJob &req)
 {
-    Splitter *worker = new Splitter(job.disc, workDir->path(), extractPregap, preGapType);
-    for (const Track *t : job.tracks)
-        worker->addTrack(t);
+    Splitter *    worker = new Splitter(req);
+    WorkerThread *thread = new WorkerThread(worker, mPipeline);
 
-    WorkerThread *thread = new WorkerThread(worker, pipeline);
+    connect(mPipeline, &DiscPipeline::threadQuit, thread, &Conv::WorkerThread::terminate);
+    connect(worker, &Splitter::trackProgress, mPipeline, &DiscPipeline::trackProgress);
+    connect(worker, &Worker::error, mPipeline, &DiscPipeline::trackError);
+    connect(worker, &Splitter::trackReady, mPipeline, &DiscPipeline::addEncoderRequest);
+    connect(thread, &Conv::WorkerThread::finished, mPipeline, &DiscPipeline::threadFinished);
 
-    connect(pipeline, SIGNAL(threadQuit()),
-            thread, SLOT(terminate()));
-
-    connect(worker, SIGNAL(trackProgress(const Track *, TrackState, int)),
-            pipeline, SLOT(trackProgress(const Track *, TrackState, int)));
-
-    connect(worker, SIGNAL(error(const Track *, QString)),
-            pipeline, SLOT(trackError(const Track *, QString)));
-
-    connect(worker, SIGNAL(trackReady(const Track *, QString)),
-            pipeline, SLOT(addEncoderRequest(const Track *, QString)));
-
-    connect(thread, SIGNAL(finished()),
-            pipeline, SIGNAL(threadFinished()));
-
-    threads << thread;
+    mThreads << thread;
     thread->start();
 
-    needStartSplitter = false;
-    trackStates.insert(job.tracks.first(), TrackState::Splitting);
+    mTracks[req.tracks.first().id()].setState(TrackState::Splitting);
 
-    createCue();
-    copyCoverImage();
+    if (mJob.coverImage.isEmpty()) {
+        copyCoverImage();
+    }
 }
 
 /************************************************
  *
  ************************************************/
-void DiscPipeline::Data::startEncoderThread(const EncoderRequest &req)
+void DiscPipeline::Data::startEncoderThread(const EncoderJob &req)
 {
-    Encoder *worker = new Encoder(req.track, req.inputFile, req.outFile, profile);
+    Encoder *     worker = new Encoder(req);
+    WorkerThread *thread = new WorkerThread(worker, mPipeline);
 
-    // If the original quality is worse than requested, leave it as is.
-    worker->setBitsPerSample(calcQuality(
-            job.disc->audioFile_OLD()->bitsPerSample(),
-            profile.bitsPerSample(),
-            int(profile.maxBitPerSample())));
+    connect(mPipeline, &DiscPipeline::threadQuit, thread, &Conv::WorkerThread::terminate);
+    connect(worker, &Encoder::trackProgress, mPipeline, &DiscPipeline::trackProgress);
+    connect(worker, &Encoder::error, mPipeline, &DiscPipeline::trackError);
 
-    worker->setSampleRate(calcQuality(
-            job.disc->audioFile_OLD()->sampleRate(),
-            profile.sampleRate(),
-            int(profile.maxSampleRate())));
-
-    WorkerThread *thread = new WorkerThread(worker, pipeline);
-
-    connect(pipeline, SIGNAL(threadQuit()),
-            thread, SLOT(terminate()));
-
-    connect(worker, SIGNAL(trackProgress(const Track *, TrackState, int)),
-            pipeline, SLOT(trackProgress(const Track *, TrackState, int)));
-
-    connect(worker, SIGNAL(error(const Track *, QString)),
-            pipeline, SLOT(trackError(const Track *, QString)));
-
-    if (profile.gainType() == GainType::Disable) {
-        connect(worker, SIGNAL(trackReady(const Track *, QString)),
-                pipeline, SLOT(trackDone(const Track *, QString)));
+    if (mJob.gainType == GainType::Disable) {
+        connect(worker, &Encoder::trackReady, mPipeline, &DiscPipeline::trackDone);
     }
     else {
-        connect(worker, SIGNAL(trackReady(const Track *, QString)),
-                pipeline, SLOT(addGainRequest(const Track *, QString)));
+        connect(worker, &Encoder::trackReady, mPipeline, &DiscPipeline::addGainRequest);
     }
 
-    connect(thread, SIGNAL(finished()),
-            pipeline, SIGNAL(threadFinished()));
+    connect(thread, &Conv::WorkerThread::finished, mPipeline, &DiscPipeline::threadFinished);
 
-    threads << thread;
+    mThreads << thread;
     thread->start();
 }
 
@@ -400,27 +347,18 @@ void DiscPipeline::Data::startEncoderThread(const EncoderRequest &req)
  ************************************************/
 void DiscPipeline::Data::startTrackGainThread(const GainRequest &req)
 {
-    Gain *worker = new Gain(profile);
+    Gain *worker = new Gain(mJob.profile);
     worker->addTrack(req.track, req.inputFile);
 
-    WorkerThread *thread = new WorkerThread(worker, pipeline);
+    WorkerThread *thread = new WorkerThread(worker, mPipeline);
 
-    connect(pipeline, SIGNAL(threadQuit()),
-            thread, SLOT(terminate()));
+    connect(mPipeline, &DiscPipeline::threadQuit, thread, &Conv::WorkerThread::terminate);
+    connect(worker, &Gain::trackProgress, mPipeline, &DiscPipeline::trackProgress);
+    connect(worker, &Gain::error, mPipeline, &DiscPipeline::trackError);
+    connect(worker, &Gain::trackReady, mPipeline, &DiscPipeline::trackDone);
+    connect(thread, &Conv::WorkerThread::finished, mPipeline, &DiscPipeline::threadFinished);
 
-    connect(worker, SIGNAL(trackProgress(const Track *, TrackState, int)),
-            pipeline, SLOT(trackProgress(const Track *, TrackState, int)));
-
-    connect(worker, SIGNAL(error(const Track *, QString)),
-            pipeline, SLOT(trackError(const Track *, QString)));
-
-    connect(worker, SIGNAL(trackReady(const Track *, QString)),
-            pipeline, SLOT(trackDone(const Track *, QString)));
-
-    connect(thread, SIGNAL(finished()),
-            pipeline, SIGNAL(threadFinished()));
-
-    threads << thread;
+    mThreads << thread;
     thread->start();
 }
 
@@ -429,93 +367,77 @@ void DiscPipeline::Data::startTrackGainThread(const GainRequest &req)
  ************************************************/
 void DiscPipeline::Data::startAlbumGainThread(QList<GainRequest> &reqs)
 {
-    Gain *worker = new Gain(profile);
+    Gain *worker = new Gain(mJob.profile);
     for (const GainRequest &req : reqs) {
         worker->addTrack(req.track, req.inputFile);
     }
 
-    WorkerThread *thread = new WorkerThread(worker, pipeline);
-    connect(pipeline, SIGNAL(threadQuit()),
-            thread, SLOT(terminate()));
+    WorkerThread *thread = new WorkerThread(worker, mPipeline);
+    connect(mPipeline, &DiscPipeline::threadQuit, thread, &Conv::WorkerThread::terminate);
+    connect(worker, &Gain::trackProgress, mPipeline, &DiscPipeline::trackProgress);
+    connect(worker, &Gain::error, mPipeline, &DiscPipeline::trackError);
+    connect(worker, &Gain::trackReady, mPipeline, &DiscPipeline::trackDone);
+    connect(thread, &Conv::WorkerThread::finished, mPipeline, &DiscPipeline::threadFinished);
 
-    connect(worker, SIGNAL(trackProgress(const Track *, TrackState, int)),
-            pipeline, SLOT(trackProgress(const Track *, TrackState, int)));
-
-    connect(worker, SIGNAL(error(const Track *, QString)),
-            pipeline, SLOT(trackError(const Track *, QString)));
-
-    connect(worker, SIGNAL(trackReady(const Track *, QString)),
-            pipeline, SLOT(trackDone(const Track *, QString)));
-
-    connect(thread, SIGNAL(finished()),
-            pipeline, SIGNAL(threadFinished()));
-
-    threads << thread;
+    mThreads << thread;
     thread->start();
 }
 
 /************************************************
  *
  ************************************************/
-int DiscPipeline::calcQuality(int input, int preferences, int formatMax)
-{
-
-    int min = qMin(qMin(input, formatMax),
-                   (preferences ? preferences : std::numeric_limits<int>::max()));
-
-    if (min < input)
-        return min;
-    else
-        return 0;
-}
-
-/************************************************
- *
- ************************************************/
-void DiscPipeline::addEncoderRequest(const Track *track, const QString &inputFile)
+void DiscPipeline::addEncoderRequest(const ConvTrack &track, const QString &inputFile)
 {
     trackProgress(track, TrackState::Queued, 0);
-    QFileInfo trackFile(track->resultFilePath());
-    QString   outFile = QDir(mData->workDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
 
-    mData->encoderRequests.append({ track, inputFile, outFile });
+    EncoderJob job;
+    job.track     = track;
+    job.inputFile = inputFile;
+
+    QFileInfo trackFile(track.resultFilePath());
+    job.outFile = QDir(mData->mTmpDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
+    job.format  = mData->mJob.format;
+
+    mData->mEncoderRequests << job;
     emit readyStart();
 }
 
 /************************************************
  *
  ************************************************/
-void DiscPipeline::addGainRequest(const Track *track, const QString &fileName)
+void DiscPipeline::addGainRequest(const ConvTrack &track, const QString &fileName)
 {
-    if (mData->profile.gainType() == GainType::Album)
+    if (mData->mJob.gainType == GainType::Album) {
         trackProgress(track, TrackState::WaitGain, 0);
-    else
+    }
+    else {
         trackProgress(track, TrackState::Queued, 0);
+    }
 
-    mData->gainRequests.append({ track, fileName });
+    mData->mGainRequests.append({ track, fileName });
     emit readyStart();
 }
 
 /************************************************
  *
  ************************************************/
-void DiscPipeline::trackDone(const Track *track, const QString &outFileName)
+void DiscPipeline::trackDone(const ConvTrack &track, const QString &outFileName)
 {
     qCDebug(LOG) << "Track done: "
-                 << *track
+                 << track
                  << "outFileName:" << outFileName;
 
     // Track is ready, rename the file to the final name.
     // Remove old already existing file.
-    QFile::remove(track->resultFilePath());
+    QFile::remove(track.resultFilePath());
 
     QFile file(outFileName);
-    if (!file.rename(track->resultFilePath())) {
-        trackError(track, tr("I can't rename file:\n%1 to %2\n%3").arg(outFileName).arg(track->resultFilePath()).arg(file.errorString()));
+    if (!file.rename(track.resultFilePath())) {
+        trackError(track, tr("I can't rename file:\n%1 to %2\n%3").arg(outFileName).arg(track.resultFilePath()).arg(file.errorString()));
     }
 
-    mData->trackStates.insert(track, TrackState::OK);
-    emit trackProgressChanged(*track, TrackState::OK, 0);
+    mData->mTracks[track.id()].setState(TrackState::OK);
+    emit trackProgressChanged(track, TrackState::OK, 0);
     emit threadFinished();
 
     qCDebug(LOG) << "finished:" << (!isRunning());
@@ -529,12 +451,11 @@ void DiscPipeline::trackDone(const Track *track, const QString &outFileName)
  ************************************************/
 void DiscPipeline::Data::interrupt(TrackState state)
 {
-    interrupted = true;
-    encoderRequests.clear();
+    mInterrupted = true;
+    mEncoderRequests.clear();
 
-    QHash<const Track *, TrackState>::iterator it;
-    for (it = trackStates.begin(); it != trackStates.end(); ++it) {
-        switch (it.value()) {
+    for (ConvTrack &track : mTracks) {
+        switch (track.state()) {
             case TrackState::Splitting:
             case TrackState::Encoding:
             case TrackState::Queued:
@@ -542,8 +463,8 @@ void DiscPipeline::Data::interrupt(TrackState state)
             case TrackState::CalcGain:
             case TrackState::WriteGain:
             case TrackState::NotRunning:
-                it.value() = state;
-                emit pipeline->trackProgressChanged(*(it.key()), state, 0);
+                track.setState(state);
+                emit mPipeline->trackProgressChanged(track, state, 0);
                 break;
 
             case TrackState::Canceled:
@@ -570,10 +491,10 @@ void DiscPipeline::stop()
 /************************************************
 
  ************************************************/
-void DiscPipeline::trackError(const Track *track, const QString &message)
+void DiscPipeline::trackError(const ConvTrack &track, const QString &message)
 {
-    mData->trackStates.insert(track, TrackState::Error);
-    emit trackProgressChanged(*track, TrackState::Error, 0);
+    mData->mTracks[track.id()].setState(TrackState::Error);
+    emit trackProgressChanged(track, TrackState::Error, 0);
     mData->interrupt(TrackState::Aborted);
     emit threadQuit();
     emit threadFinished();
@@ -587,9 +508,8 @@ void DiscPipeline::trackError(const Track *track, const QString &message)
  ************************************************/
 bool DiscPipeline::isRunning() const
 {
-    QHash<const Track *, TrackState>::const_iterator it;
-    for (it = mData->trackStates.begin(); it != mData->trackStates.end(); ++it) {
-        switch (it.value()) {
+    for (const ConvTrack &track : mData->mTracks) {
+        switch (track.state()) {
             case TrackState::Splitting:
             case TrackState::Encoding:
             case TrackState::Queued:
@@ -616,7 +536,7 @@ bool DiscPipeline::isRunning() const
 int DiscPipeline::runningThreadCount() const
 {
     int res = 0;
-    foreach (WorkerThread *thread, mData->threads) {
+    foreach (WorkerThread *thread, mData->mThreads) {
         if (thread->isRunning())
             ++res;
     }
@@ -624,64 +544,13 @@ int DiscPipeline::runningThreadCount() const
 }
 
 /************************************************
- *
- ************************************************/
-CoverMode DiscPipeline::coverMode() const
-{
-    return mData->coverMode;
-}
-
-/************************************************
- *
- ************************************************/
-void DiscPipeline::setCoverMode(CoverMode value)
-{
-    mData->coverMode = value;
-}
-
-/************************************************
- *
- ************************************************/
-int DiscPipeline::coverImageSize() const
-{
-    return mData->coverImageSize;
-}
-
-/************************************************
- *
- ************************************************/
-void DiscPipeline::setCoverImageSize(int value)
-{
-    mData->coverImageSize = value;
-}
-
-/************************************************
- *
- ************************************************/
-QString DiscPipeline::tmpDir() const
-{
-    return mData->tmpDirName;
-}
-
-/************************************************
- *
- ************************************************/
-void DiscPipeline::setTmpDir(QString value)
-{
-    mData->tmpDirName = value;
-}
-
-/************************************************
 
  ************************************************/
-void DiscPipeline::trackProgress(const Track *track, TrackState state, int percent)
+void DiscPipeline::trackProgress(const ConvTrack &track, TrackState state, int percent)
 {
-    if (mData->interrupted)
+    if (mData->mInterrupted)
         return;
 
-    if (!track)
-        return;
-
-    mData->trackStates.insert(track, state);
-    emit trackProgressChanged(*track, state, percent);
+    mData->mTracks[track.id()].setState(state);
+    emit trackProgressChanged(track, state, percent);
 }

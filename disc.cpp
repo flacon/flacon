@@ -260,8 +260,6 @@ void Disc::setCueFile(const Cue &cueDisc)
 {
     InputAudioFileList audioFiles = this->audioFiles();
 
-    QString oldDir = QFileInfo(mCueFilePath).dir().absolutePath();
-
     // If the tracks contain tags from the Internet and the
     // tags have been changed, we must save the changes.
     syncTagsFromTracks();

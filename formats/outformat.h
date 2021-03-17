@@ -62,6 +62,9 @@ public:
     virtual QHash<QString, QVariant> defaultParameters() const                                 = 0;
     virtual EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const = 0;
 
+    int calcBitsPerSample(const InputAudioFile &audio, const BitsPerSample preferences) const;
+    int calcSampleRate(const InputAudioFile &audio, const SampleRate preferences) const;
+
 protected:
     QString       mId;
     QString       mName;

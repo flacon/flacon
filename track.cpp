@@ -57,7 +57,8 @@ Track::Track(const Track &other) :
     mTextCodec(other.mTextCodec),
     mCueIndexes(other.mCueIndexes),
     mDuration(other.mDuration),
-    mCueFileName(other.mCueFileName)
+    mCueFileName(other.mCueFileName),
+    mAudiofile(other.mAudiofile)
 {
 }
 

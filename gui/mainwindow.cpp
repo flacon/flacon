@@ -520,8 +520,11 @@ void MainWindow::startConvertAll()
     for (int d = 0; d < project->count(); ++d) {
         Conv::Converter::Job job;
         job.disc = project->disc(d);
-        for (int t = 0; t < job.disc->count(); ++t)
+
+        for (int t = 0; t < job.disc->count(); ++t) {
             job.tracks << job.disc->track(t);
+        }
+
         jobs << job;
     }
 
@@ -540,8 +543,9 @@ void MainWindow::startConvertSelected()
 
         for (int t = 0; t < disc->count(); ++t) {
             Track *track = disc->track(t);
-            if (trackView->isSelected(*track))
+            if (trackView->isSelected(*track)) {
                 job.tracks << track;
+            }
         }
 
         jobs << job;

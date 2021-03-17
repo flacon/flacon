@@ -41,21 +41,20 @@ class Gain : public Worker
 public:
     explicit Gain(const Profile &profile, QObject *parent = nullptr);
 
-    void addTrack(const Track *track, const QString &file) { mTracks.append({ track, file }); }
+    void addTrack(const ConvTrack &track, const QString &file) { mTracks.append({ track, file }); }
 
     void run() override;
 
 private:
     struct GainTrack
     {
-        const Track *track;
-        QString      file;
+        ConvTrack track;
+        QString   file;
     };
 
-    QVector<GainTrack> mTracks;
-    const Profile      mProfile;
+    QList<GainTrack> mTracks;
+    const Profile    mProfile;
 };
-
 
 } // namespace
 #endif // GAIN_H

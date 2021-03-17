@@ -34,28 +34,6 @@
 
 class QTextCodec;
 
-enum class TagId {
-    Album,
-    Catalog,
-    CDTextfile,
-    Comment,
-    Date,
-    Flags,
-    Genre,
-    ISRC,
-    Artist,
-    SongWriter,
-    Title,
-    DiscId,
-    File,
-    DiscNum,
-    DiscCount,
-    CueFile,
-    AlbumArtist,
-    TrackNum,
-    TrackCount,
-};
-
 class TagValue
 {
 public:

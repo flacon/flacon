@@ -26,6 +26,7 @@
 #ifndef WORKER_H
 #define WORKER_H
 
+#include "convertertypes.h"
 #include <QObject>
 #include "track.h"
 
@@ -44,10 +45,9 @@ public slots:
     virtual void run() = 0;
 
 signals:
-    void trackReady(const Track *track, const QString &outFileName);
-    void trackProgress(const Track *track, TrackState state, int percent);
-    void error(const Track *track, const QString &message);
-    void progress(const Track *track, int percent);
+    void error(const Conv::ConvTrack &track, const QString &message);
+    void trackReady(const Conv::ConvTrack &track, const QString &outFileName);
+    void trackProgress(const Conv::ConvTrack &track, TrackState state, int percent);
 
 protected:
     bool deleteFile(const QString &fileName) const;

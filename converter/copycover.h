@@ -27,20 +27,19 @@
 #define COPYCOVER_H
 
 #include <QString>
-class Disc;
 
 namespace Conv {
 
 class CopyCover
 {
 public:
-    CopyCover(const Disc *disc, const QString &outDir, const QString &outBaseName, int newSize);
+    CopyCover(const QString &inFile, const QString &outDir, const QString &outBaseName, int newSize);
     bool run();
 
     QString errorString() const { return mErrorString; }
 
 private:
-    const Disc *  mDisc;
+    QString       mInFile;
     const int     mSize;
     const QString mDir;
     const QString mBaseName;

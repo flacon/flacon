@@ -26,6 +26,7 @@
 #include <QThread>
 #include <QDebug>
 
+#include "disc.h"
 #include "converter.h"
 #include "project.h"
 #include "settings.h"
@@ -34,6 +35,7 @@
 #include "gain.h"
 #include "discpipline.h"
 #include "resampler.h"
+#include "cuecreator.h"
 
 #include <iostream>
 #include <math.h>
@@ -42,18 +44,122 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(LOG, "Converter");
+Q_LOGGING_CATEGORY(LOG, "Converter")
 }
 
 using namespace Conv;
+
+class Converter::Data
+{
+public:
+    DiscPipelineJob createDiscPipelineJob(const Job &converterJob, const Profile &profile);
+
+    TrackId trackId     = 1;
+    int     threadCount = 0;
+
+    QVector<DiscPipeline *>        discPiplines;
+    QMap<TrackId, const ConvTrack> tracks;
+
+private:
+    QString workDir(const Track *track) const;
+};
+
+/************************************************
+ *
+ ************************************************/
+DiscPipelineJob Converter::Data::createDiscPipelineJob(const Job &converterJob, const Profile &profile)
+{
+    DiscPipelineJob res;
+    res.workDir  = workDir(converterJob.tracks.first());
+    res.gainType = profile.gainType();
+    res.format   = EncoderFormat(profile.outFormat(), &profile);
+
+    // Cover image .........................
+    if (Settings::i()->coverMode() != CoverMode::Disable) {
+        res.coverImage = converterJob.disc->coverImageFile();
+
+        if (Settings::i()->coverMode() != CoverMode::Disable) {
+            res.coverImageSize = Settings::i()->coverImageSize();
+        }
+    }
+
+    // Tracks ..............................
+    PreGapType preGapType = profile.isCreateCue() ? profile.preGapType() : PreGapType::Skip;
+
+    for (const TrackPtrList &tracks : converterJob.disc->tracksByFileTag()) {
+
+        // Pregap track ....................
+        bool hasPregap =
+                converterJob.tracks.contains(tracks.first()) && // We extract first track in Audio
+                tracks.first()->cueIndex(1).milliseconds() > 0; // The first track don't start from zero second
+
+        if (hasPregap && preGapType == PreGapType::ExtractToFile) {
+            Track *firstTrack = tracks.first();
+
+            Track pregapTrack = *firstTrack; // copy tags and all settings
+            pregapTrack.setCueFileName(firstTrack->cueFileName());
+            pregapTrack.setTag(TagId::TrackNum, QByteArray("0"));
+            pregapTrack.setTitle("(HTOA)");
+
+            ConvTrack track(pregapTrack);
+            track.setId(trackId++);
+            track.setPregap(true);
+            track.setEnabled(true);
+
+            track.setStart(firstTrack->cueIndex(0));
+            track.setEnd(firstTrack->cueIndex(1));
+
+            res.tracks << track;
+        }
+
+        // Tracks ..........................
+        for (int i = 0; i < tracks.count(); ++i) {
+            const Track *t = tracks.at(i);
+
+            ConvTrack track(*t);
+            track.setId(trackId++);
+            track.setPregap(false);
+            track.setEnabled(converterJob.tracks.contains(t));
+            //track.audio          = t->audioFile();
+
+            if (i == 0 && hasPregap && preGapType == PreGapType::AddToFirstTrack) {
+                track.setStart(CueIndex("00:00:00"));
+            }
+            else {
+                track.setStart(t->cueIndex(1));
+            }
+
+            if (i < tracks.count() - 1) {
+                track.setEnd(tracks.at(i + 1)->cueIndex(01));
+            }
+
+            res.tracks << track;
+        }
+    }
+
+    return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Converter::Data::workDir(const Track *track) const
+{
+    QString dir = Settings::i()->tmpDir();
+    if (dir.isEmpty()) {
+        dir = QFileInfo(track->resultFilePath()).dir().absolutePath();
+    }
+    return dir + "/tmp";
+}
 
 /************************************************
 
  ************************************************/
 Converter::Converter(QObject *parent) :
     QObject(parent),
-    mThreadCount(0)
+    mData(new Data())
 {
+    qRegisterMetaType<Conv::ConvTrack>();
 }
 
 /************************************************
@@ -61,6 +167,7 @@ Converter::Converter(QObject *parent) :
  ************************************************/
 Converter::~Converter()
 {
+    delete mData;
 }
 
 /************************************************
@@ -101,41 +208,48 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
     }
 
     bool ok;
-    mThreadCount = Settings::i()->value(Settings::Encoder_ThreadCount).toInt(&ok);
-    if (!ok || mThreadCount < 1)
-        mThreadCount = qMax(6, QThread::idealThreadCount());
+    mData->threadCount = Settings::i()->value(Settings::Encoder_ThreadCount).toInt(&ok);
+    if (!ok || mData->threadCount < 1) {
+        mData->threadCount = qMax(6, QThread::idealThreadCount());
+    }
 
-    qCDebug(LOG) << "Threads count" << mThreadCount;
+    qCDebug(LOG) << "Threads count" << mData->threadCount;
 
-    for (const Job &job : jobs) {
-        if (job.tracks.isEmpty())
-            continue;
+    try {
+        for (const Job &converterJob : jobs) {
 
-        if (!job.disc->canConvert())
-            continue;
+            if (converterJob.tracks.isEmpty() || converterJob.disc->isEmpty()) {
+                continue;
+            }
 
-        DiscPipeline *pipeline = new DiscPipeline(job, profile, this);
-        pipeline->setCoverMode(Settings::i()->coverMode());
-        pipeline->setCoverImageSize(Settings::i()->coverImageSize());
-        pipeline->setTmpDir(Settings::i()->tmpDir());
+            if (!converterJob.disc->canConvert()) {
+                continue;
+            }
 
-        connect(pipeline, SIGNAL(readyStart()),
-                this, SLOT(startThread()));
+            DiscPipelineJob job      = mData->createDiscPipelineJob(converterJob, profile);
+            DiscPipeline *  pipeline = new DiscPipeline(job, this);
 
-        connect(pipeline, SIGNAL(threadFinished()),
-                this, SLOT(startThread()));
+            connect(pipeline, &DiscPipeline::readyStart, this, &Converter::startThread);
+            connect(pipeline, &DiscPipeline::threadFinished, this, &Converter::startThread);
+            connect(pipeline, &DiscPipeline::trackProgressChanged, this, &Converter::trackProgress);
 
-        connect(pipeline, &DiscPipeline::trackProgressChanged,
-                this, &Converter::trackProgress);
+            mData->discPiplines << pipeline;
+            pipeline->init();
 
-        mDiscPiplines << pipeline;
-
-        if (!pipeline->init()) {
-            qDeleteAll(mDiscPiplines);
-            mDiscPiplines.clear();
-            emit finished();
-            return;
+            if (profile.isCreateCue()) {
+                CueCreator cue(converterJob.disc, profile.preGapType(), profile.cueFileName());
+                if (!cue.write()) {
+                    throw FlaconError(cue.errorString());
+                }
+            }
         }
+    }
+    catch (const FlaconError &err) {
+        qCWarning(LOG) << "Can't start " << err.what();
+        // TODO: Show error
+        qDeleteAll(mData->discPiplines);
+        mData->discPiplines.clear();
+        emit finished();
     }
 
     startThread();
@@ -147,7 +261,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
  ************************************************/
 bool Converter::isRunning()
 {
-    foreach (DiscPipeline *pipe, mDiscPiplines) {
+    foreach (DiscPipeline *pipe, mData->discPiplines) {
         if (pipe->isRunning())
             return true;
     }
@@ -180,7 +294,7 @@ void Converter::stop()
     if (!isRunning())
         return;
 
-    foreach (DiscPipeline *pipe, mDiscPiplines) {
+    foreach (DiscPipeline *pipe, mData->discPiplines) {
         pipe->stop();
     }
 }
@@ -190,21 +304,24 @@ void Converter::stop()
  ************************************************/
 void Converter::startThread()
 {
-    int count         = mThreadCount;
+    int count         = mData->threadCount;
     int splitterCount = qMax(1.0, ceil(count / 2.0));
 
-    foreach (DiscPipeline *pipe, mDiscPiplines)
+    foreach (DiscPipeline *pipe, mData->discPiplines) {
         count -= pipe->runningThreadCount();
-
-    foreach (DiscPipeline *pipe, mDiscPiplines) {
-        pipe->startWorker(&splitterCount, &count);
-        if (count <= 0)
-            break;
     }
 
-    foreach (DiscPipeline *pipe, mDiscPiplines) {
-        if (pipe->isRunning())
+    foreach (DiscPipeline *pipe, mData->discPiplines) {
+        pipe->startWorker(&splitterCount, &count);
+        if (count <= 0) {
+            break;
+        }
+    }
+
+    foreach (DiscPipeline *pipe, mData->discPiplines) {
+        if (pipe->isRunning()) {
             return;
+        }
     }
 
     emit finished();

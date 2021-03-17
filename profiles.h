@@ -77,6 +77,7 @@ public:
     PreGapType preGapType() const;
     void       setPregapType(PreGapType value);
 
+    const OutFormat *  outFormat() const { return mFormat; };
     QString            formatId() const { return mFormat->id(); }
     QString            formatName() const { return mFormat->name(); }
     QString            ext() const { return mFormat->ext(); }

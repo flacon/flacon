@@ -78,7 +78,7 @@ Arguments:
 Environment variables:
   FLACON_DEBUG           If variable is set, flacon prints debugging information
                          to the console.)";
-    out << endl;
+    out << Qt::endl;
 }
 
 /************************************************
@@ -91,15 +91,15 @@ void printVersion()
 #ifndef GIT_BRANCH
     out << "flacon " << FLACON_VERSION << endl;
 #else
-    out << "flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " " << GIT_COMMIT_HASH << endl;
+    out << "flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " " << GIT_COMMIT_HASH << Qt::endl;
 #endif
-    out << "Copyright (c) 2013-" << QDate::currentDate().year() << " Alexander Sokolov" << endl;
-    out << "   https://github.com/flacon/flacon" << endl;
-    out << endl;
-    out << "License LGPLv2.1+: GNU GNU Lesser General Public License version 2.1" << endl;
-    out << "or later <http://www.gnu.org/licenses/lgpl-2.1.html>." << endl;
-    out << "This is free software: you are free to change and redistribute it." << endl;
-    out << "There is NO WARRANTY, to the extent permitted by law." << endl;
+    out << "Copyright (c) 2013-" << QDate::currentDate().year() << " Alexander Sokolov" << Qt::endl;
+    out << "   https://github.com/flacon/flacon" << Qt::endl;
+    out << Qt::endl;
+    out << "License LGPLv2.1+: GNU GNU Lesser General Public License version 2.1" << Qt::endl;
+    out << "or later <http://www.gnu.org/licenses/lgpl-2.1.html>." << Qt::endl;
+    out << "This is free software: you are free to change and redistribute it." << Qt::endl;
+    out << "There is NO WARRANTY, to the extent permitted by law." << Qt::endl;
 }
 
 /************************************************
@@ -110,7 +110,7 @@ void consoleErroHandler(const QString &message)
     QString msg(message);
     msg.remove(QRegExp("<[^>]*>"));
     msg.replace("\\n", "\n");
-    QTextStream(stderr) << msg.toLocal8Bit() << endl;
+    QTextStream(stderr) << msg.toLocal8Bit() << Qt::endl;
 }
 
 /************************************************
@@ -186,8 +186,8 @@ int runConsole(int argc, char *argv[], const QStringList &files)
     if (project->count() == 0)
         return 10;
 
-    ConsoleOut out;
-    Conv::Converter  converter;
+    ConsoleOut      out;
+    Conv::Converter converter;
     if (!quiet) {
         QObject::connect(&converter, &Conv::Converter::started,
                          &out, &ConsoleOut::converterStarted);
@@ -274,8 +274,8 @@ int main(int argc, char *argv[])
         args << QString::fromLocal8Bit(argv[i]);
 
     if (!parser.parse(args)) {
-        QTextStream(stderr) << parser.errorText() << endl
-                            << endl;
+        QTextStream(stderr) << parser.errorText() << Qt::endl
+                            << Qt::endl;
         printHelp(stderr);
         return 1;
     }

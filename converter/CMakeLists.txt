@@ -29,9 +29,13 @@ if (POLICY CMP0071)
     cmake_policy(SET CMP0071 NEW)
 endif()
 
+set (CMAKE_CXX_STANDARD 11)
+include("../cmake/cxx_standard.cmake")
+
 project(converter)
 
 set(HEADERS
+    convertertypes.h
     wavheader.h
     decoder.h
     converter.h
@@ -46,6 +50,7 @@ set(HEADERS
 )
 
 set(SOURCES
+    convertertypes.cpp
     wavheader.cpp
     decoder.cpp
     converter.cpp
@@ -59,8 +64,6 @@ set(SOURCES
     resampler.cpp
 )
 
-# set (CMAKE_CXX_STANDARD 11)
-# include("cmake/cxx_standard.cmake")
 # include("cmake/git_version.cmake")
 # include("cmake/build_type.cmake")
 

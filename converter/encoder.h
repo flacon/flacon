@@ -34,17 +34,22 @@ class QProcess;
 
 namespace Conv {
 
+struct EncoderJob
+{
+    ConvTrack track;
+    QString   inputFile;
+    QString   outFile;
+    int       bitsPerSample = 0;
+    int       sampleRate    = 0;
+
+    EncoderFormat format;
+};
+
 class Encoder : public Worker
 {
     Q_OBJECT
 public:
-    Encoder(const Track *track, const QString &inputFile, const QString &outFile, const Profile &profile, QObject *parent = nullptr);
-
-    int  bitsPerSample() const { return mBitsPerSample; }
-    void setBitsPerSample(int value) { mBitsPerSample = value; }
-
-    int  sampleRate() const { return mSampleRate; }
-    void setSampleRate(int value) { mSampleRate = value; }
+    Encoder(const EncoderJob &job, QObject *parent = nullptr);
 
 public slots:
     void run() override;
@@ -53,12 +58,7 @@ private slots:
     void processBytesWritten(qint64 bytes);
 
 private:
-    const Track * mTrack = nullptr;
-    const QString mInputFile;
-    const QString mOutFile;
-    int           mBitsPerSample = 0;
-    int           mSampleRate    = 0;
-    const Profile mProfile;
+    const EncoderJob mJob;
 
     quint64 mTotal    = 0;
     quint64 mReady    = 0;

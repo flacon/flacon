@@ -93,9 +93,7 @@ QMap<QString, QString> AudioFileMatcher::run()
 QFileInfoList AudioFileMatcher::matchAudioFilesByTrack(const QString &fileTag, const QString &trackTitle)
 {
     QFileInfoList res;
-    QDir          dir = QFileInfo(mCueFilePath).dir();
-
-    QStringList patterns;
+    QStringList   patterns;
 
     patterns << QRegExp::escape(QFileInfo(fileTag).completeBaseName());
     patterns << QString(".*%1.*").arg(QRegExp::escape(trackTitle));
@@ -124,7 +122,6 @@ QFileInfoList AudioFileMatcher::matchAudioFilesByTrack(const QString &fileTag, c
 QFileInfoList AudioFileMatcher::matchAudioFiles(const QString &fileTag)
 {
     QFileInfoList res;
-    QDir          dir = QFileInfo(mCueFilePath).dir();
 
     QStringList patterns;
     if (mFileTags.count() == 1) {

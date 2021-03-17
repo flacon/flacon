@@ -432,7 +432,7 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
 /************************************************
 
 ************************************************/
-QRect TrackViewDelegate::drawCoverImage(QPainter *painter, QRect windowRect, const QModelIndex &index) const
+QRect TrackViewDelegate::drawCoverImage(QPainter *painter, const QRect &windowRect, const QModelIndex &index) const
 {
     QImage img = index.data(TrackViewModel::RoleCoverImg).value<QImage>();
     if (img.isNull())
@@ -451,7 +451,7 @@ QRect TrackViewDelegate::drawCoverImage(QPainter *painter, QRect windowRect, con
 /************************************************
 
 ************************************************/
-QRect TrackViewDelegate::drawTitle(QPainter *painter, QRect windowRect, const QModelIndex &index) const
+QRect TrackViewDelegate::drawTitle(QPainter *painter, const QRect &windowRect, const QModelIndex &index) const
 {
     QFont titleFont = this->titleFont(painter->font());
     painter->save();
@@ -473,7 +473,7 @@ QRect TrackViewDelegate::drawTitle(QPainter *painter, QRect windowRect, const QM
 /************************************************
 
 ************************************************/
-QRect TrackViewDelegate::drawMark(QPainter *painter, bool isWaiting, QRect imgRect, const QModelIndex &index) const
+QRect TrackViewDelegate::drawMark(QPainter *painter, bool isWaiting, const QRect &imgRect, const QModelIndex &index) const
 {
     QRect markRect(imgRect.right() - MARK_HEIGHT, imgRect.bottom() - MARK_HEIGHT, MARK_HEIGHT, MARK_HEIGHT);
 
@@ -499,7 +499,7 @@ QRect TrackViewDelegate::drawMark(QPainter *painter, bool isWaiting, QRect imgRe
 /************************************************
 
 ************************************************/
-QRect TrackViewDelegate::drawButton(const QPixmap &pixmap, QRect windowRect, QPainter *painter) const
+QRect TrackViewDelegate::drawButton(const QPixmap &pixmap, const QRect &windowRect, QPainter *painter) const
 {
     QRect rect = pixmap.rect(); // (windowRect.topLeft(), pixmap.size());
     rect.moveCenter(windowRect.center());

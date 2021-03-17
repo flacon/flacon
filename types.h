@@ -37,6 +37,28 @@ typedef quint16 TrackNum;
 typedef quint16 TrackCount;
 typedef uint    Duration;
 
+enum class TagId {
+    Album,
+    Catalog,
+    CDTextfile,
+    Comment,
+    Date,
+    Flags,
+    Genre,
+    ISRC,
+    Artist,
+    SongWriter,
+    Title,
+    DiscId,
+    File,
+    DiscNum,
+    DiscCount,
+    CueFile,
+    AlbumArtist,
+    TrackNum,
+    TrackCount,
+};
+
 enum class PreGapType {
     Skip,
     ExtractToFile,
@@ -118,7 +140,7 @@ enum class TrackState {
 
 Q_DECLARE_METATYPE(TrackState)
 
-enum class BitsPerSample {
+enum BitsPerSample {
     AsSourcee = 0,
     Bit_16    = 16,
     Bit_24    = 24,
@@ -127,7 +149,7 @@ enum class BitsPerSample {
 };
 Q_DECLARE_METATYPE(BitsPerSample)
 
-enum class SampleRate {
+enum SampleRate {
     AsSource  = 0,
     Hz_44100  = 44100,
     Hz_48000  = 48000,

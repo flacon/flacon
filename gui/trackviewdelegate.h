@@ -82,11 +82,11 @@ private:
     void  paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void  paintDisc(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
-    QRect drawCoverImage(QPainter *painter, QRect windowRect, const QModelIndex &index) const;
-    QRect drawTitle(QPainter *painter, QRect windowRect, const QModelIndex &index) const;
-    QRect drawMark(QPainter *painter, bool isWaiting, QRect imgRect, const QModelIndex &index) const;
+    QRect drawCoverImage(QPainter *painter, const QRect &windowRect, const QModelIndex &index) const;
+    QRect drawTitle(QPainter *painter, const QRect &windowRect, const QModelIndex &index) const;
+    QRect drawMark(QPainter *painter, bool isWaiting, const QRect &imgRect, const QModelIndex &index) const;
 
-    QRect drawButton(const QPixmap &pixmap, QRect windowRect, QPainter *painter) const;
+    QRect drawButton(const QPixmap &pixmap, const QRect &windowRect, QPainter *painter) const;
     QRect drawLabel(const QString &text, const QRect &rect, QPainter *painter) const;
     QRect drawFile(const QString &text, const QRect &rect, QPainter *painter) const;
     void  drawSelectionMark(QPainter *painter, const QRect &rect) const;
