@@ -40,7 +40,7 @@ class OutFormat
 public:
     static QList<OutFormat *> allFormats();
     static OutFormat *        formatForId(const QString &id);
-    virtual ~OutFormat() { }
+    virtual ~OutFormat() {}
 
     QString       id() const { return mId; }
     QString       name() const { return mName; }
@@ -71,7 +71,8 @@ protected:
     QString       mExt;
     FormatOptions mOptions;
 
-    bool checkProgram(const QString &program, QStringList *errors) const;
+    bool       checkProgram(const QString &program, QStringList *errors) const;
+    static int calcQuality(int input, int preferences, int formatMax);
 };
 
 #endif // OUTFORMAT_H

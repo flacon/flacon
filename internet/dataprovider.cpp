@@ -37,7 +37,7 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(LOG, "DataProvider");
+Q_LOGGING_CATEGORY(LOG, "DataProvider")
 }
 
 /************************************************

@@ -56,10 +56,9 @@ class DiscPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiscPipeline(const DiscPipelineJob &job, QObject *parent = nullptr);
+    explicit DiscPipeline(const DiscPipelineJob &job, QObject *parent = nullptr) noexcept(false);
     virtual ~DiscPipeline();
 
-    void init() noexcept(false);
     void startWorker(int *splitterCount, int *count);
     void stop();
     bool isRunning() const;

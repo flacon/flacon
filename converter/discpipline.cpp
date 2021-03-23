@@ -84,12 +84,6 @@ private:
     Worker *mWorker;
 };
 
-struct GainRequest
-{
-    ConvTrack track;
-    QString   inputFile;
-};
-
 /************************************************
  *
  ************************************************/
@@ -112,7 +106,7 @@ public:
     QMap<TrackId, ConvTrack> mTracks;
     QList<SplitterJob>       mSplitterRequests;
     QList<EncoderJob>        mEncoderRequests;
-    QList<GainRequest>       mGainRequests;
+    GainJobs                 mGainRequests;
     bool                     mInterrupted = false;
     QTemporaryDir *          mTmpDir      = nullptr;
     QVector<WorkerThread *>  mThreads;
@@ -120,8 +114,8 @@ public:
     void interrupt(TrackState state);
 
     void startEncoderThread(const EncoderJob &req);
-    void startTrackGainThread(const GainRequest &req);
-    void startAlbumGainThread(QList<GainRequest> &reqs);
+    void startTrackGainThread(const GainJob &req);
+    void startAlbumGainThread(const GainJobs &reqs);
     bool createDir(const QString &dirName) const;
     bool copyCoverImage() const;
 
@@ -159,9 +153,9 @@ bool DiscPipeline::Data::createDir(const QString &dirName) const
 void DiscPipeline::Data::addSpliterRequest(const InputAudioFile &audio)
 {
     SplitterJob request;
-    request.audio  = audio;
+    request.inFile = audio.filePath();
     request.outDir = mTmpDir->path();
-    //TODO: pregapTrack & parapType
+
     for (const ConvTrack &t : mJob.tracks) {
         if (t.isEnabled() && t.audioFile().filePath() == audio.filePath()) {
             request.tracks << t;
@@ -177,34 +171,6 @@ void DiscPipeline::Data::addSpliterRequest(const InputAudioFile &audio)
 DiscPipeline::DiscPipeline(const DiscPipelineJob &job, QObject *parent) :
     QObject(parent),
     mData(new Data(job, this))
-{
-    // A disk can contain several audio files,
-    // so we create several splitter requests.
-    QString prev;
-    for (const ConvTrack &t : job.tracks) {
-        if (!t.isEnabled()) {
-            continue;
-        }
-
-        if (t.audioFile().filePath() != prev) {
-            mData->addSpliterRequest(t.audioFile());
-            prev = t.audioFile().filePath();
-        }
-    }
-}
-
-/************************************************
-
- ************************************************/
-DiscPipeline::~DiscPipeline()
-{
-    delete mData;
-}
-
-/************************************************
- *
- ************************************************/
-void DiscPipeline::init()
 {
     QString dir = QFileInfo(mData->mJob.workDir).dir().absolutePath();
     qCDebug(LOG) << "Create tmp dir" << dir;
@@ -227,6 +193,28 @@ void DiscPipeline::init()
             throw FlaconError(tr("Can't create output dir %1").arg(QFileInfo(track.resultFilePath()).absoluteDir().path()));
         }
     }
+
+    // A disk can contain several audio files,
+    // so we create several splitter requests.
+    QString prev;
+    for (const ConvTrack &t : mData->mJob.tracks) {
+        if (!t.isEnabled()) {
+            continue;
+        }
+
+        if (t.audioFile().filePath() != prev) {
+            mData->addSpliterRequest(t.audioFile());
+            prev = t.audioFile().filePath();
+        }
+    }
+}
+
+/************************************************
+
+ ************************************************/
+DiscPipeline::~DiscPipeline()
+{
+    delete mData;
 }
 
 /************************************************
@@ -345,11 +333,9 @@ void DiscPipeline::Data::startEncoderThread(const EncoderJob &req)
 /************************************************
  *
  ************************************************/
-void DiscPipeline::Data::startTrackGainThread(const GainRequest &req)
+void DiscPipeline::Data::startTrackGainThread(const GainJob &req)
 {
-    Gain *worker = new Gain(mJob.profile);
-    worker->addTrack(req.track, req.inputFile);
-
+    Gain *        worker = new Gain(req);
     WorkerThread *thread = new WorkerThread(worker, mPipeline);
 
     connect(mPipeline, &DiscPipeline::threadQuit, thread, &Conv::WorkerThread::terminate);
@@ -365,12 +351,9 @@ void DiscPipeline::Data::startTrackGainThread(const GainRequest &req)
 /************************************************
  *
  ************************************************/
-void DiscPipeline::Data::startAlbumGainThread(QList<GainRequest> &reqs)
+void DiscPipeline::Data::startAlbumGainThread(const GainJobs &reqs)
 {
-    Gain *worker = new Gain(mJob.profile);
-    for (const GainRequest &req : reqs) {
-        worker->addTrack(req.track, req.inputFile);
-    }
+    Gain *worker = new Gain(reqs);
 
     WorkerThread *thread = new WorkerThread(worker, mPipeline);
     connect(mPipeline, &DiscPipeline::threadQuit, thread, &Conv::WorkerThread::terminate);
@@ -414,7 +397,7 @@ void DiscPipeline::addGainRequest(const ConvTrack &track, const QString &fileNam
         trackProgress(track, TrackState::Queued, 0);
     }
 
-    mData->mGainRequests.append({ track, fileName });
+    mData->mGainRequests.append(GainJob(track, fileName, mData->mJob.format));
     emit readyStart();
 }
 
@@ -424,6 +407,7 @@ void DiscPipeline::addGainRequest(const ConvTrack &track, const QString &fileNam
 void DiscPipeline::trackDone(const ConvTrack &track, const QString &outFileName)
 {
     qCDebug(LOG) << "Track done: "
+                 << "id=" << track.id()
                  << track
                  << "outFileName:" << outFileName;
 
@@ -440,10 +424,10 @@ void DiscPipeline::trackDone(const ConvTrack &track, const QString &outFileName)
     emit trackProgressChanged(track, TrackState::OK, 0);
     emit threadFinished();
 
-    qCDebug(LOG) << "finished:" << (!isRunning());
-
-    if (!isRunning())
+    if (!isRunning()) {
+        qCDebug(LOG) << "pipline finished";
         emit finished();
+    }
 }
 
 /************************************************

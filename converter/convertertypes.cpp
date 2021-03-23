@@ -4,14 +4,14 @@
 
 using namespace Conv;
 
-static void registerMetaTypes()
-{
-    static bool registred = false;
-    if (!registred) {
-        qRegisterMetaType<Conv::ConvTrack>();
-        registred = true;
-    }
-}
+//static void registerMetaTypes()
+//{
+//    static bool registred = false;
+//    if (!registred) {
+//        qRegisterMetaType<Conv::ConvTrack>();
+//        registred = true;
+//    }
+//}
 
 /************************************************
  *

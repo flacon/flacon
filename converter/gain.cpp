@@ -41,9 +41,17 @@ using namespace Conv;
 /************************************************
  *
  ************************************************/
-Gain::Gain(const Profile &profile, QObject *parent) :
+Gain::Gain(const GainJob &job, QObject *parent) :
+    Gain(GainJobs() << job, parent)
+{
+}
+
+/************************************************
+ *
+ ************************************************/
+Gain::Gain(const GainJobs &jobs, QObject *parent) :
     Worker(parent),
-    mProfile(profile)
+    mJobs(jobs)
 {
 }
 
@@ -53,12 +61,12 @@ Gain::Gain(const Profile &profile, QObject *parent) :
 void Gain::run()
 {
     QStringList files;
-    for (const GainTrack &track : mTracks) {
-        emit trackProgress(track.track, TrackState::CalcGain, 0);
-        files << QDir::toNativeSeparators(track.file);
+    for (const GainJob &job : mJobs) {
+        emit trackProgress(job.track(), TrackState::CalcGain, 0);
+        files << QDir::toNativeSeparators(job.file());
     }
 
-    QStringList args = mProfile.gainArgs(files);
+    QStringList args = mJobs.first().format().gainArgs(files);
     QString     prog = args.takeFirst();
 
     qCDebug(LOG) << "Start gain:" << debugProgramArgs(prog, args);
@@ -71,11 +79,11 @@ void Gain::run()
     if (process.exitCode() != 0) {
         qWarning() << "Gain command failed: " << debugProgramArgs(prog, args);
         QString msg = tr("Gain error:\n") + QString::fromLocal8Bit(process.readAllStandardError());
-        emit    error(mTracks.first().track, msg);
+        emit    error(mJobs.first().track(), msg);
     }
 
-    for (const GainTrack &track : mTracks) {
-        emit trackProgress(track.track, TrackState::WriteGain, 100);
-        emit trackReady(track.track, track.file);
+    for (const GainJob &job : mJobs) {
+        emit trackProgress(job.track(), TrackState::WriteGain, 100);
+        emit trackReady(job.track(), job.file());
     }
 }

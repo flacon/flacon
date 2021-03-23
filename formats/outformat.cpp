@@ -109,7 +109,7 @@ bool OutFormat::check(const Profile &profile, QStringList *errors) const
 /************************************************
  *
  ************************************************/
-static int calcQuality(int input, int preferences, int formatMax)
+int OutFormat::calcQuality(int input, int preferences, int formatMax)
 {
     int min = qMin(qMin(input, formatMax),
                    (preferences ? preferences : std::numeric_limits<int>::max()));

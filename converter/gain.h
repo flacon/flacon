@@ -35,25 +35,41 @@ class Track;
 
 namespace Conv {
 
+class GainJob
+{
+public:
+    GainJob(const ConvTrack &track, const QString &file, const EncoderFormat &format) :
+        mTrack(track),
+        mFile(file),
+        mFormat(format)
+    {
+    }
+
+    GainJob(const GainJob &other) = default;
+
+    ConvTrack     track() const { return mTrack; }
+    QString       file() const { return mFile; }
+    EncoderFormat format() const { return mFormat; }
+
+private:
+    ConvTrack     mTrack;
+    QString       mFile;
+    EncoderFormat mFormat;
+};
+
+using GainJobs = QList<GainJob>;
+
 class Gain : public Worker
 {
     Q_OBJECT
 public:
-    explicit Gain(const Profile &profile, QObject *parent = nullptr);
-
-    void addTrack(const ConvTrack &track, const QString &file) { mTracks.append({ track, file }); }
+    explicit Gain(const GainJob &job, QObject *parent = nullptr);
+    explicit Gain(const GainJobs &jobs, QObject *parent = nullptr);
 
     void run() override;
 
 private:
-    struct GainTrack
-    {
-        ConvTrack track;
-        QString   file;
-    };
-
-    QList<GainTrack> mTracks;
-    const Profile    mProfile;
+    QList<GainJob> mJobs;
 };
 
 } // namespace

@@ -120,7 +120,6 @@ DiscPipelineJob Converter::Data::createDiscPipelineJob(const Job &converterJob, 
             track.setId(trackId++);
             track.setPregap(false);
             track.setEnabled(converterJob.tracks.contains(t));
-            //track.audio          = t->audioFile();
 
             if (i == 0 && hasPregap && preGapType == PreGapType::AddToFirstTrack) {
                 track.setStart(CueIndex("00:00:00"));
@@ -234,7 +233,6 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
             connect(pipeline, &DiscPipeline::trackProgressChanged, this, &Converter::trackProgress);
 
             mData->discPiplines << pipeline;
-            pipeline->init();
 
             if (profile.isCreateCue()) {
                 CueCreator cue(converterJob.disc, profile.preGapType(), profile.cueFileName());

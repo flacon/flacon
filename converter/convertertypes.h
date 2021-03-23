@@ -39,13 +39,12 @@ public:
     void setState(TrackState value) { mState = value; }
 
 private:
-    TrackId    mId      = 0;
+    TrackId    mId    = 0;
+    TrackState mState = TrackState::NotRunning;
+    CueIndex   mStart;
+    CueIndex   mEnd;
     bool       mEnabled = true;
     bool       mPregap  = false;
-    TrackState mState   = TrackState::NotRunning;
-
-    CueIndex mStart;
-    CueIndex mEnd;
 };
 
 using ConvTracks = QList<ConvTrack>;

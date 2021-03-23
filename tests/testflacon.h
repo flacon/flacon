@@ -104,8 +104,8 @@ private slots:
     void testCueIndex_data();
     void testCueIndex();
 
-    void testDiscPipelineCalcQuality_data();
-    void testDiscPipelineCalcQuality();
+    void testOutFormatCalcQuality();
+    void testOutFormatCalcQuality_data();
 
     void testFindCueFile_data();
     void testFindCueFile();

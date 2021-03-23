@@ -33,11 +33,9 @@ namespace Conv {
 
 struct SplitterJob
 {
-    InputAudioFile audio;
-    ConvTracks     tracks;
-    PreGapType     preGapType = PreGapType::Skip;
-    ConvTrack      pregapTrack;
-    QString        outDir;
+    QString    inFile;
+    ConvTracks tracks;
+    QString    outDir;
 
     const ConvTrack &track(int index) const { return tracks.at(index); }
 };
