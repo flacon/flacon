@@ -48,6 +48,14 @@
 #include "updater/updater.h"
 #endif
 
+// clang-format off
+#if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0))
+namespace Qt {
+    QTextStream &endl(QTextStream &s) { return ::endl(s); }
+}
+#endif
+// clang-format on
+
 static bool quiet;
 static bool progress;
 
@@ -60,14 +68,12 @@ void printHelp(FILE *file)
     out << R"(
 Usage: flacon [options] [file]
 Flacon extracts individual tracks from one big audio file
-    out << endl;
 
 Generic options:
   -s --start                Start to convert immediately.
   -c --config <file>        Specify an alternative configuration file.
   -q --quiet                Quiet mode (no output).
   -p --progress             Show progress during conversion.
-    out << endl;
   -h, --help                Show help about options
   --version                 Show version information
   --debug                   Enable debug output
@@ -89,7 +95,7 @@ void printVersion()
     QTextStream out(stdout);
 
 #ifndef GIT_BRANCH
-    out << "flacon " << FLACON_VERSION << endl;
+    out << "flacon " << FLACON_VERSION << Qt::endl;
 #else
     out << "flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " " << GIT_COMMIT_HASH << Qt::endl;
 #endif
