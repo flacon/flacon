@@ -14,6 +14,7 @@ ui_*.h
 *~
 *.autosave
 *.DS_Store
+._*
 CMakeLists.txt.user*
 /build
 /clang_check
