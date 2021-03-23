@@ -59,8 +59,14 @@ void DiscSpec::verify(const Disc &disc) const
         QCOMPARE(track->comment(), trackComment(n));
         QCOMPARE(track->tag(TagId::File), trackFile(n));
         QCOMPARE(track->artist(), trackPerformer(n));
-        QCOMPARE(track->cueIndex(0).toString(false), trackIndex0(n));
-        QCOMPARE(track->cueIndex(1).toString(false), trackIndex1(n));
+
+        if (track->cueIndex(0).toString(true) != trackIndex0(n)) {
+            QCOMPARE(track->cueIndex(0).toString(false), trackIndex0(n));
+        }
+
+        if (track->cueIndex(1).toString(true) != trackIndex1(n)) {
+            QCOMPARE(track->cueIndex(1).toString(false), trackIndex1(n));
+        }
 
         QCOMPARE(track->audioFileName(), trackAudioFile(n));
     }

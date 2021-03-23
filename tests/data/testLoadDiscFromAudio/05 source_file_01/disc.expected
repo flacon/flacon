@@ -1,0 +1,49 @@
+CUE FILE = source_file_01.cue
+
+[TRACKS/01]
+    TITLE = Song01
+    DATE = 2013
+    DISCID = 123456789
+    COMMENT = ExactAudioCopy v0.99pb4
+    FILE = en.wav
+    PERFORMER = Artist_01
+    INDEX 00 = 00:00:00
+    INDEX 01 = 00:00:33
+
+    AUDIO FILE = source_file_01.wav
+
+[TRACKS/02]
+    TITLE = Song02
+    DATE = 2013
+    DISCID = 123456789
+    COMMENT = ExactAudioCopy v0.99pb4
+    FILE = en.wav
+    PERFORMER = Artist_01
+    INDEX 00 = 00:00:00
+    INDEX 01 = 00:46:00
+
+    AUDIO FILE = source_file_01.wav
+
+[TRACKS/03]
+    TITLE = Song03
+    DATE = 2013
+    DISCID = 123456789
+    COMMENT = ExactAudioCopy v0.99pb4
+    FILE = en.wav
+    PERFORMER = Artist_01
+    INDEX 00 = 01:22:22
+    INDEX 01 = 01:25:10
+
+    AUDIO FILE = source_file_01.wav
+
+[TRACKS/04]
+    TITLE = Song04
+    DATE = 2013
+    DISCID = 123456789
+    COMMENT = ExactAudioCopy v0.99pb4
+    FILE = en.wav
+    PERFORMER = Artist_01
+    INDEX 00 = 02:39:54
+    INDEX 01 = 02:41:05
+
+    AUDIO FILE = source_file_01.wav
