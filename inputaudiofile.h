@@ -77,34 +77,4 @@ public:
 
 using InputAudioFileList = QList<InputAudioFile>;
 
-class InputAudioFile_OLD
-{
-public:
-    explicit InputAudioFile_OLD(const QString &fileName);
-    InputAudioFile_OLD(const InputAudioFile_OLD &other);
-    InputAudioFile_OLD &operator=(const InputAudioFile_OLD &other);
-
-    QString fileName() const { return mFileName; }
-    bool    isValid() const { return mValid; }
-    bool    isCdQuality() const { return mCdQuality; }
-    int     sampleRate() const { return mSampleRate; }
-    int     bitsPerSample() const { return mBitsPerSample; }
-    QString errorString() const { return mErrorString; }
-    uint    duration() const { return mDuration; }
-
-    const InputFormat *format() const { return mFormat; }
-
-private:
-    QString            mFileName;
-    QString            mErrorString;
-    const InputFormat *mFormat;
-    int                mSampleRate;
-    int                mBitsPerSample;
-    uint               mDuration;
-    bool               mValid;
-    bool               mCdQuality;
-
-    bool load();
-};
-
 #endif // INPUTAUDIOFILE_H

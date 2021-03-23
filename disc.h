@@ -33,7 +33,6 @@
 #include <QImage>
 
 class QFile;
-class InputAudioFile_OLD;
 
 class Disc : public QObject
 {
@@ -57,9 +56,6 @@ public:
 
     QString cueFilePath() const { return mCueFilePath; }
     void    setCueFile(const Cue &cueDisc);
-
-    QString             audioFileName_OLD() const { return ""; }
-    InputAudioFile_OLD *audioFile_OLD() const { return nullptr; }
 
     QList<TrackPtrList> tracksByFileTag() const;
 
