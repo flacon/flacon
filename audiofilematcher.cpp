@@ -39,7 +39,7 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tra
 
     QMap<QString, QString> res = run();
     mResult.reserve(mFileTags.count());
-    for (const QString &tag : mFileTags) {
+    for (const QString &tag : qAsConst(mFileTags)) {
         mResult << res[tag];
     }
 }
@@ -47,7 +47,7 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tra
 void AudioFileMatcher::fillFileTags()
 {
     QString prev;
-    for (const Track &track : mTracks) {
+    for (const Track &track : qAsConst(mTracks)) {
         if (track.tag(TagId::File) != prev) {
             prev = track.tag(TagId::File);
             mFileTags << track.tag(TagId::File);
@@ -70,7 +70,7 @@ QMap<QString, QString> AudioFileMatcher::run()
 
     // Looks like this is a per-track album .....
     if (mFileTags.count() == mAudioFiles.count()) {
-        for (const Track &track : mTracks) {
+        for (const Track &track : qAsConst(mTracks)) {
             const QFileInfoList files = matchAudioFilesByTrack(track.tag(TagId::File), track.tag(TagId::Title));
             if (!files.isEmpty()) {
                 res[track.tag(TagId::File)] = files.first().filePath();
@@ -80,7 +80,7 @@ QMap<QString, QString> AudioFileMatcher::run()
     }
 
     // Common search ............................
-    for (const QString &fileTag : mFileTags) {
+    for (const QString &fileTag : qAsConst(mFileTags)) {
         QFileInfoList files = matchAudioFiles(fileTag);
 
         if (!files.isEmpty()) {
@@ -126,7 +126,7 @@ QFileInfoList AudioFileMatcher::matchAudioFiles(const QString &fileTag)
     QStringList patterns;
     if (mFileTags.count() == 1) {
         patterns << QRegExp::escape(QFileInfo(mFileTags.first()).completeBaseName());
-        patterns << QRegExp::escape(mCueFilePath) + ".*";
+        patterns << QRegExp::escape(QFileInfo(mCueFilePath).completeBaseName()) + ".*";
     }
     else {
         int fileTagNum = mFileTags.indexOf(fileTag) + 1; // Disks are indexed from 1, not from 0!
