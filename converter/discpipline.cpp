@@ -116,7 +116,7 @@ public:
     void startEncoderThread(const EncoderJob &req);
     void startTrackGainThread(const GainJob &req);
     void startAlbumGainThread(const GainJobs &reqs);
-    bool createDir(const QString &dirName) const;
+    void createDir(const QString &dirName) const;
     bool copyCoverImage() const;
 
     void addSpliterRequest(const InputAudioFile &audio);
@@ -126,25 +126,21 @@ public:
 /************************************************
  *
  ************************************************/
-bool DiscPipeline::Data::createDir(const QString &dirName) const
+void DiscPipeline::Data::createDir(const QString &dirName) const
 {
     QDir dir(dirName);
 
     if (!dir.mkpath(".")) {
         QString msg = QObject::tr("I can't create directory \"%1\".").arg(dir.path());
         QString err = strerror(errno);
-        Messages::error(msg + "<br><br>" + err);
-        return false;
+        throw FlaconError(msg + "<br><br>" + err);
     }
 
     if (!QFileInfo(dir.path()).isWritable()) {
         QString msg = QObject::tr("I can't write to directory \"%1\".").arg(dir.path());
         QString err = strerror(errno);
-        Messages::error(msg + "<br><br>" + err);
-        return false;
+        FlaconError(msg + "<br><br>" + err);
     }
-
-    return true;
 }
 
 /************************************************
@@ -175,9 +171,7 @@ DiscPipeline::DiscPipeline(const DiscPipelineJob &job, QObject *parent) :
     QString dir = QFileInfo(mData->mJob.workDir).dir().absolutePath();
     qCDebug(LOG) << "Create tmp dir" << dir;
 
-    if (!mData->createDir(dir)) {
-        throw FlaconError(tr("Can't create tmp dir %1").arg(dir));
-    }
+    mData->createDir(dir);
 
     mData->mTmpDir = new QTemporaryDir(QString("%1/tmp").arg(dir));
     mData->mTmpDir->setAutoRemove(true);
@@ -189,9 +183,7 @@ DiscPipeline::DiscPipeline(const DiscPipelineJob &job, QObject *parent) :
 
         mData->mTracks[track.id()] = track;
 
-        if (!mData->createDir(QFileInfo(track.resultFilePath()).absoluteDir().path())) {
-            throw FlaconError(tr("Can't create output dir %1").arg(QFileInfo(track.resultFilePath()).absoluteDir().path()));
-        }
+        mData->createDir(QFileInfo(track.resultFilePath()).absoluteDir().path());
     }
 
     // A disk can contain several audio files,

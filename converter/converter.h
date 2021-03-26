@@ -60,6 +60,7 @@ signals:
     void started();
     void finished();
     void trackProgress(const Track &track, TrackState state, Percent percent);
+    void error(const QString err);
 
 public slots:
     void start(const Profile &profile);

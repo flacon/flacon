@@ -595,6 +595,9 @@ void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
     connect(mConverter, &Conv::Converter::trackProgress,
             trackView->model(), &TrackViewModel::trackProgressChanged);
 
+    connect(mConverter, &Conv::Converter::error,
+            this, &MainWindow::showErrorMessage);
+
     mConverter->start(jobs, Settings::i()->currentProfile());
     setControlsEnable();
 }

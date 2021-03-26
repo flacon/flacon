@@ -244,7 +244,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
     }
     catch (const FlaconError &err) {
         qCWarning(LOG) << "Can't start " << err.what();
-        // TODO: Show error
+        emit error(err.what());
         qDeleteAll(mData->discPiplines);
         mData->discPiplines.clear();
         emit finished();
