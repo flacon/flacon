@@ -33,7 +33,7 @@ jobs:
     - name: Build
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: make
+      run: make -j 8
 
     - name: Run Tests
       working-directory: ${{github.workspace}}/build
