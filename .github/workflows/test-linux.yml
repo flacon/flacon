@@ -16,7 +16,7 @@ jobs:
     - name: Install packages 
       run:  |
         sudo apt-get -y update 
-        sudo apt-get -y install python-software-properties
+        sudo apt-get -y install software-properties-common
         sudo add-apt-repository -y ppa:flacon
         sudo apt-get -y update
         sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev
