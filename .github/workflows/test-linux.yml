@@ -1,0 +1,41 @@
+name: Test-Linux
+
+on: [push]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:    
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install packages 
+      run:  |
+        sudo apt-get -y update 
+        sudo apt-get -y install python-software-properties
+        sudo add-apt-repository -y ppa:flacon
+        sudo apt-get -y update
+        sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev
+        sudo apt-get -y install flac mac vorbis-tools wavpack lame vorbisgain mp3gain ttaenc
+      
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{github.workspace}}/build
+
+    - name: Run CMake
+      shell: bash
+      working-directory: ${{github.workspace}}/build
+      run: cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DBUILD_TESTS=Yes $GITHUB_WORKSPACE
+
+    - name: Build
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      run: make
+
+    - name: Run Tests
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      run: tests/flacon_test
