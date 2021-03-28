@@ -111,24 +111,13 @@ void printVersion()
 /************************************************
  *
  ************************************************/
-void consoleErroHandler(const QString &message)
+void consoleErroHandler(QtMsgType type, const QMessageLogContext &context, const QString &message)
 {
     QString msg(message);
+    msg.replace("<br>", " ");
     msg.remove(QRegExp("<[^>]*>"));
     msg.replace("\\n", "\n");
     QTextStream(stderr) << msg.toLocal8Bit() << Qt::endl;
-}
-
-/************************************************
- *
- ************************************************/
-void guiErrorHandler(const QString &message)
-{
-    consoleErroHandler(message);
-    QString msg(message);
-    msg.replace("\n", "<br>");
-    msg.replace(" ", "&nbsp;");
-    QMessageBox::critical(nullptr, QObject::tr("Flacon", "Error"), "<html>" + msg + "</html>");
 }
 
 /************************************************
@@ -158,6 +147,7 @@ void translate(QApplication *app)
  ************************************************/
 int runConsole(int argc, char *argv[], const QStringList &files)
 {
+    qInstallMessageHandler(consoleErroHandler);
     QCoreApplication app(argc, argv);
 
     auto addFile = [&](const QString &file, bool showError = false) {
@@ -210,8 +200,13 @@ int runConsole(int argc, char *argv[], const QStringList &files)
         }
     }
 
-    app.connect(&converter, SIGNAL(finished()),
-                &app, SLOT(quit()));
+    app.connect(&converter, &Conv::Converter::finished,
+                &app, &QCoreApplication::quit);
+
+    app.connect(&converter, &Conv::Converter::error,
+                [](const QString &message) {
+                    consoleErroHandler(QtCriticalMsg, QMessageLogContext(), message);
+                });
 
     converter.start(Settings::i()->currentProfile());
     if (!converter.isRunning())
