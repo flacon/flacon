@@ -12,6 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Install packages 
+      run:  |
+        brew update
+
     - name: Build
       run: cmake -E make_directory ${{github.workspace}}/build
 
