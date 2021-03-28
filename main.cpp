@@ -228,8 +228,8 @@ int runGui(int argc, char *argv[], const QStringList &files)
     foreach (QString file, files)
         window.addFileOrDir(file);
 
-    QObject::connect(&app, SIGNAL(openFile(QString)),
-                     &window, SLOT(addFileOrDir(QString)));
+    QObject::connect(&app, &Application::openFile,
+                     &window, &MainWindow::addFileOrDir);
 
     window.show();
 

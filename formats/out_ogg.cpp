@@ -159,8 +159,11 @@ ConfigPage_Ogg::ConfigPage_Ogg(const Profile &profile, QWidget *parent) :
     oggQualitySlider->setToolTip(oggQualitySpin->toolTip());
     oggQualityLabel->setToolTip(oggQualitySpin->toolTip());
 
-    connect(oggQualitySlider, SIGNAL(valueChanged(int)), this, SLOT(oggQualitySliderChanged(int)));
-    connect(oggQualitySpin, SIGNAL(valueChanged(double)), this, SLOT(oggQualitySpinChanged(double)));
+    connect(oggQualitySlider, &QSlider::valueChanged,
+            this, &ConfigPage_Ogg::oggQualitySliderChanged);
+
+    connect(oggQualitySpin, qOverload<double>(&QDoubleSpinBox::valueChanged),
+            this, &ConfigPage_Ogg::oggQualitySpinChanged);
 
     QList<int> bitrates;
     bitrates << 0 << 64 << 80 << 96 << 128 << 160 << 196 << 256 << 350;

@@ -172,7 +172,8 @@ void OutPatternButton::addFullPattern(const QString &pattern, const QString &tit
 {
     QAction *act = new QAction(title, this);
     act->setData(pattern);
-    connect(act, SIGNAL(triggered()), this, SLOT(fullPatternTriggered()));
+    connect(act, &QAction::triggered,
+            this, &OutPatternButton::fullPatternTriggered);
     menu()->addAction(act);
 }
 
@@ -651,7 +652,7 @@ ProgramEdit::ProgramEdit(const QString &programName, QWidget *parent) :
     mBtn->setStyleSheet("QToolButton { border: none; padding: 0px; }");
     mBtn->setCursor(Qt::ArrowCursor);
 
-    connect(mBtn, SIGNAL(clicked()), this, SLOT(openDialog()));
+    connect(mBtn, &QToolButton::clicked, this, &ProgramEdit::openDialog);
 }
 
 /************************************************

@@ -100,28 +100,29 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Tag edits ...............................................
     tagGenreEdit->setTagId(TagId::Genre);
-    connect(tagGenreEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
+    connect(tagGenreEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
 
     tagYearEdit->setTagId(TagId::Date);
-    connect(tagYearEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
+    connect(tagYearEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
 
     tagArtistEdit->setTagId(TagId::Artist);
-    connect(tagArtistEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
-    connect(tagArtistEdit, SIGNAL(textEdited(QString)), this, SLOT(refreshEdits()));
+    connect(tagArtistEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
+    connect(tagArtistEdit, &TagLineEdit::textEdited, this, &MainWindow::refreshEdits);
 
     tagDiscPerformerEdit->setTagId(TagId::AlbumArtist);
-    connect(tagDiscPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(setDiscTag()));
-    connect(tagDiscPerformerEdit, SIGNAL(textEdited(QString)), this, SLOT(refreshEdits()));
+    connect(tagDiscPerformerEdit, &TagLineEdit::textEdited, this, &MainWindow::setDiscTag);
+    connect(tagDiscPerformerEdit, &TagLineEdit::textEdited, this, &MainWindow::refreshEdits);
 
     tagAlbumEdit->setTagId(TagId::Album);
-    connect(tagAlbumEdit, SIGNAL(textEdited(QString)), this, SLOT(setTrackTag()));
+    connect(tagAlbumEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
 
     tagDiscIdEdit->setTagId(TagId::DiscId);
-    connect(tagStartNumEdit, SIGNAL(editingFinished()), this, SLOT(setStartTrackNum()));
-    connect(tagStartNumEdit, SIGNAL(valueChanged(int)), this, SLOT(setStartTrackNum()));
+    connect(tagStartNumEdit, &MultiValuesSpinBox::editingFinished, this, &MainWindow::setStartTrackNum);
+    connect(tagStartNumEdit, qOverload<int>(&MultiValuesSpinBox::valueChanged),
+            this, &MainWindow::setStartTrackNum);
 
-    connect(trackView->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(refreshEdits()));
-    connect(trackView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(trackViewMenu(QPoint)));
+    connect(trackView->model(), &TrackViewModel::dataChanged, this, &MainWindow::refreshEdits);
+    connect(trackView, &TrackView::customContextMenuRequested, this, &MainWindow::trackViewMenu);
 
     connect(editTagsButton, &QPushButton::clicked, this, &MainWindow::openEditTagsDialog);
 
@@ -147,33 +148,37 @@ MainWindow::MainWindow(QWidget *parent) :
     loadSettings();
 
     // Signals .................................................
-    connect(Settings::i(), SIGNAL(changed()), trackView->model(), SIGNAL(layoutChanged()));
+    connect(Settings::i(), &Settings::changed,
+            [this]() { trackView->model()->layoutChanged(); });
 
     connect(outDirEdit->lineEdit(), &QLineEdit::textChanged, this, &MainWindow::setOutDir);
     connect(outPatternEdit->lineEdit(), &QLineEdit::textChanged, this, &MainWindow::setPattern);
 
-    connect(outProfileCombo, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(setOutProfile()));
+    connect(outProfileCombo, qOverload<int>(&QComboBox::currentIndexChanged),
+            this, &MainWindow::setOutProfile);
 
-    connect(codepageCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(setCodePage()));
+    connect(codepageCombo, qOverload<int>(&QComboBox::currentIndexChanged),
+            this, &MainWindow::setCodePage);
 
-    connect(trackView, SIGNAL(selectCueFile(Disc *)), this, SLOT(setCueForDisc(Disc *)));
+    connect(trackView, &TrackView::selectCueFile, this, &MainWindow::setCueForDisc);
     connect(trackView, &TrackView::selectAudioFile, this, &MainWindow::setAudioForDisc);
-    connect(trackView, SIGNAL(selectCoverImage(Disc *)), this, SLOT(setCoverImage(Disc *)));
-    connect(trackView, SIGNAL(downloadInfo(Disc *)), this, SLOT(downloadDiscInfo(Disc *)));
+    connect(trackView, &TrackView::selectCoverImage, this, &MainWindow::setCoverImage);
+    connect(trackView, &TrackView::downloadInfo, this, &MainWindow::downloadDiscInfo);
 
-    connect(trackView->model(), SIGNAL(layoutChanged()), this, SLOT(refreshEdits()));
-    connect(trackView->model(), SIGNAL(layoutChanged()), this, SLOT(setControlsEnable()));
+    connect(trackView->model(), &TrackViewModel::layoutChanged, this, &MainWindow::refreshEdits);
+    connect(trackView->model(), &TrackViewModel::layoutChanged, this, &MainWindow::setControlsEnable);
 
-    connect(trackView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(refreshEdits()));
-    connect(trackView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(setControlsEnable()));
+    connect(trackView->selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &MainWindow::refreshEdits);
+    connect(trackView->selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &MainWindow::setControlsEnable);
 
-    connect(project, SIGNAL(layoutChanged()), trackView, SLOT(layoutChanged()));
-    connect(project, SIGNAL(layoutChanged()), this, SLOT(refreshEdits()));
-    connect(project, SIGNAL(layoutChanged()), this, SLOT(setControlsEnable()));
+    connect(project, &Project::layoutChanged, trackView, &TrackView::layoutChanged);
+    connect(project, &Project::layoutChanged, this, &MainWindow::refreshEdits);
+    connect(project, &Project::layoutChanged, this, &MainWindow::setControlsEnable);
 
-    connect(project, SIGNAL(discChanged(Disc *)), this, SLOT(refreshEdits()));
-    connect(project, SIGNAL(discChanged(Disc *)), this, SLOT(setControlsEnable()));
+    connect(project, &Project::discChanged, this, &MainWindow::refreshEdits);
+    connect(project, &Project::discChanged, this, &MainWindow::setControlsEnable);
 
     connect(Application::instance(), &Application::visualModeChanged,
             []() {
@@ -738,7 +743,9 @@ void MainWindow::downloadDiscInfo(Disc *disc)
         return;
 
     DataProvider *provider = new FreeDbProvider(*disc);
-    connect(provider, SIGNAL(finished()), provider, SLOT(deleteLater()));
+    connect(provider, &DataProvider::finished,
+            provider, &DataProvider::deleteLater);
+
     connect(provider, &DataProvider::finished,
             [disc, this]() { trackView->downloadFinished(*disc); });
 
@@ -971,34 +978,34 @@ void MainWindow::setStartTrackNum()
 void MainWindow::initActions()
 {
     actionAddDisc->setIcon(Icon("add-disk"));
-    connect(actionAddDisc, SIGNAL(triggered()), this, SLOT(openAddFileDialog()));
+    connect(actionAddDisc, &QAction::triggered, this, &MainWindow::openAddFileDialog);
 
     actionRemoveDisc->setIcon(Icon("remove-disk"));
-    connect(actionRemoveDisc, SIGNAL(triggered()), this, SLOT(removeDiscs()));
+    connect(actionRemoveDisc, &QAction::triggered, this, &MainWindow::removeDiscs);
 
     actionAddFolder->setIcon(Icon("scan"));
-    connect(actionAddFolder, SIGNAL(triggered()), this, SLOT(openScanDialog()));
+    connect(actionAddFolder, &QAction::triggered, this, &MainWindow::openScanDialog);
 
     actionDownloadTrackInfo->setIcon(Icon("download-info"));
-    connect(actionDownloadTrackInfo, SIGNAL(triggered()), this, SLOT(downloadInfo()));
+    connect(actionDownloadTrackInfo, &QAction::triggered, this, &MainWindow::downloadInfo);
 
     actionStartConvert->setIcon(Icon("start-convert"));
-    connect(actionStartConvert, SIGNAL(triggered()), this, SLOT(startConvertAll()));
+    connect(actionStartConvert, &QAction::triggered, this, &MainWindow::startConvertAll);
 
     actionStartConvertSelected->setIcon(Icon("start-convert"));
-    connect(actionStartConvertSelected, SIGNAL(triggered()), this, SLOT(startConvertSelected()));
+    connect(actionStartConvertSelected, &QAction::triggered, this, &MainWindow::startConvertSelected);
 
     actionAbortConvert->setIcon(Icon("abort-convert"));
-    connect(actionAbortConvert, SIGNAL(triggered()), this, SLOT(stopConvert()));
+    connect(actionAbortConvert, &QAction::triggered, this, &MainWindow::stopConvert);
 
     actionConfigure->setIcon(Icon("configure"));
-    connect(actionConfigure, SIGNAL(triggered()), this, SLOT(configure()));
+    connect(actionConfigure, &QAction::triggered, this, &MainWindow::configure);
     actionConfigure->setMenuRole(QAction::PreferencesRole);
 
     actionConfigureEncoder->setIcon(actionConfigure->icon());
-    connect(actionConfigureEncoder, SIGNAL(triggered()), this, SLOT(configureEncoder()));
+    connect(actionConfigureEncoder, &QAction::triggered, this, &MainWindow::configureEncoder);
 
-    connect(actionAbout, SIGNAL(triggered()), this, SLOT(openAboutDialog()));
+    connect(actionAbout, &QAction::triggered, this, &MainWindow::openAboutDialog);
     actionAbout->setMenuRole(QAction::AboutRole);
 
     int w = 0;
@@ -1018,8 +1025,8 @@ void MainWindow::initActions()
     actionUpdates->setVisible(true);
     actionUpdates->setMenuRole(QAction::ApplicationSpecificRole);
 
-    connect(actionUpdates, SIGNAL(triggered()),
-            this, SLOT(checkUpdates()));
+    connect(actionUpdates, &QAction::triggered,
+            this, &MainWindow::checkUpdates);
 #else
     actionUpdates->setVisible(false);
 #endif

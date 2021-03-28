@@ -222,7 +222,9 @@ ConfigPage_Mp3::ConfigPage_Mp3(const Profile &profile, QWidget *parent) :
     mp3QualitySpin->setToolTip(mp3QualitySlider->toolTip());
     mp3QualityLabel->setToolTip(mp3QualitySlider->toolTip());
 
-    connect(mp3PresetCbx, SIGNAL(currentIndexChanged(int)), this, SLOT(mp3PresetCbxCanged(int)));
+    connect(mp3PresetCbx, qOverload<int>(&QComboBox::currentIndexChanged),
+            this, &ConfigPage_Mp3::mp3PresetCbxCanged);
+
     mp3PresetCbxCanged(mp3PresetCbx->currentIndex());
 }
 

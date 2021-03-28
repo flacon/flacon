@@ -186,7 +186,7 @@ set(TRANSLATIONS_DIR
 )
 add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 14)
 include("cmake/cxx_standard.cmake")
 include("cmake/git_version.cmake")
 include("cmake/build_type.cmake")

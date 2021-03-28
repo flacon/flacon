@@ -68,11 +68,11 @@ CoverDialog::CoverDialog(QWidget *parent) :
 
     mEmptyIcon = QIcon(QPixmap::fromImage(QImage(":noCover").scaled(ui->coverView->iconSize(), Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 
-    connect(ui->coverView, SIGNAL(itemDoubleClicked(QListWidgetItem *)),
-            this, SLOT(coverDoubleClicked(QListWidgetItem *)));
+    connect(ui->coverView, &QListWidget::itemDoubleClicked,
+            this, &CoverDialog::coverDoubleClicked);
 
-    connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton *)),
-            this, SLOT(buttonClicked(QAbstractButton *)));
+    connect(ui->buttonBox, &QDialogButtonBox::clicked,
+            this, &CoverDialog::buttonClicked);
 }
 
 /************************************************
@@ -89,7 +89,9 @@ CoverDialog::~CoverDialog()
 void CoverDialog::setDisc(Disc *disc)
 {
     mDisc = disc;
-    connect(mDisc.data(), SIGNAL(destroyed(QObject *)), SLOT(close()));
+    connect(mDisc.data(), &QObject::destroyed,
+            this, &CoverDialog::close);
+
     ui->coverView->clear();
     scan(QFileInfo(disc->cueFilePath()).absoluteDir().absolutePath());
     ui->coverView->setGridSize(QSize(140, 160));

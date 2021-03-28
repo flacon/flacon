@@ -136,7 +136,8 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent) :
     mNoCoverImg    = QImage(":noCover");
 
     mDownloadMovie.setFileName(":wait");
-    connect(&mDownloadMovie, SIGNAL(updated(QRect)), this, SLOT(movieUpdated()));
+    connect(&mDownloadMovie, &QMovie::updated,
+            this, &TrackViewDelegate::movieUpdated);
 }
 
 /************************************************

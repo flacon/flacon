@@ -139,7 +139,7 @@ void DiscPipeline::Data::createDir(const QString &dirName) const
     if (!QFileInfo(dir.path()).isWritable()) {
         QString msg = QObject::tr("I can't write to directory \"%1\".").arg(dir.path());
         QString err = strerror(errno);
-        FlaconError(msg + "<br><br>" + err);
+        throw FlaconError(msg + "<br><br>" + err);
     }
 }
 

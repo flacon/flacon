@@ -83,7 +83,8 @@ void DataProvider::get(const QNetworkRequest &request)
 {
     QNetworkReply *reply = networkAccessManager()->get(request);
     mReplies << reply;
-    connect(reply, SIGNAL(finished()), this, SLOT(replayFinished()));
+    connect(reply, &QNetworkReply::finished,
+            this, &DataProvider::replayFinished);
 }
 
 /************************************************

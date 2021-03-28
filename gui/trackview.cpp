@@ -217,7 +217,8 @@ void TrackView::headerContextMenu(QPoint pos)
         act->setData(i);
         act->setCheckable(true);
         act->setChecked(!isColumnHidden(i));
-        connect(act, SIGNAL(toggled(bool)), this, SLOT(showHideColumn(bool)));
+        connect(act, &QAction::toggled,
+                this, &TrackView::showHideColumn);
         menu.addAction(act);
     }
 
