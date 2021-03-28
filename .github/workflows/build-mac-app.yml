@@ -24,7 +24,14 @@ jobs:
     - name: Run CMake
       shell: bash
       working-directory: ${{github.workspace}}/build
-      run: cmake -DBUILD_TESTS=No -DMAC_BUNDLE=Yes -DCMAKE_INSTALL_PREFIX=${CUR_DIR} -DCMAKE_OSX_DEPLOYMENT_TARGET="10.10.1" $GITHUB_WORKSPACE
+      run: |
+        cmake \
+          -DQt5_DIR=$(brew --prefix qt5)/lib/cmake/Qt5 \
+          -DBUILD_TESTS=No \
+          -DMAC_BUNDLE=Yes \
+          -DCMAKE_INSTALL_PREFIX=${CUR_DIR} \
+          -DCMAKE_OSX_DEPLOYMENT_TARGET="10.10.1" \
+          $GITHUB_WORKSPACE
 
     - name: Build
       working-directory: ${{github.workspace}}/build
