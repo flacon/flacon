@@ -4,6 +4,7 @@ on: [push]
 
 env:
   BUILD_TYPE: Release
+  QT_DIR: /usr/local/opt/qt/
 
 jobs:
   build:    
@@ -14,10 +15,10 @@ jobs:
 
     - name: Install packages 
       run:  |
-        brew update
+        brew update --quiet
         brew install qt5 uchardet
 
-    - name: Build
+    - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
 
     - name: Run CMake
