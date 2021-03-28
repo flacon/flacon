@@ -59,6 +59,7 @@ void TestFlacon::testLoadDiscFromAudio()
         }
 
         Disc *disc = p.addAudioFile(dir + "/" + spec.value("LOAD").toString());
+        disc->setCodecName(spec.value("CODEC", "UTF-8").toString());
 
         Tests::DiscSpec exp(dir + "/disc.expected");
         if (!QFile::exists(exp.fileName())) {

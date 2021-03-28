@@ -2,7 +2,6 @@ CUE FILE = Street_Legal.cue
 COVER FILE = folder.JPG
 
 [TRACKS/01]
-    TITLE = Changing of the Guards
     DATE = 
     DISCID = 
     COMMENT = 
@@ -14,7 +13,6 @@ COVER FILE = folder.JPG
     AUDIO FILE = Side A.wv
 
 [TRACKS/02]
-    TITLE = New Pony
     DATE = 
     DISCID = 
     COMMENT = 
@@ -26,7 +24,6 @@ COVER FILE = folder.JPG
     AUDIO FILE = Side A.wv
 
 [TRACKS/03]
-    TITLE = No Time to Think
     DATE = 
     DISCID = 
     COMMENT = 
@@ -38,7 +35,6 @@ COVER FILE = folder.JPG
     AUDIO FILE = Side A.wv
 
 [TRACKS/04]
-    TITLE = "Baby, Stop Crying"
     DATE = 
     DISCID = 
     COMMENT = 
@@ -50,7 +46,6 @@ COVER FILE = folder.JPG
     AUDIO FILE = Side A.wv
 
 [TRACKS/05]
-    TITLE = Is Your Love in Vain?
     DATE = 
     DISCID = 
     COMMENT = 
@@ -62,19 +57,17 @@ COVER FILE = folder.JPG
     AUDIO FILE = Side B.wv
 
 [TRACKS/06]
-    TITLE = SeĆ±or (Tales of Yankee Power)
     DATE = 
     DISCID = 
     COMMENT = 
     FILE = Side B.wv
     PERFORMER = Bob Dylan
-    TITLE = SeĆ±or (Tales of Yankee Power)
+    TITLE = Señor (Tales of Yankee Power)
     INDEX 00 = 00:00.000
     INDEX 01 = 04:31.000
     AUDIO FILE = Side B.wv
 
 [TRACKS/07]
-    TITLE = True Love Tends to Forget
     DATE = 
     DISCID = 
     COMMENT = 
@@ -86,7 +79,6 @@ COVER FILE = folder.JPG
     AUDIO FILE = Side B.wv
 
 [TRACKS/08]
-    TITLE = We Better Talk This Over
     DATE = 
     DISCID = 
     COMMENT = 
@@ -98,7 +90,6 @@ COVER FILE = folder.JPG
     AUDIO FILE = Side B.wv
 
 [TRACKS/09]
-    TITLE = Where Are You Tonight? (Journey Through Dark Heat)
     DATE = 
     DISCID = 
     COMMENT = 
