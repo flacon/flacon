@@ -15,6 +15,7 @@ jobs:
     - name: Install packages 
       run:  |
         brew update
+        brew install qt5 uchardet
 
     - name: Build
       run: cmake -E make_directory ${{github.workspace}}/build
