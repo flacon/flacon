@@ -17,6 +17,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Install packages 
+      run:  
+      - sudo apt-get -y update 
+      - sudo apt-get -y install python-software-properties
+      - sudo add-apt-repository -y ppa:flacon
+      - sudo apt-get -y update
+      - sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev
+      - sudo apt-get -y install flac mac vorbis-tools wavpack lame vorbisgain mp3gain ttaenc
+      
     - name: Create Build Environment
       # Some projects don't allow in-source building, so create a separate build directory
       # We'll use this as our working directory for all subsequent commands
