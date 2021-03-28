@@ -81,8 +81,10 @@ public:
     DiscNum discCount() const;
 
     QStringList warnings() const;
-    bool        canConvert(QString *description = nullptr) const;
-    bool        canDownloadInfo() const;
+    QStringList errors() const;
+
+    bool canConvert() const;
+    bool canDownloadInfo() const;
 
     struct TagSet
     {

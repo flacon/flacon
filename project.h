@@ -55,7 +55,7 @@ public:
     bool discExists(const QString &cueUri);
 
     void  clear();
-    Disc *addAudioFile(const QString &fileName);
+    Disc *addAudioFile(const QString &fileName) noexcept(false);
     Disc *addCueFile(const QString &fileName);
 
 signals:

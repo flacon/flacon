@@ -684,8 +684,13 @@ void MainWindow::openAddFileDialog()
     QString     lastDir   = Settings::i()->value(Settings::Misc_LastDir).toString();
     QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Add CUE or audio file", "OpenFile dialog title"), lastDir, flt);
 
+    if (fileNames.isEmpty()) {
+        return;
+    }
+
+    Settings::i()->setValue(Settings::Misc_LastDir, QFileInfo(fileNames.last()).dir().path());
+
     foreach (const QString &fileName, fileNames) {
-        Settings::i()->setValue(Settings::Misc_LastDir, QFileInfo(fileName).dir().path());
         addFileOrDir(fileName);
     }
 }
@@ -719,7 +724,10 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
 
     InputAudioFile audio(fileName);
     if (!audio.isValid()) {
-        Messages::error(audio.errorString());
+        Messages::error(tr("\"%1\" was not set.", "Error message, %1 is an filename.")
+                                .arg(QFileInfo(fileName).fileName())
+                        + "<br>" + audio.errorString());
+        return;
     }
 
     disc->setAudioFile(audio, audioFileNum);

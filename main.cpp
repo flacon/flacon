@@ -113,6 +113,9 @@ void printVersion()
  ************************************************/
 void consoleErroHandler(QtMsgType type, const QMessageLogContext &context, const QString &message)
 {
+    Q_UNUSED(type)
+    Q_UNUSED(context)
+
     QString msg(message);
     msg.replace("<br>", " ");
     msg.remove(QRegExp("<[^>]*>"));
@@ -301,7 +304,8 @@ int main(int argc, char *argv[])
     else {
         qSetMessagePattern("%{if-warning}Warning: %{endif}%{if-critical}Error: %{endif}%{if-fatal}Error: %{endif}%{message}");
         QLoggingCategory::setFilterRules("Converter.debug=false\n"
-                                         "DataProvider.debug=false\n");
+                                         "DataProvider.debug=false\n"
+                                         "Decoder.debug=false\n");
     }
 
     quiet    = parser.isSet("quiet");

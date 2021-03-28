@@ -70,6 +70,7 @@ public:
 
     static Settings *i();
     static void      setFileName(const QString &fileName);
+    static QString   fileName() { return mFileName; }
 
     QVariant value(Key key, const QVariant &defaultValue = QVariant()) const;
     void     setValue(Key key, const QVariant &value);

@@ -675,17 +675,38 @@ bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, co
     }
 
     if (cache->markBtn.contains(m)) {
-        QString err  = view->model()->data(index, TrackViewModel::RoleDiscErrors).toString();
-        QString warn = view->model()->data(index, TrackViewModel::RoleDiscWarnings).toStringList().join("<br><br>");
+        QStringList errs  = view->model()->data(index, TrackViewModel::RoleDiscErrors).toStringList();
+        QStringList warns = view->model()->data(index, TrackViewModel::RoleDiscWarnings).toStringList();
 
-        if (!err.isEmpty() || !warn.isEmpty()) {
-            QToolTip::showText(
-                    event->globalPos(),
-                    warn + (!warn.isEmpty() && !err.isEmpty() ? "<br><hr><br>" : "") + err,
-                    view);
+        if (errs.isEmpty() && warns.isEmpty()) {
+            return true;
         }
+
+        QString html;
+        if (!errs.isEmpty()) {
+            html += tr("<b>The conversion is not possible.</b>");
+            html += "<ul>";
+            for (const QString &s : errs) {
+                html += QString("<li><nobr>%1</nobr></li>").arg(s);
+            }
+            html += "</ul>";
+        }
+        else {
+            html += "<ul>";
+            for (const QString &s : warns) {
+                html += QString("<li><nobr>%1</nobr></li>").arg(s);
+            }
+            html += "</ul>";
+        }
+
+        QToolTip::showText(
+                event->globalPos(),
+                "<html>" + html + "</html>",
+                view);
+
         return true;
     }
+
     return false;
 }
 

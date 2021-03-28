@@ -47,7 +47,10 @@ inline bool mustRead(QIODevice *device, char *data, qint64 size, int msecs = REA
     char * d    = data;
     qint64 left = size;
     while (left > 0) {
-        device->bytesAvailable() || device->waitForReadyRead(msecs);
+        if (!device->bytesAvailable() && !device->waitForReadyRead(msecs)) {
+            return false;
+        }
+
         qint64 n = device->read(d, left);
         if (n < 0)
             return false;
@@ -190,7 +193,7 @@ WavHeader::WavHeader() :
  *   http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html
  *   https://en.wikipedia.org/wiki/WAV
  ************************************************/
-WavHeader::WavHeader(QIODevice *stream) :
+WavHeader::WavHeader(QIODevice *stream) noexcept(false) :
     mFormat(WavHeader::Format_Unknown),
     mNumChannels(0),
     mSampleRate(0),

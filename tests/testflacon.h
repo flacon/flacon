@@ -122,6 +122,9 @@ private slots:
     void testLoadDiscFromAudio();
     void testLoadDiscFromAudio_data();
 
+    void testLoadDiscFromAudioErrors();
+    void testLoadDiscFromAudioErrors_data();
+
     void testConvert();
     void testConvert_data();
 

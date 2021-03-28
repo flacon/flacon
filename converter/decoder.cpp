@@ -32,6 +32,11 @@
 #include <QProcess>
 #include <QDir>
 #include <QDebug>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG, "Decoder")
+}
 
 using namespace Conv;
 
@@ -79,16 +84,20 @@ Decoder::~Decoder()
 void Decoder::open(const QString &fileName)
 {
     mInputFile = fileName;
-    if (!mFormat)
+    if (!mFormat) {
         mFormat = InputFormat::formatForFile(fileName);
+    }
 
-    if (!mFormat)
-        throw FlaconError("Unknown format");
+    if (!mFormat) {
+        throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
+    }
 
-    if (!mFormat->decoderProgramName().isEmpty())
+    if (!mFormat->decoderProgramName().isEmpty()) {
         return openProcess();
-    else
+    }
+    else {
         return openFile();
+    }
 }
 
 /************************************************
@@ -97,11 +106,18 @@ void Decoder::open(const QString &fileName)
 void Decoder::openFile()
 {
     mFile = new QFile(mInputFile, this);
-    if (!mFile->open(QFile::ReadOnly))
+    if (!mFile->open(QFile::ReadOnly)) {
         throw FlaconError(mFile->errorString());
+    }
 
-    mWavHeader = WavHeader(mFile);
-    mPos       = mWavHeader.dataStartPos();
+    try {
+        mWavHeader = WavHeader(mFile);
+        mPos       = mWavHeader.dataStartPos();
+    }
+    catch (const FlaconError &err) {
+        qCDebug(LOG) << "The audio file may be corrupted:" << err.what();
+        throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
+    }
 }
 
 /************************************************
@@ -109,19 +125,36 @@ void Decoder::openFile()
  ************************************************/
 void Decoder::openProcess()
 {
-    mProcess = new QProcess(this);
-
     QString program = Settings::i()->programName(mFormat->decoderProgramName());
+    if (program.isEmpty()) {
+        throw FlaconError(tr("The %1 program is not installed.<br>Verify that all required programs are installed and in your preferences.",
+                             "Error message. %1 - is an program name")
+                                  .arg(mFormat->decoderProgramName()));
+    }
+
+    if (!QFileInfo::exists(program)) {
+        throw FlaconError(tr("The %1 program is set in preferences but not installed.<br>Verify that all required programs are installed and in your preferences.",
+                             "Error message. %1 - is an program name")
+                                  .arg(mFormat->decoderProgramName()));
+    }
+    mProcess = new QProcess(this);
     mProcess->setReadChannel(QProcess::StandardOutput);
 
     mProcess->start(QDir::toNativeSeparators(program), mFormat->decoderArgs(mInputFile));
     bool res = mProcess->waitForStarted();
-    if (!res)
-        throw FlaconError(QString("[Decoder] Can't start '%1': %2")
+    if (!res) {
+        throw FlaconError(QString("Can't start '%1': %2")
                                   .arg(program, mProcess->errorString()));
+    }
 
-    mWavHeader = WavHeader(mProcess);
-    mPos       = mWavHeader.dataStartPos();
+    try {
+        mWavHeader = WavHeader(mProcess);
+    }
+    catch (const FlaconError &err) {
+        qCDebug(LOG) << "The audio file may be corrupted:" << err.what();
+        throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
+    }
+    mPos = mWavHeader.dataStartPos();
 }
 
 /************************************************

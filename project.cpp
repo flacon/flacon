@@ -133,7 +133,7 @@ bool Project::discExists(const QString &cueUri)
 /************************************************
 
  ************************************************/
-Disc *Project::addAudioFile(const QString &fileName)
+Disc *Project::addAudioFile(const QString &fileName) noexcept(false)
 {
     QString canonicalFileName = QFileInfo(fileName).canonicalFilePath();
 

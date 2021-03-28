@@ -54,7 +54,7 @@ Cue::Cue() :
 /************************************************
  *
  ************************************************/
-Cue::Cue(const QString &fileName)
+Cue::Cue(const QString &fileName) noexcept(false)
 {
     CueData data(fileName);
     if (data.isEmpty()) {

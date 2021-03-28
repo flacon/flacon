@@ -58,8 +58,7 @@ void InputAudioFile::Data::load(const QString &filePath)
     mFilePath = filePath;
 
     if (mFilePath.isEmpty()) {
-        qWarning() << "The audio file name is not set";
-        mErrorString = QObject::tr("The audio file name is not set");
+        mErrorString = QObject::tr("The audio file name is not set.");
         mValid       = false;
         mFileName.clear();
         return;
@@ -69,8 +68,7 @@ void InputAudioFile::Data::load(const QString &filePath)
     mFileName = fi.fileName();
 
     if (!fi.exists()) {
-        qWarning() << QString("The audio file <b>\"%1\"</b> does not exist").arg(mFilePath);
-        mErrorString = QObject::tr("The audio file <b>\"%1\"</b> does not exist").arg(mFilePath);
+        mErrorString = QObject::tr("The audio file does not exist.");
         mValid       = false;
         return;
     }
@@ -87,12 +85,8 @@ void InputAudioFile::Data::load(const QString &filePath)
         mValid         = true;
     }
     catch (FlaconError &err) {
-        mErrorString = QObject::tr("File <b>%1</b> is not a supported audio file. <br>"
-                                   "<br>Verify that all required programs are installed and in your preferences.")
-                               .arg(mFilePath);
-        mErrorString += ": ";
-        mErrorString += err.what();
-        mValid = false;
+        mErrorString = err.what();
+        mValid       = false;
     }
 }
 

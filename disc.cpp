@@ -193,56 +193,9 @@ const Track *Disc::preGapTrack() const
 /************************************************
 
  ************************************************/
-bool Disc::canConvert(QString *description) const
+bool Disc::canConvert() const
 {
-    QStringList msg;
-
-    if (count() < 1) {
-        msg << tr("Cue file not set.");
-    }
-
-    const QList<TrackPtrList> &audioFileTracks = tracksByFileTag();
-    for (const TrackPtrList &tracks : audioFileTracks) {
-        if (tracks.first()->audioFile().isNull()) {
-            if (audioFileTracks.count() == 1) {
-                msg << tr("Audio file not set.");
-                continue;
-            }
-
-            if (tracks.count() == 1) {
-                msg << tr("Audio file not set for track %1.", "Warning message, Placeholders is a track number")
-                                .arg(tracks.first()->trackNum());
-                continue;
-            }
-
-            msg << tr("Audio file not set for tracks %1-%2.", "Warning message, Placeholders is a track numbers")
-                            .arg(tracks.first()->trackNum())
-                            .arg(tracks.last()->trackNum());
-        }
-    }
-
-    for (const TrackPtrList &tracks : audioFileTracks) {
-        InputAudioFile audio = tracks.first()->audioFile();
-        if (audio.isNull()) {
-            continue;
-        }
-
-        uint duration = 0;
-        for (int i = 0; i < tracks.count() - 1; ++i) {
-            duration += tracks[i]->duration();
-        }
-
-        if (audio.duration() <= duration) {
-            msg << tr("Audio file shorter than expected from CUE sheet.");
-            break;
-        }
-    }
-
-    if (description) {
-        *description = msg.join("\n");
-    }
-
-    return msg.isEmpty();
+    return this->errors().isEmpty();
 }
 
 /************************************************
@@ -650,6 +603,68 @@ QStringList Disc::warnings() const
             res << tr("A maximum sample rate of %1 is supported by this format. This value will be used for encoding.", "Warning message")
                             .arg(int(Settings::i()->currentProfile().maxSampleRate()));
     }
+    return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+QStringList Disc::errors() const
+{
+    QStringList res;
+
+    if (count() < 1) {
+        res << tr("Cue file not set.");
+        return res;
+    }
+
+    const QList<TrackPtrList> &audioFileTracks = tracksByFileTag();
+    for (const TrackPtrList &tracks : audioFileTracks) {
+        const InputAudioFile &audio = tracks.first()->audioFile();
+
+        if (audio.isNull()) {
+            if (audioFileTracks.count() == 1) {
+                res << tr("Audio file not set.", "Warning message");
+                continue;
+            }
+
+            if (tracks.count() == 1) {
+                res << tr("Audio file not set for track %1.", "Warning message, Placeholders is a track number")
+                                .arg(tracks.first()->trackNum());
+                continue;
+            }
+
+            res << tr("Audio file not set for tracks %1-%2.", "Warning message, Placeholders is a track numbers")
+                            .arg(tracks.first()->trackNum())
+                            .arg(tracks.last()->trackNum());
+            continue;
+        }
+
+        if (!audio.isValid()) {
+            if (audioFileTracks.count() == 1) {
+                res << audio.errorString();
+                continue;
+            }
+        }
+    }
+
+    for (const TrackPtrList &tracks : audioFileTracks) {
+        InputAudioFile audio = tracks.first()->audioFile();
+        if (audio.isNull() || !audio.isNull()) {
+            continue;
+        }
+
+        uint duration = 0;
+        for (int i = 0; i < tracks.count() - 1; ++i) {
+            duration += tracks[i]->duration();
+        }
+
+        if (audio.duration() <= duration) {
+            res << tr("Audio file shorter than expected from CUE sheet.");
+            break;
+        }
+    }
+
     return res;
 }
 

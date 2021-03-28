@@ -73,7 +73,7 @@ public:
     typedef char SubFormat[16];
 
     WavHeader();
-    explicit WavHeader(QIODevice *stream);
+    explicit WavHeader(QIODevice *stream) noexcept(false);
 
     WavHeader(const WavHeader &other);
     WavHeader &operator=(const WavHeader &other);
