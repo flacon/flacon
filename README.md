@@ -1,4 +1,4 @@
-Flacon      &nbsp;   ![Release](http://flacon.github.io/badge_release.svg)      &nbsp;  [![Build Status](https://api.travis-ci.org/flacon/flacon.svg)](https://travis-ci.org/flacon/flacon)      &nbsp;  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XVRVWTQL5WERG)
+Flacon      &nbsp;   ![Release](http://flacon.github.io/badge_release.svg)      &nbsp;  ![Build Status](https://github.com/flacon/flacon/actions/workflows/test-linux.yml/badge.svg)      &nbsp;  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XVRVWTQL5WERG)
 ======
 
 Audio File Encoder.

@@ -1,0 +1,27 @@
+name: Build MacOs Bundle
+
+on: [push]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:    
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build
+      run: cmake -E make_directory ${{github.workspace}}/build
+
+    - name: Run CMake
+      shell: bash
+      working-directory: ${{github.workspace}}/build
+      run: cmake -DBUILD_TESTS=No -DMAC_BUNDLE=Yes -DCMAKE_INSTALL_PREFIX=${CUR_DIR} -DCMAKE_OSX_DEPLOYMENT_TARGET="10.10.1" $GITHUB_WORKSPACE
+
+    - name: Build
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      run: make -j 8
+

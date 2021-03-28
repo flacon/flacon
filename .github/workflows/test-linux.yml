@@ -1,4 +1,4 @@
-name: Test-Linux
+name: Tests Linux
 
 on: [push]
 
