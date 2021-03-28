@@ -252,15 +252,15 @@ void Profile::setBitsPerSample(int value)
 /************************************************
  *
  ************************************************/
-int Profile::sampleRate() const
+SampleRate Profile::sampleRate() const
 {
-    return value(SAMPLE_RATE_KEY, int(SampleRate::AsSource)).toInt();
+    return SampleRate(value(SAMPLE_RATE_KEY, int(SampleRate::AsSource)).toInt());
 }
 
 /************************************************
  *
  ************************************************/
-void Profile::setSampleRate(int value)
+void Profile::setSampleRate(SampleRate value)
 {
     setValue(SAMPLE_RATE_KEY, value);
 }

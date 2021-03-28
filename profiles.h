@@ -65,8 +65,8 @@ public:
     int  bitsPerSample() const;
     void setBitsPerSample(int value);
 
-    int  sampleRate() const;
-    void setSampleRate(int value);
+    SampleRate sampleRate() const;
+    void       setSampleRate(SampleRate value);
 
     bool isCreateCue() const;
     void setCreateCue(bool value);
