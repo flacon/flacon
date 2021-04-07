@@ -18,8 +18,9 @@ jobs:
         brew install qt5 uchardet
 
     - name: Install Saprkle
-      run: curl -s -L https://github.com/sparkle-project/Sparkle/releases/download/1.26.0/Sparkle-1.26.0.tar.xz > Sparkle.tar.xz
-      run: tar xvf Sparkle.tar.xz Sparkle.framework
+      run: |
+        curl -s -L https://github.com/sparkle-project/Sparkle/releases/download/1.26.0/Sparkle-1.26.0.tar.xz > Sparkle.tar.xz
+        tar xvf Sparkle.tar.xz Sparkle.framework
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
