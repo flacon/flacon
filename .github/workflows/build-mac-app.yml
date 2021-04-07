@@ -4,7 +4,6 @@ on: [push]
 
 env:
   BUILD_TYPE: Release
-  QT_DIR: /usr/local/opt/qt/
 
 jobs:
   build:    
@@ -17,6 +16,10 @@ jobs:
       run:  |
         brew update --quiet
         brew install qt5 uchardet
+
+    - name: Install Saprkle
+      run: curl -s -L https://github.com/sparkle-project/Sparkle/releases/download/1.26.0/Sparkle-1.26.0.tar.xz > Sparkle.tar.xz
+      run: tar xvf Sparkle.tar.xz Sparkle.framework
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
@@ -31,6 +34,7 @@ jobs:
           -DMAC_BUNDLE=Yes \
           -DCMAKE_INSTALL_PREFIX=${CUR_DIR} \
           -DCMAKE_OSX_DEPLOYMENT_TARGET="10.10.1" \
+          -DCMAKE_FRAMEWORK_PATH=$GITHUB_WORKSPACE \
           $GITHUB_WORKSPACE
 
     - name: Build
