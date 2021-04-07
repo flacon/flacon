@@ -136,4 +136,21 @@ void TestFlacon::testSearchCoverImage_data()
     req.expected = "Front.JPG";
 
     QTest::newRow("05") << req;
+
+    // .....................................
+    req.clear();
+    req.imgFiles
+            << "Art/01 front.jpg"
+            << "Art/02 back.jpg	03"
+            << "Art/disc.jpg"
+            << "Art/04 matrix.jpg"
+            << "Art/booklet01.jpg"
+            << "Art/booklet02.jpg"
+            << "Art/booklet03.jpg"
+            << "Art/booklet04.jpg"
+            << "Art/booklet05.jpg"
+            << "Art/booklet06.jpg";
+    req.expected = "Art/01 front.jpg";
+
+    QTest::newRow("06 Art/01 front.jpg") << req;
 }

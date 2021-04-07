@@ -829,18 +829,38 @@ void Disc::setDiscTag(TagId tagId, const QByteArray &value)
  ************************************************/
 bool compareCoverImages(const QFileInfo &f1, const QFileInfo &f2)
 {
-    static QStringList order(QStringList()
-                             << "COVER"
-                             << "FRONT"
-                             << "FOLDER");
+    const static QStringList order(QStringList()
+                                   << "COVER"
+                                   << "FRONT"
+                                   << "FOLDER");
 
-    int n1 = order.indexOf(f1.baseName().toUpper());
-    if (n1 < 0)
-        n1 = 9999;
+    QString f1up = f1.baseName().toUpper();
+    QString f2up = f2.baseName().toUpper();
 
-    int n2 = order.indexOf(f2.baseName().toUpper());
-    if (n2 < 0)
-        n2 = 9999;
+    int n1 = 9999;
+    int n2 = 9999;
+
+    for (int i = 0; i < order.count(); ++i) {
+        const QString &pattern = order.at(i);
+
+        // complete match ..................
+        if (f1up == pattern) {
+            n1 = i;
+        }
+
+        if (f2up == pattern) {
+            n2 = i;
+        }
+
+        // filename contains pattern .......
+        if (f1up.contains(pattern)) {
+            n1 = i + order.count();
+        }
+
+        if (f2up.contains(pattern)) {
+            n2 = i + order.count();
+        }
+    }
 
     if (n1 != n2)
         return n1 < n2;
