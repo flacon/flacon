@@ -232,6 +232,18 @@
         <source>Windows 1258</source>
         <translation>Windows 1258</translation>
     </message>
+    <message>
+        <source>Simplified Chinese (GB18030)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Traditional Chinese (BIG5)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Japanese (CP932)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigDialog</name>
@@ -355,7 +367,7 @@
     <message>
         <source>CDDB server: </source>
         <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
+        <translation>שרת CDDB:</translation>
     </message>
 </context>
 <context>
@@ -467,7 +479,11 @@ In CBR mode, it sets the specific output bitrate.
 
 &lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt; VBR - קצב סיביות משתנה &lt;/dt&gt;
+&lt;dd&gt;שימוש בקידוד קצב סיביות משתנה (מומלץ). במצב VBR, קצב הסיביות עשוי לעלות ולרדת באופן חופשי, כתלות בתוכן ומבטיחה איכות עקבית. &lt;/dd&gt;
+
+&lt;dt&gt; CVBR - קצב סיביות משתנה מוגבל&lt;/dt&gt; 
+&lt;dd&gt; שימוש בקידוד קצב סיביות מוגבל משתנה. פלט יהיה בקצב סיביות מסוים. מצב זה מקביל למצב CBR במקודדי AAC / MP3  ומצב מנוהל במקודדי של vorbis. האיכות תהיה פחות עקבית מאשר במצב VBR אבל קצב סיביות עקבי. &lt;/dd&gt;</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -477,45 +493,33 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
-        <translation type="unfinished"/>
+        <translation>CVBR - קצב סיביות משתנה מוגבל</translation>
     </message>
 </context>
 <context>
-    <name>Converter</name>
+    <name>Conv::Converter</name>
     <message>
         <source>Conversion is not possible:</source>
         <translation>המרה אינה אפשרית:</translation>
     </message>
 </context>
 <context>
-    <name>CoverDialog</name>
+    <name>Conv::Decoder</name>
     <message>
-        <source>Select cover image</source>
-        <translation>בחירת תמונת עטיפה</translation>
+        <source>The audio file may be corrupted or an unsupported audio format.</source>
+        <comment>Error message.</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Without cover image</source>
-        <translation>ללא תמונת עטיפה</translation>
-    </message>
-</context>
-<context>
-    <name>CueDiscSelectDialog</name>
-    <message>
-        <source>Select disc</source>
-        <translation>בחירת תקליטור</translation>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
-        <translation>גליון ה cue מכיל מידע אודות מספר תקליטורים. באיזה תקליטור לבחור לשימוש?</translation>
+        <source>The %1 program is installed in the settings, but binary file does not exist.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
     </message>
-    <message>
-        <source>%1 [ disc %2 ]</source>
-        <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
-        <translation>%1 [ disc %2 ]</translation>
-    </message>
-</context>
-<context>
-    <name>Decoder</name>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
@@ -523,32 +527,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>Disc</name>
-    <message>
-        <source>Audio file not set.</source>
-        <translation>לא הוגדר קובץ שמע.</translation>
-    </message>
-    <message>
-        <source>Cue file not set.</source>
-        <translation>לא הוגדר גליון cue.</translation>
-    </message>
-    <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>קובץ האודיו קצר מהצפוי על פי גליון cue.</translation>
-    </message>
-    <message>
-        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation>התבנית תומכת בקצב מירבי של %1 ביט לדגימה, יעשה שימוש בערך זה בקידוד.</translation>
-    </message>
-    <message>
-        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation>התבנית תומכת בקצב דגימה מירבי של %1, יעשה שימוש בערך זה בקידוד.</translation>
-    </message>
-</context>
-<context>
-    <name>DiscPipeline</name>
+    <name>Conv::DiscPipeline</name>
     <message>
         <source>I can't rename file:
 %1 to %2
@@ -559,7 +538,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>Encoder</name>
+    <name>Conv::Encoder</name>
     <message>
         <source>Encoder error:
 </source>
@@ -578,6 +557,70 @@ In CBR mode, it sets the specific output bitrate.
         <translation>לא ניתן לשנות שם קובץ:
 %1 to %2
 %3</translation>
+    </message>
+</context>
+<context>
+    <name>Conv::Gain</name>
+    <message>
+        <source>Gain error:
+</source>
+        <translation>שגיאת מרווח:
+</translation>
+    </message>
+</context>
+<context>
+    <name>Conv::Splitter</name>
+    <message>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation>לא ניתן לקרוא &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>CoverDialog</name>
+    <message>
+        <source>Select cover image</source>
+        <translation>בחירת תמונת עטיפה</translation>
+    </message>
+    <message>
+        <source>Without cover image</source>
+        <translation>ללא תמונת עטיפה</translation>
+    </message>
+</context>
+<context>
+    <name>Disc</name>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>לא הוגדר גליון cue.</translation>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation>קובץ האודיו קצר מהצפוי על פי גליון cue.</translation>
+    </message>
+    <message>
+        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>התבנית תומכת בקצב מירבי של %1 ביט לדגימה, יעשה שימוש בערך זה בקידוד.</translation>
+    </message>
+    <message>
+        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>התבנית תומכת בקצב דגימה מירבי של %1, יעשה שימוש בערך זה בקידוד.</translation>
+    </message>
+    <message>
+        <source>Audio file not set.</source>
+        <comment>Warning message</comment>
+        <translation>לא הוגדר קובץ שמע.</translation>
+    </message>
+    <message>
+        <source>Audio file not set for track %1.</source>
+        <comment>Warning message, Placeholders is a track number</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file not set for tracks %1-%2.</source>
+        <comment>Warning message, Placeholders is a track numbers</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -602,15 +645,6 @@ This only affects the file size. All settings are lossless.</source>
     </message>
 </context>
 <context>
-    <name>Gain</name>
-    <message>
-        <source>Gain error:
-</source>
-        <translation>שגיאת מרווח:
-</translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
@@ -618,7 +652,7 @@ This only affects the file size. All settings are lossless.</source>
     </message>
     <message>
         <source>Result Files</source>
-        <translation>קובצי תוצאה</translation>
+        <translation>תוצאות קבצים</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -908,7 +942,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
         <source>Add disc…</source>
@@ -918,16 +952,31 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>הוספת תקליטור</translation>
     </message>
     <message>
         <source>Add folder…</source>
         <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <translation>הוספת ספריה...</translation>
     </message>
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
+        <translation>הוספת ספריה</translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; was not set.</source>
+        <comment>Error message, %1 is an filename.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file for %1 track…</source>
+        <comment>context menu. Placeholders are track number</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file for tracks (%1 to %2)…</source>
+        <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1166,7 +1215,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Result Files</source>
-        <translation>קובצי תוצאה</translation>
+        <translation>תוצאות קבצים</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1267,10 +1316,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>לא ניתן למצוא תכנית &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>קובץ &lt;b&gt;%1&lt;/b&gt; אינו קובץ שמע נתמך. &lt;br&gt;&lt;br&gt; יש לוודא שכל התכניות הנדרשות מותקנות ומופיעות &lt;br&gt;בהעדפות&lt;br&gt;.</translation>
-    </message>
-    <message>
         <source>Flacon</source>
         <comment>Error</comment>
         <translation>פלאקון</translation>
@@ -1280,17 +1325,9 @@ If you surround sections of text that contain a token with braces, these section
         <translation>קובץ &lt;b&gt;&quot;%1&quot;&lt;/b&gt; לא קיים</translation>
     </message>
     <message>
-        <source>The audio file name is not set</source>
-        <translation>שם קובץ שמע לא הוגדר</translation>
-    </message>
-    <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation>לא ניתן לנשתמש ב &apos;ReplayGain&apos; בקבצים שקצב הסיביות בהן גבוהה מ 48kHz. Metaflac אינו תומך בסוג זה של קבצים.</translation>
-    </message>
-    <message>
-        <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>קובץ שמע &lt;b&gt;&quot;%1&quot;&lt;/b&gt; לא קיים</translation>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
@@ -1337,16 +1374,12 @@ If you surround sections of text that contain a token with braces, these section
         <translation>לא ניתן לשמור תמונת עטיפה &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2&quot;</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; אינו קובץ CUE תקין. תקליטור %2 אינו מכיל תגים.</translation>
+        <source>The audio file name is not set.</source>
+        <translation type="unfinished"/>
     </message>
-</context>
-<context>
-    <name>Splitter</name>
     <message>
-        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-        <translation>לא ניתן לקרוא &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2&quot;</translation>
+        <source>The audio file does not exist.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1472,6 +1505,14 @@ If you surround sections of text that contain a token with braces, these section
         <comment>Status of the track conversion.</comment>
         <translation>המתנה למרווח</translation>
     </message>
+    <message>
+        <source>Multiple files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>TrackViewModel</name>
@@ -1523,12 +1564,6 @@ If you surround sections of text that contain a token with braces, these section
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
         <translation>%1:%2</translation>
-    </message>
-    <message>
-        <source>The conversion is not possible.
-%1</source>
-        <translation>ההמרה אינה אפשרית.
-%1</translation>
     </message>
 </context>
 <context>

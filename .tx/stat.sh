@@ -1,18 +1,21 @@
 #!/bin/sh
 
 DIR="../translations"
+BARS_LEN=100
+BARS_CHAR="⫼"
+BARS_CHAR=":"
 
 function graph()
 {
 	local s=$1
 	local t=$2 
 
-	let l=($t*50)/$s
+	let l=($t*${BARS_LEN})/$s
 	local graph=""
 	for ((i=0; i<$l; i++)); do 
-		printf "="; 
+		printf "${BARS_CHAR}"; 
 	done
-	for ((i=$l; i<50; i++)); do 
+	for ((i=$l; i<${BARS_LEN}; i++)); do 
 		printf " "; 
 	done
 }
@@ -32,7 +35,7 @@ for f in `find .. -name "*.ts"`; do
 	let psum=$psum+$p
 	let tsum=$tsum+$trn
 	let cnt=$cnt+1
-	printf "%-20s |%s|%3d%%   %4s of %s\n" $(basename "$f") $(graph $src $trn) "$p" "$trn" "$src"
+	printf "%-20s | %s | %3d%%   %4s of %s\n" $(basename "$f") $(graph $src $trn) "$p" "$trn" "$src"
 done
 
 let p=($tsum*100)/$ssum

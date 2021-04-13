@@ -232,6 +232,18 @@
         <source>Windows 1258</source>
         <translation>Windows 1258</translation>
     </message>
+    <message>
+        <source>Simplified Chinese (GB18030)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Traditional Chinese (BIG5)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Japanese (CP932)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigDialog</name>
@@ -486,41 +498,29 @@ No modo CBR, define a taxa de bits de saída específica.
     </message>
 </context>
 <context>
-    <name>Converter</name>
+    <name>Conv::Converter</name>
     <message>
         <source>Conversion is not possible:</source>
-        <translation>Conversão não é possível:</translation>
+        <translation>Não é possível converter:</translation>
     </message>
 </context>
 <context>
-    <name>CoverDialog</name>
+    <name>Conv::Decoder</name>
     <message>
-        <source>Select cover image</source>
-        <translation>Selecione a imagem da capa</translation>
+        <source>The audio file may be corrupted or an unsupported audio format.</source>
+        <comment>Error message.</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Without cover image</source>
-        <translation>Sem imagem da capa</translation>
-    </message>
-</context>
-<context>
-    <name>CueDiscSelectDialog</name>
-    <message>
-        <source>Select disc</source>
-        <translation>Selecionar disco</translation>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
-        <translation>O arquivo CUE contém informações de vários discos. Qual disco deseja usar?</translation>
+        <source>The %1 program is installed in the settings, but binary file does not exist.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
     </message>
-    <message>
-        <source>%1 [ disc %2 ]</source>
-        <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
-        <translation>%1 [ disco %2 ]</translation>
-    </message>
-</context>
-<context>
-    <name>Decoder</name>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
@@ -528,32 +528,7 @@ No modo CBR, define a taxa de bits de saída específica.
     </message>
 </context>
 <context>
-    <name>Disc</name>
-    <message>
-        <source>Audio file not set.</source>
-        <translation>Arquivo de áudio não indicado.</translation>
-    </message>
-    <message>
-        <source>Cue file not set.</source>
-        <translation>Arquivo cue não indicado.</translation>
-    </message>
-    <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>Arquivo de áudio menor que o esperado pelo arquivo CUE.</translation>
-    </message>
-    <message>
-        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation>O formato suporta no máximo %1 -bits por amostra. Esse valor será usado na codificação.</translation>
-    </message>
-    <message>
-        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation>O formato suporta no máximo %1 de taxa de amostra. Esse valor será usado na codificação.</translation>
-    </message>
-</context>
-<context>
-    <name>DiscPipeline</name>
+    <name>Conv::DiscPipeline</name>
     <message>
         <source>I can't rename file:
 %1 to %2
@@ -564,7 +539,7 @@ No modo CBR, define a taxa de bits de saída específica.
     </message>
 </context>
 <context>
-    <name>Encoder</name>
+    <name>Conv::Encoder</name>
     <message>
         <source>Encoder error:
 </source>
@@ -586,6 +561,69 @@ No modo CBR, define a taxa de bits de saída específica.
     </message>
 </context>
 <context>
+    <name>Conv::Gain</name>
+    <message>
+        <source>Gain error:
+</source>
+        <translation>Erro de ganho:</translation>
+    </message>
+</context>
+<context>
+    <name>Conv::Splitter</name>
+    <message>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation>Não foi possível acessar &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+</context>
+<context>
+    <name>CoverDialog</name>
+    <message>
+        <source>Select cover image</source>
+        <translation>Selecione a imagem da capa</translation>
+    </message>
+    <message>
+        <source>Without cover image</source>
+        <translation>Sem imagem da capa</translation>
+    </message>
+</context>
+<context>
+    <name>Disc</name>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>Arquivo cue não indicado.</translation>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation>Arquivo de áudio menor que o esperado pelo arquivo CUE.</translation>
+    </message>
+    <message>
+        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>O formato suporta no máximo %1 -bits por amostra. Esse valor será usado na codificação.</translation>
+    </message>
+    <message>
+        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>O formato suporta no máximo %1 de taxa de amostra. Esse valor será usado na codificação.</translation>
+    </message>
+    <message>
+        <source>Audio file not set.</source>
+        <comment>Warning message</comment>
+        <translation>Arquivo de áudio não indicado.</translation>
+    </message>
+    <message>
+        <source>Audio file not set for track %1.</source>
+        <comment>Warning message, Placeholders is a track number</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file not set for tracks %1-%2.</source>
+        <comment>Warning message, Placeholders is a track numbers</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
@@ -604,14 +642,6 @@ Isso afeta somente o tamanho do arquivo. Todas as configurações são sem perda
     <message>
         <source>Default</source>
         <translation>Padrão</translation>
-    </message>
-</context>
-<context>
-    <name>Gain</name>
-    <message>
-        <source>Gain error:
-</source>
-        <translation>Erro de ganho:</translation>
     </message>
 </context>
 <context>
@@ -930,6 +960,21 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
         <source>Add folder</source>
         <comment>Toolbar item</comment>
         <translation>Adicionar pasta</translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; was not set.</source>
+        <comment>Error message, %1 is an filename.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file for %1 track…</source>
+        <comment>context menu. Placeholders are track number</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file for tracks (%1 to %2)…</source>
+        <comment>context menu. Placeholders are track numbers</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1267,10 +1312,6 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>Não foi possível localizar o programa &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation>O arquivo &lt;b&gt;%1&lt;/b&gt; não é um arquivo de áudio suportado. &lt;br&gt;&lt;br&gt;Verifique se todos os programas estão instalados nas suas preferências.</translation>
-    </message>
-    <message>
         <source>Flacon</source>
         <comment>Error</comment>
         <translation>Flacon</translation>
@@ -1280,17 +1321,9 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>O arquivo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; não existe</translation>
     </message>
     <message>
-        <source>The audio file name is not set</source>
-        <translation>Nome do arquivo de áudio não definido</translation>
-    </message>
-    <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation>Não é possível usar &apos;ReplayGain&apos; para arquivos com qualidade superior a 48kHz. Metaflac não suporta esses arquivos.</translation>
-    </message>
-    <message>
-        <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>O arquivo de áudio &lt;b&gt;&quot;%1&quot;&lt;/b&gt; não existe</translation>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
@@ -1337,16 +1370,12 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>Não é possível salvar a imagem da capa &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
-        <translation> &lt;b&gt;%1&lt;/b&gt; não é um arquivo CUE válido. O disco %2 não possui etiquetas.</translation>
+        <source>The audio file name is not set.</source>
+        <translation type="unfinished"/>
     </message>
-</context>
-<context>
-    <name>Splitter</name>
     <message>
-        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-        <translation>Não foi possível acessar &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <source>The audio file does not exist.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1472,6 +1501,14 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <comment>Status of the track conversion.</comment>
         <translation>Esperando pelo ganho</translation>
     </message>
+    <message>
+        <source>Multiple files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>TrackViewModel</name>
@@ -1523,12 +1560,6 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
         <translation>%1:%2</translation>
-    </message>
-    <message>
-        <source>The conversion is not possible.
-%1</source>
-        <translation>Não é possível converter:
-%1</translation>
     </message>
 </context>
 <context>

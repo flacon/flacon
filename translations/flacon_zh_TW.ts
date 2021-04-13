@@ -232,6 +232,18 @@
         <source>Windows 1258</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Simplified Chinese (GB18030)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Traditional Chinese (BIG5)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Japanese (CP932)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ConfigDialog</name>
@@ -457,10 +469,77 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>Converter</name>
+    <name>Conv::Converter</name>
     <message>
         <source>Conversion is not possible:</source>
         <translation>無法轉換：</translation>
+    </message>
+</context>
+<context>
+    <name>Conv::Decoder</name>
+    <message>
+        <source>The audio file may be corrupted or an unsupported audio format.</source>
+        <comment>Error message.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 program is installed in the settings, but binary file does not exist.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Conv::DiscPipeline</name>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Conv::Encoder</name>
+    <message>
+        <source>Encoder error:
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t read %1 file</source>
+        <comment>Encoder error. %1 is a file name.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can't rename file:
+%1 to %2
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Conv::Gain</name>
+    <message>
+        <source>Gain error:
+</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Conv::Splitter</name>
+    <message>
+        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -475,35 +554,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>CueDiscSelectDialog</name>
-    <message>
-        <source>Select disc</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The CUE file contains information about multiple discs. Which disc do you want to use?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 [ disc %2 ]</source>
-        <comment>Cue disc select dialog, string like 'The Wall [disc 1]'</comment>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>Decoder</name>
-    <message>
-        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Error string, %1 is a filename, %2 error message</comment>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>Disc</name>
-    <message>
-        <source>Audio file not set.</source>
-        <translation>未設定聲訊檔案。</translation>
-    </message>
     <message>
         <source>Cue file not set.</source>
         <translation type="unfinished"/>
@@ -522,32 +573,19 @@ In CBR mode, it sets the specific output bitrate.
         <comment>Warning message</comment>
         <translation type="unfinished"/>
     </message>
-</context>
-<context>
-    <name>DiscPipeline</name>
     <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
-        <translation type="unfinished"/>
+        <source>Audio file not set.</source>
+        <comment>Warning message</comment>
+        <translation>未設定聲訊檔案。</translation>
     </message>
-</context>
-<context>
-    <name>Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
+        <source>Audio file not set for track %1.</source>
+        <comment>Warning message, Placeholders is a track number</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t read %1 file</source>
-        <comment>Encoder error. %1 is a file name.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>I can't rename file:
-%1 to %2
-%3</source>
+        <source>Audio file not set for tracks %1-%2.</source>
+        <comment>Warning message, Placeholders is a track numbers</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -570,14 +608,6 @@ This only affects the file size. All settings are lossless.</source>
     <message>
         <source>Default</source>
         <translation>預設</translation>
-    </message>
-</context>
-<context>
-    <name>Gain</name>
-    <message>
-        <source>Gain error:
-</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -876,6 +906,21 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&quot;%1&quot; was not set.</source>
+        <comment>Error message, %1 is an filename.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file for %1 track…</source>
+        <comment>context menu. Placeholders are track number</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another audio file for tracks (%1 to %2)…</source>
+        <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1196,10 +1241,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>File &lt;b&gt;%1&lt;/b&gt; is not a supported audio file. &lt;br&gt;&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <translation> &lt;b&gt;%1&lt;/b&gt; n&apos; 是不被支援的聲訊格式。 &lt;br&gt;&lt;br&gt;驗證裝載所有必需的程式衕時處於你的個人偏好。</translation>
-    </message>
-    <message>
         <source>Flacon</source>
         <comment>Error</comment>
         <translation>Flacon</translation>
@@ -1209,17 +1250,9 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The audio file name is not set</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <translation>你無法將重播增益用於高於48kHz的取樣率的檔案。Metaflac 不支援這些檔案。</translation>
-    </message>
-    <message>
-        <source>The audio file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
@@ -1266,15 +1299,11 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Disc %2 has no tags.</source>
+        <source>The audio file name is not set.</source>
         <translation type="unfinished"/>
     </message>
-</context>
-<context>
-    <name>Splitter</name>
     <message>
-        <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <source>The audio file does not exist.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1401,6 +1430,14 @@ If you surround sections of text that contain a token with braces, these section
         <comment>Status of the track conversion.</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Multiple files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>TrackViewModel</name>
@@ -1451,11 +1488,6 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The conversion is not possible.
-%1</source>
         <translation type="unfinished"/>
     </message>
 </context>

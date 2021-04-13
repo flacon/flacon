@@ -368,7 +368,7 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     QStringList audioFiles = index.data(TrackViewModel::RoleAudioFileName).toStringList();
     if (audioFiles.count() > MAX_AUDIO_FILES_ROWS) {
         audioFiles.clear();
-        audioFiles << tr("Multiple files");
+        audioFiles << tr("Multiple files", "Disk preview, audio file placeholder");
     }
 
     QList<QRect> aFileRects;
