@@ -650,7 +650,7 @@ QStringList Disc::errors() const
 
     for (const TrackPtrList &tracks : audioFileTracks) {
         InputAudioFile audio = tracks.first()->audioFile();
-        if (audio.isNull() || !audio.isNull()) {
+        if (audio.isNull() || !audio.isValid()) {
             continue;
         }
 

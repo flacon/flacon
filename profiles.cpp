@@ -403,17 +403,18 @@ bool Profiles::update(const Profile &profile)
 /************************************************
  *
  ************************************************/
-QDebug operator<<(QDebug dbg, const Profile &profile)
+QDebug operator<<(QDebug debug, const Profile &profile)
 {
-    dbg.nospace().noquote() << "ID:     " << profile.id() << "\n";
-    dbg.nospace().noquote() << "Format: " << profile.formatId() << "\n";
-    dbg.nospace().noquote() << "Name:   " << profile.name() << "\n";
-    dbg.nospace().noquote() << "Valid:  " << profile.isValid() << "\n";
+    QDebug &dbg = debug.noquote().noquote();
+    dbg << "ID:     " << profile.id() << "\n";
+    dbg << "Format: " << profile.formatId() << "\n";
+    dbg << "Name:   " << profile.name() << "\n";
+    dbg << "Valid:  " << profile.isValid() << "\n";
     for (auto i = profile.mValues.constBegin(); i != profile.mValues.constEnd(); ++i) {
-        dbg.nospace().noquote() << "  " << i.key() << " = " << i.value() << "\n";
+        dbg << "  " << i.key() << " = " << i.value() << "\n";
     }
 
-    return dbg.space();
+    return debug;
 }
 
 /************************************************

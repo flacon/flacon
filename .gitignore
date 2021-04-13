@@ -10,6 +10,7 @@ CPackSourceConfig.cmake
 lib*.so
 lib*.so.*
 ui_*.h
+*.bak
 *.qm
 *~
 *.autosave

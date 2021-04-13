@@ -497,7 +497,7 @@ QDebug operator<<(QDebug dbg, const WavHeader &header)
             format = "DOLBY_AC2";
             break;
         case WavHeader::Format_GSM610:
-            format = "Unknown";
+            format = "GSM610";
             break;
         case WavHeader::Format_ROCKWELL_ADPCM:
             format = "ROCKWELL_ADPCM";
