@@ -234,15 +234,15 @@
     </message>
     <message>
         <source>Simplified Chinese (GB18030)</source>
-        <translation type="unfinished"/>
+        <translation>Chinois simplifié (GB18030)</translation>
     </message>
     <message>
         <source>Traditional Chinese (BIG5)</source>
-        <translation type="unfinished"/>
+        <translation>Chinois traditionnel (BIG5)</translation>
     </message>
     <message>
         <source>Japanese (CP932)</source>
-        <translation type="unfinished"/>
+        <translation>Japonais (CP932)</translation>
     </message>
 </context>
 <context>
@@ -509,22 +509,22 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
-        <translation type="unfinished"/>
+        <translation>Le fichier son est peut-être corrompu ou d’un format non pris en charge.</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The %1 program is installed in the settings, but binary file does not exist.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>Le programme %1 n’est pas installé.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
         <translation>Je ne peux pas écrire le fichier &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2.</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -615,10 +615,10 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>Audio file not set for track %1.</source>
         <comment>Warning message, Placeholders is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>Le fichier son n’est pas défini pour la plage %1.</translation>
     </message>
     <message>
-        <source>Audio file not set for tracks %1-%2.</source>
+        <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
         <translation type="unfinished"/>
     </message>
@@ -964,15 +964,15 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
-        <translation type="unfinished"/>
+        <translation>« %1 » n’a pas été défini.</translation>
     </message>
     <message>
         <source>Select another audio file for %1 track…</source>
         <comment>context menu. Placeholders are track number</comment>
-        <translation type="unfinished"/>
+        <translation>Sélectionner un autre fichier son pour la plage %1…</translation>
     </message>
     <message>
-        <source>Select another audio file for tracks (%1 to %2)…</source>
+        <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
     </message>
@@ -1371,11 +1371,11 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     </message>
     <message>
         <source>The audio file name is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Le nom du fichier son n’est pas défini.</translation>
     </message>
     <message>
         <source>The audio file does not exist.</source>
-        <translation type="unfinished"/>
+        <translation>Le fichier son n’existe pas.</translation>
     </message>
 </context>
 <context>
@@ -1502,12 +1502,13 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
         <translation>En attente du gain</translation>
     </message>
     <message>
-        <source>Multiple files</source>
-        <translation type="unfinished"/>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <translation>&lt;b&gt;La conversion est impossible.&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <source>Multiple files</source>
+        <comment>Disk preview, audio file placeholder</comment>
+        <translation>Plusieurs fichiers</translation>
     </message>
 </context>
 <context>

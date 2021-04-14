@@ -634,7 +634,7 @@ QStringList Disc::errors() const
                 continue;
             }
 
-            res << tr("Audio file not set for tracks %1-%2.", "Warning message, Placeholders is a track numbers")
+            res << tr("Audio file not set for tracks %1 to %2.", "Warning message, Placeholders is a track numbers")
                             .arg(tracks.first()->trackNum())
                             .arg(tracks.last()->trackNum());
             continue;

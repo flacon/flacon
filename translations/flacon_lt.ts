@@ -234,15 +234,15 @@
     </message>
     <message>
         <source>Simplified Chinese (GB18030)</source>
-        <translation type="unfinished"/>
+        <translation>Kinų supaprastinta (GB18030)</translation>
     </message>
     <message>
         <source>Traditional Chinese (BIG5)</source>
-        <translation type="unfinished"/>
+        <translation>Kinų tradicinė (BIG5)</translation>
     </message>
     <message>
         <source>Japanese (CP932)</source>
-        <translation type="unfinished"/>
+        <translation>Japonų (CP932)</translation>
     </message>
 </context>
 <context>
@@ -493,14 +493,14 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 program is installed in the settings, but binary file does not exist.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
         <translation>Nepavyksta rašyti failą &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -595,7 +595,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Audio file not set for tracks %1-%2.</source>
+        <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
         <translation type="unfinished"/>
     </message>
@@ -949,7 +949,7 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select another audio file for tracks (%1 to %2)…</source>
+        <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
     </message>
@@ -1348,11 +1348,11 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     </message>
     <message>
         <source>The audio file name is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Nenustatytas garso failo pavadinimas.</translation>
     </message>
     <message>
         <source>The audio file does not exist.</source>
-        <translation type="unfinished"/>
+        <translation>Garso failo nėra.</translation>
     </message>
 </context>
 <context>
@@ -1479,12 +1479,13 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Laukiama stiprinimo</translation>
     </message>
     <message>
-        <source>Multiple files</source>
-        <translation type="unfinished"/>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Konvertavimas neįmanomas.&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <source>Multiple files</source>
+        <comment>Disk preview, audio file placeholder</comment>
+        <translation>Keli failai</translation>
     </message>
 </context>
 <context>

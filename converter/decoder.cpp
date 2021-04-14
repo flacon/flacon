@@ -133,7 +133,8 @@ void Decoder::openProcess()
     }
 
     if (!QFileInfo::exists(program)) {
-        throw FlaconError(tr("The %1 program is installed in the settings, but binary file does not exist.<br>Verify that all required programs are installed and in your preferences.",
+        throw FlaconError(tr("The %1 program is installed according to your settings, but the binary file can’t be found.<br>"
+                             "Verify that all required programs are installed and in your preferences.",
                              "Error message. %1 - is an program name")
                                   .arg(mFormat->decoderProgramName()));
     }

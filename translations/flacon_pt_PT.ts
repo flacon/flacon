@@ -488,13 +488,13 @@ In CBR mode, it sets the specific output bitrate.
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 program is installed in the settings, but binary file does not exist.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -590,7 +590,7 @@ In CBR mode, it sets the specific output bitrate.
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Audio file not set for tracks %1-%2.</source>
+        <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
         <translation type="unfinished"/>
     </message>
@@ -942,7 +942,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select another audio file for tracks (%1 to %2)…</source>
+        <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
     </message>
@@ -1470,11 +1470,12 @@ Se colocar chavetas numa porção de texto que contenha um campo, esse texto fic
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Multiple files</source>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <source>Multiple files</source>
+        <comment>Disk preview, audio file placeholder</comment>
         <translation type="unfinished"/>
     </message>
 </context>

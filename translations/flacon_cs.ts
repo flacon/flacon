@@ -518,14 +518,14 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 program is installed in the settings, but binary file does not exist.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
         <translation>Nelze zapisovat soubor &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -618,7 +618,7 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Audio file not set for tracks %1-%2.</source>
+        <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
         <translation type="unfinished"/>
     </message>
@@ -972,7 +972,7 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Select another audio file for tracks (%1 to %2)…</source>
+        <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
     </message>
@@ -1502,11 +1502,12 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Čeká se na zesílení</translation>
     </message>
     <message>
-        <source>Multiple files</source>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <source>Multiple files</source>
+        <comment>Disk preview, audio file placeholder</comment>
         <translation type="unfinished"/>
     </message>
 </context>

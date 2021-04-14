@@ -898,7 +898,7 @@ void MainWindow::trackViewMenu(const QPoint &pos)
                               .arg(l.first()->trackNum());
             }
             else {
-                msg = tr("Select another audio file for tracks (%1 to %2)…", "context menu. Placeholders are track numbers")
+                msg = tr("Select another audio file for tracks %1 to %2…", "context menu. Placeholders are track numbers")
                               .arg(l.first()->trackNum())
                               .arg(l.last()->trackNum());
             }

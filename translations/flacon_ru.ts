@@ -516,14 +516,14 @@ In CBR mode, it sets the specific output bitrate.
         <translation>Программа %1 не установлена.&lt;br&gt;Проверьте что установлены все нужные програмы и они указаны в настройках.</translation>
     </message>
     <message>
-        <source>The %1 program is installed in the settings, but binary file does not exist.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <translation>Программа %1 задана в настройках, но бинарный файл программы не существует.&lt;br&gt;Проверьте что установлены все нужные програмы и они указаны в настройках.</translation>
-    </message>
-    <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
         <translation>Не получается записать файл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation>Программа %1 задана в настройках, но бинарный файл программы не найден.&lt;br&gt;Проверьте что установлены все нужные програмы и они указаны в настройках.</translation>
     </message>
 </context>
 <context>
@@ -618,9 +618,9 @@ In CBR mode, it sets the specific output bitrate.
         <translation>Для трека %1 не задан аудиофайл .</translation>
     </message>
     <message>
-        <source>Audio file not set for tracks %1-%2.</source>
+        <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
-        <translation>Для треков %1-%2 не задан аудиофайл .</translation>
+        <translation>Для треков с %1 по %2 не задан аудиофайл .</translation>
     </message>
 </context>
 <context>
@@ -972,9 +972,9 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Выбрать другой аудиофайл для трека %1…</translation>
     </message>
     <message>
-        <source>Select another audio file for tracks (%1 to %2)…</source>
+        <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
-        <translation>Выбрать другой аудиофайл для треков ( с %1 по %2)…</translation>
+        <translation>Выбрать другой аудиофайл для треков с %1 по %2…</translation>
     </message>
 </context>
 <context>
@@ -1502,12 +1502,13 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Ожидание громкости</translation>
     </message>
     <message>
-        <source>Multiple files</source>
-        <translation>Несколько фалов</translation>
-    </message>
-    <message>
         <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
         <translation>&lt;b&gt;Конвертация невозможна.&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Multiple files</source>
+        <comment>Disk preview, audio file placeholder</comment>
+        <translation>Несколько фалов</translation>
     </message>
 </context>
 <context>

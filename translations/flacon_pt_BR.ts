@@ -234,15 +234,15 @@
     </message>
     <message>
         <source>Simplified Chinese (GB18030)</source>
-        <translation type="unfinished"/>
+        <translation>Chinês Simplificado (GB18030)</translation>
     </message>
     <message>
         <source>Traditional Chinese (BIG5)</source>
-        <translation type="unfinished"/>
+        <translation>Chinês Tradicional (BIG5)</translation>
     </message>
     <message>
         <source>Japanese (CP932)</source>
-        <translation type="unfinished"/>
+        <translation>Japonês (CP932)</translation>
     </message>
 </context>
 <context>
@@ -509,22 +509,22 @@ No modo CBR, define a taxa de bits de saída específica.
     <message>
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
-        <translation type="unfinished"/>
+        <translation>O arquivo de áudio pode estar corrompido ou num formato não suportado.</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The %1 program is installed in the settings, but binary file does not exist.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>O programa %1 não está instalado.&lt;br&gt;Verifique se todos os programas necessários estão instalados e em suas configurações.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
         <translation>Não é possível salvar o arquivo &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -615,10 +615,10 @@ No modo CBR, define a taxa de bits de saída específica.
     <message>
         <source>Audio file not set for track %1.</source>
         <comment>Warning message, Placeholders is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>Arquivo de áudio não configurado para a faixa %1.</translation>
     </message>
     <message>
-        <source>Audio file not set for tracks %1-%2.</source>
+        <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
         <translation type="unfinished"/>
     </message>
@@ -964,15 +964,15 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; não foi configurado.</translation>
     </message>
     <message>
         <source>Select another audio file for %1 track…</source>
         <comment>context menu. Placeholders are track number</comment>
-        <translation type="unfinished"/>
+        <translation>Selecione outro arquivo de áudio para a faixa %1...</translation>
     </message>
     <message>
-        <source>Select another audio file for tracks (%1 to %2)…</source>
+        <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
     </message>
@@ -1371,11 +1371,11 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
     </message>
     <message>
         <source>The audio file name is not set.</source>
-        <translation type="unfinished"/>
+        <translation>O nome do arquivo de áudio não está configurado.</translation>
     </message>
     <message>
         <source>The audio file does not exist.</source>
-        <translation type="unfinished"/>
+        <translation>O arquivo de áudio não existe.</translation>
     </message>
 </context>
 <context>
@@ -1502,12 +1502,13 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>Esperando pelo ganho</translation>
     </message>
     <message>
-        <source>Multiple files</source>
-        <translation type="unfinished"/>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <translation>&lt;b&gt;A conversão não é possível.&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <source>Multiple files</source>
+        <comment>Disk preview, audio file placeholder</comment>
+        <translation>Múltiplos arquivos</translation>
     </message>
 </context>
 <context>
