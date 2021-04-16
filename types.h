@@ -176,8 +176,8 @@ inline bool operator&&(const FormatOptions &flags, const FormatOption flag) noex
 typedef quint8  Percent;
 typedef quint64 TrackId;
 
-QByteArray leftPart(const QByteArray &line, const QChar separator);
-QByteArray rightPart(const QByteArray &line, const QChar separator);
+QByteArray leftPart(const QByteArray &line, const char separator);
+QByteArray rightPart(const QByteArray &line, const char separator);
 void       initTypes();
 
 QString safeString(const QString &str);

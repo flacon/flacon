@@ -745,7 +745,6 @@ void HistoryComboBox::deleteItem()
     lineEdit()->setText(hist.isEmpty() ? "" : hist.first());
     setHistory(hist);
 
-    emit currentIndexChanged(currentText());
     emit currentIndexChanged(currentIndex());
 }
 

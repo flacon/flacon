@@ -269,7 +269,7 @@ QString AboutInfo::asString() const
     foreach (AboutInfoItem item, list) {
         result += "<li>" + item.name;
 
-        QStringList urls = item.url.split(" ", QString::SkipEmptyParts);
+        QStringList urls = item.url.split(" ", Qt::SkipEmptyParts);
         foreach (QString url, urls) {
             QString text = QString(url).remove("mailto:").remove("http://");
             result += QString(" <a href='%1'>%2</a>").arg(url, text);

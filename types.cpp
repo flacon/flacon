@@ -215,7 +215,7 @@ bool CueIndex::operator!=(const CueIndex &other) const
  ************************************************/
 bool CueIndex::parse(const QString &str)
 {
-    QStringList sl = str.split(QRegExp("\\D"), QString::KeepEmptyParts);
+    QStringList sl = str.split(QRegExp("\\D"), Qt::KeepEmptyParts);
 
     if (sl.length() < 3)
         return false;
@@ -245,7 +245,7 @@ bool CueIndex::parse(const QString &str)
 /************************************************
 
  ************************************************/
-QByteArray leftPart(const QByteArray &line, const QChar separator)
+QByteArray leftPart(const QByteArray &line, const char separator)
 {
     int n = line.indexOf(separator);
     if (n > -1)
@@ -257,7 +257,7 @@ QByteArray leftPart(const QByteArray &line, const QChar separator)
 /************************************************
 
  ************************************************/
-QByteArray rightPart(const QByteArray &line, const QChar separator)
+QByteArray rightPart(const QByteArray &line, const char separator)
 {
     int n = line.indexOf(separator);
     if (n > -1)
