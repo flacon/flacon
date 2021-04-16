@@ -71,6 +71,7 @@ public slots:
 
 signals:
     void selectCueFile(Disc *disc);
+    void showAudioMenu(Disc *disc, const QPoint &pos);
     void selectAudioFile(Disc *disc, int audioFileNum);
     void selectCoverImage(Disc *disc);
     void downloadInfo(Disc *disc);
@@ -80,11 +81,11 @@ protected:
     void keyPressEvent(QKeyEvent *event) override;
 
 private slots:
-    void headerContextMenu(QPoint pos);
+    void headerContextMenu(const QPoint &pos);
     void showHideColumn(bool show);
 
     void showTrackMenu(const QModelIndex &index, const QRect &buttonRect);
-    void emitSelectAudioFile(const QModelIndex &index, int audioFileNum);
+    void audioButtonClicked(const QModelIndex &index, int audioFileNum, const QRect &buttonRect);
     void emitSelectCoverImage(const QModelIndex &index);
 
 private:

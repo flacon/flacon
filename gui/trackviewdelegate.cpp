@@ -62,8 +62,8 @@ struct TrackViewCacheItem
 
     QRect markBtn;
     QRect coverRect;
-    bool  isWaiting         = false;
-    bool  isMultiFileButton = false;
+    bool  isWaiting     = false;
+    bool  audioShowMenu = false;
 };
 
 class TrackViewCache
@@ -365,8 +365,9 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     QRect tFileRect = drawFile(index.data(TrackViewModel::RoleTagSetTitle).toString(), tmp, painter);
     windowRect.setTop(aLabelRect.top());
 
-    QStringList audioFiles = index.data(TrackViewModel::RoleAudioFileName).toStringList();
-    if (audioFiles.count() > MAX_AUDIO_FILES_ROWS) {
+    QStringList audioFiles    = index.data(TrackViewModel::RoleAudioFileName).toStringList();
+    bool        showAudioMenu = audioFiles.count() > MAX_AUDIO_FILES_ROWS;
+    if (showAudioMenu) {
         audioFiles.clear();
         audioFiles << tr("Multiple files", "Disk preview, audio file placeholder");
     }
@@ -402,7 +403,7 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     for (int i = 0; i < audioFiles.count(); ++i) {
         tmp = aFileRects[i];
         tmp.moveLeft(windowRect.left());
-        QRect r = drawButton(mAudioBtnPix, tmp, painter);
+        QRect r = drawButton(showAudioMenu ? mTrackBtnPix : mAudioBtnPix, tmp, painter);
         aButtonRects << r;
         tmp.moveTop(r.bottom());
     }
@@ -421,13 +422,14 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     // Fill cache ......................................
     TrackViewCacheItem *cache = mCache->item(index);
 
-    cache->coverRect = imgRect;
-    cache->trackBtn  = tButtonRect;
-    cache->trackLbl  = tFileRect;
-    cache->audioBtns = aButtonRects;
-    cache->audioLbls = aFileRects;
-    cache->isWaiting = isWaiting;
-    cache->markBtn   = markRect;
+    cache->coverRect     = imgRect;
+    cache->trackBtn      = tButtonRect;
+    cache->trackLbl      = tFileRect;
+    cache->audioBtns     = aButtonRects;
+    cache->audioLbls     = aFileRects;
+    cache->audioShowMenu = showAudioMenu;
+    cache->isWaiting     = isWaiting;
+    cache->markBtn       = markRect;
 }
 
 /************************************************
@@ -611,12 +613,12 @@ bool TrackViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, co
 
         for (int i = 0; i < cache->audioBtns.count(); ++i) {
             if (cache->audioBtns[i].contains(m)) {
-                emit audioButtonClicked(index, i);
-                return true;
-            }
-
-            if (cache->audioLbls[i].contains(m)) {
-                emit audioButtonClicked(index, i);
+                if (cache->audioShowMenu) {
+                    emit audioButtonClicked(index, -1, cache->audioBtns[i]);
+                }
+                else {
+                    emit audioButtonClicked(index, i, cache->audioBtns[i]);
+                }
                 return true;
             }
         }

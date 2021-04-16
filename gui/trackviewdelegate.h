@@ -51,7 +51,7 @@ public:
 
 signals:
     void trackButtonClicked(const QModelIndex &index, const QRect &buttonRect);
-    void audioButtonClicked(const QModelIndex &index, int fileNum);
+    void audioButtonClicked(const QModelIndex &index, int fileNum, const QRect &buttonRect);
     void markClicked(const QModelIndex &index, const QRect &buttonRect);
     void coverImageClicked(const QModelIndex &index);
 

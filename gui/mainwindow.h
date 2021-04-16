@@ -91,6 +91,7 @@ private slots:
     void checkUpdates();
 
     void trackViewMenu(const QPoint &pos);
+    void showDiskAudioFileMenu(Disc *disc, const QPoint &pos);
     void openEditTagsDialog();
 
 protected:
@@ -103,8 +104,8 @@ protected:
 
 private:
     QPointer<Conv::Converter> mConverter;
-    Scanner *           mScanner;
-    QString             getOpenFileFilter(bool includeAudio, bool includeCue);
+    Scanner *                 mScanner;
+    QString                   getOpenFileFilter(bool includeAudio, bool includeCue);
 
     void polishView();
     void initActions();
@@ -118,6 +119,7 @@ private:
     QIcon loadMainIcon();
 
     void showErrorMessage(const QString &message) override;
+    void fillAudioMenu(Disc *disc, QMenu &menu);
 };
 
 #endif // MAINWINDOW_H

@@ -52,7 +52,7 @@ TrackView::TrackView(QWidget *parent) :
             this, &TrackView::showTrackMenu);
 
     connect(mDelegate, &TrackViewDelegate::audioButtonClicked,
-            this, &TrackView::emitSelectAudioFile);
+            this, &TrackView::audioButtonClicked);
 
     connect(mDelegate, &TrackViewDelegate::coverImageClicked,
             this, &TrackView::emitSelectCoverImage);
@@ -207,7 +207,7 @@ void TrackView::update(const Disc &disc)
 /************************************************
 
  ************************************************/
-void TrackView::headerContextMenu(QPoint pos)
+void TrackView::headerContextMenu(const QPoint &pos)
 {
     QMenu menu;
 
@@ -274,11 +274,16 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
 /************************************************
 
  ************************************************/
-void TrackView::emitSelectAudioFile(const QModelIndex &index, int audioFileNum)
+void TrackView::audioButtonClicked(const QModelIndex &index, int audioFileNum, const QRect &buttonRect)
 {
     Disc *disc = mModel->discByIndex(index);
     if (disc) {
-        emit selectAudioFile(disc, audioFileNum);
+        if (audioFileNum < 0) {
+            emit showAudioMenu(disc, buttonRect.bottomLeft());
+        }
+        else {
+            emit selectAudioFile(disc, audioFileNum);
+        }
     }
 }
 
