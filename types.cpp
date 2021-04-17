@@ -215,7 +215,11 @@ bool CueIndex::operator!=(const CueIndex &other) const
  ************************************************/
 bool CueIndex::parse(const QString &str)
 {
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+    QStringList sl = str.split(QRegExp("\\D"), QString::KeepEmptyParts);
+#else
     QStringList sl = str.split(QRegExp("\\D"), Qt::KeepEmptyParts);
+#endif
 
     if (sl.length() < 3)
         return false;
