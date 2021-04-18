@@ -524,7 +524,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>D’après vos paramètres, le programme %1 est installé, mais le fichier exécutable est introuvable.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
     </message>
 </context>
 <context>
@@ -620,7 +620,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>Le fichier son n’est pas défini pour les plages %1 à %2.</translation>
     </message>
 </context>
 <context>
@@ -974,7 +974,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>Sélectionner un autre fichier son pour les plages %1 à %2…</translation>
     </message>
 </context>
 <context>

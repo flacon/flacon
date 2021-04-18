@@ -524,7 +524,7 @@ No modo CBR, define a taxa de bits de saída específica.
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>O programa %1 está instalado segundo suas configurações, mas o arquivo binário não foi localizado.&lt;br&gt;Verifique se todos os programas necessários estão instalados e em suas configurações.</translation>
     </message>
 </context>
 <context>
@@ -565,7 +565,8 @@ No modo CBR, define a taxa de bits de saída específica.
     <message>
         <source>Gain error:
 </source>
-        <translation>Erro de ganho:</translation>
+        <translation>Erro de ganho:
+</translation>
     </message>
 </context>
 <context>
@@ -620,7 +621,7 @@ No modo CBR, define a taxa de bits de saída específica.
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>Arquivo de áudio não configurado para as faixas %1 a %2.</translation>
     </message>
 </context>
 <context>
@@ -974,7 +975,7 @@ Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arqu
     <message>
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>Selecione outro arquivo de áudio para as faixas %1 a %2…</translation>
     </message>
 </context>
 <context>

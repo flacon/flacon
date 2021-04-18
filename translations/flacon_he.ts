@@ -234,15 +234,15 @@
     </message>
     <message>
         <source>Simplified Chinese (GB18030)</source>
-        <translation type="unfinished"/>
+        <translation>סינית מפושטת (GB18030)</translation>
     </message>
     <message>
         <source>Traditional Chinese (BIG5)</source>
-        <translation type="unfinished"/>
+        <translation>סינית מסורתית (BIG5)</translation>
     </message>
     <message>
         <source>Japanese (CP932)</source>
-        <translation type="unfinished"/>
+        <translation>יפנית (CP932)</translation>
     </message>
 </context>
 <context>
@@ -508,12 +508,12 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
-        <translation type="unfinished"/>
+        <translation>קובץ השמע עלול להיות פגום או בתבנית שמע שאינה נתמכת.</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>תוכנה %1 לא הותקנה. &lt;br&gt;נא לוודא כי כל התוכניות הנדרשות מותקנות ונמצאות בהעדפות.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -523,7 +523,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>תוכנה %1 הותקנה בהתאם להגדרות , אך הקובץ הבינארי לא נמצא. &lt;br&gt;נא לוודא כי כל התוכניות הנדרשות מותקנות ונמצאות בהעדפות.</translation>
     </message>
 </context>
 <context>
@@ -615,12 +615,12 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Audio file not set for track %1.</source>
         <comment>Warning message, Placeholders is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>לא הוגדר קובץ שמע לרצועה %1.</translation>
     </message>
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>לא הוגדר קובץ שמע לרצועות %1 עד %2.</translation>
     </message>
 </context>
 <context>
@@ -967,17 +967,17 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; לא הוגדר.</translation>
     </message>
     <message>
         <source>Select another audio file for %1 track…</source>
         <comment>context menu. Placeholders are track number</comment>
-        <translation type="unfinished"/>
+        <translation>בחירת קובץ שמע אחר לרצועה %1 …</translation>
     </message>
     <message>
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>בחירת קובץ שמע אחר לרצועות %1 עד %2…</translation>
     </message>
 </context>
 <context>
@@ -1375,11 +1375,11 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>The audio file name is not set.</source>
-        <translation type="unfinished"/>
+        <translation>שם קובץ השמע לא הוגדר.</translation>
     </message>
     <message>
         <source>The audio file does not exist.</source>
-        <translation type="unfinished"/>
+        <translation>קובץ שמע לא קיים.</translation>
     </message>
 </context>
 <context>
@@ -1507,12 +1507,12 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;ההמרה אינה אפשרית.&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
-        <translation type="unfinished"/>
+        <translation>קבצים מרובים</translation>
     </message>
 </context>
 <context>
