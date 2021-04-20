@@ -281,7 +281,7 @@ void DiscPipeline::Data::startSplitterThread(const SplitterJob &req)
     Splitter *    worker = new Splitter(req);
     WorkerThread *thread = new WorkerThread(worker, mPipeline);
 
-    connect(mPipeline, &DiscPipeline::threadQuit, thread, &Conv::WorkerThread::terminate);
+    connect(mPipeline, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(worker, &Splitter::trackProgress, mPipeline, &DiscPipeline::trackProgress);
     connect(worker, &Worker::error, mPipeline, &DiscPipeline::trackError);
     connect(worker, &Splitter::trackReady, mPipeline, &DiscPipeline::addEncoderRequest);
@@ -305,7 +305,7 @@ void DiscPipeline::Data::startEncoderThread(const EncoderJob &req)
     Encoder *     worker = new Encoder(req);
     WorkerThread *thread = new WorkerThread(worker, mPipeline);
 
-    connect(mPipeline, &DiscPipeline::threadQuit, thread, &Conv::WorkerThread::terminate);
+    connect(mPipeline, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(worker, &Encoder::trackProgress, mPipeline, &DiscPipeline::trackProgress);
     connect(worker, &Encoder::error, mPipeline, &DiscPipeline::trackError);
 
@@ -330,7 +330,7 @@ void DiscPipeline::Data::startTrackGainThread(const GainJob &req)
     Gain *        worker = new Gain(req);
     WorkerThread *thread = new WorkerThread(worker, mPipeline);
 
-    connect(mPipeline, &DiscPipeline::threadQuit, thread, &Conv::WorkerThread::terminate);
+    connect(mPipeline, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(worker, &Gain::trackProgress, mPipeline, &DiscPipeline::trackProgress);
     connect(worker, &Gain::error, mPipeline, &DiscPipeline::trackError);
     connect(worker, &Gain::trackReady, mPipeline, &DiscPipeline::trackDone);
@@ -348,7 +348,7 @@ void DiscPipeline::Data::startAlbumGainThread(const GainJobs &reqs)
     Gain *worker = new Gain(reqs);
 
     WorkerThread *thread = new WorkerThread(worker, mPipeline);
-    connect(mPipeline, &DiscPipeline::threadQuit, thread, &Conv::WorkerThread::terminate);
+    connect(mPipeline, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(worker, &Gain::trackProgress, mPipeline, &DiscPipeline::trackProgress);
     connect(worker, &Gain::error, mPipeline, &DiscPipeline::trackError);
     connect(worker, &Gain::trackReady, mPipeline, &DiscPipeline::trackDone);
@@ -458,7 +458,7 @@ void DiscPipeline::Data::interrupt(TrackState state)
 void DiscPipeline::stop()
 {
     mData->interrupt(TrackState::Aborted);
-    emit threadQuit();
+    emit stopAllThreads();
     emit threadFinished();
 
     emit finished();
@@ -472,7 +472,7 @@ void DiscPipeline::trackError(const ConvTrack &track, const QString &message)
     mData->mTracks[track.id()].setState(TrackState::Error);
     emit trackProgressChanged(track, TrackState::Error, 0);
     mData->interrupt(TrackState::Aborted);
-    emit threadQuit();
+    emit stopAllThreads();
     emit threadFinished();
 
     emit finished();

@@ -68,7 +68,7 @@ signals:
     void readyStart();
     void threadFinished();
     void finished();
-    void threadQuit();
+    void stopAllThreads();
     void trackProgressChanged(const Conv::ConvTrack &track, TrackState status, Percent percent);
 
 private slots:
