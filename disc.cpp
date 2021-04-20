@@ -595,13 +595,25 @@ QStringList Disc::warnings() const
 {
     QStringList res;
     for (const InputAudioFile &audioFile : audioFiles()) {
-        if (audioFile.bitsPerSample() > int(Settings::i()->currentProfile().maxBitPerSample()))
+        int bps = audioFile.bitsPerSample();
+        if (Settings::i()->currentProfile().bitsPerSample() != BitsPerSample::AsSourcee) {
+            bps = qMin(audioFile.bitsPerSample(), int(Settings::i()->currentProfile().bitsPerSample()));
+        }
+
+        if (bps > int(Settings::i()->currentProfile().maxBitPerSample())) {
             res << tr("A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.", "Warning message")
                             .arg(int(Settings::i()->currentProfile().maxBitPerSample()));
+        }
 
-        if (audioFile.sampleRate() > int(Settings::i()->currentProfile().maxSampleRate()))
+        int sr = audioFile.sampleRate();
+        if (Settings::i()->currentProfile().sampleRate() != SampleRate::AsSource) {
+            sr = qMin(sr, int(Settings::i()->currentProfile().sampleRate()));
+        }
+
+        if (sr > int(Settings::i()->currentProfile().maxSampleRate())) {
             res << tr("A maximum sample rate of %1 is supported by this format. This value will be used for encoding.", "Warning message")
                             .arg(int(Settings::i()->currentProfile().maxSampleRate()));
+        }
     }
     return res;
 }

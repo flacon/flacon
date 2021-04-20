@@ -755,10 +755,10 @@ void MainWindow::downloadDiscInfo(Disc *disc)
     connect(provider, &DataProvider::finished,
             provider, &DataProvider::deleteLater);
 
-    connect(provider, &DataProvider::finished,
+    connect(provider, &DataProvider::finished, provider,
             [disc, this]() { trackView->downloadFinished(*disc); });
 
-    connect(provider, &DataProvider::ready,
+    connect(provider, &DataProvider::ready, provider,
             [disc](const QVector<Tracks> data) { disc->addTagSets(data); });
 
     provider->start();
