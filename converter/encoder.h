@@ -36,13 +36,24 @@ namespace Conv {
 
 struct EncoderJob
 {
-    ConvTrack track;
-    QString   inputFile;
-    QString   outFile;
-    int       bitsPerSample = 0;
-    int       sampleRate    = 0;
+    EncoderJob(const ConvTrack &track, const EncoderOptions &options, QString inputFile, QString outFile) :
+        mTrack(track),
+        mOptions(options),
+        mInputFile(inputFile),
+        mOutFile(outFile)
+    {
+    }
 
-    EncoderFormat format;
+    const ConvTrack &     track() const { return mTrack; }
+    const EncoderOptions &options() const { return mOptions; }
+    QString               inputFile() const { return mInputFile; }
+    QString               outFile() const { return mOutFile; }
+
+private:
+    ConvTrack      mTrack;
+    EncoderOptions mOptions;
+    QString        mInputFile;
+    QString        mOutFile;
 };
 
 class Encoder : public Worker

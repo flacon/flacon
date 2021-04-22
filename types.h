@@ -173,6 +173,10 @@ inline bool operator&&(const FormatOptions &flags, const FormatOption flag) noex
     return flags.testFlag(flag);
 }
 
+int calcSampleRate(int input, SampleRate resample);
+
+int calcQuality(int input, int preferences, int formatMax);
+
 typedef quint8  Percent;
 typedef quint64 TrackId;
 

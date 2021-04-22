@@ -40,7 +40,7 @@ ConvTrack::ConvTrack(const Track &other) :
 /************************************************
  *
  ************************************************/
-EncoderFormat::EncoderFormat(const OutFormat *outFormat, const Profile *profile) :
+EncoderOptions::EncoderOptions(const OutFormat *outFormat, const Profile *profile) :
     mOutFormat(outFormat),
     mProfile(profile)
 {
@@ -49,7 +49,7 @@ EncoderFormat::EncoderFormat(const OutFormat *outFormat, const Profile *profile)
 /************************************************
  *
  ************************************************/
-QString EncoderFormat::formatId() const
+QString EncoderOptions::formatId() const
 {
     return mOutFormat->id();
 }
@@ -57,7 +57,7 @@ QString EncoderFormat::formatId() const
 /************************************************
  *
  ************************************************/
-QStringList EncoderFormat::encoderArgs(const ConvTrack &track, const QString &outFile) const
+QStringList EncoderOptions::encoderArgs(const ConvTrack &track, const QString &outFile) const
 {
     return mOutFormat->encoderArgs(*mProfile, &track, outFile);
 }
@@ -65,23 +65,41 @@ QStringList EncoderFormat::encoderArgs(const ConvTrack &track, const QString &ou
 /************************************************
  *
  ************************************************/
-QStringList EncoderFormat::gainArgs(const QStringList &files) const
+int EncoderOptions::bitsPerSample(const InputAudioFile &audio) const
 {
-    return mOutFormat->gainArgs(files, mProfile->gainType());
+    return calcQuality(audio.bitsPerSample(), mProfile->bitsPerSample(), mOutFormat->maxBitPerSample());
 }
 
 /************************************************
  *
  ************************************************/
-int EncoderFormat::calcBitsPerSample(const InputAudioFile &audio) const
+int EncoderOptions::sampleRate(const InputAudioFile &audio) const
 {
-    return mOutFormat->calcBitsPerSample(audio, mOutFormat->maxBitPerSample());
+    return calcQuality(audio.sampleRate(), mProfile->sampleRate(), mOutFormat->maxSampleRate());
 }
 
 /************************************************
  *
  ************************************************/
-int EncoderFormat::calcSampleRate(const InputAudioFile &audio) const
+GainOptions::GainOptions(const OutFormat *outFormat, const Profile *profile) :
+    mOutFormat(outFormat),
+    mType(profile->gainType())
 {
-    return mOutFormat->calcSampleRate(audio, mOutFormat->maxSampleRate());
+}
+
+/************************************************
+ *
+ ************************************************/
+QStringList GainOptions::gainArgs(const QStringList &files) const
+{
+    return mOutFormat->gainArgs(files, type());
+}
+
+/************************************************
+ *
+ ************************************************/
+CoverOptions::CoverOptions(const QString &fileName, int size) :
+    mFileName(fileName),
+    mSize(size)
+{
 }

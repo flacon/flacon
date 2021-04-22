@@ -74,24 +74,55 @@ private:
 
 using ConvTracks = QList<ConvTrack>;
 
-class EncoderFormat
+class EncoderOptions
 {
 public:
-    EncoderFormat() = default;
-    EncoderFormat(const OutFormat *outFormat, const Profile *profile);
-    EncoderFormat(const EncoderFormat &other) = default;
-    EncoderFormat &operator=(const EncoderFormat &other) = default;
+    EncoderOptions() = default;
+    EncoderOptions(const OutFormat *outFormat, const Profile *profile);
+    EncoderOptions(const EncoderOptions &other) = default;
+    EncoderOptions &operator=(const EncoderOptions &other) = default;
 
     QString     formatId() const;
     QStringList encoderArgs(const ConvTrack &track, const QString &outFile) const;
-    QStringList gainArgs(const QStringList &files) const;
 
-    int calcBitsPerSample(const InputAudioFile &audio) const;
-    int calcSampleRate(const InputAudioFile &audio) const;
+    int bitsPerSample(const InputAudioFile &audio) const;
+    int sampleRate(const InputAudioFile &audio) const;
 
 private:
     const OutFormat *mOutFormat = nullptr;
     const Profile *  mProfile   = nullptr;
+};
+
+class GainOptions
+{
+public:
+    GainOptions() = default;
+    GainOptions(const OutFormat *outFormat, const Profile *profile);
+    GainOptions(const GainOptions &other) = default;
+    GainOptions &operator=(const GainOptions &other) = default;
+
+    GainType    type() const { return mType; }
+    QStringList gainArgs(const QStringList &files) const;
+
+private:
+    const OutFormat *mOutFormat = nullptr;
+    GainType         mType      = GainType::Disable;
+};
+
+class CoverOptions
+{
+public:
+    CoverOptions() = default;
+    CoverOptions(const QString &fileName, int size);
+    CoverOptions(const CoverOptions &other) = default;
+    CoverOptions &operator=(const CoverOptions &other) = default;
+
+    QString fileName() const { return mFileName; }
+    int     size() const { return mSize; }
+
+private:
+    QString mFileName;
+    int     mSize = 0;
 };
 
 } // namespace

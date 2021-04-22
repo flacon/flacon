@@ -66,7 +66,7 @@ void Gain::run()
         files << QDir::toNativeSeparators(job.file());
     }
 
-    QStringList args = mJobs.first().format().gainArgs(files);
+    QStringList args = mJobs.first().options().gainArgs(files);
     QString     prog = args.takeFirst();
 
     qCDebug(LOG) << "Start gain:" << debugProgramArgs(prog, args);

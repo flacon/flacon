@@ -27,20 +27,20 @@
 #define COPYCOVER_H
 
 #include <QString>
+#include "convertertypes.h"
 
 namespace Conv {
 
 class CopyCover
 {
 public:
-    CopyCover(const QString &inFile, const QString &outDir, const QString &outBaseName, int newSize);
+    CopyCover(const CoverOptions &options, const QString &outDir, const QString &outBaseName);
     bool run();
 
     QString errorString() const { return mErrorString; }
 
 private:
-    QString       mInFile;
-    const int     mSize;
+    CoverOptions  mOptions;
     const QString mDir;
     const QString mBaseName;
     QString       mErrorString;

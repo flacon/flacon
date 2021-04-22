@@ -41,15 +41,33 @@ class WorkerThread;
 
 struct DiscPipelineJob
 {
-    ConvTracks tracks;
-    QString    workDir;
-    GainType   gainType = GainType::Disable;
+    DiscPipelineJob(ConvTracks     tracks,
+                    EncoderOptions encoderOptions,
+                    GainOptions    gainOptions,
+                    CoverOptions   coverOptions,
+                    QString        workDir) :
+        mTracks(tracks),
+        mWorkDir(workDir),
+        mEncoderOptions(encoderOptions),
+        mGainOptions(gainOptions),
+        mCoverOptions(coverOptions)
+    {
+    }
 
-    QString coverImage;
-    int     coverImageSize = 0;
+    const ConvTracks &tracks() const { return mTracks; }
+    QString           workDir() const { return mWorkDir; }
 
-    Profile       profile;
-    EncoderFormat format;
+    const EncoderOptions &encoderOptions() const { return mEncoderOptions; }
+    const GainOptions &   gainOptions() const { return mGainOptions; }
+    const CoverOptions &  coverOptions() const { return mCoverOptions; }
+
+public:
+    ConvTracks mTracks;
+    QString    mWorkDir;
+
+    EncoderOptions mEncoderOptions;
+    GainOptions    mGainOptions;
+    CoverOptions   mCoverOptions;
 };
 
 class DiscPipeline : public QObject

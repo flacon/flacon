@@ -69,21 +69,20 @@ private:
  ************************************************/
 DiscPipelineJob Converter::Data::createDiscPipelineJob(const Job &converterJob, const Profile &profile)
 {
-    DiscPipelineJob res;
-    res.workDir  = workDir(converterJob.tracks.first());
-    res.gainType = profile.gainType();
-    res.format   = EncoderFormat(profile.outFormat(), &profile);
-
+    QString coverImage;
+    int     coverImageSize = 0;
     // Cover image .........................
     if (Settings::i()->coverMode() != CoverMode::Disable) {
-        res.coverImage = converterJob.disc->coverImageFile();
+        coverImage = converterJob.disc->coverImageFile();
 
         if (Settings::i()->coverMode() != CoverMode::Disable) {
-            res.coverImageSize = Settings::i()->coverImageSize();
+            coverImageSize = Settings::i()->coverImageSize();
         }
     }
 
     // Tracks ..............................
+    ConvTracks resTracks;
+
     PreGapType preGapType = profile.isCreateCue() ? profile.preGapType() : PreGapType::Skip;
 
     for (const TrackPtrList &tracks : converterJob.disc->tracksByFileTag()) {
@@ -109,7 +108,7 @@ DiscPipelineJob Converter::Data::createDiscPipelineJob(const Job &converterJob, 
             track.setStart(firstTrack->cueIndex(0));
             track.setEnd(firstTrack->cueIndex(1));
 
-            res.tracks << track;
+            resTracks << track;
         }
 
         // Tracks ..........................
@@ -132,11 +131,17 @@ DiscPipelineJob Converter::Data::createDiscPipelineJob(const Job &converterJob, 
                 track.setEnd(tracks.at(i + 1)->cueIndex(01));
             }
 
-            res.tracks << track;
+            resTracks << track;
         }
     }
 
-    return res;
+    QString wrkDir = workDir(converterJob.tracks.first());
+
+    EncoderOptions encoderOptions(profile.outFormat(), &profile);
+    GainOptions    gainOptions(profile.outFormat(), &profile);
+    CoverOptions   coverOptions(coverImage, coverImageSize);
+
+    return DiscPipelineJob(resTracks, encoderOptions, gainOptions, coverOptions, wrkDir);
 }
 
 /************************************************

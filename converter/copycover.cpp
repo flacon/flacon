@@ -35,9 +35,8 @@ using namespace Conv;
 /************************************************
  *
  ************************************************/
-CopyCover::CopyCover(const QString &inFile, const QString &outDir, const QString &outBaseName, int newSize) :
-    mInFile(inFile),
-    mSize(newSize),
+CopyCover::CopyCover(const CoverOptions &options, const QString &outDir, const QString &outBaseName) :
+    mOptions(options),
     mDir(outDir),
     mBaseName(outBaseName)
 {
@@ -48,15 +47,15 @@ CopyCover::CopyCover(const QString &inFile, const QString &outDir, const QString
  ************************************************/
 bool CopyCover::run()
 {
-    if (mInFile.isEmpty())
+    if (mOptions.fileName().isEmpty())
         return true;
 
-    QFileInfo inFile(mInFile);
+    QFileInfo inFile(mOptions.fileName());
 
     QString outName = QDir(mDir).absoluteFilePath(QString("%1.%2").arg(mBaseName).arg(inFile.suffix()));
 
     // Keep original size, just copy file
-    if (mSize == 0)
+    if (mOptions.size() == 0)
         return copyImage(outName);
 
     // Resize
@@ -68,7 +67,7 @@ bool CopyCover::run()
  ************************************************/
 bool CopyCover::copyImage(const QString &outFileName)
 {
-    QFile f(mInFile);
+    QFile f(mOptions.fileName());
     bool  res = f.copy(outFileName);
 
     if (!res)
@@ -93,21 +92,21 @@ bool CopyCover::copyImage(const QString &outFileName)
  ************************************************/
 bool CopyCover::resizeImage(const QString &outFileName)
 {
-    QImageReader reader(mInFile);
+    QImageReader reader(mOptions.fileName());
     QImage       img = reader.read();
     if (img.isNull()) {
         mErrorString = QObject::tr("I can't read cover image <b>%1</b>:<br>%2",
                                    "%1 - is a file name, %2 - an error text")
-                               .arg(mInFile)
+                               .arg(mOptions.fileName())
                                .arg(reader.errorString());
 
         return false;
     }
 
-    if (img.width() < mSize && img.height() < mSize)
+    if (img.width() < mOptions.size() && img.height() < mOptions.size())
         return copyImage(outFileName);
 
-    img = img.scaled(QSize(mSize, mSize), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    img = img.scaled(QSize(mOptions.size(), mOptions.size()), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
     QImageWriter writer(outFileName);
     if (!writer.write(img)) {

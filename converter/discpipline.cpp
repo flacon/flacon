@@ -148,17 +148,17 @@ void DiscPipeline::Data::createDir(const QString &dirName) const
  ************************************************/
 void DiscPipeline::Data::addSpliterRequest(const InputAudioFile &audio)
 {
-    SplitterJob request;
-    request.inFile = audio.filePath();
-    request.outDir = mTmpDir->path();
+    QString    inFile = audio.filePath();
+    QString    outDir = mTmpDir->path();
+    ConvTracks tracks;
 
-    for (const ConvTrack &t : mJob.tracks) {
+    for (const ConvTrack &t : mJob.tracks()) {
         if (t.isEnabled() && t.audioFile().filePath() == audio.filePath()) {
-            request.tracks << t;
+            tracks << t;
         }
     }
 
-    mSplitterRequests << request;
+    mSplitterRequests << SplitterJob(tracks, inFile, outDir);
 }
 
 /************************************************
@@ -168,7 +168,7 @@ DiscPipeline::DiscPipeline(const DiscPipelineJob &job, QObject *parent) :
     QObject(parent),
     mData(new Data(job, this))
 {
-    QString dir = QFileInfo(mData->mJob.workDir).dir().absolutePath();
+    QString dir = QFileInfo(mData->mJob.workDir()).dir().absolutePath();
     qCDebug(LOG) << "Create tmp dir" << dir;
 
     mData->createDir(dir);
@@ -176,7 +176,7 @@ DiscPipeline::DiscPipeline(const DiscPipelineJob &job, QObject *parent) :
     mData->mTmpDir = new QTemporaryDir(QString("%1/tmp").arg(dir));
     mData->mTmpDir->setAutoRemove(true);
 
-    for (const ConvTrack &track : mData->mJob.tracks) {
+    for (const ConvTrack &track : mData->mJob.tracks()) {
         if (!track.isEnabled()) {
             continue;
         }
@@ -189,7 +189,7 @@ DiscPipeline::DiscPipeline(const DiscPipelineJob &job, QObject *parent) :
     // A disk can contain several audio files,
     // so we create several splitter requests.
     QString prev;
-    for (const ConvTrack &t : mData->mJob.tracks) {
+    for (const ConvTrack &t : mData->mJob.tracks()) {
         if (!t.isEnabled()) {
             continue;
         }
@@ -236,13 +236,13 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
         return;
     }
 
-    if (mData->mJob.gainType == GainType::Track) {
+    if (mData->mJob.gainOptions().type() == GainType::Track) {
         while (*count > 0 && !mData->mGainRequests.isEmpty()) {
             mData->startTrackGainThread(mData->mGainRequests.takeFirst());
             --(*count);
         }
     }
-    else if (mData->mJob.gainType == GainType::Album) {
+    else if (mData->mJob.gainOptions().type() == GainType::Album) {
         if (*count > 0 && mData->mGainRequests.count() == mData->mTracks.count()) {
             mData->startAlbumGainThread(mData->mGainRequests);
             mData->mGainRequests.clear();
@@ -261,9 +261,9 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
  ************************************************/
 bool DiscPipeline::Data::copyCoverImage() const
 {
-    QString dir = QFileInfo(mJob.tracks.first().resultFilePath()).dir().absolutePath();
+    QString dir = QFileInfo(mJob.tracks().first().resultFilePath()).dir().absolutePath();
 
-    CopyCover copyCover(mJob.coverImage, dir, "cover", mJob.coverImageSize);
+    CopyCover copyCover(mJob.coverOptions(), dir, "cover");
     bool      res = copyCover.run();
 
     if (!res) {
@@ -292,7 +292,7 @@ void DiscPipeline::Data::startSplitterThread(const SplitterJob &req)
 
     mTracks[req.tracks.first().id()].setState(TrackState::Splitting);
 
-    if (mJob.coverImage.isEmpty()) {
+    if (mJob.coverOptions().fileName().isEmpty()) {
         copyCoverImage();
     }
 }
@@ -309,7 +309,7 @@ void DiscPipeline::Data::startEncoderThread(const EncoderJob &req)
     connect(worker, &Encoder::trackProgress, mPipeline, &DiscPipeline::trackProgress);
     connect(worker, &Encoder::error, mPipeline, &DiscPipeline::trackError);
 
-    if (mJob.gainType == GainType::Disable) {
+    if (mJob.gainOptions().type() == GainType::Disable) {
         connect(worker, &Encoder::trackReady, mPipeline, &DiscPipeline::trackDone);
     }
     else {
@@ -365,15 +365,10 @@ void DiscPipeline::addEncoderRequest(const ConvTrack &track, const QString &inpu
 {
     trackProgress(track, TrackState::Queued, 0);
 
-    EncoderJob job;
-    job.track     = track;
-    job.inputFile = inputFile;
-
     QFileInfo trackFile(track.resultFilePath());
-    job.outFile = QDir(mData->mTmpDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
-    job.format  = mData->mJob.format;
+    QString   outFile = QDir(mData->mTmpDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
 
-    mData->mEncoderRequests << job;
+    mData->mEncoderRequests << EncoderJob(track, mData->mJob.encoderOptions(), inputFile, outFile);
     emit readyStart();
 }
 
@@ -382,14 +377,14 @@ void DiscPipeline::addEncoderRequest(const ConvTrack &track, const QString &inpu
  ************************************************/
 void DiscPipeline::addGainRequest(const ConvTrack &track, const QString &fileName)
 {
-    if (mData->mJob.gainType == GainType::Album) {
+    if (mData->mJob.gainOptions().type() == GainType::Album) {
         trackProgress(track, TrackState::WaitGain, 0);
     }
     else {
         trackProgress(track, TrackState::Queued, 0);
     }
 
-    mData->mGainRequests.append(GainJob(track, fileName, mData->mJob.format));
+    mData->mGainRequests.append(GainJob(track, fileName, mData->mJob.gainOptions()));
     emit readyStart();
 }
 
@@ -484,7 +479,7 @@ void DiscPipeline::trackError(const ConvTrack &track, const QString &message)
  ************************************************/
 bool DiscPipeline::isRunning() const
 {
-    for (const ConvTrack &track : mData->mTracks) {
+    for (const ConvTrack &track : qAsConst(mData->mTracks)) {
         switch (track.state()) {
             case TrackState::Splitting:
             case TrackState::Encoding:

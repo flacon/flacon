@@ -384,6 +384,9 @@ QString safeString(const QString &str)
     return res;
 }
 
+/************************************************
+ *
+ ************************************************/
 QString debugProgramArgs(const QString &prog, const QStringList &args)
 {
     QStringList res;
@@ -396,4 +399,27 @@ QString debugProgramArgs(const QString &prog, const QStringList &args)
             res << arg;
     }
     return res.join(" ");
+}
+
+/************************************************
+ *
+ ************************************************/
+int calcQuality(int input, int preferences, int formatMax)
+{
+    formatMax   = formatMax ? formatMax : std::numeric_limits<int>::max();
+    preferences = preferences ? preferences : std::numeric_limits<int>::max();
+
+    return qMin(input, qMin(preferences, formatMax));
+}
+
+/************************************************
+ *
+ ************************************************/
+int calcSampleRate(int input, SampleRate resample)
+{
+    if (resample == SampleRate::AsSource) {
+        return input;
+    };
+
+    return qMin(input, int(resample));
 }

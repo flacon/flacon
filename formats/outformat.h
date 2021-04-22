@@ -40,7 +40,7 @@ class OutFormat
 public:
     static QList<OutFormat *> allFormats();
     static OutFormat *        formatForId(const QString &id);
-    virtual ~OutFormat() {}
+    virtual ~OutFormat() { }
 
     QString       id() const { return mId; }
     QString       name() const { return mName; }
@@ -62,17 +62,13 @@ public:
     virtual QHash<QString, QVariant> defaultParameters() const                                 = 0;
     virtual EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const = 0;
 
-    int calcBitsPerSample(const InputAudioFile &audio, const BitsPerSample preferences) const;
-    int calcSampleRate(const InputAudioFile &audio, const SampleRate preferences) const;
-
 protected:
     QString       mId;
     QString       mName;
     QString       mExt;
     FormatOptions mOptions;
 
-    bool       checkProgram(const QString &program, QStringList *errors) const;
-    static int calcQuality(int input, int preferences, int formatMax);
+    bool checkProgram(const QString &program, QStringList *errors) const;
 };
 
 #endif // OUTFORMAT_H

@@ -104,9 +104,6 @@ private slots:
     void testCueIndex_data();
     void testCueIndex();
 
-    void testOutFormatCalcQuality();
-    void testOutFormatCalcQuality_data();
-
     void testFindCueFile_data();
     void testFindCueFile();
 

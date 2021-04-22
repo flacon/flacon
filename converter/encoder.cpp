@@ -58,7 +58,7 @@ void Encoder::check(QProcess *process)
     if (process->exitCode() != 0) {
         qWarning() << "Encoder command failed: " << debugProgramArgs(process->program(), process->arguments());
         QString msg = tr("Encoder error:\n") + "<pre>" + QString::fromLocal8Bit(process->readAllStandardError()) + "</pre>";
-        emit    error(mJob.track, msg);
+        emit    error(mJob.track(), msg);
     }
 }
 
@@ -103,7 +103,7 @@ void Encoder::runTwoProcess(QProcess *resampler, QProcess *encoder)
  ************************************************/
 void Encoder::run()
 {
-    emit trackProgress(mJob.track, TrackState::Encoding, 0);
+    emit trackProgress(mJob.track(), TrackState::Encoding, 0);
 
     const qint8 COPY_FILE = 0, RESAMPLE = 1, ENCODE = 2, RESAMPLE_ENCODE = 3;
 
@@ -111,8 +111,8 @@ void Encoder::run()
     QProcess encoder;
     qint8    mode = COPY_FILE;
 
-    if (mJob.format.formatId() != "WAV") {
-        QStringList args = mJob.format.encoderArgs(mJob.track, QDir::toNativeSeparators(mJob.outFile));
+    if (mJob.options().formatId() != "WAV") {
+        QStringList args = mJob.options().encoderArgs(mJob.track(), QDir::toNativeSeparators(mJob.outFile()));
         QString     prog = args.takeFirst();
 
         qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog, args);
@@ -125,15 +125,15 @@ void Encoder::run()
         mode += ENCODE;
     }
 
-    const InputAudioFile &audio = mJob.track.audioFile();
+    const InputAudioFile &audio = mJob.track().audioFile();
 
-    int bitsPerSample = mJob.format.calcBitsPerSample(audio);
-    int sampleRate    = mJob.format.calcSampleRate(audio);
+    int bitsPerSample = mJob.options().bitsPerSample(audio);
+    int sampleRate    = mJob.options().sampleRate(audio);
 
     if (bitsPerSample != audio.bitsPerSample() || sampleRate != audio.sampleRate()) {
         QString outFile;
         if (mode == COPY_FILE)
-            outFile = mJob.outFile; // Input file already WAV, so for WAV output format we just rename file.
+            outFile = mJob.outFile(); // Input file already WAV, so for WAV output format we just rename file.
         else
             outFile = "-"; // Write to STDOUT
 
@@ -165,8 +165,8 @@ void Encoder::run()
             break;
     }
 
-    deleteFile(mJob.inputFile);
-    emit trackReady(mJob.track, mJob.outFile);
+    deleteFile(mJob.inputFile());
+    emit trackReady(mJob.track(), mJob.outFile());
 }
 
 /************************************************
@@ -178,7 +178,7 @@ void Encoder::processBytesWritten(qint64 bytes)
     int p = ((mReady * 100.0) / mTotal);
     if (p != mProgress) {
         mProgress = p;
-        emit trackProgress(mJob.track, TrackState::Encoding, mProgress);
+        emit trackProgress(mJob.track(), TrackState::Encoding, mProgress);
     }
 }
 
@@ -187,9 +187,9 @@ void Encoder::processBytesWritten(qint64 bytes)
  ************************************************/
 void Encoder::readInputFile(QProcess *process)
 {
-    QFile file(mJob.inputFile);
+    QFile file(mJob.inputFile());
     if (!file.open(QFile::ReadOnly)) {
-        emit error(mJob.track, tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mJob.inputFile));
+        emit error(mJob.track(), tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mJob.inputFile()));
     }
 
     mProgress = -1;
@@ -209,14 +209,14 @@ void Encoder::readInputFile(QProcess *process)
  ************************************************/
 void Encoder::runWav()
 {
-    QFile srcFile(mJob.inputFile);
-    bool  res = srcFile.rename(mJob.outFile);
+    QFile srcFile(mJob.inputFile());
+    bool  res = srcFile.rename(mJob.outFile());
 
     if (!res) {
-        emit error(mJob.track,
-                   tr("I can't rename file:\n%1 to %2\n%3").arg(mJob.inputFile, mJob.outFile, srcFile.errorString()));
+        emit error(mJob.track(),
+                   tr("I can't rename file:\n%1 to %2\n%3").arg(mJob.inputFile(), mJob.outFile(), srcFile.errorString()));
     }
 
-    emit trackProgress(mJob.track, TrackState::Encoding, 100);
-    emit trackReady(mJob.track, mJob.outFile);
+    emit trackProgress(mJob.track(), TrackState::Encoding, 100);
+    emit trackReady(mJob.track(), mJob.outFile());
 }

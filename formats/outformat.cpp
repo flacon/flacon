@@ -105,33 +105,3 @@ bool OutFormat::check(const Profile &profile, QStringList *errors) const
 
     return res;
 }
-
-/************************************************
- *
- ************************************************/
-int OutFormat::calcQuality(int input, int preferences, int formatMax)
-{
-    int min = qMin(qMin(input, formatMax),
-                   (preferences ? preferences : std::numeric_limits<int>::max()));
-
-    if (min < input)
-        return min;
-    else
-        return 0;
-}
-
-/************************************************
- *
- ************************************************/
-int OutFormat::calcBitsPerSample(const InputAudioFile &audio, const BitsPerSample preferences) const
-{
-    return calcQuality(audio.bitsPerSample(), preferences, maxBitPerSample());
-}
-
-/************************************************
- *
- ************************************************/
-int OutFormat::calcSampleRate(const InputAudioFile &audio, const SampleRate preferences) const
-{
-    return calcQuality(audio.sampleRate(), preferences, maxSampleRate());
-}

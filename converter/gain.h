@@ -38,23 +38,23 @@ namespace Conv {
 class GainJob
 {
 public:
-    GainJob(const ConvTrack &track, const QString &file, const EncoderFormat &format) :
+    GainJob(const ConvTrack &track, const QString &file, const GainOptions &options) :
         mTrack(track),
         mFile(file),
-        mFormat(format)
+        mOptions(options)
     {
     }
 
     GainJob(const GainJob &other) = default;
 
-    ConvTrack     track() const { return mTrack; }
-    QString       file() const { return mFile; }
-    EncoderFormat format() const { return mFormat; }
+    ConvTrack   track() const { return mTrack; }
+    QString     file() const { return mFile; }
+    GainOptions options() const { return mOptions; }
 
 private:
-    ConvTrack     mTrack;
-    QString       mFile;
-    EncoderFormat mFormat;
+    ConvTrack   mTrack;
+    QString     mFile;
+    GainOptions mOptions;
 };
 
 using GainJobs = QList<GainJob>;

@@ -33,6 +33,13 @@ namespace Conv {
 
 struct SplitterJob
 {
+    SplitterJob(ConvTracks tracks, QString inFile, QString outDir) :
+        inFile(inFile),
+        tracks(tracks),
+        outDir(outDir)
+    {
+    }
+
     QString    inFile;
     ConvTracks tracks;
     QString    outDir;
