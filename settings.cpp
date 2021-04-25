@@ -246,12 +246,6 @@ void Settings::init()
     mPrograms << Conv::Resampler::programName();
 
     foreach (OutFormat *format, OutFormat::allFormats()) {
-        QHashIterator<QString, QVariant> i(format->defaultParameters());
-        while (i.hasNext()) {
-            i.next();
-            setDefaultValue(i.key(), i.value());
-        }
-
         mPrograms << format->encoderProgramName();
         mPrograms << format->gainProgramName();
     }
@@ -265,6 +259,14 @@ void Settings::init()
     foreach (QString program, mPrograms) {
         if (!checkProgram(program))
             setValue("Programs/" + program, findProgram(program));
+    }
+
+    if (!childGroups().contains(PROFILES_PREFIX)) {
+        foreach (OutFormat *format, OutFormat::allFormats()) {
+            QString group = QString("%1/%2/").arg(PROFILES_PREFIX, format->id());
+            setDefaultValue(group + "Format", format->id());
+            setDefaultValue(group + "Name", format->name());
+        }
     }
 }
 
