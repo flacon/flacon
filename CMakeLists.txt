@@ -31,8 +31,8 @@ endif()
 
 project(flacon)
 
-set(MAJOR_VERSION 6)
-set(MINOR_VERSION 1)
+set(MAJOR_VERSION 7)
+set(MINOR_VERSION 0)
 set(PATCH_VERSION 0)
 #set(BETA_VERSION beta1)
 
