@@ -234,15 +234,15 @@
     </message>
     <message>
         <source>Simplified Chinese (GB18030)</source>
-        <translation type="unfinished"/>
+        <translation>Chino Simplificado (GB18030)</translation>
     </message>
     <message>
         <source>Traditional Chinese (BIG5)</source>
-        <translation type="unfinished"/>
+        <translation>Chino Tradicional (BIG5)</translation>
     </message>
     <message>
         <source>Japanese (CP932)</source>
-        <translation type="unfinished"/>
+        <translation>Japonés (CP932)</translation>
     </message>
 </context>
 <context>
@@ -508,12 +508,12 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     <message>
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
-        <translation type="unfinished"/>
+        <translation>El archivo de audio puede estar corrupto o en un formato no soportado.</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>El programa %1 no está instalado.&lt;br&gt;Verifique que todos los programas requeridos están instalados en sus preferencias.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -523,7 +523,7 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>El programa %1 está instalado de acuerdo a sus preferencias, pero el archivo ejecutable no puede ser encontrado.&lt;br&gt;Verifique que todos los programas requeridos están instalados en sus preferencias.</translation>
     </message>
 </context>
 <context>
@@ -615,12 +615,12 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     <message>
         <source>Audio file not set for track %1.</source>
         <comment>Warning message, Placeholders is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>El archivo de audio no se ha establecido para la pista %1.</translation>
     </message>
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>No se han establecido los archivos de audio desde la pista %1 a la %2.</translation>
     </message>
 </context>
 <context>
@@ -964,17 +964,17 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; no ha sido establecido.</translation>
     </message>
     <message>
         <source>Select another audio file for %1 track…</source>
         <comment>context menu. Placeholders are track number</comment>
-        <translation type="unfinished"/>
+        <translation>Seleccione otro archivo de audio para la pista %1 …</translation>
     </message>
     <message>
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>Seleccione otro archivo de audio para las pistas de la %1 a la %2…</translation>
     </message>
 </context>
 <context>
@@ -1371,11 +1371,11 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
     </message>
     <message>
         <source>The audio file name is not set.</source>
-        <translation type="unfinished"/>
+        <translation>El nombre del archivo de audio no se ha establecido.</translation>
     </message>
     <message>
         <source>The audio file does not exist.</source>
-        <translation type="unfinished"/>
+        <translation>El archivo de audio no existe.</translation>
     </message>
 </context>
 <context>
@@ -1503,12 +1503,12 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
     </message>
     <message>
         <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;La conversión no es posible.&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
-        <translation type="unfinished"/>
+        <translation>Múltiples archivos</translation>
     </message>
 </context>
 <context>
