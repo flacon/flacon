@@ -172,6 +172,20 @@ void TestFlacon::testConvert()
     spec.endGroup();
     // ..........................................
 
+    // Copy source files ....................
+    spec.beginGroup("Source_Files");
+    foreach (auto key, spec.allKeys()) {
+        QString src  = dataDir + "/" + key;
+        QString dest = inDir + "/" + spec.value(key).toString();
+
+        QFileInfo(dest).dir().mkpath(".");
+        if (!QFile::copy(src, dest)) {
+            QFAIL(QString("Can't copy file \"%1\"").arg(src).toLocal8Bit());
+        }
+    }
+    spec.endGroup();
+    // ..........................................
+
     // Copy expected CUE files ....................
     spec.beginGroup("Result_CUE");
     foreach (auto key, spec.allKeys()) {
@@ -226,6 +240,18 @@ void TestFlacon::testConvert()
         QString err;
         if (!TestFlacon::compareCue(outDir + "/" + file, expected, &err))
             msg += "\n" + err;
+    }
+    spec.endGroup();
+    // ..........................................
+
+    // ..........................................
+    spec.beginGroup("Result_Files");
+    foreach (auto key, spec.allKeys()) {
+
+        if (files.removeAll(key) == 0) {
+            missing << key;
+            continue;
+        }
     }
     spec.endGroup();
     // ..........................................

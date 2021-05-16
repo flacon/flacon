@@ -292,7 +292,7 @@ void DiscPipeline::Data::startSplitterThread(const SplitterJob &req)
 
     mTracks[req.tracks.first().id()].setState(TrackState::Splitting);
 
-    if (mJob.coverOptions().fileName().isEmpty()) {
+    if (!mJob.coverOptions().fileName().isEmpty()) {
         copyCoverImage();
     }
 }
