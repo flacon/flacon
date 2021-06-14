@@ -102,6 +102,10 @@ QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const Track *trac
     if (!track->comment().isEmpty())
         args << "--comment" << track->comment();
 
+    if (!coverFile.isEmpty()) {
+        args << "--cover-art" << coverFile;
+    }
+
     args << "-o" << outFile;
     args << "-";
     return args;
