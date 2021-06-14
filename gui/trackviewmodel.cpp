@@ -51,7 +51,7 @@ struct CacheTrackData
 class TrackViewModel::Cache
 {
 public:
-    Cache() { }
+    Cache() = default;
     QSet<DiscNum>                downloadedDiscs;
     QHash<Track, CacheTrackData> tracks;
 };

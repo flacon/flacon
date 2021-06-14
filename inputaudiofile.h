@@ -38,7 +38,7 @@ private:
     class Data : public QSharedData
     {
     public:
-        explicit Data();
+        Data() = default;
         Data(const Data &other);
 
     public:

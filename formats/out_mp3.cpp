@@ -101,14 +101,17 @@ QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const Track *trac
     // Tags .....................................................
     args << "--add-id3v2";
     //#args << "--id3v2-only"
-    if (!track->artist().isEmpty())
+    if (!track->artist().isEmpty()) {
         args << "--ta" << track->artist();
+    }
 
-    if (!track->album().isEmpty())
+    if (!track->album().isEmpty()) {
         args << "--tl" << track->album();
+    }
 
-    if (!track->genre().isEmpty())
+    if (!track->genre().isEmpty()) {
         args << "--tg" << track->genre();
+    }
 
     if (!track->date().isEmpty())
         args << "--ty" << track->date();
@@ -121,6 +124,10 @@ QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const Track *trac
 
     if (!track->comment().isEmpty())
         args << "--tc" << track->comment();
+
+    if (!coverFile.isEmpty()) {
+        args << "--ti" << coverFile;
+    }
 
     args << "--tn" << QString("%1/%2").arg(track->trackNum()).arg(track->trackCount());
     args << "--tv" << QString("TPOS=%1").arg(track->discNum());

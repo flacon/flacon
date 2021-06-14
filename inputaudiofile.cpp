@@ -35,10 +35,6 @@
 #include <QFileInfo>
 #include <QDir>
 
-InputAudioFile::Data::Data()
-{
-}
-
 InputAudioFile::Data::Data(const InputAudioFile::Data &other) :
     QSharedData(other),
     mFilePath(other.mFilePath),
