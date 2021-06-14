@@ -94,6 +94,10 @@ QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const Track *track
     args << "-w" << QString("Track=%1/%2").arg(track->trackNum()).arg(track->trackCount());
     args << "-w" << QString("Part=%1").arg(track->discNum());
 
+    if (!coverFile.isEmpty()) {
+        args << "--write-binary-tag" << QString("Cover Art (Front)=@%1").arg(coverFile);
+    }
+
     args << "-";
     args << "-o" << outFile;
 
