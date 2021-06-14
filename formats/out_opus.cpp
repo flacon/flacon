@@ -87,6 +87,11 @@ QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *tra
     args << "--comment" << QString("discnumber=%1").arg(track->discNum());
     args << "--comment" << QString("disctotal=%1").arg(track->discCount());
 
+    if (!coverFile.isEmpty()) {
+        qDebug() << "--picture" << coverFile;
+        args << "--picture" << coverFile;
+    }
+
     // Files ....................................................
     args << "-";
     args << outFile;
