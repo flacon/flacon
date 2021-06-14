@@ -38,7 +38,7 @@ public:
     virtual QString encoderProgramName() const override { return "faac"; }
     virtual QString gainProgramName() const override { return ""; }
 
-    virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const override;
+    virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const override;
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;

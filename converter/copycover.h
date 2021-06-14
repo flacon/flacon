@@ -37,6 +37,8 @@ public:
     CopyCover(const CoverOptions &options, const QString &outDir, const QString &outBaseName);
     bool run();
 
+    QString fileName() const { return mFileName; }
+
     QString errorString() const { return mErrorString; }
 
 private:
@@ -44,6 +46,7 @@ private:
     const QString mDir;
     const QString mBaseName;
     QString       mErrorString;
+    QString       mFileName;
 
     bool copyImage(const QString &outFileName);
     bool resizeImage(const QString &outFileName);

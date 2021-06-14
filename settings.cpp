@@ -239,6 +239,10 @@ void Settings::init()
     setDefaultValue(Cover_Mode, coverModeToString(CoverMode::Scale));
     setDefaultValue(Cover_Size, 500);
 
+    // Embeded Cover image ******************
+    setDefaultValue(EmbededCover_Mode, coverModeToString(CoverMode::Disable));
+    setDefaultValue(EmbededCover_Size, 500);
+
     // ConfigureDialog **********************
     setDefaultValue(ConfigureDialog_Width, 645);
     setDefaultValue(ConfigureDialog_Height, 425);
@@ -318,6 +322,12 @@ QString Settings::keyToString(Settings::Key key) const
             return "Cover/Mode";
         case Cover_Size:
             return "Cover/Size";
+
+        // Embeded Cover image ******************
+        case EmbededCover_Mode:
+            return "EmbededCover/Mode";
+        case EmbededCover_Size:
+            return "EmbededCover/Size";
     }
 
     assert(false);
@@ -457,9 +467,57 @@ CoverMode Settings::coverMode() const
 /************************************************
  *
  ************************************************/
+void Settings::setCoverMode(CoverMode value)
+{
+    setValue(Cover_Mode, coverModeToString(value));
+}
+
+/************************************************
+ *
+ ************************************************/
 int Settings::coverImageSize() const
 {
     return value(Cover_Size).toInt();
+}
+
+/************************************************
+
+************************************************/
+void Settings::setCoverImageSize(int value)
+{
+    setValue(Cover_Size, value);
+}
+
+/************************************************
+
+************************************************/
+CoverMode Settings::embededCoverMode() const
+{
+    return strToCoverMode(value(EmbededCover_Mode).toString());
+}
+
+/************************************************
+
+ ************************************************/
+void Settings::setEmbededCoverMode(CoverMode value)
+{
+    setValue(EmbededCover_Mode, coverModeToString(value));
+}
+
+/************************************************
+
+ ************************************************/
+int Settings::embededCoverImageSize() const
+{
+    return value(EmbededCover_Size).toInt();
+}
+
+/************************************************
+
+ ************************************************/
+void Settings::setEmbededCoverImageSize(int value)
+{
+    setValue(EmbededCover_Size, value);
 }
 
 /************************************************

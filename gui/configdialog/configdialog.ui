@@ -273,81 +273,44 @@
           </widget>
          </item>
          <item>
-          <widget class="QGroupBox" name="coverGroupBox">
+          <widget class="CoverGroupBox" name="copyCoverGroupBox">
            <property name="title">
-            <string>Cover image</string>
+            <string>Copy cover image</string>
            </property>
            <property name="flat">
             <bool>true</bool>
            </property>
            <property name="checkable">
-            <bool>false</bool>
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <property name="sizeConstraint">
              <enum>QLayout::SetMinimumSize</enum>
             </property>
-            <item>
-             <layout class="QGridLayout" name="coverImageLayout">
-              <item row="2" column="0">
-               <widget class="QRadioButton" name="coverScaleButton">
-                <property name="text">
-                 <string>Resize if image size greater than</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QSpinBox" name="coverResizeSpinBox">
-                <property name="specialValueText">
-                 <string/>
-                </property>
-                <property name="suffix">
-                 <string> px</string>
-                </property>
-                <property name="minimum">
-                 <number>50</number>
-                </property>
-                <property name="maximum">
-                 <number>100000</number>
-                </property>
-                <property name="singleStep">
-                 <number>50</number>
-                </property>
-                <property name="value">
-                 <number>1024</number>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0" colspan="2">
-               <widget class="QRadioButton" name="coverDisableButton">
-                <property name="text">
-                 <string>Do not copy image</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0" colspan="2">
-               <widget class="QRadioButton" name="coverKeepSizeButton">
-                <property name="text">
-                 <string>Keep original image size</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <spacer name="horizontalSpacer_4">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
            </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="CoverGroupBox" name="embededCoverGroupBox">
+           <property name="toolTip">
+            <string comment="Tooltip on checkbox on preferences dialog">If the format is supported, the cover will be added to the meta information for all output files.</string>
+           </property>
+           <property name="title">
+            <string>Embed cover image in output files</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_10"/>
           </widget>
          </item>
          <item>
@@ -534,6 +497,12 @@
    <extends>QToolButton</extends>
    <header>controls.h</header>
   </customwidget>
+  <customwidget>
+   <class>CoverGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header location="global">covergroupbox.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>pages</tabstop>
@@ -541,10 +510,6 @@
   <tabstop>tmpDirEdit</tabstop>
   <tabstop>tmpDirButton</tabstop>
   <tabstop>codePageComboBox</tabstop>
-  <tabstop>coverDisableButton</tabstop>
-  <tabstop>coverKeepSizeButton</tabstop>
-  <tabstop>coverScaleButton</tabstop>
-  <tabstop>coverResizeSpinBox</tabstop>
   <tabstop>profilesList</tabstop>
   <tabstop>addProfileButton</tabstop>
   <tabstop>delProfileButton</tabstop>

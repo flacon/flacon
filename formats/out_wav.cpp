@@ -39,7 +39,7 @@ OutFormat_Wav::OutFormat_Wav()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wav::encoderArgs(const Profile &, const Track *, const QString &) const
+QStringList OutFormat_Wav::encoderArgs(const Profile &, const Track *, const QString &coverFile, const QString &) const
 {
     return QStringList();
 }

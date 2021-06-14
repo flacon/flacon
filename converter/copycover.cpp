@@ -52,14 +52,15 @@ bool CopyCover::run()
 
     QFileInfo inFile(mOptions.fileName());
 
-    QString outName = QDir(mDir).absoluteFilePath(QString("%1.%2").arg(mBaseName).arg(inFile.suffix()));
+    mFileName = QDir(mDir).absoluteFilePath(QString("%1.%2").arg(mBaseName).arg(inFile.suffix()));
 
     // Keep original size, just copy file
-    if (mOptions.size() == 0)
-        return copyImage(outName);
+    if (mOptions.size() == 0) {
+        return copyImage(mFileName);
+    }
 
     // Resize
-    return resizeImage(outName);
+    return resizeImage(mFileName);
 }
 
 /************************************************

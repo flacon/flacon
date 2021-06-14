@@ -68,9 +68,6 @@ private:
     void load();
     void save();
 
-    CoverMode coverMode() const;
-    void      setCoverMode(CoverMode mode);
-
     Profile &currentProfile();
     void     refreshProfilesList(const QString &selectedProfileId);
     void     updateLastUpdateLbl();

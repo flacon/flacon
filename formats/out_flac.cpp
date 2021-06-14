@@ -73,7 +73,7 @@ bool OutFormat_Flac::check(const Profile &profile, QStringList *errors) const
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
+QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const
 {
 
     QStringList args;
@@ -118,6 +118,10 @@ QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const Track *tra
     args << "--tag" << QString("disc=%1").arg(track->discNum());
     args << "--tag" << QString("discnumber=%1").arg(track->discNum());
     args << "--tag" << QString("disctotal=%1").arg(track->discCount());
+
+    if (!coverFile.isEmpty()) {
+        args << QString("--picture=%1").arg(coverFile);
+    }
 
     args << "-";
     args << "-o" << outFile;

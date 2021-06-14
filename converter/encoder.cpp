@@ -112,7 +112,7 @@ void Encoder::run()
     qint8    mode = COPY_FILE;
 
     if (mJob.options().formatId() != "WAV") {
-        QStringList args = mJob.options().encoderArgs(mJob.track(), QDir::toNativeSeparators(mJob.outFile()));
+        QStringList args = mJob.options().encoderArgs(mJob.track(), mJob.coverFile(), QDir::toNativeSeparators(mJob.outFile()));
         QString     prog = args.takeFirst();
 
         qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog, args);

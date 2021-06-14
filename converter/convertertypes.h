@@ -83,7 +83,7 @@ public:
     EncoderOptions &operator=(const EncoderOptions &other) = default;
 
     QString     formatId() const;
-    QStringList encoderArgs(const ConvTrack &track, const QString &outFile) const;
+    QStringList encoderArgs(const ConvTrack &track, const QString &coverFile, const QString &outFile) const;
 
     int bitsPerSample(const InputAudioFile &audio) const;
     int sampleRate(const InputAudioFile &audio) const;

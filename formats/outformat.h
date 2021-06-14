@@ -47,8 +47,8 @@ public:
     QString       ext() const { return mExt; }
     FormatOptions options() const { return mOptions; }
 
-    virtual QString     encoderProgramName() const                                                            = 0;
-    virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const = 0;
+    virtual QString     encoderProgramName() const                                                                                      = 0;
+    virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const = 0;
 
     virtual QString     gainProgramName() const                                           = 0;
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const = 0;

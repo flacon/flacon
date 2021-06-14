@@ -52,7 +52,7 @@ public:
     virtual QString encoderProgramName() const override { return ""; }
     virtual QString gainProgramName() const override { return ""; }
 
-    virtual QStringList encoderArgs(const Profile &, const Track *, const QString &) const override
+    virtual QStringList encoderArgs(const Profile &, const Track *, const QString &, const QString &) const override
     {
         return QStringList();
     }

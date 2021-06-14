@@ -66,6 +66,9 @@ public:
         // Cover image **************************
         Cover_Mode,
         Cover_Size,
+        EmbededCover_Mode,
+        EmbededCover_Size,
+
     };
 
     static Settings *i();
@@ -93,7 +96,16 @@ public:
     void    setDefaultCodepage(const QString &value);
 
     CoverMode coverMode() const;
-    int       coverImageSize() const;
+    void      setCoverMode(CoverMode value);
+
+    int  coverImageSize() const;
+    void setCoverImageSize(int value);
+
+    CoverMode embededCoverMode() const;
+    void      setEmbededCoverMode(CoverMode value);
+
+    int  embededCoverImageSize() const;
+    void setEmbededCoverImageSize(int value);
 
     Profiles &      profiles();
     const Profiles &profiles() const;

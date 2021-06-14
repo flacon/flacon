@@ -44,7 +44,7 @@ OutFormat_Opus::OutFormat_Opus()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
+QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const
 {
     QStringList args;
 

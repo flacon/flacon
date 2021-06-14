@@ -69,16 +69,12 @@ private:
  ************************************************/
 DiscPipelineJob Converter::Data::createDiscPipelineJob(const Job &converterJob, const Profile &profile)
 {
-    QString coverImage;
-    int     coverImageSize = 0;
-    // Cover image .........................
-    if (Settings::i()->coverMode() != CoverMode::Disable) {
-        coverImage = converterJob.disc->coverImageFile();
+    // Copy cover image .........................
+    QString copyCoverImage     = Settings::i()->coverMode() != CoverMode::Disable ? converterJob.disc->coverImageFile() : "";
+    int     copyCoverImageSize = Settings::i()->coverMode() == CoverMode::Scale ? Settings::i()->coverImageSize() : 0;
 
-        if (Settings::i()->coverMode() != CoverMode::Disable) {
-            coverImageSize = Settings::i()->coverImageSize();
-        }
-    }
+    QString embedCoverImage     = Settings::i()->embededCoverMode() != CoverMode::Disable ? converterJob.disc->coverImageFile() : "";
+    int     embedCoverImageSize = Settings::i()->embededCoverMode() == CoverMode::Scale ? Settings::i()->embededCoverImageSize() : 0;
 
     // Tracks ..............................
     ConvTracks resTracks;
@@ -139,9 +135,10 @@ DiscPipelineJob Converter::Data::createDiscPipelineJob(const Job &converterJob, 
 
     EncoderOptions encoderOptions(profile.outFormat(), &profile);
     GainOptions    gainOptions(profile.outFormat(), &profile);
-    CoverOptions   coverOptions(coverImage, coverImageSize);
+    CoverOptions   copyCoverOptions(copyCoverImage, copyCoverImageSize);
+    CoverOptions   embedCoverOptions(embedCoverImage, embedCoverImageSize);
 
-    return DiscPipelineJob(resTracks, encoderOptions, gainOptions, coverOptions, wrkDir);
+    return DiscPipelineJob(resTracks, encoderOptions, gainOptions, copyCoverOptions, embedCoverOptions, wrkDir);
 }
 
 /************************************************

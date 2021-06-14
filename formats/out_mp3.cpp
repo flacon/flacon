@@ -49,7 +49,7 @@ OutFormat_Mp3::OutFormat_Mp3()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
+QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const
 {
     QStringList args;
 

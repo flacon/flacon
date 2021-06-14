@@ -41,7 +41,7 @@ OutFormat_Aac::OutFormat_Aac()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
+QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const
 {
     QStringList args;
 

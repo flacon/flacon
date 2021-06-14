@@ -44,13 +44,15 @@ struct DiscPipelineJob
     DiscPipelineJob(ConvTracks     tracks,
                     EncoderOptions encoderOptions,
                     GainOptions    gainOptions,
-                    CoverOptions   coverOptions,
+                    CoverOptions   copyCoverOptions,
+                    CoverOptions   embedCoverOptions,
                     QString        workDir) :
         mTracks(tracks),
         mWorkDir(workDir),
         mEncoderOptions(encoderOptions),
         mGainOptions(gainOptions),
-        mCoverOptions(coverOptions)
+        mCopyCoverOptions(copyCoverOptions),
+        mEmbedCoverOptions(embedCoverOptions)
     {
     }
 
@@ -59,7 +61,8 @@ struct DiscPipelineJob
 
     const EncoderOptions &encoderOptions() const { return mEncoderOptions; }
     const GainOptions &   gainOptions() const { return mGainOptions; }
-    const CoverOptions &  coverOptions() const { return mCoverOptions; }
+    const CoverOptions &  copyCoverOptions() const { return mCopyCoverOptions; }
+    const CoverOptions &  embedCoverOptions() const { return mEmbedCoverOptions; }
 
 public:
     ConvTracks mTracks;
@@ -67,7 +70,8 @@ public:
 
     EncoderOptions mEncoderOptions;
     GainOptions    mGainOptions;
-    CoverOptions   mCoverOptions;
+    CoverOptions   mCopyCoverOptions;
+    CoverOptions   mEmbedCoverOptions;
 };
 
 class DiscPipeline : public QObject

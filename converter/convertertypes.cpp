@@ -57,9 +57,9 @@ QString EncoderOptions::formatId() const
 /************************************************
  *
  ************************************************/
-QStringList EncoderOptions::encoderArgs(const ConvTrack &track, const QString &outFile) const
+QStringList EncoderOptions::encoderArgs(const ConvTrack &track, const QString &coverFile, const QString &outFile) const
 {
-    return mOutFormat->encoderArgs(*mProfile, &track, outFile);
+    return mOutFormat->encoderArgs(*mProfile, &track, coverFile, outFile);
 }
 
 /************************************************

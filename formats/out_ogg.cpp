@@ -42,7 +42,7 @@ OutFormat_Ogg::OutFormat_Ogg()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const Track *track, const QString &outFile) const
+QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const
 {
     QStringList args;
 

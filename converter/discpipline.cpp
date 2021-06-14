@@ -56,33 +56,47 @@ using namespace Conv;
 class Conv::WorkerThread : public QThread
 {
 public:
-    explicit WorkerThread(Worker *worker, QObject *parent = nullptr) :
-        QThread(parent),
-        mWorker(worker)
-    {
-        worker->moveToThread(this);
-    }
+    explicit WorkerThread(Worker *worker, QObject *parent = nullptr);
+    virtual ~WorkerThread() override;
 
-    virtual ~WorkerThread()
-    {
-        quit();
-        if (!wait(3000)) {
-            qWarning() << "Can't quit from thread" << mWorker;
-            this->terminate();
-            if (!wait(3000))
-                qWarning() << "Can't terminate from thread" << mWorker;
-        }
-        mWorker->deleteLater();
-    }
-
-    void run()
-    {
-        mWorker->run();
-    }
+    void run() override;
 
 private:
     Worker *mWorker;
 };
+
+/************************************************
+ *
+ ************************************************/
+WorkerThread::WorkerThread(Worker *worker, QObject *parent) :
+    QThread(parent),
+    mWorker(worker)
+{
+    worker->moveToThread(this);
+}
+
+/************************************************
+ *
+ ************************************************/
+WorkerThread::~WorkerThread()
+{
+    quit();
+    if (!wait(3000)) {
+        qWarning() << "Can't quit from thread" << mWorker;
+        this->terminate();
+        if (!wait(3000))
+            qWarning() << "Can't terminate from thread" << mWorker;
+    }
+    mWorker->deleteLater();
+}
+
+/************************************************
+ *
+ ************************************************/
+void WorkerThread::run()
+{
+    mWorker->run();
+}
 
 /************************************************
  *
@@ -107,17 +121,19 @@ public:
     QList<SplitterJob>       mSplitterRequests;
     QList<EncoderJob>        mEncoderRequests;
     GainJobs                 mGainRequests;
-    bool                     mInterrupted = false;
-    QTemporaryDir *          mTmpDir      = nullptr;
+    QTemporaryDir *          mTmpDir = nullptr;
     QVector<WorkerThread *>  mThreads;
+    QString                  mEmbedCoverFile;
+    bool                     mInterrupted = false;
 
     void interrupt(TrackState state);
 
-    void startEncoderThread(const EncoderJob &req);
-    void startTrackGainThread(const GainJob &req);
-    void startAlbumGainThread(const GainJobs &reqs);
-    void createDir(const QString &dirName) const;
-    bool copyCoverImage() const;
+    void    startEncoderThread(const EncoderJob &req);
+    void    startTrackGainThread(const GainJob &req);
+    void    startAlbumGainThread(const GainJobs &reqs);
+    void    createDir(const QString &dirName) const;
+    bool    copyCoverImage() const;
+    QString createEmbedImage() const;
 
     void addSpliterRequest(const InputAudioFile &audio);
     void startSplitterThread(const SplitterJob &req);
@@ -263,7 +279,7 @@ bool DiscPipeline::Data::copyCoverImage() const
 {
     QString dir = QFileInfo(mJob.tracks().first().resultFilePath()).dir().absolutePath();
 
-    CopyCover copyCover(mJob.coverOptions(), dir, "cover");
+    CopyCover copyCover(mJob.copyCoverOptions(), dir, "cover");
     bool      res = copyCover.run();
 
     if (!res) {
@@ -271,6 +287,20 @@ bool DiscPipeline::Data::copyCoverImage() const
     }
 
     return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+QString DiscPipeline::Data::createEmbedImage() const
+{
+    CopyCover copyCover(mJob.embedCoverOptions(), mTmpDir->path(), "cover");
+    bool      res = copyCover.run();
+
+    if (!res) {
+        Messages::error(copyCover.errorString());
+    }
+    return copyCover.fileName();
 }
 
 /************************************************
@@ -292,8 +322,12 @@ void DiscPipeline::Data::startSplitterThread(const SplitterJob &req)
 
     mTracks[req.tracks.first().id()].setState(TrackState::Splitting);
 
-    if (!mJob.coverOptions().fileName().isEmpty()) {
+    if (!mJob.copyCoverOptions().fileName().isEmpty()) {
         copyCoverImage();
+    }
+
+    if (!mJob.embedCoverOptions().fileName().isEmpty()) {
+        mEmbedCoverFile = createEmbedImage();
     }
 }
 
@@ -368,7 +402,7 @@ void DiscPipeline::addEncoderRequest(const ConvTrack &track, const QString &inpu
     QFileInfo trackFile(track.resultFilePath());
     QString   outFile = QDir(mData->mTmpDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
 
-    mData->mEncoderRequests << EncoderJob(track, mData->mJob.encoderOptions(), inputFile, outFile);
+    mData->mEncoderRequests << EncoderJob(track, mData->mJob.encoderOptions(), mData->mEmbedCoverFile, inputFile, outFile);
     emit readyStart();
 }
 

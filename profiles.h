@@ -77,7 +77,7 @@ public:
     PreGapType preGapType() const;
     void       setPregapType(PreGapType value);
 
-    const OutFormat *  outFormat() const { return mFormat; };
+    const OutFormat *  outFormat() const { return mFormat; }
     QString            formatId() const { return mFormat->id(); }
     QString            formatName() const { return mFormat->name(); }
     QString            ext() const { return mFormat->ext(); }
@@ -85,10 +85,6 @@ public:
     BitsPerSample      maxBitPerSample() const { return mFormat->maxBitPerSample(); }
     SampleRate         maxSampleRate() const { return mFormat->maxSampleRate(); }
     EncoderConfigPage *configPage(QWidget *parent) const;
-    QString            encoderProgramName() const { return mFormat->encoderProgramName(); }
-    QStringList        encoderArgs(const Track *track, const QString &outFile) const { return mFormat->encoderArgs(*this, track, outFile); }
-    QString            gainProgramName() const { return mFormat->gainProgramName(); }
-    QStringList        gainArgs(const QStringList &files) const { return mFormat->gainArgs(files, gainType()); }
     bool               check(QStringList *errors) const { return mFormat->check(*this, errors); }
 
     void load(QSettings &settings, const QString &group);

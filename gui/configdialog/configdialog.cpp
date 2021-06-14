@@ -153,19 +153,6 @@ void ConfigDialog::initGeneralPage()
     tmpDirButton->setIcon(Icon("folder"));
     tmpDirButton->setBuddy(tmpDirEdit);
     connect(tmpDirButton, &QToolButton::clicked, this, &ConfigDialog::tmpDirShowDialog);
-
-    connect(coverDisableButton, &QRadioButton::clicked, [=]() { this->setCoverMode(CoverMode::Disable); });
-    connect(coverKeepSizeButton, &QRadioButton::clicked, [=]() { this->setCoverMode(CoverMode::OrigSize); });
-    connect(coverScaleButton, &QRadioButton::clicked, [=]() { this->setCoverMode(CoverMode::Scale); });
-
-    int h = 0;
-    for (int r = 0; r < coverImageLayout->rowCount(); ++r) {
-        h = qMax(h, coverImageLayout->cellRect(r, 0).height());
-    }
-
-    for (int r = 0; r < coverImageLayout->rowCount(); ++r) {
-        coverImageLayout->setRowMinimumHeight(r, h);
-    }
 }
 
 /************************************************
@@ -333,29 +320,6 @@ void ConfigDialog::tmpDirShowDialog()
 /************************************************
  *
  ************************************************/
-void ConfigDialog::setCoverMode(CoverMode mode)
-{
-    switch (mode) {
-        case CoverMode::Disable:
-            coverDisableButton->setChecked(true);
-            coverResizeSpinBox->setEnabled(false);
-            break;
-
-        case CoverMode::OrigSize:
-            coverKeepSizeButton->setChecked(true);
-            coverResizeSpinBox->setEnabled(false);
-            break;
-
-        case CoverMode::Scale:
-            coverScaleButton->setChecked(true);
-            coverResizeSpinBox->setEnabled(true);
-            break;
-    }
-}
-
-/************************************************
- *
- ************************************************/
 Profile &ConfigDialog::currentProfile()
 {
     return mProfileWidget ? mProfileWidget->profile() : NullProfile();
@@ -387,8 +351,12 @@ void ConfigDialog::load()
     Controls::loadFromSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
     Controls::loadFromSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
 
-    setCoverMode(Settings::i()->coverMode());
-    Controls::loadFromSettings(coverResizeSpinBox, Settings::Cover_Size);
+    copyCoverGroupBox->setCoverMode(Settings::i()->coverMode());
+    copyCoverGroupBox->setImageSize(Settings::i()->coverImageSize());
+
+    embededCoverGroupBox->setCoverMode(Settings::i()->embededCoverMode());
+    embededCoverGroupBox->setImageSize(Settings::i()->embededCoverImageSize());
+
     cddbComboBox->setCurrentText(Settings::i()->value(Settings::Inet_CDDBHost).toString());
 
     foreach (ProgramEdit *edit, mProgramEdits)
@@ -413,8 +381,12 @@ void ConfigDialog::save()
     Controls::saveToSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
     Controls::saveToSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
 
-    Settings::i()->setValue(Settings::Cover_Mode, coverModeToString(coverMode()));
-    Controls::saveToSettings(coverResizeSpinBox, Settings::Cover_Size);
+    Settings::i()->setCoverMode(copyCoverGroupBox->coverMode());
+    Settings::i()->setCoverImageSize(copyCoverGroupBox->imageSize());
+
+    Settings::i()->setEmbededCoverMode(embededCoverGroupBox->coverMode());
+    Settings::i()->setEmbededCoverImageSize(embededCoverGroupBox->imageSize());
+
     Settings::i()->setValue(Settings::Inet_CDDBHost, cddbComboBox->currentText());
 
     foreach (ProgramEdit *edit, mProgramEdits)
@@ -433,21 +405,6 @@ void ConfigDialog::save()
 #ifndef FLATPAK_BUNDLE
     Controls::saveToSettings(tmpDirEdit, Settings::Encoder_TmpDir);
 #endif
-}
-
-/************************************************
-
- ************************************************/
-CoverMode ConfigDialog::coverMode() const
-{
-    if (coverDisableButton->isChecked())
-        return CoverMode::Disable;
-    if (coverKeepSizeButton->isChecked())
-        return CoverMode::OrigSize;
-    if (coverScaleButton->isChecked())
-        return CoverMode::Scale;
-
-    return CoverMode::Disable;
 }
 
 /************************************************
