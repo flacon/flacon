@@ -104,7 +104,8 @@ void TestFlacon::testLoadDiscFromAudioErrors()
             QFAIL("Can't set LOAD tag in the spec file");
         }
 
-        Settings::setFileName(dir + "/conf.ini");
+        QFile::copy(dir + "/conf.ini", this->dir() + "/conf.ini");
+        Settings::setFileName(this->dir() + "/conf.ini");
 
         if (spec.contains("PROGRAM")) {
             Settings::i()->setValue("Programs/flac", spec.value("PROGRAM").toString());

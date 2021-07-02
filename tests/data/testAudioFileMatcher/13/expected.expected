@@ -1,2 +1,7 @@
-01 = FileTag1.wav
-02 = FileTag2.wav
+[FileTag1.wav]
+    01 = FileTag1.wav
+    02 = CueFile Disk1.ape
+
+[FileTag2.wav]
+    01 = FileTag2.wav
+    02 = CueFile Disk2.ape

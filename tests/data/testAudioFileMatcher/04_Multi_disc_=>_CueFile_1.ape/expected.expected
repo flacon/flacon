@@ -1,2 +1,5 @@
-01 = CueFile_1.ape
-02 = CueFile_2.ape
+[FileTag1.wav]
+    01 = CueFile_1.ape
+
+[FileTag2.wav]
+    01 = CueFile_2.ape

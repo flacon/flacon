@@ -35,13 +35,47 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tra
 
     QDir        dir  = QFileInfo(mCueFilePath).dir();
     QStringList exts = InputFormat::allFileExts();
-    mAudioFiles      = dir.entryInfoList(exts, QDir::Files | QDir::Readable);
+    mAllAudioFiles   = dir.entryInfoList(exts, QDir::Files | QDir::Readable);
 
-    QMap<QString, QString> res = run();
-    mResult.reserve(mFileTags.count());
-    for (const QString &tag : qAsConst(mFileTags)) {
-        mResult << res[tag];
+    if (mAllAudioFiles.isEmpty() || mTracks.isEmpty()) {
+        return;
     }
+
+    // Trivial, but frequent case. Directory contains only one audio file.
+    if (mFileTags.count() == 1 && mAllAudioFiles.count() == 1) {
+        mResult[mFileTags.first()] << mAllAudioFiles.first().filePath();
+        return;
+    }
+
+    // Looks like this is a per-track album .....
+    if (mFileTags.count() == mAllAudioFiles.count()) {
+        for (const Track &track : qAsConst(mTracks)) {
+            mResult[track.tag(TagId::File)] = matchAudioFilesByTrack(track.tag(TagId::File), track.tag(TagId::Title));
+        }
+        return;
+    }
+
+    // Common search ............................
+    for (const QString &fileTag : qAsConst(mFileTags)) {
+        mResult[fileTag] = matchAudioFiles(fileTag);
+    }
+}
+
+QStringList AudioFileMatcher::audioFiles(int index) const
+{
+    QString tag = mFileTags[index];
+    return audioFiles(tag);
+}
+
+bool AudioFileMatcher::containsAudioFile(const QString &audioFile) const
+{
+    for (auto const &files : qAsConst(mResult)) {
+        if (files.contains(audioFile)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void AudioFileMatcher::fillFileTags()
@@ -55,60 +89,20 @@ void AudioFileMatcher::fillFileTags()
     }
 }
 
-QMap<QString, QString> AudioFileMatcher::run()
+QStringList AudioFileMatcher::matchAudioFilesByTrack(const QString &fileTag, const QString &trackTitle)
 {
-    QMap<QString, QString> res;
-    if (mAudioFiles.isEmpty() || mTracks.isEmpty()) {
-        return res;
-    }
-
-    // Trivial, but frequent case. Directory contains only one audio file.
-    if (mFileTags.count() == 1 && mAudioFiles.count() == 1) {
-        res[mFileTags.first()] = mAudioFiles.first().filePath();
-        return res;
-    }
-
-    // Looks like this is a per-track album .....
-    if (mFileTags.count() == mAudioFiles.count()) {
-        for (const Track &track : qAsConst(mTracks)) {
-            const QFileInfoList files = matchAudioFilesByTrack(track.tag(TagId::File), track.tag(TagId::Title));
-            if (!files.isEmpty()) {
-                res[track.tag(TagId::File)] = files.first().filePath();
-            }
-        }
-        return res;
-    }
-
-    // Common search ............................
-    for (const QString &fileTag : qAsConst(mFileTags)) {
-        QFileInfoList files = matchAudioFiles(fileTag);
-
-        if (!files.isEmpty()) {
-            res[fileTag] = files.first().filePath();
-        }
-    }
-    return res;
-}
-
-QFileInfoList AudioFileMatcher::matchAudioFilesByTrack(const QString &fileTag, const QString &trackTitle)
-{
-    QFileInfoList res;
-    QStringList   patterns;
+    QStringList res;
+    QStringList patterns;
 
     patterns << QRegExp::escape(QFileInfo(fileTag).completeBaseName());
     patterns << QString(".*%1.*").arg(QRegExp::escape(trackTitle));
 
-    QString audioExt;
-    foreach (const InputFormat *format, InputFormat::allFormats()) {
-        audioExt += (audioExt.isEmpty() ? "\\." : "|\\.") + format->ext();
-    }
-
     foreach (const QString &pattern, patterns) {
-        QRegExp re(QString("%1(%2)+").arg(pattern).arg(audioExt), Qt::CaseInsensitive, QRegExp::RegExp2);
+        QRegExp re(QString(pattern), Qt::CaseInsensitive, QRegExp::RegExp2);
 
-        foreach (const QFileInfo &audio, mAudioFiles) {
+        foreach (const QFileInfo &audio, mAllAudioFiles) {
             if (re.exactMatch(audio.fileName())) {
-                res << audio;
+                res << audio.filePath();
             }
         }
     }
@@ -116,12 +110,14 @@ QFileInfoList AudioFileMatcher::matchAudioFilesByTrack(const QString &fileTag, c
     if (res.isEmpty()) {
         res = matchAudioFiles(fileTag);
     }
+
+    res.removeDuplicates();
     return res;
 }
 
-QFileInfoList AudioFileMatcher::matchAudioFiles(const QString &fileTag)
+QStringList AudioFileMatcher::matchAudioFiles(const QString &fileTag)
 {
-    QFileInfoList res;
+    QStringList res;
 
     QStringList patterns;
     if (mFileTags.count() == 1) {
@@ -152,12 +148,13 @@ QFileInfoList AudioFileMatcher::matchAudioFiles(const QString &fileTag)
 
     foreach (const QString &pattern, patterns) {
         QRegExp re(QString("%1(%2)+").arg(pattern).arg(audioExt), Qt::CaseInsensitive, QRegExp::RegExp2);
-        foreach (const QFileInfo &audio, mAudioFiles) {
+        foreach (const QFileInfo &audio, mAllAudioFiles) {
             if (re.exactMatch(audio.fileName())) {
-                res << audio;
+                res << audio.filePath();
             }
         }
     }
 
+    res.removeDuplicates();
     return res;
 }

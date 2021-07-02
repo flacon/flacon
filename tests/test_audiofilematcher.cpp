@@ -63,20 +63,30 @@ void TestFlacon::testAudioFileMatcher()
         QSettings exp(expectedFile, QSettings::IniFormat);
         exp.setIniCodec("UTF-8");
 
-        QCOMPARE(matcher.result().count(), exp.allKeys().count());
-        for (const QString &key : exp.allKeys()) {
-            bool ok;
-            int  n = key.toInt(&ok);
-            if (!ok) {
-                QFAIL(QString("Incorrect key %1").arg(key).toLocal8Bit());
+        QCOMPARE(matcher.fileTags().count(), exp.childGroups().count());
+
+        for (const QString &tag : exp.childGroups()) {
+
+            QStringList actualAudio = matcher.audioFiles(tag);
+
+            exp.beginGroup(tag);
+
+            QStringList keys = exp.childKeys();
+            keys.sort();
+
+            QStringList expectedAudio;
+            for (const QString &key : keys) {
+                if (!exp.value(key).toString().isEmpty()) {
+                    expectedAudio << QDir(dir).filePath(exp.value(key).toString());
+                }
             }
 
-            QString actualAudio   = matcher.result()[n - 1];
-            QString expectedAudio = exp.value(key).toString().isEmpty() ? "" : QDir(dir).filePath(exp.value(key).toString());
+            exp.endGroup();
+
             if (!QTest::qCompare(
-                        actualAudio, expectedAudio,
-                        QString("actual %1").arg(key).toLocal8Bit(),
-                        QString("expected %1").arg(key).toLocal8Bit(),
+                        actualAudio.join(", "), expectedAudio.join(", "),
+                        QString("actual   %1").arg(tag).toLocal8Bit(),
+                        QString("expected %1").arg(tag).toLocal8Bit(),
                         __FILE__, __LINE__)) {
                 return;
             }

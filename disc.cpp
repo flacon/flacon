@@ -119,7 +119,7 @@ void Disc::searchCueFile(bool replaceExisting)
 
     foreach (const Cue &cue, cues) {
         AudioFileMatcher matcher(cue.fileName(), cue);
-        if (matcher.result().contains(audioFile.filePath())) {
+        if (matcher.containsAudioFile(audioFile.filePath())) {
             unsigned int weight = levenshteinDistance(QFileInfo(cue.fileName()).baseName(), audioFile.baseName());
             if (weight < bestWeight) {
                 bestWeight = weight;
@@ -143,7 +143,15 @@ void Disc::searchAudioFiles(bool replaceExisting)
     AudioFileMatcher matcher(dir, Tracks(mTracks));
     for (int i = 0; i < audioFiles().count(); ++i) {
         if (audioFiles()[i].isNull() || replaceExisting) {
-            setAudioFile(InputAudioFile(matcher.result()[i]), i);
+
+            QStringList foundAudio = matcher.audioFiles(i);
+            for (const QString &file : foundAudio) {
+                InputAudioFile newAudio(file);
+                if (newAudio.isValid()) {
+                    setAudioFile(newAudio, i);
+                    break;
+                }
+            }
         }
     }
 }

@@ -38,19 +38,21 @@ public:
     const Tracks &tracks() const { return mTracks; }
 
     const QStringList &fileTags() const { return mFileTags; }
-    const QStringList &result() const { return mResult; }
+    QStringList        audioFiles(const QString &fileTag) const { return mResult[fileTag]; }
+    QStringList        audioFiles(int index) const;
+
+    bool containsAudioFile(const QString &audioFile) const;
 
 private:
-    QString       mCueFilePath;
-    Tracks        mTracks;
-    QStringList   mFileTags;
-    QFileInfoList mAudioFiles;
-    QStringList   mResult;
+    QString                    mCueFilePath;
+    Tracks                     mTracks;
+    QStringList                mFileTags;
+    QFileInfoList              mAllAudioFiles;
+    QMap<QString, QStringList> mResult;
 
-    void                   fillFileTags();
-    QMap<QString, QString> run();
-    QFileInfoList          matchAudioFilesByTrack(const QString &fileTag, const QString &trackTitle);
-    QFileInfoList          matchAudioFiles(const QString &fileTag);
+    void        fillFileTags();
+    QStringList matchAudioFilesByTrack(const QString &fileTag, const QString &trackTitle);
+    QStringList matchAudioFiles(const QString &fileTag);
 };
 
 #endif // AUDIOFILEMATCHER_H
