@@ -1,5 +1,5 @@
 [Profiles/AAC]
-    OutDirectory=~/Music
+    OutDirectory=:Music
     OutPattern=%a/{%y - }%A/%n - %t
     Name=AAC
     Format=AAC
@@ -13,7 +13,7 @@
     PregapType = Extract
 
 [Profiles/FLAC]
-    OutDirectory=~/Music
+    OutDirectory=:Music
     OutPattern=%a/{%y - }%A/%n - %t
     Name=Flac
     Format=FLAC
@@ -26,7 +26,7 @@
     PregapType = Extract
 
 [Profiles/MP3]
-    OutDirectory=~/Music
+    OutDirectory=:Music
     OutPattern=%a/{%y - }%A/%n - %t
     Name=MP3
     Format=MP3
@@ -41,7 +41,7 @@
     PregapType = Extract
 
 [Profiles/OGG]
-    OutDirectory=~/Music
+    OutDirectory=:Music
     OutPattern=%a/{%y - }%A/%n - %t
     Name=OGG
     Format=OGG
@@ -58,7 +58,7 @@
     PregapType = Extract
 
 [Profiles/OPUS]
-    OutDirectory=~/Music
+    OutDirectory=:Music
     OutPattern=%a/{%y - }%A/%n - %t
     Name=Opus
     Format=OPUS
@@ -71,7 +71,7 @@
     PregapType = Extract
 
 [Profiles/WV]
-    OutDirectory=~/Music
+    OutDirectory=:Music
     OutPattern=%a/{%y - }%A/%n - %t
     Name=WavPack
     Format=WV
@@ -84,7 +84,7 @@
     PregapType = Extract
 
 [Profiles/WAV]
-    OutDirectory=~/Music
+    OutDirectory=:Music
     OutPattern=%a/{%y - }%A/%n - %t
     Format=WAV
     Name=WAV

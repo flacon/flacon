@@ -30,6 +30,7 @@
 #include <QDebug>
 #include <QDir>
 #include "settings.h"
+#include <QStandardPaths>
 
 /************************************************
  *
@@ -71,7 +72,14 @@ void TestFlacon::testLoadProfiles()
 
     bool pass = true;
     foreach (auto key, keys) {
-        if (result.value(key).toString() == expected.value(key).toString())
+        QString exp = expected.value(key).toString();
+
+        if (exp == ":Music") {
+            exp = QStandardPaths::standardLocations(QStandardPaths::MusicLocation).first();
+            exp.replace(QDir::homePath(), "~");
+        }
+
+        if (result.value(key).toString() == exp)
             continue;
 
         QString msg = QString("Compared values are not the same\n\tKey\t%1\n\tActual\t%2\n\tExpected\t%3")
