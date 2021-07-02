@@ -271,6 +271,33 @@ void TestFlacon::testReadWavHeader_data()
                                       << "44"            // file size
                                       << "0"             // data size
                                       << "00:00:00.000"; // duration
+
+    QTest::newRow("07 fact chunk")
+            << "52 49 46 46" // RIFF
+               "A2 08 21 15" // file size - 8
+               "57 41 56 45" // WAVE
+
+               "66 6D 74 20" // "fmt "
+               "12 00 00 00" // Chunk size
+               "01 00"       // AudioFormat
+               "02 00"       // NumChannels
+
+               "44 AC 00 00" // mSampleRate
+               "10 B1 02 00" // mByteRate
+               "04 00"       // mBlockAlign
+               "10 00"       // mBitsPerSample
+               "00 00"       //
+
+               "66 61 63 74" // fact
+               "04 00 00 00" // Chunk size
+               "1C 42 48 05" // Various information about the contents of the file,
+
+               "64 61 74 61" // data
+               "70 08 21 15" // data size
+
+            << "354486442"     // file size
+            << "354486384"     // data size
+            << "00:33:29.560"; // duration
 }
 
 /************************************************

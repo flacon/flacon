@@ -72,11 +72,11 @@ public:
 
     typedef char SubFormat[16];
 
-    WavHeader();
+    WavHeader() = default;
     explicit WavHeader(QIODevice *stream) noexcept(false);
 
-    WavHeader(const WavHeader &other);
-    WavHeader &operator=(const WavHeader &other);
+    WavHeader(const WavHeader &other) = default;
+    WavHeader &operator=(const WavHeader &other) = default;
 
     /// Duration of audio in milliseconds.
     quint64 duration() const;
@@ -102,20 +102,26 @@ public:
     bool    isCdQuality() const;
 
 protected:
-    quint32    mFileSize;
-    quint32    mFmtSize;
-    Format     mFormat;
-    quint16    mNumChannels;
-    quint32    mSampleRate;
-    quint32    mByteRate;
-    quint16    mBlockAlign;
-    quint16    mBitsPerSample;
-    quint16    mExtSize;            // Size of the extension:
-    quint16    mValidBitsPerSample; // at most 8*M
-    quint32    mChannelMask;        // Speaker position mask
-    QByteArray mSubFormat;          // GUID (first two bytes are the data format code)
-    quint32    mDataSize;
-    quint32    mDataStartPos;
+    enum FmtChunkSize {
+        FmtChunkMin = 16,
+        FmtChunkMid = 18,
+        FmtChunkExt = 40,
+    };
+
+    quint32      mFileSize           = 0;
+    FmtChunkSize mFmtSize            = FmtChunkMin;
+    Format       mFormat             = WavHeader::Format_Unknown;
+    quint16      mNumChannels        = 0;
+    quint32      mSampleRate         = 0;
+    quint32      mByteRate           = 0;
+    quint16      mBlockAlign         = 0;
+    quint16      mBitsPerSample      = 0;
+    quint16      mExtSize            = 0; // Size of the extension:
+    quint16      mValidBitsPerSample = 0; // at most 8*M
+    quint32      mChannelMask        = 0; // Speaker position mask
+    QByteArray   mSubFormat          = 0; // GUID (first two bytes are the data format code)
+    quint32      mDataSize           = 0;
+    quint32      mDataStartPos       = 0;
 
     QByteArray mOtherCunks;
 

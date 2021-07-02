@@ -171,40 +171,13 @@ quint16 readUInt16(QIODevice *stream)
  *   64 61 74 61 	SubchunkID 		"data"
  *   00 B9 4D 02 	SubchunkSize
  ************************************************/
-WavHeader::WavHeader() :
-    mFileSize(0),
-    mFmtSize(0),
-    mFormat(WavHeader::Format_Unknown),
-    mNumChannels(0),
-    mSampleRate(0),
-    mByteRate(0),
-    mBlockAlign(0),
-    mBitsPerSample(0),
-    mExtSize(0),
-    mValidBitsPerSample(0),
-    mChannelMask(0),
-    mDataSize(0),
-    mDataStartPos(0)
-{
-}
 
 /************************************************
  * See WAV specoification
  *   http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html
  *   https://en.wikipedia.org/wiki/WAV
  ************************************************/
-WavHeader::WavHeader(QIODevice *stream) noexcept(false) :
-    mFormat(WavHeader::Format_Unknown),
-    mNumChannels(0),
-    mSampleRate(0),
-    mByteRate(0),
-    mBlockAlign(0),
-    mBitsPerSample(0),
-    mExtSize(0),
-    mValidBitsPerSample(0),
-    mChannelMask(0),
-    mDataSize(0),
-    mDataStartPos(0)
+WavHeader::WavHeader(QIODevice *stream) noexcept(false)
 {
     char tag[5] = { '\0' };
     // look for "RIFF" in header
@@ -237,7 +210,6 @@ WavHeader::WavHeader(QIODevice *stream) noexcept(false) :
 
         if (strcmp(chunkID, WAV_FMT) == 0) {
             loadFmtChunk(stream, chunkSize);
-
             pos += chunkSize;
         }
         else {
@@ -249,38 +221,6 @@ WavHeader::WavHeader(QIODevice *stream) noexcept(false) :
     }
 
     throw FlaconError("data chunk not found");
-}
-
-/************************************************
- *
- ************************************************/
-WavHeader::WavHeader(const WavHeader &other)
-{
-    this->operator=(other);
-}
-
-/************************************************
- *
- ************************************************/
-WavHeader &WavHeader::operator=(const WavHeader &other)
-{
-    mFileSize           = other.mFileSize;
-    mFmtSize            = other.mFmtSize;
-    mFormat             = other.mFormat;
-    mNumChannels        = other.mNumChannels;
-    mSampleRate         = other.mSampleRate;
-    mByteRate           = other.mByteRate;
-    mBlockAlign         = other.mBlockAlign;
-    mBitsPerSample      = other.mBitsPerSample;
-    mExtSize            = other.mExtSize;
-    mValidBitsPerSample = other.mValidBitsPerSample;
-    mChannelMask        = other.mChannelMask;
-    mDataSize           = other.mDataSize;
-    mDataStartPos       = other.mDataStartPos;
-    mSubFormat          = other.mSubFormat;
-    mOtherCunks         = other.mOtherCunks;
-
-    return *this;
 }
 
 /************************************************
@@ -367,10 +307,10 @@ void checkFormat(quint16 format)
  ************************************************/
 void WavHeader::loadFmtChunk(QIODevice *stream, const quint32 chunkSize)
 {
-    if (chunkSize != 16 && chunkSize != 18 && chunkSize != 40)
+    if (chunkSize != FmtChunkMin && chunkSize != FmtChunkMid && chunkSize != FmtChunkExt)
         throw FlaconError("fmt chunk in WAVE header hase incorrect length");
 
-    mFmtSize = chunkSize;
+    mFmtSize = FmtChunkSize(chunkSize);
 
     quint16 format = readUInt16(stream);
 
@@ -382,14 +322,14 @@ void WavHeader::loadFmtChunk(QIODevice *stream, const quint32 chunkSize)
     this->mBlockAlign    = readUInt16(stream);
     this->mBitsPerSample = readUInt16(stream);
 
-    if (chunkSize == 16)
+    if (chunkSize == FmtChunkMin)
         return;
 
     mExtSize = readUInt16(stream); // Size of the extension:
-    if (chunkSize == 18)
+    if (chunkSize == FmtChunkMid)
         return;
 
-    if (mExtSize != 22)
+    if (mExtSize != FmtChunkExt - FmtChunkMid)
         throw FlaconError("Size of the extension in WAVE header hase incorrect length");
 
     mValidBitsPerSample = readUInt16(stream); // at most 8*M
@@ -424,16 +364,19 @@ QByteArray WavHeader::toByteArray() const
     res << WAV_WAVE;
 
     res << WAV_FMT;
-    res << mFmtSize;
-    res << (quint16)(mFormat);
+    res << quint32(mFmtSize);
+    res << quint16(mFormat);
     res << mNumChannels;
     res << mSampleRate;
     res << mByteRate;
     res << mBlockAlign;
     res << mBitsPerSample;
 
-    if (mExtSize) {
+    if (mFmtSize > FmtChunkMin) {
         res << mExtSize;
+    }
+
+    if (mExtSize > 0) {
         res << mValidBitsPerSample;
         res << mChannelMask;
         res.append(mSubFormat);
