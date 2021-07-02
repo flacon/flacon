@@ -325,7 +325,7 @@ public:
         mNumChannels   = numChannels;
         mSampleRate    = sampleRate;
         mBitsPerSample = bitsPerSample;
-        mFmtSize       = 16;
+        mFmtSize       = FmtChunkSize::FmtChunkMin;
         mByteRate      = mSampleRate * mBitsPerSample / 8 * mNumChannels;
         mBlockAlign    = mBitsPerSample * mNumChannels / 8;
 
