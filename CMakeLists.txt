@@ -123,16 +123,6 @@ set(SOURCES
     profiles.cpp
     audiofilematcher.cpp
 
-    gui/icon.cpp
-    gui/mainwindow.cpp
-    gui/controls.cpp
-    gui/trackview.cpp
-    gui/trackviewmodel.cpp
-    gui/trackviewdelegate.cpp
-    gui/configdialog/configdialog.cpp
-    gui/configdialog/profilewidget.cpp
-    gui/configdialog/addprofiledialog.cpp
-    gui/configdialog/covergroupbox.cpp
     gui/aboutdialog/aboutdialog.cpp
     gui/aboutdialog/translatorsinfo.cpp
     gui/coverdialog/coverdialog.cpp
@@ -157,9 +147,7 @@ set(SOURCES
     formats/out_wv.cpp
 )
 
-set(UI_FILES
-    gui/configdialog/covergroupbox.ui
-)
+include(gui/module.cmake)
 
 if (APPLE)
     set(SOURCES ${SOURCES}
@@ -279,7 +267,7 @@ endif()
 
 add_subdirectory(converter)
 
-add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${UI_FILES} ${QM_FILES} ${QRC_SOURCES} ${ENGINES_CPP} ${ENGINES_H} ${RESOURCES} ${TRANSLATORS_INFO_QRC})
+add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${QM_FILES} ${QRC_SOURCES} ${ENGINES_CPP} ${ENGINES_H} ${RESOURCES} ${TRANSLATORS_INFO_QRC})
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES} converter ${QT_LIBRARIES} Qt5::Widgets Qt5::Network)
 
 

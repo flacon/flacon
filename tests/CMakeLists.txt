@@ -28,13 +28,10 @@ project(flacon_test)
 cmake_minimum_required( VERSION 3.0.0 )
 cmake_policy(SET CMP0028 NEW)
 
-set(TEST_HEADERS
+set(TEST_SOURCES
     tools.h
     testflacon.h
     discspec.h
-)
-
-set(TEST_SOURCES
     tools.cpp
     inittestcase.cpp
     testflacon.cpp
@@ -49,15 +46,14 @@ list(APPEND TEST_SOURCES ${TEST_CPP_FILES})
 
 
 
-foreach(FILE ${SOURCES})
+foreach(FILE ${SOURCES} ${HEADERS})
     if(NOT FILE STREQUAL "main.cpp")
-        set(TEST_SOURCES ${TEST_SOURCES} "../${FILE}")
+        if (IS_ABSOLUTE ${FILE})
+            set(TEST_SOURCES ${TEST_SOURCES} "${FILE}")
+        else()
+           set(TEST_SOURCES ${TEST_SOURCES} "../${FILE}")
+       endif()
     endif()
-endforeach()
-
-
-foreach(FILE ${HEADERS})
-    set(TEST_HEADERS ${TEST_HEADERS} "../${FILE}")
 endforeach()
 
 
@@ -84,6 +80,6 @@ find_package(Qt5 REQUIRED
 )
 
 
-add_executable(${PROJECT_NAME} ${TEST_HEADERS} ${TEST_SOURCES})
+add_executable(${PROJECT_NAME} ${TEST_SOURCES})
 target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES}  ${LIBRARIES} converter Qt5::Core Qt5::Test Qt5::Widgets Qt5::Network)
 add_test(${PROJECT_NAME} ${PROJECT_NAME})

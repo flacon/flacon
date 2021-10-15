@@ -92,11 +92,11 @@ class FlaconError : public std::runtime_error
 {
 public:
     explicit FlaconError(const char *msg) :
-        std::runtime_error(msg) { }
+        std::runtime_error(msg) {}
     explicit FlaconError(const std::string &msg) :
-        std::runtime_error(msg) { }
+        std::runtime_error(msg) {}
     explicit FlaconError(const QString &msg) :
-        std::runtime_error(msg.toStdString()) { }
+        std::runtime_error(msg.toStdString()) {}
 };
 
 class CueIndex
@@ -161,9 +161,10 @@ enum SampleRate {
 Q_DECLARE_METATYPE(SampleRate)
 
 enum class FormatOption {
-    NoOptions   = 0x0,
-    Lossless    = 0x1,
-    SupportGain = 0x2,
+    NoOptions         = 0x0,
+    Lossless          = 0x1,
+    SupportGain       = 0x2,
+    SupportEmbededCue = 0x4,
 };
 
 Q_DECLARE_FLAGS(FormatOptions, FormatOption)

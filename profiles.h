@@ -71,6 +71,9 @@ public:
     bool isCreateCue() const;
     void setCreateCue(bool value);
 
+    bool isEmbededCue() const;
+    void setEmbededCue(bool value);
+
     QString cueFileName() const;
     void    setCueFileName(const QString &value);
 
@@ -95,6 +98,7 @@ public:
     static constexpr const char *BITS_PER_SAMPLE_KEY = "BitsPerSample";
     static constexpr const char *SAMPLE_RATE_KEY     = "SampleRate";
     static constexpr const char *CREATE_CUE_KEY      = "CreateCue";
+    static constexpr const char *EMBED_CUE_KEY       = "EmbedCue";
     static constexpr const char *CUE_FILE_NAME_KEY   = "CueFileName";
     static constexpr const char *PREGAP_TYPE_KEY     = "PregapType";
     static constexpr const char *REPLAY_GAIN_KEY     = "ReplayGain";

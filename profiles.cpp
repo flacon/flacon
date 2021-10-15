@@ -284,6 +284,22 @@ void Profile::setCreateCue(bool value)
 /************************************************
  *
  ************************************************/
+bool Profile::isEmbededCue() const
+{
+    return value(EMBED_CUE_KEY, false).toBool();
+}
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setEmbededCue(bool value)
+{
+    setValue(EMBED_CUE_KEY, value);
+}
+
+/************************************************
+ *
+ ************************************************/
 QString Profile::cueFileName() const
 {
     return value(CUE_FILE_NAME_KEY).toString();

@@ -27,7 +27,7 @@
 #include "ui_profilewidget.h"
 #include "profiles.h"
 #include "formats/encoderconfigpage.h"
-#include "../patternexpander.h"
+//#include "../patternexpander.h"
 #include "../icon.h"
 
 #include <QDebug>
@@ -61,29 +61,6 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     ui->encoderGroup->setLayout(new QVBoxLayout(ui->encoderGroup));
     ui->encoderGroup->layout()->addWidget(mEncoderWidget);
 
-    ui->perTrackCueFormatBtn->addPattern("%a", tr("Insert \"Artist\""));
-    ui->perTrackCueFormatBtn->addPattern("%A", tr("Insert \"Album title\""));
-    ui->perTrackCueFormatBtn->addPattern("%y", tr("Insert \"Year\""));
-    ui->perTrackCueFormatBtn->addPattern("%g", tr("Insert \"Genre\""));
-
-    const QString patterns[] = {
-        "%a-%A.cue",
-        "%a - %A.cue",
-        "%a - %y - %A.cue"
-    };
-
-    for (QString pattern : patterns) {
-        ui->perTrackCueFormatBtn->addFullPattern(pattern,
-                                                 tr("Use \"%1\"", "Predefined CUE file name, string like 'Use \"%a/%A/%n - %t.cue\"'")
-                                                                 .arg(pattern)
-                                                         + "  ( " + PatternExpander::example(pattern) + " )");
-    }
-
-    ui->perTrackCueFormatBtn->setIcon(Icon("pattern-button"));
-
-    ui->preGapComboBox->addItem(tr("Extract to separate file"), preGapTypeToString(PreGapType::ExtractToFile));
-    ui->preGapComboBox->addItem(tr("Add to first track"), preGapTypeToString(PreGapType::AddToFirstTrack));
-
     ui->bitDepthComboBox->addItem(tr("Same as source", "Item in combobox"), int(BitsPerSample::AsSourcee));
     ui->bitDepthComboBox->addItem(tr("16-bit", "Item in combobox"), int(BitsPerSample::Bit_16));
     ui->bitDepthComboBox->addItem(tr("24-bit", "Item in combobox"), int(BitsPerSample::Bit_24));
@@ -102,12 +79,6 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     ui->gainComboBox->setToolTip(tr("ReplayGain is a standard to normalize the perceived loudness of computer audio formats. \n\n"
                                     "The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. \n"
                                     "Using the album-gain analysis will preserve the volume differences within an album."));
-
-    connect(ui->perTrackCueFormatBtn, &OutPatternButton::paternSelected,
-            [this](const QString &pattern) { ui->perTrackCueFormatEdit->insert(pattern); });
-
-    connect(ui->perTrackCueFormatBtn, &OutPatternButton::fullPaternSelected,
-            [this](const QString &pattern) { ui->perTrackCueFormatEdit->setText(pattern); });
 
     load();
     fixLayout();
@@ -132,9 +103,11 @@ void ProfileWidget::load()
         mEncoderWidget->loadWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
     }
 
-    mEncoderWidget->loadWidget(Profile::CREATE_CUE_KEY, ui->perTrackCueGroup);
-    mEncoderWidget->loadWidget(Profile::PREGAP_TYPE_KEY, ui->preGapComboBox);
-    mEncoderWidget->loadWidget(Profile::CUE_FILE_NAME_KEY, ui->perTrackCueFormatEdit);
+    ui->outCueGroup->setSupportEmbededCue(mProfile.formatOptions().testFlag(FormatOption::SupportEmbededCue));
+    ui->outCueGroup->setCreateCue(mProfile.value(Profile::CREATE_CUE_KEY).toBool());
+    ui->outCueGroup->setEmbededCue(mProfile.value(Profile::EMBED_CUE_KEY).toBool());
+    ui->outCueGroup->setPerTrackCueFormat(mProfile.value(Profile::CUE_FILE_NAME_KEY).toString());
+    ui->outCueGroup->setPregapType(strToPreGapType(mProfile.value(Profile::PREGAP_TYPE_KEY).toString()));
 }
 
 /************************************************
@@ -156,9 +129,10 @@ void ProfileWidget::save() const
         mEncoderWidget->saveWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
     }
 
-    mEncoderWidget->saveWidget(Profile::CREATE_CUE_KEY, ui->perTrackCueGroup);
-    mEncoderWidget->saveWidget(Profile::PREGAP_TYPE_KEY, ui->preGapComboBox);
-    mEncoderWidget->saveWidget(Profile::CUE_FILE_NAME_KEY, ui->perTrackCueFormatEdit);
+    mProfile.setValue(Profile::CREATE_CUE_KEY, ui->outCueGroup->isCreateCue());
+    mProfile.setValue(Profile::EMBED_CUE_KEY, ui->outCueGroup->isEmbededCue());
+    mProfile.setValue(Profile::PREGAP_TYPE_KEY, preGapTypeToString(ui->outCueGroup->pregapType()));
+    mProfile.setValue(Profile::CUE_FILE_NAME_KEY, ui->outCueGroup->perTrackCueFormat());
 }
 
 /************************************************
