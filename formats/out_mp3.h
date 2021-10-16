@@ -29,6 +29,7 @@
 #include "outformat.h"
 #include "encoderconfigpage.h"
 #include "ui_out_mp3_config.h"
+#include "../converter/encoder.h"
 
 class OutFormat_Mp3 : public OutFormat
 {
@@ -38,15 +39,16 @@ public:
     virtual QString encoderProgramName() const override { return "lame"; }
     virtual QString gainProgramName() const override { return "mp3gain"; }
 
-    virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const override;
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const override;
+    EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_64; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
+
+    Conv::Encoder *createEncoder() const override;
 };
 
 class ConfigPage_Mp3 : public EncoderConfigPage, private Ui::mp3ConfigPage
@@ -60,6 +62,13 @@ public:
 
 private slots:
     void mp3PresetCbxCanged(int index);
+};
+
+class Encoder_Mp3 : public Conv::Encoder
+{
+public:
+    QString     encoderProgramName() const override { return "lame"; }
+    QStringList encoderArgs() const override;
 };
 
 #endif // OUT_MP3_H

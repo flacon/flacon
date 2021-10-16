@@ -49,99 +49,6 @@ OutFormat_Mp3::OutFormat_Mp3()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const
-{
-    QStringList args;
-
-    args << Settings::i()->programName(encoderProgramName());
-    args << "--silent";
-
-    // Settings .................................................
-    QString preset = profile.value("Preset").toString();
-
-    if (preset == VBR_MEDIUM) {
-        args << "--preset"
-             << "medium";
-    }
-
-    else if (preset == VBR_STATDARD) {
-        args << "--preset"
-             << "standard";
-    }
-
-    else if (preset == VBR_EXTRIME) {
-        args << "--preset"
-             << "extreme";
-    }
-
-    else if (preset == CBR_INSANE) {
-        args << "--preset"
-             << "insane";
-    }
-
-    else if (preset == CBR_KBPS) {
-        args << "--preset"
-             << "cbr" << profile.value("Bitrate").toString();
-    }
-
-    else if (preset == ABR_KBPS) {
-        args << "--preset" << profile.value("Bitrate").toString();
-    }
-
-    else if (preset == VBR_QUALITY) {
-        int quality = profile.value("Quality").toInt();
-        args << "-V" << QString("%1").arg(9 - quality);
-    }
-
-    // ReplayGain ...............................................
-    if (strToGainType(profile.value("ReplayGain").toString()) != GainType::Track) {
-        args << "--noreplaygain";
-    }
-
-    // Tags .....................................................
-    args << "--add-id3v2";
-    //#args << "--id3v2-only"
-    if (!track->artist().isEmpty()) {
-        args << "--ta" << track->artist();
-    }
-
-    if (!track->album().isEmpty()) {
-        args << "--tl" << track->album();
-    }
-
-    if (!track->genre().isEmpty()) {
-        args << "--tg" << track->genre();
-    }
-
-    if (!track->date().isEmpty())
-        args << "--ty" << track->date();
-
-    if (!track->title().isEmpty())
-        args << "--tt" << track->title();
-
-    if (!track->tag(TagId::AlbumArtist).isEmpty())
-        args << "--tv" << QString("TPE2=%1").arg(track->tag(TagId::AlbumArtist));
-
-    if (!track->comment().isEmpty())
-        args << "--tc" << track->comment();
-
-    if (!coverFile.isEmpty()) {
-        args << "--ti" << coverFile;
-    }
-
-    args << "--tn" << QString("%1/%2").arg(track->trackNum()).arg(track->trackCount());
-    args << "--tv" << QString("TPOS=%1").arg(track->discNum());
-
-    // Files ....................................................
-    args << "-";
-    args << outFile;
-
-    return args;
-}
-
-/************************************************
-
- ************************************************/
 QStringList OutFormat_Mp3::gainArgs(const QStringList &files, const GainType) const
 {
     QStringList args;
@@ -173,6 +80,14 @@ QHash<QString, QVariant> OutFormat_Mp3::defaultParameters() const
 EncoderConfigPage *OutFormat_Mp3::configPage(const Profile &profile, QWidget *parent) const
 {
     return new ConfigPage_Mp3(profile, parent);
+}
+
+/************************************************
+
+ ************************************************/
+Conv::Encoder *OutFormat_Mp3::createEncoder() const
+{
+    return new Encoder_Mp3();
 }
 
 /************************************************
@@ -271,4 +186,99 @@ void ConfigPage_Mp3::mp3PresetCbxCanged(int index)
     mp3QualityLabel->setEnabled(enable);
     mp3QualitySlider->setEnabled(enable);
     mp3QualitySpin->setEnabled(enable);
+}
+
+/************************************************
+
+ ************************************************/
+QStringList Encoder_Mp3::encoderArgs() const
+{
+    const Track &track = this->track();
+
+    QStringList args;
+
+    args << Settings::i()->programName(encoderProgramName());
+    args << "--silent";
+
+    // Settings .................................................
+    QString preset = profile().value("Preset").toString();
+
+    if (preset == VBR_MEDIUM) {
+        args << "--preset"
+             << "medium";
+    }
+
+    else if (preset == VBR_STATDARD) {
+        args << "--preset"
+             << "standard";
+    }
+
+    else if (preset == VBR_EXTRIME) {
+        args << "--preset"
+             << "extreme";
+    }
+
+    else if (preset == CBR_INSANE) {
+        args << "--preset"
+             << "insane";
+    }
+
+    else if (preset == CBR_KBPS) {
+        args << "--preset"
+             << "cbr" << profile().value("Bitrate").toString();
+    }
+
+    else if (preset == ABR_KBPS) {
+        args << "--preset" << profile().value("Bitrate").toString();
+    }
+
+    else if (preset == VBR_QUALITY) {
+        int quality = profile().value("Quality").toInt();
+        args << "-V" << QString("%1").arg(9 - quality);
+    }
+
+    // ReplayGain ...............................................
+    if (strToGainType(profile().value("ReplayGain").toString()) != GainType::Track) {
+        args << "--noreplaygain";
+    }
+
+    // Tags .....................................................
+    args << "--add-id3v2";
+    //#args << "--id3v2-only"
+    if (!track.artist().isEmpty()) {
+        args << "--ta" << track.artist();
+    }
+
+    if (!track.album().isEmpty()) {
+        args << "--tl" << track.album();
+    }
+
+    if (!track.genre().isEmpty()) {
+        args << "--tg" << track.genre();
+    }
+
+    if (!track.date().isEmpty())
+        args << "--ty" << track.date();
+
+    if (!track.title().isEmpty())
+        args << "--tt" << track.title();
+
+    if (!track.tag(TagId::AlbumArtist).isEmpty())
+        args << "--tv" << QString("TPE2=%1").arg(track.tag(TagId::AlbumArtist));
+
+    if (!track.comment().isEmpty())
+        args << "--tc" << track.comment();
+
+    if (!coverFile().isEmpty()) {
+        args << "--ti" << coverFile();
+    }
+
+    args << "--tn" << QString("%1/%2").arg(track.trackNum()).arg(track.trackCount());
+    args << "--tv" << QString("TPOS=%1").arg(track.discNum());
+
+    // Files ....................................................
+    args << "-";
+    args << outFile();
+
+    return args;
 }
