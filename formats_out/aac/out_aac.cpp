@@ -68,14 +68,6 @@ Conv::Encoder *OutFormat_Aac::createEncoder() const
 /************************************************
 
  ************************************************/
-Conv::Gain *OutFormat_Aac::createGain(const Profile &profile) const
-{
-    return new Conv::NoGain(profile);
-}
-
-/************************************************
-
- ************************************************/
 ConfigPage_Acc::ConfigPage_Acc(const Profile &profile, QWidget *parent) :
     EncoderConfigPage(profile, parent)
 {

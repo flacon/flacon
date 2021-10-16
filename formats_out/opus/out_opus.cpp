@@ -68,14 +68,6 @@ Conv::Encoder *OutFormat_Opus::createEncoder() const
 }
 
 /************************************************
- *
- ************************************************/
-Conv::Gain *OutFormat_Opus::createGain(const Profile &profile) const
-{
-    return new Conv::NoGain(profile);
-}
-
-/************************************************
 
  ************************************************/
 ConfigPage_Opus::ConfigPage_Opus(const Profile &profile, QWidget *parent) :

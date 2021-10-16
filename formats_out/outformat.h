@@ -64,8 +64,8 @@ public:
     virtual QHash<QString, QVariant> defaultParameters() const                                 = 0;
     virtual EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const = 0;
 
-    virtual Conv::Encoder *createEncoder() const                    = 0;
-    virtual Conv::Gain    *createGain(const Profile &profile) const = 0;
+    virtual Conv::Encoder *createEncoder() const = 0;
+    virtual Conv::Gain    *createGain(const Profile &profile) const;
 
 protected:
     QString       mId;

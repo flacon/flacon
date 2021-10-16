@@ -47,7 +47,6 @@ public:
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
     Conv::Encoder *createEncoder() const override;
-    Conv::Gain    *createGain(const Profile &profile) const override;
 };
 
 class ConfigPage_Opus : public EncoderConfigPage, private Ui::ConfigPage_Opus

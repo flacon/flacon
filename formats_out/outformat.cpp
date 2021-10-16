@@ -118,3 +118,11 @@ bool OutFormat::check(const Profile &profile, QStringList *errors) const
 
     return res;
 }
+
+/************************************************
+ *
+ ************************************************/
+Conv::Gain *OutFormat::createGain(const Profile &profile) const
+{
+    return new Conv::NoGain(profile);
+}
