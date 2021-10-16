@@ -44,64 +44,6 @@ OutFormat_Opus::OutFormat_Opus()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const
-{
-    QStringList args;
-
-    args << Settings::i()->programName(encoderProgramName());
-
-    args << "--quiet";
-
-    QString type = profile.value(BITRATE_TYPE_KEY).toString();
-    if (type == "VBR")
-        args << "--vbr";
-
-    if (type == "CVBR")
-        args << "--cvbr";
-
-    args << "--bitrate" << profile.value(BITRATE_KEY).toString();
-
-    // Tags .....................................................
-    if (!track->artist().isEmpty())
-        args << "--artist" << track->artist();
-    if (!track->album().isEmpty())
-        args << "--album" << track->album();
-    if (!track->genre().isEmpty())
-        args << "--genre" << track->genre();
-    if (!track->date().isEmpty())
-        args << "--date" << track->date();
-    if (!track->title().isEmpty())
-        args << "--title" << track->title();
-    if (!track->comment().isEmpty())
-        args << "--comment" << QString("COMMENT=%1").arg(track->comment());
-    if (!track->discId().isEmpty())
-        args << "--comment" << QString("DISCID=%1").arg(track->discId());
-    if (!track->tag(TagId::AlbumArtist).isEmpty()) {
-        args << "--comment" << QString("album_artist=%1").arg(track->tag(TagId::AlbumArtist));
-    }
-
-    args << "--comment" << QString("tracknumber=%1").arg(track->trackNum());
-    args << "--comment" << QString("tracktotal=%1").arg(track->trackCount());
-
-    args << "--comment" << QString("disc=%1").arg(track->discNum());
-    args << "--comment" << QString("discnumber=%1").arg(track->discNum());
-    args << "--comment" << QString("disctotal=%1").arg(track->discCount());
-
-    if (!coverFile.isEmpty()) {
-        qDebug() << "--picture" << coverFile;
-        args << "--picture" << coverFile;
-    }
-
-    // Files ....................................................
-    args << "-";
-    args << outFile;
-
-    return args;
-}
-
-/************************************************
-
- ************************************************/
 QStringList OutFormat_Opus::gainArgs(const QStringList &, const GainType) const
 {
     return QStringList();
@@ -124,6 +66,14 @@ QHash<QString, QVariant> OutFormat_Opus::defaultParameters() const
 EncoderConfigPage *OutFormat_Opus::configPage(const Profile &profile, QWidget *parent) const
 {
     return new ConfigPage_Opus(profile, parent);
+}
+
+/************************************************
+
+ ************************************************/
+Conv::Encoder *OutFormat_Opus::createEncoder() const
+{
+    return new Encoder_Opus();
 }
 
 /************************************************
@@ -161,4 +111,62 @@ void ConfigPage_Opus::save()
 {
     saveWidget(BITRATE_TYPE_KEY, opusBitrateTypeCbx);
     saveWidget(BITRATE_KEY, opusBitrateSlider);
+}
+
+/************************************************
+
+ ************************************************/
+QStringList Encoder_Opus::encoderArgs() const
+{
+    QStringList args;
+
+    args << Settings::i()->programName(encoderProgramName());
+
+    args << "--quiet";
+
+    QString type = profile().value(BITRATE_TYPE_KEY).toString();
+    if (type == "VBR")
+        args << "--vbr";
+
+    if (type == "CVBR")
+        args << "--cvbr";
+
+    args << "--bitrate" << profile().value(BITRATE_KEY).toString();
+
+    // Tags .....................................................
+    if (!track().artist().isEmpty())
+        args << "--artist" << track().artist();
+    if (!track().album().isEmpty())
+        args << "--album" << track().album();
+    if (!track().genre().isEmpty())
+        args << "--genre" << track().genre();
+    if (!track().date().isEmpty())
+        args << "--date" << track().date();
+    if (!track().title().isEmpty())
+        args << "--title" << track().title();
+    if (!track().comment().isEmpty())
+        args << "--comment" << QString("COMMENT=%1").arg(track().comment());
+    if (!track().discId().isEmpty())
+        args << "--comment" << QString("DISCID=%1").arg(track().discId());
+    if (!track().tag(TagId::AlbumArtist).isEmpty()) {
+        args << "--comment" << QString("album_artist=%1").arg(track().tag(TagId::AlbumArtist));
+    }
+
+    args << "--comment" << QString("tracknumber=%1").arg(track().trackNum());
+    args << "--comment" << QString("tracktotal=%1").arg(track().trackCount());
+
+    args << "--comment" << QString("disc=%1").arg(track().discNum());
+    args << "--comment" << QString("discnumber=%1").arg(track().discNum());
+    args << "--comment" << QString("disctotal=%1").arg(track().discCount());
+
+    if (!coverFile().isEmpty()) {
+        qDebug() << "--picture" << coverFile();
+        args << "--picture" << coverFile();
+    }
+
+    // Files ....................................................
+    args << "-";
+    args << outFile();
+
+    return args;
 }

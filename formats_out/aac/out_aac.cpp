@@ -41,79 +41,6 @@ OutFormat_Aac::OutFormat_Aac()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const
-{
-    QStringList args;
-
-    args << Settings::i()->programName(encoderProgramName());
-    args << "-w"; // Wrap  AAC  data  in  an MP4 container.
-
-    // Quality settings .........................................
-    if (profile.value("UseQuality").toBool())
-        args << "-q" << profile.value("Quality").toString();
-    else
-        args << "-b" << profile.value("Bitrate").toString();
-
-    // Tags .....................................................
-    // --artist artist
-    //     Set artist to artist
-    if (!track->artist().isEmpty())
-        args << "--artist" << track->artist();
-
-    // --writer writer
-    //     Set writer to writer
-
-    // --title title
-    //     Set title to title
-    if (!track->title().isEmpty())
-        args << "--title" << track->title();
-
-    // --genre genre
-    //     Set genre to genre
-    if (!track->genre().isEmpty())
-        args << "--genre" << track->genre();
-
-    // --album album
-    //     Set album to album
-    if (!track->album().isEmpty())
-        args << "--album" << track->album();
-
-    // --compilation
-    //     Set compilation
-
-    // --track track
-    //     Set track to track in the format “number/total”
-    args << "--track" << QString("%1/%2").arg(track->trackNum()).arg(track->trackCount());
-
-    // --disc disc
-    //     Set disc to disc in the format “number/total”
-    args << "--disc" << QString("%1/%2").arg(track->discNum()).arg(track->discCount());
-
-    // --year year
-    //     Set year to year
-    if (!track->date().isEmpty())
-        args << "--year" << track->date();
-
-    // --cover-art file
-    //     Set cover art to image in file; supported formats are GIF, JPEG, and PNG.
-
-    // --comment comment
-    //     Set comment to comment
-    if (!track->comment().isEmpty())
-        args << "--comment" << track->comment();
-
-    if (!coverFile.isEmpty()) {
-        args << "--cover-art" << coverFile;
-    }
-
-    args << "-o" << outFile;
-    args << "-";
-    return args;
-}
-
-/************************************************
-
- ************************************************/
 QStringList OutFormat_Aac::gainArgs(const QStringList &, const GainType) const
 {
     return QStringList();
@@ -201,8 +128,7 @@ void ConfigPage_Acc::useQualityChecked(bool checked)
  ************************************************/
 QStringList Encoder_Aac::encoderArgs() const
 {
-    QStringList  args;
-    const Track &track = this->track();
+    QStringList args;
 
     args << Settings::i()->programName(encoderProgramName());
     args << "-w"; // Wrap  AAC  data  in  an MP4 container.
@@ -216,50 +142,50 @@ QStringList Encoder_Aac::encoderArgs() const
     // Tags .....................................................
     // --artist artist
     //     Set artist to artist
-    if (!track.artist().isEmpty())
-        args << "--artist" << track.artist();
+    if (!track().artist().isEmpty())
+        args << "--artist" << track().artist();
 
     // --writer writer
     //     Set writer to writer
 
     // --title title
     //     Set title to title
-    if (!track.title().isEmpty())
-        args << "--title" << track.title();
+    if (!track().title().isEmpty())
+        args << "--title" << track().title();
 
     // --genre genre
     //     Set genre to genre
-    if (!track.genre().isEmpty())
-        args << "--genre" << track.genre();
+    if (!track().genre().isEmpty())
+        args << "--genre" << track().genre();
 
     // --album album
     //     Set album to album
-    if (!track.album().isEmpty())
-        args << "--album" << track.album();
+    if (!track().album().isEmpty())
+        args << "--album" << track().album();
 
     // --compilation
     //     Set compilation
 
     // --track track
     //     Set track to track in the format “number/total”
-    args << "--track" << QString("%1/%2").arg(track.trackNum()).arg(track.trackCount());
+    args << "--track" << QString("%1/%2").arg(track().trackNum()).arg(track().trackCount());
 
     // --disc disc
     //     Set disc to disc in the format “number/total”
-    args << "--disc" << QString("%1/%2").arg(track.discNum()).arg(track.discCount());
+    args << "--disc" << QString("%1/%2").arg(track().discNum()).arg(track().discCount());
 
     // --year year
     //     Set year to year
-    if (!track.date().isEmpty())
-        args << "--year" << track.date();
+    if (!track().date().isEmpty())
+        args << "--year" << track().date();
 
     // --cover-art file
     //     Set cover art to image in file; supported formats are GIF, JPEG, and PNG.
 
     // --comment comment
     //     Set comment to comment
-    if (!track.comment().isEmpty())
-        args << "--comment" << track.comment();
+    if (!track().comment().isEmpty())
+        args << "--comment" << track().comment();
 
     if (!coverFile().isEmpty()) {
         args << "--cover-art" << coverFile();

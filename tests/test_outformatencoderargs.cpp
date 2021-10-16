@@ -25,7 +25,9 @@
 
 #include "testflacon.h"
 #include "tools.h"
-#include "outformat.h"
+#include "formats_out/outformat.h"
+#include "converter/encoder.h"
+#include "converter/convertertypes.h"
 #include "disc.h"
 
 #include <QTest>
@@ -57,8 +59,14 @@ void TestFlacon::testOutFormatEncoderArgs()
         profile.setValue(i.key(), i.value());
     }
 
-    Disc *      disc = standardDisc();
-    QStringList args = fmt->encoderArgs(profile, disc->track(0), "", "OutFile.wav");
+    Disc          *disc = standardDisc();
+    Conv::Encoder *enc  = fmt->createEncoder();
+    enc->setProfile(profile);
+    enc->setTrack(Conv::ConvTrack(*(disc->track(0))));
+    enc->setCoverFile("");
+    enc->setOutFile("OutFile.wav");
+    QStringList args = enc->encoderArgs();
+    delete enc;
 
     QString result = args.join(" ");
     if (result != expected) {

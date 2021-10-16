@@ -24,11 +24,12 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "profiles.h"
-#include "outformat.h"
+#include "formats_out/outformat.h"
 #include <QSettings>
 #include <QStandardPaths>
 #include <QDir>
 #include <QDebug>
+#include "encoder.h"
 
 QHash<QString, QVariant> &operator<<(QHash<QString, QVariant> &values, const QHash<QString, QVariant> &other)
 {
@@ -38,6 +39,13 @@ QHash<QString, QVariant> &operator<<(QHash<QString, QVariant> &values, const QHa
     }
     return values;
 }
+
+class Encoder_Null : public Conv::Encoder
+{
+public:
+    QString     encoderProgramName() const override { return ""; }
+    QStringList encoderArgs() const override { return QStringList(); }
+};
 
 class OutFormat_Null : public OutFormat
 {
@@ -49,13 +57,7 @@ public:
         mName = "";
     }
 
-    virtual QString encoderProgramName() const override { return ""; }
     virtual QString gainProgramName() const override { return ""; }
-
-    virtual QStringList encoderArgs(const Profile &, const Track *, const QString &, const QString &) const override
-    {
-        return QStringList();
-    }
 
     virtual QStringList gainArgs(const QStringList &, const GainType) const override
     {
@@ -74,6 +76,8 @@ public:
 
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::AsSourcee; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::AsSource; }
+
+    Conv::Encoder *createEncoder() const override { return new Encoder_Null(); }
 };
 
 static OutFormat_Null *nullFormat()

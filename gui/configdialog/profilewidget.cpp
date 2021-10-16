@@ -26,7 +26,7 @@
 #include "profilewidget.h"
 #include "ui_profilewidget.h"
 #include "profiles.h"
-#include "formats/encoderconfigpage.h"
+#include "formats_out/encoderconfigpage.h"
 //#include "../patternexpander.h"
 #include "../icon.h"
 

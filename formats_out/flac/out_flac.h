@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2012-2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -23,21 +23,21 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef OUT_WV_H
-#define OUT_WV_H
+#ifndef OUT_FLAC_H
+#define OUT_FLAC_H
 
-#include "outformat.h"
-#include "encoderconfigpage.h"
-#include "ui_out_wv_config.h"
+#include "../outformat.h"
+#include "../encoderconfigpage.h"
+#include "ui_out_flac_config.h"
 #include "../converter/encoder.h"
 
-class OutFormat_Wv : public OutFormat
+class OutFormat_Flac : public OutFormat
 {
 public:
-    OutFormat_Wv();
+    OutFormat_Flac();
+    bool check(const Profile &profile, QStringList *errors) const override;
 
-    virtual QString encoderProgramName() const override { return "wavpack"; }
-    virtual QString gainProgramName() const override { return "wvgain"; }
+    virtual QString gainProgramName() const override { return "metaflac"; }
 
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
@@ -45,27 +45,27 @@ public:
     EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
-    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
-    virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
+    BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
+    SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
     Conv::Encoder *createEncoder() const override;
 };
 
-class ConfigPage_Wv : public EncoderConfigPage, private Ui::wvConfigPage
+class ConfigPage_Flac : public EncoderConfigPage, private Ui::flacConfigPage
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Wv(const Profile &profile, QWidget *parent = nullptr);
+    explicit ConfigPage_Flac(const Profile &profile, QWidget *parent = nullptr);
 
     virtual void load() override;
     virtual void save() override;
 };
 
-class Encoder_Wv : public Conv::Encoder
+class Encoder_Flac : public Conv::Encoder
 {
 public:
-    QString     encoderProgramName() const override { return "wavpack"; }
+    QString     encoderProgramName() const override { return "flac"; }
     QStringList encoderArgs() const override;
 };
 
-#endif // OUT_WV_H
+#endif // OUT_FLAC_H

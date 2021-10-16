@@ -24,10 +24,10 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "types.h"
-#include "formats/informat.h"
+#include "formats_in/informat.h"
 #include "settings.h"
 #include "inputaudiofile.h"
-#include "outformat.h"
+#include "formats_out/outformat.h"
 #include "converter/resampler.h"
 
 #include <assert.h>

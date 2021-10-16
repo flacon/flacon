@@ -41,7 +41,7 @@
 #include "converter/converter.h"
 #include "converter/wavheader.h"
 #include "converter/splitter.h"
-#include "outformat.h"
+#include "../formats_out/outformat.h"
 #include "converter/discpipline.h"
 
 int TestFlacon::mTestNum = -1;
@@ -488,7 +488,7 @@ void TestFlacon::testTrackResultFileName()
     Disc *disc = loadFromCue(cueFile);
 
     QString result = disc->track(0)->resultFileName();
-    //QCOMPARE(result, expected);
+    // QCOMPARE(result, expected);
 
     if (result != expected) {
         QString msg = QString("Compared values are not the same\n   Pattern   %1\n   Actual:   %2\n   Expected: %3").arg(pattern, result, expected);
@@ -999,7 +999,7 @@ void TestFlacon::testTrackResultFilePath()
         QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   CueFile: %4").arg(QFileInfo(result).absoluteFilePath(), result, expected, cueFile);
         QFAIL(msg.toLocal8Bit());
     }
-    //QCOMPARE(result, expected);
+    // QCOMPARE(result, expected);
     disc->deleteLater();
 }
 
@@ -1008,7 +1008,7 @@ void TestFlacon::testTrackResultFilePath()
  ************************************************/
 void TestFlacon::testTrackResultFilePath_data()
 {
-    //QTest::addColumn<QString>("cueFile");
+    // QTest::addColumn<QString>("cueFile");
     QTest::addColumn<QString>("outDir", nullptr);
     QTest::addColumn<QString>("pattern", nullptr);
     QTest::addColumn<QString>("expected", nullptr);
@@ -1093,8 +1093,8 @@ void TestFlacon::testTrackSetCodepages()
 
     QStringList result;
     // Result *************************
-    //result << "GENRE:" << tracks.genre() << "\n";
-    //resultSl << "ALBUM:" << tracks.album() << "\n";
+    // result << "GENRE:" << tracks.genre() << "\n";
+    // resultSl << "ALBUM:" << tracks.album() << "\n";
     result << "DISCID:" << disc->discId() << "\n";
 
     for (int i = 0; i < disc->count(); ++i) {

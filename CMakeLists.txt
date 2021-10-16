@@ -86,23 +86,6 @@ set(HEADERS
     gui/coverdialog/coverdialog.h
     gui/coverdialog/asynclistwidgetitem.h
     gui/tageditor/tageditor.h
-
-    formats/informat.h
-    formats/in_ape.h
-    formats/in_flac.h
-    formats/in_tta.h
-    formats/in_wav.h
-    formats/in_wv.h
-
-    formats/encoderconfigpage.h
-    formats/outformat.h
-    formats/out_aac.h
-    formats/out_flac.h
-    formats/out_mp3.h
-    formats/out_ogg.h
-    formats/out_opus.h
-    formats/out_wav.h
-    formats/out_wv.h
 )
 
 set(SOURCES
@@ -129,26 +112,11 @@ set(SOURCES
     gui/coverdialog/coverdialog.cpp
     gui/coverdialog/asynclistwidgetitem.cpp
     gui/tageditor/tageditor.cpp
-
-    formats/informat.cpp
-    formats/in_ape.cpp
-    formats/in_flac.cpp
-    formats/in_tta.cpp
-    formats/in_wav.cpp
-    formats/in_wv.cpp
-
-    formats/encoderconfigpage.cpp
-    formats/outformat.cpp
-    formats/out_aac.cpp
-    formats/out_flac.cpp
-    formats/out_mp3.cpp
-    formats/out_ogg.cpp
-    formats/out_opus.cpp
-    formats/out_wav.cpp
-    formats/out_wv.cpp
 )
 
 include(gui/module.cmake)
+include(formats_in/module.cmake)
+include(formats_out/module.cmake)
 
 if (APPLE)
     set(SOURCES ${SOURCES}

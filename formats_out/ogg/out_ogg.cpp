@@ -42,74 +42,6 @@ OutFormat_Ogg::OutFormat_Ogg()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const Track *track, const QString &, const QString &outFile) const
-{
-    QStringList args;
-
-    args << Settings::i()->programName(encoderProgramName());
-
-    args << "--quiet";
-
-    // Quality settings .........................................
-    if (profile.value("UseQuality").toBool()) {
-        args << "-q" << profile.value("Quality").toString();
-    }
-    else {
-        QString val = profile.value("NormBitrate").toString();
-        if (!val.isEmpty())
-            args << "-b" << val;
-
-        val = profile.value("MinBitrate").toString();
-        if (!val.isEmpty())
-            args << "-m" << val;
-
-        val = profile.value("MaxBitrate").toString();
-        if (!val.isEmpty())
-            args << "-M" << val;
-    }
-
-    // Tags .....................................................
-    if (!track->artist().isEmpty())
-        args << "--artist" << track->artist();
-
-    if (!track->album().isEmpty())
-        args << "--album" << track->album();
-
-    if (!track->genre().isEmpty())
-        args << "--genre" << track->genre();
-
-    if (!track->date().isEmpty())
-        args << "--date" << track->date();
-
-    if (!track->title().isEmpty())
-        args << "--title" << track->title();
-
-    if (!track->tag(TagId::AlbumArtist).isEmpty())
-        args << "--comment" << QString("album_artist=%1").arg(track->tag(TagId::AlbumArtist));
-
-    if (!track->comment().isEmpty())
-        args << "--comment" << QString("COMMENT=%1").arg(track->comment());
-
-    if (!track->discId().isEmpty())
-        args << "--comment" << QString("DISCID=%1").arg(track->discId());
-
-    args << "--tracknum" << QString("%1").arg(track->trackNum());
-    args << "--comment" << QString("totaltracks=%1").arg(track->trackCount());
-    args << "--comment" << QString("tracktotal=%1").arg(track->trackCount());
-
-    args << "--comment" << QString("disc=%1").arg(track->discNum());
-    args << "--comment" << QString("discnumber=%1").arg(track->discNum());
-    args << "--comment" << QString("disctotal=%1").arg(track->discCount());
-
-    // Files ....................................................
-    args << "-o" << outFile;
-    args << "-";
-    return args;
-}
-
-/************************************************
-
- ************************************************/
 QStringList OutFormat_Ogg::gainArgs(const QStringList &files, const GainType gainType) const
 {
     QStringList args;
@@ -143,6 +75,11 @@ QHash<QString, QVariant> OutFormat_Ogg::defaultParameters() const
 EncoderConfigPage *OutFormat_Ogg::configPage(const Profile &profile, QWidget *parent) const
 {
     return new ConfigPage_Ogg(profile, parent);
+}
+
+Conv::Encoder *OutFormat_Ogg::createEncoder() const
+{
+    return new Encoder_Ogg();
 }
 
 /************************************************
@@ -239,4 +176,72 @@ void ConfigPage_Ogg::setUseQualityMode(bool checked)
     oggMinBitrateLabel->setEnabled(!checked);
     oggNormBitrateLabel->setEnabled(!checked);
     oggMaxBitrateLabel->setEnabled(!checked);
+}
+
+/************************************************
+ *
+ ************************************************/
+QStringList Encoder_Ogg::encoderArgs() const
+{
+    QStringList args;
+
+    args << Settings::i()->programName(encoderProgramName());
+
+    args << "--quiet";
+
+    // Quality settings .........................................
+    if (profile().value("UseQuality").toBool()) {
+        args << "-q" << profile().value("Quality").toString();
+    }
+    else {
+        QString val = profile().value("NormBitrate").toString();
+        if (!val.isEmpty())
+            args << "-b" << val;
+
+        val = profile().value("MinBitrate").toString();
+        if (!val.isEmpty())
+            args << "-m" << val;
+
+        val = profile().value("MaxBitrate").toString();
+        if (!val.isEmpty())
+            args << "-M" << val;
+    }
+
+    // Tags .....................................................
+    if (!track().artist().isEmpty())
+        args << "--artist" << track().artist();
+
+    if (!track().album().isEmpty())
+        args << "--album" << track().album();
+
+    if (!track().genre().isEmpty())
+        args << "--genre" << track().genre();
+
+    if (!track().date().isEmpty())
+        args << "--date" << track().date();
+
+    if (!track().title().isEmpty())
+        args << "--title" << track().title();
+
+    if (!track().tag(TagId::AlbumArtist).isEmpty())
+        args << "--comment" << QString("album_artist=%1").arg(track().tag(TagId::AlbumArtist));
+
+    if (!track().comment().isEmpty())
+        args << "--comment" << QString("COMMENT=%1").arg(track().comment());
+
+    if (!track().discId().isEmpty())
+        args << "--comment" << QString("DISCID=%1").arg(track().discId());
+
+    args << "--tracknum" << QString("%1").arg(track().trackNum());
+    args << "--comment" << QString("totaltracks=%1").arg(track().trackCount());
+    args << "--comment" << QString("tracktotal=%1").arg(track().trackCount());
+
+    args << "--comment" << QString("disc=%1").arg(track().discNum());
+    args << "--comment" << QString("discnumber=%1").arg(track().discNum());
+    args << "--comment" << QString("disctotal=%1").arg(track().discCount());
+
+    // Files ....................................................
+    args << "-o" << outFile();
+    args << "-";
+    return args;
 }

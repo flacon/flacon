@@ -25,7 +25,7 @@
 
 #include "addprofiledialog.h"
 #include "ui_addprofiledialog.h"
-#include "outformat.h"
+#include "formats_out/outformat.h"
 #include <QPushButton>
 
 /************************************************

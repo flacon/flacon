@@ -23,22 +23,21 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef OUT_WAV_H
-#define OUT_WAV_H
+#ifndef OUT_MP3_H
+#define OUT_MP3_H
 
-#include "outformat.h"
-#include "encoderconfigpage.h"
+#include "../outformat.h"
+#include "../encoderconfigpage.h"
+#include "ui_out_mp3_config.h"
 #include "../converter/encoder.h"
 
-class OutFormat_Wav : public OutFormat
+class OutFormat_Mp3 : public OutFormat
 {
 public:
-    OutFormat_Wav();
+    OutFormat_Mp3();
 
-    virtual QString encoderProgramName() const override { return ""; }
-    virtual QString gainProgramName() const override { return ""; }
+    virtual QString gainProgramName() const override { return "mp3gain"; }
 
-    virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const override;
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
@@ -47,23 +46,28 @@ public:
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_64; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
+
+    Conv::Encoder *createEncoder() const override;
 };
 
-class ConfigPage_Wav : public EncoderConfigPage
+class ConfigPage_Mp3 : public EncoderConfigPage, private Ui::mp3ConfigPage
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Wav(const Profile &profile, QWidget *parent = nullptr);
+    explicit ConfigPage_Mp3(const Profile &profile, QWidget *parent = nullptr);
 
-    virtual void load() override { }
-    virtual void save() override { }
+    virtual void load() override;
+    virtual void save() override;
+
+private slots:
+    void mp3PresetCbxCanged(int index);
 };
 
-class Encoder_Wav : public Conv::Encoder
+class Encoder_Mp3 : public Conv::Encoder
 {
 public:
-    QString     encoderProgramName() const override { return ""; }
+    QString     encoderProgramName() const override { return "lame"; }
     QStringList encoderArgs() const override;
 };
 
-#endif // OUT_WAV_H
+#endif // OUT_MP3_H

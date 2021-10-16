@@ -30,7 +30,7 @@
 #include <QVariant>
 #include <QVector>
 
-#include "formats/outformat.h"
+#include "formats_out/outformat.h"
 class QSettings;
 
 class Profile

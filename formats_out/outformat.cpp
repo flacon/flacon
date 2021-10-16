@@ -28,13 +28,13 @@
 #include "encoder.h"
 #include "gain.h"
 
-#include "out_wav.h"
-#include "out_flac.h"
-#include "out_aac.h"
-#include "out_mp3.h"
-#include "out_ogg.h"
-#include "out_wv.h"
-#include "out_opus.h"
+#include "wav/out_wav.h"
+#include "flac/out_flac.h"
+#include "aac/out_aac.h"
+#include "mp3/out_mp3.h"
+#include "ogg/out_ogg.h"
+#include "wv/out_wv.h"
+#include "opus/out_opus.h"
 
 #include <QDebug>
 
@@ -75,6 +75,19 @@ OutFormat *OutFormat::formatForId(const QString &id)
     }
 
     return nullptr;
+}
+
+/************************************************
+
+ ************************************************/
+QString OutFormat::encoderProgramName() const
+{
+    if (mEncoderProgramName.isEmpty()) {
+        Conv::Encoder *e    = createEncoder();
+        mEncoderProgramName = e->encoderProgramName();
+        delete e;
+    }
+    return mEncoderProgramName;
 }
 
 /************************************************

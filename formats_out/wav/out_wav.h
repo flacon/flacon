@@ -23,52 +23,47 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef OUT_AAC_H
-#define OUT_AAC_H
+#ifndef OUT_WAV_H
+#define OUT_WAV_H
 
-#include "outformat.h"
-#include "encoderconfigpage.h"
-#include "ui_out_aac_config.h"
+#include "../outformat.h"
+#include "../encoderconfigpage.h"
 #include "../converter/encoder.h"
 
-class OutFormat_Aac : public OutFormat
+class OutFormat_Wav : public OutFormat
 {
 public:
-    OutFormat_Aac();
+    OutFormat_Wav();
 
-    virtual QString encoderProgramName() const override { return "faac"; }
     virtual QString gainProgramName() const override { return ""; }
 
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage       *configPage(const Profile &profile, QWidget *parentr) const override;
+    EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
-    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
-    virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_192000; }
+    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_64; }
+    virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
     Conv::Encoder *createEncoder() const override;
 };
 
-class ConfigPage_Acc : public EncoderConfigPage, private Ui::aacConfigPage
+class ConfigPage_Wav : public EncoderConfigPage
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Acc(const Profile &profile, QWidget *parent = nullptr);
+    explicit ConfigPage_Wav(const Profile &profile, QWidget *parent = nullptr);
 
-    virtual void load() override;
-    virtual void save() override;
-
-private slots:
-    void useQualityChecked(bool checked);
+    virtual void load() override { }
+    virtual void save() override { }
 };
 
-class Encoder_Aac : public Conv::Encoder
+class Encoder_Wav : public Conv::Encoder
 {
 public:
-    QString     encoderProgramName() const override { return "faac"; }
+    QString     encoderProgramName() const override { return ""; }
     QStringList encoderArgs() const override;
 };
 
-#endif // OUT_AAC_H
+#endif // OUT_WAV_H

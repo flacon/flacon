@@ -23,45 +23,51 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef OUT_OGG_H
-#define OUT_OGG_H
+#ifndef OUT_AAC_H
+#define OUT_AAC_H
 
-#include "outformat.h"
-#include "encoderconfigpage.h"
-#include "ui_out_ogg_config.h"
+#include "../outformat.h"
+#include "../encoderconfigpage.h"
+#include "ui_out_aac_config.h"
+#include "../converter/encoder.h"
 
-class OutFormat_Ogg : public OutFormat
+class OutFormat_Aac : public OutFormat
 {
 public:
-    OutFormat_Ogg();
+    OutFormat_Aac();
 
-    virtual QString encoderProgramName() const override { return "oggenc"; }
-    virtual QString gainProgramName() const override { return "vorbisgain"; }
+    virtual QString gainProgramName() const override { return ""; }
 
-    virtual QStringList encoderArgs(const Profile &profile, const Track *track, const QString &coverFile, const QString &outFile) const override;
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const override;
+    EncoderConfigPage       *configPage(const Profile &profile, QWidget *parentr) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
-    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
+    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_192000; }
+
+    Conv::Encoder *createEncoder() const override;
 };
 
-class ConfigPage_Ogg : public EncoderConfigPage, private Ui::oggConfigPage
+class ConfigPage_Acc : public EncoderConfigPage, private Ui::aacConfigPage
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Ogg(const Profile &profile, QWidget *parent = nullptr);
+    explicit ConfigPage_Acc(const Profile &profile, QWidget *parent = nullptr);
 
     virtual void load() override;
     virtual void save() override;
 
 private slots:
-    void oggQualitySliderChanged(int value);
-    void oggQualitySpinChanged(double value);
-    void setUseQualityMode(bool checked);
+    void useQualityChecked(bool checked);
 };
 
-#endif // OUT_OGG_H
+class Encoder_Aac : public Conv::Encoder
+{
+public:
+    QString     encoderProgramName() const override { return "faac"; }
+    QStringList encoderArgs() const override;
+};
+
+#endif // OUT_AAC_H

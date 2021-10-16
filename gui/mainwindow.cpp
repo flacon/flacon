@@ -28,9 +28,9 @@
 #include "disc.h"
 #include "settings.h"
 #include "converter/converter.h"
-#include "outformat.h"
+#include "formats_out/outformat.h"
 #include "inputaudiofile.h"
-#include "formats/informat.h"
+#include "formats_in/informat.h"
 #include "configdialog/configdialog.h"
 #include "aboutdialog/aboutdialog.h"
 #include "scanner.h"
@@ -1123,7 +1123,7 @@ QIcon MainWindow::loadMainIcon()
 void MainWindow::showErrorMessage(const QString &message)
 {
     const QString name = "errorMessage";
-    ErrorBox *    box  = this->findChild<ErrorBox *>(name);
+    ErrorBox     *box  = this->findChild<ErrorBox *>(name);
     if (!box) {
         box = new ErrorBox(this);
         box->setObjectName(name);

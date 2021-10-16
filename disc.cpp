@@ -28,8 +28,8 @@
 #include "project.h"
 #include "settings.h"
 #include "inputaudiofile.h"
-#include "formats/informat.h"
-#include "outformat.h"
+#include "formats_in/informat.h"
+#include "formats_out/outformat.h"
 #include "audiofilematcher.h"
 
 #include "assert.h"
@@ -315,7 +315,7 @@ void Disc::syncTagsToTracks()
     assert(tags.count() == mTracks.count());
 
     for (int i = 0; i < mTracks.count(); ++i) {
-        Track *      track = mTracks[i];
+        Track       *track = mTracks[i];
         const Track &tgs   = tags.at(i);
 
         track->blockSignals(true);

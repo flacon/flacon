@@ -25,7 +25,7 @@
 
 #include "inputaudiofile.h"
 #include "decoder.h"
-#include "informat.h"
+#include "formats_in/informat.h"
 #include <settings.h>
 #include <QProcess>
 #include <QStringList>
