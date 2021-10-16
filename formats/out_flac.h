@@ -29,6 +29,7 @@
 #include "outformat.h"
 #include "encoderconfigpage.h"
 #include "ui_out_flac_config.h"
+#include "../converter/encoder.h"
 
 class OutFormat_Flac : public OutFormat
 {
@@ -43,11 +44,13 @@ public:
     virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const override;
+    EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
-    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
-    virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
+    BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
+    SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
+
+    Conv::Encoder *createEncoder() const override;
 };
 
 class ConfigPage_Flac : public EncoderConfigPage, private Ui::flacConfigPage
@@ -58,6 +61,13 @@ public:
 
     virtual void load() override;
     virtual void save() override;
+};
+
+class Encoder_Flac : public Conv::Encoder
+{
+public:
+    QString     encoderProgramName() const override { return "flac"; }
+    QStringList encoderArgs() const override;
 };
 
 #endif // OUT_FLAC_H

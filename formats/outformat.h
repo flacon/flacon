@@ -32,6 +32,9 @@
 #include "track.h"
 #include "types.h"
 
+namespace Conv {
+class Encoder;
+}
 class EncoderConfigPage;
 class Profile;
 
@@ -39,7 +42,7 @@ class OutFormat
 {
 public:
     static QList<OutFormat *> allFormats();
-    static OutFormat *        formatForId(const QString &id);
+    static OutFormat         *formatForId(const QString &id);
     virtual ~OutFormat() { }
 
     QString       id() const { return mId; }
@@ -60,7 +63,9 @@ public:
     virtual bool check(const Profile &profile, QStringList *errors) const;
 
     virtual QHash<QString, QVariant> defaultParameters() const                                 = 0;
-    virtual EncoderConfigPage *      configPage(const Profile &profile, QWidget *parent) const = 0;
+    virtual EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const = 0;
+
+    virtual Conv::Encoder *createEncoder() const { return nullptr; } // TODO:
 
 protected:
     QString       mId;

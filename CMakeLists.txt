@@ -31,6 +31,7 @@ endif()
 
 project(flacon)
 
+
 set(MAJOR_VERSION 7)
 set(MINOR_VERSION 0)
 set(PATCH_VERSION 1)
@@ -185,17 +186,19 @@ include("cmake/cxx_standard.cmake")
 include("cmake/git_version.cmake")
 include("cmake/build_type.cmake")
 
-
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_autogen
     formats
     converter
     gui
     gui/configdialog
     gui/aboutdialog
 )
+
+
 
 #*******************************************
 include("cmake/macos.cmake")
@@ -211,6 +214,7 @@ find_package(Qt5 REQUIRED
     Network
     LinguistTools
 )
+
 
 
 qt5_add_translation(QM_FILES ${TS_FILES})

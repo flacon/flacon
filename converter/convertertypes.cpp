@@ -40,47 +40,6 @@ ConvTrack::ConvTrack(const Track &other) :
 /************************************************
  *
  ************************************************/
-EncoderOptions::EncoderOptions(const OutFormat *outFormat, const Profile *profile) :
-    mOutFormat(outFormat),
-    mProfile(profile)
-{
-}
-
-/************************************************
- *
- ************************************************/
-QString EncoderOptions::formatId() const
-{
-    return mOutFormat->id();
-}
-
-/************************************************
- *
- ************************************************/
-QStringList EncoderOptions::encoderArgs(const ConvTrack &track, const QString &coverFile, const QString &outFile) const
-{
-    return mOutFormat->encoderArgs(*mProfile, &track, coverFile, outFile);
-}
-
-/************************************************
- *
- ************************************************/
-int EncoderOptions::bitsPerSample(const InputAudioFile &audio) const
-{
-    return calcQuality(audio.bitsPerSample(), mProfile->bitsPerSample(), mOutFormat->maxBitPerSample());
-}
-
-/************************************************
- *
- ************************************************/
-int EncoderOptions::sampleRate(const InputAudioFile &audio) const
-{
-    return calcQuality(audio.sampleRate(), mProfile->sampleRate(), mOutFormat->maxSampleRate());
-}
-
-/************************************************
- *
- ************************************************/
 GainOptions::GainOptions(const OutFormat *outFormat, const Profile *profile) :
     mOutFormat(outFormat),
     mType(profile->gainType())

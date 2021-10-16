@@ -44,7 +44,7 @@ class ConvTrack : public Track
 public:
     ConvTrack()                       = default;
     ConvTrack(const ConvTrack &other) = default;
-    ConvTrack(const Track &other);
+    explicit ConvTrack(const Track &other);
 
     ConvTrack &operator=(const ConvTrack &other) = default;
 
@@ -73,25 +73,6 @@ private:
 };
 
 using ConvTracks = QList<ConvTrack>;
-
-class EncoderOptions
-{
-public:
-    EncoderOptions() = default;
-    EncoderOptions(const OutFormat *outFormat, const Profile *profile);
-    EncoderOptions(const EncoderOptions &other) = default;
-    EncoderOptions &operator=(const EncoderOptions &other) = default;
-
-    QString     formatId() const;
-    QStringList encoderArgs(const ConvTrack &track, const QString &coverFile, const QString &outFile) const;
-
-    int bitsPerSample(const InputAudioFile &audio) const;
-    int sampleRate(const InputAudioFile &audio) const;
-
-private:
-    const OutFormat *mOutFormat = nullptr;
-    const Profile *  mProfile   = nullptr;
-};
 
 class GainOptions
 {

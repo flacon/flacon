@@ -41,8 +41,8 @@ public:
     Profile();
     explicit Profile(const QString &id);
     explicit Profile(OutFormat &format, const QString &id = "");
-    Profile(const Profile &other);
-    Profile &operator=(const Profile &other);
+    Profile(const Profile &other) = default;
+    Profile &operator=(const Profile &other) = default;
 
     QString id() const { return mId; }
 
@@ -80,7 +80,7 @@ public:
     PreGapType preGapType() const;
     void       setPregapType(PreGapType value);
 
-    const OutFormat *  outFormat() const { return mFormat; }
+    const OutFormat   *outFormat() const { return mFormat; }
     QString            formatId() const { return mFormat->id(); }
     QString            formatName() const { return mFormat->name(); }
     QString            ext() const { return mFormat->ext(); }
@@ -105,7 +105,7 @@ public:
 
 private:
     QString                  mId;
-    const OutFormat *        mFormat;
+    const OutFormat         *mFormat;
     QString                  mName;
     QHash<QString, QVariant> mValues;
     void                     setDefaultValues();

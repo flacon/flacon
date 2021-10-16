@@ -136,29 +136,6 @@ void Profile::setDefaultValues()
 /************************************************
  *
  ************************************************/
-Profile::Profile(const Profile &other) :
-    mFormat(other.mFormat)
-{
-    operator=(other);
-}
-
-/************************************************
- *
- ************************************************/
-Profile &Profile::operator=(const Profile &other)
-{
-    if (this != &other) {
-        mId     = other.mId;
-        mFormat = other.mFormat;
-        mName   = other.mName;
-        mValues = other.mValues;
-    }
-    return *this;
-}
-
-/************************************************
- *
- ************************************************/
 void Profile::setName(const QString &value)
 {
     mName = value;

@@ -133,12 +133,11 @@ DiscPipelineJob Converter::Data::createDiscPipelineJob(const Job &converterJob, 
 
     QString wrkDir = workDir(converterJob.tracks.first());
 
-    EncoderOptions encoderOptions(profile.outFormat(), &profile);
-    GainOptions    gainOptions(profile.outFormat(), &profile);
-    CoverOptions   copyCoverOptions(copyCoverImage, copyCoverImageSize);
-    CoverOptions   embedCoverOptions(embedCoverImage, embedCoverImageSize);
+    GainOptions  gainOptions(profile.outFormat(), &profile);
+    CoverOptions copyCoverOptions(copyCoverImage, copyCoverImageSize);
+    CoverOptions embedCoverOptions(embedCoverImage, embedCoverImageSize);
 
-    return DiscPipelineJob(resTracks, encoderOptions, gainOptions, copyCoverOptions, embedCoverOptions, wrkDir);
+    return DiscPipelineJob(resTracks, gainOptions, copyCoverOptions, embedCoverOptions, wrkDir, profile);
 }
 
 /************************************************
@@ -228,7 +227,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
             }
 
             DiscPipelineJob job      = mData->createDiscPipelineJob(converterJob, profile);
-            DiscPipeline *  pipeline = new DiscPipeline(job, this);
+            DiscPipeline   *pipeline = new DiscPipeline(job, this);
 
             connect(pipeline, &DiscPipeline::readyStart, this, &Converter::startThread);
             connect(pipeline, &DiscPipeline::threadFinished, this, &Converter::startThread);

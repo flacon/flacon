@@ -76,3 +76,8 @@ ConfigPage_Wav::ConfigPage_Wav(const Profile &profile, QWidget *parent) :
     EncoderConfigPage(profile, parent)
 {
 }
+
+QStringList Encoder_Wav::encoderArgs() const
+{
+    return QStringList();
+}

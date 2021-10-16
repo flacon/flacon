@@ -29,55 +29,50 @@
 #include <QProcess>
 
 #include "worker.h"
-#include "profiles.h"
+#include "../profiles.h"
 class QProcess;
 
 namespace Conv {
-
-struct EncoderJob
-{
-    EncoderJob(const ConvTrack &     track,
-               const EncoderOptions &options,
-               const QString &       coverFile,
-               const QString &       inputFile,
-               const QString &       outFile) :
-        mTrack(track),
-        mOptions(options),
-        mInputFile(inputFile),
-        mOutFile(outFile),
-        mCoverFile(coverFile)
-    {
-    }
-
-    const ConvTrack &     track() const { return mTrack; }
-    const EncoderOptions &options() const { return mOptions; }
-
-    QString inputFile() const { return mInputFile; }
-    QString outFile() const { return mOutFile; }
-    QString coverFile() const { return mCoverFile; }
-
-private:
-    ConvTrack      mTrack;
-    EncoderOptions mOptions;
-    QString        mInputFile;
-    QString        mOutFile;
-    QString        mCoverFile;
-};
 
 class Encoder : public Worker
 {
     Q_OBJECT
 public:
-    Encoder(const EncoderJob &job, QObject *parent = nullptr);
+    explicit Encoder(QObject *parent = nullptr);
+
+    const OutFormat *outFormat() const { return mProfile.outFormat(); }
+
+    const Profile   &profile() const { return mProfile; }
+    const ConvTrack &track() const { return mTrack; }
+    QString          outFile() const { return mOutFile; }
+    QString          inputFile() const { return mInputFile; }
+    QString          coverFile() const { return mCoverFile; }
+
+    void setProfile(const Profile &profile);
+    void setTrack(const ConvTrack &track) { mTrack = track; }
+    void setInputFile(const QString &value) { mInputFile = value; }
+    void setOutFile(const QString &value) { mOutFile = value; }
+    void setCoverFile(const QString &value) { mCoverFile = value; }
+
+    virtual QString     encoderProgramName() const { return ""; }
+    virtual QStringList encoderArgs() const = 0;
 
 public slots:
     void run() override;
+
+protected:
+    int bitsPerSample(const InputAudioFile &audio) const;
+    int sampleRate(const InputAudioFile &audio) const;
 
 private slots:
     void processBytesWritten(qint64 bytes);
 
 private:
-    const EncoderJob mJob;
+    Profile   mProfile;
+    ConvTrack mTrack;
+    QString   mInputFile;
+    QString   mOutFile;
+    QString   mCoverFile;
 
     quint64 mTotal    = 0;
     quint64 mReady    = 0;
@@ -91,5 +86,5 @@ private:
     void runTwoProcess(QProcess *resampler, QProcess *encoder);
 };
 
-} //namespace
+} // namespace
 #endif // ENCODER_H

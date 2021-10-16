@@ -41,37 +41,37 @@ class WorkerThread;
 
 struct DiscPipelineJob
 {
-    DiscPipelineJob(ConvTracks     tracks,
-                    EncoderOptions encoderOptions,
-                    GainOptions    gainOptions,
-                    CoverOptions   copyCoverOptions,
-                    CoverOptions   embedCoverOptions,
-                    QString        workDir) :
+    DiscPipelineJob(ConvTracks   tracks,
+                    GainOptions  gainOptions,
+                    CoverOptions copyCoverOptions,
+                    CoverOptions embedCoverOptions,
+                    QString      workDir,
+                    Profile      profile) :
         mTracks(tracks),
         mWorkDir(workDir),
-        mEncoderOptions(encoderOptions),
         mGainOptions(gainOptions),
         mCopyCoverOptions(copyCoverOptions),
-        mEmbedCoverOptions(embedCoverOptions)
+        mEmbedCoverOptions(embedCoverOptions),
+        mProfile(profile)
     {
     }
 
     const ConvTracks &tracks() const { return mTracks; }
     QString           workDir() const { return mWorkDir; }
 
-    const EncoderOptions &encoderOptions() const { return mEncoderOptions; }
-    const GainOptions &   gainOptions() const { return mGainOptions; }
-    const CoverOptions &  copyCoverOptions() const { return mCopyCoverOptions; }
-    const CoverOptions &  embedCoverOptions() const { return mEmbedCoverOptions; }
+    const GainOptions  &gainOptions() const { return mGainOptions; }
+    const CoverOptions &copyCoverOptions() const { return mCopyCoverOptions; }
+    const CoverOptions &embedCoverOptions() const { return mEmbedCoverOptions; }
+    const Profile      &profile() const { return mProfile; }
 
 public:
     ConvTracks mTracks;
     QString    mWorkDir;
 
-    EncoderOptions mEncoderOptions;
-    GainOptions    mGainOptions;
-    CoverOptions   mCopyCoverOptions;
-    CoverOptions   mEmbedCoverOptions;
+    GainOptions  mGainOptions;
+    CoverOptions mCopyCoverOptions;
+    CoverOptions mEmbedCoverOptions;
+    Profile      mProfile;
 };
 
 class DiscPipeline : public QObject
@@ -104,6 +104,8 @@ private slots:
 private:
     class Data;
     Data *mData;
+
+    void startEncoder(const ConvTrack &track, const QString inputFile);
 };
 
 } // Namespace
