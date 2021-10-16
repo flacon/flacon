@@ -30,6 +30,7 @@
 #include "../encoderconfigpage.h"
 #include "ui_out_opus_config.h"
 #include "../converter/encoder.h"
+#include "../converter/gain.h"
 
 class OutFormat_Opus : public OutFormat
 {
@@ -37,8 +38,6 @@ public:
     OutFormat_Opus();
 
     virtual QString gainProgramName() const override { return ""; }
-
-    virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const override;
@@ -48,6 +47,7 @@ public:
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
     Conv::Encoder *createEncoder() const override;
+    Conv::Gain    *createGain(const Profile &profile) const override;
 };
 
 class ConfigPage_Opus : public EncoderConfigPage, private Ui::ConfigPage_Opus
@@ -63,8 +63,8 @@ public:
 class Encoder_Opus : public Conv::Encoder
 {
 public:
-    QString     encoderProgramName() const override { return "opusenc"; }
-    QStringList encoderArgs() const override;
+    QString     programName() const override { return "opusenc"; }
+    QStringList programArgs() const override;
 };
 
 #endif // OUT_OPUS_H

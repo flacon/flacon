@@ -65,7 +65,7 @@ void TestFlacon::testOutFormatEncoderArgs()
     enc->setTrack(Conv::ConvTrack(*(disc->track(0))));
     enc->setCoverFile("");
     enc->setOutFile("OutFile.wav");
-    QStringList args = enc->encoderArgs();
+    QStringList args = enc->programArgs();
     delete enc;
 
     QString result = args.join(" ");

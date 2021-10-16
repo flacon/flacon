@@ -39,14 +39,6 @@ OutFormat_Wav::OutFormat_Wav()
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Wav::gainArgs(const QStringList &, const GainType) const
-{
-    return QStringList();
-}
-
-/************************************************
-
- ************************************************/
 QHash<QString, QVariant> OutFormat_Wav::defaultParameters() const
 {
     QHash<QString, QVariant> res;
@@ -70,6 +62,14 @@ Conv::Encoder *OutFormat_Wav::createEncoder() const
 }
 
 /************************************************
+ *
+ ************************************************/
+Conv::Gain *OutFormat_Wav::createGain(const Profile &profile) const
+{
+    return new Conv::NoGain(profile);
+}
+
+/************************************************
 
  ************************************************/
 ConfigPage_Wav::ConfigPage_Wav(const Profile &profile, QWidget *parent) :
@@ -77,7 +77,10 @@ ConfigPage_Wav::ConfigPage_Wav(const Profile &profile, QWidget *parent) :
 {
 }
 
-QStringList Encoder_Wav::encoderArgs() const
+/************************************************
+ *
+ ************************************************/
+QStringList Encoder_Wav::programArgs() const
 {
     return QStringList();
 }

@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_aac.h"
-#include "settings.h"
 #include "inputaudiofile.h"
 
 /************************************************
@@ -36,14 +35,6 @@ OutFormat_Aac::OutFormat_Aac()
     mExt     = "m4a";
     mName    = "AAC";
     mOptions = FormatOption::NoOptions;
-}
-
-/************************************************
-
- ************************************************/
-QStringList OutFormat_Aac::gainArgs(const QStringList &, const GainType) const
-{
-    return QStringList();
 }
 
 /************************************************
@@ -72,6 +63,14 @@ EncoderConfigPage *OutFormat_Aac::configPage(const Profile &profile, QWidget *pa
 Conv::Encoder *OutFormat_Aac::createEncoder() const
 {
     return new Encoder_Aac();
+}
+
+/************************************************
+
+ ************************************************/
+Conv::Gain *OutFormat_Aac::createGain(const Profile &profile) const
+{
+    return new Conv::NoGain(profile);
 }
 
 /************************************************
@@ -126,11 +125,12 @@ void ConfigPage_Acc::useQualityChecked(bool checked)
 /************************************************
 
  ************************************************/
-QStringList Encoder_Aac::encoderArgs() const
+QStringList Encoder_Aac::programArgs() const
 {
     QStringList args;
 
-    args << Settings::i()->programName(encoderProgramName());
+    args << programPath();
+
     args << "-w"; // Wrap  AAC  data  in  an MP4 container.
 
     // Quality settings .........................................

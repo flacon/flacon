@@ -54,15 +54,16 @@ public:
     void setOutFile(const QString &value) { mOutFile = value; }
     void setCoverFile(const QString &value) { mCoverFile = value; }
 
-    virtual QString     encoderProgramName() const { return ""; }
-    virtual QStringList encoderArgs() const = 0;
+    virtual QString     programName() const { return ""; }
+    virtual QStringList programArgs() const = 0;
 
 public slots:
     void run() override;
 
 protected:
-    int bitsPerSample(const InputAudioFile &audio) const;
-    int sampleRate(const InputAudioFile &audio) const;
+    int     bitsPerSample(const InputAudioFile &audio) const;
+    int     sampleRate(const InputAudioFile &audio) const;
+    QString programPath() const;
 
 private slots:
     void processBytesWritten(qint64 bytes);

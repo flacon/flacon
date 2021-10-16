@@ -30,6 +30,7 @@
 #include <QDir>
 #include <QDebug>
 #include "encoder.h"
+#include "gain.h"
 
 QHash<QString, QVariant> &operator<<(QHash<QString, QVariant> &values, const QHash<QString, QVariant> &other)
 {
@@ -43,8 +44,8 @@ QHash<QString, QVariant> &operator<<(QHash<QString, QVariant> &values, const QHa
 class Encoder_Null : public Conv::Encoder
 {
 public:
-    QString     encoderProgramName() const override { return ""; }
-    QStringList encoderArgs() const override { return QStringList(); }
+    QString     programName() const override { return ""; }
+    QStringList programArgs() const override { return QStringList(); }
 };
 
 class OutFormat_Null : public OutFormat
@@ -58,11 +59,6 @@ public:
     }
 
     virtual QString gainProgramName() const override { return ""; }
-
-    virtual QStringList gainArgs(const QStringList &, const GainType) const override
-    {
-        return QStringList();
-    }
 
     QHash<QString, QVariant> defaultParameters() const override
     {
@@ -78,6 +74,7 @@ public:
     virtual SampleRate    maxSampleRate() const override { return SampleRate::AsSource; }
 
     Conv::Encoder *createEncoder() const override { return new Encoder_Null(); }
+    Conv::Gain    *createGain(const Profile &profile) const override { return new Conv::NoGain(profile); }
 };
 
 static OutFormat_Null *nullFormat()
@@ -212,6 +209,14 @@ GainType Profile::gainType() const
 {
     QString s = value(REPLAY_GAIN_KEY).toString();
     return strToGainType(s);
+}
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setGainType(GainType value)
+{
+    setValue(REPLAY_GAIN_KEY, gainTypeToString(value));
 }
 
 /************************************************

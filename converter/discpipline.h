@@ -42,14 +42,12 @@ class WorkerThread;
 struct DiscPipelineJob
 {
     DiscPipelineJob(ConvTracks   tracks,
-                    GainOptions  gainOptions,
                     CoverOptions copyCoverOptions,
                     CoverOptions embedCoverOptions,
                     QString      workDir,
                     Profile      profile) :
         mTracks(tracks),
         mWorkDir(workDir),
-        mGainOptions(gainOptions),
         mCopyCoverOptions(copyCoverOptions),
         mEmbedCoverOptions(embedCoverOptions),
         mProfile(profile)
@@ -59,7 +57,6 @@ struct DiscPipelineJob
     const ConvTracks &tracks() const { return mTracks; }
     QString           workDir() const { return mWorkDir; }
 
-    const GainOptions  &gainOptions() const { return mGainOptions; }
     const CoverOptions &copyCoverOptions() const { return mCopyCoverOptions; }
     const CoverOptions &embedCoverOptions() const { return mEmbedCoverOptions; }
     const Profile      &profile() const { return mProfile; }
@@ -68,7 +65,6 @@ public:
     ConvTracks mTracks;
     QString    mWorkDir;
 
-    GainOptions  mGainOptions;
     CoverOptions mCopyCoverOptions;
     CoverOptions mEmbedCoverOptions;
     Profile      mProfile;
@@ -78,7 +74,7 @@ class DiscPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiscPipeline(const DiscPipelineJob &job, QObject *parent = nullptr) noexcept(false);
+    explicit DiscPipeline(const Profile &profile, const DiscPipelineJob &job, QObject *parent = nullptr) noexcept(false);
     virtual ~DiscPipeline();
 
     void startWorker(int *splitterCount, int *count);
@@ -97,15 +93,26 @@ private slots:
     void trackProgress(const Conv::ConvTrack &track, TrackState state, int percent);
     void trackError(const Conv::ConvTrack &track, const QString &message);
 
-    void addEncoderRequest(const Conv::ConvTrack &track, const QString &inputFile);
-    void addGainRequest(const Conv::ConvTrack &track, const QString &fileName);
     void trackDone(const Conv::ConvTrack &track, const QString &outFileName);
 
 private:
     class Data;
     Data *mData;
 
+    Profile mProfile;
+
+    struct Request
+    {
+        ConvTrack track;
+        QString   inputFile;
+    };
+
+    void addEncoderRequest(const Conv::ConvTrack &track, const QString &inputFile);
     void startEncoder(const ConvTrack &track, const QString inputFile);
+
+    void addGainRequest(const Conv::ConvTrack &track, const QString &fileName);
+    void startGain(const Request &request);
+    void startGain(const QList<Request> &requests);
 };
 
 } // Namespace

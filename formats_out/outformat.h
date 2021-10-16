@@ -34,6 +34,7 @@
 
 namespace Conv {
 class Encoder;
+class Gain;
 }
 class EncoderConfigPage;
 class Profile;
@@ -52,8 +53,7 @@ public:
 
     QString encoderProgramName() const;
 
-    virtual QString     gainProgramName() const                                           = 0;
-    virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const = 0;
+    virtual QString gainProgramName() const = 0;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const = 0;
@@ -64,7 +64,8 @@ public:
     virtual QHash<QString, QVariant> defaultParameters() const                                 = 0;
     virtual EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const = 0;
 
-    virtual Conv::Encoder *createEncoder() const = 0;
+    virtual Conv::Encoder *createEncoder() const                    = 0;
+    virtual Conv::Gain    *createGain(const Profile &profile) const = 0;
 
 protected:
     QString       mId;

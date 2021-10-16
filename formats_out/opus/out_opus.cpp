@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_opus.h"
-#include "settings.h"
 #include <QDebug>
 
 static const constexpr char *BITRATE_TYPE_KEY = "BitrateType";
@@ -39,14 +38,6 @@ OutFormat_Opus::OutFormat_Opus()
     mExt     = "opus";
     mName    = "Opus";
     mOptions = FormatOption::NoOptions;
-}
-
-/************************************************
-
- ************************************************/
-QStringList OutFormat_Opus::gainArgs(const QStringList &, const GainType) const
-{
-    return QStringList();
 }
 
 /************************************************
@@ -74,6 +65,14 @@ EncoderConfigPage *OutFormat_Opus::configPage(const Profile &profile, QWidget *p
 Conv::Encoder *OutFormat_Opus::createEncoder() const
 {
     return new Encoder_Opus();
+}
+
+/************************************************
+ *
+ ************************************************/
+Conv::Gain *OutFormat_Opus::createGain(const Profile &profile) const
+{
+    return new Conv::NoGain(profile);
 }
 
 /************************************************
@@ -116,11 +115,11 @@ void ConfigPage_Opus::save()
 /************************************************
 
  ************************************************/
-QStringList Encoder_Opus::encoderArgs() const
+QStringList Encoder_Opus::programArgs() const
 {
     QStringList args;
 
-    args << Settings::i()->programName(encoderProgramName());
+    args << programPath();
 
     args << "--quiet";
 

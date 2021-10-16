@@ -43,6 +43,7 @@
 #include "converter/splitter.h"
 #include "../formats_out/outformat.h"
 #include "converter/discpipline.h"
+#include "../converter/gain.h"
 
 int TestFlacon::mTestNum = -1;
 Q_DECLARE_METATYPE(GainType)
@@ -1177,10 +1178,16 @@ void TestFlacon::testOutFormatGainArgs()
     if (!format)
         QFAIL(QString("Unknown format \"%1\"").arg(formatId).toLocal8Bit());
 
-    QStringList args = format->gainArgs(QStringList() << "OutFile_01.wav"
-                                                      << "OutFile_02.wav"
-                                                      << "OutFile_03.wav",
-                                        gainType);
+    Profile profile;
+    profile.setGainType(gainType);
+
+    Conv::Gain *gain = format->createGain(profile);
+    QStringList args = gain->programArgs(QStringList() << "OutFile_01.wav"
+                                                       << "OutFile_02.wav"
+                                                       << "OutFile_03.wav",
+                                         gainType);
+
+    delete gain;
 
     QString result = args.join(" ");
     if (result != expected) {
@@ -1253,7 +1260,6 @@ void TestFlacon::testOutFormatGainArgs_data()
             << "WV"
             << GainType::Track
             << "/opt/wvgain "
-               "-a "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
     //*******************************************

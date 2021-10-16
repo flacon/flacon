@@ -74,22 +74,6 @@ private:
 
 using ConvTracks = QList<ConvTrack>;
 
-class GainOptions
-{
-public:
-    GainOptions() = default;
-    GainOptions(const OutFormat *outFormat, const Profile *profile);
-    GainOptions(const GainOptions &other) = default;
-    GainOptions &operator=(const GainOptions &other) = default;
-
-    GainType    type() const { return mType; }
-    QStringList gainArgs(const QStringList &files) const;
-
-private:
-    const OutFormat *mOutFormat = nullptr;
-    GainType         mType      = GainType::Disable;
-};
-
 class CoverOptions
 {
 public:

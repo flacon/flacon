@@ -26,6 +26,7 @@
 #include "encoder.h"
 #include "resampler.h"
 #include "profiles.h"
+#include "settings.h"
 
 #include <QFileInfo>
 #include <QDir>
@@ -111,7 +112,7 @@ void Encoder::run()
     qint8    mode = COPY_FILE;
 
     if (profile().formatId() != "WAV") {
-        QStringList args = encoderArgs();
+        QStringList args = programArgs();
         QString     prog = args.takeFirst();
 
         qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog, args);
@@ -182,6 +183,14 @@ int Encoder::bitsPerSample(const InputAudioFile &audio) const
 int Encoder::sampleRate(const InputAudioFile &audio) const
 {
     return calcQuality(audio.sampleRate(), mProfile.sampleRate(), mProfile.outFormat()->maxSampleRate());
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Encoder::programPath() const
+{
+    return Settings::i()->programName(programName());
 }
 
 /************************************************

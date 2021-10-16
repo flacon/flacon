@@ -30,6 +30,7 @@
 #include "../encoderconfigpage.h"
 #include "ui_out_flac_config.h"
 #include "../converter/encoder.h"
+#include "../converter/gain.h"
 
 class OutFormat_Flac : public OutFormat
 {
@@ -39,8 +40,6 @@ public:
 
     virtual QString gainProgramName() const override { return "metaflac"; }
 
-    virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
-
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const override;
 
@@ -49,6 +48,7 @@ public:
     SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
     Conv::Encoder *createEncoder() const override;
+    Conv::Gain    *createGain(const Profile &profile) const override;
 };
 
 class ConfigPage_Flac : public EncoderConfigPage, private Ui::flacConfigPage
@@ -64,8 +64,16 @@ public:
 class Encoder_Flac : public Conv::Encoder
 {
 public:
-    QString     encoderProgramName() const override { return "flac"; }
-    QStringList encoderArgs() const override;
+    QString     programName() const override { return "flac"; }
+    QStringList programArgs() const override;
+};
+
+class Gain_Flac : public Conv::Gain
+{
+public:
+    using Conv::Gain::Gain;
+    QString     programName() const override { return "metaflac"; }
+    QStringList programArgs(const QStringList &files, const GainType gainType) const override;
 };
 
 #endif // OUT_FLAC_H

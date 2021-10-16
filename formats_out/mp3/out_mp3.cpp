@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_mp3.h"
-#include "settings.h"
 #include <QDebug>
 
 static constexpr char VBR_MEDIUM[]   = "vbrMedium";
@@ -44,21 +43,6 @@ OutFormat_Mp3::OutFormat_Mp3()
     mExt     = "mp3";
     mName    = "MP3";
     mOptions = FormatOption::SupportGain;
-}
-
-/************************************************
-
- ************************************************/
-QStringList OutFormat_Mp3::gainArgs(const QStringList &files, const GainType) const
-{
-    QStringList args;
-    args << args << Settings::i()->programName(gainProgramName());
-    args << "-a"; // Album gain
-    args << "-c"; // ignore clipping warning when applying gain
-
-    args << files;
-
-    return args;
 }
 
 /************************************************
@@ -88,6 +72,14 @@ EncoderConfigPage *OutFormat_Mp3::configPage(const Profile &profile, QWidget *pa
 Conv::Encoder *OutFormat_Mp3::createEncoder() const
 {
     return new Encoder_Mp3();
+}
+
+/************************************************
+ *
+ ************************************************/
+Conv::Gain *OutFormat_Mp3::createGain(const Profile &profile) const
+{
+    return new Gain_Mp3(profile);
 }
 
 /************************************************
@@ -191,13 +183,13 @@ void ConfigPage_Mp3::mp3PresetCbxCanged(int index)
 /************************************************
 
  ************************************************/
-QStringList Encoder_Mp3::encoderArgs() const
+QStringList Encoder_Mp3::programArgs() const
 {
     const Track &track = this->track();
 
     QStringList args;
 
-    args << Settings::i()->programName(encoderProgramName());
+    args << programPath();
     args << "--silent";
 
     // Settings .................................................
@@ -279,6 +271,18 @@ QStringList Encoder_Mp3::encoderArgs() const
     // Files ....................................................
     args << "-";
     args << outFile();
+
+    return args;
+}
+
+QStringList Gain_Mp3::programArgs(const QStringList &files, const GainType gainType) const
+{
+    QStringList args;
+    args << programPath();
+    args << "-a"; // Album gain
+    args << "-c"; // ignore clipping warning when applying gain
+
+    args << files;
 
     return args;
 }

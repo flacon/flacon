@@ -50,12 +50,6 @@ Q_LOGGING_CATEGORY(LOG, "Converter")
 
 using namespace Conv;
 
-struct EncoderRequest
-{
-    ConvTrack track;
-    QString   inputFile;
-};
-
 /************************************************
  *
  ************************************************/
@@ -121,21 +115,19 @@ public:
         delete mTmpDir;
     }
 
-    DiscPipeline            *mPipeline;
-    DiscPipelineJob          mJob;
-    QMap<TrackId, ConvTrack> mTracks;
-    QList<SplitterJob>       mSplitterRequests;
-    QList<EncoderRequest>    mEncoderRequests;
-    GainJobs                 mGainRequests;
-    QTemporaryDir           *mTmpDir = nullptr;
-    QVector<WorkerThread *>  mThreads;
-    QString                  mEmbedCoverFile;
-    bool                     mInterrupted = false;
+    DiscPipeline                *mPipeline;
+    DiscPipelineJob              mJob;
+    QMap<TrackId, ConvTrack>     mTracks;
+    QList<SplitterJob>           mSplitterRequests;
+    QList<DiscPipeline::Request> mEncoderRequests;
+    QList<DiscPipeline::Request> mGainRequests;
+    QTemporaryDir               *mTmpDir = nullptr;
+    QVector<WorkerThread *>      mThreads;
+    QString                      mEmbedCoverFile;
+    bool                         mInterrupted = false;
 
     void interrupt(TrackState state);
 
-    void    startTrackGainThread(const GainJob &req);
-    void    startAlbumGainThread(const GainJobs &reqs);
     void    createDir(const QString &dirName) const;
     bool    copyCoverImage() const;
     QString createEmbedImage() const;
@@ -185,10 +177,12 @@ void DiscPipeline::Data::addSpliterRequest(const InputAudioFile &audio)
 /************************************************
  *
  ************************************************/
-DiscPipeline::DiscPipeline(const DiscPipelineJob &job, QObject *parent) :
+DiscPipeline::DiscPipeline(const Profile &profile, const DiscPipelineJob &job, QObject *parent) noexcept(false) :
     QObject(parent),
-    mData(new Data(job, this))
+    mData(new Data(job, this)),
+    mProfile(profile)
 {
+
     QString dir = QFileInfo(mData->mJob.workDir()).dir().absolutePath();
     qCDebug(LOG) << "Create tmp dir" << dir;
 
@@ -257,22 +251,22 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
         return;
     }
 
-    if (mData->mJob.gainOptions().type() == GainType::Track) {
+    if (mProfile.gainType() == GainType::Track) {
         while (*count > 0 && !mData->mGainRequests.isEmpty()) {
-            mData->startTrackGainThread(mData->mGainRequests.takeFirst());
+            startGain(mData->mGainRequests.takeFirst());
             --(*count);
         }
     }
-    else if (mData->mJob.gainOptions().type() == GainType::Album) {
+    else if (mProfile.gainType() == GainType::Album) {
         if (*count > 0 && mData->mGainRequests.count() == mData->mTracks.count()) {
-            mData->startAlbumGainThread(mData->mGainRequests);
+            startGain(mData->mGainRequests);
             mData->mGainRequests.clear();
             --(*count);
         }
     }
 
     while (*count > 0 && !mData->mEncoderRequests.isEmpty()) {
-        const EncoderRequest req = mData->mEncoderRequests.takeFirst();
+        const Request req = mData->mEncoderRequests.takeFirst();
         startEncoder(req.track, req.inputFile);
         --(*count);
     }
@@ -340,6 +334,16 @@ void DiscPipeline::Data::startSplitterThread(const SplitterJob &req)
 /************************************************
  *
  ************************************************/
+void DiscPipeline::addEncoderRequest(const ConvTrack &track, const QString &inputFile)
+{
+    mData->mEncoderRequests << Request { track, inputFile };
+    trackProgress(track, TrackState::Queued, 0);
+    emit readyStart();
+}
+
+/************************************************
+ *
+ ************************************************/
 void DiscPipeline::startEncoder(const ConvTrack &track, const QString inputFile)
 {
     QFileInfo trackFile(track.resultFilePath());
@@ -358,7 +362,7 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString inputFile)
     connect(encoder, &Encoder::trackProgress, this, &DiscPipeline::trackProgress);
     connect(encoder, &Encoder::error, this, &DiscPipeline::trackError);
 
-    if (mData->mJob.gainOptions().type() == GainType::Disable) {
+    if (mProfile.gainType() == GainType::Disable) {
         connect(encoder, &Encoder::trackReady, this, &DiscPipeline::trackDone);
     }
     else {
@@ -374,68 +378,46 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString inputFile)
 /************************************************
  *
  ************************************************/
-void DiscPipeline::Data::startTrackGainThread(const GainJob &req)
-{
-    Gain         *worker = new Gain(req);
-    WorkerThread *thread = new WorkerThread(worker, mPipeline);
-
-    connect(mPipeline, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
-    connect(worker, &Gain::trackProgress, mPipeline, &DiscPipeline::trackProgress);
-    connect(worker, &Gain::error, mPipeline, &DiscPipeline::trackError);
-    connect(worker, &Gain::trackReady, mPipeline, &DiscPipeline::trackDone);
-    connect(thread, &Conv::WorkerThread::finished, mPipeline, &DiscPipeline::threadFinished);
-
-    mThreads << thread;
-    thread->start();
-}
-
-/************************************************
- *
- ************************************************/
-void DiscPipeline::Data::startAlbumGainThread(const GainJobs &reqs)
-{
-    Gain *worker = new Gain(reqs);
-
-    WorkerThread *thread = new WorkerThread(worker, mPipeline);
-    connect(mPipeline, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
-    connect(worker, &Gain::trackProgress, mPipeline, &DiscPipeline::trackProgress);
-    connect(worker, &Gain::error, mPipeline, &DiscPipeline::trackError);
-    connect(worker, &Gain::trackReady, mPipeline, &DiscPipeline::trackDone);
-    connect(thread, &Conv::WorkerThread::finished, mPipeline, &DiscPipeline::threadFinished);
-
-    mThreads << thread;
-    thread->start();
-}
-
-/************************************************
- *
- ************************************************/
-void DiscPipeline::addEncoderRequest(const ConvTrack &track, const QString &inputFile)
-{
-    EncoderRequest req;
-    req.track     = track;
-    req.inputFile = inputFile;
-
-    mData->mEncoderRequests << req;
-
-    trackProgress(track, TrackState::Queued, 0);
-    emit readyStart();
-}
-
-/************************************************
- *
- ************************************************/
 void DiscPipeline::addGainRequest(const ConvTrack &track, const QString &fileName)
 {
-    if (mData->mJob.gainOptions().type() == GainType::Album) {
+    if (mData->mJob.mProfile.gainType() == GainType::Album) {
         trackProgress(track, TrackState::WaitGain, 0);
     }
     else {
         trackProgress(track, TrackState::Queued, 0);
     }
 
-    mData->mGainRequests.append(GainJob(track, fileName, mData->mJob.gainOptions()));
+    mData->mGainRequests << Request { track, fileName };
     emit readyStart();
+}
+
+/************************************************
+ *
+ ************************************************/
+void DiscPipeline::startGain(const DiscPipeline::Request &request)
+{
+    startGain(QList<Request>() << request);
+}
+
+/************************************************
+ *
+ ************************************************/
+void DiscPipeline::startGain(const QList<Request> &requests)
+{
+    Gain *worker = mProfile.outFormat()->createGain(mProfile);
+    for (const Request &req : requests) {
+        worker->addTrack(req.track, req.inputFile);
+    }
+
+    WorkerThread *thread = new WorkerThread(worker, this);
+    connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
+    connect(worker, &Gain::trackProgress, this, &DiscPipeline::trackProgress);
+    connect(worker, &Gain::error, this, &DiscPipeline::trackError);
+    connect(worker, &Gain::trackReady, this, &DiscPipeline::trackDone);
+    connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
+
+    mData->mThreads << thread;
+    thread->start();
 }
 
 /************************************************

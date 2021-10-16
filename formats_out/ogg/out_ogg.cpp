@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_ogg.h"
-#include "settings.h"
 #include <QDebug>
 #include <math.h>
 
@@ -37,21 +36,6 @@ OutFormat_Ogg::OutFormat_Ogg()
     mExt     = "ogg";
     mName    = "OGG";
     mOptions = FormatOption::SupportGain;
-}
-
-/************************************************
-
- ************************************************/
-QStringList OutFormat_Ogg::gainArgs(const QStringList &files, const GainType gainType) const
-{
-    QStringList args;
-    args << args << Settings::i()->programName(gainProgramName());
-    if (gainType == GainType::Album)
-        args << "--album";
-
-    args << files;
-
-    return args;
 }
 
 /************************************************
@@ -80,6 +64,14 @@ EncoderConfigPage *OutFormat_Ogg::configPage(const Profile &profile, QWidget *pa
 Conv::Encoder *OutFormat_Ogg::createEncoder() const
 {
     return new Encoder_Ogg();
+}
+
+/************************************************
+ *
+ ************************************************/
+Conv::Gain *OutFormat_Ogg::createGain(const Profile &profile) const
+{
+    return new Gain_Ogg(profile);
 }
 
 /************************************************
@@ -181,11 +173,11 @@ void ConfigPage_Ogg::setUseQualityMode(bool checked)
 /************************************************
  *
  ************************************************/
-QStringList Encoder_Ogg::encoderArgs() const
+QStringList Encoder_Ogg::programArgs() const
 {
     QStringList args;
 
-    args << Settings::i()->programName(encoderProgramName());
+    args << programPath();
 
     args << "--quiet";
 
@@ -243,5 +235,20 @@ QStringList Encoder_Ogg::encoderArgs() const
     // Files ....................................................
     args << "-o" << outFile();
     args << "-";
+    return args;
+}
+
+/************************************************
+ *
+ ************************************************/
+QStringList Gain_Ogg::programArgs(const QStringList &files, const GainType gainType) const
+{
+    QStringList args;
+    args << programPath();
+    if (gainType == GainType::Album)
+        args << "--album";
+
+    args << files;
+
     return args;
 }

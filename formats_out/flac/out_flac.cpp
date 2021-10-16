@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_flac.h"
-#include "settings.h"
 #include "project.h"
 #include "inputaudiofile.h"
 
@@ -73,19 +72,6 @@ bool OutFormat_Flac::check(const Profile &profile, QStringList *errors) const
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Flac::gainArgs(const QStringList &files, const GainType) const
-{
-    QStringList args;
-    args << Settings::i()->programName(gainProgramName());
-    args << "--add-replay-gain";
-    args << files;
-
-    return args;
-}
-
-/************************************************
-
- ************************************************/
 QHash<QString, QVariant> OutFormat_Flac::defaultParameters() const
 {
     QHash<QString, QVariant> res;
@@ -105,6 +91,14 @@ EncoderConfigPage *OutFormat_Flac::configPage(const Profile &profile, QWidget *p
 Conv::Encoder *OutFormat_Flac::createEncoder() const
 {
     return new Encoder_Flac();
+}
+
+/************************************************
+
+ ************************************************/
+Conv::Gain *OutFormat_Flac::createGain(const Profile &profile) const
+{
+    return new Gain_Flac(profile);
 }
 
 /************************************************
@@ -138,10 +132,11 @@ void ConfigPage_Flac::save()
 /************************************************
 
  ************************************************/
-QStringList Encoder_Flac::encoderArgs() const
+QStringList Encoder_Flac::programArgs() const
 {
     QStringList args;
-    args << Settings::i()->programName(encoderProgramName());
+    args << programPath();
+
     args << "--force";  // Force overwriting of output files.
     args << "--silent"; // Suppress progress indicator
 
@@ -188,5 +183,18 @@ QStringList Encoder_Flac::encoderArgs() const
 
     args << "-";
     args << "-o" << outFile();
+    return args;
+}
+
+/************************************************
+ *
+ ************************************************/
+QStringList Gain_Flac::programArgs(const QStringList &files, const GainType) const
+{
+    QStringList args;
+    args << programPath();
+    args << "--add-replay-gain";
+    args << files;
+
     return args;
 }

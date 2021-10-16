@@ -61,6 +61,7 @@ public:
     void    setOutFilePattern(const QString &value);
 
     GainType gainType() const;
+    void     setGainType(GainType value);
 
     int  bitsPerSample() const;
     void setBitsPerSample(int value);

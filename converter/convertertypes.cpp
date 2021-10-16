@@ -40,23 +40,6 @@ ConvTrack::ConvTrack(const Track &other) :
 /************************************************
  *
  ************************************************/
-GainOptions::GainOptions(const OutFormat *outFormat, const Profile *profile) :
-    mOutFormat(outFormat),
-    mType(profile->gainType())
-{
-}
-
-/************************************************
- *
- ************************************************/
-QStringList GainOptions::gainArgs(const QStringList &files) const
-{
-    return mOutFormat->gainArgs(files, type());
-}
-
-/************************************************
- *
- ************************************************/
 CoverOptions::CoverOptions(const QString &fileName, int size) :
     mFileName(fileName),
     mSize(size)

@@ -84,7 +84,7 @@ QString OutFormat::encoderProgramName() const
 {
     if (mEncoderProgramName.isEmpty()) {
         Conv::Encoder *e    = createEncoder();
-        mEncoderProgramName = e->encoderProgramName();
+        mEncoderProgramName = e->programName();
         delete e;
     }
     return mEncoderProgramName;

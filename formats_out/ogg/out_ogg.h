@@ -30,6 +30,7 @@
 #include "../encoderconfigpage.h"
 #include "ui_out_ogg_config.h"
 #include "../converter/encoder.h"
+#include "../converter/gain.h"
 
 class OutFormat_Ogg : public OutFormat
 {
@@ -37,8 +38,6 @@ public:
     OutFormat_Ogg();
 
     virtual QString gainProgramName() const override { return "vorbisgain"; }
-
-    virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const override;
@@ -48,6 +47,7 @@ public:
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_192000; }
 
     Conv::Encoder *createEncoder() const override;
+    Conv::Gain    *createGain(const Profile &profile) const override;
 };
 
 class ConfigPage_Ogg : public EncoderConfigPage, private Ui::oggConfigPage
@@ -68,8 +68,16 @@ private slots:
 class Encoder_Ogg : public Conv::Encoder
 {
 public:
-    QString     encoderProgramName() const override { return "oggenc"; }
-    QStringList encoderArgs() const override;
+    QString     programName() const override { return "oggenc"; }
+    QStringList programArgs() const override;
+};
+
+class Gain_Ogg : public Conv::Gain
+{
+public:
+    using Conv::Gain::Gain;
+    QString     programName() const override { return "vorbisgain"; }
+    QStringList programArgs(const QStringList &files, const GainType gainType) const override;
 };
 
 #endif // OUT_OGG_H

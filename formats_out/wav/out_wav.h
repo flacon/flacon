@@ -29,6 +29,7 @@
 #include "../outformat.h"
 #include "../encoderconfigpage.h"
 #include "../converter/encoder.h"
+#include "../converter/gain.h"
 
 class OutFormat_Wav : public OutFormat
 {
@@ -36,8 +37,6 @@ public:
     OutFormat_Wav();
 
     virtual QString gainProgramName() const override { return ""; }
-
-    virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const override;
@@ -47,6 +46,7 @@ public:
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
     Conv::Encoder *createEncoder() const override;
+    Conv::Gain    *createGain(const Profile &profile) const override;
 };
 
 class ConfigPage_Wav : public EncoderConfigPage
@@ -62,8 +62,8 @@ public:
 class Encoder_Wav : public Conv::Encoder
 {
 public:
-    QString     encoderProgramName() const override { return ""; }
-    QStringList encoderArgs() const override;
+    QString     programName() const override { return ""; }
+    QStringList programArgs() const override;
 };
 
 #endif // OUT_WAV_H

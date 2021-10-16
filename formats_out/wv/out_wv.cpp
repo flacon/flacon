@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_wv.h"
-#include "settings.h"
 #include <QDebug>
 
 static const constexpr char *COMPRESSION_KEY = "Compression";
@@ -39,19 +38,6 @@ OutFormat_Wv::OutFormat_Wv()
     mExt     = "wv";
     mName    = "WavPack";
     mOptions = FormatOption::Lossless | FormatOption::SupportGain;
-}
-
-/************************************************
-
- ************************************************/
-QStringList OutFormat_Wv::gainArgs(const QStringList &files, const GainType) const
-{
-    QStringList args;
-    args << args << Settings::i()->programName(gainProgramName());
-    args << "-a";
-    args << files;
-
-    return args;
 }
 
 /************************************************
@@ -79,6 +65,14 @@ EncoderConfigPage *OutFormat_Wv::configPage(const Profile &profile, QWidget *par
 Conv::Encoder *OutFormat_Wv::createEncoder() const
 {
     return new Encoder_Wv();
+}
+
+/************************************************
+ *
+ ************************************************/
+Conv::Gain *OutFormat_Wv::createGain(const Profile &profile) const
+{
+    return new Gain_Wv(profile);
 }
 
 /************************************************
@@ -112,11 +106,11 @@ void ConfigPage_Wv::save()
 /************************************************
 
  ************************************************/
-QStringList Encoder_Wv::encoderArgs() const
+QStringList Encoder_Wv::programArgs() const
 {
     QStringList args;
 
-    args << Settings::i()->programName(encoderProgramName());
+    args << programPath();
 
     args << "-q"; // Suppress progress indicator
 
@@ -168,6 +162,21 @@ QStringList Encoder_Wv::encoderArgs() const
 
     args << "-";
     args << "-o" << outFile();
+
+    return args;
+}
+
+/************************************************
+ *
+ ************************************************/
+QStringList Gain_Wv::programArgs(const QStringList &files, const GainType gainType) const
+{
+    QStringList args;
+    args << programPath();
+    if (gainType == GainType::Album) {
+        args << "-a";
+    }
+    args << files;
 
     return args;
 }

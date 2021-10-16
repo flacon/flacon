@@ -30,6 +30,7 @@
 #include "../encoderconfigpage.h"
 #include "ui_out_mp3_config.h"
 #include "../converter/encoder.h"
+#include "../converter/gain.h"
 
 class OutFormat_Mp3 : public OutFormat
 {
@@ -37,8 +38,6 @@ public:
     OutFormat_Mp3();
 
     virtual QString gainProgramName() const override { return "mp3gain"; }
-
-    virtual QStringList gainArgs(const QStringList &files, const GainType gainType) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const override;
@@ -48,6 +47,7 @@ public:
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
     Conv::Encoder *createEncoder() const override;
+    Conv::Gain    *createGain(const Profile &profile) const override;
 };
 
 class ConfigPage_Mp3 : public EncoderConfigPage, private Ui::mp3ConfigPage
@@ -66,8 +66,16 @@ private slots:
 class Encoder_Mp3 : public Conv::Encoder
 {
 public:
-    QString     encoderProgramName() const override { return "lame"; }
-    QStringList encoderArgs() const override;
+    QString     programName() const override { return "lame"; }
+    QStringList programArgs() const override;
+};
+
+class Gain_Mp3 : public Conv::Gain
+{
+public:
+    using Conv::Gain::Gain;
+    QString     programName() const override { return "mp3gain"; }
+    QStringList programArgs(const QStringList &files, const GainType gainType) const override;
 };
 
 #endif // OUT_MP3_H
