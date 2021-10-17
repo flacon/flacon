@@ -112,7 +112,7 @@ private:
     void startSplitter(const ConvTracks &tracks, const QString &inFile, const QString &outDir);
 
     void addEncoderRequest(const Conv::ConvTrack &track, const QString &inputFile);
-    void startEncoder(const ConvTrack &track, const QString inputFile);
+    void startEncoder(const ConvTrack &track, const QString &inputFile);
 
     void addGainRequest(const Conv::ConvTrack &track, const QString &fileName);
     void startGain(const Request &request);
