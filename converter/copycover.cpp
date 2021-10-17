@@ -53,7 +53,7 @@ bool CopyCover::run()
 
     QFileInfo inFile(mInFileName);
 
-    mFileName = QDir(mDir).absoluteFilePath(QString("%1.%2").arg(mBaseName).arg(inFile.suffix()));
+    mFileName = QDir(mDir).absoluteFilePath(QString("%1.%2").arg(mBaseName, inFile.suffix()));
 
     // Keep original size, just copy file
     if (mSize == 0) {
@@ -99,8 +99,7 @@ bool CopyCover::resizeImage(const QString &outFileName)
     if (img.isNull()) {
         mErrorString = QObject::tr("I can't read cover image <b>%1</b>:<br>%2",
                                    "%1 - is a file name, %2 - an error text")
-                               .arg(mInFileName)
-                               .arg(reader.errorString());
+                               .arg(mInFileName, reader.errorString());
 
         return false;
     }
@@ -114,8 +113,7 @@ bool CopyCover::resizeImage(const QString &outFileName)
     if (!writer.write(img)) {
         mErrorString = QObject::tr("I can't save cover image <b>%1</b>:<br>%2",
                                    "%1 - is file name, %2 - an error text")
-                               .arg(outFileName)
-                               .arg(writer.errorString());
+                               .arg(outFileName, writer.errorString());
 
         return false;
     }

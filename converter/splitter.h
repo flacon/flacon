@@ -28,36 +28,24 @@
 
 #include "convertertypes.h"
 #include "worker.h"
+#include "profiles.h"
 
 namespace Conv {
-
-struct SplitterJob
-{
-    SplitterJob(ConvTracks tracks, QString inFile, QString outDir) :
-        inFile(inFile),
-        tracks(tracks),
-        outDir(outDir)
-    {
-    }
-
-    QString    inFile;
-    ConvTracks tracks;
-    QString    outDir;
-
-    const ConvTrack &track(int index) const { return tracks.at(index); }
-};
 
 class Splitter : public Worker
 {
     Q_OBJECT
 public:
-    Splitter(const SplitterJob &job, QObject *parent = nullptr);
+    Splitter(const Profile &profile, const ConvTracks &tracks, QString inFile, QString outDir, QObject *parent = nullptr);
 
 public slots:
     void run() override;
 
 private:
-    const SplitterJob mJob;
+    const Profile    mProfile;
+    const QString    mInFile;
+    const ConvTracks mTracks;
+    const QString    mOutDir;
 };
 
 } // namespace

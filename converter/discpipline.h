@@ -60,7 +60,7 @@ class DiscPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks, const QString &workDir, const DiscPipelineJob &job, QObject *parent = nullptr) noexcept(false);
+    explicit DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks, const QString &workDir, QObject *parent = nullptr) noexcept(false);
     virtual ~DiscPipeline();
 
     void startWorker(int *splitterCount, int *count);
@@ -97,6 +97,7 @@ private:
     };
 
     void addSpliterRequest(const InputAudioFile &audio);
+    void startSplitter(const ConvTracks &tracks, const QString &inFile, const QString &outDir);
 
     void addEncoderRequest(const Conv::ConvTrack &track, const QString &inputFile);
     void startEncoder(const ConvTrack &track, const QString inputFile);
@@ -105,8 +106,10 @@ private:
     void startGain(const Request &request);
     void startGain(const QList<Request> &requests);
 
-    bool    copyCoverImage() const;
-    QString createEmbedImage() const;
+    void copyCoverImage() const;
+    void createEmbedImage() const;
+
+    void createOutCue() const;
 };
 
 } // Namespace
