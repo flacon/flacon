@@ -279,7 +279,9 @@ QStringList Gain_Mp3::programArgs(const QStringList &files, const GainType gainT
 {
     QStringList args;
     args << programPath();
-    args << "-a"; // Album gain
+    if (gainType == GainType::Album) {
+        args << "-a"; // Album gain
+    }
     args << "-c"; // ignore clipping warning when applying gain
 
     args << files;

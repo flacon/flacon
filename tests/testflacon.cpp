@@ -1227,7 +1227,7 @@ void TestFlacon::testOutFormatGainArgs_data()
     QTest::newRow("Mp3 Track")
             << "MP3"
             << GainType::Track
-            << "/opt/mp3gain -a -c "
+            << "/opt/mp3gain -c "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
     //*******************************************
