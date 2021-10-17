@@ -46,17 +46,10 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(LOG, "Converter")
+Q_LOGGING_CATEGORY(LOG, "DiscPipeline")
 }
 
 using namespace Conv;
-
-struct SplitterRequest
-{
-    ConvTracks tracks;
-    QString    inFile;
-    QString    outDir;
-};
 
 /************************************************
  *
@@ -109,87 +102,36 @@ void WorkerThread::run()
 /************************************************
  *
  ************************************************/
-class DiscPipeline::Data
-{
-public:
-    Data(DiscPipeline *pipeline) :
-        mPipeline(pipeline)
-    {
-    }
-
-    ~Data()
-    {
-        delete mTmpDir;
-    }
-
-    DiscPipeline                *mPipeline;
-    QMap<TrackId, ConvTrack>     mTracks;
-    QList<SplitterRequest>       mSplitterRequests;
-    QList<DiscPipeline::Request> mEncoderRequests;
-    QList<DiscPipeline::Request> mGainRequests;
-    QTemporaryDir               *mTmpDir = nullptr;
-    QVector<WorkerThread *>      mThreads;
-    QString                      mEmbedCoverFile;
-    bool                         mInterrupted = false;
-
-    void interrupt(TrackState state);
-    void createDir(const QString &dirName) const;
-};
-
-/************************************************
- *
- ************************************************/
-void DiscPipeline::Data::createDir(const QString &dirName) const
-{
-    QDir dir(dirName);
-
-    if (!dir.mkpath(".")) {
-        QString msg = QObject::tr("I can't create directory \"%1\".").arg(dir.path());
-        QString err = strerror(errno);
-        throw FlaconError(msg + "<br><br>" + err);
-    }
-
-    if (!QFileInfo(dir.path()).isWritable()) {
-        QString msg = QObject::tr("I can't write to directory \"%1\".").arg(dir.path());
-        QString err = strerror(errno);
-        throw FlaconError(msg + "<br><br>" + err);
-    }
-}
-
-/************************************************
- *
- ************************************************/
 DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks, const QString &workDir, QObject *parent) noexcept(false) :
     QObject(parent),
-    mData(new Data(this)),
     mProfile(profile),
     mDisc(disc),
-    mTracks(tracks),
     mWorkDir(workDir)
 {
 
     QString dir = QFileInfo(mWorkDir).dir().absolutePath();
     qCDebug(LOG) << "Create tmp dir" << dir;
 
-    mData->createDir(dir);
+    createDir(dir);
 
-    mData->mTmpDir = new QTemporaryDir(QString("%1/tmp").arg(dir));
-    mData->mTmpDir->setAutoRemove(true);
+    mTmpDir = new QTemporaryDir(QString("%1/tmp").arg(dir));
+    mTmpDir->setAutoRemove(true);
 
-    for (const ConvTrack &track : qAsConst(mTracks)) {
+    for (const ConvTrack &track : qAsConst(tracks)) {
         if (!track.isEnabled()) {
             continue;
         }
 
-        mData->mTracks[track.id()] = track;
+        mTracks[track.id()] = track;
 
-        mData->createDir(QFileInfo(track.resultFilePath()).absoluteDir().path());
+        qCDebug(LOG) << "Create directory for output files" << dir;
+        createDir(QFileInfo(track.resultFilePath()).absoluteDir().path());
     }
 
     // A disk can contain several audio files,
     // so we create several splitter requests.
     QString prev;
-    for (const ConvTrack &t : qAsConst(mTracks)) {
+    for (const ConvTrack &t : qAsConst(tracks)) {
         if (!t.isEnabled()) {
             continue;
         }
@@ -206,7 +148,7 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks
  ************************************************/
 DiscPipeline::~DiscPipeline()
 {
-    delete mData;
+    delete mTmpDir;
 }
 
 /************************************************
@@ -221,7 +163,7 @@ DiscPipeline::~DiscPipeline()
  ************************************************/
 void DiscPipeline::startWorker(int *splitterCount, int *count)
 {
-    if (mData->mInterrupted) {
+    if (mInterrupted) {
         return;
     }
 
@@ -229,8 +171,8 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
         return;
     }
 
-    if (*splitterCount > 0 && !mData->mSplitterRequests.isEmpty()) {
-        SplitterRequest req = mData->mSplitterRequests.takeFirst();
+    if (*splitterCount > 0 && !mSplitterRequests.isEmpty()) {
+        SplitterRequest req = mSplitterRequests.takeFirst();
         startSplitter(req.tracks, req.inFile, req.outDir);
         --(*splitterCount);
         --(*count);
@@ -238,21 +180,21 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
     }
 
     if (mProfile.gainType() == GainType::Track) {
-        while (*count > 0 && !mData->mGainRequests.isEmpty()) {
-            startGain(mData->mGainRequests.takeFirst());
+        while (*count > 0 && !mGainRequests.isEmpty()) {
+            startGain(mGainRequests.takeFirst());
             --(*count);
         }
     }
     else if (mProfile.gainType() == GainType::Album) {
-        if (*count > 0 && mData->mGainRequests.count() == mData->mTracks.count()) {
-            startGain(mData->mGainRequests);
-            mData->mGainRequests.clear();
+        if (*count > 0 && mGainRequests.count() == mTracks.count()) {
+            startGain(mGainRequests);
+            mGainRequests.clear();
             --(*count);
         }
     }
 
-    while (*count > 0 && !mData->mEncoderRequests.isEmpty()) {
-        const Request req = mData->mEncoderRequests.takeFirst();
+    while (*count > 0 && !mEncoderRequests.isEmpty()) {
+        const Request req = mEncoderRequests.takeFirst();
         startEncoder(req.track, req.inputFile);
         --(*count);
     }
@@ -264,7 +206,7 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
 void DiscPipeline::addSpliterRequest(const InputAudioFile &audio)
 {
     QString    inFile = audio.filePath();
-    QString    outDir = mData->mTmpDir->path();
+    QString    outDir = mTmpDir->path();
     ConvTracks tracks;
 
     for (const ConvTrack &t : qAsConst(mTracks)) {
@@ -273,7 +215,7 @@ void DiscPipeline::addSpliterRequest(const InputAudioFile &audio)
         }
     }
 
-    mData->mSplitterRequests << SplitterRequest { tracks, inFile, outDir };
+    mSplitterRequests << SplitterRequest { tracks, inFile, outDir };
 }
 
 /************************************************
@@ -290,7 +232,7 @@ void DiscPipeline::startSplitter(const ConvTracks &tracks, const QString &inFile
     connect(splitter, &Splitter::trackReady, this, &DiscPipeline::addEncoderRequest);
     connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
 
-    mData->mThreads << thread;
+    mThreads << thread;
     thread->start();
 
     mTracks[tracks.first().id()].setState(TrackState::Splitting);
@@ -303,15 +245,16 @@ void DiscPipeline::startSplitter(const ConvTracks &tracks, const QString &inFile
         createOutCue();
     }
     catch (const FlaconError &err) {
-        trackError(mTracks.first(), err.what());
+        trackError(tracks.first(), err.what());
     }
 }
+
 /************************************************
  *
  ************************************************/
 void DiscPipeline::addEncoderRequest(const ConvTrack &track, const QString &inputFile)
 {
-    mData->mEncoderRequests << Request { track, inputFile };
+    mEncoderRequests << Request { track, inputFile };
     trackProgress(track, TrackState::Queued, 0);
     emit readyStart();
 }
@@ -322,14 +265,14 @@ void DiscPipeline::addEncoderRequest(const ConvTrack &track, const QString &inpu
 void DiscPipeline::startEncoder(const ConvTrack &track, const QString inputFile)
 {
     QFileInfo trackFile(track.resultFilePath());
-    QString   outFile = QDir(mData->mTmpDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
+    QString   outFile = QDir(mTmpDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
 
     Encoder *encoder = mProfile.outFormat()->createEncoder();
     encoder->setInputFile(inputFile);
     encoder->setOutFile(outFile);
     encoder->setTrack(track);
     encoder->setProfile(mProfile);
-    encoder->setCoverFile(mData->mEmbedCoverFile);
+    encoder->setCoverFile(mEmbedCoverFile);
 
     WorkerThread *thread = new WorkerThread(encoder, this);
 
@@ -346,7 +289,7 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString inputFile)
 
     connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
 
-    mData->mThreads << thread;
+    mThreads << thread;
     thread->start();
 }
 
@@ -362,7 +305,7 @@ void DiscPipeline::addGainRequest(const ConvTrack &track, const QString &fileNam
         trackProgress(track, TrackState::Queued, 0);
     }
 
-    mData->mGainRequests << Request { track, fileName };
+    mGainRequests << Request { track, fileName };
     emit readyStart();
 }
 
@@ -391,7 +334,7 @@ void DiscPipeline::startGain(const QList<Request> &requests)
     connect(worker, &Gain::trackReady, this, &DiscPipeline::trackDone);
     connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
 
-    mData->mThreads << thread;
+    mThreads << thread;
     thread->start();
 }
 
@@ -414,7 +357,7 @@ void DiscPipeline::trackDone(const ConvTrack &track, const QString &outFileName)
         trackError(track, tr("I can't rename file:\n%1 to %2\n%3").arg(outFileName, track.resultFilePath(), file.errorString()));
     }
 
-    mData->mTracks[track.id()].setState(TrackState::OK);
+    mTracks[track.id()].setState(TrackState::OK);
     emit trackProgressChanged(track, TrackState::OK, 0);
     emit threadFinished();
 
@@ -425,9 +368,29 @@ void DiscPipeline::trackDone(const ConvTrack &track, const QString &outFileName)
 }
 
 /************************************************
+ *
+ ************************************************/
+void DiscPipeline::createDir(const QString &dirName) const
+{
+    QDir dir(dirName);
+
+    if (!dir.mkpath(".")) {
+        QString msg = QObject::tr("I can't create directory \"%1\".").arg(dir.path());
+        QString err = strerror(errno);
+        throw FlaconError(msg + "<br><br>" + err);
+    }
+
+    if (!QFileInfo(dir.path()).isWritable()) {
+        QString msg = QObject::tr("I can't write to directory \"%1\".").arg(dir.path());
+        QString err = strerror(errno);
+        throw FlaconError(msg + "<br><br>" + err);
+    }
+}
+
+/************************************************
 
  ************************************************/
-void DiscPipeline::Data::interrupt(TrackState state)
+void DiscPipeline::interrupt(TrackState state)
 {
     mInterrupted = true;
     mEncoderRequests.clear();
@@ -442,7 +405,7 @@ void DiscPipeline::Data::interrupt(TrackState state)
             case TrackState::WriteGain:
             case TrackState::NotRunning:
                 track.setState(state);
-                emit mPipeline->trackProgressChanged(track, state, 0);
+                emit trackProgressChanged(track, state, 0);
                 break;
 
             case TrackState::Canceled:
@@ -459,7 +422,7 @@ void DiscPipeline::Data::interrupt(TrackState state)
  ************************************************/
 void DiscPipeline::stop()
 {
-    mData->interrupt(TrackState::Aborted);
+    interrupt(TrackState::Aborted);
     emit stopAllThreads();
     emit threadFinished();
 
@@ -471,9 +434,9 @@ void DiscPipeline::stop()
  ************************************************/
 void DiscPipeline::trackError(const ConvTrack &track, const QString &message)
 {
-    mData->mTracks[track.id()].setState(TrackState::Error);
+    mTracks[track.id()].setState(TrackState::Error);
     emit trackProgressChanged(track, TrackState::Error, 0);
-    mData->interrupt(TrackState::Aborted);
+    interrupt(TrackState::Aborted);
     emit stopAllThreads();
     emit threadFinished();
 
@@ -486,7 +449,7 @@ void DiscPipeline::trackError(const ConvTrack &track, const QString &message)
  ************************************************/
 bool DiscPipeline::isRunning() const
 {
-    for (const ConvTrack &track : qAsConst(mData->mTracks)) {
+    for (const ConvTrack &track : qAsConst(mTracks)) {
         switch (track.state()) {
             case TrackState::Splitting:
             case TrackState::Encoding:
@@ -514,7 +477,7 @@ bool DiscPipeline::isRunning() const
 int DiscPipeline::runningThreadCount() const
 {
     int res = 0;
-    foreach (WorkerThread *thread, mData->mThreads) {
+    foreach (WorkerThread *thread, mThreads) {
         if (thread->isRunning())
             ++res;
     }
@@ -526,10 +489,10 @@ int DiscPipeline::runningThreadCount() const
  ************************************************/
 void DiscPipeline::trackProgress(const ConvTrack &track, TrackState state, int percent)
 {
-    if (mData->mInterrupted)
+    if (mInterrupted)
         return;
 
-    mData->mTracks[track.id()].setState(state);
+    mTracks[track.id()].setState(state);
     emit trackProgressChanged(track, state, percent);
 }
 
@@ -556,7 +519,7 @@ void DiscPipeline::copyCoverImage() const
 /************************************************
  *
  ************************************************/
-void DiscPipeline::createEmbedImage() const
+void DiscPipeline::createEmbedImage()
 {
     QString file = Settings::i()->embededCoverMode() != CoverMode::Disable ? mDisc->coverImageFile() : "";
     int     size = Settings::i()->embededCoverMode() == CoverMode::Scale ? Settings::i()->embededCoverImageSize() : 0;
@@ -565,11 +528,11 @@ void DiscPipeline::createEmbedImage() const
         return;
     }
 
-    CopyCover copyCover(file, size, mData->mTmpDir->path(), "cover");
+    CopyCover copyCover(file, size, mTmpDir->path(), "cover");
     if (!copyCover.run()) {
         throw FlaconError(copyCover.errorString());
     }
-    mData->mEmbedCoverFile = copyCover.fileName();
+    mEmbedCoverFile = copyCover.fileName();
 }
 
 /************************************************

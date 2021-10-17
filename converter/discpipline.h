@@ -82,19 +82,31 @@ private slots:
     void trackDone(const Conv::ConvTrack &track, const QString &outFileName);
 
 private:
-    class Data;
-    Data *mData;
+    Profile                  mProfile;
+    Disc                    *mDisc = nullptr;
+    QString                  mWorkDir;
+    QMap<TrackId, ConvTrack> mTracks;
+    QTemporaryDir           *mTmpDir = nullptr;
+    QVector<WorkerThread *>  mThreads;
+    QString                  mEmbedCoverFile;
+    bool                     mInterrupted = false;
 
-    Profile    mProfile;
-    Disc      *mDisc;
-    ConvTracks mTracks;
-    QString    mWorkDir;
+    struct SplitterRequest
+    {
+        ConvTracks tracks;
+        QString    inFile;
+        QString    outDir;
+    };
 
     struct Request
     {
         ConvTrack track;
         QString   inputFile;
     };
+
+    QList<SplitterRequest>       mSplitterRequests;
+    QList<DiscPipeline::Request> mEncoderRequests;
+    QList<DiscPipeline::Request> mGainRequests;
 
     void addSpliterRequest(const InputAudioFile &audio);
     void startSplitter(const ConvTracks &tracks, const QString &inFile, const QString &outDir);
@@ -106,8 +118,12 @@ private:
     void startGain(const Request &request);
     void startGain(const QList<Request> &requests);
 
+    void interrupt(TrackState state);
+
+    void createDir(const QString &dirName) const;
+
     void copyCoverImage() const;
-    void createEmbedImage() const;
+    void createEmbedImage();
 
     void createOutCue() const;
 };

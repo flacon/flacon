@@ -151,7 +151,6 @@ QStringList Encoder_Opus::programArgs() const
     args << "--comment" << QString("disctotal=%1").arg(track().discCount());
 
     if (!coverFile().isEmpty()) {
-        qDebug() << "--picture" << coverFile();
         args << "--picture" << coverFile();
     }
 

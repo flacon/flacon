@@ -299,7 +299,7 @@ int main(int argc, char *argv[])
     }
 
     if (parser.isSet("debug") || getenv("FLACON_DEBUG")) {
-        qSetMessagePattern(":::%{if-category}%{category}: %{endif}%{if-warning}Warning: %{endif}%{if-critical}Error: %{endif}%{if-fatal}Error: %{endif} [%{threadid}] %{message}");
+        qSetMessagePattern("%{time yyyy.MM.dd hh:mm:ss.zzz t} [%{threadid}] %{type}: %{category}: %{message}");
     }
     else {
         qSetMessagePattern("%{if-warning}Warning: %{endif}%{if-critical}Error: %{endif}%{if-fatal}Error: %{endif}%{message}");

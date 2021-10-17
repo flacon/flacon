@@ -115,7 +115,8 @@ void Converter::start(const Profile &profile)
  ************************************************/
 void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
 {
-    qCDebug(LOG) << "Start converter:" << jobs.length() << profile;
+    qCDebug(LOG) << "Start converter:" << jobs.length() << "\n"
+                 << profile;
     qCDebug(LOG) << "Temp dir =" << Settings::i()->tmpDir();
 
     if (jobs.isEmpty()) {

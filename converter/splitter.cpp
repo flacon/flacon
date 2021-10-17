@@ -31,7 +31,7 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(LOG, "Converter")
+Q_LOGGING_CATEGORY(LOG, "Splitter")
 }
 
 using namespace Conv;
@@ -91,10 +91,10 @@ void Splitter::run()
         }
         catch (FlaconError &err) {
             if (track.isPregap()) {
-                qWarning() << "Splitter error for pregap track : " << err.what();
+                qCWarning(LOG) << "Splitter error for pregap track : " << err.what();
             }
             else {
-                qWarning() << "Splitter error for track " << track.trackNum() << ": " << err.what();
+                qCWarning(LOG) << "Splitter error for track " << track.trackNum() << ": " << err.what();
             }
             deleteFile(outFileName);
             emit error(track, err.what());

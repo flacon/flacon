@@ -72,6 +72,7 @@ Track &Track::operator=(const Track &other)
     mCueIndexes  = other.mCueIndexes;
     mDuration    = other.mDuration;
     mCueFileName = other.mCueFileName;
+    mAudiofile   = other.mAudiofile;
 
     return *this;
 }
