@@ -36,12 +36,3 @@ ConvTrack::ConvTrack(const Track &other) :
     Track(other)
 {
 }
-
-/************************************************
- *
- ************************************************/
-CoverOptions::CoverOptions(const QString &fileName, int size) :
-    mFileName(fileName),
-    mSize(size)
-{
-}

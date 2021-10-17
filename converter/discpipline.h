@@ -41,40 +41,26 @@ class WorkerThread;
 
 struct DiscPipelineJob
 {
-    DiscPipelineJob(ConvTracks   tracks,
-                    CoverOptions copyCoverOptions,
-                    CoverOptions embedCoverOptions,
-                    QString      workDir,
-                    Profile      profile) :
+    DiscPipelineJob(ConvTracks tracks,
+                    QString    workDir) :
         mTracks(tracks),
-        mWorkDir(workDir),
-        mCopyCoverOptions(copyCoverOptions),
-        mEmbedCoverOptions(embedCoverOptions),
-        mProfile(profile)
+        mWorkDir(workDir)
     {
     }
 
     const ConvTracks &tracks() const { return mTracks; }
     QString           workDir() const { return mWorkDir; }
 
-    const CoverOptions &copyCoverOptions() const { return mCopyCoverOptions; }
-    const CoverOptions &embedCoverOptions() const { return mEmbedCoverOptions; }
-    const Profile      &profile() const { return mProfile; }
-
 public:
     ConvTracks mTracks;
     QString    mWorkDir;
-
-    CoverOptions mCopyCoverOptions;
-    CoverOptions mEmbedCoverOptions;
-    Profile      mProfile;
 };
 
 class DiscPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiscPipeline(const Profile &profile, const DiscPipelineJob &job, QObject *parent = nullptr) noexcept(false);
+    explicit DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks, const QString &workDir, const DiscPipelineJob &job, QObject *parent = nullptr) noexcept(false);
     virtual ~DiscPipeline();
 
     void startWorker(int *splitterCount, int *count);
@@ -99,7 +85,10 @@ private:
     class Data;
     Data *mData;
 
-    Profile mProfile;
+    Profile    mProfile;
+    Disc      *mDisc;
+    ConvTracks mTracks;
+    QString    mWorkDir;
 
     struct Request
     {
@@ -107,12 +96,17 @@ private:
         QString   inputFile;
     };
 
+    void addSpliterRequest(const InputAudioFile &audio);
+
     void addEncoderRequest(const Conv::ConvTrack &track, const QString &inputFile);
     void startEncoder(const ConvTrack &track, const QString inputFile);
 
     void addGainRequest(const Conv::ConvTrack &track, const QString &fileName);
     void startGain(const Request &request);
     void startGain(const QList<Request> &requests);
+
+    bool    copyCoverImage() const;
+    QString createEmbedImage() const;
 };
 
 } // Namespace

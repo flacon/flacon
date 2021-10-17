@@ -69,13 +69,6 @@ private:
  ************************************************/
 DiscPipelineJob Converter::Data::createDiscPipelineJob(const Job &converterJob, const Profile &profile)
 {
-    // Copy cover image .........................
-    QString copyCoverImage     = Settings::i()->coverMode() != CoverMode::Disable ? converterJob.disc->coverImageFile() : "";
-    int     copyCoverImageSize = Settings::i()->coverMode() == CoverMode::Scale ? Settings::i()->coverImageSize() : 0;
-
-    QString embedCoverImage     = Settings::i()->embededCoverMode() != CoverMode::Disable ? converterJob.disc->coverImageFile() : "";
-    int     embedCoverImageSize = Settings::i()->embededCoverMode() == CoverMode::Scale ? Settings::i()->embededCoverImageSize() : 0;
-
     // Tracks ..............................
     ConvTracks resTracks;
 
@@ -133,10 +126,7 @@ DiscPipelineJob Converter::Data::createDiscPipelineJob(const Job &converterJob, 
 
     QString wrkDir = workDir(converterJob.tracks.first());
 
-    CoverOptions copyCoverOptions(copyCoverImage, copyCoverImageSize);
-    CoverOptions embedCoverOptions(embedCoverImage, embedCoverImageSize);
-
-    return DiscPipelineJob(resTracks, copyCoverOptions, embedCoverOptions, wrkDir, profile);
+    return DiscPipelineJob(resTracks, wrkDir);
 }
 
 /************************************************
@@ -226,7 +216,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
             }
 
             DiscPipelineJob job      = mData->createDiscPipelineJob(converterJob, profile);
-            DiscPipeline   *pipeline = new DiscPipeline(profile, job, this);
+            DiscPipeline   *pipeline = new DiscPipeline(profile, converterJob.disc, job.tracks(), job.workDir(), job, this);
 
             connect(pipeline, &DiscPipeline::readyStart, this, &Converter::startThread);
             connect(pipeline, &DiscPipeline::threadFinished, this, &Converter::startThread);

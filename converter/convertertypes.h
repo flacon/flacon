@@ -74,22 +74,6 @@ private:
 
 using ConvTracks = QList<ConvTrack>;
 
-class CoverOptions
-{
-public:
-    CoverOptions() = default;
-    CoverOptions(const QString &fileName, int size);
-    CoverOptions(const CoverOptions &other) = default;
-    CoverOptions &operator=(const CoverOptions &other) = default;
-
-    QString fileName() const { return mFileName; }
-    int     size() const { return mSize; }
-
-private:
-    QString mFileName;
-    int     mSize = 0;
-};
-
 } // namespace
 
 Q_DECLARE_METATYPE(Conv::ConvTrack)
