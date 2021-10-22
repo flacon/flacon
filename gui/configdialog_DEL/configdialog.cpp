@@ -38,33 +38,35 @@
 
 static const int PROFILE_ID_ROLE = Qt::UserRole;
 
+#define DONE
+
 /************************************************
  *
  ************************************************/
-ConfigDialog *ConfigDialog::createAndShow(QWidget *parent)
-{
-    return createAndShow("", parent);
-}
+DONE ConfigDialog *ConfigDialog::createAndShow(QWidget *parent)
+DONE {
+DONE     return createAndShow("", parent);
+DONE }
 
 /************************************************
 
  ************************************************/
-ConfigDialog *ConfigDialog::createAndShow(const QString &profileId, QWidget *parent)
-{
-    ConfigDialog *instance = parent->findChild<ConfigDialog *>();
-
-    if (!instance)
-        instance = new ConfigDialog(parent);
-
-    instance->pages->setCurrentWidget(instance->profilesPage);
-
-    instance->show(profileId);
-    instance->raise();
-    instance->activateWindow();
-    instance->setAttribute(Qt::WA_DeleteOnClose);
-
-    return instance;
-}
+DONE ConfigDialog *ConfigDialog::createAndShow(const QString &profileId, QWidget *parent)
+DONE {
+DONE     ConfigDialog *instance = parent->findChild<ConfigDialog *>();
+DONE
+DONE     if (!instance)
+DONE         instance = new ConfigDialog(parent);
+DONE
+DONE     instance->pages->setCurrentWidget(instance->profilesPage);
+DONE
+DONE     instance->show(profileId);
+DONE     instance->raise();
+DONE     instance->activateWindow();
+DONE     instance->setAttribute(Qt::WA_DeleteOnClose);
+DONE
+DONE     return instance;
+DONE }
 
 /************************************************
  *

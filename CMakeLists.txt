@@ -77,10 +77,6 @@ set(HEADERS
     gui/trackview.h
     gui/trackviewmodel.h
     gui/trackviewdelegate.h
-    gui/configdialog/configdialog.h
-    gui/configdialog/profilewidget.h
-    gui/configdialog/addprofiledialog.h
-    gui/configdialog/covergroupbox.h
     gui/aboutdialog/aboutdialog.h
     gui/aboutdialog/translatorsinfo.h
     gui/coverdialog/coverdialog.h

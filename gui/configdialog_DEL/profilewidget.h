@@ -43,7 +43,8 @@ public:
     explicit ProfileWidget(const Profile &profile, QWidget *parent = nullptr);
     ~ProfileWidget();
 
-    Profile &profile();
+    Profile &profile() const { return mProfile; }
+    void setProfile(const Profile &value);
 
 private:
     void load();

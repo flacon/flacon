@@ -31,7 +31,7 @@
 #include "formats_out/outformat.h"
 #include "inputaudiofile.h"
 #include "formats_in/informat.h"
-#include "configdialog/configdialog.h"
+#include "preferences/preferencesdialog.h"
 #include "aboutdialog/aboutdialog.h"
 #include "scanner.h"
 #include "gui/coverdialog/coverdialog.h"
@@ -623,7 +623,7 @@ void MainWindow::stopConvert()
  ************************************************/
 void MainWindow::configure()
 {
-    ConfigDialog::createAndShow(nullptr, this);
+    PreferencesDialog::createAndShow(nullptr, this);
 }
 
 /************************************************
@@ -631,7 +631,7 @@ void MainWindow::configure()
  ************************************************/
 void MainWindow::configureEncoder()
 {
-    ConfigDialog::createAndShow(Settings::i()->currentProfile().id(), this);
+    PreferencesDialog::createAndShow(Settings::i()->currentProfile().id(), this);
 }
 
 /************************************************

@@ -168,6 +168,8 @@ void ProfileWidget::fixLayout()
 
     adjustSize();
 }
+
+
 #else
 void ProfileWidget::fixLayout()
 {
@@ -185,8 +187,12 @@ ProfileWidget::~ProfileWidget()
 /************************************************
  *
  ************************************************/
-Profile &ProfileWidget::profile()
+void ProfileWidget::setProfile(const Profile &value)
 {
-    save();
-    return mProfile;
+    mProfile = value;
+}
+
+void ProfileWidget::referesh()
+{
+    ui->outDirEdit.set
 }
