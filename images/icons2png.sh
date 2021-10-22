@@ -22,7 +22,11 @@ GRAY_FILES="add-disk.svg
 			pattern-button.svg
 			track-ok.svg
 			audio-button.svg
-			cue-button.svg"
+			cue-button.svg
+			preferences-audio.svg
+			preferences-general.svg
+			preferences-programs.svg
+			preferences-update.svg"
 
 COLOR_FILES="track-cancel.svg
 			warning.svg
@@ -46,7 +50,8 @@ function conv()
 	mkdir -p "${dir}"
 	sed -e "s/${SRC_COLOR}/${color}/g" icons/${svgFile} > "${dir}/_tmp.svg"
 
-	inkscape -z -e "${pngFile}" -w ${size} -h ${size} "${dir}/_tmp.svg"
+	rsvg-convert -w ${size} -h ${size} "${dir}/_tmp.svg" > "${pngFile}"
+	#inkscape --without-gui -z -e "${pngFile}" -w ${size} -h ${size} "${dir}/_tmp.svg"
 	rm "${dir}/_tmp.svg"
 
 	echo "        <file>${pngFile}</file>" >> ${RC_FILE}

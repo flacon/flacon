@@ -8,3 +8,6 @@ but we require linking to our web site. We distribute them under the license cal
 Alternatively, you could buy a license that doesn't require any linking.
 
 https://icons8.com/license/
+
+preferences-audio - https://icons8.com/icon/set/popular/fluency-systems-filled
+preferences-general.svg- https://icons8.com/icon/set/popular/fluency-systems-filled
