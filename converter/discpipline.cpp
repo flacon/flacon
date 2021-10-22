@@ -44,6 +44,7 @@
 #include <QCoreApplication>
 #include <errno.h>
 #include <QLoggingCategory>
+#include <QBuffer>
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "DiscPipeline")
@@ -242,7 +243,8 @@ void DiscPipeline::startSplitter(const ConvTracks &tracks, const QString &inFile
     try {
         copyCoverImage();
         createEmbedImage();
-        createOutCue();
+        writeOutCueFile();
+        loadEmbeddedCue();
     }
     catch (const FlaconError &err) {
         trackError(tracks.first(), err.what());
@@ -273,6 +275,7 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     encoder->setTrack(track);
     encoder->setProfile(mProfile);
     encoder->setCoverFile(mEmbedCoverFile);
+    encoder->setEmbeddedCue(mEmbeddedCue);
 
     WorkerThread *thread = new WorkerThread(encoder, this);
 
@@ -521,8 +524,8 @@ void DiscPipeline::copyCoverImage() const
  ************************************************/
 void DiscPipeline::createEmbedImage()
 {
-    QString file = Settings::i()->embededCoverMode() != CoverMode::Disable ? mDisc->coverImageFile() : "";
-    int     size = Settings::i()->embededCoverMode() == CoverMode::Scale ? Settings::i()->embededCoverImageSize() : 0;
+    QString file = Settings::i()->embeddedCoverMode() != CoverMode::Disable ? mDisc->coverImageFile() : "";
+    int     size = Settings::i()->embeddedCoverMode() == CoverMode::Scale ? Settings::i()->embeddedCoverImageSize() : 0;
 
     if (file.isEmpty()) {
         return;
@@ -538,14 +541,27 @@ void DiscPipeline::createEmbedImage()
 /************************************************
  *
  ************************************************/
-void DiscPipeline::createOutCue() const
+void DiscPipeline::writeOutCueFile()
 {
     if (!mProfile.isCreateCue()) {
         return;
     }
 
-    CueCreator cue(mDisc, mProfile.preGapType(), mProfile.cueFileName());
-    if (!cue.write()) {
-        throw FlaconError(cue.errorString());
+    CueCreator cue(mDisc, mProfile.preGapType());
+    cue.writeToFile(mProfile.cueFileName());
+}
+
+/************************************************
+ *
+ ************************************************/
+void DiscPipeline::loadEmbeddedCue()
+{
+    if (!mProfile.isEmbedCue()) {
+        return;
     }
+
+    CueCreator cue(mDisc, mProfile.preGapType());
+    QBuffer    buf;
+    cue.write(&buf);
+    mEmbeddedCue = QString::fromUtf8(buf.data());
 }

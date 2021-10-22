@@ -83,13 +83,12 @@ private slots:
 
 private:
     Profile                  mProfile;
-    Disc                    *mDisc = nullptr;
+    Disc *                   mDisc = nullptr;
     QString                  mWorkDir;
     QMap<TrackId, ConvTrack> mTracks;
-    QTemporaryDir           *mTmpDir = nullptr;
-    QVector<WorkerThread *>  mThreads;
+    QTemporaryDir *          mTmpDir = nullptr;
     QString                  mEmbedCoverFile;
-    bool                     mInterrupted = false;
+    QString                  mEmbeddedCue;
 
     struct SplitterRequest
     {
@@ -104,6 +103,8 @@ private:
         QString   inputFile;
     };
 
+    QVector<WorkerThread *>      mThreads;
+    bool                         mInterrupted = false;
     QList<SplitterRequest>       mSplitterRequests;
     QList<DiscPipeline::Request> mEncoderRequests;
     QList<DiscPipeline::Request> mGainRequests;
@@ -125,7 +126,8 @@ private:
     void copyCoverImage() const;
     void createEmbedImage();
 
-    void createOutCue() const;
+    void writeOutCueFile();
+    void loadEmbeddedCue();
 };
 
 } // Namespace

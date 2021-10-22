@@ -72,8 +72,8 @@ public:
     bool isCreateCue() const;
     void setCreateCue(bool value);
 
-    bool isEmbededCue() const;
-    void setEmbededCue(bool value);
+    bool isEmbedCue() const;
+    void setEmbedCue(bool value);
 
     QString cueFileName() const;
     void    setCueFileName(const QString &value);

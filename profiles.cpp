@@ -270,7 +270,7 @@ void Profile::setCreateCue(bool value)
 /************************************************
  *
  ************************************************/
-bool Profile::isEmbededCue() const
+bool Profile::isEmbedCue() const
 {
     return value(EMBED_CUE_KEY, false).toBool();
 }
@@ -278,7 +278,7 @@ bool Profile::isEmbededCue() const
 /************************************************
  *
  ************************************************/
-void Profile::setEmbededCue(bool value)
+void Profile::setEmbedCue(bool value)
 {
     setValue(EMBED_CUE_KEY, value);
 }

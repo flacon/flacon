@@ -39,27 +39,26 @@ namespace Conv {
 class CueCreator
 {
 public:
-    explicit CueCreator(const Disc *disc, PreGapType preGapType, const QString &fileTemplate);
-    bool write();
+    explicit CueCreator(const Disc *disc, PreGapType preGapType);
 
-    QString errorString() const { return mErrorString; }
+    void    write(QIODevice *out);
+    QString writeToFile(const QString &fileTemplate);
 
     QTextCodec *textCodec() const { return mTextCodec; }
     void        setTextCodecName(const QString &codecName);
     void        setTextCodecMib(int mib);
 
 private:
-    const Disc *     mDisc;
+    const Disc      *mDisc;
     const PreGapType mPreGapType;
-    QFile            mFile;
-    QString          mErrorString;
-    QTextCodec *     mTextCodec;
-    Track            mGlobalTags;
+
+    QTextCodec *mTextCodec;
+    Track       mGlobalTags;
 
     void initGlobalTags();
-    void writeLine(const QString &text);
-    void writeGlobalTag(const QString &format, TagId tagId);
-    void writeTrackTag(const Track *track, const QString &prefix, TagId tagId);
+    void writeLine(QIODevice *out, const QString &text);
+    void writeGlobalTag(QIODevice *out, const QString &format, TagId tagId);
+    void writeTrackTag(QIODevice *out, const Track *track, const QString &prefix, TagId tagId);
 };
 
 } // namepace

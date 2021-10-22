@@ -36,24 +36,11 @@ using namespace Conv;
 /************************************************
 
  ************************************************/
-CueCreator::CueCreator(const Disc *disc, PreGapType preGapType, const QString &fileTemplate) :
+CueCreator::CueCreator(const Disc *disc, PreGapType preGapType) :
     mDisc(disc),
     mPreGapType(preGapType)
 {
-    Track *         track = mDisc->track(0);
-    QString         dir   = QFileInfo(track->resultFilePath()).dir().absolutePath();
-    PatternExpander expander(*track);
-    expander.setTrackNum(0);
-    expander.setTrackCount(mDisc->count());
-    expander.setDiscNum(mDisc->discNum());
-    expander.setDiscCount(mDisc->discCount());
 
-    QString fileName = expander.expand(fileTemplate);
-
-    if (!fileName.endsWith(".cue"))
-        fileName += ".cue";
-
-    mFile.setFileName(dir + QDir::separator() + fileName);
     setTextCodecName("UTF-8");
 }
 
@@ -121,106 +108,133 @@ void CueCreator::initGlobalTags()
 /************************************************
 
  ************************************************/
-void CueCreator::writeLine(const QString &text)
+void CueCreator::writeLine(QIODevice *out, const QString &text)
 {
-    mFile.write(mTextCodec->fromUnicode(text));
-    mFile.write("\n");
+    out->write(mTextCodec->fromUnicode(text));
+    out->write("\n");
 }
 
 /************************************************
 
  ************************************************/
-void CueCreator::writeGlobalTag(const QString &format, TagId tagId)
+void CueCreator::writeGlobalTag(QIODevice *out, const QString &format, TagId tagId)
 {
     QString value = mGlobalTags.tag(tagId);
 
-    if (!value.isEmpty())
-        writeLine(format.arg(value));
+    if (!value.isEmpty()) {
+        writeLine(out, format.arg(value));
+    }
 }
 
 /************************************************
 
  ************************************************/
-void CueCreator::writeTrackTag(const Track *track, const QString &prefix, TagId tagId)
+void CueCreator::writeTrackTag(QIODevice *out, const Track *track, const QString &prefix, TagId tagId)
 {
     QString value = track->tag(tagId);
 
-    if (!value.isEmpty() && value != mGlobalTags.tag(tagId))
-        writeLine(prefix.arg(value));
+    if (!value.isEmpty() && value != mGlobalTags.tag(tagId)) {
+        writeLine(out, prefix.arg(value));
+    }
 }
 
 /************************************************
 
  ************************************************/
-bool CueCreator::write()
+void CueCreator::write(QIODevice *out)
 {
+    if (!out->isOpen()) {
+        if (!out->open(QIODevice::WriteOnly | QIODevice::Text)) {
+            throw FlaconError(QObject::tr("I can't write CUE:<br>%2").arg(out->errorString()));
+        }
+    }
     // If the first track starts with zero second, doesn't make sense to create pregap track.
     bool createPreGapFile = mPreGapType == PreGapType::ExtractToFile && mDisc->track(0)->cueIndex(1).milliseconds() > 0;
-
-    if (!mFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        mErrorString = QObject::tr("I can't write CUE file <b>%1</b>:<br>%2").arg(mFile.fileName(), mFile.errorString());
-        return false;
-    }
 
     initGlobalTags();
 
     // Common ...........................
-    writeGlobalTag("CATALOG %1", TagId::Catalog);
-    writeGlobalTag("CDTEXTFILE \"%1\"", TagId::CDTextfile);
-    writeGlobalTag("REM GENRE \"%1\"", TagId::Genre);
-    writeGlobalTag("REM DATE %1", TagId::Date);
-    writeGlobalTag("REM DISCID %1", TagId::DiscId);
-    writeLine(QString("REM COMMENT \"Flacon v%1\"").arg(FLACON_VERSION));
-    writeGlobalTag("REM TOTALDISCS %1", TagId::DiscCount);
-    writeGlobalTag("REM DISCNUMBER %1", TagId::DiscNum);
-    writeGlobalTag("PERFORMER \"%1\"", TagId::Artist);
-    writeGlobalTag("SONGWRITER \"%1\"", TagId::SongWriter);
-    writeGlobalTag("TITLE \"%1\"", TagId::Album);
+    writeGlobalTag(out, "CATALOG %1", TagId::Catalog);
+    writeGlobalTag(out, "CDTEXTFILE \"%1\"", TagId::CDTextfile);
+    writeGlobalTag(out, "REM GENRE \"%1\"", TagId::Genre);
+    writeGlobalTag(out, "REM DATE %1", TagId::Date);
+    writeGlobalTag(out, "REM DISCID %1", TagId::DiscId);
+    writeLine(out, QString("REM COMMENT \"Flacon v%1\"").arg(FLACON_VERSION));
+    writeGlobalTag(out, "REM TOTALDISCS %1", TagId::DiscCount);
+    writeGlobalTag(out, "REM DISCNUMBER %1", TagId::DiscNum);
+    writeGlobalTag(out, "PERFORMER \"%1\"", TagId::Artist);
+    writeGlobalTag(out, "SONGWRITER \"%1\"", TagId::SongWriter);
+    writeGlobalTag(out, "TITLE \"%1\"", TagId::Album);
 
     if (createPreGapFile)
-        writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->preGapTrack()->resultFilePath()).fileName()));
+        writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->preGapTrack()->resultFilePath()).fileName()));
     else
-        writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->track(0)->resultFilePath()).fileName()));
+        writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->track(0)->resultFilePath()).fileName()));
 
     // Tracks ...........................
     CueIndex prevIndex("00:00:00");
     for (int i = 0; i < mDisc->count(); ++i) {
-        Track *  track  = mDisc->track(i);
+        Track   *track  = mDisc->track(i);
         CueIndex index0 = track->cueIndex(0);
         CueIndex index1 = track->cueIndex(1);
 
-        writeLine(QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+        writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
 
-        writeTrackTag(track, "    FLAGS %1", TagId::Flags);
-        writeTrackTag(track, "    ISRC %1", TagId::ISRC);
-        writeTrackTag(track, "    TITLE \"%1\"", TagId::Title);
+        writeTrackTag(out, track, "    FLAGS %1", TagId::Flags);
+        writeTrackTag(out, track, "    ISRC %1", TagId::ISRC);
+        writeTrackTag(out, track, "    TITLE \"%1\"", TagId::Title);
 
         if (i == 0) {
             if (createPreGapFile) {
-                writeLine(QString("    INDEX 00 %1").arg("00:00:00"));
-                writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
-                writeLine(QString("    INDEX 01 %1").arg("00:00:00"));
+                writeLine(out, QString("    INDEX 00 %1").arg("00:00:00"));
+                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+                writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
             }
             else {
-                writeLine(QString("    INDEX 00 %1").arg("00:00:00"));
-                writeLine(QString("    INDEX 01 %1").arg(index1.toString()));
+                writeLine(out, QString("    INDEX 00 %1").arg("00:00:00"));
+                writeLine(out, QString("    INDEX 01 %1").arg(index1.toString()));
             }
         }
         else {
             if (!index0.isNull())
-                writeLine(QString("    INDEX 00 %1").arg((index0 - prevIndex).toString()));
+                writeLine(out, QString("    INDEX 00 %1").arg((index0 - prevIndex).toString()));
 
             prevIndex = index1;
-            writeLine(QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
-            writeLine(QString("    INDEX 01 %1").arg("00:00:00"));
+            writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+            writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
         }
 
-        writeTrackTag(track, "    REM GENRE \"%1\"", TagId::Genre);
-        writeTrackTag(track, "    REM DATE %1", TagId::Date);
-        writeTrackTag(track, "    PERFORMER \"%1\"", TagId::Artist);
-        writeTrackTag(track, "    SONGWRITER \"%1\"", TagId::SongWriter);
+        writeTrackTag(out, track, "    REM GENRE \"%1\"", TagId::Genre);
+        writeTrackTag(out, track, "    REM DATE %1", TagId::Date);
+        writeTrackTag(out, track, "    PERFORMER \"%1\"", TagId::Artist);
+        writeTrackTag(out, track, "    SONGWRITER \"%1\"", TagId::SongWriter);
+    }
+}
+
+QString CueCreator::writeToFile(const QString &fileTemplate)
+{
+    Track          *track = mDisc->track(0);
+    QString         dir   = QFileInfo(track->resultFilePath()).dir().absolutePath();
+    PatternExpander expander(*track);
+    expander.setTrackNum(0);
+    expander.setTrackCount(mDisc->count());
+    expander.setDiscNum(mDisc->discNum());
+    expander.setDiscCount(mDisc->discCount());
+
+    QString fileName = expander.expand(fileTemplate);
+
+    if (!fileName.endsWith(".cue"))
+        fileName += ".cue";
+
+    QFile file;
+    file.setFileName(dir + QDir::separator() + fileName);
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        throw FlaconError(QObject::tr("I can't write CUE file <b>%1</b>:<br>%2").arg(file.fileName(), file.errorString()));
     }
 
-    mFile.close();
-    return true;
+    write(&file);
+    file.close();
+
+    return fileName;
 }

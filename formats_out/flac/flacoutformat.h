@@ -23,13 +23,12 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef OUT_FLAC_H
-#define OUT_FLAC_H
+#ifndef FLACOITFORMAT_H
+#define FLACOITFORMAT_H
 
 #include "../outformat.h"
 #include "../encoderconfigpage.h"
 #include "ui_out_flac_config.h"
-#include "../converter/encoder.h"
 #include "../converter/gain.h"
 
 class OutFormat_Flac : public OutFormat
@@ -61,13 +60,6 @@ public:
     virtual void save() override;
 };
 
-class Encoder_Flac : public Conv::Encoder
-{
-public:
-    QString     programName() const override { return "flac"; }
-    QStringList programArgs() const override;
-};
-
 class Gain_Flac : public Conv::Gain
 {
 public:
@@ -76,4 +68,4 @@ public:
     QStringList programArgs(const QStringList &files, const GainType gainType) const override;
 };
 
-#endif // OUT_FLAC_H
+#endif // FLACOITFORMAT_H

@@ -29,7 +29,7 @@
 #include "gain.h"
 
 #include "wav/out_wav.h"
-#include "flac/out_flac.h"
+#include "flac/flacoutformat.h"
 #include "aac/out_aac.h"
 #include "mp3/out_mp3.h"
 #include "ogg/out_ogg.h"
