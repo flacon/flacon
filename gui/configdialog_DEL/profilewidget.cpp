@@ -32,6 +32,8 @@
 
 #include <QDebug>
 
+#define DONE
+
 ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ProfileWidget),
@@ -42,8 +44,8 @@ ProfileWidget::ProfileWidget(const Profile &profile, QWidget *parent) :
     ui->formatLabel->setText(tr("%1 format", "Preferences dialog: format name label, %1 is a audio format name")
                                      .arg(profile.formatName()));
 
-    ui->outDirEdit->setPlaceholderText(tr("Same directory as CUE file", "Placeholder for output direcory combobox"));
-    ui->outDirButton->setBuddy(ui->outDirEdit);
+DONE    ui->outDirEdit->setPlaceholderText(tr("Same directory as CUE file", "Placeholder for output direcory combobox"));
+DONE    ui->outDirButton->setBuddy(ui->outDirEdit);
 
     ui->outPatternButton->setBuddy(ui->outPatternEdit);
     ui->outPatternButton->addStandardPatterns();
@@ -91,17 +93,17 @@ void ProfileWidget::load()
 {
     mEncoderWidget->load();
 
-    mEncoderWidget->loadWidget(Profile::OUT_DIRECTORY_KEY, ui->outDirEdit);
-    mEncoderWidget->loadWidget(Profile::OUT_PATTERN_KEY, ui->outPatternEdit);
-
-    if (mProfile.formatOptions().testFlag(FormatOption::Lossless)) {
-        mEncoderWidget->loadWidget(Profile::BITS_PER_SAMPLE_KEY, ui->bitDepthComboBox);
-        mEncoderWidget->loadWidget(Profile::SAMPLE_RATE_KEY, ui->sampleRateComboBox);
-    }
-
-    if (mProfile.formatOptions().testFlag(FormatOption::SupportGain)) {
-        mEncoderWidget->loadWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
-    }
+DONE    mEncoderWidget->loadWidget(Profile::OUT_DIRECTORY_KEY, ui->outDirEdit);
+DONE    mEncoderWidget->loadWidget(Profile::OUT_PATTERN_KEY, ui->outPatternEdit);
+DONE
+DONE     if (mProfile.formatOptions().testFlag(FormatOption::Lossless)) {
+DONE         mEncoderWidget->loadWidget(Profile::BITS_PER_SAMPLE_KEY, ui->bitDepthComboBox);
+DONE         mEncoderWidget->loadWidget(Profile::SAMPLE_RATE_KEY, ui->sampleRateComboBox);
+DONE     }
+DONE
+DONE     if (mProfile.formatOptions().testFlag(FormatOption::SupportGain)) {
+DONE         mEncoderWidget->loadWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
+DONE     }
 
     ui->outCueGroup->setSupportEmbededCue(mProfile.formatOptions().testFlag(FormatOption::SupportEmbededCue));
     ui->outCueGroup->setCreateCue(mProfile.value(Profile::CREATE_CUE_KEY).toBool());
@@ -117,17 +119,17 @@ void ProfileWidget::save() const
 {
     mEncoderWidget->save();
 
-    mEncoderWidget->saveWidget(Profile::OUT_DIRECTORY_KEY, ui->outDirEdit);
-    mEncoderWidget->saveWidget(Profile::OUT_PATTERN_KEY, ui->outPatternEdit);
-
-    if (mProfile.formatOptions().testFlag(FormatOption::Lossless)) {
-        mEncoderWidget->saveWidget(Profile::BITS_PER_SAMPLE_KEY, ui->bitDepthComboBox);
-        mEncoderWidget->saveWidget(Profile::SAMPLE_RATE_KEY, ui->sampleRateComboBox);
-    }
-
-    if (mProfile.formatOptions().testFlag(FormatOption::SupportGain)) {
-        mEncoderWidget->saveWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
-    }
+DONE     mEncoderWidget->saveWidget(Profile::OUT_DIRECTORY_KEY, ui->outDirEdit);
+DONE     mEncoderWidget->saveWidget(Profile::OUT_PATTERN_KEY, ui->outPatternEdit);
+DONE
+DONE     if (mProfile.formatOptions().testFlag(FormatOption::Lossless)) {
+DONE         mEncoderWidget->saveWidget(Profile::BITS_PER_SAMPLE_KEY, ui->bitDepthComboBox);
+DONE         mEncoderWidget->saveWidget(Profile::SAMPLE_RATE_KEY, ui->sampleRateComboBox);
+DONE     }
+DONE
+DONE    if (mProfile.formatOptions().testFlag(FormatOption::SupportGain)) {
+DONE         mEncoderWidget->saveWidget(Profile::REPLAY_GAIN_KEY, ui->gainComboBox);
+DONE     }
 
     mProfile.setValue(Profile::CREATE_CUE_KEY, ui->outCueGroup->isCreateCue());
     mProfile.setValue(Profile::EMBED_CUE_KEY, ui->outCueGroup->isEmbededCue());

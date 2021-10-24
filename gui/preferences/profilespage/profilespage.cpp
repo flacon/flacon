@@ -1,28 +1,57 @@
 #include "profilespage.h"
 #include "ui_profilespage.h"
 #include <QListWidgetItem>
+#include "addprofiledialog.h"
+#include <QDateTime>
 
 static const int PROFILE_ID_ROLE = Qt::UserRole;
 
+/************************************************
+ *
+ ************************************************/
 ProfilesPage::ProfilesPage(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ProfilesPage)
 {
     ui->setupUi(this);
 
-    qDebug() << Q_FUNC_INFO;
+    int h = ui->addProfileButton->sizeHint().height();
+    ui->addProfileButton->setFixedSize(h, h);
+    ui->delProfileButton->setFixedSize(h, h);
+
     connect(ui->profilesList, &QListWidget::currentItemChanged,
             this, &ProfilesPage::profileListSelected);
 
     connect(ui->profilesList, &QListWidget::itemChanged,
             this, &ProfilesPage::profileItemChanged);
+
+    connect(ui->addProfileButton, &QToolButton::clicked,
+            this, &ProfilesPage::addProfile);
+
+    connect(ui->delProfileButton, &QToolButton::clicked,
+            this, &ProfilesPage::deleteProfile);
 }
 
+/************************************************
+ *
+ ************************************************/
 ProfilesPage::~ProfilesPage()
 {
     delete ui;
 }
 
+/************************************************
+ *
+ ************************************************/
+const Profiles &ProfilesPage::profiles() const
+{
+    syncProfile();
+    return mProfiles;
+}
+
+/************************************************
+ *
+ ************************************************/
 void ProfilesPage::setProfiles(const Profiles &value)
 {
     mProfiles = value;
@@ -38,24 +67,32 @@ void ProfilesPage::setProfiles(const Profiles &value)
     ui->profilesList->sortItems();
     ui->profilesList->blockSignals(false);
 
-    setSelectedProfileId(mSelectedProfileId);
+    selectProfile("");
 }
 
-const QString &ProfilesPage::selectedProfileId() const
+/************************************************
+ *
+ ************************************************/
+void ProfilesPage::syncProfile() const
 {
-    return mSelectedProfileId;
+    if (mProfile.isValid()) {
+        ui->tabWidget->toProfile(&mProfile);
+        mProfiles.update(mProfile);
+    }
 }
 
-void ProfilesPage::setSelectedProfileId(const QString &value)
+/************************************************
+ *
+ ************************************************/
+void ProfilesPage::selectProfile(const QString &id)
 {
-    mSelectedProfileId = value;
-    bool isSelected    = false;
+    bool isSelected = false;
 
     for (int i = 0; i < ui->profilesList->count(); ++i) {
         const auto item = ui->profilesList->item(i);
         isSelected      = isSelected && item->isSelected();
 
-        if (ui->profilesList->item(i)->data(PROFILE_ID_ROLE) == mSelectedProfileId) {
+        if (ui->profilesList->item(i)->data(PROFILE_ID_ROLE) == id) {
             ui->profilesList->setCurrentRow(i);
             return;
         }
@@ -66,38 +103,29 @@ void ProfilesPage::setSelectedProfileId(const QString &value)
     }
 }
 
-void ProfilesPage::profileListSelected(QListWidgetItem *current, QListWidgetItem *previous)
+/************************************************
+ *
+ ************************************************/
+void ProfilesPage::profileListSelected(QListWidgetItem *current, QListWidgetItem *)
 {
-    qDebug() << Q_FUNC_INFO;
-    // pages->blockSignals(true);
-    // if (mProfileWidget && mProfileWidget->profile().isValid()) {
-    //        mProfiles.update(mProfileWidget->profile());
-    //    }
-
-    //    if (mProfileWidget) {
-    //        profilePlace->removeWidget(mProfileWidget);
-    //        delete mProfileWidget;
-    //        mProfileWidget = nullptr;
-    //    }
+    syncProfile();
 
     if (current) {
-        int     n       = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());
-        Profile profile = (n > -1) ? mProfiles[n] : Profile();
+        int n = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());
 
-        ui->tabWidget->setProfile(profile);
-        // mProfileWidget = new ProfileWidget(profile, profileParent);
-        // profilePlace->addWidget(mProfileWidget);
-        // mProfileWidget->show();
-        // profileParent->show();
+        mProfile = (n > -1) ? mProfiles[n] : Profile();
+        ui->tabWidget->fromProfile(mProfile);
     }
-    // pages->blockSignals(false);
 }
 
+/************************************************
+ *
+ ************************************************/
 void ProfilesPage::profileItemChanged(QListWidgetItem *item)
 {
     QString id = item->data(PROFILE_ID_ROLE).toString();
-    if (ui->tabWidget->profile().id() == id) {
-        ui->tabWidget->setProfileName(item->text());
+    if (mProfile.id() == id) {
+        mProfile.setName(item->text());
     }
 
     for (Profile &p : mProfiles) {
@@ -105,4 +133,72 @@ void ProfilesPage::profileItemChanged(QListWidgetItem *item)
             p.setName(item->text());
         }
     }
+}
+
+/************************************************
+ *
+ ************************************************/
+void ProfilesPage::addProfile()
+{
+    const Profile   &cur = mProfile;
+    AddProfileDialog dialog(this);
+    dialog.setWindowModality(Qt::WindowModal);
+
+    dialog.setFormatId(cur.formatId());
+
+    if (!dialog.exec())
+        return;
+
+    OutFormat *format = OutFormat::formatForId(dialog.formaiId());
+    if (!format)
+        return;
+
+    QString id = QString("%1_%2")
+                         .arg(format->id())
+                         .arg(QDateTime::currentMSecsSinceEpoch());
+
+    Profile profile(*format, id);
+    profile.setName(dialog.profileName());
+    profile.setOutFileDir(cur.outFileDir());
+    profile.setOutFilePattern(cur.outFilePattern());
+
+    mProfiles.append(profile);
+
+    setProfiles(mProfiles);
+    selectProfile(profile.id());
+}
+
+/************************************************
+ *
+ ************************************************/
+void ProfilesPage::deleteProfile()
+{
+    if (!mProfile.isValid()) {
+        return;
+    }
+
+    int n = (mProfiles.indexOf(mProfile.id()));
+    if (n < 0) {
+        return;
+    }
+
+    QMessageBox dialog(this);
+    dialog.setText(tr("Are you sure you want to delete the profile \"%1\"?", "Message box text").arg(mProfile.name()));
+    dialog.setTextFormat(Qt::RichText);
+    dialog.setIconPixmap(QPixmap(":/64/mainicon"));
+
+    dialog.setStandardButtons(QMessageBox::Cancel | QMessageBox::Yes);
+    dialog.setButtonText(QMessageBox::Yes, tr("Delete the profile", "Button caption"));
+    dialog.setDefaultButton(QMessageBox::Yes);
+
+    dialog.setWindowModality(Qt::WindowModal);
+
+    int ret = dialog.exec();
+
+    if (ret != QMessageBox::Yes) {
+        return;
+    }
+
+    delete ui->profilesList->takeItem(ui->profilesList->currentRow());
+    mProfiles.removeAt(n);
 }

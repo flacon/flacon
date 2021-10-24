@@ -18,20 +18,24 @@ public:
     explicit ProfilesPage(QWidget *parent = nullptr);
     ~ProfilesPage();
 
-    const Profiles &profiles() const { return mProfiles; }
+    const Profiles &profiles() const;
     void            setProfiles(const Profiles &value);
 
-    const QString &selectedProfileId() const;
-    void           setSelectedProfileId(const QString &value);
+    QString selectedProfileId() const { return mProfile.id(); };
+
+    void selectProfile(const QString &id);
 
 private:
     Ui::ProfilesPage *ui;
-    Profiles          mProfiles;
-    Profile           mCurrentProfile;
-    QString           mSelectedProfileId;
+    mutable Profiles  mProfiles;
+    mutable Profile   mProfile;
 
     void profileListSelected(QListWidgetItem *current, QListWidgetItem *previous);
     void profileItemChanged(QListWidgetItem *item);
+    void syncProfile() const;
+
+    void addProfile();
+    void deleteProfile();
 };
 
 #endif // PROFILESPAGE_H

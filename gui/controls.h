@@ -342,6 +342,22 @@ public:
 /************************************************
  *
  ************************************************/
+template <typename T>
+class EnumCombobox : public QComboBox
+{
+public:
+    using QComboBox::QComboBox;
+
+    T    value() const { return T(currentData().toInt()); }
+    void setValue(const T &val) { setCurrentIndex(qMax(0, findData(int(val)))); }
+
+    void addItem(const QString &atext, const T &value) { QComboBox::addItem(atext, int(value)); }
+    // void QComboBox::addItem(const QString &atext, const QVariant &auserData)
+};
+
+/************************************************
+ *
+ ************************************************/
 class ErrorBox : public QMessageBox
 {
     Q_OBJECT

@@ -623,7 +623,8 @@ void MainWindow::stopConvert()
  ************************************************/
 void MainWindow::configure()
 {
-    PreferencesDialog::createAndShow(nullptr, this);
+    auto dlg = PreferencesDialog::createAndShow(nullptr, this);
+    connect(dlg, &PreferencesDialog::finished, this, &MainWindow::refreshEdits, Qt::UniqueConnection);
 }
 
 /************************************************
@@ -631,7 +632,8 @@ void MainWindow::configure()
  ************************************************/
 void MainWindow::configureEncoder()
 {
-    PreferencesDialog::createAndShow(Settings::i()->currentProfile().id(), this);
+    auto dlg = PreferencesDialog::createAndShow(Settings::i()->currentProfile().id(), this);
+    connect(dlg, &PreferencesDialog::finished, this, &MainWindow::refreshEdits, Qt::UniqueConnection);
 }
 
 /************************************************

@@ -5,6 +5,7 @@
 #include "profiles.h"
 #include <memory>
 #include "formats_out/encoderconfigpage.h"
+#include "../controls.h"
 
 namespace Ui {
 class ProfileTabWidget;
@@ -18,17 +19,26 @@ public:
     explicit ProfileTabWidget(QWidget *parent = nullptr);
     ~ProfileTabWidget();
 
-    Profile profile() const;
-    void    setProfile(const Profile &profile);
+    void fromProfile(const Profile &profile);
+    void toProfile(Profile *profile) const;
 
-    QString profileName() const { return mProfile.name(); }
-    void    setProfileName(const QString &value);
+    // Profile profile() const;
+    // void    setProfile(const Profile &profile);
+
+    // QString profileName() const { return mProfile.name(); }
+    // void setProfileName(const QString &value);
 
 private:
     Ui::ProfileTabWidget *ui;
 
-    Profile                            mProfile;
+    // Profile                            mProfile;
     std::unique_ptr<EncoderConfigPage> mEncoderWidget = nullptr;
+
+    void recreateEncoderWidget(const Profile &profile);
 };
+
+using BitsPerSampleCombobox = EnumCombobox<int>;
+using SampleRateCombobox    = EnumCombobox<SampleRate>;
+using GainTypeCombobox      = EnumCombobox<GainType>;
 
 #endif // PROFILETABWIDGET_H

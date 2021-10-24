@@ -40,17 +40,17 @@ static const int PROFILE_ID_ROLE = Qt::UserRole;
 
 #define DONE
 
-/************************************************
- *
- ************************************************/
+DONE /************************************************
+DONE  *
+DONE  ************************************************/
 DONE ConfigDialog *ConfigDialog::createAndShow(QWidget *parent)
 DONE {
 DONE     return createAndShow("", parent);
 DONE }
-
-/************************************************
-
- ************************************************/
+DONE
+DONE /************************************************
+DONE
+DONE  ************************************************/
 DONE ConfigDialog *ConfigDialog::createAndShow(const QString &profileId, QWidget *parent)
 DONE {
 DONE     ConfigDialog *instance = parent->findChild<ConfigDialog *>();
@@ -67,44 +67,44 @@ DONE     instance->setAttribute(Qt::WA_DeleteOnClose);
 DONE
 DONE     return instance;
 DONE }
-
-/************************************************
- *
- ************************************************/
-void ConfigDialog::show(const QString &profileId)
-{
-    for (int i = 0; i < profilesList->count(); ++i) {
-        QListWidgetItem *item = profilesList->item(i);
-        if (item->data(PROFILE_ID_ROLE).toString() == profileId) {
-            profilesList->setCurrentItem(item);
-            break;
-        }
-    }
-
-    QDialog::show();
-}
-
-/************************************************
-
- ************************************************/
-ConfigDialog::ConfigDialog(QWidget *parent) :
-    QDialog(parent)
-{
-    setupUi(this);
-
-    this->setMinimumSize(this->size());
+DONE
+DONE /************************************************
+DONE  *
+DONE  ************************************************/
+DONE void ConfigDialog::show(const QString &profileId)
+DONE {
+DONE     for (int i = 0; i < profilesList->count(); ++i) {
+DONE         QListWidgetItem *item = profilesList->item(i);
+DONE         if (item->data(PROFILE_ID_ROLE).toString() == profileId) {
+DONE             profilesList->setCurrentItem(item);
+DONE             break;
+DONE         }
+DONE     }
+DONE
+DONE     QDialog::show();
+DONE }
+DONE
+DONE /************************************************
+DONE
+DONE  ************************************************/
+DONE ConfigDialog::ConfigDialog(QWidget *parent) :
+DONE     QDialog(parent)
+DONE {
+DONE     setupUi(this);
+DONE
+DONE    this->setMinimumSize(this->size());
 
     generalPage->setWindowTitle(tr("General configuration"));
     programsPage->setWindowTitle(tr("Full path of the external applications"));
 
     initGeneralPage();
-    int width  = Settings::i()->value(Settings::ConfigureDialog_Width).toInt();
-    int height = Settings::i()->value(Settings::ConfigureDialog_Height).toInt();
-    resize(width, height);
-
-    int h = addProfileButton->sizeHint().height();
-    addProfileButton->setFixedSize(h, h);
-    delProfileButton->setFixedSize(h, h);
+DONE    int width  = Settings::i()->value(Settings::ConfigureDialog_Width).toInt();
+DONE    int height = Settings::i()->value(Settings::ConfigureDialog_Height).toInt();
+DONE    resize(width, height);
+DONE
+DONE    int h = addProfileButton->sizeHint().height();
+DONE    addProfileButton->setFixedSize(h, h);
+DONE    delProfileButton->setFixedSize(h, h);
 
     initProgramsPage();
     initUpdatePage();
@@ -114,33 +114,33 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
     load();
 
-    connect(profilesList, &QListWidget::currentItemChanged,
-            this, &ConfigDialog::profileListSelected);
-
-    connect(profilesList, &QListWidget::itemChanged,
-            this, &ConfigDialog::profileItemChanged);
-
-    connect(addProfileButton, &QToolButton::clicked,
-            this, &ConfigDialog::addProfile);
-
-    connect(delProfileButton, &QToolButton::clicked,
-            this, &ConfigDialog::deleteProfile);
-
-    profileParent->hide();
-    refreshProfilesList("");
-
-#ifdef Q_OS_MAC
-    buttonBox->hide();
-#endif
-}
-
-/************************************************
-
- ************************************************/
-ConfigDialog::~ConfigDialog()
-{
-}
-
+DONE    connect(profilesList, &QListWidget::currentItemChanged,
+DONE            this, &ConfigDialog::profileListSelected);
+DONE
+DONE    connect(profilesList, &QListWidget::itemChanged,
+DONE            this, &ConfigDialog::profileItemChanged);
+DONE
+DONE     connect(addProfileButton, &QToolButton::clicked,
+DONE             this, &ConfigDialog::addProfile);
+DONE
+DONE     connect(delProfileButton, &QToolButton::clicked,
+DONE             this, &ConfigDialog::deleteProfile);
+DONE
+DONE     profileParent->hide();
+DONE     refreshProfilesList("");
+DONE
+DONE #ifdef Q_OS_MAC
+DONE    buttonBox->hide();
+DONE #endif
+DONE }
+DONE
+DONE /************************************************
+DONE
+DONE  ************************************************/
+DONE ConfigDialog::~ConfigDialog()
+DONE {
+DONE }
+DONE
 /************************************************
  *
  ************************************************/
@@ -219,95 +219,95 @@ void ConfigDialog::initUpdatePage()
 }
 #endif
 
-/************************************************
- *
- ************************************************/
-void ConfigDialog::refreshProfilesList(const QString &selectedProfileId)
-{
-    QListWidgetItem *sel = nullptr;
-
-    profilesList->blockSignals(true);
-    profilesList->clear();
-
-    for (const Profile &profile : mProfiles) {
-        QListWidgetItem *item = new QListWidgetItem(profilesList);
-        item->setText(profile.name());
-        item->setData(PROFILE_ID_ROLE, profile.id());
-        item->setFlags(item->flags() | Qt::ItemIsEditable);
-        if (profile.id() == selectedProfileId) {
-            sel = item;
-        }
-    }
-    profilesList->sortItems();
-    profilesList->blockSignals(false);
-
-    if (profilesList->count() > 0) {
-        if (sel)
-            profilesList->setCurrentItem(sel);
-        else
-            profilesList->setCurrentRow(0);
-    }
-}
-
-/************************************************
- *
- ************************************************/
-void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem *)
-{
-    pages->blockSignals(true);
-    if (mProfileWidget && mProfileWidget->profile().isValid()) {
-        mProfiles.update(mProfileWidget->profile());
-    }
-
-    if (mProfileWidget) {
-        profilePlace->removeWidget(mProfileWidget);
-        delete mProfileWidget;
-        mProfileWidget = nullptr;
-    }
-
-    if (current) {
-        int     n       = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());
-        Profile profile = (n > -1) ? mProfiles[n] : Profile();
-
-        mProfileWidget = new ProfileWidget(profile, profileParent);
-        profilePlace->addWidget(mProfileWidget);
-        mProfileWidget->show();
-        profileParent->show();
-    }
-    pages->blockSignals(false);
-}
-
-/************************************************
- *
- ************************************************/
-void ConfigDialog::profileItemChanged(QListWidgetItem *item)
-{
-    QString id = item->data(PROFILE_ID_ROLE).toString();
-    if (id == currentProfile().id()) {
-        currentProfile().setName(item->text());
-    }
-
-    refreshProfilesList(id);
-}
-
-/************************************************
-
- ************************************************/
-void ConfigDialog::done(int res)
-{
-    Settings::i()->setValue(Settings::ConfigureDialog_Width, size().width());
-    Settings::i()->setValue(Settings::ConfigureDialog_Height, size().height());
-
-#ifndef Q_OS_MAC
-    if (res)
-#endif
-    {
-        save();
-        Settings::i()->sync();
-    }
-
-    QDialog::done(res);
-}
+DONE /************************************************
+DONE  *
+DONE  ************************************************/
+DONE void ConfigDialog::refreshProfilesList(const QString &selectedProfileId)
+DONE {
+DONE     QListWidgetItem *sel = nullptr;
+DONE
+DONE     profilesList->blockSignals(true);
+DONE     profilesList->clear();
+DONE
+DONE     for (const Profile &profile : mProfiles) {
+DONE         QListWidgetItem *item = new QListWidgetItem(profilesList);
+DONE         item->setText(profile.name());
+DONE         item->setData(PROFILE_ID_ROLE, profile.id());
+DONE         item->setFlags(item->flags() | Qt::ItemIsEditable);
+DONE         if (profile.id() == selectedProfileId) {
+DONE             sel = item;
+DONE         }
+DONE     }
+DONE     profilesList->sortItems();
+DONE     profilesList->blockSignals(false);
+DONE
+DONE     if (profilesList->count() > 0) {
+DONE         if (sel)
+DONE             profilesList->setCurrentItem(sel);
+DONE         else
+DONE             profilesList->setCurrentRow(0);
+DONE     }
+DONE }
+DONE
+DONE /************************************************
+DONE  *
+DONE  ************************************************/
+DONE void ConfigDialog::profileListSelected(QListWidgetItem *current, QListWidgetItem *)
+DONE {
+DONE     pages->blockSignals(true);
+DONE     if (mProfileWidget && mProfileWidget->profile().isValid()) {
+DONE         mProfiles.update(mProfileWidget->profile());
+DONE     }
+DONE
+DONE     if (mProfileWidget) {
+DONE         profilePlace->removeWidget(mProfileWidget);
+DONE         delete mProfileWidget;
+DONE         mProfileWidget = nullptr;
+DONE     }
+DONE
+DONE     if (current) {
+DONE         int     n       = mProfiles.indexOf(current->data(PROFILE_ID_ROLE).toString());
+DONE         Profile profile = (n > -1) ? mProfiles[n] : Profile();
+DONE
+DONE         mProfileWidget = new ProfileWidget(profile, profileParent);
+DONE         profilePlace->addWidget(mProfileWidget);
+DONE         mProfileWidget->show();
+DONE         profileParent->show();
+DONE     }
+DONE     pages->blockSignals(false);
+DONE }
+DONE
+DONE /************************************************
+DONE  *
+DONE  ************************************************/
+DONE void ConfigDialog::profileItemChanged(QListWidgetItem *item)
+DONE {
+DONE     QString id = item->data(PROFILE_ID_ROLE).toString();
+DONE     if (id == currentProfile().id()) {
+DONE         currentProfile().setName(item->text());
+DONE     }
+DONE
+DONE     refreshProfilesList(id);
+DONE }
+DONE
+DONE /************************************************
+DONE
+DONE  ************************************************/
+DONE void ConfigDialog::done(int res)
+DONE {
+DONE     Settings::i()->setValue(Settings::ConfigureDialog_Width, size().width());
+DONE     Settings::i()->setValue(Settings::ConfigureDialog_Height, size().height());
+DONE
+DONE #ifndef Q_OS_MAC
+DONE     if (res)
+DONE #endif
+DONE     {
+DONE         save();
+DONE         Settings::i()->sync();
+DONE     }
+DONE
+DONE     QDialog::done(res);
+DONE }
 
 /************************************************
 
@@ -319,13 +319,13 @@ void ConfigDialog::tmpDirShowDialog()
         tmpDirEdit->setText(tmpDir);
 }
 
-/************************************************
- *
- ************************************************/
-Profile &ConfigDialog::currentProfile()
-{
-    return mProfileWidget ? mProfileWidget->profile() : NullProfile();
-}
+DONE /************************************************
+DONE  *
+DONE  ************************************************/
+DONE Profile &ConfigDialog::currentProfile()
+DONE {
+DONE     return mProfileWidget ? mProfileWidget->profile() : NullProfile();
+DONE }
 
 /************************************************
  *

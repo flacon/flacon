@@ -22,28 +22,6 @@
    </attribute>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="formatLabel">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>32</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string notr="true">FLAC format</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QGroupBox" name="outFilesBox">
       <property name="title">
        <string>Result Files</string>
@@ -171,7 +149,7 @@ If you surround sections of text that contain a token with braces, these section
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QComboBox" name="bitDepthComboBox"/>
+        <widget class="BitsPerSampleCombobox" name="bitDepthComboBox"/>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="sampleRateLabel">
@@ -184,7 +162,7 @@ If you surround sections of text that contain a token with braces, these section
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QComboBox" name="sampleRateComboBox"/>
+        <widget class="SampleRateCombobox" name="sampleRateComboBox"/>
        </item>
       </layout>
      </widget>
@@ -209,13 +187,7 @@ If you surround sections of text that contain a token with braces, these section
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QComboBox" name="gainComboBox">
-         <item>
-          <property name="text">
-           <string>Disabled</string>
-          </property>
-         </item>
-        </widget>
+        <widget class="GainTypeCombobox" name="gainComboBox"/>
        </item>
       </layout>
      </widget>
@@ -250,6 +222,21 @@ If you surround sections of text that contain a token with braces, these section
   <customwidget>
    <class>OutDirButton</class>
    <extends>QToolButton</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SampleRateCombobox</class>
+   <extends>QComboBox</extends>
+   <header>profiletabwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>BitsPerSampleCombobox</class>
+   <extends>QComboBox</extends>
+   <header>profiletabwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>GainTypeCombobox</class>
+   <extends>QComboBox</extends>
    <header>controls.h</header>
   </customwidget>
  </customwidgets>
