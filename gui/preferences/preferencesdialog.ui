@@ -30,7 +30,7 @@
        <number>0</number>
       </property>
       <item>
-       <spacer name="horizontalSpacer">
+       <spacer name="leftSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -44,6 +44,9 @@
       </item>
       <item>
        <widget class="QToolButton" name="profilesPageButton">
+        <property name="focusPolicy">
+         <enum>Qt::ClickFocus</enum>
+        </property>
         <property name="text">
          <string comment="Preferences dialog button caption"> Audio profiles</string>
         </property>
@@ -56,10 +59,16 @@
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextUnderIcon</enum>
         </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="generalPageButton">
+        <property name="focusPolicy">
+         <enum>Qt::ClickFocus</enum>
+        </property>
         <property name="text">
          <string comment="Preferences dialog button caption">General</string>
         </property>
@@ -72,10 +81,16 @@
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextUnderIcon</enum>
         </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="programsPageButton">
+        <property name="focusPolicy">
+         <enum>Qt::ClickFocus</enum>
+        </property>
         <property name="text">
          <string comment="Preferences dialog button caption">Programs</string>
         </property>
@@ -88,10 +103,16 @@
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextUnderIcon</enum>
         </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="updatePageButton">
+        <property name="focusPolicy">
+         <enum>Qt::ClickFocus</enum>
+        </property>
         <property name="text">
          <string comment="Preferences dialog button caption">Update</string>
         </property>
@@ -104,10 +125,13 @@
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextUnderIcon</enum>
         </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer_2">
+       <spacer name="rightSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -123,14 +147,17 @@
     </widget>
    </item>
    <item>
-    <widget class="QStackedWidget" name="stackedWidget_2">
+    <widget class="QStackedWidget" name="pagesWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>1</verstretch>
       </sizepolicy>
      </property>
-     <widget class="QWidget" name="stackedWidget_2Page1">
+     <property name="currentIndex">
+      <number>3</number>
+     </property>
+     <widget class="QWidget" name="stackedWidget_Page1">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="leftMargin">
         <number>0</number>
@@ -146,6 +173,63 @@
        </property>
        <item>
         <widget class="ProfilesPage" name="profilesPage" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="stackedWidget_Page2">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="generalPage" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="stackedWidget_Page3">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="programsPage" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="stackedWidget_Page4">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="updatePage" native="true"/>
        </item>
       </layout>
      </widget>

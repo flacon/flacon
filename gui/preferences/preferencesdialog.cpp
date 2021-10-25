@@ -27,14 +27,25 @@ PreferencesDialog *PreferencesDialog::createAndShow(const QString &profileId, QW
         instance = new PreferencesDialog(parent);
     }
 
-    instance->ui->profilesPage->show();
-    instance->ui->profilesPage->selectProfile(profileId);
+    if (!profileId.isEmpty()) {
+        instance->showProfile(profileId);
+    }
+
     instance->show();
     instance->raise();
     instance->activateWindow();
     instance->setAttribute(Qt::WA_DeleteOnClose);
 
     return instance;
+}
+
+/************************************************
+ *
+ ************************************************/
+void PreferencesDialog::showProfile(const QString &profileId)
+{
+    ui->pagesWidget->setCurrentIndex(0);
+    ui->profilesPage->selectProfile(profileId);
 }
 
 /************************************************
@@ -53,6 +64,7 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
 
 #else
     ui->updatePageButton->hide();
+    ui->toolBar->layout()->removeItem(ui->leftSpacer);
 
 #endif
 
@@ -76,6 +88,13 @@ void PreferencesDialog::initToolBar()
     ui->generalPageButton->setIcon(Icon("preferences-general"));
     ui->updatePageButton->setIcon(Icon("preferences-update"));
     ui->programsPageButton->setIcon(Icon("preferences-programs"));
+
+    QList<QToolButton *> btns = ui->toolBar->findChildren<QToolButton *>();
+    for (int i = 0; i < btns.length(); ++i) {
+        QToolButton *btn = btns[i];
+        connect(btn, &QToolButton::clicked, [i, this]() { ui->pagesWidget->setCurrentIndex(i); });
+        connect(ui->pagesWidget, &QStackedWidget::currentChanged, [i, btn](int index) { btn->setChecked(index == i); });
+    }
 
     int w = 0;
     for (QToolButton *b : ui->toolBar->findChildren<QToolButton *>()) {

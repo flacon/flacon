@@ -28,6 +28,7 @@ private:
     void save();
     void fixLayout();
     void initToolBar();
+    void showProfile(const QString &profileId);
 };
 
 #endif // PREFERENCESDIALOG_H
