@@ -83,11 +83,14 @@ QHash<QString, QVariant> OutFormat_Flac::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Flac::configPage(const Profile &profile, QWidget *parent) const
+EncoderConfigPage *OutFormat_Flac::configPage(QWidget *parent) const
 {
-    return new ConfigPage_Flac(profile, parent);
+    return new ConfigPage_Flac(parent);
 }
 
+/************************************************
+
+ ************************************************/
 Conv::Encoder *OutFormat_Flac::createEncoder() const
 {
     return new FlacEncoder();
@@ -104,8 +107,8 @@ Conv::Gain *OutFormat_Flac::createGain(const Profile &profile) const
 /************************************************
 
  ************************************************/
-ConfigPage_Flac::ConfigPage_Flac(const Profile &profile, QWidget *parent) :
-    EncoderConfigPage(profile, parent)
+ConfigPage_Flac::ConfigPage_Flac(QWidget *parent) :
+    EncoderConfigPage(parent)
 {
     setupUi(this);
 
@@ -116,17 +119,17 @@ ConfigPage_Flac::ConfigPage_Flac(const Profile &profile, QWidget *parent) :
 /************************************************
 
  ************************************************/
-void ConfigPage_Flac::load()
+void ConfigPage_Flac::load(const Profile &profile)
 {
-    loadWidget("Compression", flacCompressionSlider);
+    loadWidget(profile, "Compression", flacCompressionSlider);
 }
 
 /************************************************
 
  ************************************************/
-void ConfigPage_Flac::save()
+void ConfigPage_Flac::save(Profile *profile)
 {
-    saveWidget("Compression", flacCompressionSlider);
+    saveWidget(profile, "Compression", flacCompressionSlider);
 }
 
 /************************************************

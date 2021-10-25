@@ -40,7 +40,7 @@ public:
     virtual QString gainProgramName() const override { return ""; }
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage       *configPage(const Profile &profile, QWidget *parentr) const override;
+    EncoderConfigPage *      configPage(QWidget *parentr) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
@@ -53,10 +53,10 @@ class ConfigPage_Acc : public EncoderConfigPage, private Ui::aacConfigPage
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Acc(const Profile &profile, QWidget *parent = nullptr);
+    explicit ConfigPage_Acc(QWidget *parent = nullptr);
 
-    virtual void load() override;
-    virtual void save() override;
+    virtual void load(const Profile &profile) override;
+    virtual void save(Profile *profile) override;
 
 private slots:
     void useQualityChecked(bool checked);

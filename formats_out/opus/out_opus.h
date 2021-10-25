@@ -40,7 +40,7 @@ public:
     virtual QString gainProgramName() const override { return ""; }
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const override;
+    EncoderConfigPage *      configPage(QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
@@ -53,10 +53,10 @@ class ConfigPage_Opus : public EncoderConfigPage, private Ui::ConfigPage_Opus
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Opus(const Profile &profile, QWidget *parent = nullptr);
+    explicit ConfigPage_Opus(QWidget *parent = nullptr);
 
-    virtual void load() override;
-    virtual void save() override;
+    virtual void load(const Profile &profile) override;
+    virtual void save(Profile *profile) override;
 };
 
 class Encoder_Opus : public Conv::Encoder

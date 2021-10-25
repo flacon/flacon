@@ -56,11 +56,14 @@ QHash<QString, QVariant> OutFormat_Ogg::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Ogg::configPage(const Profile &profile, QWidget *parent) const
+EncoderConfigPage *OutFormat_Ogg::configPage(QWidget *parent) const
 {
-    return new ConfigPage_Ogg(profile, parent);
+    return new ConfigPage_Ogg(parent);
 }
 
+/************************************************
+
+ ************************************************/
 Conv::Encoder *OutFormat_Ogg::createEncoder() const
 {
     return new Encoder_Ogg();
@@ -77,8 +80,8 @@ Conv::Gain *OutFormat_Ogg::createGain(const Profile &profile) const
 /************************************************
 
  ************************************************/
-ConfigPage_Ogg::ConfigPage_Ogg(const Profile &profile, QWidget *parent) :
-    EncoderConfigPage(profile, parent)
+ConfigPage_Ogg::ConfigPage_Ogg(QWidget *parent) :
+    EncoderConfigPage(parent)
 {
     setupUi(this);
 
@@ -104,13 +107,13 @@ ConfigPage_Ogg::ConfigPage_Ogg(const Profile &profile, QWidget *parent) :
 /************************************************
 
  ************************************************/
-void ConfigPage_Ogg::load()
+void ConfigPage_Ogg::load(const Profile &profile)
 {
-    loadWidget("UseQuality", oggUseQualityCheck);
-    loadWidget("Quality", oggQualitySpin);
-    loadWidget("MinBitrate", oggMinBitrateCbx);
-    loadWidget("NormBitrate", oggNormBitrateCbx);
-    loadWidget("MaxBitrate", oggMaxBitrateCbx);
+    loadWidget(profile, "UseQuality", oggUseQualityCheck);
+    loadWidget(profile, "Quality", oggQualitySpin);
+    loadWidget(profile, "MinBitrate", oggMinBitrateCbx);
+    loadWidget(profile, "NormBitrate", oggNormBitrateCbx);
+    loadWidget(profile, "MaxBitrate", oggMaxBitrateCbx);
 
     setUseQualityMode(oggUseQualityCheck->isChecked());
 }
@@ -118,13 +121,13 @@ void ConfigPage_Ogg::load()
 /************************************************
 
  ************************************************/
-void ConfigPage_Ogg::save()
+void ConfigPage_Ogg::save(Profile *profile)
 {
-    saveWidget("UseQuality", oggUseQualityCheck);
-    saveWidget("Quality", oggQualitySpin);
-    saveWidget("MinBitrate", oggMinBitrateCbx);
-    saveWidget("NormBitrate", oggNormBitrateCbx);
-    saveWidget("MaxBitrate", oggMaxBitrateCbx);
+    saveWidget(profile, "UseQuality", oggUseQualityCheck);
+    saveWidget(profile, "Quality", oggQualitySpin);
+    saveWidget(profile, "MinBitrate", oggMinBitrateCbx);
+    saveWidget(profile, "NormBitrate", oggNormBitrateCbx);
+    saveWidget(profile, "MaxBitrate", oggMaxBitrateCbx);
 }
 
 /************************************************

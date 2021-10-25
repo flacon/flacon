@@ -43,11 +43,11 @@ class EncoderConfigPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit EncoderConfigPage(const Profile &profile, QWidget *parent = nullptr);
+    explicit EncoderConfigPage(QWidget *parent = nullptr);
     virtual ~EncoderConfigPage();
 
-    virtual void load() = 0;
-    virtual void save() = 0;
+    virtual void load(const Profile &profile) = 0;
+    virtual void save(Profile *profile)       = 0;
 
     static QString losslessCompressionToolTip(int min, int max);
     static void    setLosslessToolTip(QSlider *widget);
@@ -60,34 +60,30 @@ public:
 
     static void fillBitrateComboBox(QComboBox *comboBox, const QList<int> &bitrates);
 
-    void loadWidget(const QString &key, QSlider *widget) const;
-    void saveWidget(const QString &key, const QSlider *widget);
+    void loadWidget(const Profile &profile, const QString &key, QSlider *widget) const;
+    void saveWidget(Profile *profile, const QString &key, const QSlider *widget);
 
-    void loadWidget(const QString &key, QLineEdit *widget) const;
-    void saveWidget(const QString &key, const QLineEdit *widget);
+    void loadWidget(const Profile &profile, const QString &key, QLineEdit *widget) const;
+    void saveWidget(Profile *profile, const QString &key, const QLineEdit *widget);
 
-    void loadWidget(const QString &key, QCheckBox *widget) const;
-    void saveWidget(const QString &key, const QCheckBox *widget);
+    void loadWidget(const Profile &profile, const QString &key, QCheckBox *widget) const;
+    void saveWidget(Profile *profile, const QString &key, const QCheckBox *widget);
 
-    void loadWidget(const QString &key, QGroupBox *widget) const;
-    void saveWidget(const QString &key, const QGroupBox *widget);
+    void loadWidget(const Profile &profile, const QString &key, QGroupBox *widget) const;
+    void saveWidget(Profile *profile, const QString &key, const QGroupBox *widget);
 
-    void loadWidget(const QString &key, QSpinBox *widget) const;
-    void saveWidget(const QString &key, const QSpinBox *widget);
+    void loadWidget(const Profile &profile, const QString &key, QSpinBox *widget) const;
+    void saveWidget(Profile *profile, const QString &key, const QSpinBox *widget);
 
-    void loadWidget(const QString &key, QDoubleSpinBox *widget) const;
-    void saveWidget(const QString &key, const QDoubleSpinBox *widget);
+    void loadWidget(const Profile &profile, const QString &key, QDoubleSpinBox *widget) const;
+    void saveWidget(Profile *profile, const QString &key, const QDoubleSpinBox *widget);
 
-    void loadWidget(const QString &key, QComboBox *widget) const;
-    void saveWidget(const QString &key, const QComboBox *widget);
+    void loadWidget(const Profile &profile, const QString &key, QComboBox *widget) const;
+    void saveWidget(Profile *profile, const QString &key, const QComboBox *widget);
 
     static QString toolTipCss();
 
-    Profile &      profile() { return mProfile; }
-    const Profile &profile() const { return mProfile; }
-
 private:
-    Profile mProfile;
 };
 
 #endif // ENCODERCONFIGPAGE_H

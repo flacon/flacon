@@ -65,7 +65,7 @@ public:
         return QHash<QString, QVariant>();
     }
 
-    EncoderConfigPage *configPage(const Profile &, QWidget *) const override
+    EncoderConfigPage *configPage(QWidget *) const override
     {
         return nullptr;
     }
@@ -74,7 +74,7 @@ public:
     virtual SampleRate    maxSampleRate() const override { return SampleRate::AsSource; }
 
     Conv::Encoder *createEncoder() const override { return new Encoder_Null(); }
-    Conv::Gain    *createGain(const Profile &profile) const override { return new Conv::NoGain(profile); }
+    Conv::Gain *   createGain(const Profile &profile) const override { return new Conv::NoGain(profile); }
 };
 
 static OutFormat_Null *nullFormat()
@@ -320,7 +320,7 @@ void Profile::setPregapType(PreGapType value)
  ************************************************/
 EncoderConfigPage *Profile::configPage(QWidget *parent) const
 {
-    return mFormat->configPage(*this, parent);
+    return mFormat->configPage(parent);
 }
 
 /************************************************

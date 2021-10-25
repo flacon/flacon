@@ -54,9 +54,9 @@ QHash<QString, QVariant> OutFormat_Opus::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Opus::configPage(const Profile &profile, QWidget *parent) const
+EncoderConfigPage *OutFormat_Opus::configPage(QWidget *parent) const
 {
-    return new ConfigPage_Opus(profile, parent);
+    return new ConfigPage_Opus(parent);
 }
 
 /************************************************
@@ -70,8 +70,8 @@ Conv::Encoder *OutFormat_Opus::createEncoder() const
 /************************************************
 
  ************************************************/
-ConfigPage_Opus::ConfigPage_Opus(const Profile &profile, QWidget *parent) :
-    EncoderConfigPage(profile, parent)
+ConfigPage_Opus::ConfigPage_Opus(QWidget *parent) :
+    EncoderConfigPage(parent)
 {
     setupUi(this);
 
@@ -89,19 +89,19 @@ ConfigPage_Opus::ConfigPage_Opus(const Profile &profile, QWidget *parent) :
 /************************************************
 
  ************************************************/
-void ConfigPage_Opus::load()
+void ConfigPage_Opus::load(const Profile &profile)
 {
-    loadWidget(BITRATE_TYPE_KEY, opusBitrateTypeCbx);
-    loadWidget(BITRATE_KEY, opusBitrateSlider);
+    loadWidget(profile, BITRATE_TYPE_KEY, opusBitrateTypeCbx);
+    loadWidget(profile, BITRATE_KEY, opusBitrateSlider);
 }
 
 /************************************************
 
  ************************************************/
-void ConfigPage_Opus::save()
+void ConfigPage_Opus::save(Profile *profile)
 {
-    saveWidget(BITRATE_TYPE_KEY, opusBitrateTypeCbx);
-    saveWidget(BITRATE_KEY, opusBitrateSlider);
+    saveWidget(profile, BITRATE_TYPE_KEY, opusBitrateTypeCbx);
+    saveWidget(profile, BITRATE_KEY, opusBitrateSlider);
 }
 
 /************************************************

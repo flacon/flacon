@@ -52,9 +52,9 @@ QHash<QString, QVariant> OutFormat_Aac::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Aac::configPage(const Profile &profile, QWidget *parentr) const
+EncoderConfigPage *OutFormat_Aac::configPage(QWidget *parentr) const
 {
-    return new ConfigPage_Acc(profile, parentr);
+    return new ConfigPage_Acc(parentr);
 }
 
 /************************************************
@@ -68,8 +68,8 @@ Conv::Encoder *OutFormat_Aac::createEncoder() const
 /************************************************
 
  ************************************************/
-ConfigPage_Acc::ConfigPage_Acc(const Profile &profile, QWidget *parent) :
-    EncoderConfigPage(profile, parent)
+ConfigPage_Acc::ConfigPage_Acc(QWidget *parent) :
+    EncoderConfigPage(parent)
 {
     setupUi(this);
 
@@ -84,21 +84,21 @@ ConfigPage_Acc::ConfigPage_Acc(const Profile &profile, QWidget *parent) :
 /************************************************
 
  ************************************************/
-void ConfigPage_Acc::load()
+void ConfigPage_Acc::load(const Profile &profile)
 {
-    loadWidget("UseQuality", aacUseQualityCheck);
-    loadWidget("Quality", aacQualitySpin);
-    loadWidget("Bitrate", aacBitrateCbx);
+    loadWidget(profile, "UseQuality", aacUseQualityCheck);
+    loadWidget(profile, "Quality", aacQualitySpin);
+    loadWidget(profile, "Bitrate", aacBitrateCbx);
 }
 
 /************************************************
 
  ************************************************/
-void ConfigPage_Acc::save()
+void ConfigPage_Acc::save(Profile *profile)
 {
-    saveWidget("UseQuality", aacUseQualityCheck);
-    saveWidget("Quality", aacQualitySpin);
-    saveWidget("Bitrate", aacBitrateCbx);
+    saveWidget(profile, "UseQuality", aacUseQualityCheck);
+    saveWidget(profile, "Quality", aacQualitySpin);
+    saveWidget(profile, "Bitrate", aacBitrateCbx);
 }
 
 /************************************************

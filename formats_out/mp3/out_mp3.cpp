@@ -61,9 +61,9 @@ QHash<QString, QVariant> OutFormat_Mp3::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Mp3::configPage(const Profile &profile, QWidget *parent) const
+EncoderConfigPage *OutFormat_Mp3::configPage(QWidget *parent) const
 {
-    return new ConfigPage_Mp3(profile, parent);
+    return new ConfigPage_Mp3(parent);
 }
 
 /************************************************
@@ -85,8 +85,8 @@ Conv::Gain *OutFormat_Mp3::createGain(const Profile &profile) const
 /************************************************
 
  ************************************************/
-ConfigPage_Mp3::ConfigPage_Mp3(const Profile &profile, QWidget *parent) :
-    EncoderConfigPage(profile, parent)
+ConfigPage_Mp3::ConfigPage_Mp3(QWidget *parent) :
+    EncoderConfigPage(parent)
 {
     setupUi(this);
 
@@ -145,22 +145,22 @@ ConfigPage_Mp3::ConfigPage_Mp3(const Profile &profile, QWidget *parent) :
 /************************************************
 
  ************************************************/
-void ConfigPage_Mp3::load()
+void ConfigPage_Mp3::load(const Profile &profile)
 {
-    loadWidget("Preset", mp3PresetCbx);
-    loadWidget("Bitrate", mp3BitrateCbx);
-    loadWidget("Quality", mp3QualitySpin);
+    loadWidget(profile, "Preset", mp3PresetCbx);
+    loadWidget(profile, "Bitrate", mp3BitrateCbx);
+    loadWidget(profile, "Quality", mp3QualitySpin);
     mp3QualitySlider->setValue(mp3QualitySpin->value());
 }
 
 /************************************************
 
  ************************************************/
-void ConfigPage_Mp3::save()
+void ConfigPage_Mp3::save(Profile *profile)
 {
-    saveWidget("Preset", mp3PresetCbx);
-    saveWidget("Bitrate", mp3BitrateCbx);
-    saveWidget("Quality", mp3QualitySpin);
+    saveWidget(profile, "Preset", mp3PresetCbx);
+    saveWidget(profile, "Bitrate", mp3BitrateCbx);
+    saveWidget(profile, "Quality", mp3QualitySpin);
 }
 
 /************************************************

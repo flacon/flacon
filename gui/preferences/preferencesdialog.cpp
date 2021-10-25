@@ -75,6 +75,7 @@ void PreferencesDialog::initToolBar()
     ui->profilesPageButton->setIcon(Icon("preferences-audio"));
     ui->generalPageButton->setIcon(Icon("preferences-general"));
     ui->updatePageButton->setIcon(Icon("preferences-update"));
+    ui->programsPageButton->setIcon(Icon("preferences-programs"));
 
     int w = 0;
     for (QToolButton *b : ui->toolBar->findChildren<QToolButton *>()) {

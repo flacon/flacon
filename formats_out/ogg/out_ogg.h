@@ -40,24 +40,24 @@ public:
     virtual QString gainProgramName() const override { return "vorbisgain"; }
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage       *configPage(const Profile &profile, QWidget *parent) const override;
+    EncoderConfigPage *      configPage(QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_192000; }
 
     Conv::Encoder *createEncoder() const override;
-    Conv::Gain    *createGain(const Profile &profile) const override;
+    Conv::Gain *   createGain(const Profile &profile) const override;
 };
 
 class ConfigPage_Ogg : public EncoderConfigPage, private Ui::oggConfigPage
 {
     Q_OBJECT
 public:
-    explicit ConfigPage_Ogg(const Profile &profile, QWidget *parent = nullptr);
+    explicit ConfigPage_Ogg(QWidget *parent = nullptr);
 
-    virtual void load() override;
-    virtual void save() override;
+    virtual void load(const Profile &profile) override;
+    virtual void save(Profile *profile) override;
 
 private slots:
     void oggQualitySliderChanged(int value);

@@ -6,8 +6,8 @@ class NoEncoderConfigPage : public EncoderConfigPage
 {
 public:
     using EncoderConfigPage::EncoderConfigPage;
-    void load() override {};
-    void save() override {};
+    void load(const Profile &) override {};
+    void save(Profile *) override {};
 };
 
 /************************************************
@@ -63,7 +63,7 @@ void ProfileTabWidget::fromProfile(const Profile &profile)
 {
     // Create EncoderWidget ................
     recreateEncoderWidget(profile);
-    mEncoderWidget->load();
+    mEncoderWidget->load(profile);
 
     // Result files options ................
     ui->outDirEdit->setText(profile.outFileDir());
@@ -73,7 +73,6 @@ void ProfileTabWidget::fromProfile(const Profile &profile)
     ui->resampleGroup->setVisible(profile.formatOptions().testFlag(FormatOption::Lossless));
 
     if (profile.formatOptions().testFlag(FormatOption::Lossless)) {
-        qDebug() << Q_FUNC_INFO << profile.bitsPerSample() << profile.name();
         ui->bitDepthComboBox->setValue(profile.bitsPerSample());
         ui->sampleRateComboBox->setValue(profile.sampleRate());
     }
@@ -90,7 +89,7 @@ void ProfileTabWidget::fromProfile(const Profile &profile)
  ************************************************/
 void ProfileTabWidget::toProfile(Profile *profile) const
 {
-    //  mEncoderWidget->save();
+    mEncoderWidget->save(profile);
 
     // Result files options ................
     profile->setOutFileDir(ui->outDirEdit->text());
@@ -104,7 +103,6 @@ void ProfileTabWidget::toProfile(Profile *profile) const
     }
 
     // Replay Gain options ................
-    qDebug() << Q_FUNC_INFO << profile->formatOptions().testFlag(FormatOption::SupportGain) << int(ui->gainComboBox->value()) << ui->gainComboBox->currentText();
     if (profile->formatOptions().testFlag(FormatOption::SupportGain)) {
         profile->setGainType(ui->gainComboBox->value());
     }
@@ -130,7 +128,7 @@ void ProfileTabWidget::recreateEncoderWidget(const Profile &profile)
     }
     else {
         ui->encoderGroup->setVisible(false);
-        mEncoderWidget.reset(new NoEncoderConfigPage(profile, ui->encoderGroup));
+        mEncoderWidget.reset(new NoEncoderConfigPage(ui->encoderGroup));
     }
 }
 

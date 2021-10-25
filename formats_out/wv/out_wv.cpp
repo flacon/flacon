@@ -54,9 +54,9 @@ QHash<QString, QVariant> OutFormat_Wv::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Wv::configPage(const Profile &profile, QWidget *parent) const
+EncoderConfigPage *OutFormat_Wv::configPage(QWidget *parent) const
 {
-    return new ConfigPage_Wv(profile, parent);
+    return new ConfigPage_Wv(parent);
 }
 
 /************************************************
@@ -78,8 +78,8 @@ Conv::Gain *OutFormat_Wv::createGain(const Profile &profile) const
 /************************************************
 
  ************************************************/
-ConfigPage_Wv::ConfigPage_Wv(const Profile &profile, QWidget *parent) :
-    EncoderConfigPage(profile, parent)
+ConfigPage_Wv::ConfigPage_Wv(QWidget *parent) :
+    EncoderConfigPage(parent)
 {
     setupUi(this);
 
@@ -90,17 +90,17 @@ ConfigPage_Wv::ConfigPage_Wv(const Profile &profile, QWidget *parent) :
 /************************************************
 
  ************************************************/
-void ConfigPage_Wv::load()
+void ConfigPage_Wv::load(const Profile &profile)
 {
-    loadWidget(COMPRESSION_KEY, wvCompressionSlider);
+    loadWidget(profile, COMPRESSION_KEY, wvCompressionSlider);
 }
 
 /************************************************
 
  ************************************************/
-void ConfigPage_Wv::save()
+void ConfigPage_Wv::save(Profile *profile)
 {
-    saveWidget(COMPRESSION_KEY, wvCompressionSlider);
+    saveWidget(profile, COMPRESSION_KEY, wvCompressionSlider);
 }
 
 /************************************************
