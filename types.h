@@ -86,17 +86,23 @@ enum class CoverMode {
 QString   coverModeToString(CoverMode mode);
 CoverMode strToCoverMode(const QString &str);
 
+struct CoverOptions
+{
+    CoverMode mode = CoverMode::Disable;
+    int       size = 0;
+};
+
 unsigned int levenshteinDistance(const QString &s1, const QString &s2);
 
 class FlaconError : public std::runtime_error
 {
 public:
     explicit FlaconError(const char *msg) :
-        std::runtime_error(msg) { }
+        std::runtime_error(msg) {}
     explicit FlaconError(const std::string &msg) :
-        std::runtime_error(msg) { }
+        std::runtime_error(msg) {}
     explicit FlaconError(const QString &msg) :
-        std::runtime_error(msg.toStdString()) { }
+        std::runtime_error(msg.toStdString()) {}
 };
 
 class CueIndex

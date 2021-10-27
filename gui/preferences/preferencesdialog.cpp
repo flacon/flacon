@@ -92,7 +92,7 @@ void PreferencesDialog::initToolBar()
     QList<QToolButton *> btns = ui->toolBar->findChildren<QToolButton *>();
     for (int i = 0; i < btns.length(); ++i) {
         QToolButton *btn = btns[i];
-        connect(btn, &QToolButton::clicked, [i, this]() { ui->pagesWidget->setCurrentIndex(i); });
+        connect(btn, &QToolButton::toggled, [i, this]() { ui->pagesWidget->setCurrentIndex(i); });
         connect(ui->pagesWidget, &QStackedWidget::currentChanged, [i, btn](int index) { btn->setChecked(index == i); });
     }
 
@@ -105,6 +105,8 @@ void PreferencesDialog::initToolBar()
     for (QToolButton *b : ui->toolBar->findChildren<QToolButton *>()) {
         b->setFixedWidth(w);
     }
+
+    ui->profilesPageButton->setChecked(true);
 }
 
 /************************************************

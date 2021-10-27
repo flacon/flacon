@@ -48,16 +48,6 @@ public:
     Conv::Encoder *createEncoder() const override;
 };
 
-class ConfigPage_Wav : public EncoderConfigPage
-{
-    Q_OBJECT
-public:
-    explicit ConfigPage_Wav(QWidget *parent = nullptr);
-
-    virtual void load(const Profile &) override {}
-    virtual void save(Profile *) override {}
-};
-
 class Encoder_Wav : public Conv::Encoder
 {
 public:

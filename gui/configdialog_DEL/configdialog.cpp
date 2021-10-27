@@ -93,11 +93,11 @@ DONE {
 DONE     setupUi(this);
 DONE
 DONE    this->setMinimumSize(this->size());
-
-    generalPage->setWindowTitle(tr("General configuration"));
-    programsPage->setWindowTitle(tr("Full path of the external applications"));
-
-    initGeneralPage();
+DONE
+DONE     generalPage->setWindowTitle(tr("General configuration"));
+DONE     programsPage->setWindowTitle(tr("Full path of the external applications"));
+DONE
+DONE     initGeneralPage();
 DONE    int width  = Settings::i()->value(Settings::ConfigureDialog_Width).toInt();
 DONE    int height = Settings::i()->value(Settings::ConfigureDialog_Height).toInt();
 DONE    resize(width, height);
@@ -109,11 +109,11 @@ DONE    delProfileButton->setFixedSize(h, h);
     initProgramsPage();
     initUpdatePage();
 
-    pages->setCurrentIndex(0);
+DONE     pages->setCurrentIndex(0);
     cddbComboBox->addItem("http://www.gnudb.org");
 
-    load();
-
+DONE     load();
+DONE
 DONE    connect(profilesList, &QListWidget::currentItemChanged,
 DONE            this, &ConfigDialog::profileListSelected);
 DONE
@@ -353,18 +353,18 @@ void ConfigDialog::load()
     Controls::loadFromSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
     Controls::loadFromSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
 
-    copyCoverGroupBox->setCoverMode(Settings::i()->coverMode());
-    copyCoverGroupBox->setImageSize(Settings::i()->coverImageSize());
-
-    embededCoverGroupBox->setCoverMode(Settings::i()->embededCoverMode());
-    embededCoverGroupBox->setImageSize(Settings::i()->embededCoverImageSize());
+DONE     copyCoverGroupBox->setCoverMode(Settings::i()->coverMode());
+DONE     copyCoverGroupBox->setImageSize(Settings::i()->coverImageSize());
+DONE
+DONE     embededCoverGroupBox->setCoverMode(Settings::i()->embededCoverMode());
+DONE     embededCoverGroupBox->setImageSize(Settings::i()->embededCoverImageSize());
 
     cddbComboBox->setCurrentText(Settings::i()->value(Settings::Inet_CDDBHost).toString());
 
     foreach (ProgramEdit *edit, mProgramEdits)
         edit->setText(Settings::i()->value("Programs/" + edit->programName()).toString());
 
-    mProfiles = Settings::i()->profiles();
+DONE     mProfiles = Settings::i()->profiles();
 
 #ifdef MAC_UPDATER
     autoUpdateCbk->setChecked(Updater::sharedUpdater().automaticallyChecksForUpdates());
@@ -383,21 +383,21 @@ void ConfigDialog::save()
     Controls::saveToSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
     Controls::saveToSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
 
-    Settings::i()->setCoverMode(copyCoverGroupBox->coverMode());
-    Settings::i()->setCoverImageSize(copyCoverGroupBox->imageSize());
-
-    Settings::i()->setEmbededCoverMode(embededCoverGroupBox->coverMode());
-    Settings::i()->setEmbededCoverImageSize(embededCoverGroupBox->imageSize());
+DONE     Settings::i()->setCoverMode(copyCoverGroupBox->coverMode());
+DONE     Settings::i()->setCoverImageSize(copyCoverGroupBox->imageSize());
+DONE
+DONE     Settings::i()->setEmbededCoverMode(embededCoverGroupBox->coverMode());
+DONE     Settings::i()->setEmbededCoverImageSize(embededCoverGroupBox->imageSize());
 
     Settings::i()->setValue(Settings::Inet_CDDBHost, cddbComboBox->currentText());
 
     foreach (ProgramEdit *edit, mProgramEdits)
         Settings::i()->setValue("Programs/" + edit->programName(), edit->text());
 
-    if (currentProfile().isValid())
-        mProfiles.update(currentProfile());
-
-    Settings::i()->setProfiles(mProfiles);
+DONE     if (currentProfile().isValid())
+DONE         mProfiles.update(currentProfile());
+DONE
+DONE     Settings::i()->setProfiles(mProfiles);
 
 #ifdef MAC_UPDATER
     Updater::sharedUpdater().setAutomaticallyChecksForUpdates(

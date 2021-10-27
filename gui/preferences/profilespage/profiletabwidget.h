@@ -22,16 +22,9 @@ public:
     void fromProfile(const Profile &profile);
     void toProfile(Profile *profile) const;
 
-    // Profile profile() const;
-    // void    setProfile(const Profile &profile);
-
-    // QString profileName() const { return mProfile.name(); }
-    // void setProfileName(const QString &value);
-
 private:
     Ui::ProfileTabWidget *ui;
 
-    // Profile                            mProfile;
     std::unique_ptr<EncoderConfigPage> mEncoderWidget = nullptr;
 
     void recreateEncoderWidget(const Profile &profile);

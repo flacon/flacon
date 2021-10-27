@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CueGroupBox</class>
+ <widget class="QGroupBox" name="CueGroupBox">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>419</width>
+    <height>149</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>GroupBox</string>
+  </property>
+  <property name="title">
+   <string>Create per track CUE sheet</string>
+  </property>
+  <property name="checkable">
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QRadioButton" name="writeToFileButton">
+     <property name="text">
+      <string comment="CUE mode combobox item">Write to file</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLineEdit" name="perTrackCueFormatEdit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string comment="Preferences dialog edit tooltip">File name format</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="OutPatternButton" name="perTrackCueFormatBtn">
+       <property name="text">
+        <string notr="true">*</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QRadioButton" name="embedButton">
+     <property name="text">
+      <string comment="CUE mode combobox item">Embed to audio files</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QLabel" name="preGapLabel">
+     <property name="text">
+      <string>First track pregap:</string>
+     </property>
+     <property name="buddy">
+      <cstring>preGapComboBox</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="PreGapTypeComboBox" name="preGapComboBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="sizeIncrement">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>OutPatternButton</class>
+   <extends>QToolButton</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PreGapTypeComboBox</class>
+   <extends>QComboBox</extends>
+   <header>cuegroupbox.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

@@ -48,9 +48,9 @@ QHash<QString, QVariant> OutFormat_Wav::defaultParameters() const
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Wav::configPage(QWidget *parent) const
+EncoderConfigPage *OutFormat_Wav::configPage(QWidget *) const
 {
-    return new ConfigPage_Wav(parent);
+    return nullptr;
 }
 
 /************************************************
@@ -59,14 +59,6 @@ EncoderConfigPage *OutFormat_Wav::configPage(QWidget *parent) const
 Conv::Encoder *OutFormat_Wav::createEncoder() const
 {
     return new Encoder_Wav();
-}
-
-/************************************************
-
- ************************************************/
-ConfigPage_Wav::ConfigPage_Wav(QWidget *parent) :
-    EncoderConfigPage(parent)
-{
 }
 
 /************************************************

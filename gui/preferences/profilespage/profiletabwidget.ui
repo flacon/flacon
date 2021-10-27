@@ -209,8 +209,85 @@ If you surround sections of text that contain a token with braces, these section
   </widget>
   <widget class="QWidget" name="tab_2">
    <attribute name="title">
-    <string>Страница</string>
+    <string comment="Preferences dialog tab title">CUE and Cover image</string>
    </attribute>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="CoverGroupBox" name="copyCoverGroupBox">
+      <property name="title">
+       <string>Copy cover image</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMinimumSize</enum>
+       </property>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="CoverGroupBox" name="embededCoverGroupBox">
+      <property name="toolTip">
+       <string comment="Tooltip on checkbox on preferences dialog">If the format is supported, the cover will be added to the meta information for all output files.</string>
+      </property>
+      <property name="title">
+       <string>Embed cover image in output files</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_10"/>
+     </widget>
+    </item>
+    <item>
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="CueGroupBox" name="cueGroup">
+      <property name="title">
+       <string extracomment="Preferences dialog: group caption">Create per track CUE sheet</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <layout class="QFormLayout" name="formLayout_3"/>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>302</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
   </widget>
  </widget>
  <customwidgets>
@@ -238,6 +315,18 @@ If you surround sections of text that contain a token with braces, these section
    <class>GainTypeCombobox</class>
    <extends>QComboBox</extends>
    <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CoverGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header location="global">covergroupbox.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CueGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header>cuegroupbox.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

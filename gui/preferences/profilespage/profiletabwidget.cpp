@@ -82,6 +82,13 @@ void ProfileTabWidget::fromProfile(const Profile &profile)
     if (profile.formatOptions().testFlag(FormatOption::SupportGain)) {
         ui->gainComboBox->setValue(profile.gainType());
     }
+
+    // Cover options ......................
+    ui->copyCoverGroupBox->setCoverOptions(profile.copyCoverOptions());
+    ui->embededCoverGroupBox->setCoverOptions(profile.embedCoverOptions());
+
+    // Out CUE options ....................
+    ui->cueGroup->fromProfile(profile);
 }
 
 /************************************************
@@ -106,6 +113,13 @@ void ProfileTabWidget::toProfile(Profile *profile) const
     if (profile->formatOptions().testFlag(FormatOption::SupportGain)) {
         profile->setGainType(ui->gainComboBox->value());
     }
+
+    // Cover options ......................
+    profile->setCopyCoverOptions(ui->copyCoverGroupBox->coverOptions());
+    profile->setEmbedCoverOptions(ui->embededCoverGroupBox->coverOptions());
+
+    // Out CUE options ....................
+    ui->cueGroup->toProfile(profile);
 }
 
 /************************************************
@@ -131,11 +145,3 @@ void ProfileTabWidget::recreateEncoderWidget(const Profile &profile)
         mEncoderWidget.reset(new NoEncoderConfigPage(ui->encoderGroup));
     }
 }
-
-/************************************************
- *
- ************************************************/
-// void ProfileTabWidget::setProfileName(const QString &value)
-//{
-//     //  mEncoderWidget->profile().setName(value);
-// }

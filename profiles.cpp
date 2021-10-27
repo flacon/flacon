@@ -137,6 +137,38 @@ void Profile::setDefaultValues()
 /************************************************
  *
  ************************************************/
+CoverOptions Profile::embedCoverOptions() const
+{
+    return mEmbedCoverOptions;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setEmbedCoverOptions(const CoverOptions &embedCoverOptions)
+{
+    mEmbedCoverOptions = embedCoverOptions;
+}
+
+/************************************************
+ *
+ ************************************************/
+CoverOptions Profile::copyCoverOptions() const
+{
+    return mCopyCoverOptions;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setCopyCoverOptions(const CoverOptions &copyCoverOptions)
+{
+    mCopyCoverOptions = copyCoverOptions;
+}
+
+/************************************************
+ *
+ ************************************************/
 void Profile::setName(const QString &value)
 {
     mName = value;
@@ -360,6 +392,12 @@ void Profile::load(QSettings &settings, const QString &group)
     }
 
     settings.endGroup();
+
+    mCopyCoverOptions.mode = strToCoverMode(value(COVER_FILE_MODE_KEY).toString());
+    mCopyCoverOptions.size = value(COVER_FILE_SIZE_KEY).toInt();
+
+    mEmbedCoverOptions.mode = strToCoverMode(value(COVER_EMBED_MODE_KEY).toString());
+    mEmbedCoverOptions.size = value(COVER_EMBED_SIZE_KEY).toInt();
 }
 
 /************************************************
@@ -374,6 +412,13 @@ void Profile::save(QSettings &settings, const QString &group) const
     for (auto i = mValues.constBegin(); i != mValues.constEnd(); ++i) {
         settings.setValue(i.key(), i.value());
     }
+
+    settings.setValue(COVER_FILE_MODE_KEY, coverModeToString(mCopyCoverOptions.mode));
+    settings.setValue(COVER_FILE_SIZE_KEY, mCopyCoverOptions.size);
+
+    settings.setValue(COVER_EMBED_MODE_KEY, coverModeToString(mEmbedCoverOptions.mode));
+    settings.setValue(COVER_EMBED_SIZE_KEY, mEmbedCoverOptions.size);
+
     settings.endGroup();
 }
 

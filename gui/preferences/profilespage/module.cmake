@@ -1,3 +1,4 @@
+# Comment
 list(APPEND SOURCES
   ${CMAKE_CURRENT_LIST_DIR}/profilespage.h
   ${CMAKE_CURRENT_LIST_DIR}/profilespage.cpp
@@ -12,8 +13,13 @@ list(APPEND SOURCES
   ${CMAKE_CURRENT_LIST_DIR}/addprofiledialog.cpp
   ${CMAKE_CURRENT_LIST_DIR}/addprofiledialog.ui
 
+  ${CMAKE_CURRENT_LIST_DIR}/covergroupbox.h
+  ${CMAKE_CURRENT_LIST_DIR}/covergroupbox.cpp
+  ${CMAKE_CURRENT_LIST_DIR}/covergroupbox.ui
+
+  ${CMAKE_CURRENT_LIST_DIR}/cuegroupbox.h
+  ${CMAKE_CURRENT_LIST_DIR}/cuegroupbox.cpp
+  ${CMAKE_CURRENT_LIST_DIR}/cuegroupbox.ui
 )
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
-
-
