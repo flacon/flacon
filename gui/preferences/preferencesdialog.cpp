@@ -71,9 +71,10 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
     resize(width, height);
 
     // Restore saved size ..................
-
     load();
-    qDebug() << size();
+
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, [this]() { done(true); });
+    connect(ui->buttonBox, &QDialogButtonBox::rejected, [this]() { done(false); });
 }
 
 /************************************************
@@ -117,22 +118,23 @@ PreferencesDialog::~PreferencesDialog()
 /************************************************
  *
  ************************************************/
-// void PreferencesDialog::done(int res)
-//{
-//     Q_UNUSED(res)
-//     Settings::i()->setValue(Settings::ConfigureDialog_Width, size().width());
-//     Settings::i()->setValue(Settings::ConfigureDialog_Height, size().height());
+void PreferencesDialog::done(bool accept)
+{
+    Q_UNUSED(accept)
+    Settings::i()->setValue(Settings::ConfigureDialog_Width, size().width());
+    Settings::i()->setValue(Settings::ConfigureDialog_Height, size().height());
 
-//#ifndef Q_OS_MAC
-//    if (res)
-//#endif
-//    {
-//        save();
-//    }
+#ifndef Q_OS_MAC
+    if (accept)
+#endif
+    {
+        save();
+    }
 
-//    Settings::i()->sync();
-//    // QDialog::done(res);
-//}
+    Settings::i()->sync();
+    close();
+    emit finished();
+}
 
 /************************************************
  *
@@ -179,4 +181,13 @@ void PreferencesDialog::fixLayout(const QWidget *parent)
         label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
         label->setMinimumWidth(width);
     }
+}
+
+/************************************************
+ *
+ ************************************************/
+void PreferencesDialog::closeEvent(QCloseEvent *event)
+{
+    done(false);
+    QMainWindow::closeEvent(event);
 }

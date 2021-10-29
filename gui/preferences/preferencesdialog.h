@@ -2,6 +2,7 @@
 #define PREFERENCESDIALOG_H
 
 #include <QMainWindow>
+#include <QCloseEvent>
 
 namespace Ui {
 class PreferencesDialog;
@@ -16,8 +17,12 @@ public:
     static PreferencesDialog *createAndShow(const QString &profileId, QWidget *parent = nullptr);
 
     static void fixLayout(const QWidget *parent);
-public slots:
-    // void done(int res) override;
+
+signals:
+    void finished();
+
+protected:
+    virtual void closeEvent(QCloseEvent *event) override;
 
 private:
     Ui::PreferencesDialog *ui;
@@ -30,6 +35,7 @@ private:
 
     void initToolBar();
     void showProfile(const QString &profileId);
+    void done(bool accept);
 };
 
 #endif // PREFERENCESDIALOG_H
