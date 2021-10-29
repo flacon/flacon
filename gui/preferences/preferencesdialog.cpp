@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QFormLayout>
 #include <QToolButton>
+#include "../controls.h"
 
 /************************************************
  *
@@ -35,7 +36,6 @@ PreferencesDialog *PreferencesDialog::createAndShow(const QString &profileId, QW
     instance->raise();
     instance->activateWindow();
     instance->setAttribute(Qt::WA_DeleteOnClose);
-
     return instance;
 }
 
@@ -52,31 +52,28 @@ void PreferencesDialog::showProfile(const QString &profileId)
  *
  ************************************************/
 PreferencesDialog::PreferencesDialog(QWidget *parent) :
-    QDialog(parent),
+    QMainWindow(parent),
     ui(new Ui::PreferencesDialog)
 {
     ui->setupUi(this);
+    this->setMinimumSize(this->size());
+
     initToolBar();
 
 #ifdef Q_OS_MAC
-    ui->programsPageButton->hide();
     ui->buttonBox->hide();
-
-#else
-    ui->updatePageButton->hide();
-    ui->toolBar->layout()->removeItem(ui->leftSpacer);
-
 #endif
 
     // Restore saved size ..................
-    fixLayout();
-    this->setMinimumSize(this->size());
+    fixLayout(this);
     int width  = Settings::i()->value(Settings::ConfigureDialog_Width).toInt();
     int height = Settings::i()->value(Settings::ConfigureDialog_Height).toInt();
     resize(width, height);
+
     // Restore saved size ..................
 
     load();
+    qDebug() << size();
 }
 
 /************************************************
@@ -84,29 +81,29 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
  ************************************************/
 void PreferencesDialog::initToolBar()
 {
-    ui->profilesPageButton->setIcon(Icon("preferences-audio"));
-    ui->generalPageButton->setIcon(Icon("preferences-general"));
-    ui->updatePageButton->setIcon(Icon("preferences-update"));
-    ui->programsPageButton->setIcon(Icon("preferences-programs"));
+    this->setUnifiedTitleAndToolBarOnMac(true);
 
-    QList<QToolButton *> btns = ui->toolBar->findChildren<QToolButton *>();
-    for (int i = 0; i < btns.length(); ++i) {
-        QToolButton *btn = btns[i];
-        connect(btn, &QToolButton::toggled, [i, this]() { ui->pagesWidget->setCurrentIndex(i); });
-        connect(ui->pagesWidget, &QStackedWidget::currentChanged, [i, btn](int index) { btn->setChecked(index == i); });
+    ui->actShowProfilesPage->setIcon(Icon("preferences-audio"));
+    ui->actShowGeneralPage->setIcon(Icon("preferences-general"));
+    ui->actShowUpdatePage->setIcon(Icon("preferences-update"));
+    ui->actShowProgramsPage->setIcon(Icon("preferences-programs"));
+
+    Controls::arangeTollBarButtonsWidth(ui->toolBar);
+
+#ifdef Q_OS_MAC
+    ui->actShowProgramsPage->setVisible(false);
+#else
+    ui->actShowUpdatePage->setVisible(false);
+#endif
+
+    QList<QAction *> acts = ui->toolBar->actions();
+    for (int i = 0; i < acts.length(); ++i) {
+        QAction *act = acts[i];
+        connect(act, &QAction::triggered, [i, this] { ui->pagesWidget->setCurrentIndex(i); });
+        connect(ui->pagesWidget, &QStackedWidget::currentChanged, [i, act](int index) { act->setChecked(index == i); });
     }
 
-    int w = 0;
-    for (QToolButton *b : ui->toolBar->findChildren<QToolButton *>()) {
-        b->setIconSize(QSize(24, 24));
-        w = qMax(w, b->width());
-    }
-
-    for (QToolButton *b : ui->toolBar->findChildren<QToolButton *>()) {
-        b->setFixedWidth(w);
-    }
-
-    ui->profilesPageButton->setChecked(true);
+    ui->actShowProfilesPage->setChecked(true);
 }
 
 /************************************************
@@ -120,22 +117,22 @@ PreferencesDialog::~PreferencesDialog()
 /************************************************
  *
  ************************************************/
-void PreferencesDialog::done(int res)
-{
-    Q_UNUSED(res)
-    Settings::i()->setValue(Settings::ConfigureDialog_Width, size().width());
-    Settings::i()->setValue(Settings::ConfigureDialog_Height, size().height());
+// void PreferencesDialog::done(int res)
+//{
+//     Q_UNUSED(res)
+//     Settings::i()->setValue(Settings::ConfigureDialog_Width, size().width());
+//     Settings::i()->setValue(Settings::ConfigureDialog_Height, size().height());
 
-#ifndef Q_OS_MAC
-    if (res)
-#endif
-    {
-        save();
-    }
+//#ifndef Q_OS_MAC
+//    if (res)
+//#endif
+//    {
+//        save();
+//    }
 
-    Settings::i()->sync();
-    QDialog::done(res);
-}
+//    Settings::i()->sync();
+//    // QDialog::done(res);
+//}
 
 /************************************************
  *
@@ -156,12 +153,12 @@ void PreferencesDialog::save()
 /************************************************
  *
  ************************************************/
-void PreferencesDialog::fixLayout()
+void PreferencesDialog::fixLayout(const QWidget *parent)
 {
     QList<QLabel *> labels;
     int             width = 0;
 
-    for (auto *layout : findChildren<QFormLayout *>()) {
+    for (auto *layout : parent->findChildren<QFormLayout *>()) {
         layout->setFormAlignment(Qt::AlignLeft | Qt::AlignTop);
         layout->setFieldGrowthPolicy(QFormLayout::ExpandingFieldsGrow);
 
@@ -182,6 +179,4 @@ void PreferencesDialog::fixLayout()
         label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
         label->setMinimumWidth(width);
     }
-
-    adjustSize();
 }

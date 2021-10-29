@@ -55,12 +55,6 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>0</height>
-           </size>
-          </property>
           <property name="toolTip">
            <string>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;

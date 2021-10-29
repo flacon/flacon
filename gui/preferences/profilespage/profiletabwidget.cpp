@@ -1,6 +1,7 @@
 #include "profiletabwidget.h"
 #include "ui_profiletabwidget.h"
 #include "controls.h"
+#include "../preferencesdialog.h"
 
 class NoEncoderConfigPage : public EncoderConfigPage
 {
@@ -139,6 +140,7 @@ void ProfileTabWidget::recreateEncoderWidget(const Profile &profile)
             mEncoderWidget->layout()->setMargin(0);
         }
         ui->encoderGroup->layout()->addWidget(mEncoderWidget.get());
+        PreferencesDialog::fixLayout(this);
     }
     else {
         ui->encoderGroup->setVisible(false);

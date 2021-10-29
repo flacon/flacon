@@ -1037,18 +1037,7 @@ void MainWindow::initActions()
     connect(actionAbout, &QAction::triggered, this, &MainWindow::openAboutDialog);
     actionAbout->setMenuRole(QAction::AboutRole);
 
-    int w = 0;
-    foreach (QAction *act, toolBar->actions()) {
-        QToolButton *btn = qobject_cast<QToolButton *>(toolBar->widgetForAction(act));
-        if (btn)
-            w = qMax(w, btn->sizeHint().width());
-    }
-
-    foreach (QAction *act, toolBar->actions()) {
-        QToolButton *btn = qobject_cast<QToolButton *>(toolBar->widgetForAction(act));
-        if (btn)
-            btn->setMinimumWidth(w);
-    }
+    Controls::arangeTollBarButtonsWidth(toolBar);
 
 #ifdef MAC_UPDATER
     actionUpdates->setVisible(true);

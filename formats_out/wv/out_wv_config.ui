@@ -28,12 +28,6 @@
        <layout class="QHBoxLayout" name="horizontalLayout_7">
         <item>
          <widget class="QSlider" name="wvCompressionSlider">
-          <property name="minimumSize">
-           <size>
-            <width>200</width>
-            <height>0</height>
-           </size>
-          </property>
           <property name="maximum">
            <number>2</number>
           </property>

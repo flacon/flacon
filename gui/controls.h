@@ -38,6 +38,7 @@
 #include "settings.h"
 
 class QStringListModel;
+class QToolBar;
 
 enum MultiValuesState {
     MultiValuesEmpty,
@@ -391,6 +392,8 @@ void saveToSettings(const QDoubleSpinBox *widget, Settings::Key key);
 
 void loadFromSettings(QComboBox *widget, Settings::Key key);
 void saveToSettings(const QComboBox *widget, Settings::Key key);
+
+void arangeTollBarButtonsWidth(QToolBar *toolBar);
 
 } // namespace
 #endif // CONTROLS_H

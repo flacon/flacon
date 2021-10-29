@@ -1,13 +1,13 @@
 #ifndef PREFERENCESDIALOG_H
 #define PREFERENCESDIALOG_H
 
-#include <QDialog>
+#include <QMainWindow>
 
 namespace Ui {
 class PreferencesDialog;
 }
 
-class PreferencesDialog : public QDialog
+class PreferencesDialog : public QMainWindow
 {
     Q_OBJECT
 
@@ -15,8 +15,9 @@ public:
     static PreferencesDialog *createAndShow(QWidget *parent = nullptr);
     static PreferencesDialog *createAndShow(const QString &profileId, QWidget *parent = nullptr);
 
+    static void fixLayout(const QWidget *parent);
 public slots:
-    void done(int res) override;
+    // void done(int res) override;
 
 private:
     Ui::PreferencesDialog *ui;
@@ -26,7 +27,7 @@ private:
 
     void load();
     void save();
-    void fixLayout();
+
     void initToolBar();
     void showProfile(const QString &profileId);
 };
