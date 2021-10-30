@@ -350,9 +350,9 @@ void ConfigDialog::updateLastUpdateLbl()
  ************************************************/
 void ConfigDialog::load()
 {
-    Controls::loadFromSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
-    Controls::loadFromSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
-
+DONE     Controls::loadFromSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
+DONE     Controls::loadFromSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
+DONE
 DONE     copyCoverGroupBox->setCoverMode(Settings::i()->coverMode());
 DONE     copyCoverGroupBox->setImageSize(Settings::i()->coverImageSize());
 DONE
@@ -380,9 +380,9 @@ DONE     mProfiles = Settings::i()->profiles();
  ************************************************/
 void ConfigDialog::save()
 {
-    Controls::saveToSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
-    Controls::saveToSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
-
+DONE     Controls::saveToSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
+DONE     Controls::saveToSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
+DONE
 DONE     Settings::i()->setCoverMode(copyCoverGroupBox->coverMode());
 DONE     Settings::i()->setCoverImageSize(copyCoverGroupBox->imageSize());
 DONE
@@ -412,64 +412,64 @@ DONE     Settings::i()->setProfiles(mProfiles);
 /************************************************
  *
  ************************************************/
-void ConfigDialog::addProfile()
-{
-    const Profile &  cur = currentProfile();
-    AddProfileDialog dialog(this);
-    dialog.setWindowModality(Qt::WindowModal);
-
-    dialog.setFormatId(cur.formatId());
-
-    if (!dialog.exec())
-        return;
-
-    OutFormat *format = OutFormat::formatForId(dialog.formaiId());
-    if (!format)
-        return;
-
-    QString id = QString("%1_%2")
-                         .arg(format->id())
-                         .arg(QDateTime::currentMSecsSinceEpoch());
-
-    Profile profile(*format, id);
-    profile.setName(dialog.profileName());
-    profile.setOutFileDir(cur.outFileDir());
-    profile.setOutFilePattern(cur.outFilePattern());
-
-    mProfiles.append(profile);
-
-    refreshProfilesList(profile.id());
-}
-
-/************************************************
- *
- ************************************************/
-void ConfigDialog::deleteProfile()
-{
-    Profile prof = currentProfile();
-    if (!prof.isValid())
-        return;
-
-    int n = (mProfiles.indexOf(prof.id()));
-    if (n < 0)
-        return;
-
-    QMessageBox dialog(this);
-    dialog.setText(tr("Are you sure you want to delete the profile \"%1\"?", "Message box text").arg(prof.name()));
-    dialog.setTextFormat(Qt::RichText);
-    dialog.setIconPixmap(QPixmap(":/64/mainicon"));
-
-    dialog.setStandardButtons(QMessageBox::Cancel | QMessageBox::Yes);
-    dialog.setButtonText(QMessageBox::Yes, tr("Delete the profile", "Button caption"));
-    dialog.setDefaultButton(QMessageBox::Yes);
-
-    dialog.setWindowModality(Qt::WindowModal);
-
-    int ret = dialog.exec();
-
-    if (ret != QMessageBox::Yes)
-        return;
-
-    delete profilesList->takeItem(profilesList->currentRow());
-    mProfiles.removeAt(n);
-}
+DONE void ConfigDialog::addProfile()
+DONE {
+DONE     const Profile &  cur = currentProfile();
+DONE     AddProfileDialog dialog(this);
+DONE     dialog.setWindowModality(Qt::WindowModal);
+DONE
+DONE     dialog.setFormatId(cur.formatId());
+DONE
+DONE     if (!dialog.exec())
+DONE         return;
+DONE
+DONE     OutFormat *format = OutFormat::formatForId(dialog.formaiId());
+DONE     if (!format)
+DONE         return;
+DONE
+DONE     QString id = QString("%1_%2")
+DONE                          .arg(format->id())
+DONE                          .arg(QDateTime::currentMSecsSinceEpoch());
+DONE
+DONE     Profile profile(*format, id);
+DONE     profile.setName(dialog.profileName());
+DONE     profile.setOutFileDir(cur.outFileDir());
+DONE     profile.setOutFilePattern(cur.outFilePattern());
+DONE
+DONE     mProfiles.append(profile);
+DONE
+DONE     refreshProfilesList(profile.id());
+DONE }
+DONE
+DONE /************************************************
+DONE  *
+DONE  ************************************************/
+DONE void ConfigDialog::deleteProfile()
+DONE {
+DONE     Profile prof = currentProfile();
+DONE     if (!prof.isValid())
+DONE         return;
+DONE
+DONE     int n = (mProfiles.indexOf(prof.id()));
+DONE     if (n < 0)
+DONE         return;
+DONE
+DONE     QMessageBox dialog(this);
+DONE     dialog.setText(tr("Are you sure you want to delete the profile \"%1\"?", "Message box text").arg(prof.name()));
+DONE     dialog.setTextFormat(Qt::RichText);
+DONE     dialog.setIconPixmap(QPixmap(":/64/mainicon"));
+DONE
+DONE     dialog.setStandardButtons(QMessageBox::Cancel | QMessageBox::Yes);
+DONE     dialog.setButtonText(QMessageBox::Yes, tr("Delete the profile", "Button caption"));
+DONE     dialog.setDefaultButton(QMessageBox::Yes);
+DONE
+DONE     dialog.setWindowModality(Qt::WindowModal);
+DONE
+DONE     int ret = dialog.exec();
+DONE
+DONE     if (ret != QMessageBox::Yes)
+DONE         return;
+DONE
+DONE     delete profilesList->takeItem(profilesList->currentRow());
+DONE     mProfiles.removeAt(n);
+DONE }

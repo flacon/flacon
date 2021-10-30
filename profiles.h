@@ -81,7 +81,7 @@ public:
     PreGapType preGapType() const;
     void       setPregapType(PreGapType value);
 
-    const OutFormat *  outFormat() const { return mFormat; }
+    const OutFormat   *outFormat() const { return mFormat; }
     QString            formatId() const { return mFormat->id(); }
     QString            formatName() const { return mFormat->name(); }
     QString            ext() const { return mFormat->ext(); }
@@ -117,13 +117,14 @@ public:
 
 private:
     QString                  mId;
-    const OutFormat *        mFormat;
+    const OutFormat         *mFormat;
     QString                  mName;
     QHash<QString, QVariant> mValues;
     void                     setDefaultValues();
 
     CoverOptions mCopyCoverOptions;
     CoverOptions mEmbedCoverOptions;
+    bool         mSupportEmbedCover = false;
 };
 
 Profile &NullProfile();

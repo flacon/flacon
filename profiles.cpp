@@ -74,7 +74,7 @@ public:
     virtual SampleRate    maxSampleRate() const override { return SampleRate::AsSource; }
 
     Conv::Encoder *createEncoder() const override { return new Encoder_Null(); }
-    Conv::Gain *   createGain(const Profile &profile) const override { return new Conv::NoGain(profile); }
+    Conv::Gain    *createGain(const Profile &profile) const override { return new Conv::NoGain(profile); }
 };
 
 static OutFormat_Null *nullFormat()
@@ -396,8 +396,11 @@ void Profile::load(QSettings &settings, const QString &group)
     mCopyCoverOptions.mode = strToCoverMode(value(COVER_FILE_MODE_KEY).toString());
     mCopyCoverOptions.size = value(COVER_FILE_SIZE_KEY).toInt();
 
-    mEmbedCoverOptions.mode = strToCoverMode(value(COVER_EMBED_MODE_KEY).toString());
-    mEmbedCoverOptions.size = value(COVER_EMBED_SIZE_KEY).toInt();
+    mSupportEmbedCover = mFormat->options().testFlag(FormatOption::SupportEmbeddedCue);
+    if (mSupportEmbedCover) {
+        mEmbedCoverOptions.mode = strToCoverMode(value(COVER_EMBED_MODE_KEY).toString());
+        mEmbedCoverOptions.size = value(COVER_EMBED_SIZE_KEY).toInt();
+    }
 }
 
 /************************************************
@@ -416,8 +419,10 @@ void Profile::save(QSettings &settings, const QString &group) const
     settings.setValue(COVER_FILE_MODE_KEY, coverModeToString(mCopyCoverOptions.mode));
     settings.setValue(COVER_FILE_SIZE_KEY, mCopyCoverOptions.size);
 
-    settings.setValue(COVER_EMBED_MODE_KEY, coverModeToString(mEmbedCoverOptions.mode));
-    settings.setValue(COVER_EMBED_SIZE_KEY, mEmbedCoverOptions.size);
+    if (mFormat->options().testFlag(FormatOption::SupportEmbeddedCue)) {
+        settings.setValue(COVER_EMBED_MODE_KEY, coverModeToString(mEmbedCoverOptions.mode));
+        settings.setValue(COVER_EMBED_SIZE_KEY, mEmbedCoverOptions.size);
+    }
 
     settings.endGroup();
 }
