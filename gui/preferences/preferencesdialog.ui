@@ -24,7 +24,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="stackedWidget_Page1">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -79,7 +79,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QWidget" name="programsPage" native="true"/>
+         <widget class="ProgramsPage" name="programsPage" native="true"/>
         </item>
        </layout>
       </widget>
@@ -187,6 +187,12 @@
    <class>UpdatePage</class>
    <extends>QWidget</extends>
    <header>updatepage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ProgramsPage</class>
+   <extends>QWidget</extends>
+   <header>programspage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

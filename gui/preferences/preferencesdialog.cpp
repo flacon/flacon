@@ -152,9 +152,16 @@ void PreferencesDialog::load()
 
     // General  page .......................
     ui->generalPage->setEncoderThreadsCount(settings->encoderThreadsCount());
+#ifndef FLATPAK_BUNDLE
     ui->generalPage->setTmpDir(settings->tmpDir());
+#endif
     ui->generalPage->setDefaultCodepage(settings->defaultCodepage());
     ui->generalPage->setCddbHost(settings->cddbHost());
+
+#if !defined(MAC_BUNDLE) && !defined(FLATPAK_BUNDLE)
+    // Programs page .......................
+    ui->programsPage->load();
+#endif
 }
 
 /************************************************
@@ -169,9 +176,16 @@ void PreferencesDialog::save()
 
     // General  page .......................
     settings->setEncoderThreadsCount(ui->generalPage->encoderThreadsCount());
+#ifndef FLATPAK_BUNDLE
     settings->setTmpDir(ui->generalPage->tmpDir());
+#endif
     settings->setDefaultCodepage(ui->generalPage->defaultCodepage());
     settings->setCddbHost(ui->generalPage->cddbHost());
+
+#if !defined(MAC_BUNDLE) && !defined(FLATPAK_BUNDLE)
+    // Programs page .......................
+    ui->programsPage->save();
+#endif
 }
 
 /************************************************
