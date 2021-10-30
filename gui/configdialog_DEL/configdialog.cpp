@@ -22,6 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
  * END_COMMON_COPYRIGHT_HEADER */
+#define DONE
 
 #include "configdialog.h"
 #include "../icon.h"
@@ -32,13 +33,13 @@
 #include <QDebug>
 #include <QDateTime>
 
-#ifdef MAC_UPDATER
-#include "updater/updater.h"
-#endif
+DONE #ifdef MAC_UPDATER
+DONE #include "updater/updater.h"
+DONE #endif
 
-static const int PROFILE_ID_ROLE = Qt::UserRole;
+DONE static const int PROFILE_ID_ROLE = Qt::UserRole;
 
-#define DONE
+
 
 DONE /************************************************
 DONE  *
@@ -107,7 +108,7 @@ DONE    addProfileButton->setFixedSize(h, h);
 DONE    delProfileButton->setFixedSize(h, h);
 
     initProgramsPage();
-    initUpdatePage();
+DONE     initUpdatePage();
 DONE
 DONE     pages->setCurrentIndex(0);
 DONE     cddbComboBox->addItem("http://www.gnudb.org");
@@ -197,28 +198,28 @@ void ConfigDialog::initProgramsPage()
     progsArea->setStyleSheet("QScrollArea, #scrollAreaWidgetContents { background-color: transparent;}");
 }
 #endif
-
-/************************************************
- *
- ************************************************/
-#ifdef MAC_UPDATER
-void ConfigDialog::initUpdatePage()
-{
-    connect(updateNowBtn, &QPushButton::clicked,
-            [this]() {
-                Updater::sharedUpdater().checkForUpdatesInBackground();
-                updateLastUpdateLbl();
-            });
-
-    updateLastUpdateLbl();
-}
-#else
-void ConfigDialog::initUpdatePage()
-{
-    pages->removeTab(pages->indexOf(updatePage));
-}
-#endif
-
+DONE
+DONE /************************************************
+DONE  *
+DONE  ************************************************/
+DONE #ifdef MAC_UPDATER
+DONE void ConfigDialog::initUpdatePage()
+DONE {
+DONE     connect(updateNowBtn, &QPushButton::clicked,
+DONE             [this]() {
+DONE                 Updater::sharedUpdater().checkForUpdatesInBackground();
+DONE                 updateLastUpdateLbl();
+DONE             });
+DONE
+DONE     updateLastUpdateLbl();
+DONE }
+DONE #else
+DONE void ConfigDialog::initUpdatePage()
+DONE {
+DONE     pages->removeTab(pages->indexOf(updatePage));
+DONE }
+DONE #endif
+DONE
 DONE /************************************************
 DONE  *
 DONE  ************************************************/
@@ -326,30 +327,30 @@ DONE Profile &ConfigDialog::currentProfile()
 DONE {
 DONE     return mProfileWidget ? mProfileWidget->profile() : NullProfile();
 DONE }
-
-/************************************************
- *
- ************************************************/
-void ConfigDialog::updateLastUpdateLbl()
-{
-#ifdef MAC_UPDATER
-    QDateTime date = Updater::sharedUpdater().lastUpdateCheckDate();
-    QString   s;
-    if (!date.isNull())
-        s = tr("Last check was %1", "Information about last update")
-                    .arg(date.toString(Qt::DefaultLocaleLongDate));
-    else
-        s = tr("Never checked", "Information about last update");
-
-    lastUpdateLbl->setText(s);
-#endif
-}
-
-/************************************************
-
- ************************************************/
-void ConfigDialog::load()
-{
+DONE
+DONE /************************************************
+DONE  *
+DONE  ************************************************/
+DONE void ConfigDialog::updateLastUpdateLbl()
+DONE {
+DONE #ifdef MAC_UPDATER
+DONE     QDateTime date = Updater::sharedUpdater().lastUpdateCheckDate();
+DONE     QString   s;
+DONE     if (!date.isNull())
+DONE         s = tr("Last check was %1", "Information about last update")
+DONE                     .arg(date.toString(Qt::DefaultLocaleLongDate));
+DONE     else
+DONE         s = tr("Never checked", "Information about last update");
+DONE
+DONE     lastUpdateLbl->setText(s);
+DONE #endif
+DONE }
+DONE
+DONE /************************************************
+DONE
+DONE  ************************************************/
+DONE void ConfigDialog::load()
+DONE {
 DONE     Controls::loadFromSettings(codePageComboBox, Settings::Tags_DefaultCodepage);
 DONE     Controls::loadFromSettings(threadsCountSpin, Settings::Encoder_ThreadCount);
 DONE

@@ -113,7 +113,10 @@ DONE     }
 }
 
 /************************************************
- *
+ * controls.h
+ * profiletabwidget.h
+ * using BitsPerSampleCombobox = TCombobox<int>;
+using SampleRateCombobox    = TCombobox<SampleRate>;
  ************************************************/
 void ProfileWidget::save() const
 {

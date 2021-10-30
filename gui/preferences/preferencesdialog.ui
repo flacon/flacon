@@ -98,7 +98,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QWidget" name="updatePage" native="true"/>
+         <widget class="UpdatePage" name="updatePage" native="true"/>
         </item>
        </layout>
       </widget>
@@ -181,6 +181,12 @@
    <class>GeneralPage</class>
    <extends>QWidget</extends>
    <header>generalpage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>UpdatePage</class>
+   <extends>QWidget</extends>
+   <header>updatepage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

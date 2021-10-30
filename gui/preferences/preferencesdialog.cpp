@@ -91,10 +91,14 @@ void PreferencesDialog::initToolBar()
 
     Controls::arangeTollBarButtonsWidth(ui->toolBar);
 
-#ifdef Q_OS_MAC
-    ui->actShowProgramsPage->setVisible(false);
-#else
+#ifndef MAC_UPDATER
     ui->actShowUpdatePage->setVisible(false);
+    ui->updatePage->hide();
+#endif
+
+#if defined(MAC_BUNDLE) || defined(FLATPAK_BUNDLE)
+    ui->actShowProgramsPage->setVisible(false);
+    ui->programsPage->hide();
 #endif
 
     QList<QAction *> acts = ui->toolBar->actions();
