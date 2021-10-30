@@ -11,6 +11,9 @@
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
+    CoverFile/Mode=Disable
+    CoverFile/Size=0
+
 
 [Profiles/FLAC]
     OutDirectory=:Music
@@ -24,6 +27,10 @@
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
+    CoverFile/Mode=Disable
+    CoverFile/Size=0
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=0
 
 [Profiles/MP3]
     OutDirectory=:Music
@@ -39,6 +46,9 @@
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
+    CoverFile/Mode=Disable
+    CoverFile/Size=0
+
 
 [Profiles/OGG]
     OutDirectory=:Music
@@ -56,6 +66,9 @@
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
+    CoverFile/Mode=Disable
+    CoverFile/Size=0
+
 
 [Profiles/OPUS]
     OutDirectory=:Music
@@ -69,6 +82,9 @@
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
+    CoverFile/Mode=Disable
+    CoverFile/Size=0
+
 
 [Profiles/WV]
     OutDirectory=:Music
@@ -82,6 +98,9 @@
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
+    CoverFile/Mode=Disable
+    CoverFile/Size=0
+
 
 [Profiles/WAV]
     OutDirectory=:Music
@@ -93,3 +112,5 @@
     CreateCue=false
     CueFileName = %a-%A.cue
     PregapType = Extract
+    CoverFile/Mode=Disable
+    CoverFile/Size=0
