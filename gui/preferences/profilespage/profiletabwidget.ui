@@ -14,7 +14,7 @@
    <string>TabWidget</string>
   </property>
   <property name="currentIndex">
-   <number>0</number>
+   <number>1</number>
   </property>
   <widget class="QWidget" name="audioTab">
    <attribute name="title">
@@ -226,11 +226,6 @@ If you surround sections of text that contain a token with braces, these section
       <property name="checked">
        <bool>true</bool>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetMinimumSize</enum>
-       </property>
-      </layout>
      </widget>
     </item>
     <item>
@@ -250,7 +245,6 @@ If you surround sections of text that contain a token with braces, these section
       <property name="checked">
        <bool>false</bool>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_10"/>
      </widget>
     </item>
     <item>
@@ -271,7 +265,6 @@ If you surround sections of text that contain a token with braces, these section
       <property name="checkable">
        <bool>false</bool>
       </property>
-      <layout class="QFormLayout" name="formLayout_3"/>
      </widget>
     </item>
     <item>

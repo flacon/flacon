@@ -46,7 +46,6 @@ ProfileTabWidget::ProfileTabWidget(QWidget *parent) :
     ui->gainComboBox->setToolTip(tr("ReplayGain is a standard to normalize the perceived loudness of computer audio formats. \n\n"
                                     "The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. \n"
                                     "Using the album-gain analysis will preserve the volume differences within an album."));
-    qDebug() << Q_FUNC_INFO << "1";
 }
 
 /************************************************

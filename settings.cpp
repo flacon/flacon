@@ -665,3 +665,35 @@ bool Settings::selectProfile(const QString &profileId)
     setValue(OutFiles_Profile, profileId);
     return true;
 }
+
+/************************************************
+ *
+ ************************************************/
+uint Settings::encoderThreadsCount() const
+{
+    return value(Encoder_ThreadCount).toUInt();
+}
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setEncoderThreadsCount(uint value)
+{
+    setValue(Encoder_ThreadCount, value);
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Settings::cddbHost() const
+{
+    return value(Inet_CDDBHost).toString();
+}
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setCddbHost(const QString &value)
+{
+    setValue(Inet_CDDBHost, value);
+}

@@ -107,13 +107,19 @@ public:
     int  embeddedCoverImageSize() const;
     void setEmbeddedCoverImageSize(int value);
 
-    Profiles &      profiles();
+    Profiles       &profiles();
     const Profiles &profiles() const;
     void            setProfiles(const Profiles &profiles);
 
     const Profile &currentProfile() const;
-    Profile &      currentProfile();
+    Profile       &currentProfile();
     bool           selectProfile(const QString &profileId);
+
+    uint encoderThreadsCount() const;
+    void setEncoderThreadsCount(uint value);
+
+    QString cddbHost() const;
+    void    setCddbHost(const QString &value);
 
 signals:
     void changed();

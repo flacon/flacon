@@ -108,10 +108,10 @@ DONE    delProfileButton->setFixedSize(h, h);
 
     initProgramsPage();
     initUpdatePage();
-
+DONE
 DONE     pages->setCurrentIndex(0);
-    cddbComboBox->addItem("http://www.gnudb.org");
-
+DONE     cddbComboBox->addItem("http://www.gnudb.org");
+DONE
 DONE     load();
 DONE
 DONE    connect(profilesList, &QListWidget::currentItemChanged,
@@ -152,9 +152,9 @@ void ConfigDialog::initGeneralPage()
     tmpDirButton->hide();
 #endif
 
-    tmpDirButton->setIcon(Icon("folder"));
-    tmpDirButton->setBuddy(tmpDirEdit);
-    connect(tmpDirButton, &QToolButton::clicked, this, &ConfigDialog::tmpDirShowDialog);
+DONE     tmpDirButton->setIcon(Icon("folder"));
+DONE     tmpDirButton->setBuddy(tmpDirEdit);
+DONE     connect(tmpDirButton, &QToolButton::clicked, this, &ConfigDialog::tmpDirShowDialog);
 }
 
 /************************************************
@@ -308,17 +308,17 @@ DONE     }
 DONE
 DONE     QDialog::done(res);
 DONE }
-
-/************************************************
-
- ************************************************/
-void ConfigDialog::tmpDirShowDialog()
-{
-    QString tmpDir = QFileDialog::getExistingDirectory(this, tr("Select temporary directory"), tmpDirEdit->text());
-    if (!tmpDir.isEmpty())
-        tmpDirEdit->setText(tmpDir);
-}
-
+DONE
+DONE /************************************************
+DONE
+DONE  ************************************************/
+DONE void ConfigDialog::tmpDirShowDialog()
+DONE {
+DONE     QString tmpDir = QFileDialog::getExistingDirectory(this, tr("Select temporary directory"), tmpDirEdit->text());
+DONE     if (!tmpDir.isEmpty())
+DONE         tmpDirEdit->setText(tmpDir);
+DONE }
+DONE
 DONE /************************************************
 DONE  *
 DONE  ************************************************/
@@ -358,8 +358,8 @@ DONE     copyCoverGroupBox->setImageSize(Settings::i()->coverImageSize());
 DONE
 DONE     embededCoverGroupBox->setCoverMode(Settings::i()->embededCoverMode());
 DONE     embededCoverGroupBox->setImageSize(Settings::i()->embededCoverImageSize());
-
-    cddbComboBox->setCurrentText(Settings::i()->value(Settings::Inet_CDDBHost).toString());
+DONE
+DONE     cddbComboBox->setCurrentText(Settings::i()->value(Settings::Inet_CDDBHost).toString());
 
     foreach (ProgramEdit *edit, mProgramEdits)
         edit->setText(Settings::i()->value("Programs/" + edit->programName()).toString());
@@ -388,9 +388,9 @@ DONE     Settings::i()->setCoverImageSize(copyCoverGroupBox->imageSize());
 DONE
 DONE     Settings::i()->setEmbededCoverMode(embededCoverGroupBox->coverMode());
 DONE     Settings::i()->setEmbededCoverImageSize(embededCoverGroupBox->imageSize());
-
-    Settings::i()->setValue(Settings::Inet_CDDBHost, cddbComboBox->currentText());
-
+DONE
+DOEN     Settings::i()->setValue(Settings::Inet_CDDBHost, cddbComboBox->currentText());
+DOEN
     foreach (ProgramEdit *edit, mProgramEdits)
         Settings::i()->setValue("Programs/" + edit->programName(), edit->text());
 

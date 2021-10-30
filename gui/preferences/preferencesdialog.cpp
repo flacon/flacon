@@ -141,7 +141,16 @@ void PreferencesDialog::done(bool accept)
  ************************************************/
 void PreferencesDialog::load()
 {
-    ui->profilesPage->setProfiles(Settings::i()->profiles());
+    const Settings *settings = Settings::i();
+
+    // Profiles page ......................
+    ui->profilesPage->setProfiles(settings->profiles());
+
+    // General  page .......................
+    ui->generalPage->setEncoderThreadsCount(settings->encoderThreadsCount());
+    ui->generalPage->setTmpDir(settings->tmpDir());
+    ui->generalPage->setDefaultCodepage(settings->defaultCodepage());
+    ui->generalPage->setCddbHost(settings->cddbHost());
 }
 
 /************************************************
@@ -149,7 +158,16 @@ void PreferencesDialog::load()
  ************************************************/
 void PreferencesDialog::save()
 {
+    Settings *settings = Settings::i();
+
+    // Profiles page ......................
     Settings::i()->setProfiles(ui->profilesPage->profiles());
+
+    // General  page .......................
+    settings->setEncoderThreadsCount(ui->generalPage->encoderThreadsCount());
+    settings->setTmpDir(ui->generalPage->tmpDir());
+    settings->setDefaultCodepage(ui->generalPage->defaultCodepage());
+    settings->setCddbHost(ui->generalPage->cddbHost());
 }
 
 /************************************************
