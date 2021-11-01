@@ -43,7 +43,10 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tra
     QDir        dir  = QFileInfo(mCueFilePath).dir();
     QStringList exts = InputFormat::allFileExts();
     mAllAudioFiles   = dir.entryInfoList(exts, QDir::Files | QDir::Readable);
-    qDebug(LOG) << "mAllAudioFiles" << mAllAudioFiles;
+
+    for (const auto &fi : qAsConst(mAllAudioFiles)) {
+        qDebug(LOG) << "mAllAudioFiles: " << fi.filePath();
+    }
 
     if (mAllAudioFiles.isEmpty() || mTracks.isEmpty()) {
         return;
