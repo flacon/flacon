@@ -26,6 +26,11 @@
 #include "audiofilematcher.h"
 #include "formats/informat.h"
 #include <QDir>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG, "AudioFileMatcher")
+}
 
 AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tracks) :
     mCueFilePath(cueFilePath),
@@ -33,9 +38,12 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tra
 {
     fillFileTags();
 
+    qCDebug(LOG) << "mFileTags =" << mFileTags;
+
     QDir        dir  = QFileInfo(mCueFilePath).dir();
     QStringList exts = InputFormat::allFileExts();
     mAllAudioFiles   = dir.entryInfoList(exts, QDir::Files | QDir::Readable);
+    qDebug(LOG) << "mAllAudioFiles" << mAllAudioFiles;
 
     if (mAllAudioFiles.isEmpty() || mTracks.isEmpty()) {
         return;
@@ -44,6 +52,7 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tra
     // Trivial, but frequent case. Directory contains only one audio file.
     if (mFileTags.count() == 1 && mAllAudioFiles.count() == 1) {
         mResult[mFileTags.first()] << mAllAudioFiles.first().filePath();
+        qCDebug(LOG) << "Return trivial:" << mResult;
         return;
     }
 
@@ -52,6 +61,7 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tra
         for (const Track &track : qAsConst(mTracks)) {
             mResult[track.tag(TagId::File)] = matchAudioFilesByTrack(track.tag(TagId::File), track.tag(TagId::Title));
         }
+        qCDebug(LOG) << "Return per-track album:" << mResult;
         return;
     }
 
@@ -59,6 +69,7 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tra
     for (const QString &fileTag : qAsConst(mFileTags)) {
         mResult[fileTag] = matchAudioFiles(fileTag);
     }
+    qCDebug(LOG) << "Return common:" << mResult;
 }
 
 QStringList AudioFileMatcher::audioFiles(int index) const
@@ -141,6 +152,7 @@ QStringList AudioFileMatcher::matchAudioFiles(const QString &fileTag)
                             .arg(fileTagNum);
     }
 
+    qCDebug(LOG) << "matchAudioFiles: patterns=" << patterns;
     QString audioExt;
     foreach (const InputFormat *format, InputFormat::allFormats()) {
         audioExt += (audioExt.isEmpty() ? "\\." : "|\\.") + format->ext();
@@ -149,8 +161,10 @@ QStringList AudioFileMatcher::matchAudioFiles(const QString &fileTag)
     foreach (const QString &pattern, patterns) {
         QRegExp re(QString("%1(%2)+").arg(pattern).arg(audioExt), Qt::CaseInsensitive, QRegExp::RegExp2);
         foreach (const QFileInfo &audio, mAllAudioFiles) {
+            qCDebug(LOG) << "matchAudioFiles test: re=" << re << "file=" << audio.filePath();
             if (re.exactMatch(audio.fileName())) {
                 res << audio.filePath();
+                qCDebug(LOG) << "matchAudioFiles test: MATCH";
             }
         }
     }

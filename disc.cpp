@@ -40,6 +40,11 @@
 #include <QQueue>
 #include <QtAlgorithms>
 #include <QDebug>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG_SEARCH_AUDIO_FILES, "SearchAudioFiles")
+}
 
 #define COVER_PREVIEW_SIZE 500
 
@@ -138,16 +143,24 @@ void Disc::searchCueFile(bool replaceExisting)
 ************************************************/
 void Disc::searchAudioFiles(bool replaceExisting)
 {
-    QString dir = QFileInfo(cueFilePath()).filePath();
+    QString fullPath = QFileInfo(cueFilePath()).filePath();
 
-    AudioFileMatcher matcher(dir, Tracks(mTracks));
+    qCDebug(LOG_SEARCH_AUDIO_FILES) << "Search audio for" << cueFilePath();
+    qCDebug(LOG_SEARCH_AUDIO_FILES) << "fullPath=" << fullPath;
+    qCDebug(LOG_SEARCH_AUDIO_FILES) << "Audio files=" << audioFileNames();
+
+    AudioFileMatcher matcher(fullPath, Tracks(mTracks));
     for (int i = 0; i < audioFiles().count(); ++i) {
         if (audioFiles()[i].isNull() || replaceExisting) {
 
             QStringList foundAudio = matcher.audioFiles(i);
             for (const QString &file : foundAudio) {
+
+                qCDebug(LOG_SEARCH_AUDIO_FILES) << " *" << i << " test audio file " << file;
+
                 InputAudioFile newAudio(file);
                 if (newAudio.isValid()) {
+                    qCDebug(LOG_SEARCH_AUDIO_FILES) << "set audio" << newAudio.filePath();
                     setAudioFile(newAudio, i);
                     break;
                 }
@@ -315,7 +328,7 @@ void Disc::syncTagsToTracks()
     assert(tags.count() == mTracks.count());
 
     for (int i = 0; i < mTracks.count(); ++i) {
-        Track *      track = mTracks[i];
+        Track       *track = mTracks[i];
         const Track &tgs   = tags.at(i);
 
         track->blockSignals(true);

@@ -34,6 +34,11 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QDir>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG, "InputAudioFile")
+}
 
 InputAudioFile::Data::Data(const InputAudioFile::Data &other) :
     QSharedData(other),
@@ -52,10 +57,12 @@ InputAudioFile::Data::Data(const InputAudioFile::Data &other) :
 void InputAudioFile::Data::load(const QString &filePath)
 {
     mFilePath = filePath;
+    qCDebug(LOG) << "load" << filePath;
 
     if (mFilePath.isEmpty()) {
         mErrorString = QObject::tr("The audio file name is not set.");
-        mValid       = false;
+        qCDebug(LOG) << mErrorString;
+        mValid = false;
         mFileName.clear();
         return;
     }
@@ -65,7 +72,8 @@ void InputAudioFile::Data::load(const QString &filePath)
 
     if (!fi.exists()) {
         mErrorString = QObject::tr("The audio file does not exist.");
-        mValid       = false;
+        qCDebug(LOG) << mErrorString;
+        mValid = false;
         return;
     }
 
@@ -79,10 +87,20 @@ void InputAudioFile::Data::load(const QString &filePath)
         mCdQuality     = dec.wavHeader().isCdQuality();
         mDuration      = dec.duration();
         mValid         = true;
+
+        // clang-format off
+        qCDebug(LOG) << "Audio is loaded: "
+                        "format="         << mFormat <<
+                        "mDuration"       << mDuration <<
+                        "mCdQuality="     << mCdQuality <<
+                        "mSampleRate="    << mSampleRate <<
+                        "mBitsPerSample=" << mBitsPerSample;
+        // clang-format on
     }
     catch (FlaconError &err) {
         mErrorString = err.what();
-        mValid       = false;
+        qCDebug(LOG) << mErrorString;
+        mValid = false;
     }
 }
 
