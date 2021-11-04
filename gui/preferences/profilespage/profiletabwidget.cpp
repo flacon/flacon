@@ -19,6 +19,7 @@ ProfileTabWidget::ProfileTabWidget(QWidget *parent) :
     ui(new Ui::ProfileTabWidget)
 {
     ui->setupUi(this);
+    setCurrentIndex(0);
 
     ui->outDirEdit->setPlaceholderText(tr("Same directory as CUE file", "Placeholder for output direcory combobox"));
     ui->outDirButton->setBuddy(ui->outDirEdit);

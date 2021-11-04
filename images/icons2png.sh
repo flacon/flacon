@@ -55,7 +55,6 @@ function conv()
 	rm "${dir}/_tmp.svg"
 
 	echo "        <file>${pngFile}</file>" >> ${RC_FILE}
-	echo ""
 }
 
 echo "<!-- Generated from icons2png.sh do not edit by hand. -->" > ${RC_FILE}
