@@ -217,7 +217,7 @@ Settings::Settings(const QString &fileName) :
 void Settings::init()
 {
     migrateProfiles(this);
-    if (value(Inet_CDDBHost) == "freedb.freedb.org")
+    if (value(Inet_CDDBHost) == "https://gnudb.gnudb.org/")
         remove("Inet/CDDBHost");
 
     setDefaultValue(Tags_DefaultCodepage, "AUTODETECT");
@@ -230,7 +230,7 @@ void Settings::init()
     setDefaultValue(OutFiles_Profile, "FLAC");
 
     // Internet *********************************
-    setDefaultValue(Inet_CDDBHost, "http://www.gnudb.org");
+    setDefaultValue(Inet_CDDBHost, "https://gnudb.gnudb.org/");
 
     // Misc *************************************
     setDefaultValue(Misc_LastDir, QDir::homePath());

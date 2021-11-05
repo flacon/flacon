@@ -13,7 +13,7 @@ GeneralPage::GeneralPage(QWidget *parent) :
     ui->tmpDirButton->setBuddy(ui->tmpDirEdit);
     connect(ui->tmpDirButton, &QToolButton::clicked, this, &GeneralPage::showTmpDirDialog);
 
-    ui->cddbComboBox->addItem("http://www.gnudb.org");
+    ui->cddbComboBox->addItem("https://gnudb.gnudb.org/");
 
 #ifdef FLATPAK_BUNDLE
     ui->tmpDirLabel->hide();
