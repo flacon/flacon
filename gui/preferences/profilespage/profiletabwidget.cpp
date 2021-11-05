@@ -87,7 +87,7 @@ void ProfileTabWidget::fromProfile(const Profile &profile)
     // Cover options ......................
     ui->copyCoverGroupBox->setCoverOptions(profile.copyCoverOptions());
     ui->embededCoverGroupBox->setCoverOptions(profile.embedCoverOptions());
-    ui->embededCoverGroupBox->setEnabled(profile.formatOptions().testFlag(FormatOption::SupportEmbeddedCue));
+    ui->embededCoverGroupBox->setVisible(profile.formatOptions().testFlag(FormatOption::SupportEmbeddedCue));
 
     // Out CUE options ....................
     ui->cueGroup->fromProfile(profile);
@@ -136,6 +136,7 @@ void ProfileTabWidget::recreateEncoderWidget(const Profile &profile)
                         .arg(profile.formatName()));
 
         ui->encoderGroup->setVisible(true);
+        ui->encoderGroupLine->setVisible(true);
 
         if (mEncoderWidget->layout()) {
             mEncoderWidget->layout()->setMargin(0);
@@ -145,6 +146,8 @@ void ProfileTabWidget::recreateEncoderWidget(const Profile &profile)
     }
     else {
         ui->encoderGroup->setVisible(false);
+        ui->encoderGroupLine->setVisible(false);
+
         mEncoderWidget.reset(new NoEncoderConfigPage(ui->encoderGroup));
     }
 }

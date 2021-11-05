@@ -14,7 +14,7 @@
    <string>TabWidget</string>
   </property>
   <property name="currentIndex">
-   <number>1</number>
+   <number>0</number>
   </property>
   <widget class="QWidget" name="audioTab">
    <attribute name="title">
@@ -120,12 +120,26 @@ If you surround sections of text that contain a token with braces, these section
      </widget>
     </item>
     <item>
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QGroupBox" name="encoderGroup">
       <property name="title">
        <string notr="true">FLAC encoder settings:</string>
       </property>
       <property name="flat">
        <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="Line" name="encoderGroupLine">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
