@@ -89,7 +89,7 @@ private:
     TrackViewCacheItem                       nullItemCache;
     QHash<QModelIndex, TrackViewCacheItem *> mItems;
     QModelIndex                              currentIndex;
-    TrackViewCacheItem *                     currentItem;
+    TrackViewCacheItem                      *currentItem;
 };
 
 /************************************************
@@ -557,7 +557,7 @@ QSize TrackViewDelegate::sizeHint(const QStyleOptionViewItem &option, const QMod
             QFont filesFont = this->filesFont(option.font);
             h += QFontMetrics(titleFont).height();
             h += QFontMetrics(filesFont).height() * 2;
-            mDiscHeightHint = qMax(IMG_HEIGHT, h) + 2 * MARGIN + BOTTOM_PADDING; //For Line
+            mDiscHeightHint = qMax(IMG_HEIGHT, h) + 2 * MARGIN + BOTTOM_PADDING; // For Line
         }
 
         res.rheight() = mDiscHeightHint;
@@ -637,10 +637,10 @@ bool TrackViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, co
             return true;
         }
 
-        return false;
+        return QStyledItemDelegate::editorEvent(event, model, option, index);
     }
 
-    return true;
+    return QStyledItemDelegate::editorEvent(event, model, option, index);
 }
 
 /************************************************

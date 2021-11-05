@@ -117,6 +117,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagAlbumEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
 
     tagDiscIdEdit->setTagId(TagId::DiscId);
+    connect(tagDiscIdEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
+    connect(tagDiscIdEdit, &TagLineEdit::textEdited, this, &MainWindow::setControlsEnable);
+
     connect(tagStartNumEdit, &MultiValuesSpinBox::editingFinished, this, &MainWindow::setStartTrackNum);
     connect(tagStartNumEdit, qOverload<int>(&MultiValuesSpinBox::valueChanged),
             this, &MainWindow::setStartTrackNum);
