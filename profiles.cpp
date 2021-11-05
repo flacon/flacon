@@ -360,6 +360,9 @@ EncoderConfigPage *Profile::configPage(QWidget *parent) const
  ************************************************/
 void Profile::load(QSettings &settings, const QString &group)
 {
+    static constexpr auto DEFAULT_COVER_FILE_SIZE  = 1024;
+    static constexpr auto DEFAULT_COVER_EMBED_MODE = "Disable";
+
     settings.beginGroup(group);
 
     if (settings.contains("Format")) {
@@ -393,13 +396,13 @@ void Profile::load(QSettings &settings, const QString &group)
 
     settings.endGroup();
 
-    mCopyCoverOptions.mode = strToCoverMode(value(COVER_FILE_MODE_KEY).toString());
-    mCopyCoverOptions.size = value(COVER_FILE_SIZE_KEY).toInt();
+    mCopyCoverOptions.mode = strToCoverMode(value(COVER_FILE_MODE_KEY, DEFAULT_COVER_EMBED_MODE).toString());
+    mCopyCoverOptions.size = value(COVER_FILE_SIZE_KEY, DEFAULT_COVER_FILE_SIZE).toInt();
 
     mSupportEmbedCover = mFormat->options().testFlag(FormatOption::SupportEmbeddedCue);
     if (mSupportEmbedCover) {
-        mEmbedCoverOptions.mode = strToCoverMode(value(COVER_EMBED_MODE_KEY).toString());
-        mEmbedCoverOptions.size = value(COVER_EMBED_SIZE_KEY).toInt();
+        mEmbedCoverOptions.mode = strToCoverMode(value(COVER_EMBED_MODE_KEY, DEFAULT_COVER_EMBED_MODE).toString());
+        mEmbedCoverOptions.size = value(COVER_EMBED_SIZE_KEY, DEFAULT_COVER_FILE_SIZE).toInt();
     }
 }
 

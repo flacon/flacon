@@ -98,11 +98,11 @@ class FlaconError : public std::runtime_error
 {
 public:
     explicit FlaconError(const char *msg) :
-        std::runtime_error(msg) {}
+        std::runtime_error(msg) { }
     explicit FlaconError(const std::string &msg) :
-        std::runtime_error(msg) {}
+        std::runtime_error(msg) { }
     explicit FlaconError(const QString &msg) :
-        std::runtime_error(msg.toStdString()) {}
+        std::runtime_error(msg.toStdString()) { }
 };
 
 class CueIndex
