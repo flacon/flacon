@@ -12,7 +12,7 @@
     CueFileName = %a-%A.cue
     PregapType = Extract
     CoverFile/Mode=Disable
-    CoverFile/Size=0
+    CoverFile/Size=1024
 
 [Profiles/FLAC]
     OutDirectory=:Music
@@ -27,9 +27,9 @@
     CueFileName = %a-%A.cue
     PregapType = Extract
     CoverFile/Mode=Disable
-    CoverFile/Size=0
+    CoverFile/Size=1024
     CoverEmbed/Mode=Disable
-    CoverEmbed/Size=0
+    CoverEmbed/Size=1024
 
 [Profiles/MP3]
     OutDirectory=:Music
@@ -46,7 +46,7 @@
     CueFileName = %a-%A.cue
     PregapType = Extract
     CoverFile/Mode=Disable
-    CoverFile/Size=0
+    CoverFile/Size=1024
 
 
 [Profiles/OGG]
@@ -66,7 +66,7 @@
     CueFileName = %a-%A.cue
     PregapType = Extract
     CoverFile/Mode=Disable
-    CoverFile/Size=0
+    CoverFile/Size=1024
 
 
 [Profiles/OPUS]
@@ -82,7 +82,7 @@
     CueFileName = %a-%A.cue
     PregapType = Extract
     CoverFile/Mode=Disable
-    CoverFile/Size=0
+    CoverFile/Size=1024
 
 
 [Profiles/WV]
@@ -98,7 +98,7 @@
     CueFileName = %a-%A.cue
     PregapType = Extract
     CoverFile/Mode=Disable
-    CoverFile/Size=0
+    CoverFile/Size=1024
 
 
 [Profiles/WAV]
@@ -112,4 +112,4 @@
     CueFileName = %a-%A.cue
     PregapType = Extract
     CoverFile/Mode=Disable
-    CoverFile/Size=0
+    CoverFile/Size=1024
