@@ -58,6 +58,8 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
     ui->setupUi(this);
     this->setMinimumSize(this->size());
 
+    setStyleSheet("QFrame[frameShape='4'] { border-bottom: 1px solid #7F7F7F7F; background: transparent; }");
+
     initToolBar();
 
 #ifdef Q_OS_MAC
