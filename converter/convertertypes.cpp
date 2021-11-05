@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "convertertypes.h"
-#include "../formats/outformat.h"
+#include "../formats_out/outformat.h"
 #include "../profiles.h"
 
 using namespace Conv;
@@ -34,72 +34,5 @@ using namespace Conv;
  ************************************************/
 ConvTrack::ConvTrack(const Track &other) :
     Track(other)
-{
-}
-
-/************************************************
- *
- ************************************************/
-EncoderOptions::EncoderOptions(const OutFormat *outFormat, const Profile *profile) :
-    mOutFormat(outFormat),
-    mProfile(profile)
-{
-}
-
-/************************************************
- *
- ************************************************/
-QString EncoderOptions::formatId() const
-{
-    return mOutFormat->id();
-}
-
-/************************************************
- *
- ************************************************/
-QStringList EncoderOptions::encoderArgs(const ConvTrack &track, const QString &coverFile, const QString &outFile) const
-{
-    return mOutFormat->encoderArgs(*mProfile, &track, coverFile, outFile);
-}
-
-/************************************************
- *
- ************************************************/
-int EncoderOptions::bitsPerSample(const InputAudioFile &audio) const
-{
-    return calcQuality(audio.bitsPerSample(), mProfile->bitsPerSample(), mOutFormat->maxBitPerSample());
-}
-
-/************************************************
- *
- ************************************************/
-int EncoderOptions::sampleRate(const InputAudioFile &audio) const
-{
-    return calcQuality(audio.sampleRate(), mProfile->sampleRate(), mOutFormat->maxSampleRate());
-}
-
-/************************************************
- *
- ************************************************/
-GainOptions::GainOptions(const OutFormat *outFormat, const Profile *profile) :
-    mOutFormat(outFormat),
-    mType(profile->gainType())
-{
-}
-
-/************************************************
- *
- ************************************************/
-QStringList GainOptions::gainArgs(const QStringList &files) const
-{
-    return mOutFormat->gainArgs(files, type());
-}
-
-/************************************************
- *
- ************************************************/
-CoverOptions::CoverOptions(const QString &fileName, int size) :
-    mFileName(fileName),
-    mSize(size)
 {
 }

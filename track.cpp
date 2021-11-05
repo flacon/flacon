@@ -30,7 +30,7 @@
 #include "inputaudiofile.h"
 #include "project.h"
 #include "settings.h"
-#include "outformat.h"
+#include "formats_out/outformat.h"
 #include "patternexpander.h"
 
 #include <uchardet.h>
@@ -72,6 +72,7 @@ Track &Track::operator=(const Track &other)
     mCueIndexes  = other.mCueIndexes;
     mDuration    = other.mDuration;
     mCueFileName = other.mCueFileName;
+    mAudiofile   = other.mAudiofile;
 
     return *this;
 }

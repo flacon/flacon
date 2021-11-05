@@ -42,6 +42,7 @@
 #include <QCheckBox>
 #include <QPaintEvent>
 #include <QStandardPaths>
+#include <QToolBar>
 
 static constexpr int HISTORY_COUNT = 10;
 
@@ -994,4 +995,26 @@ void Controls::saveToSettings(const QComboBox *widget, Settings::Key key)
 {
     QVariant data = widget->itemData(widget->currentIndex());
     Settings::i()->setValue(key, data);
+}
+
+/************************************************
+
+************************************************/
+void Controls::arangeTollBarButtonsWidth(QToolBar *toolBar)
+{
+    int w = 0;
+
+    foreach (QAction *act, toolBar->actions()) {
+        QToolButton *btn = qobject_cast<QToolButton *>(toolBar->widgetForAction(act));
+        if (btn) {
+            w = qMax(w, btn->sizeHint().width());
+        }
+    }
+
+    foreach (QAction *act, toolBar->actions()) {
+        QToolButton *btn = qobject_cast<QToolButton *>(toolBar->widgetForAction(act));
+        if (btn) {
+            btn->setMinimumWidth(w);
+        }
+    }
 }

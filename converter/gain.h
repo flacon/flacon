@@ -35,41 +35,46 @@ class Track;
 
 namespace Conv {
 
-class GainJob
-{
-public:
-    GainJob(const ConvTrack &track, const QString &file, const GainOptions &options) :
-        mTrack(track),
-        mFile(file),
-        mOptions(options)
-    {
-    }
-
-    GainJob(const GainJob &other) = default;
-
-    ConvTrack   track() const { return mTrack; }
-    QString     file() const { return mFile; }
-    GainOptions options() const { return mOptions; }
-
-private:
-    ConvTrack   mTrack;
-    QString     mFile;
-    GainOptions mOptions;
-};
-
-using GainJobs = QList<GainJob>;
-
 class Gain : public Worker
 {
     Q_OBJECT
 public:
-    explicit Gain(const GainJob &job, QObject *parent = nullptr);
-    explicit Gain(const GainJobs &jobs, QObject *parent = nullptr);
+    virtual QString programName() const = 0;
+
+    explicit Gain(const Profile &profile, QObject *parent = nullptr);
+    void addTrack(const ConvTrack &track, const QString &file);
 
     void run() override;
 
+    QString programPath() const;
+
+    virtual QStringList programArgs(const QStringList &files, const GainType gainType) const = 0;
+
 private:
-    QList<GainJob> mJobs;
+    struct Job
+    {
+        ConvTrack track;
+        QString   file;
+    };
+
+    Profile    mProfile;
+    QList<Job> mJobs;
+};
+
+class NoGain : public Gain
+{
+public:
+    using Conv::Gain::Gain;
+    QString programName() const override
+    {
+        return "";
+    }
+
+protected:
+    QStringList programArgs(const QStringList &, const GainType) const override
+    {
+        return QStringList();
+    }
 };
 
 } // namespace

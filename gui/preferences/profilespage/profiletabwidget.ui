@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProfileTabWidget</class>
+ <widget class="QTabWidget" name="ProfileTabWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>627</width>
+    <height>513</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TabWidget</string>
+  </property>
+  <property name="currentIndex">
+   <number>0</number>
+  </property>
+  <widget class="QWidget" name="audioTab">
+   <attribute name="title">
+    <string>Audio</string>
+   </attribute>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QGroupBox" name="outFilesBox">
+      <property name="title">
+       <string>Result Files</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QFormLayout" name="formLayout_4">
+       <item row="0" column="0">
+        <widget class="QLabel" name="outDirLabel">
+         <property name="text">
+          <string comment="Preferences form label text">Directory:</string>
+         </property>
+         <property name="buddy">
+          <cstring>outDirEdit</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLineEdit" name="outDirEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string comment="Preferences form tooltip for &quot;Directory&quot; edit">You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="OutDirButton" name="outDirButton">
+           <property name="text">
+            <string notr="true">*</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="outPatternLabel">
+         <property name="text">
+          <string comment="Preferences form label text">Pattern:</string>
+         </property>
+         <property name="buddy">
+          <cstring>outPatternEdit</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QLineEdit" name="outPatternEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string comment="Preferences form tooltip for &quot;Pattern&quot; edit">&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="OutPatternButton" name="outPatternButton">
+           <property name="text">
+            <string notr="true">*</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="encoderGroup">
+      <property name="title">
+       <string notr="true">FLAC encoder settings:</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="Line" name="encoderGroupLine">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="resampleGroup">
+      <property name="title">
+       <string extracomment="Preferences dialog: group caption">Resampling settings:</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="bitDepthLabel">
+         <property name="text">
+          <string>Maximum bit depth:</string>
+         </property>
+         <property name="buddy">
+          <cstring>bitDepthComboBox</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="BitsPerSampleCombobox" name="bitDepthComboBox"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="sampleRateLabel">
+         <property name="text">
+          <string>Maximum sample rate:</string>
+         </property>
+         <property name="buddy">
+          <cstring>sampleRateComboBox</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="SampleRateCombobox" name="sampleRateComboBox"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="gainGroup">
+      <property name="title">
+       <string>ReplayGain settings:</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QFormLayout" name="formLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="gainLabel">
+         <property name="text">
+          <string>Calculate gain:</string>
+         </property>
+         <property name="buddy">
+          <cstring>gainComboBox</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="GainTypeCombobox" name="gainComboBox"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>92</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="tab_2">
+   <attribute name="title">
+    <string comment="Preferences dialog tab title">CUE and Cover image</string>
+   </attribute>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="CoverGroupBox" name="copyCoverGroupBox">
+      <property name="title">
+       <string>Copy cover image</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="CoverGroupBox" name="embededCoverGroupBox">
+      <property name="toolTip">
+       <string comment="Tooltip on checkbox on preferences dialog">If the format is supported, the cover will be added to the meta information for all output files.</string>
+      </property>
+      <property name="title">
+       <string>Embed cover image in output files</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="CueGroupBox" name="cueGroup">
+      <property name="title">
+       <string extracomment="Preferences dialog: group caption">Create per track CUE sheet</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>302</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>OutPatternButton</class>
+   <extends>QToolButton</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>OutDirButton</class>
+   <extends>QToolButton</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SampleRateCombobox</class>
+   <extends>QComboBox</extends>
+   <header>profiletabwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>BitsPerSampleCombobox</class>
+   <extends>QComboBox</extends>
+   <header>profiletabwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>GainTypeCombobox</class>
+   <extends>QComboBox</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CoverGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header location="global">covergroupbox.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CueGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header>cuegroupbox.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

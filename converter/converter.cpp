@@ -52,94 +52,14 @@ using namespace Conv;
 class Converter::Data
 {
 public:
-    DiscPipelineJob createDiscPipelineJob(const Job &converterJob, const Profile &profile);
-
     TrackId trackId     = 1;
     int     threadCount = 0;
 
     QVector<DiscPipeline *>        discPiplines;
     QMap<TrackId, const ConvTrack> tracks;
 
-private:
     QString workDir(const Track *track) const;
 };
-
-/************************************************
- *
- ************************************************/
-DiscPipelineJob Converter::Data::createDiscPipelineJob(const Job &converterJob, const Profile &profile)
-{
-    // Copy cover image .........................
-    QString copyCoverImage     = Settings::i()->coverMode() != CoverMode::Disable ? converterJob.disc->coverImageFile() : "";
-    int     copyCoverImageSize = Settings::i()->coverMode() == CoverMode::Scale ? Settings::i()->coverImageSize() : 0;
-
-    QString embedCoverImage     = Settings::i()->embededCoverMode() != CoverMode::Disable ? converterJob.disc->coverImageFile() : "";
-    int     embedCoverImageSize = Settings::i()->embededCoverMode() == CoverMode::Scale ? Settings::i()->embededCoverImageSize() : 0;
-
-    // Tracks ..............................
-    ConvTracks resTracks;
-
-    PreGapType preGapType = profile.isCreateCue() ? profile.preGapType() : PreGapType::Skip;
-
-    for (const TrackPtrList &tracks : converterJob.disc->tracksByFileTag()) {
-
-        // Pregap track ....................
-        bool hasPregap =
-                converterJob.tracks.contains(tracks.first()) && // We extract first track in Audio
-                tracks.first()->cueIndex(1).milliseconds() > 0; // The first track don't start from zero second
-
-        if (hasPregap && preGapType == PreGapType::ExtractToFile) {
-            Track *firstTrack = tracks.first();
-
-            Track pregapTrack = *firstTrack; // copy tags and all settings
-            pregapTrack.setCueFileName(firstTrack->cueFileName());
-            pregapTrack.setTag(TagId::TrackNum, QByteArray("0"));
-            pregapTrack.setTitle("(HTOA)");
-
-            ConvTrack track(pregapTrack);
-            track.setId(trackId++);
-            track.setPregap(true);
-            track.setEnabled(true);
-
-            track.setStart(firstTrack->cueIndex(0));
-            track.setEnd(firstTrack->cueIndex(1));
-
-            resTracks << track;
-        }
-
-        // Tracks ..........................
-        for (int i = 0; i < tracks.count(); ++i) {
-            const Track *t = tracks.at(i);
-
-            ConvTrack track(*t);
-            track.setId(trackId++);
-            track.setPregap(false);
-            track.setEnabled(converterJob.tracks.contains(t));
-
-            if (i == 0 && hasPregap && preGapType == PreGapType::AddToFirstTrack) {
-                track.setStart(CueIndex("00:00:00"));
-            }
-            else {
-                track.setStart(t->cueIndex(1));
-            }
-
-            if (i < tracks.count() - 1) {
-                track.setEnd(tracks.at(i + 1)->cueIndex(01));
-            }
-
-            resTracks << track;
-        }
-    }
-
-    QString wrkDir = workDir(converterJob.tracks.first());
-
-    EncoderOptions encoderOptions(profile.outFormat(), &profile);
-    GainOptions    gainOptions(profile.outFormat(), &profile);
-    CoverOptions   copyCoverOptions(copyCoverImage, copyCoverImageSize);
-    CoverOptions   embedCoverOptions(embedCoverImage, embedCoverImageSize);
-
-    return DiscPipelineJob(resTracks, encoderOptions, gainOptions, copyCoverOptions, embedCoverOptions, wrkDir);
-}
 
 /************************************************
  *
@@ -195,7 +115,8 @@ void Converter::start(const Profile &profile)
  ************************************************/
 void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
 {
-    qCDebug(LOG) << "Start converter:" << jobs.length() << profile;
+    qCDebug(LOG) << "Start converter:" << jobs.length() << "\n"
+                 << profile;
     qCDebug(LOG) << "Temp dir =" << Settings::i()->tmpDir();
 
     if (jobs.isEmpty()) {
@@ -227,21 +148,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
                 continue;
             }
 
-            DiscPipelineJob job      = mData->createDiscPipelineJob(converterJob, profile);
-            DiscPipeline *  pipeline = new DiscPipeline(job, this);
-
-            connect(pipeline, &DiscPipeline::readyStart, this, &Converter::startThread);
-            connect(pipeline, &DiscPipeline::threadFinished, this, &Converter::startThread);
-            connect(pipeline, &DiscPipeline::trackProgressChanged, this, &Converter::trackProgress);
-
-            mData->discPiplines << pipeline;
-
-            if (profile.isCreateCue()) {
-                CueCreator cue(converterJob.disc, profile.preGapType(), profile.cueFileName());
-                if (!cue.write()) {
-                    throw FlaconError(cue.errorString());
-                }
-            }
+            mData->discPiplines << createDiscPipeline(profile, converterJob);
         }
     }
     catch (const FlaconError &err) {
@@ -254,6 +161,77 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
 
     startThread();
     emit started();
+}
+
+/************************************************
+ *
+ ************************************************/
+DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Converter::Job &converterJob)
+{
+    // Tracks ..............................
+    ConvTracks resTracks;
+
+    PreGapType preGapType = profile.isCreateCue() ? profile.preGapType() : PreGapType::Skip;
+
+    for (const TrackPtrList &tracks : converterJob.disc->tracksByFileTag()) {
+
+        // Pregap track ....................
+        bool hasPregap =
+                converterJob.tracks.contains(tracks.first()) && // We extract first track in Audio
+                tracks.first()->cueIndex(1).milliseconds() > 0; // The first track don't start from zero second
+
+        if (hasPregap && preGapType == PreGapType::ExtractToFile) {
+            Track *firstTrack = tracks.first();
+
+            Track pregapTrack = *firstTrack; // copy tags and all settings
+            pregapTrack.setCueFileName(firstTrack->cueFileName());
+            pregapTrack.setTag(TagId::TrackNum, QByteArray("0"));
+            pregapTrack.setTitle("(HTOA)");
+
+            ConvTrack track(pregapTrack);
+            track.setId((mData->trackId)++);
+            track.setPregap(true);
+            track.setEnabled(true);
+
+            track.setStart(firstTrack->cueIndex(0));
+            track.setEnd(firstTrack->cueIndex(1));
+
+            resTracks << track;
+        }
+
+        // Tracks ..........................
+        for (int i = 0; i < tracks.count(); ++i) {
+            const Track *t = tracks.at(i);
+
+            ConvTrack track(*t);
+            track.setId((mData->trackId)++);
+            track.setPregap(false);
+            track.setEnabled(converterJob.tracks.contains(t));
+
+            if (i == 0 && hasPregap && preGapType == PreGapType::AddToFirstTrack) {
+                track.setStart(CueIndex("00:00:00"));
+            }
+            else {
+                track.setStart(t->cueIndex(1));
+            }
+
+            if (i < tracks.count() - 1) {
+                track.setEnd(tracks.at(i + 1)->cueIndex(01));
+            }
+
+            resTracks << track;
+        }
+    }
+
+    QString wrkDir = mData->workDir(converterJob.tracks.first());
+
+    DiscPipeline *pipeline = new DiscPipeline(profile, converterJob.disc, resTracks, wrkDir, this);
+
+    connect(pipeline, &DiscPipeline::readyStart, this, &Converter::startThread);
+    connect(pipeline, &DiscPipeline::threadFinished, this, &Converter::startThread);
+    connect(pipeline, &DiscPipeline::trackProgressChanged, this, &Converter::trackProgress);
+
+    return pipeline;
 }
 
 /************************************************

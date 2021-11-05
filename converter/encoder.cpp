@@ -26,6 +26,7 @@
 #include "encoder.h"
 #include "resampler.h"
 #include "profiles.h"
+#include "settings.h"
 
 #include <QFileInfo>
 #include <QDir>
@@ -44,9 +45,8 @@ const quint64 MAX_BUF_SIZE = 1024 * 1024;
 /************************************************
  *
  ************************************************/
-Encoder::Encoder(const EncoderJob &job, QObject *parent) :
-    Worker(parent),
-    mJob(job)
+Encoder::Encoder(QObject *parent) :
+    Worker(parent)
 {
 }
 
@@ -58,7 +58,7 @@ void Encoder::check(QProcess *process)
     if (process->exitCode() != 0) {
         qWarning() << "Encoder command failed: " << debugProgramArgs(process->program(), process->arguments());
         QString msg = tr("Encoder error:\n") + "<pre>" + QString::fromLocal8Bit(process->readAllStandardError()) + "</pre>";
-        emit    error(mJob.track(), msg);
+        emit    error(track(), msg);
     }
 }
 
@@ -103,7 +103,7 @@ void Encoder::runTwoProcess(QProcess *resampler, QProcess *encoder)
  ************************************************/
 void Encoder::run()
 {
-    emit trackProgress(mJob.track(), TrackState::Encoding, 0);
+    emit trackProgress(track(), TrackState::Encoding, 0);
 
     const qint8 COPY_FILE = 0, RESAMPLE = 1, ENCODE = 2, RESAMPLE_ENCODE = 3;
 
@@ -111,8 +111,8 @@ void Encoder::run()
     QProcess encoder;
     qint8    mode = COPY_FILE;
 
-    if (mJob.options().formatId() != "WAV") {
-        QStringList args = mJob.options().encoderArgs(mJob.track(), mJob.coverFile(), QDir::toNativeSeparators(mJob.outFile()));
+    if (profile().formatId() != "WAV") {
+        QStringList args = programArgs();
         QString     prog = args.takeFirst();
 
         qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog, args);
@@ -125,19 +125,19 @@ void Encoder::run()
         mode += ENCODE;
     }
 
-    const InputAudioFile &audio = mJob.track().audioFile();
+    const InputAudioFile &audio = mTrack.audioFile();
 
-    int bitsPerSample = mJob.options().bitsPerSample(audio);
-    int sampleRate    = mJob.options().sampleRate(audio);
+    int bps  = bitsPerSample(audio);
+    int rate = sampleRate(audio);
 
-    if (bitsPerSample != audio.bitsPerSample() || sampleRate != audio.sampleRate()) {
+    if (bps != audio.bitsPerSample() || rate != audio.sampleRate()) {
         QString outFile;
         if (mode == COPY_FILE)
-            outFile = mJob.outFile(); // Input file already WAV, so for WAV output format we just rename file.
+            outFile = mOutFile; // Input file already WAV, so for WAV output format we just rename file.
         else
             outFile = "-"; // Write to STDOUT
 
-        QStringList args = Resampler::args(bitsPerSample, sampleRate, outFile);
+        QStringList args = Resampler::args(bps, rate, outFile);
         QString     prog = args.takeFirst();
 
         qCDebug(LOG) << "Start resampler:" << debugProgramArgs(prog, args);
@@ -165,8 +165,32 @@ void Encoder::run()
             break;
     }
 
-    deleteFile(mJob.inputFile());
-    emit trackReady(mJob.track(), mJob.outFile());
+    deleteFile(mInputFile);
+    emit trackReady(track(), outFile());
+}
+
+/************************************************
+
+ ************************************************/
+int Encoder::bitsPerSample(const InputAudioFile &audio) const
+{
+    return calcQuality(audio.bitsPerSample(), mProfile.bitsPerSample(), mProfile.outFormat()->maxBitPerSample());
+}
+
+/************************************************
+
+ ************************************************/
+int Encoder::sampleRate(const InputAudioFile &audio) const
+{
+    return calcQuality(audio.sampleRate(), mProfile.sampleRate(), mProfile.outFormat()->maxSampleRate());
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Encoder::programPath() const
+{
+    return Settings::i()->programName(programName());
 }
 
 /************************************************
@@ -178,8 +202,16 @@ void Encoder::processBytesWritten(qint64 bytes)
     int p = ((mReady * 100.0) / mTotal);
     if (p != mProgress) {
         mProgress = p;
-        emit trackProgress(mJob.track(), TrackState::Encoding, mProgress);
+        emit trackProgress(track(), TrackState::Encoding, mProgress);
     }
+}
+
+/************************************************
+
+ ************************************************/
+void Encoder::setProfile(const Profile &profile)
+{
+    mProfile = profile;
 }
 
 /************************************************
@@ -187,9 +219,9 @@ void Encoder::processBytesWritten(qint64 bytes)
  ************************************************/
 void Encoder::readInputFile(QProcess *process)
 {
-    QFile file(mJob.inputFile());
+    QFile file(inputFile());
     if (!file.open(QFile::ReadOnly)) {
-        emit error(mJob.track(), tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(mJob.inputFile()));
+        emit error(track(), tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(inputFile()));
     }
 
     mProgress = -1;
@@ -209,14 +241,14 @@ void Encoder::readInputFile(QProcess *process)
  ************************************************/
 void Encoder::runWav()
 {
-    QFile srcFile(mJob.inputFile());
-    bool  res = srcFile.rename(mJob.outFile());
+    QFile srcFile(inputFile());
+    bool  res = srcFile.rename(outFile());
 
     if (!res) {
-        emit error(mJob.track(),
-                   tr("I can't rename file:\n%1 to %2\n%3").arg(mJob.inputFile(), mJob.outFile(), srcFile.errorString()));
+        emit error(track(),
+                   tr("I can't rename file:\n%1 to %2\n%3").arg(inputFile(), outFile(), srcFile.errorString()));
     }
 
-    emit trackProgress(mJob.track(), TrackState::Encoding, 100);
-    emit trackReady(mJob.track(), mJob.outFile());
+    emit trackProgress(track(), TrackState::Encoding, 100);
+    emit trackReady(track(), outFile());
 }

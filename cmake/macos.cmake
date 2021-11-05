@@ -35,7 +35,7 @@ endfunction()
 # Homebrew has issues, fix it
 macro(add_homebrew_qt_prefix_path)
     if (APPLE)
-        file (GLOB dirs  /usr/local/Cellar/qt/* /usr/local/Cellar/qt@5/*)
+        file (GLOB dirs /usr/local/Cellar/qt@5/*)
         list(APPEND CMAKE_PREFIX_PATH ${dirs})
     endif()
 endmacro()

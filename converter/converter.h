@@ -45,7 +45,7 @@ class Converter : public QObject
 public:
     struct Job
     {
-        Disc *                 disc = nullptr;
+        Disc                  *disc = nullptr;
         QVector<const Track *> tracks;
     };
 
@@ -75,7 +75,8 @@ private:
 
     Data *mData = nullptr;
 
-    bool check(const Profile &profile) const;
+    bool          check(const Profile &profile) const;
+    DiscPipeline *createDiscPipeline(const Profile &profile, const Job &converterJob);
 };
 
 }

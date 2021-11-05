@@ -110,7 +110,7 @@ signals:
 
 private:
     QHash<int, TagValue> mTags;
-    QTextCodec *         mTextCodec;
+    QTextCodec          *mTextCodec;
     QVector<CueIndex>    mCueIndexes;
     Duration             mDuration;
     QString              mCueFileName;

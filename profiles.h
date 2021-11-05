@@ -30,7 +30,7 @@
 #include <QVariant>
 #include <QVector>
 
-#include "formats/outformat.h"
+#include "formats_out/outformat.h"
 class QSettings;
 
 class Profile
@@ -41,8 +41,8 @@ public:
     Profile();
     explicit Profile(const QString &id);
     explicit Profile(OutFormat &format, const QString &id = "");
-    Profile(const Profile &other);
-    Profile &operator=(const Profile &other);
+    Profile(const Profile &other) = default;
+    Profile &operator=(const Profile &other) = default;
 
     QString id() const { return mId; }
 
@@ -61,6 +61,7 @@ public:
     void    setOutFilePattern(const QString &value);
 
     GainType gainType() const;
+    void     setGainType(GainType value);
 
     int  bitsPerSample() const;
     void setBitsPerSample(int value);
@@ -71,13 +72,16 @@ public:
     bool isCreateCue() const;
     void setCreateCue(bool value);
 
+    bool isEmbedCue() const;
+    void setEmbedCue(bool value);
+
     QString cueFileName() const;
     void    setCueFileName(const QString &value);
 
     PreGapType preGapType() const;
     void       setPregapType(PreGapType value);
 
-    const OutFormat *  outFormat() const { return mFormat; }
+    const OutFormat   *outFormat() const { return mFormat; }
     QString            formatId() const { return mFormat->id(); }
     QString            formatName() const { return mFormat->name(); }
     QString            ext() const { return mFormat->ext(); }
@@ -87,24 +91,40 @@ public:
     EncoderConfigPage *configPage(QWidget *parent) const;
     bool               check(QStringList *errors) const { return mFormat->check(*this, errors); }
 
+    // Cover options ............................
+    CoverOptions copyCoverOptions() const;
+    void         setCopyCoverOptions(const CoverOptions &copyCoverOptions);
+
+    CoverOptions embedCoverOptions() const;
+    void         setEmbedCoverOptions(const CoverOptions &embedCoverOptions);
+
     void load(QSettings &settings, const QString &group);
     void save(QSettings &settings, const QString &group) const;
 
-    static constexpr const char *OUT_DIRECTORY_KEY   = "OutDirectory";
-    static constexpr const char *OUT_PATTERN_KEY     = "OutPattern";
-    static constexpr const char *BITS_PER_SAMPLE_KEY = "BitsPerSample";
-    static constexpr const char *SAMPLE_RATE_KEY     = "SampleRate";
-    static constexpr const char *CREATE_CUE_KEY      = "CreateCue";
-    static constexpr const char *CUE_FILE_NAME_KEY   = "CueFileName";
-    static constexpr const char *PREGAP_TYPE_KEY     = "PregapType";
-    static constexpr const char *REPLAY_GAIN_KEY     = "ReplayGain";
+    static constexpr const char *OUT_DIRECTORY_KEY    = "OutDirectory";
+    static constexpr const char *OUT_PATTERN_KEY      = "OutPattern";
+    static constexpr const char *BITS_PER_SAMPLE_KEY  = "BitsPerSample";
+    static constexpr const char *SAMPLE_RATE_KEY      = "SampleRate";
+    static constexpr const char *CREATE_CUE_KEY       = "CreateCue";
+    static constexpr const char *EMBED_CUE_KEY        = "EmbedCue";
+    static constexpr const char *CUE_FILE_NAME_KEY    = "CueFileName";
+    static constexpr const char *PREGAP_TYPE_KEY      = "PregapType";
+    static constexpr const char *REPLAY_GAIN_KEY      = "ReplayGain";
+    static constexpr const char *COVER_FILE_MODE_KEY  = "CoverFile/Mode";
+    static constexpr const char *COVER_FILE_SIZE_KEY  = "CoverFile/Size";
+    static constexpr const char *COVER_EMBED_MODE_KEY = "CoverEmbed/Mode";
+    static constexpr const char *COVER_EMBED_SIZE_KEY = "CoverEmbed/Size";
 
 private:
     QString                  mId;
-    const OutFormat *        mFormat;
+    const OutFormat         *mFormat;
     QString                  mName;
     QHash<QString, QVariant> mValues;
     void                     setDefaultValues();
+
+    CoverOptions mCopyCoverOptions;
+    CoverOptions mEmbedCoverOptions;
+    bool         mSupportEmbedCover = false;
 };
 
 Profile &NullProfile();

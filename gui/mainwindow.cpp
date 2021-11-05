@@ -28,10 +28,10 @@
 #include "disc.h"
 #include "settings.h"
 #include "converter/converter.h"
-#include "outformat.h"
+#include "formats_out/outformat.h"
 #include "inputaudiofile.h"
-#include "formats/informat.h"
-#include "configdialog/configdialog.h"
+#include "formats_in/informat.h"
+#include "preferences/preferencesdialog.h"
 #include "aboutdialog/aboutdialog.h"
 #include "scanner.h"
 #include "gui/coverdialog/coverdialog.h"
@@ -117,6 +117,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagAlbumEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
 
     tagDiscIdEdit->setTagId(TagId::DiscId);
+    connect(tagDiscIdEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
+    connect(tagDiscIdEdit, &TagLineEdit::textEdited, this, &MainWindow::setControlsEnable);
+
     connect(tagStartNumEdit, &MultiValuesSpinBox::editingFinished, this, &MainWindow::setStartTrackNum);
     connect(tagStartNumEdit, qOverload<int>(&MultiValuesSpinBox::valueChanged),
             this, &MainWindow::setStartTrackNum);
@@ -623,7 +626,8 @@ void MainWindow::stopConvert()
  ************************************************/
 void MainWindow::configure()
 {
-    ConfigDialog::createAndShow(nullptr, this);
+    auto dlg = PreferencesDialog::createAndShow(nullptr, this);
+    connect(dlg, &PreferencesDialog::finished, this, &MainWindow::refreshEdits, Qt::UniqueConnection);
 }
 
 /************************************************
@@ -631,7 +635,8 @@ void MainWindow::configure()
  ************************************************/
 void MainWindow::configureEncoder()
 {
-    ConfigDialog::createAndShow(Settings::i()->currentProfile().id(), this);
+    auto dlg = PreferencesDialog::createAndShow(Settings::i()->currentProfile().id(), this);
+    connect(dlg, &PreferencesDialog::finished, this, &MainWindow::refreshEdits, Qt::UniqueConnection);
 }
 
 /************************************************
@@ -1035,18 +1040,7 @@ void MainWindow::initActions()
     connect(actionAbout, &QAction::triggered, this, &MainWindow::openAboutDialog);
     actionAbout->setMenuRole(QAction::AboutRole);
 
-    int w = 0;
-    foreach (QAction *act, toolBar->actions()) {
-        QToolButton *btn = qobject_cast<QToolButton *>(toolBar->widgetForAction(act));
-        if (btn)
-            w = qMax(w, btn->sizeHint().width());
-    }
-
-    foreach (QAction *act, toolBar->actions()) {
-        QToolButton *btn = qobject_cast<QToolButton *>(toolBar->widgetForAction(act));
-        if (btn)
-            btn->setMinimumWidth(w);
-    }
+    Controls::arangeTollBarButtonsWidth(toolBar);
 
 #ifdef MAC_UPDATER
     actionUpdates->setVisible(true);
@@ -1123,7 +1117,7 @@ QIcon MainWindow::loadMainIcon()
 void MainWindow::showErrorMessage(const QString &message)
 {
     const QString name = "errorMessage";
-    ErrorBox *    box  = this->findChild<ErrorBox *>(name);
+    ErrorBox     *box  = this->findChild<ErrorBox *>(name);
     if (!box) {
         box = new ErrorBox(this);
         box->setObjectName(name);

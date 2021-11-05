@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "audiofilematcher.h"
-#include "formats/informat.h"
+#include "formats_in/informat.h"
 #include <QDir>
 #include <QLoggingCategory>
 

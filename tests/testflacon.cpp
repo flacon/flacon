@@ -41,8 +41,9 @@
 #include "converter/converter.h"
 #include "converter/wavheader.h"
 #include "converter/splitter.h"
-#include "outformat.h"
+#include "../formats_out/outformat.h"
 #include "converter/discpipline.h"
+#include "../converter/gain.h"
 
 int TestFlacon::mTestNum = -1;
 Q_DECLARE_METATYPE(GainType)
@@ -488,7 +489,7 @@ void TestFlacon::testTrackResultFileName()
     Disc *disc = loadFromCue(cueFile);
 
     QString result = disc->track(0)->resultFileName();
-    //QCOMPARE(result, expected);
+    // QCOMPARE(result, expected);
 
     if (result != expected) {
         QString msg = QString("Compared values are not the same\n   Pattern   %1\n   Actual:   %2\n   Expected: %3").arg(pattern, result, expected);
@@ -999,7 +1000,7 @@ void TestFlacon::testTrackResultFilePath()
         QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   CueFile: %4").arg(QFileInfo(result).absoluteFilePath(), result, expected, cueFile);
         QFAIL(msg.toLocal8Bit());
     }
-    //QCOMPARE(result, expected);
+    // QCOMPARE(result, expected);
     disc->deleteLater();
 }
 
@@ -1008,7 +1009,7 @@ void TestFlacon::testTrackResultFilePath()
  ************************************************/
 void TestFlacon::testTrackResultFilePath_data()
 {
-    //QTest::addColumn<QString>("cueFile");
+    // QTest::addColumn<QString>("cueFile");
     QTest::addColumn<QString>("outDir", nullptr);
     QTest::addColumn<QString>("pattern", nullptr);
     QTest::addColumn<QString>("expected", nullptr);
@@ -1093,8 +1094,8 @@ void TestFlacon::testTrackSetCodepages()
 
     QStringList result;
     // Result *************************
-    //result << "GENRE:" << tracks.genre() << "\n";
-    //resultSl << "ALBUM:" << tracks.album() << "\n";
+    // result << "GENRE:" << tracks.genre() << "\n";
+    // resultSl << "ALBUM:" << tracks.album() << "\n";
     result << "DISCID:" << disc->discId() << "\n";
 
     for (int i = 0; i < disc->count(); ++i) {
@@ -1177,10 +1178,16 @@ void TestFlacon::testOutFormatGainArgs()
     if (!format)
         QFAIL(QString("Unknown format \"%1\"").arg(formatId).toLocal8Bit());
 
-    QStringList args = format->gainArgs(QStringList() << "OutFile_01.wav"
-                                                      << "OutFile_02.wav"
-                                                      << "OutFile_03.wav",
-                                        gainType);
+    Profile profile;
+    profile.setGainType(gainType);
+
+    Conv::Gain *gain = format->createGain(profile);
+    QStringList args = gain->programArgs(QStringList() << "OutFile_01.wav"
+                                                       << "OutFile_02.wav"
+                                                       << "OutFile_03.wav",
+                                         gainType);
+
+    delete gain;
 
     QString result = args.join(" ");
     if (result != expected) {
@@ -1220,7 +1227,7 @@ void TestFlacon::testOutFormatGainArgs_data()
     QTest::newRow("Mp3 Track")
             << "MP3"
             << GainType::Track
-            << "/opt/mp3gain -a -c "
+            << "/opt/mp3gain -c "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
     //*******************************************
@@ -1253,7 +1260,6 @@ void TestFlacon::testOutFormatGainArgs_data()
             << "WV"
             << GainType::Track
             << "/opt/wvgain "
-               "-a "
                "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 
     //*******************************************

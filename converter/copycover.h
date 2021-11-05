@@ -34,7 +34,7 @@ namespace Conv {
 class CopyCover
 {
 public:
-    CopyCover(const CoverOptions &options, const QString &outDir, const QString &outBaseName);
+    CopyCover(const QString &inFileName, int size, const QString &outDir, const QString &outBaseName);
     bool run();
 
     QString fileName() const { return mFileName; }
@@ -42,7 +42,8 @@ public:
     QString errorString() const { return mErrorString; }
 
 private:
-    CoverOptions  mOptions;
+    QString       mInFileName;
+    int           mSize = 0;
     const QString mDir;
     const QString mBaseName;
     QString       mErrorString;

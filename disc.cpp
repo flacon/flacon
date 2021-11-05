@@ -28,8 +28,8 @@
 #include "project.h"
 #include "settings.h"
 #include "inputaudiofile.h"
-#include "formats/informat.h"
-#include "outformat.h"
+#include "formats_in/informat.h"
+#include "formats_out/outformat.h"
 #include "audiofilematcher.h"
 
 #include "assert.h"

@@ -24,10 +24,10 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "types.h"
-#include "formats/informat.h"
+#include "formats_in/informat.h"
 #include "settings.h"
 #include "inputaudiofile.h"
-#include "outformat.h"
+#include "formats_out/outformat.h"
 #include "converter/resampler.h"
 
 #include <assert.h>
@@ -217,7 +217,7 @@ Settings::Settings(const QString &fileName) :
 void Settings::init()
 {
     migrateProfiles(this);
-    if (value(Inet_CDDBHost) == "freedb.freedb.org")
+    if (value(Inet_CDDBHost) == "https://gnudb.gnudb.org/")
         remove("Inet/CDDBHost");
 
     setDefaultValue(Tags_DefaultCodepage, "AUTODETECT");
@@ -230,7 +230,7 @@ void Settings::init()
     setDefaultValue(OutFiles_Profile, "FLAC");
 
     // Internet *********************************
-    setDefaultValue(Inet_CDDBHost, "http://www.gnudb.org");
+    setDefaultValue(Inet_CDDBHost, "https://gnudb.gnudb.org/");
 
     // Misc *************************************
     setDefaultValue(Misc_LastDir, QDir::homePath());
@@ -239,9 +239,9 @@ void Settings::init()
     setDefaultValue(Cover_Mode, coverModeToString(CoverMode::Scale));
     setDefaultValue(Cover_Size, 500);
 
-    // Embeded Cover image ******************
-    setDefaultValue(EmbededCover_Mode, coverModeToString(CoverMode::Disable));
-    setDefaultValue(EmbededCover_Size, 500);
+    // Embedded Cover image ******************
+    setDefaultValue(EmbeddedCover_Mode, coverModeToString(CoverMode::Disable));
+    setDefaultValue(EmbeddedCover_Size, 500);
 
     // ConfigureDialog **********************
     setDefaultValue(ConfigureDialog_Width, 645);
@@ -323,11 +323,11 @@ QString Settings::keyToString(Settings::Key key) const
         case Cover_Size:
             return "Cover/Size";
 
-        // Embeded Cover image ******************
-        case EmbededCover_Mode:
-            return "EmbededCover/Mode";
-        case EmbededCover_Size:
-            return "EmbededCover/Size";
+        // Embedded Cover image ******************
+        case EmbeddedCover_Mode:
+            return "EmbeddedCover/Mode";
+        case EmbeddedCover_Size:
+            return "EmbeddedCover/Size";
     }
 
     assert(false);
@@ -491,33 +491,33 @@ void Settings::setCoverImageSize(int value)
 /************************************************
 
 ************************************************/
-CoverMode Settings::embededCoverMode() const
+CoverMode Settings::embeddedCoverMode() const
 {
-    return strToCoverMode(value(EmbededCover_Mode).toString());
+    return strToCoverMode(value(EmbeddedCover_Mode).toString());
 }
 
 /************************************************
 
  ************************************************/
-void Settings::setEmbededCoverMode(CoverMode value)
+void Settings::setEmbeddedCoverMode(CoverMode value)
 {
-    setValue(EmbededCover_Mode, coverModeToString(value));
+    setValue(EmbeddedCover_Mode, coverModeToString(value));
 }
 
 /************************************************
 
  ************************************************/
-int Settings::embededCoverImageSize() const
+int Settings::embeddedCoverImageSize() const
 {
-    return value(EmbededCover_Size).toInt();
+    return value(EmbeddedCover_Size).toInt();
 }
 
 /************************************************
 
  ************************************************/
-void Settings::setEmbededCoverImageSize(int value)
+void Settings::setEmbeddedCoverImageSize(int value)
 {
-    setValue(EmbededCover_Size, value);
+    setValue(EmbeddedCover_Size, value);
 }
 
 /************************************************
@@ -664,4 +664,36 @@ bool Settings::selectProfile(const QString &profileId)
 
     setValue(OutFiles_Profile, profileId);
     return true;
+}
+
+/************************************************
+ *
+ ************************************************/
+uint Settings::encoderThreadsCount() const
+{
+    return value(Encoder_ThreadCount).toUInt();
+}
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setEncoderThreadsCount(uint value)
+{
+    setValue(Encoder_ThreadCount, value);
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Settings::cddbHost() const
+{
+    return value(Inet_CDDBHost).toString();
+}
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setCddbHost(const QString &value)
+{
+    setValue(Inet_CDDBHost, value);
 }

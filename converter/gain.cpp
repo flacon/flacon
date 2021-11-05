@@ -25,6 +25,7 @@
 
 #include "gain.h"
 #include "profiles.h"
+#include "settings.h"
 
 #include <QProcess>
 #include <QDir>
@@ -41,18 +42,18 @@ using namespace Conv;
 /************************************************
  *
  ************************************************/
-Gain::Gain(const GainJob &job, QObject *parent) :
-    Gain(GainJobs() << job, parent)
+Gain::Gain(const Profile &profile, QObject *parent) :
+    Worker(parent),
+    mProfile(profile)
 {
 }
 
 /************************************************
  *
  ************************************************/
-Gain::Gain(const GainJobs &jobs, QObject *parent) :
-    Worker(parent),
-    mJobs(jobs)
+void Gain::addTrack(const ConvTrack &track, const QString &file)
 {
+    mJobs << Job { track, file };
 }
 
 /************************************************
@@ -61,12 +62,12 @@ Gain::Gain(const GainJobs &jobs, QObject *parent) :
 void Gain::run()
 {
     QStringList files;
-    for (const GainJob &job : mJobs) {
-        emit trackProgress(job.track(), TrackState::CalcGain, 0);
-        files << QDir::toNativeSeparators(job.file());
+    for (const Job &job : qAsConst(mJobs)) {
+        emit trackProgress(job.track, TrackState::CalcGain, 0);
+        files << QDir::toNativeSeparators(job.file);
     }
 
-    QStringList args = mJobs.first().options().gainArgs(files);
+    QStringList args = programArgs(files, mProfile.gainType());
     QString     prog = args.takeFirst();
 
     qCDebug(LOG) << "Start gain:" << debugProgramArgs(prog, args);
@@ -79,11 +80,16 @@ void Gain::run()
     if (process.exitCode() != 0) {
         qWarning() << "Gain command failed: " << debugProgramArgs(prog, args);
         QString msg = tr("Gain error:\n") + QString::fromLocal8Bit(process.readAllStandardError());
-        emit    error(mJobs.first().track(), msg);
+        emit    error(mJobs.first().track, msg);
     }
 
-    for (const GainJob &job : mJobs) {
-        emit trackProgress(job.track(), TrackState::WriteGain, 100);
-        emit trackReady(job.track(), job.file());
+    for (const Job &job : qAsConst(mJobs)) {
+        emit trackProgress(job.track, TrackState::WriteGain, 100);
+        emit trackReady(job.track, job.file);
     }
+}
+
+QString Gain::programPath() const
+{
+    return Settings::i()->programName(programName());
 }

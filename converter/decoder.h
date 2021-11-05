@@ -31,7 +31,7 @@
 #include <QString>
 #include <QByteArray>
 #include "../cue.h"
-#include "../formats/informat.h"
+#include "../formats_in/informat.h"
 
 class QIODevice;
 class QProcess;
@@ -64,9 +64,9 @@ signals:
 
 private:
     const InputFormat *mFormat;
-    QProcess *         mProcess;
+    QProcess          *mProcess;
     QString            mInputFile;
-    QFile *            mFile;
+    QFile             *mFile;
     WavHeader          mWavHeader;
     quint64            mPos;
 

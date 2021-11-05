@@ -66,8 +66,8 @@ public:
         // Cover image **************************
         Cover_Mode,
         Cover_Size,
-        EmbededCover_Mode,
-        EmbededCover_Size,
+        EmbeddedCover_Mode,
+        EmbeddedCover_Size,
 
     };
 
@@ -101,19 +101,25 @@ public:
     int  coverImageSize() const;
     void setCoverImageSize(int value);
 
-    CoverMode embededCoverMode() const;
-    void      setEmbededCoverMode(CoverMode value);
+    CoverMode embeddedCoverMode() const;
+    void      setEmbeddedCoverMode(CoverMode value);
 
-    int  embededCoverImageSize() const;
-    void setEmbededCoverImageSize(int value);
+    int  embeddedCoverImageSize() const;
+    void setEmbeddedCoverImageSize(int value);
 
-    Profiles &      profiles();
+    Profiles       &profiles();
     const Profiles &profiles() const;
     void            setProfiles(const Profiles &profiles);
 
     const Profile &currentProfile() const;
-    Profile &      currentProfile();
+    Profile       &currentProfile();
     bool           selectProfile(const QString &profileId);
+
+    uint encoderThreadsCount() const;
+    void setEncoderThreadsCount(uint value);
+
+    QString cddbHost() const;
+    void    setCddbHost(const QString &value);
 
 signals:
     void changed();

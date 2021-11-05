@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "scanner.h"
-#include "formats/informat.h"
+#include "formats_in/informat.h"
 #include "inputaudiofile.h"
 
 #include "project.h"

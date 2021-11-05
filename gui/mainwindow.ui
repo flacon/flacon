@@ -182,7 +182,7 @@ If you surround sections of text that contain a token with braces, these section
            <item row="7" column="1" colspan="2">
             <widget class="TagLineEdit" name="tagDiscIdEdit">
              <property name="readOnly">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -543,6 +543,11 @@ If you surround sections of text that contain a token with braces, these section
    <header>controls.h</header>
   </customwidget>
   <customwidget>
+   <class>OutDirButton</class>
+   <extends>QToolButton</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
    <class>HistoryComboBox</class>
    <extends>QComboBox</extends>
    <header>controls.h</header>
@@ -570,11 +575,6 @@ If you surround sections of text that contain a token with braces, these section
   <customwidget>
    <class>OutDirComboBox</class>
    <extends>QComboBox</extends>
-   <header>controls.h</header>
-  </customwidget>
-  <customwidget>
-   <class>OutDirButton</class>
-   <extends>QToolButton</extends>
    <header>controls.h</header>
   </customwidget>
   <customwidget>

@@ -41,44 +41,26 @@ class WorkerThread;
 
 struct DiscPipelineJob
 {
-    DiscPipelineJob(ConvTracks     tracks,
-                    EncoderOptions encoderOptions,
-                    GainOptions    gainOptions,
-                    CoverOptions   copyCoverOptions,
-                    CoverOptions   embedCoverOptions,
-                    QString        workDir) :
+    DiscPipelineJob(ConvTracks tracks,
+                    QString    workDir) :
         mTracks(tracks),
-        mWorkDir(workDir),
-        mEncoderOptions(encoderOptions),
-        mGainOptions(gainOptions),
-        mCopyCoverOptions(copyCoverOptions),
-        mEmbedCoverOptions(embedCoverOptions)
+        mWorkDir(workDir)
     {
     }
 
     const ConvTracks &tracks() const { return mTracks; }
     QString           workDir() const { return mWorkDir; }
 
-    const EncoderOptions &encoderOptions() const { return mEncoderOptions; }
-    const GainOptions &   gainOptions() const { return mGainOptions; }
-    const CoverOptions &  copyCoverOptions() const { return mCopyCoverOptions; }
-    const CoverOptions &  embedCoverOptions() const { return mEmbedCoverOptions; }
-
 public:
     ConvTracks mTracks;
     QString    mWorkDir;
-
-    EncoderOptions mEncoderOptions;
-    GainOptions    mGainOptions;
-    CoverOptions   mCopyCoverOptions;
-    CoverOptions   mEmbedCoverOptions;
 };
 
 class DiscPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiscPipeline(const DiscPipelineJob &job, QObject *parent = nullptr) noexcept(false);
+    explicit DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks, const QString &workDir, QObject *parent = nullptr) noexcept(false);
     virtual ~DiscPipeline();
 
     void startWorker(int *splitterCount, int *count);
@@ -97,13 +79,55 @@ private slots:
     void trackProgress(const Conv::ConvTrack &track, TrackState state, int percent);
     void trackError(const Conv::ConvTrack &track, const QString &message);
 
-    void addEncoderRequest(const Conv::ConvTrack &track, const QString &inputFile);
-    void addGainRequest(const Conv::ConvTrack &track, const QString &fileName);
     void trackDone(const Conv::ConvTrack &track, const QString &outFileName);
 
 private:
-    class Data;
-    Data *mData;
+    Profile                  mProfile;
+    Disc *                   mDisc = nullptr;
+    QString                  mWorkDir;
+    QMap<TrackId, ConvTrack> mTracks;
+    QTemporaryDir *          mTmpDir = nullptr;
+    QString                  mEmbedCoverFile;
+    QString                  mEmbeddedCue;
+
+    struct SplitterRequest
+    {
+        ConvTracks tracks;
+        QString    inFile;
+        QString    outDir;
+    };
+
+    struct Request
+    {
+        ConvTrack track;
+        QString   inputFile;
+    };
+
+    QVector<WorkerThread *>      mThreads;
+    bool                         mInterrupted = false;
+    QList<SplitterRequest>       mSplitterRequests;
+    QList<DiscPipeline::Request> mEncoderRequests;
+    QList<DiscPipeline::Request> mGainRequests;
+
+    void addSpliterRequest(const InputAudioFile &audio);
+    void startSplitter(const ConvTracks &tracks, const QString &inFile, const QString &outDir);
+
+    void addEncoderRequest(const Conv::ConvTrack &track, const QString &inputFile);
+    void startEncoder(const ConvTrack &track, const QString &inputFile);
+
+    void addGainRequest(const Conv::ConvTrack &track, const QString &fileName);
+    void startGain(const Request &request);
+    void startGain(const QList<Request> &requests);
+
+    void interrupt(TrackState state);
+
+    void createDir(const QString &dirName) const;
+
+    void copyCoverImage() const;
+    void createEmbedImage();
+
+    void writeOutCueFile();
+    void loadEmbeddedCue();
 };
 
 } // Namespace

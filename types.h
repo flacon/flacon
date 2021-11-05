@@ -86,6 +86,12 @@ enum class CoverMode {
 QString   coverModeToString(CoverMode mode);
 CoverMode strToCoverMode(const QString &str);
 
+struct CoverOptions
+{
+    CoverMode mode = CoverMode::Disable;
+    int       size = 0;
+};
+
 unsigned int levenshteinDistance(const QString &s1, const QString &s2);
 
 class FlaconError : public std::runtime_error
@@ -161,9 +167,10 @@ enum SampleRate {
 Q_DECLARE_METATYPE(SampleRate)
 
 enum class FormatOption {
-    NoOptions   = 0x0,
-    Lossless    = 0x1,
-    SupportGain = 0x2,
+    NoOptions          = 0x0,
+    Lossless           = 0x1,
+    SupportGain        = 0x2,
+    SupportEmbeddedCue = 0x4,
 };
 
 Q_DECLARE_FLAGS(FormatOptions, FormatOption)

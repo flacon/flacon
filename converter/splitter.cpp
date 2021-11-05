@@ -31,7 +31,7 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(LOG, "Converter")
+Q_LOGGING_CATEGORY(LOG, "Splitter")
 }
 
 using namespace Conv;
@@ -39,9 +39,12 @@ using namespace Conv;
 /************************************************
  *
  ************************************************/
-Splitter::Splitter(const SplitterJob &job, QObject *parent) :
+Splitter::Splitter(const Profile &profile, const ConvTracks &tracks, QString inFile, QString outDir, QObject *parent) :
     Worker(parent),
-    mJob(job)
+    mProfile(profile),
+    mInFile(inFile),
+    mTracks(tracks),
+    mOutDir(outDir)
 {
 }
 
@@ -56,21 +59,24 @@ void Splitter::run()
     Decoder decoder;
 
     try {
-        decoder.open(mJob.inFile);
+        decoder.open(mInFile);
     }
     catch (FlaconError &err) {
-        emit error(mJob.track(0),
+        emit error(mTracks.at(0),
                    tr("I can't read <b>%1</b>:<br>%2",
                       "Splitter error. %1 is a file name, %2 is a system error text.")
-                           .arg(mJob.inFile)
-                           .arg(err.what()));
+                           .arg(mInFile, err.what()));
         return;
     }
 
-    for (const ConvTrack &track : mJob.tracks) {
+    for (const ConvTrack &track : mTracks) {
 
+        // clang-format off
         QString outFileName =
-                track.isPregap() ? QString("%1/pregap-%2.wav").arg(mJob.outDir).arg(uid) : QString("%1/track-%2_%3.wav").arg(mJob.outDir).arg(uid).arg(track.trackNum(), 2, 10, QLatin1Char('0'));
+                track.isPregap() ?
+                    QString("%1/pregap-%2.wav").arg(mOutDir, uid) :
+                    QString("%1/track-%2_%3.wav").arg(mOutDir, uid).arg(track.trackNum(), 2, 10, QLatin1Char('0'));
+        // clang-format on
 
         try {
             QObject keeper;
@@ -85,10 +91,10 @@ void Splitter::run()
         }
         catch (FlaconError &err) {
             if (track.isPregap()) {
-                qWarning() << "Splitter error for pregap track : " << err.what();
+                qCWarning(LOG) << "Splitter error for pregap track : " << err.what();
             }
             else {
-                qWarning() << "Splitter error for track " << track.trackNum() << ": " << err.what();
+                qCWarning(LOG) << "Splitter error for track " << track.trackNum() << ": " << err.what();
             }
             deleteFile(outFileName);
             emit error(track, err.what());

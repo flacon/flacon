@@ -24,11 +24,13 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "profiles.h"
-#include "outformat.h"
+#include "formats_out/outformat.h"
 #include <QSettings>
 #include <QStandardPaths>
 #include <QDir>
 #include <QDebug>
+#include "encoder.h"
+#include "gain.h"
 
 QHash<QString, QVariant> &operator<<(QHash<QString, QVariant> &values, const QHash<QString, QVariant> &other)
 {
@@ -38,6 +40,13 @@ QHash<QString, QVariant> &operator<<(QHash<QString, QVariant> &values, const QHa
     }
     return values;
 }
+
+class Encoder_Null : public Conv::Encoder
+{
+public:
+    QString     programName() const override { return ""; }
+    QStringList programArgs() const override { return QStringList(); }
+};
 
 class OutFormat_Null : public OutFormat
 {
@@ -49,31 +58,23 @@ public:
         mName = "";
     }
 
-    virtual QString encoderProgramName() const override { return ""; }
     virtual QString gainProgramName() const override { return ""; }
-
-    virtual QStringList encoderArgs(const Profile &, const Track *, const QString &, const QString &) const override
-    {
-        return QStringList();
-    }
-
-    virtual QStringList gainArgs(const QStringList &, const GainType) const override
-    {
-        return QStringList();
-    }
 
     QHash<QString, QVariant> defaultParameters() const override
     {
         return QHash<QString, QVariant>();
     }
 
-    EncoderConfigPage *configPage(const Profile &, QWidget *) const override
+    EncoderConfigPage *configPage(QWidget *) const override
     {
         return nullptr;
     }
 
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::AsSourcee; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::AsSource; }
+
+    Conv::Encoder *createEncoder() const override { return new Encoder_Null(); }
+    Conv::Gain    *createGain(const Profile &profile) const override { return new Conv::NoGain(profile); }
 };
 
 static OutFormat_Null *nullFormat()
@@ -136,24 +137,33 @@ void Profile::setDefaultValues()
 /************************************************
  *
  ************************************************/
-Profile::Profile(const Profile &other) :
-    mFormat(other.mFormat)
+CoverOptions Profile::embedCoverOptions() const
 {
-    operator=(other);
+    return mEmbedCoverOptions;
 }
 
 /************************************************
  *
  ************************************************/
-Profile &Profile::operator=(const Profile &other)
+void Profile::setEmbedCoverOptions(const CoverOptions &embedCoverOptions)
 {
-    if (this != &other) {
-        mId     = other.mId;
-        mFormat = other.mFormat;
-        mName   = other.mName;
-        mValues = other.mValues;
-    }
-    return *this;
+    mEmbedCoverOptions = embedCoverOptions;
+}
+
+/************************************************
+ *
+ ************************************************/
+CoverOptions Profile::copyCoverOptions() const
+{
+    return mCopyCoverOptions;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setCopyCoverOptions(const CoverOptions &copyCoverOptions)
+{
+    mCopyCoverOptions = copyCoverOptions;
 }
 
 /************************************************
@@ -236,6 +246,14 @@ GainType Profile::gainType() const
 /************************************************
  *
  ************************************************/
+void Profile::setGainType(GainType value)
+{
+    setValue(REPLAY_GAIN_KEY, gainTypeToString(value));
+}
+
+/************************************************
+ *
+ ************************************************/
 int Profile::bitsPerSample() const
 {
     return value(BITS_PER_SAMPLE_KEY, int(BitsPerSample::AsSourcee)).toInt();
@@ -284,6 +302,22 @@ void Profile::setCreateCue(bool value)
 /************************************************
  *
  ************************************************/
+bool Profile::isEmbedCue() const
+{
+    return value(EMBED_CUE_KEY, false).toBool();
+}
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setEmbedCue(bool value)
+{
+    setValue(EMBED_CUE_KEY, value);
+}
+
+/************************************************
+ *
+ ************************************************/
 QString Profile::cueFileName() const
 {
     return value(CUE_FILE_NAME_KEY).toString();
@@ -318,7 +352,7 @@ void Profile::setPregapType(PreGapType value)
  ************************************************/
 EncoderConfigPage *Profile::configPage(QWidget *parent) const
 {
-    return mFormat->configPage(*this, parent);
+    return mFormat->configPage(parent);
 }
 
 /************************************************
@@ -326,6 +360,9 @@ EncoderConfigPage *Profile::configPage(QWidget *parent) const
  ************************************************/
 void Profile::load(QSettings &settings, const QString &group)
 {
+    static constexpr auto DEFAULT_COVER_FILE_SIZE  = 1024;
+    static constexpr auto DEFAULT_COVER_EMBED_MODE = "Disable";
+
     settings.beginGroup(group);
 
     if (settings.contains("Format")) {
@@ -358,6 +395,15 @@ void Profile::load(QSettings &settings, const QString &group)
     }
 
     settings.endGroup();
+
+    mCopyCoverOptions.mode = strToCoverMode(value(COVER_FILE_MODE_KEY, DEFAULT_COVER_EMBED_MODE).toString());
+    mCopyCoverOptions.size = value(COVER_FILE_SIZE_KEY, DEFAULT_COVER_FILE_SIZE).toInt();
+
+    mSupportEmbedCover = mFormat->options().testFlag(FormatOption::SupportEmbeddedCue);
+    if (mSupportEmbedCover) {
+        mEmbedCoverOptions.mode = strToCoverMode(value(COVER_EMBED_MODE_KEY, DEFAULT_COVER_EMBED_MODE).toString());
+        mEmbedCoverOptions.size = value(COVER_EMBED_SIZE_KEY, DEFAULT_COVER_FILE_SIZE).toInt();
+    }
 }
 
 /************************************************
@@ -372,6 +418,15 @@ void Profile::save(QSettings &settings, const QString &group) const
     for (auto i = mValues.constBegin(); i != mValues.constEnd(); ++i) {
         settings.setValue(i.key(), i.value());
     }
+
+    settings.setValue(COVER_FILE_MODE_KEY, coverModeToString(mCopyCoverOptions.mode));
+    settings.setValue(COVER_FILE_SIZE_KEY, mCopyCoverOptions.size);
+
+    if (mFormat->options().testFlag(FormatOption::SupportEmbeddedCue)) {
+        settings.setValue(COVER_EMBED_MODE_KEY, coverModeToString(mEmbedCoverOptions.mode));
+        settings.setValue(COVER_EMBED_SIZE_KEY, mEmbedCoverOptions.size);
+    }
+
     settings.endGroup();
 }
 

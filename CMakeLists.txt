@@ -31,6 +31,7 @@ endif()
 
 project(flacon)
 
+
 set(MAJOR_VERSION 7)
 set(MINOR_VERSION 0)
 set(PATCH_VERSION 1)
@@ -76,32 +77,11 @@ set(HEADERS
     gui/trackview.h
     gui/trackviewmodel.h
     gui/trackviewdelegate.h
-    gui/configdialog/configdialog.h
-    gui/configdialog/profilewidget.h
-    gui/configdialog/addprofiledialog.h
-    gui/configdialog/covergroupbox.h
     gui/aboutdialog/aboutdialog.h
     gui/aboutdialog/translatorsinfo.h
     gui/coverdialog/coverdialog.h
     gui/coverdialog/asynclistwidgetitem.h
     gui/tageditor/tageditor.h
-
-    formats/informat.h
-    formats/in_ape.h
-    formats/in_flac.h
-    formats/in_tta.h
-    formats/in_wav.h
-    formats/in_wv.h
-
-    formats/encoderconfigpage.h
-    formats/outformat.h
-    formats/out_aac.h
-    formats/out_flac.h
-    formats/out_mp3.h
-    formats/out_ogg.h
-    formats/out_opus.h
-    formats/out_wav.h
-    formats/out_wv.h
 )
 
 set(SOURCES
@@ -123,43 +103,16 @@ set(SOURCES
     profiles.cpp
     audiofilematcher.cpp
 
-    gui/icon.cpp
-    gui/mainwindow.cpp
-    gui/controls.cpp
-    gui/trackview.cpp
-    gui/trackviewmodel.cpp
-    gui/trackviewdelegate.cpp
-    gui/configdialog/configdialog.cpp
-    gui/configdialog/profilewidget.cpp
-    gui/configdialog/addprofiledialog.cpp
-    gui/configdialog/covergroupbox.cpp
     gui/aboutdialog/aboutdialog.cpp
     gui/aboutdialog/translatorsinfo.cpp
     gui/coverdialog/coverdialog.cpp
     gui/coverdialog/asynclistwidgetitem.cpp
     gui/tageditor/tageditor.cpp
-
-    formats/informat.cpp
-    formats/in_ape.cpp
-    formats/in_flac.cpp
-    formats/in_tta.cpp
-    formats/in_wav.cpp
-    formats/in_wv.cpp
-
-    formats/encoderconfigpage.cpp
-    formats/outformat.cpp
-    formats/out_aac.cpp
-    formats/out_flac.cpp
-    formats/out_mp3.cpp
-    formats/out_ogg.cpp
-    formats/out_opus.cpp
-    formats/out_wav.cpp
-    formats/out_wv.cpp
 )
 
-set(UI_FILES
-    gui/configdialog/covergroupbox.ui
-)
+include(gui/module.cmake)
+include(formats_in/module.cmake)
+include(formats_out/module.cmake)
 
 if (APPLE)
     set(SOURCES ${SOURCES}
@@ -197,17 +150,19 @@ include("cmake/cxx_standard.cmake")
 include("cmake/git_version.cmake")
 include("cmake/build_type.cmake")
 
-
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_autogen
     formats
     converter
     gui
     gui/configdialog
     gui/aboutdialog
 )
+
+
 
 #*******************************************
 include("cmake/macos.cmake")
@@ -223,6 +178,7 @@ find_package(Qt5 REQUIRED
     Network
     LinguistTools
 )
+
 
 
 qt5_add_translation(QM_FILES ${TS_FILES})
@@ -279,7 +235,7 @@ endif()
 
 add_subdirectory(converter)
 
-add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${UI_FILES} ${QM_FILES} ${QRC_SOURCES} ${ENGINES_CPP} ${ENGINES_H} ${RESOURCES} ${TRANSLATORS_INFO_QRC})
+add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${QM_FILES} ${QRC_SOURCES} ${ENGINES_CPP} ${ENGINES_H} ${RESOURCES} ${TRANSLATORS_INFO_QRC})
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES} converter ${QT_LIBRARIES} Qt5::Widgets Qt5::Network)
 
 
