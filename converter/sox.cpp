@@ -23,7 +23,7 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "resampler.h"
+#include "sox.h"
 #include "settings.h"
 
 #include <QDir>

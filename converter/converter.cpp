@@ -34,7 +34,7 @@
 #include "encoder.h"
 #include "gain.h"
 #include "discpipline.h"
-#include "resampler.h"
+#include "sox.h"
 #include "cuecreator.h"
 
 #include <iostream>

@@ -28,7 +28,7 @@
 #include "settings.h"
 #include "inputaudiofile.h"
 #include "formats_out/outformat.h"
-#include "converter/resampler.h"
+#include "converter/sox.h"
 
 #include <assert.h>
 #include <QtGlobal>

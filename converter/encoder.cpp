@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "encoder.h"
-#include "resampler.h"
+#include "sox.h"
 #include "profiles.h"
 #include "settings.h"
 

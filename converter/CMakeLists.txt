@@ -46,7 +46,7 @@ set(HEADERS
     discpipline.h
     cuecreator.h
     copycover.h
-    resampler.h
+    sox.h
 )
 
 set(SOURCES
@@ -61,7 +61,7 @@ set(SOURCES
     discpipline.cpp
     cuecreator.cpp
     copycover.cpp
-    resampler.cpp
+    sox.cpp
 )
 
 # include("cmake/git_version.cmake")
