@@ -450,3 +450,17 @@ QString CueFlags::toString() const
     return res.join(" ");
     // clang-format on
 }
+
+/************************************************
+ *
+ ************************************************/
+bool CueFlags::isEmpty() const
+{
+    // clang-format off
+    return
+        !digitalCopyPermitted &&
+        !fourChannel          &&
+        !preEmphasis          &&
+        !serialCopyManagement ;
+    // clang-format on
+}

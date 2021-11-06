@@ -85,7 +85,7 @@ Cue::Cue(const QString &fileName) noexcept(false)
         track.setTag(TagId::CDTextfile, global.value("CDTEXTFILE"));
         track.setTag(TagId::Comment, global.value("COMMENT"));
 
-        track.setTag(TagId::Flags, t.value(CueData::FLAGS_TAG, global.value(CueData::FLAGS_TAG)));
+        track.setTag(TagId::Flags, t.value(CueData::FLAGS_TAG));
         track.setTag(TagId::Genre, global.value("GENRE"));
         track.setTag(TagId::ISRC, t.value("ISRC"));
         track.setTag(TagId::Title, t.value("TITLE"));

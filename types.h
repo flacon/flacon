@@ -139,6 +139,8 @@ public:
     explicit CueFlags(const QString &tag);
     QString toString() const;
 
+    bool isEmpty() const;
+
     bool digitalCopyPermitted = false; /// DCP – Digital copy permitted
     bool fourChannel          = false; /// 4CH – Four channel audio
     bool preEmphasis          = false; /// PRE – Pre-emphasis enabled (audio tracks only)

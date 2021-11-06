@@ -182,8 +182,10 @@ void CueCreator::write(QIODevice *out)
 
         CueFlags flags(track->tag(TagId::Flags));
         flags.preEmphasis = false; // We already deephasis audio, so we reset this flag
+        if (!flags.isEmpty()) {
+            writeLine(out, QString("    FLAGS %1").arg(flags.toString()));
+        }
 
-        writeTrackTag(out, track, "    FLAGS %1", TagId::Flags);
         writeTrackTag(out, track, "    ISRC %1", TagId::ISRC);
         writeTrackTag(out, track, "    TITLE \"%1\"", TagId::Title);
 
