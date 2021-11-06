@@ -319,8 +319,8 @@ bool Converter::check(const Profile &profile) const
     bool ok = profile.check(&errors);
 
     if (profile.bitsPerSample() != BitsPerSample::AsSourcee || profile.sampleRate() != SampleRate::AsSource) {
-        if (!Settings::i()->checkProgram(Resampler::programName())) {
-            errors << QObject::tr("I can't find program <b>%1</b>.").arg(Resampler::programName());
+        if (!Settings::i()->checkProgram(Sox::programName())) {
+            errors << QObject::tr("I can't find program <b>%1</b>.").arg(Sox::programName());
             ok = false;
         }
     }

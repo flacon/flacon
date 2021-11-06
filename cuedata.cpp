@@ -61,12 +61,14 @@ CueData::CueData(const QString &fileName) :
     mFileName(fileName)
 {
     QFileInfo fi(fileName);
-    if (!fi.exists())
+    if (!fi.exists()) {
         throw FlaconError(QObject::tr("File <b>\"%1\"</b> does not exist").arg(fileName));
+    }
 
     QFile file(fi.canonicalFilePath());
-    if (!file.open(QIODevice::ReadOnly))
+    if (!file.open(QIODevice::ReadOnly)) {
         throw FlaconError(file.errorString());
+    }
 
     mCodecName = detectCodepage(file);
 
@@ -86,8 +88,9 @@ CueData::CueData(const QString &fileName) :
 
         parseLine(line, tag, value, lineNum);
 
-        if (tag.isEmpty())
+        if (tag.isEmpty()) {
             continue;
+        }
 
         if (tag == TRACK_TAG) {
             break;
@@ -95,10 +98,10 @@ CueData::CueData(const QString &fileName) :
 
         if (tag == FILE_TAG) {
             audioFile = extractFileFromFileTag(value);
+            continue;
         }
-        else {
-            mGlobalTags.insert(tag, value);
-        }
+
+        mGlobalTags.insert(tag, value);
     }
 
     while (!file.atEnd()) {

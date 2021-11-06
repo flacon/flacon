@@ -130,6 +130,21 @@ private:
 
 typedef CueIndex CueTime;
 
+struct CueFlags
+{
+public:
+    CueFlags()        = default;
+    CueFlags &operator=(const CueFlags &other) = default;
+
+    explicit CueFlags(const QString &tag);
+    QString toString() const;
+
+    bool digitalCopyPermitted = false; /// DCP – Digital copy permitted
+    bool fourChannel          = false; /// 4CH – Four channel audio
+    bool preEmphasis          = false; /// PRE – Pre-emphasis enabled (audio tracks only)
+    bool serialCopyManagement = false; /// SCMS – Serial copy management system (not supported by all recorders)
+};
+
 enum class TrackState {
     NotRunning = 0,
     Canceled   = 1,

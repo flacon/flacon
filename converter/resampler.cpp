@@ -30,15 +30,24 @@
 
 using namespace Conv;
 
-Resampler::Resampler()
+/************************************************
+ *
+ ************************************************/
+Sox::Sox()
 {
 }
 
-QStringList Resampler::args(int bitsPerSample, int sampleRate, const QString &outFile)
+/************************************************
+ *
+ ************************************************/
+QStringList Sox::resamplerArgs(int bitsPerSample, int sampleRate, const QString &outFile)
 {
     QString     prog = Settings::i()->programName(programName());
     QStringList args;
     args << QDir::toNativeSeparators(prog);
+
+    args << "--type"
+         << "wav";
 
     args << "-"; // Read from STDIN
     if (bitsPerSample) {
@@ -47,13 +56,31 @@ QStringList Resampler::args(int bitsPerSample, int sampleRate, const QString &ou
 
     args << "--type"
          << "wav";
-    args << outFile; // Input file already WAV, so for WAV output format we just rename file.
+    args << outFile;
 
     if (sampleRate) {
         args << "rate";
         args << "-v"; // very high quality
         args << QString("%1").arg(sampleRate);
     }
+
+    return args;
+}
+
+/************************************************
+ *
+ ************************************************/
+QStringList Sox::deemphasisArgs(const QString &outFile)
+{
+    QString     prog = Settings::i()->programName(programName());
+    QStringList args;
+    args << QDir::toNativeSeparators(prog);
+
+    // clang-format off
+    args << "--type" << "wav" << "-"; // Read from STDIN
+    args << "--type" << "wav" << outFile;
+    args << "deemph";
+    // clang-format on
 
     return args;
 }

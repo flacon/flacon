@@ -23,21 +23,22 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef RESAMPLER_H
-#define RESAMPLER_H
+#ifndef SOX_H
+#define SOX_H
 
 #include <QProcess>
 
 namespace Conv {
 
-class Resampler
+class Sox
 {
 public:
-    explicit Resampler();
+    explicit Sox();
 
     static QString     programName() { return "sox"; }
-    static QStringList args(int bitsPerSample, int sampleRate, const QString &outFile);
+    static QStringList resamplerArgs(int bitsPerSample, int sampleRate, const QString &outFile);
+    static QStringList deemphasisArgs(const QString &outFile);
 };
 
 } // namespace
-#endif // RESAMPLER_H
+#endif // SOX_H

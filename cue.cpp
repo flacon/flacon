@@ -33,8 +33,8 @@
 #include <QDebug>
 
 /************************************************
-*
-************************************************/
+ *
+ ************************************************/
 static void splitTitle(Track *track, char separator)
 {
     QByteArray b   = track->tagData(TagId::Title);
@@ -63,7 +63,7 @@ Cue::Cue(const QString &fileName) noexcept(false)
 
     QFileInfo cueFileInfo(fileName);
     QString   fullPath = cueFileInfo.absoluteFilePath();
-    //CueDisc res;
+
     mFileName  = fullPath;
     mDiscCount = 1;
     mDiscNum   = 1;
@@ -85,7 +85,7 @@ Cue::Cue(const QString &fileName) noexcept(false)
         track.setTag(TagId::CDTextfile, global.value("CDTEXTFILE"));
         track.setTag(TagId::Comment, global.value("COMMENT"));
 
-        track.setTag(TagId::Flags, t.value("FLAGS"));
+        track.setTag(TagId::Flags, t.value(CueData::FLAGS_TAG, global.value(CueData::FLAGS_TAG)));
         track.setTag(TagId::Genre, global.value("GENRE"));
         track.setTag(TagId::ISRC, t.value("ISRC"));
         track.setTag(TagId::Title, t.value("TITLE"));
@@ -127,8 +127,8 @@ bool Cue::isMutiplyAudio() const
 }
 
 /************************************************
-*
-************************************************/
+ *
+ ************************************************/
 QByteArray Cue::getAlbumPerformer(const CueData &data)
 {
     QByteArray res = data.globalTags().value(CueData::PERFORMER_TAG);
@@ -146,8 +146,8 @@ QByteArray Cue::getAlbumPerformer(const CueData &data)
 }
 
 /************************************************
-*
-************************************************/
+ *
+ ************************************************/
 void Cue::splitTitleTag(const CueData &data)
 {
     bool splitByDash      = true;
@@ -200,5 +200,4 @@ void Cue::setCodecName(const CueData &data)
  ************************************************/
 CueError::~CueError()
 {
-
 }

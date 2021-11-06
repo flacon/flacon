@@ -34,7 +34,7 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(LOG, "Converter")
+Q_LOGGING_CATEGORY(LOG, "Encoder")
 }
 
 using namespace Conv;
@@ -53,49 +53,79 @@ Encoder::Encoder(QObject *parent) :
 /************************************************
  *
  ************************************************/
-void Encoder::check(QProcess *process)
+QProcess *Encoder::createEncoderProcess()
 {
-    if (process->exitCode() != 0) {
-        qWarning() << "Encoder command failed: " << debugProgramArgs(process->program(), process->arguments());
-        QString msg = tr("Encoder error:\n") + "<pre>" + QString::fromLocal8Bit(process->readAllStandardError()) + "</pre>";
-        emit    error(track(), msg);
+    if (programArgs().isEmpty()) {
+        return nullptr;
     }
+
+    QStringList args = programArgs();
+    QString     prog = args.takeFirst();
+
+    qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog, args);
+
+    QProcess *res = new QProcess(this);
+    res->setObjectName("encoder");
+    res->setProgram(prog);
+    res->setArguments(args);
+
+#ifdef MAC_BUNDLE
+    res->setEnvironment(QStringList("LANG=en_US.UTF-8"));
+#endif
+
+    return res;
 }
 
 /************************************************
  *
  ************************************************/
-void Encoder::runOneProcess(QProcess *process)
+QProcess *Encoder::createRasmpler(const QString &outFile)
 {
-    connect(process, &QProcess::bytesWritten, this, &Encoder::processBytesWritten);
+    const InputAudioFile &audio = mTrack.audioFile();
 
-    process->start();
-    readInputFile(process);
-    process->closeWriteChannel();
-    process->waitForFinished(-1);
-    check(process);
+    int bps  = calcQuality(audio.bitsPerSample(), mProfile.bitsPerSample(), mProfile.outFormat()->maxBitPerSample());
+    int rate = calcQuality(audio.sampleRate(), mProfile.sampleRate(), mProfile.outFormat()->maxSampleRate());
+
+    qCDebug(LOG) << "Input audio: bitsPerSample =" << audio.bitsPerSample() << " sampleRate =" << audio.sampleRate();
+    qCDebug(LOG) << "Required:    bitsPerSample =" << bps << " sampleRate =" << rate;
+
+    if (bps == audio.bitsPerSample() && rate == audio.sampleRate()) {
+        qCDebug(LOG) << "Resampling is not required";
+        return nullptr;
+    }
+
+    QStringList args = Sox::resamplerArgs(bps, rate, outFile);
+    QString     prog = args.takeFirst();
+
+    qCDebug(LOG) << "Start resampler:" << debugProgramArgs(prog, args);
+
+    QProcess *res = new QProcess();
+    res->setObjectName("resampler");
+    res->setProgram(prog);
+    res->setArguments(args);
+    return res;
 }
 
 /************************************************
- *
- ************************************************/
-void Encoder::runTwoProcess(QProcess *resampler, QProcess *encoder)
+
+************************************************/
+QProcess *Encoder::createDemph(const QString &outFile)
 {
-    resampler->setStandardOutputProcess(encoder);
+    if (!CueFlags(mTrack.tag(TagId::Flags)).preEmphasis) {
+        qCDebug(LOG) << "DeEmphasis is not required";
+        return nullptr;
+    }
 
-    connect(resampler, &QProcess::bytesWritten, this, &Encoder::processBytesWritten);
+    QStringList args = Sox::deemphasisArgs(outFile);
+    QString     prog = args.takeFirst();
 
-    resampler->start();
-    encoder->start();
+    qCDebug(LOG) << "Start deEmphasis:" << debugProgramArgs(prog, args);
 
-    readInputFile(resampler);
-    resampler->closeWriteChannel();
-    resampler->waitForFinished(-1);
-    check(resampler);
-
-    encoder->closeWriteChannel();
-    encoder->waitForFinished(-1);
-    check(encoder);
+    QProcess *res = new QProcess();
+    res->setObjectName("deemphasis");
+    res->setProgram(prog);
+    res->setArguments(args);
+    return res;
 }
 
 /************************************************
@@ -105,84 +135,59 @@ void Encoder::run()
 {
     emit trackProgress(track(), TrackState::Encoding, 0);
 
-    const qint8 COPY_FILE = 0, RESAMPLE = 1, ENCODE = 2, RESAMPLE_ENCODE = 3;
+    QList<QProcess *> procs;
 
-    QProcess resampler;
-    QProcess encoder;
-    qint8    mode = COPY_FILE;
-
-    if (profile().formatId() != "WAV") {
-        QStringList args = programArgs();
-        QString     prog = args.takeFirst();
-
-        qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog, args);
-
-        encoder.setProgram(prog);
-        encoder.setArguments(args);
-#ifdef MAC_BUNDLE
-        encoder.setEnvironment(QStringList("LANG=en_US.UTF-8"));
-#endif
-        mode += ENCODE;
+    QProcess *encoder = createEncoderProcess();
+    if (encoder) {
+        procs.insert(0, encoder);
     }
 
-    const InputAudioFile &audio = mTrack.audioFile();
-
-    int bps  = bitsPerSample(audio);
-    int rate = sampleRate(audio);
-
-    if (bps != audio.bitsPerSample() || rate != audio.sampleRate()) {
-        QString outFile;
-        if (mode == COPY_FILE)
-            outFile = mOutFile; // Input file already WAV, so for WAV output format we just rename file.
-        else
-            outFile = "-"; // Write to STDOUT
-
-        QStringList args = Resampler::args(bps, rate, outFile);
-        QString     prog = args.takeFirst();
-
-        qCDebug(LOG) << "Start resampler:" << debugProgramArgs(prog, args);
-
-        resampler.setProgram(prog);
-        resampler.setArguments(args);
-        mode += RESAMPLE;
+    QProcess *resampler = createRasmpler(procs.isEmpty() ? mOutFile : "-");
+    if (resampler) {
+        procs.insert(0, resampler);
     }
 
-    switch (mode) {
-        case COPY_FILE:
-            runWav();
-            return;
+    QProcess *demph = createDemph(procs.isEmpty() ? mOutFile : "-");
+    if (demph) {
+        procs.insert(0, demph);
+    }
 
-        case RESAMPLE:
-            runOneProcess(&resampler);
-            break;
+    if (procs.isEmpty()) {
+        //------------------------------------------------
+        // The output file format is WAV and no preprocessing is required,
+        // so just rename/copy the file.
 
-        case ENCODE:
-            runOneProcess(&encoder);
-            break;
+        copyFile();
+    }
+    else {
+        //------------------------------------------------
+        // We start all processes connected by a pipe
+        for (int i = 0; i < procs.count() - 1; ++i) {
+            procs[i]->setStandardOutputProcess(procs[i + 1]);
+        }
 
-        case RESAMPLE_ENCODE:
-            runTwoProcess(&resampler, &encoder);
-            break;
+        connect(procs.first(), &QProcess::bytesWritten, this, &Encoder::processBytesWritten);
+
+        for (QProcess *p : procs) {
+            p->start();
+        }
+
+        readInputFile(procs.first());
+
+        for (QProcess *p : procs) {
+            p->closeWriteChannel();
+            p->waitForFinished(-1);
+
+            if (p->exitCode() != 0) {
+                qWarning() << "Encoder command failed: inputFile =" << inputFile() << " outputFile =" << outFile() << " command =" << debugProgramArgs(p->program(), p->arguments());
+                QString msg = tr("Encoder error:\n") + "<pre>" + QString::fromLocal8Bit(p->readAllStandardError()) + "</pre>";
+                emit    error(track(), msg);
+            }
+        }
     }
 
     deleteFile(mInputFile);
     emit trackReady(track(), outFile());
-}
-
-/************************************************
-
- ************************************************/
-int Encoder::bitsPerSample(const InputAudioFile &audio) const
-{
-    return calcQuality(audio.bitsPerSample(), mProfile.bitsPerSample(), mProfile.outFormat()->maxBitPerSample());
-}
-
-/************************************************
-
- ************************************************/
-int Encoder::sampleRate(const InputAudioFile &audio) const
-{
-    return calcQuality(audio.sampleRate(), mProfile.sampleRate(), mProfile.outFormat()->maxSampleRate());
 }
 
 /************************************************
@@ -219,6 +224,7 @@ void Encoder::setProfile(const Profile &profile)
  ************************************************/
 void Encoder::readInputFile(QProcess *process)
 {
+    qCDebug(LOG) << "Read " << inputFile() << "file";
     QFile file(inputFile());
     if (!file.open(QFile::ReadOnly)) {
         emit error(track(), tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(inputFile()));
@@ -239,7 +245,7 @@ void Encoder::readInputFile(QProcess *process)
 /************************************************
 
  ************************************************/
-void Encoder::runWav()
+void Encoder::copyFile()
 {
     QFile srcFile(inputFile());
     bool  res = srcFile.rename(outFile());

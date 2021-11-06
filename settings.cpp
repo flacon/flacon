@@ -247,7 +247,7 @@ void Settings::init()
     setDefaultValue(ConfigureDialog_Width, 645);
     setDefaultValue(ConfigureDialog_Height, 425);
 
-    mPrograms << Conv::Resampler::programName();
+    mPrograms << Conv::Sox::programName();
 
     foreach (OutFormat *format, OutFormat::allFormats()) {
         mPrograms << format->encoderProgramName();

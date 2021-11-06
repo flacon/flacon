@@ -63,8 +63,6 @@ public slots:
     void run() override;
 
 protected:
-    int     bitsPerSample(const InputAudioFile &audio) const;
-    int     sampleRate(const InputAudioFile &audio) const;
     QString programPath() const;
 
 private slots:
@@ -83,11 +81,11 @@ private:
     int     mProgress = 0;
 
     void readInputFile(QProcess *process);
-    void runWav();
-    void initResampler(QProcess *process, const QString &outFile, bool debug);
-    void check(QProcess *process);
-    void runOneProcess(QProcess *process);
-    void runTwoProcess(QProcess *resampler, QProcess *encoder);
+    void copyFile();
+
+    QProcess *createEncoderProcess();
+    QProcess *createRasmpler(const QString &outFile);
+    QProcess *createDemph(const QString &outFile);
 };
 
 } // namespace

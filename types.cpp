@@ -304,34 +304,34 @@ void Messages::setHandler(Messages::Handler *handler)
 }
 
 /************************************************
-	Windows special symbols
-	Use any character, except for the following:
-	The following reserved characters:
-		< (less than)
-		> (greater than)
-		: (colon)
-		" (double quote)
-		/ (forward slash)
-		\ (backslash)
-		| (vertical bar or pipe)
-		? (question mark)
-		* (asterisk)
-		\0 Integer value zero, sometimes referred to as the ASCII NUL character.
+    Windows special symbols
+    Use any character, except for the following:
+    The following reserved characters:
+            < (less than)
+            > (greater than)
+            : (colon)
+            " (double quote)
+            / (forward slash)
+            \ (backslash)
+            | (vertical bar or pipe)
+            ? (question mark)
+            * (asterisk)
+            \0 Integer value zero, sometimes referred to as the ASCII NUL character.
 
-		\1-\31 Characters whose integer representations are in the range from 1 through 31
-	 https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#file-and-directory-names
+            \1-\31 Characters whose integer representations are in the range from 1 through 31
+     https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#file-and-directory-names
 
-Characters from 1 through 31, except TAB and NEW LINE	remove
-TAB (\t)	replace to " " (space)
-NEW LINE (\n)	replace to " " (space)
-/	replace to - (dash)
-\	replace to - (dash)
-:	replace to _ (underscore)
-*	replace to _ (underscore)
-?	remove
-<	replace to _
->	replace to _
-"	replace to ' (single quote)
+    Characters from 1 through 31, except TAB and NEW LINE	remove
+    TAB (\t)	replace to " " (space)
+    NEW LINE (\n)	replace to " " (space)
+    /	replace to - (dash)
+    \	replace to - (dash)
+    :	replace to _ (underscore)
+    *	replace to _ (underscore)
+    ?	remove
+    <	replace to _
+    >	replace to _
+    "	replace to ' (single quote)
  ************************************************/
 QString safeString(const QString &str)
 {
@@ -422,4 +422,31 @@ int calcSampleRate(int input, SampleRate resample)
     };
 
     return qMin(input, int(resample));
+}
+
+/************************************************
+ *
+ ************************************************/
+CueFlags::CueFlags(const QString &tag) :
+    digitalCopyPermitted(tag.contains("DCP")),
+    fourChannel(tag.contains("4CH")),
+    preEmphasis(tag.contains("PRE")),
+    serialCopyManagement(tag.contains("SCMS"))
+
+{
+}
+
+/************************************************
+ *
+ ************************************************/
+QString CueFlags::toString() const
+{
+    // clang-format off
+    QStringList res;
+    if (digitalCopyPermitted) { res << "DCP"; }
+    if (fourChannel)          { res <<"4CH";  }
+    if (preEmphasis)          { res <<"PRE";  }
+    if (serialCopyManagement) { res <<"SCMS"; }
+    return res.join(" ");
+    // clang-format on
 }
