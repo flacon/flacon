@@ -62,8 +62,8 @@ void CueGroupBox::fromProfile(const Profile &profile)
 
 void CueGroupBox::toProfile(Profile *profile) const
 {
-    profile->setCreateCue(this->isChecked() && ui->writeToFileButton->isChecked());
-    profile->setEmbedCue(this->isChecked() && ui->embedButton->isChecked());
+    profile->setCreateCue(ui->writeToFileButton->isChecked());
+    profile->setEmbedCue(ui->embedButton->isChecked());
     profile->setCueFileName(ui->perTrackCueFormatEdit->text());
     profile->setPregapType(ui->preGapComboBox->value());
 }
