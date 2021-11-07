@@ -54,6 +54,7 @@ Q_DECLARE_METATYPE(TestFindCueFileData)
  ************************************************/
 void TestFlacon::testFindCueFile()
 {
+    QLoggingCategory::setFilterRules("InputAudioFile.debug=false\nAudioFileMatcher.debug=false\n");
     QFETCH(TestFindCueFileData, test);
 
     foreach (QString f, test.audioFiles) {

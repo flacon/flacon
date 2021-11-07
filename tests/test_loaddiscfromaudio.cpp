@@ -50,6 +50,9 @@ public:
 
 void TestFlacon::testLoadDiscFromAudio()
 {
+    QLoggingCategory::setFilterRules("InputAudioFile.debug=false\n"
+                                     "AudioFileMatcher.debug=false\n"
+                                     "SearchAudioFiles.debug=false\n");
     QFETCH(QString, dir);
 
     QSettings spec(dir + "/test.spec", QSettings::IniFormat);

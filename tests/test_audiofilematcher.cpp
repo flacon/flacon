@@ -50,6 +50,7 @@ static QString findFile(const QString dir, const QString &pattern)
 
 void TestFlacon::testAudioFileMatcher()
 {
+    QLoggingCategory::setFilterRules("InputAudioFile.debug=false\nAudioFileMatcher.debug=false\n");
     QFETCH(QString, dir);
 
     try {

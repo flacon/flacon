@@ -156,33 +156,35 @@ void Encoder::run()
         //------------------------------------------------
         // The output file format is WAV and no preprocessing is required,
         // so just rename/copy the file.
-
+        qCDebug(LOG) << "Copy file: in = " << inputFile() << "out = " << outFile();
         copyFile();
+        emit trackProgress(track(), TrackState::Encoding, 100);
+        emit trackReady(track(), outFile());
+        return;
     }
-    else {
-        //------------------------------------------------
-        // We start all processes connected by a pipe
-        for (int i = 0; i < procs.count() - 1; ++i) {
-            procs[i]->setStandardOutputProcess(procs[i + 1]);
-        }
 
-        connect(procs.first(), &QProcess::bytesWritten, this, &Encoder::processBytesWritten);
+    //------------------------------------------------
+    // We start all processes connected by a pipe
+    for (int i = 0; i < procs.count() - 1; ++i) {
+        procs[i]->setStandardOutputProcess(procs[i + 1]);
+    }
 
-        for (QProcess *p : procs) {
-            p->start();
-        }
+    connect(procs.first(), &QProcess::bytesWritten, this, &Encoder::processBytesWritten);
 
-        readInputFile(procs.first());
+    for (QProcess *p : procs) {
+        p->start();
+    }
 
-        for (QProcess *p : procs) {
-            p->closeWriteChannel();
-            p->waitForFinished(-1);
+    readInputFile(procs.first());
 
-            if (p->exitCode() != 0) {
-                qWarning() << "Encoder command failed: inputFile =" << inputFile() << " outputFile =" << outFile() << " command =" << debugProgramArgs(p->program(), p->arguments());
-                QString msg = tr("Encoder error:\n") + "<pre>" + QString::fromLocal8Bit(p->readAllStandardError()) + "</pre>";
-                emit    error(track(), msg);
-            }
+    for (QProcess *p : procs) {
+        p->closeWriteChannel();
+        p->waitForFinished(-1);
+
+        if (p->exitCode() != 0) {
+            qWarning() << "Encoder command failed: inputFile =" << inputFile() << " outputFile =" << outFile() << " command =" << debugProgramArgs(p->program(), p->arguments());
+            QString msg = tr("Encoder error:\n") + "<pre>" + QString::fromLocal8Bit(p->readAllStandardError()) + "</pre>";
+            emit    error(track(), msg);
         }
     }
 
@@ -254,7 +256,4 @@ void Encoder::copyFile()
         emit error(track(),
                    tr("I can't rename file:\n%1 to %2\n%3").arg(inputFile(), outFile(), srcFile.errorString()));
     }
-
-    emit trackProgress(track(), TrackState::Encoding, 100);
-    emit trackReady(track(), outFile());
 }

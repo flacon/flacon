@@ -30,6 +30,8 @@
 #include <QStringList>
 #include <QMap>
 #include <QVariant>
+#include <QLoggingCategory>
+
 class Disc;
 
 #define SettingsValues QMap<QString, QVariant>
@@ -158,7 +160,7 @@ private:
 
     const QString mTmpDir;
     const QString mDataDir;
-    Disc *        mStandardDisc;
+    Disc         *mStandardDisc;
 
     static int mTestNum;
 };

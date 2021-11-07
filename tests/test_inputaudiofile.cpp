@@ -36,6 +36,7 @@
 
 void TestFlacon::testInputAudioFile()
 {
+    QLoggingCategory::setFilterRules("InputAudioFile.debug=false\n");
     QFETCH(QString, fileName);
     QFETCH(QString, duration);
     QFETCH(QString, format);
