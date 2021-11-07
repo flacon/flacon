@@ -116,6 +116,13 @@ QProcess *Encoder::createDemph(const QString &outFile)
         return nullptr;
     }
 
+    // sample rate must be 44100 (audio-CD) or 48000 (DAT)
+    int rate = mTrack.audioFile().sampleRate();
+    if (rate != 44100 && rate != 48000) {
+        qCDebug(LOG) << "DeEmphasis disabled, sample rate must be 44100 (audio-CD) or 48000 (DAT)";
+        return nullptr;
+    }
+
     QStringList args = Sox::deemphasisArgs(outFile);
     QString     prog = args.takeFirst();
 
