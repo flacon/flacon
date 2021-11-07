@@ -65,6 +65,8 @@ public:
 
     virtual QString filterDecoderStderr(const QString &stdErr) const;
 
+    virtual QByteArray readEmbeddedCue(const QString &fileName) const;
+
 protected:
     virtual bool checkMagic(const QByteArray &data) const;
 };

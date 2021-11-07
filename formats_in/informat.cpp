@@ -105,6 +105,14 @@ QString InputFormat::filterDecoderStderr(const QString &stdErr) const
 /************************************************
  *
  ************************************************/
+QByteArray InputFormat::readEmbeddedCue(const QString &) const
+{
+    return QByteArray();
+}
+
+/************************************************
+ *
+ ************************************************/
 const InputFormat *InputFormat::formatForFile(QIODevice *device)
 {
     int bufSize = 0;

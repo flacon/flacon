@@ -202,6 +202,12 @@ include_directories(${UCHARDET_INCLUDE_DIRS})
 link_directories(${UCHARDET_LIBRARY_DIRS})
 
 
+pkg_search_module(TAGLIB REQUIRED taglib)
+set(LIBRARIES ${LIBRARIES} ${TAGLIB_LIBRARIES})
+include_directories(${TAGLIB_INCLUDE_DIRS})
+link_directories(${TAGLIB_LIBRARY_DIRS})
+
+
 set(MAC_UPDATE_URL "https://flacon.github.io/download/feed.xml" CACHE STRING "The URL of updates appcast for MacOS")
 
 if (APPLE)

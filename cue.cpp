@@ -54,6 +54,24 @@ Cue::Cue() :
 /************************************************
  *
  ************************************************/
+Cue::Cue(QIODevice *device, const QString &audioFile) noexcept(false)
+{
+    CueData data(device);
+    if (data.isEmpty()) {
+        throw CueError(QObject::tr("File contains not a valid CUE file. The CUE sheet has no FILE tag."));
+    }
+
+    QFileInfo fileInfo(audioFile);
+    mFileName = QObject::tr("embedded:%1").arg(fileInfo.absoluteFilePath());
+    setUri(mFileName);
+    setTitle(QObject::tr("Embedded on %1").arg(fileInfo.fileName()));
+
+    read(data);
+}
+
+/************************************************
+ *
+ ************************************************/
 Cue::Cue(const QString &fileName) noexcept(false)
 {
     CueData data(fileName);
@@ -61,14 +79,22 @@ Cue::Cue(const QString &fileName) noexcept(false)
         throw CueError(QObject::tr("<b>%1</b> is not a valid CUE file. The CUE sheet has no FILE tag.").arg(fileName));
     }
 
-    QFileInfo cueFileInfo(fileName);
-    QString   fullPath = cueFileInfo.absoluteFilePath();
+    QFileInfo fileInfo(fileName);
+    mFileName = fileInfo.absoluteFilePath();
+    setUri(mFileName);
+    setTitle(fileInfo.fileName());
 
-    mFileName  = fullPath;
+    read(data);
+}
+
+/************************************************
+ *
+ ************************************************/
+void Cue::read(const CueData &data)
+{
+
     mDiscCount = 1;
     mDiscNum   = 1;
-    setUri(fullPath);
-    setTitle(cueFileInfo.fileName());
 
     QByteArray           albumPerformer = getAlbumPerformer(data);
     const CueData::Tags &global         = data.globalTags();
@@ -100,7 +126,7 @@ Cue::Cue(const QString &fileName) noexcept(false)
         track.setTrackCount(TrackNum(data.tracks().count()));
         track.setTag(TagId::DiscNum, global.value("DISCNUMBER", "1"));
         track.setTag(TagId::DiscCount, global.value("TOTALDISCS", "1"));
-        track.setCueFileName(fullPath);
+        track.setCueFileName(mFileName);
 
         this->append(track);
     }

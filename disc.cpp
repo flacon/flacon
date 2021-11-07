@@ -41,8 +41,10 @@
 #include <QtAlgorithms>
 #include <QDebug>
 #include <QLoggingCategory>
+#include <QBuffer>
 
 namespace {
+Q_LOGGING_CATEGORY(LOG, "Disk")
 Q_LOGGING_CATEGORY(LOG_SEARCH_AUDIO_FILES, "SearchAudioFiles")
 }
 
@@ -106,6 +108,23 @@ void Disc::searchCueFile(bool replaceExisting)
     if (audioFiles.isEmpty()) {
         return;
     }
+
+    // Embedded CUE ........................
+    try {
+        QByteArray embeddedCue = this->audioFiles().first().format()->readEmbeddedCue(this->audioFilePaths().first());
+        if (!embeddedCue.isEmpty()) {
+            QBuffer buf(&embeddedCue);
+            buf.open(QBuffer::ReadOnly);
+            setCueFile(Cue(&buf, audioFilePaths().first()));
+            qDebug() << this->isEmpty();
+            return;
+        }
+    }
+    catch (const FlaconError &err) {
+        qCWarning(LOG) << "Can't parse embedded cue:" << err.what();
+    }
+
+    // Serarch CUE files ...................
 
     QFileInfo     audioFile = QFileInfo(audioFiles.first());
     QList<Cue>    cues;

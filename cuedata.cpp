@@ -54,8 +54,15 @@ static QByteArray extractFileFromFileTag(const QByteArray &value)
 }
 
 /************************************************
- Complete CUE sheet syntax documentation
- https://github.com/flacon/flacon/blob/master/cuesheet_syntax.md
+ *
+ ************************************************/
+CueData::CueData(QIODevice *device) noexcept(false)
+{
+    read(device);
+}
+
+/************************************************
+ *
  ************************************************/
 CueData::CueData(const QString &fileName) :
     mFileName(fileName)
@@ -70,6 +77,16 @@ CueData::CueData(const QString &fileName) :
         throw FlaconError(file.errorString());
     }
 
+    read(&file);
+    file.close();
+}
+
+/************************************************
+ Complete CUE sheet syntax documentation
+ https://github.com/flacon/flacon/blob/master/cuesheet_syntax.md
+ ************************************************/
+void CueData::read(QIODevice *file)
+{
     mCodecName = detectCodepage(file);
 
     uint       lineNum = 0;
@@ -78,9 +95,9 @@ CueData::CueData(const QString &fileName) :
     QByteArray audioFile;
 
     // Read global tags ..............................
-    while (!file.atEnd()) {
+    while (!file->atEnd()) {
         lineNum++;
-        QByteArray line = file.readLine().trimmed();
+        QByteArray line = file->readLine().trimmed();
 
         if (line.isEmpty()) {
             continue;
@@ -104,7 +121,7 @@ CueData::CueData(const QString &fileName) :
         mGlobalTags.insert(tag, value);
     }
 
-    while (!file.atEnd()) {
+    while (!file->atEnd()) {
         bool ok;
 
         leftPart(value, ' ').toInt(&ok);
@@ -117,9 +134,9 @@ CueData::CueData(const QString &fileName) :
         track.insert(TRACK_TAG, leftPart(value, ' '));
         track.insert(FILE_TAG, audioFile);
 
-        while (!file.atEnd()) {
+        while (!file->atEnd()) {
             lineNum++;
-            QByteArray line = file.readLine().trimmed();
+            QByteArray line = file->readLine().trimmed();
             if (line.isEmpty())
                 continue;
 
@@ -140,33 +157,31 @@ CueData::CueData(const QString &fileName) :
         }
         mTracks << track;
     }
-
-    file.close();
 }
 
 /************************************************
  * Detect codepage and skip BOM
  ************************************************/
-QString CueData::detectCodepage(QFile &file)
+QString CueData::detectCodepage(QIODevice *file)
 {
-    QByteArray magic = file.read(3);
+    QByteArray magic = file->read(3);
 
     if (magic.startsWith("\xEF\xBB\xBF")) {
-        file.seek(3);
+        file->seek(3);
         return "UTF-8";
     }
 
     if (magic.startsWith("\xFE\xFF")) {
-        file.seek(2);
+        file->seek(2);
         return "UTF-16BE";
     }
 
     if (magic.startsWith("\xFF\xFE")) {
-        file.seek(2);
+        file->seek(2);
         return "UTF-16LE";
     }
 
-    file.seek(0);
+    file->seek(0);
     return "";
 }
 

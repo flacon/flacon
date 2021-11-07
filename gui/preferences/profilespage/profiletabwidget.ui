@@ -14,7 +14,7 @@
    <string>TabWidget</string>
   </property>
   <property name="currentIndex">
-   <number>0</number>
+   <number>1</number>
   </property>
   <widget class="QWidget" name="audioTab">
    <attribute name="title">
@@ -243,7 +243,7 @@ If you surround sections of text that contain a token with braces, these section
      </widget>
     </item>
     <item>
-     <widget class="CoverGroupBox" name="embededCoverGroupBox">
+     <widget class="CoverGroupBox" name="embeddedCoverGroupBox">
       <property name="toolTip">
        <string comment="Tooltip on checkbox on preferences dialog">If the format is supported, the cover will be added to the meta information for all output files.</string>
       </property>

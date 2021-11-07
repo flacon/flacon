@@ -86,8 +86,8 @@ void ProfileTabWidget::fromProfile(const Profile &profile)
 
     // Cover options ......................
     ui->copyCoverGroupBox->setCoverOptions(profile.copyCoverOptions());
-    ui->embededCoverGroupBox->setCoverOptions(profile.embedCoverOptions());
-    ui->embededCoverGroupBox->setVisible(profile.formatOptions().testFlag(FormatOption::SupportEmbeddedCue));
+    ui->embeddedCoverGroupBox->setCoverOptions(profile.embedCoverOptions());
+    ui->embeddedCoverGroupBox->setVisible(profile.formatOptions().testFlag(FormatOption::SupportEmbeddedCue));
 
     // Out CUE options ....................
     ui->cueGroup->fromProfile(profile);
@@ -118,7 +118,7 @@ void ProfileTabWidget::toProfile(Profile *profile) const
 
     // Cover options ......................
     profile->setCopyCoverOptions(ui->copyCoverGroupBox->coverOptions());
-    profile->setEmbedCoverOptions(ui->embededCoverGroupBox->coverOptions());
+    profile->setEmbedCoverOptions(ui->embeddedCoverGroupBox->coverOptions());
 
     // Out CUE options ....................
     ui->cueGroup->toProfile(profile);

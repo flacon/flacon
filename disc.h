@@ -50,7 +50,7 @@ public:
     void searchAudioFiles(bool replaceExisting = false);
     void searchCoverImage(bool replaceExisting = false);
 
-    Track *      track(int index) const;
+    Track       *track(int index) const;
     int          count() const { return mTracks.count(); }
     const Track *preGapTrack() const;
 

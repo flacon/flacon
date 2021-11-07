@@ -28,12 +28,13 @@
 
 #include <QVector>
 #include <QMap>
-class QFile;
+class QIODevice;
 
 class CueData
 {
 public:
     CueData(const QString &fileName) noexcept(false);
+    CueData(QIODevice *device) noexcept(false);
 
     QString fileName() const { return mFileName; }
     QString codecName() const { return mCodecName; }
@@ -57,7 +58,8 @@ private:
     Tags          mGlobalTags;
     QVector<Tags> mTracks;
 
-    QString detectCodepage(QFile &file);
+    void    read(QIODevice *device);
+    QString detectCodepage(QIODevice *file);
     void    parseLine(const QByteArray &line, QByteArray &tag, QByteArray &value, uint lineNum) const;
 };
 

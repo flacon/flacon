@@ -38,6 +38,7 @@ class Cue : public Tracks
 
 public:
     Cue();
+    explicit Cue(QIODevice *device, const QString &audioFile) noexcept(false);
     explicit Cue(const QString &fileName) noexcept(false);
 
     QString fileName() const { return mFileName; }
@@ -51,6 +52,7 @@ private:
     DiscNum mDiscCount = 0;
     DiscNum mDiscNum   = 0;
 
+    void       read(const CueData &data);
     QByteArray getAlbumPerformer(const CueData &data);
     void       splitTitleTag(const CueData &data);
     void       setCodecName(const CueData &data);

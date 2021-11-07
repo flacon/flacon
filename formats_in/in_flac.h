@@ -40,6 +40,8 @@ public:
 
     virtual QByteArray magic() const override { return "fLaC"; }
     virtual uint       magicOffset() const override { return 0; }
+
+    QByteArray readEmbeddedCue(const QString &fileName) const override;
 };
 
 #endif // IN_FLAC_H

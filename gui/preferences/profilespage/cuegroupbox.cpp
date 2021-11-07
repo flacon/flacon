@@ -51,7 +51,7 @@ CueGroupBox::~CueGroupBox()
 
 void CueGroupBox::fromProfile(const Profile &profile)
 {
-    mSupportEmbededCue = profile.formatOptions().testFlag(FormatOption::SupportEmbeddedCue);
+    mSupportEmbeddedCue = profile.formatOptions().testFlag(FormatOption::SupportEmbeddedCue);
 
     ui->writeToFileButton->setChecked(profile.isCreateCue());
     ui->embedButton->setChecked(profile.isEmbedCue());
@@ -70,7 +70,7 @@ void CueGroupBox::toProfile(Profile *profile) const
 
 void CueGroupBox::refresh()
 {
-    ui->embedButton->setEnabled(mSupportEmbededCue);
+    ui->embedButton->setEnabled(mSupportEmbeddedCue);
     ui->perTrackCueFormatEdit->setEnabled(ui->writeToFileButton->isChecked());
     ui->perTrackCueFormatBtn->setEnabled(ui->writeToFileButton->isChecked());
     ui->preGapComboBox->setEnabled(ui->writeToFileButton->isChecked() || ui->embedButton->isChecked());

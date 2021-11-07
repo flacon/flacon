@@ -25,6 +25,8 @@
 
 #include "in_flac.h"
 #include <QDebug>
+#include <taglib/flacfile.h>
+#include <taglib/xiphcomment.h>
 
 REGISTER_INPUT_FORMAT(Format_Flac)
 
@@ -41,4 +43,32 @@ QStringList Format_Flac::decoderArgs(const QString &fileName) const
     args << "-";
 
     return args;
+}
+
+/************************************************
+ *
+ ************************************************/
+QByteArray Format_Flac::readEmbeddedCue(const QString &fileName) const
+{
+    TagLib::FLAC::File file(fileName.toLocal8Bit().data());
+    if (!file.isOpen()) {
+        return QByteArray();
+    }
+
+    TagLib::Ogg::XiphComment *comment = file.xiphComment(false);
+    if (!comment) {
+        return QByteArray();
+    }
+
+    const TagLib::Ogg::FieldListMap &tags = comment->fieldListMap();
+
+    static constexpr auto CUE_SHEET_TAGS = { "CUESHEET", "cuesheet" };
+
+    for (auto key : CUE_SHEET_TAGS) {
+        if (tags.contains(key)) {
+            return QByteArray(tags[key].front().toCString(true));
+        }
+    }
+
+    return QByteArray();
 }

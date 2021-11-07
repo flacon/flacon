@@ -25,7 +25,7 @@ private:
     Ui::CueGroupBox *ui;
 
     void refresh();
-    bool mSupportEmbededCue = false;
+    bool mSupportEmbeddedCue = false;
 };
 
 using PreGapTypeComboBox = EnumCombobox<PreGapType>;
