@@ -248,131 +248,6 @@
     </message>
 </context>
 <context>
-    <name>ConfigDialog</name>
-    <message>
-        <source>Preferences</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>General configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The number of threads in the conversion process.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rescan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full path of the external applications</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>General</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select temporary directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> px</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Temporary directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cover image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Do not copy image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <extracomment>Preferences tab title </extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatically check for updates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Check now</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Last check was %1</source>
-        <comment>Information about last update</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Never checked</source>
-        <comment>Information about last update</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keep original image size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Resize if image size greater than</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
-        <comment>Message box text</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete the profile</source>
-        <comment>Button caption</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1:</source>
-        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>VBR medium</source>
@@ -556,6 +431,78 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
+    <name>CoverGroupBox</name>
+    <message>
+        <source>Keep original image size</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CueGroupBox</name>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File name format</source>
+        <comment>Preferences dialog edit tooltip</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Write to file</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embed to audio files</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like &apos;Use &quot;%a/%A/%n - %t.cue&quot;&apos;</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Disc</name>
     <message>
         <source>Cue file not set.</source>
@@ -608,6 +555,34 @@ This only affects the file size. All settings are lossless.</source>
     </message>
     <message>
         <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GeneralPage</name>
+    <message>
+        <source>The number of threads in the conversion process.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select temporary directory</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1026,7 +1001,76 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
+    <name>PreferencesDialog</name>
+    <message>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Audio profiles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfileTabWidget</name>
+    <message>
+        <source>Audio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
@@ -1049,7 +1093,21 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Disabled</source>
+        <source>CUE and Cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy cover image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1058,41 +1116,8 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like &apos;Use &quot;%a/%A/%n - %t.cue&quot;&apos;</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Extract to separate file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1158,60 +1183,29 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Directory:</source>
-        <comment>Preferences form label text</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pattern:</source>
-        <comment>Preferences form label text</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 format</source>
-        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Same directory as CUE file</source>
-        <comment>Placeholder for output direcory combobox</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfilesPage</name>
+    <message>
+        <source>+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete the profile</source>
+        <comment>Button caption</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1229,6 +1223,18 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for &apos;select program&apos; dialog. %1 is a name of required program. Example: &apos;flac program (flac)&apos;</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProgramsPage</name>
+    <message>
+        <source>Rescan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1302,6 +1308,18 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>The audio file does not exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE:&lt;br&gt;%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File contains not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1487,6 +1505,27 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like &apos;02:56&apos;</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UpdatePage</name>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
