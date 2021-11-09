@@ -30,6 +30,11 @@
         <translation>Tinklalapis: %1</translation>
     </message>
     <message>
+        <source>Bug tracker %1</source>
+        <comment>About dialog, About tab</comment>
+        <translation>Klaidų sekimas %1</translation>
+    </message>
+    <message>
         <source>License: %1</source>
         <translation>Licencija: %1</translation>
     </message>
@@ -48,15 +53,6 @@
     <message>
         <source>Copyright: %1-%2 %3</source>
         <translation>Autorių Teisės: %1-%2 %3</translation>
-    </message>
-    <message>
-        <source>Bug tracker %1</source>
-        <comment>About dialog, About tab</comment>
-        <translation>Klaidų sekimas %1</translation>
-    </message>
-    <message>
-        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon vertimo komandų darbo &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt; puslapyje dėka, programa Flacon yra verčiama į daugelį kalbų.</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -88,9 +84,18 @@
         <comment>Thanks on the about page</comment>
         <translation>Programos piktogramos</translation>
     </message>
+    <message>
+        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
+        <translation>Flacon vertimo komandų darbo &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt; puslapyje dėka, programa Flacon yra verčiama į daugelį kalbų.</translation>
+    </message>
 </context>
 <context>
     <name>AddProfileDialog</name>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation>Sukurti profilį</translation>
+    </message>
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
@@ -105,11 +110,6 @@
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
         <translation>Garso formatas:</translation>
-    </message>
-    <message>
-        <source>Create a profile</source>
-        <extracomment>Add profile dialog title</extracomment>
-        <translation>Sukurti profilį</translation>
     </message>
     <message>
         <source>Create a profile</source>
@@ -252,8 +252,16 @@
         <translation>Nuostatos</translation>
     </message>
     <message>
-        <source>General configuration</source>
-        <translation>Bendra konfigūracija</translation>
+        <source>+</source>
+        <translation>+</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation>-</translation>
+    </message>
+    <message>
+        <source>Audio formats</source>
+        <translation>Garso formatai</translation>
     </message>
     <message>
         <source>Thread count:</source>
@@ -264,32 +272,6 @@
         <translation>Gijų skaičius konvertavimo procese.</translation>
     </message>
     <message>
-        <source>Rescan</source>
-        <translation>Peržiūrėti iš naujo</translation>
-    </message>
-    <message>
-        <source>Full path of the external applications</source>
-        <translation>Pilnas kelias į išorines programas</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Bendra</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Programos</translation>
-    </message>
-    <message>
-        <source>Select temporary directory</source>
-        <translation>Pasirinkite laikiną katalogą</translation>
-    </message>
-    <message>
-        <source> px</source>
-        <translation> piks.</translation>
-    </message>
-    <message>
         <source>Temporary directory:</source>
         <translation>Laikinas katalogas:</translation>
     </message>
@@ -298,17 +280,34 @@
         <translation>Numatytoji koduotė:</translation>
     </message>
     <message>
-        <source>Cover image</source>
-        <translation>Viršelio paveikslas</translation>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation>CDDB serveris: </translation>
     </message>
     <message>
-        <source>Do not copy image</source>
-        <translation>Nekopijuoti paveikslo</translation>
+        <source>Copy cover image</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Update</source>
-        <extracomment>Preferences tab title </extracomment>
-        <translation>Atnaujinti</translation>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Bendra</translation>
+    </message>
+    <message>
+        <source>Rescan</source>
+        <translation>Peržiūrėti iš naujo</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Programos</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
@@ -319,55 +318,8 @@
         <translation>Tikrinti dabar</translation>
     </message>
     <message>
-        <source>Last check was %1</source>
-        <comment>Information about last update</comment>
-        <translation>Paskutinis patikrinimas buvo atliktas %1</translation>
-    </message>
-    <message>
-        <source>Never checked</source>
-        <comment>Information about last update</comment>
-        <translation>Niekada netikrinta</translation>
-    </message>
-    <message>
-        <source>Keep original image size</source>
-        <translation>Palikti pradinį paveikslo dydį</translation>
-    </message>
-    <message>
-        <source>Resize if image size greater than</source>
-        <translation>Keisti dydį, jei paveikslo dydis didesnis nei</translation>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Garso formatai</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation>+</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation>-</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
-        <comment>Message box text</comment>
-        <translation>Ar tikrai norite ištrinti profilį &quot;%1&quot;?</translation>
-    </message>
-    <message>
-        <source>Delete the profile</source>
-        <comment>Button caption</comment>
-        <translation>Ištrinti profilį</translation>
-    </message>
-    <message>
-        <source>%1:</source>
-        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
-        <translation>%1:</translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>CDDB serveris: </translation>
+        <source>Update</source>
+        <translation>Atnaujinti</translation>
     </message>
 </context>
 <context>
@@ -437,6 +389,14 @@
         <translation>Pralaidumo tipas:</translation>
     </message>
     <message>
+        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Bitrate:</source>
         <translation>Pralaidumas:</translation>
     </message>
@@ -453,14 +413,6 @@ VBR veiksenoje tai nustato vidutinį pralaidumą, kuris tinka naudoti didelėje,
 &lt;p&gt;
 CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
 </translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
-
-&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -493,14 +445,14 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Error string, %1 is a filename, %2 error message</comment>
-        <translation>Nepavyksta rašyti failą &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <translation>Nepavyksta rašyti failą &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -565,15 +517,83 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     </message>
 </context>
 <context>
+    <name>CoverGroupBox</name>
+    <message>
+        <source>Keep original image size</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation>Palikti pradinį paveikslo dydį</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation> piks.</translation>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation>Keisti dydį, jei paveikslo dydis didesnis nei</translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>CueGroupBox</name>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation>Kurti kiekvieno takelio CUE lapą</translation>
+    </message>
+    <message>
+        <source>File name format</source>
+        <comment>Preferences dialog edit tooltip</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Pirmo takelio &quot;pregap&quot;:</translation>
+    </message>
+    <message>
+        <source>Write to file</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed to audio files</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Įterpti &quot;Atlikėją&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Įterpti &quot;Albumo pavadinimą&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Įterpti &quot;Metus&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Įterpti &quot;Žanrą&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Naudoti &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Išskleisti į atskirą failą</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Pridėti prie pirmo takelio</translation>
+    </message>
+</context>
+<context>
     <name>Disc</name>
-    <message>
-        <source>Cue file not set.</source>
-        <translation>Nenustatytas cue failas.</translation>
-    </message>
-    <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>Garso failas yra trumpesnis nei buvo tikimasi CUE lape.</translation>
-    </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
@@ -583,6 +603,10 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation>Šis formatas palaiko daugiausiai %1 skaitmeninimo dažnį. Ši reikšmė bus naudojama kodavimui.</translation>
+    </message>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>Nenustatytas cue failas.</translation>
     </message>
     <message>
         <source>Audio file not set.</source>
@@ -598,6 +622,10 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation>Garso failas yra trumpesnis nei buvo tikimasi CUE lape.</translation>
     </message>
 </context>
 <context>
@@ -622,6 +650,34 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
     </message>
 </context>
 <context>
+    <name>GeneralPage</name>
+    <message>
+        <source>The number of threads in the conversion process.</source>
+        <translation>Gijų skaičius konvertavimo procese.</translation>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Laikinas katalogas:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Numatytoji koduotė:</translation>
+    </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation>CDDB serveris: </translation>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Gijų skaičius:</translation>
+    </message>
+    <message>
+        <source>Select temporary directory</source>
+        <translation>Pasirinkite laikiną katalogą</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
@@ -636,155 +692,17 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
         <translation>Katalogas:</translation>
     </message>
     <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
+
+Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
+    </message>
+    <message>
         <source>Pattern:</source>
         <translation>Šablonas:</translation>
-    </message>
-    <message>
-        <source>Format:</source>
-        <translation>Formatas:</translation>
-    </message>
-    <message>
-        <source>Output format</source>
-        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Išvesties formatas</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation>Žymės</translation>
-    </message>
-    <message>
-        <source>Genre:</source>
-        <translation>Žanras:</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <translation>Metai:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Atlikėjas:</translation>
-    </message>
-    <message>
-        <source>Album:</source>
-        <translation>Albumas:</translation>
-    </message>
-    <message>
-        <source>Start num:</source>
-        <translation>Numeruoti nuo:</translation>
-    </message>
-    <message>
-        <source>Disc ID:</source>
-        <translation>Disko ID:</translation>
-    </message>
-    <message>
-        <source>Codepage:</source>
-        <translation>Koduotė:</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Failas</translation>
-    </message>
-    <message>
-        <source>&amp;Settings</source>
-        <translation>Nu&amp;statymai</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Pagalba</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <translation>Pridėti CUE ar garso failą</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>Convert</source>
-        <translation>Konvertuoti</translation>
-    </message>
-    <message>
-        <source>Start conversion process</source>
-        <translation>Pradėti konvertavimo eigą</translation>
-    </message>
-    <message>
-        <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
-    </message>
-    <message>
-        <source>Abort</source>
-        <translation>Nutraukti</translation>
-    </message>
-    <message>
-        <source>Abort conversion process</source>
-        <translation>Nutraukti konvertavimo eigą</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>Išeiti</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Program preferences</source>
-        <translation>Programos nuostatos</translation>
-    </message>
-    <message>
-        <source>Ctrl+Del</source>
-        <translation>Ctrl+Del</translation>
-    </message>
-    <message>
-        <source>Configure encoder</source>
-        <translation>Konfigūruoti koduotuvą</translation>
-    </message>
-    <message>
-        <source>Get from CDDB</source>
-        <translation>Gauti iš CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Gauti albumo informaciją iš CDDB</translation>
-    </message>
-    <message>
-        <source>Ctrl+I</source>
-        <translation>Ctrl+I</translation>
-    </message>
-    <message>
-        <source>Recursive album search</source>
-        <translation>Rekursinė albumų paieška</translation>
-    </message>
-    <message>
-        <source>Some albums will not be converted, they contain errors.
-Do you want to continue?</source>
-        <translation>Kai kurie albumai nebus konvertuojami, juose yra klaidų.
-Ar norite tęsti?</translation>
-    </message>
-    <message>
-        <source>%1 files</source>
-        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>%1 failai</translation>
-    </message>
-    <message>
-        <source>All supported formats</source>
-        <comment>OpenFile dialog filter line</comment>
-        <translation>Visi palaikomi formatai</translation>
-    </message>
-    <message>
-        <source>All files</source>
-        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Visi failai</translation>
-    </message>
-    <message>
-        <source>Select audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Pasirinkite garso failą</translation>
-    </message>
-    <message>
-        <source>Select directory</source>
-        <translation>Pasirinkite katalogą</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -824,44 +742,49 @@ If you surround sections of text that contain a token with braces, these section
 Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, tuomet, jei ženklas yra tuščias, tos sekcijos bus paslėptos.</translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
-
-Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
+        <source>Format:</source>
+        <translation>Formatas:</translation>
     </message>
     <message>
-        <source>Delete current pattern from history</source>
-        <translation>Ištrinti esamą šabloną iš istorijos</translation>
+        <source>Output format</source>
+        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+        <translation>Išvesties formatas</translation>
     </message>
     <message>
-        <source>Preferences</source>
-        <translation>Nuostatos</translation>
+        <source>Tags</source>
+        <translation>Žymės</translation>
     </message>
     <message>
-        <source>About Flacon</source>
-        <translation>Apie Flacon</translation>
+        <source>Album performer:</source>
+        <translation>Albumo atlikėjas:</translation>
     </message>
     <message>
-        <source>Remove current directory from history</source>
-        <translation>Šalinti esamą katalogą iš istorijos</translation>
+        <source>Start num:</source>
+        <translation>Numeruoti nuo:</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <comment>context menu</comment>
-        <translation>Gauti duomenis iš CDDB</translation>
+        <source>Disc ID:</source>
+        <translation>Disko ID:</translation>
     </message>
     <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Pasirinkite CUE failą</translation>
+        <source>Genre:</source>
+        <translation>Žanras:</translation>
     </message>
     <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Pridėti CUE ar garso failą</translation>
+        <source>Artist:</source>
+        <translation>Atlikėjas:</translation>
+    </message>
+    <message>
+        <source>Codepage:</source>
+        <translation>Koduotė:</translation>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Metai:</translation>
+    </message>
+    <message>
+        <source>Album:</source>
+        <translation>Albumas:</translation>
     </message>
     <message>
         <source>Edit all tags…</source>
@@ -869,27 +792,124 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>Taisyti visas žymes…</translation>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;Failas</translation>
+    </message>
+    <message>
+        <source>&amp;Settings</source>
+        <translation>Nu&amp;statymai</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Pagalba</translation>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation>Pridėti diską…</translation>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation>Pridėti diską</translation>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <translation>Pridėti CUE ar garso failą</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
+        <source>Convert</source>
+        <translation>Konvertuoti</translation>
+    </message>
+    <message>
+        <source>Start conversion process</source>
+        <translation>Pradėti konvertavimo eigą</translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation>Ctrl+W</translation>
+    </message>
+    <message>
+        <source>Abort</source>
+        <translation>Nutraukti</translation>
+    </message>
+    <message>
+        <source>Abort conversion process</source>
+        <translation>Nutraukti konvertavimo eigą</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Išeiti</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation>Nuostatos</translation>
+    </message>
+    <message>
+        <source>Program preferences</source>
+        <translation>Programos nuostatos</translation>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation>Apie Flacon</translation>
+    </message>
+    <message>
+        <source>Remove disc</source>
+        <translation>Šalinti diską</translation>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation>Šalinti diską iš projekto</translation>
+    </message>
+    <message>
+        <source>Ctrl+Del</source>
+        <translation>Ctrl+Del</translation>
+    </message>
+    <message>
+        <source>Configure encoder</source>
+        <translation>Konfigūruoti koduotuvą</translation>
+    </message>
+    <message>
+        <source>Get from CDDB</source>
+        <translation>Gauti iš CDDB</translation>
+    </message>
+    <message>
+        <source>Get album information from CDDB</source>
+        <translation>Gauti albumo informaciją iš CDDB</translation>
+    </message>
+    <message>
+        <source>Ctrl+I</source>
+        <translation>Ctrl+I</translation>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation>Pridėti aplanką…</translation>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation>Pridėti aplanką</translation>
+    </message>
+    <message>
+        <source>Recursive album search</source>
+        <translation>Rekursinė albumų paieška</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation>Ctrl+Shift+O</translation>
+    </message>
+    <message>
         <source>Check for Updates…</source>
         <translation>Tikrinti ar yra atnaujinimų…</translation>
-    </message>
-    <message>
-        <source>Edit tags…</source>
-        <comment>context menu</comment>
-        <translation>Taisyti žymes…</translation>
-    </message>
-    <message>
-        <source>Select another audio file…</source>
-        <comment>context menu</comment>
-        <translation>Pasirinkti kitą garso failą…</translation>
-    </message>
-    <message>
-        <source>Select another CUE file…</source>
-        <comment>context menu</comment>
-        <translation>Pasirinkti kitą CUE failą…</translation>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <translation>Albumo atlikėjas:</translation>
     </message>
     <message>
         <source>Convert selected</source>
@@ -907,41 +927,62 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Remove disc</source>
-        <translation>Šalinti diską</translation>
+        <source>Remove current directory from history</source>
+        <translation>Šalinti esamą katalogą iš istorijos</translation>
     </message>
     <message>
-        <source>Remove disc from project</source>
-        <translation>Šalinti diską iš projekto</translation>
+        <source>Delete current pattern from history</source>
+        <translation>Ištrinti esamą šabloną iš istorijos</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+O</source>
-        <translation>Ctrl+Shift+O</translation>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Pasirinkite CUE failą</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <comment>Main menu item</comment>
-        <translation>Pridėti diską…</translation>
+        <source>Some albums will not be converted, they contain errors.
+Do you want to continue?</source>
+        <translation>Kai kurie albumai nebus konvertuojami, juose yra klaidų.
+Ar norite tęsti?</translation>
     </message>
     <message>
-        <source>Add disc</source>
-        <comment>Toolbar item</comment>
-        <translation>Pridėti diską</translation>
+        <source>%1 files</source>
+        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+        <translation>%1 failai</translation>
     </message>
     <message>
-        <source>Add folder…</source>
-        <comment>Main menu item</comment>
-        <translation>Pridėti aplanką…</translation>
+        <source>All supported formats</source>
+        <comment>OpenFile dialog filter line</comment>
+        <translation>Visi palaikomi formatai</translation>
     </message>
     <message>
-        <source>Add folder</source>
-        <comment>Toolbar item</comment>
-        <translation>Pridėti aplanką</translation>
+        <source>All files</source>
+        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+        <translation>Visi failai</translation>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Pridėti CUE ar garso failą</translation>
+    </message>
+    <message>
+        <source>Select audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Pasirinkite garso failą</translation>
     </message>
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory</source>
+        <translation>Pasirinkite katalogą</translation>
+    </message>
+    <message>
+        <source>Select another audio file…</source>
+        <comment>context menu</comment>
+        <translation>Pasirinkti kitą garso failą…</translation>
     </message>
     <message>
         <source>Select another audio file for %1 track…</source>
@@ -952,6 +993,21 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation>Taisyti žymes…</translation>
+    </message>
+    <message>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation>Pasirinkti kitą CUE failą…</translation>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation>Gauti duomenis iš CDDB</translation>
     </message>
 </context>
 <context>
@@ -1055,7 +1111,96 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
+    <name>PreferencesDialog</name>
+    <message>
+        <source>Preferences</source>
+        <comment>Preferences dialog title</comment>
+        <extracomment>Preferences dialog title</extracomment>
+        <translation>Nuostatos</translation>
+    </message>
+    <message>
+        <source> Audio profiles</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Bendra</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Programos</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation>Atnaujinti</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileTabWidget</name>
+    <message>
+        <source>Audio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Galutiniai failai</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Katalogas:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
+
+Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Šablonas:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Ženklai prasideda nuo %. Galite naudoti sekančius ženklus:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Takelio numeris  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Bendras takelių skaičius&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Atlikėjas&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumo pavadinimas&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Takelio pavadinimas&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Metai&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Žanras&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, tuomet, jei ženklas yra tuščias, tos sekcijos bus paslėptos.</translation>
+    </message>
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
@@ -1078,8 +1223,22 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>Apskaičiuoti stiprinimą:</translation>
     </message>
     <message>
-        <source>Disabled</source>
-        <translation>Išjungta</translation>
+        <source>CUE and Cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Copy cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1087,42 +1246,9 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško),
         <translation>Kurti kiekvieno takelio CUE lapą</translation>
     </message>
     <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation>Failo pavadinimo formatas:</translation>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Pirmo takelio &quot;pregap&quot;:</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Įterpti &quot;Atlikėją&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Įterpti &quot;Albumo pavadinimą&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Įterpti &quot;Metus&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Įterpti &quot;Žanrą&quot;</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Naudoti &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Extract to separate file</source>
-        <translation>Išskleisti į atskirą failą</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Pridėti prie pirmo takelio</translation>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>Tas pats katalogas kaip ir CUE failo</translation>
     </message>
     <message>
         <source>Same as source</source>
@@ -1190,6 +1316,14 @@ Gali būti vykdoma atskirų takelių analizė, kurios dėka, visų takelių groj
 Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</translation>
     </message>
     <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation>%1 koduotuvo nustatymai:</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
         <source>Result Files</source>
         <translation>Galutiniai failai</translation>
     </message>
@@ -1250,26 +1384,69 @@ If you surround sections of text that contain a token with braces, these section
 Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, tuomet, jei ženklas yra tuščias, tos sekcijos bus paslėptos.</translation>
     </message>
     <message>
-        <source>%1 format</source>
-        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation>%1 formatas</translation>
+        <source>Resampling settings:</source>
+        <translation>Ėminių atrankos nustatymai:</translation>
     </message>
     <message>
-        <source>Same directory as CUE file</source>
-        <comment>Placeholder for output direcory combobox</comment>
-        <translation>Tas pats katalogas kaip ir CUE failo</translation>
+        <source>Maximum bit depth:</source>
+        <translation>Didžiausias bitų gylis:</translation>
     </message>
     <message>
-        <source>%1 encoder settings:</source>
-        <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation>%1 koduotuvo nustatymai:</translation>
+        <source>Maximum sample rate:</source>
+        <translation>Didžiausias skaitmeninimo dažnis:</translation>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation>ReplayGain nustatymai:</translation>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Apskaičiuoti stiprinimą:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Išjungta</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation>Kurti kiekvieno takelio CUE lapą</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <translation>Failo pavadinimo formatas:</translation>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Pirmo takelio &quot;pregap&quot;:</translation>
+    </message>
+</context>
+<context>
+    <name>ProfilesPage</name>
+    <message>
+        <source>+</source>
+        <translation>+</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation>-</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation>Ar tikrai norite ištrinti profilį &quot;%1&quot;?</translation>
+    </message>
+    <message>
+        <source>Delete the profile</source>
+        <comment>Button caption</comment>
+        <translation>Ištrinti profilį</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
-        <source>Select program file</source>
-        <translation>Pasirinkite programos failą</translation>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>%1 programa</translation>
     </message>
     <message>
         <source>All files</source>
@@ -1277,9 +1454,20 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Visi failai</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation>%1 programa</translation>
+        <source>Select program file</source>
+        <translation>Pasirinkite programos failą</translation>
+    </message>
+</context>
+<context>
+    <name>ProgramsPage</name>
+    <message>
+        <source>Rescan</source>
+        <translation>Peržiūrėti iš naujo</translation>
+    </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation>%1:</translation>
     </message>
 </context>
 <context>
@@ -1287,28 +1475,6 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Nepavyksta rasti programos &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Failo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nėra</translation>
-    </message>
-    <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>jūs negalite naudoti &quot;ReplayGain&quot; failams, kurių skaitmeninimo dažnis yra didesnis nei 48kHz. Metaflac tokių failų nepalaiko.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Nepavyksta sukurti katalogo &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Nepavyksta rašyti į katalogą &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1320,12 +1486,33 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Nepavyksta perskaityti viršelio failo &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>Multiple values</source>
-        <translation>Kelios reikšmės</translation>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation>Nepavyksta įrašyti viršelio paveikslą &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <translation>Nepavyksta įrašyti CUE failo &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Nepavyksta sukurti katalogo &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Nepavyksta rašyti į katalogą &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; nėra taisyklingas CUE failas. CUE lapas neturi FILE žymės.</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation>Failo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nėra</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1338,13 +1525,18 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>&lt;b&gt;%1&lt;/b&gt; yra neteisingas CUE failas. Neteisingas takelio indeksas ties %2 eilute.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; nėra taisyklingas CUE failas. CUE lapas neturi FILE žymės.</translation>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <translation>jūs negalite naudoti &quot;ReplayGain&quot; failams, kurių skaitmeninimo dažnis yra didesnis nei 48kHz. Metaflac tokių failų nepalaiko.</translation>
     </message>
     <message>
-        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>Nepavyksta įrašyti viršelio paveikslą &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <source>Multiple values</source>
+        <translation>Kelios reikšmės</translation>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>The audio file name is not set.</source>
@@ -1353,6 +1545,14 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>The audio file does not exist.</source>
         <translation>Garso failo nėra.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File contains not a valid CUE data.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1363,13 +1563,14 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Taisyti žymes</translation>
     </message>
     <message>
-        <source>of</source>
-        <translation>iš</translation>
-    </message>
-    <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
         <translation>Atlikėjas:</translation>
+    </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation>Albumo atlikėjas:</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -1387,6 +1588,16 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Metai:</translation>
     </message>
     <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation>Pradžios takelio numeris:</translation>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation>Disko numeris:</translation>
+    </message>
+    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation>Takelio pavadinimas:</translation>
@@ -1397,42 +1608,23 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Komentaras:</translation>
     </message>
     <message>
-        <source>Start track number:</source>
-        <comment>Music tag name</comment>
-        <translation>Pradžios takelio numeris:</translation>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <translation>Albumo atlikėjas:</translation>
-    </message>
-    <message>
-        <source>Disc number:</source>
-        <comment>Music tag name</comment>
-        <translation>Disko numeris:</translation>
+        <source>of</source>
+        <translation>iš</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Gauti duomenis iš CDDB</translation>
-    </message>
-    <message>
         <source>Select another CUE file…</source>
         <translation>Pasirinkti kitą CUE failą…</translation>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <translation>Gauti duomenis iš CDDB</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
-    <message>
-        <source>Tracks:</source>
-        <translation>Takeliai:</translation>
-    </message>
-    <message>
-        <source>Audio:</source>
-        <translation>Garsas:</translation>
-    </message>
     <message>
         <source>Error</source>
         <comment>Status of the track conversion.</comment>
@@ -1469,23 +1661,31 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Apskaičiuojamas stiprinimas</translation>
     </message>
     <message>
-        <source>Writing gain</source>
-        <comment>Status of the track conversion.</comment>
-        <translation>Rašomas stiprinimas</translation>
-    </message>
-    <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
         <translation>Laukiama stiprinimo</translation>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Konvertavimas neįmanomas.&lt;/b&gt;</translation>
+        <source>Writing gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Rašomas stiprinimas</translation>
+    </message>
+    <message>
+        <source>Tracks:</source>
+        <translation>Takeliai:</translation>
+    </message>
+    <message>
+        <source>Audio:</source>
+        <translation>Garsas:</translation>
     </message>
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
         <translation>Keli failai</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Konvertavimas neįmanomas.&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1494,6 +1694,11 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <source>Track</source>
         <comment>Table header.</comment>
         <translation>Takelis</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation>Trukmė</translation>
     </message>
     <message>
         <source>Title</source>
@@ -1525,11 +1730,6 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Kelios reikšmės</translation>
     </message>
     <message>
-        <source>Length</source>
-        <comment>Table header.</comment>
-        <translation>Trukmė</translation>
-    </message>
-    <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
         <translation>%1:%2:%3</translation>
@@ -1538,6 +1738,27 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
         <translation>%1:%2</translation>
+    </message>
+</context>
+<context>
+    <name>UpdatePage</name>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation>Automatiškai tikrinti ar yra atnaujinimų</translation>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation>Tikrinti dabar</translation>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation>Paskutinis patikrinimas buvo atliktas %1</translation>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation>Niekada netikrinta</translation>
     </message>
 </context>
 <context>

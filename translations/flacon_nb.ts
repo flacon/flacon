@@ -30,6 +30,11 @@
         <translation>Hjemmeside: %1</translation>
     </message>
     <message>
+        <source>Bug tracker %1</source>
+        <comment>About dialog, About tab</comment>
+        <translation>Feilrettingsoversikt %1</translation>
+    </message>
+    <message>
         <source>License: %1</source>
         <translation>Lisens: %1</translation>
     </message>
@@ -48,15 +53,6 @@
     <message>
         <source>Copyright: %1-%2 %3</source>
         <translation>Kopirett: %1-%2 %3</translation>
-    </message>
-    <message>
-        <source>Bug tracker %1</source>
-        <comment>About dialog, About tab</comment>
-        <translation>Feilrettingsoversikt %1</translation>
-    </message>
-    <message>
-        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon oversettes til mange språk takket være oversettelseslagene på &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -88,9 +84,18 @@
         <comment>Thanks on the about page</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
+        <translation>Flacon oversettes til mange språk takket være oversettelseslagene på &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+    </message>
 </context>
 <context>
     <name>AddProfileDialog</name>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
@@ -104,11 +109,6 @@
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Create a profile</source>
-        <extracomment>Add profile dialog title</extracomment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -252,8 +252,16 @@
         <translation>Innstillinger</translation>
     </message>
     <message>
-        <source>General configuration</source>
-        <translation>Generelt oppsett</translation>
+        <source>+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio formats</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Thread count:</source>
@@ -264,32 +272,6 @@
         <translation>Antall tråder brukt i konverteringsprosessen.</translation>
     </message>
     <message>
-        <source>Rescan</source>
-        <translation>Søk på nytt</translation>
-    </message>
-    <message>
-        <source>Full path of the external applications</source>
-        <translation>Full stil til de eksterne programmene</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Generelt</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Programmer</translation>
-    </message>
-    <message>
-        <source>Select temporary directory</source>
-        <translation>Velg midlertidig mappe</translation>
-    </message>
-    <message>
-        <source> px</source>
-        <translation>px</translation>
-    </message>
-    <message>
         <source>Temporary directory:</source>
         <translation>Midlertidig katalog:</translation>
     </message>
@@ -298,17 +280,34 @@
         <translation>Forvalgt kodeside:</translation>
     </message>
     <message>
-        <source>Cover image</source>
-        <translation>Omslagsbilde</translation>
-    </message>
-    <message>
-        <source>Do not copy image</source>
-        <translation>Ikke kopier bilde</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <extracomment>Preferences tab title </extracomment>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Copy cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Generelt</translation>
+    </message>
+    <message>
+        <source>Rescan</source>
+        <translation>Søk på nytt</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Programmer</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
@@ -319,54 +318,7 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Last check was %1</source>
-        <comment>Information about last update</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Never checked</source>
-        <comment>Information about last update</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Keep original image size</source>
-        <translation>Behold opprinnelig billedstørrelse</translation>
-    </message>
-    <message>
-        <source>Resize if image size greater than</source>
-        <translation>Endre oppløsning på bilde hvis større enn</translation>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>+</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
-        <comment>Message box text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Delete the profile</source>
-        <comment>Button caption</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1:</source>
-        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
+        <source>Update</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -437,6 +389,14 @@
         <translation>Bitratetype:</translation>
     </message>
     <message>
+        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Bitrate:</source>
         <translation>Bithastighet:</translation>
     </message>
@@ -453,14 +413,6 @@ I VBR-modus setter dette gjennomsnittlig rate for en stor og mangfoldig ansamlin
 &lt;p&gt;
 I CBR-modus, setter angitt utdatabitrate.
 </translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
-
-&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -493,13 +445,13 @@ I CBR-modus, setter angitt utdatabitrate.
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -565,15 +517,83 @@ I CBR-modus, setter angitt utdatabitrate.
     </message>
 </context>
 <context>
-    <name>Disc</name>
+    <name>CoverGroupBox</name>
     <message>
-        <source>Cue file not set.</source>
-        <translation>Cue-fil ikke fastsatt.</translation>
+        <source>Keep original image size</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation>Behold opprinnelig billedstørrelse</translation>
     </message>
     <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
+        <source> px</source>
+        <translation>px</translation>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation>Endre oppløsning på bilde hvis større enn</translation>
+    </message>
+    <message>
+        <source>Form</source>
         <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>CueGroupBox</name>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File name format</source>
+        <comment>Preferences dialog edit tooltip</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Innledningspause før første spor:</translation>
+    </message>
+    <message>
+        <source>Write to file</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed to audio files</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Sett inn &quot;artist&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Sett inn &quot;albumtittel&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Sett inn &quot;år&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Sett in &quot;sjanger&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Bruk &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Pakk ut til egen fil</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Legg til første spor</translation>
+    </message>
+</context>
+<context>
+    <name>Disc</name>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
@@ -583,6 +603,10 @@ I CBR-modus, setter angitt utdatabitrate.
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>Cue-fil ikke fastsatt.</translation>
     </message>
     <message>
         <source>Audio file not set.</source>
@@ -597,6 +621,10 @@ I CBR-modus, setter angitt utdatabitrate.
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -622,6 +650,34 @@ Dette har bare innvirkning på filstørrelse. Alle innstillinger er tapsfrie.</t
     </message>
 </context>
 <context>
+    <name>GeneralPage</name>
+    <message>
+        <source>The number of threads in the conversion process.</source>
+        <translation>Antall tråder brukt i konverteringsprosessen.</translation>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Midlertidig katalog:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Forvalgt kodeside:</translation>
+    </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Antall tråder:</translation>
+    </message>
+    <message>
+        <source>Select temporary directory</source>
+        <translation>Velg midlertidig mappe</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
@@ -636,155 +692,17 @@ Dette har bare innvirkning på filstørrelse. Alle innstillinger er tapsfrie.</t
         <translation>Katalog:</translation>
     </message>
     <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Du kan velge destinasjonsmappe. Du kan også skrive det inn manuelt.
+
+Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende filer bli plassert i samme mappa som kilden.</translation>
+    </message>
+    <message>
         <source>Pattern:</source>
         <translation>Mønster:</translation>
-    </message>
-    <message>
-        <source>Format:</source>
-        <translation>Format:</translation>
-    </message>
-    <message>
-        <source>Output format</source>
-        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Utdata-format</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation>Merkelapper</translation>
-    </message>
-    <message>
-        <source>Genre:</source>
-        <translation>Sjanger:</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <translation>År:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Artist:</translation>
-    </message>
-    <message>
-        <source>Album:</source>
-        <translation>Album:</translation>
-    </message>
-    <message>
-        <source>Start num:</source>
-        <translation>Startnummer:</translation>
-    </message>
-    <message>
-        <source>Disc ID:</source>
-        <translation>Disk-ID:</translation>
-    </message>
-    <message>
-        <source>Codepage:</source>
-        <translation>Kodeside:</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Fil</translation>
-    </message>
-    <message>
-        <source>&amp;Settings</source>
-        <translation>&amp;Innstillinger</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Hjelp</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <translation>Legg til CUE eller lydfil</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>Convert</source>
-        <translation>Konverter</translation>
-    </message>
-    <message>
-        <source>Start conversion process</source>
-        <translation>Start konverteringsprosess</translation>
-    </message>
-    <message>
-        <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
-    </message>
-    <message>
-        <source>Abort</source>
-        <translation>Avbryt</translation>
-    </message>
-    <message>
-        <source>Abort conversion process</source>
-        <translation>Avbryt konverteringsprosess</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>Avslutt</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Program preferences</source>
-        <translation>Programegenskaper</translation>
-    </message>
-    <message>
-        <source>Ctrl+Del</source>
-        <translation>Ctrl+Del</translation>
-    </message>
-    <message>
-        <source>Configure encoder</source>
-        <translation>Sett opp koder</translation>
-    </message>
-    <message>
-        <source>Get from CDDB</source>
-        <translation>Innhent fra CCDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Få albuminformasjon fra CDDB</translation>
-    </message>
-    <message>
-        <source>Ctrl+I</source>
-        <translation>Ctrl+I</translation>
-    </message>
-    <message>
-        <source>Recursive album search</source>
-        <translation>Rekursivt albumsøk</translation>
-    </message>
-    <message>
-        <source>Some albums will not be converted, they contain errors.
-Do you want to continue?</source>
-        <translation>Noen album vil ikke bli konvertert, de inneholder feil.
-Ønsker du å fortsette?</translation>
-    </message>
-    <message>
-        <source>%1 files</source>
-        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>%1 filer</translation>
-    </message>
-    <message>
-        <source>All supported formats</source>
-        <comment>OpenFile dialog filter line</comment>
-        <translation>Alle støttede formater</translation>
-    </message>
-    <message>
-        <source>All files</source>
-        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Alle filer</translation>
-    </message>
-    <message>
-        <source>Select audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Velg lydfil</translation>
-    </message>
-    <message>
-        <source>Select directory</source>
-        <translation>Velg mappe</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -824,44 +742,49 @@ Redigeringspoletter starter med %. Du kan bruke følgende redigeringspoletter:
 Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammeparenteser vil disse delene bli skjult hvis redigeringspoletten er tom.</translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Du kan velge destinasjonsmappe. Du kan også skrive det inn manuelt.
-
-Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende filer bli plassert i samme mappa som kilden.</translation>
+        <source>Format:</source>
+        <translation>Format:</translation>
     </message>
     <message>
-        <source>Delete current pattern from history</source>
-        <translation>Slett gjeldende mønster fra historikk</translation>
+        <source>Output format</source>
+        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+        <translation>Utdata-format</translation>
     </message>
     <message>
-        <source>Preferences</source>
-        <translation>Innstillinger</translation>
+        <source>Tags</source>
+        <translation>Merkelapper</translation>
     </message>
     <message>
-        <source>About Flacon</source>
-        <translation>Om Flacon</translation>
-    </message>
-    <message>
-        <source>Remove current directory from history</source>
+        <source>Album performer:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <comment>context menu</comment>
-        <translation>Innhent data fra CCDB</translation>
+        <source>Start num:</source>
+        <translation>Startnummer:</translation>
     </message>
     <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <source>Disc ID:</source>
+        <translation>Disk-ID:</translation>
     </message>
     <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Legg til CUE eller lydfil</translation>
+        <source>Genre:</source>
+        <translation>Sjanger:</translation>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Artist:</translation>
+    </message>
+    <message>
+        <source>Codepage:</source>
+        <translation>Kodeside:</translation>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>År:</translation>
+    </message>
+    <message>
+        <source>Album:</source>
+        <translation>Album:</translation>
     </message>
     <message>
         <source>Edit all tags…</source>
@@ -869,26 +792,123 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;Fil</translation>
+    </message>
+    <message>
+        <source>&amp;Settings</source>
+        <translation>&amp;Innstillinger</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Hjelp</translation>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <translation>Legg til CUE eller lydfil</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
+        <source>Convert</source>
+        <translation>Konverter</translation>
+    </message>
+    <message>
+        <source>Start conversion process</source>
+        <translation>Start konverteringsprosess</translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation>Ctrl+W</translation>
+    </message>
+    <message>
+        <source>Abort</source>
+        <translation>Avbryt</translation>
+    </message>
+    <message>
+        <source>Abort conversion process</source>
+        <translation>Avbryt konverteringsprosess</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Avslutt</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation>Innstillinger</translation>
+    </message>
+    <message>
+        <source>Program preferences</source>
+        <translation>Programegenskaper</translation>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation>Om Flacon</translation>
+    </message>
+    <message>
+        <source>Remove disc</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Del</source>
+        <translation>Ctrl+Del</translation>
+    </message>
+    <message>
+        <source>Configure encoder</source>
+        <translation>Sett opp koder</translation>
+    </message>
+    <message>
+        <source>Get from CDDB</source>
+        <translation>Innhent fra CCDB</translation>
+    </message>
+    <message>
+        <source>Get album information from CDDB</source>
+        <translation>Få albuminformasjon fra CDDB</translation>
+    </message>
+    <message>
+        <source>Ctrl+I</source>
+        <translation>Ctrl+I</translation>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Recursive album search</source>
+        <translation>Rekursivt albumsøk</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Check for Updates…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Edit tags…</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select another audio file…</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select another CUE file…</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Album performer:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -907,40 +927,61 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Remove disc</source>
+        <source>Remove current directory from history</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Remove disc from project</source>
+        <source>Delete current pattern from history</source>
+        <translation>Slett gjeldende mønster fra historikk</translation>
+    </message>
+    <message>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
+        <source>Some albums will not be converted, they contain errors.
+Do you want to continue?</source>
+        <translation>Noen album vil ikke bli konvertert, de inneholder feil.
+Ønsker du å fortsette?</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <source>%1 files</source>
+        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+        <translation>%1 filer</translation>
     </message>
     <message>
-        <source>Add disc</source>
-        <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <source>All supported formats</source>
+        <comment>OpenFile dialog filter line</comment>
+        <translation>Alle støttede formater</translation>
     </message>
     <message>
-        <source>Add folder…</source>
-        <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <source>All files</source>
+        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+        <translation>Alle filer</translation>
     </message>
     <message>
-        <source>Add folder</source>
-        <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Legg til CUE eller lydfil</translation>
+    </message>
+    <message>
+        <source>Select audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Velg lydfil</translation>
     </message>
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory</source>
+        <translation>Velg mappe</translation>
+    </message>
+    <message>
+        <source>Select another audio file…</source>
+        <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -952,6 +993,21 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation>Innhent data fra CCDB</translation>
     </message>
 </context>
 <context>
@@ -1055,7 +1111,96 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
+    <name>PreferencesDialog</name>
+    <message>
+        <source>Preferences</source>
+        <comment>Preferences dialog title</comment>
+        <extracomment>Preferences dialog title</extracomment>
+        <translation>Innstillinger</translation>
+    </message>
+    <message>
+        <source> Audio profiles</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Generelt</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Programmer</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ProfileTabWidget</name>
+    <message>
+        <source>Audio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Resulterende filer</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Katalog:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Du kan velge destinasjonsmappe. Du kan også skrive det inn manuelt.
+
+Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende filer bli plassert i samme mappa som kilden.</translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Mønster:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Redigeringspoletter starter med %. Du kan bruke følgende redigeringspoletter:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Spornummer  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Totalt antall spor&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumtittel&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Låttittel&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - År&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Sjanger&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammeparenteser vil disse delene bli skjult hvis redigeringspoletten er tom.</translation>
+    </message>
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
@@ -1078,8 +1223,22 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation>Kalkuler forsterkning</translation>
     </message>
     <message>
-        <source>Disabled</source>
-        <translation>Avskrudd</translation>
+        <source>CUE and Cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Copy cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1087,42 +1246,9 @@ Hvis stien står tom eller starter med &quot;.&quot; (dott), vil resulterende fi
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Innledningspause før første spor:</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Sett inn &quot;artist&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Sett inn &quot;albumtittel&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Sett inn &quot;år&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Sett in &quot;sjanger&quot;</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Bruk &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Extract to separate file</source>
-        <translation>Pakk ut til egen fil</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Legg til første spor</translation>
     </message>
     <message>
         <source>Same as source</source>
@@ -1190,6 +1316,14 @@ Analysen kan utføres på individuelle spor, slik at alle spor vil ha samme lyds
 Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer på et album.</translation>
     </message>
     <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
         <source>Result Files</source>
         <translation>Resulterende filer</translation>
     </message>
@@ -1250,26 +1384,69 @@ Redigeringspoletter starter med %. Du kan bruke følgende redigeringspoletter:
 Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammeparenteser vil disse delene bli skjult hvis redigeringspoletten er tom.</translation>
     </message>
     <message>
-        <source>%1 format</source>
-        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
+        <source>Resampling settings:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Same directory as CUE file</source>
-        <comment>Placeholder for output direcory combobox</comment>
+        <source>Maximum bit depth:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 encoder settings:</source>
-        <comment>Preferences group title, %1 is a audio format name</comment>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Kalkuler forsterkning</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Avskrudd</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Innledningspause før første spor:</translation>
+    </message>
+</context>
+<context>
+    <name>ProfilesPage</name>
+    <message>
+        <source>+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Delete the profile</source>
+        <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
-        <source>Select program file</source>
-        <translation>Velg programfil</translation>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>%1 program</translation>
     </message>
     <message>
         <source>All files</source>
@@ -1277,9 +1454,20 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation>Alle filer</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation>%1 program</translation>
+        <source>Select program file</source>
+        <translation>Velg programfil</translation>
+    </message>
+</context>
+<context>
+    <name>ProgramsPage</name>
+    <message>
+        <source>Rescan</source>
+        <translation>Søk på nytt</translation>
+    </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1287,28 +1475,6 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Jeg kan ikke finne programmet &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Fila &lt;b&gt; &quot;%1&quot;&lt;/b&gt; finnes ikke</translation>
-    </message>
-    <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>du kan ikke bruke &apos;ReplayGain&apos; for filer med samplingsrate over 48KHz. Metaflac støtter ikke slike filer.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke opprette mappa &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1320,12 +1486,33 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation>Jeg kan ikke lese omslagsbildet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>Multiple values</source>
-        <translation>Flerfoldige verdier</translation>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Jeg kan ikke opprette mappa &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Jeg kan ikke skrive til mappa &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation>Fila &lt;b&gt; &quot;%1&quot;&lt;/b&gt; finnes ikke</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1338,13 +1525,18 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <translation>du kan ikke bruke &apos;ReplayGain&apos; for filer med samplingsrate over 48KHz. Metaflac støtter ikke slike filer.</translation>
     </message>
     <message>
-        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <source>Multiple values</source>
+        <translation>Flerfoldige verdier</translation>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>The audio file name is not set.</source>
@@ -1352,6 +1544,14 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
     </message>
     <message>
         <source>The audio file does not exist.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File contains not a valid CUE data.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1363,13 +1563,14 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>of</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
         <translation>Artist:</translation>
+    </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Album:</source>
@@ -1387,6 +1588,16 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation>År:</translation>
     </message>
     <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation type="unfinished"/>
@@ -1397,42 +1608,23 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Start track number:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disc number:</source>
-        <comment>Music tag name</comment>
+        <source>of</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Innhent data fra CCDB</translation>
-    </message>
-    <message>
         <source>Select another CUE file…</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <translation>Innhent data fra CCDB</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
-    <message>
-        <source>Tracks:</source>
-        <translation>Spor:</translation>
-    </message>
-    <message>
-        <source>Audio:</source>
-        <translation>Lyd:</translation>
-    </message>
     <message>
         <source>Error</source>
         <comment>Status of the track conversion.</comment>
@@ -1469,22 +1661,30 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Writing gain</source>
-        <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <source>Writing gain</source>
+        <comment>Status of the track conversion.</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Tracks:</source>
+        <translation>Spor:</translation>
+    </message>
+    <message>
+        <source>Audio:</source>
+        <translation>Lyd:</translation>
     </message>
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1494,6 +1694,11 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <source>Track</source>
         <comment>Table header.</comment>
         <translation>Spor</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation>Lengde</translation>
     </message>
     <message>
         <source>Title</source>
@@ -1525,11 +1730,6 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation>Flerfoldige verdier</translation>
     </message>
     <message>
-        <source>Length</source>
-        <comment>Table header.</comment>
-        <translation>Lengde</translation>
-    </message>
-    <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
         <translation>%1:%2:%3</translation>
@@ -1538,6 +1738,27 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
         <translation>%1:%2</translation>
+    </message>
+</context>
+<context>
+    <name>UpdatePage</name>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

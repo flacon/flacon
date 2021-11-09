@@ -30,6 +30,11 @@
         <translation>Páxina de inicio: %1</translation>
     </message>
     <message>
+        <source>Bug tracker %1</source>
+        <comment>About dialog, About tab</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>License: %1</source>
         <translation>Licenza: %1</translation>
     </message>
@@ -48,15 +53,6 @@
     <message>
         <source>Copyright: %1-%2 %3</source>
         <translation>Dereitos de autoría: %1-%2 %3</translation>
-    </message>
-    <message>
-        <source>Bug tracker %1</source>
-        <comment>About dialog, About tab</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -88,9 +84,18 @@
         <comment>Thanks on the about page</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AddProfileDialog</name>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
@@ -104,11 +109,6 @@
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Create a profile</source>
-        <extracomment>Add profile dialog title</extracomment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -252,8 +252,16 @@
         <translation>Preferencias</translation>
     </message>
     <message>
-        <source>General configuration</source>
-        <translation>Configuración xeral</translation>
+        <source>+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio formats</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Thread count:</source>
@@ -264,32 +272,6 @@
         <translation>O número de fíos do proceso de conversión.</translation>
     </message>
     <message>
-        <source>Rescan</source>
-        <translation>Analizar de novo</translation>
-    </message>
-    <message>
-        <source>Full path of the external applications</source>
-        <translation>Camiño completo para os aplicativos externos</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Xeral</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Programas</translation>
-    </message>
-    <message>
-        <source>Select temporary directory</source>
-        <translation>Seleccione o directorio temporal</translation>
-    </message>
-    <message>
-        <source> px</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Temporary directory:</source>
         <translation>Directorio temporal:</translation>
     </message>
@@ -298,17 +280,34 @@
         <translation>Xogo de caracteres predeterminado:</translation>
     </message>
     <message>
-        <source>Cover image</source>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Do not copy image</source>
+        <source>Copy cover image</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Update</source>
-        <extracomment>Preferences tab title </extracomment>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Xeral</translation>
+    </message>
+    <message>
+        <source>Rescan</source>
+        <translation>Analizar de novo</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Programas</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
@@ -319,54 +318,7 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Last check was %1</source>
-        <comment>Information about last update</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Never checked</source>
-        <comment>Information about last update</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Keep original image size</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Resize if image size greater than</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>+</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
-        <comment>Message box text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Delete the profile</source>
-        <comment>Button caption</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1:</source>
-        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
+        <source>Update</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -437,6 +389,14 @@
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Bitrate:</source>
         <translation>Taxa de bits:</translation>
     </message>
@@ -447,14 +407,6 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
-
-&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -488,13 +440,13 @@ In CBR mode, it sets the specific output bitrate.
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -560,15 +512,83 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
+    <name>CoverGroupBox</name>
+    <message>
+        <source>Keep original image size</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>CueGroupBox</name>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File name format</source>
+        <comment>Preferences dialog edit tooltip</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Salto inicial para a primeira pista:</translation>
+    </message>
+    <message>
+        <source>Write to file</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed to audio files</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Inserir o «Artista»</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Inserir o «Título do álbum»</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Inserir o «Ano»</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Inserir o «Xénero»</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Extraer a un ficheiro á parte</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Engadir á primeira pista</translation>
+    </message>
+</context>
+<context>
     <name>Disc</name>
-    <message>
-        <source>Cue file not set.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
@@ -577,6 +597,10 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cue file not set.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -592,6 +616,10 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -617,6 +645,34 @@ Isto só lle afecta ao tamaño do ficheiro. Todas as configuracións son «sen p
     </message>
 </context>
 <context>
+    <name>GeneralPage</name>
+    <message>
+        <source>The number of threads in the conversion process.</source>
+        <translation>O número de fíos do proceso de conversión.</translation>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Directorio temporal:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Xogo de caracteres predeterminado:</translation>
+    </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Conta de fíos:</translation>
+    </message>
+    <message>
+        <source>Select temporary directory</source>
+        <translation>Seleccione o directorio temporal</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
@@ -631,8 +687,36 @@ Isto só lle afecta ao tamaño do ficheiro. Todas as configuracións son «sen p
         <translation>Directorio:</translation>
     </message>
     <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Pattern:</source>
         <translation>Patrón:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Format:</source>
@@ -648,20 +732,8 @@ Isto só lle afecta ao tamaño do ficheiro. Todas as configuracións son «sen p
         <translation>Etiquetas</translation>
     </message>
     <message>
-        <source>Genre:</source>
-        <translation>Xénero:</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <translation>Ano:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Artista:</translation>
-    </message>
-    <message>
-        <source>Album:</source>
-        <translation>Álbum:</translation>
+        <source>Album performer:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start num:</source>
@@ -672,8 +744,29 @@ Isto só lle afecta ao tamaño do ficheiro. Todas as configuracións son «sen p
         <translation>ID de disco:</translation>
     </message>
     <message>
+        <source>Genre:</source>
+        <translation>Xénero:</translation>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Artista:</translation>
+    </message>
+    <message>
         <source>Codepage:</source>
         <translation>Xogo de caracteres:</translation>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Ano:</translation>
+    </message>
+    <message>
+        <source>Album:</source>
+        <translation>Álbum:</translation>
+    </message>
+    <message>
+        <source>Edit all tags…</source>
+        <comment>Button text</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;File</source>
@@ -686,6 +779,16 @@ Isto só lle afecta ao tamaño do ficheiro. Todas as configuracións son «sen p
     <message>
         <source>&amp;Help</source>
         <translation>&amp;Axuda</translation>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -724,8 +827,24 @@ Isto só lle afecta ao tamaño do ficheiro. Todas as configuracións son «sen p
         <translation>Ctrl+Q</translation>
     </message>
     <message>
+        <source>Preferences</source>
+        <translation>Preferencias</translation>
+    </message>
+    <message>
         <source>Program preferences</source>
         <translation>Preferencias de programas</translation>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation>Sobre Flacon</translation>
+    </message>
+    <message>
+        <source>Remove disc</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -748,8 +867,54 @@ Isto só lle afecta ao tamaño do ficheiro. Todas as configuracións son «sen p
         <translation>Ctrl+I</translation>
     </message>
     <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Recursive album search</source>
         <translation>Procura recursiva de álbum</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for Updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Convert selected</source>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start conversion process for the selected tracks</source>
+        <extracomment>Main menu item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Shift+W</source>
+        <extracomment>Main menu item shortcut</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove current directory from history</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Delete current pattern from history</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Seleccione o ficheiro CUE</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -773,151 +938,27 @@ Quere continuar?</translation>
         <translation>Todos os ficheiros</translation>
     </message>
     <message>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Engadir un ficheiro de audio ou CUE</translation>
+    </message>
+    <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
         <translation>Seleccione o ficheiro de audio</translation>
+    </message>
+    <message>
+        <source>&quot;%1&quot; was not set.</source>
+        <comment>Error message, %1 is an filename.</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select directory</source>
         <translation>Seleccione un directorio</translation>
     </message>
     <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-        <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Delete current pattern from history</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation>Preferencias</translation>
-    </message>
-    <message>
-        <source>About Flacon</source>
-        <translation>Sobre Flacon</translation>
-    </message>
-    <message>
-        <source>Remove current directory from history</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Get data from CDDB</source>
-        <comment>context menu</comment>
-        <translation>Obter datos desde CDDB</translation>
-    </message>
-    <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Seleccione o ficheiro CUE</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Engadir un ficheiro de audio ou CUE</translation>
-    </message>
-    <message>
-        <source>Edit all tags…</source>
-        <comment>Button text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Check for Updates…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Edit tags…</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Select another audio file…</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select another CUE file…</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Convert selected</source>
-        <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Start conversion process for the selected tracks</source>
-        <extracomment>Main menu item tooltip</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Ctrl+Shift+W</source>
-        <extracomment>Main menu item shortcut</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove disc</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove disc from project</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add disc…</source>
-        <comment>Main menu item</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add disc</source>
-        <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add folder…</source>
-        <comment>Main menu item</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add folder</source>
-        <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&quot;%1&quot; was not set.</source>
-        <comment>Error message, %1 is an filename.</comment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -929,6 +970,21 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation>Obter datos desde CDDB</translation>
     </message>
 </context>
 <context>
@@ -1032,7 +1088,78 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
+    <name>PreferencesDialog</name>
+    <message>
+        <source>Preferences</source>
+        <comment>Preferences dialog title</comment>
+        <extracomment>Preferences dialog title</extracomment>
+        <translation>Preferencias</translation>
+    </message>
+    <message>
+        <source> Audio profiles</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Xeral</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Programas</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ProfileTabWidget</name>
+    <message>
+        <source>Audio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Ficheiros resultantes</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Directorio:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Patrón:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
@@ -1055,8 +1182,22 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Calcular a ganancia:</translation>
     </message>
     <message>
-        <source>Disabled</source>
-        <translation>Desactivado</translation>
+        <source>CUE and Cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Copy cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1064,42 +1205,9 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Salto inicial para a primeira pista:</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Inserir o «Artista»</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Inserir o «Título do álbum»</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Inserir o «Ano»</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Inserir o «Xénero»</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Extract to separate file</source>
-        <translation>Extraer a un ficheiro á parte</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Engadir á primeira pista</translation>
     </message>
     <message>
         <source>Same as source</source>
@@ -1167,6 +1275,14 @@ A análise pode ser realizada sobre pistas individuais, para que todas elas teñ
 Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun álbum.</translation>
     </message>
     <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
         <source>Result Files</source>
         <translation>Ficheiros resultantes</translation>
     </message>
@@ -1209,26 +1325,69 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 format</source>
-        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
+        <source>Resampling settings:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Same directory as CUE file</source>
-        <comment>Placeholder for output direcory combobox</comment>
+        <source>Maximum bit depth:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 encoder settings:</source>
-        <comment>Preferences group title, %1 is a audio format name</comment>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Calcular a ganancia:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Desactivado</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Salto inicial para a primeira pista:</translation>
+    </message>
+</context>
+<context>
+    <name>ProfilesPage</name>
+    <message>
+        <source>+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Delete the profile</source>
+        <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
-        <source>Select program file</source>
-        <translation>Seleccionar o ficheiro de programa</translation>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>%1 programa</translation>
     </message>
     <message>
         <source>All files</source>
@@ -1236,9 +1395,20 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Todos os ficheiros</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation>%1 programa</translation>
+        <source>Select program file</source>
+        <translation>Seleccionar o ficheiro de programa</translation>
+    </message>
+</context>
+<context>
+    <name>ProgramsPage</name>
+    <message>
+        <source>Rescan</source>
+        <translation>Analizar de novo</translation>
+    </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1246,28 +1416,6 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Non se puido encontrar o programa &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>Non pode usar ReplayGain nos ficheiros cunha taxa de mostra superior a 48kHz. Metaflac non é compatíbel con este tipo de ficheiros.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Non se puido crear o directorio &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Non se puido escribir no directorio &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1279,12 +1427,33 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Multiple values</source>
-        <translation>Múltiplos valores</translation>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <translation>Non se puido escribir o ficheiro CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Non se puido crear o directorio &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Non se puido escribir no directorio &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1297,13 +1466,18 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <translation>Non pode usar ReplayGain nos ficheiros cunha taxa de mostra superior a 48kHz. Metaflac non é compatíbel con este tipo de ficheiros.</translation>
     </message>
     <message>
-        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <source>Multiple values</source>
+        <translation>Múltiplos valores</translation>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>The audio file name is not set.</source>
@@ -1311,6 +1485,14 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>The audio file does not exist.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File contains not a valid CUE data.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1322,13 +1504,14 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>of</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
         <translation>Artista:</translation>
+    </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Album:</source>
@@ -1346,6 +1529,16 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Ano:</translation>
     </message>
     <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation type="unfinished"/>
@@ -1356,42 +1549,23 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Start track number:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disc number:</source>
-        <comment>Music tag name</comment>
+        <source>of</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Obter datos desde CDDB</translation>
-    </message>
-    <message>
         <source>Select another CUE file…</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <translation>Obter datos desde CDDB</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
-    <message>
-        <source>Tracks:</source>
-        <translation>Pistas:</translation>
-    </message>
-    <message>
-        <source>Audio:</source>
-        <translation>Son:</translation>
-    </message>
     <message>
         <source>Error</source>
         <comment>Status of the track conversion.</comment>
@@ -1428,22 +1602,30 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Writing gain</source>
-        <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <source>Writing gain</source>
+        <comment>Status of the track conversion.</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Tracks:</source>
+        <translation>Pistas:</translation>
+    </message>
+    <message>
+        <source>Audio:</source>
+        <translation>Son:</translation>
     </message>
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1453,6 +1635,11 @@ If you surround sections of text that contain a token with braces, these section
         <source>Track</source>
         <comment>Table header.</comment>
         <translation>Pista</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Title</source>
@@ -1484,11 +1671,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Múltiplos valores</translation>
     </message>
     <message>
-        <source>Length</source>
-        <comment>Table header.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
         <translation type="unfinished"/>
@@ -1496,6 +1678,27 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>UpdatePage</name>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
         <translation type="unfinished"/>
     </message>
 </context>

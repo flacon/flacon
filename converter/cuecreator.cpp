@@ -145,7 +145,7 @@ void CueCreator::write(QIODevice *out)
 {
     if (!out->isOpen()) {
         if (!out->open(QIODevice::WriteOnly | QIODevice::Text)) {
-            throw FlaconError(QObject::tr("I can't write CUE:<br>%2").arg(out->errorString()));
+            throw FlaconError(QObject::tr("I can't write CUE:<br>%1").arg(out->errorString()));
         }
     }
     // If the first track starts with zero second, doesn't make sense to create pregap track.

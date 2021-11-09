@@ -30,6 +30,11 @@
         <translation>Site:%1</translation>
     </message>
     <message>
+        <source>Bug tracker %1</source>
+        <comment>About dialog, About tab</comment>
+        <translation>Raportare erori %1</translation>
+    </message>
+    <message>
         <source>License: %1</source>
         <translation>Licență: %1</translation>
     </message>
@@ -48,15 +53,6 @@
     <message>
         <source>Copyright: %1-%2 %3</source>
         <translation>Copyright: %1-%2 %3</translation>
-    </message>
-    <message>
-        <source>Bug tracker %1</source>
-        <comment>About dialog, About tab</comment>
-        <translation>Raportare erori %1</translation>
-    </message>
-    <message>
-        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon este tradus în multe limbi datorită echipelor de traducere implicate în proiectul Flacon de pe &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -88,9 +84,18 @@
         <comment>Thanks on the about page</comment>
         <translation>Pictograme pentru aplicație</translation>
     </message>
+    <message>
+        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
+        <translation>Flacon este tradus în multe limbi datorită echipelor de traducere implicate în proiectul Flacon de pe &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+    </message>
 </context>
 <context>
     <name>AddProfileDialog</name>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation>Creare profil</translation>
+    </message>
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
@@ -105,11 +110,6 @@
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
         <translation>Format audio:</translation>
-    </message>
-    <message>
-        <source>Create a profile</source>
-        <extracomment>Add profile dialog title</extracomment>
-        <translation>Creare profil</translation>
     </message>
     <message>
         <source>Create a profile</source>
@@ -252,8 +252,16 @@
         <translation>Preferințe</translation>
     </message>
     <message>
-        <source>General configuration</source>
-        <translation>Configurări generale</translation>
+        <source>+</source>
+        <translation>+</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation>-</translation>
+    </message>
+    <message>
+        <source>Audio formats</source>
+        <translation>Formate audio</translation>
     </message>
     <message>
         <source>Thread count:</source>
@@ -264,32 +272,6 @@
         <translation>Numărul de fire de execuție în procesul de conversie.</translation>
     </message>
     <message>
-        <source>Rescan</source>
-        <translation>Rescanare</translation>
-    </message>
-    <message>
-        <source>Full path of the external applications</source>
-        <translation>Calea completă către aplicațiile externe</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>General</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Programe</translation>
-    </message>
-    <message>
-        <source>Select temporary directory</source>
-        <translation>Alegere director fișiere temporare</translation>
-    </message>
-    <message>
-        <source> px</source>
-        <translation>px</translation>
-    </message>
-    <message>
         <source>Temporary directory:</source>
         <translation>Dosar temporar:</translation>
     </message>
@@ -298,17 +280,34 @@
         <translation>Codare implicită caractere:</translation>
     </message>
     <message>
-        <source>Cover image</source>
-        <translation>Imagine copertă</translation>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Do not copy image</source>
-        <translation>Nu copia imaginea</translation>
+        <source>Copy cover image</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Update</source>
-        <extracomment>Preferences tab title </extracomment>
-        <translation>Actualizări</translation>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>General</translation>
+    </message>
+    <message>
+        <source>Rescan</source>
+        <translation>Rescanare</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Programe</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
@@ -319,55 +318,8 @@
         <translation>Verifică acum</translation>
     </message>
     <message>
-        <source>Last check was %1</source>
-        <comment>Information about last update</comment>
-        <translation>Ultima verificare a fost %1</translation>
-    </message>
-    <message>
-        <source>Never checked</source>
-        <comment>Information about last update</comment>
-        <translation>Nu s-a verificat niciodată</translation>
-    </message>
-    <message>
-        <source>Keep original image size</source>
-        <translation>Se păstrează mărimea originală a imaginii</translation>
-    </message>
-    <message>
-        <source>Resize if image size greater than</source>
-        <translation>Se redimensionează dacă mărimea imaginii este mai mare de</translation>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Formate audio</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation>+</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation>-</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
-        <comment>Message box text</comment>
-        <translation>Sigur vreți să ștergeți profilul „%1”?</translation>
-    </message>
-    <message>
-        <source>Delete the profile</source>
-        <comment>Button caption</comment>
-        <translation>Ștergere profil</translation>
-    </message>
-    <message>
-        <source>%1:</source>
-        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
-        <translation>%1:</translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
+        <source>Update</source>
+        <translation>Actualizări</translation>
     </message>
 </context>
 <context>
@@ -457,6 +409,14 @@
         <translation>Tip rată de biți:</translation>
     </message>
     <message>
+        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Bitrate:</source>
         <translation>rată de biți:</translation>
     </message>
@@ -473,14 +433,6 @@ In CBR mode, it sets the specific output bitrate.
 &lt;p&gt;
 În modul RBF, această configurare stabilește rata de biți dorită.
 </translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
-
-&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -513,14 +465,14 @@ In CBR mode, it sets the specific output bitrate.
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Error string, %1 is a filename, %2 error message</comment>
-        <translation>Nu se poate scrie fișierul &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <translation>Nu se poate scrie fișierul &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -585,15 +537,83 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
+    <name>CoverGroupBox</name>
+    <message>
+        <source>Keep original image size</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation>Se păstrează mărimea originală a imaginii</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation>px</translation>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation>Se redimensionează dacă mărimea imaginii este mai mare de</translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>CueGroupBox</name>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation>Creare conform listei de indexare</translation>
+    </message>
+    <message>
+        <source>File name format</source>
+        <comment>Preferences dialog edit tooltip</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Pauză înainte de prima pistă:</translation>
+    </message>
+    <message>
+        <source>Write to file</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed to audio files</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Introduceți „Artist”</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Introduceți „Titlu album”</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Introduceți „Anul”</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Introduceți „Genul”</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Utilizează &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Extrage în fișier separat</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Adaugă la prima pistă</translation>
+    </message>
+</context>
+<context>
     <name>Disc</name>
-    <message>
-        <source>Cue file not set.</source>
-        <translation>Lista de indexare nu este specificată</translation>
-    </message>
-    <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>Fișier audio mai scurt decât este specificat în lista de indexare. </translation>
-    </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
@@ -603,6 +623,10 @@ In CBR mode, it sets the specific output bitrate.
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation>O rată de eșantionare maximă de %1 este posibilă pentru acest format de fișier. Această valoare va fi utilizată la codare. </translation>
+    </message>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>Lista de indexare nu este specificată</translation>
     </message>
     <message>
         <source>Audio file not set.</source>
@@ -618,6 +642,10 @@ In CBR mode, it sets the specific output bitrate.
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation>Fișier audio mai scurt decât este specificat în lista de indexare. </translation>
     </message>
 </context>
 <context>
@@ -642,6 +670,34 @@ Aceasta are efect doar asupra mărimii fișierului rezultat. Calitatea va fi ace
     </message>
 </context>
 <context>
+    <name>GeneralPage</name>
+    <message>
+        <source>The number of threads in the conversion process.</source>
+        <translation>Numărul de fire de execuție în procesul de conversie.</translation>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Dosar temporar:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Codare implicită caractere:</translation>
+    </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Număr fire de execuție:</translation>
+    </message>
+    <message>
+        <source>Select temporary directory</source>
+        <translation>Alegere director fișiere temporare</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
@@ -656,155 +712,17 @@ Aceasta are efect doar asupra mărimii fișierului rezultat. Calitatea va fi ace
         <translation>Dosar:</translation>
     </message>
     <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Puteți alege dosarul destinație sau îl puteți scrie direct.
+
+Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișierele rezultate vor fi puse în același dosar cu fișierele sursă.</translation>
+    </message>
+    <message>
         <source>Pattern:</source>
         <translation>Șablon:</translation>
-    </message>
-    <message>
-        <source>Format:</source>
-        <translation>Format:</translation>
-    </message>
-    <message>
-        <source>Output format</source>
-        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Format ieșire</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation>Etichete</translation>
-    </message>
-    <message>
-        <source>Genre:</source>
-        <translation>Gen:</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <translation>An:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Artist:</translation>
-    </message>
-    <message>
-        <source>Album:</source>
-        <translation>Album:</translation>
-    </message>
-    <message>
-        <source>Start num:</source>
-        <translation>Număr început:</translation>
-    </message>
-    <message>
-        <source>Disc ID:</source>
-        <translation>ID disc:</translation>
-    </message>
-    <message>
-        <source>Codepage:</source>
-        <translation>Cod de pagină:</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Fișier</translation>
-    </message>
-    <message>
-        <source>&amp;Settings</source>
-        <translation>&amp;Setări</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Ajutor</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <translation>Adăugare fișier audio sau listă de indexare</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>Convert</source>
-        <translation>Convertește</translation>
-    </message>
-    <message>
-        <source>Start conversion process</source>
-        <translation>Începe conversia</translation>
-    </message>
-    <message>
-        <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
-    </message>
-    <message>
-        <source>Abort</source>
-        <translation>Anulează</translation>
-    </message>
-    <message>
-        <source>Abort conversion process</source>
-        <translation>Despre procesul de conversie</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>Ieșire</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Program preferences</source>
-        <translation>Preferințe program</translation>
-    </message>
-    <message>
-        <source>Ctrl+Del</source>
-        <translation>Ctrl+Del</translation>
-    </message>
-    <message>
-        <source>Configure encoder</source>
-        <translation>Configurare utilitar codare</translation>
-    </message>
-    <message>
-        <source>Get from CDDB</source>
-        <translation>Obține din CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Obține informațiile despre album din CDDB</translation>
-    </message>
-    <message>
-        <source>Ctrl+I</source>
-        <translation>Ctrl+I</translation>
-    </message>
-    <message>
-        <source>Recursive album search</source>
-        <translation>Căutare în album recursivă</translation>
-    </message>
-    <message>
-        <source>Some albums will not be converted, they contain errors.
-Do you want to continue?</source>
-        <translation>Unele albume nu vor fi convertite, au erori.
-Vreți să continuați?</translation>
-    </message>
-    <message>
-        <source>%1 files</source>
-        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>%1 (de) fișiere</translation>
-    </message>
-    <message>
-        <source>All supported formats</source>
-        <comment>OpenFile dialog filter line</comment>
-        <translation>Toate formatele suportate</translation>
-    </message>
-    <message>
-        <source>All files</source>
-        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Toate fișierele</translation>
-    </message>
-    <message>
-        <source>Select audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Alege fișierul audio</translation>
-    </message>
-    <message>
-        <source>Select directory</source>
-        <translation>Alege dosarul</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -844,44 +762,49 @@ Marcajele încep cu %. Puteți folosi următoarele marcaje:
 Dacă un fragment de text care conține un marcaj este pus între paranteze acolade, fragmentele respective nu vor apărea dacă marcajul este gol. </translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Puteți alege dosarul destinație sau îl puteți scrie direct.
-
-Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișierele rezultate vor fi puse în același dosar cu fișierele sursă.</translation>
+        <source>Format:</source>
+        <translation>Format:</translation>
     </message>
     <message>
-        <source>Delete current pattern from history</source>
-        <translation>Șterge modelul curent din istoricul activităților</translation>
+        <source>Output format</source>
+        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+        <translation>Format ieșire</translation>
     </message>
     <message>
-        <source>Preferences</source>
-        <translation>Preferințe</translation>
+        <source>Tags</source>
+        <translation>Etichete</translation>
     </message>
     <message>
-        <source>About Flacon</source>
-        <translation>Despre Flacon</translation>
+        <source>Album performer:</source>
+        <translation>Artist album:</translation>
     </message>
     <message>
-        <source>Remove current directory from history</source>
-        <translation>Ștergere dosar curent din istoric</translation>
+        <source>Start num:</source>
+        <translation>Număr început:</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <comment>context menu</comment>
-        <translation>Obțineți date din CDDB (baza de date cu CD-uri)</translation>
+        <source>Disc ID:</source>
+        <translation>ID disc:</translation>
     </message>
     <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Alegere fișier de indexare</translation>
+        <source>Genre:</source>
+        <translation>Gen:</translation>
     </message>
     <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Adăugare fișier audio sau listă de indexare</translation>
+        <source>Artist:</source>
+        <translation>Artist:</translation>
+    </message>
+    <message>
+        <source>Codepage:</source>
+        <translation>Cod de pagină:</translation>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>An:</translation>
+    </message>
+    <message>
+        <source>Album:</source>
+        <translation>Album:</translation>
     </message>
     <message>
         <source>Edit all tags…</source>
@@ -889,27 +812,124 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation>Editare toate etichetele...</translation>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;Fișier</translation>
+    </message>
+    <message>
+        <source>&amp;Settings</source>
+        <translation>&amp;Setări</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Ajutor</translation>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation>Adăugare disc...</translation>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <translation>Adăugare fișier audio sau listă de indexare</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
+        <source>Convert</source>
+        <translation>Convertește</translation>
+    </message>
+    <message>
+        <source>Start conversion process</source>
+        <translation>Începe conversia</translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation>Ctrl+W</translation>
+    </message>
+    <message>
+        <source>Abort</source>
+        <translation>Anulează</translation>
+    </message>
+    <message>
+        <source>Abort conversion process</source>
+        <translation>Despre procesul de conversie</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Ieșire</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation>Preferințe</translation>
+    </message>
+    <message>
+        <source>Program preferences</source>
+        <translation>Preferințe program</translation>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation>Despre Flacon</translation>
+    </message>
+    <message>
+        <source>Remove disc</source>
+        <translation>Eliminare disc</translation>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation>Eliminare disc din proiect</translation>
+    </message>
+    <message>
+        <source>Ctrl+Del</source>
+        <translation>Ctrl+Del</translation>
+    </message>
+    <message>
+        <source>Configure encoder</source>
+        <translation>Configurare utilitar codare</translation>
+    </message>
+    <message>
+        <source>Get from CDDB</source>
+        <translation>Obține din CDDB</translation>
+    </message>
+    <message>
+        <source>Get album information from CDDB</source>
+        <translation>Obține informațiile despre album din CDDB</translation>
+    </message>
+    <message>
+        <source>Ctrl+I</source>
+        <translation>Ctrl+I</translation>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Recursive album search</source>
+        <translation>Căutare în album recursivă</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Check for Updates…</source>
         <translation>Verificare actualizări...</translation>
-    </message>
-    <message>
-        <source>Edit tags…</source>
-        <comment>context menu</comment>
-        <translation>Editare etichete...</translation>
-    </message>
-    <message>
-        <source>Select another audio file…</source>
-        <comment>context menu</comment>
-        <translation>Alegere alt fișier audio...</translation>
-    </message>
-    <message>
-        <source>Select another CUE file…</source>
-        <comment>context menu</comment>
-        <translation>Alegere altă listă de indexare...</translation>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <translation>Artist album:</translation>
     </message>
     <message>
         <source>Convert selected</source>
@@ -927,41 +947,62 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Remove disc</source>
-        <translation>Eliminare disc</translation>
+        <source>Remove current directory from history</source>
+        <translation>Ștergere dosar curent din istoric</translation>
     </message>
     <message>
-        <source>Remove disc from project</source>
-        <translation>Eliminare disc din proiect</translation>
+        <source>Delete current pattern from history</source>
+        <translation>Șterge modelul curent din istoricul activităților</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Alegere fișier de indexare</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <comment>Main menu item</comment>
-        <translation>Adăugare disc...</translation>
+        <source>Some albums will not be converted, they contain errors.
+Do you want to continue?</source>
+        <translation>Unele albume nu vor fi convertite, au erori.
+Vreți să continuați?</translation>
     </message>
     <message>
-        <source>Add disc</source>
-        <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <source>%1 files</source>
+        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+        <translation>%1 (de) fișiere</translation>
     </message>
     <message>
-        <source>Add folder…</source>
-        <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <source>All supported formats</source>
+        <comment>OpenFile dialog filter line</comment>
+        <translation>Toate formatele suportate</translation>
     </message>
     <message>
-        <source>Add folder</source>
-        <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <source>All files</source>
+        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+        <translation>Toate fișierele</translation>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Adăugare fișier audio sau listă de indexare</translation>
+    </message>
+    <message>
+        <source>Select audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Alege fișierul audio</translation>
     </message>
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory</source>
+        <translation>Alege dosarul</translation>
+    </message>
+    <message>
+        <source>Select another audio file…</source>
+        <comment>context menu</comment>
+        <translation>Alegere alt fișier audio...</translation>
     </message>
     <message>
         <source>Select another audio file for %1 track…</source>
@@ -972,6 +1013,21 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation>Editare etichete...</translation>
+    </message>
+    <message>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation>Alegere altă listă de indexare...</translation>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation>Obțineți date din CDDB (baza de date cu CD-uri)</translation>
     </message>
 </context>
 <context>
@@ -1075,7 +1131,96 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
+    <name>PreferencesDialog</name>
+    <message>
+        <source>Preferences</source>
+        <comment>Preferences dialog title</comment>
+        <extracomment>Preferences dialog title</extracomment>
+        <translation>Preferințe</translation>
+    </message>
+    <message>
+        <source> Audio profiles</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>General</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Programe</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation>Actualizări</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileTabWidget</name>
+    <message>
+        <source>Audio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Fișiere finale</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Dosar:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Puteți alege dosarul destinație sau îl puteți scrie direct.
+
+Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișierele rezultate vor fi puse în același dosar cu fișierele sursă.</translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Șablon:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Marcajele încep cu %. Puteți folosi următoarele marcaje:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numărul pistei  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Număr total de piste&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titlu album&lt;td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titlu pistă&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - An&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Gen&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Dacă un fragment de text care conține un marcaj este pus între paranteze acolade, fragmentele respective nu vor apărea dacă marcajul este gol. </translation>
+    </message>
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
@@ -1098,8 +1243,22 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation>Calculează normalizare sunet:</translation>
     </message>
     <message>
-        <source>Disabled</source>
-        <translation>Dezactivat(ă)</translation>
+        <source>CUE and Cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Copy cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1107,42 +1266,9 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         <translation>Creare conform listei de indexare</translation>
     </message>
     <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation>Format nume fișier</translation>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Pauză înainte de prima pistă:</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Introduceți „Artist”</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Introduceți „Titlu album”</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Introduceți „Anul”</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Introduceți „Genul”</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Utilizează &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Extract to separate file</source>
-        <translation>Extrage în fișier separat</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Adaugă la prima pistă</translation>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>Același dosar ca lista de indexare</translation>
     </message>
     <message>
         <source>Same as source</source>
@@ -1210,6 +1336,14 @@ Se pot analiza pistele individuale astfel încât toate pistele să aibă acela�
 Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de volum din acel album vor fi păstrate.</translation>
     </message>
     <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation>Setări codare %1:</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
         <source>Result Files</source>
         <translation>Fișiere finale</translation>
     </message>
@@ -1270,26 +1404,69 @@ Marcajele încep cu %. Puteți folosi următoarele marcaje:
 Dacă un fragment de text care conține un marcaj este pus între paranteze acolade, fragmentele respective nu vor apărea dacă marcajul este gol. </translation>
     </message>
     <message>
-        <source>%1 format</source>
-        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation>Format %1</translation>
+        <source>Resampling settings:</source>
+        <translation>Setări pentru eșantionare/sampling:</translation>
     </message>
     <message>
-        <source>Same directory as CUE file</source>
-        <comment>Placeholder for output direcory combobox</comment>
-        <translation>Același dosar ca lista de indexare</translation>
+        <source>Maximum bit depth:</source>
+        <translation>Adâncime maximă de biți:</translation>
     </message>
     <message>
-        <source>%1 encoder settings:</source>
-        <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation>Setări codare %1:</translation>
+        <source>Maximum sample rate:</source>
+        <translation>Rată maximă de eșantionare/sampling:</translation>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation>Setări ReplayGain:</translation>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Calculează normalizare sunet:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Dezactivat(ă)</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation>Creare conform listei de indexare</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <translation>Format nume fișier</translation>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Pauză înainte de prima pistă:</translation>
+    </message>
+</context>
+<context>
+    <name>ProfilesPage</name>
+    <message>
+        <source>+</source>
+        <translation>+</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation>-</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation>Sigur vreți să ștergeți profilul „%1”?</translation>
+    </message>
+    <message>
+        <source>Delete the profile</source>
+        <comment>Button caption</comment>
+        <translation>Ștergere profil</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
-        <source>Select program file</source>
-        <translation>Alegeți aplicația</translation>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>Program(ul) %1</translation>
     </message>
     <message>
         <source>All files</source>
@@ -1297,9 +1474,20 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Toate fișierele</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation>Program(ul) %1</translation>
+        <source>Select program file</source>
+        <translation>Alegeți aplicația</translation>
+    </message>
+</context>
+<context>
+    <name>ProgramsPage</name>
+    <message>
+        <source>Rescan</source>
+        <translation>Rescanare</translation>
+    </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation>%1:</translation>
     </message>
 </context>
 <context>
@@ -1307,28 +1495,6 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Nu găsesc programul &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Fișierul  &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nu există</translation>
-    </message>
-    <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>Puteți utiliza standardul „ReplayGain” pentru fișierele cu rate de eșantionare mai mari de 48kHz. Metaflac nu poate lucra cu asemenea fișiere.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Nu se poate crea dosarul „%1”.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Nu se poate scrie în dosarul „%1”.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1340,12 +1506,33 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Nu se poate citi imaginea de copertă &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>Multiple values</source>
-        <translation>Valori multiple</translation>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation>Nu se poate salva imaginea de copertă &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <translation>Nu se poate scrie lista de indexare &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Nu se poate crea dosarul „%1”.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Nu se poate scrie în dosarul „%1”.</translation>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; nu este un fișier de indexare valabil. Nu există eticheta FILE (FIȘIER).</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation>Fișierul  &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nu există</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1358,13 +1545,18 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>&lt;b&gt;%1&lt;/b&gt; nu este o listă de indexare valabilă. Index de pistă incorect pe rândul %2.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; nu este un fișier de indexare valabil. Nu există eticheta FILE (FIȘIER).</translation>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <translation>Puteți utiliza standardul „ReplayGain” pentru fișierele cu rate de eșantionare mai mari de 48kHz. Metaflac nu poate lucra cu asemenea fișiere.</translation>
     </message>
     <message>
-        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>Nu se poate salva imaginea de copertă &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <source>Multiple values</source>
+        <translation>Valori multiple</translation>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>The audio file name is not set.</source>
@@ -1372,6 +1564,14 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
     </message>
     <message>
         <source>The audio file does not exist.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File contains not a valid CUE data.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1383,13 +1583,14 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Editare etichete</translation>
     </message>
     <message>
-        <source>of</source>
-        <translation>de/din</translation>
-    </message>
-    <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
         <translation>Artist:</translation>
+    </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation>Artist album:</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -1407,6 +1608,16 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>An:</translation>
     </message>
     <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation>Număr de pistă inițial:</translation>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation>Număr disc:</translation>
+    </message>
+    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation>Titlu pistă:</translation>
@@ -1417,42 +1628,23 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Comentariu:</translation>
     </message>
     <message>
-        <source>Start track number:</source>
-        <comment>Music tag name</comment>
-        <translation>Număr de pistă inițial:</translation>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <translation>Artist album:</translation>
-    </message>
-    <message>
-        <source>Disc number:</source>
-        <comment>Music tag name</comment>
-        <translation>Număr disc:</translation>
+        <source>of</source>
+        <translation>de/din</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Obțineți date din CDDB (baza de date cu CD-uri)</translation>
-    </message>
-    <message>
         <source>Select another CUE file…</source>
         <translation>Alegere altă listă de indexare...</translation>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <translation>Obțineți date din CDDB (baza de date cu CD-uri)</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
-    <message>
-        <source>Tracks:</source>
-        <translation>Piste:</translation>
-    </message>
-    <message>
-        <source>Audio:</source>
-        <translation>Audio:</translation>
-    </message>
     <message>
         <source>Error</source>
         <comment>Status of the track conversion.</comment>
@@ -1489,22 +1681,30 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Se calculează câștigul</translation>
     </message>
     <message>
-        <source>Writing gain</source>
-        <comment>Status of the track conversion.</comment>
-        <translation>Se scrie câștigul</translation>
-    </message>
-    <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
         <translation>Se așteaptă gain</translation>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <source>Writing gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Se scrie câștigul</translation>
+    </message>
+    <message>
+        <source>Tracks:</source>
+        <translation>Piste:</translation>
+    </message>
+    <message>
+        <source>Audio:</source>
+        <translation>Audio:</translation>
     </message>
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1514,6 +1714,11 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <source>Track</source>
         <comment>Table header.</comment>
         <translation>Pistă</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation>Lungime</translation>
     </message>
     <message>
         <source>Title</source>
@@ -1545,11 +1750,6 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Valori multiple</translation>
     </message>
     <message>
-        <source>Length</source>
-        <comment>Table header.</comment>
-        <translation>Lungime</translation>
-    </message>
-    <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
         <translation>%1:%2:%3</translation>
@@ -1558,6 +1758,27 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
         <translation>%1:%2</translation>
+    </message>
+</context>
+<context>
+    <name>UpdatePage</name>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation>Verificare automată actualizări</translation>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation>Verifică acum</translation>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation>Ultima verificare a fost %1</translation>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation>Nu s-a verificat niciodată</translation>
     </message>
 </context>
 <context>

@@ -30,6 +30,11 @@
         <translation>Домашняя страница: %1</translation>
     </message>
     <message>
+        <source>Bug tracker %1</source>
+        <comment>About dialog, About tab</comment>
+        <translation>Баг-трекер %1</translation>
+    </message>
+    <message>
         <source>License: %1</source>
         <translation>Лицензия: %1</translation>
     </message>
@@ -48,15 +53,6 @@
     <message>
         <source>Copyright: %1-%2 %3</source>
         <translation>Copyright: %1-%2 %3</translation>
-    </message>
-    <message>
-        <source>Bug tracker %1</source>
-        <comment>About dialog, About tab</comment>
-        <translation>Баг-трекер %1</translation>
-    </message>
-    <message>
-        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon переведена на множество языков благодаря работе команды переводчиков на сайте &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -88,9 +84,18 @@
         <comment>Thanks on the about page</comment>
         <translation>Иконки для программы</translation>
     </message>
+    <message>
+        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
+        <translation>Flacon переведена на множество языков благодаря работе команды переводчиков на сайте &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+    </message>
 </context>
 <context>
     <name>AddProfileDialog</name>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation>Создать профиль</translation>
+    </message>
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
@@ -105,11 +110,6 @@
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
         <translation>Аудио формат:</translation>
-    </message>
-    <message>
-        <source>Create a profile</source>
-        <extracomment>Add profile dialog title</extracomment>
-        <translation>Создать профиль</translation>
     </message>
     <message>
         <source>Create a profile</source>
@@ -252,8 +252,16 @@
         <translation>Настройки</translation>
     </message>
     <message>
-        <source>General configuration</source>
-        <translation>Общие настройки</translation>
+        <source>+</source>
+        <translation>+</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation>-</translation>
+    </message>
+    <message>
+        <source>Audio formats</source>
+        <translation>Аудио форматы</translation>
     </message>
     <message>
         <source>Thread count:</source>
@@ -264,32 +272,6 @@
         <translation>Количество потоков в процессе конвертации.</translation>
     </message>
     <message>
-        <source>Rescan</source>
-        <translation>Искать</translation>
-    </message>
-    <message>
-        <source>Full path of the external applications</source>
-        <translation>Полный путь к внешним программам</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Общие</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Программы</translation>
-    </message>
-    <message>
-        <source>Select temporary directory</source>
-        <translation>Укажите временную директорию</translation>
-    </message>
-    <message>
-        <source> px</source>
-        <translation>px</translation>
-    </message>
-    <message>
         <source>Temporary directory:</source>
         <translation>Временная директория:</translation>
     </message>
@@ -298,17 +280,34 @@
         <translation>Кодировка по умолчанию:</translation>
     </message>
     <message>
-        <source>Cover image</source>
-        <translation>Обложка</translation>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation>CDDB сервер: </translation>
     </message>
     <message>
-        <source>Do not copy image</source>
-        <translation>Не копировать</translation>
+        <source>Copy cover image</source>
+        <translation>Копировать обложку</translation>
     </message>
     <message>
-        <source>Update</source>
-        <extracomment>Preferences tab title </extracomment>
-        <translation>Обновления</translation>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation>Если формат поддерживает, то обложка будет встроена во все выходные аудиофайлы.</translation>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation>Встроить в выходные файлы</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Общие</translation>
+    </message>
+    <message>
+        <source>Rescan</source>
+        <translation>Искать</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Программы</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
@@ -319,55 +318,8 @@
         <translation>Пороверить</translation>
     </message>
     <message>
-        <source>Last check was %1</source>
-        <comment>Information about last update</comment>
-        <translation>Последнее обновление было %1</translation>
-    </message>
-    <message>
-        <source>Never checked</source>
-        <comment>Information about last update</comment>
-        <translation>Никогда не проверяли</translation>
-    </message>
-    <message>
-        <source>Keep original image size</source>
-        <translation>В оригинальном размере</translation>
-    </message>
-    <message>
-        <source>Resize if image size greater than</source>
-        <translation>Масштабировать если картинка больше чем</translation>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Аудио форматы</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation>+</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation>-</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
-        <comment>Message box text</comment>
-        <translation>Вы уверены, что хотите удалить профиль %1?</translation>
-    </message>
-    <message>
-        <source>Delete the profile</source>
-        <comment>Button caption</comment>
-        <translation>Удалить профиль</translation>
-    </message>
-    <message>
-        <source>%1:</source>
-        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
-        <translation>%1:</translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>CDDB сервер: </translation>
+        <source>Update</source>
+        <translation>Обновления</translation>
     </message>
 </context>
 <context>
@@ -456,6 +408,18 @@
         <translation>Режим битрейта:</translation>
     </message>
     <message>
+        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation>&lt;dt&gt;VBR - с переменным битрейтом&lt;/dt&gt;
+&lt;dd&gt;Используется переменный битрейт (рекомендуется). В этом режиме битрейт может увеличиваться или снижаться в зависимости от содержимого, чтобы получить оптимальное качество звука.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - с ограниченным битрейтом&lt;/dt&gt;
+&lt;dd&gt;Используется кодирование с ограниченным битрейтом. Битрейт файла будет равен заданному Вами. Этот режим аналогичен режиму CBR в AAC/MP3 и managed mode в кодеках vorbis. Качество будет несколько ниже чем в режиме VBR, но битрейт файла будет постоянным.&lt;/dd&gt;</translation>
+    </message>
+    <message>
         <source>Bitrate:</source>
         <translation>Битрейт:</translation>
     </message>
@@ -472,18 +436,6 @@ In CBR mode, it sets the specific output bitrate.
 &lt;p&gt;
 Для режима CBR файлы будут иметь конкретно этот битрейт.
 </translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
-
-&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation>&lt;dt&gt;VBR - с переменным битрейтом&lt;/dt&gt;
-&lt;dd&gt;Используется переменный битрейт (рекомендуется). В этом режиме битрейт может увеличиваться или снижаться в зависимости от содержимого, чтобы получить оптимальное качество звука.&lt;/dd&gt;
-
-&lt;dt&gt;CVBR - с ограниченным битрейтом&lt;/dt&gt;
-&lt;dd&gt;Используется кодирование с ограниченным битрейтом. Битрейт файла будет равен заданному Вами. Этот режим аналогичен режиму CBR в AAC/MP3 и managed mode в кодеках vorbis. Качество будет несколько ниже чем в режиме VBR, но битрейт файла будет постоянным.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -516,14 +468,14 @@ In CBR mode, it sets the specific output bitrate.
         <translation>Программа %1 не установлена.&lt;br&gt;Проверьте что установлены все нужные програмы и они указаны в настройках.</translation>
     </message>
     <message>
-        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Error string, %1 is a filename, %2 error message</comment>
-        <translation>Не получается записать файл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <translation>Программа %1 задана в настройках, но бинарный файл программы не найден.&lt;br&gt;Проверьте что установлены все нужные програмы и они указаны в настройках.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <translation>Не получается записать файл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -588,15 +540,83 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
+    <name>CoverGroupBox</name>
+    <message>
+        <source>Keep original image size</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation>В оригинальном размере</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation>px</translation>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation>Масштабировать если картинка больше чем</translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+</context>
+<context>
+    <name>CueGroupBox</name>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation>Создавать потрековый CUE</translation>
+    </message>
+    <message>
+        <source>File name format</source>
+        <comment>Preferences dialog edit tooltip</comment>
+        <translation>Формат имени файла</translation>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Прегап первого трека:</translation>
+    </message>
+    <message>
+        <source>Write to file</source>
+        <comment>CUE mode combobox item</comment>
+        <translation>Записывать в файл</translation>
+    </message>
+    <message>
+        <source>Embed to audio files</source>
+        <comment>CUE mode combobox item</comment>
+        <translation>Встраивать в аудио файл</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Вставить имя артиста</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Вставить название альбома</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Вставить год</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Вставить жанр</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Использовать &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Извлекать в отдельный файл</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Добавить к первому треку</translation>
+    </message>
+</context>
+<context>
     <name>Disc</name>
-    <message>
-        <source>Cue file not set.</source>
-        <translation>Не задан CUE файл.</translation>
-    </message>
-    <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>Длина аудиофайла меньше чем указано в CUE.</translation>
-    </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
@@ -606,6 +626,10 @@ In CBR mode, it sets the specific output bitrate.
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation>Формат поддерживает частоты дискретизации до %1, это значение будет использоваться при кодировании.</translation>
+    </message>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>Не задан CUE файл.</translation>
     </message>
     <message>
         <source>Audio file not set.</source>
@@ -621,6 +645,10 @@ In CBR mode, it sets the specific output bitrate.
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
         <translation>Для треков с %1 по %2 не задан аудиофайл .</translation>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation>Длина аудиофайла меньше чем указано в CUE.</translation>
     </message>
 </context>
 <context>
@@ -645,6 +673,34 @@ This only affects the file size. All settings are lossless.</source>
     </message>
 </context>
 <context>
+    <name>GeneralPage</name>
+    <message>
+        <source>The number of threads in the conversion process.</source>
+        <translation>Количество потоков в процессе конвертации.</translation>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Временная директория:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Кодировка по умолчанию:</translation>
+    </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation>CDDB сервер: </translation>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Количество потоков:</translation>
+    </message>
+    <message>
+        <source>Select temporary directory</source>
+        <translation>Укажите временную директорию</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
@@ -659,155 +715,17 @@ This only affects the file size. All settings are lossless.</source>
         <translation>Директория:</translation>
     </message>
     <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Вы можете выбрать директорию для выходных файлов, или указать ее руками.
+
+Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники. </translation>
+    </message>
+    <message>
         <source>Pattern:</source>
         <translation>Шаблон:</translation>
-    </message>
-    <message>
-        <source>Format:</source>
-        <translation>Формат:</translation>
-    </message>
-    <message>
-        <source>Output format</source>
-        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Формат выходных файлов</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation>Тэги</translation>
-    </message>
-    <message>
-        <source>Genre:</source>
-        <translation>Жанр:</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <translation>Год:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Артист:</translation>
-    </message>
-    <message>
-        <source>Album:</source>
-        <translation>Альбом:</translation>
-    </message>
-    <message>
-        <source>Start num:</source>
-        <translation>Нумеровать с:</translation>
-    </message>
-    <message>
-        <source>Disc ID:</source>
-        <translation>ID диска:</translation>
-    </message>
-    <message>
-        <source>Codepage:</source>
-        <translation>Кодировка:</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Файл</translation>
-    </message>
-    <message>
-        <source>&amp;Settings</source>
-        <translation>&amp;Настройка</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Справка</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <translation>Добавить CUE или аудиофайл</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>Convert</source>
-        <translation>Конвертировать</translation>
-    </message>
-    <message>
-        <source>Start conversion process</source>
-        <translation>Запусть конвертацию</translation>
-    </message>
-    <message>
-        <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
-    </message>
-    <message>
-        <source>Abort</source>
-        <translation>Отмена</translation>
-    </message>
-    <message>
-        <source>Abort conversion process</source>
-        <translation>Прервать конвертацию</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>Выход</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Program preferences</source>
-        <translation>Настройки программы</translation>
-    </message>
-    <message>
-        <source>Ctrl+Del</source>
-        <translation>Ctrl+Del</translation>
-    </message>
-    <message>
-        <source>Configure encoder</source>
-        <translation>Настроить кодек</translation>
-    </message>
-    <message>
-        <source>Get from CDDB</source>
-        <translation>Получить с CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Получить информацию с CDDB</translation>
-    </message>
-    <message>
-        <source>Ctrl+I</source>
-        <translation>Ctrl+I</translation>
-    </message>
-    <message>
-        <source>Recursive album search</source>
-        <translation>Рекурсивно искать альбомы</translation>
-    </message>
-    <message>
-        <source>Some albums will not be converted, they contain errors.
-Do you want to continue?</source>
-        <translation>Некоторые альбомы не будут обработаны, потому что содержат ошибки.
-Хотите продолжить? </translation>
-    </message>
-    <message>
-        <source>%1 files</source>
-        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>%1 файлы</translation>
-    </message>
-    <message>
-        <source>All supported formats</source>
-        <comment>OpenFile dialog filter line</comment>
-        <translation>Все поддерживаемые форматы</translation>
-    </message>
-    <message>
-        <source>All files</source>
-        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Все файлы</translation>
-    </message>
-    <message>
-        <source>Select audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Выбрать аудиофайл</translation>
-    </message>
-    <message>
-        <source>Select directory</source>
-        <translation>Выбор директории</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -847,44 +765,49 @@ If you surround sections of text that contain a token with braces, these section
 Если Вы окружили часть текста фигурными скобками, то эта часть не будет видна, если значения полей будут пустыми.</translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Вы можете выбрать директорию для выходных файлов, или указать ее руками.
-
-Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники. </translation>
+        <source>Format:</source>
+        <translation>Формат:</translation>
     </message>
     <message>
-        <source>Delete current pattern from history</source>
-        <translation>Удалить текущий шаблон из истории.</translation>
+        <source>Output format</source>
+        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+        <translation>Формат выходных файлов</translation>
     </message>
     <message>
-        <source>Preferences</source>
-        <translation>Настройки</translation>
+        <source>Tags</source>
+        <translation>Тэги</translation>
     </message>
     <message>
-        <source>About Flacon</source>
-        <translation>О программе Flacon</translation>
+        <source>Album performer:</source>
+        <translation>Исполнитель альбома:</translation>
     </message>
     <message>
-        <source>Remove current directory from history</source>
-        <translation>Удалить текущий шаблон из истории.</translation>
+        <source>Start num:</source>
+        <translation>Нумеровать с:</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <comment>context menu</comment>
-        <translation>Получить информацию с CDDB</translation>
+        <source>Disc ID:</source>
+        <translation>ID диска:</translation>
     </message>
     <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Выбрать CUE файл</translation>
+        <source>Genre:</source>
+        <translation>Жанр:</translation>
     </message>
     <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Добавление CUE или аудиофайла</translation>
+        <source>Artist:</source>
+        <translation>Артист:</translation>
+    </message>
+    <message>
+        <source>Codepage:</source>
+        <translation>Кодировка:</translation>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Год:</translation>
+    </message>
+    <message>
+        <source>Album:</source>
+        <translation>Альбом:</translation>
     </message>
     <message>
         <source>Edit all tags…</source>
@@ -892,27 +815,124 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Редактировать все теги…</translation>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;Файл</translation>
+    </message>
+    <message>
+        <source>&amp;Settings</source>
+        <translation>&amp;Настройка</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Справка</translation>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation>Добавить диск…</translation>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation>Добавить диск</translation>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <translation>Добавить CUE или аудиофайл</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
+        <source>Convert</source>
+        <translation>Конвертировать</translation>
+    </message>
+    <message>
+        <source>Start conversion process</source>
+        <translation>Запусть конвертацию</translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation>Ctrl+W</translation>
+    </message>
+    <message>
+        <source>Abort</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Abort conversion process</source>
+        <translation>Прервать конвертацию</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Выход</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation>Настройки</translation>
+    </message>
+    <message>
+        <source>Program preferences</source>
+        <translation>Настройки программы</translation>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation>О программе Flacon</translation>
+    </message>
+    <message>
+        <source>Remove disc</source>
+        <translation>Удалить диск</translation>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation>Удалить диск из проекта</translation>
+    </message>
+    <message>
+        <source>Ctrl+Del</source>
+        <translation>Ctrl+Del</translation>
+    </message>
+    <message>
+        <source>Configure encoder</source>
+        <translation>Настроить кодек</translation>
+    </message>
+    <message>
+        <source>Get from CDDB</source>
+        <translation>Получить с CDDB</translation>
+    </message>
+    <message>
+        <source>Get album information from CDDB</source>
+        <translation>Получить информацию с CDDB</translation>
+    </message>
+    <message>
+        <source>Ctrl+I</source>
+        <translation>Ctrl+I</translation>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation>Добавить директорию…</translation>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation>Добавить директорию</translation>
+    </message>
+    <message>
+        <source>Recursive album search</source>
+        <translation>Рекурсивно искать альбомы</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation>Ctrl+Shift+O</translation>
+    </message>
+    <message>
         <source>Check for Updates…</source>
         <translation>Проверить обновления…</translation>
-    </message>
-    <message>
-        <source>Edit tags…</source>
-        <comment>context menu</comment>
-        <translation>Редактировать теги…</translation>
-    </message>
-    <message>
-        <source>Select another audio file…</source>
-        <comment>context menu</comment>
-        <translation>Выбрать другой аудиофайл…</translation>
-    </message>
-    <message>
-        <source>Select another CUE file…</source>
-        <comment>context menu</comment>
-        <translation>Выбрать другой CUE файл…</translation>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <translation>Исполнитель альбома:</translation>
     </message>
     <message>
         <source>Convert selected</source>
@@ -930,41 +950,62 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
-        <source>Remove disc</source>
-        <translation>Удалить диск</translation>
+        <source>Remove current directory from history</source>
+        <translation>Удалить текущий шаблон из истории.</translation>
     </message>
     <message>
-        <source>Remove disc from project</source>
-        <translation>Удалить диск из проекта</translation>
+        <source>Delete current pattern from history</source>
+        <translation>Удалить текущий шаблон из истории.</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+O</source>
-        <translation>Ctrl+Shift+O</translation>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Выбрать CUE файл</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <comment>Main menu item</comment>
-        <translation>Добавить диск…</translation>
+        <source>Some albums will not be converted, they contain errors.
+Do you want to continue?</source>
+        <translation>Некоторые альбомы не будут обработаны, потому что содержат ошибки.
+Хотите продолжить? </translation>
     </message>
     <message>
-        <source>Add disc</source>
-        <comment>Toolbar item</comment>
-        <translation>Добавить диск</translation>
+        <source>%1 files</source>
+        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+        <translation>%1 файлы</translation>
     </message>
     <message>
-        <source>Add folder…</source>
-        <comment>Main menu item</comment>
-        <translation>Добавить директорию…</translation>
+        <source>All supported formats</source>
+        <comment>OpenFile dialog filter line</comment>
+        <translation>Все поддерживаемые форматы</translation>
     </message>
     <message>
-        <source>Add folder</source>
-        <comment>Toolbar item</comment>
-        <translation>Добавить директорию</translation>
+        <source>All files</source>
+        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+        <translation>Все файлы</translation>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Добавление CUE или аудиофайла</translation>
+    </message>
+    <message>
+        <source>Select audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Выбрать аудиофайл</translation>
     </message>
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
         <translation>Не удалось установить &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Select directory</source>
+        <translation>Выбор директории</translation>
+    </message>
+    <message>
+        <source>Select another audio file…</source>
+        <comment>context menu</comment>
+        <translation>Выбрать другой аудиофайл…</translation>
     </message>
     <message>
         <source>Select another audio file for %1 track…</source>
@@ -975,6 +1016,21 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation>Выбрать другой аудиофайл для треков с %1 по %2…</translation>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation>Редактировать теги…</translation>
+    </message>
+    <message>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation>Выбрать другой CUE файл…</translation>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation>Получить информацию с CDDB</translation>
     </message>
 </context>
 <context>
@@ -1078,7 +1134,96 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
+    <name>PreferencesDialog</name>
+    <message>
+        <source>Preferences</source>
+        <comment>Preferences dialog title</comment>
+        <extracomment>Preferences dialog title</extracomment>
+        <translation>Настройки</translation>
+    </message>
+    <message>
+        <source> Audio profiles</source>
+        <translation>Аудио профили</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Общие</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Программы</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation>Обновления</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileTabWidget</name>
+    <message>
+        <source>Audio</source>
+        <translation>Аудио</translation>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Выходные файлы</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Директория:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Вы можете выбрать директорию для выходных файлов, или указать ее руками.
+
+Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники. </translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Шаблон:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Поля начинаются со знака %. Вы можете использовать следующие поля: 
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Номер трека&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Количество треков&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Артист&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название альбома&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название трека&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Год&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Жанр&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Если Вы окружили часть текста фигурными скобками, то эта часть не будет видна, если значения полей будут пустыми.</translation>
+    </message>
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
@@ -1101,8 +1246,22 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Расчет громкости:</translation>
     </message>
     <message>
-        <source>Disabled</source>
-        <translation>Отключен</translation>
+        <source>CUE and Cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <translation>CUE файл и обложка</translation>
+    </message>
+    <message>
+        <source>Copy cover image</source>
+        <translation>Копировать обложку</translation>
+    </message>
+    <message>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation>Если формат поддерживает, то обложка будет встроена во все выходные аудиофайлы.</translation>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation>Встроить в выходные файлы</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1110,42 +1269,9 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Создавать потрековый CUE</translation>
     </message>
     <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation>Имя файла:</translation>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Прегап первого трека:</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Вставить имя артиста</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Вставить название альбома</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Вставить год</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Вставить жанр</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Использовать &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Extract to separate file</source>
-        <translation>Извлекать в отдельный файл</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Добавить к первому треку</translation>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>Там же, где и CUE файл</translation>
     </message>
     <message>
         <source>Same as source</source>
@@ -1213,6 +1339,14 @@ Using the album-gain analysis will preserve the volume differences within an alb
 Использование метода &quot;для всего альбома&quot; сохранит разницу в громкости между отдельными песнями в альбоме.</translation>
     </message>
     <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation>Настройки кодирования в %1:</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
         <source>Result Files</source>
         <translation>Выходные файлы</translation>
     </message>
@@ -1273,26 +1407,69 @@ If you surround sections of text that contain a token with braces, these section
 Если Вы окружили часть текста фигурными скобками, то эта часть не будет видна, если значения полей будут пустыми.</translation>
     </message>
     <message>
-        <source>%1 format</source>
-        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation>%1 формат</translation>
+        <source>Resampling settings:</source>
+        <translation>Настройки передискретизации:</translation>
     </message>
     <message>
-        <source>Same directory as CUE file</source>
-        <comment>Placeholder for output direcory combobox</comment>
-        <translation>Там же, где и CUE файл</translation>
+        <source>Maximum bit depth:</source>
+        <translation>Максимальный битрейт:</translation>
     </message>
     <message>
-        <source>%1 encoder settings:</source>
-        <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation>Настройки кодирования в %1:</translation>
+        <source>Maximum sample rate:</source>
+        <translation>Макс. частота дискретизации:</translation>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation>Настройки выравнивания громкости:</translation>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Расчет громкости:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Отключен</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation>Создавать потрековый CUE</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <translation>Имя файла:</translation>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Прегап первого трека:</translation>
+    </message>
+</context>
+<context>
+    <name>ProfilesPage</name>
+    <message>
+        <source>+</source>
+        <translation>+</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation>-</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation>Вы уверены, что хотите удалить профиль %1?</translation>
+    </message>
+    <message>
+        <source>Delete the profile</source>
+        <comment>Button caption</comment>
+        <translation>Удалить профиль</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
-        <source>Select program file</source>
-        <translation>Укажите файл программы</translation>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>программа %1</translation>
     </message>
     <message>
         <source>All files</source>
@@ -1300,9 +1477,20 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Все файлы</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation>программа %1</translation>
+        <source>Select program file</source>
+        <translation>Укажите файл программы</translation>
+    </message>
+</context>
+<context>
+    <name>ProgramsPage</name>
+    <message>
+        <source>Rescan</source>
+        <translation>Искать</translation>
+    </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation>%1:</translation>
     </message>
 </context>
 <context>
@@ -1310,28 +1498,6 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Не могу найти программу &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Файл &lt;b&gt;%1&lt;/b&gt; не существует.</translation>
-    </message>
-    <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>Вы не можете использовать &apos;выравнивание громкости&apos; для файлов с частотой дискретизации выше 48 КГц. Metaflac не поддерживает такие файлы.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Не получается создать директорию &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Не получается писать в директорию &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1343,12 +1509,33 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Не получается прочитать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>Multiple values</source>
-        <translation>Несколько значений</translation>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation>Не получается записать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <translation>Не получается записать CUE файл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Не получается создать директорию &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Не получается писать в директорию &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <translation>Встроенный в %1</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Он не содержит тега FILE.</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation>Файл &lt;b&gt;%1&lt;/b&gt; не существует.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1361,13 +1548,18 @@ If you surround sections of text that contain a token with braces, these section
         <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Некорректный индекс в строке %2.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Он не содержит тега FILE.</translation>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <translation>Вы не можете использовать &apos;выравнивание громкости&apos; для файлов с частотой дискретизации выше 48 КГц. Metaflac не поддерживает такие файлы.</translation>
     </message>
     <message>
-        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>Не получается записать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <source>Multiple values</source>
+        <translation>Несколько значений</translation>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>The audio file name is not set.</source>
@@ -1376,6 +1568,14 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>The audio file does not exist.</source>
         <translation>Аудио файл не существует.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
+        <translation>Не получается записать CUE: &lt;br&gt; %1 </translation>
+    </message>
+    <message>
+        <source>File contains not a valid CUE data.</source>
+        <translation>Файл не содерит правильного CUE.</translation>
     </message>
 </context>
 <context>
@@ -1386,13 +1586,14 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Редактирование тегов</translation>
     </message>
     <message>
-        <source>of</source>
-        <translation>из</translation>
-    </message>
-    <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
         <translation>Артист:</translation>
+    </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation>Исполнитель альбома:</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -1410,6 +1611,16 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Год:</translation>
     </message>
     <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation>Нумеровать треки с:</translation>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation>Номер диска:</translation>
+    </message>
+    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation>Название трека:</translation>
@@ -1420,42 +1631,23 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Коментарий:</translation>
     </message>
     <message>
-        <source>Start track number:</source>
-        <comment>Music tag name</comment>
-        <translation>Нумеровать треки с:</translation>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <translation>Исполнитель альбома:</translation>
-    </message>
-    <message>
-        <source>Disc number:</source>
-        <comment>Music tag name</comment>
-        <translation>Номер диска:</translation>
+        <source>of</source>
+        <translation>из</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Получить информацию с CDDB</translation>
-    </message>
-    <message>
         <source>Select another CUE file…</source>
         <translation>Выбрать другой CUE файл…</translation>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <translation>Получить информацию с CDDB</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
-    <message>
-        <source>Tracks:</source>
-        <translation>Треки:</translation>
-    </message>
-    <message>
-        <source>Audio:</source>
-        <translation>Аудио:</translation>
-    </message>
     <message>
         <source>Error</source>
         <comment>Status of the track conversion.</comment>
@@ -1492,23 +1684,31 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Расчет громкости</translation>
     </message>
     <message>
-        <source>Writing gain</source>
-        <comment>Status of the track conversion.</comment>
-        <translation>Запись громкости</translation>
-    </message>
-    <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
         <translation>Ожидание громкости</translation>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Конвертация невозможна.&lt;/b&gt;</translation>
+        <source>Writing gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Запись громкости</translation>
+    </message>
+    <message>
+        <source>Tracks:</source>
+        <translation>Треки:</translation>
+    </message>
+    <message>
+        <source>Audio:</source>
+        <translation>Аудио:</translation>
     </message>
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
         <translation>Несколько фалов</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Конвертация невозможна.&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1517,6 +1717,11 @@ If you surround sections of text that contain a token with braces, these section
         <source>Track</source>
         <comment>Table header.</comment>
         <translation>Трек</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation>Продолжительность</translation>
     </message>
     <message>
         <source>Title</source>
@@ -1548,11 +1753,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Несколько значений</translation>
     </message>
     <message>
-        <source>Length</source>
-        <comment>Table header.</comment>
-        <translation>Продолжительность</translation>
-    </message>
-    <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
         <translation>%1:%2:%3</translation>
@@ -1561,6 +1761,27 @@ If you surround sections of text that contain a token with braces, these section
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
         <translation>%1:%2</translation>
+    </message>
+</context>
+<context>
+    <name>UpdatePage</name>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation>Проверять автоматически</translation>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation>Пороверить</translation>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation>Последнее обновление было %1</translation>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation>Никогда не проверяли</translation>
     </message>
 </context>
 <context>

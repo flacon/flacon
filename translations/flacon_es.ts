@@ -30,6 +30,11 @@
         <translation>Sitio web: %1</translation>
     </message>
     <message>
+        <source>Bug tracker %1</source>
+        <comment>About dialog, About tab</comment>
+        <translation>Seguimiento de fallos %1</translation>
+    </message>
+    <message>
         <source>License: %1</source>
         <translation>Licencia: %1</translation>
     </message>
@@ -48,15 +53,6 @@
     <message>
         <source>Copyright: %1-%2 %3</source>
         <translation>Todos los derechos reservados: %1-%2 %3</translation>
-    </message>
-    <message>
-        <source>Bug tracker %1</source>
-        <comment>About dialog, About tab</comment>
-        <translation>Seguimiento de fallos %1</translation>
-    </message>
-    <message>
-        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon es traducido a muchos lenguajes gracias al trabajo del equipo de traductores en &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -88,9 +84,18 @@
         <comment>Thanks on the about page</comment>
         <translation>Iconos para la aplicación</translation>
     </message>
+    <message>
+        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
+        <translation>Flacon es traducido a muchos lenguajes gracias al trabajo del equipo de traductores en &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;</translation>
+    </message>
 </context>
 <context>
     <name>AddProfileDialog</name>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation>Crear un perfil</translation>
+    </message>
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
@@ -105,11 +110,6 @@
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
         <translation>Formato de audio:</translation>
-    </message>
-    <message>
-        <source>Create a profile</source>
-        <extracomment>Add profile dialog title</extracomment>
-        <translation>Crear un perfil</translation>
     </message>
     <message>
         <source>Create a profile</source>
@@ -252,8 +252,16 @@
         <translation>Preferencias</translation>
     </message>
     <message>
-        <source>General configuration</source>
-        <translation>Configuración general</translation>
+        <source>+</source>
+        <translation>+</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation>-</translation>
+    </message>
+    <message>
+        <source>Audio formats</source>
+        <translation>Formatos de audio</translation>
     </message>
     <message>
         <source>Thread count:</source>
@@ -261,33 +269,7 @@
     </message>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation>El número de subprocesos en el proceso de conversión.</translation>
-    </message>
-    <message>
-        <source>Rescan</source>
-        <translation>Volver a explorar:</translation>
-    </message>
-    <message>
-        <source>Full path of the external applications</source>
-        <translation>Ruta completa de las aplicaciones externas:</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>General</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Programas</translation>
-    </message>
-    <message>
-        <source>Select temporary directory</source>
-        <translation>Seleccione un directorio temporal</translation>
-    </message>
-    <message>
-        <source> px</source>
-        <translation>px</translation>
+        <translation>El numero de subprocesos en el proceso de conversión.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -298,17 +280,34 @@
         <translation>Página de código predeterminada:</translation>
     </message>
     <message>
-        <source>Cover image</source>
-        <translation>Imagen de portada</translation>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation>Servidor CDDB:</translation>
     </message>
     <message>
-        <source>Do not copy image</source>
-        <translation>No copie la imagen</translation>
+        <source>Copy cover image</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Update</source>
-        <extracomment>Preferences tab title </extracomment>
-        <translation>Actualizar</translation>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>General</translation>
+    </message>
+    <message>
+        <source>Rescan</source>
+        <translation>Volver a explorar:</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Programas</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
@@ -319,55 +318,8 @@
         <translation>Comprobar ahora</translation>
     </message>
     <message>
-        <source>Last check was %1</source>
-        <comment>Information about last update</comment>
-        <translation>La última comprobación fue el %1</translation>
-    </message>
-    <message>
-        <source>Never checked</source>
-        <comment>Information about last update</comment>
-        <translation>Nunca se ha comprobado</translation>
-    </message>
-    <message>
-        <source>Keep original image size</source>
-        <translation>Conservar el tamaño original de la imagen</translation>
-    </message>
-    <message>
-        <source>Resize if image size greater than</source>
-        <translation>Ajustar tamaño si la imagen es mayor de</translation>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Formatos de audio</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation>+</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation>-</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
-        <comment>Message box text</comment>
-        <translation>¿Estás seguro de querer borrar el perfil &quot;%1&quot;?</translation>
-    </message>
-    <message>
-        <source>Delete the profile</source>
-        <comment>Button caption</comment>
-        <translation>Borrar el perfil</translation>
-    </message>
-    <message>
-        <source>%1:</source>
-        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
-        <translation>%1:</translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>Servidor CDDB:</translation>
+        <source>Update</source>
+        <translation>Actualizar</translation>
     </message>
 </context>
 <context>
@@ -456,6 +408,18 @@
         <translation>Tipo de tasa de bits:</translation>
     </message>
     <message>
+        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation>&lt;dt&gt;VBR - tasa de bits variable&lt;/dt&gt;
+&lt;dd&gt;Usar la codificación de tasa de bits variable (recomendado). En el modo VBR, la tasa de bits puede subir y bajar libremente dependiendo del contenido asegurando la consistencia de la calidad.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - tasa de bits restringida&lt;/dt&gt;
+&lt;dd&gt;Usar la codificación de bits restringida. La salida se realiza a una tasa específica de bits. Este modo es similar a la codificación CBR en AAC/MP3 y al modo gestionado en la codificación vorbis. Ofrece una calidad menos consistente que el modo VBR pero una tasa de bits más consistente.&lt;/dd&gt;</translation>
+    </message>
+    <message>
         <source>Bitrate:</source>
         <translation>Tasa de Bits:</translation>
     </message>
@@ -472,18 +436,6 @@ En el modo VBR, se establece la tasa promedio para una gran y diversa colección
 &lt;p&gt;
 En el modo CBR, se establece la tasa de bits específica de salida.
 </translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
-
-&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation>&lt;dt&gt;VBR - tasa de bits variable&lt;/dt&gt;
-&lt;dd&gt;Usar la codificación de tasa de bits variable (recomendado). En el modo VBR, la tasa de bits puede subir y bajar libremente dependiendo del contenido asegurando la consistencia de la calidad.&lt;/dd&gt;
-
-&lt;dt&gt;CVBR - tasa de bits restringida&lt;/dt&gt;
-&lt;dd&gt;Usar la codificación de bits restringida. La salida se realiza a una tasa específica de bits. Este modo es similar a la codificación CBR en AAC/MP3 y al modo gestionado en la codificación vorbis. Ofrece una calidad menos consistente que el modo VBR pero una tasa de bits más consistente.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -516,14 +468,14 @@ En el modo CBR, se establece la tasa de bits específica de salida.
         <translation>El programa %1 no está instalado.&lt;br&gt;Verifique que todos los programas requeridos están instalados en sus preferencias.</translation>
     </message>
     <message>
-        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Error string, %1 is a filename, %2 error message</comment>
-        <translation>No puedo escribir el archivo &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <translation>El programa %1 está instalado de acuerdo a sus preferencias, pero el archivo ejecutable no puede ser encontrado.&lt;br&gt;Verifique que todos los programas requeridos están instalados en sus preferencias.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <translation>No puedo escribir el archivo &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -588,15 +540,83 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     </message>
 </context>
 <context>
+    <name>CoverGroupBox</name>
+    <message>
+        <source>Keep original image size</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation>Conservar el tamaño original de la imagen</translation>
+    </message>
+    <message>
+        <source> px</source>
+        <translation>px</translation>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation>Ajustar tamaño si la imagen es mayor de</translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation>Formulario</translation>
+    </message>
+</context>
+<context>
+    <name>CueGroupBox</name>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation>Crear hoja CUE por pista</translation>
+    </message>
+    <message>
+        <source>File name format</source>
+        <comment>Preferences dialog edit tooltip</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Pista pregap:</translation>
+    </message>
+    <message>
+        <source>Write to file</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed to audio files</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Insertar &quot;Artista&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Insertar &quot;Título de álbum&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Insertar &quot;Año&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Insertar &quot;Género&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Usar &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Extraer a un archivo independiente</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Agregar a la primera pista</translation>
+    </message>
+</context>
+<context>
     <name>Disc</name>
-    <message>
-        <source>Cue file not set.</source>
-        <translation>El fichero CUE no se ha establecido.</translation>
-    </message>
-    <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>El archivo de audio es más pequeño de lo esperado por la hoja CUE.</translation>
-    </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
@@ -606,6 +626,10 @@ En el modo CBR, se establece la tasa de bits específica de salida.
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation>El formato soporta una tasa de muestreo máxima de %1, valor que se usará para la codificación.</translation>
+    </message>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>El fichero CUE no se ha establecido.</translation>
     </message>
     <message>
         <source>Audio file not set.</source>
@@ -621,6 +645,10 @@ En el modo CBR, se establece la tasa de bits específica de salida.
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
         <translation>No se han establecido los archivos de audio desde la pista %1 a la %2.</translation>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation>El archivo de audio es más pequeño de lo esperado por la hoja CUE.</translation>
     </message>
 </context>
 <context>
@@ -645,6 +673,34 @@ Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdi
     </message>
 </context>
 <context>
+    <name>GeneralPage</name>
+    <message>
+        <source>The number of threads in the conversion process.</source>
+        <translation>El numero de subprocesos en el proceso de conversión.</translation>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Directorio temporal:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Página de código predeterminada:</translation>
+    </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation>Servidor CDDB:</translation>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Número de subprocesos:</translation>
+    </message>
+    <message>
+        <source>Select temporary directory</source>
+        <translation>Seleccione un directorio temporal</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
@@ -659,155 +715,17 @@ Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdi
         <translation>Directorio:</translation>
     </message>
     <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Puede navegar al directorio de destino. También puede introducirlo manualmente.
+
+Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de salida se guardarán en el mismo directorio que el origen.</translation>
+    </message>
+    <message>
         <source>Pattern:</source>
         <translation>Patrón:</translation>
-    </message>
-    <message>
-        <source>Format:</source>
-        <translation>Formato:</translation>
-    </message>
-    <message>
-        <source>Output format</source>
-        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Formato de salida</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation>Etiquetas</translation>
-    </message>
-    <message>
-        <source>Genre:</source>
-        <translation>Género:</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <translation>Año:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Artista:</translation>
-    </message>
-    <message>
-        <source>Album:</source>
-        <translation>Álbum:</translation>
-    </message>
-    <message>
-        <source>Start num:</source>
-        <translation>Número de inicio:</translation>
-    </message>
-    <message>
-        <source>Disc ID:</source>
-        <translation>ID de Disco:</translation>
-    </message>
-    <message>
-        <source>Codepage:</source>
-        <translation>Página de códigos:</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Archivo</translation>
-    </message>
-    <message>
-        <source>&amp;Settings</source>
-        <translation>&amp;Configuración</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>Ay&amp;uda</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <translation>Agregar CUE o archivo de audio</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>Convert</source>
-        <translation>Convertir</translation>
-    </message>
-    <message>
-        <source>Start conversion process</source>
-        <translation>Comenzar proceso de conversión</translation>
-    </message>
-    <message>
-        <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
-    </message>
-    <message>
-        <source>Abort</source>
-        <translation>Cancelar</translation>
-    </message>
-    <message>
-        <source>Abort conversion process</source>
-        <translation>Cancelar proceso de conversión</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>Salir</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Program preferences</source>
-        <translation>Preferencias de programa</translation>
-    </message>
-    <message>
-        <source>Ctrl+Del</source>
-        <translation>Ctrl+Supr</translation>
-    </message>
-    <message>
-        <source>Configure encoder</source>
-        <translation>Configurar codificador</translation>
-    </message>
-    <message>
-        <source>Get from CDDB</source>
-        <translation>Obtener desde CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Obtener información del álbum desde CDDB</translation>
-    </message>
-    <message>
-        <source>Ctrl+I</source>
-        <translation>Ctrl+I</translation>
-    </message>
-    <message>
-        <source>Recursive album search</source>
-        <translation>Búsqueda recursiva de álbum</translation>
-    </message>
-    <message>
-        <source>Some albums will not be converted, they contain errors.
-Do you want to continue?</source>
-        <translation>Algunos álbumes no serán convertidos, ya que contienen errores.
-¿Quiere continuar?</translation>
-    </message>
-    <message>
-        <source>%1 files</source>
-        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>Archivos %1</translation>
-    </message>
-    <message>
-        <source>All supported formats</source>
-        <comment>OpenFile dialog filter line</comment>
-        <translation>Todos los formatos soportados</translation>
-    </message>
-    <message>
-        <source>All files</source>
-        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Todos los archivos</translation>
-    </message>
-    <message>
-        <source>Select audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Seleccione archivo de audio</translation>
-    </message>
-    <message>
-        <source>Select directory</source>
-        <translation>Seleccione directorio</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -847,44 +765,49 @@ Las variables comienzan con %. Puedes usar las siguientes variables:
 Si usa entre llaves secciones de texto que contengan una variable, dichas secciones serán omitidas si el valor de la variable está vacio.</translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Puede navegar al directorio de destino. También puede introducirlo manualmente.
-
-Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de salida se guardarán en el mismo directorio que el origen.</translation>
+        <source>Format:</source>
+        <translation>Formato:</translation>
     </message>
     <message>
-        <source>Delete current pattern from history</source>
-        <translation>Eliminar el patrón actual del historial</translation>
+        <source>Output format</source>
+        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+        <translation>Formato de salida</translation>
     </message>
     <message>
-        <source>Preferences</source>
-        <translation>Preferencias</translation>
+        <source>Tags</source>
+        <translation>Etiquetas</translation>
     </message>
     <message>
-        <source>About Flacon</source>
-        <translation>Acerca de Flacon</translation>
+        <source>Album performer:</source>
+        <translation>Artista del álbum:</translation>
     </message>
     <message>
-        <source>Remove current directory from history</source>
-        <translation>Eliminar directorio actual del historial</translation>
+        <source>Start num:</source>
+        <translation>Número de inicio:</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <comment>context menu</comment>
-        <translation>Obtener información de CDDB</translation>
+        <source>Disc ID:</source>
+        <translation>ID de Disco:</translation>
     </message>
     <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Seleccione archivo CUE</translation>
+        <source>Genre:</source>
+        <translation>Género:</translation>
     </message>
     <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Agregar CUE o archivo de audio</translation>
+        <source>Artist:</source>
+        <translation>Artista:</translation>
+    </message>
+    <message>
+        <source>Codepage:</source>
+        <translation>Página de códigos:</translation>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Año:</translation>
+    </message>
+    <message>
+        <source>Album:</source>
+        <translation>Álbum:</translation>
     </message>
     <message>
         <source>Edit all tags…</source>
@@ -892,27 +815,124 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>Editar todas las etiquetas...</translation>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;Archivo</translation>
+    </message>
+    <message>
+        <source>&amp;Settings</source>
+        <translation>&amp;Configuración</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>Ay&amp;uda</translation>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation>Agregar disco...</translation>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation>Agregar disco</translation>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <translation>Agregar CUE o archivo de audio</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
+        <source>Convert</source>
+        <translation>Convertir</translation>
+    </message>
+    <message>
+        <source>Start conversion process</source>
+        <translation>Comenzar proceso de conversión</translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation>Ctrl+W</translation>
+    </message>
+    <message>
+        <source>Abort</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <source>Abort conversion process</source>
+        <translation>Cancelar proceso de conversión</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Salir</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation>Preferencias</translation>
+    </message>
+    <message>
+        <source>Program preferences</source>
+        <translation>Preferencias de programa</translation>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation>Acerca de Flacon</translation>
+    </message>
+    <message>
+        <source>Remove disc</source>
+        <translation>Eliminar disco</translation>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation>Eliminar disco del proyecto</translation>
+    </message>
+    <message>
+        <source>Ctrl+Del</source>
+        <translation>Ctrl+Supr</translation>
+    </message>
+    <message>
+        <source>Configure encoder</source>
+        <translation>Configurar codificador</translation>
+    </message>
+    <message>
+        <source>Get from CDDB</source>
+        <translation>Obtener desde CDDB</translation>
+    </message>
+    <message>
+        <source>Get album information from CDDB</source>
+        <translation>Obtener información del álbum desde CDDB</translation>
+    </message>
+    <message>
+        <source>Ctrl+I</source>
+        <translation>Ctrl+I</translation>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation>Añadir carpeta...</translation>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation>Añadir carpeta</translation>
+    </message>
+    <message>
+        <source>Recursive album search</source>
+        <translation>Búsqueda recursiva de álbum</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation>Ctrl+Mayúsculas+O</translation>
+    </message>
+    <message>
         <source>Check for Updates…</source>
         <translation>Comprobar actualizaciones...</translation>
-    </message>
-    <message>
-        <source>Edit tags…</source>
-        <comment>context menu</comment>
-        <translation>Editar etiquetas...</translation>
-    </message>
-    <message>
-        <source>Select another audio file…</source>
-        <comment>context menu</comment>
-        <translation>Seleccione otro archivo de audio...</translation>
-    </message>
-    <message>
-        <source>Select another CUE file…</source>
-        <comment>context menu</comment>
-        <translation>Seleccione otro archivo CUE...</translation>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <translation>Artista del álbum:</translation>
     </message>
     <message>
         <source>Convert selected</source>
@@ -930,41 +950,62 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>Ctrl+Mayúsculas+W</translation>
     </message>
     <message>
-        <source>Remove disc</source>
-        <translation>Eliminar disco</translation>
+        <source>Remove current directory from history</source>
+        <translation>Eliminar directorio actual del historial</translation>
     </message>
     <message>
-        <source>Remove disc from project</source>
-        <translation>Eliminar disco del proyecto</translation>
+        <source>Delete current pattern from history</source>
+        <translation>Eliminar el patrón actual del historial</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+O</source>
-        <translation>Ctrl+Mayúsculas+O</translation>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Seleccione archivo CUE</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <comment>Main menu item</comment>
-        <translation>Agregar disco...</translation>
+        <source>Some albums will not be converted, they contain errors.
+Do you want to continue?</source>
+        <translation>Algunos álbumes no serán convertidos, ya que contienen errores.
+¿Quiere continuar?</translation>
     </message>
     <message>
-        <source>Add disc</source>
-        <comment>Toolbar item</comment>
-        <translation>Agregar disco</translation>
+        <source>%1 files</source>
+        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+        <translation>Archivos %1</translation>
     </message>
     <message>
-        <source>Add folder…</source>
-        <comment>Main menu item</comment>
-        <translation>Añadir carpeta...</translation>
+        <source>All supported formats</source>
+        <comment>OpenFile dialog filter line</comment>
+        <translation>Todos los formatos soportados</translation>
     </message>
     <message>
-        <source>Add folder</source>
-        <comment>Toolbar item</comment>
-        <translation>Añadir carpeta</translation>
+        <source>All files</source>
+        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+        <translation>Todos los archivos</translation>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Agregar CUE o archivo de audio</translation>
+    </message>
+    <message>
+        <source>Select audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Seleccione archivo de audio</translation>
     </message>
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
         <translation>&quot;%1&quot; no ha sido establecido.</translation>
+    </message>
+    <message>
+        <source>Select directory</source>
+        <translation>Seleccione directorio</translation>
+    </message>
+    <message>
+        <source>Select another audio file…</source>
+        <comment>context menu</comment>
+        <translation>Seleccione otro archivo de audio...</translation>
     </message>
     <message>
         <source>Select another audio file for %1 track…</source>
@@ -975,6 +1016,21 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation>Seleccione otro archivo de audio para las pistas de la %1 a la %2…</translation>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation>Editar etiquetas...</translation>
+    </message>
+    <message>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation>Seleccione otro archivo CUE...</translation>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation>Obtener información de CDDB</translation>
     </message>
 </context>
 <context>
@@ -1078,7 +1134,96 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
+    <name>PreferencesDialog</name>
+    <message>
+        <source>Preferences</source>
+        <comment>Preferences dialog title</comment>
+        <extracomment>Preferences dialog title</extracomment>
+        <translation>Preferencias</translation>
+    </message>
+    <message>
+        <source> Audio profiles</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>General</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Programas</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation>Actualizar</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileTabWidget</name>
+    <message>
+        <source>Audio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Archivos Procesados</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Directorio:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Puede navegar al directorio de destino. También puede introducirlo manualmente.
+
+Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de salida se guardarán en el mismo directorio que el origen.</translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Patrón:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Las variables comienzan con %. Puedes usar las siguientes variables:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número de pista  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número total de pistas&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artista&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título del álbum&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título de Pista&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Año&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Género&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Si usa entre llaves secciones de texto que contengan una variable, dichas secciones serán omitidas si el valor de la variable está vacio.</translation>
+    </message>
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
@@ -1101,8 +1246,22 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>Calcular ganancia:</translation>
     </message>
     <message>
-        <source>Disabled</source>
-        <translation>Deshabilitado</translation>
+        <source>CUE and Cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Copy cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1110,42 +1269,9 @@ Si la ruta está vacía o comienza con un &quot;.&quot; (punto), los archivos de
         <translation>Crear hoja CUE por pista</translation>
     </message>
     <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
-        <translation>Formato de nombre de archivo</translation>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Pista pregap:</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Insertar &quot;Artista&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Insertar &quot;Título de álbum&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Insertar &quot;Año&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Insertar &quot;Género&quot;</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Usar &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Extract to separate file</source>
-        <translation>Extraer a un archivo independiente</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Agregar a la primera pista</translation>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
+        <translation>El mismo directorio que el archivo CUE</translation>
     </message>
     <message>
         <source>Same as source</source>
@@ -1213,6 +1339,14 @@ El análisis puede ser realizado por pistas individuales, de modo que todas teng
 Usando el análisis de ganancia-álbum se preservarán las diferencias de volumen dentro de un álbum.</translation>
     </message>
     <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation>Configuración del codificador %1:</translation>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
         <source>Result Files</source>
         <translation>Archivos Procesados</translation>
     </message>
@@ -1273,26 +1407,69 @@ Las variables comienzan con %. Puedes usar las siguientes variables:
 Si usa entre llaves secciones de texto que contengan una variable, dichas secciones serán omitidas si el valor de la variable está vacio.</translation>
     </message>
     <message>
-        <source>%1 format</source>
-        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
-        <translation>Formato %1</translation>
+        <source>Resampling settings:</source>
+        <translation>Configuración de remuestreo:</translation>
     </message>
     <message>
-        <source>Same directory as CUE file</source>
-        <comment>Placeholder for output direcory combobox</comment>
-        <translation>El mismo directorio que el archivo CUE</translation>
+        <source>Maximum bit depth:</source>
+        <translation>Máxima profundidad de bits:</translation>
     </message>
     <message>
-        <source>%1 encoder settings:</source>
-        <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation>Configuración del codificador %1:</translation>
+        <source>Maximum sample rate:</source>
+        <translation>Máxima tasa de muestreo:</translation>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation>Configuración de ReplayGain:</translation>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Calcular ganancia:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Deshabilitado</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation>Crear hoja CUE por pista</translation>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <translation>Formato de nombre de archivo</translation>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Pista pregap:</translation>
+    </message>
+</context>
+<context>
+    <name>ProfilesPage</name>
+    <message>
+        <source>+</source>
+        <translation>+</translation>
+    </message>
+    <message>
+        <source>-</source>
+        <translation>-</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation>¿Estás seguro de querer borrar el perfil &quot;%1&quot;?</translation>
+    </message>
+    <message>
+        <source>Delete the profile</source>
+        <comment>Button caption</comment>
+        <translation>Borrar el perfil</translation>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
-        <source>Select program file</source>
-        <translation>Seleccione archivo de programa</translation>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>Programa %1</translation>
     </message>
     <message>
         <source>All files</source>
@@ -1300,9 +1477,20 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation>Programa %1</translation>
+        <source>Select program file</source>
+        <translation>Seleccione archivo de programa</translation>
+    </message>
+</context>
+<context>
+    <name>ProgramsPage</name>
+    <message>
+        <source>Rescan</source>
+        <translation>Volver a explorar:</translation>
+    </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation>%1:</translation>
     </message>
 </context>
 <context>
@@ -1310,28 +1498,6 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>No puedo encontrar el programa &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>El archivo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; no existe</translation>
-    </message>
-    <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>No puede usar &apos;ReplayGain&apos; en archivos con frecuencias de muestreo superiores a 48kHz. Metaflac no soporta estos archivos.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>No puedo crear el directorio &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>No puedo escribir en el directorio &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1343,12 +1509,33 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>No puedo leer la imagen de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>Multiple values</source>
-        <translation>Múltiples valores</translation>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation>No puedo guardar la imagen de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <translation>No puedo escribir el archivo CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+    </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>No puedo crear el directorio &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>No puedo escribir en el directorio &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. La hoja CUE no tiene la etiqueta FILE.</translation>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation>El archivo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; no existe</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1361,13 +1548,18 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. Índice de pista incorrecto en la línea %2.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; no es un archivo CUE válido. La hoja CUE no tiene la etiqueta FILE.</translation>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <translation>No puede usar &apos;ReplayGain&apos; en archivos con frecuencias de muestreo superiores a 48kHz. Metaflac no soporta estos archivos.</translation>
     </message>
     <message>
-        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation>No puedo guardar la imagen de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <source>Multiple values</source>
+        <translation>Múltiples valores</translation>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>The audio file name is not set.</source>
@@ -1376,6 +1568,14 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
     <message>
         <source>The audio file does not exist.</source>
         <translation>El archivo de audio no existe.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File contains not a valid CUE data.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1386,13 +1586,14 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>Editar etiquetas</translation>
     </message>
     <message>
-        <source>of</source>
-        <translation>de</translation>
-    </message>
-    <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
         <translation>Artista:</translation>
+    </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation>Artista del Álbum:</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -1410,6 +1611,16 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>Año:</translation>
     </message>
     <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation>Número de pista de inicio:</translation>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation>Número de disco:</translation>
+    </message>
+    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation>Título de pista:</translation>
@@ -1420,42 +1631,23 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>Comentario:</translation>
     </message>
     <message>
-        <source>Start track number:</source>
-        <comment>Music tag name</comment>
-        <translation>Número de pista de inicio:</translation>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <translation>Artista del Álbum:</translation>
-    </message>
-    <message>
-        <source>Disc number:</source>
-        <comment>Music tag name</comment>
-        <translation>Número de disco:</translation>
+        <source>of</source>
+        <translation>de</translation>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Obtener información de CDDB</translation>
-    </message>
-    <message>
         <source>Select another CUE file…</source>
         <translation>Seleccione otro archivo CUE...</translation>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <translation>Obtener información de CDDB</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
-    <message>
-        <source>Tracks:</source>
-        <translation>Pistas:</translation>
-    </message>
-    <message>
-        <source>Audio:</source>
-        <translation>Audio:</translation>
-    </message>
     <message>
         <source>Error</source>
         <comment>Status of the track conversion.</comment>
@@ -1492,23 +1684,31 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>Calculando ganancia</translation>
     </message>
     <message>
-        <source>Writing gain</source>
-        <comment>Status of the track conversion.</comment>
-        <translation>Escribiendo ganancia</translation>
-    </message>
-    <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
         <translation>Esperando ganancia</translation>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation>&lt;b&gt;La conversión no es posible.&lt;/b&gt;</translation>
+        <source>Writing gain</source>
+        <comment>Status of the track conversion.</comment>
+        <translation>Escribiendo ganancia</translation>
+    </message>
+    <message>
+        <source>Tracks:</source>
+        <translation>Pistas:</translation>
+    </message>
+    <message>
+        <source>Audio:</source>
+        <translation>Audio:</translation>
     </message>
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
         <translation>Múltiples archivos</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <translation>&lt;b&gt;La conversión no es posible.&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1517,6 +1717,11 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <source>Track</source>
         <comment>Table header.</comment>
         <translation>Pista</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation>Tamaño</translation>
     </message>
     <message>
         <source>Title</source>
@@ -1548,11 +1753,6 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>Múltiples valores</translation>
     </message>
     <message>
-        <source>Length</source>
-        <comment>Table header.</comment>
-        <translation>Tamaño</translation>
-    </message>
-    <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
         <translation>%1:%2:%3</translation>
@@ -1561,6 +1761,27 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
         <translation>%1:%2</translation>
+    </message>
+</context>
+<context>
+    <name>UpdatePage</name>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation>Comprobar actualizaciones automáticamente</translation>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation>Comprobar ahora</translation>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation>La última comprobación fue el %1</translation>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation>Nunca se ha comprobado</translation>
     </message>
 </context>
 <context>

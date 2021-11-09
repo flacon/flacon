@@ -58,7 +58,7 @@ Cue::Cue(QIODevice *device, const QString &audioFile) noexcept(false)
 {
     CueData data(device);
     if (data.isEmpty()) {
-        throw CueError(QObject::tr("File contains not a valid CUE file. The CUE sheet has no FILE tag."));
+        throw CueError(QObject::tr("File contains not a valid CUE data."));
     }
 
     QFileInfo fileInfo(audioFile);

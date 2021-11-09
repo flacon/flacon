@@ -30,6 +30,11 @@
         <translation>Ιστοσελίδα: %1</translation>
     </message>
     <message>
+        <source>Bug tracker %1</source>
+        <comment>About dialog, About tab</comment>
+        <translation>Ιχνηλάτης σφαλμάτων %1</translation>
+    </message>
+    <message>
         <source>License: %1</source>
         <translation>Αδεια χρήσης: %1</translation>
     </message>
@@ -48,15 +53,6 @@
     <message>
         <source>Copyright: %1-%2 %3</source>
         <translation>Πνευματικά δικαιώματα: %1-%2 %3</translation>
-    </message>
-    <message>
-        <source>Bug tracker %1</source>
-        <comment>About dialog, About tab</comment>
-        <translation>Ιχνηλάτης σφαλμάτων %1</translation>
-    </message>
-    <message>
-        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Το Flacon έχει μεταφραστεί σε πολλές γλώσσες, χάρη στο έργο των ομάδων μετάφρασης του Flacon στο &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -88,9 +84,18 @@
         <comment>Thanks on the about page</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
+        <translation>Το Flacon έχει μεταφραστεί σε πολλές γλώσσες, χάρη στο έργο των ομάδων μετάφρασης του Flacon στο &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+    </message>
 </context>
 <context>
     <name>AddProfileDialog</name>
+    <message>
+        <source>Create a profile</source>
+        <extracomment>Add profile dialog title</extracomment>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
@@ -104,11 +109,6 @@
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Create a profile</source>
-        <extracomment>Add profile dialog title</extracomment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -252,8 +252,16 @@
         <translation>Ρυθμίσεις</translation>
     </message>
     <message>
-        <source>General configuration</source>
-        <translation>Γενική διαμόρφωση</translation>
+        <source>+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio formats</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Thread count:</source>
@@ -264,32 +272,6 @@
         <translation>Ο αριθμός των νημάτων κατά τη διαδικασία μετατροπής.</translation>
     </message>
     <message>
-        <source>Rescan</source>
-        <translation>Εκ νέου σάρωση</translation>
-    </message>
-    <message>
-        <source>Full path of the external applications</source>
-        <translation>Πλήρης διαδρομή των εξωτερικών εφαρμογών</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Γενικά</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation>Προγράμματα</translation>
-    </message>
-    <message>
-        <source>Select temporary directory</source>
-        <translation>Επιλογή προσωρινού καταλόγου</translation>
-    </message>
-    <message>
-        <source> px</source>
-        <translation>πχ</translation>
-    </message>
-    <message>
         <source>Temporary directory:</source>
         <translation>Προσωρινός κατάλογος:</translation>
     </message>
@@ -298,17 +280,34 @@
         <translation>Προεπιλεγμένη κωδικοσελίδα:</translation>
     </message>
     <message>
-        <source>Cover image</source>
-        <translation>Εικόνα εξώφυλλου</translation>
-    </message>
-    <message>
-        <source>Do not copy image</source>
-        <translation>Καμμία αντιγραφή εικόνας</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <extracomment>Preferences tab title </extracomment>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Copy cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Γενικά</translation>
+    </message>
+    <message>
+        <source>Rescan</source>
+        <translation>Εκ νέου σάρωση</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Προγράμματα</translation>
     </message>
     <message>
         <source>Automatically check for updates</source>
@@ -319,54 +318,7 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Last check was %1</source>
-        <comment>Information about last update</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Never checked</source>
-        <comment>Information about last update</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Keep original image size</source>
-        <translation> Διατήρηση αρχικού μεγέθους της εικόνας</translation>
-    </message>
-    <message>
-        <source>Resize if image size greater than</source>
-        <translation>Αλλαγή μεγέθους, αν το μέγεθος της εικόνας είναι μεγαλύτερο από</translation>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <extracomment>Config fialog tab title</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>+</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
-        <comment>Message box text</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Delete the profile</source>
-        <comment>Button caption</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1:</source>
-        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
+        <source>Update</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -437,6 +389,14 @@
         <translation>Τύπος Bitrate:</translation>
     </message>
     <message>
+        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
+&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Bitrate:</source>
         <translation>Bitrate:</translation>
     </message>
@@ -453,14 +413,6 @@ In CBR mode, it sets the specific output bitrate.
 &lt;p&gt;
 Στην CBR λειτουργία, ορίζει ένα συγκεκριμένο bitrate εξαγωγής.
 </translation>
-    </message>
-    <message>
-        <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
-
-&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>VBR - variable bitrate</source>
@@ -493,13 +445,13 @@ In CBR mode, it sets the specific output bitrate.
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>Error string, %1 is a filename, %2 error message</comment>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
+        <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>Error string, %1 is a filename, %2 error message</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -565,15 +517,83 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>Disc</name>
+    <name>CoverGroupBox</name>
     <message>
-        <source>Cue file not set.</source>
-        <translation>Το αρχείο Cue δεν έχει οριστεί.</translation>
+        <source>Keep original image size</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation> Διατήρηση αρχικού μεγέθους της εικόνας</translation>
     </message>
     <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
+        <source> px</source>
+        <translation>πχ</translation>
+    </message>
+    <message>
+        <source>Resize if image size greater than</source>
+        <comment>Cover image option on the preferences dialog</comment>
+        <translation>Αλλαγή μεγέθους, αν το μέγεθος της εικόνας είναι μεγαλύτερο από</translation>
+    </message>
+    <message>
+        <source>Form</source>
         <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>CueGroupBox</name>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File name format</source>
+        <comment>Preferences dialog edit tooltip</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Πρώτο κομμάτι pregap:</translation>
+    </message>
+    <message>
+        <source>Write to file</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed to audio files</source>
+        <comment>CUE mode combobox item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Artist&quot;</source>
+        <translation>Εισαγωγή &quot;Καλλιτέχνης&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album title&quot;</source>
+        <translation>Εισαγωγή &quot;Τίτλος άλμπουμ&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Year&quot;</source>
+        <translation>Εισαγωγή &quot;Έτος&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Genre&quot;</source>
+        <translation>Εισαγωγή &quot;Είδος&quot;</translation>
+    </message>
+    <message>
+        <source>Use &quot;%1&quot;</source>
+        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <translation>Χρήση τού &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Extract to separate file</source>
+        <translation>Εξαγωγή σε ξεχωριστό αρχείο</translation>
+    </message>
+    <message>
+        <source>Add to first track</source>
+        <translation>Προσθήκη στο πρώτο κομμάτι</translation>
+    </message>
+</context>
+<context>
+    <name>Disc</name>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
@@ -583,6 +603,10 @@ In CBR mode, it sets the specific output bitrate.
         <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>Το αρχείο Cue δεν έχει οριστεί.</translation>
     </message>
     <message>
         <source>Audio file not set.</source>
@@ -597,6 +621,10 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -622,6 +650,34 @@ This only affects the file size. All settings are lossless.</source>
     </message>
 </context>
 <context>
+    <name>GeneralPage</name>
+    <message>
+        <source>The number of threads in the conversion process.</source>
+        <translation>Ο αριθμός των νημάτων κατά τη διαδικασία μετατροπής.</translation>
+    </message>
+    <message>
+        <source>Temporary directory:</source>
+        <translation>Προσωρινός κατάλογος:</translation>
+    </message>
+    <message>
+        <source>Default codepage:</source>
+        <translation>Προεπιλεγμένη κωδικοσελίδα:</translation>
+    </message>
+    <message>
+        <source>CDDB server: </source>
+        <comment>Preferences dialog label</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Αρίθμηση νημάτων:</translation>
+    </message>
+    <message>
+        <source>Select temporary directory</source>
+        <translation>Επιλογή προσωρινού καταλόγου</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Flacon</source>
@@ -636,155 +692,17 @@ This only affects the file size. All settings are lossless.</source>
         <translation>Κατάλογος:</translation>
     </message>
     <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Μπορείτε να περιηγηθείτε στον κατάλογο προορισμού. Μπορείτε επίσης να εισάγετε χειροκίνητα.
+
+Εάν η διαδρομή είναι κενή η ξεκινά με &quot;.&quot; (dot), τα αποτελέσματα θα τοποθετούνται στον ίδιο κατάλογο με την πηγή.</translation>
+    </message>
+    <message>
         <source>Pattern:</source>
         <translation>Πρότυπο:</translation>
-    </message>
-    <message>
-        <source>Format:</source>
-        <translation>Μορφή:</translation>
-    </message>
-    <message>
-        <source>Output format</source>
-        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation>Μορφή εξόδου</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation>Ετικέτες</translation>
-    </message>
-    <message>
-        <source>Genre:</source>
-        <translation>Είδος:</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <translation>Έτος:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Καλλιτέχνης:</translation>
-    </message>
-    <message>
-        <source>Album:</source>
-        <translation>Άλμπουμ:</translation>
-    </message>
-    <message>
-        <source>Start num:</source>
-        <translation>Αριθμός έναρξης:</translation>
-    </message>
-    <message>
-        <source>Disc ID:</source>
-        <translation>Αναγνωριστικό δίσκου:</translation>
-    </message>
-    <message>
-        <source>Codepage:</source>
-        <translation>Κωδικοσελίδα:</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Αρχείο</translation>
-    </message>
-    <message>
-        <source>&amp;Settings</source>
-        <translation>&amp;Ρυθμίσεις</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Βοήθεια</translation>
-    </message>
-    <message>
-        <source>Add CUE or audio file</source>
-        <translation>Προσθήκη CUE η αρχείου ήχου</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>Convert</source>
-        <translation>Μετατροπή</translation>
-    </message>
-    <message>
-        <source>Start conversion process</source>
-        <translation>Εναρξη διαδικασίας μετατροπής</translation>
-    </message>
-    <message>
-        <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
-    </message>
-    <message>
-        <source>Abort</source>
-        <translation>Ματαίωση</translation>
-    </message>
-    <message>
-        <source>Abort conversion process</source>
-        <translation>Ματαίωση διαδικασίας μετατροπής</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>Έξοδος</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Program preferences</source>
-        <translation>Προτιμήσεις προγράμματος</translation>
-    </message>
-    <message>
-        <source>Ctrl+Del</source>
-        <translation>Ctrl+Del</translation>
-    </message>
-    <message>
-        <source>Configure encoder</source>
-        <translation>Ρύθμιση κωδικοποιητή</translation>
-    </message>
-    <message>
-        <source>Get from CDDB</source>
-        <translation>Παροχή από το CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Παροχή πληροφοριών άλμπουμ από το  CDDB</translation>
-    </message>
-    <message>
-        <source>Ctrl+I</source>
-        <translation>Ctrl+I</translation>
-    </message>
-    <message>
-        <source>Recursive album search</source>
-        <translation>Αναδρομική αναζήτηση άλμπουμ</translation>
-    </message>
-    <message>
-        <source>Some albums will not be converted, they contain errors.
-Do you want to continue?</source>
-        <translation>Κάποια άλμπουμ δεν μετατρέπονται, περιέχουν σφάλματα.
-Θέλετε να συνεχίσετε;</translation>
-    </message>
-    <message>
-        <source>%1 files</source>
-        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
-        <translation>%1 αρχεία</translation>
-    </message>
-    <message>
-        <source>All supported formats</source>
-        <comment>OpenFile dialog filter line</comment>
-        <translation>Όλες οι υποστηριζόμενες μορφές</translation>
-    </message>
-    <message>
-        <source>All files</source>
-        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
-        <translation>Όλα τα αρχεία</translation>
-    </message>
-    <message>
-        <source>Select audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Επιλογή αρχείου ήχου</translation>
-    </message>
-    <message>
-        <source>Select directory</source>
-        <translation>Επιλογή καταλόγου</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -824,44 +742,49 @@ If you surround sections of text that contain a token with braces, these section
 Αν τα περιβάλλοντα τμήματα του κειμένου περιέχουν ένα κουπόνι με τα σιδεράκια, τα τμήματα αυτά θα είναι κρυμμένα, άρα το δείγμα είναι άδειο.</translation>
     </message>
     <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Μπορείτε να περιηγηθείτε στον κατάλογο προορισμού. Μπορείτε επίσης να εισάγετε χειροκίνητα.
-
-Εάν η διαδρομή είναι κενή η ξεκινά με &quot;.&quot; (dot), τα αποτελέσματα θα τοποθετούνται στον ίδιο κατάλογο με την πηγή.</translation>
+        <source>Format:</source>
+        <translation>Μορφή:</translation>
     </message>
     <message>
-        <source>Delete current pattern from history</source>
-        <translation>Διαγραφή τού τρέχον σχεδίου από το ιστορικό</translation>
+        <source>Output format</source>
+        <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+        <translation>Μορφή εξόδου</translation>
     </message>
     <message>
-        <source>Preferences</source>
-        <translation>Ρυθμίσεις</translation>
+        <source>Tags</source>
+        <translation>Ετικέτες</translation>
     </message>
     <message>
-        <source>About Flacon</source>
-        <translation>Σχετκά με το Flacon</translation>
-    </message>
-    <message>
-        <source>Remove current directory from history</source>
+        <source>Album performer:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <comment>context menu</comment>
-        <translation>Παροχή από το CDDB</translation>
+        <source>Start num:</source>
+        <translation>Αριθμός έναρξης:</translation>
     </message>
     <message>
-        <source>Select CUE file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <source>Disc ID:</source>
+        <translation>Αναγνωριστικό δίσκου:</translation>
     </message>
     <message>
-        <source>Add CUE or audio file</source>
-        <comment>OpenFile dialog title</comment>
-        <translation>Προσθήκη CUE η αρχείου ήχου</translation>
+        <source>Genre:</source>
+        <translation>Είδος:</translation>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Καλλιτέχνης:</translation>
+    </message>
+    <message>
+        <source>Codepage:</source>
+        <translation>Κωδικοσελίδα:</translation>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Έτος:</translation>
+    </message>
+    <message>
+        <source>Album:</source>
+        <translation>Άλμπουμ:</translation>
     </message>
     <message>
         <source>Edit all tags…</source>
@@ -869,26 +792,123 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;Αρχείο</translation>
+    </message>
+    <message>
+        <source>&amp;Settings</source>
+        <translation>&amp;Ρυθμίσεις</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Βοήθεια</translation>
+    </message>
+    <message>
+        <source>Add disc…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add disc</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add CUE or audio file</source>
+        <translation>Προσθήκη CUE η αρχείου ήχου</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
+        <source>Convert</source>
+        <translation>Μετατροπή</translation>
+    </message>
+    <message>
+        <source>Start conversion process</source>
+        <translation>Εναρξη διαδικασίας μετατροπής</translation>
+    </message>
+    <message>
+        <source>Ctrl+W</source>
+        <translation>Ctrl+W</translation>
+    </message>
+    <message>
+        <source>Abort</source>
+        <translation>Ματαίωση</translation>
+    </message>
+    <message>
+        <source>Abort conversion process</source>
+        <translation>Ματαίωση διαδικασίας μετατροπής</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Έξοδος</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation>Ρυθμίσεις</translation>
+    </message>
+    <message>
+        <source>Program preferences</source>
+        <translation>Προτιμήσεις προγράμματος</translation>
+    </message>
+    <message>
+        <source>About Flacon</source>
+        <translation>Σχετκά με το Flacon</translation>
+    </message>
+    <message>
+        <source>Remove disc</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove disc from project</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+Del</source>
+        <translation>Ctrl+Del</translation>
+    </message>
+    <message>
+        <source>Configure encoder</source>
+        <translation>Ρύθμιση κωδικοποιητή</translation>
+    </message>
+    <message>
+        <source>Get from CDDB</source>
+        <translation>Παροχή από το CDDB</translation>
+    </message>
+    <message>
+        <source>Get album information from CDDB</source>
+        <translation>Παροχή πληροφοριών άλμπουμ από το  CDDB</translation>
+    </message>
+    <message>
+        <source>Ctrl+I</source>
+        <translation>Ctrl+I</translation>
+    </message>
+    <message>
+        <source>Add folder…</source>
+        <comment>Main menu item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Add folder</source>
+        <comment>Toolbar item</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Recursive album search</source>
+        <translation>Αναδρομική αναζήτηση άλμπουμ</translation>
+    </message>
+    <message>
+        <source>Ctrl+Shift+O</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Check for Updates…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Edit tags…</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select another audio file…</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select another CUE file…</source>
-        <comment>context menu</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Album performer:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -907,40 +927,61 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Remove disc</source>
+        <source>Remove current directory from history</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Remove disc from project</source>
+        <source>Delete current pattern from history</source>
+        <translation>Διαγραφή τού τρέχον σχεδίου από το ιστορικό</translation>
+    </message>
+    <message>
+        <source>Select CUE file</source>
+        <comment>OpenFile dialog title</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
+        <source>Some albums will not be converted, they contain errors.
+Do you want to continue?</source>
+        <translation>Κάποια άλμπουμ δεν μετατρέπονται, περιέχουν σφάλματα.
+Θέλετε να συνεχίσετε;</translation>
     </message>
     <message>
-        <source>Add disc…</source>
-        <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <source>%1 files</source>
+        <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+        <translation>%1 αρχεία</translation>
     </message>
     <message>
-        <source>Add disc</source>
-        <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <source>All supported formats</source>
+        <comment>OpenFile dialog filter line</comment>
+        <translation>Όλες οι υποστηριζόμενες μορφές</translation>
     </message>
     <message>
-        <source>Add folder…</source>
-        <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <source>All files</source>
+        <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+        <translation>Όλα τα αρχεία</translation>
     </message>
     <message>
-        <source>Add folder</source>
-        <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <source>Add CUE or audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Προσθήκη CUE η αρχείου ήχου</translation>
+    </message>
+    <message>
+        <source>Select audio file</source>
+        <comment>OpenFile dialog title</comment>
+        <translation>Επιλογή αρχείου ήχου</translation>
     </message>
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select directory</source>
+        <translation>Επιλογή καταλόγου</translation>
+    </message>
+    <message>
+        <source>Select another audio file…</source>
+        <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -952,6 +993,21 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit tags…</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Select another CUE file…</source>
+        <comment>context menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <comment>context menu</comment>
+        <translation>Παροχή από το CDDB</translation>
     </message>
 </context>
 <context>
@@ -1055,7 +1111,96 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
+    <name>PreferencesDialog</name>
+    <message>
+        <source>Preferences</source>
+        <comment>Preferences dialog title</comment>
+        <extracomment>Preferences dialog title</extracomment>
+        <translation>Ρυθμίσεις</translation>
+    </message>
+    <message>
+        <source> Audio profiles</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>Γενικά</translation>
+    </message>
+    <message>
+        <source>Programs</source>
+        <translation>Προγράμματα</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ProfileTabWidget</name>
+    <message>
+        <source>Audio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Result Files</source>
+        <translation>Αποτέλεσμα Αρχείων</translation>
+    </message>
+    <message>
+        <source>Directory:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Κατάλογος:</translation>
+    </message>
+    <message>
+        <source>You can browse to the destination directory. You can also input it manually.
+
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <translation>Μπορείτε να περιηγηθείτε στον κατάλογο προορισμού. Μπορείτε επίσης να εισάγετε χειροκίνητα.
+
+Εάν η διαδρομή είναι κενή η ξεκινά με &quot;.&quot; (dot), τα αποτελέσματα θα τοποθετούνται στον ίδιο κατάλογο με την πηγή.</translation>
+    </message>
+    <message>
+        <source>Pattern:</source>
+        <comment>Preferences form label text</comment>
+        <translation>Πρότυπο:</translation>
+    </message>
+    <message>
+        <source>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def  { white-space: nowrap; }
+&lt;/style&gt;
+Tokens start with %. You can use the following tokens:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <translation>&lt;style type=&quot;text/css&quot;&gt;
+.term {font-weight: bold;}
+.def { white-space: nowrap; }
+&lt;/style&gt;
+Μάρκες που ξεκινούν με %. Μπορείτε να χρησιμοποιήσετε τις ακόλουθες μάρκες:
+&lt;table&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Αριθμός κομματιού&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Συνολικός αριθμός κομματιών&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Καλλιτέχνης&lt;/td&gt;
+         &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;-Τίτλος Αλμπουμ&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Τίτλος κομματιού&lt;/td&gt;
+         &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Έτος&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;- Είδος&lt;/td&gt;
+         &lt;td class=&quot;term&quot;&gt;&lt;/td&gt;&lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br&gt;&lt;br&gt;
+Αν τα περιβάλλοντα τμήματα του κειμένου περιέχουν ένα κουπόνι με τα σιδεράκια, τα τμήματα αυτά θα είναι κρυμμένα, άρα το δείγμα είναι άδειο.</translation>
+    </message>
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
@@ -1078,8 +1223,22 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation>Υπολογισμός:</translation>
     </message>
     <message>
-        <source>Disabled</source>
-        <translation>Απενεργοποιήθηκε</translation>
+        <source>CUE and Cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Copy cover image</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
+        <comment>Tooltip on checkbox on preferences dialog</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embed cover image in output files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1087,42 +1246,9 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>File name format:</source>
-        <extracomment>Settings dialog, label for the edit control with name of the created CUE file.</extracomment>
+        <source>Same directory as CUE file</source>
+        <comment>Placeholder for output direcory combobox</comment>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Πρώτο κομμάτι pregap:</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Εισαγωγή &quot;Καλλιτέχνης&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Album title&quot;</source>
-        <translation>Εισαγωγή &quot;Τίτλος άλμπουμ&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Year&quot;</source>
-        <translation>Εισαγωγή &quot;Έτος&quot;</translation>
-    </message>
-    <message>
-        <source>Insert &quot;Genre&quot;</source>
-        <translation>Εισαγωγή &quot;Είδος&quot;</translation>
-    </message>
-    <message>
-        <source>Use &quot;%1&quot;</source>
-        <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Χρήση τού &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Extract to separate file</source>
-        <translation>Εξαγωγή σε ξεχωριστό αρχείο</translation>
-    </message>
-    <message>
-        <source>Add to first track</source>
-        <translation>Προσθήκη στο πρώτο κομμάτι</translation>
     </message>
     <message>
         <source>Same as source</source>
@@ -1190,6 +1316,14 @@ Using the album-gain analysis will preserve the volume differences within an alb
 Χρησιμοποιώντας την ανάλυση θα διατηρηθεί η διαφορά ήχου μέσα σε ένα άλμπουμ.</translation>
     </message>
     <message>
+        <source>%1 encoder settings:</source>
+        <comment>Preferences group title, %1 is a audio format name</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ProfileWidget</name>
+    <message>
         <source>Result Files</source>
         <translation>Αποτέλεσμα Αρχείων</translation>
     </message>
@@ -1250,26 +1384,69 @@ If you surround sections of text that contain a token with braces, these section
 Αν τα περιβάλλοντα τμήματα του κειμένου περιέχουν ένα κουπόνι με τα σιδεράκια, τα τμήματα αυτά θα είναι κρυμμένα, άρα το δείγμα είναι άδειο.</translation>
     </message>
     <message>
-        <source>%1 format</source>
-        <comment>Preferences dialog: format name label, %1 is a audio format name</comment>
+        <source>Resampling settings:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Same directory as CUE file</source>
-        <comment>Placeholder for output direcory combobox</comment>
+        <source>Maximum bit depth:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 encoder settings:</source>
-        <comment>Preferences group title, %1 is a audio format name</comment>
+        <source>Maximum sample rate:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ReplayGain settings:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Calculate gain:</source>
+        <translation>Υπολογισμός:</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Απενεργοποιήθηκε</translation>
+    </message>
+    <message>
+        <source>Create per track CUE sheet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File name format:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First track pregap:</source>
+        <translation>Πρώτο κομμάτι pregap:</translation>
+    </message>
+</context>
+<context>
+    <name>ProfilesPage</name>
+    <message>
+        <source>+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>-</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+        <comment>Message box text</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Delete the profile</source>
+        <comment>Button caption</comment>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ProgramEdit</name>
     <message>
-        <source>Select program file</source>
-        <translation>Επιλογή αρχείου προγράμματος</translation>
+        <source>%1 program</source>
+        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <translation>%1  προγράμμα</translation>
     </message>
     <message>
         <source>All files</source>
@@ -1277,9 +1454,20 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Όλα τα αρχεία</translation>
     </message>
     <message>
-        <source>%1 program</source>
-        <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
-        <translation>%1  προγράμμα</translation>
+        <source>Select program file</source>
+        <translation>Επιλογή αρχείου προγράμματος</translation>
+    </message>
+</context>
+<context>
+    <name>ProgramsPage</name>
+    <message>
+        <source>Rescan</source>
+        <translation>Εκ νέου σάρωση</translation>
+    </message>
+    <message>
+        <source>%1:</source>
+        <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1287,28 +1475,6 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>Αδυναμία έυρεσης τού προγράμματος &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>Flacon</source>
-        <comment>Error</comment>
-        <translation>Flacon</translation>
-    </message>
-    <message>
-        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Το αρχείο &lt;b&gt;&quot;%1&quot;&lt;/b&gt; δεν υπάρχει</translation>
-    </message>
-    <message>
-        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
-        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>δεν μπορείτε να χρησιμοποιήσετε το &quot;ReplayGain&quot; για αρχεία με ποσοστά δείγματος πάνω από 48kHz. Το Metaflac δεν υποστηρίζει τέτοιου είδους αρχεία.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Αδυναμία δημιουργίας τού καταλόγου &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Αδυναμία εγγραφής τού καταλόγου &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1320,12 +1486,33 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Αδυναμία ανάγνωσης εικόνας εξωφύλλου &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
-        <source>Multiple values</source>
-        <translation>Πολλαπλές τιμές</translation>
+        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
+        <comment>%1 - is file name, %2 - an error text</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t create directory &quot;%1&quot;.</source>
+        <translation>Αδυναμία δημιουργίας τού καταλόγου &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>I can&apos;t write to directory &quot;%1&quot;.</source>
+        <translation>Αδυναμία εγγραφής τού καταλόγου &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+        <translation>Το αρχείο &lt;b&gt;&quot;%1&quot;&lt;/b&gt; δεν υπάρχει</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1338,13 +1525,18 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
+        <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <translation>δεν μπορείτε να χρησιμοποιήσετε το &quot;ReplayGain&quot; για αρχεία με ποσοστά δείγματος πάνω από 48kHz. Το Metaflac δεν υποστηρίζει τέτοιου είδους αρχεία.</translation>
     </message>
     <message>
-        <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <comment>%1 - is file name, %2 - an error text</comment>
-        <translation type="unfinished"/>
+        <source>Multiple values</source>
+        <translation>Πολλαπλές τιμές</translation>
+    </message>
+    <message>
+        <source>Flacon</source>
+        <comment>Error</comment>
+        <translation>Flacon</translation>
     </message>
     <message>
         <source>The audio file name is not set.</source>
@@ -1352,6 +1544,14 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>The audio file does not exist.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File contains not a valid CUE data.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1363,13 +1563,14 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>of</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
         <translation>Καλλιτέχνης:</translation>
+    </message>
+    <message>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Album:</source>
@@ -1387,6 +1588,16 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Έτος:</translation>
     </message>
     <message>
+        <source>Start track number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disc number:</source>
+        <comment>Music tag name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
         <translation type="unfinished"/>
@@ -1397,42 +1608,23 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Start track number:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disc number:</source>
-        <comment>Music tag name</comment>
+        <source>of</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TrackView</name>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Παροχή από το CDDB</translation>
-    </message>
-    <message>
         <source>Select another CUE file…</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from CDDB</source>
+        <translation>Παροχή από το CDDB</translation>
     </message>
 </context>
 <context>
     <name>TrackViewDelegate</name>
-    <message>
-        <source>Tracks:</source>
-        <translation>Κομμάτια:</translation>
-    </message>
-    <message>
-        <source>Audio:</source>
-        <translation>Ήχος:</translation>
-    </message>
     <message>
         <source>Error</source>
         <comment>Status of the track conversion.</comment>
@@ -1469,22 +1661,30 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Writing gain</source>
-        <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
+        <source>Writing gain</source>
+        <comment>Status of the track conversion.</comment>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Tracks:</source>
+        <translation>Κομμάτια:</translation>
+    </message>
+    <message>
+        <source>Audio:</source>
+        <translation>Ήχος:</translation>
     </message>
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1494,6 +1694,11 @@ If you surround sections of text that contain a token with braces, these section
         <source>Track</source>
         <comment>Table header.</comment>
         <translation>Κομμάτι</translation>
+    </message>
+    <message>
+        <source>Length</source>
+        <comment>Table header.</comment>
+        <translation>Μήκος</translation>
     </message>
     <message>
         <source>Title</source>
@@ -1525,11 +1730,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Πολλαπλές τιμές</translation>
     </message>
     <message>
-        <source>Length</source>
-        <comment>Table header.</comment>
-        <translation>Μήκος</translation>
-    </message>
-    <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
         <translation>%1:%2:%3</translation>
@@ -1538,6 +1738,27 @@ If you surround sections of text that contain a token with braces, these section
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
         <translation>%1:%2</translation>
+    </message>
+</context>
+<context>
+    <name>UpdatePage</name>
+    <message>
+        <source>Automatically check for updates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last check was %1</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never checked</source>
+        <comment>Information about last update</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
