@@ -3,7 +3,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About Flacon</source>
-        <translation>אודות פלאקון</translation>
+        <translation>על אודות פלאקון</translation>
     </message>
     <message>
         <source>About</source>
@@ -286,16 +286,16 @@
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>העתקת תמונת עטיפה</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
+        <translation>אם המבנה נתמך, תמונת העטיפה תתווסף לנתוני העל עבור כל קבצי הפלט.</translation>
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>שיבוץ תמונת עטיפה בקובץ הפלט</translation>
     </message>
     <message>
         <source>General</source>
@@ -557,7 +557,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>טופס</translation>
     </message>
 </context>
 <context>
@@ -569,7 +569,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
-        <translation type="unfinished"/>
+        <translation>תבנית שם קובץ</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -578,12 +578,12 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>כתיבה לקובץ</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>שיבוץ בקבצי שמע</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -1146,7 +1146,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source> Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation>פרופילי שמע</translation>
     </message>
     <message>
         <source>General</source>
@@ -1165,7 +1165,7 @@ Do you want to continue?</source>
     <name>ProfileTabWidget</name>
     <message>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>שמע</translation>
     </message>
     <message>
         <source>Result Files</source>
@@ -1254,20 +1254,20 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
-        <translation type="unfinished"/>
+        <translation>CUE ותמונת עטיפה</translation>
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>העתקת תמונת עטיפה</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
+        <translation>אם המבנה נתמך, תמונת העטיפה תתווסף לנתוני העל עבור כל קבצי הפלט.</translation>
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>שיבוץ תמונת עטיפה בקבצי הפלט</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1534,7 +1534,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Embedded on %1</source>
-        <translation type="unfinished"/>
+        <translation>שיבוץ ב־%1</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1578,11 +1578,11 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן לכתוב CUE:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
-        <translation type="unfinished"/>
+        <translation>הקובץ מכיל נתוני CUE לא תקינים</translation>
     </message>
 </context>
 <context>

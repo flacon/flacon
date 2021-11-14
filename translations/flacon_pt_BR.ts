@@ -558,7 +558,7 @@ No modo CBR, define a taxa de bits de saída específica.
     </message>
     <message>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formato</translation>
     </message>
 </context>
 <context>
@@ -1572,11 +1572,11 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
-        <translation type="unfinished"/>
+        <translation>Não é possível gravar CUE:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
-        <translation type="unfinished"/>
+        <translation>O arquivo não possui dados CUE válidos.</translation>
     </message>
 </context>
 <context>

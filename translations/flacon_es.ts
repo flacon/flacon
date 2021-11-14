@@ -1143,7 +1143,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source> Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation>Pefiles de audio</translation>
     </message>
     <message>
         <source>General</source>
