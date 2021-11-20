@@ -74,7 +74,9 @@ MainWindow::MainWindow(QWidget *parent) :
     qApp->setWindowIcon(loadMainIcon());
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolBar->setIconSize(QSize(24, 24));
+#ifdef Q_OS_MAC
     qApp->setAttribute(Qt::AA_DontShowIconsInMenus, true);
+#endif
     qApp->setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
 #ifdef Q_OS_MAC
@@ -90,7 +92,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setContextMenuPolicy(Qt::NoContextMenu);
 
     outPatternButton->setToolTip(outPatternEdit->toolTip());
+    outPatternButton->setIcon(QIcon::fromTheme("overflow-menu"));
     outDirButton->setToolTip(outDirEdit->toolTip());
+    outDirButton->setIcon(QIcon::fromTheme("overflow-menu"));
 
     // TrackView ...............................................
     trackView->setRootIsDecorated(false);
@@ -1009,34 +1013,35 @@ void MainWindow::setStartTrackNum()
  ************************************************/
 void MainWindow::initActions()
 {
-    actionAddDisc->setIcon(Icon("add-disk"));
+    actionAddDisc->setIcon(QIcon::fromTheme("media-optical-audio"));
     connect(actionAddDisc, &QAction::triggered, this, &MainWindow::openAddFileDialog);
 
-    actionRemoveDisc->setIcon(Icon("remove-disk"));
+    actionRemoveDisc->setIcon(QIcon::fromTheme("edit-delete"));
     connect(actionRemoveDisc, &QAction::triggered, this, &MainWindow::removeDiscs);
 
-    actionAddFolder->setIcon(Icon("scan"));
+    actionAddFolder->setIcon(QIcon::fromTheme("folder-add"));
     connect(actionAddFolder, &QAction::triggered, this, &MainWindow::openScanDialog);
 
-    actionDownloadTrackInfo->setIcon(Icon("download-info"));
+    actionDownloadTrackInfo->setIcon(QIcon::fromTheme("download"));
     connect(actionDownloadTrackInfo, &QAction::triggered, this, &MainWindow::downloadInfo);
 
-    actionStartConvert->setIcon(Icon("start-convert"));
+    actionStartConvert->setIcon(QIcon::fromTheme("media-playback-start"));
     connect(actionStartConvert, &QAction::triggered, this, &MainWindow::startConvertAll);
 
-    actionStartConvertSelected->setIcon(Icon("start-convert"));
+    actionStartConvertSelected->setIcon(QIcon::fromTheme("media-playback-start"));
     connect(actionStartConvertSelected, &QAction::triggered, this, &MainWindow::startConvertSelected);
 
-    actionAbortConvert->setIcon(Icon("abort-convert"));
+    actionAbortConvert->setIcon(QIcon::fromTheme("process-stop"));
     connect(actionAbortConvert, &QAction::triggered, this, &MainWindow::stopConvert);
 
-    actionConfigure->setIcon(Icon("configure"));
+    actionConfigure->setIcon(QIcon::fromTheme("configure"));
     connect(actionConfigure, &QAction::triggered, this, &MainWindow::configure);
     actionConfigure->setMenuRole(QAction::PreferencesRole);
 
     actionConfigureEncoder->setIcon(actionConfigure->icon());
     connect(actionConfigureEncoder, &QAction::triggered, this, &MainWindow::configureEncoder);
 
+    actionAbout->setIcon(QIcon::fromTheme("help-about"));
     connect(actionAbout, &QAction::triggered, this, &MainWindow::openAboutDialog);
     actionAbout->setMenuRole(QAction::AboutRole);
 
