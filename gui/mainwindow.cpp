@@ -1045,6 +1045,8 @@ void MainWindow::initActions()
     connect(actionAbout, &QAction::triggered, this, &MainWindow::openAboutDialog);
     actionAbout->setMenuRole(QAction::AboutRole);
 
+    actionExit->setIcon(QIcon::fromTheme("application-exit"));
+
     Controls::arangeTollBarButtonsWidth(toolBar);
 
 #ifdef MAC_UPDATER
