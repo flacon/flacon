@@ -15,6 +15,6 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 # Translations
 Comment[fr]=Extrait les plages audio d’une image de CD audio en des plages séparées.
-GenericName[fr]=Encodeur de fichiers audio
+GenericName[fr]=Encodeur de fichiers son
 Name[fr]=Flacon
 Icon[fr]=flacon

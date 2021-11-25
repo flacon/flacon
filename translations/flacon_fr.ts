@@ -286,16 +286,16 @@
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>Copier l’image de couverture</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
+        <translation>Si le format est pris en charge, la couverture sera ajoutée aux métadonnées de tous les fichiers de sortie.</translation>
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>Intégrer l’image de couverture aux fichiers de sortie</translation>
     </message>
     <message>
         <source>General</source>
@@ -382,7 +382,7 @@
 &lt;dd&gt;En utilisant un Débit Binaire Variable standard, cette présélection devrait généralement être transparente pour la plupart des personnes, pour la plupart des musiques et donne déjà des résultats de haute qualité.&lt;/dd&gt;
 
 &lt;dt&gt;DBV extrême&lt;/dt&gt;
-&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, cette présélection offre une qualité légèrement supérieure au mode standard si vous avec une très bonne ouïe et un équipement audio haut de gamme.&lt;/dd&gt;
+&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, cette présélection offre une qualité légèrement supérieure au mode standard si vous avec une très bonne ouïe et un matériel audio haut de gamme.&lt;/dd&gt;
 
 &lt;dt&gt;DBV qualité&lt;/dt&gt;
 &lt;dd&gt;Cette option à Débit Binaire Variable vous permet de choisir la qualité de sortie.&lt;/dd&gt;
@@ -569,7 +569,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
-        <translation type="unfinished"/>
+        <translation>Format du nom de fichier</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -578,12 +578,12 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>Écrire dans le fichier</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>Intégrer aux fichiers son</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -838,7 +838,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Ajoute un fichier CUE ou audio</translation>
+        <translation>Ajoute un fichier CUE ou un fichier son</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -986,7 +986,7 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation>Ajoute un fichier CUE ou audio</translation>
+        <translation>Ajoute un fichier CUE ou un fichier son</translation>
     </message>
     <message>
         <source>Select audio file</source>
@@ -1143,7 +1143,7 @@ Voulez-vous continuer ?</translation>
     </message>
     <message>
         <source> Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation>Profils son</translation>
     </message>
     <message>
         <source>General</source>
@@ -1162,7 +1162,7 @@ Voulez-vous continuer ?</translation>
     <name>ProfileTabWidget</name>
     <message>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Son</translation>
     </message>
     <message>
         <source>Result Files</source>
@@ -1248,20 +1248,20 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
-        <translation type="unfinished"/>
+        <translation>CUE et image de couverture</translation>
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>Copier l’image de couverture</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
+        <translation>Si le format est pris en charge, la couverture sera ajoutée aux métadonnées pour tous les fichiers de sortie.</translation>
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>Intégrer l’image de couverture aux fichiers de sortie</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1527,7 +1527,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     </message>
     <message>
         <source>Embedded on %1</source>
-        <translation type="unfinished"/>
+        <translation>Intégré à %1</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1571,11 +1571,11 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
-        <translation type="unfinished"/>
+        <translation>Je ne peux pas écrire le fichier CUE : &lt;br&gt;%1</translation>
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
-        <translation type="unfinished"/>
+        <translation>Le fichier comprend des données CUE invalides.</translation>
     </message>
 </context>
 <context>

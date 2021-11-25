@@ -286,16 +286,16 @@
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>Copiar imagen de portada</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
+        <translation>Si el formato es compatible, la portada será añadida a la meta-información de todos los archivos de salida.</translation>
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>Incrustar la imagen de portada en los archivos de salida</translation>
     </message>
     <message>
         <source>General</source>
@@ -303,7 +303,7 @@
     </message>
     <message>
         <source>Rescan</source>
-        <translation>Volver a explorar:</translation>
+        <translation>Volver a explorar</translation>
     </message>
     <message>
         <source>Programs</source>
@@ -569,21 +569,21 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     <message>
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
-        <translation type="unfinished"/>
+        <translation>Formato de nombre de archivo</translation>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Pista pregap:</translation>
+        <translation>Primera pista pregap:</translation>
     </message>
     <message>
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>Escribir al archivo</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>Incrustar en archivos de audio</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -1162,7 +1162,7 @@ Do you want to continue?</source>
     <name>ProfileTabWidget</name>
     <message>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio</translation>
     </message>
     <message>
         <source>Result Files</source>
@@ -1248,20 +1248,20 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
     <message>
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
-        <translation type="unfinished"/>
+        <translation>Cue e imagen de Portada</translation>
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>Copiar imagen de portada</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
+        <translation>Si el formato está soportado, la portada será añadida a la meta-información para todos los archivos de salida.</translation>
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>Incrustar la imagen de portada en los archivos de salida</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1527,7 +1527,7 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
     </message>
     <message>
         <source>Embedded on %1</source>
-        <translation type="unfinished"/>
+        <translation>Incrustado en %1</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1571,11 +1571,11 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
-        <translation type="unfinished"/>
+        <translation>No puedo escribir el CUE:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
-        <translation type="unfinished"/>
+        <translation>El archivo no contiene datos CUE válidos.</translation>
     </message>
 </context>
 <context>
