@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_BR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -246,83 +246,6 @@
     </message>
 </context>
 <context>
-    <name>ConfigDialog</name>
-    <message>
-        <source>Preferences</source>
-        <translation>Configurações</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation>+</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation>-</translation>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <translation>Formatos de áudio</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Contagem de linhas de execução:</translation>
-    </message>
-    <message>
-        <source>The number of threads in the conversion process.</source>
-        <translation>O número de linhas de execução no processo de conversão.</translation>
-    </message>
-    <message>
-        <source>Temporary directory:</source>
-        <translation>Diretório temporário:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Codificação padrão:</translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>Servidor do CDDB:</translation>
-    </message>
-    <message>
-        <source>Copy cover image</source>
-        <translation>Copiar a imagem da capa</translation>
-    </message>
-    <message>
-        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
-        <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation>Se o formato for suportado, a capa será adicionada à meta informação para todos os arquivos de saída.</translation>
-    </message>
-    <message>
-        <source>Embed cover image in output files</source>
-        <translation>Inserir a imagem da capa nos arquivos de saída</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Geral</translation>
-    </message>
-    <message>
-        <source>Rescan</source>
-        <translation>Analisar novamente</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <translation>Programas</translation>
-    </message>
-    <message>
-        <source>Automatically check for updates</source>
-        <translation>Verificar atualizações automaticamente</translation>
-    </message>
-    <message>
-        <source>Check now</source>
-        <translation>Verificar agora</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <translation>Atualização</translation>
-    </message>
-</context>
-<context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>VBR medium</source>
@@ -555,10 +478,6 @@ No modo CBR, define a taxa de bits de saída específica.
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
         <translation>Diminuir se o tamanho da imagem for maior que</translation>
-    </message>
-    <message>
-        <source>Form</source>
-        <translation>Formato</translation>
     </message>
 </context>
 <context>
@@ -1346,105 +1265,6 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
-    <message>
-        <source>Result Files</source>
-        <translation>Arquivos finais</translation>
-    </message>
-    <message>
-        <source>Directory:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Diretório:</translation>
-    </message>
-    <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Você pode navegar pelo diretório de destino. Você também pode digitá-lo manualmente. 
-
-Se o caminho for deixado em branco ou iniciar com &quot;.&quot; (ponto), os arquivos resultantes serão colocados no mesmo diretório que a fonte.</translation>
-    </message>
-    <message>
-        <source>Pattern:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Padrão:</translation>
-    </message>
-    <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Os Tokens são iniciados com %. Você pode usar os seguintes tokens: 
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número de faixa  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Número total de faixas&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artista&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título do álbum&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Título da faixa&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Ano&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Gênero&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-Se você estiver entre seções que possuam um token com colchetes, estas seções serão ocultadas caso o token esteja vazio.</translation>
-    </message>
-    <message>
-        <source>Resampling settings:</source>
-        <translation>Configurações de reamostragem:</translation>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation>Profundidade de bits máxima:</translation>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation>Taxa de amostra máxima:</translation>
-    </message>
-    <message>
-        <source>ReplayGain settings:</source>
-        <translation>Configurações do ReplayGain:</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Calcular ganho:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Desabilitado</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation>Criar arquivo CUE por faixa</translation>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <translation>Formato do nome do arquivo:</translation>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Intervalo anterior à primeira faixa:</translation>
-    </message>
-</context>
-<context>
     <name>ProfilesPage</name>
     <message>
         <source>+</source>
@@ -1527,10 +1347,6 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>Não foi possível gravar no diretório &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Embedded on %1</source>
-        <translation>Inserido em %1</translation>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; não é um arquivo CUE válido. O arquivo CUE não possui a etiqueta FILE.</translation>
     </message>
@@ -1577,6 +1393,11 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
     <message>
         <source>File contains not a valid CUE data.</source>
         <translation>O arquivo não possui dados CUE válidos.</translation>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <translation>Inserido em %1</translation>
     </message>
 </context>
 <context>

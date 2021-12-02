@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hu">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -246,83 +246,6 @@
     </message>
 </context>
 <context>
-    <name>ConfigDialog</name>
-    <message>
-        <source>Preferences</source>
-        <translation>Beállítások</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Szálnak száma:</translation>
-    </message>
-    <message>
-        <source>The number of threads in the conversion process.</source>
-        <translation>A szálak száma a konvertálási folyamatban.</translation>
-    </message>
-    <message>
-        <source>Temporary directory:</source>
-        <translation>Ideiglenes könyvtár:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Alapértelmezett kódlap:</translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Copy cover image</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
-        <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>General</translation>
-    </message>
-    <message>
-        <source>Rescan</source>
-        <translation>Frissít</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <translation>Programok</translation>
-    </message>
-    <message>
-        <source>Automatically check for updates</source>
-        <translation>Frissítések automatikus ellenőrzése</translation>
-    </message>
-    <message>
-        <source>Check now</source>
-        <translation>Ellenőrzés most</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <translation>Frissítés</translation>
-    </message>
-</context>
-<context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>VBR medium</source>
@@ -532,10 +455,6 @@ CBR módban beállítja az adott kimeneti bitrátát.
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
         <translation>Átméretezés, ha a képfájl mérete nagyobb, mint</translation>
-    </message>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1323,105 +1242,6 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
-    <message>
-        <source>Result Files</source>
-        <translation>Fájleredmények</translation>
-    </message>
-    <message>
-        <source>Directory:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Mappa:</translation>
-    </message>
-    <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Böngészni tudsz a célkönyvtárba. Manuálisan is beírhatod
-
-Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredményfájlok ugyanabba a könyvtárba kerülnek, mint a forrás.</translation>
-    </message>
-    <message>
-        <source>Pattern:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Minta:</translation>
-    </message>
-    <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-A token-ek %.jellel kezdődnek. A következő tokeneket használhatod:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Sáv száma  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Sávok teljes száma&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Előadó&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album címe&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Sáv címe&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Év&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Műfaj&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, ha a token üres.</translation>
-    </message>
-    <message>
-        <source>Resampling settings:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation>Maximális bitráta:</translation>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation>Maximális mintaérték:</translation>
-    </message>
-    <message>
-        <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Erősítés számolása:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Letiltva</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation>CUE mező létrehozása sávonként</translation>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <translation>Fájlnév formátuma:</translation>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Első pregap sáv:</translation>
-    </message>
-</context>
-<context>
     <name>ProfilesPage</name>
     <message>
         <source>+</source>
@@ -1504,10 +1324,6 @@ Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, h
         <translation>&quot;%1&quot; könyvtárba nem lehet írni.</translation>
     </message>
     <message>
-        <source>Embedded on %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; nem egy valódi cue-fájl. A cue mező nem tartalmaz FÁJL címkét.</translation>
     </message>
@@ -1553,6 +1369,11 @@ Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, h
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <translation type="unfinished"/>
     </message>
 </context>

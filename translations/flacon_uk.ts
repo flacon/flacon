@@ -246,83 +246,6 @@
     </message>
 </context>
 <context>
-    <name>ConfigDialog</name>
-    <message>
-        <source>Preferences</source>
-        <translation>Налаштування</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation>+</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation>-</translation>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <translation>Формати авдіо</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Кількість потоків:</translation>
-    </message>
-    <message>
-        <source>The number of threads in the conversion process.</source>
-        <translation>Кількість потоків під час перетворення.</translation>
-    </message>
-    <message>
-        <source>Temporary directory:</source>
-        <translation>Тимчасова тека:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Типове кодування:</translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>CDDB сервер: </translation>
-    </message>
-    <message>
-        <source>Copy cover image</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
-        <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Загальне</translation>
-    </message>
-    <message>
-        <source>Rescan</source>
-        <translation>Пересканувати</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <translation>Програми</translation>
-    </message>
-    <message>
-        <source>Automatically check for updates</source>
-        <translation>Перевіряти автоматично</translation>
-    </message>
-    <message>
-        <source>Check now</source>
-        <translation>Перевірити</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <translation>Оновлення</translation>
-    </message>
-</context>
-<context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>VBR medium</source>
@@ -555,10 +478,6 @@ In CBR mode, it sets the specific output bitrate.
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
         <translation>Змінити розмір, якщо картинка більша ніж</translation>
-    </message>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1346,105 +1265,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
-    <message>
-        <source>Result Files</source>
-        <translation>Файли результату</translation>
-    </message>
-    <message>
-        <source>Directory:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Тека:</translation>
-    </message>
-    <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Ви можете вибрати директорію для вихідних файлів, або вказати її руками.
- 
-Якщо залишити поле порожнім, або вказати &quot;.&quot; (крапку), то файли результатів будуть створюватися у тій самій директорії, що й сирці. </translation>
-    </message>
-    <message>
-        <source>Pattern:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Шаблон:</translation>
-    </message>
-    <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Поля починаються зі знаку %. Ви можете використовувати такі поля:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Номер доріжки  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Кількість доріжок&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Виконавець&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Назва альбому&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Назва доріжки&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Рік&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Жанр&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-Якщо Ви оточили частину тексту фігурними дужками, то цієї частини не буде видко, якщо значення полів будуть порожніми.</translation>
-    </message>
-    <message>
-        <source>Resampling settings:</source>
-        <translation>Налаштування передискретизації:</translation>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation>Щонайбільший бітрейт:</translation>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation>Найб. частота дискретизації:</translation>
-    </message>
-    <message>
-        <source>ReplayGain settings:</source>
-        <translation>Налаштування вирівнювання гучности:</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Розрахунок гучности:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Вимкнено</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation>Создавать подоріжковий CUE</translation>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <translation>Формат ім&apos;я файлу:</translation>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Прегап першої доріжки:</translation>
-    </message>
-</context>
-<context>
     <name>ProfilesPage</name>
     <message>
         <source>+</source>
@@ -1527,10 +1347,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Не виходить писати в директорію &quot;%1&quot;.</translation>
     </message>
     <message>
-        <source>Embedded on %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; не є правильним CUE файлом. Він не містить теґу FILE.</translation>
     </message>
@@ -1576,6 +1392,11 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <translation type="unfinished"/>
     </message>
 </context>

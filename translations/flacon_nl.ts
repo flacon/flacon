@@ -246,83 +246,6 @@
     </message>
 </context>
 <context>
-    <name>ConfigDialog</name>
-    <message>
-        <source>Preferences</source>
-        <translation>Voorkeuren</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Aantal draden:</translation>
-    </message>
-    <message>
-        <source>The number of threads in the conversion process.</source>
-        <translation>Het aantal draden in het conversieproces.</translation>
-    </message>
-    <message>
-        <source>Temporary directory:</source>
-        <translation>Tijdelijke map:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Standaardcodetabel:</translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Copy cover image</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
-        <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Algemeen</translation>
-    </message>
-    <message>
-        <source>Rescan</source>
-        <translation>Opnieuw scannen</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <translation>Programma’s</translation>
-    </message>
-    <message>
-        <source>Automatically check for updates</source>
-        <translation>Automatisch controleren op updates</translation>
-    </message>
-    <message>
-        <source>Check now</source>
-        <translation>Nu controleren</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <translation>Bijwerken</translation>
-    </message>
-</context>
-<context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>VBR medium</source>
@@ -531,10 +454,6 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
         <translation>Schalen indien afbeelding groter is dan</translation>
-    </message>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1322,105 +1241,6 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
-    <message>
-        <source>Result Files</source>
-        <translation>Resultaatbestanden</translation>
-    </message>
-    <message>
-        <source>Directory:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Map:</translation>
-    </message>
-    <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>U kan naar de doelmap bladeren of ze manueel ingeven.
-
-Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
-    </message>
-    <message>
-        <source>Pattern:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Patroon:</translation>
-    </message>
-    <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens beginnen met %. U kan volgende tokens gebruiken:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tracknummer&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Aantal nummers&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artiest&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumtitel&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Nummertitel&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Jaar&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-Als u delen van tekst die een token bevatten met accolades omsluit zullen deze delen worden verborgen als het token leeg is.</translation>
-    </message>
-    <message>
-        <source>Resampling settings:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation>Maximale bitdiepte:</translation>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation>Maximale bemonsteringsfrequentie:</translation>
-    </message>
-    <message>
-        <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Geluidssterkte berekenen:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Uitgeschakeld</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation>Cueblad aanmaken per nummer</translation>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <translation>Bestandsnaamformaat:</translation>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Pregap voor eerste nummer:</translation>
-    </message>
-</context>
-<context>
     <name>ProfilesPage</name>
     <message>
         <source>+</source>
@@ -1503,10 +1323,6 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
         <translation>Ik kan niet naar de map ‘%1’ schrijven.</translation>
     </message>
     <message>
-        <source>Embedded on %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Het cueblad heeft geen FILE-tag.</translation>
     </message>
@@ -1552,6 +1368,11 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <translation type="unfinished"/>
     </message>
 </context>

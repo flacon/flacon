@@ -246,83 +246,6 @@
     </message>
 </context>
 <context>
-    <name>ConfigDialog</name>
-    <message>
-        <source>Preferences</source>
-        <translation>העדפות</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation>+</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation>-</translation>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <translation>תבניות שמע</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>מונה שרשורים:</translation>
-    </message>
-    <message>
-        <source>The number of threads in the conversion process.</source>
-        <translation>מספר השרשורים בתהליך ההמרה.</translation>
-    </message>
-    <message>
-        <source>Temporary directory:</source>
-        <translation>ספריה זמנית:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>קידוד ברירת מחדל</translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>שרת CDDB:</translation>
-    </message>
-    <message>
-        <source>Copy cover image</source>
-        <translation>העתקת תמונת עטיפה</translation>
-    </message>
-    <message>
-        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
-        <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation>אם המבנה נתמך, תמונת העטיפה תתווסף לנתוני העל עבור כל קבצי הפלט.</translation>
-    </message>
-    <message>
-        <source>Embed cover image in output files</source>
-        <translation>שיבוץ תמונת עטיפה בקובץ הפלט</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>כללי</translation>
-    </message>
-    <message>
-        <source>Rescan</source>
-        <translation>סריקה חוזרת</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <translation>תכניות</translation>
-    </message>
-    <message>
-        <source>Automatically check for updates</source>
-        <translation>בדיקת עדכון אוטומטית</translation>
-    </message>
-    <message>
-        <source>Check now</source>
-        <translation>לבדוק כעת</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <translation>עדכון</translation>
-    </message>
-</context>
-<context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>VBR medium</source>
@@ -554,10 +477,6 @@ In CBR mode, it sets the specific output bitrate.
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
         <translation>שינוי גודל כאשר התמונה גדולה מ</translation>
-    </message>
-    <message>
-        <source>Form</source>
-        <translation>טופס</translation>
     </message>
 </context>
 <context>
@@ -1349,108 +1268,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
-    <message>
-        <source>Result Files</source>
-        <translation>תוצאות קבצים</translation>
-    </message>
-    <message>
-        <source>Directory:</source>
-        <comment>Preferences form label text</comment>
-        <translation>ספריה:</translation>
-    </message>
-    <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>ניתן לעיין בספריית היעד, או להזין את הנתיב לספריה באופן ידני.
-
-אם שדה הנתיב ישאר ריק או מתחיל ב &quot;.&quot; (נקודה), קבצי התוצאוה יוצבו בספריית המקור.</translation>
-    </message>
-    <message>
-        <source>Pattern:</source>
-        <comment>Preferences form label text</comment>
-        <translation>נתיב:</translation>
-    </message>
-    <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;he&quot;&gt;
-&lt;body dir=&quot;rtl&quot;&gt;
-&lt;style type=&quot;text/css&quot;&gt;
- .term {font-weight: bold;}
- .def { white-space: nowrap; }
-&lt;/style&gt;
-תגים המתחילים ב %. ניתן להשתמש בתגים הבאים:
-&lt;table dir=&quot;rtl&quot;&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - מספר רצועה &lt;/td&gt;
- &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - סך כל רצועות&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - אמן&lt;/td&gt;
- &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - אלבום&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - שם רצועה&lt;/td&gt;
- &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - שנה&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - סוגה
- &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-עטיפת קטעי טקסט המכילים תגים עם תגיות, תסתיר את הקטעים אם התגים ריקים.</translation>
-    </message>
-    <message>
-        <source>Resampling settings:</source>
-        <translation>הגדרות דגימה:</translation>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation>עומק סיביות מירבי:</translation>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation>קצב דגימה מירבי:</translation>
-    </message>
-    <message>
-        <source>ReplayGain settings:</source>
-        <translation>הגדרות ריפלאיגאיין:</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>מחשב מרווח:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>מושבת</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation>יצירת גליון cue לכל רצועה</translation>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <translation>תבנית שם קובץ:</translation>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>מרווח מקדים ברצועה ראשונה:</translation>
-    </message>
-</context>
-<context>
     <name>ProfilesPage</name>
     <message>
         <source>+</source>
@@ -1533,10 +1350,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>לא ניתן לכתוב לספריה &quot;%1&quot;.</translation>
     </message>
     <message>
-        <source>Embedded on %1</source>
-        <translation>שיבוץ ב־%1</translation>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; אינו קובץ cue תקין. גליון ה cue אינו מכיל תג קובץ.</translation>
     </message>
@@ -1583,6 +1396,11 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>File contains not a valid CUE data.</source>
         <translation>הקובץ מכיל נתוני CUE לא תקינים</translation>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <translation>שיבוץ ב־%1</translation>
     </message>
 </context>
 <context>

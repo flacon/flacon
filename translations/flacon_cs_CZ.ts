@@ -246,83 +246,6 @@
     </message>
 </context>
 <context>
-    <name>ConfigDialog</name>
-    <message>
-        <source>Preferences</source>
-        <translation>Nastavení</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>-</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Počet vláken:</translation>
-    </message>
-    <message>
-        <source>The number of threads in the conversion process.</source>
-        <translation>Počet vláken při převodu.</translation>
-    </message>
-    <message>
-        <source>Temporary directory:</source>
-        <translation>Adresář s dočasnými soubory:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Výchozí kódová stránka:</translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Copy cover image</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
-        <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Obecné</translation>
-    </message>
-    <message>
-        <source>Rescan</source>
-        <translation>Prohledat znovu</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <translation>Programy</translation>
-    </message>
-    <message>
-        <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Check now</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Update</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>VBR medium</source>
@@ -527,10 +450,6 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     <message>
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Form</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1319,105 +1238,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
-    <message>
-        <source>Result Files</source>
-        <translation>Výsledné soubory</translation>
-    </message>
-    <message>
-        <source>Directory:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Adresář:</translation>
-    </message>
-    <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Můžete procházet adresáři do cílového adresáře. Také jej můžete zadat ručně.
-
-Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výsledné soubory budou umístěny ve stejném adresáři jako zdroj.</translation>
-    </message>
-    <message>
-        <source>Pattern:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Vzor:</translation>
-    </message>
-    <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Symboly začínají %. Můžete použít následující symboly:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Číslo skladby  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Celkový počet skladeb&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Umělec&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název alba&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název skladby&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Rok&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Žánr&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
-    </message>
-    <message>
-        <source>Resampling settings:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Spočítat zesílení:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Zakázáno</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Předmezera před první skladbou:</translation>
-    </message>
-</context>
-<context>
     <name>ProfilesPage</name>
     <message>
         <source>+</source>
@@ -1500,10 +1320,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Nelze zapisovat do adresáře &quot;%1&quot;.</translation>
     </message>
     <message>
-        <source>Embedded on %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
         <translation type="unfinished"/>
     </message>
@@ -1549,6 +1365,11 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <translation type="unfinished"/>
     </message>
 </context>

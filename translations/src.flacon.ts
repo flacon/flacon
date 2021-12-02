@@ -1273,10 +1273,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Embedded on %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1322,6 +1318,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -246,83 +246,6 @@
     </message>
 </context>
 <context>
-    <name>ConfigDialog</name>
-    <message>
-        <source>Preferences</source>
-        <translation>Preferințe</translation>
-    </message>
-    <message>
-        <source>+</source>
-        <translation>+</translation>
-    </message>
-    <message>
-        <source>-</source>
-        <translation>-</translation>
-    </message>
-    <message>
-        <source>Audio formats</source>
-        <translation>Formate audio</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Număr fire de execuție:</translation>
-    </message>
-    <message>
-        <source>The number of threads in the conversion process.</source>
-        <translation>Numărul de fire de execuție în procesul de conversie.</translation>
-    </message>
-    <message>
-        <source>Temporary directory:</source>
-        <translation>Dosar temporar:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Codare implicită caractere:</translation>
-    </message>
-    <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Copy cover image</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
-        <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>General</translation>
-    </message>
-    <message>
-        <source>Rescan</source>
-        <translation>Rescanare</translation>
-    </message>
-    <message>
-        <source>Programs</source>
-        <translation>Programe</translation>
-    </message>
-    <message>
-        <source>Automatically check for updates</source>
-        <translation>Verificare automată actualizări</translation>
-    </message>
-    <message>
-        <source>Check now</source>
-        <translation>Verifică acum</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <translation>Actualizări</translation>
-    </message>
-</context>
-<context>
     <name>ConfigPage_Mp3</name>
     <message>
         <source>VBR medium</source>
@@ -551,10 +474,6 @@ In CBR mode, it sets the specific output bitrate.
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
         <translation>Se redimensionează dacă mărimea imaginii este mai mare de</translation>
-    </message>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1342,105 +1261,6 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
     </message>
 </context>
 <context>
-    <name>ProfileWidget</name>
-    <message>
-        <source>Result Files</source>
-        <translation>Fișiere finale</translation>
-    </message>
-    <message>
-        <source>Directory:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Dosar:</translation>
-    </message>
-    <message>
-        <source>You can browse to the destination directory. You can also input it manually.
-
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-        <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Puteți alege dosarul destinație sau îl puteți scrie direct.
-
-Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișierele rezultate vor fi puse în același dosar cu fișierele sursă.</translation>
-    </message>
-    <message>
-        <source>Pattern:</source>
-        <comment>Preferences form label text</comment>
-        <translation>Șablon:</translation>
-    </message>
-    <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Marcajele încep cu %. Puteți folosi următoarele marcaje:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numărul pistei  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Număr total de piste&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titlu album&lt;td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titlu pistă&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - An&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Gen&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-Dacă un fragment de text care conține un marcaj este pus între paranteze acolade, fragmentele respective nu vor apărea dacă marcajul este gol. </translation>
-    </message>
-    <message>
-        <source>Resampling settings:</source>
-        <translation>Setări pentru eșantionare/sampling:</translation>
-    </message>
-    <message>
-        <source>Maximum bit depth:</source>
-        <translation>Adâncime maximă de biți:</translation>
-    </message>
-    <message>
-        <source>Maximum sample rate:</source>
-        <translation>Rată maximă de eșantionare/sampling:</translation>
-    </message>
-    <message>
-        <source>ReplayGain settings:</source>
-        <translation>Setări ReplayGain:</translation>
-    </message>
-    <message>
-        <source>Calculate gain:</source>
-        <translation>Calculează normalizare sunet:</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation>Dezactivat(ă)</translation>
-    </message>
-    <message>
-        <source>Create per track CUE sheet</source>
-        <translation>Creare conform listei de indexare</translation>
-    </message>
-    <message>
-        <source>File name format:</source>
-        <translation>Format nume fișier</translation>
-    </message>
-    <message>
-        <source>First track pregap:</source>
-        <translation>Pauză înainte de prima pistă:</translation>
-    </message>
-</context>
-<context>
     <name>ProfilesPage</name>
     <message>
         <source>+</source>
@@ -1523,10 +1343,6 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Nu se poate scrie în dosarul „%1”.</translation>
     </message>
     <message>
-        <source>Embedded on %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; nu este un fișier de indexare valabil. Nu există eticheta FILE (FIȘIER).</translation>
     </message>
@@ -1572,6 +1388,11 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Embedded on %1</source>
+        <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <translation type="unfinished"/>
     </message>
 </context>
