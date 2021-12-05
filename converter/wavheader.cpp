@@ -29,6 +29,7 @@
 #include <QByteArray>
 #include <QtEndian>
 #include <QDebug>
+#include <array>
 
 using namespace Conv;
 
@@ -37,29 +38,38 @@ static const char *WAV_WAVE = "WAVE";
 static const char *WAV_FMT  = "fmt ";
 static const char *WAV_DATA = "data";
 
+static const char                   *WAVE64_RIFF      = "riff";
+static const char                   *WAVE64_WAVE      = "wave";
+static const std::array<uint8_t, 16> WAVE64_GUID_RIFF = { 0x72, 0x69, 0x66, 0x66, 0x2E, 0x91, 0xCF, 0x11, 0xA5, 0xD6, 0x28, 0xDB, 0x04, 0xC1, 0x00, 0x00 };
+static const std::array<uint8_t, 16> WAVE64_GUID_WAVE = { 0x77, 0x61, 0x76, 0x65, 0xF3, 0xAC, 0xD3, 0x11, 0x8C, 0xD1, 0x00, 0xC0, 0x4F, 0x8E, 0xDB, 0x8A };
+static const std::array<uint8_t, 16> WAVE64_GUID_FMT  = { 0x66, 0x6D, 0x74, 0x20, 0xF3, 0xAC, 0xD3, 0x11, 0x8C, 0xD1, 0x00, 0xC0, 0x4F, 0x8E, 0xDB, 0x8A };
+static const std::array<uint8_t, 16> WAVE64_GUID_DATA = { 0x64, 0x61, 0x74, 0x61, 0xF3, 0xAC, 0xD3, 0x11, 0x8C, 0xD1, 0x00, 0xC0, 0x4F, 0x8E, 0xDB, 0x8A };
+
+// 16 bytes of GUID + 8 bytes of Int64
+static constexpr int WAVE64_CHUNK_HEADER_SIZE = 16 + 8;
+
 static const int READ_DELAY = 1000;
 
 /************************************************
  *
  ************************************************/
-inline bool mustRead(QIODevice *device, char *data, qint64 size, int msecs = READ_DELAY)
+static inline void mustRead(QIODevice *device, char *data, qint64 size, int msecs = READ_DELAY)
 {
-    char * d    = data;
+    char  *d    = data;
     qint64 left = size;
     while (left > 0) {
         if (!device->bytesAvailable() && !device->waitForReadyRead(msecs)) {
-            return false;
+            throw FlaconError(QString("Unexpected end of file on %1").arg(device->pos()));
         }
 
         qint64 n = device->read(d, left);
-        if (n < 0)
-            return false;
+        if (n < 0) {
+            throw FlaconError(QString("Error reading data: %1").arg(device->errorString()));
+        }
 
         d += n;
         left -= n;
     }
-
-    return true;
 }
 
 /************************************************
@@ -68,6 +78,29 @@ inline bool mustRead(QIODevice *device, char *data, qint64 size, int msecs = REA
 QByteArray &operator<<(QByteArray &out, const char val[4])
 {
     out += val;
+    return out;
+}
+
+/************************************************
+ *
+ ************************************************/
+QByteArray &operator<<(QByteArray &out, quint64 val)
+{
+    union {
+        quint64 n;
+        char    bytes[8];
+    };
+
+    n = qToLittleEndian(val);
+    out += bytes[0];
+    out += bytes[1];
+    out += bytes[2];
+    out += bytes[3];
+    out += bytes[4];
+    out += bytes[5];
+    out += bytes[6];
+    out += bytes[7];
+
     return out;
 }
 
@@ -110,10 +143,13 @@ QByteArray &operator<<(QByteArray &out, quint16 val)
 /************************************************
  *
  ************************************************/
-bool readTag(QIODevice *device, char tag[5])
+static QByteArray &operator<<(QByteArray &out, const std::array<uint8_t, 16> &val)
 {
-    tag[4] = '\0';
-    return mustRead(device, tag, 4);
+    for (const uint8_t &b : val) {
+        out += b;
+    }
+
+    return out;
 }
 
 /************************************************
@@ -130,6 +166,18 @@ struct SplitterError
     {
     }
 };
+
+/************************************************
+ *
+ ************************************************/
+quint64 readUInt64(QIODevice *stream)
+{
+    quint64 n;
+    if (stream->read((char *)&n, 8) != 8) {
+        throw FlaconError("Unexpected end of file");
+    }
+    return qFromLittleEndian(n);
+}
 
 /************************************************
  *
@@ -154,6 +202,76 @@ quint16 readUInt16(QIODevice *stream)
 }
 
 /************************************************
+ *
+ ************************************************/
+class FourCC : public std::array<char, 4>
+{
+public:
+    FourCC() :
+        std::array<char, 4>({ '\0' }) { }
+
+    inline void load(QIODevice *device) { return mustRead(device, this->data(), this->size()); }
+    inline bool operator==(const char *str) const { return strncmp(data(), str, size()) == 0; }
+    inline bool operator!=(const char *str) const { return !this->operator==(str); }
+};
+
+QByteArray &operator<<(QByteArray &out, const FourCC &val)
+{
+    out.append(val.data(), val.size());
+    return out;
+}
+
+/************************************************
+ *
+ ************************************************/
+class Guid : public std::array<char, 16>
+{
+public:
+    static constexpr int SIZE = 16;
+    Guid() :
+        std::array<char, SIZE>({ '\0' }) { }
+
+    inline void load(QIODevice *device) { return mustRead(device, this->data(), this->size()); }
+    inline bool operator==(const char *str) const { return strncmp(data(), str, size()) == 0; }
+    inline bool operator!=(const char *str) const { return !this->operator==(str); }
+    inline bool startsWidth(const char str[4]) const { return strncmp(data(), str, 4) == 0; }
+};
+
+QByteArray &operator<<(QByteArray &out, const Guid &val)
+{
+    out.append(val.data(), val.size());
+    return out;
+}
+
+/************************************************
+ * See WAV specoification
+ *   http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html
+ *   https://en.wikipedia.org/wiki/WAV
+ ************************************************/
+WavHeader::WavHeader(QIODevice *stream) noexcept(false)
+{
+    char tag[] = "\0\0\0\0";
+
+    mustRead(stream, tag, 4);
+
+    if (strcmp(tag, WAV_RIFF) == 0) {
+        m64Bit = false;
+        readWavHeader(stream);
+
+        return;
+    }
+
+    if (strcmp(tag, WAVE64_RIFF) == 0) {
+        stream->read(12); // Wave64 format uses 128-bit GUIDs, we readed 4 bytes, there are still 12 bytes
+        m64Bit = true;
+        readWave64Header(stream);
+        return;
+    }
+
+    throw FlaconError("WAVE header is missing RIFF tag while processing file");
+}
+
+/************************************************
  * 52 49 46 46      RIFF
  * 24 B9 4D 02      file size - 8
  * 57 41 56 45      WAVE
@@ -171,34 +289,26 @@ quint16 readUInt16(QIODevice *stream)
  *   64 61 74 61 	SubchunkID 		"data"
  *   00 B9 4D 02 	SubchunkSize
  ************************************************/
-
-/************************************************
- * See WAV specoification
- *   http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html
- *   https://en.wikipedia.org/wiki/WAV
- ************************************************/
-WavHeader::WavHeader(QIODevice *stream) noexcept(false)
+void WavHeader::readWavHeader(QIODevice *stream)
 {
-    char tag[5] = { '\0' };
-    // look for "RIFF" in header
-    if (!readTag(stream, tag) || strcmp(tag, WAV_RIFF) != 0)
-        throw FlaconError("WAVE header is missing RIFF tag while processing file");
-
     this->mFileSize = readUInt32(stream) + 8;
 
-    if (!readTag(stream, tag) || strcmp(tag, WAV_WAVE) != 0)
-        throw FlaconError("WAVE header is missing WAVE tag while processing file");
+    FourCC waveTag;
+    waveTag.load(stream);
 
-    char    chunkID[5];
+    if (waveTag != WAV_WAVE) {
+        throw FlaconError("WAVE header is missing WAVE tag while processing file");
+    }
+
+    FourCC  chunkId;
     quint64 pos = 12;
     while (pos < this->mFileSize) {
-        if (!readTag(stream, chunkID))
-            throw FlaconError("[WAV] can't read chunk ID");
 
+        chunkId.load(stream);
         quint32 chunkSize = readUInt32(stream);
         pos += 8;
 
-        if (strcmp(chunkID, WAV_DATA) == 0) {
+        if (chunkId == WAV_DATA) {
             this->mDataSize     = chunkSize;
             this->mDataStartPos = pos;
             return;
@@ -208,15 +318,69 @@ WavHeader::WavHeader(QIODevice *stream) noexcept(false)
             throw FlaconError(QString("[WAV] incorrect chunk size %1 at %2").arg(chunkSize).arg(pos - 4));
         }
 
-        if (strcmp(chunkID, WAV_FMT) == 0) {
+        if (chunkId == WAV_FMT) {
             loadFmtChunk(stream, chunkSize);
             pos += chunkSize;
         }
         else {
-            mOtherCunks << chunkID;
+            mOtherCunks << chunkId;
             mOtherCunks << chunkSize;
             mOtherCunks.append(stream->read(chunkSize));
             pos += chunkSize;
+        }
+    }
+
+    throw FlaconError("data chunk not found");
+}
+
+/************************************************
+ * All chunks are byte-aligned on 8-byte boundaries, but their
+ * chunk size fields do not include any padding if it is necessary.
+ ************************************************/
+void WavHeader::readWave64Header(QIODevice *stream)
+{
+    this->mFileSize = readUInt64(stream);
+
+    Guid waveTag;
+    waveTag.load(stream);
+
+    if (!waveTag.startsWidth(WAVE64_WAVE)) {
+        throw FlaconError("WAVE64 header is missing WAVE tag while processing file");
+    }
+
+    Guid    chunkId;
+    quint64 pos = 16 + 8 + 16;
+    while (pos < this->mFileSize) {
+
+        // All chunks are byte-aligned on 8-byte boundaries
+        if (pos % 8) {
+            char d[8];
+            mustRead(stream, d, 8 - (pos % 8));
+        }
+
+        chunkId.load(stream);
+        quint64 chunkSize = readUInt64(stream);
+        pos += WAVE64_CHUNK_HEADER_SIZE;
+
+        if (chunkId.startsWidth(WAV_DATA)) {
+            this->mDataSize     = chunkSize - WAVE64_CHUNK_HEADER_SIZE;
+            this->mDataStartPos = pos;
+            return;
+        }
+
+        if (chunkSize < 1) {
+            throw FlaconError(QString("[WAV] incorrect chunk size %1 at %2").arg(chunkSize).arg(pos - 4));
+        }
+
+        if (chunkId.startsWidth(WAV_FMT)) {
+            loadFmtChunk(stream, chunkSize - 16 - 8);
+            pos += chunkSize - WAVE64_CHUNK_HEADER_SIZE;
+        }
+        else {
+            mOtherCunks << chunkId;
+            mOtherCunks << chunkSize;
+            mOtherCunks.append(stream->read(chunkSize));
+            pos += chunkSize - WAVE64_CHUNK_HEADER_SIZE;
         }
     }
 
@@ -338,6 +502,19 @@ void WavHeader::loadFmtChunk(QIODevice *stream, const quint32 chunkSize)
 }
 
 /************************************************
+ *
+ ************************************************/
+QByteArray WavHeader::toByteArray() const
+{
+    if (m64Bit) {
+        return wave64ToByteArray();
+    }
+    else {
+        return wavToByteArray();
+    }
+}
+
+/************************************************
  * 52 49 46 46      RIFF
  * 24 B9 4D 02      file size - 8
  * 57 41 56 45      WAVE
@@ -355,12 +532,12 @@ void WavHeader::loadFmtChunk(QIODevice *stream, const quint32 chunkSize)
  *   64 61 74 61 	SubchunkID 		"data"
  *   00 B9 4D 02 	SubchunkSize
  ************************************************/
-QByteArray WavHeader::toByteArray() const
+QByteArray WavHeader::wavToByteArray() const
 {
     QByteArray res;
     res.reserve(mDataStartPos - 1);
     res << WAV_RIFF;
-    res << (mFileSize - 8);
+    res << quint32(mFileSize - 8);
     res << WAV_WAVE;
 
     res << WAV_FMT;
@@ -385,7 +562,49 @@ QByteArray WavHeader::toByteArray() const
     res.append(mOtherCunks);
 
     res << WAV_DATA;
-    res << mDataSize;
+    res << quint32(mDataSize);
+
+    return res;
+}
+
+/************************************************
+ * The chunk size fields directly following the chunk-GUID and preceeding
+ * the chunk body, include the size of the chunk-GUID and the chunk length
+ * field itself.
+ * Therefore, it corresponds to the chunk data size plus 24 (16 bytes for
+ * the GUID, 8 bytes for the size field).
+ ************************************************/
+QByteArray WavHeader::wave64ToByteArray() const
+{
+    QByteArray res;
+    res.reserve(mDataStartPos - 1);
+    res << WAVE64_GUID_RIFF;
+    res << quint64(mFileSize);
+    res << WAVE64_GUID_WAVE;
+
+    res << WAVE64_GUID_FMT;
+    // The chunk size fields include the size of the chunk-GUID and the chunk length field itself. Therefore, it corresponds to the chunk data size plus 24 (16 bytes for the GUID, 8 bytes for the size field).
+    res << quint64(mFmtSize + 24); //
+    res << quint16(mFormat);
+    res << mNumChannels;
+    res << mSampleRate;
+    res << mByteRate;
+    res << mBlockAlign;
+    res << mBitsPerSample;
+
+    if (mFmtSize > FmtChunkMin) {
+        res << mExtSize;
+    }
+
+    if (mExtSize > 0) {
+        res << mValidBitsPerSample;
+        res << mChannelMask;
+        res.append(mSubFormat);
+    }
+    res.append(mOtherCunks);
+
+    res << WAVE64_GUID_DATA;
+    res << quint64(mDataSize + WAVE64_CHUNK_HEADER_SIZE);
 
     return res;
 }

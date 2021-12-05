@@ -88,7 +88,7 @@ public:
     static quint32 bytesPerSecond(Quality quality);
     quint32        bytesPerSecond();
 
-    quint32 fileSize() const { return mFileSize; }
+    quint64 fileSize() const { return mFileSize; }
     Format  format() const { return mFormat; }
     quint16 numChannels() const { return mNumChannels; }
     quint32 sampleRate() const { return mSampleRate; }
@@ -97,9 +97,10 @@ public:
     quint16 bitsPerSample() const { return mBitsPerSample; }
     quint16 validBitsPerSample() const { return mValidBitsPerSample; }
     quint32 channelMask() const { return mChannelMask; }
-    quint32 dataSize() const { return mDataSize; }
-    quint32 dataStartPos() const { return mDataStartPos; }
+    quint64 dataSize() const { return mDataSize; }
+    quint64 dataStartPos() const { return mDataStartPos; }
     bool    isCdQuality() const;
+    bool    is64Bit() const { return m64Bit; }
 
 protected:
     enum FmtChunkSize {
@@ -108,7 +109,8 @@ protected:
         FmtChunkExt = 40,
     };
 
-    quint32      mFileSize           = 0;
+    bool         m64Bit              = false;
+    quint64      mFileSize           = 0;
     FmtChunkSize mFmtSize            = FmtChunkMin;
     Format       mFormat             = WavHeader::Format_Unknown;
     quint16      mNumChannels        = 0;
@@ -120,13 +122,19 @@ protected:
     quint16      mValidBitsPerSample = 0; // at most 8*M
     quint32      mChannelMask        = 0; // Speaker position mask
     QByteArray   mSubFormat          = 0; // GUID (first two bytes are the data format code)
-    quint32      mDataSize           = 0;
-    quint32      mDataStartPos       = 0;
+    quint64      mDataSize           = 0;
+    quint64      mDataStartPos       = 0;
 
     QByteArray mOtherCunks;
 
 private:
     void loadFmtChunk(QIODevice *stream, const quint32 chunkSize);
+
+    void readWavHeader(QIODevice *stream);
+    void readWave64Header(QIODevice *stream);
+
+    QByteArray wavToByteArray() const;
+    QByteArray wave64ToByteArray() const;
 };
 
 } // namespace
