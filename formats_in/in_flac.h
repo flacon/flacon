@@ -33,7 +33,6 @@ class Format_Flac : public InputFormat
 public:
     virtual QString name() const override { return "FLAC"; }
     virtual QString ext() const override { return "flac"; }
-    virtual bool    isInputFormat() const override { return true; }
 
     virtual QString     decoderProgramName() const override { return "flac"; }
     virtual QStringList decoderArgs(const QString &fileName) const override;

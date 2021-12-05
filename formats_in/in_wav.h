@@ -33,7 +33,6 @@ class Format_Wav : public InputFormat
 public:
     virtual QString name() const override { return "WAV"; }
     virtual QString ext() const override { return "wav"; }
-    virtual bool    isInputFormat() const override { return true; }
 
     virtual QString     decoderProgramName() const override { return ""; }
     virtual QStringList decoderArgs(const QString &fileName) const override;

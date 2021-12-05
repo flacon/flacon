@@ -33,7 +33,6 @@ class Format_Ape : public InputFormat
 public:
     virtual QString name() const override { return "APE"; }
     virtual QString ext() const override { return "ape"; }
-    virtual bool    isInputFormat() const override { return true; }
 
     virtual QByteArray magic() const override { return "MAC "; }
     virtual uint       magicOffset() const override { return 0; }

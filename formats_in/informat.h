@@ -44,8 +44,6 @@ public:
     virtual QString name() const = 0;
     virtual QString ext() const  = 0;
 
-    virtual bool isInputFormat() const { return false; }
-
     virtual QString     decoderProgramName() const { return ""; }
     virtual QStringList decoderArgs(const QString &fileName) const
     {

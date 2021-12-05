@@ -7,7 +7,7 @@ list(APPEND SOURCES
 
     ${CMAKE_CURRENT_LIST_DIR}/in_flac.h
     ${CMAKE_CURRENT_LIST_DIR}/in_flac.cpp
-    
+
     ${CMAKE_CURRENT_LIST_DIR}/in_tta.h
     ${CMAKE_CURRENT_LIST_DIR}/in_tta.cpp
 
@@ -16,4 +16,7 @@ list(APPEND SOURCES
 
     ${CMAKE_CURRENT_LIST_DIR}/in_wv.h
     ${CMAKE_CURRENT_LIST_DIR}/in_wv.cpp
+
+    ${CMAKE_CURRENT_LIST_DIR}/in_wave64.h
+    ${CMAKE_CURRENT_LIST_DIR}/in_wave64.cpp
 )

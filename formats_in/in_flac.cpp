@@ -36,6 +36,7 @@ REGISTER_INPUT_FORMAT(Format_Flac)
 QStringList Format_Flac::decoderArgs(const QString &fileName) const
 {
     QStringList args;
+    args << "--force-wave64-format";
     args << "-c";
     args << "-d";
     args << "-s";
