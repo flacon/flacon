@@ -347,7 +347,7 @@ void createWavFile(const QString &fileName, quint16 bitsPerSample, quint32 sampl
 
     QFile file(fileName);
 
-    if (file.exists() && file.size() != header.fileSize() + 8)
+    if (file.exists() && quint64(file.size()) != header.fileSize() + 8)
         return;
 
     if (!file.open(QFile::WriteOnly | QFile::Truncate))

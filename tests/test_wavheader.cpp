@@ -58,7 +58,7 @@ void TestFlacon::testReadWavHeader()
         QCOMPARE(header.fileSize(), expectedFileSize);
         QCOMPARE(header.dataSize(), expectedDataSize);
         QCOMPARE(QTime::fromMSecsSinceStartOfDay(header.duration()), expectedDuration);
-        QCOMPARE(header.dataStartPos(), data.size());
+        QCOMPARE(header.dataStartPos(), quint64(data.size()));
         QCOMPARE(header.dataStartPos() + header.dataSize(), expectedFileSize);
 
         // Test copy operator

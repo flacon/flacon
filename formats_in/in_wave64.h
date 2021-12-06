@@ -35,7 +35,7 @@ public:
     virtual QString ext() const override { return "w64"; }
 
     virtual QString     decoderProgramName() const override { return ""; }
-    virtual QStringList decoderArgs(const QString &fileName) const override { return {}; }
+    virtual QStringList decoderArgs(const QString &) const override { return {}; }
 
     virtual QByteArray magic() const override { return "riff"; }
     virtual uint       magicOffset() const override { return 0; }

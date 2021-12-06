@@ -170,7 +170,7 @@ struct SplitterError
 /************************************************
  *
  ************************************************/
-quint64 readUInt64(QIODevice *stream)
+static quint64 readUInt64(QIODevice *stream)
 {
     quint64 n;
     if (stream->read((char *)&n, 8) != 8) {
@@ -182,7 +182,7 @@ quint64 readUInt64(QIODevice *stream)
 /************************************************
  *
  ************************************************/
-quint32 readUInt32(QIODevice *stream)
+static quint32 readUInt32(QIODevice *stream)
 {
     quint32 n;
     if (stream->read((char *)&n, 4) != 4)
@@ -193,7 +193,7 @@ quint32 readUInt32(QIODevice *stream)
 /************************************************
  *
  ************************************************/
-quint16 readUInt16(QIODevice *stream)
+static quint16 readUInt16(QIODevice *stream)
 {
     quint16 n;
     if (stream->read((char *)&n, 2) != 2)
@@ -580,11 +580,11 @@ QByteArray WavHeader::wavToByteArray(bool keepOtherChunks) const
         throw FlaconError("Stream is too big to fit in a legacy WAVE file");
     }
 
-    qint32_le le((quint32)(fileSize));
-    res[4] = (le >> 0) & 0xFF;
-    res[5] = (le >> 8) & 0xFF;
-    res[6] = (le >> 16) & 0xFF;
-    res[7] = (le >> 24) & 0xFF;
+    qint32 le = qToLittleEndian(quint32(fileSize));
+    res[4]    = (le >> 0) & 0xFF;
+    res[5]    = (le >> 8) & 0xFF;
+    res[6]    = (le >> 16) & 0xFF;
+    res[7]    = (le >> 24) & 0xFF;
 
     return res;
 }
