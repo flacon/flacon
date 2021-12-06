@@ -82,6 +82,7 @@ public:
     quint64 duration() const;
 
     QByteArray toByteArray() const;
+    QByteArray toLegacyWav() const;
 
     void resizeData(quint32 dataSize);
 
@@ -133,7 +134,7 @@ private:
     void readWavHeader(QIODevice *stream);
     void readWave64Header(QIODevice *stream);
 
-    QByteArray wavToByteArray() const;
+    QByteArray wavToByteArray(bool keepOtherChunks) const;
     QByteArray wave64ToByteArray() const;
 };
 

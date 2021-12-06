@@ -68,6 +68,9 @@ private slots:
     void testResizeWavHeader();
     void testResizeWavHeader_data();
 
+    void testToLegacyWav();
+    void testToLegacyWav_data();
+
     void testFormatWavLast();
 
     void testFormat();

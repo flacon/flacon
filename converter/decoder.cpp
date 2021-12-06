@@ -239,7 +239,7 @@ void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
 
         WavHeader hdr = mWavHeader;
         hdr.resizeData(be - bs);
-        outDevice->write(hdr.toByteArray());
+        outDevice->write(hdr.toLegacyWav());
 
         qint64 pos = mPos;
 

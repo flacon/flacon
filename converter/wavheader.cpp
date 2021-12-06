@@ -38,8 +38,8 @@ static const char *WAV_WAVE = "WAVE";
 static const char *WAV_FMT  = "fmt ";
 static const char *WAV_DATA = "data";
 
-static const char                   *WAVE64_RIFF      = "riff";
-static const char                   *WAVE64_WAVE      = "wave";
+static const char *                  WAVE64_RIFF      = "riff";
+static const char *                  WAVE64_WAVE      = "wave";
 static const std::array<uint8_t, 16> WAVE64_GUID_RIFF = { 0x72, 0x69, 0x66, 0x66, 0x2E, 0x91, 0xCF, 0x11, 0xA5, 0xD6, 0x28, 0xDB, 0x04, 0xC1, 0x00, 0x00 };
 static const std::array<uint8_t, 16> WAVE64_GUID_WAVE = { 0x77, 0x61, 0x76, 0x65, 0xF3, 0xAC, 0xD3, 0x11, 0x8C, 0xD1, 0x00, 0xC0, 0x4F, 0x8E, 0xDB, 0x8A };
 static const std::array<uint8_t, 16> WAVE64_GUID_FMT  = { 0x66, 0x6D, 0x74, 0x20, 0xF3, 0xAC, 0xD3, 0x11, 0x8C, 0xD1, 0x00, 0xC0, 0x4F, 0x8E, 0xDB, 0x8A };
@@ -55,7 +55,7 @@ static const int READ_DELAY = 1000;
  ************************************************/
 static inline void mustRead(QIODevice *device, char *data, qint64 size, int msecs = READ_DELAY)
 {
-    char  *d    = data;
+    char * d    = data;
     qint64 left = size;
     while (left > 0) {
         if (!device->bytesAvailable() && !device->waitForReadyRead(msecs)) {
@@ -208,7 +208,7 @@ class FourCC : public std::array<char, 4>
 {
 public:
     FourCC() :
-        std::array<char, 4>({ '\0' }) { }
+        std::array<char, 4>({ '\0' }) {}
 
     inline void load(QIODevice *device) { return mustRead(device, this->data(), this->size()); }
     inline bool operator==(const char *str) const { return strncmp(data(), str, size()) == 0; }
@@ -229,7 +229,7 @@ class Guid : public std::array<char, 16>
 public:
     static constexpr int SIZE = 16;
     Guid() :
-        std::array<char, SIZE>({ '\0' }) { }
+        std::array<char, SIZE>({ '\0' }) {}
 
     inline void load(QIODevice *device) { return mustRead(device, this->data(), this->size()); }
     inline bool operator==(const char *str) const { return strncmp(data(), str, size()) == 0; }
@@ -510,8 +510,16 @@ QByteArray WavHeader::toByteArray() const
         return wave64ToByteArray();
     }
     else {
-        return wavToByteArray();
+        return wavToByteArray(true);
     }
+}
+
+/************************************************
+ *
+ ************************************************/
+QByteArray WavHeader::toLegacyWav() const
+{
+    return wavToByteArray(false);
 }
 
 /************************************************
@@ -532,12 +540,12 @@ QByteArray WavHeader::toByteArray() const
  *   64 61 74 61 	SubchunkID 		"data"
  *   00 B9 4D 02 	SubchunkSize
  ************************************************/
-QByteArray WavHeader::wavToByteArray() const
+QByteArray WavHeader::wavToByteArray(bool keepOtherChunks) const
 {
     QByteArray res;
     res.reserve(mDataStartPos - 1);
     res << WAV_RIFF;
-    res << quint32(mFileSize - 8);
+    res << quint32(0);
     res << WAV_WAVE;
 
     res << WAV_FMT;
@@ -559,10 +567,24 @@ QByteArray WavHeader::wavToByteArray() const
         res.append(mSubFormat);
     }
 
-    res.append(mOtherCunks);
+    if (keepOtherChunks) {
+        res.append(mOtherCunks);
+    }
 
     res << WAV_DATA;
     res << quint32(mDataSize);
+
+    // Write file size .........
+    quint64 fileSize = mDataSize + res.size() - 8;
+    if (fileSize > 0xFFFFFFFF) {
+        throw FlaconError("Stream is too big to fit in a legacy WAVE file");
+    }
+
+    qint32_le le((quint32)(fileSize));
+    res[4] = (le >> 0) & 0xFF;
+    res[5] = (le >> 8) & 0xFF;
+    res[6] = (le >> 16) & 0xFF;
+    res[7] = (le >> 24) & 0xFF;
 
     return res;
 }

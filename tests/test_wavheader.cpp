@@ -311,12 +311,12 @@ void TestFlacon::testReadWavHeader_data()
     QTest::newRow("09 Wave 64")
             <<
             // Header ____________________________________________________
-            "72 69 66 66  2E 91 CF 11  A5 D6 28 DB  04 C1 00 00" // riff .... .... ....
+            "72 69 66 66  2E 91 CF 11  A5 D6 28 DB  04 C1 00 00" // riff
             "80 86 4E 0C  01 00 00 00"                           // file size
-            "77 61 76 65  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // Format wave .... .... ....
-
+            "77 61 76 65  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // Format wave
+                                                                 //
             // fmt chunk _________________________________________________
-            "66 6D 74 20  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // ID      fmt
+            "66 6D 74 20  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // ID
             "40 00 00 00  00 00 00 00"                           // Chunk size
             "FE FF"                                              // Format code
             "06 00"                                              // NumChannels
@@ -324,15 +324,15 @@ void TestFlacon::testReadWavHeader_data()
             "00 5E 1A 00"                                        // ByteRate
             "12 00"                                              // BlockAlign
             "18 00"                                              // BitsPerSample
-
-            "16 00"       // Size of the extension
-            "18 00"       // Number of valid bits
-            "0F 06 00 00" // Speaker position mask
-            "01 00 00 00" // ⎫ SubFormat
-            "00 00 10 00" // ⎬ data format code
-            "80 00 00 AA" // ⎪ 16 bytes
-            "00 38 9B 71" // ⎭
-
+                                                                 //
+            "16 00"                                              // Size of the extension
+            "18 00"                                              // Number of valid bits
+            "0F 06 00 00"                                        // Speaker position mask
+            "01 00 00 00"                                        // ⎫ SubFormat
+            "00 00 10 00"                                        // ⎬ data format code
+            "80 00 00 AA"                                        // ⎪ 16 bytes
+            "00 38 9B 71"                                        // ⎭
+                                                                 //
             "64 61 74 61  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // data
             "18 86 4E 0C  01 00 00 00"                           // data size
 
@@ -410,4 +410,210 @@ void TestFlacon::testResizeWavHeader_data()
             << "38648064"     // new duration
             << "24 B9 4D 02"  // expected chunk size
             << "00 B9 4D 02"; // expected data size
+}
+
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::testToLegacyWav()
+{
+    QFETCH(QString, testdata);
+    QFETCH(QString, expected);
+
+    try {
+        QBuffer data;
+        data.open(QBuffer::ReadWrite);
+        writeHexString(testdata, &data);
+
+        data.seek(0);
+        Conv::WavHeader header(&data);
+
+        QByteArray actual = header.toLegacyWav();
+
+        if (expected.startsWith("ERROR")) {
+            QFAIL("The class should have returned an error");
+        }
+
+        auto expect = writeHexString(expected);
+        QCOMPARE(actual.toHex(), expect.toHex());
+    }
+    catch (FlaconError &err) {
+        if (!expected.startsWith("ERROR")) {
+            FAIL(err.what());
+        }
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::testToLegacyWav_data()
+{
+    QTest::addColumn<QString>("testdata", nullptr);
+    QTest::addColumn<QString>("expected", nullptr);
+
+    QTest::newRow("01")
+            << "52 49 46 46" // RIFF
+               "24 B9 4D 02" // file size - 8
+               "57 41 56 45" // WAVE
+
+               "66 6D 74 20" // "fmt "
+               "10 00 00 00" // Chunk size
+               "01 00"       // AudioFormat
+               "02 00"       // NumChannels
+
+               "44 AC 00 00" // mSampleRate
+               "10 B1 02 00" // mByteRate
+               "04 00"       // mBlockAlign
+               "10 00"       // mBitsPerSample
+
+               "64 61 74 61" // data
+               "00 B9 4D 02" // data size
+
+            << "52 49 46 46" // RIFF
+               "24 B9 4D 02" // file size - 8
+               "57 41 56 45" // WAVE
+
+               "66 6D 74 20" // "fmt "
+               "10 00 00 00" // Chunk size
+               "01 00"       // AudioFormat
+               "02 00"       // NumChannels
+
+               "44 AC 00 00" // mSampleRate
+               "10 B1 02 00" // mByteRate
+               "04 00"       // mBlockAlign
+               "10 00"       // mBitsPerSample
+
+               "64 61 74 61" // data
+               "00 B9 4D 02" // data size
+            ;
+
+    QTest::newRow("02 Wave 64, CD quality")
+            <<
+            // Header ____________________________________________________
+            "72 69 66 66  2E 91 CF 11  A5 D6 28 DB  04 C1 00 00" // riff
+            "18 BE 73 00  00 00 00 00"                           // file size
+            "77 61 76 65  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // Format wave
+
+            // fmt chunk _________________________________________________
+            "66 6D 74 20  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // ID
+            "28 00 00 00  00 00 00 00"                           // Chunk size
+            "01 00"                                              // Format code
+            "02 00"                                              // NumChannels
+            "44 AC 00 00"                                        // SampleRate
+            "10 B1 02 00"                                        // ByteRate
+            "04 00"                                              // BlockAlign
+            "10 00"                                              // BitsPerSample
+
+            // data chunk ______________________________________________
+            "64 61 74 61  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A"
+            "C8 BD 73 00  00 00 00 00"
+
+            << // Header ____________________________________________________
+            "52 49 46 46"
+            "D4 BD 73 00"
+            "57 41 56 45"
+
+            // FMT chunk _________________________________________________
+            "66 6D 74 20" // ID
+            "10 00 00 00" // Chunk size
+            "01 00"       // Format code
+            "02 00"       // NumChannels
+            "44 AC 00 00" // SampleRate
+            "10 B1 02 00" // ByteRate
+            "04 00"       // BlockAlign
+            "10 00"       // BitsPerSample
+
+            // data chunk ______________________________________________
+            "64 61 74 61" // ID
+            "B0 BD 73 00" // Chunk size
+
+            ;
+
+    QTest::newRow("03 Wave 64, 24x9600, 6 channels")
+            <<
+            // Header ____________________________________________________
+            "72 69 66 66  2E 91 CF 11  A5 D6 28 DB  04 C1 00 00" // riff
+            "80 CA 6D 04  00 00 00 00"                           // file size
+            "77 61 76 65  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // Format wave
+
+            // fmt chunk _________________________________________________
+            "66 6D 74 20  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // ID
+            "40 00 00 00  00 00 00 00"                           // Chunk size
+            "FE FF"                                              // Format code
+            "06 00"                                              // NumChannels
+            "00 77 01 00"                                        // SampleRate
+            "00 5E 1A 00"                                        // ByteRate
+            "12 00"                                              // BlockAlign
+            "18 00"                                              // BitsPerSample
+                                                                 //
+            "16 00"                                              // Size of the extension
+            "18 00"                                              // Number of valid bits
+            "0F 06 00 00"                                        // Speaker position mask
+            "01 00 00 00"                                        // ⎫ SubFormat
+            "00 00 10 00"                                        // ⎬ data format code
+            "80 00 00 AA"                                        // ⎪ 16 bytes
+            "00 38 9B 71"                                        // ⎭
+
+            // data chunk ______________________________________________
+            "64 61 74 61  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // data
+            "18 CA 6D 04  00 00 00 00"                           // data size
+
+            <<
+            // Header ____________________________________________________
+            "52 49 46 46" // RIFF
+            "3C CA 6D 04" // file size - 8
+            "57 41 56 45" // WAVE
+
+            // FMT chunk _________________________________________________
+            "66 6D 74 20" // ID
+            "28 00 00 00" // Chunk size
+            "FE FF"       // Format code
+            "06 00"       // NumChannels
+            "00 77 01 00" // SampleRate
+            "00 5E 1A 00" // ByteRate
+            "12 00"       // BlockAlign
+            "18 00"       // BitsPerSample
+                          //
+            "16 00"       // Size of the extension
+            "18 00"       // Number of valid bits
+            "0F 06 00 00" // Speaker position mask
+            "01 00 00 00" // ⎫ SubFormat
+            "00 00 10 00" // ⎬ data format code
+            "80 00 00 AA" // ⎪ 16 bytes
+            "00 38 9B 71" // ⎭
+
+            // data chunk ______________________________________________
+            "64 61 74 61" // ID
+            "00 CA 6D 04" // Chunk size
+            ;
+
+    QTest::newRow("04 Too big Wave 64 file")
+            <<
+            // Header ____________________________________________________
+            "72 69 66 66  2E 91 CF 11  A5 D6 28 DB  04 C1 00 00" // riff
+            "80 86 4E 0C  01 00 00 00"                           // file size
+            "77 61 76 65  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // Format wave
+                                                                 //
+            // fmt chunk _________________________________________________
+            "66 6D 74 20  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // ID
+            "40 00 00 00  00 00 00 00"                           // Chunk size
+            "FE FF"                                              // Format code
+            "06 00"                                              // NumChannels
+            "00 77 01 00"                                        // SampleRate
+            "00 5E 1A 00"                                        // ByteRate
+            "12 00"                                              // BlockAlign
+            "18 00"                                              // BitsPerSample
+                                                                 //
+            "16 00"                                              // Size of the extension
+            "18 00"                                              // Number of valid bits
+            "0F 06 00 00"                                        // Speaker position mask
+            "01 00 00 00"                                        // ⎫ SubFormat
+            "00 00 10 00"                                        // ⎬ data format code
+            "80 00 00 AA"                                        // ⎪ 16 bytes
+            "00 38 9B 71"                                        // ⎭
+                                                                 //
+            "64 61 74 61  F3 AC D3 11  8C D1 00 C0  4F 8E DB 8A" // data
+            "18 86 4E 0C  01 00 00 00"                           // data size
+            << "ERROR: ";
 }
