@@ -83,10 +83,10 @@ private slots:
 
 private:
     Profile                  mProfile;
-    Disc *                   mDisc = nullptr;
+    Disc                    *mDisc = nullptr;
     QString                  mWorkDir;
     QMap<TrackId, ConvTrack> mTracks;
-    QTemporaryDir *          mTmpDir = nullptr;
+    QTemporaryDir           *mTmpDir = nullptr;
     QString                  mEmbedCoverFile;
     QString                  mEmbeddedCue;
 
@@ -107,7 +107,8 @@ private:
     bool                         mInterrupted = false;
     QList<SplitterRequest>       mSplitterRequests;
     QList<DiscPipeline::Request> mEncoderRequests;
-    QList<DiscPipeline::Request> mGainRequests;
+    QList<DiscPipeline::Request> mTrackGainRequests;
+    QList<DiscPipeline::Request> mAlbumGainRequests;
 
     void addSpliterRequest(const InputAudioFile &audio);
     void startSplitter(const ConvTracks &tracks, const QString &inFile, const QString &outDir);

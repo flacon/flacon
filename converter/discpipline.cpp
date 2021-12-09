@@ -180,18 +180,15 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
         return;
     }
 
-    if (mProfile.gainType() == GainType::Track) {
-        while (*count > 0 && !mGainRequests.isEmpty()) {
-            startGain(mGainRequests.takeFirst());
-            --(*count);
-        }
+    while (*count > 0 && !mTrackGainRequests.isEmpty()) {
+        startGain(mTrackGainRequests.takeFirst());
+        --(*count);
     }
-    else if (mProfile.gainType() == GainType::Album) {
-        if (*count > 0 && mGainRequests.count() == mTracks.count()) {
-            startGain(mGainRequests);
-            mGainRequests.clear();
-            --(*count);
-        }
+
+    if (*count > 0 && mAlbumGainRequests.count() == mTracks.count()) {
+        startGain(mAlbumGainRequests);
+        mAlbumGainRequests.clear();
+        --(*count);
     }
 
     while (*count > 0 && !mEncoderRequests.isEmpty()) {
@@ -283,12 +280,16 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     connect(encoder, &Encoder::trackProgress, this, &DiscPipeline::trackProgress);
     connect(encoder, &Encoder::error, this, &DiscPipeline::trackError);
 
-    if (mProfile.gainType() == GainType::Disable) {
-        connect(encoder, &Encoder::trackReady, this, &DiscPipeline::trackDone);
-    }
-    else {
+    // Replaygain ...............................
+    bool gainEnabled = mProfile.gainType() != GainType::Disable && track.audioFile().channelsCount() <= 2;
+
+    if (gainEnabled) {
         connect(encoder, &Encoder::trackReady, this, &DiscPipeline::addGainRequest);
     }
+    else {
+        connect(encoder, &Encoder::trackReady, this, &DiscPipeline::trackDone);
+    }
+    // ..........................................
 
     connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
 
@@ -303,12 +304,13 @@ void DiscPipeline::addGainRequest(const ConvTrack &track, const QString &fileNam
 {
     if (mProfile.gainType() == GainType::Album) {
         trackProgress(track, TrackState::WaitGain, 0);
+        mAlbumGainRequests << Request { track, fileName };
     }
     else {
         trackProgress(track, TrackState::Queued, 0);
+        mTrackGainRequests << Request { track, fileName };
     }
 
-    mGainRequests << Request { track, fileName };
     emit readyStart();
 }
 

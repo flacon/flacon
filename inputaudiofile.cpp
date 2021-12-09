@@ -50,7 +50,8 @@ InputAudioFile::Data::Data(const InputAudioFile::Data &other) :
     mBitsPerSample(other.mBitsPerSample),
     mDuration(other.mDuration),
     mValid(other.mValid),
-    mCdQuality(other.mCdQuality)
+    mCdQuality(other.mCdQuality),
+    mChannelsCount(other.mChannelsCount)
 {
 }
 
@@ -86,7 +87,9 @@ void InputAudioFile::Data::load(const QString &filePath)
         mBitsPerSample = dec.wavHeader().bitsPerSample();
         mCdQuality     = dec.wavHeader().isCdQuality();
         mDuration      = dec.duration();
-        mValid         = true;
+        mChannelsCount = dec.wavHeader().numChannels();
+
+        mValid = true;
 
         // clang-format off
         qCDebug(LOG) << "Audio is loaded: "

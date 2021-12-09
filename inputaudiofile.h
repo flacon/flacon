@@ -51,6 +51,7 @@ private:
         uint               mDuration      = 0;
         bool               mValid         = false;
         bool               mCdQuality     = false;
+        uint               mChannelsCount = 0;
 
         void load(const QString &fileName);
     };
@@ -63,15 +64,18 @@ public:
     InputAudioFile(const InputAudioFile &other);
     InputAudioFile &operator=(const InputAudioFile &other);
 
-    QString            filePath() const { return mData->mFilePath; }
-    QString            fileName() const { return mData->mFileName; }
-    bool               isNull() const { return mData->mFileName.isEmpty(); }
-    bool               isValid() const { return mData->mValid; }
-    bool               isCdQuality() const { return mData->mCdQuality; }
-    int                sampleRate() const { return mData->mSampleRate; }
-    int                bitsPerSample() const { return mData->mBitsPerSample; }
-    QString            errorString() const { return mData->mErrorString; }
-    uint               duration() const { return mData->mDuration; }
+    QString filePath() const { return mData->mFilePath; }
+    QString fileName() const { return mData->mFileName; }
+    QString errorString() const { return mData->mErrorString; }
+
+    bool isNull() const { return mData->mFileName.isEmpty(); }
+    bool isValid() const { return mData->mValid; }
+    bool isCdQuality() const { return mData->mCdQuality; }
+    int  sampleRate() const { return mData->mSampleRate; }
+    int  bitsPerSample() const { return mData->mBitsPerSample; }
+    uint duration() const { return mData->mDuration; }
+    uint channelsCount() const { return mData->mChannelsCount; }
+
     const InputFormat *format() const { return mData->mFormat; }
 };
 

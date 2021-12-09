@@ -654,6 +654,10 @@ QStringList Disc::warnings() const
             res << tr("A maximum sample rate of %1 is supported by this format. This value will be used for encoding.", "Warning message")
                             .arg(int(Settings::i()->currentProfile().maxSampleRate()));
         }
+
+        if (Settings::i()->currentProfile().gainType() != GainType::Disable && audioFile.channelsCount() > 2) {
+            res << tr("Replaygain calculation is not supported for multi-channel audio. The replaygain will be disabled for this disk.", "Warning message");
+        }
     }
     return res;
 }
