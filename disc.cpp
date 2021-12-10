@@ -656,7 +656,7 @@ QStringList Disc::warnings() const
         }
 
         if (Settings::i()->currentProfile().gainType() != GainType::Disable && audioFile.channelsCount() > 2) {
-            res << tr("Replaygain calculation is not supported for multi-channel audio. The replaygain will be disabled for this disk.", "Warning message");
+            res << tr("ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.", "Warning message");
         }
     }
     return res;
