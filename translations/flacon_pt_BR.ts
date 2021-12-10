@@ -570,6 +570,11 @@ No modo CBR, define a taxa de bits de saída específica.
         <source>Audio file shorter than expected from CUE sheet.</source>
         <translation>Arquivo de áudio menor que o esperado pelo arquivo CUE.</translation>
     </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>EncoderConfigPage</name>

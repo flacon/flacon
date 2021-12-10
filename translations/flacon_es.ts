@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -568,6 +568,11 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
         <translation>El archivo de audio es más pequeño de lo esperado por la hoja CUE.</translation>
+    </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

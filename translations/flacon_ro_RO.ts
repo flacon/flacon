@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ro_RO" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ro_RO">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -565,6 +565,11 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
         <translation>Fișier audio mai scurt decât este specificat în lista de indexare. </translation>
+    </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ms_MY" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ms_MY">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -545,6 +545,11 @@ Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
         <translation>Fail audio lebih pendek berbanding lembar CUE.</translation>
+    </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

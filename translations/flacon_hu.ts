@@ -547,6 +547,11 @@ CBR módban beállítja az adott kimeneti bitrátát.
         <source>Audio file shorter than expected from CUE sheet.</source>
         <translation>Az audiofájl rövidebb, mint ami a CUE laptól elvárt.</translation>
     </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>EncoderConfigPage</name>

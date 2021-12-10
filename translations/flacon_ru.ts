@@ -570,9 +570,9 @@ In CBR mode, it sets the specific output bitrate.
         <translation>Длина аудиофайла меньше чем указано в CUE.</translation>
     </message>
     <message>
-        <source>Replaygain calculation is not supported for multi-channel audio. The replaygain will be disabled for this disk.</source>
+        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
-        <translation>Выравнивание громкости (replaygain) не поддерживается для многоканальных аудиофайлов. Он будет отключен для этого диска.</translation>
+        <translation>Выравнивание громкости (ReplayGain) не поддерживается для многоканальных аудиофайлов. Он будет отключен для этого диска.</translation>
     </message>
 </context>
 <context>

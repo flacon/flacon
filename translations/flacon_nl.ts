@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nl">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -545,6 +545,11 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
         <translation>Audiobestand korter dan verwacht van cuebestand.</translation>
+    </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

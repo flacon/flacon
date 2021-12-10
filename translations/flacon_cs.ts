@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -568,6 +568,11 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
         <translation>Zvukový soubor je kratší než očekáváno podle listu CUE.</translation>
+    </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
