@@ -324,7 +324,12 @@ QString Track::calcResultFilePath() const
     if (fi.isAbsolute())
         return fi.absoluteFilePath();
 
-    return QFileInfo(mCueFileName).dir().absolutePath() + QDir::separator() + dir;
+    QString cueFile = mCueFileName;
+    if (cueFile.startsWith(Cue::EMBEDED_PREFIX)) {
+        cueFile = cueFile.mid(strlen(Cue::EMBEDED_PREFIX));
+    }
+
+    return QFileInfo(cueFile).dir().absolutePath() + QDir::separator() + dir;
 }
 
 /************************************************

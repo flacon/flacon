@@ -62,7 +62,7 @@ Cue::Cue(QIODevice *device, const QString &audioFile) noexcept(false)
     }
 
     QFileInfo fileInfo(audioFile);
-    mFileName = QString("embedded:%1").arg(fileInfo.absoluteFilePath());
+    mFileName = EMBEDED_PREFIX + fileInfo.absoluteFilePath();
     setUri(mFileName);
     setTitle(QObject::tr("Embedded on %1", "The title for the CUE embedded in the audio file. %1 - is an audio-file name.").arg(fileInfo.fileName()));
 

@@ -35,6 +35,8 @@ class CueData;
 
 class Cue : public Tracks
 {
+public:
+    static constexpr const char *const EMBEDED_PREFIX = "embedded://";
 
 public:
     Cue();
@@ -46,6 +48,7 @@ public:
     DiscNum discNum() const { return mDiscNum; }
 
     bool isMutiplyAudio() const;
+    bool isEmbedded() const { return mFileName.startsWith(EMBEDED_PREFIX); }
 
 private:
     QString mFileName;
