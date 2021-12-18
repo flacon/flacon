@@ -59,6 +59,7 @@ private:
     QByteArray getAlbumPerformer(const CueData &data);
     void       splitTitleTag(const CueData &data);
     void       setCodecName(const CueData &data);
+    void       validate();
 };
 
 class CueError : public FlaconError

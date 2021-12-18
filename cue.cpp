@@ -133,6 +133,22 @@ void Cue::read(const CueData &data)
 
     splitTitleTag(data);
     setCodecName(data);
+    validate();
+}
+
+/************************************************
+ *
+ ************************************************/
+void Cue::validate()
+{
+    bool hasFileTag = false;
+    for (const Track &t : *this) {
+        hasFileTag = hasFileTag || !t.tagData(TagId::File).isEmpty();
+    }
+
+    if (!hasFileTag) {
+        throw CueError(QObject::tr("<b>%1</b> is not a valid CUE file. The CUE sheet has no FILE tag.").arg(mFileName));
+    }
 }
 
 /************************************************
