@@ -572,7 +572,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Le calcul de ReplayGain n’est pas pris en charge pour le son multivoie. ReplayGain sera désactivé pour ce disque.</translation>
     </message>
 </context>
 <context>

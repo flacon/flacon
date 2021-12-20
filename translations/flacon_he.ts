@@ -572,7 +572,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>חישוב ReplayGain לא נתמך בשמע רב־ערוצי. האפשרות תושבת עבור תקליטור זה.</translation>
     </message>
 </context>
 <context>
@@ -1169,7 +1169,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation>הגדרות ריפלאיגאיין:</translation>
+        <translation>הגדרות ReplayGain:</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1375,7 +1375,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>לא ניתן לנשתמש ב &apos;ReplayGain&apos; בקבצים שקצב הסיביות בהן גבוהה מ 48kHz. Metaflac אינו תומך בסוג זה של קבצים.</translation>
+        <translation>לא ניתן לנשתמש ב &apos;ReplayGain&apos; בקבצים בהן קצב הסיביות גבוהה מ־48kHz. סוג קבצים זה, לא ניתמך על ידי Metaflac.</translation>
     </message>
     <message>
         <source>Multiple values</source>

@@ -345,7 +345,7 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     <message>
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
-        <translation type="unfinished"/>
+        <translation>CVBR - beschränkte variable Bitrate</translation>
     </message>
 </context>
 <context>
@@ -465,7 +465,7 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     <message>
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
-        <translation type="unfinished"/>
+        <translation>Dateinamenformat</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -474,12 +474,12 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     <message>
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>In Datei schreiben</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>In Audiodateien einbetten</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -1044,7 +1044,7 @@ Möchten Sie fortsetzen?</translation>
     </message>
     <message>
         <source> Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation> Audioprofile</translation>
     </message>
     <message>
         <source>General</source>
@@ -1063,7 +1063,7 @@ Möchten Sie fortsetzen?</translation>
     <name>ProfileTabWidget</name>
     <message>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio</translation>
     </message>
     <message>
         <source>Result Files</source>
@@ -1149,11 +1149,11 @@ Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werd
     <message>
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
-        <translation type="unfinished"/>
+        <translation>CUE und Cover-Bild</translation>
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>Cover-Bild kopieren</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
@@ -1162,7 +1162,7 @@ Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werd
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>Cover-Bild in Ausgabedateien einbetten</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1361,11 +1361,11 @@ Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Album
     </message>
     <message>
         <source>The audio file name is not set.</source>
-        <translation type="unfinished"/>
+        <translation>Der Audiodateiname ist nicht festgelegt.</translation>
     </message>
     <message>
         <source>The audio file does not exist.</source>
-        <translation type="unfinished"/>
+        <translation>Die Audiodatei ist nicht vorhanden.</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
@@ -1373,12 +1373,12 @@ Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Album
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
-        <translation type="unfinished"/>
+        <translation>Datei enthält keine gültigen CUE-Daten.</translation>
     </message>
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
-        <translation type="unfinished"/>
+        <translation>Eingebettet in %1</translation>
     </message>
 </context>
 <context>
@@ -1507,11 +1507,11 @@ Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Album
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
-        <translation type="unfinished"/>
+        <translation>Mehrere Dateien</translation>
     </message>
     <message>
         <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Die Konvertierung ist nicht möglich.&lt;/b&gt;</translation>
     </message>
 </context>
 <context>

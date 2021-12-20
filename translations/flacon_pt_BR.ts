@@ -573,7 +573,7 @@ No modo CBR, define a taxa de bits de saída específica.
     <message>
         <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>O cálculo do ReplayGain não é suportado para áudio multicanais. O ReplayGain será desabilitado para esse disco.</translation>
     </message>
 </context>
 <context>
