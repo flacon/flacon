@@ -31,6 +31,7 @@
 #include "converter/sox.h"
 
 #include <assert.h>
+#include <thread>
 #include <QtGlobal>
 #include <QDir>
 #include <QDebug>
@@ -223,7 +224,7 @@ void Settings::init()
     setDefaultValue(Tags_DefaultCodepage, "AUTODETECT");
 
     // Globals **********************************
-    setDefaultValue(Encoder_ThreadCount, 8);
+    setDefaultValue(Encoder_ThreadCount, std::thread::hardware_concurrency());
     setDefaultValue(Encoder_TmpDir, "");
 
     // Out Files ********************************
