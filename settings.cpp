@@ -31,7 +31,6 @@
 #include "converter/sox.h"
 
 #include <assert.h>
-#include <thread>
 #include <QtGlobal>
 #include <QDir>
 #include <QDebug>
@@ -40,6 +39,7 @@
 #include <QStandardPaths>
 #include <QCoreApplication>
 #include <QMetaEnum>
+#include <QThread>
 
 #ifdef Q_OS_WIN
 #define PATH_ENV_SEPARATOR ';'
@@ -224,7 +224,7 @@ void Settings::init()
     setDefaultValue(Tags_DefaultCodepage, "AUTODETECT");
 
     // Globals **********************************
-    setDefaultValue(Encoder_ThreadCount, std::thread::hardware_concurrency());
+    setDefaultValue(Encoder_ThreadCount, qMax(8, QThread::idealThreadCount()));
     setDefaultValue(Encoder_TmpDir, "");
 
     // Out Files ********************************
@@ -698,3 +698,5 @@ void Settings::setCddbHost(const QString &value)
 {
     setValue(Inet_CDDBHost, value);
 }
+
+
