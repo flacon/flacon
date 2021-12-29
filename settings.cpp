@@ -224,7 +224,7 @@ void Settings::init()
     setDefaultValue(Tags_DefaultCodepage, "AUTODETECT");
 
     // Globals **********************************
-    setDefaultValue(Encoder_ThreadCount, qMax(8, QThread::idealThreadCount()));
+    setDefaultValue(Encoder_ThreadCount, qMax(4, QThread::idealThreadCount()));
     setDefaultValue(Encoder_TmpDir, "");
 
     // Out Files ********************************
@@ -698,5 +698,3 @@ void Settings::setCddbHost(const QString &value)
 {
     setValue(Inet_CDDBHost, value);
 }
-
-
