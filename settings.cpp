@@ -39,6 +39,7 @@
 #include <QStandardPaths>
 #include <QCoreApplication>
 #include <QMetaEnum>
+#include <QThread>
 
 #ifdef Q_OS_WIN
 #define PATH_ENV_SEPARATOR ';'
@@ -223,7 +224,7 @@ void Settings::init()
     setDefaultValue(Tags_DefaultCodepage, "AUTODETECT");
 
     // Globals **********************************
-    setDefaultValue(Encoder_ThreadCount, 8);
+    setDefaultValue(Encoder_ThreadCount, qMax(8, QThread::idealThreadCount()));
     setDefaultValue(Encoder_TmpDir, "");
 
     // Out Files ********************************
@@ -697,3 +698,5 @@ void Settings::setCddbHost(const QString &value)
 {
     setValue(Inet_CDDBHost, value);
 }
+
+
