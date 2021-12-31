@@ -74,12 +74,13 @@ static bool runConvert(const QString &dir, const QString &inDir, const QString &
     QStringList args;
     args << "--config" << cfgFile;
     args << "--start";
-    args << "--quiet";
+    args << "--debug";
     args << inDir.toLocal8Bit().data();
 
     createStartSh(dir + "/start.sh", flacon, args);
 
     QProcess proc;
+    proc.setStandardErrorFile(dir + "/out.log");
     proc.start(flacon, args);
 
     if (!proc.waitForFinished(30 * 1000)) {
@@ -119,14 +120,12 @@ void TestFlacon::testConvert()
 
     // Create config ............................
     {
-        QString src = dataDir + "/flacon.conf";
-        if (!QFile::copy(src, cfgFile))
-            QFAIL(QString("Can't copy config file \"%1\"").arg(src).toLocal8Bit());
-
-        QSettings cfg(cfgFile, QSettings::IniFormat);
-        cfg.setIniCodec("UTF-8");
-        cfg.setValue("OutFiles/Directory", outDir);
-        cfg.sync();
+        QString     src  = dataDir + "/flacon.conf";
+        QStringList data = readFile(src);
+        for (int i = 0; i < data.length(); ++i) {
+            data[i] = data[i].replace("@TEST_DIR@", dir());
+        }
+        writeFile(data, cfgFile);
     }
     // ..........................................
 

@@ -61,113 +61,6 @@ QString   Settings::mFileName;
 Settings *Settings::mInstance = nullptr;
 
 /************************************************
- * Added on 6.0.0 release, remove after 8.0.0 release
- ************************************************/
-static void migrateKey(Settings *settings, const QString &oldKey, const QString &newKey)
-{
-    if (settings->contains(oldKey) && !settings->contains(newKey))
-        settings->setValue(newKey, settings->value(oldKey));
-}
-
-/************************************************
- * Added on 6.0.0 release, remove after 8.0.0 release
- ************************************************/
-static void migrateProfile(Settings *settings, const QString &formatId)
-{
-    const OutFormat *format = OutFormat::formatForId(formatId);
-    assert(format != nullptr);
-    if (!format)
-        return;
-
-    QString group = QString("%1/%2/").arg(PROFILES_PREFIX).arg(format->id());
-    settings->setValue(group + "Format", format->id());
-    settings->setValue(group + "Name", format->name());
-
-    if (format->id() == "AAC") {
-        migrateKey(settings, "Aac/UseQuality", group + "UseQuality");
-        migrateKey(settings, "Aac/Quality", group + "Quality");
-        migrateKey(settings, "Aac/Bitrate", group + "Bitrate");
-    }
-
-    if (format->id() == "FLAC") {
-        migrateKey(settings, "Flac/Compression", group + "Compression");
-        migrateKey(settings, "Flac/ReplayGain", group + "ReplayGain");
-    }
-
-    if (format->id() == "MP3") {
-        migrateKey(settings, "Mp3/Preset", group + "Preset");
-        migrateKey(settings, "Mp3/Bitrate", group + "Bitrate");
-        migrateKey(settings, "Mp3/Quality", group + "Quality");
-        migrateKey(settings, "Mp3/ReplayGain", group + "ReplayGain");
-
-        // Replace vbrStandardFast to vbrStandard
-        if (settings->value(group + "Preset", "") == "vbrStandardFast") {
-            settings->setValue(group + "Preset", "vbrStandard");
-        }
-
-        // Replace vbrExtremeFast to vbrExtreme
-        if (settings->value(group + "Preset", "") == "vbrExtremeFast") {
-            settings->setValue(group + "Preset", "vbrExtreme");
-        }
-    }
-
-    if (format->id() == "OGG") {
-        migrateKey(settings, "Ogg/UseQuality", group + "UseQuality");
-        migrateKey(settings, "Ogg/Quality", group + "Quality");
-        migrateKey(settings, "Ogg/MinBitrate", group + "MinBitrate");
-        migrateKey(settings, "Ogg/NormBitrate", group + "NormBitrate");
-        migrateKey(settings, "Ogg/MaxBitrate", group + "MaxBitrate");
-        migrateKey(settings, "Ogg/ReplayGain", group + "ReplayGain");
-    }
-
-    if (format->id() == "OPUS") {
-        migrateKey(settings, "Opus/BitrateType", group + "BitrateType");
-        migrateKey(settings, "Opus/Bitrate", group + "Bitrate");
-    }
-
-    if (format->id() == "WAV") {
-        // No options
-    }
-
-    if (format->id() == "WV") {
-        migrateKey(settings, "WV/Compression", group + "Compression");
-        migrateKey(settings, "WV/ReplayGain", group + "ReplayGain");
-    }
-
-    migrateKey(settings, "OutFiles/Directory", group + Profile::OUT_DIRECTORY_KEY);
-    migrateKey(settings, "OutFiles/Pattern", group + Profile::OUT_PATTERN_KEY);
-
-    migrateKey(settings, "Resample/BitsPerSample", group + Profile::BITS_PER_SAMPLE_KEY);
-    migrateKey(settings, "Resample/SampleRate", group + Profile::SAMPLE_RATE_KEY);
-
-    migrateKey(settings, "PerTrackCue/Create", group + Profile::CREATE_CUE_KEY);
-    migrateKey(settings, "PerTrackCue/FileName", group + Profile::CUE_FILE_NAME_KEY);
-    migrateKey(settings, "PerTrackCue/Pregap", group + Profile::PREGAP_TYPE_KEY);
-}
-
-/************************************************
- * Added on 6.0.0 release, remove after 8.0.0 release
- ************************************************/
-static void migrateProfiles(Settings *settings)
-{
-    settings->allKeys();
-    if (!settings->childGroups().contains(PROFILES_PREFIX)) {
-
-        migrateProfile(settings, "WAV");
-        migrateProfile(settings, "AAC");
-        migrateProfile(settings, "FLAC");
-        migrateProfile(settings, "MP3");
-        migrateProfile(settings, "OGG");
-        migrateProfile(settings, "OPUS");
-        migrateProfile(settings, "WAV");
-        migrateProfile(settings, "WV");
-    }
-
-    if (settings->contains("OutFiles/Format") && !settings->contains("OutFiles/Profile"))
-        settings->setValue("OutFiles/Profile", settings->value("OutFiles/Format"));
-}
-
-/************************************************
 
  ************************************************/
 Settings *Settings::i()
@@ -217,10 +110,6 @@ Settings::Settings(const QString &fileName) :
  ************************************************/
 void Settings::init()
 {
-    migrateProfiles(this);
-    if (value(Inet_CDDBHost) == "https://gnudb.gnudb.org/")
-        remove("Inet/CDDBHost");
-
     setDefaultValue(Tags_DefaultCodepage, "AUTODETECT");
 
     // Globals **********************************
