@@ -28,6 +28,7 @@
 #include <QSettings>
 
 class Disc;
+class Track;
 
 namespace Tests {
 
@@ -47,6 +48,7 @@ class DiscSpec
     static constexpr const char *KEY_TRACK_INDEX_0    = "INDEX 00";
     static constexpr const char *KEY_TRACK_INDEX_1    = "INDEX 01";
     static constexpr const char *KEY_TRACK_AUDIO_FILE = "AUDIO FILE";
+    static constexpr const char *KEY_TRACK_DURATION   = "DURATION";
 
 public:
     DiscSpec(const QString &fileName);
@@ -76,6 +78,8 @@ private:
 
     QString trackKey(int track, const QString tag) const;
     QString trackValue(int track, const QString &key) const;
+    int     durationValue(const QString &key) const;
+    void    verifyTrack(const Track *track, const QString &key) const;
 };
 
 }

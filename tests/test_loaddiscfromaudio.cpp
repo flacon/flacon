@@ -64,7 +64,9 @@ void TestFlacon::testLoadDiscFromAudio()
             QFAIL("Can't set LOAD tag in the spec file");
         }
 
-        Disc *disc = p.addAudioFile(dir + "/" + spec.value("LOAD").toString());
+        QString fileName = dir + "/" + spec.value("LOAD").toString();
+        Disc *  disc     = fileName.endsWith("cue") ? p.addCueFile(fileName) : p.addAudioFile(fileName);
+
         disc->setCodecName(spec.value("CODEC", "UTF-8").toString());
 
         Tests::DiscSpec exp(dir + "/disc.expected");

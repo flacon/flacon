@@ -305,7 +305,7 @@ void Disc::updateDurations(TrackPtrList &tracks)
         Track *track = tracks[i];
 
         uint start = track->cueIndex(1).milliseconds();
-        uint end   = mTracks.at(i + 1)->cueIndex(1).milliseconds();
+        uint end   = tracks.at(i + 1)->cueIndex(1).milliseconds();
 
         track->mDuration = end > start ? end - start : 0;
     }

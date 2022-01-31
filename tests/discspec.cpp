@@ -71,30 +71,114 @@ QString DiscSpec::trackValue(int track, const QString &key) const
     return mData.value(trackKey(track, key)).toString();
 }
 
+int DiscSpec::durationValue(const QString &key) const
+{
+    QString  s = mData.value(key).toString();
+    CueIndex res(s);
+    if (res.isNull()) {
+        return -1;
+    }
+    return res.milliseconds();
+}
+
+void DiscSpec::verifyTrack(const Track *track, const QString &key) const
+{
+    QString expected = mData.value(key).toString();
+
+    QMap<QString, TagId> TAGS;
+    TAGS["Album"]       = TagId::Album;
+    TAGS["Catalog"]     = TagId::Catalog;
+    TAGS["CDTextfile"]  = TagId::CDTextfile;
+    TAGS["Comment"]     = TagId::Comment;
+    TAGS["Date"]        = TagId::Date;
+    TAGS["Flags"]       = TagId::Flags;
+    TAGS["Genre"]       = TagId::Genre;
+    TAGS["ISRC"]        = TagId::ISRC;
+    TAGS["Artist"]      = TagId::Artist;
+    TAGS["SongWriter"]  = TagId::SongWriter;
+    TAGS["Title"]       = TagId::Title;
+    TAGS["DiscId"]      = TagId::DiscId;
+    TAGS["File"]        = TagId::File;
+    TAGS["DiscNum"]     = TagId::DiscNum;
+    TAGS["DiscCount"]   = TagId::DiscCount;
+    TAGS["CueFile"]     = TagId::CueFile;
+    TAGS["AlbumArtist"] = TagId::AlbumArtist;
+    TAGS["TrackNum"]    = TagId::TrackNum;
+    TAGS["TrackCount"]  = TagId::TrackCount;
+    TAGS["Performer"]   = TagId::Artist;
+
+    QStringList keys = TAGS.keys();
+    for (auto key : keys) {
+        TAGS[key.toUpper()] = TAGS[key];
+    }
+
+    if (TAGS.contains(key)) {
+        QCOMPARE(track->tag(TAGS[key]), expected);
+        return;
+    }
+
+    if (key == KEY_TRACK_INDEX_0) {
+        if (track->cueIndex(0).toString(true) != expected) {
+            QCOMPARE(track->cueIndex(0).toString(false), expected);
+        }
+        return;
+    }
+
+    if (key == KEY_TRACK_INDEX_1) {
+        if (track->cueIndex(1).toString(true) != expected) {
+            QCOMPARE(track->cueIndex(1).toString(false), expected);
+        }
+        return;
+    }
+
+    if (key == KEY_TRACK_AUDIO_FILE) {
+        QCOMPARE(track->audioFileName(), expected);
+        return;
+    }
+
+    if (key == KEY_TRACK_DURATION) {
+        int expected = durationValue(key);
+        if (expected < 0) {
+            QFAIL("Invalid track duration");
+        }
+
+        if (track->duration() != uint(expected)) {
+            qWarning() << "Track" << track->trackNum();
+            QCOMPARE(track->duration(), expected);
+        }
+        return;
+    }
+
+    QFAIL(QString("Unknown expected key: %1").arg(key).toLocal8Bit());
+}
+
 void DiscSpec::verify(const Disc &disc) const
 {
-    QCOMPARE(disc.cueFilePath(), cueFilePath());
-    QCOMPARE(disc.count(), tracksCount());
-    for (int i = 0; i < tracksCount(); ++i) {
-        const Track *track = disc.track(i);
-        int          n     = i + 1;
-        QCOMPARE(track->title(), trackTitle(n));
-        QCOMPARE(track->date(), trackDate(n));
-        QCOMPARE(track->discId(), trackDiscId(n));
-        QCOMPARE(track->comment(), trackComment(n));
-        QCOMPARE(track->tag(TagId::File), trackFile(n));
-        QCOMPARE(track->artist(), trackPerformer(n));
-
-        if (track->cueIndex(0).toString(true) != trackIndex0(n)) {
-            QCOMPARE(track->cueIndex(0).toString(false), trackIndex0(n));
-        }
-
-        if (track->cueIndex(1).toString(true) != trackIndex1(n)) {
-            QCOMPARE(track->cueIndex(1).toString(false), trackIndex1(n));
-        }
-
-        QCOMPARE(track->audioFileName(), trackAudioFile(n));
+    if (mData.contains(KEY_CUE_FILE_PATH)) {
+        QCOMPARE(disc.cueFilePath(), cueFilePath());
     }
+
+    QCOMPARE(disc.count(), tracksCount());
+
+    mData.beginGroup("TRACKS");
+    for (const QString &group : mData.childGroups()) {
+        Track *track;
+        {
+            bool ok;
+            int  n = group.toInt(&ok);
+            if (!ok) {
+                QFAIL("Invalid Track number");
+                return;
+            }
+            track = disc.track(n - 1);
+        }
+        mData.beginGroup(group);
+        for (const QString &key : mData.childKeys()) {
+            verifyTrack(track, key);
+        }
+        mData.endGroup();
+    }
+    mData.endGroup();
 }
 
 namespace {
@@ -158,10 +242,7 @@ private:
 
     bool needQuote(const QString &value) const
     {
-        // clang-format off
-        return
-            value.contains(",");
-        // clang-format on
+        return value.contains(",");
     }
 };
 
