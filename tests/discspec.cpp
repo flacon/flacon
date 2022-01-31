@@ -144,7 +144,7 @@ void DiscSpec::verifyTrack(const Track *track, const QString &key) const
 
         if (track->duration() != uint(expected)) {
             qWarning() << "Track" << track->trackNum();
-            QCOMPARE(track->duration(), expected);
+            QCOMPARE(track->duration(), Duration(expected));
         }
         return;
     }
