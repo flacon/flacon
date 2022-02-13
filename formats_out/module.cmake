@@ -7,6 +7,7 @@ list(APPEND SOURCES
 )
 
 include(${CMAKE_CURRENT_LIST_DIR}/aac/module.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/alac/module.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/flac/module.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/mp3/module.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/ogg/module.cmake)

@@ -63,12 +63,6 @@ public:
         ConfigureDialog_Width,
         ConfigureDialog_Height,
 
-        // Cover image **************************
-        Cover_Mode,
-        Cover_Size,
-        EmbeddedCover_Mode,
-        EmbeddedCover_Size,
-
     };
 
     static Settings *i();
@@ -87,25 +81,11 @@ public:
     QSet<QString> programs() const { return mPrograms; }
     QString       findProgram(const QString &program) const;
 
-    OutFormat *outFormat() const;
-
     QString tmpDir() const;
     void    setTmpDir(const QString &value);
 
     QString defaultCodepage() const;
     void    setDefaultCodepage(const QString &value);
-
-    CoverMode coverMode() const;
-    void      setCoverMode(CoverMode value);
-
-    int  coverImageSize() const;
-    void setCoverImageSize(int value);
-
-    CoverMode embeddedCoverMode() const;
-    void      setEmbeddedCoverMode(CoverMode value);
-
-    int  embeddedCoverImageSize() const;
-    void setEmbeddedCoverImageSize(int value);
 
     Profiles       &profiles();
     const Profiles &profiles() const;
@@ -136,6 +116,7 @@ private:
     QString     keyToString(Key key) const;
     QStringList groups(const QString &parentGroup) const;
     void        loadProfiles();
+    void        initProfiles();
 
     QSet<QString>    mPrograms;
     static QString   mFileName;
