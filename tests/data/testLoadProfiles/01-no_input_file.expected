@@ -115,3 +115,18 @@
     PregapType = Extract
     CoverFile/Mode=Disable
     CoverFile/Size=1024
+
+
+[Profiles/ALAC]
+    BitsPerSample=0
+    Compression=0
+    CoverFile\Mode=Disable
+    CoverFile\Size=1024
+    CreateCue=false
+    CueFileName=%a-%A.cue
+    Format=ALAC
+    Name=ALAC
+    OutDirectory=~/\x41c\x443\x437\x44b\x43a\x430
+    OutPattern=%a/{%y - }%A/%n - %t
+    PregapType=Extract
+    SampleRate=0
