@@ -303,7 +303,8 @@ int main(int argc, char *argv[])
     }
     else {
         qSetMessagePattern("%{if-warning}Warning: %{endif}%{if-critical}Error: %{endif}%{if-fatal}Error: %{endif}%{message}");
-        QLoggingCategory::setFilterRules("*.debug=false\n");
+        QLoggingCategory::setFilterRules("*.debug=false\n"
+                                         "default.debug=true\n");
     }
 
     quiet    = parser.isSet("quiet");
