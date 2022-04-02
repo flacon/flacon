@@ -25,6 +25,19 @@
 
 #include "flacencoder.h"
 
+#include <QFile>
+
+QString writeMetadataFile(const QString &path,const QString &fieldName, const QString &fieldValue)
+{
+    QString metadataFile = path + "." + fieldName;
+    QFile file(metadataFile);
+    if (file.open(QFile::WriteOnly)) {
+        file.write(fieldValue.toUtf8());
+    }
+    file.close();
+    return metadataFile;
+}
+
 QStringList FlacEncoder::programArgs() const
 {
     QStringList args;
@@ -32,6 +45,16 @@ QStringList FlacEncoder::programArgs() const
 
     args << "--force";  // Force overwriting of output files.
     args << "--silent"; // Suppress progress indicator
+
+    /**
+     * We ensure metadata for flac is utf-8 by using --tag-from-file option.
+     * flac's internal automatical utf8 conversion may cause unwanted result.
+     *
+     * Using `--tag` should be avoided, use `--tag-from-file` instead.
+     *
+     * see https://github.com/flacon/flacon/issues/176
+     */
+    args << "--no-utf8-convert";
 
     // Settings .................................................
     // Compression parametr really looks like --compression-level-N
@@ -42,40 +65,40 @@ QStringList FlacEncoder::programArgs() const
         args << "--tag" << QString("artist=%1").arg(track().artist());
 
     if (!track().album().isEmpty())
-        args << "--tag" << QString("album=%1").arg(track().album());
+        args << "--tag-from-file" << QString("album=%1").arg(writeMetadataFile(outFile(), QString("album"), track().album()));
 
     if (!track().genre().isEmpty())
-        args << "--tag" << QString("genre=%1").arg(track().genre());
+        args << "--tag-from-file" << QString("genre=%1").arg(writeMetadataFile(outFile(), QString("genre"), track().genre()));
 
     if (!track().date().isEmpty())
-        args << "--tag" << QString("date=%1").arg(track().date());
+        args << "--tag-from-file" << QString("date=%1").arg(writeMetadataFile(outFile(), QString("date"), track().date()));
 
     if (!track().title().isEmpty())
-        args << "--tag" << QString("title=%1").arg(track().title());
+        args << "--tag-from-file" << QString("title=%1").arg(writeMetadataFile(outFile(), QString("title"), track().title()));
 
     if (!track().tag(TagId::AlbumArtist).isEmpty())
-        args << "--tag" << QString("albumartist=%1").arg(track().tag(TagId::AlbumArtist));
+        args << "--tag-from-file" << QString("albumartist=%1").arg(writeMetadataFile(outFile(), QString("albumartist"), track().tag(TagId::AlbumArtist)));
 
     if (!track().comment().isEmpty())
-        args << "--tag" << QString("comment=%1").arg(track().comment());
+        args << "--tag-from-file" << QString("comment=%1").arg(writeMetadataFile(outFile(), QString("comment"), track().comment()));
 
     if (!track().discId().isEmpty())
-        args << "--tag" << QString("discId=%1").arg(track().discId());
+        args << "--tag-from-file" << QString("discId=%1").arg(writeMetadataFile(outFile(), QString("discId"), track().discId()));
 
-    args << "--tag" << QString("tracknumber=%1").arg(track().trackNum());
-    args << "--tag" << QString("totaltracks=%1").arg(track().trackCount());
-    args << "--tag" << QString("tracktotal=%1").arg(track().trackCount());
+    args << "--tag-from-file" << QString("tracknumber=%1").arg(writeMetadataFile(outFile(), QString("tracknumber"), QString(track().trackNum())));
+    args << "--tag-from-file" << QString("totaltracks=%1").arg(writeMetadataFile(outFile(), QString("totaltracks"), QString(track().trackCount())));
+    args << "--tag-from-file" << QString("tracktotal=%1").arg(writeMetadataFile(outFile(), QString("tracktotal"), QString(track().trackCount())));
 
-    args << "--tag" << QString("disc=%1").arg(track().discNum());
-    args << "--tag" << QString("discnumber=%1").arg(track().discNum());
-    args << "--tag" << QString("disctotal=%1").arg(track().discCount());
+    args << "--tag-from-file" << QString("disc=%1").arg(writeMetadataFile(outFile(), QString("disc"), QString(track().discNum())));
+    args << "--tag-from-file" << QString("discnumber=%1").arg(writeMetadataFile(outFile(), QString("discnumber"), QString(track().discNum())));
+    args << "--tag-from-file" << QString("disctotal=%1").arg(writeMetadataFile(outFile(), QString("disctotal"), QString(track().discCount())));
 
     if (!coverFile().isEmpty()) {
         args << QString("--picture=%1").arg(coverFile());
     }
 
     if (profile().isEmbedCue()) {
-        args << "--tag" << QString("cuesheet=%1").arg(embeddedCue());
+        args << "--tag-from-file" << QString("cuesheet=%1").arg(writeMetadataFile(outFile(), QString("cuesheet"), embeddedCue()));
     }
 
     args << "-";
