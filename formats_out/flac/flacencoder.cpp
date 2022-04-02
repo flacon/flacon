@@ -27,10 +27,10 @@
 
 #include <QFile>
 
-QString writeMetadataFile(const QString &path,const QString &fieldName, const QString &fieldValue)
+QString writeMetadataFile(const QString &path, const QString &fieldName, const QString &fieldValue)
 {
     QString metadataFile = path + "." + fieldName;
-    QFile file(metadataFile);
+    QFile   file(metadataFile);
     if (file.open(QFile::WriteOnly)) {
         file.write(fieldValue.toUtf8());
     }
@@ -85,13 +85,13 @@ QStringList FlacEncoder::programArgs() const
     if (!track().discId().isEmpty())
         args << "--tag-from-file" << QString("discId=%1").arg(writeMetadataFile(outFile(), QString("discId"), track().discId()));
 
-    args << "--tag-from-file" << QString("tracknumber=%1").arg(writeMetadataFile(outFile(), QString("tracknumber"), QString(track().trackNum())));
-    args << "--tag-from-file" << QString("totaltracks=%1").arg(writeMetadataFile(outFile(), QString("totaltracks"), QString(track().trackCount())));
-    args << "--tag-from-file" << QString("tracktotal=%1").arg(writeMetadataFile(outFile(), QString("tracktotal"), QString(track().trackCount())));
+    args << "--tag" << QString("tracknumber=%1").arg(track().trackNum());
+    args << "--tag" << QString("totaltracks=%1").arg(track().trackCount());
+    args << "--tag" << QString("tracktotal=%1").arg(track().trackCount());
 
-    args << "--tag-from-file" << QString("disc=%1").arg(writeMetadataFile(outFile(), QString("disc"), QString(track().discNum())));
-    args << "--tag-from-file" << QString("discnumber=%1").arg(writeMetadataFile(outFile(), QString("discnumber"), QString(track().discNum())));
-    args << "--tag-from-file" << QString("disctotal=%1").arg(writeMetadataFile(outFile(), QString("disctotal"), QString(track().discCount())));
+    args << "--tag" << QString("disc=%1").arg(track().discNum());
+    args << "--tag" << QString("discnumber=%1").arg(track().discNum());
+    args << "--tag" << QString("disctotal=%1").arg(track().discCount());
 
     if (!coverFile().isEmpty()) {
         args << QString("--picture=%1").arg(coverFile());

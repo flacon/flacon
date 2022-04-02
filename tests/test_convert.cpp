@@ -104,6 +104,32 @@ static bool runConvert(const QString &dir, const QString &inDir, const QString &
 /************************************************
  *
  ************************************************/
+static QByteArray readTag(const QString &file, const QString &tag)
+{
+    if (!QFile::exists(file)) {
+        FAIL(QString("File %1 not found").arg(file).toLocal8Bit());
+        return {};
+    }
+
+    QStringList args;
+    args << QString("--Inform=General;%%1%").arg(tag);
+    args << file;
+
+    QProcess proc;
+    proc.setEnvironment(QStringList("LANG=en_US.UTF-8"));
+    proc.start("mediainfo", args);
+    proc.waitForFinished();
+    if (proc.exitCode() != 0) {
+        QString err = QString::fromLocal8Bit(proc.readAll());
+        FAIL(QString("Can't read \"%1\" tag from \"%2\": %3").arg(tag).arg(file).arg(err).toLocal8Bit());
+    }
+
+    return proc.readAllStandardOutput().trimmed();
+}
+
+/************************************************
+ *
+ ************************************************/
 void TestFlacon::testConvert()
 {
     QFETCH(QString, dataDir);
@@ -218,9 +244,10 @@ void TestFlacon::testConvert()
             continue;
         }
 
-        if (!hash.isEmpty())
+        if (!hash.isEmpty()) {
             if (!compareAudioHash(outDir + "/" + file, hash))
                 QFAIL("");
+        }
     }
     spec.endGroup();
     // ..........................................
@@ -254,6 +281,22 @@ void TestFlacon::testConvert()
     }
     spec.endGroup();
     // ..........................................
+
+    // ******************************************
+    // Check tags
+    spec.beginGroup("Result_Tags");
+    foreach (auto file, spec.childGroups()) {
+
+        spec.beginGroup(file);
+        foreach (auto tag, spec.allKeys()) {
+            QByteArray actual   = readTag(outDir + "/" + file, tag);
+            QByteArray expected = spec.value(tag).toByteArray();
+            QCOMPARE(actual, expected);
+        }
+        spec.endGroup();
+    }
+    spec.endGroup();
+    // ******************************************
 
     if (!missing.isEmpty())
         msg += QString("\nFiles not exists in %1:\n  * %2")
