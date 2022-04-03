@@ -125,14 +125,6 @@ void Settings::init()
     // Misc *************************************
     setDefaultValue(Misc_LastDir, QDir::homePath());
 
-    // Cover image **************************
-    setDefaultValue(Cover_Mode, coverModeToString(CoverMode::Scale));
-    setDefaultValue(Cover_Size, 500);
-
-    // Embedded Cover image ******************
-    setDefaultValue(EmbeddedCover_Mode, coverModeToString(CoverMode::Disable));
-    setDefaultValue(EmbeddedCover_Size, 500);
-
     // ConfigureDialog **********************
     setDefaultValue(ConfigureDialog_Width, 645);
     setDefaultValue(ConfigureDialog_Height, 425);
@@ -206,18 +198,6 @@ QString Settings::keyToString(Settings::Key key) const
             return "ConfigureDialog/Width";
         case ConfigureDialog_Height:
             return "ConfigureDialog/Height";
-
-        // Cover image **************************
-        case Cover_Mode:
-            return "Cover/Mode";
-        case Cover_Size:
-            return "Cover/Size";
-
-        // Embedded Cover image ******************
-        case EmbeddedCover_Mode:
-            return "EmbeddedCover/Mode";
-        case EmbeddedCover_Size:
-            return "EmbeddedCover/Size";
     }
 
     assert(false);
@@ -344,70 +324,6 @@ QString Settings::defaultCodepage() const
 void Settings::setDefaultCodepage(const QString &value)
 {
     setValue(Tags_DefaultCodepage, value);
-}
-
-/************************************************
- *
- ************************************************/
-CoverMode Settings::coverMode() const
-{
-    return strToCoverMode(value(Cover_Mode).toString());
-}
-
-/************************************************
- *
- ************************************************/
-void Settings::setCoverMode(CoverMode value)
-{
-    setValue(Cover_Mode, coverModeToString(value));
-}
-
-/************************************************
- *
- ************************************************/
-int Settings::coverImageSize() const
-{
-    return value(Cover_Size).toInt();
-}
-
-/************************************************
-
-************************************************/
-void Settings::setCoverImageSize(int value)
-{
-    setValue(Cover_Size, value);
-}
-
-/************************************************
-
-************************************************/
-CoverMode Settings::embeddedCoverMode() const
-{
-    return strToCoverMode(value(EmbeddedCover_Mode).toString());
-}
-
-/************************************************
-
- ************************************************/
-void Settings::setEmbeddedCoverMode(CoverMode value)
-{
-    setValue(EmbeddedCover_Mode, coverModeToString(value));
-}
-
-/************************************************
-
- ************************************************/
-int Settings::embeddedCoverImageSize() const
-{
-    return value(EmbeddedCover_Size).toInt();
-}
-
-/************************************************
-
- ************************************************/
-void Settings::setEmbeddedCoverImageSize(int value)
-{
-    setValue(EmbeddedCover_Size, value);
 }
 
 /************************************************

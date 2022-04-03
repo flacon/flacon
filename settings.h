@@ -62,13 +62,6 @@ public:
         // ConfigureDialog **********************
         ConfigureDialog_Width,
         ConfigureDialog_Height,
-
-        // Cover image **************************
-        Cover_Mode,
-        Cover_Size,
-        EmbeddedCover_Mode,
-        EmbeddedCover_Size,
-
     };
 
     static Settings *i();
@@ -94,18 +87,6 @@ public:
 
     QString defaultCodepage() const;
     void    setDefaultCodepage(const QString &value);
-
-    CoverMode coverMode() const;
-    void      setCoverMode(CoverMode value);
-
-    int  coverImageSize() const;
-    void setCoverImageSize(int value);
-
-    CoverMode embeddedCoverMode() const;
-    void      setEmbeddedCoverMode(CoverMode value);
-
-    int  embeddedCoverImageSize() const;
-    void setEmbeddedCoverImageSize(int value);
 
     Profiles       &profiles();
     const Profiles &profiles() const;

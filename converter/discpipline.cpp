@@ -35,7 +35,6 @@
 #include "project.h"
 #include "inputaudiofile.h"
 #include "profiles.h"
-#include "settings.h"
 
 #include <QThread>
 #include <QDebug>
@@ -506,8 +505,8 @@ void DiscPipeline::trackProgress(const ConvTrack &track, TrackState state, int p
  ************************************************/
 void DiscPipeline::copyCoverImage() const
 {
-    QString file = Settings::i()->coverMode() != CoverMode::Disable ? mDisc->coverImageFile() : "";
-    int     size = Settings::i()->coverMode() == CoverMode::Scale ? Settings::i()->coverImageSize() : 0;
+    QString file = mProfile.copyCoverOptions().mode != CoverMode::Disable ? mDisc->coverImageFile() : "";
+    int     size = mProfile.copyCoverOptions().mode == CoverMode::Scale ? mProfile.copyCoverOptions().size : 0;
 
     if (file.isEmpty()) {
         return;
@@ -526,8 +525,8 @@ void DiscPipeline::copyCoverImage() const
  ************************************************/
 void DiscPipeline::createEmbedImage()
 {
-    QString file = Settings::i()->embeddedCoverMode() != CoverMode::Disable ? mDisc->coverImageFile() : "";
-    int     size = Settings::i()->embeddedCoverMode() == CoverMode::Scale ? Settings::i()->embeddedCoverImageSize() : 0;
+    QString file = mProfile.embedCoverOptions().mode != CoverMode::Disable ? mDisc->coverImageFile() : "";
+    int     size = mProfile.embedCoverOptions().mode == CoverMode::Scale ? mProfile.embedCoverOptions().size : 0;
 
     if (file.isEmpty()) {
         return;

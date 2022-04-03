@@ -112,19 +112,38 @@ static QByteArray readTag(const QString &file, const QString &tag)
     }
 
     QStringList args;
-    args << QString("--Inform=General;%%1%").arg(tag);
-    args << file;
+    args << "-hide_banner";
+    args << "-loglevel"
+         << "error";
+    args << "-i" << file;
+    args << "-f"
+         << "ffmetadata"
+         << "-";
 
     QProcess proc;
     proc.setEnvironment(QStringList("LANG=en_US.UTF-8"));
-    proc.start("mediainfo", args);
+    proc.start("ffmpeg", args);
     proc.waitForFinished();
     if (proc.exitCode() != 0) {
         QString err = QString::fromLocal8Bit(proc.readAll());
         FAIL(QString("Can't read \"%1\" tag from \"%2\": %3").arg(tag).arg(file).arg(err).toLocal8Bit());
     }
 
-    return proc.readAllStandardOutput().trimmed();
+    QByteArray        uTag = tag.toUpper().toLocal8Bit();
+    QList<QByteArray> out  = proc.readAllStandardOutput().split('\n');
+    for (const QByteArray &line : out) {
+        int n = line.indexOf('=');
+        if (n < 0) {
+            continue;
+        }
+
+        QByteArray left = line.left(n);
+
+        if (left.toUpper() == uTag) {
+            return line.mid(n + 1);
+        }
+    }
+    return {};
 }
 
 /************************************************
@@ -133,6 +152,8 @@ static QByteArray readTag(const QString &file, const QString &tag)
 void TestFlacon::testConvert()
 {
     QFETCH(QString, dataDir);
+
+    QDir::setCurrent(dir());
 
     QFile::copy(dataDir + "/spec.ini", dir() + "/spec.ini");
     QSettings spec(dir() + "/spec.ini", QSettings::IniFormat);
@@ -291,11 +312,40 @@ void TestFlacon::testConvert()
         foreach (auto tag, spec.allKeys()) {
             QByteArray actual   = readTag(outDir + "/" + file, tag);
             QByteArray expected = spec.value(tag).toByteArray();
-            QCOMPARE(actual, expected);
+
+            if (actual != expected) {
+                QFAIL(QString("Compared tags are not the same for '%1' '%2' :\n"
+                              "    Actual   : '%3' (%4)\n"
+                              "    Expected : '%5' (%6)\n")
+                              .arg(tag)
+                              .arg(file)
+
+                              .arg(QString::fromLocal8Bit(actual))
+                              .arg(actual.toHex(' ').data())
+
+                              .arg(QString::fromLocal8Bit(expected))
+                              .arg(expected.toHex(' ').data())
+
+                              .toLocal8Bit());
+            }
         }
         spec.endGroup();
     }
     spec.endGroup();
+    // ******************************************
+
+    // ******************************************
+    // Check commands
+    spec.beginGroup("Check_Commands");
+    foreach (auto key, spec.allKeys()) {
+        QString cmd = spec.value(key).toString();
+        int     res = QProcess::execute(cmd);
+        if (res != 0) {
+            QFAIL(QString("Chack is failed for %1").arg(cmd).toLocal8Bit());
+        }
+    }
+    spec.endGroup();
+
     // ******************************************
 
     if (!missing.isEmpty())
@@ -328,9 +378,11 @@ void TestFlacon::testConvert_data()
 
     QString dataDir = mDataDir + "/testConvert/";
 
+    QString                  curDir = QDir::currentPath();
     static const QStringList mask("*");
     foreach (auto dir, QDir(dataDir).entryList(mask, QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name)) {
         if (QDir(dataDir + "/" + dir).exists("spec.ini"))
             QTest::newRow(dir.toUtf8()) << dataDir + "/" + dir;
     }
+    QDir::setCurrent(curDir);
 }
