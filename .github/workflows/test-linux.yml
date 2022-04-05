@@ -19,8 +19,8 @@ jobs:
     - name: Install packages
       run:  |
         sudo apt-get -y update
-        apt-get -y install locales
-        sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
+        sudo apt-get -y install locales
+        sudo sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
         sudo apt-get -y install software-properties-common
         sudo add-apt-repository -y ppa:flacon
         sudo apt-get -y update
