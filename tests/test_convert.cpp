@@ -129,7 +129,15 @@ static QByteArray readTag(const QString &file, const QString &tag)
         FAIL(QString("Can't read \"%1\" tag from \"%2\": %3").arg(tag).arg(file).arg(err).toLocal8Bit());
     }
 
-    return proc.readAllStandardOutput().trimmed();
+    QByteArray res = proc.readAllStandardOutput().trimmed();
+
+    // Workaround, older versions of mediainfo return the
+    // "Track/Position_Total" tag as "2 / 2".
+    if (tag == "Track/Position_Total") {
+        return res.split('/').at(0).trimmed();
+    }
+
+    return res;
 }
 
 /************************************************
@@ -320,19 +328,19 @@ void TestFlacon::testConvert()
     spec.endGroup();
     // ******************************************
 
-    // ******************************************
-    // Check commands
-    spec.beginGroup("Check_Commands");
-    foreach (auto key, spec.allKeys()) {
-        QString cmd = spec.value(key).toString();
-        int     res = QProcess::execute(cmd);
-        if (res != 0) {
-            QFAIL(QString("Chack is failed for %1").arg(cmd).toLocal8Bit());
-        }
-    }
-    spec.endGroup();
+    //    // ******************************************
+    //    // Check commands
+    //    spec.beginGroup("Check_Commands");
+    //    foreach (auto key, spec.allKeys()) {
+    //        QString cmd = spec.value(key).toString();
+    //        int     res = QProcess::execute(cmd);
+    //        if (res != 0) {
+    //            QFAIL(QString("Chack is failed for %1").arg(cmd).toLocal8Bit());
+    //        }
+    //    }
+    //    spec.endGroup();
 
-    // ******************************************
+    //    // ******************************************
 
     if (!missing.isEmpty())
         msg += QString("\nFiles not exists in %1:\n  * %2")
