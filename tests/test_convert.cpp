@@ -111,39 +111,25 @@ static QByteArray readTag(const QString &file, const QString &tag)
         return {};
     }
 
+    if (!QFile::exists(file)) {
+        FAIL(QString("File %1 not found").arg(file).toLocal8Bit());
+        return {};
+    }
+
     QStringList args;
-    args << "-hide_banner";
-    args << "-loglevel"
-         << "error";
-    args << "-i" << file;
-    args << "-f"
-         << "ffmetadata"
-         << "-";
+    args << QString("--Inform=General;%%1%").arg(tag);
+    args << file;
 
     QProcess proc;
     proc.setEnvironment(QStringList("LANG=en_US.UTF-8"));
-    proc.start("ffmpeg", args);
+    proc.start("mediainfo", args);
     proc.waitForFinished();
     if (proc.exitCode() != 0) {
         QString err = QString::fromLocal8Bit(proc.readAll());
         FAIL(QString("Can't read \"%1\" tag from \"%2\": %3").arg(tag).arg(file).arg(err).toLocal8Bit());
     }
 
-    QByteArray        uTag = tag.toUpper().toLocal8Bit();
-    QList<QByteArray> out  = proc.readAllStandardOutput().split('\n');
-    for (const QByteArray &line : out) {
-        int n = line.indexOf('=');
-        if (n < 0) {
-            continue;
-        }
-
-        QByteArray left = line.left(n);
-
-        if (left.toUpper() == uTag) {
-            return line.mid(n + 1);
-        }
-    }
-    return {};
+    return proc.readAllStandardOutput().trimmed();
 }
 
 /************************************************
