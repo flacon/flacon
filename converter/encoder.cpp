@@ -196,6 +196,14 @@ void Encoder::run()
     }
 
     deleteFile(mInputFile);
+
+    try {
+        writeMetadata(outFile());
+    }
+    catch (const FlaconError &err) {
+        emit error(track(), err.what());
+    }
+
     emit trackReady(track(), outFile());
 }
 
@@ -226,6 +234,21 @@ void Encoder::processBytesWritten(qint64 bytes)
 void Encoder::setProfile(const Profile &profile)
 {
     mProfile = profile;
+}
+
+/************************************************
+
+ ************************************************/
+void Encoder::setCoverImage(const CoverImage &value)
+{
+    mCoverImage = value;
+}
+
+/************************************************
+
+ ************************************************/
+void Encoder::writeMetadata(const QString &) const
+{
 }
 
 /************************************************

@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2017
+ * Copyright: 2022
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -23,36 +23,36 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef COPYCOVER_H
-#define COPYCOVER_H
+#ifndef COVERIMAGE_H
+#define COVERIMAGE_H
 
 #include <QString>
-#include "convertertypes.h"
+#include <QSize>
 
-namespace Conv {
-
-class CopyCover
+class CoverImage
 {
 public:
-    CopyCover(const QString &inFileName, int size, const QString &outDir, const QString &outBaseName);
-    bool run();
+    CoverImage()                        = default;
+    CoverImage(const CoverImage &other) = default;
+    CoverImage &operator=(const CoverImage &other) = default;
 
-    QString fileName() const { return mFileName; }
+    explicit CoverImage(const QString &origFilePath, uint size = 0);
 
-    QString errorString() const { return mErrorString; }
+    QString mimeType() const { return mMimeType; }
+    QSize   size() const { return mSize; }
+    int     depth() const { return mDepth; }
+
+    const QByteArray &data() const { return mData; }
+
+    void saveAs(const QString &filePath) const;
+
+    bool isEmpty() const { return mData.isEmpty(); }
 
 private:
-    QString       mInFileName;
-    int           mSize = 0;
-    const QString mDir;
-    const QString mBaseName;
-    QString       mErrorString;
-    QString       mFileName;
-
-    bool copyImage(const QString &outFileName);
-    bool resizeImage(const QString &outFileName);
+    QString    mMimeType;
+    QByteArray mData;
+    QSize      mSize;
+    int        mDepth = 0;
 };
 
-} // namespace
-
-#endif // COPYCOVER_H
+#endif // COVERIMAGE_H

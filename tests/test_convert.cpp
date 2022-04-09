@@ -116,28 +116,41 @@ static QByteArray readTag(const QString &file, const QString &tag)
         return {};
     }
 
-    QStringList args;
-    args << QString("--Inform=General;%%1%").arg(tag);
-    args << file;
+    QStringList tags;
+    tags << tag;
+    tags << tag.toUpper();
+    tags << tag.toLower();
 
-    QProcess proc;
-    proc.setEnvironment(QStringList("LANG=en_US.UTF-8"));
-    proc.start("mediainfo", args);
-    proc.waitForFinished();
-    if (proc.exitCode() != 0) {
-        QString err = QString::fromLocal8Bit(proc.readAll());
-        FAIL(QString("Can't read \"%1\" tag from \"%2\": %3").arg(tag).arg(file).arg(err).toLocal8Bit());
+    for (const QString &t : tags) {
+        QStringList args;
+        args << QString("--Inform=General;%%1%").arg(t);
+        args << file;
+
+        QProcess proc;
+        proc.setEnvironment(QStringList("LANG=en_US.UTF-8"));
+        proc.start("mediainfo", args);
+        proc.waitForFinished();
+        if (proc.exitCode() != 0) {
+            QString err = QString::fromLocal8Bit(proc.readAll());
+            FAIL(QString("Can't read \"%1\" tag from \"%2\": %3").arg(tag).arg(file).arg(err).toLocal8Bit());
+        }
+
+        QByteArray res = proc.readAllStandardOutput().trimmed();
+
+        if (res.isEmpty()) {
+            continue;
+        }
+
+        // Workaround, older versions of mediainfo return the
+        // "Track/Position_Total" tag as "2 / 2".
+        if (tag == "Track/Position_Total") {
+            return res.split('/').at(0).trimmed();
+        }
+
+        return res;
     }
 
-    QByteArray res = proc.readAllStandardOutput().trimmed();
-
-    // Workaround, older versions of mediainfo return the
-    // "Track/Position_Total" tag as "2 / 2".
-    if (tag == "Track/Position_Total") {
-        return res.split('/').at(0).trimmed();
-    }
-
-    return res;
+    return {};
 }
 
 /************************************************
@@ -308,11 +321,15 @@ void TestFlacon::testConvert()
             QByteArray expected = spec.value(tag).toByteArray();
 
             if (actual != expected) {
-                QFAIL(QString("Compared tags are not the same for '%1' '%2' :\n"
+                QFAIL(QString("Compared tags are not the same:\n"
+                              "    File: %1\n"
+                              "    Tag:  %2\n"
+                              "\n"
                               "    Actual   : '%3' (%4)\n"
                               "    Expected : '%5' (%6)\n")
-                              .arg(tag)
+
                               .arg(file)
+                              .arg(tag)
 
                               .arg(QString::fromLocal8Bit(actual))
                               .arg(actual.toHex(' ').data())
