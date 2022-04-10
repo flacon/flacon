@@ -34,16 +34,17 @@
 
 class Disc;
 
-class Track : public QObject
+class Track
 {
-    Q_OBJECT
     friend class Disc;
 
 public:
     Track();
-    Track(const Track &other);
-    Track(const TrackTags &tags);
-    Track &operator=(const Track &other);
+    Track(Disc *disc, int index);
+    Track(const Track &other) = default;
+    Track &operator=(const Track &other) = default;
+    Track(Disc *disc, int index, const TrackTags &tags);
+
     ~Track();
 
     const InputAudioFile &audioFile() const { return mAudiofile; }
@@ -51,6 +52,7 @@ public:
     QString               audioFileName() const { return mAudiofile.fileName(); }
 
     const TrackTags &tags() const { return mTags; }
+    void             setTags(const TrackTags &tags);
 
     QString    tag(const TagId &tagId) const;
     QByteArray tagData(const TagId &tagId) const;
@@ -100,19 +102,19 @@ public:
     QString resultFileName() const;
     QString resultFilePath() const;
 
-    Duration duration() const { return mDuration; }
+    Duration duration() const;
 
     CueIndex cueIndex(int indexNum) const;
 
     QString cueFileName() const { return mCueFileName; }
     void    setCueFileName(const QString &value) { mCueFileName = value; }
 
-signals:
-    void tagChanged(TagId tagId);
+    int index() const { return mIndex; }
 
 private:
+    Disc          *mDisc = nullptr;
     TrackTags      mTags;
-    Duration       mDuration = 0;
+    int            mIndex = -1;
     QString        mCueFileName;
     InputAudioFile mAudiofile;
 

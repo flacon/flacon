@@ -41,40 +41,27 @@
 /************************************************
 
  ************************************************/
-Track::Track() :
-    QObject(nullptr)
+Track::Track()
+{
+}
+
+/************************************************
+
+************************************************/
+Track::Track(Disc *disc, int index) :
+    mDisc(disc),
+    mIndex(index)
 {
 }
 
 /************************************************
  *
  ************************************************/
-Track::Track(const Track &other) :
-    QObject(nullptr),
-    mTags(other.mTags),
-    mDuration(other.mDuration),
-    mCueFileName(other.mCueFileName),
-    mAudiofile(other.mAudiofile)
-{
-}
-
-Track::Track(const TrackTags &tags) :
-    QObject(nullptr),
+Track::Track(Disc *disc, int index, const TrackTags &tags) :
+    mDisc(disc),
+    mIndex(index),
     mTags(tags)
 {
-}
-
-/************************************************
- *
- ************************************************/
-Track &Track::operator=(const Track &other)
-{
-    mTags        = other.mTags;
-    mDuration    = other.mDuration;
-    mCueFileName = other.mCueFileName;
-    mAudiofile   = other.mAudiofile;
-
-    return *this;
 }
 
 /************************************************
@@ -87,6 +74,14 @@ Track::~Track()
 void Track::setAudioFile(const InputAudioFile &file)
 {
     mAudiofile = file;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Track::setTags(const TrackTags &tags)
+{
+    mTags = tags;
 }
 
 /************************************************
@@ -119,7 +114,9 @@ TagValue Track::tagValue(TagId tagId) const
 void Track::setTag(const TagId &tagId, const QString &value)
 {
     mTags.setTag(tagId, value);
-    emit tagChanged(tagId);
+    if (mDisc) {
+        mDisc->trackChanged(tagId);
+    }
 }
 
 /************************************************
@@ -128,7 +125,9 @@ void Track::setTag(const TagId &tagId, const QString &value)
 void Track::setTag(const TagId &tagId, const QByteArray &value)
 {
     mTags.setTag(tagId, value);
-    emit tagChanged(tagId);
+    if (mDisc) {
+        mDisc->trackChanged(tagId);
+    }
 }
 
 /************************************************
@@ -137,7 +136,9 @@ void Track::setTag(const TagId &tagId, const QByteArray &value)
 void Track::setTag(TagId tagId, const TagValue &value)
 {
     mTags.setTag(tagId, value);
-    emit tagChanged(tagId);
+    if (mDisc) {
+        mDisc->trackChanged(tagId);
+    }
 }
 
 /************************************************
@@ -187,10 +188,13 @@ QString Track::resultFileName() const
  ************************************************/
 bool Track::operator==(const Track &other) const
 {
-    if (this->mCueFileName != other.mCueFileName)
-        return false;
-
-    return mTags == (other.mTags);
+    // clang-format off
+    return
+        mDisc           == other.mDisc &&
+        mCueFileName    == other.mCueFileName &&
+        mAudiofile      == other.mAudiofile &&
+        mTags           == other.mTags;
+    // clang-format on
 }
 
 /************************************************
@@ -295,6 +299,14 @@ QString Track::resultFilePath() const
         return calcResultFilePath() + fileName;
     else
         return calcResultFilePath() + "/" + fileName;
+}
+
+/************************************************
+ *
+ ************************************************/
+Duration Track::duration() const
+{
+    return mDisc ? mDisc->trackDuration(*this) : 0;
 }
 
 /************************************************

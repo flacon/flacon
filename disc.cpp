@@ -71,13 +71,15 @@ Disc::Disc(InputAudioFile &audioFile, QObject *parent) :
 
 ************************************************/
 Disc::Disc(Cue &cue, QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    mCue(cue)
 {
     mTracks.reserve(cue.tracks().count());
+    int i = 0;
     for (const TrackTags &cueTrack : cue.tracks()) {
-        Track *track = new Track(cueTrack);
+        Track *track = new Track(this, i, cueTrack);
+        i++;
         mTracks << track;
-        connect(track, &Track::tagChanged, this, &Disc::trackChanged);
     }
 
     mCueFilePath = cue.filePath();
@@ -277,8 +279,7 @@ void Disc::setCueFile(const Cue &cueDisc)
 
     // Sync count of tracks
     for (int i = mTracks.count(); i < count; ++i) {
-        Track *track = new Track();
-        connect(track, &Track::tagChanged, this, &Disc::trackChanged);
+        Track *track = new Track(this, i);
         mTracks.append(track);
     }
 
@@ -286,7 +287,7 @@ void Disc::setCueFile(const Cue &cueDisc)
         delete mTracks.takeLast();
 
     for (int t = 0; t < count; ++t) {
-        *mTracks[t] = Track(cueDisc.tracks().at(t));
+        mTracks[t]->setTags(cueDisc.tracks().at(t));
     }
 
     mCurrentTagsUri = mCueFilePath;
@@ -305,22 +306,22 @@ void Disc::setCueFile(const Cue &cueDisc)
 /************************************************
  *
  ************************************************/
-void Disc::updateDurations(TrackPtrList &tracks)
-{
-    for (int i = 0; i < tracks.count() - 1; ++i) {
-        Track *track = tracks[i];
+// void Disc::updateDurations(TrackPtrList &tracks)
+//{
+//     for (int i = 0; i < tracks.count() - 1; ++i) {
+//         Track *track = tracks[i];
 
-        uint start = track->cueIndex(1).milliseconds();
-        uint end   = tracks.at(i + 1)->cueIndex(1).milliseconds();
+//        uint start = track->cueIndex(1).milliseconds();
+//        uint end   = tracks.at(i + 1)->cueIndex(1).milliseconds();
 
-        track->mDuration = end > start ? end - start : 0;
-    }
+//        track->mDuration = end > start ? end - start : 0;
+//    }
 
-    Track *track     = tracks.last();
-    uint   start     = track->cueIndex(1).milliseconds();
-    uint   end       = track->audioFile().duration();
-    track->mDuration = end > start ? end - start : 0;
-}
+//    Track *track     = tracks.last();
+//    uint   start     = track->cueIndex(1).milliseconds();
+//    uint   end       = track->audioFile().duration();
+//    track->mDuration = end > start ? end - start : 0;
+//}
 
 /************************************************
  *
@@ -356,7 +357,6 @@ void Disc::syncTagsToTracks()
         Track       *track = mTracks[i];
         const Track &tgs   = tags.at(i);
 
-        track->blockSignals(true);
         track->setTag(TagId::Album, tgs.tagValue(TagId::Album));
         track->setTag(TagId::Date, tgs.tagValue(TagId::Date));
         track->setTag(TagId::Genre, tgs.tagValue(TagId::Genre));
@@ -364,7 +364,6 @@ void Disc::syncTagsToTracks()
         track->setTag(TagId::SongWriter, tgs.tagValue(TagId::SongWriter));
         track->setTag(TagId::Title, tgs.tagValue(TagId::Title));
         track->setTag(TagId::AlbumArtist, tgs.tagValue(TagId::AlbumArtist));
-        track->blockSignals(false);
     }
 }
 
@@ -501,8 +500,6 @@ void Disc::setAudioFile(const InputAudioFile &file, int fileNum)
     for (Track *track : tracks) {
         track->setAudioFile(file);
     }
-
-    updateDurations(tracks);
 }
 
 /************************************************
@@ -1008,4 +1005,17 @@ void Disc::trackChanged(TagId tagId)
             track->setTag(TagId::AlbumArtist, track->tagValue(TagId::Artist));
         }
     }
+}
+
+/************************************************
+ *
+ ************************************************/
+Duration Disc::trackDuration(const Track &track) const
+{
+    qDebug() << track.mIndex;
+    if (mCue.isEmpty()) {
+        return 0;
+    }
+
+    return 42'000;
 }

@@ -107,6 +107,11 @@ void InputAudioFile::Data::load(const QString &filePath)
     }
 }
 
+bool InputAudioFile::operator==(const InputAudioFile &other) const
+{
+    return mData->mFilePath == other.mData->mFilePath;
+}
+
 InputAudioFile::InputAudioFile() :
     mData(new Data())
 {

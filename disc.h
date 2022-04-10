@@ -114,8 +114,10 @@ public:
 
     Cue cue() const { return mCue; }
 
-private slots:
+protected:
     void trackChanged(TagId tagId);
+
+    Duration trackDuration(const Track &track) const;
 
 private:
     QHash<QString, Tracks> mTagSets;
@@ -131,7 +133,6 @@ private:
     QString        mCoverImageFile;
     mutable QImage mCoverImagePreview;
 
-    void updateDurations(TrackPtrList &tracks);
     void syncTagsFromTracks();
     void syncTagsToTracks();
 

@@ -64,6 +64,8 @@ public:
     InputAudioFile(const InputAudioFile &other);
     InputAudioFile &operator=(const InputAudioFile &other);
 
+    bool operator==(const InputAudioFile &other) const;
+
     QString filePath() const { return mData->mFilePath; }
     QString fileName() const { return mData->mFileName; }
     QString errorString() const { return mData->mErrorString; }

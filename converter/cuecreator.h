@@ -53,7 +53,7 @@ private:
     const PreGapType mPreGapType;
 
     QTextCodec *mTextCodec;
-    Track       mGlobalTags;
+    TrackTags   mGlobalTags;
 
     void initGlobalTags();
     void writeLine(QIODevice *out, const QString &text);
