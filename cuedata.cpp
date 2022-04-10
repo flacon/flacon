@@ -154,6 +154,10 @@ void CueData::read(QIODevice *file)
             }
 
             track.insert(tag, value);
+
+            if (tag.startsWith(INDEX_TAG)) {
+                track.insert(tag + " FILE", audioFile);
+            }
         }
         mTracks << track;
     }

@@ -42,12 +42,15 @@ class Track : public QObject
 public:
     Track();
     Track(const Track &other);
+    Track(const TrackTags &tags);
     Track &operator=(const Track &other);
     ~Track();
 
     const InputAudioFile &audioFile() const { return mAudiofile; }
     void                  setAudioFile(const InputAudioFile &file);
     QString               audioFileName() const { return mAudiofile.fileName(); }
+
+    const TrackTags &tags() const { return mTags; }
 
     QString    tag(const TagId &tagId) const;
     QByteArray tagData(const TagId &tagId) const;
@@ -58,7 +61,7 @@ public:
 
     QString           codecName() const;
     void              setCodecName(const QString &value);
-    const QTextCodec *codec() const { return mTextCodec; }
+    const QTextCodec *codec() const { return mTags.codec(); }
 
     bool operator==(const Track &other) const;
 
@@ -100,7 +103,6 @@ public:
     Duration duration() const { return mDuration; }
 
     CueIndex cueIndex(int indexNum) const;
-    void     setCueIndex(int indexNum, const CueIndex &value);
 
     QString cueFileName() const { return mCueFileName; }
     void    setCueFileName(const QString &value) { mCueFileName = value; }
@@ -109,12 +111,10 @@ signals:
     void tagChanged(TagId tagId);
 
 private:
-    QHash<int, TagValue> mTags;
-    QTextCodec          *mTextCodec;
-    QVector<CueIndex>    mCueIndexes;
-    Duration             mDuration;
-    QString              mCueFileName;
-    InputAudioFile       mAudiofile;
+    TrackTags      mTags;
+    Duration       mDuration = 0;
+    QString        mCueFileName;
+    InputAudioFile mAudiofile;
 
     QString calcResultFilePath() const;
     QString safeFilePathLen(const QString &path) const;
@@ -155,6 +155,7 @@ public:
 
     void      add(const Track &track);
     UcharDet &operator<<(const Track &track);
+    UcharDet &operator<<(const TrackTags &track);
 
     QString     textCodecName() const;
     QTextCodec *textCodec() const;

@@ -33,9 +33,9 @@
 class AudioFileMatcher
 {
 public:
-    AudioFileMatcher(const QString &cueFilePath, const Tracks &tracks);
+    AudioFileMatcher(const QString &cueFilePath, const DiskTags &tracks);
 
-    const Tracks &tracks() const { return mTracks; }
+    const DiskTags &tracks() const { return mTracks; }
 
     const QStringList &fileTags() const { return mFileTags; }
     QStringList        audioFiles(const QString &fileTag) const { return mResult[fileTag]; }
@@ -45,7 +45,7 @@ public:
 
 private:
     QString                    mCueFilePath;
-    Tracks                     mTracks;
+    DiskTags                   mTracks;
     QStringList                mFileTags;
     QFileInfoList              mAllAudioFiles;
     QMap<QString, QStringList> mResult;

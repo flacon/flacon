@@ -31,11 +31,12 @@
 #include <QFileInfo>
 #include <QObject>
 #include <QDebug>
+#include "track.h"
 
 /************************************************
  *
  ************************************************/
-static void splitTitle(Track *track, char separator)
+static void splitTitle(TrackTags *track, char separator)
 {
     QByteArray b   = track->tagData(TagId::Title);
     int        pos = b.indexOf(separator);
@@ -46,8 +47,7 @@ static void splitTitle(Track *track, char separator)
 /************************************************
  *
  ************************************************/
-Cue::Cue() :
-    Tracks()
+Cue::Cue()
 {
 }
 
@@ -62,9 +62,8 @@ Cue::Cue(QIODevice *device, const QString &audioFile) noexcept(false)
     }
 
     QFileInfo fileInfo(audioFile);
-    mFileName = EMBEDED_PREFIX + fileInfo.absoluteFilePath();
-    setUri(mFileName);
-    setTitle(QObject::tr("Embedded on %1", "The title for the CUE embedded in the audio file. %1 - is an audio-file name.").arg(fileInfo.fileName()));
+    mFilePath = EMBEDED_PREFIX + fileInfo.absoluteFilePath();
+    mTitle    = QObject::tr("Embedded on %1", "The title for the CUE embedded in the audio file. %1 - is an audio-file name.").arg(fileInfo.fileName());
 
     read(data);
 }
@@ -80,9 +79,8 @@ Cue::Cue(const QString &fileName) noexcept(false)
     }
 
     QFileInfo fileInfo(fileName);
-    mFileName = fileInfo.absoluteFilePath();
-    setUri(mFileName);
-    setTitle(fileInfo.fileName());
+    mFilePath = fileInfo.absoluteFilePath();
+    mTitle    = fileInfo.fileName();
 
     read(data);
 }
@@ -100,7 +98,7 @@ void Cue::read(const CueData &data)
     const CueData::Tags &global         = data.globalTags();
 
     for (const CueData::Tags &t : data.tracks()) {
-        Track track;
+        TrackTags track;
         track.setTag(TagId::File, t.value(CueData::FILE_TAG));
         track.setTag(TagId::Album, global.value(CueData::TITLE_TAG));
 
@@ -126,9 +124,8 @@ void Cue::read(const CueData &data)
         track.setTrackCount(TrackNum(data.tracks().count()));
         track.setTag(TagId::DiscNum, global.value("DISCNUMBER", "1"));
         track.setTag(TagId::DiscCount, global.value("TOTALDISCS", "1"));
-        track.setCueFileName(mFileName);
 
-        this->append(track);
+        mTracks.append(track);
     }
 
     splitTitleTag(data);
@@ -142,12 +139,12 @@ void Cue::read(const CueData &data)
 void Cue::validate()
 {
     bool hasFileTag = false;
-    for (const Track &t : *this) {
+    for (const TrackTags &t : mTracks) {
         hasFileTag = hasFileTag || !t.tagData(TagId::File).isEmpty();
     }
 
     if (!hasFileTag) {
-        throw CueError(QObject::tr("<b>%1</b> is not a valid CUE file. The CUE sheet has no FILE tag.").arg(mFileName));
+        throw CueError(QObject::tr("<b>%1</b> is not a valid CUE file. The CUE sheet has no FILE tag.").arg(mFilePath));
     }
 }
 
@@ -159,8 +156,8 @@ bool Cue::isMutiplyAudio() const
     if (isEmpty())
         return false;
 
-    QByteArray file = last().tagData(TagId::File);
-    for (const Track &track : *this) {
+    QByteArray file = mTracks.last().tagData(TagId::File);
+    for (const TrackTags &track : mTracks) {
         if (track.tagData(TagId::File) != file)
             return true;
     }
@@ -208,7 +205,7 @@ void Cue::splitTitleTag(const CueData &data)
     }
 
     // clang-format off
-    for (Track &track : *this) {
+    for (TrackTags &track : mTracks) {
         if (splitByBackSlash)  splitTitle(&track, '\\');
         else if (splitBySlash) splitTitle(&track, '/');
         else if (splitByDash)  splitTitle(&track, '-');
@@ -225,14 +222,14 @@ void Cue::setCodecName(const CueData &data)
 
     if (codecName.isEmpty()) {
         UcharDet charDet;
-        foreach (const Track &track, *this) {
+        foreach (const TrackTags &track, mTracks) {
             charDet << track;
         }
 
         codecName = charDet.textCodecName();
     }
 
-    for (Track &track : *this) {
+    for (TrackTags &track : mTracks) {
         track.setCodecName(codecName);
     }
 }

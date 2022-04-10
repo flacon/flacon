@@ -73,14 +73,14 @@ Disc::Disc(InputAudioFile &audioFile, QObject *parent) :
 Disc::Disc(Cue &cue, QObject *parent) :
     QObject(parent)
 {
-    mTracks.reserve(cue.count());
-    for (const Track &cueTrack : cue) {
+    mTracks.reserve(cue.tracks().count());
+    for (const TrackTags &cueTrack : cue.tracks()) {
         Track *track = new Track(cueTrack);
         mTracks << track;
         connect(track, &Track::tagChanged, this, &Disc::trackChanged);
     }
 
-    mCueFilePath = cue.fileName();
+    mCueFilePath = cue.filePath();
 
     mCurrentTagsUri = mCueFilePath;
     syncTagsFromTracks();
@@ -142,9 +142,9 @@ void Disc::searchCueFile(bool replaceExisting)
     Cue          bestDisc;
 
     foreach (const Cue &cue, cues) {
-        AudioFileMatcher matcher(cue.fileName(), cue);
+        AudioFileMatcher matcher(cue.filePath(), cue.tracks());
         if (matcher.containsAudioFile(audioFile.filePath())) {
-            unsigned int weight = levenshteinDistance(QFileInfo(cue.fileName()).baseName(), audioFile.baseName());
+            unsigned int weight = levenshteinDistance(QFileInfo(cue.filePath()).baseName(), audioFile.baseName());
             if (weight < bestWeight) {
                 bestWeight = weight;
                 bestDisc   = cue;
@@ -152,7 +152,7 @@ void Disc::searchCueFile(bool replaceExisting)
         }
     }
 
-    if (!bestDisc.uri().isEmpty()) {
+    if (!bestDisc.isEmpty()) {
         setCueFile(bestDisc);
     }
 }
@@ -168,7 +168,11 @@ void Disc::searchAudioFiles(bool replaceExisting)
     qCDebug(LOG_SEARCH_AUDIO_FILES) << "fullPath=" << fullPath;
     qCDebug(LOG_SEARCH_AUDIO_FILES) << "Audio files=" << audioFileNames();
 
-    AudioFileMatcher matcher(fullPath, Tracks(mTracks));
+    DiskTags tags;
+    for (const Track *t : mTracks) {
+        tags << t->tags();
+    }
+    AudioFileMatcher matcher(fullPath, tags);
     for (int i = 0; i < audioFiles().count(); ++i) {
         if (audioFiles()[i].isNull() || replaceExisting) {
 
@@ -251,6 +255,8 @@ bool Disc::canDownloadInfo() const
  ************************************************/
 void Disc::setCueFile(const Cue &cueDisc)
 {
+    mCue = cueDisc;
+
     InputAudioFileList audioFiles = this->audioFiles();
 
     // If the tracks contain tags from the Internet and the
@@ -258,8 +264,8 @@ void Disc::setCueFile(const Cue &cueDisc)
     syncTagsFromTracks();
     mTagSets.remove(mCueFilePath);
 
-    int count    = cueDisc.count();
-    mCueFilePath = cueDisc.fileName();
+    int count    = cueDisc.tracks().count();
+    mCueFilePath = cueDisc.filePath();
 
     // Remove all tags if number of tracks differ from loaded CUE.
     for (auto it = mTagSets.begin(); it != mTagSets.end();) {
@@ -280,7 +286,7 @@ void Disc::setCueFile(const Cue &cueDisc)
         delete mTracks.takeLast();
 
     for (int t = 0; t < count; ++t) {
-        *mTracks[t] = cueDisc.at(t);
+        *mTracks[t] = Track(cueDisc.tracks().at(t));
     }
 
     mCurrentTagsUri = mCueFilePath;

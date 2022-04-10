@@ -90,3 +90,124 @@ bool TagValue::operator==(const TagValue &other) const
 {
     return this->mEncoded == other.mEncoded && this->mValue == other.mValue;
 }
+
+/************************************************
+ *
+ ************************************************/
+bool TrackTags::operator==(const TrackTags &other) const
+{
+    return mTags == other.mTags;
+}
+
+/************************************************
+ *
+ ************************************************/
+QString TrackTags::tag(const TagId &tagId) const
+{
+    return mTags.value(static_cast<int>(tagId)).asString(mTextCodec);
+}
+
+/************************************************
+ *
+ ************************************************/
+QByteArray TrackTags::tagData(const TagId &tagId) const
+{
+    return mTags.value(static_cast<int>(tagId)).value();
+}
+
+/************************************************
+ *
+ ************************************************/
+TagValue TrackTags::tagValue(TagId tagId) const
+{
+    return mTags.value(static_cast<int>(tagId));
+}
+
+/************************************************
+ *
+ ************************************************/
+void TrackTags::setTag(const TagId &tagId, const QString &value)
+{
+    mTags.insert(static_cast<int>(tagId), TagValue(value));
+}
+
+/************************************************
+ *
+ ************************************************/
+void TrackTags::setTag(const TagId &tagId, const QByteArray &value)
+{
+    mTags.insert(static_cast<int>(tagId), TagValue(value, false));
+}
+
+/************************************************
+ *
+ ************************************************/
+void TrackTags::setTag(TagId tagId, const TagValue &value)
+{
+    mTags.insert(static_cast<int>(tagId), value);
+}
+
+/************************************************
+ *
+ ************************************************/
+QString TrackTags::codecName() const
+{
+    if (mTextCodec)
+        return mTextCodec->name();
+
+    return "";
+}
+
+/************************************************
+ *
+ ************************************************/
+void TrackTags::setCodecName(const QString &value)
+{
+    if (!value.isEmpty())
+        mTextCodec = QTextCodec::codecForName(value.toLatin1());
+    else
+        mTextCodec = nullptr;
+}
+
+/************************************************
+ *
+ ************************************************/
+CueIndex TrackTags::cueIndex(int indexNum) const
+{
+    if (indexNum < mCueIndexes.length())
+        return mCueIndexes.at(indexNum);
+
+    return CueIndex();
+}
+
+/************************************************
+ *
+ ************************************************/
+void TrackTags::setCueIndex(int indexNum, const CueIndex &value)
+{
+    if (indexNum >= mCueIndexes.length())
+        mCueIndexes.resize(indexNum + 1);
+
+    mCueIndexes[indexNum] = value;
+}
+
+/************************************************
+ *
+ ************************************************/
+int TrackTags::intTag(const TagId &tagId, int defaultValue) const
+{
+    bool ok;
+    int  res = tag(tagId).toInt(&ok);
+
+    if (ok)
+        return res;
+
+    return defaultValue;
+}
+/************************************************
+ *
+ ************************************************/
+void TrackTags::setIntTag(const TagId &tagId, int value)
+{
+    setTag(tagId, QString::number(value));
+}

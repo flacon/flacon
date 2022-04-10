@@ -42,9 +42,7 @@
 
  ************************************************/
 Track::Track() :
-    QObject(nullptr),
-    mTextCodec(nullptr),
-    mDuration(0)
+    QObject(nullptr)
 {
 }
 
@@ -54,11 +52,15 @@ Track::Track() :
 Track::Track(const Track &other) :
     QObject(nullptr),
     mTags(other.mTags),
-    mTextCodec(other.mTextCodec),
-    mCueIndexes(other.mCueIndexes),
     mDuration(other.mDuration),
     mCueFileName(other.mCueFileName),
     mAudiofile(other.mAudiofile)
+{
+}
+
+Track::Track(const TrackTags &tags) :
+    QObject(nullptr),
+    mTags(tags)
 {
 }
 
@@ -68,8 +70,6 @@ Track::Track(const Track &other) :
 Track &Track::operator=(const Track &other)
 {
     mTags        = other.mTags;
-    mTextCodec   = other.mTextCodec;
-    mCueIndexes  = other.mCueIndexes;
     mDuration    = other.mDuration;
     mCueFileName = other.mCueFileName;
     mAudiofile   = other.mAudiofile;
@@ -94,7 +94,7 @@ void Track::setAudioFile(const InputAudioFile &file)
  ************************************************/
 QString Track::tag(const TagId &tagId) const
 {
-    return mTags.value(static_cast<int>(tagId)).asString(mTextCodec);
+    return mTags.tag(tagId);
 }
 
 /************************************************
@@ -102,7 +102,7 @@ QString Track::tag(const TagId &tagId) const
  ************************************************/
 QByteArray Track::tagData(const TagId &tagId) const
 {
-    return mTags.value(static_cast<int>(tagId)).value();
+    return mTags.tagData(tagId);
 }
 
 /************************************************
@@ -110,7 +110,7 @@ QByteArray Track::tagData(const TagId &tagId) const
  ************************************************/
 TagValue Track::tagValue(TagId tagId) const
 {
-    return mTags.value(static_cast<int>(tagId));
+    return mTags.tagValue(tagId);
 }
 
 /************************************************
@@ -118,7 +118,7 @@ TagValue Track::tagValue(TagId tagId) const
  ************************************************/
 void Track::setTag(const TagId &tagId, const QString &value)
 {
-    mTags.insert(static_cast<int>(tagId), TagValue(value));
+    mTags.setTag(tagId, value);
     emit tagChanged(tagId);
 }
 
@@ -127,7 +127,7 @@ void Track::setTag(const TagId &tagId, const QString &value)
  ************************************************/
 void Track::setTag(const TagId &tagId, const QByteArray &value)
 {
-    mTags.insert(static_cast<int>(tagId), TagValue(value, false));
+    mTags.setTag(tagId, value);
     emit tagChanged(tagId);
 }
 
@@ -136,7 +136,7 @@ void Track::setTag(const TagId &tagId, const QByteArray &value)
  ************************************************/
 void Track::setTag(TagId tagId, const TagValue &value)
 {
-    mTags.insert(static_cast<int>(tagId), value);
+    mTags.setTag(tagId, value);
     emit tagChanged(tagId);
 }
 
@@ -145,10 +145,7 @@ void Track::setTag(TagId tagId, const TagValue &value)
  ************************************************/
 QString Track::codecName() const
 {
-    if (mTextCodec)
-        return mTextCodec->name();
-
-    return "";
+    return mTags.codecName();
 }
 
 /************************************************
@@ -156,10 +153,7 @@ QString Track::codecName() const
  ************************************************/
 void Track::setCodecName(const QString &value)
 {
-    if (!value.isEmpty())
-        mTextCodec = QTextCodec::codecForName(value.toLatin1());
-    else
-        mTextCodec = nullptr;
+    mTags.setCodecName(value);
 }
 
 /************************************************
@@ -359,21 +353,7 @@ QString Track::safeFilePathLen(const QString &path) const
  ************************************************/
 CueIndex Track::cueIndex(int indexNum) const
 {
-    if (indexNum < mCueIndexes.length())
-        return mCueIndexes.at(indexNum);
-
-    return CueIndex();
-}
-
-/************************************************
-
- ************************************************/
-void Track::setCueIndex(int indexNum, const CueIndex &value)
-{
-    if (indexNum >= mCueIndexes.length())
-        mCueIndexes.resize(indexNum + 1);
-
-    mCueIndexes[indexNum] = value;
+    return mTags.cueIndex(indexNum);
 }
 
 /************************************************
@@ -486,6 +466,21 @@ UcharDet::~UcharDet()
  *
  ************************************************/
 UcharDet &UcharDet::operator<<(const Track &track)
+{
+    TagId tags[] = { TagId::Artist, TagId::Title };
+
+    for (uint i = 0; i < sizeof(tags) / sizeof(TagId); ++i) {
+        TagValue tv = track.tagValue(tags[i]);
+        if (!tv.encoded())
+            uchardet_handle_data(mData->mUchcharDet, tv.value().data(), tv.value().length());
+    }
+
+    return *this;
+}
+/************************************************
+ *
+ ************************************************/
+UcharDet &UcharDet::operator<<(const TrackTags &track)
 {
     TagId tags[] = { TagId::Artist, TagId::Title };
 

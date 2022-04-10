@@ -32,7 +32,7 @@ namespace {
 Q_LOGGING_CATEGORY(LOG, "AudioFileMatcher")
 }
 
-AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tracks) :
+AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const DiskTags &tracks) :
     mCueFilePath(cueFilePath),
     mTracks(tracks)
 {
@@ -61,7 +61,7 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Tracks &tra
 
     // Looks like this is a per-track album .....
     if (mFileTags.count() == mAllAudioFiles.count()) {
-        for (const Track &track : qAsConst(mTracks)) {
+        for (const TrackTags &track : qAsConst(mTracks)) {
             mResult[track.tag(TagId::File)] = matchAudioFilesByTrack(track.tag(TagId::File), track.tag(TagId::Title));
         }
         qCDebug(LOG) << "Return per-track album:" << mResult;
@@ -95,7 +95,7 @@ bool AudioFileMatcher::containsAudioFile(const QString &audioFile) const
 void AudioFileMatcher::fillFileTags()
 {
     QString prev;
-    for (const Track &track : qAsConst(mTracks)) {
+    for (const TrackTags &track : qAsConst(mTracks)) {
         if (track.tag(TagId::File) != prev) {
             prev = track.tag(TagId::File);
             mFileTags << track.tag(TagId::File);

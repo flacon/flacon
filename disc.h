@@ -112,6 +112,8 @@ public:
 
     bool isEmpty() const { return mTracks.isEmpty(); }
 
+    Cue cue() const { return mCue; }
+
 private slots:
     void trackChanged(TagId tagId);
 
@@ -119,6 +121,7 @@ private:
     QHash<QString, Tracks> mTagSets;
 
     QList<Track *> mTracks;
+    Cue            mCue;
     QString        mCueFilePath;
     QString        mCurrentTagsUri;
 

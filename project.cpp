@@ -165,7 +165,7 @@ Disc *Project::addCueFile(const QString &fileName)
     try {
         Cue cue(fileName);
 
-        if (discExists(cue.uri())) {
+        if (discExists(cue.filePath())) {
             return nullptr;
         }
 

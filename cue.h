@@ -29,11 +29,11 @@
 #include <QString>
 #include <QList>
 #include "types.h"
-#include "track.h"
+#include "tags.h"
 
 class CueData;
 
-class Cue : public Tracks
+class Cue
 {
 public:
     static constexpr const char *const EMBEDED_PREFIX = "embedded://";
@@ -43,17 +43,23 @@ public:
     explicit Cue(QIODevice *device, const QString &audioFile) noexcept(false);
     explicit Cue(const QString &fileName) noexcept(false);
 
-    QString fileName() const { return mFileName; }
+    QString title() const { return mTitle; }
+    QString filePath() const { return mFilePath; }
     DiscNum discCount() const { return mDiscCount; }
     DiscNum discNum() const { return mDiscNum; }
 
+    bool isEmpty() const { return mTracks.isEmpty(); }
     bool isMutiplyAudio() const;
-    bool isEmbedded() const { return mFileName.startsWith(EMBEDED_PREFIX); }
+    bool isEmbedded() const { return mFilePath.startsWith(EMBEDED_PREFIX); }
+
+    const DiskTags &tracks() const { return mTracks; }
 
 private:
-    QString mFileName;
-    DiscNum mDiscCount = 0;
-    DiscNum mDiscNum   = 0;
+    DiskTags mTracks;
+    QString  mFilePath;
+    DiscNum  mDiscCount = 0;
+    DiscNum  mDiscNum   = 0;
+    QString  mTitle;
 
     void       read(const CueData &data);
     QByteArray getAlbumPerformer(const CueData &data);
