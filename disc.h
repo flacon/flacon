@@ -54,7 +54,7 @@ public:
     int          count() const { return mTracks.count(); }
     const Track *preGapTrack() const;
 
-    QString cueFilePath() const { return mCueFilePath; }
+    QString cueFilePath() const;
     void    setCueFile(const Cue &cueDisc);
 
     QList<TrackPtrList> tracksByFileTag() const;
@@ -124,7 +124,6 @@ private:
 
     QList<Track *> mTracks;
     Cue            mCue;
-    QString        mCueFilePath;
     QString        mCurrentTagsUri;
 
     InputAudioFile mAudioFile;

@@ -82,9 +82,7 @@ Disc::Disc(Cue &cue, QObject *parent) :
         mTracks << track;
     }
 
-    mCueFilePath = cue.filePath();
-
-    mCurrentTagsUri = mCueFilePath;
+    mCurrentTagsUri = cue.filePath();
     syncTagsFromTracks();
     mTagSets[mCurrentTagsUri].setTitle(cue.title());
 }
@@ -102,7 +100,7 @@ Disc::~Disc()
 ************************************************/
 void Disc::searchCueFile(bool replaceExisting)
 {
-    if (!replaceExisting && !mCueFilePath.isEmpty()) {
+    if (!replaceExisting && !mCue.isEmpty()) {
         return;
     }
 
@@ -203,12 +201,12 @@ void Disc::searchCoverImage(bool replaceExisting)
         return;
     }
 
-    if (mCueFilePath.isEmpty()) {
+    if (mCue.isEmpty()) {
         return;
     }
 
     // Search cover ...................
-    QString dir        = QFileInfo(mCueFilePath).dir().absolutePath();
+    QString dir        = QFileInfo(cueFilePath()).dir().absolutePath();
     mCoverImagePreview = QImage();
     mCoverImageFile    = searchCoverImage(dir);
 }
@@ -237,8 +235,16 @@ const Track *Disc::preGapTrack() const
 }
 
 /************************************************
-
+ *
  ************************************************/
+QString Disc::cueFilePath() const
+{
+    return mCue.isEmpty() ? "" : mCue.filePath();
+}
+
+/************************************************
+
+************************************************/
 bool Disc::canConvert() const
 {
     return this->errors().isEmpty();
@@ -264,10 +270,9 @@ void Disc::setCueFile(const Cue &cueDisc)
     // If the tracks contain tags from the Internet and the
     // tags have been changed, we must save the changes.
     syncTagsFromTracks();
-    mTagSets.remove(mCueFilePath);
+    mTagSets.remove(cueFilePath());
 
-    int count    = cueDisc.tracks().count();
-    mCueFilePath = cueDisc.filePath();
+    int count = cueDisc.tracks().count();
 
     // Remove all tags if number of tracks differ from loaded CUE.
     for (auto it = mTagSets.begin(); it != mTagSets.end();) {
@@ -290,7 +295,7 @@ void Disc::setCueFile(const Cue &cueDisc)
         mTracks[t]->setTags(cueDisc.tracks().at(t));
     }
 
-    mCurrentTagsUri = mCueFilePath;
+    mCurrentTagsUri = cueFilePath();
     syncTagsFromTracks();
     mTagSets[mCurrentTagsUri].setTitle(cueDisc.title());
 
@@ -736,9 +741,9 @@ QVector<Disc::TagSet> Disc::tagSets() const
         return QVector<TagSet>();
 
     QStringList keys = mTagSets.keys();
-    keys.removeAll(mCueFilePath);
+    keys.removeAll(cueFilePath());
     std::sort(keys.begin(), keys.end());
-    keys.prepend(mCueFilePath);
+    keys.prepend(cueFilePath());
 
     QVector<TagSet> res;
     foreach (const QString &key, keys) {
@@ -1017,5 +1022,13 @@ Duration Disc::trackDuration(const Track &track) const
         return 0;
     }
 
-    return 42'000;
+    if (track.index() < mTracks.count() - 1) {
+        uint start = track.cueIndex(1).milliseconds();
+        uint end   = mTracks.at(track.index() + 1)->cueIndex(1).milliseconds();
+        return end > start ? end - start : 0;
+    }
+
+    uint start = track.cueIndex(1).milliseconds();
+    uint end   = track.audioFile().duration();
+    return end > start ? end - start : 0;
 }
