@@ -80,8 +80,6 @@ public:
     QSet<QString> programs() const { return mPrograms; }
     QString       findProgram(const QString &program) const;
 
-    OutFormat *outFormat() const;
-
     QString tmpDir() const;
     void    setTmpDir(const QString &value);
 
@@ -117,6 +115,7 @@ private:
     QString     keyToString(Key key) const;
     QStringList groups(const QString &parentGroup) const;
     void        loadProfiles();
+    void        initProfiles();
 
     QSet<QString>    mPrograms;
     static QString   mFileName;

@@ -452,7 +452,14 @@ void MainWindow::refreshOutProfileCombo()
     outProfileCombo->blockSignals(false);
 
     n = outProfileCombo->findData(Settings::i()->currentProfile().id());
-    outProfileCombo->setCurrentIndex(qMax(0, n));
+
+    if (n > -1) {
+        outProfileCombo->setCurrentIndex(n);
+    }
+    else {
+        outProfileCombo->setCurrentIndex(0);
+        setOutProfile();
+    }
 }
 
 /************************************************

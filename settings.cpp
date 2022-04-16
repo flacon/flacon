@@ -56,6 +56,7 @@
 #endif
 
 #define PROFILES_PREFIX "Profiles"
+static constexpr char const *KNOWN_FORMATS = "KnownFormats";
 
 QString   Settings::mFileName;
 Settings *Settings::mInstance = nullptr;
@@ -147,13 +148,48 @@ void Settings::init()
             setValue("Programs/" + program, findProgram(program));
     }
 
+    initProfiles();
+}
+
+/************************************************
+
+************************************************/
+void Settings::initProfiles()
+{
+    // If this is the first launch, we create standard profiles for ALL formats
     if (!childGroups().contains(PROFILES_PREFIX)) {
-        foreach (OutFormat *format, OutFormat::allFormats()) {
+        foreach (const OutFormat *format, OutFormat::allFormats()) {
             QString group = QString("%1/%2/").arg(PROFILES_PREFIX, format->id());
             setDefaultValue(group + "Format", format->id());
             setDefaultValue(group + "Name", format->name());
         }
+        return;
     }
+
+    // If a new format has been added in this version of the program,
+    // then we create a standard profile for the NEW FORMAT
+
+    // This functionality is introduced in version 8.4, this is a list of formats known in 8.3.
+    QStringList def;
+    def << "AAC";
+    def << "FLAC";
+    def << "MP3";
+    def << "OGG";
+    def << "OPUS";
+    def << "WAV";
+    def << "WV";
+    QStringList old = value(KNOWN_FORMATS, def).toStringList();
+    QStringList newKnownFormats;
+    foreach (const OutFormat *format, OutFormat::allFormats()) {
+        newKnownFormats << format->id();
+        if (old.contains(format->id())) {
+            continue;
+        }
+        QString group = QString("%1/%2/").arg(PROFILES_PREFIX, format->id());
+        setDefaultValue(group + "Format", format->id());
+        setDefaultValue(group + "Name", format->name());
+    }
+    setValue(KNOWN_FORMATS, newKnownFormats);
 }
 
 /************************************************
@@ -285,18 +321,6 @@ QString Settings::findProgram(const QString &program) const
 /************************************************
  *
  ************************************************/
-OutFormat *Settings::outFormat() const
-{
-    OutFormat *format = OutFormat::formatForId(currentProfile().formatId());
-    if (format)
-        return format;
-
-    return OutFormat::allFormats().first();
-}
-
-/************************************************
- *
- ************************************************/
 QString Settings::tmpDir() const
 {
     return value(Encoder_TmpDir).toString();
@@ -393,7 +417,6 @@ void Settings::loadProfiles()
     allKeys();
     beginGroup(PROFILES_PREFIX);
     for (QString id : childGroups()) {
-
         Profile profile(id);
         profile.load(*this, id);
 
