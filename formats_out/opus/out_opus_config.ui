@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Opus encoding configuration</string>
+   <string notr="true">Opus encoding configuration</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

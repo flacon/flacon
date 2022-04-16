@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Ogg encoding configuration</string>
+   <string notr="true">Ogg encoding configuration</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
