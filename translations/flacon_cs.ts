@@ -118,6 +118,13 @@
     </message>
 </context>
 <context>
+    <name>AlacConfigPage</name>
+    <message>
+        <source>Compression:</source>
+        <translation>Komprese:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -325,10 +332,6 @@
 </context>
 <context>
     <name>ConfigPage_Opus</name>
-    <message>
-        <source>Opus encoding configuration</source>
-        <translation>Nastavení kódování Opus</translation>
-    </message>
     <message>
         <source>Bitrate type:</source>
         <translation>Typ datového toku:</translation>
@@ -1325,10 +1328,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <translation>Nelze najít program &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Nelze kopírovat soubor obalu &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Nelze přečíst obrázek obalu &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
@@ -1401,6 +1400,11 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>file name is empty</source>
+        <comment>error message text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1613,10 +1617,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
 <context>
     <name>aacConfigPage</name>
     <message>
-        <source>AAC encoding configuration</source>
-        <translation>Nastavení kódování AAC</translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation>Použít nastavení kvality (doporučeno)</translation>
     </message>
@@ -1638,20 +1638,12 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
 <context>
     <name>flacConfigPage</name>
     <message>
-        <source>FLAC encoding configuration</source>
-        <translation>Nastavení kódování FLAC</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Komprese:</translation>
     </message>
 </context>
 <context>
     <name>mp3ConfigPage</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Nastavení kódování MP3</translation>
-    </message>
     <message>
         <source>Preset:</source>
         <translation>Přednastavení:</translation>
@@ -1671,10 +1663,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
 </context>
 <context>
     <name>oggConfigPage</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Nastavení kódování Ogg</translation>
-    </message>
     <message>
         <source>Use quality setting (recommended)</source>
         <translation>Použít nastavení kvality (doporučeno)</translation>
@@ -1711,10 +1699,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
 </context>
 <context>
     <name>wvConfigPage</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Nastavení kódování WavPack</translation>
-    </message>
     <message>
         <source>Compression:</source>
         <translation>Komprese:</translation>

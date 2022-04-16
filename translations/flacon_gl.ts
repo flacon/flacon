@@ -118,6 +118,13 @@
     </message>
 </context>
 <context>
+    <name>AlacConfigPage</name>
+    <message>
+        <source>Compression:</source>
+        <translation>Compresión:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -303,10 +310,6 @@
 </context>
 <context>
     <name>ConfigPage_Opus</name>
-    <message>
-        <source>Opus encoding configuration</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>Bitrate type:</source>
         <translation type="unfinished"/>
@@ -1261,10 +1264,6 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
         <translation>Non se puido encontrar o programa &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation type="unfinished"/>
@@ -1337,6 +1336,11 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>file name is empty</source>
+        <comment>error message text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1549,10 +1553,6 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
 <context>
     <name>aacConfigPage</name>
     <message>
-        <source>AAC encoding configuration</source>
-        <translation>Configuración da codificación AAC</translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation>Usar a configuración de calidade (o recomendado)</translation>
     </message>
@@ -1574,20 +1574,12 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
 <context>
     <name>flacConfigPage</name>
     <message>
-        <source>FLAC encoding configuration</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Compresión:</translation>
     </message>
 </context>
 <context>
     <name>mp3ConfigPage</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Configuración da codificación MP3</translation>
-    </message>
     <message>
         <source>Preset:</source>
         <translation>Predefinición:</translation>
@@ -1607,10 +1599,6 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
 </context>
 <context>
     <name>oggConfigPage</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Configuración da codificación Ogg</translation>
-    </message>
     <message>
         <source>Use quality setting (recommended)</source>
         <translation>Usar a configuración de calidade (o recomendado)</translation>
@@ -1647,10 +1635,6 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
 </context>
 <context>
     <name>wvConfigPage</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Configuración da codificación WavPack</translation>
-    </message>
     <message>
         <source>Compression:</source>
         <translation>Compresión:</translation>

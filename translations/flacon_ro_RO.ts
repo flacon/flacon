@@ -118,6 +118,13 @@
     </message>
 </context>
 <context>
+    <name>AlacConfigPage</name>
+    <message>
+        <source>Compression:</source>
+        <translation>Comprimare:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -323,10 +330,6 @@
 </context>
 <context>
     <name>ConfigPage_Opus</name>
-    <message>
-        <source>Opus encoding configuration</source>
-        <translation>Configurare codare opus</translation>
-    </message>
     <message>
         <source>Bitrate type:</source>
         <translation>Tip rată de biți:</translation>
@@ -1322,10 +1325,6 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
         <translation>Nu găsesc programul &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Nu se poate copia coperta &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Nu se poate citi imaginea de copertă &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
@@ -1398,6 +1397,11 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>file name is empty</source>
+        <comment>error message text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1610,10 +1614,6 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
 <context>
     <name>aacConfigPage</name>
     <message>
-        <source>AAC encoding configuration</source>
-        <translation>Configurare codare AAC</translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation>Utilizați configurarea optimă pentru calitate (recomandat)</translation>
     </message>
@@ -1635,20 +1635,12 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
 <context>
     <name>flacConfigPage</name>
     <message>
-        <source>FLAC encoding configuration</source>
-        <translation>Setări codare FLAC:</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Comprimare:</translation>
     </message>
 </context>
 <context>
     <name>mp3ConfigPage</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Configurare codare MP3</translation>
-    </message>
     <message>
         <source>Preset:</source>
         <translation>Preconfigurare:</translation>
@@ -1668,10 +1660,6 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
 </context>
 <context>
     <name>oggConfigPage</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Configurare pentru codare ogg</translation>
-    </message>
     <message>
         <source>Use quality setting (recommended)</source>
         <translation>Utilizați configurarea optimă pentru calitate (recomandat)</translation>
@@ -1708,10 +1696,6 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
 </context>
 <context>
     <name>wvConfigPage</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Configurare codare cu Wavpack</translation>
-    </message>
     <message>
         <source>Compression:</source>
         <translation>Comprimare:</translation>

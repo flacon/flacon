@@ -118,6 +118,13 @@
     </message>
 </context>
 <context>
+    <name>AlacConfigPage</name>
+    <message>
+        <source>Compression:</source>
+        <translation>Tömörítő:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -303,10 +310,6 @@
 </context>
 <context>
     <name>ConfigPage_Opus</name>
-    <message>
-        <source>Opus encoding configuration</source>
-        <translation>Opus kódoló beállítása</translation>
-    </message>
     <message>
         <source>Bitrate type:</source>
         <translation>Bitráta típusa:</translation>
@@ -1303,10 +1306,6 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <translation>Nem találtam meg a &lt;b&gt;%1&lt;/b&gt; programot.</translation>
     </message>
     <message>
-        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Nem lehetett másolni &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Nem lehetett olvasni a borítóképet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
@@ -1379,6 +1378,11 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>file name is empty</source>
+        <comment>error message text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1591,10 +1595,6 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
 <context>
     <name>aacConfigPage</name>
     <message>
-        <source>AAC encoding configuration</source>
-        <translation>AAC-átalakító beállítása</translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation>Használt minőség beállításai (javasolt)</translation>
     </message>
@@ -1616,20 +1616,12 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
 <context>
     <name>flacConfigPage</name>
     <message>
-        <source>FLAC encoding configuration</source>
-        <translation>FLAC átalakító beállítása</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Tömörítő:</translation>
     </message>
 </context>
 <context>
     <name>mp3ConfigPage</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>MP3-átalakító beállítása</translation>
-    </message>
     <message>
         <source>Preset:</source>
         <translation>Bitzosított:</translation>
@@ -1649,10 +1641,6 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
 </context>
 <context>
     <name>oggConfigPage</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Ogg-átalakító beállítása</translation>
-    </message>
     <message>
         <source>Use quality setting (recommended)</source>
         <translation>Használt minőség beállításai (javasolt)</translation>
@@ -1689,10 +1677,6 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
 </context>
 <context>
     <name>wvConfigPage</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>WavPack-átalakító beállítása</translation>
-    </message>
     <message>
         <source>Compression:</source>
         <translation>Tömörítő:</translation>

@@ -118,6 +118,13 @@
     </message>
 </context>
 <context>
+    <name>AlacConfigPage</name>
+    <message>
+        <source>Compression:</source>
+        <translation>Compresión:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -234,15 +241,15 @@
     </message>
     <message>
         <source>Simplified Chinese (GB18030)</source>
-        <translation type="unfinished"/>
+        <translation>Chino simplificado (GB18030)</translation>
     </message>
     <message>
         <source>Traditional Chinese (BIG5)</source>
-        <translation type="unfinished"/>
+        <translation>Chino tradicional (BIG5)</translation>
     </message>
     <message>
         <source>Japanese (CP932)</source>
-        <translation type="unfinished"/>
+        <translation>Japonés (CP932)</translation>
     </message>
 </context>
 <context>
@@ -298,15 +305,30 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
       </source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
+&lt;dd&gt;Usando un Bitrate Variable medio, este preajuste debe ser casi transparente para la mayoría de gente y la mayoría de música.&lt;/dd&gt;
+
+&lt;dt&gt;VBR estándar&lt;/dt&gt;
+&lt;dd&gt;Usando un Bitrate Variable estándar, este preajuste debería se transparente para la mayoría de la música y es ya un nivel alto de calidad.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extremo&lt;/dt&gt;
+&lt;dd&gt;Usando el Bitrate Variable más alto, este preajuste ofrece algo más de calidad si usted tiene muy buen oído o un equipo de audio de gama alta.&lt;/dd&gt;
+
+&lt;dt&gt;Calidad VBR&lt;/dt&gt;
+&lt;dd&gt;Este valor le permite establecer la calidad de salida.&lt;/dd&gt;
+
+&lt;dt&gt;CBR máximo&lt;/dt&gt;
+&lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando este Bitrate Constante.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Usando este Bitrate Constante, el preajuste le dará una buena calidad al bitrate especificado.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Usando este Bitrate Promedio, este preajuste le dará una calidad más alta que el Bitrate Constante para un bitrate específico.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
     <name>ConfigPage_Opus</name>
-    <message>
-        <source>Opus encoding configuration</source>
-        <translation>Configuración de codificación Opus</translation>
-    </message>
     <message>
         <source>Bitrate type:</source>
         <translation>Tipo de tasa de bits:</translation>
@@ -317,7 +339,11 @@
 
 &lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR - tasa de bits variable&lt;/dt&gt;
+&lt;dd&gt;Usar la codificación de tasa de bits variable (recomendado). En el modo VBR, la tasa de bits puede subir y bajar libremente dependiendo del contenido asegurando la consistencia de la calidad.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - tasa de bits restringida&lt;/dt&gt;
+&lt;dd&gt;Usar la codificación de bits restringida. La salida se realiza a una tasa específica de bits. Este modo es similar a la codificación CBR en AAC/MP3 y al modo gestionado en la codificación vorbis. Ofrece una calidad menos consistente que el modo VBR pero una tasa de bits más consistente.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -345,7 +371,7 @@ En el modo CBR, establece la tasa de bits específica de salida.
     <message>
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
-        <translation type="unfinished"/>
+        <translation>CVBR - tasa de bits restringida</translation>
     </message>
 </context>
 <context>
@@ -360,17 +386,17 @@ En el modo CBR, establece la tasa de bits específica de salida.
     <message>
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
-        <translation type="unfinished"/>
+        <translation>El archivo de audio puede estar corrupto o en un formato no soportado.</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>El programa %1 no está instalado.&lt;br&gt;Verifique que todos los programas requeridos están instalados en sus preferencias.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>El programa %1 está instalado de acuerdo a sus preferencias, pero el archivo ejecutable no puede ser encontrado.&lt;br&gt;Verifique que todos los programas requeridos están instalados en sus preferencias.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -465,7 +491,7 @@ En el modo CBR, establece la tasa de bits específica de salida.
     <message>
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
-        <translation type="unfinished"/>
+        <translation>Formato de nombre de archivo</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -474,12 +500,12 @@ En el modo CBR, establece la tasa de bits específica de salida.
     <message>
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>Escribir al archivo</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>Incrustar en archivos de audio</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -535,12 +561,12 @@ En el modo CBR, establece la tasa de bits específica de salida.
     <message>
         <source>Audio file not set for track %1.</source>
         <comment>Warning message, Placeholders is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>El archivo de audio no se ha establecido para la pista %1.</translation>
     </message>
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>No se han establecido los archivos de audio desde la pista %1 a la %2.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
@@ -549,7 +575,7 @@ En el modo CBR, establece la tasa de bits específica de salida.
     <message>
         <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>El cálculo de ReplayGain no está soportado en audio multi-canal. ReplayGain se desactivará para este disco.</translation>
     </message>
 </context>
 <context>
@@ -590,7 +616,7 @@ Esto sólo afectará el tamaño de archivo. Todos los parámetros son sin pérdi
     <message>
         <source>CDDB server: </source>
         <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
+        <translation>Servidor CDDB:</translation>
     </message>
     <message>
         <source>Thread count:</source>
@@ -735,7 +761,7 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>Agregar disco</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -816,12 +842,12 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
     <message>
         <source>Add folder…</source>
         <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <translation>Añadir carpeta...</translation>
     </message>
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>Añadir carpeta</translation>
     </message>
     <message>
         <source>Recursive album search</source>
@@ -829,7 +855,7 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
     </message>
     <message>
         <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
@@ -896,7 +922,7 @@ Do you want to continue?</source>
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; no ha sido establecido.</translation>
     </message>
     <message>
         <source>Select directory</source>
@@ -910,12 +936,12 @@ Do you want to continue?</source>
     <message>
         <source>Select another audio file for %1 track…</source>
         <comment>context menu. Placeholders are track number</comment>
-        <translation type="unfinished"/>
+        <translation>Seleccione otro archivo de audio para la pista %1 …</translation>
     </message>
     <message>
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>Seleccione otro archivo de audio para las pistas de la %1 a la %2…</translation>
     </message>
     <message>
         <source>Edit tags…</source>
@@ -1043,7 +1069,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source> Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation>Pefiles de audio</translation>
     </message>
     <message>
         <source>General</source>
@@ -1062,7 +1088,7 @@ Do you want to continue?</source>
     <name>ProfileTabWidget</name>
     <message>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio</translation>
     </message>
     <message>
         <source>Result Files</source>
@@ -1148,20 +1174,20 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
     <message>
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
-        <translation type="unfinished"/>
+        <translation>CUE e imagen de Portada</translation>
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>Copiar imagen de portada</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
+        <translation>Si el formato está soportado, la portada será añadida a la meta-información para todos los archivos de salida.</translation>
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>Incrustar la imagen de portada en los archivos de salida</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1291,7 +1317,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>%1:</source>
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
-        <translation type="unfinished"/>
+        <translation>%1:</translation>
     </message>
 </context>
 <context>
@@ -1299,10 +1325,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
         <translation>No pude encontrar el programa &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>No puedo copiar archivo de cubierta &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1360,23 +1382,28 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     </message>
     <message>
         <source>The audio file name is not set.</source>
-        <translation type="unfinished"/>
+        <translation>El nombre del archivo de audio no está establecido</translation>
     </message>
     <message>
         <source>The audio file does not exist.</source>
-        <translation type="unfinished"/>
+        <translation>El archivo de audio no existe.</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
-        <translation type="unfinished"/>
+        <translation>No puedo escribir el CUE:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
-        <translation type="unfinished"/>
+        <translation>El archivo no contiene datos CUE válidos.</translation>
     </message>
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <translation>Incrustado en %1</translation>
+    </message>
+    <message>
+        <source>file name is empty</source>
+        <comment>error message text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1415,7 +1442,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>Start track number:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Número de pista de inicio:</translation>
     </message>
     <message>
         <source>Disc number:</source>
@@ -1483,17 +1510,17 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
+        <translation>Calculando ganancia</translation>
     </message>
     <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
+        <translation>Esperando ganancia</translation>
     </message>
     <message>
         <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
-        <translation type="unfinished"/>
+        <translation>Escribiendo ganancia</translation>
     </message>
     <message>
         <source>Tracks:</source>
@@ -1506,11 +1533,11 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
-        <translation type="unfinished"/>
+        <translation>Múltiples archivos</translation>
     </message>
     <message>
         <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;La conversión no es posible.&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1589,10 +1616,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
 <context>
     <name>aacConfigPage</name>
     <message>
-        <source>AAC encoding configuration</source>
-        <translation>Configuración de codificación AAC</translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation>Usar los ajustes de calidad (recomendado)</translation>
     </message>
@@ -1614,20 +1637,12 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
 <context>
     <name>flacConfigPage</name>
     <message>
-        <source>FLAC encoding configuration</source>
-        <translation>Configuración de codificación FLAC</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Compresión:</translation>
     </message>
 </context>
 <context>
     <name>mp3ConfigPage</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Configuración de codificación MP3</translation>
-    </message>
     <message>
         <source>Preset:</source>
         <translation>Prestablecido:</translation>
@@ -1647,10 +1662,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
 </context>
 <context>
     <name>oggConfigPage</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Configuración de codificación Ogg</translation>
-    </message>
     <message>
         <source>Use quality setting (recommended)</source>
         <translation>Usar los ajustes de calidad (recomendado)</translation>
@@ -1687,10 +1698,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
 </context>
 <context>
     <name>wvConfigPage</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Configuración de codificación WavPack</translation>
-    </message>
     <message>
         <source>Compression:</source>
         <translation>Compresión:</translation>

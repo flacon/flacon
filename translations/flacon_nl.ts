@@ -118,6 +118,13 @@
     </message>
 </context>
 <context>
+    <name>AlacConfigPage</name>
+    <message>
+        <source>Compression:</source>
+        <translation>Compressie:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -303,10 +310,6 @@
 </context>
 <context>
     <name>ConfigPage_Opus</name>
-    <message>
-        <source>Opus encoding configuration</source>
-        <translation>Opus-coderingsconfiguratie</translation>
-    </message>
     <message>
         <source>Bitrate type:</source>
         <translation>Type bitsnelheid:</translation>
@@ -1302,10 +1305,6 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <translation>Ik kan het programma &lt;b&gt;%1&lt;/b&gt; niet vinden.</translation>
     </message>
     <message>
-        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Ik kan het albumhoesbestand &lt;b&gt;%1&lt;/b&gt; niet kopiëren:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Ik kan het albumhoesbestand &lt;b&gt;%1&lt;/b&gt; niet lezen:&lt;br&gt;%2</translation>
@@ -1378,6 +1377,11 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>file name is empty</source>
+        <comment>error message text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1590,10 +1594,6 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
 <context>
     <name>aacConfigPage</name>
     <message>
-        <source>AAC encoding configuration</source>
-        <translation>AAC-coderingsconfiguratie</translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation>Gebruik kwaliteitsinstelling (aanbevolen)</translation>
     </message>
@@ -1615,20 +1615,12 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
 <context>
     <name>flacConfigPage</name>
     <message>
-        <source>FLAC encoding configuration</source>
-        <translation>FLAC-coderingsconfiguratie</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Compressie:</translation>
     </message>
 </context>
 <context>
     <name>mp3ConfigPage</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>MP3-coderingsconfiguratie</translation>
-    </message>
     <message>
         <source>Preset:</source>
         <translation>Vooraf ingesteld</translation>
@@ -1648,10 +1640,6 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
 </context>
 <context>
     <name>oggConfigPage</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Ogg-coderingsconfiguratie</translation>
-    </message>
     <message>
         <source>Use quality setting (recommended)</source>
         <translation>Gebruik kwaliteitsinstelling (aanbevolen)</translation>
@@ -1688,10 +1676,6 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
 </context>
 <context>
     <name>wvConfigPage</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>WavPack-coderingsconfiguratie</translation>
-    </message>
     <message>
         <source>Compression:</source>
         <translation>Compressie:</translation>
