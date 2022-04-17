@@ -39,13 +39,13 @@ class Track
     friend class Disc;
 
 public:
-    Track();
+    Track() = default;
     Track(Disc *disc, int index);
     Track(const Track &other) = default;
     Track &operator=(const Track &other) = default;
     Track(Disc *disc, int index, const TrackTags &tags);
 
-    ~Track();
+    ~Track() = default;
 
     const InputAudioFile &audioFile() const { return mAudiofile; }
     void                  setAudioFile(const InputAudioFile &file);

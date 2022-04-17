@@ -57,7 +57,6 @@ CoverGroupBox::~CoverGroupBox()
 CoverOptions CoverGroupBox::coverOptions() const
 {
     CoverOptions res;
-    res.mode = CoverMode::Disable;
 
     if (this->isChecked()) {
         res.mode = (ui->scaleButton->isChecked()) ? CoverMode::Scale : CoverMode::OrigSize;

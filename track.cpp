@@ -40,16 +40,10 @@
 
 /************************************************
 
- ************************************************/
-Track::Track()
-{
-}
-
-/************************************************
-
 ************************************************/
 Track::Track(Disc *disc, int index) :
     mDisc(disc),
+    mTags(),
     mIndex(index)
 {
 }
@@ -67,10 +61,6 @@ Track::Track(Disc *disc, int index, const TrackTags &tags) :
 /************************************************
 
  ************************************************/
-Track::~Track()
-{
-}
-
 void Track::setAudioFile(const InputAudioFile &file)
 {
     mAudiofile = file;

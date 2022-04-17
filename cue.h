@@ -67,7 +67,7 @@ public:
     using Tracks = QList<Track>;
 
 public:
-    Cue();
+    Cue() = default;
     explicit Cue(QIODevice *device, const QString &audioFile) noexcept(false);
     explicit Cue(const QString &fileName) noexcept(false);
 

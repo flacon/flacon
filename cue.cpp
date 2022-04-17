@@ -47,13 +47,6 @@ static void splitTitle(TrackTags *track, char separator)
 /************************************************
  *
  ************************************************/
-Cue::Cue()
-{
-}
-
-/************************************************
- *
- ************************************************/
 Cue::Cue(QIODevice *device, const QString &audioFile) noexcept(false)
 {
     CueData data(device);
