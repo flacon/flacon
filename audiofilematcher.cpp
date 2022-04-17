@@ -32,7 +32,7 @@ namespace {
 Q_LOGGING_CATEGORY(LOG, "AudioFileMatcher")
 }
 
-AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const DiskTags &tracks) :
+AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Cue::Tracks &tracks) :
     mCueFilePath(cueFilePath),
     mTracks(tracks)
 {

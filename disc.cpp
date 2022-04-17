@@ -168,11 +168,7 @@ void Disc::searchAudioFiles(bool replaceExisting)
     qCDebug(LOG_SEARCH_AUDIO_FILES) << "fullPath=" << fullPath;
     qCDebug(LOG_SEARCH_AUDIO_FILES) << "Audio files=" << audioFileNames();
 
-    DiskTags tags;
-    for (const Track *t : mTracks) {
-        tags << t->tags();
-    }
-    AudioFileMatcher matcher(fullPath, tags);
+    AudioFileMatcher matcher(fullPath, mCue.tracks());
     for (int i = 0; i < audioFiles().count(); ++i) {
         if (audioFiles()[i].isNull() || replaceExisting) {
 
@@ -307,26 +303,6 @@ void Disc::setCueFile(const Cue &cueDisc)
 
     project->emitLayoutChanged();
 }
-
-/************************************************
- *
- ************************************************/
-// void Disc::updateDurations(TrackPtrList &tracks)
-//{
-//     for (int i = 0; i < tracks.count() - 1; ++i) {
-//         Track *track = tracks[i];
-
-//        uint start = track->cueIndex(1).milliseconds();
-//        uint end   = tracks.at(i + 1)->cueIndex(1).milliseconds();
-
-//        track->mDuration = end > start ? end - start : 0;
-//    }
-
-//    Track *track     = tracks.last();
-//    uint   start     = track->cueIndex(1).milliseconds();
-//    uint   end       = track->audioFile().duration();
-//    track->mDuration = end > start ? end - start : 0;
-//}
 
 /************************************************
  *
@@ -1017,18 +993,50 @@ void Disc::trackChanged(TagId tagId)
  ************************************************/
 Duration Disc::trackDuration(const Track &track) const
 {
-    qDebug() << track.mIndex;
     if (mCue.isEmpty()) {
         return 0;
     }
 
-    if (track.index() < mTracks.count() - 1) {
-        uint start = track.cueIndex(1).milliseconds();
-        uint end   = mTracks.at(track.index() + 1)->cueIndex(1).milliseconds();
-        return end > start ? end - start : 0;
+    Cue::Track cur  = mCue.tracks().at(track.index());
+    Cue::Track next = (track.index() < mTracks.count() - 1) ? mCue.tracks().at(track.index() + 1) : Cue::Track();
+
+    //    qDebug() << "***************************************";
+    //    qDebug() << "CUR:" << track.index();
+    //    qDebug() << "  - 00 " << cur.cueIndex00().toString() << cur.cueIndex00().file();
+    //    qDebug() << "  - 01 " << cur.cueIndex01().toString() << cur.cueIndex01().file();
+    //    qDebug() << ".......................................";
+    //    qDebug() << "NEXT:";
+    //    qDebug() << "  - 00 " << next.cueIndex00().toString() << next.cueIndex00().file();
+    //    qDebug() << "  - 01 " << next.cueIndex01().toString() << next.cueIndex01().file();
+    //    qDebug() << ".......................................";
+
+    Duration trackLen = 0;
+    if (cur.cueIndex01().file() != next.cueIndex00().file()) {
+        uint start = cur.cueIndex01().milliseconds();
+        uint end   = track.audioFile().duration();
+        trackLen   = end > start ? end - start : 0;
+    }
+    else {
+        uint start = cur.cueIndex01().milliseconds();
+        uint end   = next.cueIndex00().milliseconds();
+        trackLen   = end > start ? end - start : 0;
     }
 
-    uint start = track.cueIndex(1).milliseconds();
-    uint end   = track.audioFile().duration();
-    return end > start ? end - start : 0;
+    Duration postGapLen = 0;
+    if (next.cueIndex00().file() != next.cueIndex01().file()) {
+        uint start = next.cueIndex00().milliseconds();
+        uint end   = track.audioFile().duration();
+        postGapLen = end > start ? end - start : 0;
+    }
+    else {
+        uint start = next.cueIndex00().milliseconds();
+        uint end   = next.cueIndex01().milliseconds();
+        postGapLen = end > start ? end - start : 0;
+    }
+
+    //    qDebug() << "trackLen: " << trackLen;
+    //    qDebug() << "postGapLen: " << postGapLen;
+    //    qDebug() << "***************************************";
+
+    return trackLen + postGapLen;
 }

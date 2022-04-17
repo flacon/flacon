@@ -665,14 +665,24 @@ bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, co
         return true;
     }
 
-    for (int i = 0; i < cache->audioBtns.count(); ++i) {
+    if (cache->audioShowMenu) {
+        QStringList toolTip;
+        for (const QString &f : view->model()->data(index, TrackViewModel::RoleAudioFilePath).toStringList()) {
+            toolTip << "<li>" << f << "</li>";
+        }
+        QToolTip::showText(event->globalPos(), toolTip.join("\n"), view);
+    }
+    else {
+        for (int i = 0; i < cache->audioBtns.count(); ++i) {
 
-        if (cache->audioBtns[i].contains(m) || cache->audioLbls[i].contains(m)) {
-            QStringList files = view->model()->data(index, TrackViewModel::RoleAudioFilePath).toStringList();
-            if (i < files.count()) {
-                QToolTip::showText(event->globalPos(), files[i], view);
+            if (cache->audioBtns[i].contains(m) || cache->audioLbls[i].contains(m)) {
+                QStringList files = view->model()->data(index, TrackViewModel::RoleAudioFilePath).toStringList();
+
+                if (i < files.count()) {
+                    QToolTip::showText(event->globalPos(), files[i], view);
+                }
+                return true;
             }
-            return true;
         }
     }
 

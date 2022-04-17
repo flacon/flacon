@@ -59,8 +59,8 @@ Track::Track(Disc *disc, int index) :
  ************************************************/
 Track::Track(Disc *disc, int index, const TrackTags &tags) :
     mDisc(disc),
-    mIndex(index),
-    mTags(tags)
+    mTags(tags),
+    mIndex(index)
 {
 }
 

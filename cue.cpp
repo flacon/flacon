@@ -98,9 +98,20 @@ void Cue::read(const CueData &data)
     const CueData::Tags &global         = data.globalTags();
 
     for (const CueData::Tags &t : data.tracks()) {
-        TrackTags track;
+        Track track;
         track.setTag(TagId::File, t.value(CueData::FILE_TAG));
         track.setTag(TagId::Album, global.value(CueData::TITLE_TAG));
+
+        track.mCueIndex00 = CueIndex(t.value("INDEX 00"), t.value("INDEX 00 FILE"));
+        track.mCueIndex01 = CueIndex(t.value("INDEX 01"), t.value("INDEX 01 FILE"));
+
+        if (track.mCueIndex00.isNull() && !track.mCueIndex01.isNull()) {
+            track.mCueIndex00 = track.mCueIndex01;
+        }
+
+        if (track.mCueIndex01.isNull() && !track.mCueIndex00.isNull()) {
+            track.mCueIndex01 = track.mCueIndex00;
+        }
 
         track.setCueIndex(0, CueIndex(t.value("INDEX 00")));
         track.setCueIndex(1, CueIndex(t.value("INDEX 01")));
@@ -239,4 +250,14 @@ void Cue::setCodecName(const CueData &data)
  ************************************************/
 CueError::~CueError()
 {
+}
+
+/************************************************
+ *
+ ************************************************/
+Cue::CueIndex::CueIndex(const QString &str, const QByteArray &file):
+  ::CueIndex(str),
+  mFile(file)
+{
+
 }
