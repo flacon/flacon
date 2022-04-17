@@ -35,6 +35,7 @@
 #include "ogg/out_ogg.h"
 #include "wv/out_wv.h"
 #include "opus/out_opus.h"
+#include "alac/alacoutformat.h"
 
 #include <QDebug>
 
@@ -50,6 +51,7 @@ void initOutFormats(QList<OutFormat *> *formats)
     *formats << new OutFormat_Ogg();
     *formats << new OutFormat_Wv();
     *formats << new OutFormat_Opus();
+    *formats << new OutFormat_Alac();
 }
 
 /************************************************

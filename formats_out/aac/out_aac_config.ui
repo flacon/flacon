@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>AAC encoding configuration</string>
+   <string notr="true">AAC encoding configuration</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>

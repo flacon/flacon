@@ -45,7 +45,7 @@ set(HEADERS
     worker.h
     discpipline.h
     cuecreator.h
-    copycover.h
+    coverimage.h
     sox.h
 )
 
@@ -60,7 +60,7 @@ set(SOURCES
     worker.cpp
     discpipline.cpp
     cuecreator.cpp
-    copycover.cpp
+    coverimage.cpp
     sox.cpp
 )
 

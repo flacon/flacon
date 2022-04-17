@@ -114,3 +114,20 @@
     PregapType = Track
     CoverFile/Mode=Scale
     CoverFile/Size=600
+
+[Profiles/ALAC]
+    OutDirectory=~/Music/flac
+    OutPattern=flac-%a/{%y - }%A/%n - %t
+    Format=ALAC
+    Name=Alac
+    Compression=1
+    ReplayGain=None
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = FLAC %a %d - %A.cue
+    PregapType = Extract
+    CoverFile/Mode=OrigSize
+    CoverFile/Size=600
+    CoverEmbed/Mode=Scale
+    CoverEmbed/Size=800

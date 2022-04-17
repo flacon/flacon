@@ -56,6 +56,7 @@
 #endif
 
 #define PROFILES_PREFIX "Profiles"
+static constexpr char const *KNOWN_FORMATS = "KnownFormats";
 
 QString   Settings::mFileName;
 Settings *Settings::mInstance = nullptr;
@@ -125,14 +126,6 @@ void Settings::init()
     // Misc *************************************
     setDefaultValue(Misc_LastDir, QDir::homePath());
 
-    // Cover image **************************
-    setDefaultValue(Cover_Mode, coverModeToString(CoverMode::Scale));
-    setDefaultValue(Cover_Size, 500);
-
-    // Embedded Cover image ******************
-    setDefaultValue(EmbeddedCover_Mode, coverModeToString(CoverMode::Disable));
-    setDefaultValue(EmbeddedCover_Size, 500);
-
     // ConfigureDialog **********************
     setDefaultValue(ConfigureDialog_Width, 645);
     setDefaultValue(ConfigureDialog_Height, 425);
@@ -155,13 +148,48 @@ void Settings::init()
             setValue("Programs/" + program, findProgram(program));
     }
 
+    initProfiles();
+}
+
+/************************************************
+
+************************************************/
+void Settings::initProfiles()
+{
+    // If this is the first launch, we create standard profiles for ALL formats
     if (!childGroups().contains(PROFILES_PREFIX)) {
-        foreach (OutFormat *format, OutFormat::allFormats()) {
+        foreach (const OutFormat *format, OutFormat::allFormats()) {
             QString group = QString("%1/%2/").arg(PROFILES_PREFIX, format->id());
             setDefaultValue(group + "Format", format->id());
             setDefaultValue(group + "Name", format->name());
         }
+        return;
     }
+
+    // If a new format has been added in this version of the program,
+    // then we create a standard profile for the NEW FORMAT
+
+    // This functionality is introduced in version 8.4, this is a list of formats known in 8.3.
+    QStringList def;
+    def << "AAC";
+    def << "FLAC";
+    def << "MP3";
+    def << "OGG";
+    def << "OPUS";
+    def << "WAV";
+    def << "WV";
+    QStringList old = value(KNOWN_FORMATS, def).toStringList();
+    QStringList newKnownFormats;
+    foreach (const OutFormat *format, OutFormat::allFormats()) {
+        newKnownFormats << format->id();
+        if (old.contains(format->id())) {
+            continue;
+        }
+        QString group = QString("%1/%2/").arg(PROFILES_PREFIX, format->id());
+        setDefaultValue(group + "Format", format->id());
+        setDefaultValue(group + "Name", format->name());
+    }
+    setValue(KNOWN_FORMATS, newKnownFormats);
 }
 
 /************************************************
@@ -206,18 +234,6 @@ QString Settings::keyToString(Settings::Key key) const
             return "ConfigureDialog/Width";
         case ConfigureDialog_Height:
             return "ConfigureDialog/Height";
-
-        // Cover image **************************
-        case Cover_Mode:
-            return "Cover/Mode";
-        case Cover_Size:
-            return "Cover/Size";
-
-        // Embedded Cover image ******************
-        case EmbeddedCover_Mode:
-            return "EmbeddedCover/Mode";
-        case EmbeddedCover_Size:
-            return "EmbeddedCover/Size";
     }
 
     assert(false);
@@ -305,18 +321,6 @@ QString Settings::findProgram(const QString &program) const
 /************************************************
  *
  ************************************************/
-OutFormat *Settings::outFormat() const
-{
-    OutFormat *format = OutFormat::formatForId(currentProfile().formatId());
-    if (format)
-        return format;
-
-    return OutFormat::allFormats().first();
-}
-
-/************************************************
- *
- ************************************************/
 QString Settings::tmpDir() const
 {
     return value(Encoder_TmpDir).toString();
@@ -344,70 +348,6 @@ QString Settings::defaultCodepage() const
 void Settings::setDefaultCodepage(const QString &value)
 {
     setValue(Tags_DefaultCodepage, value);
-}
-
-/************************************************
- *
- ************************************************/
-CoverMode Settings::coverMode() const
-{
-    return strToCoverMode(value(Cover_Mode).toString());
-}
-
-/************************************************
- *
- ************************************************/
-void Settings::setCoverMode(CoverMode value)
-{
-    setValue(Cover_Mode, coverModeToString(value));
-}
-
-/************************************************
- *
- ************************************************/
-int Settings::coverImageSize() const
-{
-    return value(Cover_Size).toInt();
-}
-
-/************************************************
-
-************************************************/
-void Settings::setCoverImageSize(int value)
-{
-    setValue(Cover_Size, value);
-}
-
-/************************************************
-
-************************************************/
-CoverMode Settings::embeddedCoverMode() const
-{
-    return strToCoverMode(value(EmbeddedCover_Mode).toString());
-}
-
-/************************************************
-
- ************************************************/
-void Settings::setEmbeddedCoverMode(CoverMode value)
-{
-    setValue(EmbeddedCover_Mode, coverModeToString(value));
-}
-
-/************************************************
-
- ************************************************/
-int Settings::embeddedCoverImageSize() const
-{
-    return value(EmbeddedCover_Size).toInt();
-}
-
-/************************************************
-
- ************************************************/
-void Settings::setEmbeddedCoverImageSize(int value)
-{
-    setValue(EmbeddedCover_Size, value);
 }
 
 /************************************************
@@ -477,7 +417,6 @@ void Settings::loadProfiles()
     allKeys();
     beginGroup(PROFILES_PREFIX);
     for (QString id : childGroups()) {
-
         Profile profile(id);
         profile.load(*this, id);
 

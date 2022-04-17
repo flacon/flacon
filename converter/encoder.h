@@ -30,6 +30,8 @@
 
 #include "worker.h"
 #include "../profiles.h"
+#include "coverimage.h"
+
 class QProcess;
 
 namespace Conv {
@@ -56,8 +58,13 @@ public:
     void setCoverFile(const QString &value) { mCoverFile = value; }
     void setEmbeddedCue(const QString &value) { mEmbeddedCue = value; }
 
+    const CoverImage &coverImage() const { return mCoverImage; }
+    void              setCoverImage(const CoverImage &value);
+
     virtual QString     programName() const { return ""; }
     virtual QStringList programArgs() const = 0;
+
+    virtual void writeMetadata(const QString &filePath) const;
 
 public slots:
     void run() override;
@@ -75,6 +82,8 @@ private:
     QString   mOutFile;
     QString   mCoverFile;
     QString   mEmbeddedCue;
+
+    CoverImage mCoverImage;
 
     quint64 mTotal    = 0;
     quint64 mReady    = 0;

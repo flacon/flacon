@@ -25,6 +25,22 @@
 
 #include "flacencoder.h"
 
+#include <QFile>
+#include <taglib/flacfile.h>
+#include <taglib/xiphcomment.h>
+#include <QFile>
+
+QString writeMetadataFile(const QString &path, const QString &fieldName, const QString &fieldValue)
+{
+    QString metadataFile = path + "." + fieldName;
+    QFile   file(metadataFile);
+    if (file.open(QFile::WriteOnly)) {
+        file.write(fieldValue.toUtf8());
+    }
+    file.close();
+    return metadataFile;
+}
+
 QStringList FlacEncoder::programArgs() const
 {
     QStringList args;
@@ -37,48 +53,68 @@ QStringList FlacEncoder::programArgs() const
     // Compression parametr really looks like --compression-level-N
     args << QString("--compression-level-%1").arg(profile().value("Compression").toString());
 
-    // Tags .....................................................
-    if (!track().artist().isEmpty())
-        args << "--tag" << QString("artist=%1").arg(track().artist());
-
-    if (!track().album().isEmpty())
-        args << "--tag" << QString("album=%1").arg(track().album());
-
-    if (!track().genre().isEmpty())
-        args << "--tag" << QString("genre=%1").arg(track().genre());
-
-    if (!track().date().isEmpty())
-        args << "--tag" << QString("date=%1").arg(track().date());
-
-    if (!track().title().isEmpty())
-        args << "--tag" << QString("title=%1").arg(track().title());
-
-    if (!track().tag(TagId::AlbumArtist).isEmpty())
-        args << "--tag" << QString("albumartist=%1").arg(track().tag(TagId::AlbumArtist));
-
-    if (!track().comment().isEmpty())
-        args << "--tag" << QString("comment=%1").arg(track().comment());
-
-    if (!track().discId().isEmpty())
-        args << "--tag" << QString("discId=%1").arg(track().discId());
-
-    args << "--tag" << QString("tracknumber=%1").arg(track().trackNum());
-    args << "--tag" << QString("totaltracks=%1").arg(track().trackCount());
-    args << "--tag" << QString("tracktotal=%1").arg(track().trackCount());
-
-    args << "--tag" << QString("disc=%1").arg(track().discNum());
-    args << "--tag" << QString("discnumber=%1").arg(track().discNum());
-    args << "--tag" << QString("disctotal=%1").arg(track().discCount());
-
-    if (!coverFile().isEmpty()) {
-        args << QString("--picture=%1").arg(coverFile());
-    }
-
-    if (profile().isEmbedCue()) {
-        args << "--tag" << QString("cuesheet=%1").arg(embeddedCue());
-    }
-
     args << "-";
     args << "-o" << outFile();
     return args;
+}
+
+void FlacEncoder::writeMetadata(const QString &filePath) const
+{
+    TagLib::FLAC::File file(filePath.toLocal8Bit(), false);
+
+    if (!file.isValid()) {
+        throw FlaconError("Can't open file");
+    }
+
+    TagLib::Ogg::XiphComment *comments = file.xiphComment(true);
+
+    auto writeStrTag = [comments](const QString &tagName, const QString &value) {
+        if (!value.isEmpty()) {
+            comments->addField(tagName.toStdString(), TagLib::String(value.toStdString(), TagLib::String::UTF8), true);
+        }
+    };
+
+    auto writeIntTag = [comments](const QString &tagName, int value) {
+        comments->addField(tagName.toStdString(), QString::number(value).toStdString(), true);
+    };
+
+    writeStrTag("ARTIST", track().artist());
+    writeStrTag("ALBUM", track().album());
+    writeStrTag("GENRE", track().genre());
+    writeStrTag("DATE", track().date());
+    writeStrTag("TITLE", track().title());
+    writeStrTag("ALBUMARTIST", track().tag(TagId::AlbumArtist));
+    writeStrTag("COMMENT", track().comment());
+    writeStrTag("DISCID", track().discId());
+
+    writeIntTag("TRACKNUMBER", track().trackNum());
+    writeIntTag("TOTALTRACKS", track().trackCount());
+    writeIntTag("TRACKTOTAL", track().trackCount());
+
+    writeIntTag("DISC", track().discNum());
+    writeIntTag("DISCNUMBER", track().discNum());
+    writeIntTag("DISCTOTAL", track().discCount());
+
+    if (profile().isEmbedCue()) {
+        writeStrTag("CUESHEET", embeddedCue());
+    }
+
+    if (!coverImage().isEmpty()) {
+        const CoverImage  &img = coverImage();
+        TagLib::ByteVector dt(img.data().data(), img.data().size());
+
+        TagLib::FLAC::Picture *pic = new TagLib::FLAC::Picture();
+        pic->setType(TagLib::FLAC::Picture::Type::FrontCover);
+        pic->setData(dt);
+        pic->setMimeType(img.mimeType().toStdString());
+        pic->setWidth(img.size().width());
+        pic->setHeight(img.size().height());
+        pic->setColorDepth(img.depth());
+
+        file.addPicture(pic);
+    }
+
+    if (!file.save()) {
+        throw FlaconError("Can't save file");
+    }
 }

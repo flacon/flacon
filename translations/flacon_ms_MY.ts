@@ -118,6 +118,13 @@
     </message>
 </context>
 <context>
+    <name>AlacConfigPage</name>
+    <message>
+        <source>Compression:</source>
+        <translation>Pemampatan:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -303,10 +310,6 @@
 </context>
 <context>
     <name>ConfigPage_Opus</name>
-    <message>
-        <source>Opus encoding configuration</source>
-        <translation>Konfigurasi pengekodan Opus</translation>
-    </message>
     <message>
         <source>Bitrate type:</source>
         <translation>Jenis kadar bit:</translation>
@@ -1303,10 +1306,6 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
         <translation>Saya tidak menemui program &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Tidak dapat salin fail kulit hadapan &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Tidak dapat baca imej kulit hadapan &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
@@ -1379,6 +1378,11 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>file name is empty</source>
+        <comment>error message text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1591,10 +1595,6 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
 <context>
     <name>aacConfigPage</name>
     <message>
-        <source>AAC encoding configuration</source>
-        <translation>Konfigurasi pengekodan AAC</translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation>Guna tetapan kualiti (disarankan)</translation>
     </message>
@@ -1616,20 +1616,12 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
 <context>
     <name>flacConfigPage</name>
     <message>
-        <source>FLAC encoding configuration</source>
-        <translation>Konfigurasi pengekodan FLAC</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Pemampatan:</translation>
     </message>
 </context>
 <context>
     <name>mp3ConfigPage</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Konfigurasi pengekodan MP3</translation>
-    </message>
     <message>
         <source>Preset:</source>
         <translation>Praset:</translation>
@@ -1649,10 +1641,6 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
 </context>
 <context>
     <name>oggConfigPage</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Konfigurasi pengekodan Ogg</translation>
-    </message>
     <message>
         <source>Use quality setting (recommended)</source>
         <translation>Guna tetapan kualiti (disarankan)</translation>
@@ -1689,10 +1677,6 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
 </context>
 <context>
     <name>wvConfigPage</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Konfigurasi pengekodan WavPack</translation>
-    </message>
     <message>
         <source>Compression:</source>
         <translation>Pemampatan:</translation>

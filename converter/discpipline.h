@@ -32,6 +32,7 @@
 #include "converter.h"
 #include "convertertypes.h"
 #include "profiles.h"
+#include "coverimage.h"
 
 class Project;
 
@@ -88,6 +89,7 @@ private:
     QMap<TrackId, ConvTrack> mTracks;
     QTemporaryDir           *mTmpDir = nullptr;
     QString                  mEmbedCoverFile;
+    CoverImage               mCoverImage;
     QString                  mEmbeddedCue;
 
     struct SplitterRequest

@@ -31,11 +31,9 @@
 #include "encoder.h"
 #include "gain.h"
 #include "cuecreator.h"
-#include "copycover.h"
 #include "project.h"
 #include "inputaudiofile.h"
 #include "profiles.h"
-#include "settings.h"
 
 #include <QThread>
 #include <QDebug>
@@ -273,6 +271,7 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     encoder->setProfile(mProfile);
     encoder->setCoverFile(mEmbedCoverFile);
     encoder->setEmbeddedCue(mEmbeddedCue);
+    encoder->setCoverImage(mCoverImage);
 
     WorkerThread *thread = new WorkerThread(encoder, this);
 
@@ -506,19 +505,18 @@ void DiscPipeline::trackProgress(const ConvTrack &track, TrackState state, int p
  ************************************************/
 void DiscPipeline::copyCoverImage() const
 {
-    QString file = Settings::i()->coverMode() != CoverMode::Disable ? mDisc->coverImageFile() : "";
-    int     size = Settings::i()->coverMode() == CoverMode::Scale ? Settings::i()->coverImageSize() : 0;
+    QString file = mProfile.copyCoverOptions().mode != CoverMode::Disable ? mDisc->coverImageFile() : "";
+    int     size = mProfile.copyCoverOptions().mode == CoverMode::Scale ? mProfile.copyCoverOptions().size : 0;
 
     if (file.isEmpty()) {
         return;
     }
 
-    QString dir = QFileInfo(mTracks.first().resultFilePath()).dir().absolutePath();
+    QString dir  = QFileInfo(mTracks.first().resultFilePath()).dir().absolutePath();
+    QString dest = QDir(dir).absoluteFilePath(QString("cover.%1").arg(QFileInfo(file).suffix()));
 
-    CopyCover copyCover(file, size, dir, "cover");
-    if (!copyCover.run()) {
-        throw FlaconError(copyCover.errorString());
-    }
+    CoverImage image = CoverImage(file, size);
+    image.saveAs(dest);
 }
 
 /************************************************
@@ -526,18 +524,17 @@ void DiscPipeline::copyCoverImage() const
  ************************************************/
 void DiscPipeline::createEmbedImage()
 {
-    QString file = Settings::i()->embeddedCoverMode() != CoverMode::Disable ? mDisc->coverImageFile() : "";
-    int     size = Settings::i()->embeddedCoverMode() == CoverMode::Scale ? Settings::i()->embeddedCoverImageSize() : 0;
+    QString file = mProfile.embedCoverOptions().mode != CoverMode::Disable ? mDisc->coverImageFile() : "";
+    int     size = mProfile.embedCoverOptions().mode == CoverMode::Scale ? mProfile.embedCoverOptions().size : 0;
 
     if (file.isEmpty()) {
         return;
     }
 
-    CopyCover copyCover(file, size, mTmpDir->path(), "cover");
-    if (!copyCover.run()) {
-        throw FlaconError(copyCover.errorString());
-    }
-    mEmbedCoverFile = copyCover.fileName();
+    mCoverImage = CoverImage(file, size);
+
+    mEmbedCoverFile = QDir(mTmpDir->path()).absoluteFilePath(QString("cover.%1").arg(QFileInfo(file).suffix()));
+    mCoverImage.saveAs(mEmbedCoverFile);
 }
 
 /************************************************

@@ -5,22 +5,27 @@ on: [push]
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
+  LANG: en_US.UTF-8
+  LS_ALL: en_US.UTF-8
+  LANGUAGE: en_US:en
 
 jobs:
-  build:    
+  build:
     runs-on: ubuntu-18.04
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install packages 
+    - name: Install packages
       run:  |
-        sudo apt-get -y update 
+        sudo apt-get -y update
+        sudo apt-get -y install locales
+        sudo sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
         sudo apt-get -y install software-properties-common
         sudo add-apt-repository -y ppa:flacon
         sudo apt-get -y update
         sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev libtag1-dev
-        sudo apt-get -y install flac mac vorbis-tools wavpack lame vorbisgain mp3gain ttaenc
+        sudo apt-get -y install flac mac vorbis-tools wavpack lame vorbisgain mp3gain ttaenc mediainfo
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build

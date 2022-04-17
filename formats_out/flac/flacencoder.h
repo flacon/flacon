@@ -33,6 +33,8 @@ class FlacEncoder : public Conv::Encoder
 public:
     QString     programName() const override { return "flac"; }
     QStringList programArgs() const override;
+
+    void writeMetadata(const QString &filePath) const override;
 };
 
 #endif // FLACENCODER_H

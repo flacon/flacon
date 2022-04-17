@@ -118,6 +118,13 @@
     </message>
 </context>
 <context>
+    <name>AlacConfigPage</name>
+    <message>
+        <source>Compression:</source>
+        <translation>Compression :</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -322,10 +329,6 @@
 </context>
 <context>
     <name>ConfigPage_Opus</name>
-    <message>
-        <source>Opus encoding configuration</source>
-        <translation>Configuration de l’encodage Opus</translation>
-    </message>
     <message>
         <source>Bitrate type:</source>
         <translation>Type de débit binaire :</translation>
@@ -1325,10 +1328,6 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <translation>Je ne peux pas trouver le programme &lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Je ne peux pas copier le fichier de la couverture &lt;b&gt;%1&lt;/b&gt; : &lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Je ne peux pas lire l’image de couverture &lt;b&gt;%1&lt;/b&gt; : &lt;br&gt;%2</translation>
@@ -1402,6 +1401,11 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <translation>Intégré à %1</translation>
+    </message>
+    <message>
+        <source>file name is empty</source>
+        <comment>error message text</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1613,10 +1617,6 @@ L’utilisation de l’analyse par album permet de préserver les différences d
 <context>
     <name>aacConfigPage</name>
     <message>
-        <source>AAC encoding configuration</source>
-        <translation>Configuration de l’encodage AAC</translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation>Utiliser les réglages de qualité (recommandé)</translation>
     </message>
@@ -1638,20 +1638,12 @@ L’utilisation de l’analyse par album permet de préserver les différences d
 <context>
     <name>flacConfigPage</name>
     <message>
-        <source>FLAC encoding configuration</source>
-        <translation>Configuration de l’encodage FLAC</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Compression :</translation>
     </message>
 </context>
 <context>
     <name>mp3ConfigPage</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Configuration de l’encodage MP3</translation>
-    </message>
     <message>
         <source>Preset:</source>
         <translation>Préréglage :</translation>
@@ -1671,10 +1663,6 @@ L’utilisation de l’analyse par album permet de préserver les différences d
 </context>
 <context>
     <name>oggConfigPage</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Configuration de l’encodage Ogg</translation>
-    </message>
     <message>
         <source>Use quality setting (recommended)</source>
         <translation>Utiliser les réglages de qualité (recommandé)</translation>
@@ -1711,10 +1699,6 @@ L’utilisation de l’analyse par album permet de préserver les différences d
 </context>
 <context>
     <name>wvConfigPage</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Configuration de l’encodage WavPack</translation>
-    </message>
     <message>
         <source>Compression:</source>
         <translation>Compression :</translation>

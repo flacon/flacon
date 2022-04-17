@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MP3 encoding configuration</string>
+   <string notr="true">MP3 encoding configuration</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

@@ -118,6 +118,13 @@
     </message>
 </context>
 <context>
+    <name>AlacConfigPage</name>
+    <message>
+        <source>Compression:</source>
+        <translation>Compressão:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -323,10 +330,6 @@
 </context>
 <context>
     <name>ConfigPage_Opus</name>
-    <message>
-        <source>Opus encoding configuration</source>
-        <translation>Configurações de codificação Opus</translation>
-    </message>
     <message>
         <source>Bitrate type:</source>
         <translation>Tipo de taxa de bits:</translation>
@@ -1326,10 +1329,6 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
         <translation>Não foi possível localizar o programa &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Não foi possível copiar a imagem da capa &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Não foi possível ler a imagem da capa &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
@@ -1403,6 +1402,11 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <translation>Inserido em %1</translation>
+    </message>
+    <message>
+        <source>file name is empty</source>
+        <comment>error message text</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1614,10 +1618,6 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
 <context>
     <name>aacConfigPage</name>
     <message>
-        <source>AAC encoding configuration</source>
-        <translation>Configurações AAC de codificação</translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation>Usar configurações de qualidade (recomendado)</translation>
     </message>
@@ -1639,20 +1639,12 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
 <context>
     <name>flacConfigPage</name>
     <message>
-        <source>FLAC encoding configuration</source>
-        <translation>Configuração da codificação FLAC</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Compressão:</translation>
     </message>
 </context>
 <context>
     <name>mp3ConfigPage</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Configurações de codificação MP3</translation>
-    </message>
     <message>
         <source>Preset:</source>
         <translation>Predefinição:</translation>
@@ -1672,10 +1664,6 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
 </context>
 <context>
     <name>oggConfigPage</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Configurações de codificação Ogg</translation>
-    </message>
     <message>
         <source>Use quality setting (recommended)</source>
         <translation>Usar configurações de qualidade (recomendado)</translation>
@@ -1712,10 +1700,6 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
 </context>
 <context>
     <name>wvConfigPage</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Configurações de codificação WavPack</translation>
-    </message>
     <message>
         <source>Compression:</source>
         <translation>Compressão:</translation>

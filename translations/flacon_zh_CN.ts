@@ -118,6 +118,13 @@
     </message>
 </context>
 <context>
+    <name>AlacConfigPage</name>
+    <message>
+        <source>Compression:</source>
+        <translation>压缩率:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -303,10 +310,6 @@
 </context>
 <context>
     <name>ConfigPage_Opus</name>
-    <message>
-        <source>Opus encoding configuration</source>
-        <translation>Opus 编码配置</translation>
-    </message>
     <message>
         <source>Bitrate type:</source>
         <translation>编码类型：</translation>
@@ -1301,10 +1304,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>无法找到程序 %1.</translation>
     </message>
     <message>
-        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation type="unfinished"/>
@@ -1377,6 +1376,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>file name is empty</source>
+        <comment>error message text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1589,10 +1593,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
 <context>
     <name>aacConfigPage</name>
     <message>
-        <source>AAC encoding configuration</source>
-        <translation>AAC 编码配置</translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation>使用动态编码模式（推荐）</translation>
     </message>
@@ -1614,20 +1614,12 @@ Using the album-gain analysis will preserve the volume differences within an alb
 <context>
     <name>flacConfigPage</name>
     <message>
-        <source>FLAC encoding configuration</source>
-        <translation>FLAC 编码配置</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>压缩率:</translation>
     </message>
 </context>
 <context>
     <name>mp3ConfigPage</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>MP3 编码配置</translation>
-    </message>
     <message>
         <source>Preset:</source>
         <translation>预设:</translation>
@@ -1647,10 +1639,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
 </context>
 <context>
     <name>oggConfigPage</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Ogg 编码配置</translation>
-    </message>
     <message>
         <source>Use quality setting (recommended)</source>
         <translation>使用动态编码模式（推荐）</translation>
@@ -1687,10 +1675,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
 </context>
 <context>
     <name>wvConfigPage</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>WavPack 编码设置</translation>
-    </message>
     <message>
         <source>Compression:</source>
         <translation>压缩率:</translation>

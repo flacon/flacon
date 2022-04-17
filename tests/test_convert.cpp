@@ -104,9 +104,63 @@ static bool runConvert(const QString &dir, const QString &inDir, const QString &
 /************************************************
  *
  ************************************************/
+static QByteArray readTag(const QString &file, const QString &tag)
+{
+    if (!QFile::exists(file)) {
+        FAIL(QString("File %1 not found").arg(file).toLocal8Bit());
+        return {};
+    }
+
+    if (!QFile::exists(file)) {
+        FAIL(QString("File %1 not found").arg(file).toLocal8Bit());
+        return {};
+    }
+
+    QStringList tags;
+    tags << tag;
+    tags << tag.toUpper();
+    tags << tag.toLower();
+
+    for (const QString &t : tags) {
+        QStringList args;
+        args << QString("--Inform=General;%%1%").arg(t);
+        args << file;
+
+        QProcess proc;
+        proc.setEnvironment(QStringList("LANG=en_US.UTF-8"));
+        proc.start("mediainfo", args);
+        proc.waitForFinished();
+        if (proc.exitCode() != 0) {
+            QString err = QString::fromLocal8Bit(proc.readAll());
+            FAIL(QString("Can't read \"%1\" tag from \"%2\": %3").arg(tag).arg(file).arg(err).toLocal8Bit());
+        }
+
+        QByteArray res = proc.readAllStandardOutput().trimmed();
+
+        if (res.isEmpty()) {
+            continue;
+        }
+
+        // Workaround, older versions of mediainfo return the
+        // "Track/Position_Total" tag as "2 / 2".
+        if (tag == "Track/Position_Total") {
+            return res.split('/').at(0).trimmed();
+        }
+
+        return res;
+    }
+
+    return {};
+}
+
+/************************************************
+ *
+ ************************************************/
 void TestFlacon::testConvert()
 {
     QFETCH(QString, dataDir);
+
+    QDir::setCurrent(dir());
 
     QFile::copy(dataDir + "/spec.ini", dir() + "/spec.ini");
     QSettings spec(dir() + "/spec.ini", QSettings::IniFormat);
@@ -218,9 +272,10 @@ void TestFlacon::testConvert()
             continue;
         }
 
-        if (!hash.isEmpty())
+        if (!hash.isEmpty()) {
             if (!compareAudioHash(outDir + "/" + file, hash))
                 QFAIL("");
+        }
     }
     spec.endGroup();
     // ..........................................
@@ -255,6 +310,55 @@ void TestFlacon::testConvert()
     spec.endGroup();
     // ..........................................
 
+    // ******************************************
+    // Check tags
+    spec.beginGroup("Result_Tags");
+    foreach (auto file, spec.childGroups()) {
+
+        spec.beginGroup(file);
+        foreach (auto tag, spec.allKeys()) {
+            QByteArray actual   = readTag(outDir + "/" + file, tag);
+            QByteArray expected = spec.value(tag).toByteArray();
+
+            if (actual != expected) {
+                QFAIL(QString("Compared tags are not the same:\n"
+                              "    File: %1\n"
+                              "    Tag:  %2\n"
+                              "\n"
+                              "    Actual   : '%3' (%4)\n"
+                              "    Expected : '%5' (%6)\n")
+
+                              .arg(file)
+                              .arg(tag)
+
+                              .arg(QString::fromLocal8Bit(actual))
+                              .arg(actual.toHex(' ').data())
+
+                              .arg(QString::fromLocal8Bit(expected))
+                              .arg(expected.toHex(' ').data())
+
+                              .toLocal8Bit());
+            }
+        }
+        spec.endGroup();
+    }
+    spec.endGroup();
+    // ******************************************
+
+    //    // ******************************************
+    //    // Check commands
+    //    spec.beginGroup("Check_Commands");
+    //    foreach (auto key, spec.allKeys()) {
+    //        QString cmd = spec.value(key).toString();
+    //        int     res = QProcess::execute(cmd);
+    //        if (res != 0) {
+    //            QFAIL(QString("Chack is failed for %1").arg(cmd).toLocal8Bit());
+    //        }
+    //    }
+    //    spec.endGroup();
+
+    //    // ******************************************
+
     if (!missing.isEmpty())
         msg += QString("\nFiles not exists in %1:\n  * %2")
                        .arg(outDir)
@@ -285,9 +389,11 @@ void TestFlacon::testConvert_data()
 
     QString dataDir = mDataDir + "/testConvert/";
 
+    QString                  curDir = QDir::currentPath();
     static const QStringList mask("*");
     foreach (auto dir, QDir(dataDir).entryList(mask, QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name)) {
         if (QDir(dataDir + "/" + dir).exists("spec.ini"))
             QTest::newRow(dir.toUtf8()) << dataDir + "/" + dir;
     }
+    QDir::setCurrent(curDir);
 }

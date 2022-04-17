@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2017
+ * Copyright: 2012-2017
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -23,36 +23,25 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef COPYCOVER_H
-#define COPYCOVER_H
+#ifndef ALACOITFORMAT_H
+#define ALACOITFORMAT_H
 
-#include <QString>
-#include "convertertypes.h"
+#include "../outformat.h"
 
-namespace Conv {
-
-class CopyCover
+class OutFormat_Alac : public OutFormat
 {
 public:
-    CopyCover(const QString &inFileName, int size, const QString &outDir, const QString &outBaseName);
-    bool run();
+    OutFormat_Alac();
 
-    QString fileName() const { return mFileName; }
+    virtual QString gainProgramName() const override { return ""; }
 
-    QString errorString() const { return mErrorString; }
+    QHash<QString, QVariant> defaultParameters() const override;
+    EncoderConfigPage       *configPage(QWidget *parent) const override;
 
-private:
-    QString       mInFileName;
-    int           mSize = 0;
-    const QString mDir;
-    const QString mBaseName;
-    QString       mErrorString;
-    QString       mFileName;
+    BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
+    SampleRate    maxSampleRate() const override { return SampleRate::Hz_384000; }
 
-    bool copyImage(const QString &outFileName);
-    bool resizeImage(const QString &outFileName);
+    Conv::Encoder *createEncoder() const override;
 };
 
-} // namespace
-
-#endif // COPYCOVER_H
+#endif // ALACOITFORMAT_H

@@ -118,6 +118,13 @@
     </message>
 </context>
 <context>
+    <name>AlacConfigPage</name>
+    <message>
+        <source>Compression:</source>
+        <translation>Compresión:</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -322,10 +329,6 @@
 </context>
 <context>
     <name>ConfigPage_Opus</name>
-    <message>
-        <source>Opus encoding configuration</source>
-        <translation>Configuración de la codificación Opus</translation>
-    </message>
     <message>
         <source>Bitrate type:</source>
         <translation>Tipo de tasa de bits:</translation>
@@ -1325,10 +1328,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>No puedo encontrar el programa &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>I can&apos;t copy cover file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>No puedo copiar el archivo de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>No puedo leer la imagen de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
@@ -1402,6 +1401,11 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <translation>Incrustado en %1</translation>
+    </message>
+    <message>
+        <source>file name is empty</source>
+        <comment>error message text</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1613,10 +1617,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
 <context>
     <name>aacConfigPage</name>
     <message>
-        <source>AAC encoding configuration</source>
-        <translation>Configuración de la codificación AAC</translation>
-    </message>
-    <message>
         <source>Use quality setting (recommended)</source>
         <translation>Usar ajustes por calidad (recomendado)</translation>
     </message>
@@ -1638,20 +1638,12 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
 <context>
     <name>flacConfigPage</name>
     <message>
-        <source>FLAC encoding configuration</source>
-        <translation>Configuración de la codificación Flac</translation>
-    </message>
-    <message>
         <source>Compression:</source>
         <translation>Compresión:</translation>
     </message>
 </context>
 <context>
     <name>mp3ConfigPage</name>
-    <message>
-        <source>MP3 encoding configuration</source>
-        <translation>Configuración de la codificación MP3</translation>
-    </message>
     <message>
         <source>Preset:</source>
         <translation>Preajuste:</translation>
@@ -1671,10 +1663,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
 </context>
 <context>
     <name>oggConfigPage</name>
-    <message>
-        <source>Ogg encoding configuration</source>
-        <translation>Configuración de la codificación Ogg</translation>
-    </message>
     <message>
         <source>Use quality setting (recommended)</source>
         <translation>Usar ajustes por calidad (recomendado)</translation>
@@ -1711,10 +1699,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
 </context>
 <context>
     <name>wvConfigPage</name>
-    <message>
-        <source>WavPack encoding configuration</source>
-        <translation>Configuración de la codificación WavPack</translation>
-    </message>
     <message>
         <source>Compression:</source>
         <translation>Compresión:</translation>
