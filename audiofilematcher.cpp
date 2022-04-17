@@ -61,8 +61,8 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Cue::Tracks
 
     // Looks like this is a per-track album .....
     if (mFileTags.count() == mAllAudioFiles.count()) {
-        for (const TrackTags &track : qAsConst(mTracks)) {
-            mResult[track.tag(TagId::File)] = matchAudioFilesByTrack(track.tag(TagId::File), track.tag(TagId::Title));
+        for (const Cue::Track &track : qAsConst(mTracks)) {
+            mResult[track.tag(TagId::File)] = matchAudioFilesByTrack(track);
         }
         qCDebug(LOG) << "Return per-track album:" << mResult;
         return;
@@ -103,30 +103,52 @@ void AudioFileMatcher::fillFileTags()
     }
 }
 
-QStringList AudioFileMatcher::matchAudioFilesByTrack(const QString &fileTag, const QString &trackTitle)
+QStringList AudioFileMatcher::matchAudioFilesByTrack(const Cue::Track &track)
 {
-    QStringList res;
-    QStringList patterns;
-
-    patterns << QRegExp::escape(QFileInfo(fileTag).completeBaseName());
-    patterns << QString(".*%1.*").arg(QRegExp::escape(trackTitle));
-
-    foreach (const QString &pattern, patterns) {
+    auto scan = [this](const QString &pattern) -> QString {
         QRegExp re(QString(pattern), Qt::CaseInsensitive, QRegExp::RegExp2);
 
         foreach (const QFileInfo &audio, mAllAudioFiles) {
             if (re.exactMatch(audio.fileName())) {
-                res << audio.filePath();
+                return audio.filePath();
             }
+        }
+        return "";
+    };
+
+    {
+        QString res = scan(QRegExp::escape(QFileInfo(track.tag(TagId::File)).completeBaseName()));
+        if (!res.isEmpty()) {
+            return QStringList(res);
         }
     }
 
-    if (res.isEmpty()) {
-        res = matchAudioFiles(fileTag);
+    if (!track.title().isEmpty()) {
+        QString res = scan(QString(".*%1.*%2.*").arg(track.trackNum(), 2, 10, QChar('0')).arg(QRegExp::escape(track.title())));
+        if (!res.isEmpty()) {
+            return QStringList(res);
+        }
+
+        res = scan(QString(".*%1.*").arg(QRegExp::escape(track.title())));
+        if (!res.isEmpty()) {
+            return QStringList(res);
+        }
     }
 
-    res.removeDuplicates();
-    return res;
+    {
+        QString res = scan(QString(".*%1.*").arg(track.trackNum(), 2, 10, QChar('0')));
+        if (!res.isEmpty()) {
+            return QStringList(res);
+        }
+    }
+
+    {
+        QStringList res;
+        res = matchAudioFiles(track.tag(TagId::File));
+
+        res.removeDuplicates();
+        return res;
+    }
 }
 
 QStringList AudioFileMatcher::matchAudioFiles(const QString &fileTag)

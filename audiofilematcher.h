@@ -52,7 +52,7 @@ private:
     QMap<QString, QStringList> mResult;
 
     void        fillFileTags();
-    QStringList matchAudioFilesByTrack(const QString &fileTag, const QString &trackTitle);
+    QStringList matchAudioFilesByTrack(const Cue::Track &track);
     QStringList matchAudioFiles(const QString &fileTag);
 };
 
