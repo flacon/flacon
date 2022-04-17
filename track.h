@@ -106,8 +106,7 @@ public:
 
     CueIndex cueIndex(int indexNum) const;
 
-    QString cueFileName() const { return mCueFileName; }
-    void    setCueFileName(const QString &value) { mCueFileName = value; }
+    Disc *disc() const { return mDisc; }
 
     int index() const { return mIndex; }
 
@@ -115,7 +114,6 @@ private:
     Disc          *mDisc = nullptr;
     TrackTags      mTags;
     int            mIndex = -1;
-    QString        mCueFileName;
     InputAudioFile mAudiofile;
 
     QString calcResultFilePath() const;

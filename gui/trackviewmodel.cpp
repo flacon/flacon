@@ -116,7 +116,7 @@ private:
  ************************************************/
 inline uint qHash(const Track &track, uint seed)
 {
-    return qHash(QPair<int, QString>(track.trackNum(), track.cueFileName()), seed);
+    return qHash(QPair<int, intptr_t>(track.trackNum(), intptr_t(track.disc())), seed);
 }
 
 /************************************************

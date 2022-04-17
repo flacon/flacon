@@ -13,6 +13,8 @@
     INDEX 00 = 00:00:00
     INDEX 01 = 00:00:33
     DATE     = 2012
+    INDEX 00 FILE = short.wav
+    INDEX 01 FILE = short.wav
 
 [TRACK 02]
     TRACK    = 02
@@ -20,6 +22,7 @@
     TITLE    = Short track 2
     INDEX 01 = 00:46:00
     DATE     = 01.02.2003
+    INDEX 01 FILE = short.wav
 
 [TRACK 03]
     TRACK    = 03
@@ -28,6 +31,8 @@
     INDEX 00 = 01:22:22
     INDEX 01 = 01:25:10
     DATE     = 01/02/2014
+    INDEX 00 FILE = short.wav
+    INDEX 01 FILE = short.wav
 
 [TRACK 04]
     TRACK    = 04
@@ -35,3 +40,5 @@
     TITLE    = Short track 4
     INDEX 00 = 02:39:54
     INDEX 01 = 02:41:05
+    INDEX 00 FILE = short.wav
+    INDEX 01 FILE = short.wav

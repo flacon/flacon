@@ -191,7 +191,6 @@ bool Track::operator==(const Track &other) const
     // clang-format off
     return
         mDisc           == other.mDisc &&
-        mCueFileName    == other.mCueFileName &&
         mAudiofile      == other.mAudiofile &&
         mTags           == other.mTags;
     // clang-format on
@@ -330,7 +329,11 @@ QString Track::calcResultFilePath() const
     if (fi.isAbsolute())
         return fi.absoluteFilePath();
 
-    QString cueFile = mCueFileName;
+    if (!mDisc) {
+        return "";
+    }
+
+    QString cueFile = mDisc->cue().filePath();
     if (cueFile.startsWith(Cue::EMBEDED_PREFIX)) {
         cueFile = cueFile.mid(strlen(Cue::EMBEDED_PREFIX));
     }
@@ -565,7 +568,6 @@ QDebug operator<<(QDebug debug, const Track &track)
                     << " Artist:" << track.artist()
                     << " Album:" << track.album()
                     << " Title:" << track.title()
-                    << " cueFile:" << track.cueFileName()
                     << "}";
     return debug;
 }

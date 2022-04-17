@@ -184,7 +184,6 @@ DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Conver
             Track *firstTrack = tracks.first();
 
             Track pregapTrack = *firstTrack; // copy tags and all settings
-            pregapTrack.setCueFileName(firstTrack->cueFileName());
             pregapTrack.setTag(TagId::TrackNum, QByteArray("0"));
             pregapTrack.setTitle("(HTOA)");
 

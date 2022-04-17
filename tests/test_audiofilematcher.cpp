@@ -59,7 +59,7 @@ void TestFlacon::testAudioFileMatcher()
 
         Cue disc(cueFile);
 
-        AudioFileMatcher matcher(cueFile, disc);
+        AudioFileMatcher matcher(cueFile, disc.tracks());
 
         QSettings exp(expectedFile, QSettings::IniFormat);
         exp.setIniCodec("UTF-8");

@@ -222,7 +222,6 @@ const Track *Disc::preGapTrack() const
 {
     if (!mTracks.isEmpty()) {
         mPreGapTrack = *mTracks.first();
-        mPreGapTrack.setCueFileName(mTracks.first()->cueFileName());
     }
 
     mPreGapTrack.setTag(TagId::TrackNum, QByteArray("0"));

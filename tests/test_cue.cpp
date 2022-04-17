@@ -57,7 +57,7 @@ static void write(const Cue &cue, const QString &fileName)
     f.open(QFile::WriteOnly | QFile::Truncate);
 
     int t = -1;
-    foreach (const Track &track, cue) {
+    for (const Cue::Track &track : cue.tracks()) {
         t++;
         f << QString("[DISC 01 / TRACK %2]\n").arg(t + 1, 2, 10, QChar('0'));
 
