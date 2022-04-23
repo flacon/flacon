@@ -184,10 +184,11 @@ enum SampleRate {
 Q_DECLARE_METATYPE(SampleRate)
 
 enum class FormatOption {
-    NoOptions          = 0x0,
-    Lossless           = 0x1,
-    SupportGain        = 0x2,
-    SupportEmbeddedCue = 0x4,
+    NoOptions            = 0x0,
+    Lossless             = 0x1,
+    SupportGain          = 0x2,
+    SupportEmbeddedCue   = 0x4,
+    SupportEmbeddedImage = 0x8,
 };
 
 Q_DECLARE_FLAGS(FormatOptions, FormatOption)

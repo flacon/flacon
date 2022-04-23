@@ -127,3 +127,5 @@
     OutPattern=%a/{%y - }%A/%n - %t
     PregapType=Extract
     SampleRate=0
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024

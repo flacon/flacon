@@ -107,13 +107,11 @@ static bool runConvert(const QString &dir, const QString &inDir, const QString &
 static QByteArray readTag(const QString &file, const QString &tag)
 {
     if (!QFile::exists(file)) {
-        FAIL(QString("File %1 not found").arg(file).toLocal8Bit());
-        return {};
+        throw FlaconError(QString("File %1 not found").arg(file));
     }
 
     if (!QFile::exists(file)) {
-        FAIL(QString("File %1 not found").arg(file).toLocal8Bit());
-        return {};
+        throw FlaconError(QString("File %1 not found").arg(file));
     }
 
     QStringList tags;
@@ -310,41 +308,6 @@ void TestFlacon::testConvert()
     spec.endGroup();
     // ..........................................
 
-    // ******************************************
-    // Check tags
-    spec.beginGroup("Result_Tags");
-    foreach (auto file, spec.childGroups()) {
-
-        spec.beginGroup(file);
-        foreach (auto tag, spec.allKeys()) {
-            QByteArray actual   = readTag(outDir + "/" + file, tag);
-            QByteArray expected = spec.value(tag).toByteArray();
-
-            if (actual != expected) {
-                QFAIL(QString("Compared tags are not the same:\n"
-                              "    File: %1\n"
-                              "    Tag:  %2\n"
-                              "\n"
-                              "    Actual   : '%3' (%4)\n"
-                              "    Expected : '%5' (%6)\n")
-
-                              .arg(file)
-                              .arg(tag)
-
-                              .arg(QString::fromLocal8Bit(actual))
-                              .arg(actual.toHex(' ').data())
-
-                              .arg(QString::fromLocal8Bit(expected))
-                              .arg(expected.toHex(' ').data())
-
-                              .toLocal8Bit());
-            }
-        }
-        spec.endGroup();
-    }
-    spec.endGroup();
-    // ******************************************
-
     //    // ******************************************
     //    // Check commands
     //    spec.beginGroup("Check_Commands");
@@ -373,6 +336,50 @@ void TestFlacon::testConvert()
         QFAIL(QString("%1\n%2").arg(QTest::currentDataTag()).arg(msg).toLocal8Bit().data());
 
     // ..........................................
+
+    // ******************************************
+    // Check tags
+    spec.beginGroup("Result_Tags");
+    foreach (auto file, spec.childGroups()) {
+
+        spec.beginGroup(file);
+
+        try {
+            foreach (auto tag, spec.allKeys()) {
+
+                QByteArray actual = readTag(outDir + "/" + file, tag);
+
+                QByteArray expected = spec.value(tag).toByteArray();
+
+                if (actual != expected) {
+                    QFAIL(QString("Compared tags are not the same:\n"
+                                  "    File: %1\n"
+                                  "    Tag:  %2\n"
+                                  "\n"
+                                  "    Actual   : '%3' (%4)\n"
+                                  "    Expected : '%5' (%6)\n")
+
+                                  .arg(file)
+                                  .arg(tag)
+
+                                  .arg(QString::fromLocal8Bit(actual))
+                                  .arg(actual.toHex(' ').data())
+
+                                  .arg(QString::fromLocal8Bit(expected))
+                                  .arg(expected.toHex(' ').data())
+
+                                  .toLocal8Bit());
+                }
+            }
+        }
+        catch (const FlaconError &err) {
+            QFAIL(err.what());
+        }
+
+        spec.endGroup();
+    }
+    spec.endGroup();
+    // ******************************************
 
     clearDir(dir());
 }
