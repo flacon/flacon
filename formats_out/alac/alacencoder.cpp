@@ -60,7 +60,7 @@ QStringList AlacEncoder::programArgs() const
         args << QString("--comment=%1").arg(track().comment());
 
     args << QString("--track=%1/%2").arg(track().trackNum()).arg(track().trackCount());
-    args << QString("--disc=%1/%2").arg(track().discNum()).arg(track().discNum());
+    args << QString("--disc=%1/%2").arg(track().discNum()).arg(track().discCount());
 
     if (!coverFile().isEmpty()) {
         args << QString("--cover=%1").arg(coverFile());

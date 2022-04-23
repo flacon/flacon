@@ -112,6 +112,10 @@ bool TestFlacon::removeDir(const QString &dirName) const
  ************************************************/
 bool TestFlacon::clearDir(const QString &dirName) const
 {
+    if (getenv("FLACON_KEEP_TEST_DATA")) {
+        return true;
+    }
+
     QDir dir(dirName);
     if (!dir.exists())
         return true;

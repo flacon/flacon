@@ -95,7 +95,7 @@ void CueGroupBox::toProfile(Profile *profile) const
 
 void CueGroupBox::refresh()
 {
-    ui->embedButton->setEnabled(mSupportEmbeddedCue);
+    ui->embedButton->setVisible(mSupportEmbeddedCue);
     ui->perTrackCueFormatEdit->setEnabled(ui->writeToFileButton->isChecked());
     ui->perTrackCueFormatBtn->setEnabled(ui->writeToFileButton->isChecked());
     ui->preGapComboBox->setEnabled(ui->writeToFileButton->isChecked() || ui->embedButton->isChecked());

@@ -399,7 +399,7 @@ void Profile::load(QSettings &settings, const QString &group)
     mCopyCoverOptions.mode = strToCoverMode(value(COVER_FILE_MODE_KEY, DEFAULT_COVER_EMBED_MODE).toString());
     mCopyCoverOptions.size = value(COVER_FILE_SIZE_KEY, DEFAULT_COVER_FILE_SIZE).toInt();
 
-    mSupportEmbedCover = mFormat->options().testFlag(FormatOption::SupportEmbeddedCue);
+    mSupportEmbedCover = mFormat->options().testFlag(FormatOption::SupportEmbeddedImage);
     if (mSupportEmbedCover) {
         mEmbedCoverOptions.mode = strToCoverMode(value(COVER_EMBED_MODE_KEY, DEFAULT_COVER_EMBED_MODE).toString());
         mEmbedCoverOptions.size = value(COVER_EMBED_SIZE_KEY, DEFAULT_COVER_FILE_SIZE).toInt();
@@ -422,7 +422,7 @@ void Profile::save(QSettings &settings, const QString &group) const
     settings.setValue(COVER_FILE_MODE_KEY, coverModeToString(mCopyCoverOptions.mode));
     settings.setValue(COVER_FILE_SIZE_KEY, mCopyCoverOptions.size);
 
-    if (mFormat->options().testFlag(FormatOption::SupportEmbeddedCue)) {
+    if (mFormat->options().testFlag(FormatOption::SupportEmbeddedImage)) {
         settings.setValue(COVER_EMBED_MODE_KEY, coverModeToString(mEmbedCoverOptions.mode));
         settings.setValue(COVER_EMBED_SIZE_KEY, mEmbedCoverOptions.size);
     }
