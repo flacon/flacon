@@ -37,7 +37,7 @@ OutFormat_Wv::OutFormat_Wv()
     mId      = "WV";
     mExt     = "wv";
     mName    = "WavPack";
-    mOptions = FormatOption::Lossless | FormatOption::SupportGain;
+    mOptions = FormatOption::Lossless | FormatOption::SupportGain | FormatOption::SupportEmbeddedImage;
 }
 
 /************************************************
@@ -156,8 +156,8 @@ QStringList Encoder_Wv::programArgs() const
     args << "-w" << QString("Track=%1/%2").arg(track().trackNum()).arg(track().trackCount());
     args << "-w" << QString("Part=%1").arg(track().discNum());
 
-    if (!coverFile().isEmpty()) {
-        args << "--write-binary-tag" << QString("Cover Art (Front)=@%1").arg(coverFile());
+    if (!coverImage().isEmpty()) {
+        args << "--write-binary-tag" << QString("Cover Art (Front)=@%1").arg(coverImage().tmpFilePath());
     }
 
     args << "-";

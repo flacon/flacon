@@ -88,7 +88,6 @@ private:
     QString                  mWorkDir;
     QMap<TrackId, ConvTrack> mTracks;
     QTemporaryDir           *mTmpDir = nullptr;
-    QString                  mEmbedCoverFile;
     CoverImage               mCoverImage;
     QString                  mEmbeddedCue;
 

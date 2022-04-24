@@ -48,14 +48,12 @@ public:
     const ConvTrack &track() const { return mTrack; }
     QString          outFile() const { return mOutFile; }
     QString          inputFile() const { return mInputFile; }
-    QString          coverFile() const { return mCoverFile; }
     const QString   &embeddedCue() const { return mEmbeddedCue; }
 
     void setProfile(const Profile &profile);
     void setTrack(const ConvTrack &track) { mTrack = track; }
     void setInputFile(const QString &value) { mInputFile = value; }
     void setOutFile(const QString &value) { mOutFile = value; }
-    void setCoverFile(const QString &value) { mCoverFile = value; }
     void setEmbeddedCue(const QString &value) { mEmbeddedCue = value; }
 
     const CoverImage &coverImage() const { return mCoverImage; }
@@ -80,7 +78,6 @@ private:
     ConvTrack mTrack;
     QString   mInputFile;
     QString   mOutFile;
-    QString   mCoverFile;
     QString   mEmbeddedCue;
 
     CoverImage mCoverImage;

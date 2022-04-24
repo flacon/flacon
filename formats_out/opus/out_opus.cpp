@@ -37,7 +37,7 @@ OutFormat_Opus::OutFormat_Opus()
     mId      = "OPUS";
     mExt     = "opus";
     mName    = "Opus";
-    mOptions = FormatOption::NoOptions;
+    mOptions = FormatOption::NoOptions | FormatOption::SupportEmbeddedImage;
 }
 
 /************************************************
@@ -150,8 +150,8 @@ QStringList Encoder_Opus::programArgs() const
     args << "--comment" << QString("discnumber=%1").arg(track().discNum());
     args << "--comment" << QString("disctotal=%1").arg(track().discCount());
 
-    if (!coverFile().isEmpty()) {
-        args << "--picture" << coverFile();
+    if (!coverImage().isEmpty()) {
+        args << "--picture" << coverImage().tmpFilePath();
     }
 
     // Files ....................................................
