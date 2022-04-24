@@ -13,6 +13,8 @@
     PregapType = Extract
     CoverFile/Mode=Disable
     CoverFile/Size=1024
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
 
 [Profiles/FLAC]
     OutDirectory=:Music
@@ -47,6 +49,8 @@
     PregapType = Extract
     CoverFile/Mode=Disable
     CoverFile/Size=1024
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
 
 
 [Profiles/OGG]
@@ -83,6 +87,8 @@
     PregapType = Extract
     CoverFile/Mode=Disable
     CoverFile/Size=1024
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
 
 
 [Profiles/WV]
@@ -99,6 +105,8 @@
     PregapType = Extract
     CoverFile/Mode=Disable
     CoverFile/Size=1024
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
 
 
 [Profiles/WAV]
