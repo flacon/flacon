@@ -13,6 +13,8 @@
     PregapType = AddToFirst
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
 
 
 [Profiles/FLAC]
@@ -32,6 +34,7 @@
     CoverEmbed/Mode=Scale
     CoverEmbed/Size=800
 
+
 [Profiles/MP3]
     OutDirectory=~/Music/mp3
     OutPattern=mp3-%a/{%y - }%A/%n - %t
@@ -48,6 +51,8 @@
     PregapType = Disable
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
 
 
 [Profiles/OGG]
@@ -84,6 +89,8 @@
     PregapType = Extract
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
 
 
 [Profiles/WV]
@@ -100,6 +107,8 @@
     PregapType = Disable
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
 
 
 [Profiles/WAV]
