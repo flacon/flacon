@@ -68,6 +68,9 @@ public:
     QString album() const { return tag(TagId::Album); }
     void    setAlbum(const QString &value) { setTag(TagId::Album, value); }
 
+    QString albumArtist() const { return tag(TagId::AlbumArtist); }
+    void    setAlbumArtist(const QString &value) { setTag(TagId::AlbumArtist, value); }
+
     QString comment() const { return tag(TagId::Comment); }
     void    setComment(const QString &value) { setTag(TagId::Comment, value); }
 

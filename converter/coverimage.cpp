@@ -40,7 +40,7 @@ Q_LOGGING_CATEGORY(LOG, "CoverImage")
 /*******************************************
  https://doc.qt.io/qt-5/qimagereader.html#supportedImageFormats
  *******************************************/
-QString formatToMimeType(const QByteArray &format)
+static QString formatToMimeType(const QByteArray &format)
 {
     QByteArray fmt = format.toUpper();
     // clang-format off
@@ -59,6 +59,25 @@ QString formatToMimeType(const QByteArray &format)
     return "";
 }
 
+static CoverImage::Format formatStrToFormat(const QByteArray &format)
+{
+    QByteArray fmt = format.toUpper();
+    // clang-format off
+    if (fmt =="BMP") return CoverImage::Format::BMP;    // Windows Bitmap
+    if (fmt =="GIF") return CoverImage::Format::GIF;    // Graphic Interchange Format (optional)
+    if (fmt =="JPG") return CoverImage::Format::JPG;    // Joint Photographic Experts Group
+    if (fmt =="PNG") return CoverImage::Format::PNG;    // Portable Network Graphics
+    if (fmt =="PBM") return CoverImage::Format::PBM;    // Portable Bitmap
+    if (fmt =="PGM") return CoverImage::Format::PGM;    // Portable Graymap
+    if (fmt =="PPM") return CoverImage::Format::PPM;    // Portable Pixmap
+    if (fmt =="XBM") return CoverImage::Format::XBM;    // X11 Bitmap
+    if (fmt =="XPM") return CoverImage::Format::XPM;    // X11 Pixmap
+    if (fmt =="SVG") return CoverImage::Format::SVG;    // Scalable Vector Graphics
+    // clang-format on
+
+    return CoverImage::Format::Unknown;
+}
+
 CoverImage::CoverImage(const QString &inFilePath, uint size)
 {
 
@@ -70,6 +89,7 @@ CoverImage::CoverImage(const QString &inFilePath, uint size)
 
         QImageReader reader(inFilePath);
         QByteArray   format = reader.format();
+        mFormat             = formatStrToFormat(format);
         mMimeType           = formatToMimeType(format);
 
         QImage image = reader.read();

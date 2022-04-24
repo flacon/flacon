@@ -64,6 +64,15 @@ QString findProgram(const QString &program)
     return "";
 }
 
+static void createWavFile(const QString &fileName, const int duration)
+{
+    QFile hdr(TEST_DATA_DIR "CD.wav.hdr");
+    if (!hdr.open(QFile::ReadOnly))
+        QTest::qFail(QString("Can't open header file '%1': %2").arg(hdr.fileName()).arg(hdr.errorString()).toLocal8Bit(), __FILE__, __LINE__);
+
+    createWavFile(fileName, hdr.readAll(), duration);
+}
+
 /************************************************
  *
  ************************************************/
@@ -84,19 +93,17 @@ void TestFlacon::initTestCase()
     if (!QDir().mkpath(mTmpDir))
         QTest::qFail(QString("Can't create directory '%1'").arg(mTmpDir).toLocal8Bit(), __FILE__, __LINE__);
 
+    createWavFile(mTmpDir + "1sec.wav", 1);
+    createWavFile(mTmpDir + "1min.wav", 60);
+
     mAudio_cd_wav  = mTmpDir + "CD.wav";
     mAudio_cd_ape  = mTmpDir + "CD.ape";
     mAudio_cd_flac = mTmpDir + "CD.flac";
     mAudio_cd_wv   = mTmpDir + "CD.wv";
     mAudio_cd_tta  = mTmpDir + "CD.tta";
 
-    {
-        QFile hdr(TEST_DATA_DIR "CD.wav.hdr");
-        if (!hdr.open(QFile::ReadOnly))
-            QTest::qFail(QString("Can't open header file '%1': %2").arg(hdr.fileName()).arg(hdr.errorString()).toLocal8Bit(), __FILE__, __LINE__);
+    createWavFile(mAudio_cd_wav, 900);
 
-        createWavFile(mAudio_cd_wav, hdr.readAll(), 900);
-    }
     auto wait_cd_ape  = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_ape);
     auto wait_cd_flac = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_flac);
     auto wait_cd_wv   = QtConcurrent::run(encodeAudioFile, mAudio_cd_wav, mAudio_cd_wv);

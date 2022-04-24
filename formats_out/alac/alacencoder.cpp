@@ -24,6 +24,8 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "alacencoder.h"
+#include <taglib/mp4file.h>
+#include <taglib/tpropertymap.h>
 
 QStringList AlacEncoder::programArgs() const
 {
@@ -37,36 +39,62 @@ QStringList AlacEncoder::programArgs() const
         args << QString("--fast");
     }
 
-    // Tags .....................................................
-    if (!track().artist().isEmpty())
-        args << QString("--artist=%1").arg(track().artist());
-
-    if (!track().album().isEmpty())
-        args << QString("--album=%1").arg(track().album());
-
-    if (!track().genre().isEmpty())
-        args << QString("--genre=%1").arg(track().genre());
-
-    if (!track().date().isEmpty())
-        args << QString("--year=%1").arg(track().date());
-
-    if (!track().title().isEmpty())
-        args << QString("--title=%1").arg(track().title());
-
-    if (!track().tag(TagId::AlbumArtist).isEmpty())
-        args << QString("--albumArtist=%1").arg(track().tag(TagId::AlbumArtist));
-
-    if (!track().comment().isEmpty())
-        args << QString("--comment=%1").arg(track().comment());
-
-    args << QString("--track=%1/%2").arg(track().trackNum()).arg(track().trackCount());
-    args << QString("--disc=%1/%2").arg(track().discNum()).arg(track().discCount());
-
-    if (!coverFile().isEmpty()) {
-        args << QString("--cover=%1").arg(coverFile());
-    }
-
     args << "-";
     args << outFile();
     return args;
+}
+
+static TagLib::MP4::CoverArt::Format coverFormatToTagLib(const CoverImage::Format fmt)
+{
+
+    // clang-format off
+    switch (fmt) {
+        case CoverImage::Format::JPG: return TagLib::MP4::CoverArt::Format::JPEG;
+        case CoverImage::Format::PNG: return TagLib::MP4::CoverArt::Format::PNG;
+        case CoverImage::Format::BMP: return TagLib::MP4::CoverArt::Format::BMP;
+        case CoverImage::Format::GIF: return TagLib::MP4::CoverArt::Format::GIF;
+        default:                      return TagLib::MP4::CoverArt::Format::Unknown;
+    }
+    // clang-format on
+}
+
+void AlacEncoder::writeMetadata(const QString &filePath) const
+{
+    TagLib::MP4::File file(filePath.toLocal8Bit(), false);
+
+    if (!file.isValid()) {
+        throw FlaconError("Can't open file");
+    }
+
+    TagLib::PropertyMap props = file.properties();
+
+    auto writeStrTag = [&props](const QString &tagName, const QString &value) {
+        if (!value.isEmpty()) {
+            props.replace(TagLib::String(tagName.toStdString(), TagLib::String::UTF8), TagLib::String(value.toStdString(), TagLib::String::UTF8));
+        }
+    };
+
+    writeStrTag("ARTIST", track().artist());
+    writeStrTag("ALBUM", track().album());
+    writeStrTag("GENRE", track().genre());
+    writeStrTag("DATE", track().date());
+    writeStrTag("TITLE", track().title());
+    writeStrTag("ALBUMARTIST", track().albumArtist());
+    writeStrTag("COMMENT", track().comment());
+    writeStrTag("TRACKNUMBER", QString("%1/%2").arg(track().trackNum()).arg(track().trackCount()));
+    writeStrTag("DISCNUMBER", QString("%1/%2").arg(track().discNum()).arg(track().discCount()));
+
+    file.setProperties(props);
+
+    if (!coverImage().isEmpty()) {
+        const CoverImage  &img = coverImage();
+        TagLib::ByteVector data(img.data().data(), img.data().size());
+
+        TagLib::MP4::CoverArt cover(coverFormatToTagLib(img.format()), data);
+        file.tag()->setItem("covr", TagLib::MP4::CoverArtList().append(cover));
+    }
+
+    if (!file.save()) {
+        throw FlaconError("Can't save file");
+    }
 }
