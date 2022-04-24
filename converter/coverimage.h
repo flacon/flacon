@@ -48,7 +48,24 @@ public:
 
     bool isEmpty() const { return mData.isEmpty(); }
 
+    enum class Format {
+        Unknown = 0,
+        BMP,
+        GIF,
+        JPG,
+        PNG,
+        PBM,
+        PGM,
+        PPM,
+        XBM,
+        XPM,
+        SVG,
+    };
+
+    Format format() const { return mFormat; }
+
 private:
+    Format     mFormat = Format::Unknown;
     QString    mMimeType;
     QByteArray mData;
     QSize      mSize;
