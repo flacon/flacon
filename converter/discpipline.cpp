@@ -269,7 +269,6 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     encoder->setOutFile(outFile);
     encoder->setTrack(track);
     encoder->setProfile(mProfile);
-    encoder->setCoverFile(mEmbedCoverFile);
     encoder->setEmbeddedCue(mEmbeddedCue);
     encoder->setCoverImage(mCoverImage);
 
@@ -533,8 +532,8 @@ void DiscPipeline::createEmbedImage()
 
     mCoverImage = CoverImage(file, size);
 
-    mEmbedCoverFile = QDir(mTmpDir->path()).absoluteFilePath(QString("cover.%1").arg(QFileInfo(file).suffix()));
-    mCoverImage.saveAs(mEmbedCoverFile);
+    QString tmpCoverFile = QDir(mTmpDir->path()).absoluteFilePath(QString("cover.%1").arg(QFileInfo(file).suffix()));
+    mCoverImage.saveTmpFile(tmpCoverFile);
 }
 
 /************************************************

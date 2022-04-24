@@ -42,7 +42,7 @@ OutFormat_Mp3::OutFormat_Mp3()
     mId      = "MP3";
     mExt     = "mp3";
     mName    = "MP3";
-    mOptions = FormatOption::SupportGain;
+    mOptions = FormatOption::SupportGain | FormatOption::SupportEmbeddedImage;
 }
 
 /************************************************
@@ -261,8 +261,8 @@ QStringList Encoder_Mp3::programArgs() const
     if (!track.comment().isEmpty())
         args << "--tc" << track.comment();
 
-    if (!coverFile().isEmpty()) {
-        args << "--ti" << coverFile();
+    if (!coverImage().isEmpty()) {
+        args << "--ti" << coverImage().tmpFilePath();
     }
 
     args << "--tn" << QString("%1/%2").arg(track.trackNum()).arg(track.trackCount());

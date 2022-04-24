@@ -123,6 +123,12 @@ CoverImage::CoverImage(const QString &inFilePath, uint size)
     }
 }
 
+void CoverImage::saveTmpFile(const QString &filePath)
+{
+    mTmpFilePath = filePath;
+    saveAs(mTmpFilePath);
+}
+
 void CoverImage::saveAs(const QString &filePath) const
 {
     QFile f(filePath);

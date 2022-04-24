@@ -34,7 +34,7 @@ OutFormat_Aac::OutFormat_Aac()
     mId      = "AAC";
     mExt     = "m4a";
     mName    = "AAC";
-    mOptions = FormatOption::NoOptions;
+    mOptions = FormatOption::NoOptions | FormatOption::SupportEmbeddedImage;
 }
 
 /************************************************
@@ -179,8 +179,8 @@ QStringList Encoder_Aac::programArgs() const
     if (!track().comment().isEmpty())
         args << "--comment" << track().comment();
 
-    if (!coverFile().isEmpty()) {
-        args << "--cover-art" << coverFile();
+    if (!coverImage().isEmpty()) {
+        args << "--cover-art" << coverImage().tmpFilePath();
     }
 
     args << "-o" << outFile();

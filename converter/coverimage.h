@@ -44,6 +44,9 @@ public:
 
     const QByteArray &data() const { return mData; }
 
+    QString tmpFilePath() const { return mTmpFilePath; }
+    void    saveTmpFile(const QString &filePath);
+
     void saveAs(const QString &filePath) const;
 
     bool isEmpty() const { return mData.isEmpty(); }
@@ -70,6 +73,7 @@ private:
     QByteArray mData;
     QSize      mSize;
     int        mDepth = 0;
+    QString    mTmpFilePath;
 };
 
 #endif // COVERIMAGE_H
