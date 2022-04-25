@@ -25,6 +25,7 @@
 
 #include "out_aac.h"
 #include "inputaudiofile.h"
+#include "../metadata.h"
 
 /************************************************
 
@@ -131,59 +132,15 @@ QStringList Encoder_Aac::programArgs() const
     else
         args << "-b" << profile().value("Bitrate").toString();
 
-    // Tags .....................................................
-    // --artist artist
-    //     Set artist to artist
-    if (!track().artist().isEmpty())
-        args << "--artist" << track().artist();
-
-    // --writer writer
-    //     Set writer to writer
-
-    // --title title
-    //     Set title to title
-    if (!track().title().isEmpty())
-        args << "--title" << track().title();
-
-    // --genre genre
-    //     Set genre to genre
-    if (!track().genre().isEmpty())
-        args << "--genre" << track().genre();
-
-    // --album album
-    //     Set album to album
-    if (!track().album().isEmpty())
-        args << "--album" << track().album();
-
-    // --compilation
-    //     Set compilation
-
-    // --track track
-    //     Set track to track in the format “number/total”
-    args << "--track" << QString("%1/%2").arg(track().trackNum()).arg(track().trackCount());
-
-    // --disc disc
-    //     Set disc to disc in the format “number/total”
-    args << "--disc" << QString("%1/%2").arg(track().discNum()).arg(track().discCount());
-
-    // --year year
-    //     Set year to year
-    if (!track().date().isEmpty())
-        args << "--year" << track().date();
-
-    // --cover-art file
-    //     Set cover art to image in file; supported formats are GIF, JPEG, and PNG.
-
-    // --comment comment
-    //     Set comment to comment
-    if (!track().comment().isEmpty())
-        args << "--comment" << track().comment();
-
-    if (!coverImage().isEmpty()) {
-        args << "--cover-art" << coverImage().tmpFilePath();
-    }
-
     args << "-o" << outFile();
     args << "-";
     return args;
+}
+
+/************************************************
+
+ ************************************************/
+void Encoder_Aac::writeMetadata(const QString &filePath) const
+{
+    Metadata::writeMp4(filePath, *this);
 }

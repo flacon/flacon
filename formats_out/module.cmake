@@ -4,6 +4,9 @@ list(APPEND SOURCES
 
     ${CMAKE_CURRENT_LIST_DIR}/encoderconfigpage.cpp
     ${CMAKE_CURRENT_LIST_DIR}/encoderconfigpage.h
+
+    ${CMAKE_CURRENT_LIST_DIR}/metadata.h
+    ${CMAKE_CURRENT_LIST_DIR}/metadata.cpp
 )
 
 include(${CMAKE_CURRENT_LIST_DIR}/aac/module.cmake)

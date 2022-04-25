@@ -67,6 +67,8 @@ class Encoder_Aac : public Conv::Encoder
 public:
     QString     programName() const override { return "faac"; }
     QStringList programArgs() const override;
+
+    void writeMetadata(const QString &filePath) const override;
 };
 
 #endif // OUT_AAC_H

@@ -23,33 +23,17 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "alacencoder.h"
-#include "../metadata.h"
+#ifndef METADATA_H
+#define METADATA_H
 
-/************************************************
+#include <QString>
 
- ************************************************/
-QStringList AlacEncoder::programArgs() const
-{
-    QStringList args;
-    args << programPath();
-
-    args << "--quiet"; // Produce no output to stderr
-
-    // Settings .................................................
-    if (profile().value("Compression").toInt() == 0) {
-        args << QString("--fast");
-    }
-
-    args << "-";
-    args << outFile();
-    return args;
+namespace Conv {
+class Encoder;
 }
 
-/************************************************
+namespace Metadata {
+void writeMp4(const QString &filePath, const Conv::Encoder &encoder);
+};
 
- ************************************************/
-void AlacEncoder::writeMetadata(const QString &filePath) const
-{
-    Metadata::writeMp4(filePath, *this);
-}
+#endif // METADATA_H
