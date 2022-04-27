@@ -339,6 +339,7 @@ void TestFlacon::testConvert()
 
     // ******************************************
     // Check tags
+    bool tagsError = false;
     spec.beginGroup("Result_Tags");
     foreach (auto file, spec.childGroups()) {
 
@@ -352,7 +353,7 @@ void TestFlacon::testConvert()
                 QByteArray expected = spec.value(tag).toByteArray();
 
                 if (actual != expected) {
-                    QFAIL(QString("Compared tags are not the same:\n"
+                    QWARN(QString("Compared tags are not the same:\n"
                                   "    File: %1\n"
                                   "    Tag:  %2\n"
                                   "\n"
@@ -369,6 +370,7 @@ void TestFlacon::testConvert()
                                   .arg(expected.toHex(' ').data())
 
                                   .toLocal8Bit());
+                    tagsError = true;
                 }
             }
         }
@@ -379,6 +381,11 @@ void TestFlacon::testConvert()
         spec.endGroup();
     }
     spec.endGroup();
+
+    if (tagsError) {
+        QFAIL("Some tags not the same");
+    }
+
     // ******************************************
 
     clearDir(dir());

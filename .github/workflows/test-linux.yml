@@ -11,13 +11,14 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Install packages
       run:  |
+        echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
         sudo apt-get -y update
         sudo apt-get -y install locales
         sudo sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
