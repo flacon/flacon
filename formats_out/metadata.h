@@ -34,6 +34,6 @@ class Encoder;
 
 namespace Metadata {
 void writeMp4(const QString &filePath, const Conv::Encoder &encoder);
-};
+}
 
 #endif // METADATA_H
