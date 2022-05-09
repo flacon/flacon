@@ -103,8 +103,8 @@ private slots:
     void testTrackSetCodepages_data();
     void testTrackSetCodepages();
 
-    void testCueIndex_data();
-    void testCueIndex();
+    void testCueTime_data();
+    void testCueTime();
 
     void testFindCueFile_data();
     void testFindCueFile();

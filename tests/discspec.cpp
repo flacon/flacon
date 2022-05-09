@@ -73,12 +73,40 @@ QString DiscSpec::trackValue(int track, const QString &key) const
 
 int DiscSpec::durationValue(const QString &key) const
 {
-    QString  s = mData.value(key).toString();
-    CueIndex res(s);
-    if (res.isNull()) {
+    QString s = mData.value(key).toString();
+
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+    QStringList sl = s.split(QRegExp("\\D"), QString::KeepEmptyParts);
+#else
+    QStringList sl = s.split(QRegExp("\\D"), Qt::KeepEmptyParts);
+#endif
+
+    if (sl.length() < 3)
         return -1;
+
+    bool ok;
+    int  min = sl[0].toInt(&ok);
+    if (!ok)
+        return -1;
+
+    int sec = sl[1].toInt(&ok);
+    if (!ok)
+        return -1;
+
+    int frm = sl[2].leftJustified(2, '0').toInt(&ok);
+    if (!ok)
+        return -1;
+
+    int msec = sl[2].leftJustified(3, '0').toInt(&ok);
+    if (!ok)
+        return -1;
+
+    if (s.contains(".") || sl[2].length() > 2) {
+        return (min * 60 + sec) * 1000 + msec;
     }
-    return res.milliseconds();
+    else {
+        return (min * 60 + sec) * 1000 + frm / 75.0 * 1000.0;
+    }
 }
 
 void DiscSpec::verifyTrack(const Track *track, const QString &key) const

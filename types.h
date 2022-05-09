@@ -60,7 +60,7 @@ enum class TagId {
 };
 
 enum class PreGapType {
-    Skip,
+    Skip = 0,
     ExtractToFile,
     AddToFirstTrack
 };

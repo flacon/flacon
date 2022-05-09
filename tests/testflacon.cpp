@@ -1278,7 +1278,7 @@ void TestFlacon::testOutFormatGainArgs_data()
 /************************************************
  *
  ************************************************/
-void TestFlacon::testCueIndex()
+void TestFlacon::testCueTime()
 {
     QString string = QTest::currentDataTag();
     QFETCH(QString, expected);
@@ -1286,12 +1286,12 @@ void TestFlacon::testCueIndex()
     bool cdQuality = string.toUpper().startsWith("CD");
     string         = string.mid(2).trimmed();
 
-    QString  id1Str = string.section("-", 0, 0).trimmed();
-    CueIndex idx1(id1Str);
+    QString id1Str = string.section("-", 0, 0).trimmed();
+    CueTime idx1(id1Str);
 
     QString id2Str = string.section("-", 1, 1).trimmed();
     if (!id2Str.isEmpty()) {
-        CueIndex idx2(id2Str);
+        CueTime idx2(id2Str);
         idx1 = idx1 - idx2;
     }
 
@@ -1302,7 +1302,7 @@ void TestFlacon::testCueIndex()
 /************************************************
  *
  ************************************************/
-void TestFlacon::testCueIndex_data()
+void TestFlacon::testCueTime_data()
 {
     QTest::addColumn<QString>("expected", nullptr);
 
