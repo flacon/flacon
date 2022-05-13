@@ -49,7 +49,7 @@ public:
     void open(const QString &fileName);
     void close();
 
-    void extract(const CueTime &start, const CueTime &end, QIODevice *outDevice);
+    void extract(const CueTime &start, const CueTime &end, QIODevice *outDevice, bool writeHeader = true);
     void extract(const CueTime &start, const CueTime &end, const QString &outFileName);
 
     // Duration of audio in milliseconds.

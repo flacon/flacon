@@ -218,7 +218,7 @@ bool mustSkip(QIODevice *device, qint64 size, int msecs = READ_DELAY)
 /************************************************
  *
  ************************************************/
-void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDevice)
+void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDevice, bool writeHeader)
 {
     try {
         emit progress(0);
@@ -237,9 +237,11 @@ void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         else
             be = timeToBytes(end, mWavHeader) + mWavHeader.dataStartPos();
 
-        WavHeader hdr = mWavHeader;
-        hdr.resizeData(be - bs);
-        outDevice->write(hdr.toLegacyWav());
+        if (writeHeader) {
+            WavHeader hdr = mWavHeader;
+            hdr.resizeData(be - bs);
+            outDevice->write(hdr.toLegacyWav());
+        }
 
         qint64 pos = mPos;
 

@@ -45,29 +45,6 @@ public:
 public slots:
     void run() override;
 
-protected:
-    struct Chunk
-    {
-        InputAudioFile file;
-        CueTime        start;
-        CueTime        end;
-    };
-
-    class Job : public QList<Chunk>
-    {
-    public:
-        Job(const Disc *disk, Conv::ConvTrack track, bool addPregap, bool addTrack, bool addPostgap);
-
-        const Conv::ConvTrack track() { return mTrack; }
-
-    private:
-        const Disc *          mDisk;
-        const Conv::ConvTrack mTrack;
-        QList<Chunk>          getPart(const CueIndex &from, const CueIndex &to) const;
-        void                  merge();
-        InputAudioFile        getInputAudioFile(const QByteArray &fileTag) const;
-    };
-
 private:
     const Disc *     mDisc = nullptr;
     const ConvTracks mTracks;
@@ -75,7 +52,9 @@ private:
     PreGapType       mPregapType;
     Decoder          mDecoder;
 
-    void processJob(const Job &job, const QString &outFileName);
+    struct Job;
+
+    void processTrack(const Job &job);
 };
 
 } // namespace
