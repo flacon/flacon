@@ -75,10 +75,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    c = CueIndex()
-    c.fromMillisec(381580)
-    print(c)
-
     if args.version:
         showVersion()
         sys.exit(0)

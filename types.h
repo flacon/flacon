@@ -105,30 +105,43 @@ public:
         std::runtime_error(msg.toStdString()) { }
 };
 
-class CueIndex
+class CueTime
 {
 public:
-    explicit CueIndex(const QString &str = "");
+    explicit CueTime(const QString &str = "");
 
     bool    isNull() const { return mNull; }
     QString toString(bool cdQuality = true) const;
 
-    CueIndex operator-(const CueIndex &other) const;
-    bool     operator==(const CueIndex &other) const;
-    bool     operator!=(const CueIndex &other) const;
+    CueTime operator+(const CueTime &other) const;
+    CueTime operator-(const CueTime &other) const;
+    bool    operator==(const CueTime &other) const;
+    bool    operator!=(const CueTime &other) const;
 
     uint milliseconds() const { return mHiValue; }
     uint frames() const { return mCdValue; }
 
 private:
-    bool mNull;
-    int  mCdValue;
-    int  mHiValue;
+    bool mNull    = true;
+    int  mCdValue = 0;
+    int  mHiValue = 0;
 
     bool parse(const QString &str);
 };
 
-typedef CueIndex CueTime;
+class CueIndex : public ::CueTime
+{
+public:
+    CueIndex() = default;
+    explicit CueIndex(const QString &str, const QByteArray &file, int fileIndex);
+
+    QByteArray file() const { return mFile; }
+    int        fileIndex() const { return mFileIndex; }
+
+private:
+    QByteArray mFile;
+    int        mFileIndex = -1;
+};
 
 struct CueFlags
 {

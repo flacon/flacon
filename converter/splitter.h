@@ -29,6 +29,7 @@
 #include "convertertypes.h"
 #include "worker.h"
 #include "profiles.h"
+#include "decoder.h"
 
 namespace Conv {
 
@@ -36,16 +37,45 @@ class Splitter : public Worker
 {
     Q_OBJECT
 public:
-    Splitter(const Profile &profile, const ConvTracks &tracks, QString inFile, QString outDir, QObject *parent = nullptr);
+    Splitter(Disc *disk, const ConvTracks &tracks, const QString &outDir, QObject *parent = nullptr);
+
+    PreGapType pregapType() const { return mPregapType; }
+    void       setPregapType(const PreGapType &pregapType);
 
 public slots:
     void run() override;
 
+protected:
+    struct Chunk
+    {
+        InputAudioFile file;
+        CueTime        start;
+        CueTime        end;
+    };
+
+    class Job : public QList<Chunk>
+    {
+    public:
+        Job(const Disc *disk, Conv::ConvTrack track, bool addPregap, bool addTrack, bool addPostgap);
+
+        const Conv::ConvTrack track() { return mTrack; }
+
+    private:
+        const Disc *          mDisk;
+        const Conv::ConvTrack mTrack;
+        QList<Chunk>          getPart(const CueIndex &from, const CueIndex &to) const;
+        void                  merge();
+        InputAudioFile        getInputAudioFile(const QByteArray &fileTag) const;
+    };
+
 private:
-    const Profile    mProfile;
-    const QString    mInFile;
+    const Disc *     mDisc = nullptr;
     const ConvTracks mTracks;
     const QString    mOutDir;
+    PreGapType       mPregapType;
+    Decoder          mDecoder;
+
+    void processJob(const Job &job, const QString &outFileName);
 };
 
 } // namespace

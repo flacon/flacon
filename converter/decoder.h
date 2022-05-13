@@ -59,6 +59,8 @@ public:
 
     const InputFormat *audioFormat() const { return mFormat; }
 
+    QString inputFile() const { return mInputFile; }
+
 signals:
     void progress(int percent);
 

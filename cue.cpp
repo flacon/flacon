@@ -90,24 +90,41 @@ void Cue::read(const CueData &data)
     QByteArray           albumPerformer = getAlbumPerformer(data);
     const CueData::Tags &global         = data.globalTags();
 
+    QByteArray fileTag;
+    int        fileIndex = -1;
+
     for (const CueData::Tags &t : data.tracks()) {
-        Track track;
+        TrackTags track;
         track.setTag(TagId::File, t.value(CueData::FILE_TAG));
         track.setTag(TagId::Album, global.value(CueData::TITLE_TAG));
 
-        track.mCueIndex00 = CueIndex(t.value("INDEX 00"), t.value("INDEX 00 FILE"));
-        track.mCueIndex01 = CueIndex(t.value("INDEX 01"), t.value("INDEX 01 FILE"));
+        QByteArray index00     = t.value("INDEX 00");
+        QByteArray index00File = t.value("INDEX 00 FILE");
 
-        if (track.mCueIndex00.isNull() && !track.mCueIndex01.isNull()) {
-            track.mCueIndex00 = track.mCueIndex01;
+        QByteArray index01     = t.value("INDEX 01");
+        QByteArray index01File = t.value("INDEX 01 FILE");
+
+        if (index00.isEmpty() && !index01.isEmpty()) {
+            index00     = index01;
+            index00File = index01File;
         }
 
-        if (track.mCueIndex01.isNull() && !track.mCueIndex00.isNull()) {
-            track.mCueIndex01 = track.mCueIndex00;
+        if (index01.isEmpty() && !index00.isEmpty()) {
+            index01     = index00;
+            index01File = index00File;
         }
 
-        track.setCueIndex(0, CueIndex(t.value("INDEX 00")));
-        track.setCueIndex(1, CueIndex(t.value("INDEX 01")));
+        if (index00File != fileTag) {
+            fileTag = index00File;
+            fileIndex++;
+        }
+        track.setCueIndex(0, CueIndex(index00, index00File, fileIndex));
+
+        if (index01File != fileTag) {
+            fileTag = index01File;
+            fileIndex++;
+        }
+        track.setCueIndex(1, CueIndex(index01, index01File, fileIndex));
 
         track.setTag(TagId::Catalog, global.value("CATALOG"));
         track.setTag(TagId::CDTextfile, global.value("CDTEXTFILE"));
@@ -243,14 +260,4 @@ void Cue::setCodecName(const CueData &data)
  ************************************************/
 CueError::~CueError()
 {
-}
-
-/************************************************
- *
- ************************************************/
-Cue::CueIndex::CueIndex(const QString &str, const QByteArray &file):
-  ::CueIndex(str),
-  mFile(file)
-{
-
 }

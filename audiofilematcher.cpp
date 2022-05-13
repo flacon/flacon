@@ -32,7 +32,7 @@ namespace {
 Q_LOGGING_CATEGORY(LOG, "AudioFileMatcher")
 }
 
-AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Cue::Tracks &tracks) :
+AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const DiskTags &tracks) :
     mCueFilePath(cueFilePath),
     mTracks(tracks)
 {
@@ -61,7 +61,7 @@ AudioFileMatcher::AudioFileMatcher(const QString &cueFilePath, const Cue::Tracks
 
     // Looks like this is a per-track album .....
     if (mFileTags.count() == mAllAudioFiles.count()) {
-        for (const Cue::Track &track : qAsConst(mTracks)) {
+        for (const TrackTags &track : qAsConst(mTracks)) {
             mResult[track.tag(TagId::File)] = matchAudioFilesByTrack(track);
         }
         qCDebug(LOG) << "Return per-track album:" << mResult;
@@ -103,7 +103,7 @@ void AudioFileMatcher::fillFileTags()
     }
 }
 
-QStringList AudioFileMatcher::matchAudioFilesByTrack(const Cue::Track &track)
+QStringList AudioFileMatcher::matchAudioFilesByTrack(const TrackTags &track)
 {
     auto scan = [this](const QString &pattern) -> QString {
         QRegExp re(QString(pattern), Qt::CaseInsensitive, QRegExp::RegExp2);

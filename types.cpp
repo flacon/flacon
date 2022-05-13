@@ -146,10 +146,7 @@ unsigned int levenshteinDistance(const QString &s1, const QString &s2)
 /************************************************
 
  ************************************************/
-CueIndex::CueIndex(const QString &str) :
-    mNull(true),
-    mCdValue(0),
-    mHiValue(0)
+CueTime::CueTime(const QString &str)
 {
     if (!str.isEmpty())
         mNull = !parse(str);
@@ -158,7 +155,7 @@ CueIndex::CueIndex(const QString &str) :
 /************************************************
 
  ************************************************/
-QString CueIndex::toString(bool cdQuality) const
+QString CueTime::toString(bool cdQuality) const
 {
     if (cdQuality) {
         int min = mCdValue / (60 * 75);
@@ -184,10 +181,22 @@ QString CueIndex::toString(bool cdQuality) const
 
 /************************************************
 
- ************************************************/
-CueIndex CueIndex::operator-(const CueIndex &other) const
+************************************************/
+CueTime CueTime::operator+(const CueTime &other) const
 {
-    CueIndex res;
+    CueTime res;
+    res.mCdValue = this->mCdValue + other.mCdValue;
+    res.mHiValue = this->mHiValue + other.mHiValue;
+    res.mNull    = false;
+    return res;
+}
+
+/************************************************
+
+ ************************************************/
+CueTime CueTime::operator-(const CueTime &other) const
+{
+    CueTime res;
     res.mCdValue = this->mCdValue - other.mCdValue;
     res.mHiValue = this->mHiValue - other.mHiValue;
     res.mNull    = false;
@@ -197,7 +206,7 @@ CueIndex CueIndex::operator-(const CueIndex &other) const
 /************************************************
 
  ************************************************/
-bool CueIndex::operator==(const CueIndex &other) const
+bool CueTime::operator==(const CueTime &other) const
 {
     return this->mHiValue == other.mHiValue;
 }
@@ -205,7 +214,7 @@ bool CueIndex::operator==(const CueIndex &other) const
 /************************************************
 
  ************************************************/
-bool CueIndex::operator!=(const CueIndex &other) const
+bool CueTime::operator!=(const CueTime &other) const
 {
     return this->mHiValue != other.mHiValue;
 }
@@ -213,7 +222,7 @@ bool CueIndex::operator!=(const CueIndex &other) const
 /************************************************
 
  ************************************************/
-bool CueIndex::parse(const QString &str)
+bool CueTime::parse(const QString &str)
 {
 #if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
     QStringList sl = str.split(QRegExp("\\D"), QString::KeepEmptyParts);
@@ -244,6 +253,16 @@ bool CueIndex::parse(const QString &str)
     mCdValue = (min * 60 + sec) * 75 + frm;
     mHiValue = (min * 60 + sec) * 1000 + msec;
     return true;
+}
+
+/************************************************
+
+************************************************/
+CueIndex::CueIndex(const QString &str, const QByteArray &file, int fileIndex) :
+    CueTime(str),
+    mFile(file),
+    mFileIndex(fileIndex)
+{
 }
 
 /************************************************

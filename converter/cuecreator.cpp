@@ -172,7 +172,7 @@ void CueCreator::write(QIODevice *out)
         writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->track(0)->resultFilePath()).fileName()));
 
     // Tracks ...........................
-    CueIndex prevIndex("00:00:00");
+    CueTime prevIndex("00:00:00");
     for (int i = 0; i < mDisc->count(); ++i) {
         Track   *track  = mDisc->track(i);
         CueIndex index0 = track->cueIndex(0);

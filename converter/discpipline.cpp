@@ -121,25 +121,14 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks
             continue;
         }
 
-        mTracks[track.id()] = track;
+        mTracks << track;
+        mTrackStates[track.id()] = track;
 
         qCDebug(LOG) << "Create directory for output files" << dir;
         createDir(QFileInfo(track.resultFilePath()).absoluteDir().path());
     }
 
-    // A disk can contain several audio files,
-    // so we create several splitter requests.
-    QString prev;
-    for (const ConvTrack &t : qAsConst(tracks)) {
-        if (!t.isEnabled()) {
-            continue;
-        }
-
-        if (t.audioFile().filePath() != prev) {
-            addSpliterRequest(t.audioFile());
-            prev = t.audioFile().filePath();
-        }
-    }
+    addSpliterRequest();
 }
 
 /************************************************
@@ -172,7 +161,7 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
 
     if (*splitterCount > 0 && !mSplitterRequests.isEmpty()) {
         SplitterRequest req = mSplitterRequests.takeFirst();
-        startSplitter(req.tracks, req.inFile, req.outDir);
+        startSplitter(req);
         --(*splitterCount);
         --(*count);
         return;
@@ -199,28 +188,31 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
 /************************************************
  *
  ************************************************/
-void DiscPipeline::addSpliterRequest(const InputAudioFile &audio)
+
+void DiscPipeline::addSpliterRequest()
 {
-    QString    inFile = audio.filePath();
     QString    outDir = mTmpDir->path();
     ConvTracks tracks;
 
     for (const ConvTrack &t : qAsConst(mTracks)) {
-        if (t.isEnabled() && t.audioFile().filePath() == audio.filePath()) {
+        if (t.isEnabled()) {
             tracks << t;
         }
     }
 
-    mSplitterRequests << SplitterRequest { tracks, inFile, outDir };
+    PreGapType pregapType = (hasPregap() && mProfile.isCreateCue()) ? mProfile.preGapType() : PreGapType::Skip;
+
+    mSplitterRequests << SplitterRequest { tracks, outDir, pregapType };
 }
 
 /************************************************
  *
  ************************************************/
-void DiscPipeline::startSplitter(const ConvTracks &tracks, const QString &inFile, const QString &outDir)
+void DiscPipeline::startSplitter(const SplitterRequest &request)
 {
-    Splitter     *splitter = new Splitter(mProfile, tracks, inFile, outDir);
-    WorkerThread *thread   = new WorkerThread(splitter, this);
+    Splitter *splitter = new Splitter(mDisc, request.tracks, request.outDir);
+    splitter->setPregapType(request.pregapType);
+    WorkerThread *thread = new WorkerThread(splitter, this);
 
     connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(splitter, &Splitter::trackProgress, this, &DiscPipeline::trackProgress);
@@ -231,7 +223,9 @@ void DiscPipeline::startSplitter(const ConvTracks &tracks, const QString &inFile
     mThreads << thread;
     thread->start();
 
-    mTracks[tracks.first().id()].setState(TrackState::Splitting);
+    for (const ConvTrack &t : request.tracks) {
+        mTrackStates[t.id()].setState(TrackState::Splitting);
+    }
 
     // *********************************************************
     // Short tasks, we do not allocate separate threads for them.
@@ -242,7 +236,7 @@ void DiscPipeline::startSplitter(const ConvTracks &tracks, const QString &inFile
         loadEmbeddedCue();
     }
     catch (const FlaconError &err) {
-        trackError(tracks.first(), err.what());
+        trackError(request.tracks.first(), err.what());
     }
 }
 
@@ -360,7 +354,7 @@ void DiscPipeline::trackDone(const ConvTrack &track, const QString &outFileName)
         trackError(track, tr("I can't rename file:\n%1 to %2\n%3").arg(outFileName, track.resultFilePath(), file.errorString()));
     }
 
-    mTracks[track.id()].setState(TrackState::OK);
+    mTrackStates[track.id()].setState(TrackState::OK);
     emit trackProgressChanged(track, TrackState::OK, 0);
     emit threadFinished();
 
@@ -398,7 +392,7 @@ void DiscPipeline::interrupt(TrackState state)
     mInterrupted = true;
     mEncoderRequests.clear();
 
-    for (ConvTrack &track : mTracks) {
+    for (ConvTrack &track : mTrackStates) {
         switch (track.state()) {
             case TrackState::Splitting:
             case TrackState::Encoding:
@@ -437,7 +431,7 @@ void DiscPipeline::stop()
  ************************************************/
 void DiscPipeline::trackError(const ConvTrack &track, const QString &message)
 {
-    mTracks[track.id()].setState(TrackState::Error);
+    mTrackStates[track.id()].setState(TrackState::Error);
     emit trackProgressChanged(track, TrackState::Error, 0);
     interrupt(TrackState::Aborted);
     emit stopAllThreads();
@@ -452,7 +446,7 @@ void DiscPipeline::trackError(const ConvTrack &track, const QString &message)
  ************************************************/
 bool DiscPipeline::isRunning() const
 {
-    for (const ConvTrack &track : qAsConst(mTracks)) {
+    for (const ConvTrack &track : qAsConst(mTrackStates)) {
         switch (track.state()) {
             case TrackState::Splitting:
             case TrackState::Encoding:
@@ -495,7 +489,7 @@ void DiscPipeline::trackProgress(const ConvTrack &track, TrackState state, int p
     if (mInterrupted)
         return;
 
-    mTracks[track.id()].setState(state);
+    mTrackStates[track.id()].setState(state);
     emit trackProgressChanged(track, state, percent);
 }
 
@@ -562,4 +556,13 @@ void DiscPipeline::loadEmbeddedCue()
     QBuffer    buf;
     cue.write(&buf);
     mEmbeddedCue = QString::fromUtf8(buf.data());
+}
+
+/************************************************
+ *
+ ************************************************/
+bool DiscPipeline::hasPregap() const
+{
+    return mTracks.first().index() == 0 &&                  // We extract first track in Audio
+            mTracks.first().cueIndex(1).milliseconds() > 0; // The first track don't start from zero second
 }

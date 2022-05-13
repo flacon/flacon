@@ -208,7 +208,7 @@ DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Conver
             track.setEnabled(converterJob.tracks.contains(t));
 
             if (i == 0 && hasPregap && preGapType == PreGapType::AddToFirstTrack) {
-                track.setStart(CueIndex("00:00:00"));
+                track.setStart(CueTime("00:00:00"));
             }
             else {
                 track.setStart(t->cueIndex(1));

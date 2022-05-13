@@ -38,34 +38,6 @@ class Cue
 public:
     static constexpr const char *const EMBEDED_PREFIX = "embedded://";
 
-    class CueIndex : public ::CueIndex
-    {
-    public:
-        explicit CueIndex(const QString &str = "", const QByteArray &file = {});
-
-        QByteArray file() const { return mFile; }
-
-    private:
-        QByteArray mFile;
-    };
-
-    class Track : public ::TrackTags
-    {
-        friend class Cue;
-
-    public:
-        using ::TrackTags::TrackTags;
-
-        CueIndex cueIndex00() const { return mCueIndex00; }
-        CueIndex cueIndex01() const { return mCueIndex01; }
-
-    private:
-        CueIndex mCueIndex00;
-        CueIndex mCueIndex01;
-    };
-
-    using Tracks = QList<Track>;
-
 public:
     Cue() = default;
     explicit Cue(QIODevice *device, const QString &audioFile) noexcept(false);
@@ -80,15 +52,15 @@ public:
     bool isMutiplyAudio() const;
     bool isEmbedded() const { return mFilePath.startsWith(EMBEDED_PREFIX); }
 
-    const Tracks &tracks() const { return mTracks; }
-    const Track  &track(uint index) const { return mTracks.at(index); }
+    const DiskTags  &tracks() const { return mTracks; }
+    const TrackTags &track(uint index) const { return mTracks.at(index); }
 
 private:
-    Tracks  mTracks;
-    QString mFilePath;
-    DiscNum mDiscCount = 0;
-    DiscNum mDiscNum   = 0;
-    QString mTitle;
+    DiskTags mTracks;
+    QString  mFilePath;
+    DiscNum  mDiscCount = 0;
+    DiscNum  mDiscNum   = 0;
+    QString  mTitle;
 
     void       read(const CueData &data);
     QByteArray getAlbumPerformer(const CueData &data);

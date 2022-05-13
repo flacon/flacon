@@ -84,18 +84,19 @@ private slots:
 
 private:
     Profile                  mProfile;
-    Disc                    *mDisc = nullptr;
+    Disc *                   mDisc = nullptr;
     QString                  mWorkDir;
-    QMap<TrackId, ConvTrack> mTracks;
-    QTemporaryDir           *mTmpDir = nullptr;
+    QList<ConvTrack>         mTracks;
+    QMap<TrackId, ConvTrack> mTrackStates;
+    QTemporaryDir *          mTmpDir = nullptr;
     CoverImage               mCoverImage;
     QString                  mEmbeddedCue;
 
     struct SplitterRequest
     {
         ConvTracks tracks;
-        QString    inFile;
         QString    outDir;
+        PreGapType pregapType;
     };
 
     struct Request
@@ -111,8 +112,8 @@ private:
     QList<DiscPipeline::Request> mTrackGainRequests;
     QList<DiscPipeline::Request> mAlbumGainRequests;
 
-    void addSpliterRequest(const InputAudioFile &audio);
-    void startSplitter(const ConvTracks &tracks, const QString &inFile, const QString &outDir);
+    void addSpliterRequest();
+    void startSplitter(const SplitterRequest &request);
 
     void addEncoderRequest(const Conv::ConvTrack &track, const QString &inputFile);
     void startEncoder(const ConvTrack &track, const QString &inputFile);
@@ -130,6 +131,8 @@ private:
 
     void writeOutCueFile();
     void loadEmbeddedCue();
+
+    bool hasPregap() const;
 };
 
 } // Namespace
