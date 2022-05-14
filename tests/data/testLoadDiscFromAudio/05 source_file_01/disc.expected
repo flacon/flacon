@@ -19,7 +19,7 @@ CUE FILE = source_file_01.cue
     COMMENT = ExactAudioCopy v0.99pb4
     FILE = en.wav
     PERFORMER = Artist_01
-    INDEX 00 = 00:00:00
+    INDEX 00 = 00:46:00
     INDEX 01 = 00:46:00
 
     AUDIO FILE = source_file_01.wav

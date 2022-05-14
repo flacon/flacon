@@ -1,0 +1,21 @@
+PERFORMER "Artist"
+TITLE "Album"
+REM GENRE Heavy Metal
+REM DATE 2001
+FILE "Artist - Album, 2001 (LP1).flac" WAVE
+  TRACK 01 AUDIO
+    TITLE "Track 1.1"
+    INDEX 01 00:03:00
+  TRACK 02 AUDIO
+    TITLE "Track 1.2"
+    INDEX 01 04:38:00
+
+
+FILE "Artist - Album, 2001 (LP2).flac" WAVE
+  TRACK 09 AUDIO
+    TITLE "Track 2.1"
+    INDEX 01 00:10:00
+  TRACK 10 AUDIO
+    TITLE "Track 2.2"
+    INDEX 01 05:24:00
+
