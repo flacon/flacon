@@ -61,6 +61,8 @@ public:
 
     QString inputFile() const { return mInputFile; }
 
+    uint64_t bytesCount(const CueTime &start, const CueTime &end) const;
+
 signals:
     void progress(int percent);
 

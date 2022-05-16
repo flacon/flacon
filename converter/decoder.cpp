@@ -316,3 +316,22 @@ void Decoder::extract(const CueTime &start, const CueTime &end, const QString &o
     extract(start, end, &file);
     file.close();
 }
+
+/************************************************
+ *
+ ************************************************/
+uint64_t Decoder::bytesCount(const CueTime &start, const CueTime &end) const
+{
+
+    quint64 bs = timeToBytes(start, mWavHeader) + mWavHeader.dataStartPos();
+    quint64 be = 0;
+
+    if (end.isNull()) {
+        be = mWavHeader.dataStartPos() + mWavHeader.dataSize();
+    }
+    else {
+        be = timeToBytes(end, mWavHeader) + mWavHeader.dataStartPos();
+    }
+
+    return be - bs;
+}

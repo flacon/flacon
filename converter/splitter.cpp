@@ -292,7 +292,15 @@ void Splitter::processTrack(const Job &job)
         throw outFile.errorString();
     }
 
-    bool writeHeader = true;
+    int bytes = 0;
+    for (const Job::Chunk &chunk : job.chunks) {
+        bytes += chunk.decoder->bytesCount(chunk.start, chunk.end);
+    }
+
+    WavHeader hdr = job.chunks.first().decoder->wavHeader();
+    hdr.resizeData(bytes);
+    outFile.write(hdr.toLegacyWav());
+
     for (const Job::Chunk &chunk : job.chunks) {
 
         // Extract chunk .............................
@@ -301,9 +309,8 @@ void Splitter::processTrack(const Job &job)
             emit trackProgress(job.track, TrackState::Splitting, percent);
         });
 
-        qCDebug(LOG) << "SPLIT" << chunk.file.filePath() << " [" << chunk.start.toString() << ":" << chunk.end.toString() << "] OUT:" << job.outFileName;
-        chunk.decoder->extract(chunk.start, chunk.end, &outFile, writeHeader);
-        writeHeader = false;
+        qCDebug(LOG) << "extract: " << chunk.file.filePath() << " [" << chunk.start.toString() << ":" << chunk.end.toString() << "] OUT:" << job.outFileName;
+        chunk.decoder->extract(chunk.start, chunk.end, &outFile, false);
     }
 
     outFile.close();
