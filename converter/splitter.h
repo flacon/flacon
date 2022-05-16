@@ -29,7 +29,6 @@
 #include "convertertypes.h"
 #include "worker.h"
 #include "profiles.h"
-#include "decoder.h"
 
 namespace Conv {
 
@@ -46,13 +45,12 @@ public slots:
     void run() override;
 
 private:
-    const Disc *     mDisc = nullptr;
+    struct Job;
+
+    const Disc      *mDisc = nullptr;
     const ConvTracks mTracks;
     const QString    mOutDir;
     PreGapType       mPregapType;
-    Decoder          mDecoder;
-
-    struct Job;
 
     void processTrack(const Job &job);
 };

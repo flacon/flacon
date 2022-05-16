@@ -25,7 +25,7 @@
 
 #include "splitter.h"
 #include "disc.h"
-
+#include "decoder.h"
 #include <QDebug>
 #include <QLoggingCategory>
 #include <QFile>
@@ -43,9 +43,10 @@ struct Splitter::Job
         InputAudioFile file;
         CueTime        start;
         CueTime        end;
+        Decoder *      decoder = nullptr;
     };
 
-    const Disc *    disk;
+    const Disc *    disk = nullptr;
     Conv::ConvTrack track;
     QList<Chunk>    chunks;
     QString         outFileName;
@@ -79,7 +80,7 @@ Splitter::Job::Job(const Disc *disk, Conv::ConvTrack track, bool addPregap, bool
         chunks << getPart(next.cueIndex(0), next.cueIndex(1));
     }
 
-    // merge();
+    merge();
 }
 
 /************************************************
@@ -182,23 +183,84 @@ void Splitter::run()
     static QAtomicInteger<quint32> globalUid(1);
     QString                        uid = QString("%1").arg(globalUid.fetchAndAddRelaxed(1), 4, 10, QLatin1Char('0'));
 
+    // ******************************************
+    // Create jobs
     QList<Job> jobs;
-    // Pregap ...................................
-    if (mTracks.first().index() == 0 && mPregapType == PreGapType::ExtractToFile) {
-        Job job(mDisc, mTracks.first(), true, false, false);
-        job.outFileName = QString("%1/pregap-%2.wav").arg(mOutDir, uid);
-        job.isPregap    = true;
-        jobs << job;
-    }
-
-    // Tracks ...................................
     for (const ConvTrack &track : mTracks) {
+        if (track.isPregap()) {
+            Job job(mDisc, mTracks.first(), true, false, false);
+            job.outFileName = QString("%1/pregap-%2.wav").arg(mOutDir, uid);
+            job.isPregap    = true;
+            jobs << job;
+            continue;
+        }
+
         bool addPregap = (track.index() == 0 && mPregapType == PreGapType::AddToFirstTrack);
         Job  job(mDisc, track, addPregap, true, true);
         job.outFileName = QString("%1/track-%2_%3.wav").arg(mOutDir, uid).arg(track.trackNum(), 2, 10, QLatin1Char('0'));
         jobs << job;
     }
 
+    for (const Job &job : jobs) {
+        qCDebug(LOG) << "Spliter job _________________________";
+        qCDebug(LOG) << "  track index: " << job.track.index();
+        qCDebug(LOG) << "  outFileName: " << job.outFileName;
+        qCDebug(LOG) << "  isPregap:    " << job.isPregap;
+        qCDebug(LOG) << "  chunks:    ";
+        for (const Job::Chunk &chunk : job.chunks) {
+            qCDebug(LOG) << "  * " << chunk.start.toString() << ":" << chunk.end.toString() << " file" << chunk.file.filePath();
+        }
+    }
+
+    // ******************************************
+    // Validate jobs
+    try {
+        if (jobs.isEmpty()) {
+            throw FlaconError("Jobs is empty");
+        }
+
+        for (const Job &job : jobs) {
+            if (job.chunks.isEmpty()) {
+                throw FlaconError("Job chunks is empty");
+            }
+        }
+    }
+    catch (FlaconError &err) {
+        qCWarning(LOG) << "Incorrect splitter jobs : " << err.what();
+        emit error(mTracks.first(), err.what());
+        return;
+    }
+
+    // ******************************************
+    // Create and open decoders
+    QObject                  keeper;
+    QMap<QString, Decoder *> decoders;
+    for (const Job &job : jobs) {
+        for (const Job::Chunk &chunk : job.chunks) {
+            decoders.insert(chunk.file.filePath(), nullptr);
+        }
+    }
+
+    for (const QString &file : decoders.keys()) {
+        try {
+            Decoder *decoder = new Decoder(&keeper);
+            decoder->open(file);
+            decoders[file] = decoder;
+        }
+        catch (FlaconError &err) {
+            emit error(mTracks.first(), tr("I can't read <b>%1</b>:<br>%2", "Splitter error. %1 is a file name, %2 is a system error text.").arg(file, err.what()));
+            return;
+        }
+    }
+
+    for (Job &job : jobs) {
+        for (Job::Chunk &chunk : job.chunks) {
+            chunk.decoder = decoders.value(chunk.file.filePath());
+        }
+    }
+
+    // ******************************************
+    // Decode data
     for (const Job &job : jobs) {
         try {
             processTrack(job);
@@ -232,29 +294,15 @@ void Splitter::processTrack(const Job &job)
 
     bool writeHeader = true;
     for (const Job::Chunk &chunk : job.chunks) {
-        qDebug() << "@@@ SPLIT" << chunk.file.filePath() << " [" << chunk.start.toString() << ":" << chunk.end.toString() << "] OUT:" << job.outFileName;
-
-        // Open decoder ..............................
-        if (mDecoder.inputFile() != "chunk.file.filePath()") {
-            mDecoder.close();
-            try {
-                mDecoder.open(chunk.file.filePath());
-            }
-            catch (FlaconError &err) {
-                emit error(job.track,
-                           tr("I can't read <b>%1</b>:<br>%2",
-                              "Splitter error. %1 is a file name, %2 is a system error text.")
-                                   .arg(mDecoder.inputFile(), err.what()));
-            }
-        }
 
         // Extract chunk .............................
         QObject keeper;
-        connect(&mDecoder, &Decoder::progress, &keeper, [this, job](int percent) {
+        connect(chunk.decoder, &Decoder::progress, &keeper, [this, job](int percent) {
             emit trackProgress(job.track, TrackState::Splitting, percent);
         });
 
-        mDecoder.extract(chunk.start, chunk.end, &outFile, writeHeader);
+        qCDebug(LOG) << "SPLIT" << chunk.file.filePath() << " [" << chunk.start.toString() << ":" << chunk.end.toString() << "] OUT:" << job.outFileName;
+        chunk.decoder->extract(chunk.start, chunk.end, &outFile, writeHeader);
         writeHeader = false;
     }
 

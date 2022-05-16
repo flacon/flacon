@@ -216,7 +216,7 @@ bool CueTime::operator==(const CueTime &other) const
  ************************************************/
 bool CueTime::operator!=(const CueTime &other) const
 {
-    return this->mHiValue != other.mHiValue;
+    return !(this->operator==(other));
 }
 
 /************************************************
@@ -258,11 +258,26 @@ bool CueTime::parse(const QString &str)
 /************************************************
 
 ************************************************/
-CueIndex::CueIndex(const QString &str, const QByteArray &file, int fileIndex) :
+CueIndex::CueIndex(const QString &str, const QByteArray &file) :
     CueTime(str),
-    mFile(file),
-    mFileIndex(fileIndex)
+    mFile(file)
 {
+}
+
+/************************************************
+
+ ************************************************/
+bool CueIndex::operator==(const CueIndex &other) const
+{
+    return CueTime::operator==(other) && mFile == other.mFile;
+}
+
+/************************************************
+
+ ************************************************/
+bool CueIndex::operator!=(const CueIndex &other) const
+{
+    return !(this->operator==(other));
 }
 
 /************************************************

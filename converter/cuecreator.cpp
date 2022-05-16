@@ -201,7 +201,7 @@ void CueCreator::write(QIODevice *out)
             }
         }
         else {
-            if (!index0.isNull())
+            if (!index0.isNull() && index0 != index1)
                 writeLine(out, QString("    INDEX 00 %1").arg((index0 - prevIndex).toString()));
 
             prevIndex = index1;

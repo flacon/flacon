@@ -90,8 +90,7 @@ void Cue::read(const CueData &data)
     QByteArray           albumPerformer = getAlbumPerformer(data);
     const CueData::Tags &global         = data.globalTags();
 
-    QByteArray fileTag;
-    int        fileIndex = -1;
+    QByteArray prevFileTag;
 
     for (const CueData::Tags &t : data.tracks()) {
         TrackTags track;
@@ -105,26 +104,24 @@ void Cue::read(const CueData &data)
         QByteArray index01File = t.value("INDEX 01 FILE");
 
         if (index00.isEmpty() && !index01.isEmpty()) {
-            index00     = index01;
-            index00File = index01File;
+            if (index01File == prevFileTag) {
+                index00     = index01;
+                index00File = index01File;
+            }
+            else {
+                index00     = "00:00:00";
+                index00File = index01File;
+            }
         }
 
         if (index01.isEmpty() && !index00.isEmpty()) {
             index01     = index00;
             index01File = index00File;
         }
+        prevFileTag = index01File;
 
-        if (index00File != fileTag) {
-            fileTag = index00File;
-            fileIndex++;
-        }
-        track.setCueIndex(0, CueIndex(index00, index00File, fileIndex));
-
-        if (index01File != fileTag) {
-            fileTag = index01File;
-            fileIndex++;
-        }
-        track.setCueIndex(1, CueIndex(index01, index01File, fileIndex));
+        track.setCueIndex(0, CueIndex(index00, index00File));
+        track.setCueIndex(1, CueIndex(index01, index01File));
 
         track.setTag(TagId::Catalog, global.value("CATALOG"));
         track.setTag(TagId::CDTextfile, global.value("CDTEXTFILE"));

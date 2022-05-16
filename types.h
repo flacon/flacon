@@ -133,14 +133,16 @@ class CueIndex : public ::CueTime
 {
 public:
     CueIndex() = default;
-    explicit CueIndex(const QString &str, const QByteArray &file, int fileIndex);
+    explicit CueIndex(const QString &str, const QByteArray &file);
 
     QByteArray file() const { return mFile; }
-    int        fileIndex() const { return mFileIndex; }
+
+    bool isEmpty() const { return mFile.isEmpty(); }
+    bool operator==(const CueIndex &other) const;
+    bool operator!=(const CueIndex &other) const;
 
 private:
     QByteArray mFile;
-    int        mFileIndex = -1;
 };
 
 struct CueFlags
