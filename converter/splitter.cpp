@@ -282,17 +282,28 @@ void Splitter::run()
     }
 }
 
+struct ProgressCalc
+{
+    uint64_t totalSize = 0;
+    uint64_t chunkSize = 0;
+    uint64_t chunkDone = 0;
+    uint64_t done      = 0;
+};
+
 /************************************************
  *
  ************************************************/
 void Splitter::processTrack(const Job &job)
 {
+
+    emit trackProgress(job.track, TrackState::Splitting, 0);
+
     QFile outFile(job.outFileName);
     if (!outFile.open(QFile::WriteOnly)) {
         throw outFile.errorString();
     }
 
-    int bytes = 0;
+    uint32_t bytes = 0;
     for (const Job::Chunk &chunk : job.chunks) {
         bytes += chunk.decoder->bytesCount(chunk.start, chunk.end);
     }
@@ -301,17 +312,24 @@ void Splitter::processTrack(const Job &job)
     hdr.resizeData(bytes);
     outFile.write(hdr.toLegacyWav());
 
+    ProgressCalc progress;
+    progress.totalSize = bytes;
+
     for (const Job::Chunk &chunk : job.chunks) {
+        progress.chunkSize = chunk.decoder->bytesCount(chunk.start, chunk.end);
 
         // Extract chunk .............................
         QObject keeper;
-        connect(chunk.decoder, &Decoder::progress, &keeper, [this, job](int percent) {
-            emit trackProgress(job.track, TrackState::Splitting, percent);
+        connect(chunk.decoder, &Decoder::progress, &keeper, [this, job, progress](int percents) {
+            double chunkDone = double(percents) / 100 * progress.chunkSize;
+            emit   trackProgress(job.track, TrackState::Splitting, (progress.done + chunkDone) / progress.totalSize * 100);
         });
+        progress.done += progress.chunkSize;
 
         qCDebug(LOG) << "extract: " << chunk.file.filePath() << " [" << chunk.start.toString() << ":" << chunk.end.toString() << "] OUT:" << job.outFileName;
         chunk.decoder->extract(chunk.start, chunk.end, &outFile, false);
     }
 
     outFile.close();
+    emit trackProgress(job.track, TrackState::Splitting, 100);
 }
