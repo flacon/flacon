@@ -84,7 +84,6 @@ public:
     QStringList errors() const;
 
     bool canConvert() const;
-    bool canDownloadInfo() const;
 
     struct TagSet
     {

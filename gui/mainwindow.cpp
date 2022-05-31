@@ -35,7 +35,7 @@
 #include "aboutdialog/aboutdialog.h"
 #include "scanner.h"
 #include "gui/coverdialog/coverdialog.h"
-#include "internet/dataprovider.h"
+#include "internet/musicbrainzprovider.h"
 #include "gui/trackviewmodel.h"
 #include "gui/tageditor/tageditor.h"
 #include "controls.h"
@@ -357,7 +357,7 @@ void MainWindow::setControlsEnable()
 
     bool canDownload = false;
     foreach (const Disc *disc, trackView->selectedDiscs())
-        canDownload = canDownload || !disc->discId().isEmpty();
+        canDownload = canDownload || MusicBrainzProvider::canDownload(*disc);
 
     outFilesBox->setEnabled(!running);
     tagsBox->setEnabled(!running && tracksSelected);
@@ -760,10 +760,11 @@ void MainWindow::setCoverImage(Disc *disc)
  ************************************************/
 void MainWindow::downloadDiscInfo(Disc *disc)
 {
-    if (!disc->canDownloadInfo())
+    if (!MusicBrainzProvider::canDownload(*disc)) {
         return;
+    }
 
-    DataProvider *provider = new FreeDbProvider(*disc);
+    DataProvider *provider = new MusicBrainzProvider(*disc);
     connect(provider, &DataProvider::finished,
             provider, &DataProvider::deleteLater);
 
@@ -937,7 +938,7 @@ void MainWindow::trackViewMenu(const QPoint &pos)
     menu.addAction(act);
 
     act = new QAction(tr("Get data from CDDB", "context menu"), &menu);
-    act->setEnabled(disc->canDownloadInfo());
+    act->setEnabled(MusicBrainzProvider::canDownload(*disc));
     connect(act, &QAction::triggered, [this, disc]() { this->downloadDiscInfo(disc); });
     menu.addAction(act);
 

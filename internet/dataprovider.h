@@ -55,34 +55,19 @@ signals:
     void ready(const QVector<Tracks> result);
 
 protected:
-    void                    get(const QNetworkRequest &request);
-    void                    error(const QString &message);
-    virtual QVector<Tracks> dataReady(QNetworkReply *reply) = 0;
+    virtual QNetworkReply *get(const QNetworkRequest &request);
 
-private slots:
-    void replayFinished();
+    void error(const QString &message);
+
+    QNetworkAccessManager *networkAccessManager() const;
+
+    void removeDduplicates();
+
+    QVector<Tracks> mResult;
 
 private:
-    QNetworkAccessManager *networkAccessManager() const;
     const Disc &           mDisc;
     QList<QNetworkReply *> mReplies;
-    QVector<Tracks>        mResult;
-
-    void addReply(QNetworkReply *reply);
-};
-
-class FreeDbProvider : public DataProvider
-{
-public:
-    explicit FreeDbProvider(const Disc &disc);
-
-    void start() override;
-
-protected:
-    QVector<Tracks> dataReady(QNetworkReply *reply) override;
-
-private:
-    Tracks parse(QNetworkReply *reply);
 };
 
 #endif // DATAPROVIDER_H

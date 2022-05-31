@@ -25,8 +25,8 @@
 
 cmake_minimum_required(VERSION 3.0.2)
 cmake_policy(SET CMP0028 NEW)
-if (POLICY CMP0071) 
-    cmake_policy(SET CMP0071 NEW) 
+if (POLICY CMP0071)
+    cmake_policy(SET CMP0071 NEW)
 endif()
 
 project(flacon)
@@ -64,7 +64,6 @@ set(HEADERS
     project.h
     settings.h
     inputaudiofile.h
-    internet/dataprovider.h
     scanner.h
     patternexpander.h
     consoleout.h
@@ -96,7 +95,6 @@ set(SOURCES
     project.cpp
     settings.cpp
     inputaudiofile.cpp
-    internet/dataprovider.cpp
     scanner.cpp
     patternexpander.cpp
     consoleout.cpp
@@ -110,6 +108,7 @@ set(SOURCES
     gui/tageditor/tageditor.cpp
 )
 
+include(internet/module.cmake)
 include(gui/module.cmake)
 include(formats_in/module.cmake)
 include(formats_out/module.cmake)
