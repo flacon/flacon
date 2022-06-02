@@ -11,19 +11,17 @@ public:
     using DataProvider::DataProvider;
     void start() override;
 
-protected:
-    QNetworkReply *get(const QNetworkRequest &request) override;
-
+private:
     void releaseGroupsReady(QNetworkReply *reply);
-    void releasesReady(QNetworkReply *reply);
 
-    Tracks parseTracksJson(const QJsonArray &tracks, const QString &artist, const QString &album);
-    void   processResults();
+    void   releasesReady(QNetworkReply *reply);
+    Tracks parseTracksJson(const QJsonArray &tracks, const QString &album);
+
+    void processResults();
 
 private:
-    QString mAlbum;
-    QString mArtist;
-    int     mTracksCount = 0;
+    QString mRequestAlbum;
+    QString mRequestArtist;
 };
 
 #endif // MUSICBRAINZPROVIDER_H

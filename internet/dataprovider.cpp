@@ -55,6 +55,7 @@ DataProvider::DataProvider(const Disc &disc) :
  ************************************************/
 DataProvider::~DataProvider()
 {
+    qDebug() << Q_FUNC_INFO;
 }
 
 /************************************************
@@ -82,7 +83,11 @@ void DataProvider::stop()
  ************************************************/
 QNetworkReply *DataProvider::get(const QNetworkRequest &request)
 {
-    QNetworkReply *reply = networkAccessManager()->get(request);
+    QNetworkRequest req = request;
+    req.setRawHeader("User-Agent", QString("Flacon/%1 (https://github.com/flacon/flacon)").arg(FLACON_VERSION).toUtf8());
+    qCDebug(LOG).noquote() << req.url().toEncoded();
+
+    QNetworkReply *reply = networkAccessManager()->get(req);
     mReplies << reply;
     return reply;
 }
