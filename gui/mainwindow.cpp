@@ -35,7 +35,7 @@
 #include "aboutdialog/aboutdialog.h"
 #include "scanner.h"
 #include "gui/coverdialog/coverdialog.h"
-#include "internet/musicbrainzprovider.h"
+#include "internet/dataprovider.h"
 #include "gui/trackviewmodel.h"
 #include "gui/tageditor/tageditor.h"
 #include "controls.h"
@@ -357,7 +357,7 @@ void MainWindow::setControlsEnable()
 
     bool canDownload = false;
     foreach (const Disc *disc, trackView->selectedDiscs())
-        canDownload = canDownload || MusicBrainzProvider::canDownload(*disc);
+        canDownload = canDownload || DataProvider::canDownload(*disc);
 
     outFilesBox->setEnabled(!running);
     tagsBox->setEnabled(!running && tracksSelected);
@@ -760,21 +760,21 @@ void MainWindow::setCoverImage(Disc *disc)
  ************************************************/
 void MainWindow::downloadDiscInfo(Disc *disc)
 {
-    if (!MusicBrainzProvider::canDownload(*disc)) {
+    if (!DataProvider::canDownload(*disc)) {
         return;
     }
 
-    DataProvider *provider = new MusicBrainzProvider(*disc);
+    DataProvider *provider = new DataProvider();
     connect(provider, &DataProvider::finished,
             provider, &DataProvider::deleteLater);
 
     connect(provider, &DataProvider::finished, provider,
             [disc, this]() { trackView->downloadFinished(*disc); });
 
-    connect(provider, &DataProvider::ready, provider,
+    connect(provider, &DataProvider::finished, provider,
             [disc](const QVector<Tracks> data) { disc->addTagSets(data); });
 
-    provider->start();
+    provider->start(*disc);
     trackView->downloadStarted(*disc);
 }
 
@@ -937,8 +937,8 @@ void MainWindow::trackViewMenu(const QPoint &pos)
     connect(act, &QAction::triggered, [this, disc]() { this->setCueForDisc(disc); });
     menu.addAction(act);
 
-    act = new QAction(tr("Get data from CDDB", "context menu"), &menu);
-    act->setEnabled(MusicBrainzProvider::canDownload(*disc));
+    act = new QAction(tr("Get data from internet", "context menu"), &menu);
+    act->setEnabled(DataProvider::canDownload(*disc));
     connect(act, &QAction::triggered, [this, disc]() { this->downloadDiscInfo(disc); });
     menu.addAction(act);
 

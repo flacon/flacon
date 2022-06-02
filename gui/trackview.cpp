@@ -34,7 +34,7 @@
 #include <QAction>
 #include <QFlags>
 #include <QContextMenuEvent>
-#include "../internet/musicbrainzprovider.h"
+#include "../internet/dataprovider.h"
 
 #include <QDebug>
 
@@ -262,8 +262,8 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
     connect(act, &QAction::triggered, [this, disc] { this->selectCueFile(disc); });
     menu.addAction(act);
 
-    act = new QAction(tr("Get data from CDDB"), &menu);
-    act->setEnabled(MusicBrainzProvider::canDownload(*disc));
+    act = new QAction(tr("Get data from internet"), &menu);
+    act->setEnabled(DataProvider::canDownload(*disc));
     connect(act, &QAction::triggered, [this, disc]() { emit downloadInfo(disc); });
     menu.addAction(act);
 

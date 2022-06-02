@@ -1,4 +1,29 @@
-#include "musicbrainzprovider.h"
+/* BEGIN_COMMON_COPYRIGHT_HEADER
+ * (c)LGPL2+
+ *
+ * Flacon - audio File Encoder
+ * https://github.com/flacon/flacon
+ *
+ * Copyright: 2022
+ *   Alexander Sokoloff <sokoloff.a@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * END_COMMON_COPYRIGHT_HEADER */
+
+#include "musicbrainz.h"
 #include <QDebug>
 #include "../disc.h"
 #include <QJsonDocument>
@@ -43,7 +68,7 @@ static constexpr auto LOOKUP_URL = "https://musicbrainz.org/ws/2/release/?fmt=js
 /************************************************
 
  ************************************************/
-bool MusicBrainzProvider::canDownload(const Disc &disk)
+bool MusicBrainz::canDownload(const Disc &disk)
 {
     if (disk.isEmpty()) {
         return false;
@@ -57,13 +82,13 @@ bool MusicBrainzProvider::canDownload(const Disc &disk)
 /************************************************
 
  ************************************************/
-void MusicBrainzProvider::start()
+void MusicBrainz::start()
 {
-    if (disc().isEmpty()) {
+    if (mDisk.isEmpty()) {
         return;
     }
 
-    const Track *track = disc().track(0);
+    const Track *track = mDisk.track(0);
     mRequestArtist     = track->artist();
     mRequestAlbum      = track->album();
 
@@ -82,13 +107,13 @@ void MusicBrainzProvider::start()
 /************************************************
 
  ************************************************/
-void MusicBrainzProvider::releaseGroupsReady(QNetworkReply *reply)
+void MusicBrainz::releaseGroupsReady(QNetworkReply *reply)
 {
     if (reply->error()) {
         QString err = reply->errorString();
         qCWarning(LOG) << err;
         error(err);
-        emit finished();
+        emit finished({});
         return;
     }
 
@@ -97,13 +122,13 @@ void MusicBrainzProvider::releaseGroupsReady(QNetworkReply *reply)
     if (parseError.error != QJsonParseError::NoError) {
         qCWarning(LOG) << "Parse error at" << parseError.offset << ":" << parseError.errorString();
         error(parseError.errorString());
-        emit finished();
+        emit finished({});
         return;
     }
 
     QJsonArray releaseGroups = doc["release-groups"].toArray();
     if (releaseGroups.isEmpty()) {
-        emit finished();
+        emit finished({});
         return;
     }
 
@@ -125,13 +150,13 @@ void MusicBrainzProvider::releaseGroupsReady(QNetworkReply *reply)
 /************************************************
 
  ************************************************/
-void MusicBrainzProvider::releasesReady(QNetworkReply *reply)
+void MusicBrainz::releasesReady(QNetworkReply *reply)
 {
     if (reply->error()) {
         QString err = reply->errorString();
         qCWarning(LOG) << err;
         error(err);
-        emit finished();
+        emit finished({});
         return;
     }
 
@@ -140,13 +165,13 @@ void MusicBrainzProvider::releasesReady(QNetworkReply *reply)
     if (parseError.error != QJsonParseError::NoError) {
         qCWarning(LOG) << "Parse error at" << parseError.offset << ":" << parseError.errorString();
         error(parseError.errorString());
-        emit finished();
+        emit finished({});
         return;
     }
 
     QJsonArray releases = doc["releases"].toArray();
     if (releases.isEmpty()) {
-        emit finished();
+        emit finished({});
         return;
     }
 
@@ -156,7 +181,7 @@ void MusicBrainzProvider::releasesReady(QNetworkReply *reply)
         QString album = r["title"].toString();
 
         for (const QJsonValue m : r["media"].toArray()) {
-            if (m["track-count"].toInt() != disc().count()) {
+            if (m["track-count"].toInt() != mDisk.count()) {
                 continue;
             }
 
@@ -196,7 +221,7 @@ QString getGenre(const QJsonValue &track)
 /************************************************
 
  ************************************************/
-Tracks MusicBrainzProvider::parseTracksJson(const QJsonArray &tracks, const QString &album)
+Tracks MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QString &album)
 {
     Tracks res;
     res.resize(tracks.count());
@@ -228,8 +253,8 @@ Tracks MusicBrainzProvider::parseTracksJson(const QJsonArray &tracks, const QStr
         track.setTag(TagId::Title, trackTitle);
         track.setTag(TagId::Genre, getGenre(t));
 
-        track.setDiscCount(disc().discCount());
-        track.setDiscNum(disc().discNum());
+        track.setDiscCount(mDisk.discCount());
+        track.setDiscNum(mDisk.discNum());
         track.setTrackNum(n);
         track.setTrackCount(tracks.size());
 
@@ -243,9 +268,9 @@ Tracks MusicBrainzProvider::parseTracksJson(const QJsonArray &tracks, const QStr
 /************************************************
 
  ************************************************/
-void MusicBrainzProvider::processResults()
+void MusicBrainz::processResults()
 {
-    removeDduplicates();
+    removeDuplicates();
 
     int n = 0;
     for (Tracks &t : mResult) {
@@ -259,6 +284,5 @@ void MusicBrainzProvider::processResults()
         }
     }
 
-    emit ready(mResult);
-    emit finished();
+    emit finished(mResult);
 }

@@ -37,6 +37,8 @@
 #include <QLoggingCategory>
 #include <functional>
 
+#include "musicbrainz.h"
+
 namespace {
 Q_LOGGING_CATEGORY(LOG, "DataProvider")
 }
@@ -44,9 +46,20 @@ Q_LOGGING_CATEGORY(LOG, "DataProvider")
 /************************************************
 
  ************************************************/
-DataProvider::DataProvider(const Disc &disc) :
-    QObject(),
-    mDisc(disc)
+bool DataProvider::canDownload(const Disc &disk)
+{
+    bool res = false;
+
+    res = res || MusicBrainz::canDownload(disk);
+
+    return res;
+}
+
+/************************************************
+
+ ************************************************/
+DataProvider::DataProvider(QObject *parent) :
+    QObject(parent)
 {
 }
 
@@ -55,7 +68,31 @@ DataProvider::DataProvider(const Disc &disc) :
  ************************************************/
 DataProvider::~DataProvider()
 {
-    qDebug() << Q_FUNC_INFO;
+    qDeleteAll(mServices);
+}
+
+/************************************************
+
+ ************************************************/
+void DataProvider::start(const Disc &disk)
+{
+    mServices.append(new MusicBrainz(disk, this));
+
+    for (auto service : mServices) {
+        connect(service, &InterntService::finished, this, &DataProvider::serviceFinished);
+        connect(service, &InterntService::errorOccurred, this, &DataProvider::errorOccurred);
+        service->start();
+    }
+}
+
+/************************************************
+
+ ************************************************/
+void DataProvider::stop()
+{
+    for (auto service : mServices) {
+        service->stop();
+    }
 }
 
 /************************************************
@@ -63,7 +100,42 @@ DataProvider::~DataProvider()
  ************************************************/
 bool DataProvider::isFinished() const
 {
-    foreach (QNetworkReply *reply, mReplies) {
+    for (auto service : mServices) {
+        if (!service->isFinished()) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/************************************************
+
+ ************************************************/
+void DataProvider::serviceFinished(const QVector<Tracks> result)
+{
+    mResult << result;
+
+    if (isFinished()) {
+        emit finished(mResult);
+    }
+}
+
+/************************************************
+
+ ************************************************/
+InterntService::InterntService(const Disc &disk, QObject *parent) :
+    QObject(parent),
+    mDisk(disk)
+{
+}
+
+/************************************************
+
+ ************************************************/
+bool InterntService::isFinished() const
+{
+    foreach (const QNetworkReply *reply, mReplies) {
         if (!reply->isFinished())
             return false;
     }
@@ -74,14 +146,14 @@ bool DataProvider::isFinished() const
 /************************************************
 
  ************************************************/
-void DataProvider::stop()
+void InterntService::stop()
 {
 }
 
 /************************************************
 
  ************************************************/
-QNetworkReply *DataProvider::get(const QNetworkRequest &request)
+QNetworkReply *InterntService::get(const QNetworkRequest &request)
 {
     QNetworkRequest req = request;
     req.setRawHeader("User-Agent", QString("Flacon/%1 (https://github.com/flacon/flacon)").arg(FLACON_VERSION).toUtf8());
@@ -95,19 +167,21 @@ QNetworkReply *DataProvider::get(const QNetworkRequest &request)
 /************************************************
 
  ************************************************/
-void DataProvider::error(const QString &message)
+void InterntService::error(const QString &message)
 {
     foreach (QNetworkReply *reply, mReplies) {
-        if (reply->isOpen())
+        if (reply->isOpen()) {
             reply->abort();
+        }
     }
-    Messages::error(message);
+
+    emit errorOccurred(message);
 }
 
 /************************************************
 
  ************************************************/
-QNetworkAccessManager *DataProvider::networkAccessManager() const
+QNetworkAccessManager *InterntService::networkAccessManager() const
 {
     static QNetworkAccessManager *inst = new QNetworkAccessManager();
     return inst;
@@ -116,12 +190,12 @@ QNetworkAccessManager *DataProvider::networkAccessManager() const
 /************************************************
 
  ************************************************/
-void DataProvider::removeDduplicates()
+void InterntService::removeDuplicates()
 {
     for (int i = mResult.size() - 1; i >= 0; --i) {
         for (int j = 0; j < i; ++j) {
             if (mResult[i] == mResult[j]) {
-                mResult.remove(i);
+                mResult.removeAt(i);
                 break;
             }
         }

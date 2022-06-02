@@ -34,40 +34,59 @@
 
 class Disc;
 class QNetworkAccessManager;
+class InterntService;
 
 class DataProvider : public QObject
 {
     Q_OBJECT
 public:
-    explicit DataProvider(const Disc &disc);
+    static bool canDownload(const Disc &disk);
+
+public:
+    explicit DataProvider(QObject *parent = nullptr);
     virtual ~DataProvider();
 
-    const Disc &disc() const { return mDisc; }
+    void start(const Disc &disk);
+    void stop();
 
     bool isFinished() const;
 
-public slots:
+signals:
+    void finished(const QVector<Tracks> &result);
+    void errorOccurred(const QString &err);
+
+private:
+    QList<InterntService *> mServices;
+    QVector<Tracks>         mResult;
+
+    void serviceFinished(const QVector<Tracks> result);
+};
+
+class InterntService : public QObject
+{
+    Q_OBJECT
+public:
+    explicit InterntService(const Disc &disk, QObject *parent = nullptr);
+
+    bool isFinished() const;
+
     virtual void start() = 0;
     virtual void stop();
 
 signals:
-    void finished();
-    void ready(const QVector<Tracks> result);
+    void finished(const QVector<Tracks> result);
+    void errorOccurred(const QString &err);
 
 protected:
+    const Disc &           mDisk;
+    QVector<Tracks>        mResult;
+    QList<QNetworkReply *> mReplies;
+
+    QNetworkAccessManager *networkAccessManager() const;
     virtual QNetworkReply *get(const QNetworkRequest &request);
 
     void error(const QString &message);
-
-    QNetworkAccessManager *networkAccessManager() const;
-
-    void removeDduplicates();
-
-    QVector<Tracks> mResult;
-
-private:
-    const Disc &           mDisc;
-    QList<QNetworkReply *> mReplies;
+    void removeDuplicates();
 };
 
 #endif // DATAPROVIDER_H

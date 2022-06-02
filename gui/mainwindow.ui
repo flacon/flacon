@@ -490,10 +490,10 @@ If you surround sections of text that contain a token with braces, these section
   </action>
   <action name="actionDownloadTrackInfo">
    <property name="text">
-    <string>Get from CDDB</string>
+    <string>Get from internet</string>
    </property>
    <property name="toolTip">
-    <string>Get album information from CDDB</string>
+    <string>Get album information from internet</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+I</string>

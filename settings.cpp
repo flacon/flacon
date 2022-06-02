@@ -120,9 +120,6 @@ void Settings::init()
     // Out Files ********************************
     setDefaultValue(OutFiles_Profile, "FLAC");
 
-    // Internet *********************************
-    setDefaultValue(Inet_CDDBHost, "https://gnudb.gnudb.org/");
-
     // Misc *************************************
     setDefaultValue(Misc_LastDir, QDir::homePath());
 
@@ -220,10 +217,6 @@ QString Settings::keyToString(Settings::Key key) const
             return "OutFiles/PatternHistory";
         case OutFiles_DirectoryHistory:
             return "OutFiles/DirectoryHistory";
-
-        // Internet ****************************
-        case Inet_CDDBHost:
-            return "Inet/CDDBHost";
 
         // Misc *********************************
         case Misc_LastDir:
@@ -509,20 +502,4 @@ uint Settings::encoderThreadsCount() const
 void Settings::setEncoderThreadsCount(uint value)
 {
     setValue(Encoder_ThreadCount, value);
-}
-
-/************************************************
- *
- ************************************************/
-QString Settings::cddbHost() const
-{
-    return value(Inet_CDDBHost).toString();
-}
-
-/************************************************
- *
- ************************************************/
-void Settings::setCddbHost(const QString &value)
-{
-    setValue(Inet_CDDBHost, value);
 }
