@@ -23,30 +23,28 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef MUSICBRAINZ_H
-#define MUSICBRAINZ_H
+#ifndef DISCOGS_H
+#define DISCOGS_H
 
 #include "dataprovider.h"
 
-class MusicBrainz : public InterntService
+class Discogs : public InterntService
 {
+    Q_OBJECT
 public:
     static bool canDownload(const Disc &disk);
 
+public:
     using InterntService::InterntService;
     void start() override;
 
 private:
-    void releaseGroupsReady(QNetworkReply *reply);
-
-    void   releasesReady(QNetworkReply *reply);
-    Tracks parseTracksJson(const QJsonArray &tracks, const QString &album);
-
-    void processResults();
-
-private:
     QString mRequestAlbum;
     QString mRequestArtist;
+
+    void searchReady(QNetworkReply *reply);
+    void masterReady(QNetworkReply *reply);
+    void processResults();
 };
 
-#endif // MUSICBRAINZ_H
+#endif // DISCOGS_H

@@ -51,7 +51,7 @@ Postprocessing:
   Since the disc is often released several times, but contains the same tracks,
   our results will contain duplicates. We delete the duplicates.
 
-
+-------------------------------------------------
 Example
   1) https://musicbrainz.org/ws/2/release-group/?fmt=json&query=artist:%22Aerosmith%22%20AND%20release:%22Permanent%20Vacation%22
   2) https://musicbrainz.org/ws/2/release/?fmt=json&inc=recordings+genres+artist-credits&release-group=c522e905-3986-3f09-89f3-5d8bb09cc93e
@@ -144,6 +144,10 @@ void MusicBrainz::releaseGroupsReady(QNetworkReply *reply)
 
         QNetworkReply *reply = get(QNetworkRequest(QString(LOOKUP_URL).arg(id)));
         connect(reply, &QNetworkReply::finished, this, [this, reply]() { releasesReady(reply); });
+    }
+
+    if (isFinished()) {
+        emit finished({});
     }
 }
 

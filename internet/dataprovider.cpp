@@ -38,6 +38,7 @@
 #include <functional>
 
 #include "musicbrainz.h"
+#include "discogs.h"
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "DataProvider")
@@ -51,6 +52,7 @@ bool DataProvider::canDownload(const Disc &disk)
     bool res = false;
 
     res = res || MusicBrainz::canDownload(disk);
+    res = res || Discogs::canDownload(disk);
 
     return res;
 }
@@ -76,7 +78,8 @@ DataProvider::~DataProvider()
  ************************************************/
 void DataProvider::start(const Disc &disk)
 {
-    mServices.append(new MusicBrainz(disk, this));
+    mServices << new MusicBrainz(disk, this);
+    mServices << new Discogs(disk, this);
 
     for (auto service : mServices) {
         connect(service, &InterntService::finished, this, &DataProvider::serviceFinished);
