@@ -50,7 +50,7 @@ private:
     const Disc      *mDisc = nullptr;
     const ConvTracks mTracks;
     const QString    mOutDir;
-    PreGapType       mPregapType;
+    PreGapType       mPregapType = PreGapType::AddToFirstTrack;
 
     void processTrack(const Job &job);
 };

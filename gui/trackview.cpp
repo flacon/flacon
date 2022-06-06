@@ -59,9 +59,9 @@ TrackView::TrackView(QWidget *parent) :
             this, &TrackView::emitSelectCoverImage);
 
     mModel = new TrackViewModel(this);
-    setModel(mModel);
+    TrackView::setModel(mModel);
 
-    setSelectionModel(new TrackViewSelectionModel(mModel, this));
+    TrackView::setSelectionModel(new TrackViewSelectionModel(mModel, this));
 
     setUniformRowHeights(false);
     this->setAttribute(Qt::WA_MacShowFocusRect, false);

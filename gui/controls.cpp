@@ -54,7 +54,7 @@ ToolButton::ToolButton(const QIcon &icon, QWidget *parent) :
 {
     setAutoRaise(true);
     setStyleSheet("border: none;");
-    setFixedWidth(sizeHint().width());
+    setFixedWidth(ToolButton::sizeHint().width());
     setIcon(icon);
     setPopupMode(QToolButton::InstantPopup);
 }
