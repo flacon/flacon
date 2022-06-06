@@ -586,11 +586,6 @@ Questa impostazione modifica la dimensione. Tutte le impostazioni verranno perse
         <translation>Tabella dei codici di base:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Contatore processi:</translation>
     </message>
@@ -798,14 +793,6 @@ Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, quest
         <translation>Configura il codificatore</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Ottieni da CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Ottieni informazioni sull&apos;album da CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -925,9 +912,17 @@ Vuoi continuare?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Ottieni dati da CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1440,8 +1435,8 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Ottieni dati da CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -591,11 +591,6 @@ Dette har bare innvirkning på filstørrelse. Alle innstillinger er tapsfrie.</t
         <translation>Forvalgt kodeside:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Antall tråder:</translation>
     </message>
@@ -805,14 +800,6 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation>Sett opp koder</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Innhent fra CCDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Få albuminformasjon fra CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -932,9 +919,17 @@ Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Innhent data fra CCDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1449,8 +1444,8 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Innhent data fra CCDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

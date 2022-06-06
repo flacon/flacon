@@ -614,11 +614,6 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
         <translation>Page de code par défaut :</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>Serveur CDDB : </translation>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Nombre de fils :</translation>
     </message>
@@ -828,14 +823,6 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
         <translation>Configurer l’encodeur</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Obtenir sur CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Obtenir les informations de l’album sur CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -955,9 +942,17 @@ Voulez-vous continuer ?</translation>
         <translation>Sélectionner un autre fichier CUE…</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Obtenir les données de CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1405,7 +1400,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
-        <translation type="unfinished"/>
+        <translation>le nom de fichier est vide</translation>
     </message>
 </context>
 <context>
@@ -1472,8 +1467,8 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <translation>Sélectionner un autre fichier CUE…</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Obtenir les données de CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

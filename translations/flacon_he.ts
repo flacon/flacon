@@ -614,11 +614,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>קידוד ברירת מחדל</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>שרת CDDB:</translation>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>מונה שרשורים:</translation>
     </message>
@@ -831,14 +826,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>הגדרות מקודד</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>אחזור מ CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>אחזור נתוני אלבום מ CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -958,9 +945,17 @@ Do you want to continue?</source>
         <translation>בחירת גליון cue אחר...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>אחזור נתונים מ CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1476,8 +1471,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>בחירת גליון cue אחר...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>אחזור נתונים מ CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

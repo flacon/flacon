@@ -590,11 +590,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>默认字符编码</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>线程计数：</translation>
     </message>
@@ -804,14 +799,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>配置编码器</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>从 CDDB 获取</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>从 CDDB 获取专辑信息</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -931,9 +918,17 @@ Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>从 CDDB 撷取数据</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1448,8 +1443,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>从 CDDB 撷取数据</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

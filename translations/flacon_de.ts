@@ -591,11 +591,6 @@ Diese Einstellung wirkt sich nur auf die Dateigröße aus. Alle Einstellungen si
         <translation>Standard-Zeichensatztabelle:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>CDDB-Server: </translation>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Thread-Anzahl:</translation>
     </message>
@@ -805,14 +800,6 @@ Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werd
         <translation>Kodierer konfigurieren</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Von CDDB abrufen</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Albuminformation von CDDB abrufen</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Strg+I</translation>
     </message>
@@ -932,9 +919,17 @@ Möchten Sie fortsetzen?</translation>
         <translation>Andere CUE-Datei auswählen…</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Daten von CDDB abrufen</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1449,8 +1444,8 @@ Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Album
         <translation>Andere CUE Datei auswählen…</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Daten von CDDB abrufen</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

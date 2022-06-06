@@ -614,11 +614,6 @@ Ovlivní to jenom velikost souboru. Všechna nastavení jsou bezztrátová.</tra
         <translation>Výchozí kódová stránka:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Počet vláken:</translation>
     </message>
@@ -828,14 +823,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Nastavit kodek</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Získat z CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Získat informace o albu z CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -955,9 +942,17 @@ Chcete pokračovat?</translation>
         <translation>Vybrat jiný soubor CUE...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Získat data z CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1472,8 +1467,8 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <translation>Vybrat jiný soubor CUE...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Získat data z CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

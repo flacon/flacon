@@ -615,11 +615,6 @@ Isso afeta somente o tamanho do arquivo. Todas as configurações são sem perda
         <translation>Codificação padrão:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>Servidor do CDDB:</translation>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Contagem de linhas de execução:</translation>
     </message>
@@ -829,14 +824,6 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>Configurar codificador</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Obter do CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Obter informações do álbum do CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -956,9 +943,17 @@ Você deseja continuar?</translation>
         <translation>Selecionar outro arquivo CUE...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Obter dados do CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1406,7 +1401,7 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
-        <translation type="unfinished"/>
+        <translation>faltando nome do arquivo</translation>
     </message>
 </context>
 <context>
@@ -1473,8 +1468,8 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
         <translation>Selecionar outro arquivo CUE...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Obter dados do CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

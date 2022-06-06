@@ -591,11 +591,6 @@ Ia hanya memberi kesan pada saiz fail. Semua tetapan adalah tak hilang.</transla
         <translation>Laman kod lalai:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Kiraan bebenang:</translation>
     </message>
@@ -805,14 +800,6 @@ Jika anda terkurung teks seksyen yang mengandungi token dengan tanda kurungan, s
         <translation>Konfigur pengekod</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Dapatkan dari CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Dapatkan maklumat album dari CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -932,9 +919,17 @@ Mahu diteruskan?</translation>
         <translation>Pilih fail CUE yang lain...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Dapatkan data dari CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1450,8 +1445,8 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
         <translation>Pilih fail CUE yang lain...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Dapatkan data dari CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

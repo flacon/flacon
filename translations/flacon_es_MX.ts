@@ -614,11 +614,6 @@ Esto sólo afectará el tamaño de archivo. Todos los parámetros son sin pérdi
         <translation>Código de página predeterminado:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>Servidor CDDB:</translation>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Cuenta de subprocesos:</translation>
     </message>
@@ -828,14 +823,6 @@ Si la sección de texto que contiene un identificador está rodeado por llaves, 
         <translation>Configurar codificación</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Obtener de CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Obtener información de álbum de CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -954,9 +941,17 @@ Do you want to continue?</source>
         <translation>Seleccione otro archivo CUE...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Obtener información de CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1471,8 +1466,8 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>Seleccione otro archivo CUE...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Obtener información de CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

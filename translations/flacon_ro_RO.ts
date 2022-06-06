@@ -611,11 +611,6 @@ Aceasta are efect doar asupra mărimii fișierului rezultat. Calitatea va fi ace
         <translation>Codare implicită caractere:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Număr fire de execuție:</translation>
     </message>
@@ -825,14 +820,6 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Configurare utilitar codare</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Obține din CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Obține informațiile despre album din CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -952,9 +939,17 @@ Vreți să continuați?</translation>
         <translation>Alegere altă listă de indexare...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Obțineți date din CDDB (baza de date cu CD-uri)</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1469,8 +1464,8 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
         <translation>Alegere altă listă de indexare...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Obțineți date din CDDB (baza de date cu CD-uri)</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -591,11 +591,6 @@ Dit heeft enkel een invloed op de bestandsgrootte, alle instellingen zijn zonder
         <translation>Standaardcodetabel:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Aantal draden:</translation>
     </message>
@@ -805,14 +800,6 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
         <translation>Configureer encoder</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Ophalen van CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Albuminformatie ophalen van CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -932,9 +919,17 @@ Wilt u doorgaan?</translation>
         <translation>Kies een ander cuebestand…</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Gegevens ophalen van CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1449,8 +1444,8 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <translation>Kies een ander cuebestand…</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Gegevens ophalen van CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

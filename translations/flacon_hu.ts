@@ -592,11 +592,6 @@ Ez csak a fájl méretet befolyásolja. Minden beállítás veszteségmentes.</t
         <translation>Alapértelmezett kódlap:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Szálnak száma:</translation>
     </message>
@@ -806,14 +801,6 @@ Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, h
         <translation>Átalakító beállítása</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Megszerzés a CDDB-ből</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Album információk megszerzése a CDDB-ből</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -933,9 +920,17 @@ Biztosan folytatni akarod?</translation>
         <translation>Másik cue-fájl kiválasztása...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Adatok megszerzése a CDDB-ből</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1450,8 +1445,8 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <translation>Másik cue-fájl kiválasztása...</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Adatok megszerzése a CDDB-ből</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

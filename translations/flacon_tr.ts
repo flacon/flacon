@@ -579,11 +579,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>Varsayılan kod sayfası:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>İş parçacığı sayısı:</translation>
     </message>
@@ -775,14 +770,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation type="unfinished"/>
     </message>
@@ -901,7 +888,15 @@ Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
@@ -1397,7 +1392,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get data from Internet</source>
         <translation type="unfinished"/>
     </message>
 </context>

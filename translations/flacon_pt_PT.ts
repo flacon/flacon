@@ -586,11 +586,6 @@ Isto só afecta o tamanho do ficheiro. Todas as definições são sem perda de d
         <translation>Página de código padrão:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Número de tarefas:</translation>
     </message>
@@ -798,14 +793,6 @@ Se colocar chavetas numa porção de texto que contenha um campo, esse texto fic
         <translation>Configurar codificador</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Obter de CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Obter informação sobre álbum de CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -925,9 +912,17 @@ Deseja continuar?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Obter dados de CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1440,8 +1435,8 @@ Quando a análise é efectuada por álbum, as diferenças de volume entre as fai
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Obter dados de CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

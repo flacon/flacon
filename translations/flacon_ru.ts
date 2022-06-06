@@ -614,11 +614,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>Кодировка по умолчанию:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>CDDB сервер: </translation>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Количество потоков:</translation>
     </message>
@@ -828,14 +823,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Настроить кодек</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Получить с CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Получить информацию с CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -955,9 +942,17 @@ Do you want to continue?</source>
         <translation>Выбрать другой CUE файл…</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation>Получить из Интернет</translation>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation>Получить информацию из Интернет</translation>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Получить информацию с CDDB</translation>
+        <translation>Получить информацию из Интернет</translation>
     </message>
 </context>
 <context>
@@ -1472,8 +1467,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>Выбрать другой CUE файл…</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Получить информацию с CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation>Получить информацию из Интернет</translation>
     </message>
 </context>
 <context>

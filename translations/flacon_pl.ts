@@ -586,11 +586,6 @@ Wpływa to wyłącznie na wielkość pliku. Konwersja pozostaje bezstratna.</tra
         <translation>Domyślna strona kodowa:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Liczba wątków:</translation>
     </message>
@@ -798,14 +793,6 @@ Otoczenie części tekstu, zawierającej znacznik, klamrami, spowoduje jej ukryc
         <translation>Konfiguruj kodek</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Pobierz z CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Pobierz informacje o albumie z CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -925,9 +912,17 @@ Czy chcesz kontynuować?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Pobierz dane z CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1440,8 +1435,8 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Pobierz dane z CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

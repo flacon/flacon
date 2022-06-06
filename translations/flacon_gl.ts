@@ -586,11 +586,6 @@ Isto só lle afecta ao tamaño do ficheiro. Todas as configuracións son «sen p
         <translation>Xogo de caracteres predeterminado:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Conta de fíos:</translation>
     </message>
@@ -782,14 +777,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Configurar o codificador</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Obter desde o CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Obter informacións sobre o álbum desde o CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -909,9 +896,17 @@ Quere continuar?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Obter datos desde CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1408,8 +1403,8 @@ Se se usa a ganancia de álbum preservaranse as diferenzas de volume dentro dun 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Obter datos desde CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -585,11 +585,6 @@ Ovo utiče samo na veličinu fajla. Sve postavke su bez gubitaka.</translation>
         <translation>Podrazumevana kodna stranica:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Broj niti:</translation>
     </message>
@@ -781,14 +776,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Podešavanje kodera</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Dobavi as CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Dobavlja podatke o albumu sa CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>ktrl+I</translation>
     </message>
@@ -908,9 +895,17 @@ Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Dobavi podatke sa CDDB-a</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1406,8 +1401,8 @@ Ujednačavanje prema albumu će sačuvati razlike glasnoće među numerama album
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Dobavi podatke sa CDDB-a</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

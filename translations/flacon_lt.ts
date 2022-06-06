@@ -591,11 +591,6 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
         <translation>Numatytoji koduotė:</translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation>CDDB serveris: </translation>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation>Gijų skaičius:</translation>
     </message>
@@ -805,14 +800,6 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Konfigūruoti koduotuvą</translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation>Gauti iš CDDB</translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation>Gauti albumo informaciją iš CDDB</translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
@@ -932,9 +919,17 @@ Ar norite tęsti?</translation>
         <translation>Pasirinkti kitą CUE failą…</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation>Gauti duomenis iš CDDB</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1449,8 +1444,8 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <translation>Pasirinkti kitą CUE failą…</translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
-        <translation>Gauti duomenis iš CDDB</translation>
+        <source>Get data from Internet</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
