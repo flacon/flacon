@@ -115,7 +115,7 @@ bool DataProvider::isFinished() const
 /************************************************
 
  ************************************************/
-void DataProvider::serviceFinished(const QVector<Tracks> result)
+void DataProvider::serviceFinished(const QVector<Tracks> &result)
 {
     mResult << result;
 

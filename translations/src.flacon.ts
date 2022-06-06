@@ -581,11 +581,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>CDDB server: </source>
-        <comment>Preferences dialog label</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Thread count:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -777,14 +772,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Get from CDDB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Get album information from CDDB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+I</source>
         <translation type="unfinished"></translation>
     </message>
@@ -903,7 +890,15 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get from Internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get album information from Internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get data from Internet</source>
         <comment>context menu</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -1399,7 +1394,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Get data from CDDB</source>
+        <source>Get data from Internet</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

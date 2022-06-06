@@ -59,7 +59,7 @@ private:
     QList<InterntService *> mServices;
     QVector<Tracks>         mResult;
 
-    void serviceFinished(const QVector<Tracks> result);
+    void serviceFinished(const QVector<Tracks> &result);
 };
 
 class InterntService : public QObject
@@ -78,7 +78,7 @@ signals:
     void errorOccurred(const QString &err);
 
 protected:
-    const Disc &           mDisk;
+    const Disc            &mDisk;
     QVector<Tracks>        mResult;
     QList<QNetworkReply *> mReplies;
 

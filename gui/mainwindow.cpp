@@ -937,7 +937,7 @@ void MainWindow::trackViewMenu(const QPoint &pos)
     connect(act, &QAction::triggered, [this, disc]() { this->setCueForDisc(disc); });
     menu.addAction(act);
 
-    act = new QAction(tr("Get data from internet", "context menu"), &menu);
+    act = new QAction(tr("Get data from Internet", "context menu"), &menu);
     act->setEnabled(DataProvider::canDownload(*disc));
     connect(act, &QAction::triggered, [this, disc]() { this->downloadDiscInfo(disc); });
     menu.addAction(act);
