@@ -84,11 +84,11 @@ private slots:
 
 private:
     Profile                  mProfile;
-    Disc *                   mDisc = nullptr;
+    Disc                    *mDisc = nullptr;
     QString                  mWorkDir;
     QList<ConvTrack>         mTracks;
     QMap<TrackId, ConvTrack> mTrackStates;
-    QTemporaryDir *          mTmpDir = nullptr;
+    QTemporaryDir           *mTmpDir = nullptr;
     CoverImage               mCoverImage;
     QString                  mEmbeddedCue;
 
