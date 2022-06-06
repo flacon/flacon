@@ -38,8 +38,6 @@ GeneralPage::GeneralPage(QWidget *parent) :
     ui->tmpDirButton->setBuddy(ui->tmpDirEdit);
     connect(ui->tmpDirButton, &QToolButton::clicked, this, &GeneralPage::showTmpDirDialog);
 
-    ui->cddbComboBox->addItem("https://gnudb.gnudb.org/");
-
 #ifdef FLATPAK_BUNDLE
     ui->tmpDirLabel->hide();
     ui->tmpDirEdit->hide();
@@ -88,14 +86,4 @@ uint GeneralPage::encoderThreadsCount() const
 void GeneralPage::setEncoderThreadsCount(uint value)
 {
     ui->threadsCountSpin->setValue(value);
-}
-
-QString GeneralPage::cddbHost() const
-{
-    return ui->cddbComboBox->currentText();
-}
-
-void GeneralPage::setCddbHost(const QString &value)
-{
-    ui->cddbComboBox->setCurrentText(value);
 }

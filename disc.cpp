@@ -248,14 +248,6 @@ bool Disc::canConvert() const
 /************************************************
 
  ************************************************/
-bool Disc::canDownloadInfo() const
-{
-    return !discId().isEmpty();
-}
-
-/************************************************
-
- ************************************************/
 void Disc::setCueFile(const Cue &cueDisc)
 {
     mCue = cueDisc;

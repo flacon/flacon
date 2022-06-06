@@ -183,7 +183,6 @@ void PreferencesDialog::load()
     ui->generalPage->setTmpDir(settings->tmpDir());
 #endif
     ui->generalPage->setDefaultCodepage(settings->defaultCodepage());
-    ui->generalPage->setCddbHost(settings->cddbHost());
 
 #if !defined(MAC_BUNDLE) && !defined(FLATPAK_BUNDLE)
     // Programs page .......................
@@ -207,7 +206,6 @@ void PreferencesDialog::save()
     settings->setTmpDir(ui->generalPage->tmpDir());
 #endif
     settings->setDefaultCodepage(ui->generalPage->defaultCodepage());
-    settings->setCddbHost(ui->generalPage->cddbHost());
 
 #if !defined(MAC_BUNDLE) && !defined(FLATPAK_BUNDLE)
     // Programs page .......................

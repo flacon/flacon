@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2021
+ * Copyright: 2022
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -23,36 +23,28 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef GENERALPAGE_H
-#define GENERALPAGE_H
+#ifndef DISCOGS_H
+#define DISCOGS_H
 
-#include <QWidget>
+#include "dataprovider.h"
 
-namespace Ui {
-class GeneralPage;
-}
-
-class GeneralPage : public QWidget
+class Discogs : public InterntService
 {
     Q_OBJECT
+public:
+    static bool canDownload(const Disc &disk);
 
 public:
-    explicit GeneralPage(QWidget *parent = nullptr);
-    ~GeneralPage();
-
-    QString tmpDir() const;
-    void    setTmpDir(const QString &value);
-
-    QString defaultCodepage() const;
-    void    setDefaultCodepage(const QString &value);
-
-    uint encoderThreadsCount() const;
-    void setEncoderThreadsCount(uint value);
+    using InterntService::InterntService;
+    void start() override;
 
 private:
-    Ui::GeneralPage *ui;
+    QString mRequestAlbum;
+    QString mRequestArtist;
 
-    void showTmpDirDialog();
+    void searchReady(QNetworkReply *reply);
+    void masterReady(QNetworkReply *reply);
+    void processResults();
 };
 
-#endif // GENERALPAGE_H
+#endif // DISCOGS_H

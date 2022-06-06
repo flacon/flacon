@@ -604,6 +604,13 @@ bool TrackViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, co
 
         TrackViewCacheItem *cache = mCache->item(index);
 
+        if (cache->trackLbl.contains(m)) {
+            if (event->type() == QEvent::MouseButtonRelease)
+                emit trackButtonClicked(index, cache->trackBtn);
+
+            return true;
+        }
+
         if (cache->trackBtn.contains(m)) {
             if (event->type() == QEvent::MouseButtonRelease)
                 emit trackButtonClicked(index, cache->trackBtn);

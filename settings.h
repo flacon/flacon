@@ -53,9 +53,6 @@ public:
         OutFiles_Profile,
         OutFiles_PatternHistory,
 
-        // Internet *****************************
-        Inet_CDDBHost,
-
         // Misc *********************************
         Misc_LastDir,
 
@@ -86,19 +83,16 @@ public:
     QString defaultCodepage() const;
     void    setDefaultCodepage(const QString &value);
 
-    Profiles       &profiles();
+    Profiles &      profiles();
     const Profiles &profiles() const;
     void            setProfiles(const Profiles &profiles);
 
     const Profile &currentProfile() const;
-    Profile       &currentProfile();
+    Profile &      currentProfile();
     bool           selectProfile(const QString &profileId);
 
     uint encoderThreadsCount() const;
     void setEncoderThreadsCount(uint value);
-
-    QString cddbHost() const;
-    void    setCddbHost(const QString &value);
 
 signals:
     void changed();
