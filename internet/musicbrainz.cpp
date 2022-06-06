@@ -225,6 +225,25 @@ QString getGenre(const QJsonValue &track)
 /************************************************
 
  ************************************************/
+QString getDate(const QJsonValue &track)
+{
+    QList<QRegExp> patterns;
+    patterns << QRegExp("(\\d\\d\\d\\d)", Qt::CaseInsensitive, QRegExp::RegExp2);
+    patterns << QRegExp("(\\d\\d\\d\\d)-\\d\\d-\\d\\d", Qt::CaseInsensitive, QRegExp::RegExp2);
+
+    QString s = track["recording"]["first-release-date"].toString();
+    foreach (const QRegExp &re, patterns) {
+        if (re.exactMatch(s)) {
+            return re.cap(1);
+        }
+    }
+
+    return "";
+}
+
+/************************************************
+
+ ************************************************/
 Tracks MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QString &album)
 {
     Tracks res;
@@ -247,11 +266,9 @@ Tracks MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QString &alb
 
         QString artist = t["artist-credit"][0]["name"].toString();
 
-        QDate date = QDate::fromString(t["recording"]["first-release-date"].toString(), "yyyy-MM-dd");
-
         Track &track = res[n++];
         track.setCodecName("UTF-8");
-        track.setTag(TagId::Date, date.toString("yyyy"));
+        track.setTag(TagId::Date, getDate(t));
         track.setTag(TagId::Album, album);
         track.setTag(TagId::Artist, artist);
         track.setTag(TagId::Title, trackTitle);
