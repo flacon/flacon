@@ -159,7 +159,6 @@ void CueCreator::write(QIODevice *out)
     writeGlobalTag(out, "REM GENRE \"%1\"", TagId::Genre);
     writeGlobalTag(out, "REM DATE %1", TagId::Date);
     writeGlobalTag(out, "REM DISCID %1", TagId::DiscId);
-    writeLine(out, QString("REM COMMENT \"Flacon v%1\"").arg(FLACON_VERSION));
     writeGlobalTag(out, "REM TOTALDISCS %1", TagId::DiscCount);
     writeGlobalTag(out, "REM DISCNUMBER %1", TagId::DiscNum);
     writeGlobalTag(out, "PERFORMER \"%1\"", TagId::Artist);

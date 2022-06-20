@@ -182,7 +182,7 @@ void TestFlacon::testConvert()
     // ..........................................
 
     // Prepare source audio files ...............
-    for (QString group : spec.childGroups()) {
+    for (const QString &group : spec.childGroups()) {
         if (!group.toUpper().startsWith("SOURCE_AUDIO"))
             continue;
 
@@ -351,9 +351,6 @@ void TestFlacon::testConvert()
                 QByteArray actual = readTag(outDir + "/" + file, tag);
 
                 QByteArray expected = spec.value(tag).toByteArray();
-                if (tag.toLower() == "cuesheet") {
-                    expected.replace("REM COMMENT \"Flacon v0.0.0\"", "REM COMMENT \"Flacon v" FLACON_VERSION "\"");
-                }
 
                 if (actual != expected) {
                     QWARN(QString("Compared tags are not the same:\n"
