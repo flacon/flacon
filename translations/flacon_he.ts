@@ -946,16 +946,16 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Get from Internet</source>
-        <translation type="unfinished"/>
+        <translation>אחזור מהמרשתת</translation>
     </message>
     <message>
         <source>Get album information from Internet</source>
-        <translation type="unfinished"/>
+        <translation>אחזור נתוני אלבום מהמרשתת</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>אחזור נתונים מהמרשתת</translation>
     </message>
 </context>
 <context>
@@ -1404,7 +1404,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
-        <translation type="unfinished"/>
+        <translation>שם קובץ ריק</translation>
     </message>
 </context>
 <context>
@@ -1472,7 +1472,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Get data from Internet</source>
-        <translation type="unfinished"/>
+        <translation>אחזור נתונים מהמרשתת</translation>
     </message>
 </context>
 <context>

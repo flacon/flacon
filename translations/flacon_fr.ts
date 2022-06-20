@@ -44,7 +44,7 @@
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon utilise des programmes externes. Nous tenons à remercier leurs auteurs !</translation>
+        <translation>Flacon utilise des programmes externes. Nous tenons à remercier leurs auteurs.</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
@@ -880,7 +880,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
         <translation>Certains albums ne seront pas convertis, ils présentent des erreurs.
-Voulez-vous continuer ?</translation>
+Voulez-vous continuer ?</translation>
     </message>
     <message>
         <source>%1 files</source>
@@ -943,16 +943,16 @@ Voulez-vous continuer ?</translation>
     </message>
     <message>
         <source>Get from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Obtenir sur Internet</translation>
     </message>
     <message>
         <source>Get album information from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Obtenir les renseignements de l’album sur Internet</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Obtenir les données sur Internet</translation>
     </message>
 </context>
 <context>
@@ -1279,7 +1279,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
-        <translation>Souhaitez-vous vraiment supprimer le profil « %1 » ?</translation>
+        <translation>Souhaitez-vous vraiment supprimer le profil « %1 » ?</translation>
     </message>
     <message>
         <source>Delete the profile</source>
@@ -1468,7 +1468,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     </message>
     <message>
         <source>Get data from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Obtenir les données sur Internet</translation>
     </message>
 </context>
 <context>

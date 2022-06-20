@@ -944,16 +944,16 @@ Você deseja continuar?</translation>
     </message>
     <message>
         <source>Get from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Obter pela Internet</translation>
     </message>
     <message>
         <source>Get album information from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Obter informações do álbum pela Internet</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Obter dados pela Internet</translation>
     </message>
 </context>
 <context>
@@ -1469,7 +1469,7 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
     </message>
     <message>
         <source>Get data from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Obter dados pela Internet</translation>
     </message>
 </context>
 <context>
