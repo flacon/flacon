@@ -614,6 +614,11 @@ void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
     connect(mConverter, &Conv::Converter::error,
             this, &MainWindow::showErrorMessage);
 
+    setWindowTitle(tr("Flacon - Converting", "Main window title"));
+    connect(mConverter, &Conv::Converter::finished, this, [this]() {
+        setWindowTitle(tr("Flacon"));
+    });
+
     mConverter->start(jobs, Settings::i()->currentProfile());
     setControlsEnable();
 }
