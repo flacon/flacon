@@ -63,7 +63,7 @@ private slots:
     void movieUpdated();
 
 private:
-    TrackView *     mTrackView;
+    TrackView      *mTrackView;
     TrackViewCache *mCache;
 
     mutable QImage mNoCoverImg;

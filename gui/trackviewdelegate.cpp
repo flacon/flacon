@@ -127,12 +127,12 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent) :
     mTrackView(parent),
     mCache(new TrackViewCache)
 {
-    mTrackBtnPix   = Icon("cue-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
-    mAudioBtnPix   = Icon("audio-button").pixmap(BUTTON_SIZE, BUTTON_SIZE);
-    mDiscErrorPix  = Icon("error").pixmap(MARK_HEIGHT, MARK_HEIGHT);
-    mDiscWarnPix   = Icon("warning").pixmap(MARK_HEIGHT, MARK_HEIGHT);
-    mTrackOkPix    = Icon("track-ok").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
-    mTrackErrorPix = Icon("track-cancel").pixmap(LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mTrackBtnPix   = Pixmap("cue-button", BUTTON_SIZE, BUTTON_SIZE);
+    mAudioBtnPix   = Pixmap("audio-button", BUTTON_SIZE, BUTTON_SIZE);
+    mDiscErrorPix  = Pixmap("error", MARK_HEIGHT, MARK_HEIGHT);
+    mDiscWarnPix   = Pixmap("warning", MARK_HEIGHT, MARK_HEIGHT);
+    mTrackOkPix    = Pixmap("track-ok", LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
+    mTrackErrorPix = Pixmap("track-cancel", LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
     mNoCoverImg    = QImage(":noCover");
 
     mDownloadMovie.setFileName(":wait");
@@ -438,13 +438,17 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
 QRect TrackViewDelegate::drawCoverImage(QPainter *painter, const QRect &windowRect, const QModelIndex &index) const
 {
     QImage img = index.data(TrackViewModel::RoleCoverImg).value<QImage>();
-    if (img.isNull())
+    if (img.isNull()) {
         img = mNoCoverImg;
+    }
 
-    if (img.height() != windowRect.height())
-        img = img.scaledToHeight(windowRect.height(), Qt::SmoothTransformation);
+    if (img.height() != windowRect.height()) {
+        const qreal dpr = qApp->devicePixelRatio();
+        img             = img.scaledToHeight(windowRect.height() * dpr, Qt::SmoothTransformation);
+        img.setDevicePixelRatio(dpr);
+    }
 
-    QRect imgRect(windowRect.topLeft(), img.size());
+    QRect imgRect(windowRect.topLeft(), img.size() / img.devicePixelRatioF());
     painter->fillRect(imgRect, mTrackView->palette().base().color());
     painter->fillRect(imgRect, Qt::white);
     painter->drawImage(imgRect, img);
@@ -504,7 +508,7 @@ QRect TrackViewDelegate::drawMark(QPainter *painter, bool isWaiting, const QRect
 ************************************************/
 QRect TrackViewDelegate::drawButton(const QPixmap &pixmap, const QRect &windowRect, QPainter *painter) const
 {
-    QRect rect = pixmap.rect(); // (windowRect.topLeft(), pixmap.size());
+    QRect rect = QRect(QPoint(0, 0), pixmap.size() / pixmap.devicePixelRatio());
     rect.moveCenter(windowRect.center());
     rect.moveLeft(windowRect.left());
     painter->drawPixmap(rect, pixmap);

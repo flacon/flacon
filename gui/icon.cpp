@@ -25,22 +25,23 @@
 
 #include "icon.h"
 #include <QIconEngine>
+#include <QApplication>
 #include <QDebug>
 
 class IconEngine : public QIconEngine
 {
 public:
     /************************************************
-    *
-    ************************************************/
+     *
+     ************************************************/
     IconEngine() :
         QIconEngine()
     {
     }
 
     /************************************************
-    *
-    ************************************************/
+     *
+     ************************************************/
     IconEngine(const IconEngine &other) :
         QIconEngine(other),
         mIconDark(other.mIconDark),
@@ -49,16 +50,16 @@ public:
     }
 
     /************************************************
-    *
-    ************************************************/
+     *
+     ************************************************/
     QIconEngine *clone() const override
     {
         return new IconEngine(*this);
     }
 
     /************************************************
-    *
-    ************************************************/
+     *
+     ************************************************/
     void addFile(const QString &fileName, const QSize &size, QIcon::Mode mode, QIcon::State state) override
     {
         mIconLight.addFile(fileName, size, mode, state);
@@ -68,24 +69,24 @@ public:
     }
 
     /************************************************
-    *
-    ************************************************/
+     *
+     ************************************************/
     void addPixmap(const QPixmap &pixmap, QIcon::Mode mode, QIcon::State state) override
     {
         mIconLight.addPixmap(pixmap, mode, state);
     }
 
     /************************************************
-    *
-    ************************************************/
+     *
+     ************************************************/
     void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override
     {
         icon().paint(painter, rect, Qt::AlignCenter, mode, state);
     }
 
     /************************************************
-    *
-    ************************************************/
+     *
+     ************************************************/
     QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override
     {
         return icon().pixmap(size, mode, state);
@@ -152,4 +153,15 @@ bool Icon::isDarkMode()
 void Icon::setDarkMode(bool dark)
 {
     IconEngine::mDarkMode = dark;
+}
+
+Pixmap::Pixmap(const QString &name, QSize size) :
+    QPixmap(Icon(name).pixmap(size * qApp->devicePixelRatio()))
+{
+    setDevicePixelRatio(qApp->devicePixelRatio());
+}
+
+Pixmap::Pixmap(const QString &name, int width, int height) :
+    Pixmap(name, QSize(width, height))
+{
 }

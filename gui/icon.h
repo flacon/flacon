@@ -39,4 +39,11 @@ public:
     static void setDarkMode(bool dark);
 };
 
+class Pixmap : public QPixmap
+{
+public:
+    Pixmap(const QString &name, QSize size);
+    Pixmap(const QString &name, int width, int height);
+};
+
 #endif // ICON_H
