@@ -81,6 +81,7 @@ void Gain::run()
         qWarning() << "Gain command failed: " << debugProgramArgs(prog, args);
         QString msg = tr("Gain error:\n") + QString::fromLocal8Bit(process.readAllStandardError());
         emit    error(mJobs.first().track, msg);
+        return;
     }
 
     for (const Job &job : qAsConst(mJobs)) {
