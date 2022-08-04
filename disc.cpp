@@ -955,13 +955,27 @@ QStringList Disc::searchCoverImages(const QString &startDir)
  ************************************************/
 QString Disc::searchCoverImage(const QString &startDir)
 {
-    QStringList l = searchCoverImages(startDir);
-    foreach (QString file, l) {
+    QString res;
+
+    for (const QString &file : searchCoverImages(startDir)) {
         QImage img(file);
-        if (!img.isNull())
+
+        if (img.isNull()) {
+            continue;
+        }
+
+        double ratio = double(img.width()) / double(img.height());
+
+        if (std::abs(1 - ratio) < 0.2) {
             return file;
+        }
+
+        if (res.isEmpty()) {
+            res = file;
+        }
     }
-    return "";
+
+    return res;
 }
 
 /************************************************
