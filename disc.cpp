@@ -116,7 +116,6 @@ void Disc::searchCueFile(bool replaceExisting)
             QBuffer buf(&embeddedCue);
             buf.open(QBuffer::ReadOnly);
             setCueFile(Cue(&buf, audioFilePaths().first()));
-            qDebug() << this->isEmpty();
             return;
         }
     }
@@ -326,7 +325,7 @@ void Disc::syncTagsToTracks()
     assert(tags.count() == mTracks.count());
 
     for (int i = 0; i < mTracks.count(); ++i) {
-        Track *      track = mTracks[i];
+        Track       *track = mTracks[i];
         const Track &tgs   = tags.at(i);
 
         track->setTag(TagId::Album, tgs.tagValue(TagId::Album));
