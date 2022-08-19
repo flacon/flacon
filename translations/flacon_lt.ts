@@ -931,6 +931,11 @@ Ar norite tęsti?</translation>
         <comment>context menu</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Flacon - Converting</source>
+        <comment>Main window title</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

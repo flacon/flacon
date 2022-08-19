@@ -957,6 +957,11 @@ Do you want to continue?</source>
         <comment>context menu</comment>
         <translation>אחזור נתונים מהמרשתת</translation>
     </message>
+    <message>
+        <source>Flacon - Converting</source>
+        <comment>Main window title</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

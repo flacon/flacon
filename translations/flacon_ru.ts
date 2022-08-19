@@ -954,6 +954,11 @@ Do you want to continue?</source>
         <comment>context menu</comment>
         <translation>Получить информацию из Интернет</translation>
     </message>
+    <message>
+        <source>Flacon - Converting</source>
+        <comment>Main window title</comment>
+        <translation>Flacon - Обработка</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
