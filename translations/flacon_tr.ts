@@ -77,12 +77,12 @@
     <message>
         <source>Icon for application</source>
         <comment>Thanks on the about page</comment>
-        <translation type="unfinished"/>
+        <translation>Uygulama simgesi</translation>
     </message>
     <message>
         <source>Icons for application</source>
         <comment>Thanks on the about page</comment>
-        <translation type="unfinished"/>
+        <translation>Uygulama simgeleri</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
@@ -94,7 +94,7 @@
     <message>
         <source>Create a profile</source>
         <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Profil oluştur</translation>
     </message>
     <message>
         <source>To create a profile, fill out the following information:</source>
@@ -104,17 +104,17 @@
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Yeni profil adı:</translation>
     </message>
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ses biçimi</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <comment>Button caption</comment>
-        <translation type="unfinished"/>
+        <translation>Profil oluştur</translation>
     </message>
 </context>
 <context>
@@ -241,15 +241,15 @@
     </message>
     <message>
         <source>Simplified Chinese (GB18030)</source>
-        <translation type="unfinished"/>
+        <translation>Basitleştirilmiş Çince (GB18030)</translation>
     </message>
     <message>
         <source>Traditional Chinese (BIG5)</source>
-        <translation type="unfinished"/>
+        <translation>Geleneksel Çince (BIG5)</translation>
     </message>
     <message>
         <source>Japanese (CP932)</source>
-        <translation type="unfinished"/>
+        <translation>Japonca (CP932)</translation>
     </message>
 </context>
 <context>
@@ -350,7 +350,7 @@ In CBR mode, it sets the specific output bitrate.
     <name>Conv::Converter</name>
     <message>
         <source>Conversion is not possible:</source>
-        <translation type="unfinished"/>
+        <translation>Dönüştürme mümkün değil:</translation>
     </message>
 </context>
 <context>
@@ -382,7 +382,8 @@ In CBR mode, it sets the specific output bitrate.
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1 dosyası %2 olarak yeniden adlandırılamadı:
+%3</translation>
     </message>
 </context>
 <context>
@@ -390,18 +391,20 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Encoder error:
 </source>
-        <translation type="unfinished"/>
+        <translation>Kodlayıcı hatası:
+</translation>
     </message>
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
-        <translation type="unfinished"/>
+        <translation>%1 dosyası okunamadı</translation>
     </message>
     <message>
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1 dosyası %2 olarak yeniden adlandırılamadı:
+%3</translation>
     </message>
 </context>
 <context>
@@ -417,18 +420,18 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-        <translation type="unfinished"/>
+        <translation> &lt;b&gt;%1&lt;/b&gt; okunamadı:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Kapak resmi seç</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Kapak resmi olmadan</translation>
     </message>
 </context>
 <context>
@@ -436,16 +439,16 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Keep original image size</source>
         <comment>Cover image option on the preferences dialog</comment>
-        <translation type="unfinished"/>
+        <translation>Özgün resim boyutunu koru</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
-        <translation type="unfinished"/>
+        <translation>Resim şundan daha büyükse yeniden boyutlandır</translation>
     </message>
 </context>
 <context>
@@ -457,7 +460,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
-        <translation type="unfinished"/>
+        <translation>Dosya adı biçimi</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -466,33 +469,33 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>Dosyaya yaz</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>Ses dosyalarına göm</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Sanatçı&quot; ekle</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Albüm adı&quot; ekle</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Yıl&quot; Ekle</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Tarz&quot; Ekle</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; kullan</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
@@ -517,17 +520,17 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation type="unfinished"/>
+        <translation>Cue dosyası belirlenmedi.</translation>
     </message>
     <message>
         <source>Audio file not set.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Ses dosyası belirlenmedi.</translation>
     </message>
     <message>
         <source>Audio file not set for track %1.</source>
         <comment>Warning message, Placeholders is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>%1 parçası için ses dosyası belirlenmedi.</translation>
     </message>
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
@@ -557,18 +560,18 @@ This only affects the file size. All settings are lossless.</source>
     </message>
     <message>
         <source>%1 kbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 kbps</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Öntanımlı</translation>
     </message>
 </context>
 <context>
     <name>GeneralPage</name>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation>Dönüşüm işlemindeki iş parçacığı sayısı.</translation>
+        <translation>Dönüştürme işlemindeki iş parçacığı sayısı.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -595,11 +598,11 @@ This only affects the file size. All settings are lossless.</source>
     </message>
     <message>
         <source>Result Files</source>
-        <translation type="unfinished"/>
+        <translation>Sonuç Dosyaları</translation>
     </message>
     <message>
         <source>Directory:</source>
-        <translation type="unfinished"/>
+        <translation>Dizin:</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
@@ -610,7 +613,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     </message>
     <message>
         <source>Pattern:</source>
-        <translation type="unfinished"/>
+        <translation>Desen:</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -635,16 +638,16 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Format:</source>
-        <translation type="unfinished"/>
+        <translation>Biçim:</translation>
     </message>
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
-        <translation type="unfinished"/>
+        <translation>Çıktı biçimi</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished"/>
+        <translation>Etiketler</translation>
     </message>
     <message>
         <source>Album performer:</source>
@@ -660,11 +663,11 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Genre:</source>
-        <translation type="unfinished"/>
+        <translation>Tarz:</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation type="unfinished"/>
+        <translation>Sanatçı:</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -672,54 +675,54 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Year:</source>
-        <translation type="unfinished"/>
+        <translation>Yıl:</translation>
     </message>
     <message>
         <source>Album:</source>
-        <translation type="unfinished"/>
+        <translation>Albüm:</translation>
     </message>
     <message>
         <source>Edit all tags…</source>
         <comment>Button text</comment>
-        <translation type="unfinished"/>
+        <translation>Tüm etiketleri düzenle…</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Dosya</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ayarlar</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yardım</translation>
     </message>
     <message>
         <source>Add disc…</source>
         <comment>Main menu item</comment>
-        <translation type="unfinished"/>
+        <translation>Disk ekle…</translation>
     </message>
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
-        <translation type="unfinished"/>
+        <translation>Disk ekle</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation type="unfinished"/>
+        <translation>CUE ya da ses dosyası ekle</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>Convert</source>
-        <translation type="unfinished"/>
+        <translation>Dönüştür</translation>
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation type="unfinished"/>
+        <translation>Dönüştürme işlemini başlat</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -731,7 +734,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Abort conversion process</source>
-        <translation type="unfinished"/>
+        <translation>Dönüştürme işlemini iptal et</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -785,7 +788,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation type="unfinished"/>
+        <translation>Özyinelemeli albüm arama</translation>
     </message>
     <message>
         <source>Ctrl+Shift+O</source>
@@ -798,12 +801,12 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Seçileni dönüştür</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
         <extracomment>Main menu item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Seçilen parçalar için dönüştürme işlemini başlat</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
@@ -826,7 +829,8 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Bazı albümler dönüştürülmeyecek, hatalılar.
+Devam etmek istiyor musun?</translation>
     </message>
     <message>
         <source>%1 files</source>
@@ -836,7 +840,7 @@ Do you want to continue?</source>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
-        <translation type="unfinished"/>
+        <translation>Tüm desteklenen biçimler</translation>
     </message>
     <message>
         <source>All files</source>
@@ -846,7 +850,7 @@ Do you want to continue?</source>
     <message>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
-        <translation type="unfinished"/>
+        <translation>CUE ya da ses dosyası ekle</translation>
     </message>
     <message>
         <source>Select audio file</source>
@@ -893,7 +897,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Get album information from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Albüm bilgilerini internetten getir</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
@@ -969,23 +973,23 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Satançı&quot; ekle</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Albüm adı&quot; ekle</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Parça adı&quot; ekle</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Yıl&quot; Ekle</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Tarz&quot; Ekle</translation>
     </message>
     <message>
         <source>Insert &quot;Disc number&quot;</source>
@@ -998,7 +1002,7 @@ Do you want to continue?</source>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; kullan</translation>
     </message>
 </context>
 <context>
@@ -1034,12 +1038,12 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Result Files</source>
-        <translation type="unfinished"/>
+        <translation>Sonuç Dosyaları</translation>
     </message>
     <message>
         <source>Directory:</source>
         <comment>Preferences form label text</comment>
-        <translation type="unfinished"/>
+        <translation>Dizin:</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
@@ -1051,7 +1055,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Pattern:</source>
         <comment>Preferences form label text</comment>
-        <translation type="unfinished"/>
+        <translation>Desen:</translation>
     </message>
     <message>
         <source>&lt;style type=&quot;text/css&quot;&gt;
@@ -1176,7 +1180,7 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
-        <translation type="unfinished"/>
+        <translation>Albüm Başına</translation>
     </message>
     <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
@@ -1338,7 +1342,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Sanatçı:</translation>
     </message>
     <message>
         <source>Album performer:</source>
@@ -1348,17 +1352,17 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Albüm:</translation>
     </message>
     <message>
         <source>Genre:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Tarz:</translation>
     </message>
     <message>
         <source>Year:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Yıl:</translation>
     </message>
     <message>
         <source>Start track number:</source>
@@ -1373,7 +1377,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
-        <translation type="unfinished"/>
+        <translation>Parça adı:</translation>
     </message>
     <message>
         <source>Comment:</source>
@@ -1458,7 +1462,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Dönüştürme mümkün değil.&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1476,17 +1480,17 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Başlık</translation>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Sanatçı</translation>
     </message>
     <message>
         <source>Album</source>
         <comment>Table header.</comment>
-        <translation type="unfinished"/>
+        <translation>Albüm</translation>
     </message>
     <message>
         <source>Comment</source>
