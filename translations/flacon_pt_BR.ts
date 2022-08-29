@@ -958,7 +958,7 @@ Você deseja continuar?</translation>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
-        <translation type="unfinished"/>
+        <translation>Flacon - Convertendo</translation>
     </message>
 </context>
 <context>
