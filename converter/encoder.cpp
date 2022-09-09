@@ -64,7 +64,7 @@ QProcess *Encoder::createEncoderProcess()
 
     qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog, args);
 
-    QProcess *res = new QProcess(this);
+    QProcess *res = new QProcess();
     res->setObjectName("encoder");
     res->setProgram(prog);
     res->setArguments(args);
@@ -151,6 +151,7 @@ void Encoder::run()
 
     QProcess *resampler = createRasmpler(procs.isEmpty() ? mOutFile : "-");
     if (resampler) {
+
         procs.insert(0, resampler);
     }
 
@@ -170,9 +171,11 @@ void Encoder::run()
         return;
     }
 
+    QObject keeper;
     //------------------------------------------------
     // We start all processes connected by a pipe
     for (int i = 0; i < procs.count() - 1; ++i) {
+        procs[i]->setParent(&keeper);
         procs[i]->setStandardOutputProcess(procs[i + 1]);
     }
 
