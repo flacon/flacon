@@ -51,23 +51,17 @@ public:
     TrackId    id() const { return mId; }
     bool       isEnabled() const { return mEnabled; }
     bool       isPregap() const { return mPregap; }
-    CueTime    start() const { return mStart; }
-    CueTime    end() const { return mEnd; }
     bool       isNull() const { return mId == 0; }
     TrackState state() const { return mState; }
 
     void setId(TrackId value) { mId = value; }
     void setEnabled(bool value) { mEnabled = value; }
     void setPregap(bool value) { mPregap = value; }
-    void setStart(const CueTime &value) { mStart = value; }
-    void setEnd(const CueTime &value) { mEnd = value; }
     void setState(TrackState value) { mState = value; }
 
 private:
-    TrackId    mId    = 0;
-    TrackState mState = TrackState::NotRunning;
-    CueTime    mStart;
-    CueTime    mEnd;
+    TrackId    mId      = 0;
+    TrackState mState   = TrackState::NotRunning;
     bool       mEnabled = true;
     bool       mPregap  = false;
 };

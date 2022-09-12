@@ -40,23 +40,6 @@ namespace Conv {
 
 class WorkerThread;
 
-struct DiscPipelineJob
-{
-    DiscPipelineJob(ConvTracks tracks,
-                    QString    workDir) :
-        mTracks(tracks),
-        mWorkDir(workDir)
-    {
-    }
-
-    const ConvTracks &tracks() const { return mTracks; }
-    QString           workDir() const { return mWorkDir; }
-
-public:
-    ConvTracks mTracks;
-    QString    mWorkDir;
-};
-
 class DiscPipeline : public QObject
 {
     Q_OBJECT

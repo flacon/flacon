@@ -192,9 +192,6 @@ DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Conver
             track.setPregap(true);
             track.setEnabled(true);
 
-            track.setStart(firstTrack->cueIndex(0));
-            track.setEnd(firstTrack->cueIndex(1));
-
             resTracks << track;
         }
 
@@ -206,17 +203,6 @@ DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Conver
             track.setId((mData->trackId)++);
             track.setPregap(false);
             track.setEnabled(converterJob.tracks.contains(t));
-
-            if (i == 0 && hasPregap && preGapType == PreGapType::AddToFirstTrack) {
-                track.setStart(CueTime("00:00:00"));
-            }
-            else {
-                track.setStart(t->cueIndex(1));
-            }
-
-            if (i < tracks.count() - 1) {
-                track.setEnd(tracks.at(i + 1)->cueIndex(01));
-            }
 
             resTracks << track;
         }
