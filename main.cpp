@@ -300,6 +300,9 @@ int main(int argc, char *argv[])
 
     if (parser.isSet("debug") || getenv("FLACON_DEBUG")) {
         qSetMessagePattern("%{time yyyy.MM.dd hh:mm:ss.zzz t} [%{threadid}] %{category}: %{type}: %{message}");
+        QLoggingCategory::setFilterRules("*.debug=true\n"
+                                         "qt.*.debug=false\n"
+                                         "kf.*.debug=false\n");
     }
     else {
         qSetMessagePattern("%{if-warning}Warning: %{endif}%{if-critical}Error: %{endif}%{if-fatal}Error: %{endif}%{message}");
