@@ -47,6 +47,7 @@ set(HEADERS
     cuecreator.h
     coverimage.h
     sox.h
+    extprogram.h
 )
 
 set(SOURCES
@@ -62,6 +63,7 @@ set(SOURCES
     cuecreator.cpp
     coverimage.cpp
     sox.cpp
+    extprogram.cpp
 )
 
 # include("cmake/git_version.cmake")

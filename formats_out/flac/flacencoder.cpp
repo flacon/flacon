@@ -29,6 +29,11 @@
 #include <taglib/flacfile.h>
 #include <taglib/xiphcomment.h>
 #include <QFile>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG, "FlacEncoder")
+}
 
 QString writeMetadataFile(const QString &path, const QString &fieldName, const QString &fieldValue)
 {
@@ -63,6 +68,7 @@ void FlacEncoder::writeMetadata(const QString &filePath) const
     TagLib::FLAC::File file(filePath.toLocal8Bit(), false);
 
     if (!file.isValid()) {
+        qCWarning(LOG) << Q_FUNC_INFO << "file is invalid";
         throw FlaconError("Can't open file");
     }
 

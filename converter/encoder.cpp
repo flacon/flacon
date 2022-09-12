@@ -32,6 +32,7 @@
 #include <QDir>
 #include <QDebug>
 #include <QLoggingCategory>
+#include "extprogram.h"
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "Encoder")
@@ -64,7 +65,7 @@ QProcess *Encoder::createEncoderProcess()
 
     qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog, args);
 
-    QProcess *res = new QProcess();
+    QProcess *res = new ExtProgram();
     res->setObjectName("encoder");
     res->setProgram(prog);
     res->setArguments(args);
@@ -99,7 +100,7 @@ QProcess *Encoder::createRasmpler(const QString &outFile)
 
     qCDebug(LOG) << "Start resampler:" << debugProgramArgs(prog, args);
 
-    QProcess *res = new QProcess();
+    QProcess *res = new ExtProgram();
     res->setObjectName("resampler");
     res->setProgram(prog);
     res->setArguments(args);
@@ -128,7 +129,7 @@ QProcess *Encoder::createDemph(const QString &outFile)
 
     qCDebug(LOG) << "Start deEmphasis:" << debugProgramArgs(prog, args);
 
-    QProcess *res = new QProcess();
+    QProcess *res = new ExtProgram();
     res->setObjectName("deemphasis");
     res->setProgram(prog);
     res->setArguments(args);
@@ -173,41 +174,43 @@ void Encoder::run()
 
     QObject keeper;
     //------------------------------------------------
-    // We start all processes connected by a pipe
-    for (int i = 0; i < procs.count() - 1; ++i) {
-        procs[i]->setParent(&keeper);
-        procs[i]->setStandardOutputProcess(procs[i + 1]);
-    }
-
-    connect(procs.first(), &QProcess::bytesWritten, this, &Encoder::processBytesWritten);
-
-    for (QProcess *p : procs) {
-        p->start();
-    }
-
-    readInputFile(procs.first());
-
-    for (QProcess *p : procs) {
-        p->closeWriteChannel();
-        p->waitForFinished(-1);
-
-        if (p->exitCode() != 0) {
-            qWarning() << "Encoder command failed: inputFile =" << inputFile() << " outputFile =" << outFile() << " command =" << debugProgramArgs(p->program(), p->arguments());
-            QString msg = tr("Encoder error:\n") + "<pre>" + QString::fromLocal8Bit(p->readAllStandardError()) + "</pre>";
-            emit    error(track(), msg);
-        }
-    }
-
-    deleteFile(mInputFile);
-
     try {
+        // We start all processes connected by a pipe
+        for (int i = 0; i < procs.count() - 1; ++i) {
+            QProcess *proc = procs[i];
+            proc->setParent(&keeper);
+            proc->setStandardOutputProcess(procs[i + 1]);
+        }
+
+        connect(procs.first(), &QProcess::bytesWritten, this, &Encoder::processBytesWritten);
+
+        for (QProcess *proc : procs) {
+            proc->start();
+            proc->waitForStarted();
+        }
+
+        readInputFile(procs.first());
+
+        for (QProcess *p : procs) {
+            p->closeWriteChannel();
+            p->waitForFinished(-1);
+        }
+
+        for (QProcess *p : procs) {
+            if (p->exitCode() != 0) {
+                throw(QString::fromLocal8Bit(p->readAllStandardError()));
+            }
+        }
+
+        deleteFile(mInputFile);
         writeMetadata(outFile());
+        emit trackReady(track(), outFile());
     }
     catch (const FlaconError &err) {
-        emit error(track(), err.what());
+        deleteFile(mInputFile);
+        QString msg = tr("Track %1. Encoder error:", "Track error message, %1 is a track number").arg(track().trackNum()) + "<pre>" + err.what() + "</pre>";
+        emit    error(track(), msg);
     }
-
-    emit trackReady(track(), outFile());
 }
 
 /************************************************
