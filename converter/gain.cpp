@@ -32,6 +32,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QLoggingCategory>
+#include "extprogram.h"
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "Converter")
@@ -72,10 +73,17 @@ void Gain::run()
 
     qCDebug(LOG) << "Start gain:" << debugProgramArgs(prog, args);
 
-    QProcess process;
+    ExtProgram process;
 
-    process.start(prog, args);
-    process.waitForFinished(-1);
+    try {
+        process.start(prog, args);
+        process.waitForFinished(-1);
+    }
+    catch (const FlaconError &err) {
+        QString msg = tr("Gain error:\n") + err.what();
+        emit    error(mJobs.first().track, msg);
+        return;
+    }
 
     if (process.exitCode() != 0) {
         qWarning() << "Gain command failed: " << debugProgramArgs(prog, args);
