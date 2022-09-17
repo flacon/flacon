@@ -274,15 +274,41 @@ QStringList Settings::groups(const QString &parentGroup) const
 /************************************************
 
  ************************************************/
-bool Settings::checkProgram(const QString &program) const
+bool Settings::checkProgram(const QString &program, QStringList *errors) const
 {
-    QString val = programName(program);
+    QString path = programPath(program);
 
-    if (val.isEmpty())
+    if (path.isEmpty()) {
+        if (errors) {
+            *errors << tr("The %1 program is not installed.<br>Verify that all required programs are installed and in your preferences.",
+                          "Error message. %1 - is an program name")
+                               .arg(program);
+        }
         return false;
+    }
 
-    QFileInfo fi(val);
-    return fi.exists() && fi.isExecutable();
+    QFileInfo fi(path);
+    if (!fi.exists()) {
+        if (errors) {
+            *errors << tr("The %1 program is installed according to your settings, but the binary file can’t be found.<br>"
+                          "Verify that all required programs are installed and in your preferences.",
+                          "Error message. %1 - is an program name")
+                               .arg(program);
+        }
+        return false;
+    }
+
+    if (!fi.isExecutable()) {
+        if (errors) {
+            *errors << tr("The %1 program is installed according to your settings, but the file is not executable.<br>"
+                          "Verify that all required programs are installed and in your preferences.",
+                          "Error message. %1 - is an program name")
+                               .arg(program);
+        }
+        return false;
+    }
+
+    return true;
 }
 
 /************************************************
@@ -295,6 +321,28 @@ QString Settings::programName(const QString &program) const
 #else
     return value("Programs/" + program).toString();
 #endif
+}
+
+/************************************************
+
+ ************************************************/
+QString Settings::programPath(const QString &program) const
+{
+#ifdef MAC_BUNDLE
+    return programName(program);
+#endif
+
+    QString name = programName(program);
+
+    if (name.isEmpty()) {
+        return "";
+    }
+
+    if (QFileInfo(name).isAbsolute()) {
+        return name;
+    }
+
+    return findProgram(name);
 }
 
 /************************************************

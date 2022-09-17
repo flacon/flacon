@@ -71,11 +71,12 @@ public:
     void     setValue(const QString &key, const QVariant &value);
     QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
 
-    bool    checkProgram(const QString &program) const;
     QString programName(const QString &program) const;
+    QString programPath(const QString &program) const;
+    QString findProgram(const QString &program) const;
+    bool    checkProgram(const QString &program, QStringList *errors = nullptr) const;
 
     QSet<QString> programs() const { return mPrograms; }
-    QString       findProgram(const QString &program) const;
 
     QString tmpDir() const;
     void    setTmpDir(const QString &value);
@@ -83,12 +84,12 @@ public:
     QString defaultCodepage() const;
     void    setDefaultCodepage(const QString &value);
 
-    Profiles &      profiles();
+    Profiles       &profiles();
     const Profiles &profiles() const;
     void            setProfiles(const Profiles &profiles);
 
     const Profile &currentProfile() const;
-    Profile &      currentProfile();
+    Profile       &currentProfile();
     bool           selectProfile(const QString &profileId);
 
     uint encoderThreadsCount() const;

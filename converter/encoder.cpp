@@ -112,7 +112,7 @@ QProcess *Encoder::createRasmpler(const QString &outFile)
 ************************************************/
 QProcess *Encoder::createDemph(const QString &outFile)
 {
-    if (!CueFlags(mTrack.tag(TagId::Flags)).preEmphasis) {
+    if (!mTrack.preEmphased()) {
         qCDebug(LOG) << "DeEmphasis is not required";
         return nullptr;
     }

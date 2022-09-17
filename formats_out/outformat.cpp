@@ -100,12 +100,9 @@ bool OutFormat::checkProgram(const QString &program, QStringList *errors) const
     if (program.isEmpty())
         return true;
 
-    if (!Settings::i()->checkProgram(program)) {
-        *errors << QObject::tr("I can't find program <b>%1</b>.").arg(program);
-        return false;
-    }
+    Settings::i()->checkProgram(program, errors);
 
-    return true;
+    return errors->isEmpty();
 }
 
 /************************************************

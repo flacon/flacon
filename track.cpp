@@ -364,6 +364,14 @@ CueIndex Track::cueIndex(int indexNum) const
 /************************************************
  *
  ************************************************/
+bool Track::preEmphased() const
+{
+    return CueFlags(tag(TagId::Flags)).preEmphasis;
+}
+
+/************************************************
+ *
+ ************************************************/
 Tracks::Tracks() :
     QVector<Track>()
 {
@@ -403,8 +411,8 @@ Tracks::Tracks(const QList<Track *> &other)
 Tracks &Tracks::operator=(const Tracks &other)
 {
     QVector<Track>::operator=(other);
-    mUri                    = other.mUri;
-    mTitle                  = other.mTitle;
+    mUri   = other.mUri;
+    mTitle = other.mTitle;
 
     return *this;
 }

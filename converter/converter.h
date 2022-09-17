@@ -75,7 +75,7 @@ private:
 
     Data *mData = nullptr;
 
-    bool          check(const Profile &profile) const;
+    bool          check(const Jobs &jobs, const Profile &profile) const;
     DiscPipeline *createDiscPipeline(const Profile &profile, const Job &converterJob);
 };
 

@@ -124,7 +124,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
         return;
     }
 
-    if (!check(profile)) {
+    if (!check(jobs, profile)) {
         emit finished();
         return;
     }
@@ -293,24 +293,31 @@ void Converter::startThread()
 /************************************************
 
  ************************************************/
-bool Converter::check(const Profile &profile) const
+bool Converter::check(const Jobs &jobs, const Profile &profile) const
 {
     QStringList errors;
+
     if (!profile.isValid()) {
         errors << "Incorrect output profile";
         return false;
     }
 
-    bool ok = profile.check(&errors);
+    profile.check(&errors);
 
-    if (profile.bitsPerSample() != BitsPerSample::AsSourcee || profile.sampleRate() != SampleRate::AsSource) {
-        if (!Settings::i()->checkProgram(Sox::programName())) {
-            errors << QObject::tr("I can't find program <b>%1</b>.").arg(Sox::programName());
-            ok = false;
+    bool needSox = false;
+
+    needSox = needSox || (profile.bitsPerSample() != BitsPerSample::AsSourcee || profile.sampleRate() != SampleRate::AsSource);
+    for (const Job &job : jobs) {
+        for (const Track *track : job.tracks) {
+            needSox = needSox || track->preEmphased();
         }
     }
 
-    if (!ok) {
+    if (needSox) {
+        Settings::i()->checkProgram(Sox::programName(), &errors);
+    }
+
+    if (!errors.isEmpty()) {
         QString s;
         foreach (QString e, errors) {
             s += QString("<li style='margin-top: 4px;'> %1</li>").arg(e);
@@ -320,5 +327,5 @@ bool Converter::check(const Profile &profile) const
                                 .arg(tr("Conversion is not possible:"), s));
     }
 
-    return ok;
+    return errors.isEmpty();
 }
