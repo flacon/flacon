@@ -37,8 +37,6 @@ class Profile;
 
 namespace Conv {
 
-using TrackId = quint64;
-
 class ConvTrack : public Track
 {
 public:
@@ -48,19 +46,11 @@ public:
 
     ConvTrack &operator=(const ConvTrack &other) = default;
 
-    TrackId    id() const { return mId; }
-    bool       isPregap() const { return mPregap; }
-    bool       isNull() const { return mId == 0; }
-    TrackState state() const { return mState; }
-
-    void setId(TrackId value) { mId = value; }
+    bool isPregap() const { return mPregap; }
     void setPregap(bool value) { mPregap = value; }
-    void setState(TrackState value) { mState = value; }
 
 private:
-    TrackId    mId     = 0;
-    TrackState mState  = TrackState::NotRunning;
-    bool       mPregap = false;
+    bool mPregap = false;
 };
 
 using ConvTracks = QList<ConvTrack>;
@@ -68,10 +58,5 @@ using ConvTracks = QList<ConvTrack>;
 } // namespace
 
 Q_DECLARE_METATYPE(Conv::ConvTrack)
-
-inline uint qHash(const Conv::ConvTrack &track, uint seed = 0)
-{
-    return qHash(track.id(), seed);
-}
 
 #endif // CONVERTERTYPES_H

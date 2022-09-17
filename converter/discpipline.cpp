@@ -118,7 +118,7 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks
 
     for (const ConvTrack &track : qAsConst(tracks)) {
         mTracks << track;
-        mTrackStates[track.id()] = track;
+        mTrackStates[track.index()] = TrackState::NotRunning;
 
         qCDebug(LOG) << "Create directory for output files" << dir;
         createDir(QFileInfo(track.resultFilePath()).absoluteDir().path());
@@ -213,7 +213,7 @@ void DiscPipeline::startSplitter(const SplitterRequest &request)
     thread->start();
 
     for (const ConvTrack &t : request.tracks) {
-        mTrackStates[t.id()].setState(TrackState::Splitting);
+        mTrackStates[t.index()] = TrackState::Splitting;
     }
 
     // *********************************************************
@@ -330,7 +330,7 @@ void DiscPipeline::startGain(const QList<Request> &requests)
 void DiscPipeline::trackDone(const ConvTrack &track, const QString &outFileName)
 {
     qCDebug(LOG) << "Track done: "
-                 << "id=" << track.id()
+                 << "index=" << track.index()
                  << track
                  << "outFileName:" << outFileName;
 
@@ -343,7 +343,7 @@ void DiscPipeline::trackDone(const ConvTrack &track, const QString &outFileName)
         trackError(track, tr("I can't rename file:\n%1 to %2\n%3").arg(outFileName, track.resultFilePath(), file.errorString()));
     }
 
-    mTrackStates[track.id()].setState(TrackState::OK);
+    mTrackStates[track.index()] = TrackState::OK;
     emit trackProgressChanged(track, TrackState::OK, 0);
     emit threadFinished();
 
@@ -381,8 +381,8 @@ void DiscPipeline::interrupt(TrackState state)
     mInterrupted = true;
     mEncoderRequests.clear();
 
-    for (ConvTrack &track : mTrackStates) {
-        switch (track.state()) {
+    for (ConvTrack &track : mTracks) {
+        switch (mTrackStates[track.index()]) {
             case TrackState::Splitting:
             case TrackState::Encoding:
             case TrackState::Queued:
@@ -390,7 +390,7 @@ void DiscPipeline::interrupt(TrackState state)
             case TrackState::CalcGain:
             case TrackState::WriteGain:
             case TrackState::NotRunning:
-                track.setState(state);
+                mTrackStates[track.index()] = state;
                 emit trackProgressChanged(track, state, 0);
                 break;
 
@@ -420,7 +420,7 @@ void DiscPipeline::stop()
  ************************************************/
 void DiscPipeline::trackError(const ConvTrack &track, const QString &message)
 {
-    mTrackStates[track.id()].setState(TrackState::Error);
+    mTrackStates[track.index()] = TrackState::Error;
     emit trackProgressChanged(track, TrackState::Error, 0);
     interrupt(TrackState::Aborted);
     emit stopAllThreads();
@@ -435,8 +435,8 @@ void DiscPipeline::trackError(const ConvTrack &track, const QString &message)
  ************************************************/
 bool DiscPipeline::isRunning() const
 {
-    for (const ConvTrack &track : qAsConst(mTrackStates)) {
-        switch (track.state()) {
+    for (TrackState state : mTrackStates) {
+        switch (state) {
             case TrackState::Splitting:
             case TrackState::Encoding:
             case TrackState::Queued:
@@ -478,7 +478,7 @@ void DiscPipeline::trackProgress(const ConvTrack &track, TrackState state, int p
     if (mInterrupted)
         return;
 
-    mTrackStates[track.id()].setState(state);
+    mTrackStates[track.index()] = state;
     emit trackProgressChanged(track, state, percent);
 }
 

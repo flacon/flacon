@@ -188,7 +188,6 @@ DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Conver
             pregapTrack.setTitle("(HTOA)");
 
             ConvTrack track(pregapTrack);
-            track.setId((mData->trackId)++);
             track.setPregap(true);
 
             resTracks << track;
@@ -203,7 +202,6 @@ DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Conver
             }
 
             ConvTrack track(*t);
-            track.setId((mData->trackId)++);
             track.setPregap(false);
 
             resTracks << track;

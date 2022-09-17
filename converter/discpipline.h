@@ -66,14 +66,14 @@ private slots:
     void trackDone(const Conv::ConvTrack &track, const QString &outFileName);
 
 private:
-    Profile                  mProfile;
-    Disc                    *mDisc = nullptr;
-    QString                  mWorkDir;
-    QList<ConvTrack>         mTracks;
-    QMap<TrackId, ConvTrack> mTrackStates;
-    QTemporaryDir           *mTmpDir = nullptr;
-    CoverImage               mCoverImage;
-    QString                  mEmbeddedCue;
+    Profile               mProfile;
+    Disc                 *mDisc = nullptr;
+    QString               mWorkDir;
+    QList<ConvTrack>      mTracks;
+    QMap<int, TrackState> mTrackStates;
+    QTemporaryDir        *mTmpDir = nullptr;
+    CoverImage            mCoverImage;
+    QString               mEmbeddedCue;
 
     struct SplitterRequest
     {
