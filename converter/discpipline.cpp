@@ -117,10 +117,6 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks
     mTmpDir->setAutoRemove(true);
 
     for (const ConvTrack &track : qAsConst(tracks)) {
-        if (!track.isEnabled()) {
-            continue;
-        }
-
         mTracks << track;
         mTrackStates[track.id()] = track;
 
@@ -191,18 +187,11 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
 
 void DiscPipeline::addSpliterRequest()
 {
-    QString    outDir = mTmpDir->path();
-    ConvTracks tracks;
-
-    for (const ConvTrack &t : qAsConst(mTracks)) {
-        if (t.isEnabled()) {
-            tracks << t;
-        }
-    }
+    QString outDir = mTmpDir->path();
 
     PreGapType pregapType = (hasPregap() && mProfile.isCreateCue()) ? mProfile.preGapType() : PreGapType::Skip;
 
-    mSplitterRequests << SplitterRequest { tracks, outDir, pregapType };
+    mSplitterRequests << SplitterRequest { mTracks, outDir, pregapType };
 }
 
 /************************************************

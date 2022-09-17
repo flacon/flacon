@@ -190,7 +190,6 @@ DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Conver
             ConvTrack track(pregapTrack);
             track.setId((mData->trackId)++);
             track.setPregap(true);
-            track.setEnabled(true);
 
             resTracks << track;
         }
@@ -199,10 +198,13 @@ DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Conver
         for (int i = 0; i < tracks.count(); ++i) {
             const Track *t = tracks.at(i);
 
+            if (!converterJob.tracks.contains(t)) {
+                continue;
+            }
+
             ConvTrack track(*t);
             track.setId((mData->trackId)++);
             track.setPregap(false);
-            track.setEnabled(converterJob.tracks.contains(t));
 
             resTracks << track;
         }

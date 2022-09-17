@@ -49,21 +49,18 @@ public:
     ConvTrack &operator=(const ConvTrack &other) = default;
 
     TrackId    id() const { return mId; }
-    bool       isEnabled() const { return mEnabled; }
     bool       isPregap() const { return mPregap; }
     bool       isNull() const { return mId == 0; }
     TrackState state() const { return mState; }
 
     void setId(TrackId value) { mId = value; }
-    void setEnabled(bool value) { mEnabled = value; }
     void setPregap(bool value) { mPregap = value; }
     void setState(TrackState value) { mState = value; }
 
 private:
-    TrackId    mId      = 0;
-    TrackState mState   = TrackState::NotRunning;
-    bool       mEnabled = true;
-    bool       mPregap  = false;
+    TrackId    mId     = 0;
+    TrackState mState  = TrackState::NotRunning;
+    bool       mPregap = false;
 };
 
 using ConvTracks = QList<ConvTrack>;
