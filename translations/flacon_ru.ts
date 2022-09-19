@@ -391,12 +391,12 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation>Программа %1 не установлена.&lt;br&gt;Проверьте что установлены все нужные програмы и они указаны в настройках.</translation>
+        <translation>Программа %1 не установлена.&lt;br&gt;Проверьте что установлены все нужные программы и они указаны в настройках.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation>Программа %1 задана в настройках, но бинарный файл программы не найден.&lt;br&gt;Проверьте что установлены все нужные програмы и они указаны в настройках.</translation>
+        <translation>Программа %1 задана в настройках, но бинарный файл программы не найден.&lt;br&gt;Проверьте что установлены все нужные программы и они указаны в настройках.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -418,12 +418,6 @@ In CBR mode, it sets the specific output bitrate.
 <context>
     <name>Conv::Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
-        <translation>Ошибка кодирования:
-</translation>
-    </message>
-    <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Не получается прочитать &quot;%1&quot;</translation>
@@ -435,6 +429,11 @@ In CBR mode, it sets the specific output bitrate.
         <translation>Не получается переименовать файл:
 %1 в %2
 %3</translation>
+    </message>
+    <message>
+        <source>Track %1. Encoder error:</source>
+        <comment>Track error message, %1 is a track number</comment>
+        <translation>Трек %1. Ошибка кодирования:</translation>
     </message>
 </context>
 <context>
@@ -1324,10 +1323,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
 <context>
     <name>QObject</name>
     <message>
-        <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Не могу найти программу &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Не получается прочитать файл обложки &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
@@ -1409,6 +1404,24 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
 </context>
 <context>
+    <name>Settings</name>
+    <message>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation>Программа %1 не установлена.&lt;br&gt;Проверьте что установлены все нужные программы и они указаны в настройках.</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation>Программа %1 задана в настройках, но бинарный файл программы не найден.&lt;br&gt;Проверьте что установлены все нужные программы и они указаны в настройках.</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation>Программа %1 задана в настройках, но файл не является исполняемым.&lt;br&gt;Проверьте что установлены все нужные программы и они указаны в настройках.</translation>
+    </message>
+</context>
+<context>
     <name>TagEditor</name>
     <message>
         <source>Edit tags</source>
@@ -1458,7 +1471,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
-        <translation>Коментарий:</translation>
+        <translation>Комментарий:</translation>
     </message>
     <message>
         <source>of</source>
@@ -1571,7 +1584,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
-        <translation>Коментарий</translation>
+        <translation>Комментарий</translation>
     </message>
     <message>
         <source>File</source>
@@ -1601,7 +1614,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Check now</source>
-        <translation>Пороверить</translation>
+        <translation>Проверить</translation>
     </message>
     <message>
         <source>Last check was %1</source>
@@ -1678,7 +1691,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Задает мимнимальный битрейт (в kb/s).</translation>
+        <translation>Задает минимальный битрейт (в kb/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>

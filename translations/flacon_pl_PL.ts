@@ -394,12 +394,6 @@ W trybie CBR, ustawia konkretną wartość wyjściowej prędkości transmisji.</
 <context>
     <name>Conv::Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
-        <translation>Błąd kodeka:
-</translation>
-    </message>
-    <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Nie można odczytać pliku %1</translation>
@@ -411,6 +405,11 @@ W trybie CBR, ustawia konkretną wartość wyjściowej prędkości transmisji.</
         <translation>Nie można zmienić nazwy pliku:
 %1 na %2
 %3</translation>
+    </message>
+    <message>
+        <source>Track %1. Encoder error:</source>
+        <comment>Track error message, %1 is a track number</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1300,10 +1299,6 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
 <context>
     <name>QObject</name>
     <message>
-        <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Nie można znaleźć programu &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation type="unfinished"/>
@@ -1381,6 +1376,24 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Settings</name>
+    <message>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -396,12 +396,6 @@ CBR módban beállítja az adott kimeneti bitrátát.
 <context>
     <name>Conv::Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
-        <translation>Átalakító hiba
-</translation>
-    </message>
-    <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Nem tudtam olvasni a %1 fájlt</translation>
@@ -413,6 +407,11 @@ CBR módban beállítja az adott kimeneti bitrátát.
         <translation>Nem tudtam átnevezni:
 %1 erre %2
 %3</translation>
+    </message>
+    <message>
+        <source>Track %1. Encoder error:</source>
+        <comment>Track error message, %1 is a track number</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1302,10 +1301,6 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
 <context>
     <name>QObject</name>
     <message>
-        <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Nem találtam meg a &lt;b&gt;%1&lt;/b&gt; programot.</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Nem lehetett olvasni a borítóképet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
@@ -1383,6 +1378,24 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Settings</name>
+    <message>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
         <translation type="unfinished"/>
     </message>
 </context>

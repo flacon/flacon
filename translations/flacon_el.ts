@@ -395,12 +395,6 @@ In CBR mode, it sets the specific output bitrate.
 <context>
     <name>Conv::Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
-        <translation>Σφάλμα κωδικοποιητή:
-</translation>
-    </message>
-    <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Αδυναμία ανάγνωσης τού αρχείου %1</translation>
@@ -412,6 +406,11 @@ In CBR mode, it sets the specific output bitrate.
         <translation>Αδυναμία μετονομασίας τού αρχείου:
 %1 σε %2
 %3</translation>
+    </message>
+    <message>
+        <source>Track %1. Encoder error:</source>
+        <comment>Track error message, %1 is a track number</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1301,10 +1300,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
 <context>
     <name>QObject</name>
     <message>
-        <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Αδυναμία έυρεσης τού προγράμματος &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Αδυναμία ανάγνωσης εικόνας εξωφύλλου &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
@@ -1382,6 +1377,24 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Settings</name>
+    <message>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -419,12 +419,6 @@ DBVC – débit binaire variable contraint</translation>
 <context>
     <name>Conv::Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
-        <translation>Erreur d’encodeur :
-</translation>
-    </message>
-    <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Je ne peux pas lire le fichier %1</translation>
@@ -436,6 +430,11 @@ DBVC – débit binaire variable contraint</translation>
         <translation>Je ne peux pas renommer le fichier :
 %1 en %2
 %3</translation>
+    </message>
+    <message>
+        <source>Track %1. Encoder error:</source>
+        <comment>Track error message, %1 is a track number</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1324,10 +1323,6 @@ L’utilisation de l’analyse par album permet de préserver les différences d
 <context>
     <name>QObject</name>
     <message>
-        <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Je ne peux pas trouver le programme &lt;b&gt;%1&lt;/b&gt;</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>Je ne peux pas lire l’image de couverture &lt;b&gt;%1&lt;/b&gt; : &lt;br&gt;%2</translation>
@@ -1406,6 +1401,24 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <source>file name is empty</source>
         <comment>error message text</comment>
         <translation>le nom de fichier est vide</translation>
+    </message>
+</context>
+<context>
+    <name>Settings</name>
+    <message>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation>Le programme %1 n’est pas installé.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation>D’après vos paramètres, le programme %1 est installé, mais le fichier exécutable est introuvable.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

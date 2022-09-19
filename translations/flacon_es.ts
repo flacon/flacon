@@ -418,12 +418,6 @@ En el modo CBR, se establece la tasa de bits específica de salida.
 <context>
     <name>Conv::Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
-        <translation>Error de Codificador:
-</translation>
-    </message>
-    <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>No puedo leer el archivo %1</translation>
@@ -435,6 +429,11 @@ En el modo CBR, se establece la tasa de bits específica de salida.
         <translation>No puedo renombrar el fichero:
 %1 como %2
 %3</translation>
+    </message>
+    <message>
+        <source>Track %1. Encoder error:</source>
+        <comment>Track error message, %1 is a track number</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1324,10 +1323,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
 <context>
     <name>QObject</name>
     <message>
-        <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>No puedo encontrar el programa &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation>No puedo leer la imagen de portada &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
@@ -1406,6 +1401,24 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <source>file name is empty</source>
         <comment>error message text</comment>
         <translation>el nombre de archivo está vacío</translation>
+    </message>
+</context>
+<context>
+    <name>Settings</name>
+    <message>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation>El programa %1 no está instalado.&lt;br&gt;Verifique que todos los programas requeridos están instalados en sus preferencias.</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation>El programa %1 está instalado de acuerdo a sus preferencias, pero el archivo ejecutable no puede ser encontrado.&lt;br&gt;Verifique que todos los programas requeridos están instalados en sus preferencias.</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

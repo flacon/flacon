@@ -394,11 +394,6 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
 <context>
     <name>Conv::Encoder</name>
     <message>
-        <source>Encoder error:
-</source>
-        <translation>Chyba kodéru:</translation>
-    </message>
-    <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <translation>Nelze přečíst soubor %1</translation>
@@ -410,6 +405,11 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
         <translation>Nelze přejmenovat soubor:⏎
 %1 na %2⏎
 %3</translation>
+    </message>
+    <message>
+        <source>Track %1. Encoder error:</source>
+        <comment>Track error message, %1 is a track number</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1298,10 +1298,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
 <context>
     <name>QObject</name>
     <message>
-        <source>I can&apos;t find program &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Nelze najít program &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <translation type="unfinished"/>
@@ -1379,6 +1375,24 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Settings</name>
+    <message>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
         <translation type="unfinished"/>
     </message>
 </context>
