@@ -433,7 +433,7 @@ En el modo CBR, se establece la tasa de bits específica de salida.
     <message>
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>Pista %1. Error de codificación:</translation>
     </message>
 </context>
 <context>
@@ -1418,7 +1418,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>El programa %1 está instalado de acuerdo a su configuración, pero el archivo no es ejecutable.&lt;br&gt;Verifique que todos los programas requeridos están instalados y en sus preferencias.</translation>
     </message>
 </context>
 <context>

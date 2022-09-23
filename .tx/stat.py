@@ -42,31 +42,30 @@ def graph(percent):
 def printRow(name, done, total):
     percent = 0
     if tot:
-        percent = sum / tot * 100
+        percent = done / total * 100
 
     print("%-20s | %s | %3d%%   %4s of %s" % (name, graph(percent), percent, done, total))
 
 def scanFiles(rootDir):
     res = []
-    for f in Path(rootDir).rglob('*.ts'): 
+    for f in Path(rootDir).rglob('*.ts'):
         if f.name.startswith("src."):
-            continue       
+            continue
         res.append(Translation(f))
-    return res        
+    return res
 
 
 if __name__ == "__main__":
     translations = scanFiles("..")
     translations.sort(reverse=True, key=lambda item: item.percent)
-    
+
     tot = 0
     sum = 0
     for t in translations:
         sum += t.finished
-        tot += t.total 
+        tot += t.total
         printRow(t.name, t.finished, t.total)
-    
+
     print("_________________________________________")
     printRow("Average", int(sum / len(translations)), int(tot / len(translations)) )
 
-    

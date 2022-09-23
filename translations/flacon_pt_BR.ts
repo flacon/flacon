@@ -434,7 +434,7 @@ No modo CBR, define a taxa de bits de saída específica.
     <message>
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>Faixa %1. Erro no codificador:</translation>
     </message>
 </context>
 <context>
@@ -1419,7 +1419,7 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
     <message>
         <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>O programa %1 está instalado de acordo com suas configurações, mas o arquivo não é executável.&lt;br&gt;Verifique se todos os programas necessários estão instalados e nas configurações.</translation>
     </message>
 </context>
 <context>

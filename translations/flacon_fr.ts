@@ -434,7 +434,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>Plage %1. Erreur de l’encodeur :</translation>
     </message>
 </context>
 <context>
@@ -1418,7 +1418,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>Le programme %1 est installé d’après vos paramètres, mais le fichier n’est pas exécutable.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
     </message>
 </context>
 <context>
