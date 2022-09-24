@@ -20,7 +20,7 @@
     OutDirectory=:Music
     OutPattern=%a/{%y - }%A/%n - %t
     Format = FLAC
-    Name = Flac
+    Name = FLAC
     Compression=5
     ReplayGain=Disable
     BitsPerSample=0
