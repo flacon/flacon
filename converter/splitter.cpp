@@ -124,8 +124,8 @@ QList<Splitter::Job::Chunk> Splitter::Job::getPart(const CueIndex &from, const C
     first.start = from;
 
     Chunk second;
-    first.file = getInputAudioFile(to.file());
-    first.end  = to;
+    second.file = getInputAudioFile(to.file());
+    second.end  = to;
 
     return { first, second };
 }
