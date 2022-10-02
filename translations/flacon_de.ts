@@ -268,7 +268,7 @@
     </message>
     <message>
         <source>VBR quality</source>
-        <translation>VBR Qualität</translation>
+        <translation>VBR-Qualität</translation>
     </message>
     <message>
         <source>CBR insane</source>
@@ -919,16 +919,16 @@ Möchten Sie fortsetzen?</translation>
     </message>
     <message>
         <source>Get from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Aus dem Internet abrufen</translation>
     </message>
     <message>
         <source>Get album information from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Album-Informationen aus dem Internet abrufen</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Daten aus dem Internet abrufen</translation>
     </message>
     <message>
         <source>Flacon - Converting</source>
@@ -1377,7 +1377,7 @@ Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Album
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
-        <translation type="unfinished"/>
+        <translation>Dateiname ist leer</translation>
     </message>
 </context>
 <context>
@@ -1463,7 +1463,7 @@ Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Album
     </message>
     <message>
         <source>Get data from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Daten aus dem Internet abrufen</translation>
     </message>
 </context>
 <context>
