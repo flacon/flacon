@@ -73,6 +73,8 @@
     PregapType = AddToFirst
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
 
 
 [Profiles/OPUS]
