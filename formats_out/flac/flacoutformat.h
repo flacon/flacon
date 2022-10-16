@@ -40,14 +40,15 @@ public:
     virtual QString gainProgramName() const override { return "metaflac"; }
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *      configPage(QWidget *parent) const override;
+    EncoderConfigPage       *configPage(QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
     SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
-    Conv::Encoder *createEncoder() const override;
-    Conv::Gain *   createGain(const Profile &profile) const override;
+    Conv::Encoder  *createEncoder() const override;
+    Conv::Gain     *createGain(const Profile &profile) const override;
+    MetadataWriter *createMetadataWriter() const override;
 };
 
 class ConfigPage_Flac : public EncoderConfigPage, private Ui::flacConfigPage

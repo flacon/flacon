@@ -39,12 +39,14 @@ class Gain;
 class EncoderConfigPage;
 class Profile;
 
+class MetadataWriter;
+
 class OutFormat
 {
 public:
     static QList<OutFormat *> allFormats();
-    static OutFormat *        formatForId(const QString &id);
-    virtual ~OutFormat() {}
+    static OutFormat         *formatForId(const QString &id);
+    virtual ~OutFormat() { }
 
     QString       id() const { return mId; }
     QString       name() const { return mName; }
@@ -62,10 +64,11 @@ public:
     virtual bool check(const Profile &profile, QStringList *errors) const;
 
     virtual QHash<QString, QVariant> defaultParameters() const         = 0;
-    virtual EncoderConfigPage *      configPage(QWidget *parent) const = 0;
+    virtual EncoderConfigPage       *configPage(QWidget *parent) const = 0;
 
-    virtual Conv::Encoder *createEncoder() const = 0;
-    virtual Conv::Gain *   createGain(const Profile &profile) const;
+    virtual Conv::Encoder  *createEncoder() const = 0;
+    virtual Conv::Gain     *createGain(const Profile &profile) const;
+    virtual MetadataWriter *createMetadataWriter() const;
 
 protected:
     QString       mId;

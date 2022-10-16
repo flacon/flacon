@@ -26,6 +26,7 @@
 #include "alacoutformat.h"
 #include "alacencoder.h"
 #include "alacconfigpage.h"
+#include "../metadatawriter.h"
 
 /************************************************
  *
@@ -62,4 +63,12 @@ EncoderConfigPage *OutFormat_Alac::configPage(QWidget *parent) const
 Conv::Encoder *OutFormat_Alac::createEncoder() const
 {
     return new AlacEncoder();
+}
+
+/************************************************
+ *
+ ************************************************/
+MetadataWriter *OutFormat_Alac::createMetadataWriter() const
+{
+    return new Mp4MetaDataWriter();
 }

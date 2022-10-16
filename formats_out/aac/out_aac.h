@@ -40,13 +40,14 @@ public:
     virtual QString gainProgramName() const override { return ""; }
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *      configPage(QWidget *parentr) const override;
+    EncoderConfigPage       *configPage(QWidget *parentr) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_192000; }
 
-    Conv::Encoder *createEncoder() const override;
+    Conv::Encoder  *createEncoder() const override;
+    MetadataWriter *createMetadataWriter() const override;
 };
 
 class ConfigPage_Acc : public EncoderConfigPage, private Ui::aacConfigPage
@@ -67,8 +68,6 @@ class Encoder_Aac : public Conv::Encoder
 public:
     QString     programName() const override { return "faac"; }
     QStringList programArgs() const override;
-
-    void writeMetadata(const QString &filePath) const override;
 };
 
 #endif // OUT_AAC_H

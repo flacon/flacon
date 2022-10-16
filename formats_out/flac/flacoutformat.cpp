@@ -27,6 +27,7 @@
 #include "project.h"
 #include "inputaudiofile.h"
 #include "flacencoder.h"
+#include "flacmetadata.h"
 #include <QDebug>
 
 static constexpr int MATAFLAC_MAX_SAMPLE_RATE = 192 * 1000;
@@ -102,6 +103,14 @@ Conv::Encoder *OutFormat_Flac::createEncoder() const
 Conv::Gain *OutFormat_Flac::createGain(const Profile &profile) const
 {
     return new Gain_Flac(profile);
+}
+
+/************************************************
+
+************************************************/
+MetadataWriter *OutFormat_Flac::createMetadataWriter() const
+{
+    return new FlacMetadata();
 }
 
 /************************************************

@@ -31,6 +31,7 @@
 #include "ui_out_mp3_config.h"
 #include "../converter/encoder.h"
 #include "../converter/gain.h"
+#include "../metadatawriter.h"
 
 class OutFormat_Mp3 : public OutFormat
 {
@@ -40,14 +41,15 @@ public:
     virtual QString gainProgramName() const override { return "mp3gain"; }
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *      configPage(QWidget *parent) const override;
+    EncoderConfigPage       *configPage(QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_64; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
-    Conv::Encoder *createEncoder() const override;
-    Conv::Gain *   createGain(const Profile &profile) const override;
+    Conv::Encoder  *createEncoder() const override;
+    Conv::Gain     *createGain(const Profile &profile) const override;
+    MetadataWriter *createMetadataWriter() const override;
 };
 
 class ConfigPage_Mp3 : public EncoderConfigPage, private Ui::mp3ConfigPage
@@ -76,6 +78,12 @@ public:
     using Conv::Gain::Gain;
     QString     programName() const override { return "mp3gain"; }
     QStringList programArgs(const QStringList &files, const GainType gainType) const override;
+};
+
+class Mp3MetaDataWriter : public MetadataWriter
+{
+public:
+    void writeTags() const override;
 };
 
 #endif // OUT_MP3_H

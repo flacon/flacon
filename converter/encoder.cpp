@@ -33,6 +33,7 @@
 #include <QDebug>
 #include <QLoggingCategory>
 #include "extprogram.h"
+#include "formats_out/metadatawriter.h"
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "Encoder")
@@ -203,7 +204,8 @@ void Encoder::run()
         }
 
         deleteFile(mInputFile);
-        writeMetadata(outFile());
+        writeMetadata();
+
         emit trackReady(track(), outFile());
     }
     catch (const FlaconError &err) {
@@ -211,6 +213,27 @@ void Encoder::run()
         QString msg = tr("Track %1. Encoder error:", "Track error message, %1 is a track number").arg(track().trackNum()) + "<pre>" + err.what() + "</pre>";
         emit    error(track(), msg);
     }
+}
+
+/************************************************
+ *
+ ************************************************/
+void Encoder::writeMetadata() const
+{
+    MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter();
+    if (!writer) {
+        return;
+    }
+
+    writer->setFilePath(outFile());
+    writer->setTrack(mTrack);
+    if (profile().isEmbedCue()) {
+        writer->setEmbeddedCue(embeddedCue());
+    }
+    writer->setCoverImage(coverImage());
+
+    writer->writeTags();
+    delete writer;
 }
 
 /************************************************
@@ -248,13 +271,6 @@ void Encoder::setProfile(const Profile &profile)
 void Encoder::setCoverImage(const CoverImage &value)
 {
     mCoverImage = value;
-}
-
-/************************************************
-
- ************************************************/
-void Encoder::writeMetadata(const QString &) const
-{
 }
 
 /************************************************

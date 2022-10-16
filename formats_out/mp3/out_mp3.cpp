@@ -24,7 +24,16 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_mp3.h"
+#include <taglib/mpegfile.h>
+#include <taglib/id3v2tag.h>
+#include <taglib/textidentificationframe.h>
+#include <taglib/attachedpictureframe.h>
 #include <QDebug>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(LOG, "Mp3Encoder")
+}
 
 static constexpr char VBR_MEDIUM[]   = "vbrMedium";
 static constexpr char VBR_STATDARD[] = "vbrStandard";
@@ -80,6 +89,14 @@ Conv::Encoder *OutFormat_Mp3::createEncoder() const
 Conv::Gain *OutFormat_Mp3::createGain(const Profile &profile) const
 {
     return new Gain_Mp3(profile);
+}
+
+/************************************************
+ *
+ ************************************************/
+MetadataWriter *OutFormat_Mp3::createMetadataWriter() const
+{
+    return new Mp3MetaDataWriter();
 }
 
 /************************************************
@@ -185,8 +202,6 @@ void ConfigPage_Mp3::mp3PresetCbxCanged(int index)
  ************************************************/
 QStringList Encoder_Mp3::programArgs() const
 {
-    const Track &track = this->track();
-
     QStringList args;
 
     args << programPath();
@@ -234,40 +249,6 @@ QStringList Encoder_Mp3::programArgs() const
         args << "--noreplaygain";
     }
 
-    // Tags .....................................................
-    args << "--add-id3v2";
-    //#args << "--id3v2-only"
-    if (!track.artist().isEmpty()) {
-        args << "--ta" << track.artist();
-    }
-
-    if (!track.album().isEmpty()) {
-        args << "--tl" << track.album();
-    }
-
-    if (!track.genre().isEmpty()) {
-        args << "--tg" << track.genre();
-    }
-
-    if (!track.date().isEmpty())
-        args << "--ty" << track.date();
-
-    if (!track.title().isEmpty())
-        args << "--tt" << track.title();
-
-    if (!track.tag(TagId::AlbumArtist).isEmpty())
-        args << "--tv" << QString("TPE2=%1").arg(track.tag(TagId::AlbumArtist));
-
-    if (!track.comment().isEmpty())
-        args << "--tc" << track.comment();
-
-    if (!coverImage().isEmpty()) {
-        args << "--ti" << coverImage().tmpFilePath();
-    }
-
-    args << "--tn" << QString("%1/%2").arg(track.trackNum()).arg(track.trackCount());
-    args << "--tv" << QString("TPOS=%1").arg(track.discNum());
-
     // Files ....................................................
     args << "-";
     args << outFile();
@@ -275,6 +256,9 @@ QStringList Encoder_Mp3::programArgs() const
     return args;
 }
 
+/************************************************
+ *
+ ************************************************/
 QStringList Gain_Mp3::programArgs(const QStringList &files, const GainType gainType) const
 {
     QStringList args;
@@ -287,4 +271,80 @@ QStringList Gain_Mp3::programArgs(const QStringList &files, const GainType gainT
     args << files;
 
     return args;
+}
+
+/************************************************
+ *
+ ************************************************/
+static TagLib::ID3v2::Frame *addFrame(TagLib::ID3v2::Tag *tags, const TagLib::ByteVector &frameId)
+{
+    if (!tags->frameList(frameId).isEmpty()) {
+        return tags->frameList(frameId).front();
+    }
+
+    TagLib::ID3v2::TextIdentificationFrame *frame = new TagLib::ID3v2::TextIdentificationFrame(frameId, TagLib::String::UTF8);
+    tags->addFrame(frame);
+    return frame;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Mp3MetaDataWriter::writeTags() const
+{
+    TagLib::MPEG::File file(filePath().toLocal8Bit(), false);
+
+    if (!file.isValid()) {
+        qCWarning(LOG) << Q_FUNC_INFO << "file is invalid";
+        throw FlaconError("Can't open file");
+    }
+
+    TagLib::ID3v2::Tag *tags = file.ID3v2Tag(true);
+
+    if (!track().artist().isEmpty())
+        tags->setArtist(track().artist().toStdString());
+
+    if (!track().album().isEmpty())
+        tags->setAlbum(track().album().toStdString());
+
+    if (!track().genre().isEmpty())
+        tags->setGenre(track().genre().toStdString());
+
+    if (!track().title().isEmpty())
+        tags->setTitle(track().title().toStdString());
+
+    if (!track().comment().isEmpty())
+        tags->setComment(track().comment().toStdString());
+
+    {
+        int year = track().date().toInt();
+        if (year)
+            tags->setYear(year);
+    }
+
+    if (!track().tag(TagId::AlbumArtist).isEmpty()) {
+        addFrame(tags, "TPE2")->setText(track().tag(TagId::AlbumArtist).toStdString());
+    }
+
+    addFrame(tags, "TRCK")->setText(QString("%1 / %2").arg(track().trackNum()).arg(track().trackCount()).toStdString());
+    addFrame(tags, "TPOS")->setText(QString("%1 / %2").arg(track().discNum()).arg(track().discCount()).toStdString());
+
+    // Write cover image ........................
+    if (!coverImage().isEmpty()) {
+
+        TagLib::ID3v2::AttachedPictureFrame *apic = new TagLib::ID3v2::AttachedPictureFrame();
+        TagLib::ByteVector                   img(coverImage().data().data(), coverImage().data().size());
+
+        apic->setPicture(img);
+        apic->setMimeType(coverImage().mimeType().toStdString());
+        apic->setType(TagLib::ID3v2::AttachedPictureFrame::Type::FrontCover);
+        // apic->setDescription("Front Cover");
+
+        tags->addFrame(apic);
+    }
+    // ..........................................
+
+    if (!file.save()) {
+        throw FlaconError("Can't save file");
+    }
 }

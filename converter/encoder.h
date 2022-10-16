@@ -62,8 +62,6 @@ public:
     virtual QString     programName() const { return ""; }
     virtual QStringList programArgs() const = 0;
 
-    virtual void writeMetadata(const QString &filePath) const;
-
 public slots:
     void run() override;
 
@@ -92,6 +90,7 @@ private:
     QProcess *createEncoderProcess();
     QProcess *createRasmpler(const QString &outFile);
     QProcess *createDemph(const QString &outFile);
+    void      writeMetadata() const;
 };
 
 } // namespace
