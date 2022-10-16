@@ -56,7 +56,6 @@ void MetadataWriter::writeXiphComments(TagLib::Ogg::XiphComment *comments) const
     writeStrTag("DATE", track().date());
     writeStrTag("TITLE", track().title());
     writeStrTag("ALBUMARTIST", track().tag(TagId::AlbumArtist));
-    writeStrTag("ALBUM_ARTIST", track().tag(TagId::AlbumArtist));
     writeStrTag("COMMENT", track().comment());
     writeStrTag("DISCID", track().discId());
 

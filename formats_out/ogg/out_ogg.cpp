@@ -238,7 +238,6 @@ QStringList Gain_Ogg::programArgs(const QStringList &files, const GainType gainT
 
     return args;
 }
-#include <sstream>
 
 /************************************************
  *
