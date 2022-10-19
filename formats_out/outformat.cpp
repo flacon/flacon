@@ -125,11 +125,3 @@ Conv::Gain *OutFormat::createGain(const Profile &profile) const
 {
     return new Conv::NoGain(profile);
 }
-
-/************************************************
- *
- ************************************************/
-MetadataWriter *OutFormat::createMetadataWriter() const
-{
-    return nullptr;
-}

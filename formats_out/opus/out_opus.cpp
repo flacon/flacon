@@ -24,6 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_opus.h"
+#include "opusmetadatawriter.h"
 #include <QDebug>
 
 static const constexpr char *BITRATE_TYPE_KEY = "BitrateType";
@@ -65,6 +66,14 @@ EncoderConfigPage *OutFormat_Opus::configPage(QWidget *parent) const
 Conv::Encoder *OutFormat_Opus::createEncoder() const
 {
     return new Encoder_Opus();
+}
+
+/************************************************
+
+ ************************************************/
+MetadataWriter *OutFormat_Opus::createMetadataWriter(const QString &filePath) const
+{
+    return new OpusMetadataWriter(filePath);
 }
 
 /************************************************
@@ -123,36 +132,6 @@ QStringList Encoder_Opus::programArgs() const
         args << "--cvbr";
 
     args << "--bitrate" << profile().value(BITRATE_KEY).toString();
-
-    // Tags .....................................................
-    if (!track().artist().isEmpty())
-        args << "--artist" << track().artist();
-    if (!track().album().isEmpty())
-        args << "--album" << track().album();
-    if (!track().genre().isEmpty())
-        args << "--genre" << track().genre();
-    if (!track().date().isEmpty())
-        args << "--date" << track().date();
-    if (!track().title().isEmpty())
-        args << "--title" << track().title();
-    if (!track().comment().isEmpty())
-        args << "--comment" << QString("COMMENT=%1").arg(track().comment());
-    if (!track().discId().isEmpty())
-        args << "--comment" << QString("DISCID=%1").arg(track().discId());
-    if (!track().tag(TagId::AlbumArtist).isEmpty()) {
-        args << "--comment" << QString("album_artist=%1").arg(track().tag(TagId::AlbumArtist));
-    }
-
-    args << "--comment" << QString("tracknumber=%1").arg(track().trackNum());
-    args << "--comment" << QString("tracktotal=%1").arg(track().trackCount());
-
-    args << "--comment" << QString("disc=%1").arg(track().discNum());
-    args << "--comment" << QString("discnumber=%1").arg(track().discNum());
-    args << "--comment" << QString("disctotal=%1").arg(track().discCount());
-
-    if (!coverImage().isEmpty()) {
-        args << "--picture" << coverImage().tmpFilePath();
-    }
 
     // Files ....................................................
     args << "-";

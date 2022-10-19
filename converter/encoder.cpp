@@ -220,19 +220,21 @@ void Encoder::run()
  ************************************************/
 void Encoder::writeMetadata() const
 {
-    MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter();
+    MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(outFile());
     if (!writer) {
         return;
     }
 
-    writer->setFilePath(outFile());
-    writer->setTrack(mTrack);
+    writer->setTags(mTrack);
     if (profile().isEmbedCue()) {
         writer->setEmbeddedCue(embeddedCue());
     }
-    writer->setCoverImage(coverImage());
 
-    writer->writeTags();
+    if (!coverImage().isEmpty()) {
+        writer->setCoverImage(coverImage());
+    }
+
+    writer->save();
     delete writer;
 }
 

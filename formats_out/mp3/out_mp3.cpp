@@ -24,16 +24,8 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_mp3.h"
-#include <taglib/mpegfile.h>
-#include <taglib/id3v2tag.h>
-#include <taglib/textidentificationframe.h>
-#include <taglib/attachedpictureframe.h>
+#include "mp3metadatawriter.h"
 #include <QDebug>
-#include <QLoggingCategory>
-
-namespace {
-Q_LOGGING_CATEGORY(LOG, "Mp3Encoder")
-}
 
 static constexpr char VBR_MEDIUM[]   = "vbrMedium";
 static constexpr char VBR_STATDARD[] = "vbrStandard";
@@ -94,9 +86,9 @@ Conv::Gain *OutFormat_Mp3::createGain(const Profile &profile) const
 /************************************************
  *
  ************************************************/
-MetadataWriter *OutFormat_Mp3::createMetadataWriter() const
+MetadataWriter *OutFormat_Mp3::createMetadataWriter(const QString &filePath) const
 {
-    return new Mp3MetaDataWriter();
+    return new Mp3MetaDataWriter(filePath);
 }
 
 /************************************************
@@ -271,80 +263,4 @@ QStringList Gain_Mp3::programArgs(const QStringList &files, const GainType gainT
     args << files;
 
     return args;
-}
-
-/************************************************
- *
- ************************************************/
-static TagLib::ID3v2::Frame *addFrame(TagLib::ID3v2::Tag *tags, const TagLib::ByteVector &frameId)
-{
-    if (!tags->frameList(frameId).isEmpty()) {
-        return tags->frameList(frameId).front();
-    }
-
-    TagLib::ID3v2::TextIdentificationFrame *frame = new TagLib::ID3v2::TextIdentificationFrame(frameId, TagLib::String::UTF8);
-    tags->addFrame(frame);
-    return frame;
-}
-
-/************************************************
- *
- ************************************************/
-void Mp3MetaDataWriter::writeTags() const
-{
-    TagLib::MPEG::File file(filePath().toLocal8Bit(), false);
-
-    if (!file.isValid()) {
-        qCWarning(LOG) << Q_FUNC_INFO << "file is invalid";
-        throw FlaconError("Can't open file");
-    }
-
-    TagLib::ID3v2::Tag *tags = file.ID3v2Tag(true);
-
-    if (!track().artist().isEmpty())
-        tags->setArtist(track().artist().toStdString());
-
-    if (!track().album().isEmpty())
-        tags->setAlbum(track().album().toStdString());
-
-    if (!track().genre().isEmpty())
-        tags->setGenre(track().genre().toStdString());
-
-    if (!track().title().isEmpty())
-        tags->setTitle(track().title().toStdString());
-
-    if (!track().comment().isEmpty())
-        tags->setComment(track().comment().toStdString());
-
-    {
-        int year = track().date().toInt();
-        if (year)
-            tags->setYear(year);
-    }
-
-    if (!track().tag(TagId::AlbumArtist).isEmpty()) {
-        addFrame(tags, "TPE2")->setText(track().tag(TagId::AlbumArtist).toStdString());
-    }
-
-    addFrame(tags, "TRCK")->setText(QString("%1 / %2").arg(track().trackNum()).arg(track().trackCount()).toStdString());
-    addFrame(tags, "TPOS")->setText(QString("%1 / %2").arg(track().discNum()).arg(track().discCount()).toStdString());
-
-    // Write cover image ........................
-    if (!coverImage().isEmpty()) {
-
-        TagLib::ID3v2::AttachedPictureFrame *apic = new TagLib::ID3v2::AttachedPictureFrame();
-        TagLib::ByteVector                   img(coverImage().data().data(), coverImage().data().size());
-
-        apic->setPicture(img);
-        apic->setMimeType(coverImage().mimeType().toStdString());
-        apic->setType(TagLib::ID3v2::AttachedPictureFrame::Type::FrontCover);
-        // apic->setDescription("Front Cover");
-
-        tags->addFrame(apic);
-    }
-    // ..........................................
-
-    if (!file.save()) {
-        throw FlaconError("Can't save file");
-    }
 }

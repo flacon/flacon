@@ -68,7 +68,7 @@ Conv::Encoder *OutFormat_Alac::createEncoder() const
 /************************************************
  *
  ************************************************/
-MetadataWriter *OutFormat_Alac::createMetadataWriter() const
+MetadataWriter *OutFormat_Alac::createMetadataWriter(const QString &filePath) const
 {
-    return new Mp4MetaDataWriter();
+    return new Mp4MetaDataWriter(filePath);
 }

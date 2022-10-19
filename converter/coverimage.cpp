@@ -80,6 +80,25 @@ static CoverImage::Format formatStrToFormat(const QByteArray &format)
     return CoverImage::Format::Unknown;
 }
 
+QString CoverImage::fileExt() const
+{
+    // clang-format off
+    switch (mFormat) {
+        case Format::Unknown:   return "";
+        case Format::BMP:       return "bmp";
+        case Format::GIF:       return "gif";
+        case Format::JPG:       return "jpeg";
+        case Format::PNG:       return "png";
+        case Format::PBM:       return "pbm";
+        case Format::PGM:       return "pgm";
+        case Format::PPM:       return "ppm";
+        case Format::XBM:       return "xbm";
+        case Format::XPM:       return "xpm";
+        case Format::SVG:       return "svg";
+    }
+    // clang-format on
+}
+
 CoverImage::CoverImage(const QString &inFilePath, uint size)
 {
 

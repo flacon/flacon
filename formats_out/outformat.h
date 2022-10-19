@@ -68,7 +68,7 @@ public:
 
     virtual Conv::Encoder  *createEncoder() const = 0;
     virtual Conv::Gain     *createGain(const Profile &profile) const;
-    virtual MetadataWriter *createMetadataWriter() const;
+    virtual MetadataWriter *createMetadataWriter(const QString &filePath) const = 0;
 
 protected:
     QString       mId;

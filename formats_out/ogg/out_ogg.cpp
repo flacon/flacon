@@ -26,14 +26,8 @@
 #include "out_ogg.h"
 #include <QDebug>
 #include <math.h>
-#include <taglib/vorbisfile.h>
-#include <taglib/xiphcomment.h>
-#include <QLoggingCategory>
+#include "oggmetadatawriter.h"
 #include <QByteArray>
-
-namespace {
-Q_LOGGING_CATEGORY(LOG, "FlacEncoder")
-}
 
 /************************************************
 
@@ -88,9 +82,9 @@ Conv::Gain *OutFormat_Ogg::createGain(const Profile &profile) const
 /************************************************
  *
  ************************************************/
-MetadataWriter *OutFormat_Ogg::createMetadataWriter() const
+MetadataWriter *OutFormat_Ogg::createMetadataWriter(const QString &filePath) const
 {
-    return new OggMetadata();
+    return new OggMetaDataWriter(filePath);
 }
 
 /************************************************
@@ -237,43 +231,4 @@ QStringList Gain_Ogg::programArgs(const QStringList &files, const GainType gainT
     args << files;
 
     return args;
-}
-
-/************************************************
- *
- ************************************************/
-void OggMetadata::writeTags() const
-{
-    TagLib::Ogg::Vorbis::File file(filePath().toLocal8Bit(), false);
-
-    if (!file.isValid()) {
-        qCWarning(LOG) << Q_FUNC_INFO << "file is invalid";
-        throw FlaconError("Can't open file");
-    }
-
-    // The comments is still owned by the FLAC::File and should not be deleted by the user.
-    // It will be deleted when the file (object) is destroyed.
-    TagLib::Ogg::XiphComment *tags = file.tag();
-    this->writeXiphComments(tags);
-
-    if (!coverImage().isEmpty()) {
-        const CoverImage  &img = coverImage();
-        TagLib::ByteVector dt(img.data().data(), img.data().size());
-
-        TagLib::FLAC::Picture *pic = new TagLib::FLAC::Picture();
-        pic->setType(TagLib::FLAC::Picture::Type::FrontCover);
-        pic->setData(dt);
-        pic->setMimeType(img.mimeType().toStdString());
-        pic->setWidth(img.size().width());
-        pic->setHeight(img.size().height());
-        pic->setColorDepth(img.depth());
-
-        TagLib::ByteVector block = pic->render();
-        QByteArray         data(block.data(), block.size());
-        tags->addField("METADATA_BLOCK_PICTURE", data.toBase64().toStdString(), true);
-    }
-
-    if (!file.save()) {
-        throw FlaconError("Can't save file");
-    }
 }

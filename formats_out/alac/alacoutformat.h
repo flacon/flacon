@@ -42,7 +42,7 @@ public:
     SampleRate    maxSampleRate() const override { return SampleRate::Hz_384000; }
 
     Conv::Encoder  *createEncoder() const override;
-    MetadataWriter *createMetadataWriter() const override;
+    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
 #endif // ALACOITFORMAT_H

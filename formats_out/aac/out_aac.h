@@ -47,7 +47,7 @@ public:
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_192000; }
 
     Conv::Encoder  *createEncoder() const override;
-    MetadataWriter *createMetadataWriter() const override;
+    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
 class ConfigPage_Acc : public EncoderConfigPage, private Ui::aacConfigPage

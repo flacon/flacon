@@ -40,13 +40,14 @@ public:
     virtual QString gainProgramName() const override { return ""; }
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *      configPage(QWidget *parent) const override;
+    EncoderConfigPage       *configPage(QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
-    Conv::Encoder *createEncoder() const override;
+    Conv::Encoder  *createEncoder() const override;
+    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
 class ConfigPage_Opus : public EncoderConfigPage, private Ui::ConfigPage_Opus

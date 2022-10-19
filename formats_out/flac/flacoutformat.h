@@ -48,7 +48,7 @@ public:
 
     Conv::Encoder  *createEncoder() const override;
     Conv::Gain     *createGain(const Profile &profile) const override;
-    MetadataWriter *createMetadataWriter() const override;
+    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
 class ConfigPage_Flac : public EncoderConfigPage, private Ui::flacConfigPage

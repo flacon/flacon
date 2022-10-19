@@ -69,9 +69,9 @@ Conv::Encoder *OutFormat_Aac::createEncoder() const
 /************************************************
  *
  ************************************************/
-MetadataWriter *OutFormat_Aac::createMetadataWriter() const
+MetadataWriter *OutFormat_Aac::createMetadataWriter(const QString &filePath) const
 {
-    return new Mp4MetaDataWriter();
+    return new Mp4MetaDataWriter(filePath);
 }
 
 /************************************************

@@ -49,7 +49,7 @@ public:
 
     Conv::Encoder  *createEncoder() const override;
     Conv::Gain     *createGain(const Profile &profile) const override;
-    MetadataWriter *createMetadataWriter() const override;
+    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
 class ConfigPage_Ogg : public EncoderConfigPage, private Ui::oggConfigPage
@@ -80,12 +80,6 @@ public:
     using Conv::Gain::Gain;
     QString     programName() const override { return "vorbisgain"; }
     QStringList programArgs(const QStringList &files, const GainType gainType) const override;
-};
-
-class OggMetadata : public MetadataWriter
-{
-public:
-    void writeTags() const override;
 };
 
 #endif // OUT_OGG_H
