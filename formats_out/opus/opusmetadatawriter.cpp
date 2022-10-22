@@ -57,3 +57,23 @@ void OpusMetadataWriter::setCoverImage(const CoverImage &image)
     TagLib::Ogg::XiphComment *tags = mFile.tag();
     setXiphCoverImage(tags, image);
 }
+
+/************************************************
+  The comments is still owned by the TagLib::File and should not be deleted by the user.
+  It will be deleted when the file (object) is destroyed.
+ ************************************************/
+void OpusMetadataWriter::setTrackReplayGain(float gain, float peak)
+{
+    TagLib::Ogg::XiphComment *tags = mFile.tag();
+    setXiphTrackReplayGain(tags, gain, peak);
+}
+
+/************************************************
+  The comments is still owned by the TagLib::File and should not be deleted by the user.
+  It will be deleted when the file (object) is destroyed.
+ ************************************************/
+void OpusMetadataWriter::setAlbumReplayGain(float gain, float peak)
+{
+    TagLib::Ogg::XiphComment *tags = mFile.tag();
+    setXiphAlbumReplayGain(tags, gain, peak);
+}

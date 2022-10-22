@@ -14,6 +14,9 @@ public:
     void setEmbeddedCue(const QString &cue) override;
     void setCoverImage(const CoverImage &image) override;
 
+    void setTrackReplayGain(float gain, float peak) override;
+    void setAlbumReplayGain(float gain, float peak) override;
+
 private:
     TagLib::FLAC::File mFile;
 };

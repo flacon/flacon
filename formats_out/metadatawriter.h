@@ -30,13 +30,24 @@ public:
     virtual void setEmbeddedCue(const QString &cue)     = 0;
     virtual void setCoverImage(const CoverImage &image) = 0;
 
+    virtual void setTrackReplayGain(float gain, float peak) = 0;
+    virtual void setAlbumReplayGain(float gain, float peak) = 0;
+
 protected:
+    QString gainToString(float &gain) const;
+    QString peakToString(float &peak) const;
+
+    void setXiphTag(TagLib::Ogg::XiphComment *tags, const QString &key, const QString &value) const;
     void setXiphTags(TagLib::Ogg::XiphComment *tags, const Track &track) const;
     void setXiphEmbeddedCue(TagLib::Ogg::XiphComment *tags, const QString &cue) const;
     void setXiphCoverImage(TagLib::Ogg::XiphComment *tags, const CoverImage &image) const;
+    void setXiphTrackReplayGain(TagLib::Ogg::XiphComment *tags, float gain, float peak) const;
+    void setXiphAlbumReplayGain(TagLib::Ogg::XiphComment *tags, float gain, float peak) const;
 
     void setApeTags(TagLib::APE::Tag *tags, const Track &track) const;
     void setApeCoverImage(TagLib::APE::Tag *tags, const CoverImage &image) const;
+    void setApeTrackReplayGain(TagLib::APE::Tag *tags, float gain, float peak) const;
+    void setApeAlbumReplayGain(TagLib::APE::Tag *tags, float gain, float peak) const;
 };
 
 class NullMetadataWriter : public MetadataWriter
@@ -48,6 +59,9 @@ public:
     void setTags(const Track &track) override;
     void setEmbeddedCue(const QString &cue) override;
     void setCoverImage(const CoverImage &image) override;
+
+    void setTrackReplayGain(float gain, float peak) override;
+    void setAlbumReplayGain(float gain, float peak) override;
 };
 
 class Mp4MetaDataWriter : public MetadataWriter
@@ -60,6 +74,9 @@ public:
     void setTags(const Track &track) override;
     void setEmbeddedCue(const QString &cue) override;
     void setCoverImage(const CoverImage &image) override;
+
+    void setTrackReplayGain(float gain, float peak) override;
+    void setAlbumReplayGain(float gain, float peak) override;
 
 private:
     TagLib::MP4::File mFile;

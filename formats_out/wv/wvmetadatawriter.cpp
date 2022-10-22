@@ -56,3 +56,23 @@ void WvMetadataWriter::setCoverImage(const CoverImage &image)
     TagLib::APE::Tag *tags = mFile.APETag(true);
     setApeCoverImage(tags, image);
 }
+
+/************************************************
+  The comments is still owned by the TagLib::File and should not be deleted by the user.
+  It will be deleted when the file (object) is destroyed.
+ ************************************************/
+void WvMetadataWriter::setTrackReplayGain(float gain, float peak)
+{
+    TagLib::APE::Tag *tags = mFile.APETag(true);
+    setApeTrackReplayGain(tags, gain, peak);
+}
+
+/************************************************
+  The comments is still owned by the TagLib::File and should not be deleted by the user.
+  It will be deleted when the file (object) is destroyed.
+ ************************************************/
+void WvMetadataWriter::setAlbumReplayGain(float gain, float peak)
+{
+    TagLib::APE::Tag *tags = mFile.APETag(true);
+    setApeAlbumReplayGain(tags, gain, peak);
+}

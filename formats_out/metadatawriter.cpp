@@ -2,6 +2,12 @@
 #include <taglib/tpropertymap.h>
 #include <taglib/xiphcomment.h>
 #include <taglib/apetag.h>
+#include <cmath>
+
+/************************************************
+ * Some useful code can be viewed in the project
+ *  https://github.com/Moonbase59/loudgain/blob/master/src/tag.cc
+ ************************************************/
 
 /************************************************
  *
@@ -13,26 +19,46 @@ MetadataWriter::MetadataWriter(const QString &)
 /************************************************
  *
  ************************************************/
+QString MetadataWriter::gainToString(float &gain) const
+{
+    return QString("%1 dB").arg(gain, 0, 'f', 2);
+}
+
+/************************************************
+ *
+ ************************************************/
+QString MetadataWriter::peakToString(float &peak) const
+{
+    return QString("%1").arg(peak, 0, 'f', 8);
+}
+
+/************************************************
+ *
+ ************************************************/
+void MetadataWriter::setXiphTag(TagLib::Ogg::XiphComment *tags, const QString &key, const QString &value) const
+{
+    if (!value.isEmpty()) {
+        tags->addField(key.toStdString(), TagLib::String(value.toStdString(), TagLib::String::UTF8), true);
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
 void MetadataWriter::setXiphTags(TagLib::Ogg::XiphComment *tags, const Track &track) const
 {
-    auto writeStrTag = [tags](const QString &tagName, const QString &value) {
-        if (!value.isEmpty()) {
-            tags->addField(tagName.toStdString(), TagLib::String(value.toStdString(), TagLib::String::UTF8), true);
-        }
-    };
-
     auto writeIntTag = [tags](const QString &tagName, int value) {
         tags->addField(tagName.toStdString(), QString::number(value).toStdString(), true);
     };
 
-    writeStrTag("ARTIST", track.artist());
-    writeStrTag("ALBUM", track.album());
-    writeStrTag("GENRE", track.genre());
-    writeStrTag("DATE", track.date());
-    writeStrTag("TITLE", track.title());
-    writeStrTag("ALBUMARTIST", track.tag(TagId::AlbumArtist));
-    writeStrTag("COMMENT", track.comment());
-    writeStrTag("DISCID", track.discId());
+    setXiphTag(tags, "ARTIST", track.artist());
+    setXiphTag(tags, "ALBUM", track.album());
+    setXiphTag(tags, "GENRE", track.genre());
+    setXiphTag(tags, "DATE", track.date());
+    setXiphTag(tags, "TITLE", track.title());
+    setXiphTag(tags, "ALBUMARTIST", track.tag(TagId::AlbumArtist));
+    setXiphTag(tags, "COMMENT", track.comment());
+    setXiphTag(tags, "DISCID", track.discId());
 
     writeIntTag("TRACKNUMBER", track.trackNum());
     writeIntTag("TOTALTRACKS", track.trackCount());
@@ -41,34 +67,19 @@ void MetadataWriter::setXiphTags(TagLib::Ogg::XiphComment *tags, const Track &tr
     writeIntTag("DISC", track.discNum());
     writeIntTag("DISCNUMBER", track.discNum());
     writeIntTag("DISCTOTAL", track.discCount());
-
-    //    if (!embeddedCue().isEmpty()) {
-    //        writeStrTag("CUESHEET", embeddedCue());
-    //    }
-
-    //    if (!coverImage().isEmpty()) {
-    //        const CoverImage  &img = coverImage();
-    //        TagLib::ByteVector dt(img.data().data(), img.data().size());
-
-    //        TagLib::FLAC::Picture *pic = new TagLib::FLAC::Picture();
-    //        pic->setType(TagLib::FLAC::Picture::Type::FrontCover);
-    //        pic->setData(dt);
-    //        pic->setMimeType(img.mimeType().toStdString());
-    //        pic->setWidth(img.size().width());
-    //        pic->setHeight(img.size().height());
-    //        pic->setColorDepth(img.depth());
-
-    //        TagLib::ByteVector block = pic->render();
-    //        QByteArray         data(block.data(), block.size());
-    //        tags->addField("METADATA_BLOCK_PICTURE", data.toBase64().toStdString(), true);
-    //    }
 }
 
+/************************************************
+ *
+ ************************************************/
 void MetadataWriter::setXiphEmbeddedCue(TagLib::Ogg::XiphComment *tags, const QString &cue) const
 {
     tags->addField("CUESHEET", TagLib::String(cue.toStdString(), TagLib::String::UTF8), true);
 }
 
+/************************************************
+ *
+ ************************************************/
 void MetadataWriter::setXiphCoverImage(TagLib::Ogg::XiphComment *tags, const CoverImage &image) const
 {
     TagLib::ByteVector dt(image.data().data(), image.data().size());
@@ -84,6 +95,24 @@ void MetadataWriter::setXiphCoverImage(TagLib::Ogg::XiphComment *tags, const Cov
     TagLib::ByteVector block = pic->render();
     QByteArray         data(block.data(), block.size());
     tags->addField("METADATA_BLOCK_PICTURE", data.toBase64().toStdString(), true);
+}
+
+/************************************************
+ *
+ ************************************************/
+void MetadataWriter::setXiphTrackReplayGain(TagLib::Ogg::XiphComment *tags, float gain, float peak) const
+{
+    setXiphTag(tags, "REPLAYGAIN_TRACK_GAIN", gainToString(gain));
+    setXiphTag(tags, "REPLAYGAIN_TRACK_PEAK", peakToString(peak));
+}
+
+/************************************************
+ *
+ ************************************************/
+void MetadataWriter::setXiphAlbumReplayGain(TagLib::Ogg::XiphComment *tags, float gain, float peak) const
+{
+    setXiphTag(tags, "REPLAYGAIN_ALBUM_GAIN", gainToString(gain));
+    setXiphTag(tags, "REPLAYGAIN_ALBUM_PEAK", peakToString(peak));
 }
 
 /************************************************
@@ -127,6 +156,24 @@ void MetadataWriter::setApeCoverImage(TagLib::APE::Tag *tags, const CoverImage &
 /************************************************
  *
  ************************************************/
+void MetadataWriter::setApeTrackReplayGain(TagLib::APE::Tag *tags, float gain, float peak) const
+{
+    tags->addValue("REPLAYGAIN_TRACK_GAIN", gainToString(gain).toStdString());
+    tags->addValue("REPLAYGAIN_TRACK_PEAK", peakToString(peak).toStdString());
+}
+
+/************************************************
+ *
+ ************************************************/
+void MetadataWriter::setApeAlbumReplayGain(TagLib::APE::Tag *tags, float gain, float peak) const
+{
+    tags->addValue("REPLAYGAIN_ALBUM_GAIN", gainToString(gain).toStdString());
+    tags->addValue("REPLAYGAIN_ALBUM_PEAK", peakToString(peak).toStdString());
+}
+
+/************************************************
+ *
+ ************************************************/
 static TagLib::MP4::CoverArt::Format coverFormatToTagLib(const CoverImage::Format fmt)
 {
     // clang-format off
@@ -140,50 +187,9 @@ static TagLib::MP4::CoverArt::Format coverFormatToTagLib(const CoverImage::Forma
     // clang-format on
 }
 
-///************************************************
-// *
-// ************************************************/
-// void Mp4MetaDataWriter::writeTags() const
-//{
-//    TagLib::MP4::File file(filePath().toLocal8Bit(), false);
-
-//    if (!file.isValid()) {
-//        throw FlaconError("Can't open file");
-//    }
-
-//    TagLib::PropertyMap props = file.properties();
-
-//    auto writeStrTag = [&props](const QString &tagName, const QString &value) {
-//        if (!value.isEmpty()) {
-//            props.replace(TagLib::String(tagName.toStdString(), TagLib::String::UTF8), TagLib::String(value.toStdString(), TagLib::String::UTF8));
-//        }
-//    };
-
-//    writeStrTag("ARTIST", track().artist());
-//    writeStrTag("ALBUM", track().album());
-//    writeStrTag("GENRE", track().genre());
-//    writeStrTag("DATE", track().date());
-//    writeStrTag("TITLE", track().title());
-//    writeStrTag("ALBUMARTIST", track().albumArtist());
-//    writeStrTag("COMMENT", track().comment());
-//    writeStrTag("TRACKNUMBER", QString("%1/%2").arg(track().trackNum()).arg(track().trackCount()));
-//    writeStrTag("DISCNUMBER", QString("%1/%2").arg(track().discNum()).arg(track().discCount()));
-
-//    file.setProperties(props);
-
-//    if (!coverImage().isEmpty()) {
-//        const CoverImage  &img = coverImage();
-//        TagLib::ByteVector data(img.data().data(), img.data().size());
-
-//        TagLib::MP4::CoverArt cover(coverFormatToTagLib(img.format()), data);
-//        file.tag()->setItem("covr", TagLib::MP4::CoverArtList().append(cover));
-//    }
-
-//    if (!file.save()) {
-//        throw FlaconError("Can't save file");
-//    }
-//}
-
+/************************************************
+ *
+ ************************************************/
 Mp4MetaDataWriter::Mp4MetaDataWriter(const QString &filePath) :
     MetadataWriter(filePath),
     mFile(filePath.toLocal8Bit(), false)
@@ -193,6 +199,9 @@ Mp4MetaDataWriter::Mp4MetaDataWriter(const QString &filePath) :
     }
 }
 
+/************************************************
+ *
+ ************************************************/
 void Mp4MetaDataWriter::save()
 {
     if (!mFile.save()) {
@@ -200,6 +209,9 @@ void Mp4MetaDataWriter::save()
     }
 }
 
+/************************************************
+ *
+ ************************************************/
 void Mp4MetaDataWriter::setTags(const Track &track)
 {
     TagLib::PropertyMap props = mFile.properties();
@@ -223,10 +235,16 @@ void Mp4MetaDataWriter::setTags(const Track &track)
     mFile.setProperties(props);
 }
 
+/************************************************
+ *
+ ************************************************/
 void Mp4MetaDataWriter::setEmbeddedCue(const QString &)
 {
 }
 
+/************************************************
+ *
+ ************************************************/
 void Mp4MetaDataWriter::setCoverImage(const CoverImage &image)
 {
     if (!image.isEmpty()) {
@@ -240,35 +258,31 @@ void Mp4MetaDataWriter::setCoverImage(const CoverImage &image)
 /************************************************
  *
  ************************************************/
+void Mp4MetaDataWriter::setTrackReplayGain(float gain, float peak)
+{
+    TagLib::MP4::Tag *tags = mFile.tag();
+    tags->setItem("----:com.apple.iTunes:REPLAYGAIN_TRACK_GAIN", TagLib::StringList(QString("%1 dB").arg(gain, 0, 'f', 2).toStdString()));
+    tags->setItem("----:com.apple.iTunes:REPLAYGAIN_TRACK_PEAK", TagLib::StringList(QString("%1").arg(peak, 0, 'f', 6).toStdString()));
+}
+
+/************************************************
+ *
+ ************************************************/
+void Mp4MetaDataWriter::setAlbumReplayGain(float gain, float peak)
+{
+    TagLib::MP4::Tag *tags = mFile.tag();
+    tags->setItem("----:com.apple.iTunes:REPLAYGAIN_ALBUM_GAIN", TagLib::StringList(QString("%1 dB").arg(gain, 0, 'f', 2).toStdString()));
+    tags->setItem("----:com.apple.iTunes:REPLAYGAIN_ALBUM_PEAK", TagLib::StringList(QString("%1").arg(peak, 0, 'f', 6).toStdString()));
+}
+
+/************************************************
+ *
+ ************************************************/
 NullMetadataWriter::NullMetadataWriter(const QString &filePath) :
-    MetadataWriter(filePath)
-{
-}
-
-/************************************************
- *
- ************************************************/
-void NullMetadataWriter::save()
-{
-}
-
-/************************************************
- *
- ************************************************/
-void NullMetadataWriter::setTags(const Track &)
-{
-}
-
-/************************************************
- *
- ************************************************/
-void NullMetadataWriter::setEmbeddedCue(const QString &)
-{
-}
-
-/************************************************
- *
- ************************************************/
-void NullMetadataWriter::setCoverImage(const CoverImage &)
-{
-}
+    MetadataWriter(filePath) { }
+void NullMetadataWriter::save() { }
+void NullMetadataWriter::setTags(const Track &) { }
+void NullMetadataWriter::setEmbeddedCue(const QString &) { }
+void NullMetadataWriter::setCoverImage(const CoverImage &) { }
+void NullMetadataWriter::setTrackReplayGain(float, float) { }
+void NullMetadataWriter::setAlbumReplayGain(float, float) { }

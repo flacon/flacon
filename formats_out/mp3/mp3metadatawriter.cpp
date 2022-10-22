@@ -104,3 +104,49 @@ void Mp3MetaDataWriter::setCoverImage(const CoverImage &image)
     // apic->setDescription("Front Cover");
     tags->addFrame(apic);
 }
+
+/************************************************
+ *
+ ************************************************/
+void Mp3MetaDataWriter::setTrackReplayGain(float gain, float peak)
+{
+    using namespace TagLib::ID3v2;
+    Tag *tags = mFile.ID3v2Tag(true);
+
+    {
+        UserTextIdentificationFrame *frame = new UserTextIdentificationFrame();
+        frame->setDescription("REPLAYGAIN_TRACK_GAIN");
+        frame->setText(gainToString(gain).toStdString());
+        tags->addFrame(frame);
+    }
+
+    {
+        UserTextIdentificationFrame *frame = new UserTextIdentificationFrame();
+        frame->setDescription("REPLAYGAIN_TRACK_PEAK");
+        frame->setText(gainToString(peak).toStdString());
+        tags->addFrame(frame);
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+void Mp3MetaDataWriter::setAlbumReplayGain(float gain, float peak)
+{
+    using namespace TagLib::ID3v2;
+    Tag *tags = mFile.ID3v2Tag(true);
+
+    {
+        UserTextIdentificationFrame *frame = new UserTextIdentificationFrame();
+        frame->setDescription("REPLAYGAIN_ALBUM_GAIN");
+        frame->setText(gainToString(gain).toStdString());
+        tags->addFrame(frame);
+    }
+
+    {
+        UserTextIdentificationFrame *frame = new UserTextIdentificationFrame();
+        frame->setDescription("REPLAYGAIN_ALBUM_PEAK");
+        frame->setText(gainToString(peak).toStdString());
+        tags->addFrame(frame);
+    }
+}

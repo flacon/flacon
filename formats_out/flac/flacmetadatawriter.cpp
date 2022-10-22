@@ -70,3 +70,23 @@ void FlacMetadataWriter::setCoverImage(const CoverImage &image)
         mFile.addPicture(pic);
     }
 }
+
+/************************************************
+  The comments is still owned by the TagLib::File and should not be deleted by the user.
+  It will be deleted when the file (object) is destroyed.
+ ************************************************/
+void FlacMetadataWriter::setTrackReplayGain(float gain, float peak)
+{
+    TagLib::Ogg::XiphComment *tags = mFile.xiphComment(true);
+    setXiphTrackReplayGain(tags, gain, peak);
+}
+
+/************************************************
+  The comments is still owned by the TagLib::File and should not be deleted by the user.
+  It will be deleted when the file (object) is destroyed.
+ ************************************************/
+void FlacMetadataWriter::setAlbumReplayGain(float gain, float peak)
+{
+    TagLib::Ogg::XiphComment *tags = mFile.xiphComment(true);
+    setXiphAlbumReplayGain(tags, gain, peak);
+}
