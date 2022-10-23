@@ -35,7 +35,7 @@ OutFormat_Aac::OutFormat_Aac()
     mId      = "AAC";
     mExt     = "m4a";
     mName    = "AAC";
-    mOptions = FormatOption::NoOptions | FormatOption::SupportEmbeddedImage;
+    mOptions = FormatOption::SupportGain | FormatOption::SupportEmbeddedImage;
 }
 
 /************************************************

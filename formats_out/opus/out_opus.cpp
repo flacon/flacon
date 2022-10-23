@@ -38,7 +38,7 @@ OutFormat_Opus::OutFormat_Opus()
     mId      = "OPUS";
     mExt     = "opus";
     mName    = "Opus";
-    mOptions = FormatOption::NoOptions | FormatOption::SupportEmbeddedImage;
+    mOptions = FormatOption::SupportGain | FormatOption::SupportEmbeddedImage;
 }
 
 /************************************************

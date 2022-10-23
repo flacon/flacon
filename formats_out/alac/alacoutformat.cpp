@@ -36,7 +36,7 @@ OutFormat_Alac::OutFormat_Alac()
     mId      = "ALAC";
     mExt     = "m4a";
     mName    = "ALAC";
-    mOptions = FormatOption::Lossless | FormatOption::SupportEmbeddedImage;
+    mOptions = FormatOption::Lossless | FormatOption::SupportGain | FormatOption::SupportEmbeddedImage;
 }
 
 /************************************************
