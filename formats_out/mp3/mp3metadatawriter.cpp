@@ -53,19 +53,19 @@ void Mp3MetaDataWriter::setTags(const Track &track)
     TagLib::ID3v2::Tag *tags = mFile.ID3v2Tag(true);
 
     if (!track.artist().isEmpty())
-        tags->setArtist(track.artist().toStdString());
+        tags->setArtist(TagLib::String(track.artist().toUtf8().data(), TagLib::String::UTF8));
 
     if (!track.album().isEmpty())
-        tags->setAlbum(track.album().toStdString());
+        tags->setAlbum(TagLib::String(track.album().toUtf8().data(), TagLib::String::UTF8));
 
     if (!track.genre().isEmpty())
-        tags->setGenre(track.genre().toStdString());
+        tags->setGenre(TagLib::String(track.genre().toUtf8().data(), TagLib::String::UTF8));
 
     if (!track.title().isEmpty())
-        tags->setTitle(track.title().toStdString());
+        tags->setTitle(TagLib::String(track.title().toUtf8().data(), TagLib::String::UTF8));
 
     if (!track.comment().isEmpty())
-        tags->setComment(track.comment().toStdString());
+        tags->setComment(TagLib::String(track.comment().toUtf8().data(), TagLib::String::UTF8));
 
     {
         int year = track.date().toInt();
@@ -74,11 +74,11 @@ void Mp3MetaDataWriter::setTags(const Track &track)
     }
 
     if (!track.tag(TagId::AlbumArtist).isEmpty()) {
-        addFrame(tags, "TPE2")->setText(track.tag(TagId::AlbumArtist).toStdString());
+        addFrame(tags, "TPE2")->setText(TagLib::String(track.tag(TagId::AlbumArtist).toUtf8().data(), TagLib::String::UTF8));
     }
 
-    addFrame(tags, "TRCK")->setText(QString("%1 / %2").arg(track.trackNum()).arg(track.trackCount()).toStdString());
-    addFrame(tags, "TPOS")->setText(QString("%1 / %2").arg(track.discNum()).arg(track.discCount()).toStdString());
+    addFrame(tags, "TRCK")->setText(QString("%1/%2").arg(track.trackNum()).arg(track.trackCount()).toStdString());
+    addFrame(tags, "TPOS")->setText(QString("%1/%2").arg(track.discNum()).arg(track.discCount()).toStdString());
 }
 
 /************************************************
