@@ -31,8 +31,7 @@
 #include "worker.h"
 #include "../profiles.h"
 #include "coverimage.h"
-
-class QProcess;
+#include "replaygain.h"
 
 namespace Conv {
 
@@ -65,6 +64,9 @@ public:
 public slots:
     void run() override;
 
+signals:
+    void trackReady(const Conv::ConvTrack &track, const QString &outFileName, const ReplayGain::Result &trackGain);
+
 protected:
     QString programPath() const;
 
@@ -79,6 +81,9 @@ private:
     QString   mEmbeddedCue;
 
     CoverImage mCoverImage;
+
+    bool                  mReplayGainEnabled = false;
+    ReplayGain::TrackGain mTrackGain;
 
     quint64 mTotal    = 0;
     quint64 mReady    = 0;

@@ -29,11 +29,11 @@
 
 #include "splitter.h"
 #include "encoder.h"
-#include "gain.h"
 #include "cuecreator.h"
 #include "project.h"
 #include "inputaudiofile.h"
 #include "profiles.h"
+#include "formats_out/metadatawriter.h"
 
 #include <QThread>
 #include <QDebug>
@@ -117,6 +117,10 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks
     mTmpDir->setAutoRemove(true);
 
     for (const ConvTrack &track : qAsConst(tracks)) {
+        if (track.audioFile().channelsCount() > 2) {
+            mProfile.setGainType(GainType::Disable);
+        }
+
         mTracks << track;
         mTrackStates[track.index()] = TrackState::NotRunning;
 
@@ -138,12 +142,9 @@ DiscPipeline::~DiscPipeline()
 /************************************************
  CREATE WORKER CHAINS
  ************************************************
-              +--> Encoder ---> Track gain -->+
-   Splitter ->+            ...                +-> Album gain --> this
-              +--> Encoder ---> Track gain -->+
-
-                                optional step    optional step
-
+              +--> Encoder ---> +
+   Splitter ->+            ...  +-> writeGain --> trackDone
+              +--> Encoder ---> +
  ************************************************/
 void DiscPipeline::startWorker(int *splitterCount, int *count)
 {
@@ -161,17 +162,6 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
         --(*splitterCount);
         --(*count);
         return;
-    }
-
-    while (*count > 0 && !mTrackGainRequests.isEmpty()) {
-        startGain(mTrackGainRequests.takeFirst());
-        --(*count);
-    }
-
-    if (*count > 0 && mAlbumGainRequests.count() == mTracks.count()) {
-        startGain(mAlbumGainRequests);
-        mAlbumGainRequests.clear();
-        --(*count);
     }
 
     while (*count > 0 && !mEncoderRequests.isEmpty()) {
@@ -262,10 +252,8 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     connect(encoder, &Encoder::error, this, &DiscPipeline::trackError);
 
     // Replaygain ...............................
-    bool gainEnabled = mProfile.gainType() != GainType::Disable && track.audioFile().channelsCount() <= 2;
-
-    if (gainEnabled) {
-        connect(encoder, &Encoder::trackReady, this, &DiscPipeline::addGainRequest);
+    if (mProfile.gainType() != GainType::Disable) {
+        connect(encoder, &Encoder::trackReady, this, &DiscPipeline::writeGain);
     }
     else {
         connect(encoder, &Encoder::trackReady, this, &DiscPipeline::trackDone);
@@ -281,47 +269,38 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
 /************************************************
  *
  ************************************************/
-void DiscPipeline::addGainRequest(const ConvTrack &track, const QString &fileName)
+void DiscPipeline::writeGain(const ConvTrack &track, const QString &fileName, const ReplayGain::Result &trackGain)
 {
-    if (mProfile.gainType() == GainType::Album) {
-        trackProgress(track, TrackState::WaitGain, 0);
-        mAlbumGainRequests << Request { track, fileName };
-    }
-    else {
-        trackProgress(track, TrackState::Queued, 0);
-        mTrackGainRequests << Request { track, fileName };
-    }
+    qCDebug(LOG) << "Write track gain: " << fileName << "gain:" << trackGain.gain() << "peak:" << track;
 
-    emit readyStart();
-}
+    MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(fileName);
+    writer->setTrackReplayGain(trackGain.gain(), trackGain.peak());
+    writer->save();
+    delete writer;
 
-/************************************************
- *
- ************************************************/
-void DiscPipeline::startGain(const DiscPipeline::Request &request)
-{
-    startGain(QList<Request>() << request);
-}
-
-/************************************************
- *
- ************************************************/
-void DiscPipeline::startGain(const QList<Request> &requests)
-{
-    Gain *worker = mProfile.outFormat()->createGain(mProfile);
-    for (const Request &req : requests) {
-        worker->addTrack(req.track, req.inputFile);
+    if (mProfile.gainType() != GainType::Album) {
+        trackDone(track, fileName);
+        return;
     }
 
-    WorkerThread *thread = new WorkerThread(worker, this);
-    connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
-    connect(worker, &Gain::trackProgress, this, &DiscPipeline::trackProgress);
-    connect(worker, &Gain::error, this, &DiscPipeline::trackError);
-    connect(worker, &Gain::trackReady, this, &DiscPipeline::trackDone);
-    connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
+    mAlbumGain.add(trackGain);
+    trackProgress(track, TrackState::WaitGain, 0);
+    mAlbumGainRequests << Request { track, fileName };
 
-    mThreads << thread;
-    thread->start();
+    if (mAlbumGainRequests.count() < mTracks.count()) {
+        return;
+    }
+
+    for (const Request &r : mAlbumGainRequests) {
+        qCDebug(LOG) << "Write album gain: " << r.inputFile << "gain:" << mAlbumGain.result().gain() << "peak:" << mAlbumGain.result().peak();
+
+        MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(r.inputFile);
+        writer->setAlbumReplayGain(mAlbumGain.result().gain(), mAlbumGain.result().peak());
+        writer->save();
+        delete writer;
+
+        trackDone(r.track, r.inputFile);
+    }
 }
 
 /************************************************

@@ -44,6 +44,9 @@ public:
 public slots:
     void run() override;
 
+signals:
+    void trackReady(const Conv::ConvTrack &track, const QString &outFileName);
+
 private:
     struct Job;
 

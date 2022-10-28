@@ -33,6 +33,7 @@
 #include "convertertypes.h"
 #include "profiles.h"
 #include "coverimage.h"
+#include "replaygain.h"
 
 class Project;
 
@@ -74,6 +75,7 @@ private:
     QTemporaryDir        *mTmpDir = nullptr;
     CoverImage            mCoverImage;
     QString               mEmbeddedCue;
+    ReplayGain::AlbumGain mAlbumGain;
 
     struct SplitterRequest
     {
@@ -88,12 +90,11 @@ private:
         QString   inputFile;
     };
 
-    QVector<WorkerThread *>      mThreads;
-    bool                         mInterrupted = false;
-    QList<SplitterRequest>       mSplitterRequests;
-    QList<DiscPipeline::Request> mEncoderRequests;
-    QList<DiscPipeline::Request> mTrackGainRequests;
-    QList<DiscPipeline::Request> mAlbumGainRequests;
+    QVector<WorkerThread *> mThreads;
+    bool                    mInterrupted = false;
+    QList<SplitterRequest>  mSplitterRequests;
+    QList<Request>          mEncoderRequests;
+    QList<Request>          mAlbumGainRequests;
 
     void addSpliterRequest();
     void startSplitter(const SplitterRequest &request);
@@ -101,9 +102,7 @@ private:
     void addEncoderRequest(const Conv::ConvTrack &track, const QString &inputFile);
     void startEncoder(const ConvTrack &track, const QString &inputFile);
 
-    void addGainRequest(const Conv::ConvTrack &track, const QString &fileName);
-    void startGain(const Request &request);
-    void startGain(const QList<Request> &requests);
+    void writeGain(const Conv::ConvTrack &track, const QString &fileName, const ReplayGain::Result &trackGain);
 
     void interrupt(TrackState state);
 

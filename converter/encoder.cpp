@@ -142,6 +142,8 @@ QProcess *Encoder::createDemph(const QString &outFile)
  ************************************************/
 void Encoder::run()
 {
+    mReplayGainEnabled = mProfile.gainType() != GainType::Disable;
+
     emit trackProgress(track(), TrackState::Encoding, 0);
 
     QList<QProcess *> procs;
@@ -169,7 +171,7 @@ void Encoder::run()
         qCDebug(LOG) << "Copy file: in = " << inputFile() << "out = " << outFile();
         copyFile();
         emit trackProgress(track(), TrackState::Encoding, 100);
-        emit trackReady(track(), outFile());
+        emit trackReady(track(), outFile(), ReplayGain::Result());
         return;
     }
 
@@ -206,7 +208,7 @@ void Encoder::run()
         deleteFile(mInputFile);
         writeMetadata();
 
-        emit trackReady(track(), outFile());
+        emit trackReady(track(), outFile(), mTrackGain.result());
     }
     catch (const FlaconError &err) {
         deleteFile(mInputFile);
@@ -295,6 +297,9 @@ void Encoder::readInputFile(QProcess *process)
     while (!file.atEnd()) {
         buf = file.read(bufSize);
         process->write(buf);
+        if (mReplayGainEnabled) {
+            mTrackGain.add(buf.constData(), buf.size());
+        }
     }
 }
 

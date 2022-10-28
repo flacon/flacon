@@ -237,6 +237,9 @@ public:
     inline bool startsWidth(const char str[4]) const { return strncmp(data(), str, 4) == 0; }
 };
 
+/************************************************
+ *
+ ************************************************/
 QByteArray &operator<<(QByteArray &out, const Guid &val)
 {
     out.append(val.data(), val.size());

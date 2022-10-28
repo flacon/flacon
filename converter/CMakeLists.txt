@@ -48,6 +48,7 @@ set(HEADERS
     coverimage.h
     sox.h
     extprogram.h
+    replaygain.h
 )
 
 set(SOURCES
@@ -64,6 +65,7 @@ set(SOURCES
     coverimage.cpp
     sox.cpp
     extprogram.cpp
+    replaygain.cpp
 )
 
 # include("cmake/git_version.cmake")

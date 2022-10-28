@@ -50,6 +50,9 @@ public:
 
     virtual QStringList programArgs(const QStringList &files, const GainType gainType) const = 0;
 
+signals:
+    void trackReady(const Conv::ConvTrack &track, const QString &outFileName);
+
 private:
     struct Job
     {
