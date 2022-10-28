@@ -41,7 +41,6 @@ set(HEADERS
     converter.h
     splitter.h
     encoder.h
-    gain.h
     worker.h
     discpipline.h
     cuecreator.h
@@ -58,7 +57,6 @@ set(SOURCES
     converter.cpp
     splitter.cpp
     encoder.cpp
-    gain.cpp
     worker.cpp
     discpipline.cpp
     cuecreator.cpp

@@ -74,14 +74,6 @@ Conv::Encoder *OutFormat_Ogg::createEncoder() const
 /************************************************
  *
  ************************************************/
-Conv::Gain *OutFormat_Ogg::createGain(const Profile &profile) const
-{
-    return new Gain_Ogg(profile);
-}
-
-/************************************************
- *
- ************************************************/
 MetadataWriter *OutFormat_Ogg::createMetadataWriter(const QString &filePath) const
 {
     return new OggMetaDataWriter(filePath);
@@ -215,20 +207,5 @@ QStringList Encoder_Ogg::programArgs() const
     // Files ....................................................
     args << "-o" << outFile();
     args << "-";
-    return args;
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Gain_Ogg::programArgs(const QStringList &files, const GainType gainType) const
-{
-    QStringList args;
-    args << programPath();
-    if (gainType == GainType::Album)
-        args << "--album";
-
-    args << files;
-
     return args;
 }

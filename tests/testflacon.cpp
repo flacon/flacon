@@ -43,7 +43,6 @@
 #include "converter/splitter.h"
 #include "../formats_out/outformat.h"
 #include "converter/discpipline.h"
-#include "../converter/gain.h"
 
 int TestFlacon::mTestNum = -1;
 Q_DECLARE_METATYPE(GainType)
@@ -1162,117 +1161,6 @@ void TestFlacon::testTrackSetCodepages_data()
             << "ru.result"
             << "UTF-8"
             << "Windows-1251";
-}
-
-/************************************************
-
- ************************************************/
-void TestFlacon::testOutFormatGainArgs()
-{
-    QFETCH(QString, formatId);
-    QFETCH(GainType, gainType);
-    QFETCH(QString, expected);
-
-    Settings::i()->setValue("Programs/metaflac", "/opt/metaflac");
-    Settings::i()->setValue("Programs/mp3gain", "/opt/mp3gain");
-    Settings::i()->setValue("Programs/vorbisgain", "/opt/vorbisgain");
-    Settings::i()->setValue("Programs/wvgain", "/opt/wvgain");
-
-    OutFormat *format = OutFormat::formatForId(formatId);
-    if (!format)
-        QFAIL(QString("Unknown format \"%1\"").arg(formatId).toLocal8Bit());
-
-    Profile profile;
-    profile.setGainType(gainType);
-
-    Conv::Gain *gain = format->createGain(profile);
-    QStringList args = gain->programArgs(QStringList() << "OutFile_01.wav"
-                                                       << "OutFile_02.wav"
-                                                       << "OutFile_03.wav",
-                                         gainType);
-
-    delete gain;
-
-    QString result = args.join(" ");
-    if (result != expected) {
-        QString msg = QString("Compared values are not the same\n   Format   %1, gaintype: %2\n   Actual:   %3\n   Expected: %4").arg(formatId, gainTypeToString(gainType), result, expected);
-        QFAIL(msg.toLocal8Bit());
-    }
-}
-
-/************************************************
-
- ************************************************/
-void TestFlacon::testOutFormatGainArgs_data()
-{
-    QTest::addColumn<QString>("formatId", nullptr);
-    QTest::addColumn<GainType>("gainType", nullptr);
-    QTest::addColumn<QString>("expected", nullptr);
-
-    //*******************************************
-    // FLAC
-    //*******************************************
-    QTest::newRow("Flac Track")
-            << "FLAC"
-            << GainType::Track
-            << "/opt/metaflac --add-replay-gain "
-               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
-
-    //*******************************************
-    QTest::newRow("Flac Album")
-            << "FLAC"
-            << GainType::Album
-            << "/opt/metaflac --add-replay-gain "
-               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
-
-    //*******************************************
-    // MP3
-    //*******************************************
-    QTest::newRow("Mp3 Track")
-            << "MP3"
-            << GainType::Track
-            << "/opt/mp3gain -c "
-               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
-
-    //*******************************************
-    QTest::newRow("Mp3 Track")
-            << "MP3"
-            << GainType::Album
-            << "/opt/mp3gain -a -c "
-               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
-
-    //*******************************************
-    // Ogg
-    //*******************************************
-    QTest::newRow("Ogg Track")
-            << "OGG"
-            << GainType::Track
-            << "/opt/vorbisgain "
-               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
-
-    //*******************************************
-    QTest::newRow("Ogg Album")
-            << "OGG"
-            << GainType::Album
-            << "/opt/vorbisgain --album "
-               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
-
-    //*******************************************
-    // WavPack
-    //*******************************************
-    QTest::newRow("WavPack Track")
-            << "WV"
-            << GainType::Track
-            << "/opt/wvgain "
-               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
-
-    //*******************************************
-    QTest::newRow("WavPack Album")
-            << "WV"
-            << GainType::Album
-            << "/opt/wvgain "
-               "-a "
-               "OutFile_01.wav OutFile_02.wav OutFile_03.wav";
 }
 
 /************************************************

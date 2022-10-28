@@ -29,14 +29,11 @@
 #include "../outformat.h"
 #include "../encoderconfigpage.h"
 #include "../converter/encoder.h"
-#include "../converter/gain.h"
 
 class OutFormat_Wav : public OutFormat
 {
 public:
     OutFormat_Wav();
-
-    virtual QString gainProgramName() const override { return ""; }
 
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage       *configPage(QWidget *parent) const override;

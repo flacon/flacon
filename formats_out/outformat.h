@@ -55,8 +55,6 @@ public:
 
     QString encoderProgramName() const;
 
-    virtual QString gainProgramName() const = 0;
-
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const = 0;
     virtual SampleRate    maxSampleRate() const   = 0;
@@ -66,8 +64,7 @@ public:
     virtual QHash<QString, QVariant> defaultParameters() const         = 0;
     virtual EncoderConfigPage       *configPage(QWidget *parent) const = 0;
 
-    virtual Conv::Encoder  *createEncoder() const = 0;
-    virtual Conv::Gain     *createGain(const Profile &profile) const;
+    virtual Conv::Encoder  *createEncoder() const                               = 0;
     virtual MetadataWriter *createMetadataWriter(const QString &filePath) const = 0;
 
 protected:

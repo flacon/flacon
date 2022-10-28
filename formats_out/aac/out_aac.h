@@ -30,14 +30,11 @@
 #include "../encoderconfigpage.h"
 #include "ui_out_aac_config.h"
 #include "../converter/encoder.h"
-#include "../converter/gain.h"
 
 class OutFormat_Aac : public OutFormat
 {
 public:
     OutFormat_Aac();
-
-    virtual QString gainProgramName() const override { return ""; }
 
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage       *configPage(QWidget *parentr) const override;

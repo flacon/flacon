@@ -33,8 +33,6 @@ class OutFormat_Alac : public OutFormat
 public:
     OutFormat_Alac();
 
-    virtual QString gainProgramName() const override { return ""; }
-
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage       *configPage(QWidget *parent) const override;
 

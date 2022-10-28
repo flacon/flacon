@@ -131,7 +131,6 @@ void Settings::init()
 
     foreach (OutFormat *format, OutFormat::allFormats()) {
         mPrograms << format->encoderProgramName();
-        mPrograms << format->gainProgramName();
     }
 
     foreach (const InputFormat *format, InputFormat::allFormats()) {

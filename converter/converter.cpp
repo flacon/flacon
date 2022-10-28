@@ -32,7 +32,6 @@
 #include "settings.h"
 #include "splitter.h"
 #include "encoder.h"
-#include "gain.h"
 #include "discpipline.h"
 #include "sox.h"
 #include "cuecreator.h"

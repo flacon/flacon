@@ -30,15 +30,12 @@
 #include "../encoderconfigpage.h"
 #include "ui_out_ogg_config.h"
 #include "../converter/encoder.h"
-#include "../converter/gain.h"
 #include "../metadatawriter.h"
 
 class OutFormat_Ogg : public OutFormat
 {
 public:
     OutFormat_Ogg();
-
-    virtual QString gainProgramName() const override { return "vorbisgain"; }
 
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage       *configPage(QWidget *parent) const override;
@@ -48,7 +45,6 @@ public:
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_192000; }
 
     Conv::Encoder  *createEncoder() const override;
-    Conv::Gain     *createGain(const Profile &profile) const override;
     MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
@@ -72,14 +68,6 @@ class Encoder_Ogg : public Conv::Encoder
 public:
     QString     programName() const override { return "oggenc"; }
     QStringList programArgs() const override;
-};
-
-class Gain_Ogg : public Conv::Gain
-{
-public:
-    using Conv::Gain::Gain;
-    QString     programName() const override { return "vorbisgain"; }
-    QStringList programArgs(const QStringList &files, const GainType gainType) const override;
 };
 
 #endif // OUT_OGG_H

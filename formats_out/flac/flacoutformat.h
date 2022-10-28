@@ -29,15 +29,12 @@
 #include "../outformat.h"
 #include "../encoderconfigpage.h"
 #include "ui_out_flac_config.h"
-#include "../converter/gain.h"
 
 class OutFormat_Flac : public OutFormat
 {
 public:
     OutFormat_Flac();
     bool check(const Profile &profile, QStringList *errors) const override;
-
-    virtual QString gainProgramName() const override { return "metaflac"; }
 
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage       *configPage(QWidget *parent) const override;
@@ -47,7 +44,6 @@ public:
     SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
     Conv::Encoder  *createEncoder() const override;
-    Conv::Gain     *createGain(const Profile &profile) const override;
     MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
@@ -59,14 +55,6 @@ public:
 
     virtual void load(const Profile &profile) override;
     virtual void save(Profile *profile) override;
-};
-
-class Gain_Flac : public Conv::Gain
-{
-public:
-    using Conv::Gain::Gain;
-    QString     programName() const override { return "metaflac"; }
-    QStringList programArgs(const QStringList &files, const GainType gainType) const override;
 };
 
 #endif // FLACOITFORMAT_H

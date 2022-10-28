@@ -71,14 +71,6 @@ Conv::Encoder *OutFormat_Wv::createEncoder() const
 /************************************************
  *
  ************************************************/
-Conv::Gain *OutFormat_Wv::createGain(const Profile &profile) const
-{
-    return new Gain_Wv(profile);
-}
-
-/************************************************
- *
- ************************************************/
 MetadataWriter *OutFormat_Wv::createMetadataWriter(const QString &filePath) const
 {
     return new WvMetadataWriter(filePath);
@@ -140,21 +132,6 @@ QStringList Encoder_Wv::programArgs() const
     // Files ....................................
     args << "-";
     args << "-o" << outFile();
-
-    return args;
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Gain_Wv::programArgs(const QStringList &files, const GainType gainType) const
-{
-    QStringList args;
-    args << programPath();
-    if (gainType == GainType::Album) {
-        args << "-a";
-    }
-    args << files;
 
     return args;
 }

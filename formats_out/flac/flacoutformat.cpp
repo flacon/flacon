@@ -99,14 +99,6 @@ Conv::Encoder *OutFormat_Flac::createEncoder() const
 
 /************************************************
 
- ************************************************/
-Conv::Gain *OutFormat_Flac::createGain(const Profile &profile) const
-{
-    return new Gain_Flac(profile);
-}
-
-/************************************************
-
 ************************************************/
 MetadataWriter *OutFormat_Flac::createMetadataWriter(const QString &filePath) const
 {
@@ -139,17 +131,4 @@ void ConfigPage_Flac::load(const Profile &profile)
 void ConfigPage_Flac::save(Profile *profile)
 {
     saveWidget(profile, "Compression", flacCompressionSlider);
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Gain_Flac::programArgs(const QStringList &files, const GainType) const
-{
-    QStringList args;
-    args << programPath();
-    args << "--add-replay-gain";
-    args << files;
-
-    return args;
 }

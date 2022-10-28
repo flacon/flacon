@@ -78,14 +78,6 @@ Conv::Encoder *OutFormat_Mp3::createEncoder() const
 /************************************************
  *
  ************************************************/
-Conv::Gain *OutFormat_Mp3::createGain(const Profile &profile) const
-{
-    return new Gain_Mp3(profile);
-}
-
-/************************************************
- *
- ************************************************/
 MetadataWriter *OutFormat_Mp3::createMetadataWriter(const QString &filePath) const
 {
     return new Mp3MetaDataWriter(filePath);
@@ -244,23 +236,6 @@ QStringList Encoder_Mp3::programArgs() const
     // Files ....................................................
     args << "-";
     args << outFile();
-
-    return args;
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Gain_Mp3::programArgs(const QStringList &files, const GainType gainType) const
-{
-    QStringList args;
-    args << programPath();
-    if (gainType == GainType::Album) {
-        args << "-a"; // Album gain
-    }
-    args << "-c"; // ignore clipping warning when applying gain
-
-    args << files;
 
     return args;
 }

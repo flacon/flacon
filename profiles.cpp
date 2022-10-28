@@ -30,7 +30,6 @@
 #include <QDir>
 #include <QDebug>
 #include "encoder.h"
-#include "gain.h"
 #include "formats_out/metadatawriter.h"
 
 QHash<QString, QVariant> &operator<<(QHash<QString, QVariant> &values, const QHash<QString, QVariant> &other)
@@ -59,8 +58,6 @@ public:
         mName = "";
     }
 
-    virtual QString gainProgramName() const override { return ""; }
-
     QHash<QString, QVariant> defaultParameters() const override
     {
         return QHash<QString, QVariant>();
@@ -75,7 +72,6 @@ public:
     virtual SampleRate    maxSampleRate() const override { return SampleRate::AsSource; }
 
     Conv::Encoder  *createEncoder() const override { return new Encoder_Null(); }
-    Conv::Gain     *createGain(const Profile &profile) const override { return new Conv::NoGain(profile); }
     MetadataWriter *createMetadataWriter(const QString &filePath) const override { return new NullMetadataWriter(filePath); };
 };
 
