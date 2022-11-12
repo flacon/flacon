@@ -408,21 +408,6 @@ MultiValuesSpinBox::MultiValuesSpinBox(QWidget *parent) :
 /************************************************
  *
  ************************************************/
-static MultiValuesState getTagEditState(const QSet<QString> &values)
-{
-    switch (values.count()) {
-        case 0:
-            return MultiValuesEmpty;
-        case 1:
-            return MultiValuesSingle;
-        default:
-            return MultiValuesMulti;
-    }
-}
-
-/************************************************
- *
- ************************************************/
 static QString getTagEditText(const QSet<QString> &values)
 {
     switch (values.count()) {
@@ -538,7 +523,6 @@ QString MultiValuesSpinBox::textFromValue(int val) const
  ************************************************/
 MultiValuesLineEdit::MultiValuesLineEdit(QWidget *parent) :
     QLineEdit(parent),
-    mMultiState(MultiValuesEmpty),
     mCompleterModel(new QStringListModel(this))
 {
     setCompleter(new QCompleter(this));
@@ -552,38 +536,14 @@ MultiValuesLineEdit::MultiValuesLineEdit(QWidget *parent) :
  ************************************************/
 void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
 {
-    if (value.count() == 0) {
-        mMultiState = MultiValuesEmpty;
-        QLineEdit::setText("");
-        setPlaceholderText("");
-        mCompleterModel->setStringList(QStringList());
+    QString str = value.count() == 1 ? *(value.constBegin()) : "";
+
+    if (text() != str) {
+        QLineEdit::setText(str);
     }
 
-    else if (value.count() == 1) {
-        mMultiState = MultiValuesEmpty;
-        QLineEdit::setText(*(value.constBegin()));
-        setPlaceholderText("");
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-        mCompleterModel->setStringList(value.toList());
-#else
-        // After 5.14.0, QT has stated range constructors are available and preferred.
-        // See: https://doc.qt.io/qt-5/qset.html#toList
-        mCompleterModel->setStringList(QStringList(value.begin(), value.end()));
-#endif
-    }
-
-    else {
-        mMultiState = MultiValuesMulti;
-        QLineEdit::setText("");
-        setPlaceholderText(tr("Multiple values"));
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-        mCompleterModel->setStringList(value.toList());
-#else
-        // After 5.14.0, QT has stated range constructors are available and preferred.
-        // See: https://doc.qt.io/qt-5/qset.html#toList
-        mCompleterModel->setStringList(QStringList(value.begin(), value.end()));
-#endif
-    }
+    setPlaceholderText(value.count() > 1 ? tr("Multiple values") : "");
+    mCompleterModel->setStringList(value.values());
 }
 
 /************************************************
@@ -815,8 +775,7 @@ TagSpinBox::TagSpinBox(QWidget *parent) :
  *
  ************************************************/
 MultiValuesTextEdit::MultiValuesTextEdit(QWidget *parent) :
-    QPlainTextEdit(parent),
-    mMultiState(MultiValuesEmpty)
+    QPlainTextEdit(parent)
 {
 }
 
@@ -833,11 +792,8 @@ bool MultiValuesTextEdit::isModified() const
  ************************************************/
 void MultiValuesTextEdit::setMultiValue(QSet<QString> value)
 {
-    mMultiState = getTagEditState(value);
     setPlainText(getTagEditText(value));
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 3, 0))
     setPlaceholderText(getTagEditPlaceHolder(value));
-#endif
 }
 
 /************************************************

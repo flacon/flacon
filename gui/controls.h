@@ -174,7 +174,6 @@ public slots:
     void setMultiValue(QSet<QString> value);
 
 private:
-    MultiValuesState  mMultiState;
     QStringListModel *mCompleterModel;
 };
 
@@ -192,9 +191,6 @@ public:
 
 public slots:
     void setMultiValue(QSet<QString> value);
-
-private:
-    MultiValuesState mMultiState;
 };
 
 /************************************************
