@@ -104,7 +104,7 @@ protected:
 
 private:
     QPointer<Conv::Converter> mConverter;
-    Scanner *                 mScanner;
+    Scanner                  *mScanner;
     QString                   getOpenFileFilter(bool includeAudio, bool includeCue);
 
     void polishView();

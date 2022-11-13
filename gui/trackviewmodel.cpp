@@ -430,15 +430,15 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
         case RoleItemType:      return DiscItem;
         case RoleTagSetTitle:   return disc->tagSetTitle();
         case RoleAudioFileName: return disc->audioFileNames();
-        case RoleHasWarnings:   return !disc->warnings().isEmpty();
-        case RoleCanConvert:    return disc->canConvert();
+        case RoleHasWarnings:   return project->validator().diskHasWarnings(disc);
+        case RoleHasErrors:     return project->validator().diskHasErrors(disc);
         case RoleIsDownloads:   return mCache->downloadedDiscs.contains(index.row());
         case RoleCoverFile:     return disc->coverImageFile();
         case RoleCoverImg:      return disc->coverImagePreview();
         case RoleCueFilePath:   return disc->cueFilePath();
         case RoleAudioFilePath: return disc->audioFilePaths();
-        case RoleDiscWarnings:  return disc->warnings();
-        case RoleDiscErrors:    return disc->errors();
+        case RoleDiscWarnings:  return project->validator().warningsForDisk(disc);
+        case RoleDiscErrors:    return project->validator().errorsForDisk(disc);
     }
     // clang-format on
 

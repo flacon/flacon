@@ -80,11 +80,6 @@ public:
     DiscNum discNum() const;
     DiscNum discCount() const;
 
-    QStringList warnings() const;
-    QStringList errors() const;
-
-    bool canConvert() const;
-
     struct TagSet
     {
         QString uri;
@@ -139,5 +134,8 @@ private:
 };
 
 typedef QList<Disc *> DiscList;
+
+using Disk     = Disc;
+using DiskList = DiscList;
 
 #endif // DISC_H

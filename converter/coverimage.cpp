@@ -110,7 +110,7 @@ CoverImage::CoverImage(const QString &inFilePath, uint size)
 
         QImageReader reader(inFilePath);
         QByteArray   format = reader.format();
-        qDebug() << Q_FUNC_INFO << format;
+
         mFormat   = formatStrToFormat(format);
         mMimeType = formatToMimeType(format);
 

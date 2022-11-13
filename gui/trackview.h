@@ -68,6 +68,7 @@ public slots:
     void downloadFinished(const Disc &disc);
     void update(const Track &track);
     void update(const Disc &disc);
+    void updateAll();
 
 signals:
     void selectCueFile(Disc *disc);
@@ -89,7 +90,7 @@ private slots:
     void emitSelectCoverImage(const QModelIndex &index);
 
 private:
-    TrackViewModel *   mModel;
+    TrackViewModel    *mModel;
     TrackViewDelegate *mDelegate;
 };
 

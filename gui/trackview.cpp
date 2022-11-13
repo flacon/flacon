@@ -206,6 +206,14 @@ void TrackView::update(const Disc &disc)
 }
 
 /************************************************
+ *
+ ************************************************/
+void TrackView::updateAll()
+{
+    emit layoutChanged();
+}
+
+/************************************************
 
  ************************************************/
 void TrackView::headerContextMenu(const QPoint &pos)

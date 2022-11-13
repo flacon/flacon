@@ -238,14 +238,6 @@ QString Disc::cueFilePath() const
 
 /************************************************
 
-************************************************/
-bool Disc::canConvert() const
-{
-    return this->errors().isEmpty();
-}
-
-/************************************************
-
  ************************************************/
 void Disc::setCueFile(const Cue &cueDisc)
 {
@@ -600,102 +592,6 @@ DiscNum Disc::discCount() const
         return mTracks.first()->discCount();
 
     return 0;
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Disc::warnings() const
-{
-    QStringList res;
-    for (const InputAudioFile &audioFile : audioFiles()) {
-        int bps = audioFile.bitsPerSample();
-        if (Settings::i()->currentProfile().bitsPerSample() != BitsPerSample::AsSourcee) {
-            bps = qMin(audioFile.bitsPerSample(), int(Settings::i()->currentProfile().bitsPerSample()));
-        }
-
-        if (bps > int(Settings::i()->currentProfile().maxBitPerSample())) {
-            res << tr("A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.", "Warning message")
-                            .arg(int(Settings::i()->currentProfile().maxBitPerSample()));
-        }
-
-        int sr = audioFile.sampleRate();
-        if (Settings::i()->currentProfile().sampleRate() != SampleRate::AsSource) {
-            sr = qMin(sr, int(Settings::i()->currentProfile().sampleRate()));
-        }
-
-        if (sr > int(Settings::i()->currentProfile().maxSampleRate())) {
-            res << tr("A maximum sample rate of %1 is supported by this format. This value will be used for encoding.", "Warning message")
-                            .arg(int(Settings::i()->currentProfile().maxSampleRate()));
-        }
-
-        if (Settings::i()->currentProfile().gainType() != GainType::Disable && audioFile.channelsCount() > 2) {
-            res << tr("ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.", "Warning message");
-        }
-    }
-    return res;
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Disc::errors() const
-{
-    QStringList res;
-
-    if (count() < 1) {
-        res << tr("Cue file not set.");
-        return res;
-    }
-
-    const QList<TrackPtrList> &audioFileTracks = tracksByFileTag();
-    for (const TrackPtrList &tracks : audioFileTracks) {
-        const InputAudioFile &audio = tracks.first()->audioFile();
-
-        if (audio.isNull()) {
-            if (audioFileTracks.count() == 1) {
-                res << tr("Audio file not set.", "Warning message");
-                continue;
-            }
-
-            if (tracks.count() == 1) {
-                res << tr("Audio file not set for track %1.", "Warning message, Placeholders is a track number")
-                                .arg(tracks.first()->trackNum());
-                continue;
-            }
-
-            res << tr("Audio file not set for tracks %1 to %2.", "Warning message, Placeholders is a track numbers")
-                            .arg(tracks.first()->trackNum())
-                            .arg(tracks.last()->trackNum());
-            continue;
-        }
-
-        if (!audio.isValid()) {
-            if (audioFileTracks.count() == 1) {
-                res << audio.errorString();
-                continue;
-            }
-        }
-    }
-
-    for (const TrackPtrList &tracks : audioFileTracks) {
-        InputAudioFile audio = tracks.first()->audioFile();
-        if (audio.isNull() || !audio.isValid()) {
-            continue;
-        }
-
-        uint duration = 0;
-        for (int i = 0; i < tracks.count() - 1; ++i) {
-            duration += tracks[i]->duration();
-        }
-
-        if (audio.duration() <= duration) {
-            res << tr("Audio file shorter than expected from CUE sheet.");
-            break;
-        }
-    }
-
-    return res;
 }
 
 /************************************************

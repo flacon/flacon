@@ -123,7 +123,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
         return;
     }
 
-    if (!check(jobs, profile)) {
+    if (!validate(jobs, profile)) {
         emit finished();
         return;
     }
@@ -143,7 +143,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
                 continue;
             }
 
-            if (!converterJob.disc->canConvert()) {
+            if (project->validator().diskHasErrors(converterJob.disc)) {
                 continue;
             }
 
@@ -234,23 +234,6 @@ bool Converter::isRunning()
 /************************************************
 
  ************************************************/
-bool Converter::canConvert()
-{
-    if (!Settings::i()->currentProfile().isValid()) {
-        return false;
-    }
-
-    for (int i = 0; i < project->count(); ++i) {
-        if (project->disc(i)->canConvert())
-            return true;
-    }
-
-    return false;
-}
-
-/************************************************
-
- ************************************************/
 void Converter::stop()
 {
     if (!isRunning())
@@ -292,39 +275,22 @@ void Converter::startThread()
 /************************************************
 
  ************************************************/
-bool Converter::check(const Jobs &jobs, const Profile &profile) const
+bool Converter::validate(const Jobs &jobs, const Profile &profile) const
 {
-    QStringList errors;
+    QStringList errors = project->validator().converterErros(jobs, profile);
 
-    if (!profile.isValid()) {
-        errors << "Incorrect output profile";
-        return false;
+    if (errors.isEmpty()) {
+        return true;
     }
 
-    profile.check(&errors);
-
-    bool needSox = false;
-
-    needSox = needSox || (profile.bitsPerSample() != BitsPerSample::AsSourcee || profile.sampleRate() != SampleRate::AsSource);
-    for (const Job &job : jobs) {
-        for (const Track *track : job.tracks) {
-            needSox = needSox || track->preEmphased();
-        }
+    QString s;
+    foreach (QString e, errors) {
+        s += QString("<li style='margin-top: 4px;'> %1</li>").arg(e);
     }
 
-    if (needSox) {
-        Settings::i()->checkProgram(Sox::programName(), &errors);
-    }
+    Messages::error(QString("<html>%1<ul>%2</ul></html>")
+                            .arg(tr("Conversion is not possible:"))
+                            .arg(s));
 
-    if (!errors.isEmpty()) {
-        QString s;
-        foreach (QString e, errors) {
-            s += QString("<li style='margin-top: 4px;'> %1</li>").arg(e);
-        }
-
-        Messages::error(QString("<html>%1<ul>%2</ul></html>")
-                                .arg(tr("Conversion is not possible:"), s));
-    }
-
-    return errors.isEmpty();
+    return false;
 }

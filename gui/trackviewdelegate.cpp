@@ -490,7 +490,7 @@ QRect TrackViewDelegate::drawMark(QPainter *painter, bool isWaiting, const QRect
         return markRect;
     }
 
-    if (!index.data(TrackViewModel::RoleCanConvert).toBool()) {
+    if (index.data(TrackViewModel::RoleHasErrors).toBool()) {
         painter->drawPixmap(markRect, mDiscErrorPix);
         return markRect;
     }

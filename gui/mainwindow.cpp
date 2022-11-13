@@ -353,7 +353,7 @@ void MainWindow::setControlsEnable()
 
     bool tracksSelected = !trackView->selectedTracks().isEmpty();
     bool discsSelected  = !trackView->selectedDiscs().isEmpty();
-    bool canConvert     = Conv::Converter::canConvert();
+    bool canConvert     = project->validator().canConvert();
 
     bool canDownload = false;
     foreach (const Disc *disc, trackView->selectedDiscs())
@@ -491,8 +491,9 @@ void MainWindow::setTrackTag()
     QList<Track *> tracks = trackView->selectedTracks();
     foreach (Track *track, tracks) {
         track->setTag(edit->tagId(), edit->text());
-        trackView->update(*track);
     }
+
+    trackView->updateAll();
 }
 
 /************************************************
@@ -507,8 +508,9 @@ void MainWindow::setDiscTag()
     QList<Disc *> discs = trackView->selectedDiscs();
     foreach (Disc *disc, discs) {
         disc->setDiscTag(edit->tagId(), edit->text());
-        trackView->update(*disc);
     }
+
+    trackView->updateAll();
 }
 
 /************************************************
@@ -523,8 +525,9 @@ void MainWindow::setDiscTagInt()
     QList<Disc *> discs = trackView->selectedDiscs();
     foreach (Disc *disc, discs) {
         disc->setDiscTag(spinBox->tagId(), QString::number(spinBox->value()));
-        trackView->update(*disc);
     }
+
+    trackView->updateAll();
 }
 
 /************************************************
@@ -582,7 +585,7 @@ void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
 
     bool ok = true;
     for (int i = 0; i < project->count(); ++i) {
-        ok = ok && project->disc(i)->canConvert();
+        ok = ok && !project->validator().diskHasErrors(project->disc(i));
     }
 
     if (!ok) {

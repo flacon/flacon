@@ -69,6 +69,7 @@ set(HEADERS
     consoleout.h
     profiles.h
     audiofilematcher.h
+    validator.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -100,6 +101,7 @@ set(SOURCES
     consoleout.cpp
     profiles.cpp
     audiofilematcher.cpp
+    validator.cpp
 
     gui/aboutdialog/aboutdialog.cpp
     gui/aboutdialog/translatorsinfo.cpp

@@ -90,6 +90,7 @@ int Project::insertDisc(Disc *disc, int index)
         index = mDiscs.count();
 
     mDiscs.insert(index, disc);
+    mValidator.setDisks(mDiscs);
 
     emit layoutChanged();
     return index;
@@ -107,6 +108,7 @@ void Project::removeDisc(const QList<Disc *> *discs)
             disc->deleteLater();
 
         emit afterRemoveDisc();
+        mValidator.setDisks(mDiscs);
     }
 }
 
@@ -186,7 +188,7 @@ Disc *Project::addCueFile(const QString &fileName)
 /************************************************
 
  ************************************************/
-void Project::emitDiscChanged(Disc *disc) const
+void Project::emitDiscChanged(Disc *disc)
 {
     emit discChanged(disc);
 }

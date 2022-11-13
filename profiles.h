@@ -41,7 +41,7 @@ public:
     Profile();
     explicit Profile(const QString &id);
     explicit Profile(OutFormat &format, const QString &id = "");
-    Profile(const Profile &other) = default;
+    Profile(const Profile &other)            = default;
     Profile &operator=(const Profile &other) = default;
 
     QString id() const { return mId; }
@@ -89,7 +89,6 @@ public:
     BitsPerSample      maxBitPerSample() const { return mFormat->maxBitPerSample(); }
     SampleRate         maxSampleRate() const { return mFormat->maxSampleRate(); }
     EncoderConfigPage *configPage(QWidget *parent) const;
-    bool               check(QStringList *errors) const { return mFormat->check(*this, errors); }
 
     // Cover options ............................
     CoverOptions copyCoverOptions() const;
