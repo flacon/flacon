@@ -88,7 +88,7 @@ find_package(Qt5 REQUIRED
 # qt5_add_translation(QM_FILES ${TS_FILES})
 
 add_library(${PROJECT_NAME} STATIC ${HEADERS} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARIES} ${QT_LIBRARIES} Qt5::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARIES} ${QT_LIBRARIES} Qt5::Widgets "z")
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}
