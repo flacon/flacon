@@ -34,6 +34,7 @@
 #include <QSet>
 #include <QMenu>
 #include <QMessageBox>
+#include <QLabel>
 #include "tags.h"
 #include "settings.h"
 
@@ -367,6 +368,31 @@ public:
 
 private:
     QStringList mMessgaes;
+};
+
+/************************************************
+ *
+ ************************************************/
+class WidgetBadge : public QLabel
+{
+public:
+    WidgetBadge(QWidget *parent);
+    ~WidgetBadge();
+
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
+    using Corner = Qt::Corner;
+
+    Corner corner() const { return mCorner; }
+    void   setCorner(Corner value);
+
+protected:
+    void resizeEvent(QResizeEvent *event) override;
+
+private:
+    Corner mCorner = Qt::TopLeftCorner;
+
+    void realign();
 };
 
 namespace Controls {

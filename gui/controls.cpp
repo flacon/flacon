@@ -43,6 +43,8 @@
 #include <QPaintEvent>
 #include <QStandardPaths>
 #include <QToolBar>
+#include <QResizeEvent>
+#include <QPoint>
 
 static constexpr int HISTORY_COUNT = 10;
 
@@ -973,4 +975,89 @@ void Controls::arangeTollBarButtonsWidth(QToolBar *toolBar)
             btn->setMinimumWidth(w);
         }
     }
+}
+
+/************************************************
+ *
+ ************************************************/
+WidgetBadge::WidgetBadge(QWidget *parent) :
+    QLabel(parent)
+{
+    parent->installEventFilter(this);
+}
+
+/************************************************
+ *
+ ************************************************/
+WidgetBadge::~WidgetBadge()
+{
+    if (parentWidget()) {
+        parentWidget()->removeEventFilter(this);
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+bool WidgetBadge::eventFilter(QObject *watched, QEvent *event)
+{
+    if (watched == parentWidget() && event->type() == QEvent::Resize) {
+        QLabel::eventFilter(watched, event);
+        realign();
+    }
+
+    return QLabel::eventFilter(watched, event);
+}
+
+/************************************************
+ *
+ ************************************************/
+void WidgetBadge::setCorner(Corner value)
+{
+    mCorner = value;
+    realign();
+}
+
+/************************************************
+ *
+ ************************************************/
+void WidgetBadge::resizeEvent(QResizeEvent *event)
+{
+    QLabel::resizeEvent(event);
+    realign();
+}
+
+/************************************************
+ *
+ ************************************************/
+void WidgetBadge::realign()
+{
+    if (parentWidget() == nullptr) {
+        return;
+    }
+
+    QRect rect(QPoint(0, 0), size());
+
+    switch (mCorner) {
+        case Corner::TopLeftCorner: {
+            break;
+        }
+
+        case Corner::TopRightCorner: {
+            rect.moveRight(parentWidget()->size().width());
+            break;
+        }
+
+        case Corner::BottomLeftCorner: {
+            rect.moveBottom(parentWidget()->size().height());
+            break;
+        }
+
+        case Corner::BottomRightCorner: {
+            rect.moveBottomRight(QPoint(parentWidget()->size().width(), parentWidget()->size().height()));
+            break;
+        }
+    }
+
+    move(rect.topLeft());
 }

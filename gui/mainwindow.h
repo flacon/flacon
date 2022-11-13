@@ -106,6 +106,7 @@ private:
     QPointer<Conv::Converter> mConverter;
     Scanner                  *mScanner;
     QString                   getOpenFileFilter(bool includeAudio, bool includeCue);
+    WidgetBadge              *mStartConvertBadge = nullptr;
 
     void polishView();
     void initActions();

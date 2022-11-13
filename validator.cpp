@@ -44,6 +44,21 @@ bool Validator::canConvert() const
 /************************************************
  *
  ************************************************/
+bool Validator::hasWarnings() const
+{
+    for (const Disk *d : mDisks) {
+
+        if (diskHasWarnings(d)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/************************************************
+ *
+ ************************************************/
 bool Validator::diskHasWarnings(const Disk *disk) const
 {
     return !warningsForDisk(disk).isEmpty();
@@ -82,6 +97,20 @@ QStringList Validator::warningsForDisk(const Disc *disk) const
         }
     }
     return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+bool Validator::hasErrors() const
+{
+    for (const Disk *d : mDisks) {
+        if (diskHasErrors(d)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /************************************************

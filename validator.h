@@ -12,6 +12,9 @@ public:
 
     bool canConvert() const;
 
+    bool hasWarnings() const;
+    bool hasErrors() const;
+
     bool        diskHasWarnings(const Disk *disk) const;
     QStringList warningsForDisk(const Disk *disk) const;
 

@@ -174,7 +174,7 @@ Disc *Project::addCueFile(const QString &fileName)
         Disc *disc = new Disc(cue);
         disc->searchAudioFiles();
         disc->searchCoverImage();
-        mDiscs << disc;
+        addDisc(disc);
         emit layoutChanged();
         return disc;
     }

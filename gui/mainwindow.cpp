@@ -131,6 +131,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     initActions();
 
+    if (QToolButton *btn = qobject_cast<QToolButton *>(toolBar->widgetForAction(actionStartConvert))) {
+        mStartConvertBadge = new WidgetBadge(btn);
+        mStartConvertBadge->setCorner(Qt::BottomRightCorner);
+        mStartConvertBadge->setMargin(4);
+    }
+
     // Buttons .................................................
     outDirButton->setBuddy(outDirEdit);
     outDirButton->menu()->addSeparator();
@@ -427,6 +433,16 @@ void MainWindow::refreshEdits()
         outPatternEdit->lineEdit()->setText(profile.outFilePattern());
 
     refreshOutProfileCombo();
+
+    if (project->validator().hasErrors()) {
+        mStartConvertBadge->setPixmap(Pixmap("error", 18, 18));
+    }
+    else if (project->validator().hasWarnings()) {
+        mStartConvertBadge->setPixmap(Pixmap("warning", 18, 18));
+    }
+    else {
+        mStartConvertBadge->clear();
+    }
 }
 
 /************************************************
