@@ -77,6 +77,8 @@ private:
 
     bool          check(const Jobs &jobs, const Profile &profile) const;
     DiscPipeline *createDiscPipeline(const Profile &profile, const Job &converterJob);
+
+    bool validateResultFiles(const QList<Disc *> &disks, QStringList &errors) const;
 };
 
 }

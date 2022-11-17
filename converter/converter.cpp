@@ -317,6 +317,13 @@ bool Converter::check(const Jobs &jobs, const Profile &profile) const
         Settings::i()->checkProgram(Sox::programName(), &errors);
     }
 
+    DiscList disks;
+    for (const Job &job : jobs) {
+        disks << job.disc;
+    }
+
+    validateResultFiles(disks, errors);
+
     if (!errors.isEmpty()) {
         QString s;
         foreach (QString e, errors) {
@@ -328,4 +335,42 @@ bool Converter::check(const Jobs &jobs, const Profile &profile) const
     }
 
     return errors.isEmpty();
+}
+
+/************************************************
+
+ ************************************************/
+bool Converter::validateResultFiles(const QList<Disc *> &disks, QStringList &errors) const
+{
+    bool res = true;
+
+    auto resultFiles = [](const Disc *disk) -> QSet<QString> {
+        QSet<QString> files;
+        for (int i = 0; i < disk->count(); ++i) {
+            files.insert(disk->track(i)->resultFilePath());
+        }
+        return files;
+    };
+
+    for (int i = 0; i < disks.count() - 1; ++i) {
+        const Disc *disk1 = disks.at(i);
+
+        QSet<QString> diskFiles = resultFiles(disk1);
+
+        for (int j = i + 1; j < disks.count(); ++j) {
+
+            const Disc *disk2 = disks.at(j);
+
+            if (diskFiles.intersects(resultFiles(disk2))) {
+                errors << QString("Disk %1 \"%2\" will overwrite the files of the disk %3 \"%4\".")
+                                  .arg(j + 1)
+                                  .arg(QFileInfo(disk2->cueFilePath()).fileName())
+                                  .arg(i + 1)
+                                  .arg(QFileInfo(disk1->cueFilePath()).fileName());
+                res = false;
+            }
+        }
+    }
+
+    return res;
 }
