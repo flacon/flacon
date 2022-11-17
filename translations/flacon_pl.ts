@@ -32,7 +32,7 @@
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
-        <translation>Bugtracker %1</translation>
+        <translation>Bug tracker %1</translation>
     </message>
     <message>
         <source>License: %1</source>
@@ -57,7 +57,7 @@
     <message>
         <source>WavPack support patch</source>
         <comment>Thanks on the about page</comment>
-        <translation>Poprawka obsługi WavPack.</translation>
+        <translation>Poprawki obsługi WavPack.</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
@@ -77,16 +77,16 @@
     <message>
         <source>Icon for application</source>
         <comment>Thanks on the about page</comment>
-        <translation type="unfinished"/>
+        <translation>Ikona aplikacji</translation>
     </message>
     <message>
         <source>Icons for application</source>
         <comment>Thanks on the about page</comment>
-        <translation type="unfinished"/>
+        <translation>Ikony aplikacji</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Flacon jest tłumaczony na wiele języków, dzięki pracy zespołom tłumaczy na stronie &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -94,7 +94,7 @@
     <message>
         <source>Create a profile</source>
         <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Utwórz profil</translation>
     </message>
     <message>
         <source>To create a profile, fill out the following information:</source>
@@ -114,7 +114,7 @@
     <message>
         <source>Create a profile</source>
         <comment>Button caption</comment>
-        <translation type="unfinished"/>
+        <translation>Utwórz profil</translation>
     </message>
 </context>
 <context>
