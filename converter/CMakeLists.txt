@@ -66,9 +66,6 @@ set(SOURCES
     extprogram.cpp
 )
 
-# include("cmake/git_version.cmake")
-# include("cmake/build_type.cmake")
-
 
 
 #*******************************************
@@ -84,11 +81,10 @@ find_package(Qt5 REQUIRED
     Widgets
 )
 
-
-# qt5_add_translation(QM_FILES ${TS_FILES})
+find_package(ZLIB REQUIRED)
 
 add_library(${PROJECT_NAME} STATIC ${HEADERS} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARIES} ${QT_LIBRARIES} Qt5::Widgets "z")
+target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARIES} ${QT_LIBRARIES} Qt5::Widgets ZLIB::ZLIB)
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}
