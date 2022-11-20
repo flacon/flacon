@@ -123,7 +123,7 @@ void PreferencesDialog::initToolBar()
     ui->updatePage->hide();
 #endif
 
-#if BUNDLED_PROGRAMS
+#if defined(MAC_BUNDLE) || defined(FLATPAK_BUNDLE)
     ui->actShowProgramsPage->setVisible(false);
     ui->programsPage->hide();
 #endif
@@ -179,10 +179,12 @@ void PreferencesDialog::load()
 
     // General  page .......................
     ui->generalPage->setEncoderThreadsCount(settings->encoderThreadsCount());
+#ifndef FLATPAK_BUNDLE
     ui->generalPage->setTmpDir(settings->tmpDir());
+#endif
     ui->generalPage->setDefaultCodepage(settings->defaultCodepage());
 
-#if !BUNDLED_PROGRAMS
+#if !defined(MAC_BUNDLE) && !defined(FLATPAK_BUNDLE)
     // Programs page .......................
     ui->programsPage->load();
 #endif
@@ -200,10 +202,12 @@ void PreferencesDialog::save()
 
     // General  page .......................
     settings->setEncoderThreadsCount(ui->generalPage->encoderThreadsCount());
+#ifndef FLATPAK_BUNDLE
     settings->setTmpDir(ui->generalPage->tmpDir());
+#endif
     settings->setDefaultCodepage(ui->generalPage->defaultCodepage());
 
-#if !BUNDLED_PROGRAMS
+#if !defined(MAC_BUNDLE) && !defined(FLATPAK_BUNDLE)
     // Programs page .......................
     ui->programsPage->save();
 #endif
