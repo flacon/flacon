@@ -38,7 +38,7 @@ GeneralPage::GeneralPage(QWidget *parent) :
     ui->tmpDirButton->setBuddy(ui->tmpDirEdit);
     connect(ui->tmpDirButton, &QToolButton::clicked, this, &GeneralPage::showTmpDirDialog);
 
-#ifdef FLATPAK_BUNDLE
+#ifdef DISABLE_TMP_DIR
     ui->tmpDirLabel->hide();
     ui->tmpDirEdit->hide();
     ui->tmpDirButton->hide();
@@ -60,12 +60,20 @@ void GeneralPage::showTmpDirDialog()
 
 QString GeneralPage::tmpDir() const
 {
+#ifndef DISABLE_TMP_DIR
     return ui->tmpDirEdit->text();
+#else
+    return "";
+#endif
 }
 
 void GeneralPage::setTmpDir(const QString &value)
 {
+#ifndef DISABLE_TMP_DIR
     ui->tmpDirEdit->setText(value);
+#else
+    Q_UNUSED(value)
+#endif
 }
 
 QString GeneralPage::defaultCodepage() const

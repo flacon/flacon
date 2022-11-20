@@ -47,10 +47,43 @@ add_definitions(-DFLACON_MINOR_VERSION=\"${MINOR_VERSION}\")
 add_definitions(-DFLACON_PATCH_VERSION=\"${PATCH_VERSION}\")
 add_definitions(-DFLACON_VERSION=\"${FLACON_VERSION}\")
 
+set (CMAKE_CXX_STANDARD 14)
 
+
+SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 include("cmake/status_message.cmake")
+include("cmake/cxx_standard.cmake")
+include("cmake/git_version.cmake")
+include("cmake/build_type.cmake")
+
 status_message("${PROJECT_NAME} ver. ${FLACON_VERSION}")
 status_message(" ")
+
+if ( ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin" )
+    option(MAC_BUNDLE "Create .app bundle for macOS" OFF)
+endif()
+
+if ( ${CMAKE_SYSTEM_NAME} STREQUAL "Linux" )
+    option(FLATPAK_BUNDLE  "Create Flatpak bundle"  OFF)
+    option(APPIMAGE_BUNDLE "Create AppImage bundle" OFF)
+endif()
+
+
+if ( MAC_BUNDLE )
+    add_definitions(-DMAC_BUNDLE)
+    add_definitions(-DBUNDLED_PROGRAMS)
+    add_definitions(-DMAC_UPDATER)
+
+elseif ( FLATPAK_BUNDLE )
+    add_definitions(-DFLATPAK_BUNDLE)
+    add_definitions(-DBUNDLED_PROGRAMS)
+    add_definitions(-DDISABLE_TMP_DIR)
+
+elseif ( APPIMAGE_BUNDLE )
+    add_definitions(-DAPPIMAGE_BUNDLE)
+    add_definitions(-DBUNDLED_PROGRAMS)
+
+endif()
 
 
 set(HEADERS
@@ -108,20 +141,17 @@ set(SOURCES
     gui/tageditor/tageditor.cpp
 )
 
+if (APPLE)
+    set(SOURCES ${SOURCES} application_mac.mm )
+endif()
+
+
 include(internet/module.cmake)
 include(gui/module.cmake)
 include(formats_in/module.cmake)
 include(formats_out/module.cmake)
 
-if (APPLE)
-    set(SOURCES ${SOURCES}
-        application_mac.mm
-    )
-endif()
-
-
-set(LIBRARIES
-)
+set(LIBRARIES)
 
 # QRC files .................
 
@@ -144,10 +174,6 @@ set(TRANSLATIONS_DIR
 )
 add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
-set (CMAKE_CXX_STANDARD 14)
-include("cmake/cxx_standard.cmake")
-include("cmake/git_version.cmake")
-include("cmake/build_type.cmake")
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
@@ -178,8 +204,6 @@ find_package(Qt5 REQUIRED
     LinguistTools
 )
 
-
-
 qt5_add_translation(QM_FILES ${TS_FILES})
 
 
@@ -206,37 +230,26 @@ set(LIBRARIES ${LIBRARIES} ${TAGLIB_LIBRARIES})
 include_directories(${TAGLIB_INCLUDE_DIRS})
 link_directories(${TAGLIB_LIBRARY_DIRS})
 
-
-set(MAC_UPDATE_URL "https://flacon.github.io/download/feed.xml" CACHE STRING "The URL of updates appcast for MacOS")
-
 if (APPLE)
     FIND_LIBRARY(COCOA_LIBRARY Cocoa)
     set(LIBRARIES ${LIBRARIES} ${COCOA_LIBRARY})
 endif()
 
+
 if ( MAC_BUNDLE )
-    add_definitions(-DMAC_BUNDLE=Yes)
-    add_definitions(-DMAC_UPDATER=Yes)
+    set(HEADERS ${HEADERS} updater/updater.h )
+    set(SOURCES ${SOURCES} updater/updater.mm )
 
-    set(HEADERS ${HEADERS}
-        updater/updater.h
-    )
 
-    set(SOURCES ${SOURCES}
-        updater/updater.mm
-    )
+    set(MAC_UPDATE_URL "https://flacon.github.io/download/feed.xml" CACHE STRING "The URL of updates appcast for MacOS")
+    CREATE_PLIST_FILE(misc/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
 
-    SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
     find_package(Sparkle REQUIRED)
     include_directories(${SPARKLE_INCLUDE_DIR})
     set(LIBRARIES ${LIBRARIES} ${SPARKLE_LIBRARY})
 
-
 endif()
 
-if (FLATPAK_BUNDLE)
-	add_definitions(-DFLATPAK_BUNDLE=Yes)
-endif()
 
 add_subdirectory(converter)
 
@@ -282,7 +295,6 @@ function(CREATE_FLATPAK_METAINFO_FILE _IN_FILE _OUT_FILE)
 endfunction()
 
 CREATE_DESKTOP_FILE(misc/${PROJECT_NAME}.desktop ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop translations/*.desktop)
-CREATE_PLIST_FILE(misc/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
 CREATE_FLATPAK_METAINFO_FILE(misc/com.github.Flacon.metainfo.xml.in ${CMAKE_CURRENT_BINARY_DIR}/com.github.Flacon.metainfo.xml)
 
 # Man page **************************************

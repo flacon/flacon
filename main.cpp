@@ -42,6 +42,7 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QDir>
+#include <QTimer>
 #include <QLoggingCategory>
 
 #ifdef MAC_UPDATER
@@ -237,9 +238,12 @@ int runGui(int argc, char *argv[], const QStringList &files)
     window.show();
 
 #ifdef MAC_UPDATER
-    Updater &updater = Updater::sharedUpdater();
-    if (updater.automaticallyChecksForUpdates())
-        updater.checkForUpdatesInBackground();
+    QTimer::singleShot(0, []() {
+        Updater &updater = Updater::sharedUpdater();
+        if (updater.automaticallyChecksForUpdates()) {
+            updater.checkForUpdatesInBackground();
+        }
+    });
 #endif
 
     return app.exec();
