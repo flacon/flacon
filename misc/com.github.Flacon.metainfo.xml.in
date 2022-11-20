@@ -13,7 +13,7 @@
   <url type="bugtracker">https://github.com/flacon/flacon</url>
   <url type="help">https://github.com/flacon/flacon/wiki</url>
   <url type="donation">https://flacon.github.io/donate/</url>
-  
+
   <categories>
     <category>AudioVideo</category>
     <category>Audio</category>
@@ -56,9 +56,10 @@
   </screenshots>
 
   <releases>
-    <release date="2022-11-17" version="9.5.0">
+    <release date="2022-11-20" version="9.5.1">
       <description><p>Latest version of Flacon on Flathub.</p></description>
     </release>
+    <release date="2022-11-17" version="9.5.0" />
     <release date="2022-10-02" version="9.4.0" />
     <release date="2022-09-23" version="9.3.0" />
     <release date="2022-06-20" version="9.1.0" />
