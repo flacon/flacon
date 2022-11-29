@@ -51,8 +51,8 @@ using namespace Conv;
 class Converter::Data
 {
 public:
-    TrackId trackId     = 1;
-    int     threadCount = 0;
+    int       threadCount = 0;
+    Validator validator;
 
     QVector<DiscPipeline *>        discPiplines;
     QMap<TrackId, const ConvTrack> tracks;
@@ -143,7 +143,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
                 continue;
             }
 
-            if (project->validator().diskHasErrors(converterJob.disc)) {
+            if (mData->validator.diskHasErrors(converterJob.disc)) {
                 continue;
             }
 
@@ -277,7 +277,16 @@ void Converter::startThread()
  ************************************************/
 bool Converter::validate(const Jobs &jobs, const Profile &profile) const
 {
-    QStringList errors = project->validator().converterErrors();
+    DiskList disks;
+    for (const auto &j : jobs) {
+        disks << j.disc;
+        qDebug() << " *" << j.disc->cueFilePath();
+    }
+
+    mData->validator.setDisks(disks);
+    mData->validator.setProfile(profile);
+
+    QStringList errors = mData->validator.converterErrors();
 
     if (errors.isEmpty()) {
         return true;

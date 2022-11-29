@@ -277,7 +277,6 @@ void MainWindow::dropEvent(QDropEvent *event)
 void MainWindow::setPattern()
 {
     project->currentProfile().setOutFilePattern(outPatternEdit->currentText());
-    project->validator().revalidate();
     trackView->model()->layoutChanged();
 }
 
@@ -287,7 +286,6 @@ void MainWindow::setPattern()
 void MainWindow::setOutDir()
 {
     project->currentProfile().setOutFileDir(outDirEdit->currentText());
-    project->validator().revalidate();
     trackView->model()->layoutChanged();
 }
 
@@ -336,8 +334,6 @@ void MainWindow::setCueForDisc(Disc *disc)
     catch (FlaconError &err) {
         Messages::error(err.what());
     }
-
-    project->validator().revalidate();
 }
 
 /************************************************
@@ -399,11 +395,15 @@ void MainWindow::refreshEdits()
     QSet<QString> discId;
     QSet<QString> codePage;
 
-    QList<Disc *> discs = trackView->selectedDiscs();
+    bool          hasErrors   = false;
+    bool          hasWarnings = false;
+    QList<Disc *> discs       = trackView->selectedDiscs();
     foreach (Disc *disc, discs) {
         startNums << disc->startTrackNum();
         discId << disc->discId();
         codePage << disc->codecName();
+        hasErrors   = hasErrors || project->validator().diskHasErrors(disc);
+        hasWarnings = hasErrors || project->validator().diskHasWarnings(disc);
     }
 
     // Tracks ..............................
@@ -440,15 +440,15 @@ void MainWindow::refreshEdits()
 
     refreshOutProfileCombo();
 
-    if (project->validator().hasErrors()) {
-        mStartConvertBadge->setPixmap(Pixmap("error", 18, 18));
-    }
-    else if (project->validator().hasWarnings()) {
-        mStartConvertBadge->setPixmap(Pixmap("warning", 18, 18));
-    }
-    else {
-        mStartConvertBadge->clear();
-    }
+    //    if (project->validator().hasErrors()) {
+    //        mStartConvertBadge->setPixmap(Pixmap("error", 18, 18));
+    //    }
+    //    else if (project->validator().hasWarnings()) {
+    //        mStartConvertBadge->setPixmap(Pixmap("warning", 18, 18));
+    //    }
+    //    else {
+    //        mStartConvertBadge->clear();
+    //    }
 }
 
 /************************************************
@@ -499,7 +499,6 @@ void MainWindow::setCodePage()
 
         Settings::i()->setValue(Settings::Tags_DefaultCodepage, codepage);
     }
-    project->validator().revalidate();
 }
 
 /************************************************
@@ -517,7 +516,6 @@ void MainWindow::setTrackTag()
     }
 
     trackView->updateAll();
-    project->validator().revalidate();
 }
 
 /************************************************
@@ -534,7 +532,6 @@ void MainWindow::setDiscTag()
         disc->setDiscTag(edit->tagId(), edit->text());
     }
 
-    project->validator().revalidate();
     trackView->updateAll();
 }
 
@@ -552,7 +549,6 @@ void MainWindow::setDiscTagInt()
         disc->setDiscTag(spinBox->tagId(), QString::number(spinBox->value()));
     }
 
-    project->validator().revalidate();
     trackView->updateAll();
 }
 
@@ -669,7 +665,6 @@ void MainWindow::configure()
 {
     auto dlg = PreferencesDialog::createAndShow(nullptr, this);
     connect(dlg, &PreferencesDialog::finished, this, &MainWindow::refreshEdits, Qt::UniqueConnection);
-    connect(dlg, &PreferencesDialog::finished, &project->validator(), &Validator::revalidate);
 }
 
 /************************************************
@@ -679,7 +674,6 @@ void MainWindow::configureEncoder()
 {
     auto dlg = PreferencesDialog::createAndShow(project->currentProfile().id(), this);
     connect(dlg, &PreferencesDialog::finished, this, &MainWindow::refreshEdits, Qt::UniqueConnection);
-    connect(dlg, &PreferencesDialog::finished, &project->validator(), &Validator::revalidate);
 }
 
 /************************************************
@@ -998,7 +992,6 @@ void MainWindow::openEditTagsDialog()
 {
     TagEditor editor(trackView->selectedTracks(), trackView->selectedDiscs(), this);
     editor.exec();
-    project->validator().revalidate();
     refreshEdits();
     setControlsEnable();
 }
@@ -1048,7 +1041,6 @@ void MainWindow::setStartTrackNum()
     foreach (Disc *disc, discs) {
         disc->setStartTrackNum(value);
     }
-    project->validator().revalidate();
 }
 
 /************************************************
