@@ -284,18 +284,22 @@ bool TrackViewModel::setData(const QModelIndex &index, const QVariant &value, in
         switch (index.column()) {
             case TrackView::ColumnTitle:
                 track->setTitle(value.toString());
+                project->validator().revalidate();
                 break;
 
             case TrackView::ColumnArtist:
                 track->setArtist(value.toString());
+                project->validator().revalidate();
                 break;
 
             case TrackView::ColumnAlbum:
                 track->setAlbum(value.toString());
+                project->validator().revalidate();
                 break;
 
             case TrackView::ColumnComment:
                 track->setComment(value.toString());
+                project->validator().revalidate();
                 break;
         }
     }
@@ -437,8 +441,8 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
         case RoleCoverImg:      return disc->coverImagePreview();
         case RoleCueFilePath:   return disc->cueFilePath();
         case RoleAudioFilePath: return disc->audioFilePaths();
-        case RoleDiscWarnings:  return project->validator().warningsForDisk(disc);
-        case RoleDiscErrors:    return project->validator().errorsForDisk(disc);
+        case RoleDiscWarnings:  return project->validator().diskWarnings(disc);
+        case RoleDiscErrors:    return project->validator().diskErrors(disc);
     }
     // clang-format on
 

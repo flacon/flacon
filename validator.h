@@ -2,34 +2,49 @@
 #define VALIDATORS_H
 
 #include "disc.h"
-#include "converter/converter.h"
+#include "profiles.h"
+#include <QMap>
 
-class Validator
+class Validator : public QObject
 {
+    Q_OBJECT
 public:
+    Validator(QObject *parent = nullptr);
+
     const DiskList &disks() const { return mDisks; }
     void            setDisks(DiskList disks);
 
-    bool canConvert() const;
+    Profile profile() const { return mProfile; }
+    void    setProfile(const Profile &profile);
 
-    bool hasWarnings() const;
-    bool hasErrors() const;
+    void revalidate();
 
+    QStringList converterErrors() const { return mGlobalErrors; }
+
+    QStringList diskWarnings(const Disk *disk) const;
     bool        diskHasWarnings(const Disk *disk) const;
-    QStringList warningsForDisk(const Disk *disk) const;
 
+    QStringList diskErrors(const Disk *disk) const;
     bool        diskHasErrors(const Disk *disk) const;
-    QStringList errorsForDisk(const Disk *disk) const;
-
-    QStringList converterErros(const Conv::Converter::Jobs &jobs, const Profile &profile) const;
 
 private:
     QList<Disk *> mDisks;
+    Profile       mProfile;
 
-    bool validateCue(const Disc *disk, QStringList &errors) const;
-    bool validateAudioFiles(const Disc *disk, QStringList &errors) const;
-    bool validateResultFiles(const Disc *disk, QStringList &errors) const;
-    bool validateRasampler(const QList<const Track *> &tracks, const Profile &profile, QStringList &errors) const;
+    QStringList                     mGlobalErrors;
+    QMap<const Disk *, QStringList> mDisksErrors;
+    QMap<const Disk *, QStringList> mDisksWarnings;
+
+    bool mResultFilesOverwrite = false;
+
+    bool validateProfile();
+
+    void revalidateDisk(const Disk *disk, QStringList &errors, QStringList &warnings);
+    bool validateCue(const Disk *disk, QStringList &errors, QStringList &warnings);
+    bool validateAudioFiles(const Disk *disk, QStringList &errors, QStringList &warnings);
+    bool validateResultFiles(const Disk *disk, QStringList &errors, QStringList &warnings);
+    bool validateRasampler(const Disk *disk, QStringList &errors, QStringList &warnings);
+    bool vaslidateDiskWarnings(const Disk *disk, QStringList &warnings);
 };
 
 #endif // VALIDATORS_H

@@ -211,7 +211,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
                     consoleErroHandler(QtCriticalMsg, QMessageLogContext(), message);
                 });
 
-    converter.start(Settings::i()->currentProfile());
+    converter.start(project->currentProfile());
     if (!converter.isRunning())
         return 11;
 

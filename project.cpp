@@ -104,8 +104,9 @@ void Project::removeDisc(const QList<Disc *> *discs)
     for (int i = 0; i < discs->count(); ++i) {
         Disc *disc = discs->at(i);
         emit  beforeRemoveDisc(disc);
-        if (mDiscs.removeAll(disc))
+        if (mDiscs.removeAll(disc)) {
             disc->deleteLater();
+        }
 
         emit afterRemoveDisc();
         mValidator.setDisks(mDiscs);
@@ -183,6 +184,32 @@ Disc *Project::addCueFile(const QString &fileName)
         qWarning() << err.what();
         throw err;
     }
+}
+
+/************************************************
+
+ ************************************************/
+const Profile &Project::currentProfile() const
+{
+    return Settings::i()->currentProfile();
+}
+
+/************************************************
+
+ ************************************************/
+Profile &Project::currentProfile()
+{
+    return Settings::i()->currentProfile();
+}
+
+/************************************************
+
+ ************************************************/
+bool Project::selectProfile(const QString &profileId)
+{
+    bool res = Settings::i()->selectProfile(profileId);
+    mValidator.setProfile(currentProfile());
+    return res;
 }
 
 /************************************************

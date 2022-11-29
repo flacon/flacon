@@ -276,7 +276,8 @@ void MainWindow::dropEvent(QDropEvent *event)
  ************************************************/
 void MainWindow::setPattern()
 {
-    Settings::i()->currentProfile().setOutFilePattern(outPatternEdit->currentText());
+    project->currentProfile().setOutFilePattern(outPatternEdit->currentText());
+    project->validator().revalidate();
     trackView->model()->layoutChanged();
 }
 
@@ -285,7 +286,8 @@ void MainWindow::setPattern()
  ************************************************/
 void MainWindow::setOutDir()
 {
-    Settings::i()->currentProfile().setOutFileDir(outDirEdit->currentText());
+    project->currentProfile().setOutFileDir(outDirEdit->currentText());
+    project->validator().revalidate();
     trackView->model()->layoutChanged();
 }
 
@@ -334,6 +336,8 @@ void MainWindow::setCueForDisc(Disc *disc)
     catch (FlaconError &err) {
         Messages::error(err.what());
     }
+
+    project->validator().revalidate();
 }
 
 /************************************************
@@ -343,7 +347,7 @@ void MainWindow::setOutProfile()
 {
     int n = outProfileCombo->currentIndex();
     if (n > -1) {
-        Settings::i()->selectProfile(outProfileCombo->itemData(n).toString());
+        project->selectProfile(outProfileCombo->itemData(n).toString());
     }
     trackView->model()->layoutChanged();
 }
@@ -359,11 +363,13 @@ void MainWindow::setControlsEnable()
 
     bool tracksSelected = !trackView->selectedTracks().isEmpty();
     bool discsSelected  = !trackView->selectedDiscs().isEmpty();
-    bool canConvert     = project->validator().canConvert();
 
     bool canDownload = false;
-    foreach (const Disc *disc, trackView->selectedDiscs())
+    bool canConvert  = false;
+    foreach (const Disc *disc, trackView->selectedDiscs()) {
         canDownload = canDownload || DataProvider::canDownload(*disc);
+        canConvert  = canConvert || !project->validator().diskHasErrors(disc);
+    }
 
     outFilesBox->setEnabled(!running);
     tagsBox->setEnabled(!running && tracksSelected);
@@ -425,7 +431,7 @@ void MainWindow::refreshEdits()
     codepageCombo->setMultiValue(codePage);
     tagDiscPerformerEdit->setMultiValue(discPerformer);
 
-    const Profile &profile = Settings::i()->currentProfile();
+    const Profile &profile = project->currentProfile();
     if (outDirEdit->currentText() != profile.outFileDir())
         outDirEdit->lineEdit()->setText(profile.outFileDir());
 
@@ -467,7 +473,7 @@ void MainWindow::refreshOutProfileCombo()
 
     outProfileCombo->blockSignals(false);
 
-    n = outProfileCombo->findData(Settings::i()->currentProfile().id());
+    n = outProfileCombo->findData(project->currentProfile().id());
 
     if (n > -1) {
         outProfileCombo->setCurrentIndex(n);
@@ -493,6 +499,7 @@ void MainWindow::setCodePage()
 
         Settings::i()->setValue(Settings::Tags_DefaultCodepage, codepage);
     }
+    project->validator().revalidate();
 }
 
 /************************************************
@@ -510,6 +517,7 @@ void MainWindow::setTrackTag()
     }
 
     trackView->updateAll();
+    project->validator().revalidate();
 }
 
 /************************************************
@@ -526,6 +534,7 @@ void MainWindow::setDiscTag()
         disc->setDiscTag(edit->tagId(), edit->text());
     }
 
+    project->validator().revalidate();
     trackView->updateAll();
 }
 
@@ -543,6 +552,7 @@ void MainWindow::setDiscTagInt()
         disc->setDiscTag(spinBox->tagId(), QString::number(spinBox->value()));
     }
 
+    project->validator().revalidate();
     trackView->updateAll();
 }
 
@@ -594,17 +604,17 @@ void MainWindow::startConvertSelected()
  ************************************************/
 void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
 {
-    if (!Settings::i()->currentProfile().isValid())
+    if (!project->currentProfile().isValid())
         return;
 
     trackView->setFocus();
 
-    bool ok = true;
+    bool hasErrors = true;
     for (int i = 0; i < project->count(); ++i) {
-        ok = ok && !project->validator().diskHasErrors(project->disc(i));
+        hasErrors = hasErrors || project->validator().diskHasErrors(project->disc(i));
     }
 
-    if (!ok) {
+    if (!hasErrors) {
         int res = QMessageBox::warning(this,
                                        windowTitle(),
                                        tr("Some albums will not be converted, they contain errors.\nDo you want to continue?"),
@@ -638,7 +648,7 @@ void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
         setWindowTitle(tr("Flacon"));
     });
 
-    mConverter->start(jobs, Settings::i()->currentProfile());
+    mConverter->start(jobs, project->currentProfile());
     setControlsEnable();
 }
 
@@ -659,6 +669,7 @@ void MainWindow::configure()
 {
     auto dlg = PreferencesDialog::createAndShow(nullptr, this);
     connect(dlg, &PreferencesDialog::finished, this, &MainWindow::refreshEdits, Qt::UniqueConnection);
+    connect(dlg, &PreferencesDialog::finished, &project->validator(), &Validator::revalidate);
 }
 
 /************************************************
@@ -666,8 +677,9 @@ void MainWindow::configure()
  ************************************************/
 void MainWindow::configureEncoder()
 {
-    auto dlg = PreferencesDialog::createAndShow(Settings::i()->currentProfile().id(), this);
+    auto dlg = PreferencesDialog::createAndShow(project->currentProfile().id(), this);
     connect(dlg, &PreferencesDialog::finished, this, &MainWindow::refreshEdits, Qt::UniqueConnection);
+    connect(dlg, &PreferencesDialog::finished, &project->validator(), &Validator::revalidate);
 }
 
 /************************************************
@@ -986,7 +998,9 @@ void MainWindow::openEditTagsDialog()
 {
     TagEditor editor(trackView->selectedTracks(), trackView->selectedDiscs(), this);
     editor.exec();
+    project->validator().revalidate();
     refreshEdits();
+    setControlsEnable();
 }
 
 /************************************************
@@ -1034,6 +1048,7 @@ void MainWindow::setStartTrackNum()
     foreach (Disc *disc, discs) {
         disc->setStartTrackNum(value);
     }
+    project->validator().revalidate();
 }
 
 /************************************************
@@ -1149,7 +1164,7 @@ QIcon MainWindow::loadMainIcon()
 void MainWindow::showErrorMessage(const QString &message)
 {
     const QString name = "errorMessage";
-    ErrorBox     *box  = this->findChild<ErrorBox *>(name);
+    ErrorBox *    box  = this->findChild<ErrorBox *>(name);
     if (!box) {
         box = new ErrorBox(this);
         box->setObjectName(name);

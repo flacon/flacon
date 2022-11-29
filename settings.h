@@ -84,12 +84,12 @@ public:
     QString defaultCodepage() const;
     void    setDefaultCodepage(const QString &value);
 
-    Profiles       &profiles();
+    Profiles &      profiles();
     const Profiles &profiles() const;
     void            setProfiles(const Profiles &profiles);
 
     const Profile &currentProfile() const;
-    Profile       &currentProfile();
+    Profile &      currentProfile();
     bool           selectProfile(const QString &profileId);
 
     uint encoderThreadsCount() const;

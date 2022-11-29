@@ -50,9 +50,10 @@ public:
     void searchAudioFiles(bool replaceExisting = false);
     void searchCoverImage(bool replaceExisting = false);
 
-    Track       *track(int index) const;
-    int          count() const { return mTracks.count(); }
-    const Track *preGapTrack() const;
+    QList<Track *> tracks() const { return mTracks; }
+    Track *        track(int index) const;
+    int            count() const { return mTracks.count(); }
+    const Track *  preGapTrack() const;
 
     QString cueFilePath() const;
     void    setCueFile(const Cue &cueDisc);

@@ -1,9 +1,16 @@
 #include "validator.h"
-#include "../profiles.h"
-#include "../settings.h"
 #include "sox.h"
-#include "disc.h"
+#include "settings.h"
 #include <QDebug>
+#include <QDateTime>
+
+/************************************************
+ *
+ ************************************************/
+Validator::Validator(QObject *parent) :
+    QObject(parent)
+{
+}
 
 /************************************************
  *
@@ -11,31 +18,93 @@
 void Validator::setDisks(DiskList disks)
 {
     mDisks = disks;
+    revalidate();
 }
 
 /************************************************
  *
  ************************************************/
-bool Validator::canConvert() const
+void Validator::setProfile(const Profile &profile)
 {
-    if (mDisks.isEmpty()) {
+    mProfile = profile;
+    revalidate();
+}
+
+/************************************************
+ *
+ ************************************************/
+void Validator::revalidate()
+{
+    qDebug() << Q_FUNC_INFO << QDateTime::currentDateTime();
+
+    mResultFilesOverwrite = false;
+    mGlobalErrors.clear();
+    mDisksErrors.clear();
+    mDisksWarnings.clear();
+
+    validateProfile();
+
+    for (Disk *disk : qAsConst(mDisks)) {
+        QStringList errors = mGlobalErrors;
+        QStringList warnings;
+
+        revalidateDisk(disk, errors, warnings);
+
+        mDisksErrors[disk]   = errors;
+        mDisksWarnings[disk] = warnings;
+    }
+
+    if (mResultFilesOverwrite) {
+        mGlobalErrors << QObject::tr("Some disks will overwrite the resulting files of another disk.", "error message");
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+QStringList Validator::diskWarnings(const Disk *disk) const
+{
+    return mDisksWarnings.value(disk, {});
+}
+
+/************************************************
+ *
+ ************************************************/
+bool Validator::diskHasWarnings(const Disk *disk) const
+{
+    return !diskWarnings(disk).isEmpty();
+}
+
+/************************************************
+ *
+ ************************************************/
+QStringList Validator::diskErrors(const Disk *disk) const
+{
+    return mDisksErrors.value(disk, {});
+}
+
+/************************************************
+ *
+ ************************************************/
+bool Validator::diskHasErrors(const Disk *disk) const
+{
+    return !diskErrors(disk).isEmpty();
+}
+
+/************************************************
+ *
+ ************************************************/
+bool Validator::validateProfile()
+{
+    if (!mProfile.isValid()) {
+        mGlobalErrors << QObject::tr("Incorrect output profile", "error message");
         return false;
     }
 
-    if (!Settings::i()->currentProfile().isValid()) {
+    QStringList errs;
+    if (!mProfile.outFormat()->check(mProfile, &errs)) {
+        mGlobalErrors << errs;
         return false;
-    }
-
-    {
-        // At least one disk does not contain errors
-        bool hasValidDisk = false;
-        for (const Disk *d : mDisks) {
-            hasValidDisk = hasValidDisk || (diskHasErrors(d) == false);
-        }
-
-        if (!hasValidDisk) {
-            return false;
-        }
     }
 
     return true;
@@ -44,118 +113,44 @@ bool Validator::canConvert() const
 /************************************************
  *
  ************************************************/
-bool Validator::hasWarnings() const
+void Validator::revalidateDisk(const Disk *disk, QStringList &errors, QStringList &warnings)
 {
-    for (const Disk *d : mDisks) {
+    if (!validateCue(disk, errors, warnings)) {
+        return;
+    }
+    validateAudioFiles(disk, errors, warnings);
 
-        if (diskHasWarnings(d)) {
-            return true;
-        }
+    bool ok = validateResultFiles(disk, errors, warnings);
+
+    mResultFilesOverwrite = mResultFilesOverwrite || !ok;
+
+    validateRasampler(disk, errors, warnings);
+
+    vaslidateDiskWarnings(disk, warnings);
+}
+
+/************************************************
+ *
+ ************************************************/
+bool Validator::validateCue(const Disk *disk, QStringList &errors, QStringList &warnings)
+{
+    Q_UNUSED(warnings)
+
+    if (disk->count() == 0) {
+        errors << QObject::tr("Cue file not set.");
+        return false;
     }
 
-    return false;
+    return true;
 }
 
 /************************************************
  *
  ************************************************/
-bool Validator::diskHasWarnings(const Disk *disk) const
+bool Validator::validateAudioFiles(const Disk *disk, QStringList &errors, QStringList &warnings)
 {
-    return !warningsForDisk(disk).isEmpty();
-}
+    Q_UNUSED(warnings)
 
-/************************************************
- *
- ************************************************/
-QStringList Validator::warningsForDisk(const Disc *disk) const
-{
-
-    QStringList res;
-    for (const InputAudioFile &audioFile : disk->audioFiles()) {
-        int bps = audioFile.bitsPerSample();
-        if (Settings::i()->currentProfile().bitsPerSample() != BitsPerSample::AsSourcee) {
-            bps = qMin(audioFile.bitsPerSample(), int(Settings::i()->currentProfile().bitsPerSample()));
-        }
-
-        if (bps > int(Settings::i()->currentProfile().maxBitPerSample())) {
-            res << QObject::tr("A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.", "Warning message")
-                            .arg(int(Settings::i()->currentProfile().maxBitPerSample()));
-        }
-
-        int sr = audioFile.sampleRate();
-        if (Settings::i()->currentProfile().sampleRate() != SampleRate::AsSource) {
-            sr = qMin(sr, int(Settings::i()->currentProfile().sampleRate()));
-        }
-
-        if (sr > int(Settings::i()->currentProfile().maxSampleRate())) {
-            res << QObject::tr("A maximum sample rate of %1 is supported by this format. This value will be used for encoding.", "Warning message")
-                            .arg(int(Settings::i()->currentProfile().maxSampleRate()));
-        }
-
-        if (Settings::i()->currentProfile().gainType() != GainType::Disable && audioFile.channelsCount() > 2) {
-            res << QObject::tr("ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.", "Warning message");
-        }
-    }
-    return res;
-}
-
-/************************************************
- *
- ************************************************/
-bool Validator::hasErrors() const
-{
-    for (const Disk *d : mDisks) {
-        if (diskHasErrors(d)) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-/************************************************
- *
- ************************************************/
-bool Validator::diskHasErrors(const Disk *disk) const
-{
-    return !errorsForDisk(disk).isEmpty();
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Validator::errorsForDisk(const Disk *disk) const
-{
-    QStringList errors;
-
-    if (!validateCue(disk, errors)) {
-        return errors;
-    }
-
-    validateAudioFiles(disk, errors);
-    validateResultFiles(disk, errors);
-
-    return errors;
-}
-
-/************************************************
- *
- ************************************************/
-bool Validator::validateCue(const Disc *disk, QStringList &errors) const
-{
-    if (disk->count() > 0) {
-        return true;
-    }
-
-    errors << QObject::tr("Cue file not set.");
-    return false;
-}
-
-/************************************************
- *
- ************************************************/
-bool Validator::validateAudioFiles(const Disc *disk, QStringList &errors) const
-{
     bool res = true;
 
     const QList<TrackPtrList> &audioFileTracks = disk->tracksByFileTag();
@@ -216,8 +211,10 @@ bool Validator::validateAudioFiles(const Disc *disk, QStringList &errors) const
 /************************************************
  *
  ************************************************/
-bool Validator::validateResultFiles(const Disc *disk, QStringList &errors) const
+bool Validator::validateResultFiles(const Disk *disk, QStringList &errors, QStringList &warnings)
 {
+    Q_UNUSED(warnings)
+
     bool res = true;
 
     auto resultFiles = [](const Disk *disk) -> QSet<QString> {
@@ -233,7 +230,7 @@ bool Validator::validateResultFiles(const Disc *disk, QStringList &errors) const
     int n = 0;
     for (const Disk *d : mDisks) {
         n++;
-        if (disk == d) {
+        if (d == disk) {
             continue;
         }
 
@@ -242,6 +239,7 @@ bool Validator::validateResultFiles(const Disc *disk, QStringList &errors) const
                               .arg(n)
                               .arg(d->discTag(TagId::Artist))
                               .arg(d->discTag(TagId::Album));
+
             res = false;
         }
     }
@@ -252,52 +250,14 @@ bool Validator::validateResultFiles(const Disc *disk, QStringList &errors) const
 /************************************************
  *
  ************************************************/
-QStringList Validator::converterErros(const Conv::Converter::Jobs &jobs, const Profile &profile) const
+bool Validator::validateRasampler(const Disk *disk, QStringList &errors, QStringList &warnings)
 {
-    QStringList          errors;
-    QList<const Track *> tracks;
+    Q_UNUSED(warnings)
 
-    for (const Conv::Converter::Job &job : jobs) {
-        for (const Track *track : job.tracks) {
-            tracks << track;
-        }
-    }
-
-    if (!profile.isValid()) {
-        errors << QObject::tr("Incorrect output profile", "error message");
-        return errors;
-    }
-
-    if (!profile.outFormat()->check(profile, &errors)) {
-        return errors;
-    }
-
-    if (!validateRasampler(tracks, profile, errors)) {
-        return errors;
-    }
-
-    {
-        QStringList errs;
-        for (const Conv::Converter::Job &j : jobs) {
-            validateResultFiles(j.disc, errs);
-        }
-
-        if (!errs.isEmpty()) {
-            errors << QObject::tr("Some disks will overwrite the resulting files of another disk.", "error message");
-        }
-    }
-    return errors;
-}
-
-/************************************************
- *
- ************************************************/
-bool Validator::validateRasampler(const QList<const Track *> &tracks, const Profile &profile, QStringList &errors) const
-{
     bool needSox = false;
-    needSox      = needSox || (profile.bitsPerSample() != BitsPerSample::AsSourcee || profile.sampleRate() != SampleRate::AsSource);
+    needSox      = needSox || (mProfile.bitsPerSample() != BitsPerSample::AsSourcee || mProfile.sampleRate() != SampleRate::AsSource);
 
-    for (const Track *track : tracks) {
+    for (const Track *track : disk->tracks()) {
         needSox = needSox || track->preEmphased();
     }
 
@@ -306,4 +266,43 @@ bool Validator::validateRasampler(const QList<const Track *> &tracks, const Prof
     }
 
     return Settings::i()->checkProgram(Conv::Sox::programName(), &errors);
+}
+
+/************************************************
+ *
+ ************************************************/
+bool Validator::vaslidateDiskWarnings(const Disk *disk, QStringList &warnings)
+{
+    bool res = true;
+
+    for (const InputAudioFile &audioFile : disk->audioFiles()) {
+        int bps = audioFile.bitsPerSample();
+        if (mProfile.bitsPerSample() != BitsPerSample::AsSourcee) {
+            bps = qMin(audioFile.bitsPerSample(), int(mProfile.bitsPerSample()));
+        }
+
+        if (bps > int(mProfile.maxBitPerSample())) {
+            warnings << QObject::tr("A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.", "Warning message")
+                                .arg(int(mProfile.maxBitPerSample()));
+            res = false;
+        }
+
+        int sr = audioFile.sampleRate();
+        if (mProfile.sampleRate() != SampleRate::AsSource) {
+            sr = qMin(sr, int(mProfile.sampleRate()));
+        }
+
+        if (sr > int(mProfile.maxSampleRate())) {
+            warnings << QObject::tr("A maximum sample rate of %1 is supported by this format. This value will be used for encoding.", "Warning message")
+                                .arg(int(mProfile.maxSampleRate()));
+            res = false;
+        }
+
+        if (mProfile.gainType() != GainType::Disable && audioFile.channelsCount() > 2) {
+            warnings << QObject::tr("ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.", "Warning message");
+            res = false;
+        }
+    }
+
+    return res;
 }

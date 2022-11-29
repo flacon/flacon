@@ -277,7 +277,7 @@ void Converter::startThread()
  ************************************************/
 bool Converter::validate(const Jobs &jobs, const Profile &profile) const
 {
-    QStringList errors = project->validator().converterErros(jobs, profile);
+    QStringList errors = project->validator().converterErrors();
 
     if (errors.isEmpty()) {
         return true;

@@ -61,7 +61,11 @@ public:
     Disc *addAudioFile(const QString &fileName) noexcept(false);
     Disc *addCueFile(const QString &fileName);
 
-    const Validator &validator() const { return mValidator; }
+    const Profile &currentProfile() const;
+    Profile       &currentProfile();
+    bool           selectProfile(const QString &profileId);
+
+    Validator &validator() { return mValidator; }
 
 signals:
     void discChanged(Disc *disc) const;
