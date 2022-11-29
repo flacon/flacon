@@ -129,11 +129,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(editTagsButton, &QPushButton::clicked, this, &MainWindow::openEditTagsDialog);
 
+    connect(&project->validator(), &Validator::changed, this, &MainWindow::setControlsEnable);
+    connect(&project->validator(), &Validator::changed, this, &MainWindow::refreshEdits);
+
     initActions();
 
     if (QToolButton *btn = qobject_cast<QToolButton *>(toolBar->widgetForAction(actionStartConvert))) {
         mStartConvertBadge = new WidgetBadge(btn);
-        mStartConvertBadge->setCorner(Qt::BottomRightCorner);
+        mStartConvertBadge->setCorner(Qt::TopRightCorner);
         mStartConvertBadge->setMargin(4);
     }
 
@@ -362,7 +365,7 @@ void MainWindow::setControlsEnable()
 
     bool canDownload = false;
     bool canConvert  = false;
-    foreach (const Disc *disc, trackView->selectedDiscs()) {
+    foreach (const Disc *disc, project->disks()) {
         canDownload = canDownload || DataProvider::canDownload(*disc);
         canConvert  = canConvert || !project->validator().diskHasErrors(disc);
     }
@@ -395,15 +398,18 @@ void MainWindow::refreshEdits()
     QSet<QString> discId;
     QSet<QString> codePage;
 
-    bool          hasErrors   = false;
-    bool          hasWarnings = false;
-    QList<Disc *> discs       = trackView->selectedDiscs();
+    bool hasErrors   = false;
+    bool hasWarnings = false;
+    for (const Disk *d : project->disks()) {
+        hasErrors   = hasErrors || project->validator().diskHasErrors(d);
+        hasWarnings = hasErrors || project->validator().diskHasWarnings(d);
+    }
+
+    QList<Disc *> discs = trackView->selectedDiscs();
     foreach (Disc *disc, discs) {
         startNums << disc->startTrackNum();
         discId << disc->discId();
         codePage << disc->codecName();
-        hasErrors   = hasErrors || project->validator().diskHasErrors(disc);
-        hasWarnings = hasErrors || project->validator().diskHasWarnings(disc);
     }
 
     // Tracks ..............................
@@ -440,10 +446,10 @@ void MainWindow::refreshEdits()
 
     refreshOutProfileCombo();
 
-    //    if (project->validator().hasErrors()) {
+    //    if (hasErrors) {
     //        mStartConvertBadge->setPixmap(Pixmap("error", 18, 18));
     //    }
-    //    else if (project->validator().hasWarnings()) {
+    //    else if (hasWarnings) {
     //        mStartConvertBadge->setPixmap(Pixmap("warning", 18, 18));
     //    }
     //    else {
@@ -866,7 +872,7 @@ void MainWindow::removeDiscs()
         return;
 
     int n = project->indexOf(discs.first());
-    project->removeDisc(&discs);
+    project->removeDisc(discs);
 
     n = qMin(n, project->count() - 1);
     if (n > -1)

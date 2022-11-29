@@ -109,6 +109,9 @@ public:
 
     Cue cue() const { return mCue; }
 
+signals:
+    void tagChanged();
+
 protected:
     void trackChanged(TagId tagId);
 

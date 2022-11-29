@@ -95,6 +95,8 @@ public:
     uint encoderThreadsCount() const;
     void setEncoderThreadsCount(uint value);
 
+    void emitChanged();
+
 signals:
     void changed();
 

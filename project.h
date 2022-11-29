@@ -50,7 +50,7 @@ public:
 
     void addDisc(Disc *disc) { insertDisc(disc); }
     int  insertDisc(Disc *disc, int index = -1);
-    void removeDisc(const QList<Disc *> *discs);
+    void removeDisc(const QList<Disc *> &discs);
 
     void emitDiscChanged(Disc *disc);
     void emitLayoutChanged() const;
@@ -62,7 +62,7 @@ public:
     Disc *addCueFile(const QString &fileName);
 
     const Profile &currentProfile() const;
-    Profile       &currentProfile();
+    Profile &      currentProfile();
     bool           selectProfile(const QString &profileId);
 
     Validator &validator() { return mValidator; }

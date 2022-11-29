@@ -42,7 +42,7 @@ void Project::clear()
     for (int i = 0; i < count(); ++i)
         discs << disc(i);
 
-    removeDisc(&discs);
+    removeDisc(discs);
 }
 
 /************************************************
@@ -90,7 +90,7 @@ int Project::insertDisc(Disc *disc, int index)
         index = mDiscs.count();
 
     mDiscs.insert(index, disc);
-    mValidator.setDisks(mDiscs);
+    mValidator.insertDisk(disc, index);
 
     emit layoutChanged();
     return index;
@@ -99,17 +99,17 @@ int Project::insertDisc(Disc *disc, int index)
 /************************************************
 
  ************************************************/
-void Project::removeDisc(const QList<Disc *> *discs)
+void Project::removeDisc(const QList<Disc *> &discs)
 {
-    for (int i = 0; i < discs->count(); ++i) {
-        Disc *disc = discs->at(i);
-        emit  beforeRemoveDisc(disc);
+    mValidator.removeDisk(discs);
+
+    for (Disk *disc : discs) {
+        emit beforeRemoveDisc(disc);
         if (mDiscs.removeAll(disc)) {
             disc->deleteLater();
         }
 
         emit afterRemoveDisc();
-        mValidator.setDisks(mDiscs);
     }
 }
 

@@ -550,3 +550,11 @@ void Settings::setEncoderThreadsCount(uint value)
 {
     setValue(Encoder_ThreadCount, value);
 }
+
+/************************************************
+ *
+ ************************************************/
+void Settings::emitChanged()
+{
+    emit changed();
+}

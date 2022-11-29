@@ -11,11 +11,14 @@ class Validator : public QObject
 public:
     Validator(QObject *parent = nullptr);
 
+    Profile profile() const { return mProfile; }
+    void    setProfile(const Profile &profile);
+
     const DiskList &disks() const { return mDisks; }
     void            setDisks(DiskList disks);
 
-    Profile profile() const { return mProfile; }
-    void    setProfile(const Profile &profile);
+    int  insertDisk(Disk *disk, int index = -1);
+    void removeDisk(const DiskList &disks);
 
     void revalidate();
 
@@ -26,6 +29,9 @@ public:
 
     QStringList diskErrors(const Disk *disk) const;
     bool        diskHasErrors(const Disk *disk) const;
+
+signals:
+    void changed();
 
 private:
     QList<Disk *> mDisks;

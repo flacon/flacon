@@ -1,4 +1,5 @@
 #include "validator.h"
+#include "settings.h"
 #include "sox.h"
 #include "settings.h"
 #include <QDebug>
@@ -10,6 +11,7 @@
 Validator::Validator(QObject *parent) :
     QObject(parent)
 {
+    connect(Settings::i(), &Settings::changed, this, &Validator::revalidate);
 }
 
 /************************************************
@@ -17,7 +19,16 @@ Validator::Validator(QObject *parent) :
  ************************************************/
 void Validator::setDisks(DiskList disks)
 {
+    for (Disk *d : mDisks) {
+        disconnect(d);
+        mDisks.removeAll(d);
+    }
+
     mDisks = disks;
+    for (Disk *d : mDisks) {
+        connect(d, &Disc::tagChanged, this, &Validator::revalidate);
+    }
+
     revalidate();
 }
 
@@ -26,7 +37,37 @@ void Validator::setDisks(DiskList disks)
  ************************************************/
 void Validator::setProfile(const Profile &profile)
 {
+
     mProfile = profile;
+    revalidate();
+}
+
+/************************************************
+ *
+ ************************************************/
+int Validator::insertDisk(Disk *disk, int index)
+{
+    if (index < 0) {
+        index = mDisks.count();
+    }
+
+    mDisks.insert(index, disk);
+    connect(disk, &Disc::tagChanged, this, &Validator::revalidate);
+
+    revalidate();
+    return index;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Validator::removeDisk(const DiskList &disks)
+{
+    for (Disk *d : disks) {
+        disconnect(d);
+        mDisks.removeAll(d);
+    }
+
     revalidate();
 }
 
@@ -36,6 +77,10 @@ void Validator::setProfile(const Profile &profile)
 void Validator::revalidate()
 {
     qDebug() << Q_FUNC_INFO << QDateTime::currentDateTime();
+
+    auto oldGlobalErrors  = mGlobalErrors;
+    auto oldDisksErrors   = mDisksErrors;
+    auto oldDisksWarnings = mDisksWarnings;
 
     mResultFilesOverwrite = false;
     mGlobalErrors.clear();
@@ -56,6 +101,16 @@ void Validator::revalidate()
 
     if (mResultFilesOverwrite) {
         mGlobalErrors << QObject::tr("Some disks will overwrite the resulting files of another disk.", "error message");
+    }
+
+    bool ch = false;
+
+    ch = ch || (oldGlobalErrors != mGlobalErrors);
+    ch = ch || (oldDisksErrors != mDisksErrors);
+    ch = ch || (oldDisksWarnings != mDisksWarnings);
+
+    if (ch) {
+        emit changed();
     }
 }
 
