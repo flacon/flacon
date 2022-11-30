@@ -130,6 +130,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(&project->validator(), &Validator::changed, this, &MainWindow::setControlsEnable);
     connect(&project->validator(), &Validator::changed, this, &MainWindow::refreshEdits);
+    connect(&project->validator(), &Validator::changed, trackView, &TrackView::layoutChanged);
 
     initActions();
 

@@ -4,6 +4,7 @@
 #include "disc.h"
 #include "profiles.h"
 #include <QMap>
+#include <QTimer>
 
 class Validator : public QObject
 {
@@ -30,6 +31,9 @@ public:
     QStringList diskErrors(const Disk *disk) const;
     bool        diskHasErrors(const Disk *disk) const;
 
+    bool hasWarnings() const;
+    bool hasErrors() const;
+
 signals:
     void changed();
 
@@ -37,12 +41,15 @@ private:
     QList<Disk *> mDisks;
     Profile       mProfile;
 
+    QTimer mDelayTimer;
+
     QStringList                     mGlobalErrors;
     QMap<const Disk *, QStringList> mDisksErrors;
     QMap<const Disk *, QStringList> mDisksWarnings;
 
     bool mResultFilesOverwrite = false;
 
+    void startDelay();
     bool validateProfile();
 
     void revalidateDisk(const Disk *disk, QStringList &errors, QStringList &warnings);

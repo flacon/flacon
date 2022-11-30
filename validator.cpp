@@ -5,13 +5,19 @@
 #include <QDebug>
 #include <QDateTime>
 
+static constexpr int VALIDATE_DELAY_MS = 50;
+
 /************************************************
  *
  ************************************************/
 Validator::Validator(QObject *parent) :
     QObject(parent)
 {
-    connect(Settings::i(), &Settings::changed, this, &Validator::revalidate);
+    mDelayTimer.setInterval(VALIDATE_DELAY_MS);
+    mDelayTimer.setSingleShot(true);
+    connect(&mDelayTimer, &QTimer::timeout, this, &Validator::revalidate);
+
+    connect(Settings::i(), &Settings::changed, this, &Validator::startDelay);
 }
 
 /************************************************
@@ -26,10 +32,10 @@ void Validator::setDisks(DiskList disks)
 
     mDisks = disks;
     for (Disk *d : mDisks) {
-        connect(d, &Disc::tagChanged, this, &Validator::revalidate);
+        connect(d, &Disc::tagChanged, this, &Validator::startDelay);
     }
 
-    revalidate();
+    startDelay();
 }
 
 /************************************************
@@ -39,7 +45,7 @@ void Validator::setProfile(const Profile &profile)
 {
 
     mProfile = profile;
-    revalidate();
+    startDelay();
 }
 
 /************************************************
@@ -52,9 +58,9 @@ int Validator::insertDisk(Disk *disk, int index)
     }
 
     mDisks.insert(index, disk);
-    connect(disk, &Disc::tagChanged, this, &Validator::revalidate);
+    connect(disk, &Disc::tagChanged, this, &Validator::startDelay);
 
-    revalidate();
+    startDelay();
     return index;
 }
 
@@ -68,7 +74,15 @@ void Validator::removeDisk(const DiskList &disks)
         mDisks.removeAll(d);
     }
 
-    revalidate();
+    startDelay();
+}
+
+/************************************************
+ *
+ ************************************************/
+void Validator::startDelay()
+{
+    mDelayTimer.start();
 }
 
 /************************************************
@@ -76,8 +90,6 @@ void Validator::removeDisk(const DiskList &disks)
  ************************************************/
 void Validator::revalidate()
 {
-    qDebug() << Q_FUNC_INFO << QDateTime::currentDateTime();
-
     auto oldGlobalErrors  = mGlobalErrors;
     auto oldDisksErrors   = mDisksErrors;
     auto oldDisksWarnings = mDisksWarnings;
@@ -144,6 +156,34 @@ QStringList Validator::diskErrors(const Disk *disk) const
 bool Validator::diskHasErrors(const Disk *disk) const
 {
     return !diskErrors(disk).isEmpty();
+}
+
+/************************************************
+ *
+ ************************************************/
+bool Validator::hasWarnings() const
+{
+    for (const Disk *d : mDisks) {
+        if (diskHasWarnings(d)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/************************************************
+ *
+ ************************************************/
+bool Validator::hasErrors() const
+{
+    for (const Disk *d : mDisks) {
+        if (diskHasErrors(d)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /************************************************
