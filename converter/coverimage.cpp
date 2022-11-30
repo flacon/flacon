@@ -97,6 +97,8 @@ QString CoverImage::fileExt() const
         case Format::SVG:       return "svg";
     }
     // clang-format on
+
+    return "";
 }
 
 CoverImage::CoverImage(const QString &inFilePath, uint size)

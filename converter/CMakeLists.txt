@@ -29,8 +29,6 @@ if (POLICY CMP0071)
     cmake_policy(SET CMP0071 NEW)
 endif()
 
-set (CMAKE_CXX_STANDARD 11)
-include("../cmake/cxx_standard.cmake")
 
 project(converter)
 
