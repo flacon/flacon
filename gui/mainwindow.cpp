@@ -124,7 +124,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagStartNumEdit, qOverload<int>(&MultiValuesSpinBox::valueChanged),
             this, &MainWindow::setStartTrackNum);
 
-    connect(trackView->model(), &TrackViewModel::dataChanged, this, &MainWindow::refreshEdits);
     connect(trackView, &TrackView::customContextMenuRequested, this, &MainWindow::trackViewMenu);
 
     connect(editTagsButton, &QPushButton::clicked, this, &MainWindow::openEditTagsDialog);
@@ -516,9 +515,18 @@ void MainWindow::setTrackTag()
     if (!edit)
         return;
 
+    QList<Disc *> disks = trackView->selectedDiscs();
+    for (Disk *d : disks) {
+        d->blockSignals(true);
+    }
     QList<Track *> tracks = trackView->selectedTracks();
     foreach (Track *track, tracks) {
         track->setTag(edit->tagId(), edit->text());
+    }
+
+    for (Disk *d : disks) {
+        d->blockSignals(false);
+        emit d->tagChanged();
     }
 
     trackView->updateAll();
