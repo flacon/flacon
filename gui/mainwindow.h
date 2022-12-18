@@ -106,10 +106,10 @@ private:
     QPointer<Conv::Converter> mConverter;
     Scanner                  *mScanner;
     QString                   getOpenFileFilter(bool includeAudio, bool includeCue);
-    WidgetBadge              *mStartConvertBadge = nullptr;
 
     void polishView();
     void initActions();
+    void initToolBar();
     void refreshOutProfileCombo();
 
     void loadSettings();
@@ -121,6 +121,9 @@ private:
 
     void showErrorMessage(const QString &message) override;
     void fillAudioMenu(Disc *disc, QMenu &menu);
+
+    void showWarnings();
+    void showErrors();
 };
 
 #endif // MAINWINDOW_H

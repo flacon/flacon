@@ -42,6 +42,7 @@
 #include "gui/icon.h"
 #include "application.h"
 #include "patternexpander.h"
+#include "gui/messagebox/messagebox.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -133,12 +134,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&project->validator(), &Validator::changed, trackView, &TrackView::layoutChanged);
 
     initActions();
-
-    if (QToolButton *btn = qobject_cast<QToolButton *>(toolBar->widgetForAction(actionStartConvert))) {
-        mStartConvertBadge = new WidgetBadge(btn);
-        mStartConvertBadge->setCorner(Qt::TopRightCorner);
-        mStartConvertBadge->setMargin(4);
-    }
+    initToolBar();
 
     // Buttons .................................................
     outDirButton->setBuddy(outDirEdit);
@@ -402,7 +398,7 @@ void MainWindow::refreshEdits()
     bool hasWarnings = false;
     for (const Disk *d : project->disks()) {
         hasErrors   = hasErrors || project->validator().diskHasErrors(d);
-        hasWarnings = hasErrors || project->validator().diskHasWarnings(d);
+        hasWarnings = hasWarnings || project->validator().diskHasWarnings(d);
     }
 
     QList<Disc *> discs = trackView->selectedDiscs();
@@ -446,15 +442,8 @@ void MainWindow::refreshEdits()
 
     refreshOutProfileCombo();
 
-    //    if (hasErrors) {
-    //        mStartConvertBadge->setPixmap(Pixmap("error", 18, 18));
-    //    }
-    //    else if (hasWarnings) {
-    //        mStartConvertBadge->setPixmap(Pixmap("warning", 18, 18));
-    //    }
-    //    else {
-    //        mStartConvertBadge->clear();
-    //    }
+    actionWarnings->setVisible(hasWarnings);
+    actionErrors->setVisible(hasErrors);
 }
 
 /************************************************
@@ -1096,6 +1085,12 @@ void MainWindow::initActions()
 
     Controls::arangeTollBarButtonsWidth(toolBar);
 
+    actionWarnings->setIcon(Icon("warning"));
+    connect(actionWarnings, &QAction::triggered, this, &MainWindow::showWarnings);
+
+    actionErrors->setIcon(Icon("error"));
+    connect(actionErrors, &QAction::triggered, this, &MainWindow::showErrors);
+
 #ifdef MAC_UPDATER
     actionUpdates->setVisible(true);
     actionUpdates->setMenuRole(QAction::ApplicationSpecificRole);
@@ -1105,6 +1100,19 @@ void MainWindow::initActions()
 #else
     actionUpdates->setVisible(false);
 #endif
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::initToolBar()
+{
+    QWidget *spacer = new QWidget();
+    spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    toolBar->addWidget(spacer);
+
+    toolBar->addAction(actionWarnings);
+    toolBar->addAction(actionErrors);
 }
 
 /************************************************
@@ -1171,7 +1179,7 @@ QIcon MainWindow::loadMainIcon()
 void MainWindow::showErrorMessage(const QString &message)
 {
     const QString name = "errorMessage";
-    ErrorBox *    box  = this->findChild<ErrorBox *>(name);
+    ErrorBox     *box  = this->findChild<ErrorBox *>(name);
     if (!box) {
         box = new ErrorBox(this);
         box->setObjectName(name);
@@ -1183,4 +1191,69 @@ void MainWindow::showErrorMessage(const QString &message)
     msg.replace('\n', "<br>\n");
     box->addMessage(msg);
     box->open();
+}
+
+/************************************************
+ *
+ ************************************************/
+static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringList &msgs)
+{
+    QStringList res;
+    res << "<div>";
+    res << QString("<b>Disk %1 \"%2 - %3\"</b>").arg(diskNum).arg(disk->track(0)->album(), disk->track(0)->artist());
+
+    res << "<ul>";
+    for (const QString &msg : msgs) {
+        res << QString("<li>%1</li>").arg(msg);
+    }
+    res << "</ul>";
+    res << "</div>";
+
+    return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::showWarnings()
+{
+    const Validator &validator = project->validator();
+    QStringList      html;
+
+    html << "Some disks have warnings:";
+    html << "<br>";
+
+    int n = 0;
+    for (const Disk *d : project->disks()) {
+        n++;
+        QStringList warns = validator.diskWarnings(d);
+        if (!warns.isEmpty()) {
+            html << diskMsgsToHtml(n, d, warns);
+        }
+    }
+
+    MessageBox::warning(this, QObject::tr("Flacon", "Error"), html.join(""));
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::showErrors()
+{
+    const Validator &validator = project->validator();
+    QStringList      html;
+
+    html << "Some disks have errors.\nAnd will be skipped when converting:";
+    html << "<br>";
+
+    int n = 0;
+    for (const Disk *d : project->disks()) {
+        n++;
+        QStringList errs = validator.diskErrors(d);
+        if (!errs.isEmpty()) {
+            html << diskMsgsToHtml(n, d, errs);
+        }
+    }
+
+    MessageBox::critical(this, QObject::tr("Flacon", "Error"), html.join(""));
 }

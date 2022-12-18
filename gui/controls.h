@@ -370,50 +370,7 @@ private:
     QStringList mMessgaes;
 };
 
-/************************************************
- *
- ************************************************/
-class WidgetBadge : public QLabel
-{
-public:
-    WidgetBadge(QWidget *parent);
-    ~WidgetBadge();
-
-    bool eventFilter(QObject *watched, QEvent *event) override;
-
-    using Corner = Qt::Corner;
-
-    Corner corner() const { return mCorner; }
-    void   setCorner(Corner value);
-
-protected:
-    void resizeEvent(QResizeEvent *event) override;
-
-private:
-    Corner mCorner = Qt::TopLeftCorner;
-
-    void realign();
-};
-
 namespace Controls {
-
-void loadFromSettings(QSlider *widget, Settings::Key key);
-void saveToSettings(const QSlider *widget, Settings::Key key);
-
-void loadFromSettings(QLineEdit *widget, Settings::Key key);
-void saveToSettings(const QLineEdit *widget, Settings::Key key);
-
-void loadFromSettings(QCheckBox *widget, Settings::Key key);
-void saveToSettings(const QCheckBox *widget, Settings::Key key);
-
-void loadFromSettings(QSpinBox *widget, Settings::Key key);
-void saveToSettings(const QSpinBox *widget, Settings::Key key);
-
-void loadFromSettings(QDoubleSpinBox *widget, Settings::Key key);
-void saveToSettings(const QDoubleSpinBox *widget, Settings::Key key);
-
-void loadFromSettings(QComboBox *widget, Settings::Key key);
-void saveToSettings(const QComboBox *widget, Settings::Key key);
 
 void arangeTollBarButtonsWidth(QToolBar *toolBar);
 
