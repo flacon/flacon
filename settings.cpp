@@ -197,12 +197,6 @@ QString Settings::keyToString(Settings::Key key) const
         case Tags_DefaultCodepage:
             return "Tags/DefaultCodepage";
 
-        // MainWindow **************************
-        case MainWindow_Width:
-            return "MainWindow/Width";
-        case MainWindow_Height:
-            return "MainWindow/Height";
-
         // Globals *****************************
         case Encoder_ThreadCount:
             return "Encoder/ThreadCount";

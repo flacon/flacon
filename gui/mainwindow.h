@@ -48,6 +48,9 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void loadSettings();
+    void saveSettings();
+
 public slots:
     void addFileOrDir(const QString &fileName);
     void startConvertAll();
@@ -111,9 +114,6 @@ private:
     void initActions();
     void initToolBar();
     void refreshOutProfileCombo();
-
-    void loadSettings();
-    void saveSettings();
 
     void startConvert(const Conv::Converter::Jobs &jobs);
 

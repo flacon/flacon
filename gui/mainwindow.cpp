@@ -153,8 +153,6 @@ MainWindow::MainWindow(QWidget *parent) :
     outPatternEdit->deleteItemAction()->setText(tr("Delete current pattern from history"));
     outPatternButton->menu()->addAction(outPatternEdit->deleteItemAction());
 
-    loadSettings();
-
     // Signals .................................................
     connect(Settings::i(), &Settings::changed,
             [this]() { trackView->model()->layoutChanged(); });
@@ -1121,8 +1119,8 @@ void MainWindow::initToolBar()
 void MainWindow::loadSettings()
 {
     // MainWindow geometry
-    int width  = Settings::i()->value(Settings::MainWindow_Width, QVariant(987)).toInt();
-    int height = Settings::i()->value(Settings::MainWindow_Height, QVariant(450)).toInt();
+    int width  = Settings::i()->value("MainWindow/Width", QVariant(987)).toInt();
+    int height = Settings::i()->value("MainWindow/Height", QVariant(450)).toInt();
     this->resize(width, height);
 
     splitter->restoreState(Settings::i()->value("MainWindow/Splitter").toByteArray());

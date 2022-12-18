@@ -235,6 +235,7 @@ int runGui(int argc, char *argv[], const QStringList &files)
                      &window, &MainWindow::addFileOrDir);
 
     window.show();
+    window.loadSettings();
 
 #ifdef MAC_UPDATER
     Updater &updater = Updater::sharedUpdater();
