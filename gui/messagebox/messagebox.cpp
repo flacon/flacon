@@ -28,6 +28,7 @@
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include "icon.h"
+#include <QDebug>
 
 MessageBox::MessageBox(QWidget *parent) :
     MessageBox(MessageBox::Icon::NoIcon, "", "", StandardButton::NoButton, parent)
@@ -45,6 +46,7 @@ MessageBox::MessageBox(MessageBox::Icon icon, const QString &title, const QStrin
     setWindowTitle(title);
     setText(text);
 
+    ui->textBrowser->setLineWrapMode(QTextEdit::NoWrap);
     ui->buttonBox->setStandardButtons(QDialogButtonBox::StandardButtons(int(buttons)));
 }
 
@@ -126,6 +128,9 @@ void MessageBox::showEvent(QShowEvent *event)
             break;
     }
 
+    int width = ui->textBrowser->document()->idealWidth() + ui->textBrowser->contentsMargins().left() + ui->textBrowser->contentsMargins().right();
+    width     = std::min(width, 800);
+    ui->textBrowser->setMinimumWidth(width);
     adjustSize();
     QDialog::showEvent(event);
 }

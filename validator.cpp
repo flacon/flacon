@@ -112,7 +112,7 @@ void Validator::revalidate()
     }
 
     if (mResultFilesOverwrite) {
-        mGlobalErrors << QObject::tr("Some disks will overwrite the resulting files of another disk.", "error message");
+        mGlobalErrors << tr("Some disks will overwrite the resulting files of another disk.", "error message");
     }
 
     bool ch = false;
@@ -192,7 +192,7 @@ bool Validator::hasErrors() const
 bool Validator::validateProfile()
 {
     if (!mProfile.isValid()) {
-        mGlobalErrors << QObject::tr("Incorrect output profile", "error message");
+        mGlobalErrors << tr("Incorrect output profile", "error message");
         return false;
     }
 
@@ -232,7 +232,7 @@ bool Validator::validateCue(const Disk *disk, QStringList &errors, QStringList &
     Q_UNUSED(warnings)
 
     if (disk->count() == 0) {
-        errors << QObject::tr("Cue file not set.");
+        errors << tr("Cue file not set.");
         return false;
     }
 
@@ -254,19 +254,19 @@ bool Validator::validateAudioFiles(const Disk *disk, QStringList &errors, QStrin
 
         if (audio.isNull()) {
             if (audioFileTracks.count() == 1) {
-                errors << QObject::tr("Audio file not set.", "Warning message");
+                errors << tr("Audio file not set.", "Warning message");
                 res = false;
                 continue;
             }
 
             if (tracks.count() == 1) {
-                errors << QObject::tr("Audio file not set for track %1.", "Warning message, Placeholders is a track number")
+                errors << tr("Audio file not set for track %1.", "Warning message, Placeholders is a track number")
                                   .arg(tracks.first()->trackNum());
                 res = false;
                 continue;
             }
 
-            errors << QObject::tr("Audio file not set for tracks %1 to %2.", "Warning message, Placeholders is a track numbers")
+            errors << tr("Audio file not set for tracks %1 to %2.", "Warning message, Placeholders is a track numbers")
                               .arg(tracks.first()->trackNum())
                               .arg(tracks.last()->trackNum());
             res = false;
@@ -294,7 +294,7 @@ bool Validator::validateAudioFiles(const Disk *disk, QStringList &errors, QStrin
         }
 
         if (audio.duration() <= duration) {
-            errors << QObject::tr("Audio file shorter than expected from CUE sheet.");
+            errors << tr("Audio file shorter than expected from CUE sheet.");
             res = false;
             break;
         }
@@ -377,7 +377,7 @@ bool Validator::vaslidateDiskWarnings(const Disk *disk, QStringList &warnings)
         }
 
         if (bps > int(mProfile.maxBitPerSample())) {
-            warnings << QObject::tr("A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.", "Warning message")
+            warnings << tr("A maximum of %1-bit per sample is supported by this format.\nThis value will be used for encoding.", "Warning message")
                                 .arg(int(mProfile.maxBitPerSample()));
             res = false;
         }
@@ -388,13 +388,13 @@ bool Validator::vaslidateDiskWarnings(const Disk *disk, QStringList &warnings)
         }
 
         if (sr > int(mProfile.maxSampleRate())) {
-            warnings << QObject::tr("A maximum sample rate of %1 is supported by this format. This value will be used for encoding.", "Warning message")
+            warnings << tr("A maximum sample rate of %1 is supported by this format.\nThis value will be used for encoding.", "Warning message")
                                 .arg(int(mProfile.maxSampleRate()));
             res = false;
         }
 
         if (mProfile.gainType() != GainType::Disable && audioFile.channelsCount() > 2) {
-            warnings << QObject::tr("ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.", "Warning message");
+            warnings << tr("ReplayGain calculation is not supported for multi-channel audio.\nThe ReplayGain will be disabled for this disk.", "Warning message");
             res = false;
         }
     }

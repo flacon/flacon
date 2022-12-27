@@ -1201,7 +1201,8 @@ static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringLi
     res << QString("<b>Disk %1 \"%2 - %3\"</b>").arg(diskNum).arg(disk->track(0)->album(), disk->track(0)->artist());
 
     res << "<ul>";
-    for (const QString &msg : msgs) {
+    for (QString msg : msgs) {
+        msg = msg.replace("\n", "<br>");
         res << QString("<li>%1</li>").arg(msg);
     }
     res << "</ul>";

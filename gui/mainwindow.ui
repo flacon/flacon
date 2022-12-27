@@ -537,18 +537,18 @@ If you surround sections of text that contain a token with braces, these section
   </action>
   <action name="actionWarnings">
    <property name="text">
-    <string>Warnings</string>
+    <string extracomment="Toolbar item caption">Warnings</string>
    </property>
    <property name="toolTip">
-    <string>Show Warnings</string>
+    <string extracomment="Toolbar item tooltip">Show Warnings</string>
    </property>
   </action>
   <action name="actionErrors">
    <property name="text">
-    <string>Errors</string>
+    <string comment="Toolbar item caption" extracomment="Toolbar item caption">Errors</string>
    </property>
    <property name="toolTip">
-    <string>Show Errors</string>
+    <string comment="Toolbar item tooltip" extracomment="Toolbar item tooltip">Show Errors</string>
    </property>
   </action>
  </widget>
