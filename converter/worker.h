@@ -46,7 +46,6 @@ public slots:
 
 signals:
     void error(const Conv::ConvTrack &track, const QString &message);
-    void trackReady(const Conv::ConvTrack &track, const QString &outFileName);
     void trackProgress(const Conv::ConvTrack &track, TrackState state, int percent);
 
 protected:

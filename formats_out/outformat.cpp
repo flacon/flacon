@@ -26,7 +26,6 @@
 #include "outformat.h"
 #include "settings.h"
 #include "encoder.h"
-#include "gain.h"
 
 #include "wav/out_wav.h"
 #include "flac/flacoutformat.h"
@@ -110,18 +109,8 @@ bool OutFormat::checkProgram(const QString &program, QStringList *errors) const
  ************************************************/
 bool OutFormat::check(const Profile &profile, QStringList *errors) const
 {
+    Q_UNUSED(profile)
     bool res = checkProgram(encoderProgramName(), errors);
 
-    if (profile.gainType() != GainType::Disable)
-        checkProgram(gainProgramName(), errors);
-
     return res;
-}
-
-/************************************************
- *
- ************************************************/
-Conv::Gain *OutFormat::createGain(const Profile &profile) const
-{
-    return new Conv::NoGain(profile);
 }

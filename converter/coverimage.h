@@ -39,6 +39,7 @@ public:
     explicit CoverImage(const QString &origFilePath, uint size = 0);
 
     QString mimeType() const { return mMimeType; }
+    QString fileExt() const;
     QSize   size() const { return mSize; }
     int     depth() const { return mDepth; }
 

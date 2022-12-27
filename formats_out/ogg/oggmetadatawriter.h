@@ -1,10 +1,13 @@
+#ifndef OGGMETADATAWRITER_H
+#define OGGMETADATAWRITER_H
+
 /* BEGIN_COMMON_COPYRIGHT_HEADER
  * (c)LGPL2+
  *
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2012-2013
+ * Copyright: 2022
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -23,59 +26,24 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef GAIN_H
-#define GAIN_H
+#include "../metadatawriter.h"
+#include <taglib/vorbisfile.h>
 
-#include "worker.h"
-#include <QList>
-#include "profiles.h"
-
-class Disc;
-class Track;
-
-namespace Conv {
-
-class Gain : public Worker
+class OggMetaDataWriter : public MetadataWriter
 {
-    Q_OBJECT
 public:
-    virtual QString programName() const = 0;
+    OggMetaDataWriter(const QString &filePath);
+    void save() override;
 
-    explicit Gain(const Profile &profile, QObject *parent = nullptr);
-    void addTrack(const ConvTrack &track, const QString &file);
+    void setTags(const Track &track) override;
+    void setEmbeddedCue(const QString &cue) override;
+    void setCoverImage(const CoverImage &image) override;
 
-    void run() override;
-
-    QString programPath() const;
-
-    virtual QStringList programArgs(const QStringList &files, const GainType gainType) const = 0;
+    void setTrackReplayGain(float gain, float peak) override;
+    void setAlbumReplayGain(float gain, float peak) override;
 
 private:
-    struct Job
-    {
-        ConvTrack track;
-        QString   file;
-    };
-
-    Profile    mProfile;
-    QList<Job> mJobs;
+    TagLib::Ogg::Vorbis::File mFile;
 };
 
-class NoGain : public Gain
-{
-public:
-    using Conv::Gain::Gain;
-    QString programName() const override
-    {
-        return "";
-    }
-
-protected:
-    QStringList programArgs(const QStringList &, const GainType) const override
-    {
-        return QStringList();
-    }
-};
-
-} // namespace
-#endif // GAIN_H
+#endif // OGGMETADATAWRITER_H

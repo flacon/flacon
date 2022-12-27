@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "alacencoder.h"
-#include "../metadata.h"
 
 /************************************************
 
@@ -44,12 +43,4 @@ QStringList AlacEncoder::programArgs() const
     args << "-";
     args << outFile();
     return args;
-}
-
-/************************************************
-
- ************************************************/
-void AlacEncoder::writeMetadata(const QString &filePath) const
-{
-    Metadata::writeMp4(filePath, *this);
 }

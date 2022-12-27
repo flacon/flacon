@@ -131,7 +131,6 @@ void Settings::init()
 
     foreach (OutFormat *format, OutFormat::allFormats()) {
         mPrograms << format->encoderProgramName();
-        mPrograms << format->gainProgramName();
     }
 
     foreach (const InputFormat *format, InputFormat::allFormats()) {
@@ -197,12 +196,6 @@ QString Settings::keyToString(Settings::Key key) const
     switch (key) {
         case Tags_DefaultCodepage:
             return "Tags/DefaultCodepage";
-
-        // MainWindow **************************
-        case MainWindow_Width:
-            return "MainWindow/Width";
-        case MainWindow_Height:
-            return "MainWindow/Height";
 
         // Globals *****************************
         case Encoder_ThreadCount:
@@ -550,4 +543,12 @@ uint Settings::encoderThreadsCount() const
 void Settings::setEncoderThreadsCount(uint value)
 {
     setValue(Encoder_ThreadCount, value);
+}
+
+/************************************************
+ *
+ ************************************************/
+void Settings::emitChanged()
+{
+    emit changed();
 }

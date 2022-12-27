@@ -97,9 +97,6 @@ private slots:
     void testTrackResultFilePath_data();
     void testTrackResultFilePath();
 
-    void testOutFormatGainArgs_data();
-    void testOutFormatGainArgs();
-
     void testTrackSetCodepages_data();
     void testTrackSetCodepages();
 

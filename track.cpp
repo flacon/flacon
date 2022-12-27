@@ -103,10 +103,7 @@ TagValue Track::tagValue(TagId tagId) const
  ************************************************/
 void Track::setTag(const TagId &tagId, const QString &value)
 {
-    mTags.setTag(tagId, value);
-    if (mDisc) {
-        mDisc->trackChanged(tagId);
-    }
+    setTag(tagId, TagValue(value));
 }
 
 /************************************************
@@ -114,10 +111,7 @@ void Track::setTag(const TagId &tagId, const QString &value)
  ************************************************/
 void Track::setTag(const TagId &tagId, const QByteArray &value)
 {
-    mTags.setTag(tagId, value);
-    if (mDisc) {
-        mDisc->trackChanged(tagId);
-    }
+    setTag(tagId, TagValue(value));
 }
 
 /************************************************
@@ -152,14 +146,14 @@ void Track::setCodecName(const QString &value)
  ************************************************/
 QString Track::resultFileName() const
 {
-    QString pattern = Settings::i()->currentProfile().outFilePattern();
+    QString pattern = project->currentProfile().outFilePattern();
     if (pattern.isEmpty())
         pattern = QString("%a/%y - %A/%n - %t");
 
     int n = pattern.lastIndexOf(QDir::separator());
     if (n < 0) {
         PatternExpander expander(*this);
-        return safeFilePathLen(expander.expand(pattern) + "." + Settings::i()->currentProfile().ext());
+        return safeFilePathLen(expander.expand(pattern) + "." + project->currentProfile().ext());
     }
 
     // If the disc is a collection, the files fall into different directories.
@@ -170,7 +164,7 @@ QString Track::resultFileName() const
     PatternExpander trackExpander(*this);
 
     return safeFilePathLen(
-            albumExpander.expand(pattern.left(n)) + trackExpander.expand(pattern.mid(n)) + "." + Settings::i()->currentProfile().ext());
+            albumExpander.expand(pattern.left(n)) + trackExpander.expand(pattern.mid(n)) + "." + project->currentProfile().ext());
 }
 
 /************************************************
@@ -303,7 +297,7 @@ Duration Track::duration() const
  ************************************************/
 QString Track::calcResultFilePath() const
 {
-    QString dir = Settings::i()->currentProfile().outFileDir();
+    QString dir = project->currentProfile().outFileDir();
 
     if (dir == "~" || dir == "~//")
         return QDir::homePath();
@@ -411,8 +405,8 @@ Tracks::Tracks(const QList<Track *> &other)
 Tracks &Tracks::operator=(const Tracks &other)
 {
     QVector<Track>::operator=(other);
-    mUri   = other.mUri;
-    mTitle = other.mTitle;
+    mUri                    = other.mUri;
+    mTitle                  = other.mTitle;
 
     return *this;
 }

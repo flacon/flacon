@@ -48,6 +48,9 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void loadSettings();
+    void saveSettings();
+
 public slots:
     void addFileOrDir(const QString &fileName);
     void startConvertAll();
@@ -104,15 +107,13 @@ protected:
 
 private:
     QPointer<Conv::Converter> mConverter;
-    Scanner *                 mScanner;
+    Scanner                  *mScanner;
     QString                   getOpenFileFilter(bool includeAudio, bool includeCue);
 
     void polishView();
     void initActions();
+    void initToolBar();
     void refreshOutProfileCombo();
-
-    void loadSettings();
-    void saveSettings();
 
     void startConvert(const Conv::Converter::Jobs &jobs);
 
@@ -120,6 +121,9 @@ private:
 
     void showErrorMessage(const QString &message) override;
     void fillAudioMenu(Disc *disc, QMenu &menu);
+
+    void showWarnings();
+    void showErrors();
 };
 
 #endif // MAINWINDOW_H

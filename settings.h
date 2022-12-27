@@ -40,10 +40,6 @@ public:
     enum Key {
         Tags_DefaultCodepage,
 
-        // MainWindow ***************************
-        MainWindow_Width,
-        MainWindow_Height,
-
         // Globals ******************************
         Encoder_ThreadCount,
         Encoder_TmpDir,
@@ -94,6 +90,8 @@ public:
 
     uint encoderThreadsCount() const;
     void setEncoderThreadsCount(uint value);
+
+    void emitChanged();
 
 signals:
     void changed();

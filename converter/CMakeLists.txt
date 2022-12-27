@@ -29,8 +29,6 @@ if (POLICY CMP0071)
     cmake_policy(SET CMP0071 NEW)
 endif()
 
-set (CMAKE_CXX_STANDARD 11)
-include("../cmake/cxx_standard.cmake")
 
 project(converter)
 
@@ -41,13 +39,13 @@ set(HEADERS
     converter.h
     splitter.h
     encoder.h
-    gain.h
     worker.h
     discpipline.h
     cuecreator.h
     coverimage.h
     sox.h
     extprogram.h
+    replaygain.h
 )
 
 set(SOURCES
@@ -57,13 +55,13 @@ set(SOURCES
     converter.cpp
     splitter.cpp
     encoder.cpp
-    gain.cpp
     worker.cpp
     discpipline.cpp
     cuecreator.cpp
     coverimage.cpp
     sox.cpp
     extprogram.cpp
+    replaygain.cpp
 )
 
 

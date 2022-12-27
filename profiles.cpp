@@ -24,13 +24,28 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "profiles.h"
+#include "settings.h"
 #include "formats_out/outformat.h"
 #include <QSettings>
 #include <QStandardPaths>
 #include <QDir>
 #include <QDebug>
 #include "encoder.h"
-#include "gain.h"
+#include "formats_out/metadatawriter.h"
+
+static constexpr const char *OUT_DIRECTORY_KEY    = "OutDirectory";
+static constexpr const char *OUT_PATTERN_KEY      = "OutPattern";
+static constexpr const char *BITS_PER_SAMPLE_KEY  = "BitsPerSample";
+static constexpr const char *SAMPLE_RATE_KEY      = "SampleRate";
+static constexpr const char *CREATE_CUE_KEY       = "CreateCue";
+static constexpr const char *EMBED_CUE_KEY        = "EmbedCue";
+static constexpr const char *CUE_FILE_NAME_KEY    = "CueFileName";
+static constexpr const char *PREGAP_TYPE_KEY      = "PregapType";
+static constexpr const char *REPLAY_GAIN_KEY      = "ReplayGain";
+static constexpr const char *COVER_FILE_MODE_KEY  = "CoverFile/Mode";
+static constexpr const char *COVER_FILE_SIZE_KEY  = "CoverFile/Size";
+static constexpr const char *COVER_EMBED_MODE_KEY = "CoverEmbed/Mode";
+static constexpr const char *COVER_EMBED_SIZE_KEY = "CoverEmbed/Size";
 
 QHash<QString, QVariant> &operator<<(QHash<QString, QVariant> &values, const QHash<QString, QVariant> &other)
 {
@@ -58,8 +73,6 @@ public:
         mName = "";
     }
 
-    virtual QString gainProgramName() const override { return ""; }
-
     QHash<QString, QVariant> defaultParameters() const override
     {
         return QHash<QString, QVariant>();
@@ -73,8 +86,8 @@ public:
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::AsSourcee; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::AsSource; }
 
-    Conv::Encoder *createEncoder() const override { return new Encoder_Null(); }
-    Conv::Gain    *createGain(const Profile &profile) const override { return new Conv::NoGain(profile); }
+    Conv::Encoder * createEncoder() const override { return new Encoder_Null(); }
+    MetadataWriter *createMetadataWriter(const QString &filePath) const override { return new NullMetadataWriter(filePath); };
 };
 
 static OutFormat_Null *nullFormat()
@@ -148,6 +161,7 @@ CoverOptions Profile::embedCoverOptions() const
 void Profile::setEmbedCoverOptions(const CoverOptions &embedCoverOptions)
 {
     mEmbedCoverOptions = embedCoverOptions;
+    Settings::i()->emitChanged();
 }
 
 /************************************************
@@ -164,6 +178,7 @@ CoverOptions Profile::copyCoverOptions() const
 void Profile::setCopyCoverOptions(const CoverOptions &copyCoverOptions)
 {
     mCopyCoverOptions = copyCoverOptions;
+    Settings::i()->emitChanged();
 }
 
 /************************************************
@@ -172,6 +187,7 @@ void Profile::setCopyCoverOptions(const CoverOptions &copyCoverOptions)
 void Profile::setName(const QString &value)
 {
     mName = value;
+    Settings::i()->emitChanged();
 }
 
 /************************************************
@@ -192,6 +208,7 @@ QVariant Profile::value(const QString &key, const QVariant &defaultValue) const
 void Profile::setValue(const QString &key, const QVariant &value)
 {
     mValues.insert(key, value);
+    Settings::i()->emitChanged();
 }
 
 /************************************************
@@ -377,10 +394,10 @@ void Profile::load(QSettings &settings, const QString &group)
     }
 
     if (settings.contains("Name")) {
-        setName(settings.value("Name").toString());
+        mName = settings.value("Name").toString();
     }
     else {
-        setName(mFormat->name());
+        mName = mFormat->name();
     }
 
     for (QString key : settings.allKeys()) {
@@ -391,7 +408,7 @@ void Profile::load(QSettings &settings, const QString &group)
         if (uKey == "FORMAT")
             continue;
 
-        setValue(key, settings.value(key));
+        mValues.insert(key, settings.value(key));
     }
 
     settings.endGroup();

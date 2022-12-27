@@ -42,6 +42,7 @@
 #include "gui/icon.h"
 #include "application.h"
 #include "patternexpander.h"
+#include "gui/messagebox/messagebox.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -124,12 +125,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagStartNumEdit, qOverload<int>(&MultiValuesSpinBox::valueChanged),
             this, &MainWindow::setStartTrackNum);
 
-    connect(trackView->model(), &TrackViewModel::dataChanged, this, &MainWindow::refreshEdits);
     connect(trackView, &TrackView::customContextMenuRequested, this, &MainWindow::trackViewMenu);
 
     connect(editTagsButton, &QPushButton::clicked, this, &MainWindow::openEditTagsDialog);
 
+    connect(&project->validator(), &Validator::changed, this, &MainWindow::setControlsEnable);
+    connect(&project->validator(), &Validator::changed, this, &MainWindow::refreshEdits);
+    connect(&project->validator(), &Validator::changed, trackView, &TrackView::layoutChanged);
+
     initActions();
+    initToolBar();
 
     // Buttons .................................................
     outDirButton->setBuddy(outDirEdit);
@@ -147,8 +152,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     outPatternEdit->deleteItemAction()->setText(tr("Delete current pattern from history"));
     outPatternButton->menu()->addAction(outPatternEdit->deleteItemAction());
-
-    loadSettings();
 
     // Signals .................................................
     connect(Settings::i(), &Settings::changed,
@@ -270,7 +273,7 @@ void MainWindow::dropEvent(QDropEvent *event)
  ************************************************/
 void MainWindow::setPattern()
 {
-    Settings::i()->currentProfile().setOutFilePattern(outPatternEdit->currentText());
+    project->currentProfile().setOutFilePattern(outPatternEdit->currentText());
     trackView->model()->layoutChanged();
 }
 
@@ -279,7 +282,7 @@ void MainWindow::setPattern()
  ************************************************/
 void MainWindow::setOutDir()
 {
-    Settings::i()->currentProfile().setOutFileDir(outDirEdit->currentText());
+    project->currentProfile().setOutFileDir(outDirEdit->currentText());
     trackView->model()->layoutChanged();
 }
 
@@ -337,7 +340,7 @@ void MainWindow::setOutProfile()
 {
     int n = outProfileCombo->currentIndex();
     if (n > -1) {
-        Settings::i()->selectProfile(outProfileCombo->itemData(n).toString());
+        project->selectProfile(outProfileCombo->itemData(n).toString());
     }
     trackView->model()->layoutChanged();
 }
@@ -353,11 +356,13 @@ void MainWindow::setControlsEnable()
 
     bool tracksSelected = !trackView->selectedTracks().isEmpty();
     bool discsSelected  = !trackView->selectedDiscs().isEmpty();
-    bool canConvert     = Conv::Converter::canConvert();
 
     bool canDownload = false;
-    foreach (const Disc *disc, trackView->selectedDiscs())
+    bool canConvert  = false;
+    foreach (const Disc *disc, project->disks()) {
         canDownload = canDownload || DataProvider::canDownload(*disc);
+        canConvert  = canConvert || !project->validator().diskHasErrors(disc);
+    }
 
     outFilesBox->setEnabled(!running);
     tagsBox->setEnabled(!running && tracksSelected);
@@ -386,6 +391,13 @@ void MainWindow::refreshEdits()
     QSet<int>     startNums;
     QSet<QString> discId;
     QSet<QString> codePage;
+
+    bool hasErrors   = false;
+    bool hasWarnings = false;
+    for (const Disk *d : project->disks()) {
+        hasErrors   = hasErrors || project->validator().diskHasErrors(d);
+        hasWarnings = hasWarnings || project->validator().diskHasWarnings(d);
+    }
 
     QList<Disc *> discs = trackView->selectedDiscs();
     foreach (Disc *disc, discs) {
@@ -419,7 +431,7 @@ void MainWindow::refreshEdits()
     codepageCombo->setMultiValue(codePage);
     tagDiscPerformerEdit->setMultiValue(discPerformer);
 
-    const Profile &profile = Settings::i()->currentProfile();
+    const Profile &profile = project->currentProfile();
     if (outDirEdit->currentText() != profile.outFileDir())
         outDirEdit->lineEdit()->setText(profile.outFileDir());
 
@@ -427,6 +439,9 @@ void MainWindow::refreshEdits()
         outPatternEdit->lineEdit()->setText(profile.outFilePattern());
 
     refreshOutProfileCombo();
+
+    actionWarnings->setVisible(hasWarnings);
+    actionErrors->setVisible(hasErrors);
 }
 
 /************************************************
@@ -451,7 +466,7 @@ void MainWindow::refreshOutProfileCombo()
 
     outProfileCombo->blockSignals(false);
 
-    n = outProfileCombo->findData(Settings::i()->currentProfile().id());
+    n = outProfileCombo->findData(project->currentProfile().id());
 
     if (n > -1) {
         outProfileCombo->setCurrentIndex(n);
@@ -488,11 +503,21 @@ void MainWindow::setTrackTag()
     if (!edit)
         return;
 
+    QList<Disc *> disks = trackView->selectedDiscs();
+    for (Disk *d : disks) {
+        d->blockSignals(true);
+    }
     QList<Track *> tracks = trackView->selectedTracks();
     foreach (Track *track, tracks) {
         track->setTag(edit->tagId(), edit->text());
-        trackView->update(*track);
     }
+
+    for (Disk *d : disks) {
+        d->blockSignals(false);
+        emit d->tagChanged();
+    }
+
+    trackView->updateAll();
 }
 
 /************************************************
@@ -507,8 +532,9 @@ void MainWindow::setDiscTag()
     QList<Disc *> discs = trackView->selectedDiscs();
     foreach (Disc *disc, discs) {
         disc->setDiscTag(edit->tagId(), edit->text());
-        trackView->update(*disc);
     }
+
+    trackView->updateAll();
 }
 
 /************************************************
@@ -523,8 +549,9 @@ void MainWindow::setDiscTagInt()
     QList<Disc *> discs = trackView->selectedDiscs();
     foreach (Disc *disc, discs) {
         disc->setDiscTag(spinBox->tagId(), QString::number(spinBox->value()));
-        trackView->update(*disc);
     }
+
+    trackView->updateAll();
 }
 
 /************************************************
@@ -575,17 +602,17 @@ void MainWindow::startConvertSelected()
  ************************************************/
 void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
 {
-    if (!Settings::i()->currentProfile().isValid())
+    if (!project->currentProfile().isValid())
         return;
 
     trackView->setFocus();
 
-    bool ok = true;
+    bool hasErrors = true;
     for (int i = 0; i < project->count(); ++i) {
-        ok = ok && project->disc(i)->canConvert();
+        hasErrors = hasErrors || project->validator().diskHasErrors(project->disc(i));
     }
 
-    if (!ok) {
+    if (!hasErrors) {
         int res = QMessageBox::warning(this,
                                        windowTitle(),
                                        tr("Some albums will not be converted, they contain errors.\nDo you want to continue?"),
@@ -619,7 +646,7 @@ void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
         setWindowTitle(tr("Flacon"));
     });
 
-    mConverter->start(jobs, Settings::i()->currentProfile());
+    mConverter->start(jobs, project->currentProfile());
     setControlsEnable();
 }
 
@@ -647,7 +674,7 @@ void MainWindow::configure()
  ************************************************/
 void MainWindow::configureEncoder()
 {
-    auto dlg = PreferencesDialog::createAndShow(Settings::i()->currentProfile().id(), this);
+    auto dlg = PreferencesDialog::createAndShow(project->currentProfile().id(), this);
     connect(dlg, &PreferencesDialog::finished, this, &MainWindow::refreshEdits, Qt::UniqueConnection);
 }
 
@@ -841,7 +868,7 @@ void MainWindow::removeDiscs()
         return;
 
     int n = project->indexOf(discs.first());
-    project->removeDisc(&discs);
+    project->removeDisc(discs);
 
     n = qMin(n, project->count() - 1);
     if (n > -1)
@@ -968,6 +995,7 @@ void MainWindow::openEditTagsDialog()
     TagEditor editor(trackView->selectedTracks(), trackView->selectedDiscs(), this);
     editor.exec();
     refreshEdits();
+    setControlsEnable();
 }
 
 /************************************************
@@ -1055,6 +1083,12 @@ void MainWindow::initActions()
 
     Controls::arangeTollBarButtonsWidth(toolBar);
 
+    actionWarnings->setIcon(Icon("warning"));
+    connect(actionWarnings, &QAction::triggered, this, &MainWindow::showWarnings);
+
+    actionErrors->setIcon(Icon("error"));
+    connect(actionErrors, &QAction::triggered, this, &MainWindow::showErrors);
+
 #ifdef MAC_UPDATER
     actionUpdates->setVisible(true);
     actionUpdates->setMenuRole(QAction::ApplicationSpecificRole);
@@ -1067,13 +1101,26 @@ void MainWindow::initActions()
 }
 
 /************************************************
+ *
+ ************************************************/
+void MainWindow::initToolBar()
+{
+    QWidget *spacer = new QWidget();
+    spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    toolBar->addWidget(spacer);
+
+    toolBar->addAction(actionWarnings);
+    toolBar->addAction(actionErrors);
+}
+
+/************************************************
   Load settings
  ************************************************/
 void MainWindow::loadSettings()
 {
     // MainWindow geometry
-    int width  = Settings::i()->value(Settings::MainWindow_Width, QVariant(987)).toInt();
-    int height = Settings::i()->value(Settings::MainWindow_Height, QVariant(450)).toInt();
+    int width  = Settings::i()->value("MainWindow/Width", QVariant(987)).toInt();
+    int height = Settings::i()->value("MainWindow/Height", QVariant(450)).toInt();
     this->resize(width, height);
 
     splitter->restoreState(Settings::i()->value("MainWindow/Splitter").toByteArray());
@@ -1142,4 +1189,70 @@ void MainWindow::showErrorMessage(const QString &message)
     msg.replace('\n', "<br>\n");
     box->addMessage(msg);
     box->open();
+}
+
+/************************************************
+ *
+ ************************************************/
+static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringList &msgs)
+{
+    QStringList res;
+    res << "<div>";
+    res << QString("<b>Disk %1 \"%2 - %3\"</b>").arg(diskNum).arg(disk->track(0)->album(), disk->track(0)->artist());
+
+    res << "<ul>";
+    for (QString msg : msgs) {
+        msg = msg.replace("\n", "<br>");
+        res << QString("<li>%1</li>").arg(msg);
+    }
+    res << "</ul>";
+    res << "</div>";
+
+    return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::showWarnings()
+{
+    const Validator &validator = project->validator();
+    QStringList      html;
+
+    html << "Some disks have warnings:";
+    html << "<br>";
+
+    int n = 0;
+    for (const Disk *d : project->disks()) {
+        n++;
+        QStringList warns = validator.diskWarnings(d);
+        if (!warns.isEmpty()) {
+            html << diskMsgsToHtml(n, d, warns);
+        }
+    }
+
+    MessageBox::warning(this, QObject::tr("Flacon", "Error"), html.join(""));
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::showErrors()
+{
+    const Validator &validator = project->validator();
+    QStringList      html;
+
+    html << "Some disks have errors.\nAnd will be skipped when converting:";
+    html << "<br>";
+
+    int n = 0;
+    for (const Disk *d : project->disks()) {
+        n++;
+        QStringList errs = validator.diskErrors(d);
+        if (!errs.isEmpty()) {
+            html << diskMsgsToHtml(n, d, errs);
+        }
+    }
+
+    MessageBox::critical(this, QObject::tr("Flacon", "Error"), html.join(""));
 }

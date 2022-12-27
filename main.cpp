@@ -212,7 +212,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
                     consoleErroHandler(QtCriticalMsg, QMessageLogContext(), message);
                 });
 
-    converter.start(Settings::i()->currentProfile());
+    converter.start(project->currentProfile());
     if (!converter.isRunning())
         return 11;
 
@@ -236,6 +236,7 @@ int runGui(int argc, char *argv[], const QStringList &files)
                      &window, &MainWindow::addFileOrDir);
 
     window.show();
+    window.loadSettings();
 
 #ifdef MAC_UPDATER
     QTimer::singleShot(0, []() {

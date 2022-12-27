@@ -24,6 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_mp3.h"
+#include "mp3metadatawriter.h"
 #include <QDebug>
 
 static constexpr char VBR_MEDIUM[]   = "vbrMedium";
@@ -77,9 +78,9 @@ Conv::Encoder *OutFormat_Mp3::createEncoder() const
 /************************************************
  *
  ************************************************/
-Conv::Gain *OutFormat_Mp3::createGain(const Profile &profile) const
+MetadataWriter *OutFormat_Mp3::createMetadataWriter(const QString &filePath) const
 {
-    return new Gain_Mp3(profile);
+    return new Mp3MetaDataWriter(filePath);
 }
 
 /************************************************
@@ -185,8 +186,6 @@ void ConfigPage_Mp3::mp3PresetCbxCanged(int index)
  ************************************************/
 QStringList Encoder_Mp3::programArgs() const
 {
-    const Track &track = this->track();
-
     QStringList args;
 
     args << programPath();
@@ -234,57 +233,9 @@ QStringList Encoder_Mp3::programArgs() const
         args << "--noreplaygain";
     }
 
-    // Tags .....................................................
-    args << "--add-id3v2";
-    //#args << "--id3v2-only"
-    if (!track.artist().isEmpty()) {
-        args << "--ta" << track.artist();
-    }
-
-    if (!track.album().isEmpty()) {
-        args << "--tl" << track.album();
-    }
-
-    if (!track.genre().isEmpty()) {
-        args << "--tg" << track.genre();
-    }
-
-    if (!track.date().isEmpty())
-        args << "--ty" << track.date();
-
-    if (!track.title().isEmpty())
-        args << "--tt" << track.title();
-
-    if (!track.tag(TagId::AlbumArtist).isEmpty())
-        args << "--tv" << QString("TPE2=%1").arg(track.tag(TagId::AlbumArtist));
-
-    if (!track.comment().isEmpty())
-        args << "--tc" << track.comment();
-
-    if (!coverImage().isEmpty()) {
-        args << "--ti" << coverImage().tmpFilePath();
-    }
-
-    args << "--tn" << QString("%1/%2").arg(track.trackNum()).arg(track.trackCount());
-    args << "--tv" << QString("TPOS=%1").arg(track.discNum());
-
     // Files ....................................................
     args << "-";
     args << outFile();
-
-    return args;
-}
-
-QStringList Gain_Mp3::programArgs(const QStringList &files, const GainType gainType) const
-{
-    QStringList args;
-    args << programPath();
-    if (gainType == GainType::Album) {
-        args << "-a"; // Album gain
-    }
-    args << "-c"; // ignore clipping warning when applying gain
-
-    args << files;
 
     return args;
 }

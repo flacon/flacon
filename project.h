@@ -30,6 +30,7 @@
 #include <QList>
 #include <QIcon>
 #include "disc.h"
+#include "validator.h"
 
 class Disc;
 class Track;
@@ -41,15 +42,17 @@ class Project : public QObject
 public:
     static Project *instance();
 
+    QList<Disc *> disks() const { return mDiscs; }
+
     Disc *disc(int index) const;
     int   count() const;
     int   indexOf(const Disc *disc) const;
 
     void addDisc(Disc *disc) { insertDisc(disc); }
     int  insertDisc(Disc *disc, int index = -1);
-    void removeDisc(const QList<Disc *> *discs);
+    void removeDisc(const QList<Disc *> &discs);
 
-    void emitDiscChanged(Disc *disc) const;
+    void emitDiscChanged(Disc *disc);
     void emitLayoutChanged() const;
 
     bool discExists(const QString &cueUri);
@@ -57,6 +60,12 @@ public:
     void  clear();
     Disc *addAudioFile(const QString &fileName) noexcept(false);
     Disc *addCueFile(const QString &fileName);
+
+    const Profile &currentProfile() const;
+    Profile &      currentProfile();
+    bool           selectProfile(const QString &profileId);
+
+    Validator &validator() { return mValidator; }
 
 signals:
     void discChanged(Disc *disc) const;
@@ -69,6 +78,7 @@ protected:
 
 private:
     QList<Disc *> mDiscs;
+    Validator     mValidator;
 };
 
 #define project Project::instance()

@@ -44,16 +44,17 @@ static QString formatToMimeType(const QByteArray &format)
 {
     QByteArray fmt = format.toUpper();
     // clang-format off
-    if (fmt =="BMP") return "image/bmp";                // Windows Bitmap
-    if (fmt =="GIF") return "image/gif";                // Graphic Interchange Format (optional)
-    if (fmt =="JPG") return "image/jpeg";               // Joint Photographic Experts Group
-    if (fmt =="PNG") return "image/png";                // Portable Network Graphics
-    if (fmt =="PBM") return "image/x-portable-bitmap";  // Portable Bitmap
-    if (fmt =="PGM") return "image/x-portable-graymap"; // Portable Graymap
-    if (fmt =="PPM") return "image/x-portable-pixmap";  // Portable Pixmap
-    if (fmt =="XBM") return "image/x-xbitmap";          // X11 Bitmap
-    if (fmt =="XPM") return "image/x-xpixmap";          // X11 Pixmap
-    if (fmt =="SVG") return "image/svg+xml";            // Scalable Vector Graphics
+    if (fmt =="BMP")  return "image/bmp";               // Windows Bitmap
+    if (fmt =="GIF")  return "image/gif";               // Graphic Interchange Format (optional)
+    if (fmt =="JPG")  return "image/jpeg";              // Joint Photographic Experts Group
+    if (fmt =="JPEG") return "image/jpeg";              // Joint Photographic Experts Group
+    if (fmt =="PNG")  return "image/png";               // Portable Network Graphics
+    if (fmt =="PBM")  return "image/x-portable-bitmap"; // Portable Bitmap
+    if (fmt =="PGM")  return "image/x-portable-graymap";// Portable Graymap
+    if (fmt =="PPM")  return "image/x-portable-pixmap"; // Portable Pixmap
+    if (fmt =="XBM")  return "image/x-xbitmap";         // X11 Bitmap
+    if (fmt =="XPM")  return "image/x-xpixmap";         // X11 Pixmap
+    if (fmt =="SVG")  return "image/svg+xml";           // Scalable Vector Graphics
     // clang-format on
 
     return "";
@@ -63,19 +64,41 @@ static CoverImage::Format formatStrToFormat(const QByteArray &format)
 {
     QByteArray fmt = format.toUpper();
     // clang-format off
-    if (fmt =="BMP") return CoverImage::Format::BMP;    // Windows Bitmap
-    if (fmt =="GIF") return CoverImage::Format::GIF;    // Graphic Interchange Format (optional)
-    if (fmt =="JPG") return CoverImage::Format::JPG;    // Joint Photographic Experts Group
-    if (fmt =="PNG") return CoverImage::Format::PNG;    // Portable Network Graphics
-    if (fmt =="PBM") return CoverImage::Format::PBM;    // Portable Bitmap
-    if (fmt =="PGM") return CoverImage::Format::PGM;    // Portable Graymap
-    if (fmt =="PPM") return CoverImage::Format::PPM;    // Portable Pixmap
-    if (fmt =="XBM") return CoverImage::Format::XBM;    // X11 Bitmap
-    if (fmt =="XPM") return CoverImage::Format::XPM;    // X11 Pixmap
-    if (fmt =="SVG") return CoverImage::Format::SVG;    // Scalable Vector Graphics
+    if (fmt =="BMP")  return CoverImage::Format::BMP;   // Windows Bitmap
+    if (fmt =="GIF")  return CoverImage::Format::GIF;   // Graphic Interchange Format (optional)
+    if (fmt =="JPG")  return CoverImage::Format::JPG;   // Joint Photographic Experts Group
+    if (fmt =="JPEG") return CoverImage::Format::JPG;   // Joint Photographic Experts Group
+    if (fmt =="PNG")  return CoverImage::Format::PNG;   // Portable Network Graphics
+    if (fmt =="PBM")  return CoverImage::Format::PBM;   // Portable Bitmap
+    if (fmt =="PGM")  return CoverImage::Format::PGM;   // Portable Graymap
+    if (fmt =="PPM")  return CoverImage::Format::PPM;   // Portable Pixmap
+    if (fmt =="XBM")  return CoverImage::Format::XBM;   // X11 Bitmap
+    if (fmt =="XPM")  return CoverImage::Format::XPM;   // X11 Pixmap
+    if (fmt =="SVG")  return CoverImage::Format::SVG;   // Scalable Vector Graphics
     // clang-format on
 
     return CoverImage::Format::Unknown;
+}
+
+QString CoverImage::fileExt() const
+{
+    // clang-format off
+    switch (mFormat) {
+        case Format::Unknown:   return "";
+        case Format::BMP:       return "bmp";
+        case Format::GIF:       return "gif";
+        case Format::JPG:       return "jpeg";
+        case Format::PNG:       return "png";
+        case Format::PBM:       return "pbm";
+        case Format::PGM:       return "pgm";
+        case Format::PPM:       return "ppm";
+        case Format::XBM:       return "xbm";
+        case Format::XPM:       return "xpm";
+        case Format::SVG:       return "svg";
+    }
+    // clang-format on
+
+    return "";
 }
 
 CoverImage::CoverImage(const QString &inFilePath, uint size)
@@ -89,8 +112,9 @@ CoverImage::CoverImage(const QString &inFilePath, uint size)
 
         QImageReader reader(inFilePath);
         QByteArray   format = reader.format();
-        mFormat             = formatStrToFormat(format);
-        mMimeType           = formatToMimeType(format);
+
+        mFormat   = formatStrToFormat(format);
+        mMimeType = formatToMimeType(format);
 
         QImage image = reader.read();
         if (image.isNull()) {

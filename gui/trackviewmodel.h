@@ -60,7 +60,7 @@ public:
     QModelIndex index(const Disc &disc, int col = 0) const;
     QModelIndex index(const Track &track, int col) const;
 
-    Disc * discByIndex(const QModelIndex &index);
+    Disc  *discByIndex(const QModelIndex &index);
     Track *trackByIndex(const QModelIndex &index);
 
 public slots:
@@ -85,7 +85,7 @@ protected:
         RoleAudioFileName,
         RoleTagSetTitle,
         RoleHasWarnings,
-        RoleCanConvert,
+        RoleHasErrors,
         RoleIsDownloads,
         RoleItemID,
         RoleTrack,
@@ -114,7 +114,7 @@ private:
     QString  trackDurationToString(uint milliseconds) const;
     class Cache;
     mutable Cache *mCache;
-    TrackView *    mView;
+    TrackView     *mView;
 };
 
 #endif // TRACKVIEWMODEL_H

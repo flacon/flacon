@@ -39,12 +39,14 @@ class Gain;
 class EncoderConfigPage;
 class Profile;
 
+class MetadataWriter;
+
 class OutFormat
 {
 public:
     static QList<OutFormat *> allFormats();
-    static OutFormat *        formatForId(const QString &id);
-    virtual ~OutFormat() {}
+    static OutFormat         *formatForId(const QString &id);
+    virtual ~OutFormat() { }
 
     QString       id() const { return mId; }
     QString       name() const { return mName; }
@@ -53,8 +55,6 @@ public:
 
     QString encoderProgramName() const;
 
-    virtual QString gainProgramName() const = 0;
-
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const = 0;
     virtual SampleRate    maxSampleRate() const   = 0;
@@ -62,10 +62,10 @@ public:
     virtual bool check(const Profile &profile, QStringList *errors) const;
 
     virtual QHash<QString, QVariant> defaultParameters() const         = 0;
-    virtual EncoderConfigPage *      configPage(QWidget *parent) const = 0;
+    virtual EncoderConfigPage       *configPage(QWidget *parent) const = 0;
 
-    virtual Conv::Encoder *createEncoder() const = 0;
-    virtual Conv::Gain *   createGain(const Profile &profile) const;
+    virtual Conv::Encoder  *createEncoder() const                               = 0;
+    virtual MetadataWriter *createMetadataWriter(const QString &filePath) const = 0;
 
 protected:
     QString       mId;

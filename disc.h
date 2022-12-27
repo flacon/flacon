@@ -50,9 +50,10 @@ public:
     void searchAudioFiles(bool replaceExisting = false);
     void searchCoverImage(bool replaceExisting = false);
 
-    Track       *track(int index) const;
-    int          count() const { return mTracks.count(); }
-    const Track *preGapTrack() const;
+    QList<Track *> tracks() const { return mTracks; }
+    Track *        track(int index) const;
+    int            count() const { return mTracks.count(); }
+    const Track *  preGapTrack() const;
 
     QString cueFilePath() const;
     void    setCueFile(const Cue &cueDisc);
@@ -79,11 +80,6 @@ public:
     QString fileTag() const;
     DiscNum discNum() const;
     DiscNum discCount() const;
-
-    QStringList warnings() const;
-    QStringList errors() const;
-
-    bool canConvert() const;
 
     struct TagSet
     {
@@ -113,6 +109,9 @@ public:
 
     Cue cue() const { return mCue; }
 
+signals:
+    void tagChanged();
+
 protected:
     void trackChanged(TagId tagId);
 
@@ -139,5 +138,8 @@ private:
 };
 
 typedef QList<Disc *> DiscList;
+
+using Disk     = Disc;
+using DiskList = DiscList;
 
 #endif // DISC_H

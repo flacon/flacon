@@ -69,8 +69,10 @@ searchGit()
 }
 
 # License compatibility: BSD 3-Clause; LGPL v2.1 or later
+FILES=$($SEARCH)
 
-$SEARCH | while read file; do
+RESULT=0
+while read file; do
     license=`head -n 5 "$file"| grep '(c)' | sed -e 's/*//'`;# | sed -e 's/\([()]\)/\\1/g'`;
 
     case "$license" in
@@ -86,23 +88,29 @@ $SEARCH | while read file; do
         *LGPL2*|*LGPL3*)
             [ -n "$ONLY_ERRORS" ] && continue
             color=$YELLOW
+            RESULT=1
             ;;
 
         *GPL2*|*GPL3*)
             [ -n "$ONLY_ERRORS" ] && continue
             color=$RED
+            RESULT=1
             ;;
 
         *)
             color=$RED_BG
             [ -z "$license" ] && license='  Not set'
+            RESULT=1
             ;;
     esac
 
     let "div = 20 - ${#license}"
     printf "${color}%-20s %s${NORM}\n"  "${license}" "$file"
-done
+    
+done <<< "$FILES"
 #echo
 #echo "LGPL:    $lgplCnt"
 #echo "GPL:     $gplCnt"
 #echo "Unknown: $unknownCnt"
+
+exit $RESULT

@@ -24,6 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_wav.h"
+#include "../metadatawriter.h"
 
 /************************************************
 
@@ -59,6 +60,14 @@ EncoderConfigPage *OutFormat_Wav::configPage(QWidget *) const
 Conv::Encoder *OutFormat_Wav::createEncoder() const
 {
     return new Encoder_Wav();
+}
+
+/************************************************
+ *
+ ************************************************/
+MetadataWriter *OutFormat_Wav::createMetadataWriter(const QString &filePath) const
+{
+    return new NullMetadataWriter(filePath);
 }
 
 /************************************************

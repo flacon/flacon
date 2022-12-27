@@ -31,8 +31,7 @@
 #include "worker.h"
 #include "../profiles.h"
 #include "coverimage.h"
-
-class QProcess;
+#include "replaygain.h"
 
 namespace Conv {
 
@@ -62,10 +61,11 @@ public:
     virtual QString     programName() const { return ""; }
     virtual QStringList programArgs() const = 0;
 
-    virtual void writeMetadata(const QString &filePath) const;
-
 public slots:
     void run() override;
+
+signals:
+    void trackReady(const Conv::ConvTrack &track, const QString &outFileName, const ReplayGain::Result &trackGain);
 
 protected:
     QString programPath() const;
@@ -82,6 +82,9 @@ private:
 
     CoverImage mCoverImage;
 
+    bool                  mReplayGainEnabled = false;
+    ReplayGain::TrackGain mTrackGain;
+
     quint64 mTotal    = 0;
     quint64 mReady    = 0;
     int     mProgress = 0;
@@ -92,6 +95,7 @@ private:
     QProcess *createEncoderProcess();
     QProcess *createRasmpler(const QString &outFile);
     QProcess *createDemph(const QString &outFile);
+    void      writeMetadata() const;
 };
 
 } // namespace

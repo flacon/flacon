@@ -26,6 +26,7 @@
 #include "alacoutformat.h"
 #include "alacencoder.h"
 #include "alacconfigpage.h"
+#include "../metadatawriter.h"
 
 /************************************************
  *
@@ -35,7 +36,7 @@ OutFormat_Alac::OutFormat_Alac()
     mId      = "ALAC";
     mExt     = "m4a";
     mName    = "ALAC";
-    mOptions = FormatOption::Lossless | FormatOption::SupportEmbeddedImage;
+    mOptions = FormatOption::Lossless | FormatOption::SupportGain | FormatOption::SupportEmbeddedImage;
 }
 
 /************************************************
@@ -62,4 +63,12 @@ EncoderConfigPage *OutFormat_Alac::configPage(QWidget *parent) const
 Conv::Encoder *OutFormat_Alac::createEncoder() const
 {
     return new AlacEncoder();
+}
+
+/************************************************
+ *
+ ************************************************/
+MetadataWriter *OutFormat_Alac::createMetadataWriter(const QString &filePath) const
+{
+    return new Mp4MetaDataWriter(filePath);
 }

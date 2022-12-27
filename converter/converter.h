@@ -53,8 +53,7 @@ public:
     explicit Converter(QObject *parent = nullptr);
     virtual ~Converter();
 
-    bool        isRunning();
-    static bool canConvert();
+    bool isRunning();
 
 signals:
     void started();
@@ -72,13 +71,10 @@ private slots:
 
 private:
     class Data;
-
     Data *mData = nullptr;
 
-    bool          check(const Jobs &jobs, const Profile &profile) const;
+    bool          validate(const Jobs &jobs, const Profile &profile) const;
     DiscPipeline *createDiscPipeline(const Profile &profile, const Job &converterJob);
-
-    bool validateResultFiles(const QList<Disc *> &disks, QStringList &errors) const;
 };
 
 }

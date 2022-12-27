@@ -81,7 +81,7 @@ public:
     PreGapType preGapType() const;
     void       setPregapType(PreGapType value);
 
-    const OutFormat   *outFormat() const { return mFormat; }
+    const OutFormat *  outFormat() const { return mFormat; }
     QString            formatId() const { return mFormat->id(); }
     QString            formatName() const { return mFormat->name(); }
     QString            ext() const { return mFormat->ext(); }
@@ -89,7 +89,6 @@ public:
     BitsPerSample      maxBitPerSample() const { return mFormat->maxBitPerSample(); }
     SampleRate         maxSampleRate() const { return mFormat->maxSampleRate(); }
     EncoderConfigPage *configPage(QWidget *parent) const;
-    bool               check(QStringList *errors) const { return mFormat->check(*this, errors); }
 
     // Cover options ............................
     CoverOptions copyCoverOptions() const;
@@ -101,23 +100,9 @@ public:
     void load(QSettings &settings, const QString &group);
     void save(QSettings &settings, const QString &group) const;
 
-    static constexpr const char *OUT_DIRECTORY_KEY    = "OutDirectory";
-    static constexpr const char *OUT_PATTERN_KEY      = "OutPattern";
-    static constexpr const char *BITS_PER_SAMPLE_KEY  = "BitsPerSample";
-    static constexpr const char *SAMPLE_RATE_KEY      = "SampleRate";
-    static constexpr const char *CREATE_CUE_KEY       = "CreateCue";
-    static constexpr const char *EMBED_CUE_KEY        = "EmbedCue";
-    static constexpr const char *CUE_FILE_NAME_KEY    = "CueFileName";
-    static constexpr const char *PREGAP_TYPE_KEY      = "PregapType";
-    static constexpr const char *REPLAY_GAIN_KEY      = "ReplayGain";
-    static constexpr const char *COVER_FILE_MODE_KEY  = "CoverFile/Mode";
-    static constexpr const char *COVER_FILE_SIZE_KEY  = "CoverFile/Size";
-    static constexpr const char *COVER_EMBED_MODE_KEY = "CoverEmbed/Mode";
-    static constexpr const char *COVER_EMBED_SIZE_KEY = "CoverEmbed/Size";
-
 private:
     QString                  mId;
-    const OutFormat         *mFormat;
+    const OutFormat *        mFormat;
     QString                  mName;
     QHash<QString, QVariant> mValues;
     void                     setDefaultValues();

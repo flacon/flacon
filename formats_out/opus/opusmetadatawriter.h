@@ -1,3 +1,6 @@
+#ifndef OPUSMETADATAWRITER_H
+#define OPUSMETADATAWRITER_H
+
 /* BEGIN_COMMON_COPYRIGHT_HEADER
  * (c)LGPL2+
  *
@@ -23,17 +26,24 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef METADATA_H
-#define METADATA_H
+#include "../metadatawriter.h"
+#include <taglib/opusfile.h>
 
-#include <QString>
+class OpusMetadataWriter : public MetadataWriter
+{
+public:
+    OpusMetadataWriter(const QString &filePath);
+    void save() override;
 
-namespace Conv {
-class Encoder;
-}
+    void setTags(const Track &track) override;
+    void setEmbeddedCue(const QString &cue) override;
+    void setCoverImage(const CoverImage &image) override;
 
-namespace Metadata {
-void writeMp4(const QString &filePath, const Conv::Encoder &encoder);
-}
+    void setTrackReplayGain(float gain, float peak) override;
+    void setAlbumReplayGain(float gain, float peak) override;
 
-#endif // METADATA_H
+private:
+    TagLib::Ogg::Opus::File mFile;
+};
+
+#endif // OPUSMETADATAWRITER_H

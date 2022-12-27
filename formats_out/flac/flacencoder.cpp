@@ -25,27 +25,6 @@
 
 #include "flacencoder.h"
 
-#include <QFile>
-#include <taglib/flacfile.h>
-#include <taglib/xiphcomment.h>
-#include <QFile>
-#include <QLoggingCategory>
-
-namespace {
-Q_LOGGING_CATEGORY(LOG, "FlacEncoder")
-}
-
-QString writeMetadataFile(const QString &path, const QString &fieldName, const QString &fieldValue)
-{
-    QString metadataFile = path + "." + fieldName;
-    QFile   file(metadataFile);
-    if (file.open(QFile::WriteOnly)) {
-        file.write(fieldValue.toUtf8());
-    }
-    file.close();
-    return metadataFile;
-}
-
 QStringList FlacEncoder::programArgs() const
 {
     QStringList args;
@@ -61,66 +40,4 @@ QStringList FlacEncoder::programArgs() const
     args << "-";
     args << "-o" << outFile();
     return args;
-}
-
-void FlacEncoder::writeMetadata(const QString &filePath) const
-{
-    TagLib::FLAC::File file(filePath.toLocal8Bit(), false);
-
-    if (!file.isValid()) {
-        qCWarning(LOG) << Q_FUNC_INFO << "file is invalid";
-        throw FlaconError("Can't open file");
-    }
-
-    TagLib::Ogg::XiphComment *comments = file.xiphComment(true);
-
-    auto writeStrTag = [comments](const QString &tagName, const QString &value) {
-        if (!value.isEmpty()) {
-            comments->addField(tagName.toStdString(), TagLib::String(value.toStdString(), TagLib::String::UTF8), true);
-        }
-    };
-
-    auto writeIntTag = [comments](const QString &tagName, int value) {
-        comments->addField(tagName.toStdString(), QString::number(value).toStdString(), true);
-    };
-
-    writeStrTag("ARTIST", track().artist());
-    writeStrTag("ALBUM", track().album());
-    writeStrTag("GENRE", track().genre());
-    writeStrTag("DATE", track().date());
-    writeStrTag("TITLE", track().title());
-    writeStrTag("ALBUMARTIST", track().tag(TagId::AlbumArtist));
-    writeStrTag("COMMENT", track().comment());
-    writeStrTag("DISCID", track().discId());
-
-    writeIntTag("TRACKNUMBER", track().trackNum());
-    writeIntTag("TOTALTRACKS", track().trackCount());
-    writeIntTag("TRACKTOTAL", track().trackCount());
-
-    writeIntTag("DISC", track().discNum());
-    writeIntTag("DISCNUMBER", track().discNum());
-    writeIntTag("DISCTOTAL", track().discCount());
-
-    if (profile().isEmbedCue()) {
-        writeStrTag("CUESHEET", embeddedCue());
-    }
-
-    if (!coverImage().isEmpty()) {
-        const CoverImage  &img = coverImage();
-        TagLib::ByteVector dt(img.data().data(), img.data().size());
-
-        TagLib::FLAC::Picture *pic = new TagLib::FLAC::Picture();
-        pic->setType(TagLib::FLAC::Picture::Type::FrontCover);
-        pic->setData(dt);
-        pic->setMimeType(img.mimeType().toStdString());
-        pic->setWidth(img.size().width());
-        pic->setHeight(img.size().height());
-        pic->setColorDepth(img.depth());
-
-        file.addPicture(pic);
-    }
-
-    if (!file.save()) {
-        throw FlaconError("Can't save file");
-    }
 }

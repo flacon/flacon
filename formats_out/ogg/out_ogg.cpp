@@ -26,6 +26,8 @@
 #include "out_ogg.h"
 #include <QDebug>
 #include <math.h>
+#include "oggmetadatawriter.h"
+#include <QByteArray>
 
 /************************************************
 
@@ -35,7 +37,7 @@ OutFormat_Ogg::OutFormat_Ogg()
     mId      = "OGG";
     mExt     = "ogg";
     mName    = "OGG";
-    mOptions = FormatOption::SupportGain;
+    mOptions = FormatOption::SupportGain | FormatOption::SupportEmbeddedImage;
 }
 
 /************************************************
@@ -72,9 +74,9 @@ Conv::Encoder *OutFormat_Ogg::createEncoder() const
 /************************************************
  *
  ************************************************/
-Conv::Gain *OutFormat_Ogg::createGain(const Profile &profile) const
+MetadataWriter *OutFormat_Ogg::createMetadataWriter(const QString &filePath) const
 {
-    return new Gain_Ogg(profile);
+    return new OggMetaDataWriter(filePath);
 }
 
 /************************************************
@@ -202,56 +204,8 @@ QStringList Encoder_Ogg::programArgs() const
             args << "-M" << val;
     }
 
-    // Tags .....................................................
-    if (!track().artist().isEmpty())
-        args << "--artist" << track().artist();
-
-    if (!track().album().isEmpty())
-        args << "--album" << track().album();
-
-    if (!track().genre().isEmpty())
-        args << "--genre" << track().genre();
-
-    if (!track().date().isEmpty())
-        args << "--date" << track().date();
-
-    if (!track().title().isEmpty())
-        args << "--title" << track().title();
-
-    if (!track().tag(TagId::AlbumArtist).isEmpty())
-        args << "--comment" << QString("album_artist=%1").arg(track().tag(TagId::AlbumArtist));
-
-    if (!track().comment().isEmpty())
-        args << "--comment" << QString("COMMENT=%1").arg(track().comment());
-
-    if (!track().discId().isEmpty())
-        args << "--comment" << QString("DISCID=%1").arg(track().discId());
-
-    args << "--tracknum" << QString("%1").arg(track().trackNum());
-    args << "--comment" << QString("totaltracks=%1").arg(track().trackCount());
-    args << "--comment" << QString("tracktotal=%1").arg(track().trackCount());
-
-    args << "--comment" << QString("disc=%1").arg(track().discNum());
-    args << "--comment" << QString("discnumber=%1").arg(track().discNum());
-    args << "--comment" << QString("disctotal=%1").arg(track().discCount());
-
     // Files ....................................................
     args << "-o" << outFile();
     args << "-";
-    return args;
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Gain_Ogg::programArgs(const QStringList &files, const GainType gainType) const
-{
-    QStringList args;
-    args << programPath();
-    if (gainType == GainType::Album)
-        args << "--album";
-
-    args << files;
-
     return args;
 }

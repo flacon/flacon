@@ -29,7 +29,6 @@
 #include "../outformat.h"
 #include "../encoderconfigpage.h"
 #include "ui_out_flac_config.h"
-#include "../converter/gain.h"
 
 class OutFormat_Flac : public OutFormat
 {
@@ -37,17 +36,15 @@ public:
     OutFormat_Flac();
     bool check(const Profile &profile, QStringList *errors) const override;
 
-    virtual QString gainProgramName() const override { return "metaflac"; }
-
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage *      configPage(QWidget *parent) const override;
+    EncoderConfigPage       *configPage(QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
     SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
-    Conv::Encoder *createEncoder() const override;
-    Conv::Gain *   createGain(const Profile &profile) const override;
+    Conv::Encoder  *createEncoder() const override;
+    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
 class ConfigPage_Flac : public EncoderConfigPage, private Ui::flacConfigPage
@@ -58,14 +55,6 @@ public:
 
     virtual void load(const Profile &profile) override;
     virtual void save(Profile *profile) override;
-};
-
-class Gain_Flac : public Conv::Gain
-{
-public:
-    using Conv::Gain::Gain;
-    QString     programName() const override { return "metaflac"; }
-    QStringList programArgs(const QStringList &files, const GainType gainType) const override;
 };
 
 #endif // FLACOITFORMAT_H

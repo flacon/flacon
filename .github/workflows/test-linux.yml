@@ -16,6 +16,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Check license
+      run: ./scripts/checkLicense.sh .
+
     - name: Install packages
       run:  |
         echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections

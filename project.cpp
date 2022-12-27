@@ -42,7 +42,7 @@ void Project::clear()
     for (int i = 0; i < count(); ++i)
         discs << disc(i);
 
-    removeDisc(&discs);
+    removeDisc(discs);
 }
 
 /************************************************
@@ -90,6 +90,7 @@ int Project::insertDisc(Disc *disc, int index)
         index = mDiscs.count();
 
     mDiscs.insert(index, disc);
+    mValidator.insertDisk(disc, index);
 
     emit layoutChanged();
     return index;
@@ -98,13 +99,15 @@ int Project::insertDisc(Disc *disc, int index)
 /************************************************
 
  ************************************************/
-void Project::removeDisc(const QList<Disc *> *discs)
+void Project::removeDisc(const QList<Disc *> &discs)
 {
-    for (int i = 0; i < discs->count(); ++i) {
-        Disc *disc = discs->at(i);
-        emit  beforeRemoveDisc(disc);
-        if (mDiscs.removeAll(disc))
+    mValidator.removeDisk(discs);
+
+    for (Disk *disc : discs) {
+        emit beforeRemoveDisc(disc);
+        if (mDiscs.removeAll(disc)) {
             disc->deleteLater();
+        }
 
         emit afterRemoveDisc();
     }
@@ -172,7 +175,7 @@ Disc *Project::addCueFile(const QString &fileName)
         Disc *disc = new Disc(cue);
         disc->searchAudioFiles();
         disc->searchCoverImage();
-        mDiscs << disc;
+        addDisc(disc);
         emit layoutChanged();
         return disc;
     }
@@ -186,7 +189,33 @@ Disc *Project::addCueFile(const QString &fileName)
 /************************************************
 
  ************************************************/
-void Project::emitDiscChanged(Disc *disc) const
+const Profile &Project::currentProfile() const
+{
+    return Settings::i()->currentProfile();
+}
+
+/************************************************
+
+ ************************************************/
+Profile &Project::currentProfile()
+{
+    return Settings::i()->currentProfile();
+}
+
+/************************************************
+
+ ************************************************/
+bool Project::selectProfile(const QString &profileId)
+{
+    bool res = Settings::i()->selectProfile(profileId);
+    mValidator.setProfile(currentProfile());
+    return res;
+}
+
+/************************************************
+
+ ************************************************/
+void Project::emitDiscChanged(Disc *disc)
 {
     emit discChanged(disc);
 }

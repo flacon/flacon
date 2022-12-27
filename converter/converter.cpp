@@ -32,7 +32,6 @@
 #include "settings.h"
 #include "splitter.h"
 #include "encoder.h"
-#include "gain.h"
 #include "discpipline.h"
 #include "sox.h"
 #include "cuecreator.h"
@@ -52,8 +51,8 @@ using namespace Conv;
 class Converter::Data
 {
 public:
-    TrackId trackId     = 1;
-    int     threadCount = 0;
+    int       threadCount = 0;
+    Validator validator;
 
     QVector<DiscPipeline *>        discPiplines;
     QMap<TrackId, const ConvTrack> tracks;
@@ -124,7 +123,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
         return;
     }
 
-    if (!check(jobs, profile)) {
+    if (!validate(jobs, profile)) {
         emit finished();
         return;
     }
@@ -144,7 +143,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
                 continue;
             }
 
-            if (!converterJob.disc->canConvert()) {
+            if (mData->validator.diskHasErrors(converterJob.disc)) {
                 continue;
             }
 
@@ -235,23 +234,6 @@ bool Converter::isRunning()
 /************************************************
 
  ************************************************/
-bool Converter::canConvert()
-{
-    if (!Settings::i()->currentProfile().isValid()) {
-        return false;
-    }
-
-    for (int i = 0; i < project->count(); ++i) {
-        if (project->disc(i)->canConvert())
-            return true;
-    }
-
-    return false;
-}
-
-/************************************************
-
- ************************************************/
 void Converter::stop()
 {
     if (!isRunning())
@@ -293,84 +275,31 @@ void Converter::startThread()
 /************************************************
 
  ************************************************/
-bool Converter::check(const Jobs &jobs, const Profile &profile) const
+bool Converter::validate(const Jobs &jobs, const Profile &profile) const
 {
-    QStringList errors;
-
-    if (!profile.isValid()) {
-        errors << "Incorrect output profile";
-        return false;
+    DiskList disks;
+    for (const auto &j : jobs) {
+        disks << j.disc;
+        qDebug() << " *" << j.disc->cueFilePath();
     }
 
-    profile.check(&errors);
+    mData->validator.setDisks(disks);
+    mData->validator.setProfile(profile);
 
-    bool needSox = false;
+    QStringList errors = mData->validator.converterErrors();
 
-    needSox = needSox || (profile.bitsPerSample() != BitsPerSample::AsSourcee || profile.sampleRate() != SampleRate::AsSource);
-    for (const Job &job : jobs) {
-        for (const Track *track : job.tracks) {
-            needSox = needSox || track->preEmphased();
-        }
+    if (errors.isEmpty()) {
+        return true;
     }
 
-    if (needSox) {
-        Settings::i()->checkProgram(Sox::programName(), &errors);
+    QString s;
+    foreach (QString e, errors) {
+        s += QString("<li style='margin-top: 4px;'> %1</li>").arg(e);
     }
 
-    DiscList disks;
-    for (const Job &job : jobs) {
-        disks << job.disc;
-    }
+    Messages::error(QString("<html>%1<ul>%2</ul></html>")
+                            .arg(tr("Conversion is not possible:"))
+                            .arg(s));
 
-    validateResultFiles(disks, errors);
-
-    if (!errors.isEmpty()) {
-        QString s;
-        foreach (QString e, errors) {
-            s += QString("<li style='margin-top: 4px;'> %1</li>").arg(e);
-        }
-
-        Messages::error(QString("<html>%1<ul>%2</ul></html>")
-                                .arg(tr("Conversion is not possible:"), s));
-    }
-
-    return errors.isEmpty();
-}
-
-/************************************************
-
- ************************************************/
-bool Converter::validateResultFiles(const QList<Disc *> &disks, QStringList &errors) const
-{
-    bool res = true;
-
-    auto resultFiles = [](const Disc *disk) -> QSet<QString> {
-        QSet<QString> files;
-        for (int i = 0; i < disk->count(); ++i) {
-            files.insert(disk->track(i)->resultFilePath());
-        }
-        return files;
-    };
-
-    for (int i = 0; i < disks.count() - 1; ++i) {
-        const Disc *disk1 = disks.at(i);
-
-        QSet<QString> diskFiles = resultFiles(disk1);
-
-        for (int j = i + 1; j < disks.count(); ++j) {
-
-            const Disc *disk2 = disks.at(j);
-
-            if (diskFiles.intersects(resultFiles(disk2))) {
-                errors << QString("Disk %1 \"%2\" will overwrite the files of the disk %3 \"%4\".")
-                                  .arg(j + 1)
-                                  .arg(QFileInfo(disk2->cueFilePath()).fileName())
-                                  .arg(i + 1)
-                                  .arg(QFileInfo(disk1->cueFilePath()).fileName());
-                res = false;
-            }
-        }
-    }
-
-    return res;
+    return false;
 }

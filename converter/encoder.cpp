@@ -33,6 +33,7 @@
 #include <QDebug>
 #include <QLoggingCategory>
 #include "extprogram.h"
+#include "formats_out/metadatawriter.h"
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "Encoder")
@@ -141,6 +142,8 @@ QProcess *Encoder::createDemph(const QString &outFile)
  ************************************************/
 void Encoder::run()
 {
+    mReplayGainEnabled = mProfile.gainType() != GainType::Disable;
+
     emit trackProgress(track(), TrackState::Encoding, 0);
 
     QList<QProcess *> procs;
@@ -168,7 +171,7 @@ void Encoder::run()
         qCDebug(LOG) << "Copy file: in = " << inputFile() << "out = " << outFile();
         copyFile();
         emit trackProgress(track(), TrackState::Encoding, 100);
-        emit trackReady(track(), outFile());
+        emit trackReady(track(), outFile(), ReplayGain::Result());
         return;
     }
 
@@ -203,14 +206,38 @@ void Encoder::run()
         }
 
         deleteFile(mInputFile);
-        writeMetadata(outFile());
-        emit trackReady(track(), outFile());
+        writeMetadata();
+
+        emit trackReady(track(), outFile(), mTrackGain.result());
     }
     catch (const FlaconError &err) {
         deleteFile(mInputFile);
         QString msg = tr("Track %1. Encoder error:", "Track error message, %1 is a track number").arg(track().trackNum()) + "<pre>" + err.what() + "</pre>";
         emit    error(track(), msg);
     }
+}
+
+/************************************************
+ *
+ ************************************************/
+void Encoder::writeMetadata() const
+{
+    MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(outFile());
+    if (!writer) {
+        return;
+    }
+
+    writer->setTags(mTrack);
+    if (profile().isEmbedCue()) {
+        writer->setEmbeddedCue(embeddedCue());
+    }
+
+    if (!coverImage().isEmpty()) {
+        writer->setCoverImage(coverImage());
+    }
+
+    writer->save();
+    delete writer;
 }
 
 /************************************************
@@ -253,13 +280,6 @@ void Encoder::setCoverImage(const CoverImage &value)
 /************************************************
 
  ************************************************/
-void Encoder::writeMetadata(const QString &) const
-{
-}
-
-/************************************************
-
- ************************************************/
 void Encoder::readInputFile(QProcess *process)
 {
     qCDebug(LOG) << "Read " << inputFile() << "file";
@@ -277,6 +297,9 @@ void Encoder::readInputFile(QProcess *process)
     while (!file.atEnd()) {
         buf = file.read(bufSize);
         process->write(buf);
+        if (mReplayGainEnabled) {
+            mTrackGain.add(buf.constData(), buf.size());
+        }
     }
 }
 

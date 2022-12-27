@@ -25,6 +25,7 @@
 
 #include "out_wv.h"
 #include <QDebug>
+#include "wvmetadatawriter.h"
 
 static const constexpr char *COMPRESSION_KEY = "Compression";
 static const constexpr char *REPLAY_GAIN_KEY = "ReplayGain";
@@ -70,9 +71,9 @@ Conv::Encoder *OutFormat_Wv::createEncoder() const
 /************************************************
  *
  ************************************************/
-Conv::Gain *OutFormat_Wv::createGain(const Profile &profile) const
+MetadataWriter *OutFormat_Wv::createMetadataWriter(const QString &filePath) const
 {
-    return new Gain_Wv(profile);
+    return new WvMetadataWriter(filePath);
 }
 
 /************************************************
@@ -114,7 +115,7 @@ QStringList Encoder_Wv::programArgs() const
 
     args << "-q"; // Suppress progress indicator
 
-    // Settings .................................................
+    // Quality Settings .........................
     int compression = profile().value(COMPRESSION_KEY).toInt();
     switch (compression) {
         case 0:
@@ -128,55 +129,9 @@ QStringList Encoder_Wv::programArgs() const
             break;
     }
 
-    // Tags .....................................................
-    if (!track().artist().isEmpty())
-        args << "-w" << QString("Artist=%1").arg(track().artist());
-
-    if (!track().album().isEmpty())
-        args << "-w" << QString("Album=%1").arg(track().album());
-
-    if (!track().genre().isEmpty())
-        args << "-w" << QString("Genre=%1").arg(track().genre());
-
-    if (!track().date().isEmpty())
-        args << "-w" << QString("Year=%1").arg(track().date());
-
-    if (!track().title().isEmpty())
-        args << "-w" << QString("Title=%1").arg(track().title());
-
-    if (!track().tag(TagId::AlbumArtist).isEmpty())
-        args << "-w" << QString("Album Artist=%1").arg(track().tag(TagId::AlbumArtist));
-
-    if (!track().discId().isEmpty())
-        args << "-w" << QString("DiscId=%1").arg(track().discId());
-
-    if (!track().comment().isEmpty())
-        args << "-w" << QString("Comment=%1").arg(track().comment());
-
-    args << "-w" << QString("Track=%1/%2").arg(track().trackNum()).arg(track().trackCount());
-    args << "-w" << QString("Part=%1").arg(track().discNum());
-
-    if (!coverImage().isEmpty()) {
-        args << "--write-binary-tag" << QString("Cover Art (Front)=@%1").arg(coverImage().tmpFilePath());
-    }
-
+    // Files ....................................
     args << "-";
     args << "-o" << outFile();
-
-    return args;
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Gain_Wv::programArgs(const QStringList &files, const GainType gainType) const
-{
-    QStringList args;
-    args << programPath();
-    if (gainType == GainType::Album) {
-        args << "-a";
-    }
-    args << files;
 
     return args;
 }

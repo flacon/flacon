@@ -25,7 +25,7 @@
 
 #include "out_aac.h"
 #include "inputaudiofile.h"
-#include "../metadata.h"
+#include "../metadatawriter.h"
 
 /************************************************
 
@@ -35,7 +35,7 @@ OutFormat_Aac::OutFormat_Aac()
     mId      = "AAC";
     mExt     = "m4a";
     mName    = "AAC";
-    mOptions = FormatOption::NoOptions | FormatOption::SupportEmbeddedImage;
+    mOptions = FormatOption::SupportGain | FormatOption::SupportEmbeddedImage;
 }
 
 /************************************************
@@ -64,6 +64,14 @@ EncoderConfigPage *OutFormat_Aac::configPage(QWidget *parentr) const
 Conv::Encoder *OutFormat_Aac::createEncoder() const
 {
     return new Encoder_Aac();
+}
+
+/************************************************
+ *
+ ************************************************/
+MetadataWriter *OutFormat_Aac::createMetadataWriter(const QString &filePath) const
+{
+    return new Mp4MetaDataWriter(filePath);
 }
 
 /************************************************
@@ -135,12 +143,4 @@ QStringList Encoder_Aac::programArgs() const
     args << "-o" << outFile();
     args << "-";
     return args;
-}
-
-/************************************************
-
- ************************************************/
-void Encoder_Aac::writeMetadata(const QString &filePath) const
-{
-    Metadata::writeMp4(filePath, *this);
 }
