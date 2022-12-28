@@ -413,14 +413,6 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     </message>
 </context>
 <context>
-    <name>Conv::Gain</name>
-    <message>
-        <source>Gain error:
-</source>
-        <translation>Chyba zesílení:</translation>
-    </message>
-</context>
-<context>
     <name>Conv::Splitter</name>
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -509,47 +501,6 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
     <message>
         <source>Add to first track</source>
         <translation>Přidat k první skladbě</translation>
-    </message>
-</context>
-<context>
-    <name>Disc</name>
-    <message>
-        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Cue file not set.</source>
-        <translation>Soubor CUE nenastaven.</translation>
-    </message>
-    <message>
-        <source>Audio file not set.</source>
-        <comment>Warning message</comment>
-        <translation>Zvukový soubor nenastaven.</translation>
-    </message>
-    <message>
-        <source>Audio file not set for track %1.</source>
-        <comment>Warning message, Placeholders is a track number</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file not set for tracks %1 to %2.</source>
-        <comment>Warning message, Placeholders is a track numbers</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
-        <comment>Warning message</comment>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -931,6 +882,28 @@ Chcete pokračovat?</translation>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Warnings</source>
+        <extracomment>Toolbar item caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show Warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Errors</source>
+        <comment>Toolbar item caption</comment>
+        <extracomment>Toolbar item caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show Errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1599,6 +1572,60 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Validator</name>
+    <message>
+        <source>Some disks will overwrite the resulting files of another disk.</source>
+        <comment>error message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>Soubor CUE nenastaven.</translation>
+    </message>
+    <message>
+        <source>Audio file not set.</source>
+        <comment>Warning message</comment>
+        <translation>Zvukový soubor nenastaven.</translation>
+    </message>
+    <message>
+        <source>Audio file not set for track %1.</source>
+        <comment>Warning message, Placeholders is a track number</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file not set for tracks %1 to %2.</source>
+        <comment>Warning message, Placeholders is a track numbers</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>A maximum of %1-bit per sample is supported by this format.
+This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>A maximum sample rate of %1 is supported by this format.
+This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio.
+The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Incorrect output profile.</source>
+        <comment>error message</comment>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -437,15 +437,6 @@ In CBR mode, it sets the specific output bitrate.
     </message>
 </context>
 <context>
-    <name>Conv::Gain</name>
-    <message>
-        <source>Gain error:
-</source>
-        <translation>Ошибка расчета громкости:
-</translation>
-    </message>
-</context>
-<context>
     <name>Conv::Splitter</name>
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -534,47 +525,6 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Add to first track</source>
         <translation>Добавить к первому треку</translation>
-    </message>
-</context>
-<context>
-    <name>Disc</name>
-    <message>
-        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation>Формат поддерживает максимум %1 бит на отчет, это значение будет использоваться при кодировании.</translation>
-    </message>
-    <message>
-        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation>Формат поддерживает частоты дискретизации до %1, это значение будет использоваться при кодировании.</translation>
-    </message>
-    <message>
-        <source>Cue file not set.</source>
-        <translation>Не задан CUE файл.</translation>
-    </message>
-    <message>
-        <source>Audio file not set.</source>
-        <comment>Warning message</comment>
-        <translation>Не задан аудиофайл.</translation>
-    </message>
-    <message>
-        <source>Audio file not set for track %1.</source>
-        <comment>Warning message, Placeholders is a track number</comment>
-        <translation>Для трека %1 не задан аудиофайл .</translation>
-    </message>
-    <message>
-        <source>Audio file not set for tracks %1 to %2.</source>
-        <comment>Warning message, Placeholders is a track numbers</comment>
-        <translation>Для треков с %1 по %2 не задан аудиофайл .</translation>
-    </message>
-    <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>Длина аудиофайла меньше чем указано в CUE.</translation>
-    </message>
-    <message>
-        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
-        <comment>Warning message</comment>
-        <translation>Выравнивание громкости (ReplayGain) не поддерживается для многоканальных аудиофайлов. Он будет отключен для этого диска.</translation>
     </message>
 </context>
 <context>
@@ -957,6 +907,28 @@ Do you want to continue?</source>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
         <translation>Flacon - Обработка</translation>
+    </message>
+    <message>
+        <source>Warnings</source>
+        <extracomment>Toolbar item caption</extracomment>
+        <translation>Предупреждения</translation>
+    </message>
+    <message>
+        <source>Show Warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation>Показать предупреждения</translation>
+    </message>
+    <message>
+        <source>Errors</source>
+        <comment>Toolbar item caption</comment>
+        <extracomment>Toolbar item caption</extracomment>
+        <translation>Ошибки</translation>
+    </message>
+    <message>
+        <source>Show Errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation>Показать ошибки</translation>
     </message>
 </context>
 <context>
@@ -1625,6 +1597,63 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>Never checked</source>
         <comment>Information about last update</comment>
         <translation>Никогда не проверяли</translation>
+    </message>
+</context>
+<context>
+    <name>Validator</name>
+    <message>
+        <source>Some disks will overwrite the resulting files of another disk.</source>
+        <comment>error message</comment>
+        <translation>Некоторые диски перезапишут входные файлы других дисков.</translation>
+    </message>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>Не задан CUE файл.</translation>
+    </message>
+    <message>
+        <source>Audio file not set.</source>
+        <comment>Warning message</comment>
+        <translation>Не задан аудиофайл.</translation>
+    </message>
+    <message>
+        <source>Audio file not set for track %1.</source>
+        <comment>Warning message, Placeholders is a track number</comment>
+        <translation>Для трека %1 не задан аудиофайл .</translation>
+    </message>
+    <message>
+        <source>Audio file not set for tracks %1 to %2.</source>
+        <comment>Warning message, Placeholders is a track numbers</comment>
+        <translation>Для треков с %1 по %2 не задан аудиофайл .</translation>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation>Длина аудиофайла меньше чем указано в CUE.</translation>
+    </message>
+    <message>
+        <source>A maximum of %1-bit per sample is supported by this format.
+This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>Формат поддерживает максимум %1 бит на отчет.
+Это значение будет использоваться при кодировании.</translation>
+    </message>
+    <message>
+        <source>A maximum sample rate of %1 is supported by this format.
+This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation>Формат поддерживает частоты дискретизации до %1.
+Это значение будет использоваться при кодировании.</translation>
+    </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio.
+The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
+        <translation>Выравнивание громкости (ReplayGain) не поддерживается для многоканальных аудиофайлов.
+Выравнивание громкости будет отключено для этого диска.</translation>
+    </message>
+    <message>
+        <source>Incorrect output profile.</source>
+        <comment>error message</comment>
+        <translation>Некорректный профиль.</translation>
     </message>
 </context>
 <context>

@@ -414,15 +414,6 @@ W trybie CBR, ustawia określoną wartość wyjściowej prędkości transmisji b
     </message>
 </context>
 <context>
-    <name>Conv::Gain</name>
-    <message>
-        <source>Gain error:
-</source>
-        <translation>Błąd obliczania wzmocnienia:
-</translation>
-    </message>
-</context>
-<context>
     <name>Conv::Splitter</name>
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -511,47 +502,6 @@ W trybie CBR, ustawia określoną wartość wyjściowej prędkości transmisji b
     <message>
         <source>Add to first track</source>
         <translation>Dodaj do pierwszej ścieżki</translation>
-    </message>
-</context>
-<context>
-    <name>Disc</name>
-    <message>
-        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation>Ten format obsługuje maksymalnie %1 bitów na próbkę. Taka wartość będzie używana do kodowania.</translation>
-    </message>
-    <message>
-        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation>Ten format obsługuje maksymalną częstotliwość próbkowania %1. Taka wartość będzie używana do kodowania.</translation>
-    </message>
-    <message>
-        <source>Cue file not set.</source>
-        <translation>Nie określono pliku CUE.</translation>
-    </message>
-    <message>
-        <source>Audio file not set.</source>
-        <comment>Warning message</comment>
-        <translation>Nie określono pliku audio.</translation>
-    </message>
-    <message>
-        <source>Audio file not set for track %1.</source>
-        <comment>Warning message, Placeholders is a track number</comment>
-        <translation>Nie określono pliku audio dla ścieżki %1.</translation>
-    </message>
-    <message>
-        <source>Audio file not set for tracks %1 to %2.</source>
-        <comment>Warning message, Placeholders is a track numbers</comment>
-        <translation>Nie określono plików audio dla ścieżek %1 - %2.</translation>
-    </message>
-    <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>Plik audio krótszy niż oczekiwano w arkuszu CUE.</translation>
-    </message>
-    <message>
-        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
-        <comment>Warning message</comment>
-        <translation>ReplayGain nie jest obsługiwane w przypadku dźwięku wielokanałowego. Obliczanie ReplayGain zostanie wyłączone dla tego dysku.</translation>
     </message>
 </context>
 <context>
@@ -934,6 +884,28 @@ Czy chcesz kontynuować?</translation>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
         <translation>Flacon - Konwertowanie</translation>
+    </message>
+    <message>
+        <source>Warnings</source>
+        <extracomment>Toolbar item caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show Warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Errors</source>
+        <comment>Toolbar item caption</comment>
+        <extracomment>Toolbar item caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show Errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1602,6 +1574,60 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <source>Never checked</source>
         <comment>Information about last update</comment>
         <translation>Nigdy nie sprawdzano</translation>
+    </message>
+</context>
+<context>
+    <name>Validator</name>
+    <message>
+        <source>Some disks will overwrite the resulting files of another disk.</source>
+        <comment>error message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>Nie określono pliku CUE.</translation>
+    </message>
+    <message>
+        <source>Audio file not set.</source>
+        <comment>Warning message</comment>
+        <translation>Nie określono pliku audio.</translation>
+    </message>
+    <message>
+        <source>Audio file not set for track %1.</source>
+        <comment>Warning message, Placeholders is a track number</comment>
+        <translation>Nie określono pliku audio dla ścieżki %1.</translation>
+    </message>
+    <message>
+        <source>Audio file not set for tracks %1 to %2.</source>
+        <comment>Warning message, Placeholders is a track numbers</comment>
+        <translation>Nie określono plików audio dla ścieżek %1 - %2.</translation>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation>Plik audio krótszy niż oczekiwano w arkuszu CUE.</translation>
+    </message>
+    <message>
+        <source>A maximum of %1-bit per sample is supported by this format.
+This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>A maximum sample rate of %1 is supported by this format.
+This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio.
+The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Incorrect output profile.</source>
+        <comment>error message</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -6,16 +6,18 @@ file_filter = ../translations/translators_<lang>.info
 source_file = ../translations/src.translators.info
 source_lang = en
 type        = MOZILLAPROPERTIES
+minimum_perc = 10
 
 [o:sokoloff:p:flacon:r:flacon]
 file_filter = ../translations/flacon_<lang>.ts
 source_file = ../translations/src.flacon.ts
 source_lang = en
 type        = QT
+minimum_perc = 10
 
 [o:sokoloff:p:flacon:r:flacon_desktop]
 file_filter = ../translations/flacon_<lang>.desktop
 source_file = ../misc/flacon.desktop
 source_lang = en
 type        = DESKTOP
-
+minimum_perc = 10

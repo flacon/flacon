@@ -414,15 +414,6 @@ Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
     </message>
 </context>
 <context>
-    <name>Conv::Gain</name>
-    <message>
-        <source>Gain error:
-</source>
-        <translation>Ralat gandaan:
-</translation>
-    </message>
-</context>
-<context>
     <name>Conv::Splitter</name>
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -511,47 +502,6 @@ Dalam mod CBR, ia tetapkan kadar bit output secara khusus.
     <message>
         <source>Add to first track</source>
         <translation>Tambah ke trek pertama</translation>
-    </message>
-</context>
-<context>
-    <name>Disc</name>
-    <message>
-        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation>Satu sampel per %1-bit maksimum disokong oleh format ini. Nilai ini akan digunakan untuk pengekodan.</translation>
-    </message>
-    <message>
-        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation>Satu kadar sampel maksimum %1 disokong oleh format ini. Nilai ini akan digunakan untuk pengekodan.</translation>
-    </message>
-    <message>
-        <source>Cue file not set.</source>
-        <translation>Fail cue tidak ditetapkan.</translation>
-    </message>
-    <message>
-        <source>Audio file not set.</source>
-        <comment>Warning message</comment>
-        <translation>Fail audio tidak ditetapkan</translation>
-    </message>
-    <message>
-        <source>Audio file not set for track %1.</source>
-        <comment>Warning message, Placeholders is a track number</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file not set for tracks %1 to %2.</source>
-        <comment>Warning message, Placeholders is a track numbers</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>Fail audio lebih pendek berbanding lembar CUE.</translation>
-    </message>
-    <message>
-        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
-        <comment>Warning message</comment>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -933,6 +883,28 @@ Mahu diteruskan?</translation>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Warnings</source>
+        <extracomment>Toolbar item caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show Warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Errors</source>
+        <comment>Toolbar item caption</comment>
+        <extracomment>Toolbar item caption</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show Errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1603,6 +1575,60 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
         <source>Never checked</source>
         <comment>Information about last update</comment>
         <translation>Jangan sesekali periksa</translation>
+    </message>
+</context>
+<context>
+    <name>Validator</name>
+    <message>
+        <source>Some disks will overwrite the resulting files of another disk.</source>
+        <comment>error message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Cue file not set.</source>
+        <translation>Fail cue tidak ditetapkan.</translation>
+    </message>
+    <message>
+        <source>Audio file not set.</source>
+        <comment>Warning message</comment>
+        <translation>Fail audio tidak ditetapkan</translation>
+    </message>
+    <message>
+        <source>Audio file not set for track %1.</source>
+        <comment>Warning message, Placeholders is a track number</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file not set for tracks %1 to %2.</source>
+        <comment>Warning message, Placeholders is a track numbers</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation>Fail audio lebih pendek berbanding lembar CUE.</translation>
+    </message>
+    <message>
+        <source>A maximum of %1-bit per sample is supported by this format.
+This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>A maximum sample rate of %1 is supported by this format.
+This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio.
+The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Incorrect output profile.</source>
+        <comment>error message</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
