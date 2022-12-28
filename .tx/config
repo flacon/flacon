@@ -1,22 +1,21 @@
 [main]
 host = https://www.transifex.com
-minimum_perc = 1
 
-[flacon.flacon]
-file_filter = translations/flacon_<lang>.ts
-source_file = translations/src.flacon.ts
+[o:sokoloff:p:flacon:r:About_Translators]
+file_filter = ../translations/translators_<lang>.info
+source_file = ../translations/src.translators.info
 source_lang = en
-type = QT
+type        = MOZILLAPROPERTIES
 
-[flacon.flacon_desktop]
-source_file = misc/flacon.desktop
+[o:sokoloff:p:flacon:r:flacon]
+file_filter = ../translations/flacon_<lang>.ts
+source_file = ../translations/src.flacon.ts
 source_lang = en
-file_filter = translations/flacon_<lang>.desktop
-type = DESKTOP
+type        = QT
 
-[flacon.About_Translators]
-source_file = translations/src.translators.info
+[o:sokoloff:p:flacon:r:flacon_desktop]
+file_filter = ../translations/flacon_<lang>.desktop
+source_file = ../misc/flacon.desktop
 source_lang = en
-file_filter = translations/translators_<lang>.info
-type = MOZILLAPROPERTIES
+type        = DESKTOP
 

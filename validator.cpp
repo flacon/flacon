@@ -217,7 +217,7 @@ bool Validator::hasErrors() const
 bool Validator::validateProfile()
 {
     if (!mProfile.isValid()) {
-        mGlobalErrors << tr("Incorrect output profile", "error message");
+        mGlobalErrors << tr("Incorrect output profile.", "error message");
         return false;
     }
 
