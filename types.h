@@ -217,8 +217,7 @@ int calcSampleRate(int input, SampleRate resample);
 
 int calcQuality(int input, int preferences, int formatMax);
 
-typedef quint8  Percent;
-typedef quint64 TrackId;
+typedef quint8 Percent;
 
 QByteArray leftPart(const QByteArray &line, const char separator);
 QByteArray rightPart(const QByteArray &line, const char separator);
