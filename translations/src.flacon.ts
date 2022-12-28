@@ -1531,21 +1531,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
 <context>
     <name>Validator</name>
     <message>
-        <source>A maximum of %1-bit per sample is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A maximum sample rate of %1 is supported by this format. This value will be used for encoding.</source>
-        <comment>Warning message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ReplayGain calculation is not supported for multi-channel audio. The ReplayGain will be disabled for this disk.</source>
-        <comment>Warning message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Some disks will overwrite the resulting files of another disk.</source>
         <comment>error message</comment>
         <translation type="unfinished"></translation>
@@ -1576,6 +1561,24 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A maximum of %1-bit per sample is supported by this format.
+This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A maximum sample rate of %1 is supported by this format.
+This value will be used for encoding.</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ReplayGain calculation is not supported for multi-channel audio.
+The ReplayGain will be disabled for this disk.</source>
+        <comment>Warning message</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
