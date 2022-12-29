@@ -908,6 +908,11 @@ Biztosan folytatni akarod?</translation>
         <extracomment>Toolbar item tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>%1% compete</source>
+        <comment>Status bar, progress text</comment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

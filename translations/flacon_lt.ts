@@ -52,7 +52,7 @@
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
-        <translation>Autorių Teisės: %1-%2 %3</translation>
+        <translation>Autorių teisės: %1-%2 %3</translation>
     </message>
     <message>
         <source>WavPack support patch</source>
@@ -348,7 +348,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
-        <translation type="unfinished"/>
+        <translation>CVBR - pastovusis kintamasis pralaidumas</translation>
     </message>
 </context>
 <context>
@@ -363,17 +363,17 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
-        <translation type="unfinished"/>
+        <translation>Gali būti, kad garso failas pažeistas arba nepalaikomas garso formatas.</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>Programa %1 nėra įdiegta.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>Programa %1, remiantis jūsų nustatymais, yra įdiegta, bet nepavyksta rasti dvejetainio failo.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -410,7 +410,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>Takelis %1. Koduotuvo klaida:</translation>
     </message>
 </context>
 <context>
@@ -458,7 +458,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
-        <translation type="unfinished"/>
+        <translation>Failo pavadinimo formatas</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -467,12 +467,12 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>Rašyti į failą</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
-        <translation type="unfinished"/>
+        <translation>Įterpti į garso failus</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -836,7 +836,7 @@ Ar norite tęsti?</translation>
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
-        <translation type="unfinished"/>
+        <translation>„%1“ nebuvo nustatyta.</translation>
     </message>
     <message>
         <source>Select directory</source>
@@ -850,12 +850,12 @@ Ar norite tęsti?</translation>
     <message>
         <source>Select another audio file for %1 track…</source>
         <comment>context menu. Placeholders are track number</comment>
-        <translation type="unfinished"/>
+        <translation>Pasirinkti kitą garso failą takeliui %1…</translation>
     </message>
     <message>
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>Pasirinkti kitą garso failą takeliams nuo %1 iki %2…</translation>
     </message>
     <message>
         <source>Edit tags…</source>
@@ -869,42 +869,47 @@ Ar norite tęsti?</translation>
     </message>
     <message>
         <source>Get from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Gauti iš interneto</translation>
     </message>
     <message>
         <source>Get album information from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Gauti albumo informaciją iš interneto</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Gauti duomenis iš interneto</translation>
     </message>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
-        <translation type="unfinished"/>
+        <translation>Flacon - Konvertuojama</translation>
     </message>
     <message>
         <source>Warnings</source>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Įspėjimai</translation>
     </message>
     <message>
         <source>Show Warnings</source>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Rodyti įspėjimus</translation>
     </message>
     <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Klaidos</translation>
     </message>
     <message>
         <source>Show Errors</source>
         <comment>Toolbar item tooltip</comment>
         <extracomment>Toolbar item tooltip</extracomment>
+        <translation>Rodyti klaidas</translation>
+    </message>
+    <message>
+        <source>%1% compete</source>
+        <comment>Status bar, progress text</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1018,7 +1023,7 @@ Ar norite tęsti?</translation>
     </message>
     <message>
         <source> Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation> Garso profiliai</translation>
     </message>
     <message>
         <source>General</source>
@@ -1037,7 +1042,7 @@ Ar norite tęsti?</translation>
     <name>ProfileTabWidget</name>
     <message>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Garso įrašas</translation>
     </message>
     <message>
         <source>Result Files</source>
@@ -1114,7 +1119,7 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation>ReplayGain nustatymai:</translation>
+        <translation>„ReplayGain“ nustatymai:</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1123,20 +1128,20 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
-        <translation type="unfinished"/>
+        <translation>CUE ir viršelio paveikslas</translation>
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>Kopijuoti viršelio paveikslą</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
-        <translation type="unfinished"/>
+        <translation>Jei formatas yra palaikomas, viršelis bus pridėtas į visų išvesties failų metainformaciją.</translation>
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>Įterpti viršelio paveikslą į išvesties failus</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1208,9 +1213,9 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>ReplayGain yra standartas, kuris yra skirtas normalizuoti girdimą kompiuterio garso formatų garsumą.
+        <translation>„ReplayGain“ yra standartas, kuris yra skirtas normalizuoti girdimą kompiuterio garso formatų garsumą.
 
-Gali būti vykdoma atskirų takelių analizė, kurios dėka, visų takelių grojimo garsis bus vienodas.
+Gali būti vykdoma atskirų takelių analizė, kurios dėka, visų takelių atkūrimo garsis bus vienodas.
 Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</translation>
     </message>
     <message>
@@ -1314,7 +1319,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-        <translation>jūs negalite naudoti &quot;ReplayGain&quot; failams, kurių skaitmeninimo dažnis yra didesnis nei 48kHz. Metaflac tokių failų nepalaiko.</translation>
+        <translation>jūs negalite naudoti „ReplayGain“ failams, kurių skaitmeninimo dažnis yra didesnis nei 48kHz. Metaflac tokių failų nepalaiko.</translation>
     </message>
     <message>
         <source>Multiple values</source>
@@ -1335,21 +1340,21 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyksta įrašyti CUE:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
-        <translation type="unfinished"/>
+        <translation>Faile yra neteisingų CUE duomenų.</translation>
     </message>
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
-        <translation type="unfinished"/>
+        <translation>Įterpta ties %1</translation>
     </message>
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
-        <translation type="unfinished"/>
+        <translation>failo pavadinimas yra tuščias</translation>
     </message>
 </context>
 <context>
@@ -1357,17 +1362,17 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>Programa %1 nėra įdiegta.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>Programa %1, remiantis jūsų nustatymais, yra įdiegta, bet nepavyksta rasti dvejetainio failo.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>Programa %1, remiantis jūsų nustatymais, yra įdiegta, bet failas nėra vykdomasis.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
     </message>
 </context>
 <context>
@@ -1435,7 +1440,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     </message>
     <message>
         <source>Get data from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Gauti duomenis iš interneto</translation>
     </message>
 </context>
 <context>
@@ -1581,7 +1586,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Some disks will overwrite the resulting files of another disk.</source>
         <comment>error message</comment>
-        <translation type="unfinished"/>
+        <translation>Kai kurie diskai perrašys galutinius kito disko failus.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
@@ -1595,12 +1600,12 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Audio file not set for track %1.</source>
         <comment>Warning message, Placeholders is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>Takeliui %1 nėra nustatytas garso failas.</translation>
     </message>
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>Takeliams nuo %1 iki %2 nėra nustatytas garso failas.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
@@ -1610,24 +1615,27 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <source>A maximum of %1-bit per sample is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Šis formatas palaiko daugiausiai %1-bitų vienam ėminiui.
+Ši reikšmė bus naudojama kodavimui.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Šis formatas palaiko daugiausiai %1 skaitmeninimo dažnį.
+Ši reikšmė bus naudojama kodavimui.</translation>
     </message>
     <message>
         <source>ReplayGain calculation is not supported for multi-channel audio.
 The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>„ReplayGain“ apskaičiavimas nėra palaikomas kelių kanalų garso įrašams.
+„ReplayGain“ šiam diskui bus išjungtas.</translation>
     </message>
     <message>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
-        <translation type="unfinished"/>
+        <translation>Neteisingas išvesties profilis.</translation>
     </message>
 </context>
 <context>
