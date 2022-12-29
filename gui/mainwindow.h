@@ -109,10 +109,12 @@ private:
     QPointer<Conv::Converter> mConverter;
     Scanner                  *mScanner;
     QString                   getOpenFileFilter(bool includeAudio, bool includeCue);
+    QLabel                    mTotalProgressLabel;
 
     void polishView();
     void initActions();
     void initToolBar();
+    void initStatusBar();
     void refreshOutProfileCombo();
 
     void startConvert(const Conv::Converter::Jobs &jobs);
@@ -124,6 +126,7 @@ private:
 
     void showWarnings();
     void showErrors();
+    void updateTotalProgress(double percent);
 };
 
 #endif // MAINWINDOW_H

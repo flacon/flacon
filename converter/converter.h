@@ -30,6 +30,8 @@
 #include <QObject>
 #include <QDateTime>
 #include <QVector>
+#include "totalprogresscounter.h"
+#include "validator.h"
 
 class Disc;
 class Track;
@@ -55,11 +57,14 @@ public:
 
     bool isRunning();
 
+    QVector<DiscPipeline *> diskPiplines() const { return mDiskPiplines; }
+
 signals:
     void started();
     void finished();
     void trackProgress(const Track &track, TrackState state, Percent percent);
     void error(const QString err);
+    void totalProgress(double percent);
 
 public slots:
     void start(const Profile &profile);
@@ -70,11 +75,14 @@ private slots:
     void startThread();
 
 private:
-    class Data;
-    Data *mData = nullptr;
+    int                     mThreadCount = 0;
+    Validator               mValidator;
+    QVector<DiscPipeline *> mDiskPiplines;
+    TotalProgressCounter    mTotalProgressCounter;
 
-    bool          validate(const Jobs &jobs, const Profile &profile) const;
+    bool          validate(const Jobs &jobs, const Profile &profile);
     DiscPipeline *createDiscPipeline(const Profile &profile, const Job &converterJob);
+    QString       workDir(const Track *track) const;
 };
 
 }

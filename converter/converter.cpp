@@ -48,36 +48,11 @@ Q_LOGGING_CATEGORY(LOG, "Converter")
 
 using namespace Conv;
 
-class Converter::Data
-{
-public:
-    int       threadCount = 0;
-    Validator validator;
-
-    QVector<DiscPipeline *>        discPiplines;
-    QMap<TrackId, const ConvTrack> tracks;
-
-    QString workDir(const Track *track) const;
-};
-
-/************************************************
- *
- ************************************************/
-QString Converter::Data::workDir(const Track *track) const
-{
-    QString dir = Settings::i()->tmpDir();
-    if (dir.isEmpty()) {
-        dir = QFileInfo(track->resultFilePath()).dir().absolutePath();
-    }
-    return dir + "/tmp";
-}
-
 /************************************************
 
  ************************************************/
 Converter::Converter(QObject *parent) :
-    QObject(parent),
-    mData(new Data())
+    QObject(parent)
 {
     qRegisterMetaType<Conv::ConvTrack>();
 }
@@ -87,7 +62,6 @@ Converter::Converter(QObject *parent) :
  ************************************************/
 Converter::~Converter()
 {
-    delete mData;
 }
 
 /************************************************
@@ -129,12 +103,12 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
     }
 
     bool ok;
-    mData->threadCount = Settings::i()->value(Settings::Encoder_ThreadCount).toInt(&ok);
-    if (!ok || mData->threadCount < 1) {
-        mData->threadCount = qMax(6, QThread::idealThreadCount());
+    mThreadCount = Settings::i()->value(Settings::Encoder_ThreadCount).toInt(&ok);
+    if (!ok || mThreadCount < 1) {
+        mThreadCount = qMax(6, QThread::idealThreadCount());
     }
 
-    qCDebug(LOG) << "Threads count" << mData->threadCount;
+    qCDebug(LOG) << "Threads count" << mThreadCount;
 
     try {
         for (const Job &converterJob : jobs) {
@@ -143,20 +117,24 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
                 continue;
             }
 
-            if (mData->validator.diskHasErrors(converterJob.disc)) {
+            if (mValidator.diskHasErrors(converterJob.disc)) {
                 continue;
             }
 
-            mData->discPiplines << createDiscPipeline(profile, converterJob);
+            mDiskPiplines << createDiscPipeline(profile, converterJob);
         }
     }
     catch (const FlaconError &err) {
         qCWarning(LOG) << "Can't start " << err.what();
         emit error(err.what());
-        qDeleteAll(mData->discPiplines);
-        mData->discPiplines.clear();
+        qDeleteAll(mDiskPiplines);
+        mDiskPiplines.clear();
         emit finished();
     }
+
+    mTotalProgressCounter.init(*this);
+    connect(this, &Converter::trackProgress, &mTotalProgressCounter, &TotalProgressCounter::setTrackProgress, Qt::UniqueConnection);
+    connect(&mTotalProgressCounter, &TotalProgressCounter::changed, this, &Converter::totalProgress, Qt::UniqueConnection);
 
     startThread();
     emit started();
@@ -207,7 +185,7 @@ DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Conver
         }
     }
 
-    QString wrkDir = mData->workDir(converterJob.tracks.first());
+    QString wrkDir = workDir(converterJob.tracks.first());
 
     DiscPipeline *pipeline = new DiscPipeline(profile, converterJob.disc, resTracks, wrkDir, this);
 
@@ -223,7 +201,7 @@ DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Conver
  ************************************************/
 bool Converter::isRunning()
 {
-    foreach (DiscPipeline *pipe, mData->discPiplines) {
+    foreach (DiscPipeline *pipe, mDiskPiplines) {
         if (pipe->isRunning())
             return true;
     }
@@ -239,7 +217,7 @@ void Converter::stop()
     if (!isRunning())
         return;
 
-    foreach (DiscPipeline *pipe, mData->discPiplines) {
+    foreach (DiscPipeline *pipe, mDiskPiplines) {
         pipe->stop();
     }
 }
@@ -249,21 +227,21 @@ void Converter::stop()
  ************************************************/
 void Converter::startThread()
 {
-    int count         = mData->threadCount;
+    int count         = mThreadCount;
     int splitterCount = qMax(1.0, ceil(count / 2.0));
 
-    foreach (DiscPipeline *pipe, mData->discPiplines) {
+    foreach (DiscPipeline *pipe, mDiskPiplines) {
         count -= pipe->runningThreadCount();
     }
 
-    foreach (DiscPipeline *pipe, mData->discPiplines) {
+    foreach (DiscPipeline *pipe, mDiskPiplines) {
         pipe->startWorker(&splitterCount, &count);
         if (count <= 0) {
             break;
         }
     }
 
-    foreach (DiscPipeline *pipe, mData->discPiplines) {
+    foreach (DiscPipeline *pipe, mDiskPiplines) {
         if (pipe->isRunning()) {
             return;
         }
@@ -275,18 +253,17 @@ void Converter::startThread()
 /************************************************
 
  ************************************************/
-bool Converter::validate(const Jobs &jobs, const Profile &profile) const
+bool Converter::validate(const Jobs &jobs, const Profile &profile)
 {
     DiskList disks;
     for (const auto &j : jobs) {
         disks << j.disc;
-        qDebug() << " *" << j.disc->cueFilePath();
     }
 
-    mData->validator.setDisks(disks);
-    mData->validator.setProfile(profile);
+    mValidator.setDisks(disks);
+    mValidator.setProfile(profile);
 
-    QStringList errors = mData->validator.converterErrors();
+    QStringList errors = mValidator.converterErrors();
 
     if (errors.isEmpty()) {
         return true;
@@ -302,4 +279,16 @@ bool Converter::validate(const Jobs &jobs, const Profile &profile) const
                             .arg(s));
 
     return false;
+}
+
+/************************************************
+
+ ************************************************/
+QString Converter::workDir(const Track *track) const
+{
+    QString dir = Settings::i()->tmpDir();
+    if (dir.isEmpty()) {
+        dir = QFileInfo(track->resultFilePath()).dir().absolutePath();
+    }
+    return dir + "/tmp";
 }

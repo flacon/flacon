@@ -46,6 +46,7 @@ set(HEADERS
     sox.h
     extprogram.h
     replaygain.h
+    totalprogresscounter.h
 )
 
 set(SOURCES
@@ -62,6 +63,7 @@ set(SOURCES
     sox.cpp
     extprogram.cpp
     replaygain.cpp
+    totalprogresscounter.cpp
 )
 
 

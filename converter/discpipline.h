@@ -48,6 +48,8 @@ public:
     explicit DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks, const QString &workDir, QObject *parent = nullptr) noexcept(false);
     virtual ~DiscPipeline();
 
+    QList<ConvTrack> tracks() const { return mTracks; }
+
     void startWorker(int *splitterCount, int *count);
     void stop();
     bool isRunning() const;

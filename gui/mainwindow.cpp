@@ -135,6 +135,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     initActions();
     initToolBar();
+    initStatusBar();
 
     // Buttons .................................................
     outDirButton->setBuddy(outDirEdit);
@@ -379,6 +380,8 @@ void MainWindow::setControlsEnable()
 
     actionStartConvert->setVisible(!convert);
     actionAbortConvert->setVisible(convert);
+
+    mTotalProgressLabel.setVisible(convert);
 }
 
 /************************************************
@@ -637,6 +640,11 @@ void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
 
     connect(mConverter, &Conv::Converter::trackProgress,
             trackView->model(), &TrackViewModel::trackProgressChanged);
+
+    connect(mConverter, &Conv::Converter::totalProgress,
+            this, &MainWindow::updateTotalProgress);
+
+    updateTotalProgress(0);
 
     connect(mConverter, &Conv::Converter::error,
             this, &MainWindow::showErrorMessage);
@@ -1114,6 +1122,18 @@ void MainWindow::initToolBar()
 }
 
 /************************************************
+ *
+ ************************************************/
+void MainWindow::initStatusBar()
+{
+    auto margins = mTotalProgressLabel.contentsMargins();
+    margins.setRight(10);
+    mTotalProgressLabel.setContentsMargins(margins);
+
+    statusBar()->addPermanentWidget(&mTotalProgressLabel);
+}
+
+/************************************************
   Load settings
  ************************************************/
 void MainWindow::loadSettings()
@@ -1255,4 +1275,12 @@ void MainWindow::showErrors()
     }
 
     MessageBox::critical(this, QObject::tr("Flacon", "Error"), html.join(""));
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::updateTotalProgress(double percent)
+{
+    mTotalProgressLabel.setText(tr("%1% compete", "Status bar, progress text").arg(percent, 0, 'f', 0));
 }
