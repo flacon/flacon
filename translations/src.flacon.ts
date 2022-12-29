@@ -880,6 +880,11 @@ Do you want to continue?</source>
         <extracomment>Toolbar item tooltip</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%1% compete</source>
+        <comment>Status bar, progress text</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -1536,11 +1541,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Incorrect output profile</source>
-        <comment>error message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Cue file not set.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1579,6 +1579,11 @@ This value will be used for encoding.</source>
         <source>ReplayGain calculation is not supported for multi-channel audio.
 The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Incorrect output profile.</source>
+        <comment>error message</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
