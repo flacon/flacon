@@ -305,7 +305,27 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
       </source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR vidutinė&lt;/dt&gt;
+      &lt;dd&gt;Naudojant vidutinį kintamąjį pralaidumą, daugelis žmonių neišgirs kokybės iškraipymų daugumoje muzikos įrašų.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR standartinė&lt;/dt&gt;
+      &lt;dd&gt;Naudojant standartinį kintamąjį pralaidumą, daugelis žmonių neišgirs kokybės iškraipymų daugumoje muzikos įrašų ir be to, yra pateikiama ganėtinai aukšta kokybė.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR ekstremali&lt;/dt&gt;
+      &lt;dd&gt;Naudojant aukščiausią įmanomą kintamąjį pralaidumą, ši parinktis pateiks šiek tiek aukštesnę kokybę nei standartinė veiksena. Tai pastebėsite tik tuo atveju, jei turite gerą klausą ar aukštos klasės muzikinę įrangą.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR kokybė&lt;/dt&gt;
+      &lt;dd&gt;Ši kintamojo pralaidumo parinktis leidžia jums nurodyti išvesties kokybę.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR beprotiška&lt;/dt&gt;
+      &lt;dd&gt;Jeigu jūs privalote turėti pačią aukščiausią kokybę, neatsižvelgiant į failo dydį, to pasieksite, naudodami šį pastovųjį pralaidumą.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR kbps&lt;/dt&gt;
+      &lt;dd&gt;Naudojant šį pastovųjį pralaidumą, įprastai gausite gerą kokybę su nurodytu pralaidumu.&lt;/dd&gt;
+
+      &lt;dt&gt;ABR kbps&lt;/dt&gt;
+      &lt;dd&gt;Naudojant šį vidutinį pralaidumą, įprastai gausite aukštesnę nurodyto pralaidumo kokybę, negu tą, kurią gautumėte, naudodami pastoviojo pralaidumo parinktį su tuo pačiu pralaidumu.&lt;/dd&gt;
+      </translation>
     </message>
 </context>
 <context>
@@ -320,7 +340,11 @@
 
 &lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR - kintamasis pralaidumas&lt;/dt&gt;
+&lt;dd&gt;Kodavimui naudoti kintamąjį pralaidumą (rekomenduojama). VBR veiksenoje, priklausomai nuo turinio, pralaidumas gali laisvai varijuoti aukštyn ir žemyn, taip užtikrindamas kokybės nuoseklumą.&lt;/dd&gt;
+
+&lt;dt&gt;CVBR - pastovusis kintamasis pralaidumas&lt;/dt&gt;
+&lt;dd&gt;Kodavimui naudoti pastovųjį kintamąjį pralaidumą. Išveda į konkretų pralaidumą. Ši veiksena yra analoginė, AAC/MP3 koduotuvuose esančiai, CBR veiksenai ir, vorbis koduotojuose esančiai, tvarkymo veiksenai. Tai pateikia mažiau nuoseklią kokybę nei VBR veiksena, tačiau nuoseklų pralaidumą.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -908,7 +932,7 @@ Ar norite tęsti?</translation>
         <translation>Rodyti klaidas</translation>
     </message>
     <message>
-        <source>%1% compete</source>
+        <source>%1% complete</source>
         <comment>Status bar, progress text</comment>
         <translation type="unfinished"/>
     </message>

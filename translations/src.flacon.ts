@@ -881,7 +881,7 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1% compete</source>
+        <source>%1% complete</source>
         <comment>Status bar, progress text</comment>
         <translation type="unfinished"></translation>
     </message>

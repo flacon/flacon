@@ -932,7 +932,7 @@ Voulez-vous continuer ?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1% compete</source>
+        <source>%1% complete</source>
         <comment>Status bar, progress text</comment>
         <translation type="unfinished"/>
     </message>

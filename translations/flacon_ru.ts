@@ -931,7 +931,7 @@ Do you want to continue?</source>
         <translation>Показать ошибки</translation>
     </message>
     <message>
-        <source>%1% compete</source>
+        <source>%1% complete</source>
         <comment>Status bar, progress text</comment>
         <translation>%1% готово </translation>
     </message>
