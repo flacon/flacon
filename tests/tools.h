@@ -31,6 +31,7 @@
 #include <QVector>
 #include "wavheader.h"
 #include "settings.h"
+#include <QJsonDocument>
 
 class QIODevice;
 class Disc;
@@ -104,5 +105,50 @@ void       testFail(const QString &message, const char *file, int line);
     } while (0)
 
 Disc *loadFromCue(const QString &cueFile);
+
+class ConverterTest
+{
+public:
+    ConverterTest(const QString &dataDir, const QString &dir, const QString &tmpDir);
+    virtual ~ConverterTest();
+
+    bool run();
+    void check();
+
+    QString dataDir() const { return mDataDir; }
+    QString dir() const { return mDir; }
+
+private:
+    const QString mDataDir;
+    const QString mDir;
+    const QString mTmpDir;
+
+    const QString mCfgFile;
+    const QString mInDir;
+    const QString mOutDir;
+
+    QSettings mSpec;
+
+    QStringList readFile(const QString &fileName);
+    void        writeFile(const QStringList &strings, const QString &fileName);
+
+    void        createStartSh(const QString fileName, const QString flaconBin, const QStringList &args) const;
+    QStringList findFiles(const QString &dir, const QString &pattern) const;
+};
+
+class Mediainfo
+{
+public:
+    Mediainfo(const QString &fileName);
+
+    void save(const QString &fileName);
+
+    QVariant value(const QString &key);
+
+private:
+    QString       mFileName;
+    QJsonDocument mJsonDoc;
+    QByteArray    mData;
+};
 
 #endif // TOOLS_H

@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2017
+ * Copyright: 2019
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -26,12 +26,11 @@
 #include <QTest>
 #include "testflacon.h"
 #include "tools.h"
-#include <QProcess>
 
 /************************************************
  *
  ************************************************/
-void TestFlacon::testConvert()
+void TestFlacon::testReplayGain()
 {
     QFETCH(QString, dataDir);
     ConverterTest tst(dataDir, dir(), mTmpDir);
@@ -42,16 +41,12 @@ void TestFlacon::testConvert()
 /************************************************
  *
  ************************************************/
-void TestFlacon::testConvert_data()
+void TestFlacon::testReplayGain_data()
 {
-    if (QProcessEnvironment::systemEnvironment().contains("FLACON_SKIP_CONVERT_TEST")) {
-        QTest::qSkip("Skipping testConvert", __FILE__, __LINE__);
-    }
-
     QString curDir = QDir::currentPath();
 
     QTest::addColumn<QString>("dataDir", nullptr);
-    QString dataDir = mDataDir + "testConvert";
+    QString dataDir = mDataDir + "testReplayGain";
 
     for (auto dir : QDir(dataDir).entryList(QStringList("*"), QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name)) {
         QTest::newRow(dir.toUtf8()) << dataDir + "/" + dir;

@@ -124,6 +124,9 @@ private slots:
     void testConvert();
     void testConvert_data();
 
+    void testReplayGain();
+    void testReplayGain_data();
+
 private:
     void writeTextFile(const QString &fileName, const QString &content);
     void writeTextFile(const QString &fileName, const QStringList &content);
