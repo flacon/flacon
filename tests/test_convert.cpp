@@ -25,8 +25,9 @@
 
 #include <QTest>
 #include "testflacon.h"
-#include "tools.h"
+#include "convertertest.h"
 #include <QProcess>
+#include "types.h"
 
 /************************************************
  *
@@ -34,9 +35,14 @@
 void TestFlacon::testConvert()
 {
     QFETCH(QString, dataDir);
-    ConverterTest tst(dataDir, dir(), mTmpDir);
-    tst.run();
-    tst.check();
+    try {
+        ConverterTest tst(dataDir, dir(), mTmpDir);
+        tst.run();
+        tst.check();
+    }
+    catch (const FlaconError &err) {
+        QFAIL(err.what());
+    }
 }
 
 /************************************************

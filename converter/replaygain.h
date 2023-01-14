@@ -39,7 +39,6 @@
 #define REPLAYGAIN_H
 
 #include <array>
-#include <cmath>
 #include <QMetaType>
 
 namespace ReplayGain {
@@ -59,7 +58,7 @@ public:
     using Histogram = std::array<uint32_t, 12000>;
     const Histogram &histogram() const { return mHistogram; }
 
-    bool isNull() const { return mPeak == NAN; }
+    bool isNull() const { return mPeak == 0.0; }
 
 protected:
     Result(const Histogram &histogram, float peak) :
@@ -69,7 +68,7 @@ protected:
     }
 
     Histogram mHistogram = { 0 };
-    float     mPeak      = NAN;
+    float     mPeak      = 0.0;
 };
 
 class TrackGain

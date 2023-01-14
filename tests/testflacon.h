@@ -42,8 +42,6 @@ class TestFlacon : public QObject
 public:
     explicit TestFlacon(QObject *parent = nullptr);
 
-    static bool compareCue(const QString &result, const QString &expected, QString *error, bool skipEmptyLines = false);
-
 private:
     QStringList readFile(const QString &fileName);
     void        writeFile(const QStringList &strings, const QString &fileName);

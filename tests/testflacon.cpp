@@ -202,6 +202,9 @@ Disc *TestFlacon::standardDisc()
     return mStandardDisc;
 }
 
+/************************************************
+
+ ************************************************/
 void removeEmptyLines(QByteArray &data)
 {
     data = data.trimmed();
@@ -211,49 +214,6 @@ void removeEmptyLines(QByteArray &data)
         if (n == data.length())
             break;
     }
-}
-
-/************************************************
- *
- ************************************************/
-static QByteArray readCue(const QString &fileName, bool skipEmptyLines)
-{
-
-    QFile file(fileName);
-    file.open(QFile::ReadOnly);
-
-    QByteArray res;
-    res.reserve(file.size());
-    while (!file.atEnd()) {
-        QByteArray line = file.readLine().trimmed();
-        if (line.startsWith("REM COMMENT"))
-            continue;
-
-        if (skipEmptyLines && line.isEmpty())
-            continue;
-
-        res += line;
-        res += "\n";
-    }
-    file.close();
-    return res;
-}
-
-/************************************************
-
- ************************************************/
-bool TestFlacon::compareCue(const QString &result, const QString &expected, QString *error, bool skipEmptyLines)
-{
-    QByteArray resData = readCue(result, skipEmptyLines);
-    QByteArray expData = readCue(expected, skipEmptyLines);
-
-    if (resData != expData) {
-        QString s = "The result is different from the expected. Use the following command for details: \n diff %1 %2";
-        *error    = s.arg(expected, result);
-        return false;
-    }
-
-    return true;
 }
 
 /************************************************

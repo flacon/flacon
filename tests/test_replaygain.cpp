@@ -25,7 +25,8 @@
 
 #include <QTest>
 #include "testflacon.h"
-#include "tools.h"
+#include "convertertest.h"
+#include "types.h"
 
 /************************************************
  *
@@ -33,9 +34,14 @@
 void TestFlacon::testReplayGain()
 {
     QFETCH(QString, dataDir);
-    ConverterTest tst(dataDir, dir(), mTmpDir);
-    tst.run();
-    tst.check();
+    try {
+        ConverterTest tst(dataDir, dir(), mTmpDir);
+        tst.run();
+        tst.checkReplayGain();
+    }
+    catch (const FlaconError &err) {
+        QFAIL(err.what());
+    }
 }
 
 /************************************************

@@ -36,6 +36,8 @@ set(TEST_SOURCES
     inittestcase.cpp
     testflacon.cpp
     discspec.cpp
+    convertertest.h
+    convertertest.cpp
 )
 
 file(GLOB TEST_CPP_FILES

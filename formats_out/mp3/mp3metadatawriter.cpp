@@ -140,14 +140,14 @@ void Mp3MetaDataWriter::setTrackReplayGain(float gain, float peak)
 
     {
         UserTextIdentificationFrame *frame = new UserTextIdentificationFrame();
-        frame->setDescription("REPLAYGAIN_TRACK_GAIN");
+        frame->setDescription("replaygain_track_gain");
         frame->setText(gainToString(gain).toStdString());
         tags->addFrame(frame);
     }
 
     {
         UserTextIdentificationFrame *frame = new UserTextIdentificationFrame();
-        frame->setDescription("REPLAYGAIN_TRACK_PEAK");
+        frame->setDescription("replaygain_track_peak");
         frame->setText(gainToString(peak).toStdString());
         tags->addFrame(frame);
     }
@@ -163,14 +163,14 @@ void Mp3MetaDataWriter::setAlbumReplayGain(float gain, float peak)
 
     {
         UserTextIdentificationFrame *frame = new UserTextIdentificationFrame();
-        frame->setDescription("REPLAYGAIN_ALBUM_GAIN");
+        frame->setDescription("replaygain_album_gain");
         frame->setText(gainToString(gain).toStdString());
         tags->addFrame(frame);
     }
 
     {
         UserTextIdentificationFrame *frame = new UserTextIdentificationFrame();
-        frame->setDescription("REPLAYGAIN_ALBUM_PEAK");
+        frame->setDescription("replaygain_album_peak");
         frame->setText(gainToString(peak).toStdString());
         tags->addFrame(frame);
     }

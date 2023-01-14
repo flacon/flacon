@@ -54,7 +54,7 @@ QString MetadataWriter::gainToString(float &gain) const
  ************************************************/
 QString MetadataWriter::peakToString(float &peak) const
 {
-    return QString("%1").arg(peak, 0, 'f', 8);
+    return QString("%1").arg(peak, 0, 'f', 6);
 }
 
 /************************************************
@@ -286,8 +286,8 @@ void Mp4MetaDataWriter::setCoverImage(const CoverImage &image)
 void Mp4MetaDataWriter::setTrackReplayGain(float gain, float peak)
 {
     TagLib::MP4::Tag *tags = mFile.tag();
-    tags->setItem("----:com.apple.iTunes:REPLAYGAIN_TRACK_GAIN", TagLib::StringList(QString("%1 dB").arg(gain, 0, 'f', 2).toStdString()));
-    tags->setItem("----:com.apple.iTunes:REPLAYGAIN_TRACK_PEAK", TagLib::StringList(QString("%1").arg(peak, 0, 'f', 6).toStdString()));
+    tags->setItem("----:com.apple.iTunes:replaygain_track_gain", TagLib::StringList(QString("%1 dB").arg(gain, 0, 'f', 2).toStdString()));
+    tags->setItem("----:com.apple.iTunes:replaygain_track_peak", TagLib::StringList(QString("%1").arg(peak, 0, 'f', 6).toStdString()));
 }
 
 /************************************************
@@ -296,8 +296,8 @@ void Mp4MetaDataWriter::setTrackReplayGain(float gain, float peak)
 void Mp4MetaDataWriter::setAlbumReplayGain(float gain, float peak)
 {
     TagLib::MP4::Tag *tags = mFile.tag();
-    tags->setItem("----:com.apple.iTunes:REPLAYGAIN_ALBUM_GAIN", TagLib::StringList(QString("%1 dB").arg(gain, 0, 'f', 2).toStdString()));
-    tags->setItem("----:com.apple.iTunes:REPLAYGAIN_ALBUM_PEAK", TagLib::StringList(QString("%1").arg(peak, 0, 'f', 6).toStdString()));
+    tags->setItem("----:com.apple.iTunes:replaygain_album_gain", TagLib::StringList(QString("%1 dB").arg(gain, 0, 'f', 2).toStdString()));
+    tags->setItem("----:com.apple.iTunes:replaygain_album_peak", TagLib::StringList(QString("%1").arg(peak, 0, 'f', 6).toStdString()));
 }
 
 /************************************************
