@@ -16,8 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Check license
-      run: ./scripts/checkLicense.sh .
+    - name: Checks
+      run: |
+         ./scripts/checkLicense.sh .
+         ./scripts/check-metainfo.sh
 
     - name: Install packages
       run:  |
