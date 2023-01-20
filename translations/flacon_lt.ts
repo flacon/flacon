@@ -934,7 +934,7 @@ Ar norite tęsti?</translation>
     <message>
         <source>%1% complete</source>
         <comment>Status bar, progress text</comment>
-        <translation type="unfinished"/>
+        <translation>%1% užbaigta</translation>
     </message>
 </context>
 <context>

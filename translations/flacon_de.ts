@@ -410,7 +410,7 @@ Im CBR Modus bestimmt diese die tatsächliche Bitrate.
     <message>
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>Stück %1. Kodierer-Fehler:</translation>
     </message>
 </context>
 <context>
@@ -850,12 +850,12 @@ Möchten Sie fortsetzen?</translation>
     <message>
         <source>Select another audio file for %1 track…</source>
         <comment>context menu. Placeholders are track number</comment>
-        <translation type="unfinished"/>
+        <translation>Wählen Sie eine andere Audiodatei für das Stück %1 aus…</translation>
     </message>
     <message>
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
-        <translation type="unfinished"/>
+        <translation>Wählen Sie eine andere Audiodatei für die Stücke %1 bis %2 aus…</translation>
     </message>
     <message>
         <source>Edit tags…</source>
@@ -883,34 +883,34 @@ Möchten Sie fortsetzen?</translation>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
-        <translation type="unfinished"/>
+        <translation>Flacon - Wird konvertiert</translation>
     </message>
     <message>
         <source>Warnings</source>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Warnungen</translation>
     </message>
     <message>
         <source>Show Warnings</source>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Warnungen anzeigen</translation>
     </message>
     <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Fehler</translation>
     </message>
     <message>
         <source>Show Errors</source>
         <comment>Toolbar item tooltip</comment>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Fehler anzeigen</translation>
     </message>
     <message>
         <source>%1% complete</source>
         <comment>Status bar, progress text</comment>
-        <translation type="unfinished"/>
+        <translation>%1 % abgeschlossen</translation>
     </message>
 </context>
 <context>
@@ -1221,7 +1221,7 @@ Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Album
     <message>
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
-        <translation type="unfinished"/>
+        <translation>%1 Kodierer-Einstellungen:</translation>
     </message>
 </context>
 <context>
@@ -1632,7 +1632,7 @@ The ReplayGain will be disabled for this disk.</source>
     <message>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
-        <translation type="unfinished"/>
+        <translation>Falsches Ausgabeprofil.</translation>
     </message>
 </context>
 <context>
