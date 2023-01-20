@@ -18,8 +18,8 @@ jobs:
 
     - name: Checks
       run: |
-         ./scripts/checkLicense.sh .
-         ./scripts/check-metainfo.sh
+        ./scripts/checkLicense.sh .
+        ./scripts/check-metainfo.sh
 
     - name: Install packages
       run:  |
