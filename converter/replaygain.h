@@ -102,6 +102,6 @@ private:
 
 } // namespace
 
-Q_DECLARE_METATYPE(ReplayGain::Result);
+Q_DECLARE_METATYPE(ReplayGain::Result)
 
 #endif // REPLAYGAIN_H
