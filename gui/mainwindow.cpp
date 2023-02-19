@@ -1282,5 +1282,5 @@ void MainWindow::showErrors()
  ************************************************/
 void MainWindow::updateTotalProgress(double percent)
 {
-    mTotalProgressLabel.setText(tr("%1% complete", "Status bar, progress text").arg(percent, 0, 'f', 0));
+    mTotalProgressLabel.setText(tr("%1% completed", "Status bar, progress text").arg(percent, 0, 'f', 0));
 }
