@@ -239,10 +239,37 @@ MainWindow::~MainWindow()
 /************************************************
 
  ************************************************/
-void MainWindow::closeEvent(QCloseEvent *)
+bool MainWindow::showExitDialog()
 {
+    QMessageBox dialog(this);
+    dialog.setText(tr("Conversion in progress.<br>Are you sure you want to exit?", "Message box text"));
+    dialog.setTextFormat(Qt::RichText);
+    dialog.setIconPixmap(QPixmap(":/64/mainicon"));
+
+    dialog.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
+    dialog.setButtonText(QMessageBox::Yes, tr("Exit", "Button caption"));
+    dialog.setDefaultButton(QMessageBox::No);
+
+    dialog.setWindowModality(Qt::WindowModal);
+
+    return dialog.exec() == QMessageBox::Yes;
+}
+
+/************************************************
+
+ ************************************************/
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (mConverter && mConverter->isRunning()) {
+        if (!showExitDialog()) {
+            event->ignore();
+            return;
+        }
+    }
+
     if (mConverter)
         mConverter->stop();
+
     saveSettings();
 }
 

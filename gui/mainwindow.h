@@ -127,6 +127,8 @@ private:
     void showWarnings();
     void showErrors();
     void updateTotalProgress(double percent);
+
+    bool showExitDialog();
 };
 
 #endif // MAINWINDOW_H
