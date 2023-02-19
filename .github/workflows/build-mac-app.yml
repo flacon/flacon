@@ -17,7 +17,7 @@ jobs:
 
     - name: Install packages 
       run:  |
-        brew install qt5 uchardet taglib
+        brew install qt5 pkg-config uchardet taglib 
 
     - name: Install Saprkle
       run: |
