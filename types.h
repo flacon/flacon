@@ -178,6 +178,19 @@ enum class TrackState {
 
 Q_DECLARE_METATYPE(TrackState)
 
+enum class DiskState {
+    NotRunning = 0,
+    Canceled   = 1,
+    Error      = 2,
+    Aborted    = 3,
+    OK         = 4,
+    Running    = 5,
+};
+
+Q_DECLARE_METATYPE(DiskState)
+
+DiskState calcDiskState(const QList<TrackState> &trackStates);
+
 enum BitsPerSample {
     AsSourcee = 0,
     Bit_16    = 16,

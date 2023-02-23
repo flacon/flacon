@@ -310,6 +310,7 @@ QByteArray rightPart(const QByteArray &line, const char separator)
 void initTypes()
 {
     qRegisterMetaType<TrackState>("TrackState");
+    qRegisterMetaType<DiskState>("DiskState");
 }
 
 Messages::Handler *Messages::mHandler = nullptr;
@@ -497,4 +498,42 @@ bool CueFlags::isEmpty() const
         !preEmphasis          &&
         !serialCopyManagement ;
     // clang-format on
+}
+
+/************************************************
+ *
+ ************************************************/
+DiskState calcDiskState(const QList<TrackState> &trackStates)
+{
+    uint32_t state = 0;
+    for (TrackState s : trackStates) {
+        state |= (1 << uint(s));
+    }
+
+    if (state == (1 << uint(TrackState::NotRunning))) {
+        return DiskState::NotRunning;
+    }
+
+    if (state == (1 << uint(TrackState::OK))) {
+        return DiskState::OK;
+    }
+
+    if (state & (1 << uint(TrackState::Error))) {
+        return DiskState::Error;
+    }
+
+    if (state & (1 << uint(TrackState::Canceled))) {
+        return DiskState::Canceled;
+    }
+
+    if (state & (1 << uint(TrackState::Aborted))) {
+        return DiskState::Aborted;
+    }
+
+    if (state > 0) {
+        return DiskState::Running;
+    }
+    else {
+        return DiskState::NotRunning;
+    }
 }

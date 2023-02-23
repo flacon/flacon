@@ -56,6 +56,7 @@
 #include <QToolBar>
 #include <QToolButton>
 #include <QStandardPaths>
+#include "qtbackports/movetotrash.h"
 
 #ifdef MAC_UPDATER
 #include "updater/updater.h"
@@ -387,9 +388,11 @@ void MainWindow::setControlsEnable()
 
     bool canDownload = false;
     bool canConvert  = false;
+    bool haveOK      = false;
     foreach (const Disc *disc, project->disks()) {
         canDownload = canDownload || DataProvider::canDownload(*disc);
         canConvert  = canConvert || !project->validator().diskHasErrors(disc);
+        haveOK      = haveOK || disc->state() == DiskState::OK;
     }
 
     outFilesBox->setEnabled(!running);
@@ -409,6 +412,8 @@ void MainWindow::setControlsEnable()
     actionAbortConvert->setVisible(convert);
 
     mTotalProgressLabel.setVisible(convert);
+
+    actionRemoveSourceFiles->setEnabled(haveOK);
 }
 
 /************************************************
@@ -1033,6 +1038,47 @@ void MainWindow::openEditTagsDialog()
     setControlsEnable();
 }
 
+void MainWindow::removeSourceFiles()
+{
+    QStringList   files;
+    QList<Disk *> disks;
+    for (Disk *d : project->disks()) {
+        if (d->state() == DiskState::OK) {
+            disks << d;
+            files << d->cueFilePath();
+            files << d->audioFilePaths();
+        }
+    }
+
+    if (files.isEmpty()) {
+        return;
+    }
+
+    QMessageBox dialog(this);
+    QString     msg = "<ul><li>" + files.join("</li><li>") + "</li></ul>";
+    dialog.setText(tr("The following files will be moved to the trash.</b>Remove the following files?%1", "Message box text, %1 is a list of files").arg(msg));
+    dialog.setTextFormat(Qt::RichText);
+    dialog.setIconPixmap(QPixmap(":/64/mainicon"));
+
+    dialog.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
+    dialog.setDefaultButton(QMessageBox::No);
+
+    dialog.setWindowModality(Qt::WindowModal);
+
+    if (dialog.exec() != QMessageBox::Yes) {
+        return;
+    }
+
+    project->removeDisc(disks);
+    for (const QString &f : qAsConst(files)) {
+#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+        moveFileToTrash(f);
+#else
+        QFile::moveToTrash(f);
+#endif
+    }
+}
+
 /************************************************
 
  ************************************************/
@@ -1123,6 +1169,8 @@ void MainWindow::initActions()
 
     actionErrors->setIcon(Icon("error"));
     connect(actionErrors, &QAction::triggered, this, &MainWindow::showErrors);
+
+    connect(actionRemoveSourceFiles, &QAction::triggered, this, &MainWindow::removeSourceFiles);
 
 #ifdef MAC_UPDATER
     actionUpdates->setVisible(true);

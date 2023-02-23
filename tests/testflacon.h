@@ -107,6 +107,8 @@ private slots:
     void testPatternExpander_data();
     void testPatternExpander();
 
+    void testCalcDiskState();
+
     void testLoadProfiles();
     void testLoadProfiles_data();
 

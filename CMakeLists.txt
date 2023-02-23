@@ -47,7 +47,7 @@ add_definitions(-DFLACON_MINOR_VERSION=\"${MINOR_VERSION}\")
 add_definitions(-DFLACON_PATCH_VERSION=\"${PATCH_VERSION}\")
 add_definitions(-DFLACON_VERSION=\"${FLACON_VERSION}\")
 
-set (CMAKE_CXX_STANDARD 14)
+set (CMAKE_CXX_STANDARD 17)
 
 
 SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
@@ -103,6 +103,7 @@ set(HEADERS
     profiles.h
     audiofilematcher.h
     validator.h
+    sync.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -152,6 +153,7 @@ include(internet/module.cmake)
 include(gui/module.cmake)
 include(formats_in/module.cmake)
 include(formats_out/module.cmake)
+include(qtbackports/module.cmake)
 
 set(LIBRARIES)
 

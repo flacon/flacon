@@ -97,6 +97,8 @@ private slots:
     void showDiskAudioFileMenu(Disc *disc, const QPoint &pos);
     void openEditTagsDialog();
 
+    void removeSourceFiles();
+
 protected:
     void closeEvent(QCloseEvent *) override;
     void dragEnterEvent(QDragEnterEvent *event) override;

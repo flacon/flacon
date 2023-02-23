@@ -34,6 +34,7 @@
 #include "inputaudiofile.h"
 #include "profiles.h"
 #include "formats_out/metadatawriter.h"
+#include "sync.h"
 
 #include <QThread>
 #include <QDebug>
@@ -123,6 +124,7 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks
 
         mTracks << track;
         mTrackStates[track.index()] = TrackState::NotRunning;
+        updateDiskState();
 
         qCDebug(LOG) << "Create directory for output files" << dir;
         createDir(QFileInfo(track.resultFilePath()).absoluteDir().path());
@@ -205,6 +207,7 @@ void DiscPipeline::startSplitter(const SplitterRequest &request)
     for (const ConvTrack &t : request.tracks) {
         mTrackStates[t.index()] = TrackState::Splitting;
     }
+    updateDiskState();
 
     // *********************************************************
     // Short tasks, we do not allocate separate threads for them.
@@ -323,6 +326,7 @@ void DiscPipeline::trackDone(const ConvTrack &track, const QString &outFileName)
     }
 
     mTrackStates[track.index()] = TrackState::OK;
+    updateDiskState();
     emit trackProgressChanged(track, TrackState::OK, 0);
     emit threadFinished();
 
@@ -380,6 +384,8 @@ void DiscPipeline::interrupt(TrackState state)
                 break;
         }
     }
+
+    updateDiskState();
 }
 
 /************************************************
@@ -406,6 +412,7 @@ void DiscPipeline::trackError(const ConvTrack &track, const QString &message)
     emit threadFinished();
 
     emit finished();
+    updateDiskState();
     Messages::error(message);
 }
 
@@ -458,6 +465,7 @@ void DiscPipeline::trackProgress(const ConvTrack &track, TrackState state, int p
         return;
 
     mTrackStates[track.index()] = state;
+    updateDiskState();
     emit trackProgressChanged(track, state, percent);
 }
 
@@ -533,4 +541,12 @@ bool DiscPipeline::hasPregap() const
 {
     return mTracks.first().index() == 0 &&                  // We extract first track in Audio
             mTracks.first().cueIndex(1).milliseconds() > 0; // The first track don't start from zero second
+}
+
+/************************************************
+ *
+ ************************************************/
+void DiscPipeline::updateDiskState()
+{
+    mDisc->setState(calcDiskState(mTrackStates.values()));
 }

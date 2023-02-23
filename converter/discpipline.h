@@ -117,6 +117,7 @@ private:
     void loadEmbeddedCue();
 
     bool hasPregap() const;
+    void updateDiskState();
 };
 
 } // Namespace

@@ -51,9 +51,9 @@ public:
     void searchCoverImage(bool replaceExisting = false);
 
     QList<Track *> tracks() const { return mTracks; }
-    Track *        track(int index) const;
+    Track         *track(int index) const;
     int            count() const { return mTracks.count(); }
-    const Track *  preGapTrack() const;
+    const Track   *preGapTrack() const;
 
     QString cueFilePath() const;
     void    setCueFile(const Cue &cueDisc);
@@ -109,6 +109,9 @@ public:
 
     Cue cue() const { return mCue; }
 
+    DiskState state() const { return mState; }
+    void      setState(DiskState value);
+
 signals:
     void tagChanged();
 
@@ -129,6 +132,8 @@ private:
 
     QString        mCoverImageFile;
     mutable QImage mCoverImagePreview;
+
+    DiskState mState = DiskState::NotRunning;
 
     void syncTagsFromTracks();
     void syncTagsToTracks();

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>651</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -349,7 +349,7 @@ If you surround sections of text that contain a token with braces, these section
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -359,6 +359,8 @@ If you surround sections of text that contain a token with braces, these section
     <addaction name="actionAddDisc"/>
     <addaction name="actionAddFolder"/>
     <addaction name="actionRemoveDisc"/>
+    <addaction name="separator"/>
+    <addaction name="actionRemoveSourceFiles"/>
     <addaction name="separator"/>
     <addaction name="actionDownloadTrackInfo"/>
     <addaction name="separator"/>
@@ -549,6 +551,11 @@ If you surround sections of text that contain a token with braces, these section
    </property>
    <property name="toolTip">
     <string comment="Toolbar item tooltip" extracomment="Toolbar item tooltip">Show Errors</string>
+   </property>
+  </action>
+  <action name="actionRemoveSourceFiles">
+   <property name="text">
+    <string>Trash Sources for successfully converted disks and Remove from list…</string>
    </property>
   </action>
  </widget>

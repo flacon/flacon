@@ -317,7 +317,7 @@ void Disc::syncTagsToTracks()
     assert(tags.count() == mTracks.count());
 
     for (int i = 0; i < mTracks.count(); ++i) {
-        Track *      track = mTracks[i];
+        Track       *track = mTracks[i];
         const Track &tgs   = tags.at(i);
 
         track->setTag(TagId::Album, tgs.tagValue(TagId::Album));
@@ -871,6 +871,14 @@ QString Disc::searchCoverImage(const QString &startDir)
     }
 
     return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Disc::setState(DiskState value)
+{
+    mState = value;
 }
 
 /************************************************
