@@ -25,7 +25,13 @@
 
 #include "movetotrash.h"
 
-//#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+#ifndef Q_OS_MACOS
+#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+
+bool moveFileToTrash(const QString &fileName, QString *pathInTrash)
+{
+    return false;
+}
 
 ////static
 // bool QFileSystemEngine_moveFileToTrash(const QFileSystemEntry &source,
@@ -137,4 +143,6 @@
 //#endif // QT_BOOTSTRAPPED
 //}
 //#endif // Q_OS_DARWIN
-//#en
+
+#endif // QT_VERSION < 5.15.0
+#endif // not Q_OS_MACOS
