@@ -1293,7 +1293,12 @@ static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringLi
 {
     QStringList res;
     res << "<div>";
-    res << QString("<b>Disk %1 \"%2 - %3\"</b>").arg(diskNum).arg(disk->track(0)->album(), disk->track(0)->artist());
+    if (disk->count()) {
+        res << QString("<b>Disk %1 \"%2 - %3\"</b>").arg(diskNum).arg(disk->track(0)->album(), disk->track(0)->artist());
+    }
+    else {
+        res << QString("<b>Disk %1</b>").arg(diskNum);
+    }
 
     res << "<ul>";
     for (QString msg : msgs) {
