@@ -43,10 +43,10 @@ struct Splitter::Job
         InputAudioFile file;
         CueTime        start;
         CueTime        end;
-        Decoder *      decoder = nullptr;
+        Decoder       *decoder = nullptr;
     };
 
-    const Disc *    disk = nullptr;
+    const Disc     *disk = nullptr;
     Conv::ConvTrack track;
     QList<Chunk>    chunks;
     QString         outFileName;
@@ -101,10 +101,10 @@ void Splitter::Job::merge()
  ************************************************/
 QList<Splitter::Job::Chunk> Splitter::Job::getPart(const CueIndex &from, const CueIndex &to) const
 {
-    //qDebug() << "***************************";
-    //qDebug() << "* FROM: " << from.file() << from.toString(true);
-    //qDebug() << "* TO:   " << to.file() << to.toString(true);
-    //qDebug() << "***************************";
+    // qDebug() << "***************************";
+    // qDebug() << "* FROM: " << from.file() << from.toString(true);
+    // qDebug() << "* TO:   " << to.file() << to.toString(true);
+    // qDebug() << "***************************";
 
     // The 00 and 01 indexes are in the same file, or is it the last track (01 index is empty)
     if (from.file() == to.file() || to.file().isEmpty()) {
@@ -316,18 +316,23 @@ void Splitter::processTrack(const Job &job)
     progress.totalSize = bytes;
 
     for (const Job::Chunk &chunk : job.chunks) {
-        progress.chunkSize = chunk.decoder->bytesCount(chunk.start, chunk.end);
+        try {
+            progress.chunkSize = chunk.decoder->bytesCount(chunk.start, chunk.end);
 
-        // Extract chunk .............................
-        QObject keeper;
-        connect(chunk.decoder, &Decoder::progress, &keeper, [this, job, progress](int percents) {
-            double chunkDone = double(percents) / 100 * progress.chunkSize;
-            emit   trackProgress(job.track, TrackState::Splitting, (progress.done + chunkDone) / progress.totalSize * 100);
-        });
-        progress.done += progress.chunkSize;
+            // Extract chunk .............................
+            QObject keeper;
+            connect(chunk.decoder, &Decoder::progress, &keeper, [this, job, progress](int percents) {
+                double chunkDone = double(percents) / 100 * progress.chunkSize;
+                emit   trackProgress(job.track, TrackState::Splitting, (progress.done + chunkDone) / progress.totalSize * 100);
+            });
+            progress.done += progress.chunkSize;
 
-        qCDebug(LOG) << "extract: " << chunk.file.filePath() << " [" << chunk.start.toString() << ":" << chunk.end.toString() << "] OUT:" << job.outFileName;
-        chunk.decoder->extract(chunk.start, chunk.end, &outFile, false);
+            qCDebug(LOG) << "extract: " << chunk.file.filePath() << " [" << chunk.start.toString() << ":" << chunk.end.toString() << "] OUT:" << job.outFileName;
+            chunk.decoder->extract(chunk.start, chunk.end, &outFile, false);
+        }
+        catch (FlaconError &err) {
+            throw FlaconError(tr("I can't read <b>%1</b>:<br>%2", "Splitter error. %1 is a file name, %2 is a system error text.").arg(chunk.file.fileName(), err.what()));
+        }
     }
 
     outFile.close();
