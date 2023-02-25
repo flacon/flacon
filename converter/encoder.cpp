@@ -175,13 +175,17 @@ void Encoder::run()
         return;
     }
 
-    QObject keeper;
+    QObject keeper(this);
     //------------------------------------------------
     try {
+        for (int i = 0; i < procs.count(); ++i) {
+            QProcess *proc = procs[i];
+            proc->setParent(&keeper);
+        }
+
         // We start all processes connected by a pipe
         for (int i = 0; i < procs.count() - 1; ++i) {
             QProcess *proc = procs[i];
-            proc->setParent(&keeper);
             proc->setStandardOutputProcess(procs[i + 1]);
         }
 

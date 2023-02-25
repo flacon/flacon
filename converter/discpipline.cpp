@@ -44,6 +44,7 @@
 #include <errno.h>
 #include <QLoggingCategory>
 #include <QBuffer>
+#include <QPointer>
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "DiscPipeline")
@@ -81,12 +82,9 @@ WorkerThread::WorkerThread(Worker *worker, QObject *parent) :
  ************************************************/
 WorkerThread::~WorkerThread()
 {
-    quit();
+    this->terminate();
     if (!wait(3000)) {
-        qWarning() << "Can't quit from thread" << mWorker;
-        this->terminate();
-        if (!wait(3000))
-            qWarning() << "Can't terminate from thread" << mWorker;
+        qWarning() << "Can't terminate from thread" << mWorker;
     }
     mWorker->deleteLater();
 }
@@ -193,7 +191,7 @@ void DiscPipeline::startSplitter(const SplitterRequest &request)
 {
     Splitter *splitter = new Splitter(mDisc, request.tracks, request.outDir);
     splitter->setPregapType(request.pregapType);
-    WorkerThread *thread = new WorkerThread(splitter, this);
+    QPointer<WorkerThread> thread = new WorkerThread(splitter, this);
 
     connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(splitter, &Splitter::trackProgress, this, &DiscPipeline::trackProgress);
@@ -248,7 +246,7 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     encoder->setEmbeddedCue(mEmbeddedCue);
     encoder->setCoverImage(mCoverImage);
 
-    WorkerThread *thread = new WorkerThread(encoder, this);
+    QPointer<WorkerThread> thread = new WorkerThread(encoder, this);
 
     connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(encoder, &Encoder::trackProgress, this, &DiscPipeline::trackProgress);
@@ -449,8 +447,9 @@ bool DiscPipeline::isRunning() const
 int DiscPipeline::runningThreadCount() const
 {
     int res = 0;
+
     foreach (WorkerThread *thread, mThreads) {
-        if (thread->isRunning())
+        if (thread && thread->isRunning())
             ++res;
     }
     return res;

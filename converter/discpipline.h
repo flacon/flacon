@@ -92,11 +92,11 @@ private:
         QString   inputFile;
     };
 
-    QVector<WorkerThread *> mThreads;
-    bool                    mInterrupted = false;
-    QList<SplitterRequest>  mSplitterRequests;
-    QList<Request>          mEncoderRequests;
-    QList<Request>          mAlbumGainRequests;
+    QVector<QPointer<WorkerThread>> mThreads;
+    bool                            mInterrupted = false;
+    QList<SplitterRequest>          mSplitterRequests;
+    QList<Request>                  mEncoderRequests;
+    QList<Request>                  mAlbumGainRequests;
 
     void addSpliterRequest();
     void startSplitter(const SplitterRequest &request);
