@@ -82,9 +82,9 @@ WorkerThread::WorkerThread(Worker *worker, QObject *parent) :
  ************************************************/
 WorkerThread::~WorkerThread()
 {
-    this->terminate();
+    terminate();
     if (!wait(3000)) {
-        qWarning() << "Can't terminate from thread" << mWorker;
+        qWarning() << "Can't terminate thread" << objectName();
     }
     mWorker->deleteLater();
 }
@@ -136,6 +136,15 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks
  ************************************************/
 DiscPipeline::~DiscPipeline()
 {
+    mThreads.clear();
+
+    for (QThread *t : findChildren<QThread *>()) {
+        qDebug(LOG).noquote() << "Delete " << t->objectName();
+        t->disconnect();
+        t->setParent(nullptr);
+        t->deleteLater();
+    }
+
     delete mTmpDir;
 }
 
@@ -192,6 +201,7 @@ void DiscPipeline::startSplitter(const SplitterRequest &request)
     Splitter *splitter = new Splitter(mDisc, request.tracks, request.outDir);
     splitter->setPregapType(request.pregapType);
     QPointer<WorkerThread> thread = new WorkerThread(splitter, this);
+    thread->setObjectName(QString("%1 splitter").arg(mDisc->cueFilePath()));
 
     connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(splitter, &Splitter::trackProgress, this, &DiscPipeline::trackProgress);
@@ -247,6 +257,7 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     encoder->setCoverImage(mCoverImage);
 
     QPointer<WorkerThread> thread = new WorkerThread(encoder, this);
+    thread->setObjectName(QString("%1 encoder track %2").arg(track.disc()->cueFilePath()).arg(track.index()));
 
     connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(encoder, &Encoder::trackProgress, this, &DiscPipeline::trackProgress);
