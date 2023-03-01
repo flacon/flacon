@@ -250,6 +250,8 @@ bool ConverterTest::run()
                      .arg(proc.exitCode())
                      .arg(QString::fromLocal8Bit(proc.readAll()))
                      .toLocal8Bit());
+
+        printFile(mDir + "/out.log");
         return false;
     }
 
@@ -549,6 +551,24 @@ void ConverterTest::printError(const QString &file, const QString &tag, const QV
                   .arg(expected.toByteArray().toHex(' ').data())
 
                   .toLocal8Bit());
+}
+
+void ConverterTest::printFile(const QString &fileName, bool printHeader)
+{
+    QTextStream out(stderr);
+    if (printHeader) {
+        out << QString("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+        out << fileName << "\n";
+        out << QString("───────────────────────────────────────────────────────────────────────\n");
+    }
+    QFile f(fileName);
+    f.open(QFile::ReadOnly);
+    out << f.readAll();
+    out << "\n";
+
+    if (printHeader) {
+        out << QString("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    }
 }
 
 /************************************************

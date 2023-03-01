@@ -37,7 +37,10 @@ void TestFlacon::testConvert()
     QFETCH(QString, dataDir);
     try {
         ConverterTest tst(dataDir, dir(), mTmpDir);
-        tst.run();
+        if (!tst.run()) {
+            return;
+        }
+
         tst.check();
     }
     catch (const FlaconError &err) {
