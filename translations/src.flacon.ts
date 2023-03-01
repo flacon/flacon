@@ -881,7 +881,26 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>%1% complete</source>
+        <source>Trash Sources for successfully converted disks and Remove from list…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
+        <comment>Message box text</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <comment>Button caption</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
+        <comment>Message box text, %1 is a list of files</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <translation type="unfinished"></translation>
     </message>
