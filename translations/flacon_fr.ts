@@ -557,7 +557,7 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
-        <translation>Répertoire temporaire :</translation>
+        <translation>Dossier temporaire :</translation>
     </message>
     <message>
         <source>Default codepage:</source>
@@ -569,7 +569,7 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Sélectionner un répertoire temporaire</translation>
+        <translation>Sélectionner un dossier temporaire</translation>
     </message>
 </context>
 <context>
@@ -584,16 +584,16 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
     </message>
     <message>
         <source>Directory:</source>
-        <translation>Répertoire :</translation>
+        <translation>Dossier :</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Vous pouvez naviguer vers le répertoire de destination. Vous pouvez aussi le saisir manuellement.
+        <translation>Vous pouvez naviguer vers le dossier de destination. Vous pouvez aussi le saisir manuellement.
 
-Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même répertoire que la source.</translation>
+Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même dossier que la source.</translation>
     </message>
     <message>
         <source>Pattern:</source>
@@ -815,7 +815,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     </message>
     <message>
         <source>Remove current directory from history</source>
-        <translation>Supprimer le répertoire actuel de l’historique</translation>
+        <translation>Supprimer le dossier actuel de l’historique</translation>
     </message>
     <message>
         <source>Delete current pattern from history</source>
@@ -864,7 +864,7 @@ Voulez-vous continuer ?</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Sélectionner un répertoire</translation>
+        <translation>Sélectionner un dossier</translation>
     </message>
     <message>
         <source>Select another audio file…</source>
@@ -912,29 +912,29 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Warnings</source>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Avertissements</translation>
     </message>
     <message>
         <source>Show Warnings</source>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Afficher les avertissements</translation>
     </message>
     <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Erreurs</translation>
     </message>
     <message>
         <source>Show Errors</source>
         <comment>Toolbar item tooltip</comment>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Afficher les erreurs</translation>
     </message>
     <message>
         <source>%1% complete</source>
         <comment>Status bar, progress text</comment>
-        <translation type="unfinished"/>
+        <translation>%1 % terminés</translation>
     </message>
 </context>
 <context>
@@ -963,7 +963,7 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Select directory…</source>
         <comment>Menu item for output direcory button</comment>
-        <translation>Sélectionner un répertoire…</translation>
+        <translation>Sélectionner un dossier…</translation>
     </message>
     <message>
         <source>Standard music location</source>
@@ -978,11 +978,11 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Menu item for output direcory button</comment>
-        <translation>Même répertoire que le fichier CUE</translation>
+        <translation>Même dossier que le fichier CUE</translation>
     </message>
     <message>
         <source>Select result directory</source>
-        <translation>Sélectionner le répertoire de destination</translation>
+        <translation>Sélectionner le dossier de destination</translation>
     </message>
 </context>
 <context>
@@ -990,7 +990,7 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
-        <translation>Même répertoire que le fichier CUE</translation>
+        <translation>Même dossier que le fichier CUE</translation>
     </message>
 </context>
 <context>
@@ -1075,16 +1075,16 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Directory:</source>
         <comment>Preferences form label text</comment>
-        <translation>Répertoire :</translation>
+        <translation>Dossier :</translation>
     </message>
     <message>
         <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
-        <translation>Vous pouvez naviguer vers le répertoire de destination. Vous pouvez aussi le saisir manuellement.
+        <translation>Vous pouvez naviguer vers le dossier de destination. Vous pouvez aussi le saisir manuellement.
 
-Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même répertoire que la source.</translation>
+Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même dossier que la source.</translation>
     </message>
     <message>
         <source>Pattern:</source>
@@ -1175,7 +1175,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
-        <translation>Même répertoire que le fichier CUE</translation>
+        <translation>Même dossier que le fichier CUE</translation>
     </message>
     <message>
         <source>Same as source</source>
@@ -1316,11 +1316,11 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas créer le répertoire « %1 »</translation>
+        <translation>Je ne peux pas créer le dossier « %1 »</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Je ne peux pas écrire dans le répertoire « %1 »</translation>
+        <translation>Je ne peux pas écrire dans le dossier « %1 »</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1610,7 +1610,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Some disks will overwrite the resulting files of another disk.</source>
         <comment>error message</comment>
-        <translation type="unfinished"/>
+        <translation>Certains disques écraseront les fichiers provenant d’un autre disque.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
@@ -1639,24 +1639,27 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <source>A maximum of %1-bit per sample is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Un maximum de %1 bits par échantillon est pris en charge par ce format.
+Cette valeur sera utilisée pour l’encodage.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Un taux d’échantillonnage maximal de %1 est pris en charge par ce format.
+Cette valeur sera utilisée pour l’encodage.</translation>
     </message>
     <message>
         <source>ReplayGain calculation is not supported for multi-channel audio.
 The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Le calcul de ReplayGain n’est pas pris en charge pour le son multivoie.
+ReplayGain sera désactivé pour ce disque.</translation>
     </message>
     <message>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
-        <translation type="unfinished"/>
+        <translation>Le profil de sortie est incorrect.</translation>
     </message>
 </context>
 <context>

@@ -914,29 +914,29 @@ Do you want to continue?</source>
     <message>
         <source>Warnings</source>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>אזהרות</translation>
     </message>
     <message>
         <source>Show Warnings</source>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>הצגת אזהרות</translation>
     </message>
     <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>שגיאות</translation>
     </message>
     <message>
         <source>Show Errors</source>
         <comment>Toolbar item tooltip</comment>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>הצגת שגיאות</translation>
     </message>
     <message>
         <source>%1% complete</source>
         <comment>Status bar, progress text</comment>
-        <translation type="unfinished"/>
+        <translation>%1 הושלמו</translation>
     </message>
 </context>
 <context>

@@ -912,29 +912,29 @@ Você deseja continuar?</translation>
     <message>
         <source>Warnings</source>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Avisos</translation>
     </message>
     <message>
         <source>Show Warnings</source>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Exibir avisos</translation>
     </message>
     <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Erros</translation>
     </message>
     <message>
         <source>Show Errors</source>
         <comment>Toolbar item tooltip</comment>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Exibir erros</translation>
     </message>
     <message>
         <source>%1% complete</source>
         <comment>Status bar, progress text</comment>
-        <translation type="unfinished"/>
+        <translation>%1% completo</translation>
     </message>
 </context>
 <context>
@@ -1610,7 +1610,7 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
     <message>
         <source>Some disks will overwrite the resulting files of another disk.</source>
         <comment>error message</comment>
-        <translation type="unfinished"/>
+        <translation>Alguns discos sobrescreverão os arquivos resultantes de outro disco.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
@@ -1639,24 +1639,27 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
         <source>A maximum of %1-bit per sample is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Esse formato suporta um máximo de %1-bit por amostra.
+Esse valor será usado na codificação.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Esse formato suporta uma taxa máxima de amostra de %1.
+Esse valor será usado na codificação.</translation>
     </message>
     <message>
         <source>ReplayGain calculation is not supported for multi-channel audio.
 The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>O cálculo de ReplayGain não é suportado em áudio multi-canais.
+O ReplayGain será desabilitado para esse disco.</translation>
     </message>
     <message>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
-        <translation type="unfinished"/>
+        <translation>Perfil de saída incorreto.</translation>
     </message>
 </context>
 <context>
