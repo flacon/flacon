@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 from pathlib import Path
 from xml.etree import ElementTree as ET
+import xml
 
 BARS_LEN=100
 BARS_CHAR=":"
@@ -20,7 +22,15 @@ class Translation:
         self.load(fileName)
 
     def load(self, fileName):
-        tree = ET.parse(fileName)
+        try:
+            tree = ET.parse(fileName)
+
+        except xml.etree.ElementTree.ParseError as err:
+            print(f"Unable to parse {fileName}",  file=sys.stderr)
+            print("==============================")
+            traceback.print_exc()
+            sys.exit(1)
+
         root = tree.getroot()
         for m in root.findall(".//translation"):
             self.total += 1
@@ -56,7 +66,7 @@ def scanFiles(rootDir):
 
 
 if __name__ == "__main__":
-    translations = scanFiles("..")
+    translations = scanFiles("../translations")
     translations.sort(reverse=True, key=lambda item: item.percent)
 
     tot = 0
