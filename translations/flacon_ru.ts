@@ -931,7 +931,26 @@ Do you want to continue?</source>
         <translation>Показать ошибки</translation>
     </message>
     <message>
-        <source>%1% complete</source>
+        <source>Trash Sources for successfully converted disks and Remove from list…</source>
+        <translation>Удалить исходные файлы для успешно преобразованных дисков и удалить последние из списка…</translation>
+    </message>
+    <message>
+        <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
+        <comment>Message box text</comment>
+        <translation>Идет конвертирование.&lt;br&gt;Вы уверены, что хотите выйти?</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <comment>Button caption</comment>
+        <translation>Выход</translation>
+    </message>
+    <message>
+        <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
+        <comment>Message box text, %1 is a list of files</comment>
+        <translation>Следующие файлы будут перемещены в корзину.&lt;/b&gt; Удалить следующие файлы?%1</translation>
+    </message>
+    <message>
+        <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <translation>%1% готово </translation>
     </message>
