@@ -932,12 +932,12 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>Enviar a la papelera las fuentes de los discos convertidos exitosamente y eliminarlos de la lista...</translation>
     </message>
     <message>
         <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>Conversión en curso.&lt;br&gt;¿Seguro que quieres salir?</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -947,12 +947,12 @@ Do you want to continue?</source>
     <message>
         <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
         <comment>Message box text, %1 is a list of files</comment>
-        <translation type="unfinished"/>
+        <translation>Los siguiente archivos serán movidos a la papelera.&lt;/b&gt;¿Eliminar los siguientes archivos?%1</translation>
     </message>
     <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
-        <translation type="unfinished"/>
+        <translation>%1% completado</translation>
     </message>
 </context>
 <context>
@@ -1637,7 +1637,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>Audio file not set.</source>
         <comment>Warning message</comment>
-        <translation>Archivo de audio no seleccionado.</translation>
+        <translation>El archivo de audio no se ha establecido.</translation>
     </message>
     <message>
         <source>Audio file not set for track %1.</source>

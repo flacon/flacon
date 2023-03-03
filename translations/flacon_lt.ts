@@ -933,12 +933,12 @@ Ar norite tęsti?</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti sėkmingai konvertuotų diskų pradinius failus į šiukšlinę ir pašalinti juos iš sąrašo…</translation>
     </message>
     <message>
         <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>Vyksta konvertavimas.&lt;br&gt;Ar tikrai norite išeiti?</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -948,12 +948,12 @@ Ar norite tęsti?</translation>
     <message>
         <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
         <comment>Message box text, %1 is a list of files</comment>
-        <translation type="unfinished"/>
+        <translation>Sekantys failai bus perkelti į šiukšlinę.&lt;/b&gt;Pašalinti šiuos failus?%1</translation>
     </message>
     <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
-        <translation type="unfinished"/>
+        <translation>%1% užbaigta</translation>
     </message>
 </context>
 <context>

@@ -738,7 +738,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     </message>
     <message>
         <source>Exit</source>
-        <translation>Quitter</translation>
+        <translation>Fermer</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -933,27 +933,27 @@ Voulez-vous continuer ?</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>Déplacement des sources vers la corbeille pour les disques convertis avec succès et suppression de la liste…</translation>
     </message>
     <message>
         <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>Conversion en cours.&lt;br&gt;Voulez-vous vraiment sortir ?</translation>
     </message>
     <message>
         <source>Exit</source>
         <comment>Button caption</comment>
-        <translation>Quitter</translation>
+        <translation>Sortir</translation>
     </message>
     <message>
         <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
         <comment>Message box text, %1 is a list of files</comment>
-        <translation type="unfinished"/>
+        <translation>Les fichiers suivants seront déplacés vers la corbeille.&lt;/b&gt;Les supprimer ?</translation>
     </message>
     <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
-        <translation type="unfinished"/>
+        <translation>%1 % terminés</translation>
     </message>
 </context>
 <context>

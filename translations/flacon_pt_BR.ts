@@ -933,12 +933,12 @@ Você deseja continuar?</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>Mover fontes de discos convertidos com sucesso para a lixeira e removê-las da lista...</translation>
     </message>
     <message>
         <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>Conversão em andamento.&lt;br&gt;Tem certeza que deseja sair?</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -948,12 +948,12 @@ Você deseja continuar?</translation>
     <message>
         <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
         <comment>Message box text, %1 is a list of files</comment>
-        <translation type="unfinished"/>
+        <translation>Os seguintes arquivos serão enviados à lixeira.&lt;/b&gt;Remover esses arquivos?%1</translation>
     </message>
     <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
-        <translation type="unfinished"/>
+        <translation>%1% completos</translation>
     </message>
 </context>
 <context>
