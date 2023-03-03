@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "aboutdialog.h"
-#include "translatorsinfo.h"
 #include "types.h"
 #include <QDate>
 #include <QList>
@@ -196,8 +195,8 @@ AboutInfo AboutDialog::thanksInfo() const
  ************************************************/
 QString AboutDialog::translationsText() const
 {
-    TranslatorsInfo translatorsInfo;
-    return QString("%1<p><ul>%2</ul>").arg(tr("Flacon is translated into many languages thanks to the work of the Flacon translation teams on <a href='%1'>Transifex</a>.").arg("https://www.transifex.com/sokoloff/flacon/"), translatorsInfo.asHtml());
+    return tr("Flacon is translated into many languages thanks to the work of the Flacon translation teams on <a href='%1'>Transifex</a>.")
+            .arg("https://www.transifex.com/sokoloff/flacon/");
 }
 
 /************************************************

@@ -112,7 +112,6 @@ set(HEADERS
     gui/trackviewmodel.h
     gui/trackviewdelegate.h
     gui/aboutdialog/aboutdialog.h
-    gui/aboutdialog/translatorsinfo.h
     gui/coverdialog/coverdialog.h
     gui/coverdialog/asynclistwidgetitem.h
     gui/tageditor/tageditor.h
@@ -138,7 +137,6 @@ set(SOURCES
     validator.cpp
 
     gui/aboutdialog/aboutdialog.cpp
-    gui/aboutdialog/translatorsinfo.cpp
     gui/coverdialog/coverdialog.cpp
     gui/coverdialog/asynclistwidgetitem.cpp
     gui/tageditor/tageditor.cpp
@@ -213,15 +211,6 @@ qt5_add_translation(QM_FILES ${TS_FILES})
 
 include(FindPkgConfig)
 pkg_search_module(UCHARDET REQUIRED uchardet)
-
-include(translations/translatorsinfo.cmake)
-add_custom_target("translators")
-add_custom_command(
-    TARGET "translators"
-    PRE_BUILD
-    BYPRODUCTS ${TRANSLATORS_INFO_FILE}
-    COMMAND create_translatorsinfo_qrc(TRANSLATORS_INFO_QRC translations)
-)
 
 
 set(LIBRARIES ${LIBRARIES} ${UCHARDET_LIBRARIES})
