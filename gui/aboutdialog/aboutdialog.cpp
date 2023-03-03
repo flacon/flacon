@@ -207,8 +207,17 @@ AboutInfo AboutDialog::programsInfo() const
 {
     AboutInfo result;
 
-    result.add("flac and metaflac",
+    result.add("alacenc",
+               "https://github.com/flacon/alacenc");
+
+    result.add("flac",
                "http://flac.sourceforge.net");
+
+    result.add("FAAC",
+               "http://www.audiocoding.com");
+
+    result.add("LAME",
+               "http://lame.sourceforge.net");
 
     result.add("mac",
                "http://etree.org/shnutils/shntool/support/formats/ape/unix http://www.monkeysaudio.com");
@@ -216,26 +225,17 @@ AboutInfo AboutDialog::programsInfo() const
     result.add("oggenc",
                "http://www.xiph.org");
 
-    result.add("LAME",
-               "http://lame.sourceforge.net");
+    result.add("opusenc",
+               "http://www.xiph.org");
 
-    result.add("WavPack",
-               "http://www.wavpack.com");
-
-    result.add("VorbisGain",
-               "http://sjeng.org/vorbisgain.html");
-
-    result.add("MP3Gain",
-               "http://mp3gain.sourceforge.net");
+    result.add("sox",
+               "https://sox.sourceforge.net");
 
     result.add("ttaenc",
                "http://tta.sourceforge.net");
 
-    result.add("FAAC",
-               "http://www.audiocoding.com");
-
-    result.add("opusenc",
-               "http://www.xiph.org");
+    result.add("WavPack",
+               "http://www.wavpack.com");
 
     return result;
 }
