@@ -955,6 +955,10 @@ Voulez-vous continuer ?</translation>
         <comment>Status bar, progress text</comment>
         <translation>%1 % terminés</translation>
     </message>
+    <message>
+        <source>Trash sources for successfully converted disks and remove from list…</source>
+        <translation>Déplacement des sources vers la corbeille pour les disques convertis avec succès et suppression de la liste…</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

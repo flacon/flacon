@@ -929,6 +929,10 @@ Möchten Sie fortsetzen?</translation>
     <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
+        <translation>%1% abgeschlossen</translation>
+    </message>
+    <message>
+        <source>Trash sources for successfully converted disks and remove from list…</source>
         <translation type="unfinished"/>
     </message>
 </context>

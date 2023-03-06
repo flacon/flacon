@@ -955,6 +955,10 @@ Ar norite tęsti?</translation>
         <comment>Status bar, progress text</comment>
         <translation>%1% užbaigta</translation>
     </message>
+    <message>
+        <source>Trash sources for successfully converted disks and remove from list…</source>
+        <translation>Perkelti sėkmingai konvertuotų diskų pradinius failus į šiukšlinę ir pašalinti juos iš sąrašo…</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>

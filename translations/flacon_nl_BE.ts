@@ -931,6 +931,10 @@ Wilt u doorgaan?</translation>
         <comment>Status bar, progress text</comment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Trash sources for successfully converted disks and remove from list…</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
