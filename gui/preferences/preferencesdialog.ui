@@ -142,7 +142,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string> Audio profiles</string>
+    <string>Audio profiles</string>
    </property>
   </action>
   <action name="actShowGeneralPage">

@@ -558,7 +558,7 @@ If you surround sections of text that contain a token with braces, these section
     <string>Trash Sources for successfully converted disks and Remove from list…</string>
    </property>
    <property name="toolTip">
-    <string>Trash sources for successfully converted disks and remove from list…</string>
+    <string>Trash sources for converted disks and remove from list…</string>
    </property>
   </action>
  </widget>
