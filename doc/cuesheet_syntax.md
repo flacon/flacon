@@ -351,6 +351,9 @@ Supported datatypes and blocksizes by recorder model…
 All track numbers must be between 1 and 99 inclusive. The first track number can be greater than one, but all track numbers after the first must be sequential. You must specify at least one track per file.
 
 
-==== 
+====
 
 <sup>*From http://digitalx.org/cue-sheet/syntax/index.html*</sup>
+
+links:
+ * https://wiki.hydrogenaud.io/index.php?title=Cue_sheet
