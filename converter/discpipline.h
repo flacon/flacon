@@ -45,7 +45,7 @@ class DiscPipeline : public QObject
 {
     Q_OBJECT
 public:
-    explicit DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks, const QString &workDir, QObject *parent = nullptr) noexcept(false);
+    explicit DiscPipeline(const Profile &profile, Disc *disc, const QVector<const Track *> &reqTracks, QObject *parent = nullptr) noexcept(false);
     virtual ~DiscPipeline();
 
     QList<ConvTrack> tracks() const { return mTracks; }
@@ -78,6 +78,7 @@ private:
     CoverImage            mCoverImage;
     QString               mEmbeddedCue;
     ReplayGain::AlbumGain mAlbumGain;
+    PreGapType            mPregapType = PreGapType::Skip;
 
     struct SplitterRequest
     {
@@ -118,6 +119,8 @@ private:
 
     bool hasPregap() const;
     void updateDiskState();
+
+    QString getWorkDir(const Track &track) const;
 };
 
 } // Namespace

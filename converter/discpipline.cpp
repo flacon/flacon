@@ -30,11 +30,9 @@
 #include "splitter.h"
 #include "encoder.h"
 #include "cuecreator.h"
-#include "project.h"
 #include "inputaudiofile.h"
 #include "profiles.h"
 #include "formats_out/metadatawriter.h"
-#include "sync.h"
 
 #include <QThread>
 #include <QDebug>
@@ -98,15 +96,65 @@ void WorkerThread::run()
 }
 
 /************************************************
+
+ ************************************************/
+QString DiscPipeline::getWorkDir(const Track &track) const
+{
+    QString dir = mProfile.tmpDir();
+    if (dir.isEmpty()) {
+        dir = QFileInfo(track.resultFilePath()).dir().absolutePath();
+    }
+    return dir + "/tmp";
+}
+
+/************************************************
  *
  ************************************************/
-DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks, const QString &workDir, QObject *parent) noexcept(false) :
+DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, const QVector<const Track *> &reqTracks, QObject *parent) noexcept(false) :
     QObject(parent),
     mProfile(profile),
-    mDisc(disc),
-    mWorkDir(workDir)
+    mDisc(disc)
 {
+    mPregapType = profile.isCreateCue() ? profile.preGapType() : PreGapType::Skip;
 
+    for (const TrackPtrList &tracks : disc->tracksByFileTag()) {
+
+        // Pregap track ....................
+        bool hasPregap =
+                reqTracks.contains(tracks.first()) &&           // We extract first track in Audio
+                tracks.first()->cueIndex(1).milliseconds() > 0; // The first track don't start from zero second
+
+        if (hasPregap && mPregapType == PreGapType::ExtractToFile) {
+            Track *firstTrack = tracks.first();
+
+            Track pregapTrack = *firstTrack; // copy tags and all settings
+            pregapTrack.setTag(TagId::TrackNum, QByteArray("0"));
+            pregapTrack.setTitle("(HTOA)");
+
+            ConvTrack track(pregapTrack);
+            track.setPregap(true);
+
+            mTracks << track;
+        }
+
+        // Tracks ..........................
+        for (int i = 0; i < tracks.count(); ++i) {
+            const Track *t = tracks.at(i);
+
+            if (!reqTracks.contains(t)) {
+                continue;
+            }
+
+            ConvTrack track(*t);
+            track.setPregap(false);
+
+            mTracks << track;
+        }
+    }
+
+    mWorkDir = getWorkDir(mTracks.first());
+
+    // -----------------------------
     QString dir = QFileInfo(mWorkDir).dir().absolutePath();
     qCDebug(LOG) << "Create tmp dir" << dir;
 
@@ -115,12 +163,11 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, ConvTracks tracks
     mTmpDir = new QTemporaryDir(QString("%1/tmp").arg(dir));
     mTmpDir->setAutoRemove(true);
 
-    for (const ConvTrack &track : qAsConst(tracks)) {
+    for (const ConvTrack &track : qAsConst(mTracks)) {
         if (track.audioFile().channelsCount() > 2) {
             mProfile.setGainType(GainType::Disable);
         }
 
-        mTracks << track;
         mTrackStates[track.index()] = TrackState::NotRunning;
         updateDiskState();
 
@@ -187,10 +234,7 @@ void DiscPipeline::startWorker(int *splitterCount, int *count)
 void DiscPipeline::addSpliterRequest()
 {
     QString outDir = mTmpDir->path();
-
-    PreGapType pregapType = (hasPregap() && mProfile.isCreateCue()) ? mProfile.preGapType() : PreGapType::Skip;
-
-    mSplitterRequests << SplitterRequest { mTracks, outDir, pregapType };
+    mSplitterRequests << SplitterRequest { mTracks, outDir, mPregapType };
 }
 
 /************************************************
@@ -303,7 +347,7 @@ void DiscPipeline::writeGain(const ConvTrack &track, const QString &fileName, co
         return;
     }
 
-    for (const Request &r : mAlbumGainRequests) {
+    for (const Request &r : qAsConst(mAlbumGainRequests)) {
         qCDebug(LOG) << "Write album gain: " << r.inputFile << "gain:" << mAlbumGain.result().gain() << "peak:" << mAlbumGain.result().peak();
 
         MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(r.inputFile);
@@ -525,7 +569,7 @@ void DiscPipeline::writeOutCueFile()
         return;
     }
 
-    CueCreator cue(mDisc, mProfile.preGapType());
+    CueCreator cue(mDisc, mPregapType);
     cue.writeToFile(mProfile.cueFileName());
 }
 
@@ -538,7 +582,7 @@ void DiscPipeline::loadEmbeddedCue()
         return;
     }
 
-    CueCreator cue(mDisc, mProfile.preGapType());
+    CueCreator cue(mDisc, mPregapType);
     QBuffer    buf;
     cue.write(&buf);
     mEmbeddedCue = QString::fromUtf8(buf.data());

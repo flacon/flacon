@@ -494,7 +494,7 @@ bool compareCue(const QString &result, const QString &expected, QString *error, 
     QByteArray expData = readCue(expected, skipEmptyLines);
 
     if (resData != expData) {
-        QString s = "The result is different from the expected. Use the following command for details: \n diff %1 %2";
+        QString s = "The result is different from the expected. Use the following command for details: \n diff -uw \"%1\" \"%2\"";
         *error    = s.arg(expected, result);
         return false;
     }

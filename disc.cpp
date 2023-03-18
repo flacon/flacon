@@ -26,10 +26,8 @@
 #include "disc.h"
 #include "track.h"
 #include "project.h"
-#include "settings.h"
 #include "inputaudiofile.h"
 #include "formats_in/informat.h"
-#include "formats_out/outformat.h"
 #include "audiofilematcher.h"
 
 #include "assert.h"
@@ -381,7 +379,6 @@ QList<TrackPtrList> Disc::tracksByFileTag() const
         return res;
     }
 
-    int n = 0;
     int b = 0;
     while (b < mTracks.count()) {
         int e = b;
@@ -394,7 +391,6 @@ QList<TrackPtrList> Disc::tracksByFileTag() const
         }
 
         b = e;
-        ++n;
     }
 
     return res;

@@ -165,19 +165,53 @@ void CueCreator::write(QIODevice *out)
     writeGlobalTag(out, "SONGWRITER \"%1\"", TagId::SongWriter);
     writeGlobalTag(out, "TITLE \"%1\"", TagId::Album);
 
-    if (createPreGapFile)
-        writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->preGapTrack()->resultFilePath()).fileName()));
-    else
-        writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->track(0)->resultFilePath()).fileName()));
-
     // Tracks ...........................
     CueTime prevIndex("00:00:00");
     for (int i = 0; i < mDisc->count(); ++i) {
         Track   *track  = mDisc->track(i);
         CueIndex index0 = track->cueIndex(0);
         CueIndex index1 = track->cueIndex(1);
-
-        writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+        writeLine(out, "");
+        if (i == 0) {
+            if (index0.isNull() || index0 == index1) {
+                // No pregap ....................
+                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+                writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+                writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
+            }
+            else {
+                // With pregap ..................
+                if (createPreGapFile) {
+                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->preGapTrack()->resultFilePath()).fileName()));
+                    writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+                    writeLine(out, QString("    INDEX 00 %1").arg("00:00:00"));
+                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+                    writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
+                }
+                else {
+                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+                    writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+                    writeLine(out, QString("    INDEX 00 %1").arg(index0.toString()));
+                    writeLine(out, QString("    INDEX 01 %1").arg(index1.toString()));
+                }
+            }
+        }
+        else {
+            if (index0.isNull() || index0 == index1) {
+                // No pregap ....................
+                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+                writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+                writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
+            }
+            else {
+                // With pregap ..................
+                writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+                writeLine(out, QString("    INDEX 00 %1").arg((index0 - prevIndex).toString()));
+                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+                writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
+            }
+        }
+        prevIndex = index1;
 
         CueFlags flags(track->tag(TagId::Flags));
         flags.preEmphasis = false; // We already deephasis audio, so we reset this flag
@@ -187,27 +221,6 @@ void CueCreator::write(QIODevice *out)
 
         writeTrackTag(out, track, "    ISRC %1", TagId::ISRC);
         writeTrackTag(out, track, "    TITLE \"%1\"", TagId::Title);
-
-        if (i == 0) {
-            if (createPreGapFile) {
-                writeLine(out, QString("    INDEX 00 %1").arg("00:00:00"));
-                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
-                writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
-            }
-            else {
-                writeLine(out, QString("    INDEX 00 %1").arg("00:00:00"));
-                writeLine(out, QString("    INDEX 01 %1").arg(index1.toString()));
-            }
-        }
-        else {
-            if (!index0.isNull() && index0 != index1)
-                writeLine(out, QString("    INDEX 00 %1").arg((index0 - prevIndex).toString()));
-
-            prevIndex = index1;
-            writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
-            writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
-        }
-
         writeTrackTag(out, track, "    REM GENRE \"%1\"", TagId::Genre);
         writeTrackTag(out, track, "    REM DATE %1", TagId::Date);
         writeTrackTag(out, track, "    PERFORMER \"%1\"", TagId::Artist);
