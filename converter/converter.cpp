@@ -30,11 +30,7 @@
 #include "converter.h"
 #include "project.h"
 #include "settings.h"
-#include "splitter.h"
-#include "encoder.h"
 #include "discpipline.h"
-#include "sox.h"
-#include "cuecreator.h"
 
 #include <iostream>
 #include <math.h>
@@ -145,49 +141,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
  ************************************************/
 DiscPipeline *Converter::createDiscPipeline(const Profile &profile, const Converter::Job &converterJob)
 {
-    // Tracks ..............................
-    ConvTracks resTracks;
-
-    PreGapType preGapType = profile.isCreateCue() ? profile.preGapType() : PreGapType::Skip;
-
-    for (const TrackPtrList &tracks : converterJob.disc->tracksByFileTag()) {
-
-        // Pregap track ....................
-        bool hasPregap =
-                converterJob.tracks.contains(tracks.first()) && // We extract first track in Audio
-                tracks.first()->cueIndex(1).milliseconds() > 0; // The first track don't start from zero second
-
-        if (hasPregap && preGapType == PreGapType::ExtractToFile) {
-            Track *firstTrack = tracks.first();
-
-            Track pregapTrack = *firstTrack; // copy tags and all settings
-            pregapTrack.setTag(TagId::TrackNum, QByteArray("0"));
-            pregapTrack.setTitle("(HTOA)");
-
-            ConvTrack track(pregapTrack);
-            track.setPregap(true);
-
-            resTracks << track;
-        }
-
-        // Tracks ..........................
-        for (int i = 0; i < tracks.count(); ++i) {
-            const Track *t = tracks.at(i);
-
-            if (!converterJob.tracks.contains(t)) {
-                continue;
-            }
-
-            ConvTrack track(*t);
-            track.setPregap(false);
-
-            resTracks << track;
-        }
-    }
-
-    QString wrkDir = workDir(converterJob.tracks.first());
-
-    DiscPipeline *pipeline = new DiscPipeline(profile, converterJob.disc, resTracks, wrkDir, this);
+    DiscPipeline *pipeline = new DiscPipeline(profile, converterJob.disc, converterJob.tracks, this);
 
     connect(pipeline, &DiscPipeline::readyStart, this, &Converter::startThread);
     connect(pipeline, &DiscPipeline::threadFinished, this, &Converter::startThread);
@@ -279,16 +233,4 @@ bool Converter::validate(const Jobs &jobs, const Profile &profile)
                             .arg(s));
 
     return false;
-}
-
-/************************************************
-
- ************************************************/
-QString Converter::workDir(const Track *track) const
-{
-    QString dir = Settings::i()->tmpDir();
-    if (dir.isEmpty()) {
-        dir = QFileInfo(track->resultFilePath()).dir().absolutePath();
-    }
-    return dir + "/tmp";
 }

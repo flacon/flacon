@@ -304,7 +304,7 @@ void ConverterTest::check()
             }
 
             QString err;
-            if (!compareCue(mOutDir + "/" + file, expected, &err))
+            if (!compareCue(mOutDir + "/" + file, expected, &err, true))
                 msg += "\n" + err;
         }
         spec.endGroup();

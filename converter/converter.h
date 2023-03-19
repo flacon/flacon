@@ -82,7 +82,6 @@ private:
 
     bool          validate(const Jobs &jobs, const Profile &profile);
     DiscPipeline *createDiscPipeline(const Profile &profile, const Job &converterJob);
-    QString       workDir(const Track *track) const;
 };
 
 }

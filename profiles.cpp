@@ -86,7 +86,7 @@ public:
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::AsSourcee; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::AsSource; }
 
-    Conv::Encoder * createEncoder() const override { return new Encoder_Null(); }
+    Conv::Encoder  *createEncoder() const override { return new Encoder_Null(); }
     MetadataWriter *createMetadataWriter(const QString &filePath) const override { return new NullMetadataWriter(filePath); };
 };
 
@@ -370,6 +370,14 @@ void Profile::setPregapType(PreGapType value)
 EncoderConfigPage *Profile::configPage(QWidget *parent) const
 {
     return mFormat->configPage(parent);
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Profile::tmpDir() const
+{
+    return Settings::i()->tmpDir();
 }
 
 /************************************************
