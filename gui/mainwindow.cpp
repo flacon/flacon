@@ -1294,10 +1294,15 @@ static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringLi
     QStringList res;
     res << "<div>";
     if (disk->count()) {
-        res << QString("<b>Disk %1 \"%2 - %3\"</b>").arg(diskNum).arg(disk->track(0)->album(), disk->track(0)->artist());
+        res << MainWindow::tr("<b>Disk %1 \"%2 / %3\"</b>",
+                              "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
+                        .arg(diskNum)
+                        .arg(disk->track(0)->artist(), disk->track(0)->album());
     }
     else {
-        res << QString("<b>Disk %1</b>").arg(diskNum);
+        res << MainWindow::tr("<b>Disk %1</b>",
+                              "Error message, %1 is the disc number")
+                        .arg(diskNum);
     }
 
     res << "<ul>";
@@ -1342,7 +1347,7 @@ void MainWindow::showErrors()
     const Validator &validator = project->validator();
     QStringList      html;
 
-    html << "Some disks have errors.\nAnd will be skipped when converting:";
+    html << tr("Some disks have errors.\nAnd will be skipped when converting:", "Error message title");
     html << "<br>";
 
     int n = 0;
