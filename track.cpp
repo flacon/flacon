@@ -170,6 +170,39 @@ QString Track::resultFileName() const
 /************************************************
  *
  ************************************************/
+QString Track::resultFileDir() const
+{
+    QString dir = project->currentProfile().outFileDir();
+
+    if (dir == "~" || dir == "~//")
+        return QDir::homePath();
+
+    if (dir == ".")
+        dir = "";
+
+    if (dir.startsWith("~/"))
+        return dir.replace(0, 1, QDir::homePath());
+
+    QFileInfo fi(dir);
+
+    if (fi.isAbsolute())
+        return fi.absoluteFilePath();
+
+    if (!mDisc) {
+        return "";
+    }
+
+    QString cueFile = mDisc->cue().filePath();
+    if (cueFile.startsWith(Cue::EMBEDED_PREFIX)) {
+        cueFile = cueFile.mid(strlen(Cue::EMBEDED_PREFIX));
+    }
+
+    return QFileInfo(cueFile).dir().absolutePath() + QDir::separator() + dir;
+}
+
+/************************************************
+ *
+ ************************************************/
 bool Track::operator==(const Track &other) const
 {
     // clang-format off
@@ -277,11 +310,11 @@ QString Track::resultFilePath() const
     if (fileName.isEmpty())
         return "";
 
-    QString dir = calcResultFilePath();
+    QString dir = resultFileDir();
     if (dir.endsWith("/") || fileName.startsWith("/"))
-        return calcResultFilePath() + fileName;
+        return dir + fileName;
     else
-        return calcResultFilePath() + "/" + fileName;
+        return dir + "/" + fileName;
 }
 
 /************************************************
@@ -290,39 +323,6 @@ QString Track::resultFilePath() const
 Duration Track::duration() const
 {
     return mDisc ? mDisc->trackDuration(*this) : 0;
-}
-
-/************************************************
-
- ************************************************/
-QString Track::calcResultFilePath() const
-{
-    QString dir = project->currentProfile().outFileDir();
-
-    if (dir == "~" || dir == "~//")
-        return QDir::homePath();
-
-    if (dir == ".")
-        dir = "";
-
-    if (dir.startsWith("~/"))
-        return dir.replace(0, 1, QDir::homePath());
-
-    QFileInfo fi(dir);
-
-    if (fi.isAbsolute())
-        return fi.absoluteFilePath();
-
-    if (!mDisc) {
-        return "";
-    }
-
-    QString cueFile = mDisc->cue().filePath();
-    if (cueFile.startsWith(Cue::EMBEDED_PREFIX)) {
-        cueFile = cueFile.mid(strlen(Cue::EMBEDED_PREFIX));
-    }
-
-    return QFileInfo(cueFile).dir().absolutePath() + QDir::separator() + dir;
 }
 
 /************************************************
