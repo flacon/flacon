@@ -122,6 +122,7 @@ private:
     int            mIndex = -1;
     InputAudioFile mAudiofile;
 
+    QString calcResultFilePath() const;
     QString safeFilePathLen(const QString &path) const;
 };
 

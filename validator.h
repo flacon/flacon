@@ -68,9 +68,9 @@ private:
 
     QTimer mDelayTimer;
 
-    QStringList                     mGlobalErrors;
-    QMap<const Disk *, QStringList> mDisksErrors;
-    QMap<const Disk *, QStringList> mDisksWarnings;
+    QStringList                      mGlobalErrors;
+    QHash<const Disk *, QStringList> mDisksErrors;
+    QHash<const Disk *, QStringList> mDisksWarnings;
 
     bool mResultFilesOverwrite = false;
 
