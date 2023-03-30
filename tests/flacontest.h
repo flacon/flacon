@@ -23,8 +23,8 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef TEST_FLACON_H
-#define TEST_FLACON_H
+#ifndef FLACON_TEST_H
+#define FLACON_TEST_H
 
 #include <QObject>
 #include <QStringList>
@@ -127,6 +127,9 @@ private slots:
     void testReplayGain();
     void testReplayGain_data();
 
+    void testValidator();
+    void testValidator_data();
+
 private:
     void writeTextFile(const QString &fileName, const QString &content);
     void writeTextFile(const QString &fileName, const QStringList &content);
@@ -167,4 +170,4 @@ private:
 
 QStringList &operator<<(QStringList &list, int value);
 
-#endif // TEST_FLACON_H
+#endif // FLACON_TEST_H

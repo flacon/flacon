@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include <QTest>
-#include "testflacon.h"
+#include "flacontest.h"
 #include "tools.h"
 #include "converter/wavheader.h"
 #include "../settings.h"

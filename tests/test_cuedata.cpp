@@ -23,34 +23,29 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-
-#include "testflacon.h"
+#include "flacontest.h"
 #include <QTest>
 #include "tools.h"
 #include "../cuedata.h"
 #include "types.h"
-
 
 static QString toString(const CueData::Tags &tags)
 {
     QString res;
     for (QByteArray k : tags.keys()) {
         res += QString("%1 = %2\n").arg(QString::fromLatin1(k)).arg(QString::fromLocal8Bit(tags.value(k)));
-
     }
     return res;
 }
-
 
 static QString toString(QSettings &settings)
 {
     QString res;
-    for (const QString &k: settings.allKeys()) {
+    for (const QString &k : settings.allKeys()) {
         res += QString("%1 = %2\n").arg(k).arg(settings.value(k).toString());
     }
     return res;
 }
-
 
 void TestFlacon::testCueData()
 {
@@ -72,20 +67,17 @@ void TestFlacon::testCueData()
                  expected.childGroups().filter("TRACK").count());
 
         int n = 0;
-        for (auto track: result.tracks()) {
+        for (auto track : result.tracks()) {
             n++;
             expected.beginGroup(QString("TRACK %1").arg(n, 2, 10, QChar('0')));
             QCOMPARE(toString(track), toString(expected));
             expected.endGroup();
         }
-
-
     }
     catch (FlaconError &err) {
         FAIL(err.what());
     }
 }
-
 
 void TestFlacon::testCueData_data()
 {
@@ -94,11 +86,9 @@ void TestFlacon::testCueData_data()
 
     QString srcDir = mDataDir + "testCueData";
 
-    foreach(QString f, QDir(srcDir).entryList(QStringList("*.cue"), QDir::Files, QDir::Name))
-    {
+    foreach (QString f, QDir(srcDir).entryList(QStringList("*.cue"), QDir::Files, QDir::Name)) {
         QTest::newRow(f.toLocal8Bit())
                 << (srcDir + "/" + f)
                 << (srcDir + "/" + f + ".expected");
-
     }
 }

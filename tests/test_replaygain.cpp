@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include <QTest>
-#include "testflacon.h"
+#include "flacontest.h"
 #include "convertertest.h"
 #include "types.h"
 
