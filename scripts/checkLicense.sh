@@ -40,6 +40,9 @@ done
 #ALL=''
 #ONLY_ERRORS=1
 
+SKIP_FILES=(
+  "../tests/json_struct.h"
+)
 
 SEARCH="${SEARCH:-searchGit}"
 
@@ -73,6 +76,11 @@ FILES=$($SEARCH)
 
 RESULT=0
 while read file; do
+    if [[ " ${SKIP_FILES[*]} " =~ " ${file} " ]]; then
+        continue
+    fi
+
+
     license=`head -n 5 "$file"| grep '(c)' | sed -e 's/*//'`;# | sed -e 's/\([()]\)/\\1/g'`;
 
     case "$license" in
@@ -106,7 +114,7 @@ while read file; do
 
     let "div = 20 - ${#license}"
     printf "${color}%-20s %s${NORM}\n"  "${license}" "$file"
-    
+
 done <<< "$FILES"
 #echo
 #echo "LGPL:    $lgplCnt"
