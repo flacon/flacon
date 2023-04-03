@@ -78,6 +78,9 @@ static void createWavFile(const QString &fileName, const int duration)
  ************************************************/
 void TestFlacon::initTestCase()
 {
+    QLoggingCategory::setFilterRules("*.debug=false\n"
+                                     "default.debug=true\n");
+
     initTypes();
     Settings::setFileName(TEST_OUT_DIR "/flacon.conf");
 
