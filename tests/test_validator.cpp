@@ -39,11 +39,13 @@ struct TcDisk
     std::string              cue;
     std::string              audio;
     std::vector<std::string> errors;
+    std::vector<std::string> warnings;
 
     JS_OBJ(
             cue,
             audio,
-            errors);
+            errors,
+            warnings);
 };
 
 struct TcCase
@@ -117,10 +119,41 @@ void TestFlacon::testValidator()
         for (uint i = 0; i < spec.disks.size(); ++i) {
             QStringList expected;
             for (auto s : spec.disks[i].errors) {
-                expected << QString::fromStdString(s);
+                expected << QString::fromStdString(s).simplified();
             }
 
-            QStringList actual = validator.diskErrors(validator.disks().at(i));
+            QStringList actual;
+            for (auto s : validator.diskErrors(validator.disks().at(i))) {
+                actual << s.simplified();
+            }
+
+            if (actual != expected) {
+                QFAIL(QString("Compared errors differ.\n"
+                              "   Actual  : \"%1\"\n"
+                              "   Expected: \"%2\"")
+                              .arg(actual.join("\", \""), expected.join("\", \""))
+                              .toLocal8Bit());
+            }
+        }
+
+        for (uint i = 0; i < spec.disks.size(); ++i) {
+            QStringList expected;
+            for (auto s : spec.disks[i].warnings) {
+                expected << QString::fromStdString(s).simplified();
+            }
+
+            QStringList actual;
+            for (auto s : validator.diskWarnings(validator.disks().at(i))) {
+                actual << s.simplified();
+            }
+
+            if (actual != expected) {
+                QFAIL(QString("Compared warnings differ.\n"
+                              "   Actual  : \"%1\"\n"
+                              "   Expected: \"%2\"")
+                              .arg(actual.join("\", \""), expected.join("\", \""))
+                              .toLocal8Bit());
+            }
             QCOMPARE(actual, expected);
         }
     }

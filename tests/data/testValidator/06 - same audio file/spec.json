@@ -1,0 +1,20 @@
+{
+    "disks": [
+        {
+        "cue":   "disk_01.cue",
+        "audio": "disk_01.flac",
+
+        "warnings":  ["Disk 2 \"Test for flacon - Album 2\" uses the same audio file."]
+
+        },
+
+        {
+        "cue":   "disk_02.cue",
+        "audio": "disk_01.flac",
+
+        "warnings":  ["Disk 1 \"Test for flacon - Album 1\" uses the same audio file."]
+        }
+
+
+    ]
+}

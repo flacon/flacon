@@ -404,7 +404,7 @@ bool Validator::validateDuplicateSourceFiles(const Disk *disk, QStringList &erro
 
         if (d->cueFilePath() == disk->cueFilePath()) {
             warnings << tr("Disk %1 \"%2 - %3\" uses the same CUE file.",
-                           "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
+                           "Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
                                 .arg(n)
                                 .arg(d->discTag(TagId::Artist), d->discTag(TagId::Album));
         }
@@ -413,7 +413,7 @@ bool Validator::validateDuplicateSourceFiles(const Disk *disk, QStringList &erro
             if (audioFiles.contains(path)) {
 
                 warnings << tr("Disk %1 \"%2 - %3\" uses the same audio file.",
-                               "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name")
+                               "Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name")
                                     .arg(n)
                                     .arg(d->discTag(TagId::Artist), d->discTag(TagId::Album));
             }
