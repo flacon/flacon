@@ -1,3 +1,4 @@
+// (c)MIT
 /*
 * Copyright © 2020 Jørgen Lind
 

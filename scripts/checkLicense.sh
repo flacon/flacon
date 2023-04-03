@@ -40,9 +40,6 @@ done
 #ALL=''
 #ONLY_ERRORS=1
 
-SKIP_FILES=(
-  "../tests/json_struct.h"
-)
 
 SEARCH="${SEARCH:-searchGit}"
 
@@ -76,15 +73,10 @@ FILES=$($SEARCH)
 
 RESULT=0
 while read file; do
-    if [[ " ${SKIP_FILES[*]} " =~ " ${file} " ]]; then
-        continue
-    fi
-
-
     license=`head -n 5 "$file"| grep '(c)' | sed -e 's/*//'`;# | sed -e 's/\([()]\)/\\1/g'`;
 
     case "$license" in
-        *LGPL2+*|*DWTFYW*|*BSD*)
+        *LGPL2+*|*DWTFYW*|*BSD*|*MIT*)
             [ -z "$ALL" ] && continue
             color=$GREEN
             ;;
