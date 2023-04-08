@@ -199,6 +199,8 @@ MainWindow::MainWindow(QWidget *parent) :
     refreshEdits();
     setControlsEnable();
     polishView();
+
+    loadSettings();
 }
 
 /************************************************
@@ -1214,9 +1216,11 @@ void MainWindow::initStatusBar()
 void MainWindow::loadSettings()
 {
     // MainWindow geometry
+    int x      = Settings::i()->value("MainWindow/Left", geometry().left()).toInt();
+    int y      = Settings::i()->value("MainWindow/Top", geometry().top()).toInt();
     int width  = Settings::i()->value("MainWindow/Width", QVariant(987)).toInt();
     int height = Settings::i()->value("MainWindow/Height", QVariant(450)).toInt();
-    this->resize(width, height);
+    this->setGeometry(x, y, width, height);
 
     splitter->restoreState(Settings::i()->value("MainWindow/Splitter").toByteArray());
     trackView->header()->restoreState(Settings::i()->value("MainWindow/TrackView").toByteArray());
@@ -1230,6 +1234,8 @@ void MainWindow::loadSettings()
  ************************************************/
 void MainWindow::saveSettings()
 {
+    Settings::i()->setValue("MainWindow/Left", geometry().left());
+    Settings::i()->setValue("MainWindow/Top", geometry().top());
     Settings::i()->setValue("MainWindow/Width", QVariant(size().width()));
     Settings::i()->setValue("MainWindow/Height", QVariant(size().height()));
     Settings::i()->setValue("MainWindow/Splitter", QVariant(splitter->saveState()));
