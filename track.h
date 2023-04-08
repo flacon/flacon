@@ -41,7 +41,7 @@ class Track
 public:
     Track() = default;
     Track(Disc *disc, int index);
-    Track(const Track &other)            = default;
+    Track(const Track &other) = default;
     Track &operator=(const Track &other) = default;
     Track(Disc *disc, int index, const TrackTags &tags);
 
@@ -103,6 +103,7 @@ public:
     void    setDiscCount(DiscNum value);
 
     QString resultFileName() const;
+    QString resultFileDir() const;
     QString resultFilePath() const;
 
     Duration duration() const;
@@ -154,7 +155,7 @@ class UcharDet
 
 public:
     UcharDet();
-    UcharDet(const UcharDet &)            = delete;
+    UcharDet(const UcharDet &) = delete;
     UcharDet &operator=(const UcharDet &) = delete;
     ~UcharDet();
 

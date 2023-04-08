@@ -199,6 +199,8 @@ MainWindow::MainWindow(QWidget *parent) :
     refreshEdits();
     setControlsEnable();
     polishView();
+
+    loadSettings();
 }
 
 /************************************************
@@ -1214,9 +1216,11 @@ void MainWindow::initStatusBar()
 void MainWindow::loadSettings()
 {
     // MainWindow geometry
+    int x      = Settings::i()->value("MainWindow/Left", geometry().left()).toInt();
+    int y      = Settings::i()->value("MainWindow/Top", geometry().top()).toInt();
     int width  = Settings::i()->value("MainWindow/Width", QVariant(987)).toInt();
     int height = Settings::i()->value("MainWindow/Height", QVariant(450)).toInt();
-    this->resize(width, height);
+    this->setGeometry(x, y, width, height);
 
     splitter->restoreState(Settings::i()->value("MainWindow/Splitter").toByteArray());
     trackView->header()->restoreState(Settings::i()->value("MainWindow/TrackView").toByteArray());
@@ -1230,6 +1234,8 @@ void MainWindow::loadSettings()
  ************************************************/
 void MainWindow::saveSettings()
 {
+    Settings::i()->setValue("MainWindow/Left", geometry().left());
+    Settings::i()->setValue("MainWindow/Top", geometry().top());
     Settings::i()->setValue("MainWindow/Width", QVariant(size().width()));
     Settings::i()->setValue("MainWindow/Height", QVariant(size().height()));
     Settings::i()->setValue("MainWindow/Splitter", QVariant(splitter->saveState()));
@@ -1294,10 +1300,15 @@ static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringLi
     QStringList res;
     res << "<div>";
     if (disk->count()) {
-        res << QString("<b>Disk %1 \"%2 - %3\"</b>").arg(diskNum).arg(disk->track(0)->album(), disk->track(0)->artist());
+        res << MainWindow::tr("<b>Disk %1 \"%2 / %3\"</b>",
+                              "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
+                        .arg(diskNum)
+                        .arg(disk->track(0)->artist(), disk->track(0)->album());
     }
     else {
-        res << QString("<b>Disk %1</b>").arg(diskNum);
+        res << MainWindow::tr("<b>Disk %1</b>",
+                              "Error message, %1 is the disc number")
+                        .arg(diskNum);
     }
 
     res << "<ul>";
@@ -1342,7 +1353,7 @@ void MainWindow::showErrors()
     const Validator &validator = project->validator();
     QStringList      html;
 
-    html << "Some disks have errors.\nAnd will be skipped when converting:";
+    html << tr("Some disks have errors.\nAnd will be skipped when converting:", "Error message title");
     html << "<br>";
 
     int n = 0;

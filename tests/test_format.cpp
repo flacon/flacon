@@ -23,7 +23,7 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "testflacon.h"
+#include "flacontest.h"
 #include "tools.h"
 #include "../formats_in/informat.h"
 #include "../settings.h"

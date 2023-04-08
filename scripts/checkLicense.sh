@@ -76,7 +76,7 @@ while read file; do
     license=`head -n 5 "$file"| grep '(c)' | sed -e 's/*//'`;# | sed -e 's/\([()]\)/\\1/g'`;
 
     case "$license" in
-        *LGPL2+*|*DWTFYW*|*BSD*)
+        *LGPL2+*|*DWTFYW*|*BSD*|*MIT*)
             [ -z "$ALL" ] && continue
             color=$GREEN
             ;;
@@ -106,7 +106,7 @@ while read file; do
 
     let "div = 20 - ${#license}"
     printf "${color}%-20s %s${NORM}\n"  "${license}" "$file"
-    
+
 done <<< "$FILES"
 #echo
 #echo "LGPL:    $lgplCnt"

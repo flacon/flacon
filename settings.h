@@ -57,6 +57,9 @@ public:
         ConfigureDialog_Height,
     };
 
+    explicit Settings(const QString &fileName);
+    virtual ~Settings();
+
     static Settings *i();
     static void      setFileName(const QString &fileName);
     static QString   fileName() { return mFileName; }
@@ -98,8 +101,6 @@ signals:
 
 protected:
     explicit Settings(const QString &organization, const QString &application);
-    explicit Settings(const QString &fileName);
-    virtual ~Settings();
 
 private:
     void        init();

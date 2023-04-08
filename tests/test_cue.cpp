@@ -23,7 +23,7 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "testflacon.h"
+#include "flacontest.h"
 #include <QTest>
 #include "../cue.h"
 #include "tools.h"

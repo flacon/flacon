@@ -29,12 +29,14 @@ cmake_minimum_required( VERSION 3.0.0 )
 cmake_policy(SET CMP0028 NEW)
 
 set(TEST_SOURCES
+    flacontest.h
+    flacontest.cpp
+
     tools.h
-    testflacon.h
     discspec.h
     tools.cpp
     inittestcase.cpp
-    testflacon.cpp
+
     discspec.cpp
     convertertest.h
     convertertest.cpp

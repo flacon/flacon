@@ -240,8 +240,15 @@ QString CueCreator::writeToFile(const QString &fileTemplate)
 
     QString fileName = expander.expand(fileTemplate);
 
-    if (!fileName.endsWith(".cue"))
-        fileName += ".cue";
+    if (fileName.endsWith(".cue")) {
+        fileName = fileName.left(fileName.length() - 4);
+    }
+
+    if (track->trackNum() > 1) {
+        fileName += QString(".tracks %1-%2").arg(track->trackNum()).arg(mDisc->tracks().last()->trackNum());
+    }
+
+    fileName += ".cue";
 
     QFile file;
     file.setFileName(dir + QDir::separator() + fileName);

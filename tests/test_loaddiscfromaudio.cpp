@@ -23,7 +23,7 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "testflacon.h"
+#include "flacontest.h"
 #include <QTest>
 #include "tools.h"
 #include <QDebug>
@@ -65,7 +65,7 @@ void TestFlacon::testLoadDiscFromAudio()
         }
 
         QString fileName = dir + "/" + spec.value("LOAD").toString();
-        Disc *  disc     = fileName.endsWith("cue") ? p.addCueFile(fileName) : p.addAudioFile(fileName);
+        Disc   *disc     = fileName.endsWith("cue") ? p.addCueFile(fileName) : p.addAudioFile(fileName);
 
         disc->setCodecName(spec.value("CODEC", "UTF-8").toString());
 

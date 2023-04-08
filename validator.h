@@ -68,9 +68,9 @@ private:
 
     QTimer mDelayTimer;
 
-    QStringList                     mGlobalErrors;
-    QMap<const Disk *, QStringList> mDisksErrors;
-    QMap<const Disk *, QStringList> mDisksWarnings;
+    QStringList                      mGlobalErrors;
+    QHash<const Disk *, QStringList> mDisksErrors;
+    QHash<const Disk *, QStringList> mDisksWarnings;
 
     bool mResultFilesOverwrite = false;
 
@@ -81,6 +81,7 @@ private:
     bool validateCue(const Disk *disk, QStringList &errors, QStringList &warnings);
     bool validateAudioFiles(const Disk *disk, QStringList &errors, QStringList &warnings);
     bool validateResultFiles(const Disk *disk, QStringList &errors, QStringList &warnings);
+    bool validateDuplicateSourceFiles(const Disk *disk, QStringList &errors, QStringList &warnings) const;
     bool validateRasampler(const Disk *disk, QStringList &errors, QStringList &warnings);
     bool vaslidateDiskWarnings(const Disk *disk, QStringList &warnings);
 };

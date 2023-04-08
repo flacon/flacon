@@ -170,6 +170,14 @@ QString Track::resultFileName() const
 /************************************************
  *
  ************************************************/
+QString Track::resultFileDir() const
+{
+    return QFileInfo(resultFilePath()).absoluteDir().path();
+}
+
+/************************************************
+ *
+ ************************************************/
 bool Track::operator==(const Track &other) const
 {
     // clang-format off
@@ -279,9 +287,9 @@ QString Track::resultFilePath() const
 
     QString dir = calcResultFilePath();
     if (dir.endsWith("/") || fileName.startsWith("/"))
-        return calcResultFilePath() + fileName;
+        return dir + fileName;
     else
-        return calcResultFilePath() + "/" + fileName;
+        return dir + "/" + fileName;
 }
 
 /************************************************
