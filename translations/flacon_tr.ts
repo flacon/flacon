@@ -906,7 +906,22 @@ Devam etmek istiyor musun?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Trash sources for successfully converted disks and remove from list…</source>
+        <source>Trash sources for converted disks and remove from list…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;Disk %1 &quot;%2 / %3&quot;&lt;/b&gt;</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;Disk %1&lt;/b&gt;</source>
+        <comment>Error message, %1 is the disc number</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have errors, and will be skipped when converting:</source>
+        <comment>Error message title</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1019,10 +1034,6 @@ Devam etmek istiyor musun?</translation>
         <translation>Ayarlar</translation>
     </message>
     <message>
-        <source> Audio profiles</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>General</source>
         <translation>Genel</translation>
     </message>
@@ -1032,6 +1043,10 @@ Devam etmek istiyor musun?</translation>
     </message>
     <message>
         <source>Update</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Audio profiles</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1608,6 +1623,32 @@ The ReplayGain will be disabled for this disk.</source>
     <message>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+ Maybe you need to change the &quot;Start num&quot; for one of them.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
+        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
+        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
         <translation type="unfinished"/>
     </message>
 </context>

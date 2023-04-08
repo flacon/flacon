@@ -1353,7 +1353,7 @@ void MainWindow::showErrors()
     const Validator &validator = project->validator();
     QStringList      html;
 
-    html << tr("Some disks have errors.\nAnd will be skipped when converting:", "Error message title");
+    html << tr("Some disks have errors, and will be skipped when converting:", "Error message title");
     html << "<br>";
 
     int n = 0;

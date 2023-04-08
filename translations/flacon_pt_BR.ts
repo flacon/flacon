@@ -956,8 +956,23 @@ Você deseja continuar?</translation>
         <translation>%1% completos</translation>
     </message>
     <message>
-        <source>Trash sources for successfully converted disks and remove from list…</source>
-        <translation>Mover fontes de discos convertidos com sucesso para a lixeira e removê-las da lista...</translation>
+        <source>Trash sources for converted disks and remove from list…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;Disk %1 &quot;%2 / %3&quot;&lt;/b&gt;</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;Disk %1&lt;/b&gt;</source>
+        <comment>Error message, %1 is the disc number</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have errors, and will be skipped when converting:</source>
+        <comment>Error message title</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1069,10 +1084,6 @@ Você deseja continuar?</translation>
         <translation>Configurações</translation>
     </message>
     <message>
-        <source> Audio profiles</source>
-        <translation>Perfis de áudio</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Geral</translation>
     </message>
@@ -1083,6 +1094,10 @@ Você deseja continuar?</translation>
     <message>
         <source>Update</source>
         <translation>Atualização</translation>
+    </message>
+    <message>
+        <source>Audio profiles</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1683,6 +1698,32 @@ O ReplayGain será desabilitado para esse disco.</translation>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
         <translation>Perfil de saída incorreto.</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+ Maybe you need to change the &quot;Start num&quot; for one of them.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
+        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
+        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

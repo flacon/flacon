@@ -433,7 +433,7 @@ En el modo CBR, establece la tasa de bits específica de salida.
     <message>
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>Pista %1. Error de codificación:</translation>
     </message>
 </context>
 <context>
@@ -891,52 +891,52 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Get from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Obtener de Internet</translation>
     </message>
     <message>
         <source>Get album information from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Obtener la información del álbum de Internet</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
-        <translation type="unfinished"/>
+        <translation>Obtener datos de Internet</translation>
     </message>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
-        <translation type="unfinished"/>
+        <translation>Flacon - Convirtiendo</translation>
     </message>
     <message>
         <source>Warnings</source>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Avisos</translation>
     </message>
     <message>
         <source>Show Warnings</source>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Mostrar avisos</translation>
     </message>
     <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Errores</translation>
     </message>
     <message>
         <source>Show Errors</source>
         <comment>Toolbar item tooltip</comment>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Mostrar errores</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>Enviar a la papelera las fuentes de los discos convertidos exitosamente y eliminarlos de la lista...</translation>
     </message>
     <message>
         <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>Conversión en curso.&lt;br&gt;¿Seguro que quieres salir?</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -946,15 +946,30 @@ Do you want to continue?</source>
     <message>
         <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
         <comment>Message box text, %1 is a list of files</comment>
-        <translation type="unfinished"/>
+        <translation>Los siguiente archivos serán movidos a la papelera.&lt;/b&gt;¿Eliminar los siguientes archivos?%1</translation>
     </message>
     <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
+        <translation>%1% completado</translation>
+    </message>
+    <message>
+        <source>Trash sources for converted disks and remove from list…</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Trash sources for successfully converted disks and remove from list…</source>
+        <source>&lt;b&gt;Disk %1 &quot;%2 / %3&quot;&lt;/b&gt;</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;Disk %1&lt;/b&gt;</source>
+        <comment>Error message, %1 is the disc number</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have errors, and will be skipped when converting:</source>
+        <comment>Error message title</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1067,10 +1082,6 @@ Do you want to continue?</source>
         <translation>Preferencias</translation>
     </message>
     <message>
-        <source> Audio profiles</source>
-        <translation>Pefiles de audio</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>General</translation>
     </message>
@@ -1081,6 +1092,10 @@ Do you want to continue?</source>
     <message>
         <source>Update</source>
         <translation>Actualizar</translation>
+    </message>
+    <message>
+        <source>Audio profiles</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1399,7 +1414,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
-        <translation type="unfinished"/>
+        <translation>el nombre de archivo está vacío</translation>
     </message>
 </context>
 <context>
@@ -1417,7 +1432,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>El programa %1 está instalado de acuerdo a su configuración, pero el archivo no es ejecutable.&lt;br&gt;Verifique que todos los programas requeridos están instalados y en sus preferencias.</translation>
     </message>
 </context>
 <context>
@@ -1485,7 +1500,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     </message>
     <message>
         <source>Get data from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Obtener datos de Internet</translation>
     </message>
 </context>
 <context>
@@ -1631,7 +1646,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>Some disks will overwrite the resulting files of another disk.</source>
         <comment>error message</comment>
-        <translation type="unfinished"/>
+        <translation>Algunos discos sobrescribirán los archivos resultantes de otro disco.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
@@ -1660,23 +1675,52 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <source>A maximum of %1-bit per sample is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Este formato admite un máximo de %1 bits por muestra.
+Este valor se usará para la codificación.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>Este formato admite una tasa de muestreo máxima de %1.
+Este valor se usará para la codificación.</translation>
     </message>
     <message>
         <source>ReplayGain calculation is not supported for multi-channel audio.
 The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>El cálculo de ReplayGain no es compatible con el audio multicanal.
+ReplayGain se desactivará para este disco.</translation>
     </message>
     <message>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
+        <translation>Perfil de salida incorrecto.</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+ Maybe you need to change the &quot;Start num&quot; for one of them.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
+        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
+        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
         <translation type="unfinished"/>
     </message>
 </context>

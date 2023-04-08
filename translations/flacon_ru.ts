@@ -955,8 +955,23 @@ Do you want to continue?</source>
         <translation>%1% готово </translation>
     </message>
     <message>
-        <source>Trash sources for successfully converted disks and remove from list…</source>
-        <translation>Удалить исходные файлы для успешно преобразованных дисков и удалить последние из списка…</translation>
+        <source>Trash sources for converted disks and remove from list…</source>
+        <translation>Удалить исходные файлы преобразованных дисков и удалить из списка…</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Disk %1 &quot;%2 / %3&quot;&lt;/b&gt;</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation>&lt;b&gt;Диск %1 &quot;%2 / %3&quot;&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Disk %1&lt;/b&gt;</source>
+        <comment>Error message, %1 is the disc number</comment>
+        <translation>Диск %1&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Some disks have errors, and will be skipped when converting:</source>
+        <comment>Error message title</comment>
+        <translation>Некоторые диски имеют ошибки и будут пропущены при конвертировании:</translation>
     </message>
 </context>
 <context>
@@ -1068,10 +1083,6 @@ Do you want to continue?</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <source> Audio profiles</source>
-        <translation>Аудио профили</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Общие</translation>
     </message>
@@ -1082,6 +1093,10 @@ Do you want to continue?</source>
     <message>
         <source>Update</source>
         <translation>Обновления</translation>
+    </message>
+    <message>
+        <source>Audio profiles</source>
+        <translation>Аудио профили</translation>
     </message>
 </context>
 <context>
@@ -1682,6 +1697,33 @@ The ReplayGain will be disabled for this disk.</source>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
         <translation>Некорректный профиль.</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation>Диск %1 &quot;%2 - %3&quot; перезапишет собственные файлы.</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation>Диск %1 &quot;%2 - %3&quot; перезапишет файлы этого диска.</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+ Maybe you need to change the &quot;Start num&quot; for one of them.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation>Диск %1 &quot;%2 - %3&quot; имеет пересекающиеся номера треков.
+ Возможно надо изменить &quot;Нумеровать с&quot; для одного из дисков.</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
+        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation>Диск %1 &quot;%2 - %3&quot; использует тот же CUE файл.</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
+        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
+        <translation>Диск %1 &quot;%2 - %3&quot; использует тот же аудио файл.</translation>
     </message>
 </context>
 <context>

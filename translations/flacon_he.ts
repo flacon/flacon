@@ -433,7 +433,7 @@ In CBR mode, it sets the specific output bitrate.
     <message>
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
-        <translation type="unfinished"/>
+        <translation>רצועה %1. שגיאת מקודד:</translation>
     </message>
 </context>
 <context>
@@ -935,12 +935,12 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>העברת מקורות תקליטורים שהומרו בהצלחה לסל המחזור והסרתם מהרשימה...</translation>
     </message>
     <message>
         <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
         <comment>Message box text</comment>
-        <translation type="unfinished"/>
+        <translation>המרה בביצוע. &lt;br&gt; האם לצאת בכל זאת?</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -950,15 +950,30 @@ Do you want to continue?</source>
     <message>
         <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
         <comment>Message box text, %1 is a list of files</comment>
-        <translation type="unfinished"/>
+        <translation>הקבצים הבאים יועברו לסל המחזור. &lt;/b&gt;האם להסיר את הקבצים הבאים? %1</translation>
     </message>
     <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
+        <translation>%1 הושלמו</translation>
+    </message>
+    <message>
+        <source>Trash sources for converted disks and remove from list…</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Trash sources for successfully converted disks and remove from list…</source>
+        <source>&lt;b&gt;Disk %1 &quot;%2 / %3&quot;&lt;/b&gt;</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;Disk %1&lt;/b&gt;</source>
+        <comment>Error message, %1 is the disc number</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have errors, and will be skipped when converting:</source>
+        <comment>Error message title</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1071,10 +1086,6 @@ Do you want to continue?</source>
         <translation>העדפות</translation>
     </message>
     <message>
-        <source> Audio profiles</source>
-        <translation>פרופילי שמע</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>כללי</translation>
     </message>
@@ -1085,6 +1096,10 @@ Do you want to continue?</source>
     <message>
         <source>Update</source>
         <translation>עדכון</translation>
+    </message>
+    <message>
+        <source>Audio profiles</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1417,12 +1432,12 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation>תוכנה %1 הותקנה בהתאם להגדרות , אך הקובץ הבינארי לא נמצא. &lt;br&gt;נא לוודא כי כל התוכניות הנדרשות מותקנות ונמצאות בהעדפות.</translation>
+        <translation>התוכנה %1 הותקנה בהתאם להגדרות , אך הקובץ הבינארי לא נמצא. &lt;br&gt;נא לוודא כי כל התוכניות הנדרשות מותקנות ונמצאות בהעדפות.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
-        <translation type="unfinished"/>
+        <translation>התוכנה %1 הותקנה בהתאם להגדרות , אך הקובץ לא ניתן להפעלה. &lt;br&gt;נא לוודא כי כל התוכניות הנדרשות מותקנות ונמצאות בהעדפות.</translation>
     </message>
 </context>
 <context>
@@ -1636,7 +1651,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>Some disks will overwrite the resulting files of another disk.</source>
         <comment>error message</comment>
-        <translation type="unfinished"/>
+        <translation>מספר תקליטורים יכתבו על קבצים שהתקבלו מטקליטור אחר.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
@@ -1659,29 +1674,57 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>קובץ האודיו קצר מהצפוי על פי גליון cue.</translation>
+        <translation>קובץ שמע קצר מהצפוי לפי גליון cue.</translation>
     </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>התבנית תומכת בקצב דגימה מירבי של %1.
+ ערך זה ישמש לקידוד.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>התבנית תומכת בקצב דגימה מירבי של %1.
+ ערך זה ישמש לקידוד.</translation>
     </message>
     <message>
         <source>ReplayGain calculation is not supported for multi-channel audio.
 The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
-        <translation type="unfinished"/>
+        <translation>חישוב ReplayGain לא נתמך בשמע רב־ערוצי. האפשרות תושבת עבור תקליטור זה.</translation>
     </message>
     <message>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
+        <translation>פרופיל פלט שגוי.</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+ Maybe you need to change the &quot;Start num&quot; for one of them.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
+        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
+        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
         <translation type="unfinished"/>
     </message>
 </context>
