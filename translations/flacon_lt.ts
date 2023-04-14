@@ -486,7 +486,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Pirmo takelio &quot;pregap&quot;:</translation>
+        <translation>Pirmo takelio „pregap“:</translation>
     </message>
     <message>
         <source>Write to file</source>
@@ -500,24 +500,24 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Įterpti &quot;Atlikėją&quot;</translation>
+        <translation>Įterpti „Atlikėją“</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Įterpti &quot;Albumo pavadinimą&quot;</translation>
+        <translation>Įterpti „Albumo pavadinimą“</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Įterpti &quot;Metus&quot;</translation>
+        <translation>Įterpti „Metus“</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Įterpti &quot;Žanrą&quot;</translation>
+        <translation>Įterpti „Žanrą“</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-        <translation>Naudoti &quot;%1&quot;</translation>
+        <translation>Naudoti „%1“</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
@@ -593,7 +593,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
         <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
 
-Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
+Jeigu kelias yra paliekamas tuščias arba prasideda nuo „.“ (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
     </message>
     <message>
         <source>Pattern:</source>
@@ -957,21 +957,21 @@ Ar norite tęsti?</translation>
     </message>
     <message>
         <source>Trash sources for converted disks and remove from list…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;Disk %1 &quot;%2 / %3&quot;&lt;/b&gt;</source>
-        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&lt;b&gt;Disk %1&lt;/b&gt;</source>
-        <comment>Error message, %1 is the disc number</comment>
-        <translation type="unfinished"/>
+        <translation>Perkelti konvertuotų diskų pradinius failus į šiukšlinę ir pašalinti juos iš sąrašo…</translation>
     </message>
     <message>
         <source>Some disks have errors, and will be skipped when converting:</source>
         <comment>Error message title</comment>
+        <translation>Kai kuriuose diskuose yra klaidų ir, konvertuojant, jie bus praleisti:</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot;</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1</source>
+        <comment>Error message, %1 is the disc number</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1035,44 +1035,44 @@ Ar norite tęsti?</translation>
     <name>OutPatternButton</name>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>Įterpti &quot;Takelio numerį&quot;</translation>
+        <translation>Įterpti „Takelio numerį“</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Įterpti &quot;Bendrą takelių skaičių&quot;</translation>
+        <translation>Įterpti „Bendrą takelių skaičių“</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>Įterpti &quot;Atlikėją&quot;</translation>
+        <translation>Įterpti „Atlikėją“</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Įterpti &quot;Albumo pavadinimą&quot;</translation>
+        <translation>Įterpti „Albumo pavadinimą“</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Įterpti &quot;Takelio pavadinimą&quot;</translation>
+        <translation>Įterpti „Takelio pavadinimą“</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>Įterpti &quot;Metus&quot;</translation>
+        <translation>Įterpti „Metus“</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>Įterpti &quot;Žanrą&quot;</translation>
+        <translation>Įterpti „Žanrą“</translation>
     </message>
     <message>
         <source>Insert &quot;Disc number&quot;</source>
-        <translation>Įterpti &quot;Disko numerį&quot;</translation>
+        <translation>Įterpti „Disko numerį“</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of discs&quot;</source>
-        <translation>Įterpti &quot;Bendrą diskų skaičių&quot;</translation>
+        <translation>Įterpti „Bendrą diskų skaičių“</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-        <translation>Naudoti &quot;%1&quot;</translation>
+        <translation>Naudoti „%1“</translation>
     </message>
 </context>
 <context>
@@ -1097,7 +1097,11 @@ Ar norite tęsti?</translation>
     </message>
     <message>
         <source>Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation> Garso profiliai</translation>
+    </message>
+    <message>
+        <source> Audio profiles</source>
+        <translation> Garso profiliai</translation>
     </message>
 </context>
 <context>
@@ -1122,7 +1126,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
         <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
 
-Jeigu kelias yra paliekamas tuščias arba prasideda nuo &quot;.&quot; (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
+Jeigu kelias yra paliekamas tuščias arba prasideda nuo „.“ (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
     </message>
     <message>
         <source>Pattern:</source>
@@ -1299,7 +1303,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
-        <translation>Ar tikrai norite ištrinti profilį &quot;%1&quot;?</translation>
+        <translation>Ar tikrai norite ištrinti profilį „%1“?</translation>
     </message>
     <message>
         <source>Delete the profile</source>
@@ -1354,11 +1358,11 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
-        <translation>Nepavyksta sukurti katalogo &quot;%1&quot;.</translation>
+        <translation>Nepavyksta sukurti katalogo „%1“.</translation>
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Nepavyksta rašyti į katalogą &quot;%1&quot;.</translation>
+        <translation>Nepavyksta rašyti į katalogą „%1“.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1366,7 +1370,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Failo &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nėra</translation>
+        <translation>Failo &lt;b&gt;„%1“&lt;/b&gt; nėra</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1702,27 +1706,27 @@ The ReplayGain will be disabled for this disk.</source>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation type="unfinished"/>
+        <translation>Diskas %1 „%2 - %3“ perrašys savo failus.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
- Maybe you need to change the &quot;Start num&quot; for one of them.</source>
-        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation type="unfinished"/>
+        <translation>Diskas %1 „%2 - %3“ perrašys šio disko failus.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation type="unfinished"/>
+        <translation>Diskas %1 „%2 - %3“ naudoja tą patį CUE failą.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
+        <translation>Diskas %1 „%2 - %3“ naudoja tą patį garso failą.</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+ You could change the &quot;Start num&quot; for one of them.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <translation type="unfinished"/>
     </message>
 </context>

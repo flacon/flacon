@@ -958,18 +958,18 @@ Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;Disk %1 &quot;%2 / %3&quot;&lt;/b&gt;</source>
+        <source>Some disks have errors, and will be skipped when converting:</source>
+        <comment>Error message title</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot;</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>&lt;b&gt;Disk %1&lt;/b&gt;</source>
+        <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Some disks have errors, and will be skipped when converting:</source>
-        <comment>Error message title</comment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1096,6 +1096,10 @@ Do you want to continue?</source>
     <message>
         <source>Audio profiles</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> Audio profiles</source>
+        <translation>Pefiles de audio</translation>
     </message>
 </context>
 <context>
@@ -1708,12 +1712,6 @@ ReplayGain se desactivará para este disco.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
- Maybe you need to change the &quot;Start num&quot; for one of them.</source>
-        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <translation type="unfinished"/>
@@ -1721,6 +1719,12 @@ ReplayGain se desactivará para este disco.</translation>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+ You could change the &quot;Start num&quot; for one of them.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <translation type="unfinished"/>
     </message>
 </context>

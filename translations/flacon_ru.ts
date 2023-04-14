@@ -959,19 +959,19 @@ Do you want to continue?</source>
         <translation>Удалить исходные файлы преобразованных дисков и удалить из списка…</translation>
     </message>
     <message>
-        <source>&lt;b&gt;Disk %1 &quot;%2 / %3&quot;&lt;/b&gt;</source>
-        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation>&lt;b&gt;Диск %1 &quot;%2 / %3&quot;&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Disk %1&lt;/b&gt;</source>
-        <comment>Error message, %1 is the disc number</comment>
-        <translation>Диск %1&lt;/b&gt;</translation>
-    </message>
-    <message>
         <source>Some disks have errors, and will be skipped when converting:</source>
         <comment>Error message title</comment>
         <translation>Некоторые диски имеют ошибки и будут пропущены при конвертировании:</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot;</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation>Диск %1 &quot;%2 - %3&quot;</translation>
+    </message>
+    <message>
+        <source>Disk %1</source>
+        <comment>Error message, %1 is the disc number</comment>
+        <translation>Диск %1</translation>
     </message>
 </context>
 <context>
@@ -1096,6 +1096,10 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Audio profiles</source>
+        <translation>Аудио профили</translation>
+    </message>
+    <message>
+        <source> Audio profiles</source>
         <translation>Аудио профили</translation>
     </message>
 </context>
@@ -1709,13 +1713,6 @@ The ReplayGain will be disabled for this disk.</source>
         <translation>Диск %1 &quot;%2 - %3&quot; перезапишет файлы этого диска.</translation>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
- Maybe you need to change the &quot;Start num&quot; for one of them.</source>
-        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation>Диск %1 &quot;%2 - %3&quot; имеет пересекающиеся номера треков.
- Возможно надо изменить &quot;Нумеровать с&quot; для одного из дисков.</translation>
-    </message>
-    <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <translation>Диск %1 &quot;%2 - %3&quot; использует тот же CUE файл.</translation>
@@ -1724,6 +1721,13 @@ The ReplayGain will be disabled for this disk.</source>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
         <translation>Диск %1 &quot;%2 - %3&quot; использует тот же аудио файл.</translation>
+    </message>
+    <message>
+        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+ You could change the &quot;Start num&quot; for one of them.</source>
+        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <translation>Диск %1 &quot;%2 - %3&quot; имеет пересекающиеся номера треков.
+ Возможно надо изменить &quot;Нумеровать с&quot; для одного из дисков.</translation>
     </message>
 </context>
 <context>
