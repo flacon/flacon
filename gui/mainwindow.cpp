@@ -1300,15 +1300,10 @@ static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringLi
     QStringList res;
     res << "<div>";
     if (disk->count()) {
-        res << MainWindow::tr("<b>Disk %1 \"%2 / %3\"</b>",
-                              "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
-                        .arg(diskNum)
-                        .arg(disk->track(0)->artist(), disk->track(0)->album());
+        res << "<b>" + MainWindow::tr("Disk %1 \"%2 - %3\"", "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively").arg(diskNum).arg(disk->track(0)->artist(), disk->track(0)->album()) + "</b>";
     }
     else {
-        res << MainWindow::tr("<b>Disk %1</b>",
-                              "Error message, %1 is the disc number")
-                        .arg(diskNum);
+        res << "<b>" + MainWindow::tr("Disk %1", "Error message, %1 is the disc number").arg(diskNum) + "</b>";
     }
 
     res << "<ul>";
