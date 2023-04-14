@@ -5,7 +5,7 @@
         "audio": "disk_01.flac",
 
         "errors":  [
-            "Disk 2 \"Test for flacon - Short file\" has overlapping track numbers.\nMaybe you need to change the \"Start num\" for one of them."
+            "Disk 2 \"Test for flacon - Short file\" has overlapping track numbers.\nYou could change the \"Start num\" for one of them."
         ]
         },
 
@@ -14,7 +14,7 @@
         "audio": "disk_02.flac",
 
         "errors":  [
-            "Disk 1 \"Test for flacon - Short file\" has overlapping track numbers.\nMaybe you need to change the \"Start num\" for one of them."
+            "Disk 1 \"Test for flacon - Short file\" has overlapping track numbers.\nYou could change the \"Start num\" for one of them."
         ]
         }
 
