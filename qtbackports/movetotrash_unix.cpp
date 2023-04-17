@@ -143,7 +143,6 @@ bool moveFileToTrash(const QString &fileName, QString *pathInTrash)
     if (pathInTrash) {
         *pathInTrash = targetPath;
     }
-    qDebug() << "@@@" << Q_FUNC_INFO;
     return true;
 }
 

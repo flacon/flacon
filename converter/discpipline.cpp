@@ -186,7 +186,7 @@ DiscPipeline::~DiscPipeline()
     mThreads.clear();
 
     for (QThread *t : findChildren<QThread *>()) {
-        qDebug(LOG).noquote() << "Delete " << t->objectName();
+        qCDebug(LOG).noquote() << "Delete " << t->objectName();
         t->disconnect();
         t->setParent(nullptr);
         t->deleteLater();
