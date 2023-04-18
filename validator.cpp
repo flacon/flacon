@@ -370,7 +370,7 @@ bool Validator::validateResultFiles(const Disk *disk, QStringList &inErrors, QSt
                 }
 
                 if (t->trackNum() == trackNum && t->resultFileDir() == outDir) {
-                    errors << tr("Disk %1 \"%2 - %3\" has overlapping track numbers.\n You could change the \"Start num\" for one of them.",
+                    errors << tr("Disk %1 \"%2 - %3\" has overlapping track numbers.\nYou could change the \"Start num\" for one of them.",
                                  "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
                                       .arg(n)
                                       .arg(d->discTag(TagId::Artist), d->discTag(TagId::Album));
