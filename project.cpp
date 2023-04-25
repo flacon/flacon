@@ -189,17 +189,9 @@ Disc *Project::addCueFile(const QString &fileName)
 /************************************************
 
  ************************************************/
-const Profile &Project::currentProfile() const
+Profile Project::currentProfile()
 {
-    return Settings::i()->currentProfile();
-}
-
-/************************************************
-
- ************************************************/
-Profile &Project::currentProfile()
-{
-    return Settings::i()->currentProfile();
+    return *profile();
 }
 
 /************************************************
@@ -207,9 +199,52 @@ Profile &Project::currentProfile()
  ************************************************/
 bool Project::selectProfile(const QString &profileId)
 {
-    bool res = Settings::i()->selectProfile(profileId);
-    mValidator.setProfile(currentProfile());
-    return res;
+    Profile *p = mProfiles.find(profileId);
+    if (p) {
+        mProfile = p;
+    }
+    else {
+        if (!mProfiles.isEmpty()) {
+            mProfile = &mProfiles.first();
+        }
+        else {
+            static Profile nullProfile;
+            mProfile = &nullProfile;
+        }
+    }
+
+    mValidator.setProfile(*profile());
+
+    return p != nullptr;
+}
+
+/************************************************
+
+ ************************************************/
+void Project::setProfiles(Profiles profiles)
+{
+    QString id = profile()->id();
+    mProfiles  = profiles;
+    selectProfile(id);
+}
+
+/************************************************
+ *
+ ************************************************/
+void Project::load(Settings *settings)
+{
+    mProfiles = settings->readProfiles();
+    selectProfile(settings->readCurrentProfileId());
+}
+
+/************************************************
+ *
+ ************************************************/
+void Project::save(Settings *settings)
+{
+    settings->writeProfiles(mProfiles);
+    settings->writeCurrentProfileId(profile()->id());
+    settings->sync();
 }
 
 /************************************************

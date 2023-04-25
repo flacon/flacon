@@ -27,25 +27,31 @@
 #include "ui_preferencesdialog.h"
 #include <QDialogButtonBox>
 #include <QAbstractButton>
-#include "../settings.h"
 #include "../icon.h"
 #include <QLabel>
 #include <QFormLayout>
 #include <QToolButton>
+#include <QMessageBox>
 #include "../controls.h"
+
+#ifdef Q_OS_MAC
+static constexpr bool DIALOG_HAS_BUTTONS = false;
+#else
+static constexpr bool DIALOG_HAS_BUTTONS = true;
+#endif
 
 /************************************************
  *
  ************************************************/
-PreferencesDialog *PreferencesDialog::createAndShow(QWidget *parent)
+PreferencesDialog *PreferencesDialog::createAndShow(const Profiles &profiles, QWidget *parent)
 {
-    return createAndShow("", parent);
+    return createAndShow(profiles, "", parent);
 }
 
 /************************************************
  *
  ************************************************/
-PreferencesDialog *PreferencesDialog::createAndShow(const QString &profileId, QWidget *parent)
+PreferencesDialog *PreferencesDialog::createAndShow(const Profiles &profiles, const QString &currentProfileId, QWidget *parent)
 {
     PreferencesDialog *instance = parent->findChild<PreferencesDialog *>();
 
@@ -53,8 +59,9 @@ PreferencesDialog *PreferencesDialog::createAndShow(const QString &profileId, QW
         instance = new PreferencesDialog(parent);
     }
 
-    if (!profileId.isEmpty()) {
-        instance->showProfile(profileId);
+    instance->setProfiles(profiles);
+    if (!currentProfileId.isEmpty()) {
+        instance->showProfile(currentProfileId);
     }
 
     instance->show();
@@ -67,15 +74,6 @@ PreferencesDialog *PreferencesDialog::createAndShow(const QString &profileId, QW
 /************************************************
  *
  ************************************************/
-void PreferencesDialog::showProfile(const QString &profileId)
-{
-    ui->pagesWidget->setCurrentIndex(0);
-    ui->profilesPage->selectProfile(profileId);
-}
-
-/************************************************
- *
- ************************************************/
 PreferencesDialog::PreferencesDialog(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::PreferencesDialog)
@@ -83,25 +81,32 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
     ui->setupUi(this);
     this->setMinimumSize(this->size());
 
+    if (parent) {
+        parent->installEventFilter(this);
+    }
+
     setStyleSheet("QFrame[frameShape='4'] { border-bottom: 1px solid #7F7F7F7F; background: transparent; }");
 
     initToolBar();
 
-#ifdef Q_OS_MAC
-    ui->buttonBox->hide();
-#endif
+    ui->buttonBox->setVisible(DIALOG_HAS_BUTTONS);
+    mSaveOnClose = !DIALOG_HAS_BUTTONS;
 
     // Restore saved size ..................
     fixLayout(this);
-    int width  = Settings::i()->value(Settings::ConfigureDialog_Width).toInt();
-    int height = Settings::i()->value(Settings::ConfigureDialog_Height).toInt();
+    int width  = Settings_OLD::i()->value(Settings_OLD::ConfigureDialog_Width).toInt();
+    int height = Settings_OLD::i()->value(Settings_OLD::ConfigureDialog_Height).toInt();
     resize(width, height);
 
-    // Restore saved size ..................
-    load();
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, [this]() {
+        mSaveOnClose = true;
+        close();
+    });
 
-    connect(ui->buttonBox, &QDialogButtonBox::accepted, [this]() { done(true); });
-    connect(ui->buttonBox, &QDialogButtonBox::rejected, [this]() { done(false); });
+    connect(ui->buttonBox, &QDialogButtonBox::rejected, this, [this]() {
+        mSaveOnClose = false;
+        close();
+    });
 }
 
 /************************************************
@@ -131,8 +136,8 @@ void PreferencesDialog::initToolBar()
     QList<QAction *> acts = ui->toolBar->actions();
     for (int i = 0; i < acts.length(); ++i) {
         QAction *act = acts[i];
-        connect(act, &QAction::triggered, [i, this] { ui->pagesWidget->setCurrentIndex(i); });
-        connect(ui->pagesWidget, &QStackedWidget::currentChanged, [i, act](int index) { act->setChecked(index == i); });
+        connect(act, &QAction::triggered, this, [i, this] { ui->pagesWidget->setCurrentIndex(i); });
+        connect(ui->pagesWidget, &QStackedWidget::currentChanged, this, [i, act](int index) { act->setChecked(index == i); });
     }
 
     ui->actShowProfilesPage->setChecked(true);
@@ -143,69 +148,39 @@ void PreferencesDialog::initToolBar()
  ************************************************/
 PreferencesDialog::~PreferencesDialog()
 {
+    Settings_OLD::i()->setValue(Settings_OLD::ConfigureDialog_Width, size().width());
+    Settings_OLD::i()->setValue(Settings_OLD::ConfigureDialog_Height, size().height());
+    Settings_OLD::i()->sync();
+
     delete ui;
 }
 
 /************************************************
  *
  ************************************************/
-void PreferencesDialog::done(bool accept)
+void PreferencesDialog::showProfile(const QString &profileId)
 {
-    Q_UNUSED(accept)
-    Settings::i()->setValue(Settings::ConfigureDialog_Width, size().width());
-    Settings::i()->setValue(Settings::ConfigureDialog_Height, size().height());
-
-#ifndef Q_OS_MAC
-    if (accept)
-#endif
-    {
-        save();
-    }
-
-    Settings::i()->sync();
-    close();
-    emit finished();
+    ui->pagesWidget->setCurrentIndex(0);
+    ui->profilesPage->selectProfile(profileId);
 }
 
 /************************************************
  *
  ************************************************/
-void PreferencesDialog::load()
+void PreferencesDialog::setProfiles(const Profiles &profiles)
 {
-    const Settings *settings = Settings::i();
-
     // Profiles page ......................
-    ui->profilesPage->setProfiles(settings->profiles());
+    ui->profilesPage->setProfiles(profiles);
 
     // General  page .......................
-    ui->generalPage->setEncoderThreadsCount(settings->encoderThreadsCount());
-    ui->generalPage->setTmpDir(settings->tmpDir());
-    ui->generalPage->setDefaultCodepage(settings->defaultCodepage());
+    Profile p = !profiles.isEmpty() ? profiles.first() : Profile();
+    ui->generalPage->setEncoderThreadsCount(p.encoderThreadsCount());
+    ui->generalPage->setTmpDir(p.tmpDir());
+    ui->generalPage->setDefaultCodepage(p.defaultCodepage());
 
 #ifndef BUNDLED_PROGRAMS
     // Programs page .......................
     ui->programsPage->load();
-#endif
-}
-
-/************************************************
- *
- ************************************************/
-void PreferencesDialog::save()
-{
-    Settings *settings = Settings::i();
-
-    // Profiles page ......................
-    Settings::i()->setProfiles(ui->profilesPage->profiles());
-
-    // General  page .......................
-    settings->setEncoderThreadsCount(ui->generalPage->encoderThreadsCount());
-    settings->setTmpDir(ui->generalPage->tmpDir());
-    settings->setDefaultCodepage(ui->generalPage->defaultCodepage());
-
-#ifndef BUNDLED_PROGRAMS
-    // Programs page .......................
-    ui->programsPage->save();
 #endif
 }
 
@@ -240,11 +215,69 @@ void PreferencesDialog::fixLayout(const QWidget *parent)
     }
 }
 
+Profiles PreferencesDialog::profiles() const
+{
+    return ui->profilesPage->profiles();
+}
+
 /************************************************
  *
  ************************************************/
 void PreferencesDialog::closeEvent(QCloseEvent *event)
 {
-    done(false);
-    QMainWindow::closeEvent(event);
+    if (mSaveOnClose && !save()) {
+        event->ignore();
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+bool PreferencesDialog::eventFilter(QObject *obj, QEvent *event)
+{
+    if (obj == parent() && event->type() == QEvent::Close) {
+        mSaveOnClose = false;
+        close();
+    }
+
+    return QMainWindow::eventFilter(obj, event);
+}
+
+/************************************************
+ *
+ ************************************************/
+bool PreferencesDialog::save()
+{
+    // Profiles page ......................
+    if (ui->profilesPage->profiles().isEmpty()) {
+        QMessageBox dialog(this);
+        dialog.setIconPixmap(QPixmap(":/64/mainicon"));
+
+        dialog.setText(tr("I can't apply your preferences.", "Message box text"));
+        dialog.setInformativeText(tr("You should create at least one profile.", "Message box text"));
+
+        dialog.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        dialog.setButtonText(QMessageBox::Ok, tr("Create profile", "Button caption"));
+        dialog.setDefaultButton(QMessageBox::Ok);
+        dialog.setWindowModality(Qt::ApplicationModal);
+
+        if (dialog.exec() == QMessageBox::Ok) {
+            ui->profilesPage->addProfile();
+        }
+        return false;
+    }
+
+    // General  page .......................
+    Profile &p = ui->profilesPage->profiles().first();
+    p.setEncoderThreadsCount(ui->generalPage->encoderThreadsCount());
+    p.setTmpDir(ui->generalPage->tmpDir());
+    p.setDefaultCodepage(ui->generalPage->defaultCodepage());
+
+#ifndef BUNDLED_PROGRAMS
+    // Programs page .......................
+    ui->programsPage->save();
+#endif
+
+    emit accepted();
+    return true;
 }

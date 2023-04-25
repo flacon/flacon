@@ -28,21 +28,57 @@
 
 #include <QSettings>
 #include <QSet>
-#include "types.h"
+//#include "types.h"
 #include "profiles.h"
 
 class OutFormat;
 
 class Settings : public QSettings
 {
+public:
+    static Settings *i();
+
+    static QString fileName() { return mFileName; }
+    static void    setFileName(const QString &fileName);
+
+    void     extracted(Profiles &res);
+    Profiles readProfiles();
+    void     writeProfiles(const Profiles &profiles);
+
+    QString readCurrentProfileId() const;
+    void    writeCurrentProfileId(const QString &profileId);
+
+    // REMOVE ================
+    QString programName(const QString &program) const { return ""; }
+    QString programPath(const QString &program) const { return ""; }
+    QString findProgram(const QString &program) const { return ""; }
+    bool    checkProgram(const QString &program, QStringList *errors = nullptr) const { return true; }
+    // REMOVE ================
+private:
+    static QString   mFileName;
+    static Settings *mInstance;
+
+    explicit Settings(const QString &organization, const QString &application);
+    explicit Settings(const QString &fileName);
+
+    Profile readProfile(const QString &profileId);
+    void    writeProfile(const Profile &profile);
+
+    BitsPerSample readBitsPerSample(const QString &key, BitsPerSample def) const;
+    SampleRate    readSampleRate(const QString &key, SampleRate def) const;
+    uint          readThreadsCount(const QString &key, uint def) const;
+};
+
+class Settings_OLD : public QSettings
+{
     Q_OBJECT
 public:
     enum Key {
-        Tags_DefaultCodepage,
+        // Tags_DefaultCodepage,
 
         // Globals ******************************
-        Encoder_ThreadCount,
-        Encoder_TmpDir,
+        // Encoder_ThreadCount,
+        // Encoder_TmpDir,
 
         // Out Files ****************************
         OutFiles_DirectoryHistory,
@@ -57,12 +93,12 @@ public:
         ConfigureDialog_Height,
     };
 
-    explicit Settings(const QString &fileName);
-    virtual ~Settings();
+    explicit Settings_OLD(const QString &fileName);
+    virtual ~Settings_OLD();
 
-    static Settings *i();
-    static void      setFileName(const QString &fileName);
-    static QString   fileName() { return mFileName; }
+    static Settings_OLD *i();
+    static void          setFileName(const QString &fileName);
+    static QString       fileName() { return mFileName; }
 
     QVariant value(Key key, const QVariant &defaultValue = QVariant()) const;
     void     setValue(Key key, const QVariant &value);
@@ -77,30 +113,8 @@ public:
 
     QSet<QString> programs() const { return mPrograms; }
 
-    QString tmpDir() const;
-    void    setTmpDir(const QString &value);
-
-    QString defaultCodepage() const;
-    void    setDefaultCodepage(const QString &value);
-
-    Profiles       &profiles();
-    const Profiles &profiles() const;
-    void            setProfiles(const Profiles &profiles);
-
-    const Profile &currentProfile() const;
-    Profile       &currentProfile();
-    bool           selectProfile(const QString &profileId);
-
-    uint encoderThreadsCount() const;
-    void setEncoderThreadsCount(uint value);
-
-    void emitChanged();
-
-signals:
-    void changed();
-
 protected:
-    explicit Settings(const QString &organization, const QString &application);
+    explicit Settings_OLD(const QString &organization, const QString &application);
 
 private:
     void        init();
@@ -109,12 +123,12 @@ private:
     QString     keyToString(Key key) const;
     QStringList groups(const QString &parentGroup) const;
     void        loadProfiles();
-    void        initProfiles();
+    // void        initProfiles();
 
-    QSet<QString>    mPrograms;
-    static QString   mFileName;
-    static Settings *mInstance;
-    Profiles         mProfiles;
+    QSet<QString>        mPrograms;
+    static QString       mFileName;
+    static Settings_OLD *mInstance;
+    Profiles             mProfiles;
 };
 
 #endif // SETTINGS_H

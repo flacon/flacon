@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2019-2020
+ * Copyright: 2019-2023
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -30,107 +30,14 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QDebug>
-#include "encoder.h"
-#include "formats_out/metadatawriter.h"
-
-static constexpr const char *OUT_DIRECTORY_KEY    = "OutDirectory";
-static constexpr const char *OUT_PATTERN_KEY      = "OutPattern";
-static constexpr const char *BITS_PER_SAMPLE_KEY  = "BitsPerSample";
-static constexpr const char *SAMPLE_RATE_KEY      = "SampleRate";
-static constexpr const char *CREATE_CUE_KEY       = "CreateCue";
-static constexpr const char *EMBED_CUE_KEY        = "EmbedCue";
-static constexpr const char *CUE_FILE_NAME_KEY    = "CueFileName";
-static constexpr const char *PREGAP_TYPE_KEY      = "PregapType";
-static constexpr const char *REPLAY_GAIN_KEY      = "ReplayGain";
-static constexpr const char *COVER_FILE_MODE_KEY  = "CoverFile/Mode";
-static constexpr const char *COVER_FILE_SIZE_KEY  = "CoverFile/Size";
-static constexpr const char *COVER_EMBED_MODE_KEY = "CoverEmbed/Mode";
-static constexpr const char *COVER_EMBED_SIZE_KEY = "CoverEmbed/Size";
-
-QHash<QString, QVariant> &operator<<(QHash<QString, QVariant> &values, const QHash<QString, QVariant> &other)
-{
-    for (auto i = other.constBegin(); i != other.constEnd(); ++i) {
-        if (!values.contains(i.key()))
-            values.insert(i.key(), i.value());
-    }
-    return values;
-}
-
-class Encoder_Null : public Conv::Encoder
-{
-public:
-    QString     programName() const override { return ""; }
-    QStringList programArgs() const override { return QStringList(); }
-};
-
-class OutFormat_Null : public OutFormat
-{
-public:
-    OutFormat_Null()
-    {
-        mId   = "";
-        mExt  = "";
-        mName = "";
-    }
-
-    QHash<QString, QVariant> defaultParameters() const override
-    {
-        return QHash<QString, QVariant>();
-    }
-
-    EncoderConfigPage *configPage(QWidget *) const override
-    {
-        return nullptr;
-    }
-
-    virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::AsSourcee; }
-    virtual SampleRate    maxSampleRate() const override { return SampleRate::AsSource; }
-
-    Conv::Encoder  *createEncoder() const override { return new Encoder_Null(); }
-    MetadataWriter *createMetadataWriter(const QString &filePath) const override { return new NullMetadataWriter(filePath); };
-};
-
-static OutFormat_Null *nullFormat()
-{
-    static OutFormat_Null res;
-    return &res;
-}
+#include <QThread>
+//#include "encoder.h"
+//#include "formats_out/metadatawriter.h"
 
 /************************************************
  *
  ************************************************/
-Profile::Profile() :
-    mFormat(nullFormat())
-{
-    setDefaultValues();
-}
-
-/************************************************
- *
- ************************************************/
-Profile::Profile(const QString &id) :
-    mId(id),
-    mFormat(nullFormat())
-{
-    setDefaultValues();
-}
-
-/************************************************
- *
- ************************************************/
-Profile::Profile(OutFormat &format, const QString &id) :
-    mId(id.isEmpty() ? format.id() : id),
-    mFormat(&format)
-{
-    mName = format.name();
-    setDefaultValues();
-    mValues << format.defaultParameters();
-}
-
-/************************************************
- *
- ************************************************/
-void Profile::setDefaultValues()
+QString Profile::defaultOutFileDir()
 {
     QString outDir = QStandardPaths::writableLocation(QStandardPaths::MusicLocation);
     if (outDir.isEmpty())
@@ -138,47 +45,31 @@ void Profile::setDefaultValues()
 
     outDir.replace(QDir::homePath(), "~");
 
-    mValues[OUT_DIRECTORY_KEY]   = outDir;
-    mValues[OUT_PATTERN_KEY]     = "%a/{%y - }%A/%n - %t";
-    mValues[BITS_PER_SAMPLE_KEY] = 0;
-    mValues[SAMPLE_RATE_KEY]     = 0;
-    mValues[CREATE_CUE_KEY]      = false;
-    mValues[CUE_FILE_NAME_KEY]   = "%a-%A.cue";
-    mValues[PREGAP_TYPE_KEY]     = preGapTypeToString(PreGapType::ExtractToFile);
+    return outDir;
 }
 
 /************************************************
  *
  ************************************************/
-CoverOptions Profile::embedCoverOptions() const
+Profile::Profile(const QString &formatId, const QString &id)
 {
-    return mEmbedCoverOptions;
+    mFormat = OutFormat::formatForId(formatId);
+    if (!mFormat) {
+        return;
+    }
+
+    mId   = !id.isEmpty() ? id : mFormat->id();
+    mName = mFormat->name();
+
+    mEncoderValues = mFormat->defaultParameters();
 }
 
 /************************************************
  *
  ************************************************/
-void Profile::setEmbedCoverOptions(const CoverOptions &embedCoverOptions)
+bool Profile::isValid() const noexcept
 {
-    mEmbedCoverOptions = embedCoverOptions;
-    Settings::i()->emitChanged();
-}
-
-/************************************************
- *
- ************************************************/
-CoverOptions Profile::copyCoverOptions() const
-{
-    return mCopyCoverOptions;
-}
-
-/************************************************
- *
- ************************************************/
-void Profile::setCopyCoverOptions(const CoverOptions &copyCoverOptions)
-{
-    mCopyCoverOptions = copyCoverOptions;
-    Settings::i()->emitChanged();
+    return !mId.isEmpty() && mFormat != nullptr;
 }
 
 /************************************************
@@ -187,44 +78,6 @@ void Profile::setCopyCoverOptions(const CoverOptions &copyCoverOptions)
 void Profile::setName(const QString &value)
 {
     mName = value;
-    Settings::i()->emitChanged();
-}
-
-/************************************************
- *
- ************************************************/
-QVariant Profile::value(const QString &key, const QVariant &defaultValue) const
-{
-    QVariant res = mValues.value(key);
-    if (res.isNull())
-        res = defaultValue;
-
-    return res;
-}
-
-/************************************************
- *
- ************************************************/
-void Profile::setValue(const QString &key, const QVariant &value)
-{
-    mValues.insert(key, value);
-    Settings::i()->emitChanged();
-}
-
-/************************************************
- *
- ************************************************/
-bool Profile::isValid() const noexcept
-{
-    return !mId.isEmpty() && !mFormat->id().isEmpty();
-}
-
-/************************************************
- *
- ************************************************/
-QString Profile::outFileDir() const
-{
-    return value(OUT_DIRECTORY_KEY).toString();
 }
 
 /************************************************
@@ -232,15 +85,7 @@ QString Profile::outFileDir() const
  ************************************************/
 void Profile::setOutFileDir(const QString &value)
 {
-    setValue(OUT_DIRECTORY_KEY, value);
-}
-
-/************************************************
- *
- ************************************************/
-QString Profile::outFilePattern() const
-{
-    return value(OUT_PATTERN_KEY).toString();
+    mOutFileDir = value;
 }
 
 /************************************************
@@ -248,16 +93,7 @@ QString Profile::outFilePattern() const
  ************************************************/
 void Profile::setOutFilePattern(const QString &value)
 {
-    setValue(OUT_PATTERN_KEY, value);
-}
-
-/************************************************
- *
- ************************************************/
-GainType Profile::gainType() const
-{
-    QString s = value(REPLAY_GAIN_KEY).toString();
-    return strToGainType(s);
+    mOutFilePattern = value;
 }
 
 /************************************************
@@ -265,31 +101,15 @@ GainType Profile::gainType() const
  ************************************************/
 void Profile::setGainType(GainType value)
 {
-    setValue(REPLAY_GAIN_KEY, gainTypeToString(value));
+    mGainType = value;
 }
 
 /************************************************
  *
  ************************************************/
-int Profile::bitsPerSample() const
+void Profile::setBitsPerSample(BitsPerSample value)
 {
-    return value(BITS_PER_SAMPLE_KEY, int(BitsPerSample::AsSourcee)).toInt();
-}
-
-/************************************************
- *
- ************************************************/
-void Profile::setBitsPerSample(int value)
-{
-    setValue(BITS_PER_SAMPLE_KEY, value);
-}
-
-/************************************************
- *
- ************************************************/
-SampleRate Profile::sampleRate() const
-{
-    return SampleRate(value(SAMPLE_RATE_KEY, int(SampleRate::AsSource)).toInt());
+    mBitsPerSample = value;
 }
 
 /************************************************
@@ -297,15 +117,7 @@ SampleRate Profile::sampleRate() const
  ************************************************/
 void Profile::setSampleRate(SampleRate value)
 {
-    setValue(SAMPLE_RATE_KEY, value);
-}
-
-/************************************************
- *
- ************************************************/
-bool Profile::isCreateCue() const
-{
-    return value(CREATE_CUE_KEY, false).toBool();
+    mSampleRate = value;
 }
 
 /************************************************
@@ -313,15 +125,7 @@ bool Profile::isCreateCue() const
  ************************************************/
 void Profile::setCreateCue(bool value)
 {
-    setValue(CREATE_CUE_KEY, value);
-}
-
-/************************************************
- *
- ************************************************/
-bool Profile::isEmbedCue() const
-{
-    return value(EMBED_CUE_KEY, false).toBool();
+    mCreateCue = value;
 }
 
 /************************************************
@@ -329,15 +133,7 @@ bool Profile::isEmbedCue() const
  ************************************************/
 void Profile::setEmbedCue(bool value)
 {
-    setValue(EMBED_CUE_KEY, value);
-}
-
-/************************************************
- *
- ************************************************/
-QString Profile::cueFileName() const
-{
-    return value(CUE_FILE_NAME_KEY).toString();
+    mEmbedCue = value;
 }
 
 /************************************************
@@ -345,15 +141,7 @@ QString Profile::cueFileName() const
  ************************************************/
 void Profile::setCueFileName(const QString &value)
 {
-    setValue(CUE_FILE_NAME_KEY, value);
-}
-
-/************************************************
- *
- ************************************************/
-PreGapType Profile::preGapType() const
-{
-    return strToPreGapType(value(PREGAP_TYPE_KEY).toString());
+    mCueFileName = value;
 }
 
 /************************************************
@@ -361,98 +149,93 @@ PreGapType Profile::preGapType() const
  ************************************************/
 void Profile::setPregapType(PreGapType value)
 {
-    setValue(PREGAP_TYPE_KEY, preGapTypeToString(value));
+    mPregapType = value;
 }
 
 /************************************************
  *
  ************************************************/
-EncoderConfigPage *Profile::configPage(QWidget *parent) const
+void Profile::setCopyCoverOptions(const CoverOptions &value)
 {
-    return mFormat->configPage(parent);
+    mCopyCoverOptions = value;
 }
 
 /************************************************
  *
  ************************************************/
-QString Profile::tmpDir() const
+void Profile::setEmbedCoverOptions(const CoverOptions &value)
 {
-    return Settings::i()->tmpDir();
+    mEmbedCoverOptions = value;
 }
 
 /************************************************
  *
  ************************************************/
-void Profile::load(QSettings &settings, const QString &group)
+void Profile::setEncoderValues(const EncoderValues &values)
 {
-    static constexpr auto DEFAULT_COVER_FILE_SIZE  = 1024;
-    static constexpr auto DEFAULT_COVER_EMBED_MODE = "Disable";
-
-    settings.beginGroup(group);
-
-    if (settings.contains("Format")) {
-        auto *fmt = OutFormat::formatForId(settings.value("Format").toString());
-        if (fmt) {
-            mFormat = fmt;
-            mValues << fmt->defaultParameters();
-        }
-        else {
-            mFormat = nullFormat();
-        }
-    }
-
-    if (settings.contains("Name")) {
-        mName = settings.value("Name").toString();
-    }
-    else {
-        mName = mFormat->name();
-    }
-
-    for (QString key : settings.allKeys()) {
-        QString uKey = key.toUpper();
-
-        if (uKey == "NAME")
-            continue;
-        if (uKey == "FORMAT")
-            continue;
-
-        mValues.insert(key, settings.value(key));
-    }
-
-    settings.endGroup();
-
-    mCopyCoverOptions.mode = strToCoverMode(value(COVER_FILE_MODE_KEY, DEFAULT_COVER_EMBED_MODE).toString());
-    mCopyCoverOptions.size = value(COVER_FILE_SIZE_KEY, DEFAULT_COVER_FILE_SIZE).toInt();
-
-    mSupportEmbedCover = mFormat->options().testFlag(FormatOption::SupportEmbeddedImage);
-    if (mSupportEmbedCover) {
-        mEmbedCoverOptions.mode = strToCoverMode(value(COVER_EMBED_MODE_KEY, DEFAULT_COVER_EMBED_MODE).toString());
-        mEmbedCoverOptions.size = value(COVER_EMBED_SIZE_KEY, DEFAULT_COVER_FILE_SIZE).toInt();
-    }
+    mEncoderValues = values;
 }
 
 /************************************************
  *
  ************************************************/
-void Profile::save(QSettings &settings, const QString &group) const
+QVariant Profile::encoderValue(const QString &key, const QVariant &defaultValue) const
 {
-    settings.beginGroup(group);
-    settings.setValue("Name", name());
-    settings.setValue("Format", formatId());
+    return mEncoderValues.value(key, defaultValue);
+}
 
-    for (auto i = mValues.constBegin(); i != mValues.constEnd(); ++i) {
-        settings.setValue(i.key(), i.value());
+/************************************************
+ *
+ ************************************************/
+void Profile::setEncoderValue(const QString &key, const QVariant &value)
+{
+    mEncoderValues[key] = value;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setTmpDir(const QString &value)
+{
+    globalParams().mTmpDir = value;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setDefaultCodepage(const QString &value)
+{
+    globalParams().mCodepage = value;
+}
+
+/************************************************
+ *
+ ************************************************/
+uint Profile::defaultEncoderThreadCount()
+{
+    return std::max(6, QThread::idealThreadCount());
+}
+
+/************************************************
+ *
+ ************************************************/
+void Profile::setEncoderThreadsCount(uint value)
+{
+    if (value > 0) {
+        globalParams().mEncoderThreadsCount = value;
+        return;
     }
 
-    settings.setValue(COVER_FILE_MODE_KEY, coverModeToString(mCopyCoverOptions.mode));
-    settings.setValue(COVER_FILE_SIZE_KEY, mCopyCoverOptions.size);
+    globalParams().mEncoderThreadsCount = defaultEncoderThreadCount();
+}
 
-    if (mFormat->options().testFlag(FormatOption::SupportEmbeddedImage)) {
-        settings.setValue(COVER_EMBED_MODE_KEY, coverModeToString(mEmbedCoverOptions.mode));
-        settings.setValue(COVER_EMBED_SIZE_KEY, mEmbedCoverOptions.size);
-    }
-
-    settings.endGroup();
+/************************************************
+ *
+ ************************************************/
+Profile::GlobalParams &Profile::globalParams()
+{
+    static Profile::GlobalParams res;
+    return res;
 }
 
 /************************************************
@@ -461,8 +244,9 @@ void Profile::save(QSettings &settings, const QString &group) const
 int Profiles::indexOf(const QString &id, int from) const
 {
     for (int i = from; i < count(); ++i) {
-        if (at(i).id() == id)
+        if (at(i).id() == id) {
             return i;
+        }
     }
     return -1;
 }
@@ -470,14 +254,15 @@ int Profiles::indexOf(const QString &id, int from) const
 /************************************************
  *
  ************************************************/
-bool Profiles::update(const Profile &profile)
+Profile *Profiles::find(const QString &id)
 {
-    int n = indexOf(profile.id());
-    if (n < 0)
-        return false;
+    for (Profile &p : *this) {
+        if (p.id() == id) {
+            return &p;
+        }
+    }
 
-    this->operator[](n) = profile;
-    return true;
+    return nullptr;
 }
 
 /************************************************
@@ -490,9 +275,11 @@ QDebug operator<<(QDebug debug, const Profile &profile)
     dbg << "Format: " << profile.formatId() << "\n";
     dbg << "Name:   " << profile.name() << "\n";
     dbg << "Valid:  " << profile.isValid() << "\n";
-    for (auto i = profile.mValues.constBegin(); i != profile.mValues.constEnd(); ++i) {
-        dbg << "  " << i.key() << " = " << i.value() << "\n";
-    }
+
+    //    QMap<QString, QVariant> values = profile.save();
+    //    for (auto i = values.constBegin(); i != values.constEnd(); ++i) {
+    //        dbg << "  " << i.key() << " = " << i.value() << "\n";
+    //    }
 
     return debug;
 }
@@ -514,8 +301,11 @@ QDebug operator<<(QDebug dbg, const Profiles &profiles)
 /************************************************
  *
  ************************************************/
-Profile &NullProfile()
+Profiles createStandardProfiles()
 {
-    static Profile res;
+    Profiles res;
+    foreach (const OutFormat *format, OutFormat::allFormats()) {
+        res << Profile(format->id());
+    }
     return res;
 }

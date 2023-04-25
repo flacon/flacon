@@ -65,6 +65,19 @@ QList<OutFormat *> OutFormat::allFormats()
     return res;
 }
 
+QStringList OutFormat::allFormatsId()
+{
+    static QStringList res;
+
+    if (res.isEmpty()) {
+        for (auto f : allFormats()) {
+            res << f->id();
+        }
+    }
+
+    return res;
+}
+
 /************************************************
  *
  ************************************************/
@@ -99,7 +112,7 @@ bool OutFormat::checkProgram(const QString &program, QStringList *errors) const
     if (program.isEmpty())
         return true;
 
-    Settings::i()->checkProgram(program, errors);
+    Settings_OLD::i()->checkProgram(program, errors);
 
     return errors->isEmpty();
 }

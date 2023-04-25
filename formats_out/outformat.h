@@ -45,6 +45,7 @@ class OutFormat
 {
 public:
     static QList<OutFormat *> allFormats();
+    static QStringList        allFormatsId();
     static OutFormat         *formatForId(const QString &id);
     virtual ~OutFormat() { }
 

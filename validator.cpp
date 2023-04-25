@@ -41,8 +41,6 @@ Validator::Validator(QObject *parent) :
     mDelayTimer.setInterval(VALIDATE_DELAY_MS);
     mDelayTimer.setSingleShot(true);
     connect(&mDelayTimer, &QTimer::timeout, this, &Validator::revalidate);
-
-    connect(Settings::i(), &Settings::changed, this, &Validator::startDelay);
 }
 
 /************************************************
@@ -441,7 +439,7 @@ bool Validator::validateRasampler(const Disk *disk, QStringList &errors, QString
         return true;
     }
 
-    return Settings::i()->checkProgram(Conv::Sox::programName(), &errors);
+    return Settings_OLD::i()->checkProgram(Conv::Sox::programName(), &errors);
 }
 
 /************************************************

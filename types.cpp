@@ -26,6 +26,7 @@
 #include "types.h"
 #include <QVector>
 #include <QTextStream>
+#include <QDir>
 #include <QDebug>
 
 /************************************************
@@ -46,7 +47,7 @@ QString preGapTypeToString(PreGapType type)
 /************************************************
 
  ************************************************/
-PreGapType strToPreGapType(const QString &str)
+PreGapType strToPreGapType(const QString &str, PreGapType def)
 {
     QString s = str.toUpper();
 
@@ -55,7 +56,7 @@ PreGapType strToPreGapType(const QString &str)
     if (s == "ADDTOFIRST")
         return PreGapType::AddToFirstTrack;
 
-    return PreGapType::AddToFirstTrack;
+    return def;
 }
 
 /************************************************
@@ -78,7 +79,7 @@ QString gainTypeToString(GainType type)
 /************************************************
 
  ************************************************/
-GainType strToGainType(const QString &str)
+GainType strToGainType(const QString &str, GainType def)
 {
     QString s = str.toUpper();
 
@@ -87,7 +88,7 @@ GainType strToGainType(const QString &str)
     if (s == "ALBUM")
         return GainType::Album;
 
-    return GainType::Disable;
+    return def;
 }
 
 /************************************************
@@ -110,7 +111,7 @@ QString coverModeToString(CoverMode mode)
 /************************************************
 
  ************************************************/
-CoverMode strToCoverMode(const QString &str)
+CoverMode strToCoverMode(const QString &str, CoverMode def)
 {
     QString s = str.toUpper();
 
@@ -119,7 +120,7 @@ CoverMode strToCoverMode(const QString &str)
     if (s == "SCALE")
         return CoverMode::Scale;
 
-    return CoverMode::Disable;
+    return def;
 }
 
 /************************************************
@@ -536,4 +537,25 @@ DiskState calcDiskState(const QList<TrackState> &trackStates)
     else {
         return DiskState::NotRunning;
     }
+}
+
+/************************************************
+ *
+ ************************************************/
+QString expandFilePath(const QString &path)
+{
+    QString res = path;
+    if (res == "~" || res == "~//") {
+        return QDir::homePath();
+    }
+
+    if (res == ".") {
+        res = QDir::currentPath();
+    }
+
+    if (res.startsWith("~/")) {
+        return res.replace(0, 1, QDir::homePath());
+    }
+
+    return QFileInfo(res).absoluteFilePath();
 }

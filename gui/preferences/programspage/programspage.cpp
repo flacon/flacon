@@ -48,7 +48,7 @@ void ProgramsPage::load()
 #else
     // After 5.14.0, QT has stated range constructors are available and preferred.
     // See: https://doc.qt.io/qt-5/qlist.html#fromSet
-    QSet<QString> program_set = Settings::i()->programs();
+    QSet<QString> program_set = Settings_OLD::i()->programs();
     QStringList   progs       = QStringList(program_set.begin(), program_set.end());
 #endif
     progs.sort();
@@ -72,13 +72,13 @@ void ProgramsPage::load()
     ui->progsArea->setStyleSheet("QScrollArea, #scrollAreaWidgetContents { background-color: transparent;}");
 
     for (ProgramEdit *edit : mProgramEdits) {
-        edit->setText(Settings::i()->value("Programs/" + edit->programName()).toString());
+        edit->setText(Settings_OLD::i()->value("Programs/" + edit->programName()).toString());
     }
 }
 
 void ProgramsPage::save()
 {
     for (ProgramEdit *edit : mProgramEdits) {
-        Settings::i()->setValue("Programs/" + edit->programName(), edit->text());
+        Settings_OLD::i()->setValue("Programs/" + edit->programName(), edit->text());
     }
 }

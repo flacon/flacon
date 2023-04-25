@@ -31,97 +31,131 @@
 #include <QVector>
 
 #include "formats_out/outformat.h"
+#include "types.h"
+
 class QSettings;
 
 class Profile
 {
-    friend QDebug operator<<(QDebug dbg, const Profile &profile);
+    using EncoderValues = QHash<QString, QVariant>;
 
 public:
-    Profile();
-    explicit Profile(const QString &id);
-    explicit Profile(OutFormat &format, const QString &id = "");
+    Profile()                     = default;
     Profile(const Profile &other) = default;
     Profile &operator=(const Profile &other) = default;
+    virtual ~Profile()                       = default;
+
+    Profile(const QString &formatId, const QString &id = "");
+
+    bool isValid() const noexcept;
 
     QString id() const { return mId; }
 
     QString name() const { return mName; }
     void    setName(const QString &value);
 
-    QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
-    void     setValue(const QString &key, const QVariant &value);
-
-    bool isValid() const noexcept;
-
-    QString outFileDir() const;
+    QString outFileDir() const { return mOutFileDir; }
     void    setOutFileDir(const QString &value);
 
-    QString outFilePattern() const;
+    QString outFilePattern() const { return mOutFilePattern; }
     void    setOutFilePattern(const QString &value);
 
-    GainType gainType() const;
+    GainType gainType() const { return mGainType; }
     void     setGainType(GainType value);
 
-    int  bitsPerSample() const;
-    void setBitsPerSample(int value);
+    BitsPerSample bitsPerSample() const { return mBitsPerSample; }
+    void          setBitsPerSample(BitsPerSample value);
 
-    SampleRate sampleRate() const;
+    SampleRate sampleRate() const { return mSampleRate; }
     void       setSampleRate(SampleRate value);
 
-    bool isCreateCue() const;
+    bool isCreateCue() const { return mCreateCue; }
     void setCreateCue(bool value);
 
-    bool isEmbedCue() const;
+    bool isEmbedCue() const { return mEmbedCue; }
     void setEmbedCue(bool value);
 
-    QString cueFileName() const;
+    QString cueFileName() const { return mCueFileName; }
     void    setCueFileName(const QString &value);
 
-    PreGapType preGapType() const;
+    PreGapType pregapType() const { return mPregapType; }
     void       setPregapType(PreGapType value);
 
-    const OutFormat   *outFormat() const { return mFormat; }
-    QString            formatId() const { return mFormat->id(); }
-    QString            formatName() const { return mFormat->name(); }
-    QString            ext() const { return mFormat->ext(); }
-    FormatOptions      formatOptions() const { return mFormat->options(); }
-    BitsPerSample      maxBitPerSample() const { return mFormat->maxBitPerSample(); }
-    SampleRate         maxSampleRate() const { return mFormat->maxSampleRate(); }
-    EncoderConfigPage *configPage(QWidget *parent) const;
+    CoverOptions copyCoverOptions() const { return mCopyCoverOptions; }
+    void         setCopyCoverOptions(const CoverOptions &value);
 
-    QString tmpDir() const;
+    CoverOptions embedCoverOptions() const { return mEmbedCoverOptions; }
+    void         setEmbedCoverOptions(const CoverOptions &value);
 
-    // Cover options ............................
-    CoverOptions copyCoverOptions() const;
-    void         setCopyCoverOptions(const CoverOptions &copyCoverOptions);
+    EncoderValues encoderValues() const { return mEncoderValues; }
+    void          setEncoderValues(const EncoderValues &values);
 
-    CoverOptions embedCoverOptions() const;
-    void         setEmbedCoverOptions(const CoverOptions &embedCoverOptions);
+    QVariant encoderValue(const QString &key, const QVariant &defaultValue = QVariant()) const;
+    void     setEncoderValue(const QString &key, const QVariant &value);
 
-    void load(QSettings &settings, const QString &group);
-    void save(QSettings &settings, const QString &group) const;
+    const OutFormat *outFormat() const { return mFormat; }
+    QString          formatId() const { return mFormat->id(); }
+    QString          formatName() const { return mFormat->name(); }
+    QString          ext() const { return mFormat->ext(); }
+    FormatOptions    formatOptions() const { return mFormat->options(); }
+    BitsPerSample    maxBitPerSample() const { return mFormat->maxBitPerSample(); }
+    SampleRate       maxSampleRate() const { return mFormat->maxSampleRate(); }
+
+    QString tmpDir() const { return globalParams().mTmpDir; }
+    void    setTmpDir(const QString &value);
+
+    static QString defaultCodepage() { return globalParams().mCodepage; }
+    // QString defaultCodepage() const { return globalParams().mCodepage; }
+    void setDefaultCodepage(const QString &value);
+
+    uint encoderThreadsCount() const { return globalParams().mEncoderThreadsCount; }
+    void setEncoderThreadsCount(uint value);
 
 private:
-    QString                  mId;
-    const OutFormat         *mFormat;
-    QString                  mName;
-    QHash<QString, QVariant> mValues;
-    void                     setDefaultValues();
+    QString mId;
+    QString mName;
+    QString mOutFileDir     = defaultOutFileDir();
+    QString mOutFilePattern = "%a/{%y - }%A/%n - %t";
+    QString mCueFileName    = "%a-%A.cue";
 
-    CoverOptions mCopyCoverOptions;
-    CoverOptions mEmbedCoverOptions;
-    bool         mSupportEmbedCover = false;
+    GainType      mGainType      = GainType::Disable;
+    BitsPerSample mBitsPerSample = BitsPerSample::AsSourcee;
+    SampleRate    mSampleRate    = SampleRate::AsSource;
+    PreGapType    mPregapType    = PreGapType::ExtractToFile;
+
+    bool mCreateCue = false;
+    bool mEmbedCue  = false;
+
+    OutFormat *mFormat = nullptr;
+
+    CoverOptions mCopyCoverOptions  = { CoverMode::Disable, 1024 };
+    CoverOptions mEmbedCoverOptions = { CoverMode::Disable, 1024 };
+
+    EncoderValues mEncoderValues;
+
+    struct GlobalParams
+    {
+        QString mTmpDir;
+        uint    mEncoderThreadsCount = defaultEncoderThreadCount();
+        QString mCodepage            = "AUTODETECT";
+    };
+
+    static GlobalParams &globalParams();
+
+    static QString defaultOutFileDir();
+    static uint    defaultEncoderThreadCount();
 };
-
-Profile &NullProfile();
 
 class Profiles : public QVector<Profile>
 {
 public:
-    int  indexOf(const QString &id, int from = 0) const;
-    bool update(const Profile &profile);
+    int      indexOf(const QString &id, int from = 0) const;
+    Profile *find(const QString &id);
+
+    // bool update(const Profile &profile);
 };
+
+Profiles createStandardProfiles();
 
 QDebug operator<<(QDebug dbg, const Profile &profile);
 QDebug operator<<(QDebug dbg, const Profiles &profiles);

@@ -32,6 +32,7 @@
 #include "disc.h"
 #include "validator.h"
 
+class Settings;
 class Disc;
 class Track;
 class DataProvider;
@@ -61,11 +62,18 @@ public:
     Disc *addAudioFile(const QString &fileName) noexcept(false);
     Disc *addCueFile(const QString &fileName);
 
-    const Profile &currentProfile() const;
-    Profile &      currentProfile();
-    bool           selectProfile(const QString &profileId);
+    Profile *profile() { return mProfile; }
+
+    Profile currentProfile();
+    bool    selectProfile(const QString &profileId);
+
+    Profiles profiles() const { return mProfiles; }
+    void     setProfiles(Profiles profiles);
 
     Validator &validator() { return mValidator; }
+
+    void load(Settings *settings);
+    void save(Settings *settings);
 
 signals:
     void discChanged(Disc *disc) const;
@@ -79,6 +87,8 @@ protected:
 private:
     QList<Disc *> mDiscs;
     Validator     mValidator;
+    Profile      *mProfile = nullptr;
+    Profiles      mProfiles;
 };
 
 #define project Project::instance()

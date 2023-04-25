@@ -29,7 +29,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_8">
      <item>
-      <widget class="QListWidget" name="profilesList">
+      <widget class="ProfileListWidget" name="profilesList">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -101,6 +101,11 @@
    <extends>QTabWidget</extends>
    <header>profiletabwidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ProfileListWidget</class>
+   <extends>QListWidget</extends>
+   <header>profilespage.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

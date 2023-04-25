@@ -392,6 +392,27 @@ CodePageComboBox::CodePageComboBox(QWidget *parent) :
 /************************************************
 
  ************************************************/
+QString CodePageComboBox::codePage() const
+{
+    return currentData().toString();
+}
+
+/************************************************
+
+ ************************************************/
+void CodePageComboBox::setCodePage(const QString &value)
+{
+    for (int i = 0; i < count(); ++i) {
+        if (this->itemData(i).toString() == value) {
+            setCurrentIndex(i);
+            return;
+        }
+    }
+}
+
+/************************************************
+
+ ************************************************/
 void CodePageComboBox::addCodecName(const QString &title, const QString &codecName)
 {
     if (QTextCodec::availableCodecs().contains(codecName.toLatin1()))
@@ -624,7 +645,7 @@ ProgramEdit::ProgramEdit(const QString &programName, QWidget *parent) :
 void ProgramEdit::find()
 {
     if (text().isEmpty())
-        setText(Settings::i()->findProgram(mProgramName));
+        setText(Settings_OLD::i()->findProgram(mProgramName));
 }
 
 /************************************************

@@ -28,7 +28,6 @@
 #include "disc.h"
 #include "settings.h"
 #include "converter/converter.h"
-#include "formats_out/outformat.h"
 #include "inputaudiofile.h"
 #include "formats_in/informat.h"
 #include "preferences/preferencesdialog.h"
@@ -41,7 +40,6 @@
 #include "controls.h"
 #include "gui/icon.h"
 #include "application.h"
-#include "patternexpander.h"
 #include "gui/messagebox/messagebox.h"
 
 #include <QFileDialog>
@@ -61,6 +59,8 @@
 #ifdef MAC_UPDATER
 #include "updater/updater.h"
 #endif
+
+static constexpr auto SETTINGS_LASTDIR_KEY = "Misc/LastDirectory";
 
 /************************************************
 
@@ -156,9 +156,6 @@ MainWindow::MainWindow(QWidget *parent) :
     outPatternButton->menu()->addAction(outPatternEdit->deleteItemAction());
 
     // Signals .................................................
-    connect(Settings::i(), &Settings::changed,
-            [this]() { trackView->model()->layoutChanged(); });
-
     connect(outDirEdit->lineEdit(), &QLineEdit::textChanged, this, &MainWindow::setOutDir);
     connect(outPatternEdit->lineEdit(), &QLineEdit::textChanged, this, &MainWindow::setPattern);
 
@@ -270,8 +267,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
         }
     }
 
-    if (mConverter)
+    if (mConverter) {
         mConverter->stop();
+    }
 
     saveSettings();
 }
@@ -336,7 +334,7 @@ void MainWindow::setCueForDisc(Disc *disc)
             dir = QFileInfo(disc->cueFilePath()).dir().absolutePath();
         }
         else {
-            dir = Settings::i()->value(Settings::Misc_LastDir).toString();
+            dir = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
         }
     }
 
@@ -488,7 +486,7 @@ void MainWindow::refreshOutProfileCombo()
 {
     outProfileCombo->blockSignals(true);
     int n = 0;
-    for (const Profile &p : Settings::i()->profiles()) {
+    for (const Profile &p : project->profiles()) {
         if (n < outProfileCombo->count()) {
             outProfileCombo->setItemText(n, p.name());
             outProfileCombo->setItemData(n, p.id());
@@ -517,17 +515,32 @@ void MainWindow::refreshOutProfileCombo()
 /************************************************
 
  ************************************************/
+void MainWindow::preferencesDialogDone()
+{
+    PreferencesDialog *dlg = qobject_cast<PreferencesDialog *>(sender());
+    if (!dlg) {
+        return;
+    }
+
+    project->setProfiles(dlg->profiles());
+    project->save(Settings::i());
+
+    refreshEdits();
+    trackView->model()->layoutChanged();
+}
+
+/************************************************
+
+ ************************************************/
 void MainWindow::setCodePage()
 {
-    int n = codepageCombo->currentIndex();
-    if (n > -1) {
-        QString codepage = codepageCombo->itemData(n).toString();
-
+    QString codepage = codepageCombo->codePage();
+    if (!codepage.isEmpty()) {
         QList<Disc *> discs = trackView->selectedDiscs();
         foreach (Disc *disc, discs)
             disc->setCodecName(codepage);
 
-        Settings::i()->setValue(Settings::Tags_DefaultCodepage, codepage);
+        project->currentProfile().setDefaultCodepage(codepage);
     }
 }
 
@@ -707,8 +720,8 @@ void MainWindow::stopConvert()
  ************************************************/
 void MainWindow::configure()
 {
-    auto dlg = PreferencesDialog::createAndShow(nullptr, this);
-    connect(dlg, &PreferencesDialog::finished, this, &MainWindow::refreshEdits, Qt::UniqueConnection);
+    auto dlg = PreferencesDialog::createAndShow(project->profiles(), this);
+    connect(dlg, &PreferencesDialog::accepted, this, &MainWindow::preferencesDialogDone, Qt::UniqueConnection);
 }
 
 /************************************************
@@ -716,8 +729,8 @@ void MainWindow::configure()
  ************************************************/
 void MainWindow::configureEncoder()
 {
-    auto dlg = PreferencesDialog::createAndShow(project->currentProfile().id(), this);
-    connect(dlg, &PreferencesDialog::finished, this, &MainWindow::refreshEdits, Qt::UniqueConnection);
+    auto dlg = PreferencesDialog::createAndShow(project->profiles(), project->currentProfile().id(), this);
+    connect(dlg, &PreferencesDialog::accepted, this, &MainWindow::preferencesDialogDone, Qt::UniqueConnection);
 }
 
 /************************************************
@@ -768,14 +781,14 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
 void MainWindow::openAddFileDialog()
 {
     QString     flt       = getOpenFileFilter(true, true);
-    QString     lastDir   = Settings::i()->value(Settings::Misc_LastDir).toString();
+    QString     lastDir   = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
     QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Add CUE or audio file", "OpenFile dialog title"), lastDir, flt);
 
     if (fileNames.isEmpty()) {
         return;
     }
 
-    Settings::i()->setValue(Settings::Misc_LastDir, QFileInfo(fileNames.last()).dir().path());
+    Settings::i()->setValue(SETTINGS_LASTDIR_KEY, QFileInfo(fileNames.last()).dir().path());
 
     foreach (const QString &fileName, fileNames) {
         addFileOrDir(fileName);
@@ -800,7 +813,7 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
             dir = QFileInfo(audioFiles[audioFileNum]).dir().absolutePath();
         }
         else {
-            dir = Settings::i()->value(Settings::Misc_LastDir).toString();
+            dir = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
         }
     }
 
@@ -924,11 +937,11 @@ void MainWindow::removeDiscs()
  ************************************************/
 void MainWindow::openScanDialog()
 {
-    QString lastDir = Settings::i()->value(Settings::Misc_LastDir).toString();
+    QString lastDir = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
     QString dir     = QFileDialog::getExistingDirectory(this, tr("Select directory"), lastDir);
 
     if (!dir.isEmpty()) {
-        Settings::i()->setValue(Settings::Misc_LastDir, dir);
+        Settings::i()->setValue(SETTINGS_LASTDIR_KEY, dir);
         addFileOrDir(dir);
     }
 }
@@ -1107,6 +1120,7 @@ bool MainWindow::event(QEvent *event)
             toolBar->setEnabled(false);
             break;
 #endif
+
         default:
             break;
     }
@@ -1215,18 +1229,20 @@ void MainWindow::initStatusBar()
  ************************************************/
 void MainWindow::loadSettings()
 {
+    Settings *settings = Settings::i();
+
     // MainWindow geometry
-    int x      = Settings::i()->value("MainWindow/Left", geometry().left()).toInt();
-    int y      = Settings::i()->value("MainWindow/Top", geometry().top()).toInt();
-    int width  = Settings::i()->value("MainWindow/Width", QVariant(987)).toInt();
-    int height = Settings::i()->value("MainWindow/Height", QVariant(450)).toInt();
+    int x      = settings->value("MainWindow/Left", geometry().left()).toInt();
+    int y      = settings->value("MainWindow/Top", geometry().top()).toInt();
+    int width  = settings->value("MainWindow/Width", QVariant(987)).toInt();
+    int height = settings->value("MainWindow/Height", QVariant(450)).toInt();
     this->setGeometry(x, y, width, height);
 
-    splitter->restoreState(Settings::i()->value("MainWindow/Splitter").toByteArray());
-    trackView->header()->restoreState(Settings::i()->value("MainWindow/TrackView").toByteArray());
+    splitter->restoreState(settings->value("MainWindow/Splitter").toByteArray());
+    trackView->header()->restoreState(settings->value("MainWindow/TrackView").toByteArray());
 
-    outDirEdit->setHistory(Settings::i()->value(Settings::OutFiles_DirectoryHistory).toStringList());
-    outPatternEdit->setHistory(Settings::i()->value(Settings::OutFiles_PatternHistory).toStringList());
+    outDirEdit->setHistory(Settings_OLD::i()->value(Settings_OLD::OutFiles_DirectoryHistory).toStringList());
+    outPatternEdit->setHistory(Settings_OLD::i()->value(Settings_OLD::OutFiles_PatternHistory).toStringList());
 }
 
 /************************************************
@@ -1234,15 +1250,17 @@ void MainWindow::loadSettings()
  ************************************************/
 void MainWindow::saveSettings()
 {
-    Settings::i()->setValue("MainWindow/Left", geometry().left());
-    Settings::i()->setValue("MainWindow/Top", geometry().top());
-    Settings::i()->setValue("MainWindow/Width", QVariant(size().width()));
-    Settings::i()->setValue("MainWindow/Height", QVariant(size().height()));
-    Settings::i()->setValue("MainWindow/Splitter", QVariant(splitter->saveState()));
-    Settings::i()->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
+    Settings *settings = Settings::i();
 
-    Settings::i()->setValue(Settings::OutFiles_DirectoryHistory, outDirEdit->history());
-    Settings::i()->setValue(Settings::OutFiles_PatternHistory, outPatternEdit->history());
+    settings->setValue("MainWindow/Left", geometry().left());
+    settings->setValue("MainWindow/Top", geometry().top());
+    settings->setValue("MainWindow/Width", QVariant(size().width()));
+    settings->setValue("MainWindow/Height", QVariant(size().height()));
+    settings->setValue("MainWindow/Splitter", QVariant(splitter->saveState()));
+    settings->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
+
+    Settings_OLD::i()->setValue(Settings_OLD::OutFiles_DirectoryHistory, outDirEdit->history());
+    Settings_OLD::i()->setValue(Settings_OLD::OutFiles_PatternHistory, outPatternEdit->history());
 }
 
 /************************************************

@@ -78,12 +78,12 @@ void GeneralPage::setTmpDir(const QString &value)
 
 QString GeneralPage::defaultCodepage() const
 {
-    return ui->codePageComboBox->currentText();
+    return ui->codePageComboBox->codePage();
 }
 
 void GeneralPage::setDefaultCodepage(const QString &value)
 {
-    ui->codePageComboBox->setCurrentText(value);
+    ui->codePageComboBox->setCodePage(value);
 }
 
 uint GeneralPage::encoderThreadsCount() const

@@ -66,7 +66,7 @@ enum class PreGapType {
 };
 
 QString    preGapTypeToString(PreGapType type);
-PreGapType strToPreGapType(const QString &str);
+PreGapType strToPreGapType(const QString &str, PreGapType def = PreGapType::AddToFirstTrack);
 
 enum class GainType {
     Disable,
@@ -75,7 +75,7 @@ enum class GainType {
 };
 
 QString  gainTypeToString(GainType type);
-GainType strToGainType(const QString &str);
+GainType strToGainType(const QString &str, GainType def = GainType::Disable);
 
 enum class CoverMode {
     Disable,
@@ -84,7 +84,7 @@ enum class CoverMode {
 };
 
 QString   coverModeToString(CoverMode mode);
-CoverMode strToCoverMode(const QString &str);
+CoverMode strToCoverMode(const QString &str, CoverMode def = CoverMode::Disable);
 
 struct CoverOptions
 {
@@ -255,5 +255,7 @@ public:
 private:
     static Handler *mHandler;
 };
+
+QString expandFilePath(const QString &path);
 
 #endif // TYPES_H

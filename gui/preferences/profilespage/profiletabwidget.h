@@ -44,7 +44,7 @@ public:
     explicit ProfileTabWidget(QWidget *parent = nullptr);
     ~ProfileTabWidget();
 
-    void fromProfile(const Profile &profile);
+    void fromProfile(const Profile *profile);
     void toProfile(Profile *profile) const;
 
 private:
@@ -52,7 +52,7 @@ private:
 
     std::unique_ptr<EncoderConfigPage> mEncoderWidget = nullptr;
 
-    void recreateEncoderWidget(const Profile &profile);
+    void recreateEncoderWidget(const Profile *profile);
 };
 
 using BitsPerSampleCombobox = EnumCombobox<int>;

@@ -192,7 +192,7 @@ QStringList Encoder_Mp3::programArgs() const
     args << "--silent";
 
     // Settings .................................................
-    QString preset = profile().value("Preset").toString();
+    QString preset = profile().encoderValue("Preset").toString();
 
     if (preset == VBR_MEDIUM) {
         args << "--preset"
@@ -216,20 +216,20 @@ QStringList Encoder_Mp3::programArgs() const
 
     else if (preset == CBR_KBPS) {
         args << "--preset"
-             << "cbr" << profile().value("Bitrate").toString();
+             << "cbr" << profile().encoderValue("Bitrate").toString();
     }
 
     else if (preset == ABR_KBPS) {
-        args << "--preset" << profile().value("Bitrate").toString();
+        args << "--preset" << profile().encoderValue("Bitrate").toString();
     }
 
     else if (preset == VBR_QUALITY) {
-        int quality = profile().value("Quality").toInt();
+        int quality = profile().encoderValue("Quality").toInt();
         args << "-V" << QString("%1").arg(9 - quality);
     }
 
     // ReplayGain ...............................................
-    if (strToGainType(profile().value("ReplayGain").toString()) != GainType::Track) {
+    if (strToGainType(profile().encoderValue("ReplayGain").toString()) != GainType::Track) {
         args << "--noreplaygain";
     }
 

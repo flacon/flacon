@@ -115,7 +115,7 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, const QVector<con
     mProfile(profile),
     mDisc(disc)
 {
-    mPregapType = profile.isCreateCue() ? profile.preGapType() : PreGapType::Skip;
+    mPregapType = profile.isCreateCue() ? profile.pregapType() : PreGapType::Skip;
 
     for (const TrackPtrList &tracks : disc->tracksByFileTag()) {
 

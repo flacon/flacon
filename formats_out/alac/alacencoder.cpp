@@ -36,7 +36,7 @@ QStringList AlacEncoder::programArgs() const
     args << "--quiet"; // Produce no output to stderr
 
     // Settings .................................................
-    if (profile().value("Compression").toInt() == 0) {
+    if (profile().encoderValue("Compression").toInt() == 0) {
         args << QString("--fast");
     }
 

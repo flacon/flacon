@@ -42,7 +42,7 @@ Sox::Sox()
  ************************************************/
 QStringList Sox::resamplerArgs(int bitsPerSample, int sampleRate, const QString &outFile)
 {
-    QString     prog = Settings::i()->programName(programName());
+    QString     prog = Settings_OLD::i()->programName(programName());
     QStringList args;
     args << QDir::toNativeSeparators(prog);
 
@@ -72,7 +72,7 @@ QStringList Sox::resamplerArgs(int bitsPerSample, int sampleRate, const QString 
  ************************************************/
 QStringList Sox::deemphasisArgs(const QString &outFile)
 {
-    QString     prog = Settings::i()->programName(programName());
+    QString     prog = Settings_OLD::i()->programName(programName());
     QStringList args;
     args << QDir::toNativeSeparators(prog);
 

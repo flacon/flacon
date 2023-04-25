@@ -33,34 +33,40 @@ namespace Ui {
 class PreferencesDialog;
 }
 
+class Profiles;
+
 class PreferencesDialog : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    static PreferencesDialog *createAndShow(QWidget *parent = nullptr);
-    static PreferencesDialog *createAndShow(const QString &profileId, QWidget *parent = nullptr);
+    static PreferencesDialog *createAndShow(const Profiles &profiles, QWidget *parent = nullptr);
+    static PreferencesDialog *createAndShow(const Profiles &profiles, const QString &currentProfileId, QWidget *parent = nullptr);
 
     static void fixLayout(const QWidget *parent);
 
+    Profiles profiles() const;
+
 signals:
-    void finished();
+    void accepted();
 
 protected:
-    virtual void closeEvent(QCloseEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
     Ui::PreferencesDialog *ui;
 
+    bool mSaveOnClose = false;
+
     explicit PreferencesDialog(QWidget *parent = nullptr);
     ~PreferencesDialog();
 
-    void load();
-    void save();
-
+    void setProfiles(const Profiles &profiles);
     void initToolBar();
     void showProfile(const QString &profileId);
-    void done(bool accept);
+
+    bool save();
 };
 
 #endif // PREFERENCESDIALOG_H

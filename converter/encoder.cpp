@@ -249,7 +249,7 @@ void Encoder::writeMetadata() const
  ************************************************/
 QString Encoder::programPath() const
 {
-    return Settings::i()->programName(programName());
+    return Settings_OLD::i()->programName(programName());
 }
 
 /************************************************

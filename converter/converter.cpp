@@ -86,7 +86,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
 {
     qCDebug(LOG) << "Start converter:" << jobs.length() << "\n"
                  << profile;
-    qCDebug(LOG) << "Temp dir =" << Settings::i()->tmpDir();
+    qCDebug(LOG) << "Temp dir =" << profile.tmpDir();
 
     if (jobs.isEmpty()) {
         emit finished();
@@ -98,11 +98,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
         return;
     }
 
-    bool ok;
-    mThreadCount = Settings::i()->value(Settings::Encoder_ThreadCount).toInt(&ok);
-    if (!ok || mThreadCount < 1) {
-        mThreadCount = qMax(6, QThread::idealThreadCount());
-    }
+    mThreadCount = profile.encoderThreadsCount();
 
     qCDebug(LOG) << "Threads count" << mThreadCount;
 

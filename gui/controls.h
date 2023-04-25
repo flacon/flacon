@@ -268,6 +268,9 @@ class CodePageComboBox : public MultiValuesComboBox
 public:
     explicit CodePageComboBox(QWidget *parent = nullptr);
 
+    QString codePage() const;
+    void    setCodePage(const QString &value);
+
 private:
     void addCodecName(const QString &title, const QString &codecName);
 };

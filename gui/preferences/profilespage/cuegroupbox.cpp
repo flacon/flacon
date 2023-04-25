@@ -66,7 +66,7 @@ CueGroupBox::CueGroupBox(QWidget *parent) :
     connect(ui->writeToFileButton, &QCheckBox::clicked, this, &CueGroupBox::refresh);
     connect(ui->embedButton, &QCheckBox::clicked, this, &CueGroupBox::refresh);
 
-    refresh();
+    toProfile(nullptr);
 }
 
 CueGroupBox::~CueGroupBox()
@@ -74,19 +74,35 @@ CueGroupBox::~CueGroupBox()
     delete ui;
 }
 
-void CueGroupBox::fromProfile(const Profile &profile)
+void CueGroupBox::fromProfile(const Profile *profile)
 {
-    mSupportEmbeddedCue = profile.formatOptions().testFlag(FormatOption::SupportEmbeddedCue);
+    setEnabled(profile != nullptr);
 
-    ui->writeToFileButton->setChecked(profile.isCreateCue());
-    ui->embedButton->setChecked(profile.isEmbedCue());
-    ui->perTrackCueFormatEdit->setText(profile.cueFileName());
-    ui->preGapComboBox->setValue(profile.preGapType());
+    if (!profile) {
+        mSupportEmbeddedCue = false;
+        ui->writeToFileButton->setChecked(false);
+        ui->embedButton->setChecked(false);
+        ui->perTrackCueFormatEdit->clear();
+        ui->preGapComboBox->setCurrentIndex(-1);
+    }
+    else {
+        mSupportEmbeddedCue = profile->formatOptions().testFlag(FormatOption::SupportEmbeddedCue);
+
+        ui->writeToFileButton->setChecked(profile->isCreateCue());
+        ui->embedButton->setChecked(profile->isEmbedCue());
+        ui->perTrackCueFormatEdit->setText(profile->cueFileName());
+        ui->preGapComboBox->setValue(profile->pregapType());
+    }
+
     refresh();
 }
 
 void CueGroupBox::toProfile(Profile *profile) const
 {
+    if (!profile) {
+        return;
+    }
+
     profile->setCreateCue(ui->writeToFileButton->isChecked());
     profile->setEmbedCue(ui->embedButton->isChecked());
     profile->setCueFileName(ui->perTrackCueFormatEdit->text());

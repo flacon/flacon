@@ -524,7 +524,7 @@ QTextCodec *UcharDet::textCodec() const
     uchardet_data_end(mData->mUchcharDet);
     QTextCodec *res = QTextCodec::codecForName(uchardet_get_charset(mData->mUchcharDet));
     if (!res)
-        res = QTextCodec::codecForName(Settings::i()->value(Settings::Tags_DefaultCodepage).toString().toLocal8Bit());
+        res = QTextCodec::codecForName(Profile::defaultCodepage().toLocal8Bit());
 
     if (!res || res->name() == "US-ASCII")
         res = QTextCodec::codecForName("UTF-8");

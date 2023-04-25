@@ -124,14 +124,14 @@ QStringList Encoder_Opus::programArgs() const
 
     args << "--quiet";
 
-    QString type = profile().value(BITRATE_TYPE_KEY).toString();
+    QString type = profile().encoderValue(BITRATE_TYPE_KEY).toString();
     if (type == "VBR")
         args << "--vbr";
 
     if (type == "CVBR")
         args << "--cvbr";
 
-    args << "--bitrate" << profile().value(BITRATE_KEY).toString();
+    args << "--bitrate" << profile().encoderValue(BITRATE_KEY).toString();
 
     // Files ....................................................
     args << "-";

@@ -187,19 +187,19 @@ QStringList Encoder_Ogg::programArgs() const
     args << "--quiet";
 
     // Quality settings .........................................
-    if (profile().value("UseQuality").toBool()) {
-        args << "-q" << profile().value("Quality").toString();
+    if (profile().encoderValue("UseQuality").toBool()) {
+        args << "-q" << profile().encoderValue("Quality").toString();
     }
     else {
-        QString val = profile().value("NormBitrate").toString();
+        QString val = profile().encoderValue("NormBitrate").toString();
         if (!val.isEmpty())
             args << "-b" << val;
 
-        val = profile().value("MinBitrate").toString();
+        val = profile().encoderValue("MinBitrate").toString();
         if (!val.isEmpty())
             args << "-m" << val;
 
-        val = profile().value("MaxBitrate").toString();
+        val = profile().encoderValue("MaxBitrate").toString();
         if (!val.isEmpty())
             args << "-M" << val;
     }

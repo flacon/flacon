@@ -27,6 +27,7 @@
 #define PROFILESPAGE_H
 
 #include <QWidget>
+#include <QListWidget>
 #include "profiles.h"
 
 class QListWidgetItem;
@@ -34,6 +35,24 @@ class QListWidgetItem;
 namespace Ui {
 class ProfilesPage;
 }
+
+class ProfileListWidget : public QListWidget
+{
+    Q_OBJECT
+public:
+    explicit ProfileListWidget(QWidget *parent = nullptr);
+    using QListWidget::QListWidget;
+
+    void refresh(const Profiles &profiles);
+
+    QString currentId() const;
+    void    setCurrentId(const QString &id);
+
+    QString rowId(int row) const;
+
+signals:
+    void currentProfileChanged(const QString &id);
+};
 
 class ProfilesPage : public QWidget
 {
@@ -43,23 +62,22 @@ public:
     explicit ProfilesPage(QWidget *parent = nullptr);
     ~ProfilesPage();
 
-    const Profiles &profiles() const;
-    void            setProfiles(const Profiles &value);
+    Profiles profiles() const;
+    void     setProfiles(const Profiles &profiles);
 
-    QString selectedProfileId() const { return mProfile.id(); };
+    void     selectProfile(const QString &profileId);
+    Profile *currentProfile() { return mProfile; }
 
-    void selectProfile(const QString &id);
+    void addProfile();
 
 private:
     Ui::ProfilesPage *ui;
-    mutable Profiles  mProfiles;
-    mutable Profile   mProfile;
 
-    void profileListSelected(QListWidgetItem *current, QListWidgetItem *previous);
-    void profileItemChanged(QListWidgetItem *item);
-    void syncProfile() const;
+    Profiles mProfiles;
+    Profile *mProfile = nullptr;
 
-    void addProfile();
+    void renameProfile(QListWidgetItem *item);
+
     void deleteProfile();
 };
 

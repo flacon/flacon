@@ -72,6 +72,8 @@ ProfileTabWidget::ProfileTabWidget(QWidget *parent) :
     ui->gainComboBox->setToolTip(tr("ReplayGain is a standard to normalize the perceived loudness of computer audio formats. \n\n"
                                     "The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. \n"
                                     "Using the album-gain analysis will preserve the volume differences within an album."));
+
+    fromProfile(nullptr);
 }
 
 /************************************************
@@ -85,35 +87,62 @@ ProfileTabWidget::~ProfileTabWidget()
 /************************************************
  *
  ************************************************/
-void ProfileTabWidget::fromProfile(const Profile &profile)
+void ProfileTabWidget::fromProfile(const Profile *profile)
 {
+    for (int i = 0; i < count(); ++i) {
+        QWidget *w = widget(i);
+        if (w) {
+            w->setEnabled(profile != nullptr);
+        }
+    }
+
+    if (!profile) {
+        recreateEncoderWidget(profile);
+
+        ui->outDirEdit->clear();
+        ui->outPatternEdit->clear();
+
+        ui->encoderGroup->setVisible(false);
+        ui->encoderGroupLine->setVisible(false);
+
+        ui->resampleGroup->setVisible(false);
+        ui->resampleGroupLine->setVisible(false);
+
+        ui->gainGroup->setVisible(false);
+
+        ui->cueGroup->fromProfile(profile);
+
+        return;
+    }
+
+    ui->outFilesBox->setEnabled(true);
+
     // Create EncoderWidget ................
     recreateEncoderWidget(profile);
-    mEncoderWidget->load(profile);
 
     // Result files options ................
-    ui->outDirEdit->setText(profile.outFileDir());
-    ui->outPatternEdit->setText(profile.outFilePattern());
+    ui->outDirEdit->setText(profile->outFileDir());
+    ui->outPatternEdit->setText(profile->outFilePattern());
 
     // Resample options ....................
-    ui->resampleGroup->setVisible(profile.formatOptions().testFlag(FormatOption::Lossless));
+    ui->resampleGroup->setVisible(profile->formatOptions().testFlag(FormatOption::Lossless));
     ui->resampleGroupLine->setVisible(ui->resampleGroup->isVisible());
 
-    if (profile.formatOptions().testFlag(FormatOption::Lossless)) {
-        ui->bitDepthComboBox->setValue(profile.bitsPerSample());
-        ui->sampleRateComboBox->setValue(profile.sampleRate());
+    if (profile->formatOptions().testFlag(FormatOption::Lossless)) {
+        ui->bitDepthComboBox->setValue(profile->bitsPerSample());
+        ui->sampleRateComboBox->setValue(profile->sampleRate());
     }
 
     // Replay Gain options ................
-    ui->gainGroup->setVisible(profile.formatOptions().testFlag(FormatOption::SupportGain));
-    if (profile.formatOptions().testFlag(FormatOption::SupportGain)) {
-        ui->gainComboBox->setValue(profile.gainType());
+    ui->gainGroup->setVisible(profile->formatOptions().testFlag(FormatOption::SupportGain));
+    if (profile->formatOptions().testFlag(FormatOption::SupportGain)) {
+        ui->gainComboBox->setValue(profile->gainType());
     }
 
     // Cover options ......................
-    ui->copyCoverGroupBox->setCoverOptions(profile.copyCoverOptions());
-    ui->embeddedCoverGroupBox->setCoverOptions(profile.embedCoverOptions());
-    ui->embeddedCoverGroupBox->setVisible(profile.formatOptions().testFlag(FormatOption::SupportEmbeddedImage));
+    ui->copyCoverGroupBox->setCoverOptions(profile->copyCoverOptions());
+    ui->embeddedCoverGroupBox->setCoverOptions(profile->embedCoverOptions());
+    ui->embeddedCoverGroupBox->setVisible(profile->formatOptions().testFlag(FormatOption::SupportEmbeddedImage));
 
     // Out CUE options ....................
     ui->cueGroup->fromProfile(profile);
@@ -124,6 +153,10 @@ void ProfileTabWidget::fromProfile(const Profile &profile)
  ************************************************/
 void ProfileTabWidget::toProfile(Profile *profile) const
 {
+    if (!profile) {
+        return;
+    }
+
     mEncoderWidget->save(profile);
 
     // Result files options ................
@@ -133,7 +166,7 @@ void ProfileTabWidget::toProfile(Profile *profile) const
     // Resample options ....................
     if (profile->formatOptions().testFlag(FormatOption::Lossless)) {
 
-        profile->setBitsPerSample(ui->bitDepthComboBox->value());
+        profile->setBitsPerSample(BitsPerSample(ui->bitDepthComboBox->value()));
         profile->setSampleRate(ui->sampleRateComboBox->value());
     }
 
@@ -153,13 +186,20 @@ void ProfileTabWidget::toProfile(Profile *profile) const
 /************************************************
  *
  ************************************************/
-void ProfileTabWidget::recreateEncoderWidget(const Profile &profile)
+void ProfileTabWidget::recreateEncoderWidget(const Profile *profile)
 {
-    mEncoderWidget.reset(profile.configPage(ui->encoderGroup));
+    if (!profile) {
+        mEncoderWidget.reset(nullptr);
+    }
+    else {
+        mEncoderWidget.reset(profile->outFormat()->configPage(ui->encoderGroup));
+    }
+
     if (mEncoderWidget) {
+        mEncoderWidget->load(*profile);
         ui->encoderGroup->setTitle(
                 tr("%1 encoder settings:", "Preferences group title, %1 is a audio format name")
-                        .arg(profile.formatName()));
+                        .arg(profile->formatName()));
 
         ui->encoderGroup->setVisible(true);
         ui->encoderGroupLine->setVisible(true);

@@ -35,7 +35,7 @@ QStringList FlacEncoder::programArgs() const
 
     // Settings .................................................
     // Compression parametr really looks like --compression-level-N
-    args << QString("--compression-level-%1").arg(profile().value("Compression").toString());
+    args << QString("--compression-level-%1").arg(profile().encoderValue("Compression").toString());
 
     args << "-";
     args << "-o" << outFile();

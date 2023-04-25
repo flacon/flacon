@@ -154,6 +154,8 @@ int runConsole(int argc, char *argv[], const QStringList &files)
     qInstallMessageHandler(consoleErroHandler);
     QCoreApplication app(argc, argv);
 
+    project->load(Settings::i());
+
     auto addFile = [&](const QString &file, bool showError = false) {
         try {
             QFileInfo fi = QFileInfo(file);
@@ -226,6 +228,8 @@ int runGui(int argc, char *argv[], const QStringList &files)
 {
     Application app(argc, argv);
     translate(&app);
+
+    project->load(Settings::i());
 
     MainWindow window;
 
@@ -323,8 +327,12 @@ int main(int argc, char *argv[])
     qInfo() << "Start flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " " << GIT_COMMIT_HASH;
 #endif
 
+    int res = 0;
     if (parser.isSet("start"))
-        return runConsole(argc, argv, parser.positionalArguments());
+        res = runConsole(argc, argv, parser.positionalArguments());
     else
-        return runGui(argc, argv, parser.positionalArguments());
+        res = runGui(argc, argv, parser.positionalArguments());
+
+    project->save(Settings::i());
+    return res;
 }

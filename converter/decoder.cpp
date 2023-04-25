@@ -125,7 +125,7 @@ void Decoder::openFile()
  ************************************************/
 void Decoder::openProcess()
 {
-    QString program = Settings::i()->programName(mFormat->decoderProgramName());
+    QString program = Settings_OLD::i()->programName(mFormat->decoderProgramName());
     if (program.isEmpty()) {
         throw FlaconError(tr("The %1 program is not installed.<br>Verify that all required programs are installed and in your preferences.",
                              "Error message. %1 - is an program name")

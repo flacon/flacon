@@ -119,6 +119,8 @@ private:
     void initStatusBar();
     void refreshOutProfileCombo();
 
+    void preferencesDialogDone();
+
     void startConvert(const Conv::Converter::Jobs &jobs);
 
     QIcon loadMainIcon();

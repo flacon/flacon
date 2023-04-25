@@ -43,14 +43,15 @@ public:
     explicit CueGroupBox(QWidget *parent = nullptr);
     ~CueGroupBox();
 
-    void fromProfile(const Profile &profile);
+    void fromProfile(const Profile *profile);
     void toProfile(Profile *profile) const;
 
 private:
     Ui::CueGroupBox *ui;
 
-    void refresh();
     bool mSupportEmbeddedCue = false;
+
+    void refresh();
 };
 
 using PreGapTypeComboBox = EnumCombobox<PreGapType>;

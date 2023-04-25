@@ -23,10 +23,308 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
+#include "settings.h"
+
+static constexpr auto PROFILES_GROUP = "Profiles";
+
+static constexpr auto CURRENT_PROFILE_ID           = "OutFiles/Profile";
+static constexpr auto KNOWN_FORMATS_KEY            = "KnownFormats";
+static constexpr auto PROFILE_NAME_KEY             = "Name";
+static constexpr auto PROFILE_FORMAT_KEY           = "Format";
+static constexpr auto PROFILE_OUT_DIRECTORY_KEY    = "OutDirectory";
+static constexpr auto PROFILE_OUT_PATTERN_KEY      = "OutPattern";
+static constexpr auto PROFILE_BITS_PER_SAMPLE_KEY  = "BitsPerSample";
+static constexpr auto PROFILE_SAMPLE_RATE_KEY      = "SampleRate";
+static constexpr auto PROFILE_CREATE_CUE_KEY       = "CreateCue";
+static constexpr auto PROFILE_EMBED_CUE_KEY        = "EmbedCue";
+static constexpr auto PROFILE_CUE_FILE_NAME_KEY    = "CueFileName";
+static constexpr auto PROFILE_PREGAP_TYPE_KEY      = "PregapType";
+static constexpr auto PROFILE_REPLAY_GAIN_KEY      = "ReplayGain";
+static constexpr auto PROFILE_COVER_FILE_MODE_KEY  = "CoverFile/Mode";
+static constexpr auto PROFILE_COVER_FILE_SIZE_KEY  = "CoverFile/Size";
+static constexpr auto PROFILE_COVER_EMBED_MODE_KEY = "CoverEmbed/Mode";
+static constexpr auto PROFILE_COVER_EMBED_SIZE_KEY = "CoverEmbed/Size";
+
+static constexpr auto DEFAULTCODEPAGE_KEY     = "Tags/DefaultCodepage";
+static constexpr auto ENCODER_THREADCOUNT_KEY = "Encoder/ThreadCount";
+static constexpr auto ENCODER_TMPDIR_KEY      = "Encoder/TmpDir";
+
+QString   Settings::mFileName;
+Settings *Settings::mInstance = nullptr;
+
+/************************************************
+ *
+ ************************************************/
+Settings *Settings::i()
+{
+    if (!mInstance) {
+        if (mFileName.isEmpty())
+            mInstance = new Settings("flacon", "flacon");
+        else
+            mInstance = new Settings(mFileName);
+    }
+
+    return mInstance;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setFileName(const QString &fileName)
+{
+    mFileName = fileName;
+    delete mInstance;
+    mInstance = nullptr;
+}
+
+/************************************************
+ *
+ ************************************************/
+Settings::Settings(const QString &organization, const QString &application) :
+    QSettings(organization, application)
+{
+    setIniCodec("UTF-8");
+}
+#include <QDir>
+
+/************************************************
+ *
+ ************************************************/
+Settings::Settings(const QString &fileName) :
+    QSettings(expandFilePath(fileName), QSettings::IniFormat)
+{
+    QString s = this->fileName();
+    setIniCodec("UTF-8");
+}
+
+/************************************************
+ *
+ ************************************************/
+Profile Settings::readProfile(const QString &profileId)
+{
+    QString group = QString("%1/%2").arg(PROFILES_GROUP, profileId);
+
+    beginGroup(group);
+
+    Profile profile(value(PROFILE_FORMAT_KEY).toString(), profileId);
+
+    if (!profile.outFormat()) {
+        endGroup();
+        return profile;
+    }
+
+    profile.setName(value(PROFILE_NAME_KEY, profile.outFormat()->name()).toString());
+    profile.setOutFileDir(value(PROFILE_OUT_DIRECTORY_KEY, profile.outFileDir()).toString());
+    profile.setOutFilePattern(value(PROFILE_OUT_PATTERN_KEY, profile.outFilePattern()).toString());
+    profile.setCueFileName(value(PROFILE_CUE_FILE_NAME_KEY, profile.cueFileName()).toString());
+
+    profile.setBitsPerSample(readBitsPerSample(PROFILE_BITS_PER_SAMPLE_KEY, profile.bitsPerSample()));
+    profile.setSampleRate(readSampleRate(PROFILE_SAMPLE_RATE_KEY, profile.sampleRate()));
+
+    profile.setGainType(strToGainType(value(PROFILE_REPLAY_GAIN_KEY).toString(), profile.gainType()));
+    profile.setPregapType(strToPreGapType(value(PROFILE_PREGAP_TYPE_KEY).toString(), profile.pregapType()));
+
+    profile.setCreateCue(value(PROFILE_CREATE_CUE_KEY, profile.isCreateCue()).toBool());
+    profile.setEmbedCue(value(PROFILE_EMBED_CUE_KEY, profile.isEmbedCue()).toBool());
+
+    CoverOptions opts = profile.copyCoverOptions();
+    opts.mode         = strToCoverMode(value(PROFILE_COVER_FILE_MODE_KEY).toString(), opts.mode);
+    opts.size         = value(PROFILE_COVER_FILE_SIZE_KEY, opts.size).toInt();
+    profile.setCopyCoverOptions(opts);
+
+    if (profile.outFormat()->options().testFlag(FormatOption::SupportEmbeddedImage)) {
+        CoverOptions opts = profile.embedCoverOptions();
+        opts.mode         = strToCoverMode(value(PROFILE_COVER_EMBED_MODE_KEY).toString(), opts.mode);
+        opts.size         = value(PROFILE_COVER_EMBED_SIZE_KEY, opts.size).toInt();
+        profile.setEmbedCoverOptions(opts);
+    }
+
+    QHash<QString, QVariant> vals = profile.encoderValues();
+    for (auto i = vals.begin(); i != vals.end(); ++i) {
+        i.value() = value(i.key(), i.value());
+    }
+    profile.setEncoderValues(vals);
+
+    endGroup();
+
+    profile.setTmpDir(value(ENCODER_TMPDIR_KEY, profile.tmpDir()).toString());
+    profile.setDefaultCodepage(value(DEFAULTCODEPAGE_KEY, profile.defaultCodepage()).toString());
+    profile.setEncoderThreadsCount(readThreadsCount(ENCODER_THREADCOUNT_KEY, profile.encoderThreadsCount()));
+
+    return profile;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Settings::writeProfile(const Profile &profile)
+{
+    if (!profile.isValid()) {
+        return;
+    }
+
+    QString group = QString("%1/%2").arg(PROFILES_GROUP, profile.id());
+    beginGroup(group);
+
+    setValue(PROFILE_NAME_KEY, profile.name());
+    setValue(PROFILE_OUT_DIRECTORY_KEY, profile.outFileDir());
+    setValue(PROFILE_OUT_PATTERN_KEY, profile.outFilePattern());
+    setValue(PROFILE_CUE_FILE_NAME_KEY, profile.cueFileName());
+
+    setValue(PROFILE_FORMAT_KEY, profile.outFormat()->id());
+
+    setValue(PROFILE_BITS_PER_SAMPLE_KEY, profile.bitsPerSample());
+    setValue(PROFILE_SAMPLE_RATE_KEY, profile.sampleRate());
+
+    setValue(PROFILE_REPLAY_GAIN_KEY, gainTypeToString(profile.gainType()));
+    setValue(PROFILE_PREGAP_TYPE_KEY, preGapTypeToString(profile.pregapType()));
+
+    setValue(PROFILE_CREATE_CUE_KEY, profile.isCreateCue());
+    setValue(PROFILE_EMBED_CUE_KEY, profile.isEmbedCue());
+
+    setValue(PROFILE_COVER_FILE_MODE_KEY, coverModeToString(profile.copyCoverOptions().mode));
+    setValue(PROFILE_COVER_FILE_SIZE_KEY, profile.copyCoverOptions().size);
+
+    if (profile.outFormat()->options().testFlag(FormatOption::SupportEmbeddedImage)) {
+        setValue(PROFILE_COVER_EMBED_MODE_KEY, coverModeToString(profile.embedCoverOptions().mode));
+        setValue(PROFILE_COVER_EMBED_SIZE_KEY, profile.embedCoverOptions().size);
+    }
+
+    QHash<QString, QVariant> vals = profile.encoderValues();
+    for (auto i = vals.constBegin(); i != vals.constEnd(); ++i) {
+        setValue(i.key(), i.value());
+    }
+    endGroup();
+
+    setValue(ENCODER_TMPDIR_KEY, profile.tmpDir());
+    setValue(DEFAULTCODEPAGE_KEY, profile.defaultCodepage());
+    setValue(ENCODER_THREADCOUNT_KEY, profile.encoderThreadsCount());
+}
+
+/************************************************
+ *
+ ************************************************/
+Profiles Settings::readProfiles()
+{
+    Profiles res;
+    allKeys();
+
+    beginGroup(PROFILES_GROUP);
+    QStringList ids = childGroups();
+    endGroup();
+
+    for (const QString &id : ids) {
+        Profile profile = readProfile(id);
+        if (profile.isValid()) {
+            res << profile;
+        }
+    }
+
+    if (res.isEmpty()) {
+        //  If this is the first launch, we create standard profiles for ALL formats
+        res << createStandardProfiles();
+    }
+    else {
+        // If a new format has been added in this version of the program,
+        // then we create a standard profile for the NEW FORMAT
+
+        // This functionality is introduced in version 8.4, this is a list of formats known in 8.3.
+        QStringList def = { "AAC", "FLAC", "MP3", "OGG", "OPUS", "WAV", "WV" };
+        QStringList old = value(KNOWN_FORMATS_KEY, def).toStringList();
+
+        Profiles ps = createStandardProfiles();
+        for (const Profile &p : ps) {
+            if (!old.contains(p.outFormat()->id())) {
+                res << p;
+            }
+        }
+    }
+
+    return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+BitsPerSample Settings::readBitsPerSample(const QString &key, BitsPerSample def) const
+{
+    uint n = value(key, int(def)).toUInt();
+    switch (n) {
+        case BitsPerSample::AsSourcee:
+        case BitsPerSample::Bit_16:
+        case BitsPerSample::Bit_24:
+        case BitsPerSample::Bit_32:
+        case BitsPerSample::Bit_64:
+            return BitsPerSample(n);
+    }
+    return def;
+}
+
+/************************************************
+ *
+ ************************************************/
+SampleRate Settings::readSampleRate(const QString &key, SampleRate def) const
+{
+    uint n = value(key, int(def)).toUInt();
+    switch (n) {
+        case SampleRate::AsSource:
+        case SampleRate::Hz_44100:
+        case SampleRate::Hz_48000:
+        case SampleRate::Hz_96000:
+        case SampleRate::Hz_192000:
+        case SampleRate::Hz_384000:
+        case SampleRate::Hz_768000:
+            return SampleRate(n);
+    }
+    return def;
+}
+
+/************************************************
+ *
+ ************************************************/
+uint Settings::readThreadsCount(const QString &key, uint def) const
+{
+    int res = value(key, def).toInt();
+    if (res > 1) {
+        return res;
+    }
+
+    return def;
+}
+
+/************************************************
+ *
+ ************************************************/
+void Settings::writeProfiles(const Profiles &profiles)
+{
+    allKeys();
+    setValue(KNOWN_FORMATS_KEY, OutFormat::allFormatsId());
+
+    remove(PROFILES_GROUP);
+    for (const Profile &p : profiles) {
+        writeProfile(p);
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Settings::readCurrentProfileId() const
+{
+    return value(CURRENT_PROFILE_ID).toString();
+}
+
+/************************************************
+ *
+ ************************************************/
+void Settings::writeCurrentProfileId(const QString &profileId)
+{
+    setValue(CURRENT_PROFILE_ID, profileId);
+}
+
 #include "types.h"
 #include "formats_in/informat.h"
-#include "settings.h"
-#include "inputaudiofile.h"
+
 #include "formats_out/outformat.h"
 #include "converter/sox.h"
 
@@ -58,19 +356,19 @@
 #define PROFILES_PREFIX "Profiles"
 static constexpr char const *KNOWN_FORMATS = "KnownFormats";
 
-QString   Settings::mFileName;
-Settings *Settings::mInstance = nullptr;
+QString       Settings_OLD::mFileName;
+Settings_OLD *Settings_OLD::mInstance = nullptr;
 
 /************************************************
 
  ************************************************/
-Settings *Settings::i()
+Settings_OLD *Settings_OLD::i()
 {
     if (!mInstance) {
         if (mFileName.isEmpty())
-            mInstance = new Settings("flacon", "flacon");
+            mInstance = new Settings_OLD("flacon", "flacon_OLD");
         else
-            mInstance = new Settings(mFileName);
+            mInstance = new Settings_OLD(mFileName);
     }
 
     return mInstance;
@@ -79,7 +377,7 @@ Settings *Settings::i()
 /************************************************
 
  ************************************************/
-void Settings::setFileName(const QString &fileName)
+void Settings_OLD::setFileName(const QString &fileName)
 {
     mFileName = fileName;
     delete mInstance;
@@ -89,7 +387,7 @@ void Settings::setFileName(const QString &fileName)
 /************************************************
 
  ************************************************/
-Settings::Settings(const QString &organization, const QString &application) :
+Settings_OLD::Settings_OLD(const QString &organization, const QString &application) :
     QSettings(organization, application)
 {
     setIniCodec("UTF-8");
@@ -99,7 +397,7 @@ Settings::Settings(const QString &organization, const QString &application) :
 /************************************************
 
  ************************************************/
-Settings::Settings(const QString &fileName) :
+Settings_OLD::Settings_OLD(const QString &fileName) :
     QSettings(fileName, QSettings::IniFormat)
 {
     setIniCodec("UTF-8");
@@ -109,13 +407,13 @@ Settings::Settings(const QString &fileName) :
 /************************************************
 
  ************************************************/
-void Settings::init()
+void Settings_OLD::init()
 {
-    setDefaultValue(Tags_DefaultCodepage, "AUTODETECT");
+    // setDefaultValue(Tags_DefaultCodepage, "AUTODETECT");
 
     // Globals **********************************
-    setDefaultValue(Encoder_ThreadCount, qMax(4, QThread::idealThreadCount()));
-    setDefaultValue(Encoder_TmpDir, "");
+    // setDefaultValue(Encoder_ThreadCount, qMax(4, QThread::idealThreadCount()));
+    // setDefaultValue(Encoder_TmpDir, "");
 
     // Out Files ********************************
     setDefaultValue(OutFiles_Profile, "FLAC");
@@ -144,64 +442,23 @@ void Settings::init()
             setValue("Programs/" + program, findProgram(program));
     }
 
-    initProfiles();
-}
-
-/************************************************
-
-************************************************/
-void Settings::initProfiles()
-{
-    // If this is the first launch, we create standard profiles for ALL formats
-    if (!childGroups().contains(PROFILES_PREFIX)) {
-        foreach (const OutFormat *format, OutFormat::allFormats()) {
-            QString group = QString("%1/%2/").arg(PROFILES_PREFIX, format->id());
-            setDefaultValue(group + "Format", format->id());
-            setDefaultValue(group + "Name", format->name());
-        }
-        return;
-    }
-
-    // If a new format has been added in this version of the program,
-    // then we create a standard profile for the NEW FORMAT
-
-    // This functionality is introduced in version 8.4, this is a list of formats known in 8.3.
-    QStringList def;
-    def << "AAC";
-    def << "FLAC";
-    def << "MP3";
-    def << "OGG";
-    def << "OPUS";
-    def << "WAV";
-    def << "WV";
-    QStringList old = value(KNOWN_FORMATS, def).toStringList();
-    QStringList newKnownFormats;
-    foreach (const OutFormat *format, OutFormat::allFormats()) {
-        newKnownFormats << format->id();
-        if (old.contains(format->id())) {
-            continue;
-        }
-        QString group = QString("%1/%2/").arg(PROFILES_PREFIX, format->id());
-        setDefaultValue(group + "Format", format->id());
-        setDefaultValue(group + "Name", format->name());
-    }
-    setValue(KNOWN_FORMATS, newKnownFormats);
+    // initProfiles();
 }
 
 /************************************************
 
  ************************************************/
-QString Settings::keyToString(Settings::Key key) const
+QString Settings_OLD::keyToString(Settings_OLD::Key key) const
 {
     switch (key) {
-        case Tags_DefaultCodepage:
-            return "Tags/DefaultCodepage";
+            //        case Tags_DefaultCodepage:
+            //            return "Tags/DefaultCodepage";
 
-        // Globals *****************************
-        case Encoder_ThreadCount:
-            return "Encoder/ThreadCount";
-        case Encoder_TmpDir:
-            return "Encoder/TmpDir";
+            // Globals *****************************
+            //        case Encoder_ThreadCount:
+            //            return "Encoder/ThreadCount";
+            //        case Encoder_TmpDir:
+            //            return "Encoder/TmpDir";
 
         // Out Files ***************************
         case OutFiles_Profile:
@@ -220,6 +477,9 @@ QString Settings::keyToString(Settings::Key key) const
             return "ConfigureDialog/Width";
         case ConfigureDialog_Height:
             return "ConfigureDialog/Height";
+
+        default:
+            return "";
     }
 
     assert(false);
@@ -229,14 +489,14 @@ QString Settings::keyToString(Settings::Key key) const
 /************************************************
 
  ************************************************/
-Settings::~Settings()
+Settings_OLD::~Settings_OLD()
 {
 }
 
 /************************************************
 
  ************************************************/
-QVariant Settings::value(Key key, const QVariant &defaultValue) const
+QVariant Settings_OLD::value(Key key, const QVariant &defaultValue) const
 {
     return value(keyToString(key), defaultValue);
 }
@@ -244,7 +504,7 @@ QVariant Settings::value(Key key, const QVariant &defaultValue) const
 /************************************************
 
  ************************************************/
-QVariant Settings::value(const QString &key, const QVariant &defaultValue) const
+QVariant Settings_OLD::value(const QString &key, const QVariant &defaultValue) const
 {
     return QSettings::value(key, defaultValue);
 }
@@ -252,7 +512,7 @@ QVariant Settings::value(const QString &key, const QVariant &defaultValue) const
 /************************************************
  *
  ************************************************/
-QStringList Settings::groups(const QString &parentGroup) const
+QStringList Settings_OLD::groups(const QString &parentGroup) const
 {
     QStringList res;
     for (const QString &key : allKeys()) {
@@ -267,7 +527,7 @@ QStringList Settings::groups(const QString &parentGroup) const
 /************************************************
 
  ************************************************/
-bool Settings::checkProgram(const QString &program, QStringList *errors) const
+bool Settings_OLD::checkProgram(const QString &program, QStringList *errors) const
 {
     QString path = programPath(program);
 
@@ -307,7 +567,7 @@ bool Settings::checkProgram(const QString &program, QStringList *errors) const
 /************************************************
 
  ************************************************/
-QString Settings::programName(const QString &program) const
+QString Settings_OLD::programName(const QString &program) const
 {
 #ifdef MAC_BUNDLE
     return QDir(qApp->applicationDirPath()).absoluteFilePath(program);
@@ -319,7 +579,7 @@ QString Settings::programName(const QString &program) const
 /************************************************
 
  ************************************************/
-QString Settings::programPath(const QString &program) const
+QString Settings_OLD::programPath(const QString &program) const
 {
 #ifdef MAC_BUNDLE
     return programName(program);
@@ -341,7 +601,7 @@ QString Settings::programPath(const QString &program) const
 /************************************************
 
  ************************************************/
-QString Settings::findProgram(const QString &program) const
+QString Settings_OLD::findProgram(const QString &program) const
 {
     QStringList paths = QProcessEnvironment::systemEnvironment().value("PATH").split(PATH_ENV_SEPARATOR);
     foreach (QString path, paths) {
@@ -353,59 +613,25 @@ QString Settings::findProgram(const QString &program) const
 }
 
 /************************************************
- *
- ************************************************/
-QString Settings::tmpDir() const
-{
-    return value(Encoder_TmpDir).toString();
-}
-
-/************************************************
- *
- ************************************************/
-void Settings::setTmpDir(const QString &value)
-{
-    setValue(Encoder_TmpDir, value);
-}
-
-/************************************************
 
  ************************************************/
-QString Settings::defaultCodepage() const
-{
-    return value(Tags_DefaultCodepage).toString();
-}
-
-/************************************************
-
- ************************************************/
-void Settings::setDefaultCodepage(const QString &value)
-{
-    setValue(Tags_DefaultCodepage, value);
-}
-
-/************************************************
-
- ************************************************/
-void Settings::setValue(Settings::Key key, const QVariant &value)
+void Settings_OLD::setValue(Settings_OLD::Key key, const QVariant &value)
 {
     setValue(keyToString(key), value);
-    emit changed();
 }
 
 /************************************************
 
  ************************************************/
-void Settings::setValue(const QString &key, const QVariant &value)
+void Settings_OLD::setValue(const QString &key, const QVariant &value)
 {
     QSettings::setValue(key, value);
-    emit changed();
 }
 
 /************************************************
 
  ************************************************/
-void Settings::setDefaultValue(Key key, const QVariant &defaultValue)
+void Settings_OLD::setDefaultValue(Key key, const QVariant &defaultValue)
 {
     setValue(key, value(key, defaultValue));
 }
@@ -413,142 +639,15 @@ void Settings::setDefaultValue(Key key, const QVariant &defaultValue)
 /************************************************
 
  ************************************************/
-void Settings::setDefaultValue(const QString &key, const QVariant &defaultValue)
+void Settings_OLD::setDefaultValue(const QString &key, const QVariant &defaultValue)
 {
     setValue(key, value(key, defaultValue));
 }
 
 /************************************************
-
+ *
  ************************************************/
-const Profiles &Settings::profiles() const
-{
-    if (mProfiles.isEmpty()) {
-        const_cast<Settings *>(this)->loadProfiles();
-    }
-
-    return mProfiles;
-}
-
-/************************************************
-
- ************************************************/
-Profiles &Settings::profiles()
-{
-    if (mProfiles.isEmpty()) {
-        const_cast<Settings *>(this)->loadProfiles();
-    }
-
-    return mProfiles;
-}
 
 /************************************************
  *
  ************************************************/
-void Settings::loadProfiles()
-{
-    QSet<QString> loaded;
-    allKeys();
-    beginGroup(PROFILES_PREFIX);
-    for (QString id : childGroups()) {
-        Profile profile(id);
-        profile.load(*this, id);
-
-        if (profile.isValid()) {
-            mProfiles << profile;
-            loaded << profile.formatId();
-        }
-    }
-    endGroup();
-}
-
-/************************************************
- *
- ************************************************/
-void Settings::setProfiles(const Profiles &profiles)
-{
-    allKeys();
-    beginGroup(PROFILES_PREFIX);
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-    QSet<QString> old = QSet<QString>::fromList(childGroups());
-#else
-    // After 5.14.0, QT has stated range constructors are available and preferred.
-    // See: https://doc.qt.io/qt-5/qset.html#toList
-    QList<QString> groups = childGroups();
-    QSet<QString>  old    = QSet<QString>(groups.begin(), groups.end());
-#endif
-
-    for (const Profile &profile : profiles) {
-        old.remove(profile.id());
-        profile.save(*this, profile.id());
-    }
-
-    for (const QString &id : old) {
-        remove(id);
-    }
-    endGroup();
-    mProfiles.clear();
-}
-
-/************************************************
- *
- ************************************************/
-const Profile &Settings::currentProfile() const
-{
-    int n = profiles().indexOf(value(OutFiles_Profile).toString());
-    if (n > -1) {
-        return profiles()[qMax(0, n)];
-    }
-
-    return NullProfile();
-}
-
-/************************************************
- *
- ************************************************/
-Profile &Settings::currentProfile()
-{
-
-    int n = profiles().indexOf(value(OutFiles_Profile).toString());
-    if (n > -1) {
-        return profiles()[qMax(0, n)];
-    }
-
-    return NullProfile();
-}
-
-/************************************************
- *
- ************************************************/
-bool Settings::selectProfile(const QString &profileId)
-{
-    if (profiles().indexOf(profileId) < 0)
-        return false;
-
-    setValue(OutFiles_Profile, profileId);
-    return true;
-}
-
-/************************************************
- *
- ************************************************/
-uint Settings::encoderThreadsCount() const
-{
-    return value(Encoder_ThreadCount).toUInt();
-}
-
-/************************************************
- *
- ************************************************/
-void Settings::setEncoderThreadsCount(uint value)
-{
-    setValue(Encoder_ThreadCount, value);
-}
-
-/************************************************
- *
- ************************************************/
-void Settings::emitChanged()
-{
-    emit changed();
-}
