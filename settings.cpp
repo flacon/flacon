@@ -356,7 +356,6 @@ void Settings::writeExtPrograms()
 #include "formats_in/informat.h"
 
 #include "formats_out/outformat.h"
-#include "converter/sox.h"
 
 #include <assert.h>
 #include <QtGlobal>

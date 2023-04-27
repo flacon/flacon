@@ -43,8 +43,10 @@ public:
     BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
     SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
-    Conv::Encoder  *createEncoder() const override;
     MetadataWriter *createMetadataWriter(const QString &filePath) const override;
+
+    ExtProgram *encoderProgram(const Profile &profile) const override;
+    QStringList encoderArgs(const Profile &profile, const QString &outFile) const override;
 };
 
 class ConfigPage_Flac : public EncoderConfigPage, private Ui::flacConfigPage

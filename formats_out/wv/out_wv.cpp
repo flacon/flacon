@@ -63,7 +63,7 @@ EncoderConfigPage *OutFormat_Wv::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-Conv::Encoder *OutFormat_Wv::createEncoder() const
+Conv::Encoder *OutFormat_Wv::createEncoder_OLD() const
 {
     return new Encoder_Wv();
 }
@@ -107,11 +107,11 @@ void ConfigPage_Wv::save(Profile *profile)
 /************************************************
 
  ************************************************/
-QStringList Encoder_Wv::programArgs() const
+QStringList Encoder_Wv::programArgs_OLD() const
 {
     QStringList args;
 
-    args << programPath();
+    args << programPath_OLD();
 
     args << "-q"; // Suppress progress indicator
 

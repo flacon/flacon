@@ -31,6 +31,7 @@
 #include <QVariant>
 #include "track.h"
 #include "types.h"
+#include "extprogram.h"
 
 namespace Conv {
 class Encoder;
@@ -54,8 +55,6 @@ public:
     QString       ext() const { return mExt; }
     FormatOptions options() const { return mOptions; }
 
-    QString encoderProgramName() const;
-
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const = 0;
     virtual SampleRate    maxSampleRate() const   = 0;
@@ -65,7 +64,10 @@ public:
     virtual QHash<QString, QVariant> defaultParameters() const         = 0;
     virtual EncoderConfigPage       *configPage(QWidget *parent) const = 0;
 
-    virtual Conv::Encoder  *createEncoder() const                               = 0;
+    virtual ExtProgram *encoderProgram(const Profile &profile) const { return nullptr; }
+    virtual QStringList encoderArgs(const Profile &profile, const QString &outFile) const { return {}; }
+
+    virtual Conv::Encoder  *createEncoder_OLD() const { return nullptr; }
     virtual MetadataWriter *createMetadataWriter(const QString &filePath) const = 0;
 
 protected:
@@ -73,10 +75,6 @@ protected:
     QString       mName;
     QString       mExt;
     FormatOptions mOptions;
-
-    mutable QString mEncoderProgramName;
-
-    bool checkProgram(const QString &program, QStringList *errors) const;
 };
 
 #endif // OUTFORMAT_H

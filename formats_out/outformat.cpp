@@ -65,6 +65,9 @@ QList<OutFormat *> OutFormat::allFormats()
     return res;
 }
 
+/************************************************
+ *
+ ************************************************/
 QStringList OutFormat::allFormatsId()
 {
     static QStringList res;
@@ -94,36 +97,12 @@ OutFormat *OutFormat::formatForId(const QString &id)
 /************************************************
 
  ************************************************/
-QString OutFormat::encoderProgramName() const
-{
-    if (mEncoderProgramName.isEmpty()) {
-        Conv::Encoder *e    = createEncoder();
-        mEncoderProgramName = e->programName();
-        delete e;
-    }
-    return mEncoderProgramName;
-}
-
-/************************************************
-
- ************************************************/
-bool OutFormat::checkProgram(const QString &program, QStringList *errors) const
-{
-    if (program.isEmpty())
-        return true;
-
-    Settings_OLD::i()->checkProgram(program, errors);
-
-    return errors->isEmpty();
-}
-
-/************************************************
-
- ************************************************/
 bool OutFormat::check(const Profile &profile, QStringList *errors) const
 {
-    Q_UNUSED(profile)
-    bool res = checkProgram(encoderProgramName(), errors);
+    ExtProgram *prog = encoderProgram(profile);
+    if (!prog) {
+        return true;
+    }
 
-    return res;
+    return prog->check(errors);
 }

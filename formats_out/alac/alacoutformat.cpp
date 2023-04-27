@@ -60,7 +60,7 @@ EncoderConfigPage *OutFormat_Alac::configPage(QWidget *parent) const
 /************************************************
  *
  ************************************************/
-Conv::Encoder *OutFormat_Alac::createEncoder() const
+Conv::Encoder *OutFormat_Alac::createEncoder_OLD() const
 {
     return new AlacEncoder();
 }

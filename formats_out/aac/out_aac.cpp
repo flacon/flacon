@@ -61,9 +61,29 @@ EncoderConfigPage *OutFormat_Aac::configPage(QWidget *parentr) const
 /************************************************
 
  ************************************************/
-Conv::Encoder *OutFormat_Aac::createEncoder() const
+ExtProgram *OutFormat_Aac::encoderProgram(const Profile &) const
 {
-    return new Encoder_Aac();
+    return ExtProgram::faac();
+}
+
+/************************************************
+
+ ************************************************/
+QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const QString &outFile) const
+{
+    QStringList args;
+
+    args << "-w"; // Wrap  AAC  data  in  an MP4 container.
+
+    // Quality settings .........................................
+    if (profile.encoderValue("UseQuality").toBool())
+        args << "-q" << profile.encoderValue("Quality").toString();
+    else
+        args << "-b" << profile.encoderValue("Bitrate").toString();
+
+    args << "-o" << outFile;
+    args << "-";
+    return args;
 }
 
 /************************************************
@@ -121,26 +141,4 @@ void ConfigPage_Acc::useQualityChecked(bool checked)
 
     bitrateLabel->setEnabled(!checked);
     aacBitrateCbx->setEnabled(!checked);
-}
-
-/************************************************
-
- ************************************************/
-QStringList Encoder_Aac::programArgs() const
-{
-    QStringList args;
-
-    args << programPath();
-
-    args << "-w"; // Wrap  AAC  data  in  an MP4 container.
-
-    // Quality settings .........................................
-    if (profile().encoderValue("UseQuality").toBool())
-        args << "-q" << profile().encoderValue("Quality").toString();
-    else
-        args << "-b" << profile().encoderValue("Bitrate").toString();
-
-    args << "-o" << outFile();
-    args << "-";
-    return args;
 }

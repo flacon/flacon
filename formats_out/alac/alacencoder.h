@@ -31,8 +31,8 @@
 class AlacEncoder : public Conv::Encoder
 {
 public:
-    QString     programName() const override { return "alacenc"; }
-    QStringList programArgs() const override;
+    QString     programName_OLD() const override { return "alacenc"; }
+    QStringList programArgs_OLD() const override;
 };
 
 #endif // FLACENCODER_H

@@ -28,10 +28,10 @@
 /************************************************
 
  ************************************************/
-QStringList AlacEncoder::programArgs() const
+QStringList AlacEncoder::programArgs_OLD() const
 {
     QStringList args;
-    args << programPath();
+    args << programPath_OLD();
 
     args << "--quiet"; // Produce no output to stderr
 

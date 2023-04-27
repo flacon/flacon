@@ -292,7 +292,7 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     QFileInfo trackFile(track.resultFilePath());
     QString   outFile = QDir(mTmpDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
 
-    Encoder *encoder = mProfile.outFormat()->createEncoder();
+    Encoder *encoder = new Encoder();
     encoder->setInputFile(inputFile);
     encoder->setOutFile(outFile);
     encoder->setTrack(track);

@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "encoder.h"
-#include "sox.h"
 #include "profiles.h"
 #include "settings.h"
 
@@ -57,18 +56,18 @@ Encoder::Encoder(QObject *parent) :
  ************************************************/
 QProcess *Encoder::createEncoderProcess()
 {
-    if (programArgs().isEmpty()) {
+    ExtProgram *prog = mProfile.outFormat()->encoderProgram(mProfile);
+    if (!prog) {
         return nullptr;
     }
 
-    QStringList args = programArgs();
-    QString     prog = args.takeFirst();
+    QStringList args = mProfile.outFormat()->encoderArgs(mProfile, mOutFile);
 
-    qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog, args);
+    qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog->path(), args);
 
     QProcess *res = new ExtProcess();
     res->setObjectName("encoder");
-    res->setProgram(prog);
+    res->setProgram(prog->path());
     res->setArguments(args);
 
 #ifdef MAC_BUNDLE
@@ -96,14 +95,14 @@ QProcess *Encoder::createRasmpler(const QString &outFile)
         return nullptr;
     }
 
-    QStringList args = Sox::resamplerArgs(bps, rate, outFile);
-    QString     prog = args.takeFirst();
+    ExtProgram *prog = ExtProgram::sox();
+    QStringList args = resamplerArgs(bps, rate, outFile);
 
-    qCDebug(LOG) << "Start resampler:" << debugProgramArgs(prog, args);
+    qCDebug(LOG) << "Start resampler:" << debugProgramArgs(prog->path(), args);
 
     QProcess *res = new ExtProcess();
     res->setObjectName("resampler");
-    res->setProgram(prog);
+    res->setProgram(prog->path());
     res->setArguments(args);
     return res;
 }
@@ -125,7 +124,7 @@ QProcess *Encoder::createDemph(const QString &outFile)
         return nullptr;
     }
 
-    QStringList args = Sox::deemphasisArgs(outFile);
+    QStringList args = deemphasisArgs(outFile);
     QString     prog = args.takeFirst();
 
     qCDebug(LOG) << "Start deEmphasis:" << debugProgramArgs(prog, args);
@@ -247,9 +246,9 @@ void Encoder::writeMetadata() const
 /************************************************
  *
  ************************************************/
-QString Encoder::programPath() const
+QString Encoder::programPath_OLD() const
 {
-    return Settings_OLD::i()->programName(programName());
+    return Settings_OLD::i()->programName(programName_OLD());
 }
 
 /************************************************
@@ -319,4 +318,48 @@ void Encoder::copyFile()
         emit error(track(),
                    tr("I can't rename file:\n%1 to %2\n%3").arg(inputFile(), outFile(), srcFile.errorString()));
     }
+}
+
+/************************************************
+
+ ************************************************/
+QStringList Encoder::resamplerArgs(int bitsPerSample, int sampleRate, const QString &outFile)
+{
+    QStringList args;
+
+    args << "--type"
+         << "wav";
+
+    args << "-"; // Read from STDIN
+    if (bitsPerSample) {
+        args << "-b" << QString("%1").arg(bitsPerSample);
+    }
+
+    args << "--type"
+         << "wav";
+    args << outFile;
+
+    if (sampleRate) {
+        args << "rate";
+        args << "-v"; // very high quality
+        args << QString("%1").arg(sampleRate);
+    }
+
+    return args;
+}
+
+/************************************************
+
+ ************************************************/
+QStringList Encoder::deemphasisArgs(const QString &outFile)
+{
+    QStringList args;
+
+    // clang-format off
+    args << "--type" << "wav" << "-"; // Read from STDIN
+    args << "--type" << "wav" << outFile;
+    args << "deemph";
+    // clang-format on
+
+    return args;
 }

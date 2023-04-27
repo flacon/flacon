@@ -39,7 +39,7 @@ public:
     BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
     SampleRate    maxSampleRate() const override { return SampleRate::Hz_384000; }
 
-    Conv::Encoder  *createEncoder() const override;
+    Conv::Encoder  *createEncoder_OLD() const override;
     MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 

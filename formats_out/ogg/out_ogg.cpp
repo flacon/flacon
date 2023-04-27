@@ -66,7 +66,7 @@ EncoderConfigPage *OutFormat_Ogg::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-Conv::Encoder *OutFormat_Ogg::createEncoder() const
+Conv::Encoder *OutFormat_Ogg::createEncoder_OLD() const
 {
     return new Encoder_Ogg();
 }
@@ -178,11 +178,11 @@ void ConfigPage_Ogg::setUseQualityMode(bool checked)
 /************************************************
  *
  ************************************************/
-QStringList Encoder_Ogg::programArgs() const
+QStringList Encoder_Ogg::programArgs_OLD() const
 {
     QStringList args;
 
-    args << programPath();
+    args << programPath_OLD();
 
     args << "--quiet";
 

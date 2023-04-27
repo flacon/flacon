@@ -44,7 +44,7 @@ public:
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_64; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
-    Conv::Encoder  *createEncoder() const override;
+    Conv::Encoder  *createEncoder_OLD() const override;
     MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
@@ -64,8 +64,8 @@ private slots:
 class Encoder_Mp3 : public Conv::Encoder
 {
 public:
-    QString     programName() const override { return "lame"; }
-    QStringList programArgs() const override;
+    QString     programName_OLD() const override { return "lame"; }
+    QStringList programArgs_OLD() const override;
 };
 
 #endif // OUT_MP3_H

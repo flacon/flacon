@@ -26,7 +26,6 @@
 #include "flacoutformat.h"
 #include "project.h"
 #include "inputaudiofile.h"
-#include "flacencoder.h"
 #include "flacmetadatawriter.h"
 #include <QDebug>
 
@@ -92,9 +91,28 @@ EncoderConfigPage *OutFormat_Flac::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-Conv::Encoder *OutFormat_Flac::createEncoder() const
+ExtProgram *OutFormat_Flac::encoderProgram(const Profile &) const
 {
-    return new FlacEncoder();
+    return ExtProgram::flac();
+}
+
+/************************************************
+
+ ************************************************/
+QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const QString &outFile) const
+{
+    QStringList args;
+
+    args << "--force";  // Force overwriting of output files.
+    args << "--silent"; // Suppress progress indicator
+
+    // Settings .................................................
+    // Compression parametr really looks like --compression-level-N
+    args << QString("--compression-level-%1").arg(profile.encoderValue("Compression").toString());
+
+    args << "-";
+    args << "-o" << outFile;
+    return args;
 }
 
 /************************************************

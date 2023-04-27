@@ -58,8 +58,8 @@ public:
     const CoverImage &coverImage() const { return mCoverImage; }
     void              setCoverImage(const CoverImage &value);
 
-    virtual QString     programName() const { return ""; }
-    virtual QStringList programArgs() const = 0;
+    virtual QString     programName_OLD() const { return ""; }
+    virtual QStringList programArgs_OLD() const { return {}; }
 
 public slots:
     void run() override;
@@ -68,7 +68,7 @@ signals:
     void trackReady(const Conv::ConvTrack &track, const QString &outFileName, const ReplayGain::Result &trackGain);
 
 protected:
-    QString programPath() const;
+    QString programPath_OLD() const;
 
 private slots:
     void processBytesWritten(qint64 bytes);
@@ -96,6 +96,9 @@ private:
     QProcess *createRasmpler(const QString &outFile);
     QProcess *createDemph(const QString &outFile);
     void      writeMetadata() const;
+
+    QStringList resamplerArgs(int bitsPerSample, int sampleRate, const QString &outFile);
+    QStringList deemphasisArgs(const QString &outFile);
 };
 
 } // namespace

@@ -25,7 +25,6 @@
 
 #include "validator.h"
 #include "settings.h"
-#include "sox.h"
 #include "settings.h"
 #include <QDebug>
 #include <QDateTime>

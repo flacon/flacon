@@ -70,7 +70,7 @@ EncoderConfigPage *OutFormat_Mp3::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-Conv::Encoder *OutFormat_Mp3::createEncoder() const
+Conv::Encoder *OutFormat_Mp3::createEncoder_OLD() const
 {
     return new Encoder_Mp3();
 }
@@ -184,11 +184,11 @@ void ConfigPage_Mp3::mp3PresetCbxCanged(int index)
 /************************************************
 
  ************************************************/
-QStringList Encoder_Mp3::programArgs() const
+QStringList Encoder_Mp3::programArgs_OLD() const
 {
     QStringList args;
 
-    args << programPath();
+    args << programPath_OLD();
     args << "--silent";
 
     // Settings .................................................

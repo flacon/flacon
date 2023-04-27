@@ -63,7 +63,7 @@ EncoderConfigPage *OutFormat_Opus::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-Conv::Encoder *OutFormat_Opus::createEncoder() const
+Conv::Encoder *OutFormat_Opus::createEncoder_OLD() const
 {
     return new Encoder_Opus();
 }
@@ -116,11 +116,11 @@ void ConfigPage_Opus::save(Profile *profile)
 /************************************************
 
  ************************************************/
-QStringList Encoder_Opus::programArgs() const
+QStringList Encoder_Opus::programArgs_OLD() const
 {
     QStringList args;
 
-    args << programPath();
+    args << programPath_OLD();
 
     args << "--quiet";
 

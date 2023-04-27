@@ -43,7 +43,7 @@ public:
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
-    Conv::Encoder  *createEncoder() const override;
+    Conv::Encoder  *createEncoder_OLD() const override;
     MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
@@ -60,8 +60,8 @@ public:
 class Encoder_Opus : public Conv::Encoder
 {
 public:
-    QString     programName() const override { return "opusenc"; }
-    QStringList programArgs() const override;
+    QString     programName_OLD() const override { return "opusenc"; }
+    QStringList programArgs_OLD() const override;
 };
 
 #endif // OUT_OPUS_H

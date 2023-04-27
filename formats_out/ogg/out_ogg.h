@@ -44,7 +44,7 @@ public:
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_192000; }
 
-    Conv::Encoder  *createEncoder() const override;
+    Conv::Encoder  *createEncoder_OLD() const override;
     MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
@@ -66,8 +66,8 @@ private slots:
 class Encoder_Ogg : public Conv::Encoder
 {
 public:
-    QString     programName() const override { return "oggenc"; }
-    QStringList programArgs() const override;
+    QString     programName_OLD() const override { return "oggenc"; }
+    QStringList programArgs_OLD() const override;
 };
 
 #endif // OUT_OGG_H
