@@ -63,9 +63,39 @@ EncoderConfigPage *OutFormat_Wv::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-Conv::Encoder *OutFormat_Wv::createEncoder_OLD() const
+ExtProgram *OutFormat_Wv::encoderProgram(const Profile &) const
 {
-    return new Encoder_Wv();
+    return ExtProgram::wavpack();
+}
+
+/************************************************
+
+ ************************************************/
+QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const QString &outFile) const
+{
+    QStringList args;
+
+    args << "-q"; // Suppress progress indicator
+
+    // Quality Settings .........................
+    int compression = profile.encoderValue(COMPRESSION_KEY).toInt();
+    switch (compression) {
+        case 0:
+            args << "-f";
+            break;
+        case 1:
+            args << "-h";
+            break;
+        case 2:
+            args << "-hh";
+            break;
+    }
+
+    // Files ....................................
+    args << "-";
+    args << "-o" << outFile;
+
+    return args;
 }
 
 /************************************************
@@ -102,36 +132,4 @@ void ConfigPage_Wv::load(const Profile &profile)
 void ConfigPage_Wv::save(Profile *profile)
 {
     saveWidget(profile, COMPRESSION_KEY, wvCompressionSlider);
-}
-
-/************************************************
-
- ************************************************/
-QStringList Encoder_Wv::programArgs_OLD() const
-{
-    QStringList args;
-
-    args << programPath_OLD();
-
-    args << "-q"; // Suppress progress indicator
-
-    // Quality Settings .........................
-    int compression = profile().encoderValue(COMPRESSION_KEY).toInt();
-    switch (compression) {
-        case 0:
-            args << "-f";
-            break;
-        case 1:
-            args << "-h";
-            break;
-        case 2:
-            args << "-hh";
-            break;
-    }
-
-    // Files ....................................
-    args << "-";
-    args << "-o" << outFile();
-
-    return args;
 }

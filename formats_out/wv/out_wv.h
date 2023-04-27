@@ -43,7 +43,9 @@ public:
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
-    Conv::Encoder  *createEncoder_OLD() const override;
+    ExtProgram *encoderProgram(const Profile &profile) const override;
+    QStringList encoderArgs(const Profile &profile, const QString &outFile) const override;
+
     MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
@@ -55,13 +57,6 @@ public:
 
     virtual void load(const Profile &profile) override;
     virtual void save(Profile *profile) override;
-};
-
-class Encoder_Wv : public Conv::Encoder
-{
-public:
-    QString     programName_OLD() const override { return "wavpack"; }
-    QStringList programArgs_OLD() const override;
 };
 
 #endif // OUT_WV_H
