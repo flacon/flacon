@@ -43,7 +43,9 @@ public:
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
-    Conv::Encoder  *createEncoder_OLD() const override;
+    ExtProgram *encoderProgram(const Profile &profile) const override;
+    QStringList encoderArgs(const Profile &profile, const QString &outFile) const override;
+
     MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 

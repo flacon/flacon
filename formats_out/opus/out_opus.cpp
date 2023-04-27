@@ -63,9 +63,34 @@ EncoderConfigPage *OutFormat_Opus::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-Conv::Encoder *OutFormat_Opus::createEncoder_OLD() const
+ExtProgram *OutFormat_Opus::encoderProgram(const Profile &profile) const
 {
-    return new Encoder_Opus();
+    return ExtProgram::opusenc();
+}
+
+/************************************************
+
+ ************************************************/
+QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const QString &outFile) const
+{
+    QStringList args;
+
+    args << "--quiet";
+
+    QString type = profile.encoderValue(BITRATE_TYPE_KEY).toString();
+    if (type == "VBR")
+        args << "--vbr";
+
+    if (type == "CVBR")
+        args << "--cvbr";
+
+    args << "--bitrate" << profile.encoderValue(BITRATE_KEY).toString();
+
+    // Files ....................................................
+    args << "-";
+    args << outFile;
+
+    return args;
 }
 
 /************************************************
@@ -111,31 +136,4 @@ void ConfigPage_Opus::save(Profile *profile)
 {
     saveWidget(profile, BITRATE_TYPE_KEY, opusBitrateTypeCbx);
     saveWidget(profile, BITRATE_KEY, opusBitrateSlider);
-}
-
-/************************************************
-
- ************************************************/
-QStringList Encoder_Opus::programArgs_OLD() const
-{
-    QStringList args;
-
-    args << programPath_OLD();
-
-    args << "--quiet";
-
-    QString type = profile().encoderValue(BITRATE_TYPE_KEY).toString();
-    if (type == "VBR")
-        args << "--vbr";
-
-    if (type == "CVBR")
-        args << "--cvbr";
-
-    args << "--bitrate" << profile().encoderValue(BITRATE_KEY).toString();
-
-    // Files ....................................................
-    args << "-";
-    args << outFile();
-
-    return args;
 }
