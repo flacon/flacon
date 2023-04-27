@@ -59,11 +59,4 @@ public:
     virtual void save(Profile *profile) override;
 };
 
-class Encoder_Opus : public Conv::Encoder
-{
-public:
-    QString     programName_OLD() const override { return "opusenc"; }
-    QStringList programArgs_OLD() const override;
-};
-
 #endif // OUT_OPUS_H

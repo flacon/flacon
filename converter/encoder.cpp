@@ -244,14 +244,6 @@ void Encoder::writeMetadata() const
 }
 
 /************************************************
- *
- ************************************************/
-QString Encoder::programPath_OLD() const
-{
-    return Settings_OLD::i()->programName(programName_OLD());
-}
-
-/************************************************
 
  ************************************************/
 void Encoder::processBytesWritten(qint64 bytes)
