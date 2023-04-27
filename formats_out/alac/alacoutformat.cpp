@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "alacoutformat.h"
-#include "alacencoder.h"
 #include "alacconfigpage.h"
 #include "../metadatawriter.h"
 
@@ -60,9 +59,28 @@ EncoderConfigPage *OutFormat_Alac::configPage(QWidget *parent) const
 /************************************************
  *
  ************************************************/
-Conv::Encoder *OutFormat_Alac::createEncoder_OLD() const
+ExtProgram *OutFormat_Alac::encoderProgram(const Profile &) const
 {
-    return new AlacEncoder();
+    return ExtProgram::alacenc();
+}
+
+/************************************************
+ *
+ ************************************************/
+QStringList OutFormat_Alac::encoderArgs(const Profile &profile, const QString &outFile) const
+{
+    QStringList args;
+
+    args << "--quiet"; // Produce no output to stderr
+
+    // Settings .................................................
+    if (profile.encoderValue("Compression").toInt() == 0) {
+        args << QString("--fast");
+    }
+
+    args << "-";
+    args << outFile;
+    return args;
 }
 
 /************************************************
