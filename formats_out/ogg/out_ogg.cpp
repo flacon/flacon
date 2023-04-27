@@ -66,9 +66,42 @@ EncoderConfigPage *OutFormat_Ogg::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-Conv::Encoder *OutFormat_Ogg::createEncoder_OLD() const
+ExtProgram *OutFormat_Ogg::encoderProgram(const Profile &) const
 {
-    return new Encoder_Ogg();
+    return ExtProgram::oggenc();
+}
+
+/************************************************
+
+ ************************************************/
+QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const QString &outFile) const
+{
+    QStringList args;
+
+    args << "--quiet";
+
+    // Quality settings .........................................
+    if (profile.encoderValue("UseQuality").toBool()) {
+        args << "-q" << profile.encoderValue("Quality").toString();
+    }
+    else {
+        QString val = profile.encoderValue("NormBitrate").toString();
+        if (!val.isEmpty())
+            args << "-b" << val;
+
+        val = profile.encoderValue("MinBitrate").toString();
+        if (!val.isEmpty())
+            args << "-m" << val;
+
+        val = profile.encoderValue("MaxBitrate").toString();
+        if (!val.isEmpty())
+            args << "-M" << val;
+    }
+
+    // Files ....................................................
+    args << "-o" << outFile;
+    args << "-";
+    return args;
 }
 
 /************************************************
@@ -173,39 +206,4 @@ void ConfigPage_Ogg::setUseQualityMode(bool checked)
     oggMinBitrateLabel->setEnabled(!checked);
     oggNormBitrateLabel->setEnabled(!checked);
     oggMaxBitrateLabel->setEnabled(!checked);
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Encoder_Ogg::programArgs_OLD() const
-{
-    QStringList args;
-
-    args << programPath_OLD();
-
-    args << "--quiet";
-
-    // Quality settings .........................................
-    if (profile().encoderValue("UseQuality").toBool()) {
-        args << "-q" << profile().encoderValue("Quality").toString();
-    }
-    else {
-        QString val = profile().encoderValue("NormBitrate").toString();
-        if (!val.isEmpty())
-            args << "-b" << val;
-
-        val = profile().encoderValue("MinBitrate").toString();
-        if (!val.isEmpty())
-            args << "-m" << val;
-
-        val = profile().encoderValue("MaxBitrate").toString();
-        if (!val.isEmpty())
-            args << "-M" << val;
-    }
-
-    // Files ....................................................
-    args << "-o" << outFile();
-    args << "-";
-    return args;
 }
