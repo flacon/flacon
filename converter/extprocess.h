@@ -1,5 +1,5 @@
-#ifndef EXTPROGRAM_H
-#define EXTPROGRAM_H
+#ifndef EXTPROCESS_H
+#define EXTPROCESS_H
 /* BEGIN_COMMON_COPYRIGHT_HEADER
  * (c)LGPL2+
  *
@@ -27,13 +27,13 @@
 
 #include <QProcess>
 
-class ExtProgram : public QProcess
+class ExtProcess : public QProcess
 {
 public:
-    ExtProgram(QObject *parent = nullptr);
+    ExtProcess(QObject *parent = nullptr);
 
 private:
     void handleError(QProcess::ProcessError error);
 };
 
-#endif // EXTPROGRAM_H
+#endif // EXTPROCESS_H

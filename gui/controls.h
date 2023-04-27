@@ -40,6 +40,7 @@
 
 class QStringListModel;
 class QToolBar;
+class ExtProgram;
 
 enum MultiValuesState {
     MultiValuesEmpty,
@@ -290,9 +291,9 @@ class ProgramEdit : public QLineEdit
 {
     Q_OBJECT
 public:
-    ProgramEdit(const QString &programName, QWidget *parent = nullptr);
+    ProgramEdit(ExtProgram *program, QWidget *parent = nullptr);
 
-    QString programName() const { return mProgramName; }
+    ExtProgram *program() const { return mProgram; }
 
 public slots:
     void find();
@@ -304,7 +305,7 @@ private slots:
     void openDialog();
 
 private:
-    QString      mProgramName;
+    ExtProgram  *mProgram;
     QToolButton *mBtn;
 };
 

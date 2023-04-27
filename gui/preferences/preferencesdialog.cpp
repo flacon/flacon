@@ -40,6 +40,9 @@ static constexpr bool DIALOG_HAS_BUTTONS = false;
 static constexpr bool DIALOG_HAS_BUTTONS = true;
 #endif
 
+static constexpr auto SETTINGS_DIALOG_WIDTH_KEY  = "ConfigureDialog/Width";
+static constexpr auto SETTINGS_DIALOG_HEIGHT_KEY = "ConfigureDialog/Height";
+
 /************************************************
  *
  ************************************************/
@@ -94,8 +97,8 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
 
     // Restore saved size ..................
     fixLayout(this);
-    int width  = Settings_OLD::i()->value(Settings_OLD::ConfigureDialog_Width).toInt();
-    int height = Settings_OLD::i()->value(Settings_OLD::ConfigureDialog_Height).toInt();
+    int width  = Settings::i()->value(SETTINGS_DIALOG_WIDTH_KEY).toInt();
+    int height = Settings::i()->value(SETTINGS_DIALOG_HEIGHT_KEY).toInt();
     resize(width, height);
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, [this]() {
@@ -148,9 +151,9 @@ void PreferencesDialog::initToolBar()
  ************************************************/
 PreferencesDialog::~PreferencesDialog()
 {
-    Settings_OLD::i()->setValue(Settings_OLD::ConfigureDialog_Width, size().width());
-    Settings_OLD::i()->setValue(Settings_OLD::ConfigureDialog_Height, size().height());
-    Settings_OLD::i()->sync();
+    Settings::i()->setValue(SETTINGS_DIALOG_WIDTH_KEY, size().width());
+    Settings::i()->setValue(SETTINGS_DIALOG_HEIGHT_KEY, size().height());
+    Settings::i()->sync();
 
     delete ui;
 }

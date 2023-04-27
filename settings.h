@@ -41,19 +41,15 @@ public:
     static QString fileName() { return mFileName; }
     static void    setFileName(const QString &fileName);
 
-    void     extracted(Profiles &res);
     Profiles readProfiles();
     void     writeProfiles(const Profiles &profiles);
 
     QString readCurrentProfileId() const;
     void    writeCurrentProfileId(const QString &profileId);
 
-    // REMOVE ================
-    QString programName(const QString &program) const { return ""; }
-    QString programPath(const QString &program) const { return ""; }
-    QString findProgram(const QString &program) const { return ""; }
-    bool    checkProgram(const QString &program, QStringList *errors = nullptr) const { return true; }
-    // REMOVE ================
+    void readExtPrograms() const;
+    void writeExtPrograms();
+
 private:
     static QString   mFileName;
     static Settings *mInstance;
@@ -106,10 +102,10 @@ public:
     void     setValue(const QString &key, const QVariant &value);
     QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
 
-    QString programName(const QString &program) const;
-    QString programPath(const QString &program) const;
-    QString findProgram(const QString &program) const;
-    bool    checkProgram(const QString &program, QStringList *errors = nullptr) const;
+    QString programName(const QString &program) const { return program; }
+    QString programPath(const QString &program) const { return ""; }
+    QString findProgram(const QString &program) const { return ""; }
+    bool    checkProgram(const QString &program, QStringList *errors = nullptr) const { return false; }
 
     QSet<QString> programs() const { return mPrograms; }
 

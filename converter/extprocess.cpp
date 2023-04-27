@@ -23,7 +23,7 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "extprogram.h"
+#include "extprocess.h"
 #include <QDebug>
 #include "../types.h"
 #include <QLoggingCategory>
@@ -32,13 +32,13 @@ namespace {
 Q_LOGGING_CATEGORY(LOG, "ExtProgram")
 }
 
-ExtProgram::ExtProgram(QObject *parent) :
+ExtProcess::ExtProcess(QObject *parent) :
     QProcess(parent)
 {
-    connect(this, &QProcess::errorOccurred, this, &ExtProgram::handleError);
+    connect(this, &QProcess::errorOccurred, this, &ExtProcess::handleError);
 }
 
-void ExtProgram::handleError(QProcess::ProcessError error)
+void ExtProcess::handleError(QProcess::ProcessError error)
 {
     qCWarning(LOG) << "ERROR";
     qCWarning(LOG) << QString("%1: The '%2' program crashes").arg(objectName()).arg(program());

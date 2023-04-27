@@ -32,7 +32,7 @@
 #include <QDir>
 #include <QDebug>
 #include <QLoggingCategory>
-#include "extprogram.h"
+#include "extprocess.h"
 #include "formats_out/metadatawriter.h"
 
 namespace {
@@ -66,7 +66,7 @@ QProcess *Encoder::createEncoderProcess()
 
     qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog, args);
 
-    QProcess *res = new ExtProgram();
+    QProcess *res = new ExtProcess();
     res->setObjectName("encoder");
     res->setProgram(prog);
     res->setArguments(args);
@@ -101,7 +101,7 @@ QProcess *Encoder::createRasmpler(const QString &outFile)
 
     qCDebug(LOG) << "Start resampler:" << debugProgramArgs(prog, args);
 
-    QProcess *res = new ExtProgram();
+    QProcess *res = new ExtProcess();
     res->setObjectName("resampler");
     res->setProgram(prog);
     res->setArguments(args);
@@ -130,7 +130,7 @@ QProcess *Encoder::createDemph(const QString &outFile)
 
     qCDebug(LOG) << "Start deEmphasis:" << debugProgramArgs(prog, args);
 
-    QProcess *res = new ExtProgram();
+    QProcess *res = new ExtProcess();
     res->setObjectName("deemphasis");
     res->setProgram(prog);
     res->setArguments(args);

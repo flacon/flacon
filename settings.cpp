@@ -24,8 +24,10 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "settings.h"
+#include "extprogram.h"
 
 static constexpr auto PROFILES_GROUP = "Profiles";
+static constexpr auto PROGRAMS_GROUP = "Programs";
 
 static constexpr auto CURRENT_PROFILE_ID           = "OutFiles/Profile";
 static constexpr auto KNOWN_FORMATS_KEY            = "KnownFormats";
@@ -322,6 +324,34 @@ void Settings::writeCurrentProfileId(const QString &profileId)
     setValue(CURRENT_PROFILE_ID, profileId);
 }
 
+/************************************************
+ *
+ ************************************************/
+void Settings::readExtPrograms() const
+{
+    for (ExtProgram *p : ExtProgram::allPrograms()) {
+        auto key = QString("%1/%2").arg(PROGRAMS_GROUP, p->name());
+
+        QString path = value(key).toString();
+        if (path.isEmpty()) {
+            path = p->find();
+        }
+        p->setPath(path);
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+void Settings::writeExtPrograms()
+{
+    remove(PROGRAMS_GROUP);
+    for (ExtProgram *p : ExtProgram::allPrograms()) {
+        auto key = QString("%1/%2").arg(PROGRAMS_GROUP, p->name());
+        setValue(key, p->path());
+    }
+}
+
 #include "types.h"
 #include "formats_in/informat.h"
 
@@ -424,25 +454,6 @@ void Settings_OLD::init()
     // ConfigureDialog **********************
     setDefaultValue(ConfigureDialog_Width, 645);
     setDefaultValue(ConfigureDialog_Height, 425);
-
-    mPrograms << Conv::Sox::programName();
-
-    foreach (OutFormat *format, OutFormat::allFormats()) {
-        mPrograms << format->encoderProgramName();
-    }
-
-    foreach (const InputFormat *format, InputFormat::allFormats()) {
-        mPrograms << format->decoderProgramName();
-    }
-
-    mPrograms.remove("");
-
-    foreach (QString program, mPrograms) {
-        if (!checkProgram(program))
-            setValue("Programs/" + program, findProgram(program));
-    }
-
-    // initProfiles();
 }
 
 /************************************************
@@ -522,94 +533,6 @@ QStringList Settings_OLD::groups(const QString &parentGroup) const
     }
     res.removeDuplicates();
     return res;
-}
-
-/************************************************
-
- ************************************************/
-bool Settings_OLD::checkProgram(const QString &program, QStringList *errors) const
-{
-    QString path = programPath(program);
-
-    if (path.isEmpty()) {
-        if (errors) {
-            *errors << tr("The %1 program is not installed.<br>Verify that all required programs are installed and in your preferences.",
-                          "Error message. %1 - is an program name")
-                               .arg(program);
-        }
-        return false;
-    }
-
-    QFileInfo fi(path);
-    if (!fi.exists()) {
-        if (errors) {
-            *errors << tr("The %1 program is installed according to your settings, but the binary file can’t be found.<br>"
-                          "Verify that all required programs are installed and in your preferences.",
-                          "Error message. %1 - is an program name")
-                               .arg(program);
-        }
-        return false;
-    }
-
-    if (!fi.isExecutable()) {
-        if (errors) {
-            *errors << tr("The %1 program is installed according to your settings, but the file is not executable.<br>"
-                          "Verify that all required programs are installed and in your preferences.",
-                          "Error message. %1 - is an program name")
-                               .arg(program);
-        }
-        return false;
-    }
-
-    return true;
-}
-
-/************************************************
-
- ************************************************/
-QString Settings_OLD::programName(const QString &program) const
-{
-#ifdef MAC_BUNDLE
-    return QDir(qApp->applicationDirPath()).absoluteFilePath(program);
-#else
-    return value("Programs/" + program).toString();
-#endif
-}
-
-/************************************************
-
- ************************************************/
-QString Settings_OLD::programPath(const QString &program) const
-{
-#ifdef MAC_BUNDLE
-    return programName(program);
-#endif
-
-    QString name = programName(program);
-
-    if (name.isEmpty()) {
-        return "";
-    }
-
-    if (QFileInfo(name).isAbsolute()) {
-        return name;
-    }
-
-    return findProgram(name);
-}
-
-/************************************************
-
- ************************************************/
-QString Settings_OLD::findProgram(const QString &program) const
-{
-    QStringList paths = QProcessEnvironment::systemEnvironment().value("PATH").split(PATH_ENV_SEPARATOR);
-    foreach (QString path, paths) {
-        QFileInfo fi(path + QDir::separator() + program + BINARY_EXT);
-        if (fi.exists() && fi.isExecutable())
-            return fi.absoluteFilePath();
-    }
-    return "";
 }
 
 /************************************************

@@ -28,6 +28,7 @@
 #include "settings.h"
 #include "icon.h"
 #include "patternexpander.h"
+#include "extprogram.h"
 
 #include <QtGlobal>
 #include <QMenu>
@@ -626,10 +627,12 @@ void MultiValuesComboBox::setMultiValue(QSet<QString> value)
 /************************************************
 
  ************************************************/
-ProgramEdit::ProgramEdit(const QString &programName, QWidget *parent) :
+ProgramEdit::ProgramEdit(ExtProgram *program, QWidget *parent) :
     QLineEdit(parent),
-    mProgramName(programName)
+    mProgram(program)
 {
+    setText(mProgram->path());
+
     mBtn = new QToolButton(this);
     mBtn->setText("…");
     mBtn->setIcon(Icon("folder"));
@@ -644,8 +647,9 @@ ProgramEdit::ProgramEdit(const QString &programName, QWidget *parent) :
  ************************************************/
 void ProgramEdit::find()
 {
-    if (text().isEmpty())
-        setText(Settings_OLD::i()->findProgram(mProgramName));
+    if (text().isEmpty()) {
+        setText(mProgram->find());
+    }
 }
 
 /************************************************
@@ -671,8 +675,8 @@ void ProgramEdit::openDialog()
 {
     QString flt = tr("%1 program",
                      "This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'")
-                          .arg(mProgramName)
-            + QString(" (%1);;").arg(mProgramName) + tr("All files", "This is part of filter for 'select program' dialog. 'All files (*)'") + " (*)";
+                          .arg(mProgram->name())
+            + QString(" (%1);;").arg(mProgram->name()) + tr("All files", "This is part of filter for 'select program' dialog. 'All files (*)'") + " (*)";
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select program file"), "/usr/bin/", flt);
     if (!fileName.isEmpty())

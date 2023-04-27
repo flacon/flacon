@@ -29,6 +29,7 @@
 #include "settings.h"
 #include <QDebug>
 #include <QDateTime>
+#include "extprogram.h"
 
 static constexpr int VALIDATE_DELAY_MS = 50;
 
@@ -439,7 +440,7 @@ bool Validator::validateRasampler(const Disk *disk, QStringList &errors, QString
         return true;
     }
 
-    return Settings_OLD::i()->checkProgram(Conv::Sox::programName(), &errors);
+    return ExtProgram::sox()->check(&errors);
 }
 
 /************************************************

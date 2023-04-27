@@ -44,7 +44,7 @@ set(HEADERS
     cuecreator.h
     coverimage.h
     sox.h
-    extprogram.h
+    extprocess.h
     replaygain.h
     totalprogresscounter.h
 )
@@ -61,7 +61,7 @@ set(SOURCES
     cuecreator.cpp
     coverimage.cpp
     sox.cpp
-    extprogram.cpp
+    extprocess.cpp
     replaygain.cpp
     totalprogresscounter.cpp
 )

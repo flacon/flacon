@@ -233,6 +233,8 @@ void Project::setProfiles(Profiles profiles)
  ************************************************/
 void Project::load(Settings *settings)
 {
+    settings->readExtPrograms();
+
     mProfiles = settings->readProfiles();
     selectProfile(settings->readCurrentProfileId());
 }
@@ -242,6 +244,7 @@ void Project::load(Settings *settings)
  ************************************************/
 void Project::save(Settings *settings)
 {
+    settings->writeExtPrograms();
     settings->writeProfiles(mProfiles);
     settings->writeCurrentProfileId(profile()->id());
     settings->sync();

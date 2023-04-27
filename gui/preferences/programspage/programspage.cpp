@@ -27,6 +27,7 @@
 #include "ui_programspage.h"
 #include "settings.h"
 #include "controls.h"
+#include "extprogram.h"
 #include <QLabel>
 
 ProgramsPage::ProgramsPage(QWidget *parent) :
@@ -43,22 +44,19 @@ ProgramsPage::~ProgramsPage()
 
 void ProgramsPage::load()
 {
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-    QStringList progs = QStringList::fromSet(Settings::i()->programs());
-#else
-    // After 5.14.0, QT has stated range constructors are available and preferred.
-    // See: https://doc.qt.io/qt-5/qlist.html#fromSet
-    QSet<QString> program_set = Settings_OLD::i()->programs();
-    QStringList   progs       = QStringList(program_set.begin(), program_set.end());
-#endif
-    progs.sort();
+    QList<ExtProgram *> progs = ExtProgram::allPrograms();
+
+    std::sort(progs.begin(), progs.end(), [](const ExtProgram *a, const ExtProgram *b) -> bool {
+        return a->name() > b->name();
+    });
 
     int row = 0;
-    foreach (QString prog, progs) {
+    foreach (ExtProgram *prog, progs) {
         ProgramEdit *edit = new ProgramEdit(prog, this);
         mProgramEdits << edit;
 
-        QLabel *label = new QLabel(tr("%1:", "Template for the program name label on the preferences form. %1 is a program name.").arg(prog));
+        QLabel *label = new QLabel(tr("%1:", "Template for the program name label on the preferences form. %1 is a program name.").arg(prog->name()));
+
         label->setBuddy(edit);
 #ifdef Q_OS_MAC
         label->setAlignment(Qt::AlignRight);
@@ -70,15 +68,11 @@ void ProgramsPage::load()
     }
 
     ui->progsArea->setStyleSheet("QScrollArea, #scrollAreaWidgetContents { background-color: transparent;}");
-
-    for (ProgramEdit *edit : mProgramEdits) {
-        edit->setText(Settings_OLD::i()->value("Programs/" + edit->programName()).toString());
-    }
 }
 
 void ProgramsPage::save()
 {
     for (ProgramEdit *edit : mProgramEdits) {
-        Settings_OLD::i()->setValue("Programs/" + edit->programName(), edit->text());
+        edit->program()->setPath(edit->text());
     }
 }
