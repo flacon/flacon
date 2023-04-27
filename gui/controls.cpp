@@ -717,7 +717,6 @@ QStringList HistoryComboBox::history() const
 void HistoryComboBox::setHistory(const QStringList &value)
 {
     mModel->setStringList(value);
-    setCurrentIndex(0);
 }
 
 /************************************************

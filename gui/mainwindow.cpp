@@ -304,7 +304,7 @@ void MainWindow::dropEvent(QDropEvent *event)
  ************************************************/
 void MainWindow::setPattern()
 {
-    project->currentProfile().setOutFilePattern(outPatternEdit->currentText());
+    project->profile()->setOutFilePattern(outPatternEdit->currentText());
     trackView->model()->layoutChanged();
 }
 
@@ -313,7 +313,7 @@ void MainWindow::setPattern()
  ************************************************/
 void MainWindow::setOutDir()
 {
-    project->currentProfile().setOutFileDir(outDirEdit->currentText());
+    project->profile()->setOutFileDir(outDirEdit->currentText());
     trackView->model()->layoutChanged();
 }
 
@@ -468,12 +468,13 @@ void MainWindow::refreshEdits()
     codepageCombo->setMultiValue(codePage);
     tagDiscPerformerEdit->setMultiValue(discPerformer);
 
-    const Profile &profile = project->currentProfile();
-    if (outDirEdit->currentText() != profile.outFileDir())
-        outDirEdit->lineEdit()->setText(profile.outFileDir());
+    const Profile *profile = project->profile();
+    if (outDirEdit->currentText() != profile->outFileDir()) {
+        outDirEdit->lineEdit()->setText(profile->outFileDir());
+    }
 
-    if (outPatternEdit->currentText() != profile.outFilePattern())
-        outPatternEdit->lineEdit()->setText(profile.outFilePattern());
+    if (outPatternEdit->currentText() != profile->outFilePattern())
+        outPatternEdit->lineEdit()->setText(profile->outFilePattern());
 
     refreshOutProfileCombo();
 
@@ -503,7 +504,7 @@ void MainWindow::refreshOutProfileCombo()
 
     outProfileCombo->blockSignals(false);
 
-    n = outProfileCombo->findData(project->currentProfile().id());
+    n = outProfileCombo->findData(project->profile()->id());
 
     if (n > -1) {
         outProfileCombo->setCurrentIndex(n);
@@ -542,7 +543,7 @@ void MainWindow::setCodePage()
         foreach (Disc *disc, discs)
             disc->setCodecName(codepage);
 
-        project->currentProfile().setDefaultCodepage(codepage);
+        project->profile()->setDefaultCodepage(codepage);
     }
 }
 
@@ -654,7 +655,7 @@ void MainWindow::startConvertSelected()
  ************************************************/
 void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
 {
-    if (!project->currentProfile().isValid())
+    if (!project->profile()->isValid())
         return;
 
     trackView->setFocus();
@@ -703,7 +704,7 @@ void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
         setWindowTitle(tr("Flacon"));
     });
 
-    mConverter->start(jobs, project->currentProfile());
+    mConverter->start(jobs, *project->profile());
     setControlsEnable();
 }
 
@@ -731,7 +732,7 @@ void MainWindow::configure()
  ************************************************/
 void MainWindow::configureEncoder()
 {
-    auto dlg = PreferencesDialog::createAndShow(project->profiles(), project->currentProfile().id(), this);
+    auto dlg = PreferencesDialog::createAndShow(project->profiles(), project->profile()->id(), this);
     connect(dlg, &PreferencesDialog::accepted, this, &MainWindow::preferencesDialogDone, Qt::UniqueConnection);
 }
 

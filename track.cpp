@@ -145,14 +145,14 @@ void Track::setCodecName(const QString &value)
  ************************************************/
 QString Track::resultFileName() const
 {
-    QString pattern = project->currentProfile().outFilePattern();
+    QString pattern = project->profile()->outFilePattern();
     if (pattern.isEmpty())
         pattern = QString("%a/%y - %A/%n - %t");
 
     int n = pattern.lastIndexOf(QDir::separator());
     if (n < 0) {
         PatternExpander expander(*this);
-        return safeFilePathLen(expander.expand(pattern) + "." + project->currentProfile().ext());
+        return safeFilePathLen(expander.expand(pattern) + "." + project->profile()->ext());
     }
 
     // If the disc is a collection, the files fall into different directories.
@@ -163,7 +163,7 @@ QString Track::resultFileName() const
     PatternExpander trackExpander(*this);
 
     return safeFilePathLen(
-            albumExpander.expand(pattern.left(n)) + trackExpander.expand(pattern.mid(n)) + "." + project->currentProfile().ext());
+            albumExpander.expand(pattern.left(n)) + trackExpander.expand(pattern.mid(n)) + "." + project->profile()->ext());
 }
 
 /************************************************
@@ -304,7 +304,7 @@ Duration Track::duration() const
  ************************************************/
 QString Track::calcResultFilePath() const
 {
-    QString dir = project->currentProfile().outFileDir();
+    QString dir = project->profile()->outFileDir();
 
     if (dir == "~" || dir == "~//")
         return QDir::homePath();

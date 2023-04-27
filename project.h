@@ -63,9 +63,7 @@ public:
     Disc *addCueFile(const QString &fileName);
 
     Profile *profile() { return mProfile; }
-
-    Profile currentProfile();
-    bool    selectProfile(const QString &profileId);
+    bool     selectProfile(const QString &profileId);
 
     Profiles profiles() const { return mProfiles; }
     void     setProfiles(Profiles profiles);

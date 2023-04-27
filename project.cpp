@@ -189,14 +189,6 @@ Disc *Project::addCueFile(const QString &fileName)
 /************************************************
 
  ************************************************/
-Profile Project::currentProfile()
-{
-    return *profile();
-}
-
-/************************************************
-
- ************************************************/
 bool Project::selectProfile(const QString &profileId)
 {
     Profile *p = mProfiles.find(profileId);
