@@ -64,10 +64,9 @@ public:
     virtual QHash<QString, QVariant> defaultParameters() const         = 0;
     virtual EncoderConfigPage       *configPage(QWidget *parent) const = 0;
 
-    virtual ExtProgram *encoderProgram(const Profile &profile) const { return nullptr; }
-    virtual QStringList encoderArgs(const Profile &profile, const QString &outFile) const { return {}; }
+    virtual ExtProgram *encoderProgram(const Profile &profile) const                      = 0;
+    virtual QStringList encoderArgs(const Profile &profile, const QString &outFile) const = 0;
 
-    virtual Conv::Encoder  *createEncoder_OLD() const { return nullptr; }
     virtual MetadataWriter *createMetadataWriter(const QString &filePath) const = 0;
 
 protected:
