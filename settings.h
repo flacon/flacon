@@ -27,8 +27,6 @@
 #define SETTINGS_H
 
 #include <QSettings>
-#include <QSet>
-//#include "types.h"
 #include "profiles.h"
 
 class OutFormat;
@@ -63,68 +61,6 @@ private:
     BitsPerSample readBitsPerSample(const QString &key, BitsPerSample def) const;
     SampleRate    readSampleRate(const QString &key, SampleRate def) const;
     uint          readThreadsCount(const QString &key, uint def) const;
-};
-
-class Settings_OLD : public QSettings
-{
-    Q_OBJECT
-public:
-    enum Key {
-        // Tags_DefaultCodepage,
-
-        // Globals ******************************
-        // Encoder_ThreadCount,
-        // Encoder_TmpDir,
-
-        // Out Files ****************************
-        OutFiles_DirectoryHistory,
-        OutFiles_Profile,
-        OutFiles_PatternHistory,
-
-        // Misc *********************************
-        Misc_LastDir,
-
-        // ConfigureDialog **********************
-        ConfigureDialog_Width,
-        ConfigureDialog_Height,
-    };
-
-    explicit Settings_OLD(const QString &fileName);
-    virtual ~Settings_OLD();
-
-    static Settings_OLD *i();
-    static void          setFileName(const QString &fileName);
-    static QString       fileName() { return mFileName; }
-
-    QVariant value(Key key, const QVariant &defaultValue = QVariant()) const;
-    void     setValue(Key key, const QVariant &value);
-
-    void     setValue(const QString &key, const QVariant &value);
-    QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
-
-    QString programName(const QString &program) const { return program; }
-    QString programPath(const QString &program) const { return ""; }
-    QString findProgram(const QString &program) const { return ""; }
-    bool    checkProgram(const QString &program, QStringList *errors = nullptr) const { return false; }
-
-    QSet<QString> programs() const { return mPrograms; }
-
-protected:
-    explicit Settings_OLD(const QString &organization, const QString &application);
-
-private:
-    void        init();
-    void        setDefaultValue(const QString &key, const QVariant &defaultValue);
-    void        setDefaultValue(Key key, const QVariant &defaultValue);
-    QString     keyToString(Key key) const;
-    QStringList groups(const QString &parentGroup) const;
-    void        loadProfiles();
-    // void        initProfiles();
-
-    QSet<QString>        mPrograms;
-    static QString       mFileName;
-    static Settings_OLD *mInstance;
-    Profiles             mProfiles;
 };
 
 #endif // SETTINGS_H

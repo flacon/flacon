@@ -105,8 +105,7 @@ public:
     void    setTmpDir(const QString &value);
 
     static QString defaultCodepage() { return globalParams().mCodepage; }
-    // QString defaultCodepage() const { return globalParams().mCodepage; }
-    void setDefaultCodepage(const QString &value);
+    void           setDefaultCodepage(const QString &value);
 
     uint encoderThreadsCount() const { return globalParams().mEncoderThreadsCount; }
     void setEncoderThreadsCount(uint value);
@@ -151,8 +150,6 @@ class Profiles : public QVector<Profile>
 public:
     int      indexOf(const QString &id, int from = 0) const;
     Profile *find(const QString &id);
-
-    // bool update(const Profile &profile);
 };
 
 Profiles createStandardProfiles();

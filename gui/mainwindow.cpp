@@ -60,7 +60,9 @@
 #include "updater/updater.h"
 #endif
 
-static constexpr auto SETTINGS_LASTDIR_KEY = "Misc/LastDirectory";
+static constexpr auto SETTINGS_LASTDIR_KEY              = "Misc/LastDirectory";
+static constexpr auto SETTINGS_PATTERN_HISTORY_KEY      = "OutFiles/PatternHistory";
+static constexpr auto SETTINGS_OUTFILES_DIR_HISTORY_KEY = "OutFiles/DirectoryHistory";
 
 /************************************************
 
@@ -1241,8 +1243,8 @@ void MainWindow::loadSettings()
     splitter->restoreState(settings->value("MainWindow/Splitter").toByteArray());
     trackView->header()->restoreState(settings->value("MainWindow/TrackView").toByteArray());
 
-    outDirEdit->setHistory(Settings_OLD::i()->value(Settings_OLD::OutFiles_DirectoryHistory).toStringList());
-    outPatternEdit->setHistory(Settings_OLD::i()->value(Settings_OLD::OutFiles_PatternHistory).toStringList());
+    outDirEdit->setHistory(Settings::i()->value(SETTINGS_OUTFILES_DIR_HISTORY_KEY).toStringList());
+    outPatternEdit->setHistory(Settings::i()->value(SETTINGS_PATTERN_HISTORY_KEY).toStringList());
 }
 
 /************************************************
@@ -1259,8 +1261,8 @@ void MainWindow::saveSettings()
     settings->setValue("MainWindow/Splitter", QVariant(splitter->saveState()));
     settings->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
 
-    Settings_OLD::i()->setValue(Settings_OLD::OutFiles_DirectoryHistory, outDirEdit->history());
-    Settings_OLD::i()->setValue(Settings_OLD::OutFiles_PatternHistory, outPatternEdit->history());
+    Settings::i()->setValue(SETTINGS_OUTFILES_DIR_HISTORY_KEY, outDirEdit->history());
+    Settings::i()->setValue(SETTINGS_PATTERN_HISTORY_KEY, outPatternEdit->history());
 }
 
 /************************************************
