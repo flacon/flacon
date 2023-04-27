@@ -70,9 +70,67 @@ EncoderConfigPage *OutFormat_Mp3::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-Conv::Encoder *OutFormat_Mp3::createEncoder_OLD() const
+ExtProgram *OutFormat_Mp3::encoderProgram(const Profile &) const
 {
-    return new Encoder_Mp3();
+    return ExtProgram::lame();
+}
+
+/************************************************
+
+ ************************************************/
+QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const QString &outFile) const
+{
+    QStringList args;
+
+    args << "--silent";
+
+    // Settings .................................................
+    QString preset = profile.encoderValue("Preset").toString();
+
+    if (preset == VBR_MEDIUM) {
+        args << "--preset"
+             << "medium";
+    }
+
+    else if (preset == VBR_STATDARD) {
+        args << "--preset"
+             << "standard";
+    }
+
+    else if (preset == VBR_EXTRIME) {
+        args << "--preset"
+             << "extreme";
+    }
+
+    else if (preset == CBR_INSANE) {
+        args << "--preset"
+             << "insane";
+    }
+
+    else if (preset == CBR_KBPS) {
+        args << "--preset"
+             << "cbr" << profile.encoderValue("Bitrate").toString();
+    }
+
+    else if (preset == ABR_KBPS) {
+        args << "--preset" << profile.encoderValue("Bitrate").toString();
+    }
+
+    else if (preset == VBR_QUALITY) {
+        int quality = profile.encoderValue("Quality").toInt();
+        args << "-V" << QString("%1").arg(9 - quality);
+    }
+
+    // ReplayGain ...............................................
+    if (strToGainType(profile.encoderValue("ReplayGain").toString()) != GainType::Track) {
+        args << "--noreplaygain";
+    }
+
+    // Files ....................................................
+    args << "-";
+    args << outFile;
+
+    return args;
 }
 
 /************************************************
@@ -179,63 +237,4 @@ void ConfigPage_Mp3::mp3PresetCbxCanged(int index)
     mp3QualityLabel->setEnabled(enable);
     mp3QualitySlider->setEnabled(enable);
     mp3QualitySpin->setEnabled(enable);
-}
-
-/************************************************
-
- ************************************************/
-QStringList Encoder_Mp3::programArgs_OLD() const
-{
-    QStringList args;
-
-    args << programPath_OLD();
-    args << "--silent";
-
-    // Settings .................................................
-    QString preset = profile().encoderValue("Preset").toString();
-
-    if (preset == VBR_MEDIUM) {
-        args << "--preset"
-             << "medium";
-    }
-
-    else if (preset == VBR_STATDARD) {
-        args << "--preset"
-             << "standard";
-    }
-
-    else if (preset == VBR_EXTRIME) {
-        args << "--preset"
-             << "extreme";
-    }
-
-    else if (preset == CBR_INSANE) {
-        args << "--preset"
-             << "insane";
-    }
-
-    else if (preset == CBR_KBPS) {
-        args << "--preset"
-             << "cbr" << profile().encoderValue("Bitrate").toString();
-    }
-
-    else if (preset == ABR_KBPS) {
-        args << "--preset" << profile().encoderValue("Bitrate").toString();
-    }
-
-    else if (preset == VBR_QUALITY) {
-        int quality = profile().encoderValue("Quality").toInt();
-        args << "-V" << QString("%1").arg(9 - quality);
-    }
-
-    // ReplayGain ...............................................
-    if (strToGainType(profile().encoderValue("ReplayGain").toString()) != GainType::Track) {
-        args << "--noreplaygain";
-    }
-
-    // Files ....................................................
-    args << "-";
-    args << outFile();
-
-    return args;
 }
