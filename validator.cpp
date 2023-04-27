@@ -24,8 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "validator.h"
-#include "settings.h"
-#include "settings.h"
 #include <QDebug>
 #include <QDateTime>
 #include "extprogram.h"

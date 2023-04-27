@@ -25,7 +25,6 @@
 
 #include "decoder.h"
 #include "../cue.h"
-#include "../settings.h"
 
 #include <QIODevice>
 #include <QFile>

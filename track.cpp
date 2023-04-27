@@ -29,7 +29,6 @@
 
 #include "inputaudiofile.h"
 #include "project.h"
-#include "settings.h"
 #include "formats_out/outformat.h"
 #include "patternexpander.h"
 

@@ -25,7 +25,6 @@
 
 #include "encoder.h"
 #include "profiles.h"
-#include "settings.h"
 
 #include <QFileInfo>
 #include <QDir>

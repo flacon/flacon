@@ -25,7 +25,6 @@
 
 #include "programspage.h"
 #include "ui_programspage.h"
-#include "settings.h"
 #include "controls.h"
 #include "extprogram.h"
 #include <QLabel>

@@ -29,7 +29,6 @@
 #include "disc.h"
 #include "converter.h"
 #include "project.h"
-#include "settings.h"
 #include "discpipline.h"
 
 #include <iostream>

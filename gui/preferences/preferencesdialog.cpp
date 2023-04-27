@@ -33,6 +33,7 @@
 #include <QToolButton>
 #include <QMessageBox>
 #include "../controls.h"
+#include "settings.h"
 
 #ifdef Q_OS_MAC
 static constexpr bool DIALOG_HAS_BUTTONS = false;

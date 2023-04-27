@@ -25,7 +25,6 @@
 
 #include "controls.h"
 #include "project.h"
-#include "settings.h"
 #include "icon.h"
 #include "patternexpander.h"
 #include "extprogram.h"

@@ -36,7 +36,6 @@
 #include <QMessageBox>
 #include <QLabel>
 #include "tags.h"
-#include "settings.h"
 
 class QStringListModel;
 class QToolBar;

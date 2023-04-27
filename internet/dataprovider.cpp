@@ -28,7 +28,6 @@
 #include "../disc.h"
 #include <QtNetwork/QNetworkAccessManager>
 
-#include "settings.h"
 #include "project.h"
 
 #include <QStringList>

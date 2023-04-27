@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "outformat.h"
-#include "settings.h"
 #include "encoder.h"
 
 #include "wav/out_wav.h"

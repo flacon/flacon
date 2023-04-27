@@ -24,15 +24,12 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "profiles.h"
-#include "settings.h"
 #include "formats_out/outformat.h"
 #include <QSettings>
 #include <QStandardPaths>
 #include <QDir>
 #include <QDebug>
 #include <QThread>
-//#include "encoder.h"
-//#include "formats_out/metadatawriter.h"
 
 /************************************************
  *
