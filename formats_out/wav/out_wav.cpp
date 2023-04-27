@@ -57,9 +57,17 @@ EncoderConfigPage *OutFormat_Wav::configPage(QWidget *) const
 /************************************************
 
  ************************************************/
-Conv::Encoder *OutFormat_Wav::createEncoder_OLD() const
+ExtProgram *OutFormat_Wav::encoderProgram(const Profile &) const
 {
-    return new Encoder_Wav();
+    return nullptr;
+}
+
+/************************************************
+
+ ************************************************/
+QStringList OutFormat_Wav::encoderArgs(const Profile &, const QString &) const
+{
+    return {};
 }
 
 /************************************************
@@ -68,12 +76,4 @@ Conv::Encoder *OutFormat_Wav::createEncoder_OLD() const
 MetadataWriter *OutFormat_Wav::createMetadataWriter(const QString &filePath) const
 {
     return new NullMetadataWriter(filePath);
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Encoder_Wav::programArgs_OLD() const
-{
-    return QStringList();
 }

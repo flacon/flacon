@@ -42,15 +42,10 @@ public:
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_64; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
-    Conv::Encoder  *createEncoder_OLD() const override;
-    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
-};
+    ExtProgram *encoderProgram(const Profile &profile) const override;
+    QStringList encoderArgs(const Profile &profile, const QString &outFile) const override;
 
-class Encoder_Wav : public Conv::Encoder
-{
-public:
-    QString     programName_OLD() const override { return ""; }
-    QStringList programArgs_OLD() const override;
+    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
 };
 
 #endif // OUT_WAV_H

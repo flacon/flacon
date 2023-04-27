@@ -63,7 +63,7 @@ EncoderConfigPage *OutFormat_Opus::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-ExtProgram *OutFormat_Opus::encoderProgram(const Profile &profile) const
+ExtProgram *OutFormat_Opus::encoderProgram(const Profile &) const
 {
     return ExtProgram::opusenc();
 }
