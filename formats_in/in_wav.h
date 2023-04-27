@@ -34,7 +34,7 @@ public:
     virtual QString name() const override { return "WAV"; }
     virtual QString ext() const override { return "wav"; }
 
-    virtual QString     decoderProgramName() const override { return ""; }
+    ExtProgram         *decoderProgram() const override { return nullptr; }
     virtual QStringList decoderArgs(const QString &fileName) const override;
 
     virtual QByteArray magic() const override { return "RIFF"; }

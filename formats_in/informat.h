@@ -26,6 +26,7 @@
 #ifndef INFORMAT_H
 #define INFORMAT_H
 
+#include "extprogram.h"
 #include <QList>
 #include <QStringList>
 #include <QByteArray>
@@ -44,12 +45,9 @@ public:
     virtual QString name() const = 0;
     virtual QString ext() const  = 0;
 
-    virtual QString     decoderProgramName() const { return ""; }
-    virtual QStringList decoderArgs(const QString &fileName) const
-    {
-        Q_UNUSED(fileName);
-        return QStringList();
-    }
+    virtual ExtProgram *decoderProgram() const                     = 0;
+    virtual QStringList decoderArgs(const QString &fileName) const = 0;
+
     virtual QByteArray magic() const = 0;
     virtual uint       magicOffset() const { return 0; }
 

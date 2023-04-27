@@ -37,7 +37,7 @@ public:
     virtual QByteArray magic() const override { return "MAC "; }
     virtual uint       magicOffset() const override { return 0; }
 
-    virtual QString     decoderProgramName() const override { return "mac"; }
+    ExtProgram         *decoderProgram() const override { return ExtProgram::mac(); }
     virtual QStringList decoderArgs(const QString &fileName) const override;
     virtual QString     filterDecoderStderr(const QString &stdErr) const override;
 };

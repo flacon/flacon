@@ -36,7 +36,7 @@ public:
     virtual QByteArray magic() const override { return "wvpk"; }
     virtual uint       magicOffset() const override { return 0; }
 
-    virtual QString     decoderProgramName() const override { return "wvunpack"; }
+    ExtProgram         *decoderProgram() const override { return ExtProgram::wvunpack(); }
     virtual QStringList decoderArgs(const QString &fileName) const override;
 
 protected:

@@ -34,7 +34,7 @@ public:
     virtual QString name() const override { return "FLAC"; }
     virtual QString ext() const override { return "flac"; }
 
-    virtual QString     decoderProgramName() const override { return "flac"; }
+    ExtProgram         *decoderProgram() const override { return ExtProgram::flac(); }
     virtual QStringList decoderArgs(const QString &fileName) const override;
 
     virtual QByteArray magic() const override { return "fLaC"; }

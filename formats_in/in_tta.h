@@ -36,7 +36,7 @@ public:
     virtual QByteArray magic() const override { return "TTA1"; }
     virtual uint       magicOffset() const override { return 0; }
 
-    virtual QString     decoderProgramName() const override { return "ttaenc"; }
+    ExtProgram         *decoderProgram() const override { return ExtProgram::ttaenc(); }
     virtual QStringList decoderArgs(const QString &fileName) const override;
     virtual QString     filterDecoderStderr(const QString &stdErr) const override;
 };

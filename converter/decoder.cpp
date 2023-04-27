@@ -92,7 +92,7 @@ void Decoder::open(const QString &fileName)
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
 
-    if (!mFormat->decoderProgramName().isEmpty()) {
+    if (mFormat->decoderProgram()) {
         return openProcess();
     }
     else {
@@ -125,27 +125,28 @@ void Decoder::openFile()
  ************************************************/
 void Decoder::openProcess()
 {
-    QString program = Settings_OLD::i()->programName(mFormat->decoderProgramName());
-    if (program.isEmpty()) {
+    ExtProgram *program = mFormat->decoderProgram();
+
+    if (program->path().isEmpty()) {
         throw FlaconError(tr("The %1 program is not installed.<br>Verify that all required programs are installed and in your preferences.",
                              "Error message. %1 - is an program name")
-                                  .arg(mFormat->decoderProgramName()));
+                                  .arg(program->name()));
     }
 
-    if (!QFileInfo::exists(program)) {
+    if (!QFileInfo::exists(program->path())) {
         throw FlaconError(tr("The %1 program is installed according to your settings, but the binary file can’t be found.<br>"
                              "Verify that all required programs are installed and in your preferences.",
                              "Error message. %1 - is an program name")
-                                  .arg(mFormat->decoderProgramName()));
+                                  .arg(program->name()));
     }
     mProcess = new QProcess(this);
     mProcess->setReadChannel(QProcess::StandardOutput);
 
-    mProcess->start(QDir::toNativeSeparators(program), mFormat->decoderArgs(mInputFile));
+    mProcess->start(QDir::toNativeSeparators(program->path()), mFormat->decoderArgs(mInputFile));
     bool res = mProcess->waitForStarted();
     if (!res) {
         throw FlaconError(QString("Can't start '%1': %2")
-                                  .arg(program, mProcess->errorString()));
+                                  .arg(program->path(), mProcess->errorString()));
     }
 
     try {

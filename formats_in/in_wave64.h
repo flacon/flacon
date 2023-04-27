@@ -34,7 +34,7 @@ public:
     virtual QString name() const override { return "WAVE64"; }
     virtual QString ext() const override { return "w64"; }
 
-    virtual QString     decoderProgramName() const override { return ""; }
+    ExtProgram         *decoderProgram() const override { return nullptr; }
     virtual QStringList decoderArgs(const QString &) const override { return {}; }
 
     virtual QByteArray magic() const override { return "riff"; }
