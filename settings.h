@@ -48,6 +48,9 @@ public:
     void readExtPrograms() const;
     void writeExtPrograms();
 
+    QString defaultCodepage() const;
+    void    setDefaultCodepage(const QString &value);
+
 private:
     static QString   mFileName;
     static Settings *mInstance;

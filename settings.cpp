@@ -150,7 +150,6 @@ Profile Settings::readProfile(const QString &profileId)
     endGroup();
 
     profile.setTmpDir(value(ENCODER_TMPDIR_KEY, profile.tmpDir()).toString());
-    profile.setDefaultCodepage(value(DEFAULTCODEPAGE_KEY, profile.defaultCodepage()).toString());
     profile.setEncoderThreadsCount(readThreadsCount(ENCODER_THREADCOUNT_KEY, profile.encoderThreadsCount()));
 
     return profile;
@@ -199,7 +198,6 @@ void Settings::writeProfile(const Profile &profile)
     endGroup();
 
     setValue(ENCODER_TMPDIR_KEY, profile.tmpDir());
-    setValue(DEFAULTCODEPAGE_KEY, profile.defaultCodepage());
     setValue(ENCODER_THREADCOUNT_KEY, profile.encoderThreadsCount());
 }
 
@@ -350,4 +348,20 @@ void Settings::writeExtPrograms()
         auto key = QString("%1/%2").arg(PROGRAMS_GROUP, p->name());
         setValue(key, p->path());
     }
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Settings::defaultCodepage() const
+{
+    return value(DEFAULTCODEPAGE_KEY, "AUTODETECT").toString();
+}
+
+/************************************************
+ *
+ ************************************************/
+void Settings::setDefaultCodepage(const QString &value)
+{
+    setValue(DEFAULTCODEPAGE_KEY, value);
 }

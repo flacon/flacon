@@ -30,6 +30,8 @@
 #include <QDir>
 #include <QDebug>
 #include <QThread>
+#include "patternexpander.h"
+#include "disc.h"
 
 /************************************************
  *
@@ -200,14 +202,6 @@ void Profile::setTmpDir(const QString &value)
 /************************************************
  *
  ************************************************/
-void Profile::setDefaultCodepage(const QString &value)
-{
-    globalParams().mCodepage = value;
-}
-
-/************************************************
- *
- ************************************************/
 uint Profile::defaultEncoderThreadCount()
 {
     return std::max(6, QThread::idealThreadCount());
@@ -224,6 +218,119 @@ void Profile::setEncoderThreadsCount(uint value)
     }
 
     globalParams().mEncoderThreadsCount = defaultEncoderThreadCount();
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Profile::resultFileName(const Track *track) const
+{
+    QString pattern = outFilePattern();
+    if (pattern.isEmpty()) {
+        pattern = QString("%a/%y - %A/%n - %t");
+    }
+
+    int n = pattern.lastIndexOf(QDir::separator());
+    if (n < 0) {
+        PatternExpander expander(*track);
+        return safeFilePathLen(expander.expand(pattern) + "." + ext());
+    }
+
+    // If the disc is a collection, the files fall into different directories.
+    // So we use the tag DiscPerformer for expand the directory path.
+    PatternExpander albumExpander(*track);
+    albumExpander.setArtist(track->albumArtist());
+
+    PatternExpander trackExpander(*track);
+
+    return safeFilePathLen(
+            albumExpander.expand(pattern.left(n)) + trackExpander.expand(pattern.mid(n)) + "." + ext());
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Profile::resultFileDir(const Track *track) const
+{
+    return QFileInfo(resultFilePath(track)).absoluteDir().path();
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Profile::resultFilePath(const Track *track) const
+{
+    QString fileName = resultFileName(track);
+    if (fileName.isEmpty()) {
+        return "";
+    }
+
+    QString dir = calcResultFilePath(track);
+    if (dir.endsWith("/") || fileName.startsWith("/")) {
+        return dir + fileName;
+    }
+    else {
+        return dir + "/" + fileName;
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Profile::safeFilePathLen(const QString &path) const
+{
+    QString file = path;
+    QString ext  = QFileInfo(path).suffix();
+    if (!ext.isEmpty()) {
+        ext = "." + ext;
+        file.resize(file.length() - ext.length());
+    }
+
+    QStringList res;
+    for (QString f : file.split(QDir::separator())) {
+        while (f.toUtf8().length() > 250) {
+            f.resize(f.length() - 1);
+        }
+        res << f;
+    }
+    return res.join(QDir::separator()) + ext;
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Profile::calcResultFilePath(const Track *track) const
+{
+    QString dir = outFileDir();
+
+    if (dir == "~" || dir == "~//") {
+        return QDir::homePath();
+    }
+
+    if (dir == ".") {
+        dir = "";
+    }
+
+    if (dir.startsWith("~/")) {
+        return dir.replace(0, 1, QDir::homePath());
+    }
+
+    QFileInfo fi(dir);
+
+    if (fi.isAbsolute()) {
+        return fi.absoluteFilePath();
+    }
+
+    if (!track->disc()) {
+        return "";
+    }
+
+    QString cueFile = track->disc()->cue().filePath();
+    if (cueFile.startsWith(Cue::EMBEDED_PREFIX)) {
+        cueFile = cueFile.mid(strlen(Cue::EMBEDED_PREFIX));
+    }
+
+    return QFileInfo(cueFile).dir().absolutePath() + QDir::separator() + dir;
 }
 
 /************************************************

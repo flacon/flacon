@@ -188,7 +188,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
     if (project->count() == 0)
         return 10;
 
-    ConsoleOut      out;
+    ConsoleOut      out(*project->profile());
     Conv::Converter converter;
     if (!quiet) {
         QObject::connect(&converter, &Conv::Converter::started,

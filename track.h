@@ -102,10 +102,6 @@ public:
     DiscNum discCount() const;
     void    setDiscCount(DiscNum value);
 
-    QString resultFileName() const;
-    QString resultFileDir() const;
-    QString resultFilePath() const;
-
     Duration duration() const;
 
     CueIndex cueIndex(int indexNum) const;
@@ -121,9 +117,6 @@ private:
     TrackTags      mTags;
     int            mIndex = -1;
     InputAudioFile mAudiofile;
-
-    QString calcResultFilePath() const;
-    QString safeFilePathLen(const QString &path) const;
 };
 
 class Tracks : public QVector<Track>
@@ -149,29 +142,6 @@ private:
 };
 
 using TrackPtrList = QList<Track *>;
-
-class UcharDet
-{
-
-public:
-    UcharDet();
-    UcharDet(const UcharDet &) = delete;
-    UcharDet &operator=(const UcharDet &) = delete;
-    ~UcharDet();
-
-    void      add(const Track &track);
-    UcharDet &operator<<(const Track &track);
-    UcharDet &operator<<(const TrackTags &track);
-
-    QString     textCodecName() const;
-    QTextCodec *textCodec() const;
-
-private:
-    struct Data;
-    Data *mData;
-};
-
-QTextCodec *determineTextCodec(const QVector<Track *> &tracks);
 
 QDebug operator<<(QDebug debug, const Track &track);
 

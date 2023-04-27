@@ -105,6 +105,7 @@ set(HEADERS
     validator.h
     sync.h
     extprogram.h
+    uchardet.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -137,6 +138,7 @@ set(SOURCES
     audiofilematcher.cpp
     validator.cpp
     extprogram.cpp
+    uchardet.cpp
 
     gui/aboutdialog/aboutdialog.cpp
     gui/coverdialog/coverdialog.cpp

@@ -104,11 +104,12 @@ public:
     QString tmpDir() const { return globalParams().mTmpDir; }
     void    setTmpDir(const QString &value);
 
-    static QString defaultCodepage() { return globalParams().mCodepage; }
-    void           setDefaultCodepage(const QString &value);
-
     uint encoderThreadsCount() const { return globalParams().mEncoderThreadsCount; }
     void setEncoderThreadsCount(uint value);
+
+    QString resultFileName(const Track *track) const;
+    QString resultFileDir(const Track *track) const;
+    QString resultFilePath(const Track *track) const;
 
 private:
     QString mId;
@@ -136,13 +137,15 @@ private:
     {
         QString mTmpDir;
         uint    mEncoderThreadsCount = defaultEncoderThreadCount();
-        QString mCodepage            = "AUTODETECT";
     };
 
     static GlobalParams &globalParams();
 
     static QString defaultOutFileDir();
     static uint    defaultEncoderThreadCount();
+
+    QString safeFilePathLen(const QString &path) const;
+    QString calcResultFilePath(const Track *track) const;
 };
 
 class Profiles : public QVector<Profile>

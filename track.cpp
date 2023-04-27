@@ -24,18 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "track.h"
-
-#include <assert.h>
-
-#include "inputaudiofile.h"
-#include "project.h"
-#include "formats_out/outformat.h"
-#include "patternexpander.h"
-
-#include <uchardet.h>
-#include <QDir>
-#include <QTextCodec>
-#include <QDebug>
+#include "disc.h"
 
 /************************************************
 
@@ -141,40 +130,6 @@ void Track::setCodecName(const QString &value)
 }
 
 /************************************************
-
- ************************************************/
-QString Track::resultFileName() const
-{
-    QString pattern = project->profile()->outFilePattern();
-    if (pattern.isEmpty())
-        pattern = QString("%a/%y - %A/%n - %t");
-
-    int n = pattern.lastIndexOf(QDir::separator());
-    if (n < 0) {
-        PatternExpander expander(*this);
-        return safeFilePathLen(expander.expand(pattern) + "." + project->profile()->ext());
-    }
-
-    // If the disc is a collection, the files fall into different directories.
-    // So we use the tag DiscPerformer for expand the directory path.
-    PatternExpander albumExpander(*this);
-    albumExpander.setArtist(this->tag(TagId::AlbumArtist));
-
-    PatternExpander trackExpander(*this);
-
-    return safeFilePathLen(
-            albumExpander.expand(pattern.left(n)) + trackExpander.expand(pattern.mid(n)) + "." + project->profile()->ext());
-}
-
-/************************************************
- *
- ************************************************/
-QString Track::resultFileDir() const
-{
-    return QFileInfo(resultFilePath()).absoluteDir().path();
-}
-
-/************************************************
  *
  ************************************************/
 bool Track::operator==(const Track &other) const
@@ -276,82 +231,11 @@ void Track::setDiscCount(DiscNum value)
 }
 
 /************************************************
-
- ************************************************/
-QString Track::resultFilePath() const
-{
-    QString fileName = resultFileName();
-    if (fileName.isEmpty())
-        return "";
-
-    QString dir = calcResultFilePath();
-    if (dir.endsWith("/") || fileName.startsWith("/"))
-        return dir + fileName;
-    else
-        return dir + "/" + fileName;
-}
-
-/************************************************
  *
  ************************************************/
 Duration Track::duration() const
 {
     return mDisc ? mDisc->trackDuration(*this) : 0;
-}
-
-/************************************************
-
- ************************************************/
-QString Track::calcResultFilePath() const
-{
-    QString dir = project->profile()->outFileDir();
-
-    if (dir == "~" || dir == "~//")
-        return QDir::homePath();
-
-    if (dir == ".")
-        dir = "";
-
-    if (dir.startsWith("~/"))
-        return dir.replace(0, 1, QDir::homePath());
-
-    QFileInfo fi(dir);
-
-    if (fi.isAbsolute())
-        return fi.absoluteFilePath();
-
-    if (!mDisc) {
-        return "";
-    }
-
-    QString cueFile = mDisc->cue().filePath();
-    if (cueFile.startsWith(Cue::EMBEDED_PREFIX)) {
-        cueFile = cueFile.mid(strlen(Cue::EMBEDED_PREFIX));
-    }
-
-    return QFileInfo(cueFile).dir().absolutePath() + QDir::separator() + dir;
-}
-
-/************************************************
- *
- ************************************************/
-QString Track::safeFilePathLen(const QString &path) const
-{
-    QString file = path;
-    QString ext  = QFileInfo(path).suffix();
-    if (!ext.isEmpty()) {
-        ext = "." + ext;
-        file.resize(file.length() - ext.length());
-    }
-
-    QStringList res;
-    for (QString f : file.split(QDir::separator())) {
-        while (f.toUtf8().length() > 250) {
-            f.resize(f.length() - 1);
-        }
-        res << f;
-    }
-    return res.join(QDir::separator()) + ext;
 }
 
 /************************************************
@@ -448,113 +332,6 @@ void Tracks::setTitle(const QByteArray &value)
 void Tracks::setTitle(const QString &value)
 {
     mTitle.setValue(value);
-}
-
-/************************************************
- *
- ************************************************/
-struct UcharDet::Data
-{
-    uchardet_t mUchcharDet;
-};
-
-/************************************************
- *
- ************************************************/
-UcharDet::UcharDet() :
-    mData(new Data())
-{
-    mData->mUchcharDet = uchardet_new();
-}
-
-/************************************************
- *
- ************************************************/
-UcharDet::~UcharDet()
-{
-    uchardet_delete(mData->mUchcharDet);
-    delete mData;
-}
-
-/************************************************
- *
- ************************************************/
-UcharDet &UcharDet::operator<<(const Track &track)
-{
-    TagId tags[] = { TagId::Artist, TagId::Title };
-
-    for (uint i = 0; i < sizeof(tags) / sizeof(TagId); ++i) {
-        TagValue tv = track.tagValue(tags[i]);
-        if (!tv.encoded())
-            uchardet_handle_data(mData->mUchcharDet, tv.value().data(), tv.value().length());
-    }
-
-    return *this;
-}
-/************************************************
- *
- ************************************************/
-UcharDet &UcharDet::operator<<(const TrackTags &track)
-{
-    TagId tags[] = { TagId::Artist, TagId::Title };
-
-    for (uint i = 0; i < sizeof(tags) / sizeof(TagId); ++i) {
-        TagValue tv = track.tagValue(tags[i]);
-        if (!tv.encoded())
-            uchardet_handle_data(mData->mUchcharDet, tv.value().data(), tv.value().length());
-    }
-
-    return *this;
-}
-
-/************************************************
- *
- ************************************************/
-QString UcharDet::textCodecName() const
-{
-    return textCodec()->name();
-}
-
-/************************************************
- *
- ************************************************/
-QTextCodec *UcharDet::textCodec() const
-{
-    uchardet_data_end(mData->mUchcharDet);
-    QTextCodec *res = QTextCodec::codecForName(uchardet_get_charset(mData->mUchcharDet));
-    if (!res)
-        res = QTextCodec::codecForName(Profile::defaultCodepage().toLocal8Bit());
-
-    if (!res || res->name() == "US-ASCII")
-        res = QTextCodec::codecForName("UTF-8");
-
-    return res;
-}
-
-/************************************************
- *
- ************************************************/
-QTextCodec *determineTextCodec(const QVector<Track *> &tracks)
-{
-    QTextCodec *res;
-    uchardet_t  uc = uchardet_new();
-
-    foreach (const Track *track, tracks) {
-        const QByteArray &performer = track->tagData(TagId::Artist);
-        const QByteArray &title     = track->tagData(TagId::Title);
-
-        uchardet_handle_data(uc, performer.data(), performer.length());
-        uchardet_handle_data(uc, title.data(), title.length());
-    }
-
-    uchardet_data_end(uc);
-    res = QTextCodec::codecForName(uchardet_get_charset(uc));
-    if (!res)
-        res = QTextCodec::codecForName("UTF-8");
-
-    uchardet_delete(uc);
-
-    return res;
 }
 
 QDebug operator<<(QDebug debug, const Track &track)

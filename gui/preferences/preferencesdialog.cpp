@@ -180,7 +180,8 @@ void PreferencesDialog::setProfiles(const Profiles &profiles)
     Profile p = !profiles.isEmpty() ? profiles.first() : Profile();
     ui->generalPage->setEncoderThreadsCount(p.encoderThreadsCount());
     ui->generalPage->setTmpDir(p.tmpDir());
-    ui->generalPage->setDefaultCodepage(p.defaultCodepage());
+
+    ui->generalPage->setDefaultCodepage(Settings::i()->defaultCodepage());
 
 #ifndef BUNDLED_PROGRAMS
     // Programs page .......................
@@ -219,6 +220,9 @@ void PreferencesDialog::fixLayout(const QWidget *parent)
     }
 }
 
+/************************************************
+ *
+ ************************************************/
 Profiles PreferencesDialog::profiles() const
 {
     return ui->profilesPage->profiles();
@@ -275,7 +279,8 @@ bool PreferencesDialog::save()
     Profile &p = ui->profilesPage->profiles().first();
     p.setEncoderThreadsCount(ui->generalPage->encoderThreadsCount());
     p.setTmpDir(ui->generalPage->tmpDir());
-    p.setDefaultCodepage(ui->generalPage->defaultCodepage());
+
+    Settings::i()->setDefaultCodepage(ui->generalPage->defaultCodepage());
 
 #ifndef BUNDLED_PROGRAMS
     // Programs page .......................

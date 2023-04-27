@@ -330,7 +330,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
                 return QVariant(track->comment());
 
             case TrackView::ColumnFileName:
-                return QVariant(track->resultFileName());
+                return QVariant(project->profile()->resultFileName(track));
         }
 
         return QVariant();
@@ -340,7 +340,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
     if (role == Qt::ToolTipRole) {
         switch (index.column()) {
             case TrackView::ColumnFileName:
-                return QVariant(track->resultFilePath());
+                return QVariant(project->profile()->resultFilePath(track));
 
             default:
                 return QVariant();
@@ -377,7 +377,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
         case RoleComment:
             return track->album();
         case RoleFileName:
-            return track->resultFileName();
+            return project->profile()->resultFileName(track);
         default:
             return QVariant();
     }

@@ -542,8 +542,6 @@ void MainWindow::setCodePage()
         QList<Disc *> discs = trackView->selectedDiscs();
         foreach (Disc *disc, discs)
             disc->setCodecName(codepage);
-
-        project->profile()->setDefaultCodepage(codepage);
     }
 }
 

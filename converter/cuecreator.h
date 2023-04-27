@@ -30,6 +30,7 @@
 #include <QFile>
 #include <QString>
 #include "track.h"
+#include "profiles.h"
 
 class Disc;
 class Track;
@@ -39,7 +40,7 @@ namespace Conv {
 class CueCreator
 {
 public:
-    explicit CueCreator(const Disc *disc, PreGapType preGapType);
+    explicit CueCreator(const Profile &profile, const Disc *disc, PreGapType preGapType);
 
     void    write(QIODevice *out);
     QString writeToFile(const QString &fileTemplate);
@@ -50,6 +51,7 @@ public:
 
 private:
     const Disc      *mDisc;
+    const Profile    mProfile;
     const PreGapType mPreGapType;
 
     QTextCodec *mTextCodec;

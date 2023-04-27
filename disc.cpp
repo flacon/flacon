@@ -29,6 +29,7 @@
 #include "inputaudiofile.h"
 #include "formats_in/informat.h"
 #include "audiofilematcher.h"
+#include "uchardet.h"
 
 #include "assert.h"
 #include <QTextCodec>

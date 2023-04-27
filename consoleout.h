@@ -29,12 +29,13 @@
 #include <QObject>
 #include <QDateTime>
 #include "track.h"
+#include "profiles.h"
 
 class ConsoleOut : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConsoleOut(QObject *parent = nullptr);
+    explicit ConsoleOut(const Profile &profile, QObject *parent = nullptr);
 
 public slots:
     void converterStarted();
@@ -46,6 +47,7 @@ public slots:
 private:
     QDateTime mStartTime;
     QDateTime mFinishTime;
+    Profile   mProfile;
 };
 
 #endif // CONSOLEOUT_H

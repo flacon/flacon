@@ -102,7 +102,7 @@ QString DiscPipeline::getWorkDir(const Track &track) const
 {
     QString dir = mProfile.tmpDir();
     if (dir.isEmpty()) {
-        dir = QFileInfo(track.resultFilePath()).dir().absolutePath();
+        dir = QFileInfo(mProfile.resultFilePath(&track)).dir().absolutePath();
     }
     return dir + "/tmp";
 }
@@ -172,7 +172,7 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, const QVector<con
         updateDiskState();
 
         qCDebug(LOG) << "Create directory for output files" << dir;
-        createDir(QFileInfo(track.resultFilePath()).absoluteDir().path());
+        createDir(QFileInfo(mProfile.resultFilePath(&track)).absoluteDir().path());
     }
 
     addSpliterRequest();
@@ -289,7 +289,7 @@ void DiscPipeline::addEncoderRequest(const ConvTrack &track, const QString &inpu
  ************************************************/
 void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile)
 {
-    QFileInfo trackFile(track.resultFilePath());
+    QFileInfo trackFile(mProfile.resultFilePath(&track));
     QString   outFile = QDir(mTmpDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
 
     Encoder *encoder = new Encoder();
@@ -371,11 +371,11 @@ void DiscPipeline::trackDone(const ConvTrack &track, const QString &outFileName)
 
     // Track is ready, rename the file to the final name.
     // Remove old already existing file.
-    QFile::remove(track.resultFilePath());
+    QFile::remove(mProfile.resultFilePath(&track));
 
     QFile file(outFileName);
-    if (!file.rename(track.resultFilePath())) {
-        trackError(track, tr("I can't rename file:\n%1 to %2\n%3").arg(outFileName, track.resultFilePath(), file.errorString()));
+    if (!file.rename(mProfile.resultFilePath(&track))) {
+        trackError(track, tr("I can't rename file:\n%1 to %2\n%3").arg(outFileName, mProfile.resultFilePath(&track), file.errorString()));
     }
 
     mTrackStates[track.index()] = TrackState::OK;
@@ -535,7 +535,7 @@ void DiscPipeline::copyCoverImage() const
         return;
     }
 
-    QString dir  = QFileInfo(mTracks.first().resultFilePath()).dir().absolutePath();
+    QString dir  = QFileInfo(mProfile.resultFilePath(&mTracks.first())).dir().absolutePath();
     QString dest = QDir(dir).absoluteFilePath(QString("cover.%1").arg(QFileInfo(file).suffix()));
 
     CoverImage image = CoverImage(file, size);
@@ -569,7 +569,7 @@ void DiscPipeline::writeOutCueFile()
         return;
     }
 
-    CueCreator cue(mDisc, mPregapType);
+    CueCreator cue(mProfile, mDisc, mPregapType);
     cue.writeToFile(mProfile.cueFileName());
 }
 
@@ -582,7 +582,7 @@ void DiscPipeline::loadEmbeddedCue()
         return;
     }
 
-    CueCreator cue(mDisc, mPregapType);
+    CueCreator cue(mProfile, mDisc, mPregapType);
     QBuffer    buf;
     cue.write(&buf);
     mEmbeddedCue = QString::fromUtf8(buf.data());

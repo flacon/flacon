@@ -336,7 +336,7 @@ bool Validator::validateResultFiles(const Disk *disk, QStringList &inErrors, QSt
     QStringList errors;
 
     for (const Track *track : disk->tracks()) {
-        QString  outDir   = track->resultFileDir();
+        QString  outDir   = mProfile.resultFileDir(track);
         TrackNum trackNum = track->trackNum();
 
         int n = 0;
@@ -349,7 +349,7 @@ bool Validator::validateResultFiles(const Disk *disk, QStringList &inErrors, QSt
                     continue;
                 }
 
-                if (t->resultFilePath() == track->resultFilePath()) {
+                if (mProfile.resultFilePath(t) == mProfile.resultFilePath(track)) {
                     if (d == disk) {
                         errors << tr("Disk %1 \"%2 - %3\" will overwrite its own files.",
                                      "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
@@ -365,7 +365,7 @@ bool Validator::validateResultFiles(const Disk *disk, QStringList &inErrors, QSt
                     break;
                 }
 
-                if (t->trackNum() == trackNum && t->resultFileDir() == outDir) {
+                if (t->trackNum() == trackNum && mProfile.resultFileDir(t) == outDir) {
                     errors << tr("Disk %1 \"%2 - %3\" has overlapping track numbers.\nYou could change the \"Start num\" for one of them.",
                                  "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
                                       .arg(n)

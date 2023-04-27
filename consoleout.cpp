@@ -29,8 +29,9 @@
 /************************************************
  *
  ************************************************/
-ConsoleOut::ConsoleOut(QObject *parent) :
-    QObject(parent)
+ConsoleOut::ConsoleOut(const Profile &profile, QObject *parent) :
+    QObject(parent),
+    mProfile(profile)
 {
 }
 
@@ -75,7 +76,7 @@ void ConsoleOut::trackProgress(const Track &track, TrackState state, Percent)
 
     QTextStream(stdout)
             << status << " "
-            << track.resultFilePath() << "\n";
+            << mProfile.resultFilePath(&track) << "\n";
 }
 
 /************************************************

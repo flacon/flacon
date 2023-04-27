@@ -32,6 +32,7 @@
 #include <QObject>
 #include <QDebug>
 #include "track.h"
+#include "uchardet.h"
 
 /************************************************
  *

@@ -36,8 +36,9 @@ using namespace Conv;
 /************************************************
 
  ************************************************/
-CueCreator::CueCreator(const Disc *disc, PreGapType preGapType) :
+CueCreator::CueCreator(const Profile &profile, const Disc *disc, PreGapType preGapType) :
     mDisc(disc),
+    mProfile(profile),
     mPreGapType(preGapType)
 {
 
@@ -175,21 +176,21 @@ void CueCreator::write(QIODevice *out)
         if (i == 0) {
             if (index0.isNull() || index0 == index1) {
                 // No pregap ....................
-                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
                 writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
                 writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
             }
             else {
                 // With pregap ..................
                 if (createPreGapFile) {
-                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mDisc->preGapTrack()->resultFilePath()).fileName()));
+                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFilePath(mDisc->preGapTrack())).fileName()));
                     writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
                     writeLine(out, QString("    INDEX 00 %1").arg("00:00:00"));
-                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
                     writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
                 }
                 else {
-                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
                     writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
                     writeLine(out, QString("    INDEX 00 %1").arg(index0.toString()));
                     writeLine(out, QString("    INDEX 01 %1").arg(index1.toString()));
@@ -199,7 +200,7 @@ void CueCreator::write(QIODevice *out)
         else {
             if (index0.isNull() || index0 == index1) {
                 // No pregap ....................
-                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
                 writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
                 writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
             }
@@ -207,7 +208,7 @@ void CueCreator::write(QIODevice *out)
                 // With pregap ..................
                 writeLine(out, QString("  TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
                 writeLine(out, QString("    INDEX 00 %1").arg((index0 - prevIndex).toString()));
-                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(track->resultFileName()).fileName()));
+                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
                 writeLine(out, QString("    INDEX 01 %1").arg("00:00:00"));
             }
         }
@@ -231,7 +232,7 @@ void CueCreator::write(QIODevice *out)
 QString CueCreator::writeToFile(const QString &fileTemplate)
 {
     Track          *track = mDisc->track(0);
-    QString         dir   = QFileInfo(track->resultFilePath()).dir().absolutePath();
+    QString         dir   = QFileInfo(mProfile.resultFilePath(track)).dir().absolutePath();
     PatternExpander expander(*track);
     expander.setTrackNum(0);
     expander.setTrackCount(mDisc->count());
