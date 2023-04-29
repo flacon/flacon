@@ -1,5 +1,5 @@
-#ifndef UCHARDET_H
-#define UCHARDET_H
+#ifndef UCHARDETECT_H
+#define UCHARDETECT_H
 
 #include <QString>
 
@@ -26,4 +26,4 @@ private:
     struct Data;
     Data *mData;
 };
-#endif // UCHARDET_H
+#endif // UCHARDETECT_H

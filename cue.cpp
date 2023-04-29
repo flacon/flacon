@@ -31,8 +31,7 @@
 #include <QFileInfo>
 #include <QObject>
 #include <QDebug>
-#include "track.h"
-#include "uchardet.h"
+#include "uchardetect.h"
 
 /************************************************
  *

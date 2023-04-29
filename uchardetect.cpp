@@ -1,6 +1,6 @@
-#include "uchardet.h"
+#include "uchardetect.h"
 #include "settings.h"
-#include <uchardet/uchardet.h>
+#include <uchardet.h>
 #include "track.h"
 #include <QTextCodec>
 
