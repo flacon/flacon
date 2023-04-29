@@ -53,17 +53,6 @@
 /************************************************
  *
  ************************************************/
-QString findProgram(const QString &program)
-{
-    QStringList paths = QProcessEnvironment::systemEnvironment().value("PATH").split(PATH_ENV_SEPARATOR);
-    foreach (QString path, paths) {
-        QFileInfo fi(path + QDir::separator() + program + BINARY_EXT);
-        if (fi.exists() && fi.isExecutable())
-            return fi.absoluteFilePath();
-    }
-    return "";
-}
-
 static void createWavFile(const QString &fileName, const int duration)
 {
     QFile hdr(TEST_DATA_DIR "CD.wav.hdr");
@@ -84,14 +73,22 @@ void TestFlacon::initTestCase()
     initTypes();
     Settings::setFileName(TEST_OUT_DIR "/flacon.conf");
 
-    if (findProgram("mac").isEmpty())
-        QFAIL("mac program not found");
-    if (findProgram("flac").isEmpty())
-        QFAIL("flac program not found");
-    if (findProgram("wavpack").isEmpty())
-        QFAIL("wavpack program not found");
-    if (findProgram("ttaenc").isEmpty())
-        QFAIL("ttaenc program not found");
+    for (auto p : ExtProgram::allPrograms()) {
+        p->setPath(p->find());
+    }
+
+    const auto PROGS = {
+        ExtProgram::mac(),
+        ExtProgram::flac(),
+        ExtProgram::wavpack(),
+        ExtProgram::ttaenc(),
+    };
+
+    for (auto &p : PROGS) {
+        if (p->path().isEmpty()) {
+            QFAIL(QString("%1 program not found").arg(p->name()).toLocal8Bit());
+        }
+    }
 
     if (!QDir().mkpath(mTmpDir))
         QTest::qFail(QString("Can't create directory '%1'").arg(mTmpDir).toLocal8Bit(), __FILE__, __LINE__);

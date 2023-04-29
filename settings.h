@@ -42,6 +42,8 @@ public:
     Profiles readProfiles();
     void     writeProfiles(const Profiles &profiles);
 
+    Profile readProfile(const QString &profileId);
+
     QString readCurrentProfileId() const;
     void    writeCurrentProfileId(const QString &profileId);
 
@@ -51,15 +53,15 @@ public:
     QString defaultCodepage() const;
     void    setDefaultCodepage(const QString &value);
 
+protected:
+    explicit Settings(const QString &organization, const QString &application);
+    explicit Settings(const QString &fileName);
+
 private:
     static QString   mFileName;
     static Settings *mInstance;
 
-    explicit Settings(const QString &organization, const QString &application);
-    explicit Settings(const QString &fileName);
-
-    Profile readProfile(const QString &profileId);
-    void    writeProfile(const Profile &profile);
+    void writeProfile(const Profile &profile);
 
     BitsPerSample readBitsPerSample(const QString &key, BitsPerSample def) const;
     SampleRate    readSampleRate(const QString &key, SampleRate def) const;

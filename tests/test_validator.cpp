@@ -32,6 +32,7 @@
 #include "validator.h"
 #include "settings.h"
 #include "json_struct.h"
+#include "tools.h"
 
 namespace {
 struct TcDisk
@@ -61,7 +62,8 @@ TcCase loadTestCase(const QString &dir)
         throw FlaconError("Spec file not found");
     }
 
-    JS::ParseContext context(f.readAll().data());
+    QByteArray       data = f.readAll();
+    JS::ParseContext context(data.constData(), data.size());
 
     TcCase res;
     if (context.parseTo(res) != JS::Error::NoError) {
@@ -100,10 +102,10 @@ void TestFlacon::testValidator()
             QFile::copy(QString("%1/%2").arg(dataDir).arg(d.audio.c_str()), QString("%1/%2").arg(dir()).arg(d.audio.c_str()));
         }
 
-        Settings settings(cfgFile);
+        TestSettings settings(cfgFile);
 
         Validator validator;
-        validator.setProfile(settings.currentProfile());
+        validator.setProfile(settings.readProfile(settings.readCurrentProfileId()));
 
         for (auto d : spec.disks) {
             Cue            cue(d.cue.c_str());

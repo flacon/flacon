@@ -441,8 +441,8 @@ void TestFlacon::testTrackResultFileName()
     QFETCH(QString, pattern);
     QFETCH(QString, expected);
 
-    Settings::i()->selectProfile("WAV");
-    Settings::i()->currentProfile().setOutFilePattern(pattern);
+    Profile profile = Profile("WAV");
+    profile.setOutFilePattern(pattern);
 
     project->clear();
 
@@ -451,7 +451,7 @@ void TestFlacon::testTrackResultFileName()
 
     Disc *disc = loadFromCue(cueFile);
 
-    QString result = disc->track(0)->resultFileName();
+    QString result = profile.resultFileName(disc->track(0));
     // QCOMPARE(result, expected);
 
     if (result != expected) {
@@ -947,9 +947,9 @@ void TestFlacon::testTrackResultFilePath()
     QFETCH(QString, expected);
     QFETCH(QString, cueFile);
 
-    Settings::i()->selectProfile("WAV");
-    Settings::i()->currentProfile().setOutFileDir(outDir);
-    Settings::i()->currentProfile().setOutFilePattern(pattern);
+    Profile profile = Profile("WAV");
+    profile.setOutFileDir(outDir);
+    profile.setOutFilePattern(pattern);
 
     if (!cueFile.isEmpty())
         QFile::copy(mDataDir + "simple.cue", cueFile);
@@ -958,7 +958,7 @@ void TestFlacon::testTrackResultFilePath()
 
     Disc *disc = loadFromCue(cueFile);
 
-    QString result = disc->track(0)->resultFilePath();
+    QString result = profile.resultFilePath(disc->track(0));
     if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath()) {
         QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   CueFile: %4").arg(QFileInfo(result).absoluteFilePath(), result, expected, cueFile);
         QFAIL(msg.toLocal8Bit());
@@ -1044,9 +1044,9 @@ void TestFlacon::testTrackSetCodepages()
         QFAIL(QString("Can't copy file %1 to %2").arg(testDataDir + cueFile, testCueFile).toLocal8Bit().data());
 
     if (!codepageBefore.isEmpty())
-        Settings::i()->setValue(Settings::Tags_DefaultCodepage, codepageBefore);
+        Settings::i()->setDefaultCodepage(codepageBefore);
     else
-        Settings::i()->setValue(Settings::Tags_DefaultCodepage, "UTF-8");
+        Settings::i()->setDefaultCodepage("UTF-8");
 
     Disc *disc = loadFromCue(testCueFile);
 
