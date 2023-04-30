@@ -34,14 +34,15 @@
  ************************************************/
 QString preGapTypeToString(PreGapType type)
 {
+    // clang-format off
     switch (type) {
-        case PreGapType::ExtractToFile:
-            return "Extract";
-        case PreGapType::AddToFirstTrack:
-            return "AddToFirst";
-        default:
-            return "Disable";
+        case PreGapType::ExtractToFile:   return "Extract";
+        case PreGapType::AddToFirstTrack: return "AddToFirst";
+        case PreGapType::Skip:            return "Skip";
     }
+    // clang-format on
+
+    return "Skip";
 }
 
 /************************************************
@@ -51,10 +52,12 @@ PreGapType strToPreGapType(const QString &str, PreGapType def)
 {
     QString s = str.toUpper();
 
-    if (s == "EXTRACT")
-        return PreGapType::ExtractToFile;
-    if (s == "ADDTOFIRST")
-        return PreGapType::AddToFirstTrack;
+    // clang-format off
+    if (s == "DISABLE")    return PreGapType::Skip;
+    if (s == "SKIP")       return PreGapType::Skip;
+    if (s == "EXTRACT")    return PreGapType::ExtractToFile;
+    if (s == "ADDTOFIRST") return PreGapType::AddToFirstTrack;
+    // clang-format on
 
     return def;
 }
@@ -64,14 +67,13 @@ PreGapType strToPreGapType(const QString &str, PreGapType def)
  ************************************************/
 QString gainTypeToString(GainType type)
 {
+    // clang-format off
     switch (type) {
-        case GainType::Disable:
-            return "Disable";
-        case GainType::Track:
-            return "Track";
-        case GainType::Album:
-            return "Album";
+        case GainType::Disable: return "Disable";
+        case GainType::Track:   return "Track";
+        case GainType::Album:   return "Album";
     }
+    // clang-format on
 
     return "Disable";
 }
@@ -83,10 +85,11 @@ GainType strToGainType(const QString &str, GainType def)
 {
     QString s = str.toUpper();
 
-    if (s == "TRACK")
-        return GainType::Track;
-    if (s == "ALBUM")
-        return GainType::Album;
+    // clang-format off
+    if (s == "DISABLE") return GainType::Disable;
+    if (s == "TRACK")   return GainType::Track;
+    if (s == "ALBUM")   return GainType::Album;
+    // clang-format on
 
     return def;
 }
@@ -96,14 +99,13 @@ GainType strToGainType(const QString &str, GainType def)
  ************************************************/
 QString coverModeToString(CoverMode mode)
 {
+    // clang-format off
     switch (mode) {
-        case CoverMode::Disable:
-            return "Disable";
-        case CoverMode::OrigSize:
-            return "OrigSize";
-        case CoverMode::Scale:
-            return "Scale";
+        case CoverMode::Disable:  return "Disable";
+        case CoverMode::OrigSize: return "OrigSize";
+        case CoverMode::Scale:    return "Scale";
     }
+    // clang-format on
 
     return "Disable";
 }
@@ -115,10 +117,11 @@ CoverMode strToCoverMode(const QString &str, CoverMode def)
 {
     QString s = str.toUpper();
 
-    if (s == "ORIGSIZE")
-        return CoverMode::OrigSize;
-    if (s == "SCALE")
-        return CoverMode::Scale;
+    // clang-format off
+    if (s == "DISABLE")  return CoverMode::Disable;
+    if (s == "ORIGSIZE") return CoverMode::OrigSize;
+    if (s == "SCALE")    return CoverMode::Scale;
+    // clang-format on
 
     return def;
 }

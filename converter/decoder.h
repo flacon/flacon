@@ -30,7 +30,7 @@
 #include <QObject>
 #include <QString>
 #include <QByteArray>
-#include "../cue.h"
+#include "../types.h"
 #include "../formats_in/informat.h"
 
 class QIODevice;

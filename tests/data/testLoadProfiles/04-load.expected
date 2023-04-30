@@ -15,6 +15,8 @@
     CoverFile/Size=600
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
+    ReplayGain=Disable
 
 
 [Profiles/FLAC]
@@ -33,6 +35,7 @@
     CoverFile/Size=600
     CoverEmbed/Mode=Scale
     CoverEmbed/Size=800
+    EmbedCue=false
 
 
 [Profiles/MP3]
@@ -48,11 +51,12 @@
     SampleRate=44100
     CreateCue=false
     CueFileName = MP3 %a %d - %A.cue
-    PregapType = Disable
+    PregapType = Skip
     CoverFile/Mode=Scale
     CoverFile/Size=600
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
 
 
 [Profiles/OGG]
@@ -75,6 +79,7 @@
     CoverFile/Size=600
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
 
 
 [Profiles/OPUS]
@@ -93,6 +98,8 @@
     CoverFile/Size=600
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
+    ReplayGain=Disable
 
 
 [Profiles/WV]
@@ -106,11 +113,12 @@
     SampleRate=44100
     CreateCue=true
     CueFileName = WV %a %d - %A.cue
-    PregapType = Disable
+    PregapType = Skip
     CoverFile/Mode=Scale
     CoverFile/Size=600
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
 
 
 [Profiles/WAV]
@@ -122,9 +130,11 @@
     SampleRate=44100
     CreateCue=true
     CueFileName = WAV %a %d - %A.cue
-    PregapType = Track
+    PregapType = AddToFirst
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    EmbedCue=false
+    ReplayGain=Disable
 
 
 [Profiles/ALAC]
@@ -133,7 +143,7 @@
     Format=ALAC
     Name=Alac
     Compression=1
-    ReplayGain=None
+    ReplayGain=Disable
     BitsPerSample=16
     SampleRate=44100
     CreateCue=true
@@ -143,3 +153,4 @@
     CoverFile/Size=600
     CoverEmbed/Mode=Scale
     CoverEmbed/Size=800
+    EmbedCue=false

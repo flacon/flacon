@@ -46,6 +46,7 @@ private:
     QStringList readFile(const QString &fileName);
     void        writeFile(const QStringList &strings, const QString &fileName);
     QString     stigListToString(const QStringList &strings, const QString divider = "");
+    void        findPrograms();
 
 private slots:
     void initTestCase();

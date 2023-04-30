@@ -100,7 +100,9 @@ void Profile::setOutFilePattern(const QString &value)
  ************************************************/
 void Profile::setGainType(GainType value)
 {
-    mGainType = value;
+    if (mFormat->options().testFlag(FormatOption::SupportGain)) {
+        mGainType = value;
+    }
 }
 
 /************************************************
@@ -132,7 +134,9 @@ void Profile::setCreateCue(bool value)
  ************************************************/
 void Profile::setEmbedCue(bool value)
 {
-    mEmbedCue = value;
+    if (mFormat->options().testFlag(FormatOption::SupportEmbeddedCue)) {
+        mEmbedCue = value;
+    }
 }
 
 /************************************************
@@ -164,7 +168,9 @@ void Profile::setCopyCoverOptions(const CoverOptions &value)
  ************************************************/
 void Profile::setEmbedCoverOptions(const CoverOptions &value)
 {
-    mEmbedCoverOptions = value;
+    if (mFormat->options().testFlag(FormatOption::SupportEmbeddedImage)) {
+        mEmbedCoverOptions = value;
+    }
 }
 
 /************************************************

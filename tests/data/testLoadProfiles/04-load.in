@@ -111,7 +111,7 @@
     SampleRate=44100
     CreateCue=true
     CueFileName = WAV %a %d - %A.cue
-    PregapType = Track
+    PregapType = AddToFirst
     CoverFile/Mode=Scale
     CoverFile/Size=600
 

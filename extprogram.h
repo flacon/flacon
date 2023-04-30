@@ -69,6 +69,4 @@ public:
     static ExtProgram *wvunpack();
 };
 
-using ExtPrograms = QList<ExtProgram *>;
-
 #endif // EXTPROGRAM_H

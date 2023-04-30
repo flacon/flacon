@@ -113,7 +113,8 @@ void TestFlacon::testLoadDiscFromAudioErrors()
         Settings::setFileName(this->dir() + "/conf.ini");
 
         if (spec.contains("PROGRAM")) {
-            Settings::i()->setValue("Programs/flac", spec.value("PROGRAM").toString());
+
+            ExtProgram::flac()->setPath(spec.value("PROGRAM").toString());
         }
 
         InputAudioFile audio(dir + "/" + spec.value("LOAD").toString());
@@ -131,6 +132,7 @@ void TestFlacon::testLoadDiscFromAudioErrors()
     }
 
     QLoggingCategory::setFilterRules("");
+    findPrograms();
 }
 
 void TestFlacon::testLoadDiscFromAudioErrors_data()

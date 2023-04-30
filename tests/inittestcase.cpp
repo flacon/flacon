@@ -67,15 +67,10 @@ static void createWavFile(const QString &fileName, const int duration)
  ************************************************/
 void TestFlacon::initTestCase()
 {
-    QLoggingCategory::setFilterRules("*.debug=false\n"
-                                     "default.debug=true\n");
-
     initTypes();
     Settings::setFileName(TEST_OUT_DIR "/flacon.conf");
 
-    for (auto p : ExtProgram::allPrograms()) {
-        p->setPath(p->find());
-    }
+    findPrograms();
 
     const auto PROGS = {
         ExtProgram::mac(),
@@ -141,6 +136,16 @@ void TestFlacon::initTestCase()
 /************************************************
  *
  ************************************************/
+void TestFlacon::findPrograms()
+{
+    for (auto p : ExtProgram::allPrograms()) {
+        p->setPath(p->find());
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
 static QString safePath(const QString &path)
 {
     QString res = path;
@@ -198,4 +203,7 @@ void TestFlacon::init()
     }
 
     Settings::setFileName(dir + "/flacon.conf");
+
+    QLoggingCategory::setFilterRules("*.debug=false\n"
+                                     "default.debug=true\n");
 }

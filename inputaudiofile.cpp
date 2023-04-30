@@ -92,11 +92,11 @@ void InputAudioFile::Data::load(const QString &filePath)
 
         // clang-format off
         qCDebug(LOG) << "Audio is loaded: "
-                        "format="         << mFormat <<
-                        "mDuration"       << mDuration <<
-                        "mCdQuality="     << mCdQuality <<
-                        "mSampleRate="    << mSampleRate <<
-                        "mBitsPerSample=" << mBitsPerSample;
+                        "format ="         << mFormat->name() <<
+                        "mDuration ="      << mDuration <<
+                        "mCdQuality ="     << mCdQuality <<
+                        "mSampleRate ="    << mSampleRate <<
+                        "mBitsPerSample =" << mBitsPerSample;
         // clang-format on
     }
     catch (FlaconError &err) {

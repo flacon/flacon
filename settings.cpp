@@ -95,7 +95,6 @@ Settings::Settings(const QString &organization, const QString &application) :
 Settings::Settings(const QString &fileName) :
     QSettings(expandFilePath(fileName), QSettings::IniFormat)
 {
-    QString s = this->fileName();
     setIniCodec("UTF-8");
 }
 
@@ -231,10 +230,16 @@ Profiles Settings::readProfiles()
         // This functionality is introduced in version 8.4, this is a list of formats known in 8.3.
         QStringList def = { "AAC", "FLAC", "MP3", "OGG", "OPUS", "WAV", "WV" };
         QStringList old = value(KNOWN_FORMATS_KEY, def).toStringList();
+        QStringList exists;
+
+        for (const Profile &p : qAsConst(res)) {
+            exists << p.outFormat()->id();
+        }
 
         Profiles ps = createStandardProfiles();
         for (const Profile &p : ps) {
-            if (!old.contains(p.outFormat()->id())) {
+
+            if (!exists.contains(p.outFormat()->id()) && !old.contains(p.outFormat()->id())) {
                 res << p;
             }
         }

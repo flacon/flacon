@@ -15,6 +15,9 @@
     CoverFile/Size=1024
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
+    ReplayGain=Disable
+
 
 [Profiles/FLAC]
     OutDirectory=:Music
@@ -32,6 +35,8 @@
     CoverFile/Size=1024
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
+
 
 [Profiles/MP3]
     OutDirectory=:Music
@@ -51,6 +56,7 @@
     CoverFile/Size=1024
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
 
 
 [Profiles/OGG]
@@ -73,6 +79,7 @@
     CoverFile/Size=1024
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
 
 
 [Profiles/OPUS]
@@ -91,6 +98,8 @@
     CoverFile/Size=1024
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
+    ReplayGain=Disable
 
 
 [Profiles/WV]
@@ -109,6 +118,7 @@
     CoverFile/Size=1024
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
 
 
 [Profiles/WAV]
@@ -123,6 +133,9 @@
     PregapType = Extract
     CoverFile/Mode=Disable
     CoverFile/Size=1024
+    EmbedCue=false
+    ReplayGain=Disable
+
 
 [Profiles/ALAC]
     BitsPerSample=0
@@ -139,3 +152,5 @@
     SampleRate=0
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
+    EmbedCue=false
+    ReplayGain=Disable

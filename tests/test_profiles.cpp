@@ -56,13 +56,9 @@ void TestFlacon::testLoadProfiles()
 
     TestSettings settings(confFile);
     QSettings    expected(expectedFile, QSettings::IniFormat);
-    QSettings    result(resultFile, QSettings::IniFormat);
+    TestSettings result(resultFile);
 
-    result.beginGroup("Profiles");
-    for (Profile profile : settings.profiles()) {
-        profile.save(result, profile.id());
-    }
-    result.endGroup();
+    result.writeProfiles(settings.readProfiles());
     result.sync();
 
     QStringList keys;
@@ -72,6 +68,10 @@ void TestFlacon::testLoadProfiles()
 
     bool pass = true;
     foreach (auto key, keys) {
+        if (!key.startsWith("Profiles")) {
+            continue;
+        }
+
         QString exp = expected.value(key).toString();
 
         if (exp == ":Music") {
