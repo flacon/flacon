@@ -259,6 +259,7 @@ int runGui(int argc, char *argv[], const QStringList &files)
 int main(int argc, char *argv[])
 {
     initTypes();
+
     QCommandLineParser parser;
 
     parser.addPositionalArgument("file", "CUE or Audio file.");
@@ -307,15 +308,12 @@ int main(int argc, char *argv[])
     }
 
     if (parser.isSet("debug") || getenv("FLACON_DEBUG")) {
+        setenv("QT_LOGGING_RULES", "*.debug=true;qt.*.debug=false;kf.*.debug=false;", 1);
         qSetMessagePattern("%{time yyyy.MM.dd hh:mm:ss.zzz t} [%{threadid}] %{category}: %{type}: %{message}");
-        QLoggingCategory::setFilterRules("*.debug=true\n"
-                                         "qt.*.debug=false\n"
-                                         "kf.*.debug=false\n");
     }
     else {
+        setenv("QT_LOGGING_RULES", "*.debug=false;default.debug=true;", 1);
         qSetMessagePattern("%{if-warning}Warning: %{endif}%{if-critical}Error: %{endif}%{if-fatal}Error: %{endif}%{message}");
-        QLoggingCategory::setFilterRules("*.debug=false\n"
-                                         "default.debug=true\n");
     }
 
     quiet    = parser.isSet("quiet");
