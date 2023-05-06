@@ -32,6 +32,7 @@
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
+        <extracomment>About dialog, About tab</extracomment>
         <translation>Gestionnaire de bogues : %1</translation>
     </message>
     <message>
@@ -57,31 +58,37 @@
     <message>
         <source>WavPack support patch</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>Correctif de prise en charge de WavPack</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>Mise en forme et tests</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>Améliorations de l’IU</translation>
     </message>
     <message>
         <source>Flacon account on github.com</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>Compte Flacon sur github.com</translation>
     </message>
     <message>
         <source>Icon for application</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>Icône pour l’application</translation>
     </message>
     <message>
         <source>Icons for application</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>Icônes pour l’application</translation>
     </message>
     <message>
@@ -114,6 +121,7 @@
     <message>
         <source>Create a profile</source>
         <comment>Button caption</comment>
+        <extracomment>Button caption</extracomment>
         <translation>Créer le profil</translation>
     </message>
 </context>
@@ -129,6 +137,7 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
+        <extracomment>Codepage auto detection</extracomment>
         <translation>Détection automatique</translation>
     </message>
     <message>
@@ -305,6 +314,7 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
       </source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
+        <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
         <translation>&lt;dt&gt;DBV moyen&lt;/dt&gt;
 &lt;dd&gt;En utilisant un Débit Binaire Variable moyen, cette présélection devrait offrir une quasi-transparence à la plupart des personnes, pour la plupart des musiques.&lt;/dd&gt;
 
@@ -366,11 +376,13 @@ En mode DBC, cela définit le débit binaire spécifique de sortie.
     <message>
         <source>VBR - variable bitrate</source>
         <comment>Opus encoding mode</comment>
+        <extracomment>Opus encoding mode</extracomment>
         <translation>DBV – débit binaire variable</translation>
     </message>
     <message>
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
+        <extracomment>Opus encoding mode</extracomment>
         <translation>
 DBVC – débit binaire variable contraint</translation>
     </message>
@@ -387,21 +399,25 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
+        <extracomment>Error message.</extracomment>
         <translation>Le fichier son est peut-être corrompu ou d’un format non pris en charge.</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
         <translation>Le programme %1 n’est pas installé.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
         <translation>D’après vos paramètres, le programme %1 est installé, mais le fichier exécutable est introuvable.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
+        <extracomment>Error string, %1 is a filename, %2 error message</extracomment>
         <translation>Je ne peux pas écrire le fichier &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2.</translation>
     </message>
 </context>
@@ -421,6 +437,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
+        <extracomment>Encoder error. %1 is a file name.</extracomment>
         <translation>Je ne peux pas lire le fichier %1</translation>
     </message>
     <message>
@@ -434,6 +451,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
+        <extracomment>Track error message, %1 is a track number</extracomment>
         <translation>Plage %1. Erreur de l’encodeur :</translation>
     </message>
 </context>
@@ -442,6 +460,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <extracomment>Splitter error. %1 is a file name, %2 is a system error text.</extracomment>
         <translation>Je ne peux pas lire &lt;b&gt;%1&lt;/b&gt; : &lt;br&gt;%2</translation>
     </message>
 </context>
@@ -461,6 +480,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>Keep original image size</source>
         <comment>Cover image option on the preferences dialog</comment>
+        <extracomment>Cover image option on the preferences dialog</extracomment>
         <translation>Garder la taille originale de l’image</translation>
     </message>
     <message>
@@ -470,6 +490,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
+        <extracomment>Cover image option on the preferences dialog</extracomment>
         <translation>Redimensionner si la taille de l’image est supérieure à</translation>
     </message>
 </context>
@@ -482,6 +503,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
+        <extracomment>Preferences dialog edit tooltip</extracomment>
         <translation>Format du nom de fichier</translation>
     </message>
     <message>
@@ -491,11 +513,13 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
+        <extracomment>CUE mode combobox item</extracomment>
         <translation>Écrire dans le fichier</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
+        <extracomment>CUE mode combobox item</extracomment>
         <translation>Intégrer aux fichiers son</translation>
     </message>
     <message>
@@ -517,6 +541,7 @@ DBVC – débit binaire variable contraint</translation>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <extracomment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</extracomment>
         <translation>Utiliser « %1 »</translation>
     </message>
     <message>
@@ -547,6 +572,27 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
     <message>
         <source>Default</source>
         <translation>Par défaut</translation>
+    </message>
+</context>
+<context>
+    <name>ExtProgram</name>
+    <message>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
+        <translation>Le programme %1 n’est pas installé.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
+        <translation>D’après vos paramètres, le programme %1 est installé, mais le fichier exécutable est introuvable.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
+        <translation>Le programme %1 est installé d’après vos paramètres, mais le fichier n’est pas exécutable.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
     </message>
 </context>
 <context>
@@ -591,6 +637,7 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <extracomment>Main form tooltip for &quot;Directory&quot; edit</extracomment>
         <translation>Vous pouvez naviguer vers le dossier de destination. Vous pouvez aussi le saisir manuellement.
 
 Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même dossier que la source.</translation>
@@ -618,6 +665,7 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
+        <extracomment>Main form tooltip for &quot;Pattern&quot; edit</extracomment>
         <translation>&lt;style type=&quot;text/css&quot;&gt;
  .term {font-weight: bold;}
  .def { white-space: nowrap; }
@@ -643,6 +691,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+        <extracomment>Main form tooltip for &quot;Format&quot; edit</extracomment>
         <translation>Format de sortie</translation>
     </message>
     <message>
@@ -684,6 +733,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>Edit all tags…</source>
         <comment>Button text</comment>
+        <extracomment>Button text</extracomment>
         <translation>Modifier toutes les balises…</translation>
     </message>
     <message>
@@ -701,11 +751,13 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>Add disc…</source>
         <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
         <translation>Ajouter un disque…</translation>
     </message>
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
+        <extracomment>Toolbar item</extracomment>
         <translation>Ajouter un disque</translation>
     </message>
     <message>
@@ -779,11 +831,13 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>Add folder…</source>
         <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
         <translation>Ajouter un dossier…</translation>
     </message>
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
+        <extracomment>Toolbar item</extracomment>
         <translation>Ajouter un dossier</translation>
     </message>
     <message>
@@ -824,6 +878,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
+        <extracomment>OpenFile dialog title</extracomment>
         <translation>Sélectionner le fichier CUE</translation>
     </message>
     <message>
@@ -835,31 +890,37 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+        <extracomment>OpenFile dialog filter line, like &quot;WAV files&quot;</extracomment>
         <translation>Fichiers %1</translation>
     </message>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
+        <extracomment>OpenFile dialog filter line</extracomment>
         <translation>Tous les formats pris en charge</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+        <extracomment>OpenFile dialog filter line like &quot;All files&quot;</extracomment>
         <translation>Tous les fichiers</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
+        <extracomment>OpenFile dialog title</extracomment>
         <translation>Ajoute un fichier CUE ou un fichier son</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
+        <extracomment>OpenFile dialog title</extracomment>
         <translation>Sélectionner le fichier son</translation>
     </message>
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
+        <extracomment>Error message, %1 is an filename.</extracomment>
         <translation>« %1 » n’a pas été défini.</translation>
     </message>
     <message>
@@ -869,26 +930,31 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Select another audio file…</source>
         <comment>context menu</comment>
+        <extracomment>context menu</extracomment>
         <translation>Sélectionner un autre fichier son…</translation>
     </message>
     <message>
         <source>Select another audio file for %1 track…</source>
         <comment>context menu. Placeholders are track number</comment>
+        <extracomment>context menu. Placeholders are track number</extracomment>
         <translation>Sélectionner un autre fichier son pour la plage %1…</translation>
     </message>
     <message>
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
+        <extracomment>context menu. Placeholders are track numbers</extracomment>
         <translation>Sélectionner un autre fichier son pour les plages %1 à %2…</translation>
     </message>
     <message>
         <source>Edit tags…</source>
         <comment>context menu</comment>
+        <extracomment>context menu</extracomment>
         <translation>Modifier les balises…</translation>
     </message>
     <message>
         <source>Select another CUE file…</source>
         <comment>context menu</comment>
+        <extracomment>context menu</extracomment>
         <translation>Sélectionner un autre fichier CUE…</translation>
     </message>
     <message>
@@ -902,11 +968,13 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
+        <extracomment>context menu</extracomment>
         <translation>Obtenir les données sur Internet</translation>
     </message>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
+        <extracomment>Main window title</extracomment>
         <translation>Flacon – Conversion</translation>
     </message>
     <message>
@@ -938,21 +1006,25 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
         <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
         <translation>Conversion en cours.&lt;br&gt;Voulez-vous vraiment sortir ?</translation>
     </message>
     <message>
         <source>Exit</source>
         <comment>Button caption</comment>
+        <extracomment>Button caption</extracomment>
         <translation>Sortir</translation>
     </message>
     <message>
         <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
         <comment>Message box text, %1 is a list of files</comment>
+        <extracomment>Message box text, %1 is a list of files</extracomment>
         <translation>Les fichiers suivants seront déplacés vers la corbeille.&lt;/b&gt;Les supprimer ?</translation>
     </message>
     <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
+        <extracomment>Status bar, progress text</extracomment>
         <translation>%1 % terminés</translation>
     </message>
     <message>
@@ -962,17 +1034,20 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Some disks have errors, and will be skipped when converting:</source>
         <comment>Error message title</comment>
+        <extracomment>Error message title</extracomment>
         <translation>Certains disques présentent des erreurs et seront ignorés lors de la conversion :</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot;</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation type="unfinished"/>
+        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
+        <translation>&lt;b&gt;Disque %1 « %2 – %3 »&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
-        <translation type="unfinished"/>
+        <extracomment>Error message, %1 is the disc number</extracomment>
+        <translation>Disque %1</translation>
     </message>
 </context>
 <context>
@@ -1001,21 +1076,25 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Select directory…</source>
         <comment>Menu item for output direcory button</comment>
+        <extracomment>Menu item for output direcory button</extracomment>
         <translation>Sélectionner un dossier…</translation>
     </message>
     <message>
         <source>Standard music location</source>
         <comment>Menu item for output direcory button</comment>
+        <extracomment>Menu item for output direcory button</extracomment>
         <translation>Emplacement habituel de la musique</translation>
     </message>
     <message>
         <source>Desktop</source>
         <comment>Menu item for output direcory button</comment>
+        <extracomment>Menu item for output direcory button</extracomment>
         <translation>Bureau</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Menu item for output direcory button</comment>
+        <extracomment>Menu item for output direcory button</extracomment>
         <translation>Même dossier que le fichier CUE</translation>
     </message>
     <message>
@@ -1028,6 +1107,7 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
+        <extracomment>Placeholder for output direcory combobox</extracomment>
         <translation>Même dossier que le fichier CUE</translation>
     </message>
 </context>
@@ -1072,6 +1152,7 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>Utiliser « %1 »</translation>
     </message>
 </context>
@@ -1100,8 +1181,22 @@ Voulez-vous continuer ?</translation>
         <translation>Profils son</translation>
     </message>
     <message>
-        <source> Audio profiles</source>
-        <translation>Profils son</translation>
+        <source>I can&apos;t apply your preferences.</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You should create at least one profile.</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create profile</source>
+        <comment>Button caption</comment>
+        <extracomment>Button caption</extracomment>
+        <translation>Créer un profil</translation>
     </message>
 </context>
 <context>
@@ -1117,6 +1212,7 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Directory:</source>
         <comment>Preferences form label text</comment>
+        <extracomment>Preferences form label text</extracomment>
         <translation>Dossier :</translation>
     </message>
     <message>
@@ -1124,6 +1220,7 @@ Voulez-vous continuer ?</translation>
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <extracomment>Preferences form tooltip for &quot;Directory&quot; edit</extracomment>
         <translation>Vous pouvez naviguer vers le dossier de destination. Vous pouvez aussi le saisir manuellement.
 
 Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même dossier que la source.</translation>
@@ -1131,6 +1228,7 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
     <message>
         <source>Pattern:</source>
         <comment>Preferences form label text</comment>
+        <extracomment>Preferences form label text</extracomment>
         <translation>Modèle :</translation>
     </message>
     <message>
@@ -1152,6 +1250,7 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <extracomment>Preferences form tooltip for &quot;Pattern&quot; edit</extracomment>
         <translation>&lt;style type=&quot;text/css&quot;&gt;
  .term {font-weight: bold;}
  .def { white-space: nowrap; }
@@ -1194,6 +1293,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
         <translation>CUE et image de couverture</translation>
     </message>
     <message>
@@ -1203,6 +1303,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
+        <extracomment>Tooltip on checkbox on preferences dialog</extracomment>
         <translation>Si le format est pris en charge, la couverture sera ajoutée aux métadonnées pour tous les fichiers de sortie.</translation>
     </message>
     <message>
@@ -1217,61 +1318,73 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     <message>
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
+        <extracomment>Placeholder for output direcory combobox</extracomment>
         <translation>Même dossier que le fichier CUE</translation>
     </message>
     <message>
         <source>Same as source</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>Identique à la source</translation>
     </message>
     <message>
         <source>16-bit</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>16 bits</translation>
     </message>
     <message>
         <source>24-bit</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>24 bits</translation>
     </message>
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>32 bits</translation>
     </message>
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>44 100 Hz</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>48 000 Hz</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>96 000 Hz</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>192 000 Hz</translation>
     </message>
     <message>
         <source>Disabled</source>
         <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
         <translation>Désactivé</translation>
     </message>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
         <translation>Par plage</translation>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
         <translation>Par album</translation>
     </message>
     <message>
@@ -1287,6 +1400,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
+        <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>Paramètres de l’encodeur %1 :</translation>
     </message>
 </context>
@@ -1303,11 +1417,13 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
         <translation>Souhaitez-vous vraiment supprimer le profil « %1 » ?</translation>
     </message>
     <message>
         <source>Delete the profile</source>
         <comment>Button caption</comment>
+        <extracomment>Button caption</extracomment>
         <translation>Supprimer le profil</translation>
     </message>
 </context>
@@ -1316,11 +1432,13 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <extracomment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</extracomment>
         <translation>programme %1</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
+        <extracomment>This is part of filter for 'select program' dialog. 'All files (*)'</extracomment>
         <translation>Tous les fichiers</translation>
     </message>
     <message>
@@ -1337,6 +1455,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>%1:</source>
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <extracomment>Template for the program name label on the preferences form. %1 is a program name.</extracomment>
         <translation>%1 :</translation>
     </message>
 </context>
@@ -1345,11 +1464,13 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
+        <extracomment>%1 - is a file name, %2 - an error text</extracomment>
         <translation>Je ne peux pas lire l’image de couverture &lt;b&gt;%1&lt;/b&gt; : &lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
+        <extracomment>%1 - is file name, %2 - an error text</extracomment>
         <translation>Je ne peux pas enregistrer l’image de couverture &lt;b&gt;%1&lt;/b&gt; : &lt;br&gt;%2</translation>
     </message>
     <message>
@@ -1375,16 +1496,19 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
+        <extracomment>Cue parser error.</extracomment>
         <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. Le numéro de plage est erroné sur la ligne %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
+        <extracomment>Cue parser error.</extracomment>
         <translation>&lt;b&gt;%1&lt;/b&gt; n’est pas un fichier CUE valide. L’index de plage est erroné sur la ligne %2.</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <extracomment>This string should begin with a lowercase letter. This is a part of the complex sentence.</extracomment>
         <translation>vous ne pouvez pas utiliser « ReplayGain » pour les fichiers dont la fréquence d’échantillonnage est supérieure à 48 kHz. Metaflac ne prend pas ces fichiers en charge.</translation>
     </message>
     <message>
@@ -1394,6 +1518,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
+        <extracomment>Error</extracomment>
         <translation>Flacon</translation>
     </message>
     <message>
@@ -1415,30 +1540,14 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <extracomment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</extracomment>
         <translation>Intégré à %1</translation>
     </message>
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
+        <extracomment>error message text</extracomment>
         <translation>le nom de fichier est vide</translation>
-    </message>
-</context>
-<context>
-    <name>Settings</name>
-    <message>
-        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <translation>Le programme %1 n’est pas installé.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
-    </message>
-    <message>
-        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <translation>D’après vos paramètres, le programme %1 est installé, mais le fichier exécutable est introuvable.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
-    </message>
-    <message>
-        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <translation>Le programme %1 est installé d’après vos paramètres, mais le fichier n’est pas exécutable.&lt;br&gt;Vérifiez que tous les programmes requis sont installés et vérifiez aussi vos préférences.</translation>
     </message>
 </context>
 <context>
@@ -1446,51 +1555,61 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Edit tags</source>
         <comment>Dialog title</comment>
+        <extracomment>Dialog title</extracomment>
         <translation>Modifier les balises</translation>
     </message>
     <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Artiste :</translation>
     </message>
     <message>
         <source>Album performer:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Interprète de l’album :</translation>
     </message>
     <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Album :</translation>
     </message>
     <message>
         <source>Genre:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Genre :</translation>
     </message>
     <message>
         <source>Year:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Année :</translation>
     </message>
     <message>
         <source>Start track number:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Numéro de plage de début :</translation>
     </message>
     <message>
         <source>Disc number:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Numéro de disque :</translation>
     </message>
     <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Titre de la plage :</translation>
     </message>
     <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Commentaire :</translation>
     </message>
     <message>
@@ -1514,46 +1633,55 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Error</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Erreur</translation>
     </message>
     <message>
         <source>Aborted</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Interrompue</translation>
     </message>
     <message>
         <source>OK</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Validée</translation>
     </message>
     <message>
         <source>Extracting</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Extraction</translation>
     </message>
     <message>
         <source>Encoding</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Encodage</translation>
     </message>
     <message>
         <source>Queued</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>En attente</translation>
     </message>
     <message>
         <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Calcul du gain</translation>
     </message>
     <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>En attente du gain</translation>
     </message>
     <message>
         <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Écriture du gain</translation>
     </message>
     <message>
@@ -1567,6 +1695,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
+        <extracomment>Disk preview, audio file placeholder</extracomment>
         <translation>Plusieurs fichiers</translation>
     </message>
     <message>
@@ -1579,36 +1708,43 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Plage</translation>
     </message>
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Durée</translation>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Titre</translation>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Artiste</translation>
     </message>
     <message>
         <source>Album</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Album</translation>
     </message>
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Commentaire</translation>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Fichier</translation>
     </message>
     <message>
@@ -1618,11 +1754,13 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
+        <extracomment>Track length, string like '01:02:56'</extracomment>
         <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
+        <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
     </message>
 </context>
@@ -1639,11 +1777,13 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
+        <extracomment>Information about last update</extracomment>
         <translation>La dernière vérification a été effectuée le %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
+        <extracomment>Information about last update</extracomment>
         <translation>N’a jamais été vérifiée</translation>
     </message>
 </context>
@@ -1652,6 +1792,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Some disks will overwrite the resulting files of another disk.</source>
         <comment>error message</comment>
+        <extracomment>error message</extracomment>
         <translation>Certains disques écraseront les fichiers provenant d’un autre disque.</translation>
     </message>
     <message>
@@ -1661,16 +1802,19 @@ L’utilisation de l’analyse par album permet de préserver les différences d
     <message>
         <source>Audio file not set.</source>
         <comment>Warning message</comment>
+        <extracomment>Warning message</extracomment>
         <translation>Le fichier son n’est pas défini.</translation>
     </message>
     <message>
         <source>Audio file not set for track %1.</source>
         <comment>Warning message, Placeholders is a track number</comment>
+        <extracomment>Warning message, Placeholders is a track number</extracomment>
         <translation>Le fichier son n’est pas défini pour la plage %1.</translation>
     </message>
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
+        <extracomment>Warning message, Placeholders is a track numbers</extracomment>
         <translation>Le fichier son n’est pas défini pour les plages %1 à %2.</translation>
     </message>
     <message>
@@ -1681,6 +1825,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <source>A maximum of %1-bit per sample is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
+        <extracomment>Warning message</extracomment>
         <translation>Un maximum de %1 bits par échantillon est pris en charge par ce format.
 Cette valeur sera utilisée pour l’encodage.</translation>
     </message>
@@ -1688,6 +1833,7 @@ Cette valeur sera utilisée pour l’encodage.</translation>
         <source>A maximum sample rate of %1 is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
+        <extracomment>Warning message</extracomment>
         <translation>Un taux d’échantillonnage maximal de %1 est pris en charge par ce format.
 Cette valeur sera utilisée pour l’encodage.</translation>
     </message>
@@ -1695,39 +1841,47 @@ Cette valeur sera utilisée pour l’encodage.</translation>
         <source>ReplayGain calculation is not supported for multi-channel audio.
 The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
+        <extracomment>Warning message</extracomment>
         <translation>Le calcul de ReplayGain n’est pas pris en charge pour le son multivoie.
 ReplayGain sera désactivé pour ce disque.</translation>
     </message>
     <message>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
+        <extracomment>error message</extracomment>
         <translation>Le profil de sortie est incorrect.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation>Le disque %1 « %2 - %3 » remplacera ses propres fichiers.</translation>
+        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
+        <translation>Le disque %1 « %2 – %3 » remplacera ses propres fichiers.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation>Le disque %1 « %2 - %3 » remplacera les fichiers de ce disque.</translation>
+        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
+        <translation>Le disque %1 « %2 – %3 » remplacera les fichiers de ce disque.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation>Le disque %1 « %2 - %3 » utilise le même fichier CUE.</translation>
+        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
+        <translation>Le disque %1 « %2 – %3 » utilise le même fichier CUE.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
-        <translation>Le disque %1 « %2 - %3 » utilise le même fichier son.</translation>
+        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
+        <translation>Le disque %1 « %2 – %3 » utilise le même fichier son.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
- You could change the &quot;Start num&quot; for one of them.</source>
+You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation type="unfinished"/>
+        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
+        <translation>Le disque %1 « %2 – %3 » présente des numéros de plage qui se chevauchent.
+Vous pourriez changer le « Numéro de début » de l’une d’elles.</translation>
     </message>
 </context>
 <context>

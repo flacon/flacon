@@ -32,6 +32,7 @@
     <message>
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
+        <extracomment>About dialog, About tab</extracomment>
         <translation>Klaidų sekimas %1</translation>
     </message>
     <message>
@@ -57,31 +58,37 @@
     <message>
         <source>WavPack support patch</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>WavPack palaikymo pataisa</translation>
     </message>
     <message>
         <source>Packaging, testing</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>Pakavimas, testavimas</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>Patobulinimai naudotojo sąsajoje</translation>
     </message>
     <message>
         <source>Flacon account on github.com</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>Flacon paskyra puslapyje github.com</translation>
     </message>
     <message>
         <source>Icon for application</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>Programos piktograma</translation>
     </message>
     <message>
         <source>Icons for application</source>
         <comment>Thanks on the about page</comment>
+        <extracomment>Thanks on the about page</extracomment>
         <translation>Programos piktogramos</translation>
     </message>
     <message>
@@ -114,6 +121,7 @@
     <message>
         <source>Create a profile</source>
         <comment>Button caption</comment>
+        <extracomment>Button caption</extracomment>
         <translation>Sukurti profilį</translation>
     </message>
 </context>
@@ -129,6 +137,7 @@
     <message>
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
+        <extracomment>Codepage auto detection</extracomment>
         <translation>Aptikti automatiškai</translation>
     </message>
     <message>
@@ -305,6 +314,7 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
       </source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
+        <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
         <translation>&lt;dt&gt;VBR vidutinė&lt;/dt&gt;
       &lt;dd&gt;Naudojant vidutinį kintamąjį pralaidumą, daugelis žmonių neišgirs kokybės iškraipymų daugumoje muzikos įrašų.&lt;/dd&gt;
 
@@ -367,11 +377,13 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>VBR - variable bitrate</source>
         <comment>Opus encoding mode</comment>
+        <extracomment>Opus encoding mode</extracomment>
         <translation>VBR - kintamasis pralaidumas</translation>
     </message>
     <message>
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
+        <extracomment>Opus encoding mode</extracomment>
         <translation>CVBR - pastovusis kintamasis pralaidumas</translation>
     </message>
 </context>
@@ -387,21 +399,25 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
+        <extracomment>Error message.</extracomment>
         <translation>Gali būti, kad garso failas pažeistas arba nepalaikomas garso formatas.</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
         <translation>Programa %1 nėra įdiegta.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
         <translation>Programa %1, remiantis jūsų nustatymais, yra įdiegta, bet nepavyksta rasti dvejetainio failo.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
+        <extracomment>Error string, %1 is a filename, %2 error message</extracomment>
         <translation>Nepavyksta rašyti failą &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
@@ -421,6 +437,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
+        <extracomment>Encoder error. %1 is a file name.</extracomment>
         <translation>Nepavyksta perskaityti failo %1</translation>
     </message>
     <message>
@@ -434,6 +451,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
+        <extracomment>Track error message, %1 is a track number</extracomment>
         <translation>Takelis %1. Koduotuvo klaida:</translation>
     </message>
 </context>
@@ -442,6 +460,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
+        <extracomment>Splitter error. %1 is a file name, %2 is a system error text.</extracomment>
         <translation>Nepavyksta perskaityti &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
@@ -461,6 +480,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>Keep original image size</source>
         <comment>Cover image option on the preferences dialog</comment>
+        <extracomment>Cover image option on the preferences dialog</extracomment>
         <translation>Palikti pradinį paveikslo dydį</translation>
     </message>
     <message>
@@ -470,6 +490,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
+        <extracomment>Cover image option on the preferences dialog</extracomment>
         <translation>Keisti dydį, jei paveikslo dydis didesnis nei</translation>
     </message>
 </context>
@@ -482,6 +503,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
+        <extracomment>Preferences dialog edit tooltip</extracomment>
         <translation>Failo pavadinimo formatas</translation>
     </message>
     <message>
@@ -491,11 +513,13 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
+        <extracomment>CUE mode combobox item</extracomment>
         <translation>Rašyti į failą</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
+        <extracomment>CUE mode combobox item</extracomment>
         <translation>Įterpti į garso failus</translation>
     </message>
     <message>
@@ -517,6 +541,7 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+        <extracomment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</extracomment>
         <translation>Naudoti „%1“</translation>
     </message>
     <message>
@@ -547,6 +572,27 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
     <message>
         <source>Default</source>
         <translation>Numatytasis</translation>
+    </message>
+</context>
+<context>
+    <name>ExtProgram</name>
+    <message>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
+        <translation>Programa %1 nėra įdiegta.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
+        <translation>Programa %1, remiantis jūsų nustatymais, yra įdiegta, bet nepavyksta rasti dvejetainio failo.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
+        <translation>Programa %1, remiantis jūsų nustatymais, yra įdiegta, bet failas nėra vykdomasis.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
     </message>
 </context>
 <context>
@@ -591,6 +637,7 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+        <extracomment>Main form tooltip for &quot;Directory&quot; edit</extracomment>
         <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
 
 Jeigu kelias yra paliekamas tuščias arba prasideda nuo „.“ (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
@@ -618,6 +665,7 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
+        <extracomment>Main form tooltip for &quot;Pattern&quot; edit</extracomment>
         <translation>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
@@ -643,6 +691,7 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>Output format</source>
         <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+        <extracomment>Main form tooltip for &quot;Format&quot; edit</extracomment>
         <translation>Išvesties formatas</translation>
     </message>
     <message>
@@ -684,6 +733,7 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>Edit all tags…</source>
         <comment>Button text</comment>
+        <extracomment>Button text</extracomment>
         <translation>Taisyti visas žymes…</translation>
     </message>
     <message>
@@ -701,11 +751,13 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>Add disc…</source>
         <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
         <translation>Pridėti diską…</translation>
     </message>
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
+        <extracomment>Toolbar item</extracomment>
         <translation>Pridėti diską</translation>
     </message>
     <message>
@@ -779,11 +831,13 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>Add folder…</source>
         <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
         <translation>Pridėti aplanką…</translation>
     </message>
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
+        <extracomment>Toolbar item</extracomment>
         <translation>Pridėti aplanką</translation>
     </message>
     <message>
@@ -824,6 +878,7 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
+        <extracomment>OpenFile dialog title</extracomment>
         <translation>Pasirinkite CUE failą</translation>
     </message>
     <message>
@@ -835,31 +890,37 @@ Ar norite tęsti?</translation>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+        <extracomment>OpenFile dialog filter line, like &quot;WAV files&quot;</extracomment>
         <translation>%1 failai</translation>
     </message>
     <message>
         <source>All supported formats</source>
         <comment>OpenFile dialog filter line</comment>
+        <extracomment>OpenFile dialog filter line</extracomment>
         <translation>Visi palaikomi formatai</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+        <extracomment>OpenFile dialog filter line like &quot;All files&quot;</extracomment>
         <translation>Visi failai</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
+        <extracomment>OpenFile dialog title</extracomment>
         <translation>Pridėti CUE ar garso failą</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
+        <extracomment>OpenFile dialog title</extracomment>
         <translation>Pasirinkite garso failą</translation>
     </message>
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
+        <extracomment>Error message, %1 is an filename.</extracomment>
         <translation>„%1“ nebuvo nustatyta.</translation>
     </message>
     <message>
@@ -869,26 +930,31 @@ Ar norite tęsti?</translation>
     <message>
         <source>Select another audio file…</source>
         <comment>context menu</comment>
+        <extracomment>context menu</extracomment>
         <translation>Pasirinkti kitą garso failą…</translation>
     </message>
     <message>
         <source>Select another audio file for %1 track…</source>
         <comment>context menu. Placeholders are track number</comment>
+        <extracomment>context menu. Placeholders are track number</extracomment>
         <translation>Pasirinkti kitą garso failą takeliui %1…</translation>
     </message>
     <message>
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
+        <extracomment>context menu. Placeholders are track numbers</extracomment>
         <translation>Pasirinkti kitą garso failą takeliams nuo %1 iki %2…</translation>
     </message>
     <message>
         <source>Edit tags…</source>
         <comment>context menu</comment>
+        <extracomment>context menu</extracomment>
         <translation>Taisyti žymes…</translation>
     </message>
     <message>
         <source>Select another CUE file…</source>
         <comment>context menu</comment>
+        <extracomment>context menu</extracomment>
         <translation>Pasirinkti kitą CUE failą…</translation>
     </message>
     <message>
@@ -902,11 +968,13 @@ Ar norite tęsti?</translation>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
+        <extracomment>context menu</extracomment>
         <translation>Gauti duomenis iš interneto</translation>
     </message>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
+        <extracomment>Main window title</extracomment>
         <translation>Flacon - Konvertuojama</translation>
     </message>
     <message>
@@ -938,21 +1006,25 @@ Ar norite tęsti?</translation>
     <message>
         <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
         <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
         <translation>Vyksta konvertavimas.&lt;br&gt;Ar tikrai norite išeiti?</translation>
     </message>
     <message>
         <source>Exit</source>
         <comment>Button caption</comment>
+        <extracomment>Button caption</extracomment>
         <translation>Išeiti</translation>
     </message>
     <message>
         <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
         <comment>Message box text, %1 is a list of files</comment>
+        <extracomment>Message box text, %1 is a list of files</extracomment>
         <translation>Sekantys failai bus perkelti į šiukšlinę.&lt;/b&gt;Pašalinti šiuos failus?%1</translation>
     </message>
     <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
+        <extracomment>Status bar, progress text</extracomment>
         <translation>%1% užbaigta</translation>
     </message>
     <message>
@@ -962,17 +1034,20 @@ Ar norite tęsti?</translation>
     <message>
         <source>Some disks have errors, and will be skipped when converting:</source>
         <comment>Error message title</comment>
+        <extracomment>Error message title</extracomment>
         <translation>Kai kuriuose diskuose yra klaidų ir, konvertuojant, jie bus praleisti:</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot;</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation type="unfinished"/>
+        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
+        <translation>Diskas %1 „%2 - %3“</translation>
     </message>
     <message>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
-        <translation type="unfinished"/>
+        <extracomment>Error message, %1 is the disc number</extracomment>
+        <translation>Diskas %1</translation>
     </message>
 </context>
 <context>
@@ -1001,21 +1076,25 @@ Ar norite tęsti?</translation>
     <message>
         <source>Select directory…</source>
         <comment>Menu item for output direcory button</comment>
+        <extracomment>Menu item for output direcory button</extracomment>
         <translation>Pasirinkti katalogą…</translation>
     </message>
     <message>
         <source>Standard music location</source>
         <comment>Menu item for output direcory button</comment>
+        <extracomment>Menu item for output direcory button</extracomment>
         <translation>Standartinė muzikos vieta</translation>
     </message>
     <message>
         <source>Desktop</source>
         <comment>Menu item for output direcory button</comment>
+        <extracomment>Menu item for output direcory button</extracomment>
         <translation>Darbalaukis</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Menu item for output direcory button</comment>
+        <extracomment>Menu item for output direcory button</extracomment>
         <translation>Tas pats katalogas kaip ir CUE failo</translation>
     </message>
     <message>
@@ -1028,6 +1107,7 @@ Ar norite tęsti?</translation>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
+        <extracomment>Placeholder for output direcory combobox</extracomment>
         <translation>Tas pats katalogas kaip ir CUE failo</translation>
     </message>
 </context>
@@ -1072,6 +1152,7 @@ Ar norite tęsti?</translation>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+        <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>Naudoti „%1“</translation>
     </message>
 </context>
@@ -1100,8 +1181,22 @@ Ar norite tęsti?</translation>
         <translation> Garso profiliai</translation>
     </message>
     <message>
-        <source> Audio profiles</source>
-        <translation> Garso profiliai</translation>
+        <source>I can&apos;t apply your preferences.</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You should create at least one profile.</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Create profile</source>
+        <comment>Button caption</comment>
+        <extracomment>Button caption</extracomment>
+        <translation>Sukurti profilį</translation>
     </message>
 </context>
 <context>
@@ -1117,6 +1212,7 @@ Ar norite tęsti?</translation>
     <message>
         <source>Directory:</source>
         <comment>Preferences form label text</comment>
+        <extracomment>Preferences form label text</extracomment>
         <translation>Katalogas:</translation>
     </message>
     <message>
@@ -1124,6 +1220,7 @@ Ar norite tęsti?</translation>
 
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+        <extracomment>Preferences form tooltip for &quot;Directory&quot; edit</extracomment>
         <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
 
 Jeigu kelias yra paliekamas tuščias arba prasideda nuo „.“ (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
@@ -1131,6 +1228,7 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo „.“ (taško), tuome
     <message>
         <source>Pattern:</source>
         <comment>Preferences form label text</comment>
+        <extracomment>Preferences form label text</extracomment>
         <translation>Šablonas:</translation>
     </message>
     <message>
@@ -1152,6 +1250,7 @@ Tokens start with %. You can use the following tokens:
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
         <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
+        <extracomment>Preferences form tooltip for &quot;Pattern&quot; edit</extracomment>
         <translation>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
@@ -1194,6 +1293,7 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
         <translation>CUE ir viršelio paveikslas</translation>
     </message>
     <message>
@@ -1203,6 +1303,7 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
+        <extracomment>Tooltip on checkbox on preferences dialog</extracomment>
         <translation>Jei formatas yra palaikomas, viršelis bus pridėtas į visų išvesties failų metainformaciją.</translation>
     </message>
     <message>
@@ -1217,61 +1318,73 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
     <message>
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
+        <extracomment>Placeholder for output direcory combobox</extracomment>
         <translation>Tas pats katalogas kaip ir CUE failo</translation>
     </message>
     <message>
         <source>Same as source</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>Toks pats kaip šaltinio</translation>
     </message>
     <message>
         <source>16-bit</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>16-bitų</translation>
     </message>
     <message>
         <source>24-bit</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>24-bitų</translation>
     </message>
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>32-bitų</translation>
     </message>
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>44100 Hz</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>48000 Hz</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>96000 Hz</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
+        <extracomment>Item in combobox</extracomment>
         <translation>192000 Hz</translation>
     </message>
     <message>
         <source>Disabled</source>
         <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
         <translation>Išjungta</translation>
     </message>
     <message>
         <source>Per Track</source>
         <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
         <translation>Kiekvienam takeliui</translation>
     </message>
     <message>
         <source>Per Album</source>
         <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
         <translation>Kiekvienam albumui</translation>
     </message>
     <message>
@@ -1287,6 +1400,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
+        <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>%1 koduotuvo nustatymai:</translation>
     </message>
 </context>
@@ -1303,11 +1417,13 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
         <translation>Ar tikrai norite ištrinti profilį „%1“?</translation>
     </message>
     <message>
         <source>Delete the profile</source>
         <comment>Button caption</comment>
+        <extracomment>Button caption</extracomment>
         <translation>Ištrinti profilį</translation>
     </message>
 </context>
@@ -1316,11 +1432,13 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
+        <extracomment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</extracomment>
         <translation>%1 programa</translation>
     </message>
     <message>
         <source>All files</source>
         <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
+        <extracomment>This is part of filter for 'select program' dialog. 'All files (*)'</extracomment>
         <translation>Visi failai</translation>
     </message>
     <message>
@@ -1337,6 +1455,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>%1:</source>
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
+        <extracomment>Template for the program name label on the preferences form. %1 is a program name.</extracomment>
         <translation>%1:</translation>
     </message>
 </context>
@@ -1345,11 +1464,13 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
+        <extracomment>%1 - is a file name, %2 - an error text</extracomment>
         <translation>Nepavyksta perskaityti viršelio failo &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
+        <extracomment>%1 - is file name, %2 - an error text</extracomment>
         <translation>Nepavyksta įrašyti viršelio paveikslą &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
@@ -1375,16 +1496,19 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
+        <extracomment>Cue parser error.</extracomment>
         <translation>&lt;b&gt;%1&lt;/b&gt; yra neteisingas CUE failas. Neteisingas takelio numeris ties %2 eilute.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
+        <extracomment>Cue parser error.</extracomment>
         <translation>&lt;b&gt;%1&lt;/b&gt; yra neteisingas CUE failas. Neteisingas takelio indeksas ties %2 eilute.</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
+        <extracomment>This string should begin with a lowercase letter. This is a part of the complex sentence.</extracomment>
         <translation>jūs negalite naudoti „ReplayGain“ failams, kurių skaitmeninimo dažnis yra didesnis nei 48kHz. Metaflac tokių failų nepalaiko.</translation>
     </message>
     <message>
@@ -1394,6 +1518,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Flacon</source>
         <comment>Error</comment>
+        <extracomment>Error</extracomment>
         <translation>Flacon</translation>
     </message>
     <message>
@@ -1415,30 +1540,14 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
+        <extracomment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</extracomment>
         <translation>Įterpta ties %1</translation>
     </message>
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
+        <extracomment>error message text</extracomment>
         <translation>failo pavadinimas yra tuščias</translation>
-    </message>
-</context>
-<context>
-    <name>Settings</name>
-    <message>
-        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <translation>Programa %1 nėra įdiegta.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
-    </message>
-    <message>
-        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <translation>Programa %1, remiantis jūsų nustatymais, yra įdiegta, bet nepavyksta rasti dvejetainio failo.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
-    </message>
-    <message>
-        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <translation>Programa %1, remiantis jūsų nustatymais, yra įdiegta, bet failas nėra vykdomasis.&lt;br&gt;Patikrinkite, ar visos reikiamos programos yra įdiegtos ir, ar yra jūsų nuostatose.</translation>
     </message>
 </context>
 <context>
@@ -1446,51 +1555,61 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Edit tags</source>
         <comment>Dialog title</comment>
+        <extracomment>Dialog title</extracomment>
         <translation>Taisyti žymes</translation>
     </message>
     <message>
         <source>Artist:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Atlikėjas:</translation>
     </message>
     <message>
         <source>Album performer:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Albumo atlikėjas:</translation>
     </message>
     <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Albumas:</translation>
     </message>
     <message>
         <source>Genre:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Žanras:</translation>
     </message>
     <message>
         <source>Year:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Metai:</translation>
     </message>
     <message>
         <source>Start track number:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Pradžios takelio numeris:</translation>
     </message>
     <message>
         <source>Disc number:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Disko numeris:</translation>
     </message>
     <message>
         <source>Track title:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Takelio pavadinimas:</translation>
     </message>
     <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
         <translation>Komentaras:</translation>
     </message>
     <message>
@@ -1514,46 +1633,55 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Error</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Klaida</translation>
     </message>
     <message>
         <source>Aborted</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Nutraukta</translation>
     </message>
     <message>
         <source>OK</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Gerai</translation>
     </message>
     <message>
         <source>Extracting</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Išskleidžiama</translation>
     </message>
     <message>
         <source>Encoding</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Koduojama</translation>
     </message>
     <message>
         <source>Queued</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Eilėje</translation>
     </message>
     <message>
         <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Apskaičiuojamas stiprinimas</translation>
     </message>
     <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Laukiama stiprinimo</translation>
     </message>
     <message>
         <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
+        <extracomment>Status of the track conversion.</extracomment>
         <translation>Rašomas stiprinimas</translation>
     </message>
     <message>
@@ -1567,6 +1695,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
+        <extracomment>Disk preview, audio file placeholder</extracomment>
         <translation>Keli failai</translation>
     </message>
     <message>
@@ -1579,36 +1708,43 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Track</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Takelis</translation>
     </message>
     <message>
         <source>Length</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Trukmė</translation>
     </message>
     <message>
         <source>Title</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Pavadinimas</translation>
     </message>
     <message>
         <source>Artist</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Atlikėjas</translation>
     </message>
     <message>
         <source>Album</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Albumas</translation>
     </message>
     <message>
         <source>Comment</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Komentaras</translation>
     </message>
     <message>
         <source>File</source>
         <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation>Failas</translation>
     </message>
     <message>
@@ -1618,11 +1754,13 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
+        <extracomment>Track length, string like '01:02:56'</extracomment>
         <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
+        <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
     </message>
 </context>
@@ -1639,11 +1777,13 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
+        <extracomment>Information about last update</extracomment>
         <translation>Paskutinis patikrinimas buvo atliktas %1</translation>
     </message>
     <message>
         <source>Never checked</source>
         <comment>Information about last update</comment>
+        <extracomment>Information about last update</extracomment>
         <translation>Niekada netikrinta</translation>
     </message>
 </context>
@@ -1652,6 +1792,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Some disks will overwrite the resulting files of another disk.</source>
         <comment>error message</comment>
+        <extracomment>error message</extracomment>
         <translation>Kai kurie diskai perrašys galutinius kito disko failus.</translation>
     </message>
     <message>
@@ -1661,16 +1802,19 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>Audio file not set.</source>
         <comment>Warning message</comment>
+        <extracomment>Warning message</extracomment>
         <translation>Nenustatytas garso failas.</translation>
     </message>
     <message>
         <source>Audio file not set for track %1.</source>
         <comment>Warning message, Placeholders is a track number</comment>
+        <extracomment>Warning message, Placeholders is a track number</extracomment>
         <translation>Takeliui %1 nėra nustatytas garso failas.</translation>
     </message>
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
+        <extracomment>Warning message, Placeholders is a track numbers</extracomment>
         <translation>Takeliams nuo %1 iki %2 nėra nustatytas garso failas.</translation>
     </message>
     <message>
@@ -1681,6 +1825,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <source>A maximum of %1-bit per sample is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
+        <extracomment>Warning message</extracomment>
         <translation>Šis formatas palaiko daugiausiai %1-bitų vienam ėminiui.
 Ši reikšmė bus naudojama kodavimui.</translation>
     </message>
@@ -1688,6 +1833,7 @@ This value will be used for encoding.</source>
         <source>A maximum sample rate of %1 is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
+        <extracomment>Warning message</extracomment>
         <translation>Šis formatas palaiko daugiausiai %1 skaitmeninimo dažnį.
 Ši reikšmė bus naudojama kodavimui.</translation>
     </message>
@@ -1695,39 +1841,47 @@ This value will be used for encoding.</source>
         <source>ReplayGain calculation is not supported for multi-channel audio.
 The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
+        <extracomment>Warning message</extracomment>
         <translation>„ReplayGain“ apskaičiavimas nėra palaikomas kelių kanalų garso įrašams.
 „ReplayGain“ šiam diskui bus išjungtas.</translation>
     </message>
     <message>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
+        <extracomment>error message</extracomment>
         <translation>Neteisingas išvesties profilis.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
         <translation>Diskas %1 „%2 - %3“ perrašys savo failus.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
         <translation>Diskas %1 „%2 - %3“ perrašys šio disko failus.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
+        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
         <translation>Diskas %1 „%2 - %3“ naudoja tą patį CUE failą.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
+        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
         <translation>Diskas %1 „%2 - %3“ naudoja tą patį garso failą.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
- You could change the &quot;Start num&quot; for one of them.</source>
+You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <translation type="unfinished"/>
+        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
+        <translation>Diske %1 „%2 - %3“ yra persidengiančių takelio numerių.
+Galėtumėte pakeisti kurio nors iš jų „Numeruoti nuo“ reikšmę.</translation>
     </message>
 </context>
 <context>
