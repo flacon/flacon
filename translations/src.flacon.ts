@@ -543,6 +543,27 @@ This only affects the file size. All settings are lossless.</source>
     </message>
 </context>
 <context>
+    <name>ExtProgram</name>
+    <message>
+        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
+        <comment>Error message. %1 - is an program name</comment>
+        <extracomment>Error message. %1 - is an program name</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GeneralPage</name>
     <message>
         <source>The number of threads in the conversion process.</source>
@@ -1109,7 +1130,21 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> Audio profiles</source>
+        <source>I can&apos;t apply your preferences.</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You should create at least one profile.</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create profile</source>
+        <comment>Button caption</comment>
+        <extracomment>Button caption</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1440,27 +1475,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>file name is empty</source>
         <comment>error message text</comment>
         <extracomment>error message text</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Settings</name>
-    <message>
-        <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
-        <comment>Error message. %1 - is an program name</comment>
-        <extracomment>Error message. %1 - is an program name</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

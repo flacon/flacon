@@ -9,7 +9,12 @@ import xml.dom.minidom as minidom
 TS_FILE = "../translations/src.flacon.ts"
 TMP_FILE = "../translations/src.flacon.ts.ts"
 
-os.environ["PATH"] = os.environ["PATH"] + ":/opt/homebrew/Cellar/qt@5/5.15.2/bin"
+os.environ["PATH"] = (
+    os.environ["PATH"] + 
+    ":/opt/homebrew/Cellar/qt@5/5.15.8_2/bin" +
+    ":/opt/homebrew/Cellar/qt@5/5.15.2/bin")
+
+
 
 class Error(Exception):
         pass
