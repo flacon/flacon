@@ -88,6 +88,7 @@ void Decoder::open(const QString &fileName)
     }
 
     if (!mFormat) {
+        qCWarning(LOG) << "The audio file may be corrupted: Unknown InputFormat";
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
 
@@ -114,7 +115,7 @@ void Decoder::openFile()
         mPos       = mWavHeader.dataStartPos();
     }
     catch (const FlaconError &err) {
-        qCDebug(LOG) << "The audio file may be corrupted:" << err.what();
+        qCWarning(LOG) << "The audio file may be corrupted:" << err.what();
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
 }
@@ -152,7 +153,7 @@ void Decoder::openProcess()
         mWavHeader = WavHeader(mProcess);
     }
     catch (const FlaconError &err) {
-        qCDebug(LOG) << "The audio file may be corrupted:" << err.what();
+        qCWarning(LOG) << "The audio file may be corrupted:" << err.what();
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
     mPos = mWavHeader.dataStartPos();

@@ -38,8 +38,8 @@ static const char *WAV_WAVE = "WAVE";
 static const char *WAV_FMT  = "fmt ";
 static const char *WAV_DATA = "data";
 
-static const char *                  WAVE64_RIFF      = "riff";
-static const char *                  WAVE64_WAVE      = "wave";
+static const char                   *WAVE64_RIFF      = "riff";
+static const char                   *WAVE64_WAVE      = "wave";
 static const std::array<uint8_t, 16> WAVE64_GUID_RIFF = { 0x72, 0x69, 0x66, 0x66, 0x2E, 0x91, 0xCF, 0x11, 0xA5, 0xD6, 0x28, 0xDB, 0x04, 0xC1, 0x00, 0x00 };
 static const std::array<uint8_t, 16> WAVE64_GUID_WAVE = { 0x77, 0x61, 0x76, 0x65, 0xF3, 0xAC, 0xD3, 0x11, 0x8C, 0xD1, 0x00, 0xC0, 0x4F, 0x8E, 0xDB, 0x8A };
 static const std::array<uint8_t, 16> WAVE64_GUID_FMT  = { 0x66, 0x6D, 0x74, 0x20, 0xF3, 0xAC, 0xD3, 0x11, 0x8C, 0xD1, 0x00, 0xC0, 0x4F, 0x8E, 0xDB, 0x8A };
@@ -55,12 +55,10 @@ static const int READ_DELAY = 1000;
  ************************************************/
 static inline void mustRead(QIODevice *device, char *data, qint64 size, int msecs = READ_DELAY)
 {
-    char * d    = data;
+    char  *d    = data;
     qint64 left = size;
     while (left > 0) {
-        if (!device->bytesAvailable() && !device->waitForReadyRead(msecs)) {
-            throw FlaconError(QString("Unexpected end of file on %1").arg(device->pos()));
-        }
+        device->bytesAvailable() || device->waitForReadyRead(msecs);
 
         qint64 n = device->read(d, left);
         if (n < 0) {
@@ -70,6 +68,17 @@ static inline void mustRead(QIODevice *device, char *data, qint64 size, int msec
         d += n;
         left -= n;
     }
+}
+
+/************************************************
+ *
+ ************************************************/
+static inline QByteArray mustRead(QIODevice *device, qint64 size, int msecs = READ_DELAY)
+{
+    QByteArray res;
+    res.resize(size);
+    mustRead(device, res.data(), res.size(), msecs);
+    return res;
 }
 
 /************************************************
@@ -173,9 +182,7 @@ struct SplitterError
 static quint64 readUInt64(QIODevice *stream)
 {
     quint64 n;
-    if (stream->read((char *)&n, 8) != 8) {
-        throw FlaconError("Unexpected end of file");
-    }
+    mustRead(stream, (char *)&n, 8);
     return qFromLittleEndian(n);
 }
 
@@ -185,8 +192,7 @@ static quint64 readUInt64(QIODevice *stream)
 static quint32 readUInt32(QIODevice *stream)
 {
     quint32 n;
-    if (stream->read((char *)&n, 4) != 4)
-        throw FlaconError("Unexpected end of file");
+    mustRead(stream, (char *)&n, 4);
     return qFromLittleEndian(n);
 }
 
@@ -196,8 +202,7 @@ static quint32 readUInt32(QIODevice *stream)
 static quint16 readUInt16(QIODevice *stream)
 {
     quint16 n;
-    if (stream->read((char *)&n, 2) != 2)
-        throw FlaconError("Unexpected end of file");
+    mustRead(stream, (char *)&n, 2);
     return qFromLittleEndian(n);
 }
 
@@ -208,7 +213,7 @@ class FourCC : public std::array<char, 4>
 {
 public:
     FourCC() :
-        std::array<char, 4>({ '\0' }) {}
+        std::array<char, 4>({ '\0' }) { }
 
     inline void load(QIODevice *device) { return mustRead(device, this->data(), this->size()); }
     inline bool operator==(const char *str) const { return strncmp(data(), str, size()) == 0; }
@@ -229,7 +234,7 @@ class Guid : public std::array<char, 16>
 public:
     static constexpr int SIZE = 16;
     Guid() :
-        std::array<char, SIZE>({ '\0' }) {}
+        std::array<char, SIZE>({ '\0' }) { }
 
     inline void load(QIODevice *device) { return mustRead(device, this->data(), this->size()); }
     inline bool operator==(const char *str) const { return strncmp(data(), str, size()) == 0; }
@@ -265,7 +270,7 @@ WavHeader::WavHeader(QIODevice *stream) noexcept(false)
     }
 
     if (strcmp(tag, WAVE64_RIFF) == 0) {
-        stream->read(12); // Wave64 format uses 128-bit GUIDs, we readed 4 bytes, there are still 12 bytes
+        mustRead(stream, 12); // Wave64 format uses 128-bit GUIDs, we readed 4 bytes, there are still 12 bytes
         m64Bit = true;
         readWave64Header(stream);
         return;
@@ -328,7 +333,7 @@ void WavHeader::readWavHeader(QIODevice *stream)
         else {
             mOtherCunks << chunkId;
             mOtherCunks << chunkSize;
-            mOtherCunks.append(stream->read(chunkSize));
+            mOtherCunks.append(mustRead(stream, chunkSize));
             pos += chunkSize;
         }
     }
@@ -382,7 +387,7 @@ void WavHeader::readWave64Header(QIODevice *stream)
         else {
             mOtherCunks << chunkId;
             mOtherCunks << chunkSize;
-            mOtherCunks.append(stream->read(chunkSize));
+            mOtherCunks.append(mustRead(stream, chunkSize));
             pos += chunkSize - WAVE64_CHUNK_HEADER_SIZE;
         }
     }
@@ -499,9 +504,9 @@ void WavHeader::loadFmtChunk(QIODevice *stream, const quint32 chunkSize)
     if (mExtSize != FmtChunkExt - FmtChunkMid)
         throw FlaconError("Size of the extension in WAVE header hase incorrect length");
 
-    mValidBitsPerSample = readUInt16(stream); // at most 8*M
-    mChannelMask        = readUInt32(stream); // Speaker position mask
-    mSubFormat          = stream->read(16);   // GUID (first two bytes are the data format code)
+    mValidBitsPerSample = readUInt16(stream);   // at most 8*M
+    mChannelMask        = readUInt32(stream);   // Speaker position mask
+    mSubFormat          = mustRead(stream, 16); // GUID (first two bytes are the data format code)
 }
 
 /************************************************
