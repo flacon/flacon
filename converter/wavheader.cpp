@@ -64,6 +64,11 @@ static inline void mustRead(QIODevice *device, char *data, qint64 size, int msec
         if (n < 0) {
             throw FlaconError(QString("Error reading data: %1").arg(device->errorString()));
         }
+        else if (n == 0) {
+            if (!device->isSequential()) {
+                throw FlaconError(QString("Unexpected end of file on %1").arg(device->pos()));
+            }
+        }
 
         d += n;
         left -= n;

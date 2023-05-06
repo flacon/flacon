@@ -25,19 +25,17 @@
 
 #include "flacontest.h"
 #include <QTest>
-#include "tools.h"
 #include <QDebug>
 #include <QDir>
 #include <QRegExp>
 #include <QLoggingCategory>
+#include <QProcessEnvironment>
 
-#include "../audiofilematcher.h"
 #include <QSettings>
-#include "../cue.h"
+#include "settings.h"
 #include "../types.h"
 #include "../project.h"
 #include "discspec.h"
-#include "../converter/decoder.h"
 
 namespace {
 class TestProject : public Project
@@ -102,7 +100,7 @@ void TestFlacon::testLoadDiscFromAudioErrors()
     QString expected = spec.value("EXPECTED").toString();
     QRegExp re(expected);
 
-    QLoggingCategory::setFilterRules("*.debug=false\n");
+    QLoggingCategory::setFilterRules("*.debug=false\n*.warning=false\n");
 
     try {
         if (spec.value("LOAD").isNull()) {
