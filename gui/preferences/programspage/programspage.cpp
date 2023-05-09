@@ -46,7 +46,7 @@ void ProgramsPage::load()
     QList<ExtProgram *> progs = ExtProgram::allPrograms();
 
     std::sort(progs.begin(), progs.end(), [](const ExtProgram *a, const ExtProgram *b) -> bool {
-        return a->name() > b->name();
+        return a->name() < b->name();
     });
 
     int row = 0;
