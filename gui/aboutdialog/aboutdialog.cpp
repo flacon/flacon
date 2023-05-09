@@ -219,7 +219,7 @@ AboutInfo AboutDialog::programsInfo() const
                "http://lame.sourceforge.net");
 
     result.add("mac",
-               "http://etree.org/shnutils/shntool/support/formats/ape/unix http://www.monkeysaudio.com");
+               "http://www.monkeysaudio.com");
 
     result.add("oggenc",
                "http://www.xiph.org");
