@@ -61,9 +61,9 @@ PreferencesDialog *PreferencesDialog::createAndShow(const Profiles &profiles, co
 
     if (!instance) {
         instance = new PreferencesDialog(parent);
+        instance->setProfiles(profiles);
     }
 
-    instance->setProfiles(profiles);
     if (!currentProfileId.isEmpty()) {
         instance->showProfile(currentProfileId);
     }

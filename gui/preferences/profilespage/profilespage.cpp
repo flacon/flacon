@@ -145,7 +145,9 @@ ProfilesPage::~ProfilesPage()
  ************************************************/
 Profiles ProfilesPage::profiles() const
 {
-    ui->tabWidget->toProfile(mProfile);
+    if (mProfile) {
+        ui->tabWidget->toProfile(mProfile);
+    }
     return mProfiles;
 }
 
@@ -154,7 +156,10 @@ Profiles ProfilesPage::profiles() const
  ************************************************/
 void ProfilesPage::setProfiles(const Profiles &profiles)
 {
+    QString id = mProfile ? mProfile->id() : "";
+
     mProfiles = profiles;
+    mProfile  = mProfiles.find(id);
     ui->profilesList->refresh(profiles);
     selectProfile(ui->profilesList->currentId());
 }

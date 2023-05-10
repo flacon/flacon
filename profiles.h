@@ -151,8 +151,9 @@ private:
 class Profiles : public QVector<Profile>
 {
 public:
-    int      indexOf(const QString &id, int from = 0) const;
-    Profile *find(const QString &id);
+    int            indexOf(const QString &id, int from = 0) const;
+    Profile       *find(const QString &id);
+    const Profile *find(const QString &id) const;
 };
 
 Profiles createStandardProfiles();

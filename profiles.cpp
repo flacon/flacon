@@ -378,6 +378,20 @@ Profile *Profiles::find(const QString &id)
 /************************************************
  *
  ************************************************/
+const Profile *Profiles::find(const QString &id) const
+{
+    for (const Profile &p : *this) {
+        if (p.id() == id) {
+            return &p;
+        }
+    }
+
+    return nullptr;
+}
+
+/************************************************
+ *
+ ************************************************/
 QDebug operator<<(QDebug debug, const Profile &profile)
 {
     QDebug &dbg = debug.noquote().noquote();
