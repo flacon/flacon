@@ -160,7 +160,7 @@ OutPatternButton::OutPatternButton(QWidget *parent) :
  ************************************************/
 void OutPatternButton::addPattern(const QString &pattern, const QString &title)
 {
-    QAction *act = new QAction(title, this);
+    QAction *act = new QAction(title + QString(" (%1)").arg(pattern), this);
     act->setData(pattern);
     connect(act, &QAction::triggered,
             this, &OutPatternButton::patternTriggered);
@@ -187,7 +187,7 @@ void OutPatternButton::addStandardPatterns()
 {
     addPattern("%n", tr("Insert \"Track number\""));
     addPattern("%N", tr("Insert \"Total number of tracks\""));
-    addPattern("%a", tr("Insert \"Artist\""));
+    addPattern("%a", tr("Insert \"Album Performer\""));
     addPattern("%A", tr("Insert \"Album title\""));
     addPattern("%t", tr("Insert \"Track title\""));
     addPattern("%y", tr("Insert \"Year\""));
