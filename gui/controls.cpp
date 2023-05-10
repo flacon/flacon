@@ -677,7 +677,9 @@ void ProgramEdit::openDialog()
                           .arg(mProgram->name())
             + QString(" (%1);;").arg(mProgram->name()) + tr("All files", "This is part of filter for 'select program' dialog. 'All files (*)'") + " (*)";
 
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Select program file"), "/usr/bin/", flt);
+    QString fileName = !text().isEmpty() ? text() : "/usr/bin/" + mProgram->name();
+
+    fileName = QFileDialog::getOpenFileName(this, tr("Select program file"), fileName, flt);
     if (!fileName.isEmpty())
         setText(fileName);
 }
