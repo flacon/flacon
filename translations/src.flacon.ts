@@ -1071,10 +1071,6 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1102,6 +1098,10 @@ Do you want to continue?</source>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like &apos;Use &quot;%a/%A/%n - %t&quot;&apos;</comment>
         <extracomment>Predefined out file pattern, string like &apos;Use &quot;%a/%A/%n - %t&quot;&apos;</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

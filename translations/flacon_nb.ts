@@ -1098,10 +1098,6 @@ Do you want to continue?</source>
         <translation>Sett inn &quot;totalt antall spor&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Sett inn &quot;artist&quot;</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>Sett inn &quot;albumtittel&quot;</translation>
     </message>
@@ -1130,6 +1126,10 @@ Do you want to continue?</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>Bruk &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

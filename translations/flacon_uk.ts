@@ -1122,10 +1122,6 @@ Do you want to continue?</source>
         <translation>Вставити кількість доріжок</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Вставити ім’я виконавця</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>Вставити назву альбому</translation>
     </message>
@@ -1154,6 +1150,10 @@ Do you want to continue?</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>Використовувати &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

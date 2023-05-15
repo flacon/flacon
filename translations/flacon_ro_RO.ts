@@ -1118,10 +1118,6 @@ Vreți să continuați?</translation>
         <translation>Introduceți „Număr total de piste”</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Introduceți „Artist”</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>Introduceți „Titlu album”</translation>
     </message>
@@ -1150,6 +1146,10 @@ Vreți să continuați?</translation>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>Utilizează &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

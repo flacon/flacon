@@ -1074,10 +1074,6 @@ Do you want to continue?</source>
         <translation>&quot;全トラックナンバー&quot;を挿入</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>&quot;アーティスト&quot;を挿入</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>&quot;アルバムタイトル&quot;を挿入</translation>
     </message>
@@ -1106,6 +1102,10 @@ Do you want to continue?</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation> &quot;%1&quot;を使う</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

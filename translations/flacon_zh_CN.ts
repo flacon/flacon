@@ -1098,10 +1098,6 @@ Do you want to continue?</source>
         <translation>插入“音轨总数 ”</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>插入“艺术家 ”</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>插入“专辑名”</translation>
     </message>
@@ -1130,6 +1126,10 @@ Do you want to continue?</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>使用“%1”</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

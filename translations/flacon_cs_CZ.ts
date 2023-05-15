@@ -1097,10 +1097,6 @@ Chcete pokračovat?</translation>
         <translation>Vložit &quot;Celkový počet skladeb&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Vložit &quot;Umělec&quot;</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>Vložit &quot;Název alba&quot;</translation>
     </message>
@@ -1129,6 +1125,10 @@ Chcete pokračovat?</translation>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>Použít &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

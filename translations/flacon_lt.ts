@@ -1122,10 +1122,6 @@ Ar norite tęsti?</translation>
         <translation>Įterpti „Bendrą takelių skaičių“</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Įterpti „Atlikėją“</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>Įterpti „Albumo pavadinimą“</translation>
     </message>
@@ -1154,6 +1150,10 @@ Ar norite tęsti?</translation>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>Naudoti „%1“</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1184,13 +1184,13 @@ Ar norite tęsti?</translation>
         <source>I can&apos;t apply your preferences.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Nepavyksta taikyti jūsų nuostatų.</translation>
     </message>
     <message>
         <source>You should create at least one profile.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Jūs turėtumėte sukurti bent vieną profilį.</translation>
     </message>
     <message>
         <source>Create profile</source>

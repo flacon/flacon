@@ -1121,10 +1121,6 @@ Do you want to continue?</source>
         <translation>Insertar &quot;Número total de pistas&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Insertar &quot;Artista&quot;</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>Insertar &quot;Título de álbum&quot;</translation>
     </message>
@@ -1153,6 +1149,10 @@ Do you want to continue?</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>Usar &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1183,13 +1183,13 @@ Do you want to continue?</source>
         <source>I can&apos;t apply your preferences.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>No se pueden aplicar sus preferencias.</translation>
     </message>
     <message>
         <source>You should create at least one profile.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Debe crear al menos un perfil.</translation>
     </message>
     <message>
         <source>Create profile</source>

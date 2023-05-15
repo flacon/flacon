@@ -1075,10 +1075,6 @@ Quere continuar?</translation>
         <translation>Inserir o «Número total de pistas»</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Inserir o «Artista»</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>Inserir o «Título do álbum»</translation>
     </message>
@@ -1106,6 +1102,10 @@ Quere continuar?</translation>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>

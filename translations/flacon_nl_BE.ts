@@ -1098,10 +1098,6 @@ Wilt u doorgaan?</translation>
         <translation>‘Aantal nummers’ invoegen</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>‘Artiest’ invoegen</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>‘Albumtitel’ invoegen</translation>
     </message>
@@ -1130,6 +1126,10 @@ Wilt u doorgaan?</translation>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>Gebruik ‘%1’</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

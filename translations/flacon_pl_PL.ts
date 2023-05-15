@@ -1098,10 +1098,6 @@ Czy chcesz kontynuować?</translation>
         <translation>Wstaw &quot;Całkowita liczba ścieżek&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>Wstaw &quot;Wykonawca&quot;</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>Wstaw &quot;Tytuł albumu&quot;</translation>
     </message>
@@ -1130,6 +1126,10 @@ Czy chcesz kontynuować?</translation>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>Użyj &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

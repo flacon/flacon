@@ -1099,10 +1099,6 @@ Biztosan folytatni akarod?</translation>
         <translation>&quot;Összesen sávszám&quot; beszúrása</translation>
     </message>
     <message>
-        <source>Insert &quot;Artist&quot;</source>
-        <translation>&quot;Előadó&quot; beszúrása</translation>
-    </message>
-    <message>
         <source>Insert &quot;Album title&quot;</source>
         <translation>&quot;Albumcím&quot; beszúrása</translation>
     </message>
@@ -1131,6 +1127,10 @@ Biztosan folytatni akarod?</translation>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
         <translation>&quot;%1&quot; használata</translation>
+    </message>
+    <message>
+        <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
