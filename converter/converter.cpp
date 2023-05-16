@@ -210,7 +210,7 @@ bool Converter::validate(const Jobs &jobs, const Profile &profile)
     }
 
     mValidator.setDisks(disks);
-    mValidator.setProfile(profile);
+    mValidator.setProfile(&profile);
 
     QStringList errors = mValidator.converterErrors();
 

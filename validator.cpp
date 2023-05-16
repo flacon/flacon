@@ -62,7 +62,7 @@ void Validator::setDisks(DiskList disks)
 /************************************************
  *
  ************************************************/
-void Validator::setProfile(const Profile &profile)
+void Validator::setProfile(const Profile *profile)
 {
 
     mProfile = profile;
@@ -212,13 +212,13 @@ bool Validator::hasErrors() const
  ************************************************/
 bool Validator::validateProfile()
 {
-    if (!mProfile.isValid()) {
+    if (!mProfile->isValid()) {
         mGlobalErrors << tr("Incorrect output profile.", "error message");
         return false;
     }
 
     QStringList errs;
-    if (!mProfile.outFormat()->check(mProfile, &errs)) {
+    if (!mProfile->outFormat()->check(*mProfile, &errs)) {
         mGlobalErrors << errs;
         return false;
     }
@@ -336,7 +336,7 @@ bool Validator::validateResultFiles(const Disk *disk, QStringList &inErrors, QSt
     QStringList errors;
 
     for (const Track *track : disk->tracks()) {
-        QString  outDir   = mProfile.resultFileDir(track);
+        QString  outDir   = mProfile->resultFileDir(track);
         TrackNum trackNum = track->trackNum();
 
         int n = 0;
@@ -349,7 +349,7 @@ bool Validator::validateResultFiles(const Disk *disk, QStringList &inErrors, QSt
                     continue;
                 }
 
-                if (mProfile.resultFilePath(t) == mProfile.resultFilePath(track)) {
+                if (mProfile->resultFilePath(t) == mProfile->resultFilePath(track)) {
                     if (d == disk) {
                         errors << tr("Disk %1 \"%2 - %3\" will overwrite its own files.",
                                      "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
@@ -365,7 +365,7 @@ bool Validator::validateResultFiles(const Disk *disk, QStringList &inErrors, QSt
                     break;
                 }
 
-                if (t->trackNum() == trackNum && mProfile.resultFileDir(t) == outDir) {
+                if (t->trackNum() == trackNum && mProfile->resultFileDir(t) == outDir) {
                     errors << tr("Disk %1 \"%2 - %3\" has overlapping track numbers.\nYou could change the \"Start num\" for one of them.",
                                  "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
                                       .arg(n)
@@ -427,7 +427,7 @@ bool Validator::validateRasampler(const Disk *disk, QStringList &errors, QString
     Q_UNUSED(warnings)
 
     bool needSox = false;
-    needSox      = needSox || (mProfile.bitsPerSample() != BitsPerSample::AsSourcee || mProfile.sampleRate() != SampleRate::AsSource);
+    needSox      = needSox || (mProfile->bitsPerSample() != BitsPerSample::AsSourcee || mProfile->sampleRate() != SampleRate::AsSource);
 
     for (const Track *track : disk->tracks()) {
         needSox = needSox || track->preEmphased();
@@ -449,28 +449,28 @@ bool Validator::vaslidateDiskWarnings(const Disk *disk, QStringList &warnings)
 
     for (const InputAudioFile &audioFile : disk->audioFiles()) {
         int bps = audioFile.bitsPerSample();
-        if (mProfile.bitsPerSample() != BitsPerSample::AsSourcee) {
-            bps = qMin(audioFile.bitsPerSample(), int(mProfile.bitsPerSample()));
+        if (mProfile->bitsPerSample() != BitsPerSample::AsSourcee) {
+            bps = qMin(audioFile.bitsPerSample(), int(mProfile->bitsPerSample()));
         }
 
-        if (bps > int(mProfile.maxBitPerSample())) {
+        if (bps > int(mProfile->maxBitPerSample())) {
             warnings << tr("A maximum of %1-bit per sample is supported by this format.\nThis value will be used for encoding.", "Warning message")
-                                .arg(int(mProfile.maxBitPerSample()));
+                                .arg(int(mProfile->maxBitPerSample()));
             res = false;
         }
 
         int sr = audioFile.sampleRate();
-        if (mProfile.sampleRate() != SampleRate::AsSource) {
-            sr = qMin(sr, int(mProfile.sampleRate()));
+        if (mProfile->sampleRate() != SampleRate::AsSource) {
+            sr = qMin(sr, int(mProfile->sampleRate()));
         }
 
-        if (sr > int(mProfile.maxSampleRate())) {
+        if (sr > int(mProfile->maxSampleRate())) {
             warnings << tr("A maximum sample rate of %1 is supported by this format.\nThis value will be used for encoding.", "Warning message")
-                                .arg(int(mProfile.maxSampleRate()));
+                                .arg(int(mProfile->maxSampleRate()));
             res = false;
         }
 
-        if (mProfile.gainType() != GainType::Disable && audioFile.channelsCount() > 2) {
+        if (mProfile->gainType() != GainType::Disable && audioFile.channelsCount() > 2) {
             warnings << tr("ReplayGain calculation is not supported for multi-channel audio.\nThe ReplayGain will be disabled for this disk.", "Warning message");
             res = false;
         }

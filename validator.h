@@ -37,8 +37,8 @@ class Validator : public QObject
 public:
     Validator(QObject *parent = nullptr);
 
-    Profile profile() const { return mProfile; }
-    void    setProfile(const Profile &profile);
+    const Profile *profile() const { return mProfile; }
+    void           setProfile(const Profile *profile);
 
     const DiskList &disks() const { return mDisks; }
     void            setDisks(DiskList disks);
@@ -63,8 +63,8 @@ signals:
     void changed();
 
 private:
-    QList<Disk *> mDisks;
-    Profile       mProfile;
+    QList<Disk *>  mDisks;
+    const Profile *mProfile;
 
     QTimer mDelayTimer;
 

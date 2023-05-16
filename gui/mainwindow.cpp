@@ -305,7 +305,8 @@ void MainWindow::dropEvent(QDropEvent *event)
 void MainWindow::setPattern()
 {
     project->profile()->setOutFilePattern(outPatternEdit->currentText());
-    trackView->model()->layoutChanged();
+    emit trackView->model()->layoutChanged();
+    project->validator().revalidate();
 }
 
 /************************************************
@@ -314,7 +315,8 @@ void MainWindow::setPattern()
 void MainWindow::setOutDir()
 {
     project->profile()->setOutFileDir(outDirEdit->currentText());
-    trackView->model()->layoutChanged();
+    emit trackView->model()->layoutChanged();
+    project->validator().revalidate();
 }
 
 /************************************************

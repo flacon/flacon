@@ -104,8 +104,9 @@ void TestFlacon::testValidator()
 
         TestSettings settings(cfgFile);
 
+        Profile   profile = settings.readProfile(settings.readCurrentProfileId());
         Validator validator;
-        validator.setProfile(settings.readProfile(settings.readCurrentProfileId()));
+        validator.setProfile(&profile);
 
         for (auto d : spec.disks) {
             Cue            cue(d.cue.c_str());

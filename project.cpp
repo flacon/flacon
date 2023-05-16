@@ -205,7 +205,7 @@ bool Project::selectProfile(const QString &profileId)
         }
     }
 
-    mValidator.setProfile(*profile());
+    mValidator.setProfile(profile());
 
     return p != nullptr;
 }
