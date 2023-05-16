@@ -126,7 +126,7 @@ void ProfileTabWidget::fromProfile(const Profile *profile)
 
     // Resample options ....................
     ui->resampleGroup->setVisible(profile->formatOptions().testFlag(FormatOption::Lossless));
-    ui->resampleGroupLine->setVisible(ui->resampleGroup->isVisible());
+    ui->resampleGroupLine->setVisible(profile->formatOptions().testFlag(FormatOption::Lossless));
 
     if (profile->formatOptions().testFlag(FormatOption::Lossless)) {
         ui->bitDepthComboBox->setValue(profile->bitsPerSample());

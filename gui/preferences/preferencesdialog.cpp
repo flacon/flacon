@@ -180,6 +180,7 @@ void PreferencesDialog::setProfiles(const Profiles &profiles)
     Profile p = !profiles.isEmpty() ? profiles.first() : Profile();
     ui->generalPage->setEncoderThreadsCount(p.encoderThreadsCount());
     ui->generalPage->setTmpDir(p.tmpDir());
+    ui->generalPage->setSplitTrackTitle(p.isSplitTrackTitle());
 
     ui->generalPage->setDefaultCodepage(Settings::i()->defaultCodepage());
 
@@ -214,7 +215,7 @@ void PreferencesDialog::fixLayout(const QWidget *parent)
         }
     }
 
-    for (QLabel *label : labels) {
+    for (QLabel *label : qAsConst(labels)) {
         label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
         label->setMinimumWidth(width);
     }
@@ -279,6 +280,7 @@ bool PreferencesDialog::save()
     Profile &p = ui->profilesPage->profiles().first();
     p.setEncoderThreadsCount(ui->generalPage->encoderThreadsCount());
     p.setTmpDir(ui->generalPage->tmpDir());
+    p.setSplitTrackTitle(ui->generalPage->isSplitTrackTitle());
 
     Settings::i()->setDefaultCodepage(ui->generalPage->defaultCodepage());
 

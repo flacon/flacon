@@ -107,6 +107,9 @@ public:
     uint encoderThreadsCount() const { return globalParams().mEncoderThreadsCount; }
     void setEncoderThreadsCount(uint value);
 
+    static bool isSplitTrackTitle() { return globalParams().splitTrackTitle; }
+    static void setSplitTrackTitle(bool value);
+
     QString resultFileName(const Track *track) const;
     QString resultFileDir(const Track *track) const;
     QString resultFilePath(const Track *track) const;
@@ -137,6 +140,7 @@ private:
     {
         QString mTmpDir;
         uint    mEncoderThreadsCount = defaultEncoderThreadCount();
+        bool    splitTrackTitle      = true;
     };
 
     static GlobalParams &globalParams();

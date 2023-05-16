@@ -49,6 +49,9 @@ public:
     uint encoderThreadsCount() const;
     void setEncoderThreadsCount(uint value);
 
+    bool isSplitTrackTitle() const;
+    void setSplitTrackTitle(bool value);
+
 private:
     Ui::GeneralPage *ui;
 

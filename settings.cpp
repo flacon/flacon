@@ -48,6 +48,7 @@ static constexpr auto PROFILE_COVER_EMBED_MODE_KEY = "CoverEmbed/Mode";
 static constexpr auto PROFILE_COVER_EMBED_SIZE_KEY = "CoverEmbed/Size";
 
 static constexpr auto DEFAULTCODEPAGE_KEY     = "Tags/DefaultCodepage";
+static constexpr auto SPLIT_TRACK_TITLE_KEY   = "Tags/SplitTrackTitle";
 static constexpr auto ENCODER_THREADCOUNT_KEY = "Encoder/ThreadCount";
 static constexpr auto ENCODER_TMPDIR_KEY      = "Encoder/TmpDir";
 
@@ -150,6 +151,7 @@ Profile Settings::readProfile(const QString &profileId)
 
     profile.setTmpDir(value(ENCODER_TMPDIR_KEY, profile.tmpDir()).toString());
     profile.setEncoderThreadsCount(readThreadsCount(ENCODER_THREADCOUNT_KEY, profile.encoderThreadsCount()));
+    profile.setSplitTrackTitle(value(SPLIT_TRACK_TITLE_KEY, profile.isSplitTrackTitle()).toBool());
 
     return profile;
 }
@@ -198,6 +200,7 @@ void Settings::writeProfile(const Profile &profile)
 
     setValue(ENCODER_TMPDIR_KEY, profile.tmpDir());
     setValue(ENCODER_THREADCOUNT_KEY, profile.encoderThreadsCount());
+    setValue(SPLIT_TRACK_TITLE_KEY, profile.isSplitTrackTitle());
 }
 
 /************************************************

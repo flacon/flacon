@@ -95,3 +95,13 @@ void GeneralPage::setEncoderThreadsCount(uint value)
 {
     ui->threadsCountSpin->setValue(value);
 }
+
+bool GeneralPage::isSplitTrackTitle() const
+{
+    return ui->splitTrackTitleCbx->isChecked();
+}
+
+void GeneralPage::setSplitTrackTitle(bool value)
+{
+    ui->splitTrackTitleCbx->setChecked(value);
+}

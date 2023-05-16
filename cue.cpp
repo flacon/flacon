@@ -32,6 +32,7 @@
 #include <QObject>
 #include <QDebug>
 #include "uchardetect.h"
+#include "profiles.h"
 
 /************************************************
  *
@@ -146,7 +147,10 @@ void Cue::read(const CueData &data)
         mTracks.append(track);
     }
 
-    splitTitleTag(data);
+    if (Profile::isSplitTrackTitle()) {
+        splitTitleTag(data);
+    }
+
     setCodecName(data);
     validate();
 }

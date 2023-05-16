@@ -229,6 +229,14 @@ void Profile::setEncoderThreadsCount(uint value)
 /************************************************
  *
  ************************************************/
+void Profile::setSplitTrackTitle(bool value)
+{
+    globalParams().splitTrackTitle = value;
+}
+
+/************************************************
+ *
+ ************************************************/
 QString Profile::resultFileName(const Track *track) const
 {
     QString pattern = outFilePattern();
