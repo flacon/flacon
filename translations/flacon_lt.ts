@@ -1153,7 +1153,7 @@ Ar norite tęsti?</translation>
     </message>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Įterpti „Albumo atlikėją“</translation>
     </message>
 </context>
 <context>

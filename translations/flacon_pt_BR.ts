@@ -1153,7 +1153,7 @@ Você deseja continuar?</translation>
     </message>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Insira o &quot;Artista do álbum&quot;</translation>
     </message>
 </context>
 <context>
