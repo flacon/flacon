@@ -617,6 +617,21 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
         <source>Select temporary directory</source>
         <translation>Pasirinkite laikiną katalogą</translation>
     </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>Groupbox title on preferences dialog</extracomment>
+        <translation>Žymės</translation>
+    </message>
+    <message>
+        <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+        <extracomment>Checkbox tooltip on preferences dialog</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use heuristic definition of track performer</source>
+        <extracomment>Checkbox text on preferences </extracomment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>

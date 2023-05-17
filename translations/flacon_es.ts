@@ -616,6 +616,21 @@ Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdi
         <source>Select temporary directory</source>
         <translation>Seleccione un directorio temporal</translation>
     </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>Groupbox title on preferences dialog</extracomment>
+        <translation>Etiquetas</translation>
+    </message>
+    <message>
+        <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+        <extracomment>Checkbox tooltip on preferences dialog</extracomment>
+        <translation>Si la etiqueta &quot;TÍTULO&quot; contiene el nombre del artista y de la pista, combinados por un caracter separador, el programa intentará asignar las etiquetas apropiadas.</translation>
+    </message>
+    <message>
+        <source>Use heuristic definition of track performer</source>
+        <extracomment>Checkbox text on preferences </extracomment>
+        <translation>Usar la definición heurística del intérprete de la pista</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -1152,7 +1167,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca &quot;Intérprete del Álbum&quot;</translation>
     </message>
 </context>
 <context>

@@ -593,6 +593,21 @@ Dette har bare innvirkning på filstørrelse. Alle innstillinger er tapsfrie.</t
         <source>Select temporary directory</source>
         <translation>Velg midlertidig mappe</translation>
     </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>Groupbox title on preferences dialog</extracomment>
+        <translation>Merkelapper</translation>
+    </message>
+    <message>
+        <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+        <extracomment>Checkbox tooltip on preferences dialog</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use heuristic definition of track performer</source>
+        <extracomment>Checkbox text on preferences </extracomment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>

@@ -617,6 +617,21 @@ Isso afeta somente o tamanho do arquivo. Todas as configurações são sem perda
         <source>Select temporary directory</source>
         <translation>Selecionar diretório temporário</translation>
     </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>Groupbox title on preferences dialog</extracomment>
+        <translation>Etiquetas</translation>
+    </message>
+    <message>
+        <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+        <extracomment>Checkbox tooltip on preferences dialog</extracomment>
+        <translation>Se a etiqueta &quot;Título&quot; tiver os nomes do artista e da faixa combinados por um caractere separador, o programa tentará assinalar as etiquetas apropriadas.</translation>
+    </message>
+    <message>
+        <source>Use heuristic definition of track performer</source>
+        <extracomment>Checkbox text on preferences </extracomment>
+        <translation>Usar definição heurística do artista da faixa</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>

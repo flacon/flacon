@@ -613,6 +613,21 @@ Aceasta are efect doar asupra mărimii fișierului rezultat. Calitatea va fi ace
         <source>Select temporary directory</source>
         <translation>Alegere director fișiere temporare</translation>
     </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>Groupbox title on preferences dialog</extracomment>
+        <translation>Etichete</translation>
+    </message>
+    <message>
+        <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+        <extracomment>Checkbox tooltip on preferences dialog</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use heuristic definition of track performer</source>
+        <extracomment>Checkbox text on preferences </extracomment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>

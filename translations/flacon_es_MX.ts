@@ -616,6 +616,21 @@ Esto sólo afectará el tamaño de archivo. Todos los parámetros son sin pérdi
         <source>Select temporary directory</source>
         <translation>Seleccionar un directorio temporal</translation>
     </message>
+    <message>
+        <source>Tags</source>
+        <extracomment>Groupbox title on preferences dialog</extracomment>
+        <translation>Etiquetas</translation>
+    </message>
+    <message>
+        <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+        <extracomment>Checkbox tooltip on preferences dialog</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use heuristic definition of track performer</source>
+        <extracomment>Checkbox text on preferences </extracomment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -1027,25 +1042,25 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Trash sources for converted disks and remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>Enviar a la papelera las fuentes de los discos convertidos y eliminarlas de la lista...</translation>
     </message>
     <message>
         <source>Some disks have errors, and will be skipped when converting:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Algunos discos tienen errores, y serán ignorados en la conversión:</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot;</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>Disco %1 &quot;%2 - %3&quot;</translation>
     </message>
     <message>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
-        <translation type="unfinished"/>
+        <translation>Disco %1</translation>
     </message>
 </context>
 <context>
@@ -1151,7 +1166,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Introduzca &quot;intérprete del álbum&quot;</translation>
     </message>
 </context>
 <context>
@@ -1176,25 +1191,25 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation>Perfiles de audio</translation>
     </message>
     <message>
         <source>I can&apos;t apply your preferences.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>No se pueden aplicar sus preferencias.</translation>
     </message>
     <message>
         <source>You should create at least one profile.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Debe crear al menos un perfil.</translation>
     </message>
     <message>
         <source>Create profile</source>
         <comment>Button caption</comment>
         <extracomment>Button caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Crear perfil</translation>
     </message>
 </context>
 <context>
@@ -1853,32 +1868,33 @@ ReplayGain se desactivará para este disco.</translation>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>El disco %1 &quot;%2 - %3&quot; sobrescribirá sus propios archivos.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>El disco %1 &quot;%2 - %3&quot; sobrescribirá los archivos de este disco.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>El Disco %1 &quot;%2 - %3&quot; usa el mismo archivo CUE.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
         <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
-        <translation type="unfinished"/>
+        <translation>El disco %1 &quot;%2 - %3&quot; usa el mismo archivo de audio.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
 You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>El disco %1 &quot;%2 - %3&quot; tiene números de pista superpuestos.
+Podría cambiar el &quot;Número de inicio&quot; de uno de ellos.</translation>
     </message>
 </context>
 <context>
