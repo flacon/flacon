@@ -44,6 +44,7 @@ QStringList Format_Wv::decoderArgs(const QString &fileName) const
     QStringList args;
     args << "-q";
     args << "-y";
+    args << "--w64";
     args << fileName;
     args << "-o"
          << "-";
