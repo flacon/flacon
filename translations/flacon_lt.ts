@@ -625,12 +625,12 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
     <message>
         <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
         <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Jei „PAVADINIMO“ žymėje yra atlikėjo ir takelio pavadinimai, sujungti skirtuko simboliu, tuomet programa bandys priskirti atitinkamas žymes.</translation>
     </message>
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
-        <translation type="unfinished"/>
+        <translation>Naudoti heuristinį takelio atlikėjo apibrėžimą</translation>
     </message>
 </context>
 <context>
