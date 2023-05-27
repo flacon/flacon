@@ -59,6 +59,8 @@ public:
     bool hasWarnings() const;
     bool hasErrors() const;
 
+    bool isValid() const;
+
 signals:
     void changed();
 

@@ -104,7 +104,9 @@ void TestFlacon::testValidator()
 
         TestSettings settings(cfgFile);
 
-        Profile   profile = settings.readProfile(settings.readCurrentProfileId());
+        Profile profile = settings.readProfile(settings.readCurrentProfileId());
+        settings.readExtPrograms();
+
         Validator validator;
         validator.setProfile(&profile);
 

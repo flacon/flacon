@@ -1,0 +1,16 @@
+{
+    "disks": [
+        {
+        "cue":   "disk_01.cue",
+        "audio": "disk_01.w64",
+
+        "errors":  [
+            "The sox program is installed according to your settings, but the binary file can’t be found.<br>Verify that all required programs are installed and in your preferences."
+        ],
+        "warnings": [
+            "A maximum of 24-bit per sample is supported by this format. This value will be used for encoding."
+        ]
+        }
+
+    ]
+}

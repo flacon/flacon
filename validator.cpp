@@ -207,6 +207,11 @@ bool Validator::hasErrors() const
     return false;
 }
 
+bool Validator::isValid() const
+{
+    return mProfile && !mDisks.isEmpty();
+}
+
 /************************************************
  *
  ************************************************/
@@ -422,18 +427,41 @@ bool Validator::validateDuplicateSourceFiles(const Disk *disk, QStringList &erro
 /************************************************
  *
  ************************************************/
+static bool needSox(const Profile *profile, const Disk *disk)
+{
+    if (profile->bitsPerSample() != BitsPerSample::AsSourcee || profile->sampleRate() != SampleRate::AsSource) {
+        return true;
+    }
+
+    for (const InputAudioFile &audio : disk->audioFiles()) {
+        int bps = calcQuality(audio.bitsPerSample(), profile->bitsPerSample(), profile->outFormat()->maxBitPerSample());
+        if (bps != audio.bitsPerSample()) {
+            return true;
+        }
+
+        int rate = calcQuality(audio.sampleRate(), profile->sampleRate(), profile->outFormat()->maxSampleRate());
+        if (rate != audio.sampleRate()) {
+            return true;
+        }
+    }
+
+    for (const Track *track : disk->tracks()) {
+        if (track->preEmphased()) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/************************************************
+ *
+ ************************************************/
 bool Validator::validateRasampler(const Disk *disk, QStringList &errors, QStringList &warnings)
 {
     Q_UNUSED(warnings)
 
-    bool needSox = false;
-    needSox      = needSox || (mProfile->bitsPerSample() != BitsPerSample::AsSourcee || mProfile->sampleRate() != SampleRate::AsSource);
-
-    for (const Track *track : disk->tracks()) {
-        needSox = needSox || track->preEmphased();
-    }
-
-    if (!needSox) {
+    if (!needSox(mProfile, disk)) {
         return true;
     }
 
