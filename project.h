@@ -54,7 +54,7 @@ public:
     void removeDisc(const QList<Disc *> &discs);
 
     void emitDiscChanged(Disc *disc);
-    void emitLayoutChanged() const;
+    void emitLayoutChanged();
 
     bool discExists(const QString &cueUri);
 

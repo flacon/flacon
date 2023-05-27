@@ -253,7 +253,10 @@ void Project::emitDiscChanged(Disc *disc)
 /************************************************
 
  ************************************************/
-void Project::emitLayoutChanged() const
+void Project::emitLayoutChanged()
 {
     emit layoutChanged();
+    if (mValidator.isValid()) {
+        mValidator.revalidate();
+    }
 }
