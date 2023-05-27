@@ -22,6 +22,9 @@
 
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
+	
+	<key>LSMinimumSystemVersion</key>
+	<string>11.0.0</string>
 
 	<key>NSHighResolutionCapable</key>
 	<true/>
