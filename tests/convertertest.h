@@ -55,8 +55,6 @@ private:
     const QString mInDir;
     const QString mOutDir;
 
-    QSettings *mSpec;
-
     void srcAudioExec(QSettings &spec) const;
 
     QStringList readFile(const QString &fileName);

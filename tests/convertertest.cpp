@@ -156,6 +156,48 @@ ConverterTest::ConverterTest(const QString &dataDir, const QString &dir, const Q
 /************************************************
 
  ************************************************/
+static QStringList parseCombinedArgString(const QString &program)
+{
+    QStringList args;
+    QString     tmp;
+    int         quoteCount = 0;
+    bool        inQuote    = false;
+    // handle quoting. tokens can be surrounded by double quotes
+    // "hello world". three consecutive double quotes represent
+    // the quote character itself.
+    for (int i = 0; i < program.size(); ++i) {
+        if (program.at(i) == QLatin1Char('"')) {
+            ++quoteCount;
+            if (quoteCount == 3) {
+                // third consecutive quote
+                quoteCount = 0;
+                tmp += program.at(i);
+            }
+            continue;
+        }
+        if (quoteCount) {
+            if (quoteCount == 1)
+                inQuote = !inQuote;
+            quoteCount = 0;
+        }
+        if (!inQuote && program.at(i).isSpace()) {
+            if (!tmp.isEmpty()) {
+                args += tmp;
+                tmp.clear();
+            }
+        }
+        else {
+            tmp += program.at(i);
+        }
+    }
+    if (!tmp.isEmpty())
+        args += tmp;
+    return args;
+}
+
+/************************************************
+
+ ************************************************/
 void ConverterTest::srcAudioExec(QSettings &spec) const
 {
     spec.beginGroup("commands");
@@ -163,7 +205,11 @@ void ConverterTest::srcAudioExec(QSettings &spec) const
     QStringList keys = spec.allKeys();
     for (const QString &key : qAsConst(keys)) {
         QString cmd = spec.value(key).toString();
-        if (QProcess::execute(cmd) != 0) {
+
+        QStringList args = parseCombinedArgString(cmd);
+        QString     prog = args.takeFirst();
+
+        if (QProcess::execute(prog, args) != 0) {
             throw FlaconError(QString("Command `%1` failed!").arg(cmd));
         }
     }
