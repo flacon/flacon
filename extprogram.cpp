@@ -52,7 +52,7 @@ static constexpr auto BINARY_EXT         = "";
 ExtProgram::ExtProgram(const QString &name) :
     mName(name)
 {
-#ifdef MAC_BUNDLE
+#ifdef BUNDLED_PROGRAMS
     mPath = QDir(qApp->applicationDirPath()).absoluteFilePath(name);
 #endif
 }
@@ -60,14 +60,14 @@ ExtProgram::ExtProgram(const QString &name) :
 void ExtProgram::setPath(const QString &path)
 {
     Q_UNUSED(path);
-#ifndef MAC_BUNDLE
+#ifndef BUNDLED_PROGRAMS
     mPath = path;
 #endif
 }
 
 QString ExtProgram::find() const
 {
-#ifdef MAC_BUNDLE
+#ifdef BUNDLED_PROGRAMS
     return mPath;
 #else
     QStringList paths = QProcessEnvironment::systemEnvironment().value("PATH").split(PATH_ENV_SEPARATOR);
