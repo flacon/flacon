@@ -231,6 +231,10 @@ int runGui(int argc, char *argv[], const QStringList &files)
 
     project->load(Settings::i());
 
+    for (auto p : ExtProgram::allPrograms()) {
+        qDebug() << "  *" << p->name() << "PATH:" << p->path() << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+    }
+
     MainWindow window;
 
     foreach (QString file, files)
