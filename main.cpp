@@ -129,9 +129,14 @@ void consoleErroHandler(QtMsgType type, const QMessageLogContext &context, const
  ************************************************/
 void translate(QApplication *app)
 {
-#ifdef DBUNDLED_TRANSLATIONS
+#ifdef MAC_BUNDLE
+    qDebug() << "MAC_BUNDLE =====================";
     QString appDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#elif APPIMAGE_BUNDLE
+    qDebug() << "APPIMAGE_BUNDLE ===============";
+    QString appDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath) + "share/flacon/translations";
 #else
+    qDebug() << "ELSE  =========================";
     QString appDir = TRANSLATIONS_DIR;
 #endif
 
