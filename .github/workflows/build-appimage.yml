@@ -44,7 +44,10 @@ jobs:
         sudo apt-get -y install flac mac alacenc vorbis-tools wavpack lame ttaenc faac opus-tools sox
 
     - name: Clone tools
-      run: git clone --depth 1 https://github.com/SokoloffA/nightly-tools.git ~/tools
+      run: |
+        git clone --depth 1 https://github.com/SokoloffA/nightly-tools.git ~/tools
+        echo PATH=~/tools/appimage/usr/bin:$PATH >> $GITHUB_ENV
+        echo LD_LIBRARY_PATH=~/tools/appimage/usr/lib >> $GITHUB_ENV
 
     - name: Create Build Environment
       run: |
@@ -82,9 +85,9 @@ jobs:
         linuxdeploy --verbosity=3  --plugin qt --appdir "${{github.workspace}}/build/app"
 
     - name: Check external programs
-      working-directory: ${{github.workspace}}/build/app
+      working-directory: ${{github.workspace}}
       run: |
-        ${{github.workspace}}/scripts/check-extprograms.sh ${{github.workspace}}/build/app/usr/bin
+        scripts/check-extprograms.sh . ${{github.workspace}}/build/app/usr/bin
 
     - name: Build AppImage file
       working-directory: ${{github.workspace}}/build/app
