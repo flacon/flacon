@@ -72,6 +72,7 @@ endif()
 if ( MAC_BUNDLE )
     add_definitions(-DMAC_BUNDLE)
     add_definitions(-DBUNDLED_PROGRAMS)
+    add_definitions(-DBUNDLED_TRANSLATIONS)
     add_definitions(-DMAC_UPDATER)
 
 elseif ( FLATPAK_BUNDLE )
@@ -82,6 +83,7 @@ elseif ( FLATPAK_BUNDLE )
 elseif ( APPIMAGE_BUNDLE )
     add_definitions(-DAPPIMAGE_BUNDLE)
     add_definitions(-DBUNDLED_PROGRAMS)
+    add_definitions(-DBUNDLED_TRANSLATIONS)
 
 endif()
 

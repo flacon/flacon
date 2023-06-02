@@ -129,7 +129,7 @@ void consoleErroHandler(QtMsgType type, const QMessageLogContext &context, const
  ************************************************/
 void translate(QApplication *app)
 {
-#ifdef MAC_BUNDLE
+#ifdef DBUNDLED_TRANSLATIONS
     QString appDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #else
     QString appDir = TRANSLATIONS_DIR;
@@ -230,10 +230,6 @@ int runGui(int argc, char *argv[], const QStringList &files)
     translate(&app);
 
     project->load(Settings::i());
-
-    for (auto p : ExtProgram::allPrograms()) {
-        qDebug() << "  *" << p->name() << "PATH:" << p->path() << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-    }
 
     MainWindow window;
 
