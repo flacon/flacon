@@ -134,6 +134,7 @@ void translate(QApplication *app)
 #else
     QString appDir = TRANSLATIONS_DIR;
 #endif
+    qDebug() << "DIR" << appDir << "FILES" << QDir(appDir).entryList();
 
     QString locale = QLocale::system().name();
 

@@ -15,9 +15,12 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: Prepare
+    - name: Set env
       run: |
+        export
         echo "RELEASE_DATE=$(date +%Y.%m.%d_%H.%M.%S)" >> ${GITHUB_ENV}
+        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}"
 
     - uses: actions/checkout@v3
 
