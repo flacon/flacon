@@ -134,7 +134,7 @@ void translate(QApplication *app)
     QString appDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #elif APPIMAGE_BUNDLE
     qDebug() << "APPIMAGE_BUNDLE ===============";
-    QString appDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath) + "share/flacon/translations";
+    QString appDir = QLibraryInfo::location(QLibraryInfo::DataPath) + "/share/flacon/translations";
 #else
     qDebug() << "ELSE  =========================";
     QString appDir = TRANSLATIONS_DIR;
