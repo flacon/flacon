@@ -15,6 +15,10 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+    - name: Prepare
+      run: |
+        echo "RELEASE_DATE=$(date +%Y.%m.%d_%H.%M.%S)" >> ${GITHUB_ENV}
+
     - uses: actions/checkout@v3
 
     - name: Install packages
@@ -54,7 +58,7 @@ jobs:
 
     - name: Build AppImage
       working-directory: ${{github.workspace}}/build/app
-      run: |        
+      run: |
         echo "==============================="
         export PATH=~/tools/appimage/usr/bin:$PATH
         export LD_LIBRARY_PATH=~/tools/appimage/usr/lib
@@ -71,5 +75,5 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: flacon-x86_64.AppImage
+        name: flacon-x86_64-${{ env.RELEASE_DATE }}.AppImage
         path: "${{github.workspace}}/build/flacon-x86_64.AppImage"
