@@ -66,7 +66,7 @@ jobs:
       shell: bash
       run: make install
 
-    - name: Build AppImage
+    - name: Build AppImage dir
       working-directory: ${{github.workspace}}/build/app
       run: |
         echo "==============================="
@@ -81,9 +81,16 @@ jobs:
         echo "= Build image ================="
         linuxdeploy --verbosity=3  --plugin qt --appdir "${{github.workspace}}/build/app"
 
-        scripts/check-extprograms.sh ${{github.workspace}}/build/app/usr/bin
+    - name: Check external programs
+      working-directory: ${{github.workspace}}/build/app
+      run: |
+        ${{github.workspace}}/scripts/check-extprograms.sh ${{github.workspace}}/build/app/usr/bin
 
+    - name: Build AppImage file
+      working-directory: ${{github.workspace}}/build/app
+      run: |
         appimagetool "${{github.workspace}}/build/app" "${{github.workspace}}/build/${{ env.APPIMAGE_NAME }}"
+
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
