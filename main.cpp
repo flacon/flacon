@@ -130,34 +130,14 @@ void consoleErroHandler(QtMsgType type, const QMessageLogContext &context, const
 void translate(QApplication *app)
 {
 #ifdef MAC_BUNDLE
-    qDebug() << "MAC_BUNDLE =====================";
     QString appDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #elif APPIMAGE_BUNDLE
-    qDebug() << "APPIMAGE_BUNDLE ===============";
     QString appDir = QLibraryInfo::location(QLibraryInfo::DataPath) + "/share/flacon/translations";
 #else
-    qDebug() << "ELSE  =========================";
     QString appDir = TRANSLATIONS_DIR;
 #endif
 
     QString locale = QLocale::system().name();
-
-    qDebug() << "LOCALE:" << locale;
-    qDebug() << "DIR" << appDir << "FILES" << QDir(appDir).entryList();
-    qDebug() << "PrefixPath" << QLibraryInfo::location(QLibraryInfo::PrefixPath);
-    qDebug() << "DocumentationPath" << QLibraryInfo::location(QLibraryInfo::DocumentationPath);
-    qDebug() << "HeadersPath" << QLibraryInfo::location(QLibraryInfo::HeadersPath);
-    qDebug() << "LibrariesPath" << QLibraryInfo::location(QLibraryInfo::LibrariesPath);
-    qDebug() << "LibraryExecutablesPath" << QLibraryInfo::location(QLibraryInfo::LibraryExecutablesPath);
-    qDebug() << "BinariesPath" << QLibraryInfo::location(QLibraryInfo::BinariesPath);
-    qDebug() << "PluginsPath" << QLibraryInfo::location(QLibraryInfo::PluginsPath);
-    qDebug() << "ImportsPath" << QLibraryInfo::location(QLibraryInfo::ImportsPath);
-    qDebug() << "Qml2ImportsPath" << QLibraryInfo::location(QLibraryInfo::Qml2ImportsPath);
-    qDebug() << "ArchDataPath" << QLibraryInfo::location(QLibraryInfo::ArchDataPath);
-    qDebug() << "DataPath" << QLibraryInfo::location(QLibraryInfo::DataPath);
-    qDebug() << "TranslationsPath" << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-    qDebug() << "ExamplesPath" << QLibraryInfo::location(QLibraryInfo::ExamplesPath);
-    qDebug() << "TestsPath" << QLibraryInfo::location(QLibraryInfo::TestsPath);
 
     QTranslator *qtTranslator = new QTranslator(app);
     qtTranslator->load("qt_" + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));

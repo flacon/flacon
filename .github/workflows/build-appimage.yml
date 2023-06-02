@@ -17,10 +17,17 @@ jobs:
     steps:
     - name: Set env
       run: |
-        export
         echo "RELEASE_DATE=$(date +%Y.%m.%d_%H.%M.%S)" >> ${GITHUB_ENV}
         echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}"
+
+        [[ "$GITHUB_REF_NAME" != "" ]] && echo APPIMAGE_NAME="flacon-${GITHUB_REF_NAME:1}-x86_64.AppImage" >> $GITHUB_ENV
+        [[ "$GITHUB_REF_NAME" =  "" ]] && echo APPIMAGE_NAME="flacon-$(date +%Y.%m.%d_%H.%M.%S)-x86_64.AppImage" >> $GITHUB_ENV
+
+        echo "==============================="
+        export
+        echo "-------------------------------"
+        cat $GITHUB_ENV
+        echo "==============================="
 
     - uses: actions/checkout@v3
 
@@ -73,10 +80,10 @@ jobs:
         for prog in ${PROGRAMS}; do echo " * Copy ${prog}"; src=$(which "$prog"); dest=${src#/}; cp -f "${src}" "usr/bin/"; done
         echo "= Build image ================="
         linuxdeploy --verbosity=3  --plugin qt --appdir "${{github.workspace}}/build/app"
-        appimagetool "${{github.workspace}}/build/app" "${{github.workspace}}/build/flacon-x86_64.AppImage"
+        appimagetool "${{github.workspace}}/build/app" "${{github.workspace}}/build/${{ env.APPIMAGE_NAME }}"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: flacon-x86_64-${{ env.RELEASE_DATE }}.AppImage
-        path: "${{github.workspace}}/build/flacon-x86_64.AppImage"
+        name: ${{ env.APPIMAGE_NAME }}
+        path: "${{github.workspace}}/build/${{ env.APPIMAGE_NAME }}"
