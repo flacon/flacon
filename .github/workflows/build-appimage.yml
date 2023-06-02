@@ -80,6 +80,9 @@ jobs:
         for prog in ${PROGRAMS}; do echo " * Copy ${prog}"; src=$(which "$prog"); dest=${src#/}; cp -f "${src}" "usr/bin/"; done
         echo "= Build image ================="
         linuxdeploy --verbosity=3  --plugin qt --appdir "${{github.workspace}}/build/app"
+
+        scripts/check-extprograms.sh ${{github.workspace}}/build/app/usr/bin
+
         appimagetool "${{github.workspace}}/build/app" "${{github.workspace}}/build/${{ env.APPIMAGE_NAME }}"
 
     - name: Upload artifact
