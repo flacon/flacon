@@ -291,7 +291,7 @@ function(CREATE_FLATPAK_METAINFO_FILE _IN_FILE _OUT_FILE)
     configure_file(${_IN_FILE} ${_OUT_FILE} @ONLY)
 endfunction()
 
-CREATE_DESKTOP_FILE(misc/${PROJECT_NAME}.desktop ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop translations/*.desktop)
+CREATE_DESKTOP_FILE(misc/${PROJECT_NAME}.desktop ${CMAKE_CURRENT_BINARY_DIR}/com.github.Flacon.desktop translations/*.desktop)
 CREATE_FLATPAK_METAINFO_FILE(misc/com.github.Flacon.metainfo.xml.in ${CMAKE_CURRENT_BINARY_DIR}/com.github.Flacon.metainfo.xml)
 
 # Man page **************************************
