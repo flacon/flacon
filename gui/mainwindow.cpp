@@ -260,6 +260,17 @@ bool MainWindow::showExitDialog()
 /************************************************
 
  ************************************************/
+void MainWindow::setStartButtonAction(QAction *action)
+{
+    QToolButton *runBtn = qobject_cast<QToolButton *>(toolBar->widgetForAction(actionStartConvert));
+    if (runBtn) {
+        runBtn->setDefaultAction(action);
+    }
+}
+
+/************************************************
+
+ ************************************************/
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (mConverter && mConverter->isRunning()) {
@@ -1213,6 +1224,13 @@ void MainWindow::initToolBar()
 
     toolBar->addAction(actionWarnings);
     toolBar->addAction(actionErrors);
+
+    QToolButton *runBtn = qobject_cast<QToolButton *>(toolBar->widgetForAction(actionStartConvert));
+    if (runBtn) {
+        runBtn->setPopupMode(QToolButton::MenuButtonPopup);
+        runBtn->addAction(actionStartConvertSelected);
+        connect(runBtn, &QToolButton::triggered, this, &MainWindow::setStartButtonAction);
+    }
 }
 
 /************************************************

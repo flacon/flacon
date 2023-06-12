@@ -133,6 +133,7 @@ private:
     void updateTotalProgress(double percent);
 
     bool showExitDialog();
+    void setStartButtonAction(QAction *action);
 };
 
 #endif // MAINWINDOW_H
