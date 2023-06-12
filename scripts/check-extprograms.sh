@@ -11,7 +11,7 @@ WHICH=$(which which)
 PROGS=$(sed -n 's|.*static ExtProgram \*\(.*\)().*|\1|p' "${EXTPROGRAM_H}")
 RES=0
 for PROG in $PROGS; do
-  if PATH=$BIN_DIR $WHICH -s $PROG; then
+  if PATH=$BIN_DIR $WHICH  $PROG > /dev/null 2>&1; then
     printf "%-20s  %s\n" $PROG "OK"
   else
     printf "%-20s  %s\n" $PROG "NOT FOUND"
