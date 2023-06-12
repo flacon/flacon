@@ -2,46 +2,112 @@ name: Build MacOs Bundle
 
 on: [push]
 
-env:
-  BUILD_TYPE: Release
 
 jobs:
-  build:    
+  build-arm64:
+    uses: ./.github/workflows/build-mac-flacon.yml
+    name: arm64
+    with:
+      arch: arm64
+
+  build-x86_64:
+    uses: ./.github/workflows/build-mac-flacon.yml
+    name: x86_64
+    with:
+      arch: x86_64
+
+
+  flacon-app:
     runs-on: macos-latest
 
+    needs:
+      - build-arm64
+      - build-x86_64
+
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-    - name: Check license
-      run: ./scripts/checkLicense.sh .
-
-    - name: Install packages 
-      run:  |
-        brew install qt5 pkg-config uchardet taglib 
-
-    - name: Install Saprkle
+    - name: Set env
       run: |
-        curl -s -L https://github.com/sparkle-project/Sparkle/releases/download/1.26.0/Sparkle-1.26.0.tar.xz > Sparkle.tar.xz
-        tar xf Sparkle.tar.xz Sparkle.framework
+        echo "RELEASE_DATE=$(date +%Y.%m.%d_%H.%M.%S)" >> ${GITHUB_ENV}
+        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
-    - name: Create Build Environment
-      run: cmake -E make_directory ${{github.workspace}}/build
+        [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo ARTIFACT_NAME="Flacon-${GITHUB_REF_NAME:1}.app" >> $GITHUB_ENV
+        [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo ARTIFACT_NAME="Flacon-$(date +%Y.%m.%d_%H.%M.%S).app" >> $GITHUB_ENV
 
-    - name: Run CMake
+        [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo TAR_NAME="Flacon-${GITHUB_REF_NAME:1}.tar" >> $GITHUB_ENV
+        [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo TAR_NAME="Flacon-$(date +%Y.%m.%d_%H.%M.%S).tar" >> $GITHUB_ENV
+
+
+    - name: Download arm64
+      uses: actions/download-artifact@v3
+      with:
+        name: Flacon-arm64
+
+
+    - name: Extract arm64
+      env:
+        ARCH: arm64
       shell: bash
-      working-directory: ${{github.workspace}}/build
       run: |
-        cmake \
-          -DQt5_DIR=$(brew --prefix qt5)/lib/cmake/Qt5 \
-          -DBUILD_TESTS=No \
-          -DMAC_BUNDLE=Yes \
-          -DCMAKE_INSTALL_PREFIX=${CUR_DIR} \
-          -DCMAKE_OSX_DEPLOYMENT_TARGET="10.10.1" \
-          -DCMAKE_FRAMEWORK_PATH=$GITHUB_WORKSPACE \
-          $GITHUB_WORKSPACE
+        mkdir -p ${{ env.ARCH }}
+        tar xvf Flacon-${{env.ARCH}}.tar -C ${{env.ARCH}}
 
-    - name: Build
-      working-directory: ${{github.workspace}}/build
+
+    - name: Download x86_64
+      uses: actions/download-artifact@v3
+      with:
+        name: Flacon-x86_64
+
+
+    - name: Extract x86_64
+      env:
+        ARCH: x86_64
       shell: bash
-      run: make -j 8
+      run: |
+        mkdir -p ${{ env.ARCH }}
+        tar xvf Flacon-${{env.ARCH}}.tar -C ${{env.ARCH}}
 
+
+    - name: Install tools
+      shell: bash
+      run: |
+        git clone https://github.com/flacon/flacon.third-party.git ${HOME}/flacon.third-party
+        mkdir -p ${HOME}/bin/
+        cp ${HOME}/flacon.third-party/bin/* ${HOME}/bin/
+
+
+    - name: Create universal application
+      shell: bash
+      run: |
+        lipo-app x86_64/Flacon.app arm64/Flacon.app Flacon.app
+
+
+    - name: Check external programs
+      run: |
+        ${{github.workspace}}/scripts/check-extprograms.sh . Flacon.app/Contents/MacOS
+
+
+    - name: Check libraries
+      shell: bash
+      working-directory: ${{github.workspace}}
+      run: |
+        ${HOME}/bin/macdeploy.py check-libs Flacon.app
+
+
+    - name: Prepare artifacts
+      working-directory: ${{ env.HOME }}
+      run : |
+        tar -C . -cf ${{env.TAR_NAME}} Flacon.app
+        cp ${{github.workspace}}/.github/workflows/makedmg.sh .
+        cp ${{github.workspace}}/.github/workflows/dmg_settings.json .
+
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
+        path: |
+          ${{env.TAR_NAME}}
+          makedmg.sh
+          dmg_settings.json

@@ -1,0 +1,104 @@
+name: Build Flacon
+
+on:
+  workflow_call:
+    inputs:
+      arch:
+        required: true
+        type: string
+
+env:
+  BREW_DIR:         /opt/flacon-homebrew/${{ inputs.arch }}
+  ARM_BREW_DIR:     /opt/flacon-homebrew/arm64
+  X86_BREW_DIR:     /opt/flacon-homebrew/x86_64
+  FLACON_PROGRAMS:  flacon-programs-${{ inputs.arch }}
+  BUNDLE_DIR:       ${{github.workspace}}/build/Flacon.app
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Check license
+      run: ./scripts/checkLicense.sh .
+
+    - name: Install tools
+      shell: bash
+      run: |
+        git clone https://github.com/flacon/flacon.third-party.git ${HOME}/flacon.third-party
+        mkdir -p ${HOME}/bin/
+        cp ${HOME}/flacon.third-party/bin/* ${HOME}/bin/
+
+    - name: Install homebrew arm64
+      shell: bash
+      run: |
+        curl -s -L https://github.com/flacon/flacon.third-party/releases/download/v0.1/flacon-homebrew-arm64.tgz > ${HOME}/flacon-homebrew-arm64.tgz
+        sudo tar xf ${HOME}/flacon-homebrew-arm64.tgz -C /
+
+
+    - name: Install homebrew x86_64
+      shell: bash
+      run: |
+        curl -s -L https://github.com/flacon/flacon.third-party/releases/download/v0.1/flacon-homebrew-x86_64.tgz > ${HOME}/flacon-homebrew-x86_64.tgz
+        sudo tar xf ${HOME}/flacon-homebrew-x86_64.tgz -C /
+
+
+    - name: Fixing homebrew Qt binaries
+      shell: bash
+      run: |
+        rm -rf ${ARM_BREW_DIR}/opt/qt5/bin/
+        ln -s ${X86_BREW_DIR}/opt/qt5/bin/ ${ARM_BREW_DIR}/opt/qt5/bin
+
+    - name: Install Saprkle
+      shell: bash
+      run: |
+        curl -s -L https://github.com/sparkle-project/Sparkle/releases/download/1.26.0/Sparkle-1.26.0.tar.xz > ${HOME}/Sparkle.tar.xz
+        mkdir -p ${HOME}/Library/Frameworks
+        tar xf ${HOME}/Sparkle.tar.xz -C ${HOME}/Library/Frameworks Sparkle.framework
+
+
+    - name: Build
+      shell: bash
+      working-directory: ${{github.workspace}}
+      run: |
+        export PKG_CONFIG_PATH="${BREW_DIR}/lib/pkgconfig"
+        cmake \
+          -DBUILD_TESTS=No \
+          -DMAC_BUNDLE=Yes \
+          -DCMAKE_PREFIX_PATH=${BREW_DIR}/opt/qt5/lib/cmake \
+          -DCMAKE_INSTALL_PREFIX=build \
+          -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10.1 \
+          -Bbuild \
+          -DCMAKE_OSX_ARCHITECTURES=${{ inputs.arch }} \
+          ${{github.workspace}}
+
+        make -Cbuild -j 8
+        make -Cbuild install
+
+
+    - name: Copy third-party binaries and libraries
+      shell: bash
+      working-directory: ${{github.workspace}}
+      run: |
+        curl -s -L https://github.com/flacon/flacon.third-party/releases/download/v0.1/flacon-programs-${{inputs.arch}}.tgz > ${HOME}/flacon-programs-${{inputs.arch}}.tgz
+        sudo tar xf ${HOME}/flacon-programs-${{inputs.arch}}.tgz -C ${BUNDLE_DIR}/Contents --strip 1
+
+
+    - name: Check libraries
+      shell: bash
+      working-directory: ${{github.workspace}}
+      run: |
+        ${HOME}/bin/macdeploy.py check-libs ${BUNDLE_DIR}/
+
+
+    - name: Prepare artifacts
+      run : |
+        tar -C ${{github.workspace}}/build -cf ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar Flacon.app
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Flacon-${{ inputs.arch }}
+        path: ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar

@@ -1,0 +1,25 @@
+{
+    "title": "Flacon",
+    "format": "UDZO",
+    "compression-level": 9,
+    "window": { 
+        "position": { "x": 100, "y": 100 },
+        "size": { "width": 500, "height": 270 } 
+    },
+    "icon-size": 96,
+    
+    "contents": [
+        { 
+            "x": 135, 
+            "y": 102, 
+            "type": "file",
+            "path": "Flacon.app" },
+        
+        { 
+            "x": 365, 
+            "y": 102, 
+            "type": "link", 
+            "path": "/Applications" 
+        }
+    ]
+}

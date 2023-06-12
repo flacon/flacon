@@ -1,0 +1,31 @@
+
+include(BundleUtilities)
+
+set(BUNDLE_DIR  @BUNDLE_DIR@)
+set(DIRS @DIRS@)
+
+set(CMAKE_PREFIX_PATH @CMAKE_PREFIX_PATH@)
+set(CMAKE_INSTALL_PREFIX @CMAKE_INSTALL_PREFIX@)
+
+file (GLOB_RECURSE PLUGINS BUNDLE_PLUGINS_DIR false "${BUNDLE_DIR}/Contents/PlugIns/*/*")
+
+
+message("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+message("%% BUNDLE_DIR ${BUNDLE_DIR}")
+message("%% DIRS ${DIRS}")
+message("%% PLUGINS:")
+foreach(p ${PLUGINS})
+    message("%%   * ${p}")
+endforeach()
+message("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+
+
+
+file(WRITE "${BUNDLE_DIR}/Contents/Resources/qt.conf" "[Paths]
+Plugins = PlugIns
+Imports = Resources/qml
+Qml2Imports = Resources/qml
+")
+
+
+fixup_bundle("${BUNDLE_DIR}"   "${PLUGINS}"   "${DIRS}")

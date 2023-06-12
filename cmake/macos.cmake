@@ -29,13 +29,3 @@ function(CREATE_PLIST_FILE _IN_FILE _OUT_FILE)
     file(APPEND ${_OUT_FILE} "${comment_tag}\n")
     file(APPEND ${_OUT_FILE} "${genericname_tag}\n")
 endfunction()
-
-
-
-# Homebrew has issues, fix it
-macro(add_homebrew_qt_prefix_path)
-    if (APPLE)
-        file (GLOB dirs /usr/local/Cellar/qt@5/*)
-        list(APPEND CMAKE_PREFIX_PATH ${dirs})
-    endif()
-endmacro()
