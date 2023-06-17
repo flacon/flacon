@@ -29,15 +29,27 @@ jobs:
 
     - name: Set env
       run: |
+        echo "--------------------------------------------"
+        export
+        echo "--------------------------------------------"
+
         echo "RELEASE_DATE=$(date +%Y.%m.%d_%H.%M.%S)" >> ${GITHUB_ENV}
-        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        grep "RELEASE_DATE" ${GITHUB_ENV}
 
-        [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo ARTIFACT_NAME="Flacon-${GITHUB_REF_NAME:1}.app" >> $GITHUB_ENV
-        [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo ARTIFACT_NAME="Flacon-$(date +%Y.%m.%d_%H.%M.%S).app" >> $GITHUB_ENV
+        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> ${GITHUB_ENV}
+        grep "RELEASE_VERSION" ${GITHUB_ENV}
 
-        [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo TAR_NAME="Flacon-${GITHUB_REF_NAME:1}.tar" >> $GITHUB_ENV
-        [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo TAR_NAME="Flacon-$(date +%Y.%m.%d_%H.%M.%S).tar" >> $GITHUB_ENV
+        [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo ARTIFACT_NAME="Flacon-${GITHUB_REF_NAME:1}.app" >> ${GITHUB_ENV}
+        [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo ARTIFACT_NAME="Flacon-$(date +%Y.%m.%d_%H.%M.%S).app" >> ${GITHUB_ENV}
+        grep "ARTIFACT_NAME" ${GITHUB_ENV}
 
+        [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo TAR_NAME="Flacon-${GITHUB_REF_NAME:1}.tar" >> ${GITHUB_ENV}
+        [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo TAR_NAME="Flacon-$(date +%Y.%m.%d_%H.%M.%S).tar" >> ${GITHUB_ENV}
+        grep "TAR_NAME" ${GITHUB_ENV}
+
+        echo "--------------------------------------------"
+        cat ${GITHUB_ENV}
+        echo "--------------------------------------------"
 
     - name: Download arm64
       uses: actions/download-artifact@v3
