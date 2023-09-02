@@ -490,13 +490,13 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
         <extracomment>CUE mode combobox item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Schrijf naar bestand</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
         <extracomment>CUE mode combobox item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Integreer in audio bestanden</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -606,7 +606,7 @@ Dit heeft enkel een invloed op de bestandsgrootte, alle instellingen zijn zonder
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
-        <translation type="unfinished"/>
+        <translation>Gebruik een heuristische definitie van trackartiest</translation>
     </message>
 </context>
 <context>
@@ -743,13 +743,13 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
         <source>Add disc…</source>
         <comment>Main menu item</comment>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Schijf toevoegen...</translation>
     </message>
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
         <extracomment>Toolbar item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Schijf toevoegen</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -801,11 +801,11 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     </message>
     <message>
         <source>Remove disc</source>
-        <translation type="unfinished"/>
+        <translation>Schijf verwijderen</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
-        <translation type="unfinished"/>
+        <translation>Schijf verwijderen van project</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -823,13 +823,13 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
         <source>Add folder…</source>
         <comment>Main menu item</comment>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Folder toevoegen...</translation>
     </message>
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
         <extracomment>Toolbar item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Folder toevoegen</translation>
     </message>
     <message>
         <source>Recursive album search</source>
@@ -950,55 +950,55 @@ Wil u doorgaan?</translation>
     </message>
     <message>
         <source>Get from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Haal van Internet</translation>
     </message>
     <message>
         <source>Get album information from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Haal album informatie van het Internet</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
         <extracomment>context menu</extracomment>
-        <translation type="unfinished"/>
+        <translation>Haal data van het Internet</translation>
     </message>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
         <extracomment>Main window title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Flacon - Converteren</translation>
     </message>
     <message>
         <source>Warnings</source>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Waarschuwingen</translation>
     </message>
     <message>
         <source>Show Warnings</source>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Toon waarschuwingen</translation>
     </message>
     <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Fouten</translation>
     </message>
     <message>
         <source>Show Errors</source>
         <comment>Toolbar item tooltip</comment>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Toon fouten</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>Bronnen verwijderen van succesvol geconverteerde schijven en verwijder van de lijst...</translation>
     </message>
     <message>
         <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Converteren is bezig.&lt;br&gt;Ben je zeker dat je wil afsluiten?</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1010,23 +1010,23 @@ Wil u doorgaan?</translation>
         <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
         <comment>Message box text, %1 is a list of files</comment>
         <extracomment>Message box text, %1 is a list of files</extracomment>
-        <translation type="unfinished"/>
+        <translation>De volgende bestanden worden verplaatst naar de prullenbak.&lt;/b&gt;Verwijder de volgende bestanden?%1</translation>
     </message>
     <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1% voltooid</translation>
     </message>
     <message>
         <source>Trash sources for converted disks and remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>Verwijden bronnen van geconverteerde schijven en verwijder van de lijst...</translation>
     </message>
     <message>
         <source>Some disks have errors, and will be skipped when converting:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Sommige schrijven bevatten fouten en zullen overgeslagen worden bij het converteren:</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot;</source>
@@ -1169,7 +1169,7 @@ Wil u doorgaan?</translation>
     </message>
     <message>
         <source>Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation>Audio profielen</translation>
     </message>
     <message>
         <source>I can&apos;t apply your preferences.</source>
@@ -1263,7 +1263,7 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Resample instellingen</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
@@ -1275,7 +1275,7 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
+        <translation>Instellingen opnieuw afspelen</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1285,11 +1285,11 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
         <extracomment>Preferences dialog tab title</extracomment>
-        <translation type="unfinished"/>
+        <translation>CUE en Cover afbeelding</translation>
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>Kopiëer cover afbeelding</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
@@ -1299,7 +1299,7 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>Integreer cover afbeelding in output bestanden</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1392,7 +1392,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 encoder instellingen:</translation>
     </message>
 </context>
 <context>
