@@ -694,6 +694,7 @@ HistoryComboBox::HistoryComboBox(QWidget *parent) :
 {
     setEditable(true);
     setModel(mModel);
+    this->completer()->setCaseSensitivity(Qt::CaseSensitive);
 
     setInsertPolicy(QComboBox::NoInsert);
     setMaxCount(10);
