@@ -171,13 +171,28 @@ file (GLOB TS_FILES
     translations/flacon*.ts
 )
 
-set(DATA_DIR
-    ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}
-)
+if(NOT DEFINED DATA_DIR)
+    set(DATA_DIR
+        ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}
+    )
+endif()
 
-set(TRANSLATIONS_DIR
-    "${DATA_DIR}/translations"
-)
+if(NOT DEFINED TRANSLATIONS_DIR)
+    set(TRANSLATIONS_DIR
+        "${DATA_DIR}/translations"
+    )
+endif()
+
+if(NOT DEFINED MAN_DIR)
+    set(MAN_DIR
+        ${CMAKE_INSTALL_PREFIX}/share/man/man1
+    )
+endif()
+
+if(NOT DEFINED BIN_DIR)
+    set(BIN_DIR
+         ${CMAKE_INSTALL_PREFIX}/bin)
+endif()
 add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 
 
@@ -335,10 +350,11 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     install(SCRIPT "${CMAKE_BINARY_DIR}/macdelopy.cmake")
 
 else()
-    install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
+    install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${BIN_DIR})
     install(FILES   ${QM_FILES}             DESTINATION ${TRANSLATIONS_DIR})
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION share/man/man1)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz DESTINATION ${MAN_DIR})
 
+if(NOT HAIKU)
     install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.desktop        DESTINATION "share/applications")
     install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/com.github.Flacon.metainfo.xml DESTINATION "share/metainfo")
     install(FILES   images/mainicon/flacon-16x16.png   DESTINATION "share/icons/hicolor/16x16/apps"    RENAME "flacon.png")
@@ -349,6 +365,7 @@ else()
     install(FILES   images/mainicon/flacon-256x256.png DESTINATION "share/icons/hicolor/256x256/apps"  RENAME "flacon.png")
     install(FILES   images/mainicon/flacon-512x512.png DESTINATION "share/icons/hicolor/512x512/apps"  RENAME "flacon.png")
     install(FILES   images/mainicon/flacon.svg         DESTINATION "share/icons/hicolor/scalable/apps" RENAME "flacon.svg")
+endif()
 
 endif()
 
