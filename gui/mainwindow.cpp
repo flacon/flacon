@@ -386,7 +386,7 @@ void MainWindow::setOutProfile()
     if (n > -1) {
         project->selectProfile(outProfileCombo->itemData(n).toString());
     }
-    trackView->model()->layoutChanged();
+    emit trackView->model()->layoutChanged();
 }
 
 /************************************************
@@ -542,7 +542,7 @@ void MainWindow::preferencesDialogDone()
     project->save(Settings::i());
 
     refreshEdits();
-    trackView->model()->layoutChanged();
+    emit trackView->model()->layoutChanged();
 }
 
 /************************************************
@@ -987,7 +987,7 @@ void MainWindow::fillAudioMenu(Disc *disc, QMenu &menu)
     QAction *act;
     if (disc->audioFiles().count() == 1) {
         act = new QAction(tr("Select another audio file…", "context menu"), &menu);
-        connect(act, &QAction::triggered, [this, disc]() { this->setAudioForDisc(disc, 0); });
+        connect(act, &QAction::triggered, this, [this, disc]() { this->setAudioForDisc(disc, 0); });
         menu.addAction(act);
     }
     else {
@@ -1005,7 +1005,7 @@ void MainWindow::fillAudioMenu(Disc *disc, QMenu &menu)
             }
 
             act = new QAction(msg, &menu);
-            connect(act, &QAction::triggered, [this, disc, n]() { this->setAudioForDisc(disc, n); });
+            connect(act, &QAction::triggered, this, [this, disc, n]() { this->setAudioForDisc(disc, n); });
             menu.addAction(act);
 
             n++;
@@ -1035,12 +1035,12 @@ void MainWindow::trackViewMenu(const QPoint &pos)
     fillAudioMenu(disc, menu);
 
     act = new QAction(tr("Select another CUE file…", "context menu"), &menu);
-    connect(act, &QAction::triggered, [this, disc]() { this->setCueForDisc(disc); });
+    connect(act, &QAction::triggered, this, [this, disc]() { this->setCueForDisc(disc); });
     menu.addAction(act);
 
     act = new QAction(tr("Get data from Internet", "context menu"), &menu);
     act->setEnabled(DataProvider::canDownload(*disc));
-    connect(act, &QAction::triggered, [this, disc]() { this->downloadDiscInfo(disc); });
+    connect(act, &QAction::triggered, this, [this, disc]() { this->downloadDiscInfo(disc); });
     menu.addAction(act);
 
     menu.exec(trackView->viewport()->mapToGlobal(pos));
@@ -1083,17 +1083,9 @@ void MainWindow::removeSourceFiles()
         return;
     }
 
-    QMessageBox dialog(this);
-    QString     msg = "<ul><li>" + files.join("</li><li>") + "</li></ul>";
-    dialog.setText(tr("The following files will be moved to the trash.</b>Remove the following files?%1", "Message box text, %1 is a list of files").arg(msg));
-    dialog.setTextFormat(Qt::RichText);
-    dialog.setIconPixmap(QPixmap(":/64/mainicon"));
-
-    dialog.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
-    dialog.setDefaultButton(QMessageBox::No);
-
-    dialog.setWindowModality(Qt::WindowModal);
-
+    QuestionBox dialog(this);
+    dialog.setText(tr("<b>The following files will be moved to the trash. Remove the following files?</b>", "Message box text"));
+    dialog.setDescription("<ul><li>" + files.join("</li><li>") + "</li></ul>");
     if (dialog.exec() != QMessageBox::Yes) {
         return;
     }
@@ -1362,10 +1354,10 @@ static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringLi
 void MainWindow::showWarnings()
 {
     const Validator &validator = project->validator();
-    QStringList      html;
 
-    html << "Some disks have warnings:";
-    html << "<br>";
+    QString text = tr("Some disks have warnings:", "Error message title");
+
+    QStringList html;
 
     int n = 0;
     for (const Disk *d : project->disks()) {
@@ -1376,7 +1368,10 @@ void MainWindow::showWarnings()
         }
     }
 
-    MessageBox::warning(this, QObject::tr("Flacon", "Error"), html.join(""));
+    WarningBox dialog = WarningBox(this);
+    dialog.setText(text);
+    dialog.setDescription(html.join(""));
+    dialog.exec();
 }
 
 /************************************************
@@ -1385,10 +1380,10 @@ void MainWindow::showWarnings()
 void MainWindow::showErrors()
 {
     const Validator &validator = project->validator();
-    QStringList      html;
 
-    html << tr("Some disks have errors, and will be skipped when converting:", "Error message title");
-    html << "<br>";
+    QString text = tr("Some disks have errors, and will be skipped when converting:", "Error message title");
+
+    QStringList html;
 
     int n = 0;
     for (const Disk *d : project->disks()) {
@@ -1399,7 +1394,10 @@ void MainWindow::showErrors()
         }
     }
 
-    MessageBox::critical(this, QObject::tr("Flacon", "Error"), html.join(""));
+    CriticalBox dialog = CriticalBox(this);
+    dialog.setText(text);
+    dialog.setDescription(html.join(""));
+    dialog.exec();
 }
 
 /************************************************

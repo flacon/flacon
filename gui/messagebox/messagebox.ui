@@ -6,29 +6,38 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>766</width>
-    <height>214</height>
+    <width>400</width>
+    <height>160</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>160</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string notr="true">Dialog</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>16</number>
+   </property>
    <property name="leftMargin">
-    <number>25</number>
+    <number>20</number>
    </property>
    <property name="rightMargin">
-    <number>25</number>
+    <number>20</number>
    </property>
    <property name="bottomMargin">
-    <number>28</number>
+    <number>20</number>
    </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="iconLabel">
        <property name="text">
-        <string notr="true">TextLabel</string>
+        <string notr="true">Icon</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -36,17 +45,34 @@
       </widget>
      </item>
      <item>
-      <widget class="QTextBrowser" name="textBrowser">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>1</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>10</number>
        </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+       <property name="leftMargin">
+        <number>0</number>
        </property>
-      </widget>
+       <item>
+        <widget class="QLabel" name="textLabel">
+         <property name="text">
+          <string notr="true">Text</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextBrowser" name="textBrowser">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>

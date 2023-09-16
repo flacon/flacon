@@ -28,6 +28,7 @@
 
 #include <QDialog>
 #include <QMessageBox>
+#include <QTextBrowser>
 
 namespace Ui {
 class MessageBox;
@@ -43,36 +44,50 @@ public:
     using StandardButtons = QMessageBox::StandardButtons;
 
     explicit MessageBox(QWidget *parent = nullptr);
-    MessageBox(Icon icon, const QString &title, const QString &text,
-               StandardButtons buttons = StandardButton::NoButton, QWidget *parent = nullptr,
-               Qt::WindowFlags flags = Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
     ~MessageBox();
 
     QString text() const;
     void    setText(const QString &text);
 
+    QString description() const;
+    void    setDescription(const QString &value);
+
     QString css() const;
     void    setCss(const QString &css);
 
-    Icon icon() const { return mIcon; }
-    void setIcon(Icon icon);
+    QLabel       *textLabel() const;
+    QTextBrowser *descriptionBrowser() const;
 
-    static StandardButton warning(QWidget *parent, const QString &title, const QString &text,
-                                  StandardButtons buttons = StandardButton::Ok, StandardButton defaultButton = StandardButton::NoButton);
+    StandardButtons standardButtons() const;
+    void            setStandardButtons(StandardButtons buttons);
 
-    static StandardButton critical(QWidget *parent, const QString &title, const QString &text,
-                                   StandardButtons buttons = StandardButton::Ok, StandardButton defaultButton = StandardButton::NoButton);
+    QSize sizeHint() const override;
 
 protected:
     void showEvent(QShowEvent *event) override;
 
+    void setIcon(const QPixmap &icon);
+
 private:
     Ui::MessageBox *ui;
+};
 
-    Icon mIcon = Icon::NoIcon;
+class WarningBox : public MessageBox
+{
+public:
+    explicit WarningBox(QWidget *parent = nullptr);
+};
 
-    static StandardButton doOpen(QWidget *parent, Icon icon, const QString &title, const QString &text,
-                                 StandardButtons buttons = StandardButton::Ok, StandardButton defaultButton = StandardButton::NoButton);
+class CriticalBox : public MessageBox
+{
+public:
+    explicit CriticalBox(QWidget *parent = nullptr);
+};
+
+class QuestionBox : public MessageBox
+{
+public:
+    explicit QuestionBox(QWidget *parent = nullptr);
 };
 
 #endif // MESSAGEBOX_H
