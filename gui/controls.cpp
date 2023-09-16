@@ -719,9 +719,11 @@ QStringList HistoryComboBox::history() const
  ************************************************/
 void HistoryComboBox::setHistory(const QStringList &value)
 {
-    mModel->blockSignals(true);
-    mModel->setStringList(value);
-    mModel->blockSignals(false);
+    QStringList hist = value;
+    if (!hist.contains(this->currentText())) {
+        hist.insert(0, currentText());
+    }
+    mModel->setStringList(hist);
 }
 
 /************************************************
