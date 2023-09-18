@@ -47,8 +47,10 @@ public:
     QString readCurrentProfileId() const;
     void    writeCurrentProfileId(const QString &profileId);
 
+#if !BUNDLED_PROGRAMS
     void readExtPrograms() const;
     void writeExtPrograms();
+#endif
 
     QString defaultCodepage() const;
     void    setDefaultCodepage(const QString &value);

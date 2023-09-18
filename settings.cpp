@@ -330,6 +330,7 @@ void Settings::writeCurrentProfileId(const QString &profileId)
     setValue(CURRENT_PROFILE_ID, profileId);
 }
 
+#if !BUNDLED_PROGRAMS
 /************************************************
  *
  ************************************************/
@@ -357,6 +358,7 @@ void Settings::writeExtPrograms()
         setValue(key, p->path());
     }
 }
+#endif
 
 /************************************************
  *
