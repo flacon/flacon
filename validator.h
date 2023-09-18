@@ -84,7 +84,6 @@ private:
     bool validateAudioFiles(const Disk *disk, QStringList &errors, QStringList &warnings);
     bool validateResultFiles(const Disk *disk, QStringList &errors, QStringList &warnings);
     bool validateDuplicateSourceFiles(const Disk *disk, QStringList &errors, QStringList &warnings) const;
-    bool validateRasampler(const Disk *disk, QStringList &errors, QStringList &warnings);
     bool vaslidateDiskWarnings(const Disk *disk, QStringList &warnings);
 };
 

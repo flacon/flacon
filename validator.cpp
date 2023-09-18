@@ -223,12 +223,13 @@ bool Validator::validateProfile()
     }
 
     QStringList errs;
-    if (!mProfile->outFormat()->check(*mProfile, &errs)) {
-        mGlobalErrors << errs;
-        return false;
-    }
 
-    return true;
+    ExtProgram::sox()->check(&errs);
+    mProfile->outFormat()->check(*mProfile, &errs);
+
+    mGlobalErrors << errs;
+
+    return errs.isEmpty();
 }
 
 /************************************************
@@ -247,8 +248,6 @@ void Validator::revalidateDisk(const Disk *disk, QStringList &errors, QStringLis
     ok = validateDuplicateSourceFiles(disk, errors, warnings) && ok;
 
     mResultFilesOverwrite = mResultFilesOverwrite || !ok;
-
-    validateRasampler(disk, errors, warnings);
 
     vaslidateDiskWarnings(disk, warnings);
 }
@@ -422,50 +421,6 @@ bool Validator::validateDuplicateSourceFiles(const Disk *disk, QStringList &erro
     }
 
     return true;
-}
-
-/************************************************
- *
- ************************************************/
-static bool needSox(const Profile *profile, const Disk *disk)
-{
-    if (profile->bitsPerSample() != BitsPerSample::AsSourcee || profile->sampleRate() != SampleRate::AsSource) {
-        return true;
-    }
-
-    for (const InputAudioFile &audio : disk->audioFiles()) {
-        int bps = calcQuality(audio.bitsPerSample(), profile->bitsPerSample(), profile->outFormat()->maxBitPerSample());
-        if (bps != audio.bitsPerSample()) {
-            return true;
-        }
-
-        int rate = calcQuality(audio.sampleRate(), profile->sampleRate(), profile->outFormat()->maxSampleRate());
-        if (rate != audio.sampleRate()) {
-            return true;
-        }
-    }
-
-    for (const Track *track : disk->tracks()) {
-        if (track->preEmphased()) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-/************************************************
- *
- ************************************************/
-bool Validator::validateRasampler(const Disk *disk, QStringList &errors, QStringList &warnings)
-{
-    Q_UNUSED(warnings)
-
-    if (!needSox(mProfile, disk)) {
-        return true;
-    }
-
-    return ExtProgram::sox()->check(&errors);
 }
 
 /************************************************
