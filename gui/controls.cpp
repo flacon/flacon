@@ -230,6 +230,7 @@ void OutPatternButton::patternTriggered()
         return;
 
     edit->insert(text);
+    emit edit->textEdited(text);
     emit edit->editingFinished();
 }
 
@@ -250,6 +251,7 @@ void OutPatternButton::fullPatternTriggered()
         return;
 
     edit->setText(text);
+    emit edit->textEdited(text);
     emit edit->editingFinished();
 }
 
@@ -704,6 +706,12 @@ HistoryComboBox::HistoryComboBox(QWidget *parent) :
 
     connect(&mDeleteItemAct, &QAction::triggered,
             this, &HistoryComboBox::deleteItem);
+
+    connect(this, qOverload<int>(&HistoryComboBox::activated), this, [this]() {
+        if (this->lineEdit()) {
+            emit lineEdit()->textEdited(this->lineEdit()->text());
+        }
+    });
 }
 
 /************************************************
