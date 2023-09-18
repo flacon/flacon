@@ -720,9 +720,12 @@ QStringList HistoryComboBox::history() const
 void HistoryComboBox::setHistory(const QStringList &value)
 {
     QStringList hist = value;
-    if (!hist.contains(this->currentText())) {
+    hist.removeAll("");
+
+    if (!currentText().isEmpty() && !hist.contains(this->currentText())) {
         hist.insert(0, currentText());
     }
+
     mModel->setStringList(hist);
 }
 

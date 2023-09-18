@@ -158,8 +158,8 @@ MainWindow::MainWindow(QWidget *parent) :
     outPatternButton->menu()->addAction(outPatternEdit->deleteItemAction());
 
     // Signals .................................................
-    connect(outDirEdit->lineEdit(), &QLineEdit::textChanged, this, &MainWindow::setOutDir);
-    connect(outPatternEdit->lineEdit(), &QLineEdit::textChanged, this, &MainWindow::setPattern);
+    connect(outDirEdit->lineEdit(), &QLineEdit::textEdited, this, &MainWindow::setOutDir);
+    connect(outPatternEdit->lineEdit(), &QLineEdit::textEdited, this, &MainWindow::setPattern);
 
     connect(outProfileCombo, qOverload<int>(&QComboBox::currentIndexChanged),
             this, &MainWindow::setOutProfile);
@@ -195,11 +195,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     Icon::setDarkMode(Application::instance()->isDarkVisualMode());
 
+    loadSettings();
+
     refreshEdits();
     setControlsEnable();
     polishView();
-
-    loadSettings();
 }
 
 /************************************************
