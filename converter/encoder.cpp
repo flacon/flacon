@@ -123,14 +123,14 @@ QProcess *Encoder::createDemph(const QString &outFile)
         return nullptr;
     }
 
+    ExtProgram *prog = ExtProgram::sox();
     QStringList args = deemphasisArgs(outFile);
-    QString     prog = args.takeFirst();
 
-    qCDebug(LOG) << "Start deEmphasis:" << debugProgramArgs(prog, args);
+    qCDebug(LOG) << "Start deEmphasis:" << debugProgramArgs(prog->path(), args);
 
     QProcess *res = new ExtProcess();
     res->setObjectName("deemphasis");
-    res->setProgram(prog);
+    res->setProgram(prog->path());
     res->setArguments(args);
     return res;
 }
