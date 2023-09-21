@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Comment[tr]=Ses izlerini bir ses CD görüntüsünden çıkararak ayırır.
-GenericName[tr]=Ses Dosyası Kodlayıcısı
-Name[tr]=Flacon
 Icon[tr]=flacon
+Name[tr]=Flacon
+GenericName[tr]=Ses Dosyası Kodlayıcısı
+Comment[tr]=Ses izlerini bir ses CD görüntüsünden çıkararak ayırır.

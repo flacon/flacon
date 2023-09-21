@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Comment[lt]=Išskleidžia garso takelius iš CD atvaizdžio į atskirus takelius.
-GenericName[lt]=Garso failų koduotuvas
-Name[lt]=Flacon
 Icon[lt]=flacon
+Name[lt]=Flacon
+GenericName[lt]=Garso failų koduotuvas
+Comment[lt]=Išskleidžia garso takelius iš CD atvaizdžio į atskirus takelius.

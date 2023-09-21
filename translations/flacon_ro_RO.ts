@@ -311,31 +311,10 @@
       &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
 
       &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-      </source>
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation>&lt;dt&gt;VBR medie&lt;/dt&gt;
-      &lt;dd&gt;Rata de biți medie variabilă (VBR) ar trebui să fie suficientă pentru majoritatea oamenilor și majoritatea fișierelor audio.&lt;/dd&gt;
-
-      &lt;dt&gt;VBR standard&lt;/dt&gt;
-      &lt;dd&gt;Rata de biți standard variabilă (VBR) ar trebui să fie suficientă pentru majoritatea oamenilor și majoritatea fișierelor audio. Calitatea ei este destul de bună.&lt;/dd&gt;
-
-      &lt;dt&gt;VBR extremă&lt;/dt&gt;
-      &lt;dd&gt;Rata de biți (VBR)extremă oferă o calitate puțin mai bună decât cea standard, potrivită pentru echipament mai bun sau profesional.&lt;/dd&gt;
-
-      &lt;dt&gt;VBR calitate&lt;/dt&gt;
-      &lt;dd&gt;Puteți seta aici calitatea ratei de biți variabile (VBR).&lt;/dd&gt;
-
-      &lt;dt&gt;CBR extremă&lt;/dt&gt;
-      &lt;dd&gt;Dacă vreți neapărat cea mai bună calitate indiferent de mărimea fișierului rezultat, folosiți această setare CBR (rată de biți constantă)&lt;/dd&gt;
-
-      &lt;dt&gt;CBR kbps&lt;/dt&gt;
-      &lt;dd&gt;Această setare pentru rata constantă de biți (CBR) vă oferă o calitate bună la rata de biși specificată.&lt;/dd&gt;
-
-      &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Această setare a ratei medii de biți (ABR) vă oferă o calitate mai bună decât rata de biți constantă (CBR).&lt;/dd&gt;
-      </translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1027,12 +1006,6 @@ Vreți să continuați?</translation>
         <translation>Ieșire</translation>
     </message>
     <message>
-        <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
-        <comment>Message box text, %1 is a list of files</comment>
-        <extracomment>Message box text, %1 is a list of files</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
@@ -1058,6 +1031,18 @@ Vreți să continuați?</translation>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The following files will be moved to the trash. Remove the following files?</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have warnings:</source>
+        <comment>Error message title</comment>
+        <extracomment>Error message title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>

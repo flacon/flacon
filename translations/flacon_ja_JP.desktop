@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Comment[ja_JP]=オーディオCDイメージから分割トラックに展開します。
-GenericName[ja_JP]=オーディオファイルエンコーダー
-Name[ja_JP]=Flacon
 Icon[ja_JP]=flacon
+Name[ja_JP]=Flacon
+GenericName[ja_JP]=オーディオファイルエンコーダー
+Comment[ja_JP]=オーディオCDイメージから分割トラックに展開します。

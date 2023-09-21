@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Comment[hu]=Kibontja egy CD-képfájlból az audio-sávokat különálló sávokra
-GenericName[hu]=Audio-fájl átalakító
-Name[hu]=Flacon
 Icon[hu]=flacon
+Name[hu]=Flacon
+GenericName[hu]=Audio-fájl átalakító
+Comment[hu]=Kibontja egy CD-képfájlból az audio-sávokat különálló sávokra

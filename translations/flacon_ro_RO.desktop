@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Comment[ro_RO]=Extrage piste audio separate de pe un CD audio 
-GenericName[ro_RO]=Utilitar codare audio
-Name[ro_RO]=Flacon
 Icon[ro_RO]=flacon
+Name[ro_RO]=Flacon
+GenericName[ro_RO]=Utilitar codare audio
+Comment[ro_RO]=Extrage piste audio separate de pe un CD audio 

@@ -311,31 +311,10 @@
       &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
 
       &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-      </source>
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
-      &lt;dd&gt;При використанні режиму з середнім змінним бітрейтом, більшість людей не почують спотворень на більшості музики..&lt;/dd&gt;
-
-      &lt;dt&gt;VBR standard&lt;/dt&gt;
-      &lt;dd&gt;При використанні режиму зі стандартним змінним бітрейтом, більшість людей не почують спотворень на більшості музики. Цей режим забезпечує досить високу якість.&lt;/dd&gt;
-
-      &lt;dt&gt;VBR extreme&lt;/dt&gt;
-      &lt;dd&gt;Цей режим дає вищу якість ніж VBR standard. Ви помітите це, якщо у вас вельми чудовий слух, або обладнання високого класу.&lt;/dd&gt;
-
-      &lt;dt&gt;VBR quality&lt;/dt&gt;
-      &lt;dd&gt;У цьому режимі Вы можете самі вказати якість звуку, при цьому використовується змінний бітрейт.&lt;/dd&gt;
-
-      &lt;dt&gt;CBR insane&lt;/dt&gt;
-      &lt;dd&gt;Якщо Ви волієте отримати найвищу якість звуку, а розмір файлу неважливий, використовуйте цей режим з постійним бітрейтом.&lt;/dd&gt;
-
-      &lt;dt&gt;CBR kbps&lt;/dt&gt;
-      &lt;dd&gt;Використання цього режиму з постійним бітрейтом, дасть хорошу якість при фіксованому бітейті.&lt;/dd&gt;
-
-      &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Зазвичай, цей режим з усередненим бітрейтом дає кращу якість ніж режими з постійним бітрейтом.&lt;/dd&gt;
-      </translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1031,12 +1010,6 @@ Do you want to continue?</source>
         <translation>Вийти</translation>
     </message>
     <message>
-        <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
-        <comment>Message box text, %1 is a list of files</comment>
-        <extracomment>Message box text, %1 is a list of files</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
@@ -1062,6 +1035,18 @@ Do you want to continue?</source>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The following files will be moved to the trash. Remove the following files?</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have warnings:</source>
+        <comment>Error message title</comment>
+        <extracomment>Error message title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>

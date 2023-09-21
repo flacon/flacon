@@ -311,8 +311,7 @@
       &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
 
       &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-      </source>
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
         <translation type="unfinished"/>
@@ -1001,12 +1000,6 @@ Do you want to continue?</source>
         <translation>Surt</translation>
     </message>
     <message>
-        <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
-        <comment>Message box text, %1 is a list of files</comment>
-        <extracomment>Message box text, %1 is a list of files</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
@@ -1032,6 +1025,18 @@ Do you want to continue?</source>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The following files will be moved to the trash. Remove the following files?</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have warnings:</source>
+        <comment>Error message title</comment>
+        <extracomment>Error message title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>

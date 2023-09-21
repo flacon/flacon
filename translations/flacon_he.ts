@@ -311,30 +311,10 @@
       &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
 
       &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-      </source>
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation>&lt;dt&gt;VBR בינוני&lt;/dt&gt;
-&lt;dd&gt;קצב סיביות משתנה בינוני, הגדרה קבועה מראש זו, אמורה לספק שקיפות למירב המשתמשים ומירב המוזיקה.&lt;/dd&gt;
-
-&lt;dt&gt;VBR סטנדרטי, VBR סטנדרטי מהיר&lt;/dt&gt;
-&lt;dd&gt;קצב סיביות סטנדרטי משתנה, הגדרה קבועה מראש זו, לרבו יהיה שקוף למירב המשתמשים ולמירב המוזיקה, הגדרה זו תספק מוזיקה באיכות גבוהה למדי.&lt;/dd&gt;
-
-&lt;dt&gt;VBR קיצוני, VBR קיצוני מהיר &lt;/dt&gt;
-&lt;dd&gt;קצב סיביות משתנה מירבי, הגדרה קבוע מראש זו תספק מוזיקה באיכות מעט גבוהה יותר מאשר במצב רגיל, זאת בתלות בשמיעה מעולה וציוד שמע באיכות גבוהה.&lt;/dd&gt;
-
-&lt;/dt&gt;איכות VBR&lt;/dt&gt;
-&lt;dd&gt;אפשרות קצב סיביות משתנה זו מאפשרת לקבוע את איכות הפלט.&lt;/dd&gt;
-
-&lt;dt&gt;CBR מטורף&lt;/dt&gt;
-&lt;dd&gt;קצב סיביות קבוע, מאפשר מוזיקה באיכות הגבוהה ביותר ללא התחשבות בגודל הקובץ.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;קצב סיות קבוע, יספק בדרך כלל איכות טובה בבקצב סיביות מוגדר.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;קצב סיביות ממוצע, הגדרה קבועה מראש זו תספק בדרך כלל איכות מוזיקה גבוהה יותר מאשר האפשרות של קצב סיביות קבוע, עבור קצב סיביות מוגדר.&lt;/dd&gt;</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1033,12 +1013,6 @@ Do you want to continue?</source>
         <translation>יציאה</translation>
     </message>
     <message>
-        <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
-        <comment>Message box text, %1 is a list of files</comment>
-        <extracomment>Message box text, %1 is a list of files</extracomment>
-        <translation>הקבצים הבאים יועברו לסל המחזור. &lt;/b&gt;האם להסיר את הקבצים הבאים? %1</translation>
-    </message>
-    <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
@@ -1064,6 +1038,18 @@ Do you want to continue?</source>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The following files will be moved to the trash. Remove the following files?</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have warnings:</source>
+        <comment>Error message title</comment>
+        <extracomment>Error message title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>

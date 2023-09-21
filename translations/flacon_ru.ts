@@ -311,8 +311,7 @@
       &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
 
       &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-      </source>
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
         <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
@@ -484,7 +483,7 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source> px</source>
-        <translation>px</translation>
+        <translation> px</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
@@ -654,7 +653,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <extracomment>Main form tooltip for &quot;Directory&quot; edit</extracomment>
         <translation>Вы можете выбрать директорию для выходных файлов, или указать ее руками.
 
-Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники. </translation>
+Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники.</translation>
     </message>
     <message>
         <source>Pattern:</source>
@@ -883,11 +882,11 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Remove current directory from history</source>
-        <translation>Удалить текущий шаблон из истории.</translation>
+        <translation>Удалить текущий шаблон из истории</translation>
     </message>
     <message>
         <source>Delete current pattern from history</source>
-        <translation>Удалить текущий шаблон из истории.</translation>
+        <translation>Удалить текущий шаблон из истории</translation>
     </message>
     <message>
         <source>Select CUE file</source>
@@ -899,7 +898,7 @@ If you surround sections of text that contain a token with braces, these section
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
         <translation>Некоторые альбомы не будут обработаны, потому что содержат ошибки.
-Хотите продолжить? </translation>
+Хотите продолжить?</translation>
     </message>
     <message>
         <source>%1 files</source>
@@ -1030,16 +1029,10 @@ Do you want to continue?</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
-        <comment>Message box text, %1 is a list of files</comment>
-        <extracomment>Message box text, %1 is a list of files</extracomment>
-        <translation>Следующие файлы будут перемещены в корзину.&lt;/b&gt; Удалить следующие файлы?%1</translation>
-    </message>
-    <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
-        <translation>%1% готово </translation>
+        <translation>%1% готово</translation>
     </message>
     <message>
         <source>Trash sources for converted disks and remove from list…</source>
@@ -1062,6 +1055,18 @@ Do you want to continue?</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
         <translation>Диск %1</translation>
+    </message>
+    <message>
+        <source>The following files will be moved to the trash. Remove the following files?</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation>Следующие файлы будут перемещены в корзину. Удалить следующие файлы?</translation>
+    </message>
+    <message>
+        <source>Some disks have warnings:</source>
+        <comment>Error message title</comment>
+        <extracomment>Error message title</extracomment>
+        <translation>Есть предупреждения для некоторых дисков:</translation>
     </message>
 </context>
 <context>
@@ -1237,7 +1242,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         <extracomment>Preferences form tooltip for &quot;Directory&quot; edit</extracomment>
         <translation>Вы можете выбрать директорию для выходных файлов, или указать ее руками.
 
-Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники. </translation>
+Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники.</translation>
     </message>
     <message>
         <source>Pattern:</source>
@@ -1505,7 +1510,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-        <translation>Файл &lt;b&gt;%1&lt;/b&gt; не существует.</translation>
+        <translation>Файл &lt;b&gt;%1&lt;/b&gt; не существует</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1545,7 +1550,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
-        <translation>Не получается записать CUE: &lt;br&gt; %1 </translation>
+        <translation>Не получается записать CUE: &lt;br&gt; %1</translation>
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
@@ -1561,7 +1566,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>file name is empty</source>
         <comment>error message text</comment>
         <extracomment>error message text</extracomment>
-        <translation>пустое имя файла </translation>
+        <translation>пустое имя файла</translation>
     </message>
 </context>
 <context>

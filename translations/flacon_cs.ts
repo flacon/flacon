@@ -311,33 +311,10 @@
       &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
 
       &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-      </source>
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation>&lt;dt&gt;Proměnlivý datový tok (VBR) Střední&lt;/dt&gt;
-&lt;dd&gt;Při použití středního proměnlivého datového toku by toto přednastavení mělo většině lidí u většiny hudby poskytnout téměř průzračnost.&lt;/dd&gt;
-
-&lt;dt&gt;Proměnlivý datový tok (VBR), obvyklý, Proměnlivý datový tok (VBR), obvyklý, rychle&lt;/dt&gt;
-&lt;dd&gt;Při použití obvyklého proměnlivého datového toku by toto přednastavení mělo obecně pro většinu lidí u většiny hudby být průzračné a jakost záznamu je již docela vysoká.&lt;/dd&gt;
-
-&lt;dt&gt;Proměnlivý datový tok (VBR), dokonalý, Proměnlivý datový tok (VBR), dokonalý, rychle&lt;/dt&gt;
-&lt;dd&gt;Pokud máte hodně dobrý sluch nebo  velice dobré zařízení, toto přednastavení vám poskytne lehce vyšší jakost, než jakou obdržíte při režimu běžné kvality.&lt;/dd&gt;
-
-&lt;dt&gt;Proměnlivý datový tok (VBR), jakost&lt;/dt&gt;
-&lt;dd&gt;Tato volba pro proměnlivý datový tok (VBR) vám umožní zadat jakost výstupu.&lt;/dd&gt;
-
-&lt;dt&gt;Rychlá volba&lt;/dt&gt;
-&lt;dd&gt;Povolí nový rychlý proměnlivý datový tok (VBR) pro zvláštní profil. Toto se doporučuje.&lt;/dd&gt;
-
-&lt;dt&gt;Stálý datový tok (CBR), zázračný&lt;/dt&gt;
-&lt;dd&gt;Pokud musíte mít naprosto nejvyšší kvalitu bez ohledu na velikost souboru, dosáhnete toho použitím tohoto stálého datového toku.&lt;/dd&gt;
-
-&lt;dt&gt;Kb/s stálého datového toku (CBR )&lt;/dt&gt;
-&lt;dd&gt;Použití tohoto přednastavení pro stálý datový tok vám obvykle dá dobrou kvalitu při zadaném datovém toku.&lt;/dd&gt;
-
-&lt;dt&gt;Kb/s průměrného datového toku (ABR )&lt;/dt&gt;
-&lt;dd&gt;Použití tohoto přednastavení pro průměrný datový tok vám obvykle dá vyšší kvalitu, než jakou vám dá volba pro stálý datový tok pro zadaný datový tok.&lt;/dd&gt;</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -428,8 +405,8 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation>Nelze přejmenovat soubor:⏎
-%1 na %2⏎
+        <translation>Nelze přejmenovat soubor:
+%1 na %2
 %3</translation>
     </message>
 </context>
@@ -445,8 +422,8 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation>Nelze přejmenovat soubor:⏎
-%1 na %2⏎
+        <translation>Nelze přejmenovat soubor:
+%1 na %2
 %3</translation>
     </message>
     <message>
@@ -1032,12 +1009,6 @@ Chcete pokračovat?</translation>
         <translation>Ukončit</translation>
     </message>
     <message>
-        <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
-        <comment>Message box text, %1 is a list of files</comment>
-        <extracomment>Message box text, %1 is a list of files</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
@@ -1063,6 +1034,18 @@ Chcete pokračovat?</translation>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The following files will be moved to the trash. Remove the following files?</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have warnings:</source>
+        <comment>Error message title</comment>
+        <extracomment>Error message title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1310,7 +1293,7 @@ If you surround sections of text that contain a token with braces, these section
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
         <extracomment>Preferences dialog tab title</extracomment>
-        <translation type="unfinished"/>
+        <translation>CUE a obrázek obalu</translation>
     </message>
     <message>
         <source>Copy cover image</source>
@@ -1547,11 +1530,11 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
-        <translation type="unfinished"/>
+        <translation>Nelze zapsat CUE:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
-        <translation type="unfinished"/>
+        <translation>Soubor neobsahuje platná data CUE.</translation>
     </message>
     <message>
         <source>Embedded on %1</source>
@@ -1880,7 +1863,7 @@ The ReplayGain will be disabled for this disk.</source>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>Disk %1 &quot;%2 - %3&quot; používá stejný soubor CUE.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>

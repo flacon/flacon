@@ -311,31 +311,10 @@
       &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
 
       &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-      </source>
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation>&lt;dt&gt;VBR médio&lt;/dt&gt;
-      &lt;dd&gt;Essa pré-configuração deve fornecer boa clareza para a maioria das pessoas e das músicas.&lt;/dd&gt;
-
-      &lt;dt&gt;VBR padrão&lt;/dt&gt;
-      &lt;dd&gt;Essa pré-configuração deve fornecer boa clareza para a maioria das pessoas e das músicas e já possui alta qualidade.&lt;/dd&gt;
-
-      &lt;dt&gt;VBR extremo&lt;/dt&gt;
-      &lt;dd&gt;Essa pré-configuração fornece uma qualidade um pouco maior que o modo padrão caso você possua uma audição muito boa ou um equipamento de áudio de qualidade.&lt;/dd&gt;
-
-      &lt;dt&gt;Qualidade da VBR&lt;/dt&gt;
-      &lt;dd&gt;Essa opção lhe permite especificar a qualidade de saída.&lt;/dd&gt;
-
-      &lt;dt&gt;CBR insano&lt;/dt&gt;
-      &lt;dd&gt;Se você precisa ter a maior qualidade possível independentemente do tamanho do arquivo, você terá isso usando a Taxa de Bits Constante.&lt;/dd&gt;
-
-      &lt;dt&gt;CBR kbps&lt;/dt&gt;
-      &lt;dd&gt;Essa pré-configuração geralmente lhe fornecerá uma boa qualidade usando a taxa de bits especificada.&lt;/dd&gt;
-
-      &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Essa pré-configuração geralmente lhe fornecerá uma qualidade mais alta que a opção CBR usando a taxa de bits especificada.&lt;/dd&gt;
-      </translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1031,12 +1010,6 @@ Você deseja continuar?</translation>
         <translation>Sair</translation>
     </message>
     <message>
-        <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
-        <comment>Message box text, %1 is a list of files</comment>
-        <extracomment>Message box text, %1 is a list of files</extracomment>
-        <translation>Os seguintes arquivos serão enviados à lixeira.&lt;/b&gt;Remover esses arquivos?%1</translation>
-    </message>
-    <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
@@ -1063,6 +1036,18 @@ Você deseja continuar?</translation>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
         <translation>Disco %1</translation>
+    </message>
+    <message>
+        <source>The following files will be moved to the trash. Remove the following files?</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have warnings:</source>
+        <comment>Error message title</comment>
+        <extracomment>Error message title</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

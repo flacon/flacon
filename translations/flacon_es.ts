@@ -311,30 +311,10 @@
       &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
 
       &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-      </source>
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
-&lt;dd&gt;Usando un Bitrate Variable medio, este preajuste debe ser casi transparente para la mayoría de gente y la mayoría de música.&lt;/dd&gt;
-
-&lt;dt&gt;VBR estándar&lt;/dt&gt;
-&lt;dd&gt;Usando un Bitrate Variable estándar, este preajuste debería se transparente para la mayoría de la música y es ya un nivel alto de calidad.&lt;/dd&gt;
-
-&lt;dt&gt;VBR extremo&lt;/dt&gt;
-&lt;dd&gt;Usando el Bitrate Variable más alto, este preajuste ofrece algo más de calidad si usted tiene muy buen oído o un equipo de audio de gama alta.&lt;/dd&gt;
-
-&lt;dt&gt;Calidad VBR&lt;/dt&gt;
-&lt;dd&gt;Este valor le permite establecer la calidad de salida.&lt;/dd&gt;
-
-&lt;dt&gt;CBR máximo&lt;/dt&gt;
-&lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando este Bitrate Constante.&lt;/dd&gt;
-
-&lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Usando este Bitrate Constante, el preajuste le dará una buena calidad al bitrate especificado.&lt;/dd&gt;
-
-&lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Usando este Bitrate Promedio, este preajuste le dará una calidad más alta que el Bitrate Constante para un bitrate específico.&lt;/dd&gt;</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1030,12 +1010,6 @@ Do you want to continue?</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
-        <comment>Message box text, %1 is a list of files</comment>
-        <extracomment>Message box text, %1 is a list of files</extracomment>
-        <translation>Los siguiente archivos serán movidos a la papelera.&lt;/b&gt;¿Eliminar los siguientes archivos?%1</translation>
-    </message>
-    <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
@@ -1062,6 +1036,18 @@ Do you want to continue?</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
         <translation>Disco %1</translation>
+    </message>
+    <message>
+        <source>The following files will be moved to the trash. Remove the following files?</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have warnings:</source>
+        <comment>Error message title</comment>
+        <extracomment>Error message title</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

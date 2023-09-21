@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Comment[zh_CN]=从 CD 镜像提取单独曲目。
-GenericName[zh_CN]=音频文件编码器
-Name[zh_CN]=Flacon
 Icon[zh_CN]=flacon
+Name[zh_CN]=Flacon
+GenericName[zh_CN]=音频文件编码器
+Comment[zh_CN]=从 CD 镜像提取单独曲目。

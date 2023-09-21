@@ -311,31 +311,10 @@
       &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
 
       &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;
-      </source>
+      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation>&lt;dt&gt;VBR vidutinė&lt;/dt&gt;
-      &lt;dd&gt;Naudojant vidutinį kintamąjį pralaidumą, daugelis žmonių neišgirs kokybės iškraipymų daugumoje muzikos įrašų.&lt;/dd&gt;
-
-      &lt;dt&gt;VBR standartinė&lt;/dt&gt;
-      &lt;dd&gt;Naudojant standartinį kintamąjį pralaidumą, daugelis žmonių neišgirs kokybės iškraipymų daugumoje muzikos įrašų ir be to, yra pateikiama ganėtinai aukšta kokybė.&lt;/dd&gt;
-
-      &lt;dt&gt;VBR ekstremali&lt;/dt&gt;
-      &lt;dd&gt;Naudojant aukščiausią įmanomą kintamąjį pralaidumą, ši parinktis pateiks šiek tiek aukštesnę kokybę nei standartinė veiksena. Tai pastebėsite tik tuo atveju, jei turite gerą klausą ar aukštos klasės muzikinę įrangą.&lt;/dd&gt;
-
-      &lt;dt&gt;VBR kokybė&lt;/dt&gt;
-      &lt;dd&gt;Ši kintamojo pralaidumo parinktis leidžia jums nurodyti išvesties kokybę.&lt;/dd&gt;
-
-      &lt;dt&gt;CBR beprotiška&lt;/dt&gt;
-      &lt;dd&gt;Jeigu jūs privalote turėti pačią aukščiausią kokybę, neatsižvelgiant į failo dydį, to pasieksite, naudodami šį pastovųjį pralaidumą.&lt;/dd&gt;
-
-      &lt;dt&gt;CBR kbps&lt;/dt&gt;
-      &lt;dd&gt;Naudojant šį pastovųjį pralaidumą, įprastai gausite gerą kokybę su nurodytu pralaidumu.&lt;/dd&gt;
-
-      &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Naudojant šį vidutinį pralaidumą, įprastai gausite aukštesnę nurodyto pralaidumo kokybę, negu tą, kurią gautumėte, naudodami pastoviojo pralaidumo parinktį su tuo pačiu pralaidumu.&lt;/dd&gt;
-      </translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1031,12 +1010,6 @@ Ar norite tęsti?</translation>
         <translation>Išeiti</translation>
     </message>
     <message>
-        <source>The following files will be moved to the trash.&lt;/b&gt;Remove the following files?%1</source>
-        <comment>Message box text, %1 is a list of files</comment>
-        <extracomment>Message box text, %1 is a list of files</extracomment>
-        <translation>Sekantys failai bus perkelti į šiukšlinę.&lt;/b&gt;Pašalinti šiuos failus?%1</translation>
-    </message>
-    <message>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
@@ -1063,6 +1036,18 @@ Ar norite tęsti?</translation>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
         <translation>Diskas %1</translation>
+    </message>
+    <message>
+        <source>The following files will be moved to the trash. Remove the following files?</source>
+        <comment>Message box text</comment>
+        <extracomment>Message box text</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Some disks have warnings:</source>
+        <comment>Error message title</comment>
+        <extracomment>Error message title</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

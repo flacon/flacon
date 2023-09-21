@@ -14,7 +14,7 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Comment[gl]=Extrae pistas de audio dunha imaxe de CD de audio para pistas separadas.
-GenericName[gl]=Codificador de ficheiros de audio
-Name[gl]=Flacon
 Icon[gl]=flacon
+Name[gl]=Flacon
+GenericName[gl]=Codificador de ficheiros de audio
+Comment[gl]=Extrae pistas de audio dunha imaxe de CD de audio para pistas separadas.
