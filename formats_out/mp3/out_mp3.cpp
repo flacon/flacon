@@ -185,8 +185,7 @@ ConfigPage_Mp3::ConfigPage_Mp3(QWidget *parent) :
       <dd>Using this Constant BitRate preset will usually give you good quality at a specified bitrate.</dd>
 
       <dt>ABR kbps</dt>
-      <dd>Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.</dd>
-      )",
+      <dd>Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.</dd>)",
             "Tooltip for the Mp3 presets combobox on preferences dialog.");
 
     mp3PresetCbx->setToolTip(css + toolTip);

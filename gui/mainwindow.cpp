@@ -1084,7 +1084,7 @@ void MainWindow::removeSourceFiles()
     }
 
     QuestionBox dialog(this);
-    dialog.setText(tr("<b>The following files will be moved to the trash. Remove the following files?</b>", "Message box text"));
+    dialog.setText("<b>" + tr("The following files will be moved to the trash. Remove the following files?", "Message box text") + "</b>");
     dialog.setDescription("<ul><li>" + files.join("</li><li>") + "</li></ul>");
     if (dialog.exec() != QMessageBox::Yes) {
         return;
