@@ -2,7 +2,7 @@
     "disks": [
         {
         "cue":   "disk_01.cue",
-        "audio": "disk_01.flac",
+        "audio": ["disk_01.flac"],
 
         "errors":  [
             "Disk 1 \"Test for flacon - Short file\" will overwrite its own files."

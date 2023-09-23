@@ -2,7 +2,7 @@
     "disks": [
         {
         "cue":   "disk_01.cue",
-        "audio": "disk_01.flac",
+        "audio": ["disk_01.flac"],
 
         "errors":    ["Disk 2 \"Test for flacon - Album 1\" will overwrite the files of this disk."],
         "warnings":  ["Disk 2 \"Test for flacon - Album 1\" uses the same CUE file."]
@@ -11,7 +11,7 @@
 
         {
         "cue":   "disk_01.cue",
-        "audio": "disk_02.flac",
+        "audio": ["disk_02.flac"],
 
         "errors":    ["Disk 1 \"Test for flacon - Album 1\" will overwrite the files of this disk."],
         "warnings":  ["Disk 1 \"Test for flacon - Album 1\" uses the same CUE file."]

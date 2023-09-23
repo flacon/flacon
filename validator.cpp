@@ -249,7 +249,7 @@ void Validator::revalidateDisk(const Disk *disk, QStringList &errors, QStringLis
 
     mResultFilesOverwrite = mResultFilesOverwrite || !ok;
 
-    vaslidateDiskWarnings(disk, warnings);
+    validateDiskWarnings(disk, warnings);
 }
 
 /************************************************
@@ -328,7 +328,37 @@ bool Validator::validateAudioFiles(const Disk *disk, QStringList &errors, QStrin
         }
     }
 
+    if (!checkSameAudioForFileTags(disk)) {
+        errors << tr("The same audio file is used for different tracks.", "Error message");
+        res = false;
+    }
+
     return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+bool Validator::checkSameAudioForFileTags(const Disk *disk)
+{
+    QMap<QString, QString> audioToFileTags;
+    for (const Track *track : disk->tracks()) {
+        if (track->audioFile().isNull()) {
+            continue;
+        }
+
+        QString fileTag = audioToFileTags[track->audioFileName()];
+        if (fileTag.isEmpty()) {
+            audioToFileTags[track->audioFileName()] = track->tag(TagId::File);
+            continue;
+        }
+
+        if (track->tag(TagId::File) != fileTag) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 /************************************************
@@ -426,7 +456,7 @@ bool Validator::validateDuplicateSourceFiles(const Disk *disk, QStringList &erro
 /************************************************
  *
  ************************************************/
-bool Validator::vaslidateDiskWarnings(const Disk *disk, QStringList &warnings)
+bool Validator::validateDiskWarnings(const Disk *disk, QStringList &warnings)
 {
     bool res = true;
 

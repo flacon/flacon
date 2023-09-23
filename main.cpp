@@ -311,7 +311,7 @@ int main(int argc, char *argv[])
 
     if (parser.isSet("debug") || getenv("FLACON_DEBUG")) {
         setenv("QT_LOGGING_RULES", "*.debug=true;qt.*.debug=false;kf.*.debug=false;", 1);
-        qSetMessagePattern("%{time yyyy.MM.dd hh:mm:ss.zzz t} [%{threadid}] %{category}: %{type}: %{message}");
+        qSetMessagePattern("%{time yyyy.MM.dd hh:mm:ss.zzz t} [%{threadid}] %{type}: %{category}: %{message}");
     }
     else {
         setenv("QT_LOGGING_RULES", "*.debug=false;default.debug=true;", 1);

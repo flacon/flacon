@@ -2,7 +2,7 @@
     "disks": [
         {
         "cue":   "disk_01.cue",
-        "audio": "disk_01.flac",
+        "audio": ["disk_01.flac"],
 
         "errors":  [
             "Disk 2 \"Test for flacon - Short file\" will overwrite the files of this disk."
@@ -11,7 +11,7 @@
 
         {
         "cue":   "disk_02.cue",
-        "audio": "disk_02.flac",
+        "audio": ["disk_02.flac"],
 
         "errors":  [
             "Disk 1 \"Test for flacon - Short file\" will overwrite the files of this disk."

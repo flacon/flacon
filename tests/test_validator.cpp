@@ -38,7 +38,7 @@ namespace {
 struct TcDisk
 {
     std::string              cue;
-    std::string              audio;
+    std::vector<std::string> audio;
     std::vector<std::string> errors;
     std::vector<std::string> warnings;
 
@@ -99,7 +99,9 @@ void TestFlacon::testValidator()
 
         for (auto d : spec.disks) {
             QFile::copy(QString("%1/%2").arg(dataDir).arg(d.cue.c_str()), QString("%1/%2").arg(dir()).arg(d.cue.c_str()));
-            QFile::copy(QString("%1/%2").arg(dataDir).arg(d.audio.c_str()), QString("%1/%2").arg(dir()).arg(d.audio.c_str()));
+            for (auto a : d.audio) {
+                QFile::copy(QString("%1/%2").arg(dataDir).arg(a.c_str()), QString("%1/%2").arg(dir()).arg(a.c_str()));
+            }
         }
 
         TestSettings settings(cfgFile);
@@ -111,11 +113,15 @@ void TestFlacon::testValidator()
         validator.setProfile(&profile);
 
         for (auto d : spec.disks) {
-            Cue            cue(d.cue.c_str());
-            InputAudioFile audio(d.audio.c_str());
+            Cue cue(d.cue.c_str());
 
             Disk *disk = new Disk(cue, &validator);
-            disk->setAudioFile(audio, 0);
+
+            for (int i = 0; i < d.audio.size(); ++i) {
+                InputAudioFile audio(d.audio[i].c_str());
+                disk->setAudioFile(audio, i);
+            }
+
             validator.insertDisk(disk);
         }
 
