@@ -1,0 +1,13 @@
+{
+    "disks": [
+        {
+        "cue":   "disk_01.cue",
+        "audio": ["disk_01.flac", "disk_01.flac"],
+
+        "errors":  [
+            "The same audio file is used for different tracks."
+        ]
+        }
+
+    ]
+}
