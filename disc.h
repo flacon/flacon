@@ -41,14 +41,10 @@ class Disc : public QObject
 
 public:
     explicit Disc(QObject *parent = nullptr);
-    explicit Disc(InputAudioFile &audio, QObject *parent = nullptr);
-    explicit Disc(Cue &cue, QObject *parent = nullptr);
+    explicit Disc(const InputAudioFile &audio, QObject *parent = nullptr);
+    explicit Disc(const Cue &cue, QObject *parent = nullptr);
 
     virtual ~Disc();
-
-    void searchCueFile(bool replaceExisting = false);
-    void searchAudioFiles(bool replaceExisting = false);
-    void searchCoverImage(bool replaceExisting = false);
 
     QList<Track *> tracks() const { return mTracks; }
     Track         *track(int index) const;
@@ -61,6 +57,7 @@ public:
     QList<TrackPtrList> tracksByFileTag() const;
 
     InputAudioFileList audioFiles() const;
+    void               setAudioFiles(const InputAudioFileList &files);
     QStringList        audioFileNames() const;
 
     /// If some tracks don't have audio, result will have empty item.
@@ -92,6 +89,8 @@ public:
     void            addTagSets(const QVector<Tracks> &discs);
     void            activateTagSet(const QString &uri);
 
+    void searchCoverImage(bool replaceExisting = false);
+
     QString coverImageFile() const { return mCoverImageFile; }
     void    setCoverImageFile(const QString &fileName);
     QImage  coverImagePreview() const;
@@ -114,6 +113,7 @@ public:
 
 signals:
     void tagChanged();
+    void revalidateRequested();
 
 protected:
     void trackChanged(TagId tagId);

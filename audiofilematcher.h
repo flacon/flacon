@@ -27,33 +27,48 @@
 #define AUDIOFILEMATCHER_H
 
 #include <QString>
-#include "track.h"
 #include "cue.h"
 #include <QFileInfoList>
+#include "inputaudiofile.h"
+
+class QDebug;
 
 class AudioFileMatcher
 {
 public:
-    AudioFileMatcher(const QString &cueFilePath, const DiskTags &tracks);
+    void matchForCue(const Cue &cue);
+    void matchForAudio(const QString &audioFilePath);
 
-    const DiskTags &tracks() const { return mTracks; }
+    void clear();
 
-    const QStringList &fileTags() const { return mFileTags; }
-    QStringList        audioFiles(const QString &fileTag) const { return mResult[fileTag]; }
-    QStringList        audioFiles(int index) const;
+    QStringList        fileTags() const { return mFileTags; }
+    Cue                cue() const { return mCue; }
+    QFileInfoList      audioFilePaths() const { return mAudioFilePaths; }
+    InputAudioFileList audioFiles() const;
 
-    bool containsAudioFile(const QString &audioFile) const;
+    QFileInfo
+    audioFile(const QString &fileTag) const;
 
 private:
-    QString                    mCueFilePath;
-    DiskTags                   mTracks;
     QStringList                mFileTags;
-    QFileInfoList              mAllAudioFiles;
-    QMap<QString, QStringList> mResult;
+    Cue                        mCue;
+    QFileInfoList              mAudioFilePaths;
+    mutable InputAudioFileList mAudioFiles;
 
-    void        fillFileTags();
-    QStringList matchAudioFilesByTrack(const TrackTags &track);
-    QStringList matchAudioFiles(const QString &fileTag);
+    QFileInfoList searchCueFiles(const QDir &dir);
+    QFileInfoList searchAudioFiles(const QDir &dir);
+
+    void doMatchForCue(const Cue &cue, const QFileInfoList &allAudioFiles);
+    void doMatchForAudio(const QString &audioFilePath);
+
+    QFileInfo matchSingleAudio(const QFileInfoList &allAudioFiles);
+
+    QFileInfoList tryPerTrackMatch(const QFileInfoList &allAudioFiles) const;
+    QFileInfoList tryMultiAudioPattrnMatch(const QFileInfoList &allAudioFiles) const;
+
+    QFileInfo searchFile(const QRegExp &pattern, const QFileInfoList &allAudioFiles) const;
 };
+
+QDebug operator<<(QDebug &debug, const AudioFileMatcher &matcher);
 
 #endif // AUDIOFILEMATCHER_H

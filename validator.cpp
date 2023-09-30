@@ -80,6 +80,7 @@ int Validator::insertDisk(Disk *disk, int index)
 
     mDisks.insert(index, disk);
     connect(disk, &Disc::tagChanged, this, &Validator::startDelay);
+    connect(disk, &Disc::revalidateRequested, this, &Validator::startDelay);
 
     startDelay();
     return index;
@@ -316,7 +317,7 @@ bool Validator::validateAudioFiles(const Disk *disk, QStringList &errors, QStrin
             continue;
         }
 
-        uint duration = 0;
+        int duration = 0;
         for (int i = 0; i < tracks.count() - 1; ++i) {
             duration += tracks[i]->duration();
         }

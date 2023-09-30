@@ -1,0 +1,7 @@
+run:
+  load: file.cue
+
+expected:
+  cue:       file.cue
+  audio:     [ Title (A).wav, Title (B).wav ]
+  file_tags: [ Title (A).flac, Title (B).flac ]

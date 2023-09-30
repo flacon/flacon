@@ -44,7 +44,6 @@
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "Disk")
-Q_LOGGING_CATEGORY(LOG_SEARCH_AUDIO_FILES, "SearchAudioFiles")
 }
 
 #define COVER_PREVIEW_SIZE 500
@@ -60,7 +59,7 @@ Disc::Disc(QObject *parent) :
 /************************************************
 
  ************************************************/
-Disc::Disc(InputAudioFile &audioFile, QObject *parent) :
+Disc::Disc(const InputAudioFile &audioFile, QObject *parent) :
     QObject(parent),
     mAudioFile(audioFile)
 {
@@ -69,7 +68,7 @@ Disc::Disc(InputAudioFile &audioFile, QObject *parent) :
 /************************************************
 
 ************************************************/
-Disc::Disc(Cue &cue, QObject *parent) :
+Disc::Disc(const Cue &cue, QObject *parent) :
     QObject(parent),
     mCue(cue)
 {
@@ -158,37 +157,6 @@ void Disc::searchCueFile(bool replaceExisting)
 /************************************************
 
 ************************************************/
-void Disc::searchAudioFiles(bool replaceExisting)
-{
-    QString fullPath = QFileInfo(cueFilePath()).filePath();
-
-    qCDebug(LOG_SEARCH_AUDIO_FILES) << "Search audio for" << cueFilePath();
-    qCDebug(LOG_SEARCH_AUDIO_FILES) << "fullPath=" << fullPath;
-    qCDebug(LOG_SEARCH_AUDIO_FILES) << "Audio files=" << audioFileNames();
-
-    AudioFileMatcher matcher(fullPath, mCue.tracks());
-    for (int i = 0; i < audioFiles().count(); ++i) {
-        if (audioFiles()[i].isNull() || replaceExisting) {
-
-            QStringList foundAudio = matcher.audioFiles(i);
-            for (const QString &file : foundAudio) {
-
-                qCDebug(LOG_SEARCH_AUDIO_FILES) << " *" << i << " test audio file " << file;
-
-                InputAudioFile newAudio(file);
-                if (newAudio.isValid()) {
-                    qCDebug(LOG_SEARCH_AUDIO_FILES) << "set audio" << newAudio.filePath();
-                    setAudioFile(newAudio, i);
-                    break;
-                }
-            }
-        }
-    }
-}
-
-/************************************************
-
-************************************************/
 void Disc::searchCoverImage(bool replaceExisting)
 {
     if (!replaceExisting && !mCoverImageFile.isEmpty()) {
@@ -242,6 +210,10 @@ void Disc::setCueFile(const Cue &cueDisc)
 {
     mCue = cueDisc;
 
+    if (cueDisc.isEmpty()) {
+        return;
+    }
+
     InputAudioFileList audioFiles = this->audioFiles();
 
     // If the tracks contain tags from the Internet and the
@@ -283,6 +255,7 @@ void Disc::setCueFile(const Cue &cueDisc)
     }
 
     project->emitLayoutChanged();
+    emit revalidateRequested();
 }
 
 /************************************************
@@ -419,6 +392,19 @@ InputAudioFileList Disc::audioFiles() const
 /************************************************
 
 ************************************************/
+void Disc::setAudioFiles(const InputAudioFileList &files)
+{
+    this->blockSignals(true);
+    for (int i = 0; i < files.size(); ++i) {
+        setAudioFile(files.at(i), i);
+    }
+    this->blockSignals(false);
+    emit revalidateRequested();
+}
+
+/************************************************
+
+************************************************/
 QStringList Disc::audioFileNames() const
 {
     QStringList res;
@@ -460,6 +446,8 @@ void Disc::setAudioFile(const InputAudioFile &file, int fileNum)
     for (Track *track : tracks) {
         track->setAudioFile(file);
     }
+
+    emit revalidateRequested();
 }
 
 /************************************************

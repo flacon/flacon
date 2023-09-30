@@ -31,11 +31,13 @@
 
 #define CODEC_AUTODETECT "AUTODETECT"
 
-typedef quint16 DiscNum;
-typedef quint16 DiscCount;
-typedef quint16 TrackNum;
-typedef quint16 TrackCount;
-typedef uint    Duration;
+using DiscNum    = quint16;
+using DiscCount  = quint16;
+using TrackNum   = quint16;
+using TrackCount = quint16;
+using Duration   = uint;
+using mSec       = int;
+using Percent    = quint8;
 
 enum class TagId {
     Album,
@@ -229,8 +231,6 @@ inline bool operator&&(const FormatOptions &flags, const FormatOption flag) noex
 int calcSampleRate(int input, SampleRate resample);
 
 int calcQuality(int input, int preferences, int formatMax);
-
-typedef quint8 Percent;
 
 QByteArray leftPart(const QByteArray &line, const char separator);
 QByteArray rightPart(const QByteArray &line, const char separator);

@@ -25,8 +25,9 @@
 
 
 project(flacon_test)
-cmake_minimum_required( VERSION 3.0.0 )
+cmake_minimum_required( VERSION 3.16.0 )
 cmake_policy(SET CMP0028 NEW)
+
 
 set(TEST_SOURCES
     flacontest.h
@@ -60,6 +61,8 @@ foreach(FILE ${SOURCES} ${HEADERS})
     endif()
 endforeach()
 
+add_executable(${PROJECT_NAME} ${TEST_SOURCES}
+    testspec.h testspec.cpp)
 
 add_definitions(-DTEST_DATA_DIR=\"${CMAKE_CURRENT_SOURCE_DIR}/data/\")
 
@@ -76,6 +79,8 @@ include_directories(
 
 add_definitions(-Wall)
 
+find_package(PkgConfig REQUIRED)
+
 find_package(Qt5 REQUIRED
     Core
     Test
@@ -83,7 +88,10 @@ find_package(Qt5 REQUIRED
     Network
 )
 
+pkg_check_modules(YAML_CPP REQUIRED yaml-cpp)
+include_directories(${YAML_CPP_INCLUDEDIR})
+target_link_directories(${PROJECT_NAME} PRIVATE ${YAML_CPP_LIBRARY_DIRS})
+list(APPEND LIBRARIES ${YAML_CPP_LIBRARIES})
 
-add_executable(${PROJECT_NAME} ${TEST_SOURCES})
 target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES}  ${LIBRARIES} converter Qt5::Core Qt5::Test Qt5::Widgets Qt5::Network)
 add_test(${PROJECT_NAME} ${PROJECT_NAME})

@@ -102,9 +102,6 @@ private slots:
     void testCueTime_data();
     void testCueTime();
 
-    void testFindCueFile_data();
-    void testFindCueFile();
-
     void testPatternExpander_data();
     void testPatternExpander();
 

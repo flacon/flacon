@@ -1,0 +1,7 @@
+run:
+  load: CueFile.cue
+
+expected:
+  cue:       CueFile.cue
+  audio:     [ CueFile_AditionalText.flac ]
+  file_tags: [ FileTag.wav ]

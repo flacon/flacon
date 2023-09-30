@@ -1,0 +1,7 @@
+run:
+  load: embeded_cue.flac
+
+expected:
+  cue:       embeded_cue.flac
+  audio:     [  ]
+  file_tags: [ short.wav ]

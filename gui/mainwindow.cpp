@@ -55,6 +55,7 @@
 #include <QToolButton>
 #include <QStandardPaths>
 #include "qtbackports/movetotrash.h"
+#include "audiofilematcher.h"
 
 #ifdef MAC_UPDATER
 #include "updater/updater.h"
@@ -364,8 +365,16 @@ void MainWindow::setCueForDisc(Disc *disc)
         disc->setCueFile(cue);
         QString newDir = QFileInfo(disc->cueFilePath()).dir().path();
 
-        if (disc->isMultiAudio()) {
-            disc->searchAudioFiles(false);
+        bool hasAuioFiles = false;
+        for (auto f : disc->audioFiles()) {
+            hasAuioFiles = hasAuioFiles || !f.isNull();
+        }
+
+        if (!hasAuioFiles) {
+            AudioFileMatcher matcher;
+            matcher.matchForCue(cue);
+            disc->setCueFile(matcher.cue());
+            disc->setAudioFiles(matcher.audioFiles());
         }
 
         if (newDir != oldDir) {

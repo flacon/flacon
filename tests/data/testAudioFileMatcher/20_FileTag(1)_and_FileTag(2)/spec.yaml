@@ -1,0 +1,7 @@
+run:
+  load: CueFile.cue
+
+expected:
+  cue:       CueFile.cue
+  audio:     [ FileTag(1).wav, FileTag(2).wav ]
+  file_tags: [ FileTag(1).wav, FileTag(2).wav ]

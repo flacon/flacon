@@ -27,6 +27,7 @@
 #include "settings.h"
 #include "cue.h"
 #include "inputaudiofile.h"
+#include "audiofilematcher.h"
 
 #include <QDebug>
 #include <QApplication>
@@ -138,11 +139,12 @@ bool Project::discExists(const QString &cueUri)
  ************************************************/
 Disc *Project::addAudioFile(const QString &fileName) noexcept(false)
 {
-    QString canonicalFileName = QFileInfo(fileName).canonicalFilePath();
+    QFileInfo file = QFileInfo(fileName);
 
     for (int i = 0; i < count(); ++i) {
-        if (disc(i)->audioFilePaths().contains(canonicalFileName))
+        if (disc(i)->audioFilePaths().contains(file.canonicalFilePath())) {
             return nullptr;
+        }
     }
 
     InputAudioFile audio(QFileInfo(fileName).absoluteFilePath());
@@ -150,14 +152,15 @@ Disc *Project::addAudioFile(const QString &fileName) noexcept(false)
         throw FlaconError(audio.errorString());
     }
 
-    Disc *disc = new Disc(audio);
-    disc->searchCueFile();
-    if (!disc->cueFilePath().isEmpty()) {
-        disc->searchAudioFiles(false);
-    }
-    disc->searchCoverImage();
-    addDisc(disc);
-    return disc;
+    AudioFileMatcher matcher;
+    matcher.matchForAudio(file.filePath());
+
+    Disc *disk = new Disc();
+    disk->setCueFile(matcher.cue());
+    disk->setAudioFiles(matcher.audioFiles());
+    disk->searchCoverImage();
+    addDisc(disk);
+    return disk;
 }
 
 /************************************************
@@ -172,8 +175,12 @@ Disc *Project::addCueFile(const QString &fileName)
             return nullptr;
         }
 
-        Disc *disc = new Disc(cue);
-        disc->searchAudioFiles();
+        AudioFileMatcher matcher;
+        matcher.matchForCue(cue);
+
+        Disc *disc = new Disc();
+        disc->setCueFile(matcher.cue());
+        disc->setAudioFiles(matcher.audioFiles());
         disc->searchCoverImage();
         addDisc(disc);
         emit layoutChanged();

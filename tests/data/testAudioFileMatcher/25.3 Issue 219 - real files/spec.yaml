@@ -1,0 +1,7 @@
+run:
+  load: Skeleton Tree.cue
+
+expected:
+  cue:       Skeleton Tree.cue
+  audio:     [ Skeleton Tree (A).flac, Skeleton Tree (B).flac ]
+  file_tags: [ Skeleton Tree (A).flac, Skeleton Tree (B).flac ]

@@ -1,0 +1,7 @@
+run:
+  load: source_file_01.cue
+
+expected:
+  cue:       source_file_01.cue
+  audio:     [ source_file_01.wav ]
+  file_tags: [ en.wav ]

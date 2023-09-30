@@ -1,0 +1,7 @@
+run:
+  load: Multiple_WAV_Files_With_Gaps_Noncompliant.cue
+
+expected:
+  cue:       Multiple_WAV_Files_With_Gaps_Noncompliant.cue
+  audio:     [ Rush - Signals - 01 - Subdivisions.wav, Rush - Signals - 02 - The Analog Kid.wav, Rush - Signals - 03 - Chemistry.wav, Rush - Signals - 04 - Digital Man.wav, Rush - Signals - 05 - The Weapon.wav, Rush - Signals - 06 - New World Man.wav, Rush - Signals - 07 - Losing It.wav, Rush - Signals - 08 - Countdown.wav ]
+  file_tags: [ D:\MP3\Ripados\Rush\Signals\Rush - Signals - 01 - Subdivisions.wav, D:\MP3\Ripados\Rush\Signals\Rush - Signals - 02 - The Analog Kid.wav, D:\MP3\Ripados\Rush\Signals\Rush - Signals - 03 - Chemistry.wav, D:\MP3\Ripados\Rush\Signals\Rush - Signals - 04 - Digital Man.wav, D:\MP3\Ripados\Rush\Signals\Rush - Signals - 05 - The Weapon.wav, D:\MP3\Ripados\Rush\Signals\Rush - Signals - 06 - New World Man.wav, D:\MP3\Ripados\Rush\Signals\Rush - Signals - 07 - Losing It.wav, D:\MP3\Ripados\Rush\Signals\Rush - Signals - 08 - Countdown.wav ]

@@ -1,0 +1,7 @@
+run:
+  load: Bush - (1996) Razorblade Suitcase.cue
+
+expected:
+  cue:       Bush - (1996) Razorblade Suitcase.cue
+  audio:     [ Bush - (1996) Razorblade Suitcase.flac ]
+  file_tags: [ Bush - (1996) Razorblade Suitcase.flac ]

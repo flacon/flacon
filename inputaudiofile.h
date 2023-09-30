@@ -26,6 +26,7 @@
 #ifndef INPUTAUDIOFILE_H
 #define INPUTAUDIOFILE_H
 
+#include "types.h"
 #include <QString>
 #include <QList>
 #include <QExplicitlySharedDataPointer>
@@ -48,7 +49,7 @@ private:
         const InputFormat *mFormat        = nullptr;
         quint32            mSampleRate    = 0;
         int                mBitsPerSample = 0;
-        uint               mDuration      = 0;
+        mSec               mDuration      = 0;
         bool               mValid         = false;
         bool               mCdQuality     = false;
         uint               mChannelsCount = 0;
@@ -75,7 +76,7 @@ public:
     bool isCdQuality() const { return mData->mCdQuality; }
     int  sampleRate() const { return mData->mSampleRate; }
     int  bitsPerSample() const { return mData->mBitsPerSample; }
-    uint duration() const { return mData->mDuration; }
+    mSec duration() const { return mData->mDuration; }
     uint channelsCount() const { return mData->mChannelsCount; }
 
     const InputFormat *format() const { return mData->mFormat; }

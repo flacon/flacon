@@ -1,0 +1,7 @@
+run:
+  load: Album.ape
+
+expected:
+  cue:       
+  audio:     [ Album.ape ]
+  file_tags: [  ]

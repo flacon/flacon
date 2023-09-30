@@ -33,20 +33,7 @@
 #include <QSettings>
 #include "../cue.h"
 #include "../types.h"
-
-static QString findFile(const QString dir, const QString &pattern)
-{
-    QFileInfoList files = QDir(dir).entryInfoList(QStringList(pattern), QDir::Files);
-    if (files.count() < 1) {
-        throw FlaconError(QString("%1 file not found").arg(pattern));
-    }
-
-    if (files.count() > 1) {
-        throw FlaconError(QString("Multipy %1 files found").arg(pattern));
-    }
-
-    return files.first().filePath();
-}
+#include "testspec.h"
 
 void TestFlacon::testAudioFileMatcher()
 {
@@ -54,43 +41,33 @@ void TestFlacon::testAudioFileMatcher()
     QFETCH(QString, dir);
 
     try {
-        QString cueFile      = findFile(dir, "*.cue");
-        QString expectedFile = findFile(dir, "*.expected");
+        TestSpec spec(dir); // findFile(dir, "spec.yaml"));
 
-        Cue disc(cueFile);
+        QFileInfo inFile = dir + "/" + spec["run"]["load"].toString();
 
-        AudioFileMatcher matcher(cueFile, disc.tracks());
+        AudioFileMatcher matcher;
 
-        QSettings exp(expectedFile, QSettings::IniFormat);
-        exp.setIniCodec("UTF-8");
+        if (inFile.suffix().toLower() == "cue") {
+            Cue cue(inFile.filePath());
+            matcher.matchForCue(cue);
+        }
+        else {
+            matcher.matchForAudio(inFile.filePath());
+        }
 
-        QCOMPARE(matcher.fileTags().count(), exp.childGroups().count());
+        // Validate .............................
+        TestSpec::Node expected = spec["expected"];
 
-        for (const QString &tag : exp.childGroups()) {
+        if (expected["cue"].exists()) {
+            QCOMPARE(matcher.cue().filePath(), expected["cue"].toFileInfo(dir).filePath());
+        }
 
-            QStringList actualAudio = matcher.audioFiles(tag);
+        if (expected["audio"].exists()) {
+            QCOMPARE(matcher.audioFilePaths(), expected["audio"].toFileInfoList(dir));
+        }
 
-            exp.beginGroup(tag);
-
-            QStringList keys = exp.childKeys();
-            keys.sort();
-
-            QStringList expectedAudio;
-            for (const QString &key : keys) {
-                if (!exp.value(key).toString().isEmpty()) {
-                    expectedAudio << QDir(dir).filePath(exp.value(key).toString());
-                }
-            }
-
-            exp.endGroup();
-
-            if (!QTest::qCompare(
-                        actualAudio.join(", "), expectedAudio.join(", "),
-                        QString("actual   %1").arg(tag).toLocal8Bit(),
-                        QString("expected %1").arg(tag).toLocal8Bit(),
-                        __FILE__, __LINE__)) {
-                return;
-            }
+        if (expected["file_tags"].exists()) {
+            QCOMPARE(matcher.fileTags(), expected["file_tags"].toStringList());
         }
     }
     catch (const FlaconError &err) {

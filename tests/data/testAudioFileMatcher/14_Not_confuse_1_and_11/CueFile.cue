@@ -6,7 +6,12 @@ FILE "FileTag1.wav" WAVE
   TRACK 01 AUDIO
     TITLE "Song01"
     INDEX 01 00:00:00
+
+  TRACK 02 AUDIO
+    TITLE "Song02"
+    INDEX 01 00:10:00
+
 FILE "FileTag2.wav" WAVE
-  TRACK 01 AUDIO
-    TITLE "Song01"
+  TRACK 03 AUDIO
+    TITLE "Song03"
     INDEX 01 00:00:00
