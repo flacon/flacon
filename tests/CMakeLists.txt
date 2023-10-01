@@ -88,8 +88,8 @@ find_package(Qt5 REQUIRED
     Network
 )
 
-pkg_check_modules(YAML_CPP REQUIRED yaml-cpp)
-include_directories(${YAML_CPP_INCLUDEDIR})
+find_package(yaml-cpp REQUIRED)
+target_include_directories(${PROJECT_NAME} PRIVATE ${YAML_CPP_INCLUDE_DIR})
 target_link_directories(${PROJECT_NAME} PRIVATE ${YAML_CPP_LIBRARY_DIRS})
 list(APPEND LIBRARIES ${YAML_CPP_LIBRARIES})
 
