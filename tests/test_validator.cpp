@@ -117,7 +117,7 @@ void TestFlacon::testValidator()
 
             Disk *disk = new Disk(cue, &validator);
 
-            for (auto i = 0; i < d.audio.size(); ++i) {
+            for (size_t i = 0; i < d.audio.size(); ++i) {
                 InputAudioFile audio(d.audio[i].c_str());
                 disk->setAudioFile(audio, i);
             }

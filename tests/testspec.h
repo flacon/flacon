@@ -30,6 +30,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <yaml-cpp/node/node.h>
+#include <yaml-cpp/yaml.h>
 
 class TestSpec
 {
