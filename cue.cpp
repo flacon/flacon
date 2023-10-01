@@ -33,6 +33,9 @@
 #include <QDebug>
 #include "uchardetect.h"
 #include "profiles.h"
+#include "inputaudiofile.h"
+#include "formats_in/informat.h"
+#include <QBuffer>
 
 /************************************************
  *
@@ -43,23 +46,6 @@ static void splitTitle(TrackTags *track, char separator)
     int        pos = b.indexOf(separator);
     track->setTag(TagId::Artist, b.left(pos).trimmed());
     track->setTag(TagId::Title, b.right(b.length() - pos - 1).trimmed());
-}
-
-/************************************************
- *
- ************************************************/
-Cue::Cue(QIODevice *device, const QString &audioFile) noexcept(false)
-{
-    CueData data(device);
-    if (data.isEmpty()) {
-        throw CueError(QObject::tr("File contains not a valid CUE data."));
-    }
-
-    QFileInfo fileInfo(audioFile);
-    mFilePath = EMBEDED_PREFIX + fileInfo.absoluteFilePath();
-    mTitle    = QObject::tr("Embedded on %1", "The title for the CUE embedded in the audio file. %1 - is an audio-file name.").arg(fileInfo.fileName());
-
-    read(data);
 }
 
 /************************************************
@@ -232,12 +218,12 @@ void Cue::splitTitleTag(const CueData &data)
         else if (splitBySlash) splitTitle(&track, '/');
         else if (splitByDash)  splitTitle(&track, '-');
     }
-    // clang-format off
+    // clang-format on
 }
 
 /************************************************
-* Auto detect codepage
-************************************************/
+ * Auto detect codepage
+ ************************************************/
 void Cue::setCodecName(const CueData &data)
 {
     QString codecName = data.codecName();
@@ -254,6 +240,36 @@ void Cue::setCodecName(const CueData &data)
     for (TrackTags &track : mTracks) {
         track.setCodecName(codecName);
     }
+}
+
+/************************************************
+ *
+ ************************************************/
+EmbeddedCue::EmbeddedCue(const InputAudioFile &audioFile) noexcept(false) :
+    Cue()
+{
+    QFileInfo fileInfo(audioFile.filePath());
+    mFilePath = EMBEDED_PREFIX + fileInfo.absoluteFilePath();
+    mTitle    = QObject::tr("Embedded on %1", "The title for the CUE embedded in the audio file. %1 - is an audio-file name.").arg(fileInfo.fileName());
+
+    if (!audioFile.isValid() || !audioFile.format()) {
+        return;
+    }
+
+    QByteArray bytes = audioFile.format()->readEmbeddedCue(audioFile.filePath());
+    if (bytes.isEmpty()) {
+        return;
+    }
+
+    QBuffer buf(&bytes);
+    buf.open(QBuffer::ReadOnly);
+
+    CueData data(&buf);
+    if (data.isEmpty()) {
+        return;
+    }
+
+    read(data);
 }
 
 /************************************************

@@ -74,7 +74,6 @@ public:
     QString tagSetTitle() const;
     QString tagsUri() const;
     QString discId() const;
-    QString fileTag() const;
     DiscNum discNum() const;
     DiscNum discCount() const;
 

@@ -57,6 +57,7 @@ private:
 
     QFileInfoList searchCueFiles(const QDir &dir);
     QFileInfoList searchAudioFiles(const QDir &dir);
+    Cue           loadEmbeddedCue(const QFileInfo &audioFile) const;
 
     void doMatchForCue(const Cue &cue, const QFileInfoList &allAudioFiles);
     void doMatchForAudio(const QString &audioFilePath);

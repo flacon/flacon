@@ -32,6 +32,7 @@
 #include "tags.h"
 
 class CueData;
+class InputAudioFile;
 
 class Cue
 {
@@ -40,7 +41,6 @@ public:
 
 public:
     Cue() = default;
-    explicit Cue(QIODevice *device, const QString &audioFile) noexcept(false);
     explicit Cue(const QString &fileName) noexcept(false);
 
     QString title() const { return mTitle; }
@@ -55,7 +55,7 @@ public:
     const DiskTags  &tracks() const { return mTracks; }
     const TrackTags &track(uint index) const { return mTracks.at(index); }
 
-private:
+protected:
     DiskTags mTracks;
     QString  mFilePath;
     DiscNum  mDiscCount = 0;
@@ -67,6 +67,16 @@ private:
     void       splitTitleTag(const CueData &data);
     void       setCodecName(const CueData &data);
     void       validate();
+};
+
+class EmbeddedCue : public Cue
+{
+public:
+    EmbeddedCue()                         = default;
+    EmbeddedCue(const EmbeddedCue &other) = default;
+    EmbeddedCue &operator=(const EmbeddedCue &other) = default;
+
+    explicit EmbeddedCue(const InputAudioFile &audioFile) noexcept(false);
 };
 
 class CueError : public FlaconError

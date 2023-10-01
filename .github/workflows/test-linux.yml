@@ -34,6 +34,7 @@ jobs:
         sudo apt-get -y update
         sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev libtag1-dev
         sudo apt-get -y install flac mac alacenc vorbis-tools wavpack lame vorbisgain mp3gain ttaenc faac opus-tools mediainfo sox
+        sudo apt-get -y install libyaml-cpp-dev
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build

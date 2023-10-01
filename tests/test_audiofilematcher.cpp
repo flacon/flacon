@@ -41,10 +41,9 @@ void TestFlacon::testAudioFileMatcher()
     QFETCH(QString, dir);
 
     try {
-        TestSpec spec(dir); // findFile(dir, "spec.yaml"));
+        TestSpec spec(dir);
 
-        QFileInfo inFile = dir + "/" + spec["run"]["load"].toString();
-
+        QFileInfo        inFile = dir + "/" + spec["run"]["load"].toString();
         AudioFileMatcher matcher;
 
         if (inFile.suffix().toLower() == "cue") {

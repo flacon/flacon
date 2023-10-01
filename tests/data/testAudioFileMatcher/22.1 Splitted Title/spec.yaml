@@ -2,6 +2,30 @@ run:
   load: Haujobb.cue
 
 expected:
-  cue:       Haujobb.cue
-  audio:     [ 01 - Haujobb - Completion.flac, 02 - Zinovia,Haujobb - Dark Heart 5.flac, 03 - Haujobb - Destroy.flac, 04 - Haujobb - Failures.flac, 05 - Haujobb - Information Space.flac, 06 - Haujobb - Input Error.flac, 07 - Haujobb - Leaving.flac, 08 - Haujobb - Little Miss Danger.flac, 09 - Haujobb - Meltdown.flac, 10 - Haujobb - Perfection.flac, 11 - Haujobb - Produkt.flac ]
-  file_tags: [ file-01.wav, file-02.wav, file-03.wav, file-04.wav, file-05.wav, file-06.wav, file-07.wav, file-08.wav, file-09.wav, file-10.wav, file-11.wav ]
+  cue: Haujobb.cue
+
+  audio:
+    - 01 - Haujobb - Completion.flac
+    - 02 - Zinovia,Haujobb - Dark Heart 5.flac
+    - 03 - Haujobb - Destroy.flac
+    - 04 - Haujobb - Failures.flac
+    - 05 - Haujobb - Information Space.flac
+    - 06 - Haujobb - Input Error.flac
+    - 07 - Haujobb - Leaving.flac
+    - 08 - Haujobb - Little Miss Danger.flac
+    - 09 - Haujobb - Meltdown.flac
+    - 10 - Haujobb - Perfection.flac
+    - 11 - Haujobb - Produkt.flac
+
+  file_tags:
+    - file-01.wav
+    - file-02.wav
+    - file-03.wav
+    - file-04.wav
+    - file-05.wav
+    - file-06.wav
+    - file-07.wav
+    - file-08.wav
+    - file-09.wav
+    - file-10.wav
+    - file-11.wav

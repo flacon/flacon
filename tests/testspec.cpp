@@ -4,10 +4,16 @@
 #include <QDebug>
 #include <QTest>
 #include "types.h"
+#include "cue.h"
 
 static inline QString calcPath(const QString &p1, const QString &p2)
 {
     return (p1.isEmpty() ? "" : p1 + ".") + p2;
+}
+
+static inline QString calcPath(const QString &p1, size_t p2)
+{
+    return (p1.isEmpty() ? "" : p1 + "[") + QString::number(p2) + "]";
 }
 
 static inline void mustExists(const TestSpec::Node *node)
@@ -36,6 +42,13 @@ TestSpec::Node TestSpec::Node::operator[](const QString &key)
 {
     Node res  = mYaml[key.toStdString()];
     res.mPath = calcPath(mPath, key);
+    return res;
+}
+
+TestSpec::Node TestSpec::Node::operator[](size_t index) const
+{
+    Node res  = mYaml[index];
+    res.mPath = calcPath(mPath, index);
     return res;
 }
 
@@ -88,7 +101,12 @@ QStringList TestSpec::Node::toStringList(const QStringList &defaultValue) const
 
 static QFileInfo expandFilePath(const QString &dir, const QString &file)
 {
+    if (file.startsWith(Cue::EMBEDED_PREFIX)) {
+        return expandFilePath(Cue::EMBEDED_PREFIX + dir, file.mid(QString(Cue::EMBEDED_PREFIX).size()));
+    }
+
     QFileInfo res(file);
+
     if (res.filePath().isEmpty() || res.isAbsolute()) {
         return res;
     }
@@ -110,6 +128,21 @@ QFileInfoList TestSpec::Node::toFileInfoList(const QString &dir) const
     return res;
 }
 
+TestSpec::NodeList TestSpec::Node::toArray() const
+{
+    NodeList res;
+    if (!mYaml.IsSequence()) {
+        return res;
+    }
+
+    auto items = mYaml.as<YAML::Node>();
+    for (size_t i = 0; i < mYaml.size(); ++i) {
+        res << mYaml[i];
+    }
+
+    return res;
+}
+
 /**************************************
  *
  **************************************/
@@ -124,6 +157,14 @@ TestSpec::TestSpec(const QString &dir, const QString &file)
     catch (const YAML::Exception &err) {
         throw FlaconError(err.what());
     }
+}
+
+/**************************************
+ *
+ **************************************/
+bool TestSpec::exists(const QString &dir, const QString &file)
+{
+    return QFileInfo::exists(dir + "/" + file);
 }
 
 /**************************************

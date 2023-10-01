@@ -122,7 +122,25 @@ void AudioFileMatcher::doMatchForAudio(const QString &audioFilePath)
 {
     clear();
 
-    QFileInfo     audioFile     = QFileInfo(audioFilePath);
+    QFileInfo audioFile = QFileInfo(audioFilePath);
+
+    // Embedded CUE ........................
+    try {
+        InputAudioFile audio(audioFile.filePath());
+        if (audio.isValid()) {
+            EmbeddedCue cue(audio);
+            if (!cue.isEmpty()) {
+                mCue      = cue;
+                mFileTags = getFileTags(mCue);
+                mAudioFilePaths << audioFile;
+                return;
+            }
+        }
+    }
+    catch (const FlaconError &err) {
+        qCWarning(LOG) << "Can't parse embedded cue:" << err.what();
+    }
+
     QFileInfoList allCueFiles   = searchCueFiles(audioFile.dir());
     QFileInfoList allAudioFiles = searchAudioFiles(audioFile.dir());
 

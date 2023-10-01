@@ -96,67 +96,6 @@ Disc::~Disc()
 /************************************************
 
 ************************************************/
-void Disc::searchCueFile(bool replaceExisting)
-{
-    if (!replaceExisting && !mCue.isEmpty()) {
-        return;
-    }
-
-    QStringList audioFiles = audioFilePaths();
-    if (audioFiles.isEmpty()) {
-        return;
-    }
-
-    // Embedded CUE ........................
-    try {
-        QByteArray embeddedCue = this->audioFiles().first().format()->readEmbeddedCue(this->audioFilePaths().first());
-        if (!embeddedCue.isEmpty()) {
-            QBuffer buf(&embeddedCue);
-            buf.open(QBuffer::ReadOnly);
-            setCueFile(Cue(&buf, audioFilePaths().first()));
-            return;
-        }
-    }
-    catch (const FlaconError &err) {
-        qCWarning(LOG) << "Can't parse embedded cue:" << err.what();
-    }
-
-    // Serarch CUE files ...................
-
-    QFileInfo     audioFile = QFileInfo(audioFiles.first());
-    QList<Cue>    cues;
-    QFileInfoList files = audioFile.dir().entryInfoList(QStringList("*.cue"), QDir::Files | QDir::Readable);
-    foreach (QFileInfo f, files) {
-        try {
-            cues << Cue(f.absoluteFilePath());
-        }
-        catch (FlaconError &) {
-            continue; // Just skipping the incorrect files.
-        }
-    }
-
-    unsigned int bestWeight = 99999;
-    Cue          bestDisc;
-
-    foreach (const Cue &cue, cues) {
-        AudioFileMatcher matcher(cue.filePath(), cue.tracks());
-        if (matcher.containsAudioFile(audioFile.filePath())) {
-            unsigned int weight = levenshteinDistance(QFileInfo(cue.filePath()).baseName(), audioFile.baseName());
-            if (weight < bestWeight) {
-                bestWeight = weight;
-                bestDisc   = cue;
-            }
-        }
-    }
-
-    if (!bestDisc.isEmpty()) {
-        setCueFile(bestDisc);
-    }
-}
-
-/************************************************
-
-************************************************/
 void Disc::searchCoverImage(bool replaceExisting)
 {
     if (!replaceExisting && !mCoverImageFile.isEmpty()) {
@@ -542,17 +481,6 @@ QString Disc::discId() const
 {
     if (!mTracks.isEmpty())
         return mTracks.first()->tag(TagId::DiscId);
-
-    return "";
-}
-
-/************************************************
- *
- ************************************************/
-QString Disc::fileTag() const
-{
-    if (!mTracks.isEmpty())
-        return mTracks.first()->tag(TagId::File);
 
     return "";
 }

@@ -3,5 +3,7 @@ run:
 
 expected:
   cue:       Album.cue
-  audio:     [ "Album [Disk 1].ape", "Album [Disk 2].ape" ]
+  audio:
+    - "Album [Disk 1].ape"
+    - "Album [Disk 2].ape"
   file_tags: [ Garbage1.wav, Garbage2.wav ]
