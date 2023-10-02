@@ -43,10 +43,11 @@ public:
     Cue() = default;
     explicit Cue(const QString &fileName) noexcept(false);
 
-    QString title() const { return mTitle; }
-    QString filePath() const { return mFilePath; }
-    DiscNum discCount() const { return mDiscCount; }
-    DiscNum discNum() const { return mDiscNum; }
+    QString     title() const { return mTitle; }
+    QString     filePath() const { return mFilePath; }
+    DiscNum     discCount() const { return mDiscCount; }
+    DiscNum     discNum() const { return mDiscNum; }
+    QStringList fileTags() const { return mFileTags; }
 
     bool isEmpty() const { return mTracks.isEmpty(); }
     bool isMutiplyAudio() const;
@@ -56,11 +57,12 @@ public:
     const TrackTags &track(uint index) const { return mTracks.at(index); }
 
 protected:
-    DiskTags mTracks;
-    QString  mFilePath;
-    DiscNum  mDiscCount = 0;
-    DiscNum  mDiscNum   = 0;
-    QString  mTitle;
+    DiskTags    mTracks;
+    QString     mFilePath;
+    DiscNum     mDiscCount = 0;
+    DiscNum     mDiscNum   = 0;
+    QString     mTitle;
+    QStringList mFileTags;
 
     void       read(const CueData &data);
     QByteArray getAlbumPerformer(const CueData &data);

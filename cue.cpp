@@ -137,6 +137,17 @@ void Cue::read(const CueData &data)
         splitTitleTag(data);
     }
 
+    {
+        mFileTags.clear();
+        QByteArray prev;
+        for (const TrackTags &track : mTracks) {
+            if (track.tagValue(TagId::File).value() != prev) {
+                mFileTags << QString::fromUtf8(track.tagData(TagId::File));
+                prev = track.tagValue(TagId::File).value();
+            }
+        }
+    }
+
     setCodecName(data);
     validate();
 }

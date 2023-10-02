@@ -58,15 +58,21 @@ void TestFlacon::testAudioFileMatcher()
         TestSpec::Node expected = spec["expected"];
 
         if (expected["cue"].exists()) {
-            QCOMPARE(matcher.cue().filePath(), expected["cue"].toFileInfo(dir).filePath());
+            QString actual_cue = matcher.cue().filePath();
+            QString expect_cue = expected["cue"].toFileInfo(dir).filePath();
+            QCOMPARE(actual_cue, expect_cue);
         }
 
         if (expected["audio"].exists()) {
-            QCOMPARE(matcher.audioFilePaths(), expected["audio"].toFileInfoList(dir));
+            QFileInfoList actual_audio = matcher.audioFilePaths();
+            QFileInfoList expect_audio = expected["audio"].toFileInfoList(dir);
+            QCOMPARE(actual_audio, expect_audio);
         }
 
         if (expected["file_tags"].exists()) {
-            QCOMPARE(matcher.fileTags(), expected["file_tags"].toStringList());
+            QStringList actual_file_tags = matcher.cue().fileTags();
+            QStringList expect_file_tags = expected["file_tags"].toStringList();
+            QCOMPARE(actual_file_tags, expect_file_tags);
         }
     }
     catch (const FlaconError &err) {

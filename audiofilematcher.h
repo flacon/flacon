@@ -41,33 +41,34 @@ public:
 
     void clear();
 
-    QStringList        fileTags() const { return mFileTags; }
     Cue                cue() const { return mCue; }
     QFileInfoList      audioFilePaths() const { return mAudioFilePaths; }
     InputAudioFileList audioFiles() const;
 
-    QFileInfo
-    audioFile(const QString &fileTag) const;
-
 private:
-    QStringList                mFileTags;
+    struct Result
+    {
+        Cue           cue;
+        QFileInfoList audioFilePaths;
+    };
+
     Cue                        mCue;
     QFileInfoList              mAudioFilePaths;
     mutable InputAudioFileList mAudioFiles;
 
-    QFileInfoList searchCueFiles(const QDir &dir);
-    QFileInfoList searchAudioFiles(const QDir &dir);
+    QFileInfoList searchCueFiles(const QDir &dir) const;
+    QFileInfoList searchAudioFiles(const QDir &dir) const;
     Cue           loadEmbeddedCue(const QFileInfo &audioFile) const;
 
-    void doMatchForCue(const Cue &cue, const QFileInfoList &allAudioFiles);
-    void doMatchForAudio(const QString &audioFilePath);
+    Result doMatchForCue(const Cue &cue, const QFileInfoList &allAudioFiles) const;
+    Result doMatchForAudio(const QString &audioFilePath) const;
 
-    QFileInfo matchSingleAudio(const QFileInfoList &allAudioFiles);
+    QFileInfo matchSingleAudio(const Cue &cue, const QFileInfoList &allAudioFiles) const;
 
-    QFileInfoList tryPerTrackMatch(const QFileInfoList &allAudioFiles) const;
-    QFileInfoList tryMultiAudioPattrnMatch(const QFileInfoList &allAudioFiles) const;
+    QFileInfoList tryPerTrackMatch(const Cue &cue, const QFileInfoList &allAudioFiles) const;
+    QFileInfoList tryMultiAudioPattrnMatch(const Cue &cue, const QFileInfoList &allAudioFiles) const;
 
-    QFileInfo searchFile(const QRegExp &pattern, const QFileInfoList &allAudioFiles) const;
+    QFileInfo searchFile(const QRegExp &pattern, const QFileInfoList &allFiles) const;
 };
 
 QDebug operator<<(QDebug &debug, const AudioFileMatcher &matcher);

@@ -2,6 +2,6 @@ run:
   load: Album.ape
 
 expected:
-  cue:       
+  cue:
   audio:     [ Album.ape ]
   file_tags: [  ]

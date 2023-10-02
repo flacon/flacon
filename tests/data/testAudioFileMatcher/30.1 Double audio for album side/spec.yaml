@@ -1,0 +1,7 @@
+run:
+  load: Album Side1.ape
+
+expected:
+  cue:       Album.cue
+  audio:     [ Album Side1.ape, Album Side2.ape ]
+  file_tags: [ Garbage1.wav, Garbage2.wav ]
