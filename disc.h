@@ -41,9 +41,6 @@ class Disc : public QObject
 
 public:
     explicit Disc(QObject *parent = nullptr);
-    explicit Disc(const InputAudioFile &audio, QObject *parent = nullptr);
-    explicit Disc(const Cue &cue, QObject *parent = nullptr);
-
     virtual ~Disc();
 
     QList<Track *> tracks() const { return mTracks; }
@@ -51,8 +48,9 @@ public:
     int            count() const { return mTracks.count(); }
     const Track   *preGapTrack() const;
 
+    Cue     cue() const { return mCue; }
+    void    setCue(const Cue &cue);
     QString cueFilePath() const;
-    void    setCueFile(const Cue &cueDisc);
 
     QList<TrackPtrList> tracksByFileTag() const;
 
@@ -104,8 +102,6 @@ public:
     static QString     searchCoverImage(const QString &startDir);
 
     bool isEmpty() const { return mTracks.isEmpty(); }
-
-    Cue cue() const { return mCue; }
 
     DiskState state() const { return mState; }
     void      setState(DiskState value);

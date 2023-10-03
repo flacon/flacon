@@ -42,9 +42,9 @@
 #include <QLoggingCategory>
 #include <QBuffer>
 
-namespace {
-Q_LOGGING_CATEGORY(LOG, "Disk")
-}
+// namespace {
+// Q_LOGGING_CATEGORY(LOG, "Disk")
+// }
 
 #define COVER_PREVIEW_SIZE 500
 
@@ -54,35 +54,6 @@ Q_LOGGING_CATEGORY(LOG, "Disk")
 Disc::Disc(QObject *parent) :
     QObject(parent)
 {
-}
-
-/************************************************
-
- ************************************************/
-Disc::Disc(const InputAudioFile &audioFile, QObject *parent) :
-    QObject(parent),
-    mAudioFile(audioFile)
-{
-}
-
-/************************************************
-
-************************************************/
-Disc::Disc(const Cue &cue, QObject *parent) :
-    QObject(parent),
-    mCue(cue)
-{
-    mTracks.reserve(cue.tracks().count());
-    int i = 0;
-    for (const TrackTags &cueTrack : cue.tracks()) {
-        Track *track = new Track(this, i, cueTrack);
-        i++;
-        mTracks << track;
-    }
-
-    mCurrentTagsUri = cue.filePath();
-    syncTagsFromTracks();
-    mTagSets[mCurrentTagsUri].setTitle(cue.title());
 }
 
 /************************************************
@@ -145,11 +116,11 @@ QString Disc::cueFilePath() const
 /************************************************
 
  ************************************************/
-void Disc::setCueFile(const Cue &cueDisc)
+void Disc::setCue(const Cue &cue)
 {
-    mCue = cueDisc;
+    mCue = cue;
 
-    if (cueDisc.isEmpty()) {
+    if (cue.isEmpty()) {
         return;
     }
 
@@ -160,7 +131,7 @@ void Disc::setCueFile(const Cue &cueDisc)
     syncTagsFromTracks();
     mTagSets.remove(cueFilePath());
 
-    int count = cueDisc.tracks().count();
+    int count = cue.tracks().count();
 
     // Remove all tags if number of tracks differ from loaded CUE.
     for (auto it = mTagSets.begin(); it != mTagSets.end();) {
@@ -180,12 +151,12 @@ void Disc::setCueFile(const Cue &cueDisc)
         delete mTracks.takeLast();
 
     for (int t = 0; t < count; ++t) {
-        mTracks[t]->setTags(cueDisc.tracks().at(t));
+        mTracks[t]->setTags(cue.tracks().at(t));
     }
 
     mCurrentTagsUri = cueFilePath();
     syncTagsFromTracks();
-    mTagSets[mCurrentTagsUri].setTitle(cueDisc.title());
+    mTagSets[mCurrentTagsUri].setTitle(cue.title());
 
     for (int i = 0; i < qMin(audioFiles.count(), mTracks.count()); ++i) {
         if (!audioFiles[i].isNull()) {

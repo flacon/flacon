@@ -438,8 +438,8 @@ void testFail(const QString &message, const char *file, int line)
 Disc *loadFromCue(const QString &cueFile)
 {
     try {
-        Cue   cue(cueFile);
-        Disc *res = new Disc(cue);
+        Disc *res = new Disc();
+        res->setCue(Cue(cueFile));
         return res;
     }
     catch (FlaconError &err) {

@@ -362,7 +362,7 @@ void MainWindow::setCueForDisc(Disc *disc)
     try {
         Cue     cue(fileName);
         QString oldDir = QFileInfo(disc->cueFilePath()).dir().path();
-        disc->setCueFile(cue);
+        disc->setCue(cue);
         QString newDir = QFileInfo(disc->cueFilePath()).dir().path();
 
         bool hasAuioFiles = false;
@@ -373,7 +373,7 @@ void MainWindow::setCueForDisc(Disc *disc)
         if (!hasAuioFiles) {
             AudioFileMatcher matcher;
             matcher.matchForCue(cue);
-            disc->setCueFile(matcher.cue());
+            disc->setCue(matcher.cue());
             disc->setAudioFiles(matcher.audioFiles());
         }
 

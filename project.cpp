@@ -156,7 +156,7 @@ Disc *Project::addAudioFile(const QString &fileName) noexcept(false)
     matcher.matchForAudio(file.filePath());
 
     Disc *disk = new Disc();
-    disk->setCueFile(matcher.cue());
+    disk->setCue(matcher.cue());
     disk->setAudioFiles(matcher.audioFiles());
     disk->searchCoverImage();
     addDisc(disk);
@@ -179,7 +179,7 @@ Disc *Project::addCueFile(const QString &fileName)
         matcher.matchForCue(cue);
 
         Disc *disc = new Disc();
-        disc->setCueFile(matcher.cue());
+        disc->setCue(matcher.cue());
         disc->setAudioFiles(matcher.audioFiles());
         disc->searchCoverImage();
         addDisc(disc);

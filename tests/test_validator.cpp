@@ -113,9 +113,8 @@ void TestFlacon::testValidator()
         validator.setProfile(&profile);
 
         for (auto d : spec.disks) {
-            Cue cue(d.cue.c_str());
-
-            Disk *disk = new Disk(cue, &validator);
+            Disk *disk = new Disk(&validator);
+            disk->setCue(Cue(d.cue.c_str()));
 
             for (size_t i = 0; i < d.audio.size(); ++i) {
                 InputAudioFile audio(d.audio[i].c_str());
