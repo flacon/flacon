@@ -23,7 +23,7 @@ rm -rf ${BUNDLE_PATH}
 tar xf ${TAR}
 
 VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" ${BUNDLE_PATH}/Contents/Info.plist)
-DMG_NAME="./${APP_NAME}-${VERSION}.dmg"
+DMG_NAME="./${APP_NAME}_${VERSION}.dmg"
 
 echo "***********************************"
 echo "* App     ${APP_NAME}"
