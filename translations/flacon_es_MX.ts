@@ -314,7 +314,26 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR medio&lt;/dt&gt;
+&lt;dd&gt;Usando un Bitrate Variable medio, este preajuste debe ser casi transparente para la mayoría de gente y la mayoría de música.&lt;/dd&gt;
+
+&lt;dt&gt;VBR estándar&lt;/dt&gt;
+&lt;dd&gt;Usando un Bitrate Variable estándar, este preajuste debería se transparente para la mayoría de la música y es ya un nivel alto de calidad.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extremo&lt;/dt&gt;
+&lt;dd&gt;Usando el Bitrate Variable más alto, este preajuste ofrece algo más de calidad si usted tiene muy buen oído o un equipo de audio de gama alta.&lt;/dd&gt;
+
+&lt;dt&gt;Calidad VBR&lt;/dt&gt;
+&lt;dd&gt;Este valor le permite establecer la calidad de salida.&lt;/dd&gt;
+
+&lt;dt&gt;CBR máximo&lt;/dt&gt;
+&lt;dd&gt;Si necesita la calidad más alta sin importar el tamaño del archivo, la conseguirá usando este Bitrate Constante.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Usando este Bitrate Constante, el preajuste le dará una buena calidad al bitrate especificado.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Usando este Bitrate Promedio, este preajuste le dará una calidad más alta que el Bitrate Constante para un bitrate específico.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -604,12 +623,12 @@ Esto sólo afectará el tamaño de archivo. Todos los parámetros son sin pérdi
     <message>
         <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
         <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Si la etiqueta &quot;TÍTULO&quot; contiene el nombre del artista y de la pista, combinados por un caracter separador, el programa intentará asignar las etiquetas apropiadas.</translation>
     </message>
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
-        <translation type="unfinished"/>
+        <translation>Usar la definición heurística del intérprete de la pista</translation>
     </message>
 </context>
 <context>
@@ -1040,13 +1059,13 @@ Do you want to continue?</source>
         <source>The following files will be moved to the trash. Remove the following files?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Los siguiente archivos serán movidos a la papelera. ¿Eliminar los siguientes archivos?</translation>
     </message>
     <message>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Algunos discos tienen avisos:</translation>
     </message>
 </context>
 <context>

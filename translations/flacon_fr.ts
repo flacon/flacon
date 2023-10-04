@@ -314,7 +314,26 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;DBV moyen&lt;/dt&gt;
+&lt;dd&gt;En utilisant un Débit Binaire Variable moyen, cette présélection devrait offrir une quasi-transparence à la plupart des personnes, pour la plupart des musiques.&lt;/dd&gt;
+
+&lt;dt&gt;DBV standard&lt;/dt&gt;
+&lt;dd&gt;En utilisant un Débit Binaire Variable standard, cette présélection devrait généralement être transparente pour la plupart des personnes, pour la plupart des musiques et donne déjà des résultats de haute qualité.&lt;/dd&gt;
+
+&lt;dt&gt;DBV extrême&lt;/dt&gt;
+&lt;dd&gt;En utilisant le plus haut Débit Binaire Variable possible, cette présélection offre une qualité légèrement supérieure au mode standard si vous avec une très bonne ouïe et un matériel audio haut de gamme.&lt;/dd&gt;
+
+&lt;dt&gt;DBV qualité&lt;/dt&gt;
+&lt;dd&gt;Cette option à Débit Binaire Variable vous permet de choisir la qualité de sortie.&lt;/dd&gt;
+
+&lt;dt&gt;DBC insensé&lt;/dt&gt;
+&lt;dd&gt;Si vous devez obtenir la plus haute qualité sans vous soucier de la taille du fichier, vous l’obtiendrez en utilisant ce Débit Binaire Constant.&lt;/dd&gt;
+
+&lt;dt&gt;DBC kbit/s&lt;/dt&gt;
+&lt;dd&gt;Cette présélection à Débit Binaire Constant vous donnera généralement une bonne qualité pour un débit donné.&lt;/dd&gt;
+
+&lt;dt&gt;DBM kbit&lt;/dt&gt;
+&lt;dd&gt;Cette présélection à Débit Binaire Moyen vous donnera généralement une meilleure qualité que l’option à Débit Binaire Constant. pour un débit donné.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -1042,13 +1061,13 @@ Voulez-vous continuer ?</translation>
         <source>The following files will be moved to the trash. Remove the following files?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Les fichiers suivants seront déplacés vers la corbeille. Les supprimer ?</translation>
     </message>
     <message>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Certains disques présentent des avertissements :</translation>
     </message>
 </context>
 <context>

@@ -314,7 +314,26 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR médio&lt;/dt&gt;
+      &lt;dd&gt;Essa pré-configuração deve fornecer boa clareza para a maioria das pessoas e das músicas.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR padrão&lt;/dt&gt;
+      &lt;dd&gt;Essa pré-configuração deve fornecer boa clareza para a maioria das pessoas e das músicas e já possui alta qualidade.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR extremo&lt;/dt&gt;
+      &lt;dd&gt;Essa pré-configuração fornece uma qualidade um pouco maior que o modo padrão caso você possua uma audição muito boa ou um equipamento de áudio de qualidade.&lt;/dd&gt;
+
+      &lt;dt&gt;Qualidade da VBR&lt;/dt&gt;
+      &lt;dd&gt;Essa opção lhe permite especificar a qualidade de saída.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR insano&lt;/dt&gt;
+      &lt;dd&gt;Se você precisa ter a maior qualidade possível independentemente do tamanho do arquivo, você terá isso usando a Taxa de Bits Constante.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR kbps&lt;/dt&gt;
+      &lt;dd&gt;Essa pré-configuração geralmente lhe fornecerá uma boa qualidade usando a taxa de bits especificada.&lt;/dd&gt;
+
+      &lt;dt&gt;ABR kbps&lt;/dt&gt;
+      &lt;dd&gt;Essa pré-configuração geralmente lhe fornecerá uma qualidade mais alta que a opção CBR usando a taxa de bits especificada.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -1041,13 +1060,13 @@ Você deseja continuar?</translation>
         <source>The following files will be moved to the trash. Remove the following files?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Os seguintes arquivos serão enviados à lixeira. Remover esses arquivos?</translation>
     </message>
     <message>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Alguns discos têm avisos:</translation>
     </message>
 </context>
 <context>

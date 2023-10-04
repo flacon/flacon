@@ -1192,7 +1192,7 @@ Möchten Sie fortsetzen?</translation>
         <source>Create profile</source>
         <comment>Button caption</comment>
         <extracomment>Button caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Profil erstellen</translation>
     </message>
 </context>
 <context>

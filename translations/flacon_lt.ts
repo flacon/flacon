@@ -314,7 +314,26 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR vidutinė&lt;/dt&gt;
+      &lt;dd&gt;Naudojant vidutinį kintamąjį pralaidumą, daugelis žmonių neišgirs kokybės iškraipymų daugumoje muzikos įrašų.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR standartinė&lt;/dt&gt;
+      &lt;dd&gt;Naudojant standartinį kintamąjį pralaidumą, daugelis žmonių neišgirs kokybės iškraipymų daugumoje muzikos įrašų ir be to, yra pateikiama ganėtinai aukšta kokybė.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR ekstremali&lt;/dt&gt;
+      &lt;dd&gt;Naudojant aukščiausią įmanomą kintamąjį pralaidumą, ši parinktis pateiks šiek tiek aukštesnę kokybę nei standartinė veiksena. Tai pastebėsite tik tuo atveju, jei turite gerą klausą ar aukštos klasės muzikinę įrangą.&lt;/dd&gt;
+
+      &lt;dt&gt;VBR kokybė&lt;/dt&gt;
+      &lt;dd&gt;Ši kintamojo pralaidumo parinktis leidžia jums nurodyti išvesties kokybę.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR beprotiška&lt;/dt&gt;
+      &lt;dd&gt;Jeigu jūs privalote turėti pačią aukščiausią kokybę, neatsižvelgiant į failo dydį, to pasieksite, naudodami šį pastovųjį pralaidumą.&lt;/dd&gt;
+
+      &lt;dt&gt;CBR kbps&lt;/dt&gt;
+      &lt;dd&gt;Naudojant šį pastovųjį pralaidumą, įprastai gausite gerą kokybę su nurodytu pralaidumu.&lt;/dd&gt;
+
+      &lt;dt&gt;ABR kbps&lt;/dt&gt;
+      &lt;dd&gt;Naudojant šį vidutinį pralaidumą, įprastai gausite aukštesnę nurodyto pralaidumo kokybę, negu tą, kurią gautumėte, naudodami pastoviojo pralaidumo parinktį su tuo pačiu pralaidumu.&lt;/dd&gt;   </translation>
     </message>
 </context>
 <context>
@@ -1041,13 +1060,13 @@ Ar norite tęsti?</translation>
         <source>The following files will be moved to the trash. Remove the following files?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Sekantys failai bus perkelti į šiukšlinę. Pašalinti šiuos failus?</translation>
     </message>
     <message>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Kai kuriuose diskuose yra įspėjimų:</translation>
     </message>
 </context>
 <context>
