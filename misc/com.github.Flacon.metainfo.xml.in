@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <component type="desktop-application">
   <id>com.github.Flacon</id>
   <name>Flacon</name>
@@ -56,10 +56,11 @@
   </screenshots>
 
   <releases>
-    <release date="2023-06-17" version="11.2.0">
+    <release date="2023-10-04" version="11.3.0">
       <description><p>Latest version of Flacon on Flathub.</p></description>
     </release>
-    <release date="2023-05-19" version="11.1.0" />
+    <release date="2023-06-17" version="11.2.0" />
+    <release date="2023-05-28" version="11.1.0" />
     <release date="2023-05-19" version="11.0.0" />
     <release date="2023-01-20" version="10.0.0" />
     <release date="2022-11-20" version="9.5.1" />
@@ -68,7 +69,7 @@
     <release date="2022-09-23" version="9.3.0" />
     <release date="2022-06-20" version="9.1.0" />
     <release date="2022-04-29" version="9.0.0" />
-    <release date="2021-01-31" version="8.3.0" />
+    <release date="2022-01-31" version="8.3.0" />
     <release date="2021-12-21" version="8.2.0" />
     <release date="2021-11-25" version="8.1.0" />
     <release date="2021-11-14" version="8.0.0" />

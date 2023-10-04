@@ -12,34 +12,34 @@ import xml.etree.ElementTree as ET
 import subprocess
 
 # Get current version of the program
-def get_version():	
+def get_version():
 	major_ver = None
 	minor_ver = None
 	patch_ver = None
 	beta_ver  = None
 
-	with open('CMakeLists.txt') as f:
+	with open('../CMakeLists.txt') as f:
 		n=1
 		for line in f:
 
 			result = re.match(MAJOR_RE, line)
 			if result:
 				major_ver = result.group(1).strip()
-			
+
 			result = re.match(MINOR_RE, line)
 			if result:
 				minor_ver = result.group(1).strip()
-			
-			result = re.match(PATCH_RE, line)
-			if result:
-				patch_ver = result.group(1).strip()
 
 			result = re.match(PATCH_RE, line)
 			if result:
 				patch_ver = result.group(1).strip()
 
+			result = re.match(PATCH_RE, line)
+			if result:
+				patch_ver = result.group(1).strip()
 
-			if n > 50:				
+
+			if n > 50:
 				break
 			n+=1
 
@@ -61,18 +61,18 @@ def update_metainfo(file):
 		return
 
 	ver = "%s.%s.%s" % (major_ver, minor_ver, patch_ver)
-	
+
 	doc = ET.parse(file)
 	if doc.find("./releases/release[@version='%s']" % ver):
 		return False
-	
+
 
 	vers = {}
 	vers[datetime.date.today().strftime("%Y-%m-%d")] = ver
 	for r in doc.findall("./releases/release"):
 		vers[r.attrib["date"]] = r.attrib["version"]
 
-	
+
 	releases = doc.find("./releases")
 	releases.clear()
 	releases.text = "\n" + (' ' * 4)
@@ -80,13 +80,13 @@ def update_metainfo(file):
 
 	for date in sorted(vers.keys(), reverse=True):
 		release = ET.SubElement(releases, 'release')
-		release.attrib["version"] = vers[date]
 		release.attrib["date"] = date
+		release.attrib["version"] = vers[date]
 		release.tail = "\n" + (' ' * 4)
 
 		if vers[date] == ver:
 			release.text = "\n" + (' ' * 6)
-			
+
 
 			desc = ET.SubElement(release, "description")
 			desc.tail = "\n" + (' ' * 4)
@@ -96,10 +96,9 @@ def update_metainfo(file):
 
 	release.tail = "\n" + (' ' * 2)
 
-	doc.write(file)
-	subprocess.check_call(["git", "add",  file])
+	doc.write(file, encoding='utf-8', xml_declaration=True)
 
 
 if __name__ == "__main__":
-	update_metainfo("misc/com.github.Flacon.metainfo.xml.in")
-	
+	update_metainfo("com.github.Flacon.metainfo.xml.in")
+
