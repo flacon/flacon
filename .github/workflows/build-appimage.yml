@@ -42,6 +42,7 @@ jobs:
         sudo apt-get -y update
         sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev libtag1-dev
         sudo apt-get -y install flac mac alacenc vorbis-tools wavpack lame ttaenc faac opus-tools sox
+        sudo apt-get -y install desktop-file-utils
 
     - name: Clone tools
       run: |
@@ -53,6 +54,7 @@ jobs:
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cmake -E make_directory ${{github.workspace}}/build/app
+        cp ${{github.workspace}}/misc/excludelist .
 
     - name: Run CMake
       shell: bash
@@ -83,6 +85,10 @@ jobs:
         for prog in ${PROGRAMS}; do echo " * Copy ${prog}"; src=$(which "$prog"); dest=${src#/}; cp -f "${src}" "usr/bin/"; done
         echo "= Build image ================="
         linuxdeploy --verbosity=3  --plugin qt --appdir "${{github.workspace}}/build/app"
+
+    - name: Check AppImage dir
+      run: |
+        /bin/bash ~/tools/appdir-lint.sh ${{github.workspace}}/build/app
 
     - name: Check external programs
       working-directory: ${{github.workspace}}
