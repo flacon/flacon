@@ -54,7 +54,6 @@ jobs:
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cmake -E make_directory ${{github.workspace}}/build/app
-        cp ${{github.workspace}}/misc/excludelist .
 
     - name: Run CMake
       shell: bash
@@ -80,6 +79,7 @@ jobs:
         echo "= Create symlinks ============="
         ln -sf usr/bin/flacon AppRun
         ln -sf usr/share/icons/hicolor/128x128/apps/flacon.png .
+        ln -sf ./flacon.png  ./.DirIcon
         ln -sf usr/share/applications/flacon.desktop .
         echo "= Add programs ================"
         for prog in ${PROGRAMS}; do echo " * Copy ${prog}"; src=$(which "$prog"); dest=${src#/}; cp -f "${src}" "usr/bin/"; done
