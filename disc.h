@@ -66,7 +66,7 @@ public:
     int  startTrackNum() const;
     void setStartTrackNum(TrackNum value);
 
-    QString codecName() const;
+    QString codecName() const { return mCodecName; }
     void    setCodecName(const QString &codecName);
 
     QString tagSetTitle() const;
@@ -128,7 +128,8 @@ private:
     QString        mCoverImageFile;
     mutable QImage mCoverImagePreview;
 
-    DiskState mState = DiskState::NotRunning;
+    DiskState mState     = DiskState::NotRunning;
+    QString   mCodecName = CODEC_AUTODETECT;
 
     void syncTagsFromTracks();
     void syncTagsToTracks();

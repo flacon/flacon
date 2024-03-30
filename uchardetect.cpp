@@ -27,7 +27,6 @@
 #include "settings.h"
 #include <uchardet.h>
 #include "track.h"
-#include <QTextCodec>
 
 /************************************************
  *
@@ -91,21 +90,16 @@ UcharDet &UcharDet::operator<<(const TrackTags &track)
  ************************************************/
 QString UcharDet::textCodecName() const
 {
-    return textCodec()->name();
-}
-
-/************************************************
- *
- ************************************************/
-QTextCodec *UcharDet::textCodec() const
-{
     uchardet_data_end(mData->mUchcharDet);
-    QTextCodec *res = QTextCodec::codecForName(uchardet_get_charset(mData->mUchcharDet));
-    if (!res)
-        res = QTextCodec::codecForName(Settings::i()->defaultCodepage().toLocal8Bit());
+    QString res = uchardet_get_charset(mData->mUchcharDet);
 
-    if (!res || res->name() == "US-ASCII")
-        res = QTextCodec::codecForName("UTF-8");
+    if (!TextCodec::codecForName(res).isValid()) {
+        res = Settings::i()->defaultCodepage();
+    }
+
+    if (res == "US-ASCII") {
+        res = "UTF-8";
+    }
 
     return res;
 }

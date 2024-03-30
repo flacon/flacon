@@ -46,7 +46,6 @@
 #include <QDir>
 #include <QDebug>
 #include <QMessageBox>
-#include <QTextCodec>
 #include <QQueue>
 #include <QKeyEvent>
 #include <QMimeData>

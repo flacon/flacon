@@ -28,11 +28,8 @@
 #include "../disc.h"
 #include <QtNetwork/QNetworkAccessManager>
 
-#include "project.h"
-
 #include <QStringList>
 #include <QDebug>
-#include <QTextCodec>
 #include <QLoggingCategory>
 #include <functional>
 

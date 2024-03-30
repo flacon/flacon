@@ -128,6 +128,11 @@ private slots:
     void testValidator();
     void testValidator_data();
 
+    void testTextCodecNames();
+
+    void testTextCodecs();
+    void testTextCodecs_data();
+
 private:
     void writeTextFile(const QString &fileName, const QString &content);
     void writeTextFile(const QString &fileName, const QStringList &content);

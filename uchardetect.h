@@ -44,8 +44,7 @@ public:
     UcharDet &operator<<(const Track &track);
     UcharDet &operator<<(const TrackTags &track);
 
-    QString     textCodecName() const;
-    QTextCodec *textCodec() const;
+    QString textCodecName() const;
 
 private:
     struct Data;

@@ -167,7 +167,7 @@ void Discogs::masterReady(QNetworkReply *reply)
         for (const QJsonValue t : tracklist) {
 
             Track track;
-            track.setCodecName("UTF-8");
+            track.setCodec(TextCodecUtf8());
 
             track.setTag(TagId::Date, year > 0 ? QString::number(year) : "");
             track.setTag(TagId::Album, album);

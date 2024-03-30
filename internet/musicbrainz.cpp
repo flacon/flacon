@@ -267,7 +267,7 @@ Tracks MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QString &alb
         QString artist = t["artist-credit"][0]["name"].toString();
 
         Track &track = res[n++];
-        track.setCodecName("UTF-8");
+        track.setCodec(TextCodecUtf8());
         track.setTag(TagId::Date, getDate(t));
         track.setTag(TagId::Album, album);
         track.setTag(TagId::Artist, artist);

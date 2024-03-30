@@ -87,7 +87,7 @@ CueData::CueData(const QString &fileName) :
  ************************************************/
 void CueData::read(QIODevice *file)
 {
-    mCodecName = detectCodepage(file);
+    mBomCodec = detectBomCodec(file);
 
     uint       lineNum = 0;
     QByteArray tag;
@@ -170,27 +170,27 @@ void CueData::read(QIODevice *file)
 /************************************************
  * Detect codepage and skip BOM
  ************************************************/
-QString CueData::detectCodepage(QIODevice *file)
+TextCodec::BomCodec CueData::detectBomCodec(QIODevice *file)
 {
     QByteArray magic = file->read(3);
 
     if (magic.startsWith("\xEF\xBB\xBF")) {
         file->seek(3);
-        return "UTF-8";
+        return TextCodec::BomCodec::UTF_8;
     }
 
     if (magic.startsWith("\xFE\xFF")) {
         file->seek(2);
-        return "UTF-16BE";
+        return TextCodec::BomCodec::UTF_16BE;
     }
 
     if (magic.startsWith("\xFF\xFE")) {
         file->seek(2);
-        return "UTF-16LE";
+        return TextCodec::BomCodec::UTF_16LE;
     }
 
     file->seek(0);
-    return "";
+    return TextCodec::BomCodec::Unknown;
 }
 
 /************************************************

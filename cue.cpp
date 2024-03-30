@@ -237,19 +237,23 @@ void Cue::splitTitleTag(const CueData &data)
  ************************************************/
 void Cue::setCodecName(const CueData &data)
 {
-    QString codecName = data.codecName();
+    TextCodec codec;
 
-    if (codecName.isEmpty()) {
+    TextCodec::BomCodec bom = data.bomCodec();
+    if (bom != TextCodec::BomCodec::Unknown) {
+        codec = TextCodec::codecForMib(int(bom));
+    }
+    else {
         UcharDet charDet;
         foreach (const TrackTags &track, mTracks) {
             charDet << track;
         }
 
-        codecName = charDet.textCodecName();
+        codec = TextCodec::codecForName(charDet.textCodecName());
     }
 
     for (TrackTags &track : mTracks) {
-        track.setCodecName(codecName);
+        track.setCodec(codec);
     }
 }
 

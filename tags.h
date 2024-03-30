@@ -31,8 +31,7 @@
 #include <QString>
 #include <QHash>
 #include <QVector>
-
-class QTextCodec;
+#include "textcodec.h"
 
 class TagValue
 {
@@ -51,7 +50,7 @@ public:
     explicit TagValue(const QString &val);
 
     bool    encoded() const { return mEncoded; }
-    QString asString(const QTextCodec *codec) const;
+    QString asString(const TextCodec &codec) const;
 
     const QByteArray &value() const { return mValue; }
     void              setValue(const QByteArray &value);
@@ -82,9 +81,8 @@ public:
     void       setTag(const TagId &tagId, const QByteArray &value);
     void       setTag(TagId tagId, const TagValue &value);
 
-    QString           codecName() const;
-    void              setCodecName(const QString &value);
-    const QTextCodec *codec() const { return mTextCodec; }
+    TextCodec codec() const { return mTextCodec; }
+    void      setCodec(const TextCodec &value);
 
     QString artist() const { return tag(TagId::Artist); }
     void    setArtist(const QString &value) { setTag(TagId::Artist, value); }
@@ -123,7 +121,7 @@ public:
 
 private:
     QHash<int, TagValue> mTags;
-    QTextCodec *         mTextCodec;
+    TextCodec            mTextCodec = TextCodecUtf8();
     QVector<CueIndex>    mCueIndexes;
 
     int  intTag(const TagId &tagId, int defaultValue = 1) const;

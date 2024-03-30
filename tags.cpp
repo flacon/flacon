@@ -27,25 +27,19 @@
 #include "tags.h"
 
 #include <assert.h>
-#include <QTextCodec>
 #include <QDebug>
 
-#define ENC_CODEC "UTF-8"
+#include <QLoggingCategory>
 
-/************************************************
- *
- ************************************************/
-static QTextCodec *encCodec()
-{
-    static QTextCodec *res = QTextCodec::codecForName(ENC_CODEC);
-    return res;
+namespace {
+Q_LOGGING_CATEGORY(LOG, "TAGS")
 }
 
 /************************************************
  *
  ************************************************/
 TagValue::TagValue(const QString &value) :
-    mValue(encCodec()->fromUnicode(value)),
+    mValue(value.toUtf8()),
     mEncoded(true)
 {
 }
@@ -53,16 +47,22 @@ TagValue::TagValue(const QString &value) :
 /************************************************
  *
  ************************************************/
-QString TagValue::asString(const QTextCodec *codec) const
+QString TagValue::asString(const TextCodec &codec) const
 {
     if (mEncoded)
-        return encCodec()->toUnicode(mValue);
+        return QString::fromUtf8(mValue);
 
-    assert(codec != nullptr);
-    if (codec)
-        return codec->toUnicode(mValue);
+    // assert(codec != nullptr);
+    if (codec.isValid()) {
+        try {
+            return codec.decode(mValue);
+        }
+        catch (const FlaconError &err) {
+            qCWarning(LOG) << "Unable to convert text for" << codec.name() << ":" << err.what();
+        }
+    }
 
-    return encCodec()->toUnicode(mValue);
+    return QString::fromUtf8(mValue);
 }
 
 /************************************************
@@ -79,7 +79,7 @@ void TagValue::setValue(const QByteArray &value)
  ************************************************/
 void TagValue::setValue(const QString &value)
 {
-    mValue   = encCodec()->fromUnicode(value);
+    mValue   = value.toUtf8();
     mEncoded = true;
 }
 
@@ -150,23 +150,9 @@ void TrackTags::setTag(TagId tagId, const TagValue &value)
 /************************************************
  *
  ************************************************/
-QString TrackTags::codecName() const
+void TrackTags::setCodec(const TextCodec &value)
 {
-    if (mTextCodec)
-        return mTextCodec->name();
-
-    return "";
-}
-
-/************************************************
- *
- ************************************************/
-void TrackTags::setCodecName(const QString &value)
-{
-    if (!value.isEmpty())
-        mTextCodec = QTextCodec::codecForName(value.toLatin1());
-    else
-        mTextCodec = nullptr;
+    mTextCodec = value;
 }
 
 /************************************************

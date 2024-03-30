@@ -27,24 +27,17 @@
 #include "track.h"
 #include "project.h"
 #include "inputaudiofile.h"
-#include "formats_in/informat.h"
-#include "audiofilematcher.h"
 #include "uchardetect.h"
 
 #include "assert.h"
-#include <QTextCodec>
 #include <QFileInfo>
 #include <QStringList>
 #include <QDir>
 #include <QQueue>
 #include <QtAlgorithms>
 #include <QDebug>
-#include <QLoggingCategory>
 #include <QBuffer>
-
-// namespace {
-// Q_LOGGING_CATEGORY(LOG, "Disk")
-// }
+#include "textcodec.h"
 
 #define COVER_PREVIEW_SIZE 500
 
@@ -394,34 +387,26 @@ void Disc::setStartTrackNum(TrackNum value)
 /************************************************
 
  ************************************************/
-QString Disc::codecName() const
-{
-    if (!mTracks.isEmpty())
-        return mTracks.first()->codecName();
-
-    return "";
-}
-
-/************************************************
-
- ************************************************/
 void Disc::setCodecName(const QString &codecName)
 {
+    mCodecName = codecName;
 
-    QString codec = codecName;
+    QString name = codecName;
 
-    if (codecName == CODEC_AUTODETECT) {
+    if (name == CODEC_AUTODETECT) {
         UcharDet charDet;
         foreach (auto track, mTracks)
             charDet << *track;
 
-        codec = charDet.textCodecName();
+        name = charDet.textCodecName();
     }
 
+    TextCodec codec = TextCodec::codecForName(name);
     foreach (auto track, mTracks) {
-        track->setCodecName(codec);
+        track->setCodec(codec);
     }
 
+    mCodecName = codec.name();
     project->emitDiscChanged(this);
 }
 

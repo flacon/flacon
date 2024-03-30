@@ -61,9 +61,8 @@ public:
     void       setTag(const TagId &tagId, const QByteArray &value);
     void       setTag(TagId tagId, const TagValue &value);
 
-    QString           codecName() const;
-    void              setCodecName(const QString &value);
-    const QTextCodec *codec() const { return mTags.codec(); }
+    const TextCodec codec() const { return mTags.codec(); }
+    void            setCodec(const TextCodec &value);
 
     bool operator==(const Track &other) const;
 

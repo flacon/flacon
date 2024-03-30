@@ -45,17 +45,12 @@ public:
     void    write(QIODevice *out);
     QString writeToFile(const QString &fileTemplate);
 
-    QTextCodec *textCodec() const { return mTextCodec; }
-    void        setTextCodecName(const QString &codecName);
-    void        setTextCodecMib(int mib);
-
 private:
     const Disc      *mDisc;
     const Profile    mProfile;
     const PreGapType mPreGapType;
 
-    QTextCodec *mTextCodec;
-    TrackTags   mGlobalTags;
+    TrackTags mGlobalTags;
 
     void initGlobalTags();
     void writeLine(QIODevice *out, const QString &text);

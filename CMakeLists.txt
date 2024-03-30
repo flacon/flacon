@@ -106,6 +106,7 @@ set(HEADERS
     sync.h
     extprogram.h
     uchardetect.h
+    textcodec.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -139,6 +140,7 @@ set(SOURCES
     validator.cpp
     extprogram.cpp
     uchardetect.cpp
+    textcodec.cpp
 
     gui/aboutdialog/aboutdialog.cpp
     gui/coverdialog/coverdialog.cpp
@@ -223,6 +225,10 @@ pkg_search_module(TAGLIB REQUIRED taglib)
 set(LIBRARIES ${LIBRARIES} ${TAGLIB_LIBRARIES})
 include_directories(${TAGLIB_INCLUDE_DIRS})
 link_directories(${TAGLIB_LIBRARY_DIRS})
+
+find_package(Iconv REQUIRED)
+set(LIBRARIES ${LIBRARIES} ${Iconv_LIBRARIES})
+
 
 if (APPLE)
     FIND_LIBRARY(COCOA_LIBRARY Cocoa)

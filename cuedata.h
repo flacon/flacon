@@ -28,6 +28,7 @@
 
 #include <QVector>
 #include <QMap>
+#include "textcodec.h"
 class QIODevice;
 
 class CueData
@@ -37,8 +38,9 @@ public:
     CueData(QIODevice *device) noexcept(false);
 
     QString fileName() const { return mFileName; }
-    QString codecName() const { return mCodecName; }
     bool    isEmpty() const { return mTracks.isEmpty(); }
+
+    TextCodec::BomCodec bomCodec() const { return mBomCodec; }
 
     using Tags = QMap<QByteArray, QByteArray>;
 
@@ -54,13 +56,14 @@ public:
 
 private:
     QString       mFileName;
-    QString       mCodecName;
     Tags          mGlobalTags;
     QVector<Tags> mTracks;
 
-    void    read(QIODevice *device);
-    QString detectCodepage(QIODevice *file);
-    void    parseLine(const QByteArray &line, QByteArray &tag, QByteArray &value, uint lineNum) const;
+    TextCodec::BomCodec mBomCodec = TextCodec::BomCodec::Unknown;
+
+    void                read(QIODevice *device);
+    TextCodec::BomCodec detectBomCodec(QIODevice *file);
+    void                parseLine(const QByteArray &line, QByteArray &tag, QByteArray &value, uint lineNum) const;
 };
 
 #endif // CUEDATA_H

@@ -28,7 +28,6 @@
 #include "patternexpander.h"
 
 #include <QFileInfo>
-#include <QTextCodec>
 #include <QDir>
 
 using namespace Conv;
@@ -41,26 +40,6 @@ CueCreator::CueCreator(const Profile &profile, const Disc *disc, PreGapType preG
     mProfile(profile),
     mPreGapType(preGapType)
 {
-
-    setTextCodecName("UTF-8");
-}
-
-/************************************************
-
- ************************************************/
-void CueCreator::setTextCodecName(const QString &codecName)
-{
-    mTextCodec = QTextCodec::codecForName(codecName.toLatin1());
-    if (!mTextCodec)
-        mTextCodec = QTextCodec::codecForName("UTF-8");
-}
-
-/************************************************
-
- ************************************************/
-void CueCreator::setTextCodecMib(int mib)
-{
-    mTextCodec = QTextCodec::codecForMib(mib);
 }
 
 /************************************************
@@ -80,8 +59,6 @@ void CueCreator::initGlobalTags()
         TagId::DiscCount,
         TagId::DiscNum
     };
-
-    mGlobalTags.setCodecName(mTextCodec->name());
 
     Track *firstTrack = mDisc->track(0);
     for (uint t = 0; t < sizeof(tags) / sizeof(TagId); ++t) {
@@ -111,7 +88,7 @@ void CueCreator::initGlobalTags()
  ************************************************/
 void CueCreator::writeLine(QIODevice *out, const QString &text)
 {
-    out->write(mTextCodec->fromUnicode(text));
+    out->write(text.toUtf8());
     out->write("\n");
 }
 

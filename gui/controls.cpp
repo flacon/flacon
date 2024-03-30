@@ -32,7 +32,6 @@
 #include <QtGlobal>
 #include <QMenu>
 #include <QDebug>
-#include <QTextCodec>
 #include <QPaintEvent>
 #include <QPainter>
 #include <QFileDialog>
@@ -417,8 +416,7 @@ void CodePageComboBox::setCodePage(const QString &value)
  ************************************************/
 void CodePageComboBox::addCodecName(const QString &title, const QString &codecName)
 {
-    if (QTextCodec::availableCodecs().contains(codecName.toLatin1()))
-        addItem(title, codecName);
+    addItem(title, codecName);
 }
 
 /************************************************

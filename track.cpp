@@ -116,17 +116,9 @@ void Track::setTag(TagId tagId, const TagValue &value)
 /************************************************
  *
  ************************************************/
-QString Track::codecName() const
+void Track::setCodec(const TextCodec &value)
 {
-    return mTags.codecName();
-}
-
-/************************************************
- *
- ************************************************/
-void Track::setCodecName(const QString &value)
-{
-    mTags.setCodecName(value);
+    mTags.setCodec(value);
 }
 
 /************************************************
