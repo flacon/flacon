@@ -347,47 +347,47 @@ CodePageComboBox::CodePageComboBox(QWidget *parent) :
     addItem(tr("Auto detect", "Codepage auto detection"), CODEC_AUTODETECT);
     insertSeparator(9999);
 
-    addCodecName(tr("Unicode (UTF-8)"), "UTF-8");
-    addCodecName(tr("Unicode (UTF-16LE)"), "UTF-16LE");
-    addCodecName(tr("Unicode (UTF-16BE)"), "UTF-16BE");
+    addCodecName(tr("Unicode (UTF-8)"), TextCodecUtf8::NAME);
+    addCodecName(tr("Unicode (UTF-16LE)"), TextCodecUtf16Le::NAME);
+    addCodecName(tr("Unicode (UTF-16BE)"), TextCodecUtf16Be::NAME);
 
     insertSeparator(9999);
 
-    addCodecName(tr("Cyrillic (Win-1251)"), "windows-1251");
-    addCodecName(tr("Cyrillic (CP-866)"), "IBM866");
+    addCodecName(tr("Cyrillic (Win-1251)"), TextCodecWindows1251::NAME);
+    addCodecName(tr("Cyrillic (CP-866)"), TextCodecIbm866::NAME);
 
     insertSeparator(9999);
 
-    addCodecName(tr("Latin-1 (ISO-8859-1)"), "ISO-8859-1");
-    addCodecName(tr("Latin-2 (ISO-8859-2)"), "ISO-8859-2");
-    addCodecName(tr("Latin-3 (ISO-8859-3)"), "ISO-8859-3");
-    addCodecName(tr("Latin-4 (ISO-8859-4)"), "ISO-8859-4");
-    addCodecName(tr("Latin-5 (ISO-8859-5)"), "ISO-8859-5");
-    addCodecName(tr("Latin-6 (ISO-8859-6)"), "ISO-8859-6");
-    addCodecName(tr("Latin-7 (ISO-8859-7)"), "ISO-8859-7");
-    addCodecName(tr("Latin-8 (ISO-8859-8)"), "ISO-8859-8");
-    addCodecName(tr("Latin-9 (ISO-8859-9)"), "ISO-8859-9");
-    addCodecName(tr("Latin-10 (ISO-8859-10)"), "ISO-8859-10");
+    addCodecName(tr("Latin-1 (ISO-8859-1)"), TextCodecIso8859_1::NAME);
+    addCodecName(tr("Latin-2 (ISO-8859-2)"), TextCodecIso8859_2::NAME);
+    addCodecName(tr("Latin-3 (ISO-8859-3)"), TextCodecIso8859_3::NAME);
+    addCodecName(tr("Latin-4 (ISO-8859-4)"), TextCodecIso8859_4::NAME);
+    addCodecName(tr("Latin-5 (ISO-8859-5)"), TextCodecIso8859_5::NAME);
+    addCodecName(tr("Latin-6 (ISO-8859-6)"), TextCodecIso8859_6::NAME);
+    addCodecName(tr("Latin-7 (ISO-8859-7)"), TextCodecIso8859_7::NAME);
+    addCodecName(tr("Latin-8 (ISO-8859-8)"), TextCodecIso8859_8::NAME);
+    addCodecName(tr("Latin-9 (ISO-8859-9)"), TextCodecIso8859_9::NAME);
+    addCodecName(tr("Latin-10 (ISO-8859-10)"), TextCodecIso8859_10::NAME);
 
-    addCodecName(tr("Latin-13 (ISO-8859-13)"), "ISO-8859-13");
-    addCodecName(tr("Latin-14 (ISO-8859-14)"), "ISO-8859-14");
-    addCodecName(tr("Latin-15 (ISO-8859-15)"), "ISO-8859-15");
-    addCodecName(tr("Latin-16 (ISO-8859-16)"), "ISO-8859-16");
-
-    insertSeparator(9999);
-    addCodecName(tr("Windows 1250"), "windows-1250");
-    addCodecName(tr("Windows 1252"), "windows-1252");
-    addCodecName(tr("Windows 1253"), "windows-1253");
-    addCodecName(tr("Windows 1254"), "windows-1254");
-    addCodecName(tr("Windows 1255"), "windows-1255");
-    addCodecName(tr("Windows 1256"), "windows-1256");
-    addCodecName(tr("Windows 1257"), "windows-1257");
-    addCodecName(tr("Windows 1258"), "windows-1258");
+    addCodecName(tr("Latin-13 (ISO-8859-13)"), TextCodecIso8859_13::NAME);
+    addCodecName(tr("Latin-14 (ISO-8859-14)"), TextCodecIso8859_14::NAME);
+    addCodecName(tr("Latin-15 (ISO-8859-15)"), TextCodecIso8859_15::NAME);
+    addCodecName(tr("Latin-16 (ISO-8859-16)"), TextCodecIso8859_16::NAME);
 
     insertSeparator(9999);
-    addCodecName(tr("Simplified Chinese (GB18030)"), "GB18030");
-    addCodecName(tr("Traditional Chinese (BIG5)"), "Big5");
-    addCodecName(tr("Japanese (CP932)"), "windows-31j");
+    addCodecName(tr("Windows 1250"), TextCodecWindows1250::NAME);
+    addCodecName(tr("Windows 1252"), TextCodecWindows1252::NAME);
+    addCodecName(tr("Windows 1253"), TextCodecWindows1253::NAME);
+    addCodecName(tr("Windows 1254"), TextCodecWindows1254::NAME);
+    addCodecName(tr("Windows 1255"), TextCodecWindows1255::NAME);
+    addCodecName(tr("Windows 1256"), TextCodecWindows1256::NAME);
+    addCodecName(tr("Windows 1257"), TextCodecWindows1257::NAME);
+    addCodecName(tr("Windows 1258"), TextCodecWindows1258::NAME);
+
+    insertSeparator(9999);
+    addCodecName(tr("Simplified Chinese (GB18030)"), TextCodecGb18030::NAME);
+    addCodecName(tr("Traditional Chinese (BIG5)"), TextCodecBig5::NAME);
+    addCodecName(tr("Japanese (CP932)"), TextCodecShiftJis::NAME);
 }
 
 /************************************************

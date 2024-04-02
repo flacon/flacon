@@ -34,20 +34,20 @@ QList<int> TextCodec::availableMibs()
         TextCodecUtf8::MIB,
         TextCodecUtf16Be::MIB,
         TextCodecUtf16Le::MIB,
-        TextCodecIso88591::MIB,
-        TextCodecIso88592::MIB,
-        TextCodecIso88593::MIB,
-        TextCodecIso88594::MIB,
-        TextCodecIso88595::MIB,
-        TextCodecIso88596::MIB,
-        TextCodecIso88597::MIB,
-        TextCodecIso88598::MIB,
-        TextCodecIso88599::MIB,
-        TextCodecIso885910::MIB,
-        TextCodecIso885913::MIB,
-        TextCodecIso885914::MIB,
-        TextCodecIso885915::MIB,
-        TextCodecIso885916::MIB,
+        TextCodecIso8859_1::MIB,
+        TextCodecIso8859_2::MIB,
+        TextCodecIso8859_3::MIB,
+        TextCodecIso8859_4::MIB,
+        TextCodecIso8859_5::MIB,
+        TextCodecIso8859_6::MIB,
+        TextCodecIso8859_7::MIB,
+        TextCodecIso8859_8::MIB,
+        TextCodecIso8859_9::MIB,
+        TextCodecIso8859_10::MIB,
+        TextCodecIso8859_13::MIB,
+        TextCodecIso8859_14::MIB,
+        TextCodecIso8859_15::MIB,
+        TextCodecIso8859_16::MIB,
         TextCodecGb18030::MIB,
         TextCodecBig5::MIB,
         TextCodecIbm866::MIB,
@@ -72,20 +72,20 @@ TextCodec TextCodec::codecForName(const QString &name)
     if (s == QString(TextCodecUtf8::NAME).toUpper())         return TextCodecUtf8();
     if (s == QString(TextCodecUtf16Be::NAME).toUpper())      return TextCodecUtf16Be();
     if (s == QString(TextCodecUtf16Le::NAME).toUpper())      return TextCodecUtf16Le();
-    if (s == QString(TextCodecIso88591::NAME).toUpper())     return TextCodecIso88591();
-    if (s == QString(TextCodecIso88592::NAME).toUpper())     return TextCodecIso88592();
-    if (s == QString(TextCodecIso88593::NAME).toUpper())     return TextCodecIso88593();
-    if (s == QString(TextCodecIso88594::NAME).toUpper())     return TextCodecIso88594();
-    if (s == QString(TextCodecIso88595::NAME).toUpper())     return TextCodecIso88595();
-    if (s == QString(TextCodecIso88596::NAME).toUpper())     return TextCodecIso88596();
-    if (s == QString(TextCodecIso88597::NAME).toUpper())     return TextCodecIso88597();
-    if (s == QString(TextCodecIso88598::NAME).toUpper())     return TextCodecIso88598();
-    if (s == QString(TextCodecIso88599::NAME).toUpper())     return TextCodecIso88599();
-    if (s == QString(TextCodecIso885910::NAME).toUpper())    return TextCodecIso885910();
-    if (s == QString(TextCodecIso885913::NAME).toUpper())    return TextCodecIso885913();
-    if (s == QString(TextCodecIso885914::NAME).toUpper())    return TextCodecIso885914();
-    if (s == QString(TextCodecIso885915::NAME).toUpper())    return TextCodecIso885915();
-    if (s == QString(TextCodecIso885916::NAME).toUpper())    return TextCodecIso885916();
+    if (s == QString(TextCodecIso8859_1::NAME).toUpper())    return TextCodecIso8859_1();
+    if (s == QString(TextCodecIso8859_2::NAME).toUpper())    return TextCodecIso8859_2();
+    if (s == QString(TextCodecIso8859_3::NAME).toUpper())    return TextCodecIso8859_3();
+    if (s == QString(TextCodecIso8859_4::NAME).toUpper())    return TextCodecIso8859_4();
+    if (s == QString(TextCodecIso8859_5::NAME).toUpper())    return TextCodecIso8859_5();
+    if (s == QString(TextCodecIso8859_6::NAME).toUpper())    return TextCodecIso8859_6();
+    if (s == QString(TextCodecIso8859_7::NAME).toUpper())    return TextCodecIso8859_7();
+    if (s == QString(TextCodecIso8859_8::NAME).toUpper())    return TextCodecIso8859_8();
+    if (s == QString(TextCodecIso8859_9::NAME).toUpper())    return TextCodecIso8859_9();
+    if (s == QString(TextCodecIso8859_10::NAME).toUpper())   return TextCodecIso8859_10();
+    if (s == QString(TextCodecIso8859_13::NAME).toUpper())   return TextCodecIso8859_13();
+    if (s == QString(TextCodecIso8859_14::NAME).toUpper())   return TextCodecIso8859_14();
+    if (s == QString(TextCodecIso8859_15::NAME).toUpper())   return TextCodecIso8859_15();
+    if (s == QString(TextCodecIso8859_16::NAME).toUpper())   return TextCodecIso8859_16();
     if (s == QString(TextCodecGb18030::NAME).toUpper())      return TextCodecGb18030();
     if (s == QString(TextCodecBig5::NAME).toUpper())         return TextCodecBig5();
     if (s == QString(TextCodecIbm866::NAME).toUpper())       return TextCodecIbm866();
@@ -111,20 +111,20 @@ TextCodec TextCodec::codecForMib(int mib)
         case TextCodecUtf8::MIB:        return TextCodecUtf8();
         case TextCodecUtf16Be::MIB:     return TextCodecUtf16Be();
         case TextCodecUtf16Le::MIB:     return TextCodecUtf16Le();
-        case TextCodecIso88591::MIB:    return TextCodecIso88591();
-        case TextCodecIso88592::MIB:    return TextCodecIso88592();
-        case TextCodecIso88593::MIB:    return TextCodecIso88593();
-        case TextCodecIso88594::MIB:    return TextCodecIso88594();
-        case TextCodecIso88595::MIB:    return TextCodecIso88595();
-        case TextCodecIso88596::MIB:    return TextCodecIso88596();
-        case TextCodecIso88597::MIB:    return TextCodecIso88597();
-        case TextCodecIso88598::MIB:    return TextCodecIso88598();
-        case TextCodecIso88599::MIB:    return TextCodecIso88599();
-        case TextCodecIso885910::MIB:   return TextCodecIso885910();
-        case TextCodecIso885913::MIB:   return TextCodecIso885913();
-        case TextCodecIso885914::MIB:   return TextCodecIso885914();
-        case TextCodecIso885915::MIB:   return TextCodecIso885915();
-        case TextCodecIso885916::MIB:   return TextCodecIso885916();
+        case TextCodecIso8859_1::MIB:   return TextCodecIso8859_1();
+        case TextCodecIso8859_2::MIB:   return TextCodecIso8859_2();
+        case TextCodecIso8859_3::MIB:   return TextCodecIso8859_3();
+        case TextCodecIso8859_4::MIB:   return TextCodecIso8859_4();
+        case TextCodecIso8859_5::MIB:   return TextCodecIso8859_5();
+        case TextCodecIso8859_6::MIB:   return TextCodecIso8859_6();
+        case TextCodecIso8859_7::MIB:   return TextCodecIso8859_7();
+        case TextCodecIso8859_8::MIB:   return TextCodecIso8859_8();
+        case TextCodecIso8859_9::MIB:   return TextCodecIso8859_9();
+        case TextCodecIso8859_10::MIB:  return TextCodecIso8859_10();
+        case TextCodecIso8859_13::MIB:  return TextCodecIso8859_13();
+        case TextCodecIso8859_14::MIB:  return TextCodecIso8859_14();
+        case TextCodecIso8859_15::MIB:  return TextCodecIso8859_15();
+        case TextCodecIso8859_16::MIB:  return TextCodecIso8859_16();
         case TextCodecGb18030::MIB:     return TextCodecGb18030();
         case TextCodecBig5::MIB:        return TextCodecBig5();
         case TextCodecIbm866::MIB:      return TextCodecIbm866();
@@ -166,11 +166,11 @@ QString TextCodec::decode(const QByteArray &data) const noexcept(false)
         throw FlaconError(QString("Unable to open iconv_open for %1: %2").arg(mName, strerror(errno)));
     }
 
-    int discardIlegalSequence = 1;
-    if (iconvctl(cd, ICONV_SET_DISCARD_ILSEQ, &discardIlegalSequence) == -1) {
-        // iconv_close(cd);
-        // throw FlaconError(QString("Unable to set ICONV_SET_DISCARD_ILSEQ flag %1: %2").arg(mName, strerror(errno)));
-    }
+    // int discardIlegalSequence = 1;
+    // if (iconvctl(cd, ICONV_SET_DISCARD_ILSEQ, &discardIlegalSequence) == -1) {
+    //     iconv_close(cd);
+    //     throw FlaconError(QString("Unable to set ICONV_SET_DISCARD_ILSEQ flag %1: %2").arg(mName, strerror(errno)));
+    // }
 
     QByteArray out;
     out.fill('\0', data.length() * 4);
@@ -208,72 +208,72 @@ TextCodecUtf16Le::TextCodecUtf16Le() :
 {
 }
 
-TextCodecIso88591::TextCodecIso88591() :
+TextCodecIso8859_1::TextCodecIso8859_1() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso88592::TextCodecIso88592() :
+TextCodecIso8859_2::TextCodecIso8859_2() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso88593::TextCodecIso88593() :
+TextCodecIso8859_3::TextCodecIso8859_3() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso88594::TextCodecIso88594() :
+TextCodecIso8859_4::TextCodecIso8859_4() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso88595::TextCodecIso88595() :
+TextCodecIso8859_5::TextCodecIso8859_5() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso88596::TextCodecIso88596() :
+TextCodecIso8859_6::TextCodecIso8859_6() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso88597::TextCodecIso88597() :
+TextCodecIso8859_7::TextCodecIso8859_7() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso88598::TextCodecIso88598() :
+TextCodecIso8859_8::TextCodecIso8859_8() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso88599::TextCodecIso88599() :
+TextCodecIso8859_9::TextCodecIso8859_9() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso885910::TextCodecIso885910() :
+TextCodecIso8859_10::TextCodecIso8859_10() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso885913::TextCodecIso885913() :
+TextCodecIso8859_13::TextCodecIso8859_13() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso885914::TextCodecIso885914() :
+TextCodecIso8859_14::TextCodecIso8859_14() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso885915::TextCodecIso885915() :
+TextCodecIso8859_15::TextCodecIso8859_15() :
     TextCodec(MIB, NAME)
 {
 }
 
-TextCodecIso885916::TextCodecIso885916() :
+TextCodecIso8859_16::TextCodecIso8859_16() :
     TextCodec(MIB, NAME)
 {
 }

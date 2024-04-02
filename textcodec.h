@@ -95,130 +95,130 @@ public:
     TextCodecUtf16Le();
 };
 
-class TextCodecIso88591 : public TextCodec
+class TextCodecIso8859_1 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 4;
     static constexpr auto NAME = "ISO-8859-1";
 
-    TextCodecIso88591();
+    TextCodecIso8859_1();
 };
 
-class TextCodecIso88592 : public TextCodec
+class TextCodecIso8859_2 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 5;
     static constexpr auto NAME = "ISO-8859-2";
 
-    TextCodecIso88592();
+    TextCodecIso8859_2();
 };
 
-class TextCodecIso88593 : public TextCodec
+class TextCodecIso8859_3 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 6;
     static constexpr auto NAME = "ISO-8859-3";
 
-    TextCodecIso88593();
+    TextCodecIso8859_3();
 };
 
-class TextCodecIso88594 : public TextCodec
+class TextCodecIso8859_4 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 7;
     static constexpr auto NAME = "ISO-8859-4";
 
-    TextCodecIso88594();
+    TextCodecIso8859_4();
 };
 
-class TextCodecIso88595 : public TextCodec
+class TextCodecIso8859_5 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 8;
     static constexpr auto NAME = "ISO-8859-5";
 
-    TextCodecIso88595();
+    TextCodecIso8859_5();
 };
 
-class TextCodecIso88596 : public TextCodec
+class TextCodecIso8859_6 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 9;
     static constexpr auto NAME = "ISO-8859-6";
 
-    TextCodecIso88596();
+    TextCodecIso8859_6();
 };
 
-class TextCodecIso88597 : public TextCodec
+class TextCodecIso8859_7 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 10;
     static constexpr auto NAME = "ISO-8859-7";
 
-    TextCodecIso88597();
+    TextCodecIso8859_7();
 };
 
-class TextCodecIso88598 : public TextCodec
+class TextCodecIso8859_8 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 11;
     static constexpr auto NAME = "ISO-8859-8";
 
-    TextCodecIso88598();
+    TextCodecIso8859_8();
 };
 
-class TextCodecIso88599 : public TextCodec
+class TextCodecIso8859_9 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 12;
     static constexpr auto NAME = "ISO-8859-9";
 
-    TextCodecIso88599();
+    TextCodecIso8859_9();
 };
 
-class TextCodecIso885910 : public TextCodec
+class TextCodecIso8859_10 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 13;
     static constexpr auto NAME = "ISO-8859-10";
 
-    TextCodecIso885910();
+    TextCodecIso8859_10();
 };
 
-class TextCodecIso885913 : public TextCodec
+class TextCodecIso8859_13 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 109;
     static constexpr auto NAME = "ISO-8859-13";
 
-    TextCodecIso885913();
+    TextCodecIso8859_13();
 };
 
-class TextCodecIso885914 : public TextCodec
+class TextCodecIso8859_14 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 110;
     static constexpr auto NAME = "ISO-8859-14";
 
-    TextCodecIso885914();
+    TextCodecIso8859_14();
 };
 
-class TextCodecIso885915 : public TextCodec
+class TextCodecIso8859_15 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 111;
     static constexpr auto NAME = "ISO-8859-15";
 
-    TextCodecIso885915();
+    TextCodecIso8859_15();
 };
 
-class TextCodecIso885916 : public TextCodec
+class TextCodecIso8859_16 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 112;
     static constexpr auto NAME = "ISO-8859-16";
 
-    TextCodecIso885916();
+    TextCodecIso8859_16();
 };
 
 class TextCodecGb18030 : public TextCodec
