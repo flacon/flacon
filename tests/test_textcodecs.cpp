@@ -41,19 +41,7 @@ void TestFlacon::testTextCodecNames()
     }
 }
 
-static QByteArray readSrcData(const QString &fileName)
-{
-    QFile f(fileName);
-
-    if (!f.open(QFile::ReadOnly)) {
-        FAIL(QString("Can't read file %1:\n\t%2").arg(fileName, f.errorString()).toLocal8Bit());
-    }
-
-    QByteArray res = QByteArray::fromHex(f.readAll());
-    return res;
-}
-
-static QByteArray readExpectedata(const QString &fileName)
+static QByteArray readDataFile(const QString &fileName)
 {
     QFile f(fileName);
 
@@ -67,12 +55,13 @@ static QByteArray readExpectedata(const QString &fileName)
 void TestFlacon::testTextCodecs()
 {
     QFETCH(QString, srcFile);
-    QString expectedFile = QFileInfo(srcFile).dir().path() + "/" + QFileInfo(srcFile).baseName() + ".txt";
+    QString expectedFile = QFileInfo(srcFile).dir().path() + "/" + QFileInfo(srcFile).baseName() + ".expected";
     QString codecName    = QFileInfo(expectedFile).baseName().section(" - ", 1);
 
-    QByteArray src      = readSrcData(srcFile);
-    QString    expected = QString::fromUtf8(readExpectedata(expectedFile)).normalized(QString::NormalizationForm_KC);
-    QString    actual;
+    QByteArray src = readDataFile(srcFile);
+
+    QString expected = QString::fromUtf8(readDataFile(expectedFile)).normalized(QString::NormalizationForm_KC);
+    QString actual;
 
     try {
         TextCodec codec = TextCodec::codecForName(codecName);
@@ -85,7 +74,7 @@ void TestFlacon::testTextCodecs()
     bool fail = false;
     for (int i = 0; i < std::min(expected.size(), actual.size()); ++i) {
         if (actual.at(i) != expected.at(i)) {
-            qDebug().nospace() << " * actual[" << i << "] " << actual.at(i) << "  expected[" << i << "] " << expected.at(i);
+            qDebug().nospace() << " * actual[" << i << "] " << QString::number(actual.at(i).unicode(), 16) << "  expected[" << i << "] " << QString::number(expected.at(i).unicode(), 16);
             fail = true;
         }
     }
@@ -102,7 +91,7 @@ void TestFlacon::testTextCodecs_data()
     QTest::addColumn<QString>("srcFile", nullptr);
     QString dataDir = mDataDir + "testTextCodecs";
 
-    for (auto src : QDir(dataDir).entryList(QStringList("01*.src.hex"), QDir::Files, QDir::Name)) {
+    for (auto src : QDir(dataDir).entryList(QStringList("*.src"), QDir::Files, QDir::Name)) {
         QTest::newRow(src.toUtf8()) << dataDir + "/" + src;
     }
 }
