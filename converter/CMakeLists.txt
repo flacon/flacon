@@ -74,7 +74,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
-find_package(Qt5 REQUIRED
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED
     Core
     Widgets
 )
@@ -82,7 +82,7 @@ find_package(Qt5 REQUIRED
 find_package(ZLIB REQUIRED)
 
 add_library(${PROJECT_NAME} STATIC ${HEADERS} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARIES} ${QT_LIBRARIES} Qt5::Widgets ZLIB::ZLIB)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARIES} ${QT_LIBRARIES} Qt${QT_VERSION_MAJOR}::Widgets ZLIB::ZLIB)
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}

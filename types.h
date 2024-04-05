@@ -28,6 +28,7 @@
 
 #include <QString>
 #include <QIcon>
+#include <QMetaType>
 
 #define CODEC_AUTODETECT "AUTODETECT"
 

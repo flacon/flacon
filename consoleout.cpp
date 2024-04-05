@@ -84,7 +84,7 @@ void ConsoleOut::trackProgress(const Track &track, TrackState state, Percent)
  ************************************************/
 void ConsoleOut::printStatistic()
 {
-    int duration = mFinishTime.toTime_t() - mStartTime.toTime_t();
+    int duration = mFinishTime.toSecsSinceEpoch() - mStartTime.toSecsSinceEpoch();
     if (!duration)
         duration = 1;
 

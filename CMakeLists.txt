@@ -198,18 +198,35 @@ include_directories(
 #*******************************************
 include("cmake/macos.cmake")
 
+option(USE_QT5 "Try to use the Qt5." ON)
+option(USE_QT6 "Try to use the Qt6." OFF)
+
+if (USE_QT5 AND USE_QT6)
+    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+elseif (USE_QT6)
+    find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
+elseif (USE_QT5)
+    find_package(QT NAMES Qt5 REQUIRED COMPONENTS Widgets)
+endif()
+message(STATUS "Using Qt version ${QT_VERSION}")
+
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
-find_package(Qt5 REQUIRED
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED
     Core
     Widgets
     Network
     LinguistTools
 )
 
-qt5_add_translation(QM_FILES ${TS_FILES})
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    qt_add_translation(QM_FILES ${TS_FILES})
+else()
+    qt5_add_translation(QM_FILES ${TS_FILES})
+endif()
 
 
 include(FindPkgConfig)
@@ -254,7 +271,7 @@ endif()
 add_subdirectory(converter)
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${QM_FILES} ${QRC_SOURCES} ${ENGINES_CPP} ${ENGINES_H} ${RESOURCES} ${TRANSLATORS_INFO_QRC})
-target_link_libraries(${PROJECT_NAME} ${LIBRARIES} converter ${QT_LIBRARIES} Qt5::Widgets Qt5::Network)
+target_link_libraries(${PROJECT_NAME} ${LIBRARIES} converter ${QT_LIBRARIES} Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network)
 
 
 function(CREATE_DESKTOP_FILE _IN_FILE _OUT_FILE _TRANSLATIONS_PATTERN)

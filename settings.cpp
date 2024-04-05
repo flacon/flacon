@@ -86,7 +86,9 @@ void Settings::setFileName(const QString &fileName)
 Settings::Settings(const QString &organization, const QString &application) :
     QSettings(organization, application)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     setIniCodec("UTF-8");
+#endif
 }
 #include <QDir>
 
@@ -96,7 +98,9 @@ Settings::Settings(const QString &organization, const QString &application) :
 Settings::Settings(const QString &fileName) :
     QSettings(expandFilePath(fileName), QSettings::IniFormat)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     setIniCodec("UTF-8");
+#endif
 }
 
 /************************************************
