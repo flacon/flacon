@@ -1,0 +1,55 @@
+name: Tests Linux Qt5
+
+on: [push]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+  LANG: en_US.UTF-8
+  LS_ALL: en_US.UTF-8
+  LANGUAGE: en_US:en
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Checks License
+      run: ./scripts/checkLicense.sh .
+
+    - name: Checks metainfo
+      run: ./scripts/check-metainfo.sh
+
+
+    - name: Install packages
+      run:  |
+        echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+        sudo apt-get -y update
+        sudo apt-get -y install locales
+        sudo sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
+        sudo apt-get -y install software-properties-common
+        sudo add-apt-repository -y ppa:flacon
+        sudo apt-get -y update
+        sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev libtag1-dev
+        sudo apt-get -y install flac mac alacenc vorbis-tools wavpack lame vorbisgain mp3gain ttaenc faac opus-tools mediainfo sox
+        sudo apt-get -y install libyaml-cpp-dev
+
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{github.workspace}}/build
+
+    - name: Run CMake
+      shell: bash
+      working-directory: ${{github.workspace}}/build
+      run: cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DBUILD_TESTS=Yes -DUSE_QT5=ON -DUSE_QT6=OFF $GITHUB_WORKSPACE
+
+    - name: Build
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      run: make -j 8
+
+    - name: Run Tests
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      run: tests/flacon_test

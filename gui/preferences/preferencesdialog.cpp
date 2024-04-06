@@ -215,7 +215,7 @@ void PreferencesDialog::fixLayout(const QWidget *parent)
         }
     }
 
-    for (QLabel *label : qAsConst(labels)) {
+    for (QLabel *label : std::as_const(labels)) {
         label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
         label->setMinimumWidth(width);
     }
@@ -266,7 +266,7 @@ bool PreferencesDialog::save()
         dialog.setInformativeText(tr("You should create at least one profile.", "Message box text"));
 
         dialog.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
-        dialog.setButtonText(QMessageBox::Ok, tr("Create profile", "Button caption"));
+        dialog.button(QMessageBox::Ok)->setText(tr("Create profile", "Button caption"));
         dialog.setDefaultButton(QMessageBox::Ok);
         dialog.setWindowModality(Qt::ApplicationModal);
 

@@ -255,7 +255,7 @@ void ProfilesPage::deleteProfile()
     dialog.setIconPixmap(QPixmap(":/64/mainicon"));
 
     dialog.setStandardButtons(QMessageBox::Cancel | QMessageBox::Yes);
-    dialog.setButtonText(QMessageBox::Yes, tr("Delete the profile", "Button caption"));
+    dialog.button(QMessageBox::Yes)->setText(tr("Delete the profile", "Button caption"));
     dialog.setDefaultButton(QMessageBox::Yes);
 
     dialog.setWindowModality(Qt::WindowModal);

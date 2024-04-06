@@ -100,7 +100,7 @@ void MessageBox::setStandardButtons(StandardButtons buttons)
 
 void MessageBox::showEvent(QShowEvent *event)
 {
-    ui->iconLabel->setVisible(ui->iconLabel->pixmap());
+    ui->iconLabel->setVisible(ui->iconLabel->pixmap(Qt::ReturnByValue).isNull());
 
     resize(sizeHint().width(), size().height());
     resize(sizeHint());

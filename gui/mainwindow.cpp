@@ -79,7 +79,9 @@ MainWindow::MainWindow(QWidget *parent) :
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolBar->setIconSize(QSize(24, 24));
     qApp->setAttribute(Qt::AA_DontShowIconsInMenus, true);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     qApp->setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+#endif
 
 #ifdef Q_OS_MAC
     this->setUnifiedTitleAndToolBarOnMac(true);
@@ -249,7 +251,7 @@ bool MainWindow::showExitDialog()
     dialog.setIconPixmap(QPixmap(":/64/mainicon"));
 
     dialog.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
-    dialog.setButtonText(QMessageBox::Yes, tr("Exit", "Button caption"));
+    dialog.button(QMessageBox::Yes)->setText(tr("Exit", "Button caption"));
     dialog.setDefaultButton(QMessageBox::No);
 
     dialog.setWindowModality(Qt::WindowModal);
@@ -1099,7 +1101,7 @@ void MainWindow::removeSourceFiles()
     }
 
     Project::instance()->removeDisc(disks);
-    for (const QString &f : qAsConst(files)) {
+    for (const QString &f : std::as_const(files)) {
 #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
         moveFileToTrash(f);
 #else

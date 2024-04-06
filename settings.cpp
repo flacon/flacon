@@ -239,7 +239,7 @@ Profiles Settings::readProfiles()
         QStringList old = value(KNOWN_FORMATS_KEY, def).toStringList();
         QStringList exists;
 
-        for (const Profile &p : qAsConst(res)) {
+        for (const Profile &p : std::as_const(res)) {
             exists << p.outFormat()->id();
         }
 

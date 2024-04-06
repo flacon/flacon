@@ -56,12 +56,12 @@ protected:
             int n = mBuf.indexOf("data");
             if (n > -1 && n < mBuf.length() - 8) {
                 mInHeader = false;
-                mHash.addData(mBuf.data() + n + 8, mBuf.length() - n - 8);
+                mHash.addData(mBuf.mid(n + 8));
             }
             return len;
         }
 
-        mHash.addData(data, len);
+        mHash.addData(QByteArray(data, len));
         return len;
     }
 

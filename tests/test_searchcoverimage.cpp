@@ -103,7 +103,7 @@ void TestFlacon::testSearchCoverImage_data()
             << "Covers/Cover.jpg";
     req.expected = "Covers/Cover.jpg";
 
-    QTest::newRow("03") << req;
+    QTest::newRow("04") << req;
 
     // .....................................
     req.clear();
@@ -112,7 +112,7 @@ void TestFlacon::testSearchCoverImage_data()
             << "Cover.jpg";
     req.expected = "Cover.jpg";
 
-    QTest::newRow("04") << req;
+    QTest::newRow("05") << req;
 
     // .....................................
     req.clear();
@@ -121,7 +121,7 @@ void TestFlacon::testSearchCoverImage_data()
             << "Folder.png";
     req.expected = "CoVeR.Jpg";
 
-    QTest::newRow("04") << req;
+    QTest::newRow("06") << req;
 
     // .....................................
     req.clear();
@@ -135,7 +135,7 @@ void TestFlacon::testSearchCoverImage_data()
             << "Front.JPG";
     req.expected = "Front.JPG";
 
-    QTest::newRow("05") << req;
+    QTest::newRow("07") << req;
 
     // .....................................
     req.clear();
@@ -152,5 +152,5 @@ void TestFlacon::testSearchCoverImage_data()
             << "Art/booklet06.jpg";
     req.expected = "Art/01 front.jpg";
 
-    QTest::newRow("06 Art/01 front.jpg") << req;
+    QTest::newRow("08 Art/01 front.jpg") << req;
 }

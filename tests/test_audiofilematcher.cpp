@@ -43,7 +43,7 @@ void TestFlacon::testAudioFileMatcher()
     try {
         TestSpec spec(dir);
 
-        QFileInfo        inFile = dir + "/" + spec["run"]["load"].toString();
+        QFileInfo        inFile(dir + "/" + spec["run"]["load"].toString());
         AudioFileMatcher matcher;
 
         if (inFile.suffix().toLower() == "cue") {

@@ -154,7 +154,7 @@ void TestFlacon::testPatternExpander_data()
                )"
             << "Band/Hits/01 - Track title";
 
-    QTest::newRow("05")
+    QTest::newRow("06")
             << "%a/%y - %A/%n - %t"
             << R"(
                trackCount: 10
@@ -168,7 +168,7 @@ void TestFlacon::testPatternExpander_data()
                )"
             << "Band/ - Hits/01 - Track title";
 
-    QTest::newRow("06")
+    QTest::newRow("07")
             << "%a/{%y - }%A/%d of %D/%n - %t"
             << R"(
                trackCount: 10
@@ -183,7 +183,7 @@ void TestFlacon::testPatternExpander_data()
                )"
             << "Band/1999 - Hits/01 of 02/05 - Track title";
 
-    QTest::newRow("07")
+    QTest::newRow("08")
             << "%a/{%y - }%A/%d of %D/%n - %t"
             << R"(
                trackCount: 10
@@ -198,13 +198,13 @@ void TestFlacon::testPatternExpander_data()
                )"
             << "Band/1999 - Hits/01 of 01/05 - Track title";
 
-    QTest::newRow("08")
+    QTest::newRow("09")
             << "%d of %D/%n of %N"
             << R"(
                )"
             << "00 of 00/00 of 00";
 
-    QTest::newRow("09")
+    QTest::newRow("10")
             << "{%d of %D}/{%n of %N}"
             << R"(
                trackCount: 1
@@ -214,7 +214,7 @@ void TestFlacon::testPatternExpander_data()
                )"
             << "/01 of 01";
 
-    QTest::newRow("10")
+    QTest::newRow("11")
             << "%a/{%y - }%A/{%d of %D/}%n - %t"
             << R"(
                trackCount: 10
@@ -229,7 +229,7 @@ void TestFlacon::testPatternExpander_data()
                )"
             << "Band/1999 - Hits/05 - Track title";
 
-    QTest::newRow("11")
+    QTest::newRow("12")
             << "%a/{Music}%A/%n - %t"
             << R"(
                trackCount: 10
@@ -244,7 +244,7 @@ void TestFlacon::testPatternExpander_data()
                )"
             << "Band/{Music}Hits/01 - Track title";
 
-    QTest::newRow("12")
+    QTest::newRow("13")
             << "%a/{Music}%%A/%n - %t"
             << R"(
                trackCount: 10

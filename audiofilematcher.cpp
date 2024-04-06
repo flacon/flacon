@@ -205,7 +205,7 @@ QFileInfoList AudioFileMatcher::searchCueFiles(const QDir &dir) const
     QFileInfoList res  = dir.entryInfoList(exts, QDir::Files | QDir::Readable, QDir::SortFlag::Name);
 
     qCDebug(LOG) << "Directory contains " << res.count() << " cue files:";
-    for (const auto &fi : qAsConst(res)) {
+    for (const auto &fi : std::as_const(res)) {
         qCDebug(LOG) << "  *" << fi.filePath();
     }
 
@@ -221,7 +221,7 @@ QFileInfoList AudioFileMatcher::searchAudioFiles(const QDir &dir) const
     QFileInfoList res  = dir.entryInfoList(exts, QDir::Files | QDir::Readable, QDir::SortFlag::Name);
 
     qCDebug(LOG) << "Directory contains " << res.count() << " audio files:";
-    for (const auto &fi : qAsConst(res)) {
+    for (const auto &fi : std::as_const(res)) {
         qCDebug(LOG) << "  *" << fi.filePath();
     }
 
@@ -342,7 +342,7 @@ QFileInfoList AudioFileMatcher::tryMultiAudioPattrnMatch(const Cue &cue, const Q
     const QString &cueFileName = QRegularExpression::escape(QFileInfo(cue.filePath()).completeBaseName());
 
     QFileInfoList res;
-    for (const QString &pattern : qAsConst(patterns)) {
+    for (const QString &pattern : std::as_const(patterns)) {
 
         for (int i = 0; i < cue.fileTags().count(); ++i) {
             const QString &fileTag    = QRegularExpression::escape(QFileInfo(cue.fileTags().at(i)).completeBaseName());

@@ -124,7 +124,7 @@ CoverImage::CoverImage(const QString &inFilePath, uint size)
 
         if (size > 0) {
             if (image.width() > int(size) || image.height() > int(size)) {
-                image.scaled(QSize(size, size), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+                image = image.scaled(QSize(size, size), Qt::KeepAspectRatio, Qt::SmoothTransformation);
             }
         }
 

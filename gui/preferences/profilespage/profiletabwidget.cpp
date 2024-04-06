@@ -205,7 +205,7 @@ void ProfileTabWidget::recreateEncoderWidget(const Profile *profile)
         ui->encoderGroupLine->setVisible(true);
 
         if (mEncoderWidget->layout()) {
-            mEncoderWidget->layout()->setMargin(0);
+            mEncoderWidget->layout()->setContentsMargins(0, 0, 0, 0);
         }
         ui->encoderGroup->layout()->addWidget(mEncoderWidget.get());
         PreferencesDialog::fixLayout(this);

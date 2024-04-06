@@ -163,7 +163,7 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, const QVector<con
     mTmpDir = new QTemporaryDir(QString("%1/tmp").arg(dir));
     mTmpDir->setAutoRemove(true);
 
-    for (const ConvTrack &track : qAsConst(mTracks)) {
+    for (const ConvTrack &track : std::as_const(mTracks)) {
         if (track.audioFile().channelsCount() > 2) {
             mProfile.setGainType(GainType::Disable);
         }
@@ -347,7 +347,7 @@ void DiscPipeline::writeGain(const ConvTrack &track, const QString &fileName, co
         return;
     }
 
-    for (const Request &r : qAsConst(mAlbumGainRequests)) {
+    for (const Request &r : std::as_const(mAlbumGainRequests)) {
         qCDebug(LOG) << "Write album gain: " << r.inputFile << "gain:" << mAlbumGain.result().gain() << "peak:" << mAlbumGain.result().peak();
 
         MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(r.inputFile);

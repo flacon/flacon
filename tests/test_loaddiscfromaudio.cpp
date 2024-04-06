@@ -27,7 +27,7 @@
 #include <QTest>
 #include <QDebug>
 #include <QDir>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QLoggingCategory>
 #include <QProcessEnvironment>
 
@@ -54,7 +54,9 @@ void TestFlacon::testLoadDiscFromAudio()
     QFETCH(QString, dir);
 
     QSettings spec(dir + "/test.spec", QSettings::IniFormat);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     spec.setIniCodec("UTF-8");
+#endif
 
     try {
         TestProject p;
@@ -95,10 +97,12 @@ void TestFlacon::testLoadDiscFromAudioErrors()
     QFETCH(QString, dir);
 
     QSettings spec(dir + "/test.spec", QSettings::IniFormat);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     spec.setIniCodec("UTF-8");
+#endif
 
-    QString expected = spec.value("EXPECTED").toString();
-    QRegExp re(expected);
+    QString            expected = spec.value("EXPECTED").toString();
+    QRegularExpression re(expected);
 
     QLoggingCategory::setFilterRules("*.debug=false\n*.warning=false\n");
 
@@ -118,7 +122,7 @@ void TestFlacon::testLoadDiscFromAudioErrors()
         InputAudioFile audio(dir + "/" + spec.value("LOAD").toString());
 
         QVERIFY(audio.isValid() == false);
-        if (re.indexIn(audio.errorString()) < 0) {
+        if (!re.match(audio.errorString()).hasMatch()) {
             QFAIL(QString("Error doesen't match to expected\n\tError:    %1\n\tExpected: %2")
                           .arg(audio.errorString(), expected)
                           .toLocal8Bit());

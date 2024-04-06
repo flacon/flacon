@@ -64,7 +64,9 @@ ConverterTest::ConverterTest(const QString &dataDir, const QString &dir, const Q
     QDir::setCurrent(mDir);
     QFile::copy(dataDir + "/spec.ini", mDir + "/spec.ini");
     QSettings spec(mDir + "/spec.ini", QSettings::IniFormat);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     spec.setIniCodec("UTF-8");
+#endif
 
     QDir(mInDir).mkpath(".");
     QDir(mOutDir).mkpath(".");
@@ -203,7 +205,7 @@ void ConverterTest::srcAudioExec(QSettings &spec) const
     spec.beginGroup("commands");
 
     QStringList keys = spec.allKeys();
-    for (const QString &key : qAsConst(keys)) {
+    for (const QString &key : std::as_const(keys)) {
         QString cmd = spec.value(key).toString();
 
         QStringList args = parseCombinedArgString(cmd);
@@ -310,7 +312,9 @@ bool ConverterTest::run()
 void ConverterTest::check()
 {
     QSettings spec(mDir + "/spec.ini", QSettings::IniFormat);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     spec.setIniCodec("UTF-8");
+#endif
 
     QString     msg   = "";
     QStringList files = findFiles(mOutDir, "*");
@@ -443,7 +447,9 @@ void ConverterTest::check()
 bool ConverterTest::checkReplayGain()
 {
     QSettings spec(mDir + "/spec.ini", QSettings::IniFormat);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     spec.setIniCodec("UTF-8");
+#endif
 
     bool errors = false;
     spec.beginGroup("Result_ReplayGain");
@@ -466,7 +472,12 @@ bool ConverterTest::checkReplayGain()
                 qDebug() << "expected:" << expected;
                 qDebug() << "*******************";
 #endif
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
                 if (actual.type() != QVariant::Type::Double) {
+#else
+                if (actual.typeId() != QMetaType::Type::Double) {
+#endif
                     QString s = actual.toString();
                     s         = s.remove("dB", Qt::CaseInsensitive);
                     s         = s.trimmed();
@@ -475,7 +486,7 @@ bool ConverterTest::checkReplayGain()
                     double d = s.toDouble(&ok);
 
                     if (!ok) {
-                        QWARN(QString("Can't convert actual value \"%1\" to double (tag: %2)").arg(actual.toString(), tag).toLocal8Bit());
+                        qWarning() << QString("Can't convert actual value \"%1\" to double (tag: %2)").arg(actual.toString(), tag).toLocal8Bit();
                         errors = true;
                         continue;
                     }
@@ -490,7 +501,7 @@ bool ConverterTest::checkReplayGain()
             }
         }
         catch (const FlaconError &err) {
-            QWARN(err.what());
+            qWarning() << err.what();
             errors = true;
         }
 
@@ -580,23 +591,23 @@ QStringList ConverterTest::findFiles(const QString &dir, const QString &pattern)
  ************************************************/
 void ConverterTest::printError(const QString &file, const QString &tag, const QVariant &actual, const QVariant &expected) const
 {
-    QWARN(QString("Compared values are not the same:\n"
-                  "    File: %1\n"
-                  "    Tag:  %2\n"
-                  "\n"
-                  "    Actual   : '%3' (%4)\n"
-                  "    Expected : '%5' (%6)\n")
+    qWarning() << (QString("Compared values are not the same:\n"
+                           "    File: %1\n"
+                           "    Tag:  %2\n"
+                           "\n"
+                           "    Actual   : '%3' (%4)\n"
+                           "    Expected : '%5' (%6)\n")
 
-                  .arg(file)
-                  .arg(tag)
+                           .arg(file)
+                           .arg(tag)
 
-                  .arg(QString::fromLocal8Bit(actual.toByteArray()))
-                  .arg(actual.toByteArray().toHex(' ').data())
+                           .arg(QString::fromLocal8Bit(actual.toByteArray()))
+                           .arg(actual.toByteArray().toHex(' ').data())
 
-                  .arg(QString::fromLocal8Bit(expected.toByteArray()))
-                  .arg(expected.toByteArray().toHex(' ').data())
+                           .arg(QString::fromLocal8Bit(expected.toByteArray()))
+                           .arg(expected.toByteArray().toHex(' ').data())
 
-                  .toLocal8Bit());
+                           .toLocal8Bit());
 }
 
 void ConverterTest::printFile(const QString &fileName, bool printHeader)

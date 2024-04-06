@@ -36,7 +36,9 @@ DiscSpec::DiscSpec(const QString &fileName) :
     mData(fileName, QSettings::IniFormat),
     mDir(QFileInfo(fileName).dir().path())
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     mData.setIniCodec("UTF-8");
+#endif
     mData.allKeys();
 }
 

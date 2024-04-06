@@ -123,7 +123,7 @@ void Validator::revalidate()
 
     validateProfile();
 
-    for (Disk *disk : qAsConst(mDisks)) {
+    for (Disk *disk : std::as_const(mDisks)) {
         QStringList errors = mGlobalErrors;
         QStringList warnings;
 

@@ -87,7 +87,7 @@ void TestFlacon::testLoadProfiles()
                               .arg(result.value(key).toString())
                               .arg(expected.value(key).toString());
 
-        QWARN(msg.toLocal8Bit());
+        qWarning() << msg.toLocal8Bit();
         pass = false;
     }
 

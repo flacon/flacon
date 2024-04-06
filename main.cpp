@@ -151,12 +151,14 @@ void translate(QApplication *app)
     QString locale = QLocale::system().name();
 
     QTranslator *qtTranslator = new QTranslator(app);
-    qtTranslator->load("qt_" + locale, LibraryInfo::path(QLibraryInfo::TranslationsPath));
-    app->installTranslator(qtTranslator);
+    if (qtTranslator->load("qt_" + locale, LibraryInfo::path(QLibraryInfo::TranslationsPath))) {
+        app->installTranslator(qtTranslator);
+    }
 
     QTranslator *appTranslator = new QTranslator(app);
-    appTranslator->load(QString("flacon_%2.qm").arg(locale)) || appTranslator->load(QString("%1/flacon_%2.qm").arg(appDir, locale));
-    app->installTranslator(appTranslator);
+    if (appTranslator->load(QString("flacon_%2.qm").arg(locale)) || appTranslator->load(QString("%1/flacon_%2.qm").arg(appDir, locale))) {
+        app->installTranslator(appTranslator);
+    }
 }
 
 /************************************************

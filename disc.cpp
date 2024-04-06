@@ -561,7 +561,7 @@ QImage Disc::coverImagePreview() const
     if (!mCoverImageFile.isEmpty() && mCoverImagePreview.isNull()) {
         mCoverImagePreview = coverImage();
         if (!mCoverImagePreview.isNull()) {
-            mCoverImagePreview.scaled(COVER_PREVIEW_SIZE, COVER_PREVIEW_SIZE, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+            mCoverImagePreview = mCoverImagePreview.scaled(COVER_PREVIEW_SIZE, COVER_PREVIEW_SIZE, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         }
     }
 
