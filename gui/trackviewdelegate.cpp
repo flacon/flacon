@@ -27,7 +27,6 @@
 #include "trackview.h"
 #include "trackviewmodel.h"
 #include "project.h"
-#include "internet/dataprovider.h"
 #include "types.h"
 #include "icon.h"
 
@@ -746,7 +745,7 @@ void TrackViewDelegate::movieUpdated()
     for (int i = 0; i < model->rowCount(QModelIndex()); ++i) {
         QModelIndex index = model->index(i, 0, QModelIndex());
         if (mCache->item(index)->isWaiting) {
-            project->emitDiscChanged(project->disc(0));
+            Project::instance()->emitDiscChanged(Project::instance()->disc(0));
             active = true;
         }
     }

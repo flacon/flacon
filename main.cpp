@@ -32,6 +32,7 @@
 #include "project.h"
 #include "scanner.h"
 #include "consoleout.h"
+#include "types.h"
 
 #include <QString>
 #include <QLocale>
@@ -117,11 +118,21 @@ void consoleErroHandler(QtMsgType type, const QMessageLogContext &context, const
     Q_UNUSED(type)
     Q_UNUSED(context)
 
-    QString msg(message);
-    msg.replace("<br>", " ");
-    msg.remove(QRegExp("<[^>]*>"));
-    msg.replace("\\n", "\n");
-    QTextStream(stderr) << msg.toLocal8Bit() << Qt::endl;
+    QTextStream(stderr) << htmlToText(message).toLocal8Bit() << Qt::endl;
+}
+
+namespace LibraryInfo {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+QString path(QLibraryInfo::LibraryLocation p)
+{
+    return QLibraryInfo::location(p);
+}
+#else
+QString path(QLibraryInfo::LibraryPath p)
+{
+    return QLibraryInfo::path(p);
+}
+#endif
 }
 
 /************************************************
@@ -130,9 +141,9 @@ void consoleErroHandler(QtMsgType type, const QMessageLogContext &context, const
 void translate(QApplication *app)
 {
 #ifdef MAC_BUNDLE
-    QString appDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+    QString appDir = LibraryInfo::path(QLibraryInfo::TranslationsPath);
 #elif APPIMAGE_BUNDLE
-    QString appDir = QLibraryInfo::location(QLibraryInfo::DataPath) + "/share/flacon/translations";
+    QString appDir = LibraryInfo::path(QLibraryInfo::DataPath) + "/share/flacon/translations";
 #else
     QString appDir = TRANSLATIONS_DIR;
 #endif
@@ -140,7 +151,7 @@ void translate(QApplication *app)
     QString locale = QLocale::system().name();
 
     QTranslator *qtTranslator = new QTranslator(app);
-    qtTranslator->load("qt_" + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    qtTranslator->load("qt_" + locale, LibraryInfo::path(QLibraryInfo::TranslationsPath));
     app->installTranslator(qtTranslator);
 
     QTranslator *appTranslator = new QTranslator(app);
@@ -156,16 +167,16 @@ int runConsole(int argc, char *argv[], const QStringList &files)
     qInstallMessageHandler(consoleErroHandler);
     QCoreApplication app(argc, argv);
 
-    project->load(Settings::i());
+    Project::instance()->load(Settings::i());
 
     auto addFile = [&](const QString &file, bool showError = false) {
         try {
             QFileInfo fi = QFileInfo(file);
             DiscList  discs;
             if (fi.size() > 102400)
-                discs << project->addAudioFile(file);
+                discs << Project::instance()->addAudioFile(file);
             else
-                discs << project->addCueFile(file);
+                discs << Project::instance()->addCueFile(file);
         }
 
         catch (FlaconError &err) {
@@ -174,7 +185,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
         }
     };
 
-    for (QString file : files) {
+    for (const QString &file : files) {
         QFileInfo fi = QFileInfo(file);
 
         if (fi.isDir()) {
@@ -187,10 +198,10 @@ int runConsole(int argc, char *argv[], const QStringList &files)
         }
     }
 
-    if (project->count() == 0)
+    if (Project::instance()->count() == 0)
         return 10;
 
-    ConsoleOut      out(*project->profile());
+    ConsoleOut      out(*(Project::instance()->profile()));
     Conv::Converter converter;
     if (!quiet) {
         QObject::connect(&converter, &Conv::Converter::started,
@@ -216,7 +227,7 @@ int runConsole(int argc, char *argv[], const QStringList &files)
                     consoleErroHandler(QtCriticalMsg, QMessageLogContext(), message);
                 });
 
-    converter.start(*project->profile());
+    converter.start(*(Project::instance()->profile()));
     if (!converter.isRunning())
         return 11;
 
@@ -231,7 +242,7 @@ int runGui(int argc, char *argv[], const QStringList &files)
     Application app(argc, argv);
     translate(&app);
 
-    project->load(Settings::i());
+    Project::instance()->load(Settings::i());
 
     MainWindow window;
 
@@ -333,6 +344,6 @@ int main(int argc, char *argv[])
     else
         res = runGui(argc, argv, parser.positionalArguments());
 
-    project->save(Settings::i());
+    Project::instance()->save(Settings::i());
     return res;
 }

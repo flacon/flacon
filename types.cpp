@@ -28,6 +28,7 @@
 #include <QTextStream>
 #include <QDir>
 #include <QDebug>
+#include <QRegularExpression>
 
 /************************************************
  *
@@ -228,10 +229,12 @@ bool CueTime::operator!=(const CueTime &other) const
  ************************************************/
 bool CueTime::parse(const QString &str)
 {
+    static const QRegularExpression regexp = QRegularExpression("\\D");
+
 #if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-    QStringList sl = str.split(QRegExp("\\D"), QString::KeepEmptyParts);
+    QStringList sl = str.split(regexp, QString::KeepEmptyParts);
 #else
-    QStringList sl = str.split(QRegExp("\\D"), Qt::KeepEmptyParts);
+    QStringList sl = str.split(regexp, Qt::KeepEmptyParts);
 #endif
 
     if (sl.length() < 3)
@@ -322,13 +325,23 @@ Messages::Handler *Messages::mHandler = nullptr;
 /************************************************
  *
  ************************************************/
+QString htmlToText(const QString &html)
+{
+    static const QRegularExpression re = QRegularExpression("<[^>]*>");
+
+    QString res(html);
+    res.replace("<br>", " ", Qt::CaseInsensitive);
+    res.remove(re);
+    res.replace("\\n", "\n");
+    return res;
+}
+
+/************************************************
+ *
+ ************************************************/
 void Messages::error(const QString &message)
 {
-    QString msg(message);
-    msg.replace("<br>", " ", Qt::CaseInsensitive);
-    msg.remove(QRegExp("<[^>]*>"));
-    msg.replace("\\n", "\n");
-    qCritical() << msg;
+    qCritical() << htmlToText(message);
 
     if (mHandler)
         mHandler->showErrorMessage(message);
@@ -408,7 +421,7 @@ QString safeString(const QString &str)
                 continue;
         }
 
-        if (c <= 31)
+        if (c < ' ')
             continue;
 
         res += c;

@@ -29,6 +29,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QRegularExpression>
 
 #include <QLoggingCategory>
 
@@ -206,7 +207,7 @@ void MusicBrainz::releasesReady(QNetworkReply *reply)
 /************************************************
 
  ************************************************/
-QString getGenre(const QJsonValue &track)
+static QString getGenre(const QJsonValue &track)
 {
     QString res;
 
@@ -225,16 +226,19 @@ QString getGenre(const QJsonValue &track)
 /************************************************
 
  ************************************************/
-QString getDate(const QJsonValue &track)
+static QString getDate(const QJsonValue &track)
 {
-    QList<QRegExp> patterns;
-    patterns << QRegExp("(\\d\\d\\d\\d)", Qt::CaseInsensitive, QRegExp::RegExp2);
-    patterns << QRegExp("(\\d\\d\\d\\d)-\\d\\d-\\d\\d", Qt::CaseInsensitive, QRegExp::RegExp2);
+    static const QList<QRegularExpression> patterns = {
+        QRegularExpression(QRegularExpression::anchoredPattern("(\\d\\d\\d\\d)"), QRegularExpression::CaseInsensitiveOption),
+        QRegularExpression(QRegularExpression::anchoredPattern("(\\d\\d\\d\\d)-\\d\\d-\\d\\d"), QRegularExpression::CaseInsensitiveOption),
+    };
 
     QString s = track["recording"]["first-release-date"].toString();
-    foreach (const QRegExp &re, patterns) {
-        if (re.exactMatch(s)) {
-            return re.cap(1);
+    foreach (const QRegularExpression &re, patterns) {
+        QRegularExpressionMatch match = re.match(s);
+
+        if (match.hasMatch()) {
+            return match.captured(1);
         }
     }
 
@@ -249,10 +253,8 @@ Tracks MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QString &alb
     Tracks res;
     res.resize(tracks.count());
 
-    QJsonArray genreList = tracks[0].toObject()["genres"].toArray();
-
     int n = 0;
-    for (const QJsonValue t : tracks) {
+    for (const QJsonValue &t : tracks) {
 
         int pos = t["position"].toInt(-1);
         if (pos < 0) {

@@ -81,7 +81,7 @@ add_definitions(-Wall)
 
 find_package(PkgConfig REQUIRED)
 
-find_package(Qt5 REQUIRED
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED
     Core
     Test
     Widgets
@@ -93,5 +93,5 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${YAML_CPP_INCLUDE_DIRS})
 target_link_directories(${PROJECT_NAME} PRIVATE ${YAML_CPP_LIBRARY_DIRS})
 list(APPEND LIBRARIES ${YAML_CPP_LIBRARIES})
 
-target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES}  ${LIBRARIES} converter Qt5::Core Qt5::Test Qt5::Widgets Qt5::Network)
+target_link_libraries(${PROJECT_NAME} ${LIBRARIES} converter Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Test Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network)
 add_test(${PROJECT_NAME} ${PROJECT_NAME})

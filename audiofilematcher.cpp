@@ -29,6 +29,7 @@
 #include <QLoggingCategory>
 #include "inputaudiofile.h"
 #include <QDebug>
+#include <QRegularExpression>
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "AudioFileMatcher")
@@ -264,12 +265,13 @@ QFileInfo AudioFileMatcher::matchSingleAudio(const Cue &cue, const QFileInfoList
     }
 
     QStringList patterns;
-    patterns << QRegExp::escape(QFileInfo(cue.fileTags().first()).completeBaseName());
-    patterns << QRegExp::escape(QFileInfo(cue.filePath()).completeBaseName()) + ".*";
+    patterns << QRegularExpression::escape(QFileInfo(cue.fileTags().first()).completeBaseName());
+    patterns << QRegularExpression::escape(QFileInfo(cue.filePath()).completeBaseName()) + ".*";
 
     foreach (const QString &pattern, patterns) {
 
-        QRegExp   re(pattern, Qt::CaseInsensitive, QRegExp::RegExp2);
+        QRegularExpression re(QRegularExpression::anchoredPattern(pattern), QRegularExpression::CaseInsensitiveOption);
+
         QFileInfo file = searchFile(re, allAudioFiles);
         if (!file.fileName().isEmpty()) {
             return file;
@@ -324,7 +326,7 @@ QFileInfoList AudioFileMatcher::tryMultiAudioPattrnMatch(const Cue &cue, const Q
     patterns << "{CUE_FILE_NAME}.*\\D0*{FAILE_TAG_NUM}";
     patterns << "{CUE_FILE_NAME}.*\\D0*{FAILE_TAG_NUM}\\D.*";
 
-    for (const QString prefix : { "disk", "disc", "side" }) {
+    for (const QString &prefix : { "disk", "disc", "side" }) {
 
         patterns << ".*" + prefix + "0*{FAILE_TAG_NUM}";
         patterns << ".*" + prefix + "0*{FAILE_TAG_NUM}\\D.*";
@@ -332,18 +334,18 @@ QFileInfoList AudioFileMatcher::tryMultiAudioPattrnMatch(const Cue &cue, const Q
         patterns << ".*" + prefix + "0.*\\D0*{FAILE_TAG_NUM}\\D.*";
     }
 
-    for (const QString prefix : { "disk", "disc", "side" }) {
+    for (const QString &prefix : { "disk", "disc", "side" }) {
         patterns << ".*" + prefix + "{FAILE_TAG_LETTER}";
         patterns << ".*" + prefix + ".*[\\[\\(]{FAILE_TAG_LETTER}[\\]\\)]";
     }
 
-    const QString &cueFileName = QRegExp::escape(QFileInfo(cue.filePath()).completeBaseName());
+    const QString &cueFileName = QRegularExpression::escape(QFileInfo(cue.filePath()).completeBaseName());
 
     QFileInfoList res;
     for (const QString &pattern : qAsConst(patterns)) {
 
         for (int i = 0; i < cue.fileTags().count(); ++i) {
-            const QString &fileTag    = QRegExp::escape(QFileInfo(cue.fileTags().at(i)).completeBaseName());
+            const QString &fileTag    = QRegularExpression::escape(QFileInfo(cue.fileTags().at(i)).completeBaseName());
             const int      fileTagNum = i;
 
             QString s = pattern;
@@ -352,7 +354,7 @@ QFileInfoList AudioFileMatcher::tryMultiAudioPattrnMatch(const Cue &cue, const Q
             s         = s.replace("{FILE_TAG}", fileTag);
             s         = s.replace("{CUE_FILE_NAME}", cueFileName);
 
-            QRegExp re = QRegExp(s, Qt::CaseInsensitive, QRegExp::RegExp2);
+            QRegularExpression re(QRegularExpression::anchoredPattern(s), QRegularExpression::CaseInsensitiveOption);
 
             QFileInfo file = searchFile(re, allAudioFiles);
             if (file.fileName().isEmpty()) {
@@ -374,12 +376,12 @@ QFileInfoList AudioFileMatcher::tryMultiAudioPattrnMatch(const Cue &cue, const Q
 /**************************************
  *
  **************************************/
-QFileInfo AudioFileMatcher::searchFile(const QRegExp &pattern, const QFileInfoList &allFiles) const
+QFileInfo AudioFileMatcher::searchFile(const QRegularExpression &pattern, const QFileInfoList &allFiles) const
 {
     qCDebug(LOG) << Q_FUNC_INFO << pattern;
 
     foreach (const QFileInfo &f, allFiles) {
-        if (pattern.exactMatch(f.completeBaseName())) {
+        if (pattern.match(f.completeBaseName()).hasMatch()) {
             qCDebug(LOG) << "  - test: re=" << pattern << "file=" << f.filePath() << " OK";
             return f;
         }

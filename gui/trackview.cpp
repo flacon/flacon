@@ -135,7 +135,7 @@ bool TrackView::isSelected(const Track &track) const
  ************************************************/
 void TrackView::layoutChanged()
 {
-    for (int i = 0; i < project->count(); ++i)
+    for (int i = 0; i < Project::instance()->count(); ++i)
         setFirstColumnSpanned(i, QModelIndex(), true);
 
     expandAll();

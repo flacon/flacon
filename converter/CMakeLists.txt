@@ -82,7 +82,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED
 find_package(ZLIB REQUIRED)
 
 add_library(${PROJECT_NAME} STATIC ${HEADERS} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARIES} ${QT_LIBRARIES} Qt${QT_VERSION_MAJOR}::Widgets ZLIB::ZLIB)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARIES} Qt${QT_VERSION_MAJOR}::Widgets ZLIB::ZLIB)
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}

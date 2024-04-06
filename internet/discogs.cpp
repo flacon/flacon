@@ -113,7 +113,7 @@ void Discogs::searchReady(QNetworkReply *reply)
     }
 
     QSet<int> ids;
-    for (const QJsonValue r : doc["results"].toArray()) {
+    for (const QJsonValue &r : doc["results"].toArray()) {
         ids << r["master_id"].toInt();
     }
 
@@ -164,7 +164,7 @@ void Discogs::masterReady(QNetworkReply *reply)
 
     if (!skip) {
         Tracks res;
-        for (const QJsonValue t : tracklist) {
+        for (const QJsonValue &t : tracklist) {
 
             Track track;
             track.setCodec(TextCodecUtf8());

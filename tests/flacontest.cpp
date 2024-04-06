@@ -444,7 +444,7 @@ void TestFlacon::testTrackResultFileName()
     Profile profile = Profile("WAV");
     profile.setOutFilePattern(pattern);
 
-    project->clear();
+    Project::instance()->clear();
 
     QString cueFile = dir() + "/input.cue";
     writeTextFile(cueFile, cue);

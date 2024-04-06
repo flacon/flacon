@@ -68,7 +68,7 @@ private:
     QFileInfoList tryPerTrackMatch(const Cue &cue, const QFileInfoList &allAudioFiles) const;
     QFileInfoList tryMultiAudioPattrnMatch(const Cue &cue, const QFileInfoList &allAudioFiles) const;
 
-    QFileInfo searchFile(const QRegExp &pattern, const QFileInfoList &allFiles) const;
+    QFileInfo searchFile(const QRegularExpression &pattern, const QFileInfoList &allFiles) const;
 };
 
 QDebug operator<<(QDebug &debug, const AudioFileMatcher &matcher);

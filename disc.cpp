@@ -157,7 +157,7 @@ void Disc::setCue(const Cue &cue)
         }
     }
 
-    project->emitLayoutChanged();
+    Project::instance()->emitLayoutChanged();
     emit revalidateRequested();
 }
 
@@ -381,7 +381,7 @@ void Disc::setStartTrackNum(TrackNum value)
         track->setTrackNum(value++);
     }
 
-    project->emitDiscChanged(this);
+    Project::instance()->emitDiscChanged(this);
 }
 
 /************************************************
@@ -407,7 +407,7 @@ void Disc::setCodecName(const QString &codecName)
     }
 
     mCodecName = codec.name();
-    project->emitDiscChanged(this);
+    Project::instance()->emitDiscChanged(this);
 }
 
 /************************************************
@@ -515,7 +515,7 @@ void Disc::activateTagSet(const QString &uri)
     syncTagsFromTracks();
     mCurrentTagsUri = uri;
     syncTagsToTracks();
-    project->emitLayoutChanged();
+    Project::instance()->emitLayoutChanged();
 }
 
 /************************************************

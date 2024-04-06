@@ -132,9 +132,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(editTagsButton, &QPushButton::clicked, this, &MainWindow::openEditTagsDialog);
 
-    connect(&project->validator(), &Validator::changed, this, &MainWindow::setControlsEnable);
-    connect(&project->validator(), &Validator::changed, this, &MainWindow::refreshEdits);
-    connect(&project->validator(), &Validator::changed, trackView, &TrackView::layoutChanged);
+    connect(&Project::instance()->validator(), &Validator::changed, this, &MainWindow::setControlsEnable);
+    connect(&Project::instance()->validator(), &Validator::changed, this, &MainWindow::refreshEdits);
+    connect(&Project::instance()->validator(), &Validator::changed, trackView, &TrackView::layoutChanged);
 
     initActions();
     initToolBar();
@@ -181,12 +181,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(trackView->selectionModel(), &QItemSelectionModel::selectionChanged,
             this, &MainWindow::setControlsEnable);
 
-    connect(project, &Project::layoutChanged, trackView, &TrackView::layoutChanged);
-    connect(project, &Project::layoutChanged, this, &MainWindow::refreshEdits);
-    connect(project, &Project::layoutChanged, this, &MainWindow::setControlsEnable);
+    connect(Project::instance(), &Project::layoutChanged, trackView, &TrackView::layoutChanged);
+    connect(Project::instance(), &Project::layoutChanged, this, &MainWindow::refreshEdits);
+    connect(Project::instance(), &Project::layoutChanged, this, &MainWindow::setControlsEnable);
 
-    connect(project, &Project::discChanged, this, &MainWindow::refreshEdits);
-    connect(project, &Project::discChanged, this, &MainWindow::setControlsEnable);
+    connect(Project::instance(), &Project::discChanged, this, &MainWindow::refreshEdits);
+    connect(Project::instance(), &Project::discChanged, this, &MainWindow::setControlsEnable);
 
     connect(Application::instance(), &Application::visualModeChanged,
             []() {
@@ -227,8 +227,8 @@ void MainWindow::polishView()
  ************************************************/
 void MainWindow::showEvent(QShowEvent *)
 {
-    if (project->count())
-        trackView->selectDisc(project->disc(0));
+    if (Project::instance()->count())
+        trackView->selectDisc(Project::instance()->disc(0));
 }
 
 /************************************************
@@ -315,9 +315,9 @@ void MainWindow::dropEvent(QDropEvent *event)
  ************************************************/
 void MainWindow::setPattern()
 {
-    project->profile()->setOutFilePattern(outPatternEdit->currentText());
+    Project::instance()->profile()->setOutFilePattern(outPatternEdit->currentText());
     emit trackView->model()->layoutChanged();
-    project->validator().revalidate();
+    Project::instance()->validator().revalidate();
 }
 
 /************************************************
@@ -325,9 +325,9 @@ void MainWindow::setPattern()
  ************************************************/
 void MainWindow::setOutDir()
 {
-    project->profile()->setOutFileDir(outDirEdit->currentText());
+    Project::instance()->profile()->setOutFileDir(outDirEdit->currentText());
     emit trackView->model()->layoutChanged();
-    project->validator().revalidate();
+    Project::instance()->validator().revalidate();
 }
 
 /************************************************
@@ -392,7 +392,7 @@ void MainWindow::setOutProfile()
 {
     int n = outProfileCombo->currentIndex();
     if (n > -1) {
-        project->selectProfile(outProfileCombo->itemData(n).toString());
+        Project::instance()->selectProfile(outProfileCombo->itemData(n).toString());
     }
     emit trackView->model()->layoutChanged();
 }
@@ -412,9 +412,9 @@ void MainWindow::setControlsEnable()
     bool canDownload = false;
     bool canConvert  = false;
     bool haveOK      = false;
-    foreach (const Disc *disc, project->disks()) {
+    foreach (const Disc *disc, Project::instance()->disks()) {
         canDownload = canDownload || DataProvider::canDownload(*disc);
-        canConvert  = canConvert || !project->validator().diskHasErrors(disc);
+        canConvert  = canConvert || !Project::instance()->validator().diskHasErrors(disc);
         haveOK      = haveOK || disc->state() == DiskState::OK;
     }
 
@@ -452,9 +452,9 @@ void MainWindow::refreshEdits()
 
     bool hasErrors   = false;
     bool hasWarnings = false;
-    for (const Disk *d : project->disks()) {
-        hasErrors   = hasErrors || project->validator().diskHasErrors(d);
-        hasWarnings = hasWarnings || project->validator().diskHasWarnings(d);
+    for (const Disk *d : Project::instance()->disks()) {
+        hasErrors   = hasErrors || Project::instance()->validator().diskHasErrors(d);
+        hasWarnings = hasWarnings || Project::instance()->validator().diskHasWarnings(d);
     }
 
     QList<Disc *> discs = trackView->selectedDiscs();
@@ -489,7 +489,7 @@ void MainWindow::refreshEdits()
     codepageCombo->setMultiValue(codePage);
     tagDiscPerformerEdit->setMultiValue(discPerformer);
 
-    const Profile *profile = project->profile();
+    const Profile *profile = Project::instance()->profile();
     if (outDirEdit->currentText() != profile->outFileDir()) {
         outDirEdit->lineEdit()->setText(profile->outFileDir());
     }
@@ -510,7 +510,7 @@ void MainWindow::refreshOutProfileCombo()
 {
     outProfileCombo->blockSignals(true);
     int n = 0;
-    for (const Profile &p : project->profiles()) {
+    for (const Profile &p : Project::instance()->profiles()) {
         if (n < outProfileCombo->count()) {
             outProfileCombo->setItemText(n, p.name());
             outProfileCombo->setItemData(n, p.id());
@@ -525,7 +525,7 @@ void MainWindow::refreshOutProfileCombo()
 
     outProfileCombo->blockSignals(false);
 
-    n = outProfileCombo->findData(project->profile()->id());
+    n = outProfileCombo->findData(Project::instance()->profile()->id());
 
     if (n > -1) {
         outProfileCombo->setCurrentIndex(n);
@@ -546,8 +546,8 @@ void MainWindow::preferencesDialogDone()
         return;
     }
 
-    project->setProfiles(dlg->profiles());
-    project->save(Settings::i());
+    Project::instance()->setProfiles(dlg->profiles());
+    Project::instance()->save(Settings::i());
 
     refreshEdits();
     emit trackView->model()->layoutChanged();
@@ -632,9 +632,9 @@ void MainWindow::setDiscTagInt()
 void MainWindow::startConvertAll()
 {
     Conv::Converter::Jobs jobs;
-    for (int d = 0; d < project->count(); ++d) {
+    for (int d = 0; d < Project::instance()->count(); ++d) {
         Conv::Converter::Job job;
-        job.disc = project->disc(d);
+        job.disc = Project::instance()->disc(d);
 
         for (int t = 0; t < job.disc->count(); ++t) {
             job.tracks << job.disc->track(t);
@@ -674,14 +674,14 @@ void MainWindow::startConvertSelected()
  ************************************************/
 void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
 {
-    if (!project->profile()->isValid())
+    if (!Project::instance()->profile()->isValid())
         return;
 
     trackView->setFocus();
 
     bool hasErrors = true;
-    for (int i = 0; i < project->count(); ++i) {
-        hasErrors = hasErrors || project->validator().diskHasErrors(project->disc(i));
+    for (int i = 0; i < Project::instance()->count(); ++i) {
+        hasErrors = hasErrors || Project::instance()->validator().diskHasErrors(Project::instance()->disc(i));
     }
 
     if (!hasErrors) {
@@ -693,8 +693,8 @@ void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
             return;
     }
 
-    for (int d = 0; d < project->count(); ++d) {
-        Disc *disc = project->disc(d);
+    for (int d = 0; d < Project::instance()->count(); ++d) {
+        Disc *disc = Project::instance()->disc(d);
         for (int t = 0; t < disc->count(); ++t)
             trackView->model()->trackProgressChanged(*disc->track(t), TrackState::NotRunning, 0);
     }
@@ -723,7 +723,7 @@ void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
         setWindowTitle(tr("Flacon"));
     });
 
-    mConverter->start(jobs, *project->profile());
+    mConverter->start(jobs, *(Project::instance()->profile()));
     setControlsEnable();
 }
 
@@ -742,7 +742,7 @@ void MainWindow::stopConvert()
  ************************************************/
 void MainWindow::configure()
 {
-    auto dlg = PreferencesDialog::createAndShow(project->profiles(), this);
+    auto dlg = PreferencesDialog::createAndShow(Project::instance()->profiles(), this);
     connect(dlg, &PreferencesDialog::accepted, this, &MainWindow::preferencesDialogDone, Qt::UniqueConnection);
 }
 
@@ -751,7 +751,7 @@ void MainWindow::configure()
  ************************************************/
 void MainWindow::configureEncoder()
 {
-    auto dlg = PreferencesDialog::createAndShow(project->profiles(), project->profile()->id(), this);
+    auto dlg = PreferencesDialog::createAndShow(Project::instance()->profiles(), Project::instance()->profile()->id(), this);
     connect(dlg, &PreferencesDialog::accepted, this, &MainWindow::preferencesDialogDone, Qt::UniqueConnection);
 }
 
@@ -899,9 +899,9 @@ void MainWindow::addFileOrDir(const QString &fileName)
             QFileInfo fi = QFileInfo(file);
             DiscList  discs;
             if (fi.size() > 102400)
-                discs << project->addAudioFile(file);
+                discs << Project::instance()->addAudioFile(file);
             else
-                discs << project->addCueFile(file);
+                discs << Project::instance()->addCueFile(file);
 
             if (!discs.isEmpty() && isFirst) {
                 isFirst = false;
@@ -944,12 +944,12 @@ void MainWindow::removeDiscs()
     if (discs.isEmpty())
         return;
 
-    int n = project->indexOf(discs.first());
-    project->removeDisc(discs);
+    int n = Project::instance()->indexOf(discs.first());
+    Project::instance()->removeDisc(discs);
 
-    n = qMin(n, project->count() - 1);
+    n = qMin(n, Project::instance()->count() - 1);
     if (n > -1)
-        trackView->selectDisc(project->disc(n));
+        trackView->selectDisc(Project::instance()->disc(n));
 
     setControlsEnable();
 }
@@ -1079,7 +1079,7 @@ void MainWindow::removeSourceFiles()
 {
     QStringList   files;
     QList<Disk *> disks;
-    for (Disk *d : project->disks()) {
+    for (Disk *d : Project::instance()->disks()) {
         if (d->state() == DiskState::OK) {
             disks << d;
             files << d->cueFilePath();
@@ -1098,7 +1098,7 @@ void MainWindow::removeSourceFiles()
         return;
     }
 
-    project->removeDisc(disks);
+    Project::instance()->removeDisc(disks);
     for (const QString &f : qAsConst(files)) {
 #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
         moveFileToTrash(f);
@@ -1361,14 +1361,14 @@ static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringLi
  ************************************************/
 void MainWindow::showWarnings()
 {
-    const Validator &validator = project->validator();
+    const Validator &validator = Project::instance()->validator();
 
     QString text = tr("Some disks have warnings:", "Error message title");
 
     QStringList html;
 
     int n = 0;
-    for (const Disk *d : project->disks()) {
+    for (const Disk *d : Project::instance()->disks()) {
         n++;
         QStringList warns = validator.diskWarnings(d);
         if (!warns.isEmpty()) {
@@ -1387,14 +1387,14 @@ void MainWindow::showWarnings()
  ************************************************/
 void MainWindow::showErrors()
 {
-    const Validator &validator = project->validator();
+    const Validator &validator = Project::instance()->validator();
 
     QString text = tr("Some disks have errors, and will be skipped when converting:", "Error message title");
 
     QStringList html;
 
     int n = 0;
-    for (const Disk *d : project->disks()) {
+    for (const Disk *d : Project::instance()->disks()) {
         n++;
         QStringList errs = validator.diskErrors(d);
         if (!errs.isEmpty()) {

@@ -53,8 +53,8 @@ bool OutFormat_Flac::check(const Profile &profile, QStringList *errors) const
         return res;
     }
 
-    for (int i = 0; i < project->count(); ++i) {
-        const Disc *const disc = project->disc(i);
+    for (int i = 0; i < Project::instance()->count(); ++i) {
+        const Disc *const disc = Project::instance()->disc(i);
 
         for (const InputAudioFile &audioFile : disc->audioFiles()) {
             if (calcSampleRate(audioFile.sampleRate(), profile.sampleRate()) > MATAFLAC_MAX_SAMPLE_RATE) {

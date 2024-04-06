@@ -240,6 +240,8 @@ void       initTypes();
 QString safeString(const QString &str);
 QString debugProgramArgs(const QString &prog, const QStringList &args);
 
+QString htmlToText(const QString &html);
+
 class Messages
 {
 public:

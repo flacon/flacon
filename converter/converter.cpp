@@ -65,9 +65,9 @@ Converter::~Converter()
 void Converter::start(const Profile &profile)
 {
     Jobs jobs;
-    for (int d = 0; d < project->count(); ++d) {
+    for (int d = 0; d < Project::instance()->count(); ++d) {
         Job job;
-        job.disc = project->disc(d);
+        job.disc = Project::instance()->disc(d);
 
         for (int t = 0; t < job.disc->count(); ++t)
             job.tracks << job.disc->track(t);

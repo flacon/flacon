@@ -25,6 +25,7 @@
 
 #include "discspec.h"
 #include <QSettings>
+#include <QRegularExpression>
 
 #include "../disc.h"
 #include <QTest>
@@ -76,9 +77,9 @@ int DiscSpec::durationValue(const QString &key) const
     QString s = mData.value(key).toString();
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-    QStringList sl = s.split(QRegExp("\\D"), QString::KeepEmptyParts);
+    QStringList sl = s.split(QRegularExpression("\\D"), QString::KeepEmptyParts);
 #else
-    QStringList sl = s.split(QRegExp("\\D"), Qt::KeepEmptyParts);
+    QStringList sl = s.split(QRegularExpression("\\D"), Qt::KeepEmptyParts);
 #endif
 
     if (sl.length() < 3)

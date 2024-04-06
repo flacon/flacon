@@ -89,6 +89,4 @@ private:
     Profiles      mProfiles;
 };
 
-#define project Project::instance()
-
 #endif // PROJECT_H

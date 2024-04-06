@@ -89,8 +89,8 @@ public:
 
     Disc *disc() const
     {
-        if (mDiscId && mDiscId - 1 < project->count())
-            return project->disc(mDiscId - 1);
+        if (mDiscId && mDiscId - 1 < Project::instance()->count())
+            return Project::instance()->disc(mDiscId - 1);
 
         return nullptr;
     }
@@ -126,16 +126,16 @@ TrackViewModel::TrackViewModel(TrackView *parent) :
     mCache(new Cache()),
     mView(parent)
 {
-    connect(project, &Project::discChanged,
+    connect(Project::instance(), &Project::discChanged,
             this, &TrackViewModel::discDataChanged);
 
-    connect(project, &Project::layoutChanged,
+    connect(Project::instance(), &Project::layoutChanged,
             [this]() { this->layoutChanged(); });
 
-    connect(project, &Project::afterRemoveDisc,
+    connect(Project::instance(), &Project::afterRemoveDisc,
             [this]() { this->layoutChanged(); });
 
-    connect(project, &Project::beforeRemoveDisc,
+    connect(Project::instance(), &Project::beforeRemoveDisc,
             this, &TrackViewModel::invalidateCache);
 }
 
@@ -196,7 +196,7 @@ QModelIndex TrackViewModel::index(int row, int column, const QModelIndex &parent
  ************************************************/
 QModelIndex TrackViewModel::index(const Disc &disc, int col) const
 {
-    const int discNum = project->indexOf(&disc);
+    const int discNum = Project::instance()->indexOf(&disc);
     if (discNum > -1 && discNum < rowCount(QModelIndex()))
         return index(discNum, col, QModelIndex());
 
@@ -330,7 +330,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
                 return QVariant(track->comment());
 
             case TrackView::ColumnFileName:
-                return QVariant(project->profile()->resultFileName(track));
+                return QVariant(Project::instance()->profile()->resultFileName(track));
         }
 
         return QVariant();
@@ -340,7 +340,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
     if (role == Qt::ToolTipRole) {
         switch (index.column()) {
             case TrackView::ColumnFileName:
-                return QVariant(project->profile()->resultFilePath(track));
+                return QVariant(Project::instance()->profile()->resultFilePath(track));
 
             default:
                 return QVariant();
@@ -351,7 +351,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
     if (role == Qt::TextAlignmentRole) {
         switch (index.column()) {
             case TrackView::ColumnDuration:
-                return Qt::AlignRight + Qt::AlignVCenter;
+                return int(Qt::AlignRight | Qt::AlignVCenter);
         }
 
         return QVariant();
@@ -377,7 +377,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
         case RoleComment:
             return track->album();
         case RoleFileName:
-            return project->profile()->resultFileName(track);
+            return Project::instance()->profile()->resultFileName(track);
         default:
             return QVariant();
     }
@@ -429,15 +429,15 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
         case RoleItemType:      return DiscItem;
         case RoleTagSetTitle:   return disc->tagSetTitle();
         case RoleAudioFileName: return disc->audioFileNames();
-        case RoleHasWarnings:   return project->validator().diskHasWarnings(disc);
-        case RoleHasErrors:     return project->validator().diskHasErrors(disc);
+        case RoleHasWarnings:   return Project::instance()->validator().diskHasWarnings(disc);
+        case RoleHasErrors:     return Project::instance()->validator().diskHasErrors(disc);
         case RoleIsDownloads:   return mCache->downloadedDiscs.contains(index.row());
         case RoleCoverFile:     return disc->coverImageFile();
         case RoleCoverImg:      return disc->coverImagePreview();
         case RoleCueFilePath:   return disc->cueFilePath();
         case RoleAudioFilePath: return disc->audioFilePaths();
-        case RoleDiscWarnings:  return project->validator().diskWarnings(disc);
-        case RoleDiscErrors:    return project->validator().diskErrors(disc);
+        case RoleDiscWarnings:  return Project::instance()->validator().diskWarnings(disc);
+        case RoleDiscErrors:    return Project::instance()->validator().diskErrors(disc);
     }
     // clang-format on
 
@@ -480,7 +480,7 @@ int TrackViewModel::columnCount(const QModelIndex &parent) const
 int TrackViewModel::rowCount(const QModelIndex &parent) const
 {
     if (!parent.isValid())
-        return project->count();
+        return Project::instance()->count();
 
     IndexData data(parent);
     if (data.isTrack())
