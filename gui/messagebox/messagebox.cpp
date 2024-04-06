@@ -100,7 +100,11 @@ void MessageBox::setStandardButtons(StandardButtons buttons)
 
 void MessageBox::showEvent(QShowEvent *event)
 {
-    ui->iconLabel->setVisible(ui->iconLabel->pixmap(Qt::ReturnByValue).isNull());
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    ui->iconLabel->setVisible(ui->iconLabel->pixmap() != nullptr);
+#else
+    ui->iconLabel->setVisible(ui->iconLabel->pixmap().isNull());
+#endif
 
     resize(sizeHint().width(), size().height());
     resize(sizeHint());
