@@ -1331,7 +1331,7 @@ void MainWindow::showErrorMessage(const QString &message)
     msg.replace('\n', "<br>\n");
     box->addMessage(msg);
     box->open();
-}
+} //-V773
 
 /************************************************
  *

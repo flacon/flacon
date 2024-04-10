@@ -61,7 +61,7 @@ AddProfileDialog::~AddProfileDialog()
 /************************************************
  *
  ************************************************/
-const QString AddProfileDialog::profileName() const
+QString AddProfileDialog::profileName() const
 {
     return ui->profileNameEd->text();
 }
@@ -77,7 +77,7 @@ void AddProfileDialog::setProfileName(const QString &value)
 /************************************************
  *
  ************************************************/
-const QString AddProfileDialog::formaiId() const
+QString AddProfileDialog::formaiId() const
 {
     return ui->formatCbx->currentData().toString();
 }

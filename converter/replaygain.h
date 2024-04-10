@@ -86,8 +86,8 @@ public:
 
 private:
     class Engine;
-    Engine *mEngine = nullptr;
     Result  mResult;
+    Engine *mEngine = nullptr;
 };
 
 class AlbumGain

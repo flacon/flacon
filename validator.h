@@ -66,7 +66,7 @@ signals:
 
 private:
     QList<Disk *>  mDisks;
-    const Profile *mProfile;
+    const Profile *mProfile = nullptr;
 
     QTimer mDelayTimer;
 

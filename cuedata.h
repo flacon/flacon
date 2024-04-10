@@ -44,8 +44,8 @@ public:
 
     using Tags = QMap<QByteArray, QByteArray>;
 
-    const Tags         &globalTags() const { return mGlobalTags; }
-    const QVector<Tags> tracks() const { return mTracks; }
+    const Tags          &globalTags() const { return mGlobalTags; }
+    const QVector<Tags> &tracks() const { return mTracks; }
 
     static constexpr auto INDEX_TAG     = "INDEX";
     static constexpr auto FILE_TAG      = "FILE";

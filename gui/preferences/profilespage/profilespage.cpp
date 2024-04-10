@@ -267,7 +267,7 @@ void ProfilesPage::deleteProfile()
     }
 
     Profile profile = mProfiles.takeAt(n);
-    if (mProfile && mProfile->id() == profile.id()) {
+    if (mProfile->id() == profile.id()) {
         mProfile = nullptr;
     }
 

@@ -40,11 +40,11 @@ public:
     explicit AddProfileDialog(QWidget *parent = nullptr);
     ~AddProfileDialog();
 
-    const QString profileName() const;
-    void          setProfileName(const QString &value);
+    QString profileName() const;
+    void    setProfileName(const QString &value);
 
-    const QString formaiId() const;
-    void          setFormatId(const QString &value);
+    QString formaiId() const;
+    void    setFormatId(const QString &value);
 
 private slots:
     void setButtonsEnabled();

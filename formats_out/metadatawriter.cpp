@@ -109,15 +109,15 @@ void MetadataWriter::setXiphCoverImage(TagLib::Ogg::XiphComment *tags, const Cov
 {
     TagLib::ByteVector dt(image.data().data(), image.data().size());
 
-    TagLib::FLAC::Picture *pic = new TagLib::FLAC::Picture();
-    pic->setType(TagLib::FLAC::Picture::Type::FrontCover);
-    pic->setData(dt);
-    pic->setMimeType(image.mimeType().toStdString());
-    pic->setWidth(image.size().width());
-    pic->setHeight(image.size().height());
-    pic->setColorDepth(image.depth());
+    TagLib::FLAC::Picture pic;
+    pic.setType(TagLib::FLAC::Picture::Type::FrontCover);
+    pic.setData(dt);
+    pic.setMimeType(image.mimeType().toStdString());
+    pic.setWidth(image.size().width());
+    pic.setHeight(image.size().height());
+    pic.setColorDepth(image.depth());
 
-    TagLib::ByteVector block = pic->render();
+    TagLib::ByteVector block = pic.render();
     QByteArray         data(block.data(), block.size());
     tags->addField("METADATA_BLOCK_PICTURE", data.toBase64().toStdString(), true);
 }
