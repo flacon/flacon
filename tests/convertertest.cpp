@@ -591,23 +591,14 @@ QStringList ConverterTest::findFiles(const QString &dir, const QString &pattern)
  ************************************************/
 void ConverterTest::printError(const QString &file, const QString &tag, const QVariant &actual, const QVariant &expected) const
 {
-    qWarning() << (QString("Compared values are not the same:\n"
-                           "    File: %1\n"
-                           "    Tag:  %2\n"
-                           "\n"
-                           "    Actual   : '%3' (%4)\n"
-                           "    Expected : '%5' (%6)\n")
-
-                           .arg(file)
-                           .arg(tag)
-
-                           .arg(QString::fromLocal8Bit(actual.toByteArray()))
-                           .arg(actual.toByteArray().toHex(' ').data())
-
-                           .arg(QString::fromLocal8Bit(expected.toByteArray()))
-                           .arg(expected.toByteArray().toHex(' ').data())
-
-                           .toLocal8Bit());
+    qWarning().noquote() << "Compared values are not the same:";
+    qWarning().noquote() << "    File: " << file;
+    qWarning().noquote() << "    Tag:  " << tag;
+    qWarning().noquote() << "";
+    qWarning().noquote() << "    Actual str   :" << QString::fromLocal8Bit(actual.toByteArray());
+    qWarning().noquote() << "    Expected str :" << QString::fromLocal8Bit(expected.toByteArray());
+    qWarning().noquote() << "    Actual hex   :" << actual.toByteArray().toHex(' ').data();
+    qWarning().noquote() << "    Expected hex :" << expected.toByteArray().toHex(' ').data();
 }
 
 void ConverterTest::printFile(const QString &fileName, bool printHeader)

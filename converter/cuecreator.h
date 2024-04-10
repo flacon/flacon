@@ -53,9 +53,10 @@ private:
     TrackTags mGlobalTags;
 
     void initGlobalTags();
-    void writeLine(QIODevice *out, const QString &text);
+    void writeLine(QIODevice *out, const QString &text) const;
     void writeGlobalTag(QIODevice *out, const QString &format, TagId tagId);
-    void writeTrackTag(QIODevice *out, const Track *track, const QString &prefix, TagId tagId);
+    void writeTrackTag(QIODevice *out, const Track *track, const QString &prefix, TagId tagId) const;
+    void writeTags(QIODevice *out, const Track *track) const;
 };
 
 } // namepace
