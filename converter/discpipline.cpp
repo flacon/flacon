@@ -80,7 +80,7 @@ WorkerThread::WorkerThread(Worker *worker, QObject *parent) :
  ************************************************/
 WorkerThread::~WorkerThread()
 {
-    terminate();
+    this->terminate();
     if (!wait(3000)) {
         qWarning() << "Can't terminate thread" << objectName();
     }

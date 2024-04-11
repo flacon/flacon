@@ -69,12 +69,12 @@ public:
     Format format() const { return mFormat; }
 
 private:
-    Format     mFormat = Format::Unknown;
     QString    mMimeType;
     QByteArray mData;
     QSize      mSize;
-    int        mDepth = 0;
     QString    mTmpFilePath;
+    int        mDepth  = 0;
+    Format     mFormat = Format::Unknown;
 };
 
 #endif // COVERIMAGE_H

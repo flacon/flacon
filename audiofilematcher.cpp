@@ -326,7 +326,7 @@ QFileInfoList AudioFileMatcher::tryMultiAudioPattrnMatch(const Cue &cue, const Q
     patterns << "{CUE_FILE_NAME}.*\\D0*{FAILE_TAG_NUM}";
     patterns << "{CUE_FILE_NAME}.*\\D0*{FAILE_TAG_NUM}\\D.*";
 
-    for (const QString &prefix : { "disk", "disc", "side" }) {
+    for (const QString prefix : { "disk", "disc", "side" }) {
 
         patterns << ".*" + prefix + "0*{FAILE_TAG_NUM}";
         patterns << ".*" + prefix + "0*{FAILE_TAG_NUM}\\D.*";
@@ -334,7 +334,7 @@ QFileInfoList AudioFileMatcher::tryMultiAudioPattrnMatch(const Cue &cue, const Q
         patterns << ".*" + prefix + "0.*\\D0*{FAILE_TAG_NUM}\\D.*";
     }
 
-    for (const QString &prefix : { "disk", "disc", "side" }) {
+    for (const QString prefix : { "disk", "disc", "side" }) {
         patterns << ".*" + prefix + "{FAILE_TAG_LETTER}";
         patterns << ".*" + prefix + ".*[\\[\\(]{FAILE_TAG_LETTER}[\\]\\)]";
     }
