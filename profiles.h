@@ -148,7 +148,7 @@ private:
     static QString defaultOutFileDir();
     static uint    defaultEncoderThreadCount();
 
-    QString safeFilePathLen(const QString &path) const;
+    // QString safeFilePathLen(const QString &path) const;
     QString calcResultFilePath(const Track *track) const;
 };
 

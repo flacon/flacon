@@ -105,6 +105,9 @@ private slots:
     void testPatternExpander_data();
     void testPatternExpander();
 
+    void testPatternExpanderLastDir();
+    void testPatternExpanderLastDir_data();
+
     void testCalcDiskState();
 
     void testLoadProfiles();

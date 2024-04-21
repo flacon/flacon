@@ -24,17 +24,26 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "flacontest.h"
-#include "tools.h"
 #include <QTest>
 #include <QMap>
 #include <QString>
 #include "types.h"
 #include "patternexpander.h"
 
+class TestPatternExpander : public PatternExpander
+{
+public:
+    static int lastDirSeparattor(const QString &pattern)
+    {
+        return PatternExpander::lastDirSeparattor(pattern);
+    }
+};
+
 /************************************************
  *
  ************************************************/
-static QMap<QString, QString> parseTrackData(const QString &str)
+static QMap<QString, QString>
+parseTrackData(const QString &str)
 {
     QMap<QString, QString> res;
 
@@ -258,4 +267,58 @@ void TestFlacon::testPatternExpander_data()
                date:       1999
                )"
             << "Band/{Music}%A/01 - Track title";
+
+    QTest::newRow("14 - disk number")
+            << "%a/{%y - }%A/{%d-}%n - %t"
+            << R"(
+               trackCount: 10
+               trackNum:   1
+               discCount:  2
+               discNum:    2
+               album:      Hits
+               title:      Track title
+               artist:     Band
+               genre:      Rock
+               date:       1999
+               )"
+            << "Band/1999 - Hits/02-01 - Track title";
+
+    QTest::newRow("15 - disk number")
+            << "%a/{%y - }%A{/%d/}%n - %t"
+            << R"(
+               trackCount: 10
+               trackNum:   1
+               discCount:  2
+               discNum:    1
+               album:      Hits
+               title:      Track title
+               artist:     Band
+               genre:      Rock
+               date:       1999
+               )"
+            << "Band/1999 - Hits/01/01 - Track title";
+}
+
+void TestFlacon::testPatternExpanderLastDir()
+{
+    QFETCH(QString, pattern);
+    QFETCH(int, expected);
+
+    int actual = TestPatternExpander::lastDirSeparattor(pattern);
+    QCOMPARE(actual, expected);
+}
+
+void TestFlacon::testPatternExpanderLastDir_data()
+{
+    QTest::addColumn<QString>("pattern", nullptr);
+    QTest::addColumn<int>("expected", nullptr);
+
+    QTest::newRow("01") << "" << -1;
+    QTest::newRow("02") << "/" << 0;
+    QTest::newRow("03") << "/a" << 0;
+    QTest::newRow("04") << "a/b" << 1;
+    QTest::newRow("05") << "%a/{%y - }%A/%n - %t" << 12;
+    QTest::newRow("06") << "%a/{%y - }{%A/}%n - %t" << 2;
+    QTest::newRow("07") << "{%y - }{%A/}%n - %t" << -1;
+    QTest::newRow("08") << "%a/{%y - }{%A/}%n/ - %t" << 17;
 }

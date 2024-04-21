@@ -239,26 +239,7 @@ void Profile::setSplitTrackTitle(bool value)
  ************************************************/
 QString Profile::resultFileName(const Track *track) const
 {
-    QString pattern = outFilePattern();
-    if (pattern.isEmpty()) {
-        pattern = QString("%a/%y - %A/%n - %t");
-    }
-
-    int n = pattern.lastIndexOf(QDir::separator());
-    if (n < 0) {
-        PatternExpander expander(*track);
-        return safeFilePathLen(expander.expand(pattern) + "." + ext());
-    }
-
-    // If the disc is a collection, the files fall into different directories.
-    // So we use the tag DiscPerformer for expand the directory path.
-    PatternExpander albumExpander(*track);
-    albumExpander.setArtist(track->albumArtist());
-
-    PatternExpander trackExpander(*track);
-
-    return safeFilePathLen(
-            albumExpander.expand(pattern.left(n)) + trackExpander.expand(pattern.mid(n)) + "." + ext());
+    return PatternExpander::resultFileName(outFilePattern(), track, ext());
 }
 
 /************************************************
@@ -286,28 +267,6 @@ QString Profile::resultFilePath(const Track *track) const
     else {
         return dir + "/" + fileName;
     }
-}
-
-/************************************************
- *
- ************************************************/
-QString Profile::safeFilePathLen(const QString &path) const
-{
-    QString file = path;
-    QString ext  = QFileInfo(path).suffix();
-    if (!ext.isEmpty()) {
-        ext = "." + ext;
-        file.resize(file.length() - ext.length());
-    }
-
-    QStringList res;
-    for (QString f : file.split(QDir::separator())) {
-        while (f.toUtf8().length() > 250) {
-            f.resize(f.length() - 1);
-        }
-        res << f;
-    }
-    return res.join(QDir::separator()) + ext;
 }
 
 /************************************************

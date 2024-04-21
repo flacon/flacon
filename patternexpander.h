@@ -74,7 +74,12 @@ public:
 
     QString expand(const QString &pattern) const;
 
+    static QString resultFileName(const QString &pattern, const Track *track, const QString &ext);
+
     static QString example(const QString &pattern);
+
+protected:
+    static int lastDirSeparattor(const QString &pattern);
 
 private:
     TrackCount mTrackCount;

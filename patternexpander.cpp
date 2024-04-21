@@ -25,6 +25,7 @@
 
 #include "patternexpander.h"
 #include "track.h"
+#include <QDir>
 
 class Tokens : public QHash<QChar, QString>
 {
@@ -90,7 +91,7 @@ static QString doExpandPattern(const QString &pattern, const Tokens &tokens, boo
         if (c == '{') {
             int level = 0;
             int start = i + 1;
-            //int j = i;
+
             QString s = "{";
 
             for (int j = i; j < pattern.length(); ++j) {
@@ -172,6 +173,80 @@ QString PatternExpander::expand(const QString &pattern) const
     tokens.insert(QChar('y'), safeString(mDate));
 
     return doExpandPattern(pattern, tokens, false);
+}
+
+/************************************************
+ *
+ ************************************************/
+static QString safeFilePathLen(const QString &path)
+{
+    QString file = path;
+    QString ext  = QFileInfo(path).suffix();
+    if (!ext.isEmpty()) {
+        ext = "." + ext;
+        file.resize(file.length() - ext.length());
+    }
+
+    QStringList res;
+    for (QString f : file.split(QDir::separator())) {
+        while (f.toUtf8().length() > 250) {
+            f.resize(f.length() - 1);
+        }
+        res << f;
+    }
+    return res.join(QDir::separator()) + ext;
+}
+
+/************************************************
+ *
+ ************************************************/
+int PatternExpander::lastDirSeparattor(const QString &pattern)
+{
+    int squareNum = 0;
+    for (int i = pattern.length() - 1; i >= 0; --i) {
+        QChar c = pattern.at(i);
+
+        if (c == QDir::separator() && squareNum == 0) {
+            return i;
+        }
+
+        if (c == "}") {
+            squareNum++;
+        }
+
+        if (c == "{") {
+            squareNum--;
+        }
+    }
+
+    return -1;
+}
+
+/************************************************
+ *
+ ************************************************/
+QString PatternExpander::resultFileName(const QString &aPattern, const Track *track, const QString &ext)
+{
+    QString pattern = aPattern;
+    if (pattern.isEmpty()) {
+        pattern = QString("%a/%y - %A/%n - %t");
+    }
+
+    int n = lastDirSeparattor(pattern);
+    if (n < 0) {
+        PatternExpander expander(*track);
+        return safeFilePathLen(expander.expand(pattern) + "." + ext);
+    }
+
+    // If the disc is a collection, the files fall into different directories.
+    // So we use the tag DiscPerformer for expand the directory path.
+    PatternExpander albumExpander(*track);
+    albumExpander.setArtist(track->albumArtist());
+
+    PatternExpander trackExpander(*track);
+
+    return safeFilePathLen(
+            albumExpander.expand(pattern.left(n)) + trackExpander.expand(pattern.mid(n)) + "." + ext);
 }
 
 /************************************************
