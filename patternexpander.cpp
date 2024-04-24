@@ -210,11 +210,11 @@ int PatternExpander::lastDirSeparattor(const QString &pattern)
             return i;
         }
 
-        if (c == "}") {
+        if (c == '}') {
             squareNum++;
         }
 
-        if (c == "{") {
+        if (c == '{') {
             squareNum--;
         }
     }
