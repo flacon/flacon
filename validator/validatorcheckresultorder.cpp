@@ -69,12 +69,14 @@ bool ValidatorCheckResultOrder::validateDir(const QString &, const Disk *disk, c
         }
     }
 
-    int firstIndex = files.indexOf([disk](const ValidatorResultFile &f) { return f.track->disc() == disk; });
+    ValidatorResultFiles::UnaryPred sameDisk = [disk](const ValidatorResultFile &f) -> bool { return f.track->disc() == disk; };
+
+    int firstIndex = files.indexOf(sameDisk);
     if (firstIndex < 0) {
         return true;
     }
 
-    int lastIndex = files.lastIndexOf([disk](const ValidatorResultFile &f) { return f.track->disc() == disk; });
+    int lastIndex = files.lastIndexOf(sameDisk);
 
     bool res = true;
     for (int i = firstIndex; i <= lastIndex; ++i) {
