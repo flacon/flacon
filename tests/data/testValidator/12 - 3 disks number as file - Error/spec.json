@@ -1,0 +1,37 @@
+{
+  "disks": [
+    {
+      "cue": "disk_01.cue",
+      "audio": [
+        "disk_01.flac"
+      ],
+      "errors": [
+        "The output files of the disc are mixed with the files of disc 2 \"Test for flacon - Short file\". You could change the \"Start num\" for one of them.",
+        "The output files of the disc are mixed with the files of disc 3 \"Test for flacon - Short file\". You could change the \"Start num\" for one of them."
+      ]
+    },
+
+    {
+      "cue": "disk_02.cue",
+      "audio": [
+        "disk_02.flac"
+      ],
+      "errors": [
+        "The output files of the disc are mixed with the files of disc 1 \"Test for flacon - Short file\". You could change the \"Start num\" for one of them.",
+        "The output files of the disc are mixed with the files of disc 3 \"Test for flacon - Short file\". You could change the \"Start num\" for one of them."
+      ]
+    },
+
+    {
+        "cue": "disk_03.cue",
+        "audio": [
+          "disk_03.flac"
+        ],
+        "errors": [
+          "The output files of the disc are mixed with the files of disc 1 \"Test for flacon - Short file\". You could change the \"Start num\" for one of them.",
+          "The output files of the disc are mixed with the files of disc 2 \"Test for flacon - Short file\". You could change the \"Start num\" for one of them."
+        ]
+      }
+
+  ]
+}

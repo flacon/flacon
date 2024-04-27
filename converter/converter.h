@@ -31,7 +31,7 @@
 #include <QDateTime>
 #include <QVector>
 #include "totalprogresscounter.h"
-#include "validator.h"
+#include "../validator/validator.h"
 
 class Disc;
 class Track;

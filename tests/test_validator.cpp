@@ -29,7 +29,7 @@
 #include <QTest>
 #include "flacontest.h"
 #include "types.h"
-#include "validator.h"
+#include "validator/validator.h"
 #include "settings.h"
 #include "json_struct.h"
 #include "tools.h"

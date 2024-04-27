@@ -1,5 +1,5 @@
-#ifndef VALIDATORS_H
-#define VALIDATORS_H
+#ifndef VALIDATOR_H
+#define VALIDATOR_H
 
 /* BEGIN_COMMON_COPYRIGHT_HEADER
  * (c)LGPL2+
@@ -30,6 +30,7 @@
 #include "profiles.h"
 #include <QMap>
 #include <QTimer>
+#include <QFileInfo>
 
 class Validator : public QObject
 {
@@ -89,4 +90,34 @@ private:
     bool checkSameAudioForFileTags(const Disk *disk);
 };
 
-#endif // VALIDATORS_H
+struct ValidatorResultFile
+{
+    QFileInfo    file;
+    const Track *track;
+};
+
+class ValidatorResultFiles : public QList<ValidatorResultFile>
+{
+public:
+    using QList::QList;
+    ValidatorResultFiles(const QList<Disc *> disks, const Profile *profile);
+    ValidatorResultFiles(const QList<const Disc *> disks, const Profile *profile);
+
+    QMap<QString, ValidatorResultFiles> splitByDirectory() const;
+
+    void sortByPath();
+
+    using QList::indexOf;
+    using QList::lastIndexOf;
+
+    using UnaryPred = std::function<bool(const ValidatorResultFile &)>;
+
+    int indexOf(const UnaryPred &where) const;
+    int lastIndexOf(const UnaryPred &where) const;
+
+    ValidatorResultFiles::const_iterator findFirst(const UnaryPred &where) const;
+    ValidatorResultFiles::const_iterator findLast(const UnaryPred &where) const;
+    // ValidatorResultFiles::const_iterator searchFirst(std::function<bool(const ValidatorResultFile &)> &where);
+};
+
+#endif // VALIDATOR_H

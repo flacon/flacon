@@ -30,7 +30,7 @@
 #include <QList>
 #include <QIcon>
 #include "disc.h"
-#include "validator.h"
+#include "validator/validator.h"
 
 class Settings;
 class Disc;

@@ -27,6 +27,8 @@
 #include <QDebug>
 #include <QDateTime>
 #include "extprogram.h"
+#include "validatorcheckresultorder.h"
+#include <QDir>
 
 static constexpr int VALIDATE_DELAY_MS = 50;
 
@@ -371,9 +373,6 @@ bool Validator::validateResultFiles(const Disk *disk, QStringList &inErrors, QSt
     QStringList errors;
 
     for (const Track *track : disk->tracks()) {
-        QString  outDir   = mProfile->resultFileDir(track);
-        TrackNum trackNum = track->trackNum();
-
         int n = 0;
         for (const Disk *d : mDisks) {
             n++;
@@ -399,18 +398,22 @@ bool Validator::validateResultFiles(const Disk *disk, QStringList &inErrors, QSt
                     }
                     break;
                 }
-
-                if (t->trackNum() == trackNum && mProfile->resultFileDir(t) == outDir) {
-                    errors << tr("Disk %1 \"%2 - %3\" has overlapping track numbers.\nYou could change the \"Start num\" for one of them.",
-                                 "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
-                                      .arg(n)
-                                      .arg(d->discTag(TagId::Artist), d->discTag(TagId::Album));
-                    break;
-                }
             }
         }
     }
 
+    QList<const Disk *> disks;
+    for (auto d : mDisks) {
+        disks << d;
+    }
+
+    ValidatorCheckResultOrder resultOrder(disks, mProfile);
+    if (!resultOrder.validate(disk)) {
+        errors << resultOrder.errors();
+        warnings << resultOrder.warnings();
+    }
+
+    std::sort(errors.begin(), errors.end());
     errors.removeDuplicates();
     inErrors << errors;
     return errors.isEmpty();
@@ -491,4 +494,77 @@ bool Validator::validateDiskWarnings(const Disk *disk, QStringList &warnings)
     }
 
     return res;
+}
+
+ValidatorResultFiles::ValidatorResultFiles(const QList<Disc *> disks, const Profile *profile)
+{
+    for (const Disk *d : disks) {
+        for (Track *t : d->tracks()) {
+            *this << ValidatorResultFile { QFileInfo(profile->resultFilePath(t)), t };
+        }
+    }
+}
+
+ValidatorResultFiles::ValidatorResultFiles(const QList<const Disc *> disks, const Profile *profile)
+{
+    for (const Disk *d : disks) {
+        for (Track *t : d->tracks()) {
+            *this << ValidatorResultFile { QFileInfo(profile->resultFilePath(t)), t };
+        }
+    }
+}
+
+QMap<QString, ValidatorResultFiles> ValidatorResultFiles::splitByDirectory() const
+{
+    QMap<QString, ValidatorResultFiles> res;
+    for (const ValidatorResultFile &f : *this) {
+        res[f.file.dir().absolutePath()].append(f);
+    }
+
+    return res;
+}
+
+void ValidatorResultFiles::sortByPath()
+{
+    std::sort(begin(), end(), [](auto &f1, auto &f2) {
+        return f1.file.absoluteFilePath() < f2.file.absoluteFilePath();
+    });
+}
+
+int ValidatorResultFiles::indexOf(const UnaryPred &where) const
+{
+    for (int i = 0; i < size(); ++i) {
+        if (where(at(i))) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int ValidatorResultFiles::lastIndexOf(const UnaryPred &where) const
+{
+    for (int i = size() - 1; i >= 0; --i) {
+        if (where(at(i))) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+ValidatorResultFiles::const_iterator ValidatorResultFiles::findFirst(const UnaryPred &where) const
+{
+    return std::find_if(cbegin(), cend(), where);
+}
+
+ValidatorResultFiles::const_iterator ValidatorResultFiles::findLast(const UnaryPred &where) const
+{
+    for (auto it = cend() - 1; it >= cbegin(); --it) {
+        if (where(*it)) {
+            return it;
+        }
+    }
+
+    return cend();
 }

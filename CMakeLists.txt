@@ -102,7 +102,6 @@ set(HEADERS
     consoleout.h
     profiles.h
     audiofilematcher.h
-    validator.h
     sync.h
     extprogram.h
     uchardetect.h
@@ -137,7 +136,6 @@ set(SOURCES
     consoleout.cpp
     profiles.cpp
     audiofilematcher.cpp
-    validator.cpp
     extprogram.cpp
     uchardetect.cpp
     textcodec.cpp
@@ -158,6 +156,7 @@ include(gui/module.cmake)
 include(formats_in/module.cmake)
 include(formats_out/module.cmake)
 include(qtbackports/module.cmake)
+include(validator/module.cmake)
 
 set(LIBRARIES)
 
