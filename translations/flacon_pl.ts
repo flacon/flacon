@@ -106,17 +106,17 @@
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
-        <translation type="unfinished"/>
+        <translation>Aby utworzyć profil, podaj następujące informacje:</translation>
     </message>
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Nazwa nowego profilu:</translation>
     </message>
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Format audio:</translation>
     </message>
     <message>
         <source>Create a profile</source>
@@ -250,15 +250,15 @@
     </message>
     <message>
         <source>Simplified Chinese (GB18030)</source>
-        <translation type="unfinished"/>
+        <translation>Chiński uproszczony (GB18030)</translation>
     </message>
     <message>
         <source>Traditional Chinese (BIG5)</source>
-        <translation type="unfinished"/>
+        <translation>Chiński tradycyjny (BIG5)</translation>
     </message>
     <message>
         <source>Japanese (CP932)</source>
-        <translation type="unfinished"/>
+        <translation>Japoński (CP932)</translation>
     </message>
 </context>
 <context>
@@ -321,7 +321,7 @@
     <name>ConfigPage_Opus</name>
     <message>
         <source>Bitrate type:</source>
-        <translation type="unfinished"/>
+        <translation>Rodzaj prędkości transmisji:</translation>
     </message>
     <message>
         <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
@@ -348,13 +348,13 @@ In CBR mode, it sets the specific output bitrate.
         <source>VBR - variable bitrate</source>
         <comment>Opus encoding mode</comment>
         <extracomment>Opus encoding mode</extracomment>
-        <translation type="unfinished"/>
+        <translation>VBR - zmienna prędkość transmisji</translation>
     </message>
     <message>
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
         <extracomment>Opus encoding mode</extracomment>
-        <translation type="unfinished"/>
+        <translation>CVBR – ograniczona zmienna prędkość transmisji</translation>
     </message>
 </context>
 <context>
@@ -370,25 +370,25 @@ In CBR mode, it sets the specific output bitrate.
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
         <extracomment>Error message.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Plik audio może być uszkodzony lub mieć nieobsługiwany format audio.</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>Program %1 nie jest zainstalowany.&lt;br&gt;Sprawdź, czy wszystkie wymagane programy są zainstalowane i przypisane w Twoich ustawieniach.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>Program %1, zgodnie z ustawieniami, jest zainstalowany, ale nie można odnaleźć pliku binarnego.&lt;br&gt;Sprawdź, czy wszystkie wymagane programy są zainstalowane i przypisane w Twoich ustawieniach.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
         <extracomment>Error string, %1 is a filename, %2 error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>Nie można zapisać pliku &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -422,7 +422,7 @@ In CBR mode, it sets the specific output bitrate.
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
         <extracomment>Track error message, %1 is a track number</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ścieżka %1. Błąd kodera:</translation>
     </message>
 </context>
 <context>
@@ -431,18 +431,18 @@ In CBR mode, it sets the specific output bitrate.
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
         <extracomment>Splitter error. %1 is a file name, %2 is a system error text.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Nie można odczytać &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz zdjęcie okładki</translation>
     </message>
     <message>
         <source>Without cover image</source>
-        <translation type="unfinished"/>
+        <translation>Bez zdjęcia okładki</translation>
     </message>
 </context>
 <context>
@@ -451,30 +451,30 @@ In CBR mode, it sets the specific output bitrate.
         <source>Keep original image size</source>
         <comment>Cover image option on the preferences dialog</comment>
         <extracomment>Cover image option on the preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Zachowaj oryginalny rozmiar zdjęcia</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
         <extracomment>Cover image option on the preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Zmień rozmiar, jeśli zdjęcie jest większe niż</translation>
     </message>
 </context>
 <context>
     <name>CueGroupBox</name>
     <message>
         <source>Create per track CUE sheet</source>
-        <translation type="unfinished"/>
+        <translation>Utwórz arkusz CUE dla ścieżek</translation>
     </message>
     <message>
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
         <extracomment>Preferences dialog edit tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Format nazw plików</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -484,13 +484,13 @@ In CBR mode, it sets the specific output bitrate.
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
         <extracomment>CUE mode combobox item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Zapisz do pliku</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
         <extracomment>CUE mode combobox item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Osadzone w plikach audio</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -550,19 +550,19 @@ Wpływa to wyłącznie na wielkość pliku. Konwersja pozostaje bezstratna.</tra
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>Program %1 nie jest zainstalowany.&lt;br&gt; Sprawdź, czy wszystkie wymagane programy są zainstalowane i przypisane w ustawieniach.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>Program %1, zgodnie z ustawieniami, jest zainstalowany, ale nie można odnaleźć pliku binarnego.&lt;br&gt;Sprawdź, czy wszystkie wymagane programy są zainstalowane i przypisane w ustawieniach.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>Program %1, zgodnie z ustawieniami, jest zainstalowany, ale plik nie jest wykonywalny. &lt;br&gt;Sprawdź, czy wszystkie wymagane programy są poprawnie zainstalowane i przypisane w ustawieniach.</translation>
     </message>
 </context>
 <context>
@@ -1300,7 +1300,7 @@ Otoczenie części tekstu, zawierającej znacznik, klamrami, spowoduje jej ukryc
     <message>
         <source>Create per track CUE sheet</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Utwórz arkusz CUE dla ścieżek</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
@@ -1318,43 +1318,43 @@ Otoczenie części tekstu, zawierającej znacznik, klamrami, spowoduje jej ukryc
         <source>16-bit</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>16-bit</translation>
     </message>
     <message>
         <source>24-bit</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>24-bit</translation>
     </message>
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>32-bit</translation>
     </message>
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>44100 Hz</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>48000 Hz</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>96000 Hz</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>192000 Hz</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -1395,11 +1395,11 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     <name>ProfilesPage</name>
     <message>
         <source>+</source>
-        <translation type="unfinished"/>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
@@ -1443,7 +1443,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <source>%1:</source>
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
         <extracomment>Template for the program name label on the preferences form. %1 is a program name.</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1:</translation>
     </message>
 </context>
 <context>
@@ -1601,7 +1601,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished"/>
+        <translation>z</translation>
     </message>
 </context>
 <context>
@@ -1742,13 +1742,13 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <source>%1:%2:%3</source>
         <comment>Track length, string like '01:02:56'</comment>
         <extracomment>Track length, string like '01:02:56'</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1:%2:%3</translation>
     </message>
     <message>
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
         <extracomment>Track length, string like '02:56'</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1:%2</translation>
     </message>
 </context>
 <context>

@@ -11,7 +11,7 @@
     </message>
     <message>
         <source>Author</source>
-        <translation>Auteur</translation>
+        <translation>Maker</translation>
     </message>
     <message>
         <source>Thanks</source>
@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Homepage: %1</source>
-        <translation>Startpagina: %1</translation>
+        <translation>Website: %1</translation>
     </message>
     <message>
         <source>Bug tracker %1</source>
@@ -45,7 +45,7 @@
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon gebruikt externe programma’s. Veel dank aan hun auteurs!</translation>
+        <translation>Flacon maakt gebruik van externe programma’s. Veel dank aan de makers daarvan!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
@@ -65,13 +65,13 @@
         <source>Packaging, testing</source>
         <comment>Thanks on the about page</comment>
         <extracomment>Thanks on the about page</extracomment>
-        <translation>Verpakken, testen</translation>
+        <translation>Pakketbouw, testen</translation>
     </message>
     <message>
         <source>Improvements in the UI</source>
         <comment>Thanks on the about page</comment>
         <extracomment>Thanks on the about page</extracomment>
-        <translation>Verbeteringen in de gebruikersinterface</translation>
+        <translation>Verbeteringen aan de vormgeving</translation>
     </message>
     <message>
         <source>Flacon account on github.com</source>
@@ -83,17 +83,17 @@
         <source>Icon for application</source>
         <comment>Thanks on the about page</comment>
         <extracomment>Thanks on the about page</extracomment>
-        <translation>Pictogram voor toepassing</translation>
+        <translation>Pictogram van programma</translation>
     </message>
     <message>
         <source>Icons for application</source>
         <comment>Thanks on the about page</comment>
         <extracomment>Thanks on the about page</extracomment>
-        <translation>Pictogrammen voor toepassing</translation>
+        <translation>Pictogrammen van programma</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
-        <translation>Flacon is vertaald in veel talen dankzij het werk van de Flacon-vertalingsteams op &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
+        <translation>Flacon is beschikbaar in veel talen dankzij het werk van de Flacon-vertalingsteams op &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -101,28 +101,28 @@
     <message>
         <source>Create a profile</source>
         <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Profiel samenstellen</translation>
     </message>
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
-        <translation type="unfinished"/>
+        <translation>Vul de volgende informatie in om een profiel samen te stellen:</translation>
     </message>
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Nieuwe profielnaam:</translation>
     </message>
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"/>
+        <translation>Audioformaat:</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <comment>Button caption</comment>
         <extracomment>Button caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Profiel samenstellen</translation>
     </message>
 </context>
 <context>
@@ -250,15 +250,15 @@
     </message>
     <message>
         <source>Simplified Chinese (GB18030)</source>
-        <translation type="unfinished"/>
+        <translation>Vereenvoudigd Chinees (GB18030)</translation>
     </message>
     <message>
         <source>Traditional Chinese (BIG5)</source>
-        <translation type="unfinished"/>
+        <translation>Traditioneel Chinees (BIG5)</translation>
     </message>
     <message>
         <source>Japanese (CP932)</source>
-        <translation type="unfinished"/>
+        <translation>Japans (CP932)</translation>
     </message>
 </context>
 <context>
@@ -359,7 +359,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
         <extracomment>Opus encoding mode</extracomment>
-        <translation type="unfinished"/>
+        <translation>CVBR - beperkte variabele bitsnelheid</translation>
     </message>
 </context>
 <context>
@@ -375,19 +375,19 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
         <extracomment>Error message.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Het audiobestand is mogelijk beschadigd of wordt niet ondersteund.</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 is niet geïnstalleerd.&lt;br&gt;Controleer of alle vereiste programma&apos;s geïnstalleerd zijn.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 is volgens uw instellingen geïnstalleerd, maar het uitvoerbare bestand is niet aangetroffen.&lt;br&gt;Controleer of alle vereiste programma&apos;s geïnstalleerd zijn.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -402,7 +402,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation>Ik kan het bestand niet hernoemen:
+        <translation>Ik kan de bestandsnaam niet wĳzigen:
 %1 naar %2
 %3</translation>
     </message>
@@ -413,13 +413,13 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>I can&apos;t read %1 file</source>
         <comment>Encoder error. %1 is a file name.</comment>
         <extracomment>Encoder error. %1 is a file name.</extracomment>
-        <translation>Ik kan %1 bestand niet lezen</translation>
+        <translation>Ik kan %1 niet inlezen</translation>
     </message>
     <message>
         <source>I can't rename file:
 %1 to %2
 %3</source>
-        <translation>Ik kan het bestand niet hernoemen:
+        <translation>Ik kan de bestandsnaam niet wĳzigen:
 %1 naar %2
 %3</translation>
     </message>
@@ -427,7 +427,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
         <extracomment>Track error message, %1 is a track number</extracomment>
-        <translation type="unfinished"/>
+        <translation>Volgnummer %1. Encodeerfout:</translation>
     </message>
 </context>
 <context>
@@ -436,14 +436,14 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>I can&apos;t read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
         <extracomment>Splitter error. %1 is a file name, %2 is a system error text.</extracomment>
-        <translation>Ik kan het bestand &lt;b&gt;%1&lt;/b&gt; niet lezen:&lt;br&gt;%2</translation>
+        <translation>Ik kan het bestand &lt;b&gt;%1&lt;/b&gt; niet inlezen:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
     <name>CoverDialog</name>
     <message>
         <source>Select cover image</source>
-        <translation>Albumhoes selecteren</translation>
+        <translation>Kies een albumhoes</translation>
     </message>
     <message>
         <source>Without cover image</source>
@@ -456,7 +456,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>Keep original image size</source>
         <comment>Cover image option on the preferences dialog</comment>
         <extracomment>Cover image option on the preferences dialog</extracomment>
-        <translation>Oorspronkelijke afbeeldingsgrootte behouden</translation>
+        <translation>Oorspronkelijke afmetingen behouden</translation>
     </message>
     <message>
         <source> px</source>
@@ -466,7 +466,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
         <extracomment>Cover image option on the preferences dialog</extracomment>
-        <translation>Schalen indien afbeelding groter is dan</translation>
+        <translation>Vergroten/Verkleinen indien afbeelding groter is dan</translation>
     </message>
 </context>
 <context>
@@ -479,23 +479,23 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
         <extracomment>Preferences dialog edit tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Bestandsnaamformaat</translation>
     </message>
     <message>
         <source>First track pregap:</source>
-        <translation>Pregap voor eerste nummer:</translation>
+        <translation>Onderbreking vóór eerste nummer:</translation>
     </message>
     <message>
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
         <extracomment>CUE mode combobox item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Wegschrijven</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
         <extracomment>CUE mode combobox item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Insluiten in audiobestanden</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -517,7 +517,7 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
         <extracomment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</extracomment>
-        <translation>Gebruik ‘%1’</translation>
+        <translation>‘%1’ gebruiken</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
@@ -532,13 +532,13 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
     <name>EncoderConfigPage</name>
     <message>
         <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-        <translation>Stelt coderingskwaliteit in, tussen %1 (laagst) en %2 (hoogst).</translation>
+        <translation>Stelt de coderingskwaliteit in, tussen %1 (laagst) en %2 (hoogst).</translation>
     </message>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>Stelt compressieniveau in, tussen %1 (snelst) en %2 (hoogste compressie).
-Dit heeft enkel een invloed op de bestandsgrootte, alle instellingen zijn zonder kwaliteitsverlies.</translation>
+        <translation>Stelt het compressieniveau in, tussen %1 (snelst) en %2 (hoogste compressie).
+Dit is enkel van invloed op de bestandsgrootte - alle instellingen zijn zonder kwaliteitsverlies.</translation>
     </message>
     <message>
         <source>%1 kbps</source>
@@ -555,26 +555,26 @@ Dit heeft enkel een invloed op de bestandsgrootte, alle instellingen zijn zonder
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 is niet geïnstalleerd.&lt;br&gt;Controleer of alle vereiste programma&apos;s geïnstalleerd zijn.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 is volgens uw instellingen geïnstalleerd, maar het uitvoerbare bestand is niet aangetroffen.&lt;br&gt;Controleer of alle vereiste programma&apos;s geïnstalleerd zijn.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 is volgens uw instellingen geïnstalleerd, maar het uitvoerbare bestand is niet aangetroffen.&lt;br&gt;Controleer of alle vereiste programma&apos;s geïnstalleerd zijn.</translation>
     </message>
 </context>
 <context>
     <name>GeneralPage</name>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation>Het aantal draden in het conversieproces.</translation>
+        <translation>Het aantal processen van het conversieproces.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
@@ -582,15 +582,15 @@ Dit heeft enkel een invloed op de bestandsgrootte, alle instellingen zijn zonder
     </message>
     <message>
         <source>Default codepage:</source>
-        <translation>Standaardcodetabel:</translation>
+        <translation>Standaard codetabel:</translation>
     </message>
     <message>
         <source>Thread count:</source>
-        <translation>Aantal draden:</translation>
+        <translation>Aantal processen:</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
-        <translation>Kies tijdelijke map</translation>
+        <translation>Kies een tijdelijke map</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -600,12 +600,12 @@ Dit heeft enkel een invloed op de bestandsgrootte, alle instellingen zijn zonder
     <message>
         <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
         <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Als de ‘TITEL’-tag de artiestnaam en naam van het nummer kommagescheiden bevatten, dan zal het programma de juiste tags proberen toe te kennen.</translation>
     </message>
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
-        <translation type="unfinished"/>
+        <translation>Heuristische definitie van uitvoerend artiest gebruiken</translation>
     </message>
 </context>
 <context>
@@ -628,9 +628,9 @@ Dit heeft enkel een invloed op de bestandsgrootte, alle instellingen zijn zonder
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
         <extracomment>Main form tooltip for &quot;Directory&quot; edit</extracomment>
-        <translation>U kan naar de doelmap bladeren of ze manueel ingeven.
+        <translation>U kunt de doelmap kiezen of handmatig een locatie opgeven.
 
-Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
+Als de locatie leeg wordt gelaten of begint met een ‘.’ (punt), dan zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
     </message>
     <message>
         <source>Pattern:</source>
@@ -659,10 +659,9 @@ If you surround sections of text that contain a token with braces, these section
         <translation>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens beginnen met %. U kan volgende tokens gebruiken:
+&lt;/style&gt;Opvulteksten beginnen met %. U kunt de volgende opvulteksten gebruiken:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tracknummer&lt;/td&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Volgnummer&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Aantal nummers&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artiest&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumtitel&lt;/td&gt;&lt;/tr&gt;
@@ -672,7 +671,7 @@ Tokens beginnen met %. U kan volgende tokens gebruiken:
         &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
-Als u delen van tekst die een token bevatten met accolades omsluit zullen deze delen worden verborgen als het token leeg is.</translation>
+Als u delen van tekst die een opvultekst bevatten met accolades omsluit, dan zullen deze delen worden verborgen als de opvultekst blanco is.</translation>
     </message>
     <message>
         <source>Format:</source>
@@ -690,7 +689,7 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     </message>
     <message>
         <source>Album performer:</source>
-        <translation>Albumperformer:</translation>
+        <translation>Albumartiest:</translation>
     </message>
     <message>
         <source>Start num:</source>
@@ -698,7 +697,7 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     </message>
     <message>
         <source>Disc ID:</source>
-        <translation>Schijf-ID:</translation>
+        <translation>Schijf-id:</translation>
     </message>
     <message>
         <source>Genre:</source>
@@ -732,7 +731,7 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Instellingen</translation>
+        <translation>In&amp;stellingen</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -742,17 +741,17 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
         <source>Add disc…</source>
         <comment>Main menu item</comment>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Schijf toevoegen…</translation>
     </message>
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
         <extracomment>Toolbar item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Schijf toevoegen</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>CUE- of audiobestand toevoegen</translation>
+        <translation>Cue- of audiobestand toevoegen</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -800,11 +799,11 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     </message>
     <message>
         <source>Remove disc</source>
-        <translation type="unfinished"/>
+        <translation>Schijf verwijderen</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder de schijf uit het project</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -812,7 +811,7 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     </message>
     <message>
         <source>Configure encoder</source>
-        <translation>Configureer encoder</translation>
+        <translation>Encodering instellen</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
@@ -822,21 +821,21 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
         <source>Add folder…</source>
         <comment>Main menu item</comment>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Map toevoegen…</translation>
     </message>
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
         <extracomment>Toolbar item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Map toevoegen</translation>
     </message>
     <message>
         <source>Recursive album search</source>
-        <translation>Recursief albumzoeken</translation>
+        <translation>Albums recursief doorzoeken</translation>
     </message>
     <message>
         <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
@@ -845,12 +844,12 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
-        <translation>Geselecteerde converteren</translation>
+        <translation>Selectie converteren</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
         <extracomment>Main menu item tooltip</extracomment>
-        <translation>Begin het conversieproces voor de geselecteerde nummers</translation>
+        <translation>Begin het conversieproces van de geselecteerde nummers</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
@@ -863,25 +862,25 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     </message>
     <message>
         <source>Delete current pattern from history</source>
-        <translation>Huidig patroon van geschiedenis verwijderen</translation>
+        <translation>Huidig patroon uit geschiedenis verwijderen</translation>
     </message>
     <message>
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
         <extracomment>OpenFile dialog title</extracomment>
-        <translation>Kies cuebestand</translation>
+        <translation>Kies een cuebestand</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-        <translation>Sommige albums zullen niet worden geconverteerd, ze bevatten fouten.
+        <translation>Sommige albums zullen niet worden geconverteerd, omdat ze fouten bevatten.
 Wil u doorgaan?</translation>
     </message>
     <message>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
         <extracomment>OpenFile dialog filter line, like &quot;WAV files&quot;</extracomment>
-        <translation>%1 bestanden</translation>
+        <translation>%1-bestanden</translation>
     </message>
     <message>
         <source>All supported formats</source>
@@ -899,23 +898,23 @@ Wil u doorgaan?</translation>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
         <extracomment>OpenFile dialog title</extracomment>
-        <translation>CUE- of audiobestand toevoegen</translation>
+        <translation>Cue- of audiobestand toevoegen</translation>
     </message>
     <message>
         <source>Select audio file</source>
         <comment>OpenFile dialog title</comment>
         <extracomment>OpenFile dialog title</extracomment>
-        <translation>Kies audiobestand</translation>
+        <translation>Kies een audiobestand</translation>
     </message>
     <message>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
         <extracomment>Error message, %1 is an filename.</extracomment>
-        <translation type="unfinished"/>
+        <translation>‘%1’ is niet ingesteld.</translation>
     </message>
     <message>
         <source>Select directory</source>
-        <translation>Kies map</translation>
+        <translation>Kies een map</translation>
     </message>
     <message>
         <source>Select another audio file…</source>
@@ -927,13 +926,13 @@ Wil u doorgaan?</translation>
         <source>Select another audio file for %1 track…</source>
         <comment>context menu. Placeholders are track number</comment>
         <extracomment>context menu. Placeholders are track number</extracomment>
-        <translation type="unfinished"/>
+        <translation>Kies een ander audiobestand voor %1…</translation>
     </message>
     <message>
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <extracomment>context menu. Placeholders are track numbers</extracomment>
-        <translation type="unfinished"/>
+        <translation>Kies een ander audiobestand voor %1 tot %2…</translation>
     </message>
     <message>
         <source>Edit tags…</source>
@@ -949,55 +948,55 @@ Wil u doorgaan?</translation>
     </message>
     <message>
         <source>Get from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Ophalen van internet</translation>
     </message>
     <message>
         <source>Get album information from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Haal albuminformatie op van het internet</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
         <extracomment>context menu</extracomment>
-        <translation type="unfinished"/>
+        <translation>Informatie ophalen van internet</translation>
     </message>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
         <extracomment>Main window title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Flacon - Bezig met converteren…</translation>
     </message>
     <message>
         <source>Warnings</source>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Waarschuwingen</translation>
     </message>
     <message>
         <source>Show Warnings</source>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Toon waarschuwingen</translation>
     </message>
     <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Foutmeldingen</translation>
     </message>
     <message>
         <source>Show Errors</source>
         <comment>Toolbar item tooltip</comment>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Toon foutmeldingen</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>Bronnen van geconverteerde schijven verplaatsen naar prullenbak en verwijderen van lijst…</translation>
     </message>
     <message>
         <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Er vindt nog een conversie plaats.&lt;br&gt;Weet u zeker dat u wilt afsluiten?</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1009,41 +1008,41 @@ Wil u doorgaan?</translation>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1% voltooid</translation>
     </message>
     <message>
         <source>Trash sources for converted disks and remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>Bronnen van geconverteerde schijven verplaatsen naar prullenbak en verwijderen van lijst…</translation>
     </message>
     <message>
         <source>Some disks have errors, and will be skipped when converting:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Sommige schijven bevatten fouten en zullen worden overgeslagen:</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot;</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>Schijf %1 “%2 - %3”</translation>
     </message>
     <message>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
-        <translation type="unfinished"/>
+        <translation>Schijf %1</translation>
     </message>
     <message>
         <source>The following files will be moved to the trash. Remove the following files?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>De volgende bestanden zullen naar de prullenbak worden verplaatst. Weet u het zeker?</translation>
     </message>
     <message>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Sommige schijven bevatten waarschuwingen:</translation>
     </message>
 </context>
 <context>
@@ -1073,13 +1072,13 @@ Wil u doorgaan?</translation>
         <source>Select directory…</source>
         <comment>Menu item for output direcory button</comment>
         <extracomment>Menu item for output direcory button</extracomment>
-        <translation>Kies map…</translation>
+        <translation>Kies een map…</translation>
     </message>
     <message>
         <source>Standard music location</source>
         <comment>Menu item for output direcory button</comment>
         <extracomment>Menu item for output direcory button</extracomment>
-        <translation>Standaardlocatie voor muziek</translation>
+        <translation>Standaardlocatie muzieklocatie</translation>
     </message>
     <message>
         <source>Desktop</source>
@@ -1095,7 +1094,7 @@ Wil u doorgaan?</translation>
     </message>
     <message>
         <source>Select result directory</source>
-        <translation>Kies resultaatmap</translation>
+        <translation>Kies een resultaatmap</translation>
     </message>
 </context>
 <context>
@@ -1111,7 +1110,7 @@ Wil u doorgaan?</translation>
     <name>OutPatternButton</name>
     <message>
         <source>Insert &quot;Track number&quot;</source>
-        <translation>‘Tracknummer’ invoegen</translation>
+        <translation>‘Volgnummer’ invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
@@ -1135,21 +1134,21 @@ Wil u doorgaan?</translation>
     </message>
     <message>
         <source>Insert &quot;Disc number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>‘Schijfnummer’ invoegen</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of discs&quot;</source>
-        <translation type="unfinished"/>
+        <translation>‘Aantal schijven’ invoegen</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
         <extracomment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</extracomment>
-        <translation>Gebruik ‘%1’</translation>
+        <translation>‘%1’ gebruiken</translation>
     </message>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
-        <translation type="unfinished"/>
+        <translation>‘Albumartiest’ invoegen</translation>
     </message>
 </context>
 <context>
@@ -1174,32 +1173,32 @@ Wil u doorgaan?</translation>
     </message>
     <message>
         <source>Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation>Audioprofielen</translation>
     </message>
     <message>
         <source>I can&apos;t apply your preferences.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ik kan de voorkeuren niet toepassen.</translation>
     </message>
     <message>
         <source>You should create at least one profile.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Stel minimaal één profiel samen.</translation>
     </message>
     <message>
         <source>Create profile</source>
         <comment>Button caption</comment>
         <extracomment>Button caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Profiel samenstellen</translation>
     </message>
 </context>
 <context>
     <name>ProfileTabWidget</name>
     <message>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio</translation>
     </message>
     <message>
         <source>Result Files</source>
@@ -1217,9 +1216,9 @@ Wil u doorgaan?</translation>
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
         <extracomment>Preferences form tooltip for &quot;Directory&quot; edit</extracomment>
-        <translation>U kan naar de doelmap bladeren of ze manueel ingeven.
+        <translation>U kunt de doelmap kiezen of handmatig een locatie opgeven.
 
-Als het pad leeg wordt gelaten of begint met “.” (punt), zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
+Als de locatie leeg wordt gelaten of begint met een ‘.’ (punt), dan zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
     </message>
     <message>
         <source>Pattern:</source>
@@ -1250,10 +1249,9 @@ If you surround sections of text that contain a token with braces, these section
         <translation>&lt;style type=&quot;text/css&quot;&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens beginnen met %. U kan volgende tokens gebruiken:
+&lt;/style&gt;Opvulteksten beginnen met %. U kunt de volgende opvulteksten gebruiken:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Tracknummer&lt;/td&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Volgnummer&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Aantal nummers&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artiest&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumtitel&lt;/td&gt;&lt;/tr&gt;
@@ -1263,12 +1261,12 @@ Tokens beginnen met %. U kan volgende tokens gebruiken:
         &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
-Als u delen van tekst die een token bevatten met accolades omsluit zullen deze delen worden verborgen als het token leeg is.</translation>
+Als u delen van tekst die een opvultekst bevatten met accolades omsluit, dan zullen deze delen worden verborgen als de opvultekst blanco is.</translation>
     </message>
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Resample-instellingen:</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
@@ -1276,11 +1274,11 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
     </message>
     <message>
         <source>Maximum sample rate:</source>
-        <translation>Maximale bemonsteringsfrequentie:</translation>
+        <translation>Maximale samplefrequentie:</translation>
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
+        <translation>ReplayGain-instellingen:</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1290,21 +1288,21 @@ Als u delen van tekst die een token bevatten met accolades omsluit zullen deze d
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
         <extracomment>Preferences dialog tab title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Cue- en albumhoes</translation>
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>Albumhoes kopiëren</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
         <extracomment>Tooltip on checkbox on preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Als het formaat ondersteund wordt, dan wordt de hoes toegevoegd aan de metagegevens van alle resultaatbestanden.</translation>
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>Albumhoes insluiten in resultaatbestanden</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
@@ -1397,30 +1395,30 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1-encoderingsinstellingen:</translation>
     </message>
 </context>
 <context>
     <name>ProfilesPage</name>
     <message>
         <source>+</source>
-        <translation type="unfinished"/>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Weet u zeker dat u het profiel ‘%1’ wilt verwijderen?</translation>
     </message>
     <message>
         <source>Delete the profile</source>
         <comment>Button caption</comment>
         <extracomment>Button caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>Profiel verwijderen</translation>
     </message>
 </context>
 <context>
@@ -1429,7 +1427,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>%1 program</source>
         <comment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</comment>
         <extracomment>This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'</extracomment>
-        <translation>%1 programma</translation>
+        <translation>%1-programma</translation>
     </message>
     <message>
         <source>All files</source>
@@ -1439,20 +1437,20 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     </message>
     <message>
         <source>Select program file</source>
-        <translation>Kies programmabestand</translation>
+        <translation>Kies een programmabestand</translation>
     </message>
 </context>
 <context>
     <name>ProgramsPage</name>
     <message>
         <source>Rescan</source>
-        <translation>Opnieuw scannen</translation>
+        <translation>Opnieuw doorzoeken</translation>
     </message>
     <message>
         <source>%1:</source>
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
         <extracomment>Template for the program name label on the preferences form. %1 is a program name.</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1:</translation>
     </message>
 </context>
 <context>
@@ -1461,7 +1459,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <extracomment>%1 - is a file name, %2 - an error text</extracomment>
-        <translation>Ik kan het albumhoesbestand &lt;b&gt;%1&lt;/b&gt; niet lezen:&lt;br&gt;%2</translation>
+        <translation>Ik kan het albumhoesbestand &lt;b&gt;%1&lt;/b&gt; niet inlezen:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1483,7 +1481,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Het cueblad heeft geen FILE-tag.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Het cueblad bevat geen FILE-tag.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1493,19 +1491,19 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
         <extracomment>Cue parser error.</extracomment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Verkeerd tracknummer op regel %2.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Verkeerd volgnummer op regel %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
         <extracomment>Cue parser error.</extracomment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Verkeerde trackindex op regel %2.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; is geen geldig cuebestand. Verkeerde nummerindex op regel %2.</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
         <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
         <extracomment>This string should begin with a lowercase letter. This is a part of the complex sentence.</extracomment>
-        <translation>U kan ReplayGain niet gebruiken voor bestanden met bemonsteringsfrequenties boven 48kHz. Metaflac ondersteunt zulke bestanden niet.</translation>
+        <translation>U kunt ReplayGain niet gebruiken voor bestanden met samplefrequenties boven de 48kHz. Metaflac ondersteunt zulke bestanden niet.</translation>
     </message>
     <message>
         <source>Multiple values</source>
@@ -1519,31 +1517,31 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     </message>
     <message>
         <source>The audio file name is not set.</source>
-        <translation type="unfinished"/>
+        <translation>De audiobestandsnaam is niet ingesteld.</translation>
     </message>
     <message>
         <source>The audio file does not exist.</source>
-        <translation type="unfinished"/>
+        <translation>Het audiobestand bestaat niet.</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
-        <translation type="unfinished"/>
+        <translation>Ik kan het cuebestand niet wegschrijven:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>File contains not a valid CUE data.</source>
-        <translation type="unfinished"/>
+        <translation>Het bestand bevat geen geldige cuegegevens.</translation>
     </message>
     <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <extracomment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ingesloten in %1</translation>
     </message>
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
         <extracomment>error message text</extracomment>
-        <translation type="unfinished"/>
+        <translation>Naamloos</translation>
     </message>
 </context>
 <context>
@@ -1564,7 +1562,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Album performer:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
-        <translation>Albumperformer:</translation>
+        <translation>Albumartiest:</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -1594,7 +1592,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Disc number:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
+        <translation>Schijfnummer:</translation>
     </message>
     <message>
         <source>Track title:</source>
@@ -1621,7 +1619,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     </message>
     <message>
         <source>Get data from Internet</source>
-        <translation type="unfinished"/>
+        <translation>Gegevens ophalen van internet</translation>
     </message>
 </context>
 <context>
@@ -1630,7 +1628,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Error</source>
         <comment>Status of the track conversion.</comment>
         <extracomment>Status of the track conversion.</extracomment>
-        <translation>Fout</translation>
+        <translation>Foutmelding</translation>
     </message>
     <message>
         <source>Aborted</source>
@@ -1648,13 +1646,13 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Extracting</source>
         <comment>Status of the track conversion.</comment>
         <extracomment>Status of the track conversion.</extracomment>
-        <translation>Bezig met uitpakken</translation>
+        <translation>Bezig met uitpakken…</translation>
     </message>
     <message>
         <source>Encoding</source>
         <comment>Status of the track conversion.</comment>
         <extracomment>Status of the track conversion.</extracomment>
-        <translation>Bezig met coderen</translation>
+        <translation>Bezig met encoderen…</translation>
     </message>
     <message>
         <source>Queued</source>
@@ -1666,19 +1664,19 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
         <extracomment>Status of the track conversion.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Bezig met berekenen van versterking…</translation>
     </message>
     <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
         <extracomment>Status of the track conversion.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Bezig met wachten op versterking…</translation>
     </message>
     <message>
         <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
         <extracomment>Status of the track conversion.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Bezig met wegschrijven van versterking…</translation>
     </message>
     <message>
         <source>Tracks:</source>
@@ -1692,11 +1690,11 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
         <extracomment>Disk preview, audio file placeholder</extracomment>
-        <translation type="unfinished"/>
+        <translation>Meerdere bestanden</translation>
     </message>
     <message>
         <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;De conversie is niet mogelijk.</translation>
     </message>
 </context>
 <context>
@@ -1774,7 +1772,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Last check was %1</source>
         <comment>Information about last update</comment>
         <extracomment>Information about last update</extracomment>
-        <translation>Laatst gecontroleerd op %1</translation>
+        <translation>Recentste controle: %1</translation>
     </message>
     <message>
         <source>Never checked</source>
@@ -1789,98 +1787,102 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Some disks will overwrite the resulting files of another disk.</source>
         <comment>error message</comment>
         <extracomment>error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>Sommige schijven zullen de resultaatbestanden van een andere schijf overschrijven.</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>Cuebestand niet ingesteld.</translation>
+        <translation>Er is geen cuebestand ingesteld.</translation>
     </message>
     <message>
         <source>Audio file not set.</source>
         <comment>Warning message</comment>
         <extracomment>Warning message</extracomment>
-        <translation>Audiobestand niet ingesteld.</translation>
+        <translation>Er is geen audiobestand ingesteld.</translation>
     </message>
     <message>
         <source>Audio file not set for track %1.</source>
         <comment>Warning message, Placeholders is a track number</comment>
         <extracomment>Warning message, Placeholders is a track number</extracomment>
-        <translation type="unfinished"/>
+        <translation>Het audiobestand van %1 is niet ingesteld.</translation>
     </message>
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
         <extracomment>Warning message, Placeholders is a track numbers</extracomment>
-        <translation type="unfinished"/>
+        <translation>Het audiobestand van %1 tot %2 is niet ingesteld.</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>Audiobestand korter dan verwacht van cuebestand.</translation>
+        <translation>Het audiobestand is korter dan verwacht op basis van het cueblad.</translation>
     </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <extracomment>Warning message</extracomment>
-        <translation type="unfinished"/>
+        <translation>Een maximum van %1-bit per sample wordt door dit formaat ondersteund.
+Deze waarde zal worden gebruikt voor de encodering.</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <extracomment>Warning message</extracomment>
-        <translation type="unfinished"/>
+        <translation>Een maximale samplefrequentie van %1 wordt door dit formaat ondersteund.
+Deze waarde zal worden gebruikt voor de encodering.</translation>
     </message>
     <message>
         <source>ReplayGain calculation is not supported for multi-channel audio.
 The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
         <extracomment>Warning message</extracomment>
-        <translation type="unfinished"/>
+        <translation>De ReplayGain-berekening wordt niet ondersteund bij gebruik van audio met meerdere kanalen.
+ReplayGain wordt uitgeschakeld voor deze schijf.</translation>
     </message>
     <message>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
         <extracomment>error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>Het uitvoerprofiel is ongeldig.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 ‘%2 - %3’ zal zijn eigen bestanden overschrijven.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 ‘%2 - %3’ zal de bestanden van deze schijf overschrijven.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 ‘%2 - %3’ maakt gebruik van hetzelfde cueblad.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
         <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 ‘%2 - %3’ maakt gebruik van hetzelfde audiobestand.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
 You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 ‘%2 - %3’ bevat overlappende volgnummers.
+U kunt het beginnummer van een van de nummers aanpassen.</translation>
     </message>
 </context>
 <context>
     <name>aacConfigPage</name>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Gebruik kwaliteitsinstelling (aanbevolen)</translation>
+        <translation>Kwaliteitsinstelling gebruiken (aanbevolen)</translation>
     </message>
     <message>
         <source>Quality:</source>
@@ -1894,7 +1896,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
+        <translation>Stelt de doelbitsnelheid in (in kb/s).</translation>
     </message>
 </context>
 <context>
@@ -1908,7 +1910,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     <name>mp3ConfigPage</name>
     <message>
         <source>Preset:</source>
-        <translation>Vooraf ingesteld</translation>
+        <translation>Voorinstelling:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -1916,7 +1918,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
+        <translation>Stelt de doelbitsnelheid in (in kb/s).</translation>
     </message>
     <message>
         <source>Quality:</source>
@@ -1927,7 +1929,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     <name>oggConfigPage</name>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Gebruik kwaliteitsinstelling (aanbevolen)</translation>
+        <translation>Kwaliteitsinstelling gebruiken (aanbevolen)</translation>
     </message>
     <message>
         <source>Quality:</source>
@@ -1940,7 +1942,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     </message>
     <message>
         <source>Sets minimum bitrate (in kb/s).</source>
-        <translation>Stelt minimale bitsnelheid in (in kb/s).</translation>
+        <translation>Stelt de minimale bitsnelheid in (in kb/s).</translation>
     </message>
     <message>
         <source>Nominal bitrate:</source>
@@ -1948,7 +1950,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Stelt doelbitsnelheid in (in kb/s).</translation>
+        <translation>Stelt de doelbitsnelheid in (in kb/s).</translation>
     </message>
     <message>
         <source>Maximum bitrate:</source>
@@ -1956,7 +1958,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     </message>
     <message>
         <source>Sets maximum bitrate (in kb/s).</source>
-        <translation>Stelt maximale bitsnelheid in (in kb/s).</translation>
+        <translation>Stelt de maximale bitsnelheid in (in kb/s).</translation>
     </message>
 </context>
 <context>

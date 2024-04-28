@@ -14,7 +14,6 @@ Comment=Extracts audio tracks from an audio CD image to separate tracks.
 
 
 # Translations
-Icon[ru]=flacon
-Name[ru]=Flacon
-GenericName[ru]=Конвертер аудиофайлов
-Comment[ru]=Извлекает аудиотреки из CD-образа WAV, FLAC, APE в отдельные файлы.
+Icon[si_LK]=flacon
+Name[si_LK]=Flacon
+GenericName[si_LK]=ශ්‍රව්‍ය ගොනු ආකේතකය

@@ -49,7 +49,7 @@
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-        <translation>Извлекает отдельные треки из большого аудио файла, содержащего весь альбом целиком.</translation>
+        <translation>Извлекает отдельные треки из большого аудиофайла, содержащего весь альбом целиком.</translation>
     </message>
     <message>
         <source>Copyright: %1-%2 %3</source>
@@ -83,13 +83,13 @@
         <source>Icon for application</source>
         <comment>Thanks on the about page</comment>
         <extracomment>Thanks on the about page</extracomment>
-        <translation>Иконка для программы</translation>
+        <translation>Значок для программы</translation>
     </message>
     <message>
         <source>Icons for application</source>
         <comment>Thanks on the about page</comment>
         <extracomment>Thanks on the about page</extracomment>
-        <translation>Иконки для программы</translation>
+        <translation>Значки для программы</translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
@@ -116,7 +116,7 @@
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation>Аудио формат:</translation>
+        <translation>Аудиоформат:</translation>
     </message>
     <message>
         <source>Create a profile</source>
@@ -315,13 +315,13 @@
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
         <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
-&lt;dd&gt;При использовании режима со средним переменным битрейтом, большинство людей не услышат искажений на большинстве музыки.&lt;/dd&gt;
+&lt;dd&gt;При использовании режима со средним переменным битрейтом большинство людей не услышат искажений на большинстве музыки.&lt;/dd&gt;
 
 &lt;dt&gt;VBR standard&lt;/dt&gt;
-&lt;dd&gt;При использовании режима со стандартным переменным битрейтом, большинство людей не услышат искажений на большинстве музыки. Этот режим обеспечивает довольно высокое качество.&lt;/dd&gt;
+&lt;dd&gt;При использовании режима со стандартным переменным битрейтом большинство людей не услышат искажений на большинстве музыки. Этот режим обеспечивает довольно высокое качество.&lt;/dd&gt;
 
 &lt;dt&gt;VBR extreme&lt;/dt&gt;
-&lt;dd&gt;Этот режим дает более высокое качество чем VBR standard. Вы заметите это, если у вас очень хороший слух, или аппаратура высокого класса.&lt;/dd&gt;
+&lt;dd&gt;Этот режим дает более высокое качество, чем VBR standard. Вы заметите это, если у вас очень хороший слух или аппаратура высокого класса.&lt;/dd&gt;
 
 &lt;dt&gt;VBR quality&lt;/dt&gt;
 &lt;dd&gt;В этом режиме Вы можете сами задать качество звука, при этом используется переменный битрейт.&lt;/dd&gt;
@@ -330,10 +330,10 @@
 &lt;dd&gt;Если Вы хотите получить максимальное качество звука, а размер файла значения не имеет, используйте этот режим с постоянным битрейтом.&lt;/dd&gt;
 
 &lt;dt&gt;CBR kbps&lt;/dt&gt;
-&lt;dd&gt;Использование этого режима с постоянным битрейтом, даст хорошее качество при фиксированном битейте.&lt;/dd&gt;
+&lt;dd&gt;Использование этого режима с постоянным битрейтом даст хорошее качество при фиксированном битейте.&lt;/dd&gt;
 
 &lt;dt&gt;ABR kbps&lt;/dt&gt;
-&lt;dd&gt;Обычно, этот режим с усредненным битрейтом дает лучшее качество чем режимы с постоянным битрейтом.&lt;/dd&gt;</translation>
+&lt;dd&gt;Обычно этот режим с усредненным битрейтом дает лучшее качество, чем режимы с постоянным битрейтом.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -348,11 +348,11 @@
 
 &lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation>&lt;dt&gt;VBR - с переменным битрейтом&lt;/dt&gt;
+        <translation>&lt;dt&gt;VBR — с переменным битрейтом&lt;/dt&gt;
 &lt;dd&gt;Используется переменный битрейт (рекомендуется). В этом режиме битрейт может увеличиваться или снижаться в зависимости от содержимого, чтобы получить оптимальное качество звука.&lt;/dd&gt;
 
-&lt;dt&gt;CVBR - с ограниченным битрейтом&lt;/dt&gt;
-&lt;dd&gt;Используется кодирование с ограниченным битрейтом. Битрейт файла будет равен заданному Вами. Этот режим аналогичен режиму CBR в AAC/MP3 и managed mode в кодеках vorbis. Качество будет несколько ниже чем в режиме VBR, но битрейт файла будет постоянным.&lt;/dd&gt;</translation>
+&lt;dt&gt;CVBR — с ограниченным битрейтом&lt;/dt&gt;
+&lt;dd&gt;Используется кодирование с ограниченным битрейтом. Битрейт файла будет равен заданному Вами. Этот режим аналогичен режиму CBR в AAC/MP3 и managed mode в кодеках vorbis. Качество будет несколько ниже, чем в режиме VBR, но битрейт файла будет постоянным.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -376,13 +376,13 @@ In CBR mode, it sets the specific output bitrate.
         <source>VBR - variable bitrate</source>
         <comment>Opus encoding mode</comment>
         <extracomment>Opus encoding mode</extracomment>
-        <translation>VBR - с переменным битрейтом</translation>
+        <translation>VBR — с переменным битрейтом</translation>
     </message>
     <message>
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
         <extracomment>Opus encoding mode</extracomment>
-        <translation>CVBR - с ограниченным битрейтом</translation>
+        <translation>CVBR — с ограниченным битрейтом</translation>
     </message>
 </context>
 <context>
@@ -398,19 +398,19 @@ In CBR mode, it sets the specific output bitrate.
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
         <extracomment>Error message.</extracomment>
-        <translation>Аудио файл поврежден или имеет неподдерживаемый формат.</translation>
+        <translation>Аудиофайл поврежден или имеет неподдерживаемый формат.</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation>Программа %1 не установлена.&lt;br&gt;Проверьте что установлены все нужные программы и они указаны в настройках.</translation>
+        <translation>Программа %1 не установлена.&lt;br&gt;Проверьте, что установлены все нужные программы и они указаны в настройках.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation>Программа %1 задана в настройках, но бинарный файл программы не найден.&lt;br&gt;Проверьте что установлены все нужные программы и они указаны в настройках.</translation>
+        <translation>Программа %1 задана в настройках, но бинарный файл программы не найден.&lt;br&gt;Проверьте, что установлены все нужные программы и они указаны в настройках.</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -489,7 +489,7 @@ In CBR mode, it sets the specific output bitrate.
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
         <extracomment>Cover image option on the preferences dialog</extracomment>
-        <translation>Масштабировать если картинка больше чем</translation>
+        <translation>Масштабировать, если размер картинки превышает</translation>
     </message>
 </context>
 <context>
@@ -518,7 +518,7 @@ In CBR mode, it sets the specific output bitrate.
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
         <extracomment>CUE mode combobox item</extracomment>
-        <translation>Встраивать в аудио файл</translation>
+        <translation>Встраивать в аудиофайл</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -578,19 +578,19 @@ This only affects the file size. All settings are lossless.</source>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation>Программа %1 не установлена.&lt;br&gt;Проверьте что установлены все нужные программы и они указаны в настройках.</translation>
+        <translation>Программа %1 не установлена.&lt;br&gt;Проверьте, что установлены все нужные программы и они указаны в настройках.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation>Программа %1 задана в настройках, но бинарный файл программы не найден.&lt;br&gt;Проверьте что установлены все нужные программы и они указаны в настройках.</translation>
+        <translation>Программа %1 задана в настройках, но бинарный файл программы не найден.&lt;br&gt;Проверьте, что установлены все нужные программы и они указаны в настройках.</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation>Программа %1 задана в настройках, но файл не является исполняемым.&lt;br&gt;Проверьте что установлены все нужные программы и они указаны в настройках.</translation>
+        <translation>Программа %1 задана в настройках, но файл не является исполняемым.&lt;br&gt;Проверьте, что установлены все нужные программы и они указаны в настройках.</translation>
     </message>
 </context>
 <context>
@@ -651,9 +651,9 @@ This only affects the file size. All settings are lossless.</source>
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
         <extracomment>Main form tooltip for &quot;Directory&quot; edit</extracomment>
-        <translation>Вы можете выбрать директорию для выходных файлов, или указать ее руками.
+        <translation>Вы можете выбрать директорию для выходных файлов или указать ее вручную.
 
-Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники.</translation>
+Если оставить поле пустым или указать &quot;.&quot; (точку), то результирующие файлы будут создаваться в той же директории, что и исходники.</translation>
     </message>
     <message>
         <source>Pattern:</source>
@@ -683,15 +683,15 @@ If you surround sections of text that contain a token with braces, these section
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
-Поля начинаются со знака %. Вы можете использовать следующие поля: 
+Поля начинаются со знака %. Вы можете использовать следующие поля:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Номер трека&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Количество треков&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Артист&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название альбома&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название трека&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Год&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Жанр&lt;/td&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Номер трека&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Количество треков&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Артист&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Название альбома&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Название трека&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Год&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Жанр&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
@@ -709,7 +709,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Tags</source>
-        <translation>Тэги</translation>
+        <translation>Теги</translation>
     </message>
     <message>
         <source>Album performer:</source>
@@ -775,7 +775,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Add CUE or audio file</source>
-        <translation>Добавить CUE или аудиофайл</translation>
+        <translation>Добавить CUE- или аудиофайл</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -787,7 +787,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Start conversion process</source>
-        <translation>Запусть конвертацию</translation>
+        <translation>Запустить конвертацию</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -892,7 +892,7 @@ If you surround sections of text that contain a token with braces, these section
         <source>Select CUE file</source>
         <comment>OpenFile dialog title</comment>
         <extracomment>OpenFile dialog title</extracomment>
-        <translation>Выбрать CUE файл</translation>
+        <translation>Выбрать CUE-файл</translation>
     </message>
     <message>
         <source>Some albums will not be converted, they contain errors.
@@ -904,7 +904,7 @@ Do you want to continue?</source>
         <source>%1 files</source>
         <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
         <extracomment>OpenFile dialog filter line, like &quot;WAV files&quot;</extracomment>
-        <translation>%1 файлы</translation>
+        <translation>%1-файлы</translation>
     </message>
     <message>
         <source>All supported formats</source>
@@ -922,7 +922,7 @@ Do you want to continue?</source>
         <source>Add CUE or audio file</source>
         <comment>OpenFile dialog title</comment>
         <extracomment>OpenFile dialog title</extracomment>
-        <translation>Добавление CUE или аудиофайла</translation>
+        <translation>Добавление CUE- или аудиофайла</translation>
     </message>
     <message>
         <source>Select audio file</source>
@@ -968,27 +968,27 @@ Do you want to continue?</source>
         <source>Select another CUE file…</source>
         <comment>context menu</comment>
         <extracomment>context menu</extracomment>
-        <translation>Выбрать другой CUE файл…</translation>
+        <translation>Выбрать другой CUE-файл…</translation>
     </message>
     <message>
         <source>Get from Internet</source>
-        <translation>Получить из Интернет</translation>
+        <translation>Получить из Интернета</translation>
     </message>
     <message>
         <source>Get album information from Internet</source>
-        <translation>Получить информацию из Интернет</translation>
+        <translation>Получить информацию из Интернета</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
         <extracomment>context menu</extracomment>
-        <translation>Получить информацию из Интернет</translation>
+        <translation>Получить информацию из Интернета</translation>
     </message>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
         <extracomment>Main window title</extracomment>
-        <translation>Flacon - Обработка</translation>
+        <translation>Flacon — Обработка</translation>
     </message>
     <message>
         <source>Warnings</source>
@@ -1048,7 +1048,7 @@ Do you want to continue?</source>
         <source>Disk %1 &quot;%2 - %3&quot;</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>Диск %1 &quot;%2 - %3&quot;</translation>
+        <translation>Диск %1 &quot;%2 — %3&quot;</translation>
     </message>
     <message>
         <source>Disk %1</source>
@@ -1114,7 +1114,7 @@ Do you want to continue?</source>
         <source>Same directory as CUE file</source>
         <comment>Menu item for output direcory button</comment>
         <extracomment>Menu item for output direcory button</extracomment>
-        <translation>Там же, где и CUE файл</translation>
+        <translation>Там же, где и CUE-файл</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -1127,7 +1127,7 @@ Do you want to continue?</source>
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
         <extracomment>Placeholder for output direcory combobox</extracomment>
-        <translation>Там же, где и CUE файл</translation>
+        <translation>Там же, где и CUE-файл</translation>
     </message>
 </context>
 <context>
@@ -1197,7 +1197,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Audio profiles</source>
-        <translation>Аудио профили</translation>
+        <translation>Аудиопрофили</translation>
     </message>
     <message>
         <source>I can&apos;t apply your preferences.</source>
@@ -1240,9 +1240,9 @@ Do you want to continue?</source>
 If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
         <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
         <extracomment>Preferences form tooltip for &quot;Directory&quot; edit</extracomment>
-        <translation>Вы можете выбрать директорию для выходных файлов, или указать ее руками.
+        <translation>Вы можете выбрать директорию для выходных файлов или указать ее вручную.
 
-Если оставить поле пустым, или указать &quot;.&quot; (точку), то результирующие фалы будут создаваться в той же директории, что и исходники.</translation>
+Если оставить поле пустым или указать &quot;.&quot; (точку), то результирующие файлы будут создаваться в той же директории, что и исходники.</translation>
     </message>
     <message>
         <source>Pattern:</source>
@@ -1274,15 +1274,15 @@ If you surround sections of text that contain a token with braces, these section
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
-Поля начинаются со знака %. Вы можете использовать следующие поля: 
+Поля начинаются со знака %. Вы можете использовать следующие поля:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Номер трека&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Количество треков&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Артист&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название альбома&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Название трека&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Год&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Жанр&lt;/td&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Номер трека&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Количество треков&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Артист&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Название альбома&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Название трека&lt;/td&gt;
+        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Год&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; — Жанр&lt;/td&gt;
         &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
@@ -1313,7 +1313,7 @@ If you surround sections of text that contain a token with braces, these section
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
         <extracomment>Preferences dialog tab title</extracomment>
-        <translation>CUE файл и обложка</translation>
+        <translation>CUE-файл и обложка</translation>
     </message>
     <message>
         <source>Copy cover image</source>
@@ -1338,7 +1338,7 @@ If you surround sections of text that contain a token with braces, these section
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
         <extracomment>Placeholder for output direcory combobox</extracomment>
-        <translation>Там же, где и CUE файл</translation>
+        <translation>Там же, где и CUE-файл</translation>
     </message>
     <message>
         <source>Same as source</source>
@@ -1368,25 +1368,25 @@ If you surround sections of text that contain a token with braces, these section
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation>44100 Hz</translation>
+        <translation>44100 Гц</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation>48000 Hz</translation>
+        <translation>48000 Гц</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation>96000 Hz</translation>
+        <translation>96000 Гц</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation>192000 Hz</translation>
+        <translation>192000 Гц</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -1411,7 +1411,7 @@ If you surround sections of text that contain a token with braces, these section
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-        <translation>Выравнивание громкости (ReplayGain) - стандарт , позволяющей аудиоплеерам, воспроизводить файлы с однородной громкостью.
+        <translation>Выравнивание громкости (ReplayGain) — стандарт , позволяющей аудиоплеерам воспроизводить файлы с однородной громкостью.
 
 Если анализ проводится для каждого трека в отдельности, то все треки будут звучать с одинаковой громкостью.
 Использование метода &quot;для всего альбома&quot; сохранит разницу в громкости между отдельными песнями в альбоме.</translation>
@@ -1494,7 +1494,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-        <translation>Не получается записать CUE файл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Не получается записать CUE-файл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t create directory &quot;%1&quot;.</source>
@@ -1502,11 +1502,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>I can&apos;t write to directory &quot;%1&quot;.</source>
-        <translation>Не получается писать в директорию &quot;%1&quot;.</translation>
+        <translation>Не получается записать в директорию &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Он не содержит тега FILE.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE-файлом. Он не содержит тега FILE.</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1516,13 +1516,13 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
         <extracomment>Cue parser error.</extracomment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Некорректный номер трека в строке %2.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE-файлом. Некорректный номер трека в строке %2.</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
         <extracomment>Cue parser error.</extracomment>
-        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE файлом. Некорректный индекс в строке %2.</translation>
+        <translation>&lt;b&gt;%1&lt;/b&gt; не является правильным CUE-файлом. Некорректный индекс в строке %2.</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
@@ -1546,7 +1546,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>The audio file does not exist.</source>
-        <translation>Аудио файл не существует.</translation>
+        <translation>Аудиофайл не существует.</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
@@ -1640,11 +1640,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <name>TrackView</name>
     <message>
         <source>Select another CUE file…</source>
-        <translation>Выбрать другой CUE файл…</translation>
+        <translation>Выбрать другой CUE-файл…</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
-        <translation>Получить информацию из Интернет</translation>
+        <translation>Получить информацию из Интернета</translation>
     </message>
 </context>
 <context>
@@ -1715,7 +1715,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
         <extracomment>Disk preview, audio file placeholder</extracomment>
-        <translation>Несколько фалов</translation>
+        <translation>Несколько файлов</translation>
     </message>
     <message>
         <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
@@ -1816,7 +1816,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>Не задан CUE файл.</translation>
+        <translation>Не задан CUE-файл.</translation>
     </message>
     <message>
         <source>Audio file not set.</source>
@@ -1838,7 +1838,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation>Длина аудиофайла меньше чем указано в CUE.</translation>
+        <translation>Длина аудиофайла меньше, чем указано в CUE.</translation>
     </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format.
@@ -1874,33 +1874,33 @@ The ReplayGain will be disabled for this disk.</source>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>Диск %1 &quot;%2 - %3&quot; перезапишет собственные файлы.</translation>
+        <translation>Диск %1 &quot;%2 — %3&quot; перезапишет собственные файлы.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>Диск %1 &quot;%2 - %3&quot; перезапишет файлы этого диска.</translation>
+        <translation>Диск %1 &quot;%2 — %3&quot; перезапишет файлы этого диска.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>Диск %1 &quot;%2 - %3&quot; использует тот же CUE файл.</translation>
+        <translation>Диск %1 &quot;%2 — %3&quot; использует тот же CUE-файл.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
         <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
-        <translation>Диск %1 &quot;%2 - %3&quot; использует тот же аудио файл.</translation>
+        <translation>Диск %1 &quot;%2 — %3&quot; использует тот же аудиофайл.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
 You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>Диск %1 &quot;%2 - %3&quot; имеет пересекающиеся номера треков.
-Возможно надо изменить &quot;Нумеровать с&quot; для одного из дисков.</translation>
+        <translation>Диск %1 &quot;%2 — %3&quot; имеет пересекающиеся номера треков.
+Возможно, надо изменить &quot;Нумеровать с&quot; для одного из дисков.</translation>
     </message>
 </context>
 <context>
