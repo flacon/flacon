@@ -1530,10 +1530,6 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <translation>Nie można zapisać pliku CUE:&lt;br&gt;%1</translation>
     </message>
     <message>
-        <source>File contains not a valid CUE data.</source>
-        <translation>Plik nie zawiera poprawnych danych CUE.</translation>
-    </message>
-    <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <extracomment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</extracomment>
@@ -1869,10 +1865,16 @@ The ReplayGain will be disabled for this disk.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+        <source>The same audio file is used for different tracks.</source>
+        <comment>Error message</comment>
+        <extracomment>Error message</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output files of the disc are mixed with the files of disc %1.
 You could change the &quot;Start num&quot; for one of them.</source>
-        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
+        <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>

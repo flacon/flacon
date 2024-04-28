@@ -1553,10 +1553,6 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <translation>Nepavyksta įrašyti CUE:&lt;br&gt;%1</translation>
     </message>
     <message>
-        <source>File contains not a valid CUE data.</source>
-        <translation>Faile yra neteisingų CUE duomenų.</translation>
-    </message>
-    <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <extracomment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</extracomment>
@@ -1895,12 +1891,17 @@ The ReplayGain will be disabled for this disk.</source>
         <translation>Diskas %1 „%2 - %3“ naudoja tą patį garso failą.</translation>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+        <source>The same audio file is used for different tracks.</source>
+        <comment>Error message</comment>
+        <extracomment>Error message</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output files of the disc are mixed with the files of disc %1.
 You could change the &quot;Start num&quot; for one of them.</source>
-        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>Diske %1 „%2 - %3“ yra persidengiančių takelio numerių.
-Galėtumėte pakeisti kurio nors iš jų „Numeruoti nuo“ reikšmę.</translation>
+        <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

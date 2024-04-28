@@ -1552,10 +1552,6 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
         <translation>Impossibile scrivere CUE:&lt;br&gt;%1</translation>
     </message>
     <message>
-        <source>File contains not a valid CUE data.</source>
-        <translation>Il file non contiene dati CUE validi.</translation>
-    </message>
-    <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <extracomment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</extracomment>
@@ -1894,12 +1890,17 @@ Il ReplayGain sarà disabilitato per questo disco.</translation>
         <translation>Il disco %1 &quot;%2 - %3&quot; utilizza lo stesso file audio.</translation>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+        <source>The same audio file is used for different tracks.</source>
+        <comment>Error message</comment>
+        <extracomment>Error message</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output files of the disc are mixed with the files of disc %1.
 You could change the &quot;Start num&quot; for one of them.</source>
-        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>Il disco %1 &quot;%2 - %3&quot; ha numeri di traccia sovrapposti.
-Potresti cambiare il &quot;Numero di inizio&quot; per uno di essi.</translation>
+        <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

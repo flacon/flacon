@@ -1554,10 +1554,6 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <translation>Je ne peux pas écrire le fichier CUE : &lt;br&gt;%1</translation>
     </message>
     <message>
-        <source>File contains not a valid CUE data.</source>
-        <translation>Le fichier comprend des données CUE invalides.</translation>
-    </message>
-    <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <extracomment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</extracomment>
@@ -1896,12 +1892,17 @@ ReplayGain sera désactivé pour ce disque.</translation>
         <translation>Le disque %1 « %2 – %3 » utilise le même fichier son.</translation>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+        <source>The same audio file is used for different tracks.</source>
+        <comment>Error message</comment>
+        <extracomment>Error message</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output files of the disc are mixed with the files of disc %1.
 You could change the &quot;Start num&quot; for one of them.</source>
-        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>Le disque %1 « %2 – %3 » présente des numéros de plage qui se chevauchent.
-Vous pourriez changer le « Numéro de début » de l’une d’elles.</translation>
+        <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

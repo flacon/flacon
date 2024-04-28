@@ -1528,10 +1528,6 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <translation>Ik kan het cuebestand niet wegschrijven:&lt;br&gt;%1</translation>
     </message>
     <message>
-        <source>File contains not a valid CUE data.</source>
-        <translation>Het bestand bevat geen geldige cuegegevens.</translation>
-    </message>
-    <message>
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <extracomment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</extracomment>
@@ -1870,12 +1866,17 @@ ReplayGain wordt uitgeschakeld voor deze schijf.</translation>
         <translation>%1 ‘%2 - %3’ maakt gebruik van hetzelfde audiobestand.</translation>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; has overlapping track numbers.
+        <source>The same audio file is used for different tracks.</source>
+        <comment>Error message</comment>
+        <extracomment>Error message</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output files of the disc are mixed with the files of disc %1.
 You could change the &quot;Start num&quot; for one of them.</source>
-        <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>%1 ‘%2 - %3’ bevat overlappende volgnummers.
-U kunt het beginnummer van een van de nummers aanpassen.</translation>
+        <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
