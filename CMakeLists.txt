@@ -230,7 +230,7 @@ endif()
 
 include(FindPkgConfig)
 pkg_search_module(UCHARDET REQUIRED uchardet)
-
+message(STATUS "Using uchardet version: ${UCHARDET_VERSION}")
 
 set(LIBRARIES ${LIBRARIES} ${UCHARDET_LIBRARIES})
 include_directories(${UCHARDET_INCLUDE_DIRS})
@@ -241,6 +241,8 @@ pkg_search_module(TAGLIB REQUIRED taglib)
 set(LIBRARIES ${LIBRARIES} ${TAGLIB_LIBRARIES})
 include_directories(${TAGLIB_INCLUDE_DIRS})
 link_directories(${TAGLIB_LIBRARY_DIRS})
+message(STATUS "Using taglib version: ${TAGLIB_VERSION}")
+
 
 find_package(Iconv REQUIRED)
 set(LIBRARIES ${LIBRARIES} ${Iconv_LIBRARIES})
