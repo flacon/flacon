@@ -41,7 +41,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     setWindowTitle(tr("About Flacon"));
 
     this->layout()->setSpacing(10);
-    titleLabel->setStyleSheet("color: #FFFFFF;");
+    titleLabel->setStyleSheet("#titleLabel { color: #FFFFFF; }");
 
     authorsEdit->viewport()->setAutoFillBackground(false);
     thanksEdit->viewport()->setAutoFillBackground(false);
