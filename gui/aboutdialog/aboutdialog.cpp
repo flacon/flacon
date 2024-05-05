@@ -58,6 +58,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
                   "</style>";
 
     titleLabel->setText(css + titleText());
+    titleLabel->setOpenExternalLinks(true);
 
     aboutLabel->setText(descriptionText() + "<br><br><br>" + copyrightText() + "<hr>" +
 
