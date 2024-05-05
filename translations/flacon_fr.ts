@@ -1895,14 +1895,15 @@ ReplayGain sera désactivé pour ce disque.</translation>
         <source>The same audio file is used for different tracks.</source>
         <comment>Error message</comment>
         <extracomment>Error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>Le même fichier son est utilisé pour différentes plages.</translation>
     </message>
     <message>
         <source>The output files of the disc are mixed with the files of disc %1.
 You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>Les fichiers de sortie du disque sont mélangés avec les fichiers du disque %1.
+Vous pouvez changer le « Numéro de début » d’un des fichiers.</translation>
     </message>
 </context>
 <context>

@@ -1894,14 +1894,15 @@ O ReplayGain será desabilitado para esse disco.</translation>
         <source>The same audio file is used for different tracks.</source>
         <comment>Error message</comment>
         <extracomment>Error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>O mesmo arquivo de áudio está sendo usado por várias faixas.</translation>
     </message>
     <message>
         <source>The output files of the disc are mixed with the files of disc %1.
 You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>Os arquivos de saída do disco estão misturados com os arquivos do disco %1.
+Você poderia alterar o &quot;Número inicial&quot; de um deles.</translation>
     </message>
 </context>
 <context>

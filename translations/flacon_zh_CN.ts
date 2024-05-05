@@ -83,13 +83,14 @@
         <source>Icon for application</source>
         <comment>Thanks on the about page</comment>
         <extracomment>Thanks on the about page</extracomment>
-        <translation type="unfinished"/>
+        <translation>应用图标</translation>
     </message>
     <message>
         <source>Icons for application</source>
         <comment>Thanks on the about page</comment>
         <extracomment>Thanks on the about page</extracomment>
-        <translation type="unfinished"/>
+        <translation>应用图标
+ </translation>
     </message>
     <message>
         <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href=&apos;%1&apos;&gt;Transifex&lt;/a&gt;.</source>
@@ -101,28 +102,28 @@
     <message>
         <source>Create a profile</source>
         <extracomment>Add profile dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>添加配置文件</translation>
     </message>
     <message>
         <source>To create a profile, fill out the following information:</source>
         <extracomment>Add profile dialog, capton</extracomment>
-        <translation type="unfinished"/>
+        <translation>填写以下信息以创建配置文件</translation>
     </message>
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation type="unfinished"/>
+        <translation>配置名：</translation>
     </message>
     <message>
         <source>Audio format:</source>
         <extracomment>Add profile dialog, audio format label</extracomment>
-        <translation type="unfinished"/>
+        <translation>音频格式</translation>
     </message>
     <message>
         <source>Create a profile</source>
         <comment>Button caption</comment>
         <extracomment>Button caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>添加配置文件</translation>
     </message>
 </context>
 <context>
@@ -250,15 +251,15 @@
     </message>
     <message>
         <source>Simplified Chinese (GB18030)</source>
-        <translation type="unfinished"/>
+        <translation>简体中文(GB18030)</translation>
     </message>
     <message>
         <source>Traditional Chinese (BIG5)</source>
-        <translation type="unfinished"/>
+        <translation>繁体中文(BIG5)</translation>
     </message>
     <message>
         <source>Japanese (CP932)</source>
-        <translation type="unfinished"/>
+        <translation>日文(CP932)</translation>
     </message>
 </context>
 <context>
@@ -375,25 +376,25 @@ CBR 模式下，它指定特定的输出码率。
         <source>The audio file may be corrupted or an unsupported audio format.</source>
         <comment>Error message.</comment>
         <extracomment>Error message.</extracomment>
-        <translation type="unfinished"/>
+        <translation>音频文件可能损坏或者是不支持的音频格式</translation>
     </message>
     <message>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1未安装。&lt;br&gt;检查是否所有要求的程序都已经安装并且在首选项中。</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>根据你的设置，%1已安装，但是找不到二进制文件。&lt;br&gt;检查是否所有要求的程序都已经安装并且在首选项中。</translation>
     </message>
     <message>
         <source>I can&apos;t write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>Error string, %1 is a filename, %2 error message</comment>
         <extracomment>Error string, %1 is a filename, %2 error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>无法写入文件&lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
 </context>
 <context>
@@ -427,7 +428,7 @@ CBR 模式下，它指定特定的输出码率。
         <source>Track %1. Encoder error:</source>
         <comment>Track error message, %1 is a track number</comment>
         <extracomment>Track error message, %1 is a track number</extracomment>
-        <translation type="unfinished"/>
+        <translation>音轨 %1。编码器错误：</translation>
     </message>
 </context>
 <context>
@@ -473,13 +474,13 @@ CBR 模式下，它指定特定的输出码率。
     <name>CueGroupBox</name>
     <message>
         <source>Create per track CUE sheet</source>
-        <translation type="unfinished"/>
+        <translation>为每个音轨创建 cue 表</translation>
     </message>
     <message>
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
         <extracomment>Preferences dialog edit tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>文件名格式</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -489,13 +490,13 @@ CBR 模式下，它指定特定的输出码率。
         <source>Write to file</source>
         <comment>CUE mode combobox item</comment>
         <extracomment>CUE mode combobox item</extracomment>
-        <translation type="unfinished"/>
+        <translation>写入文件</translation>
     </message>
     <message>
         <source>Embed to audio files</source>
         <comment>CUE mode combobox item</comment>
         <extracomment>CUE mode combobox item</extracomment>
-        <translation type="unfinished"/>
+        <translation>内嵌进音频文件</translation>
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
@@ -555,19 +556,19 @@ This only affects the file size. All settings are lossless.</source>
         <source>The %1 program is not installed.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1未安装。&lt;br&gt;检查是否所有要求的程序都已经安装并且在首选项中。</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the binary file can’t be found.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>根据你的设置，%1已安装，但是找不到二进制文件。&lt;br&gt;检查是否所有要求的程序都已经安装并且在首选项中。</translation>
     </message>
     <message>
         <source>The %1 program is installed according to your settings, but the file is not executable.&lt;br&gt;Verify that all required programs are installed and in your preferences.</source>
         <comment>Error message. %1 - is an program name</comment>
         <extracomment>Error message. %1 - is an program name</extracomment>
-        <translation type="unfinished"/>
+        <translation>根据你的设置，%1已安装，但是二进制文件无法执行。&lt;br&gt;检查是否所有要求的程序都已经安装并且在首选项中。</translation>
     </message>
 </context>
 <context>
@@ -600,12 +601,12 @@ This only affects the file size. All settings are lossless.</source>
     <message>
         <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
         <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>如果“标题”标签包含了用分隔符分开的艺术家名和音轨名，程序会尝试分配合适的标签。</translation>
     </message>
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
-        <translation type="unfinished"/>
+        <translation>用启发式方法来推断音轨中的表演者信息</translation>
     </message>
 </context>
 <context>
@@ -690,7 +691,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Album performer:</source>
-        <translation type="unfinished"/>
+        <translation>专辑表演者：</translation>
     </message>
     <message>
         <source>Start num:</source>
@@ -724,7 +725,7 @@ If you surround sections of text that contain a token with braces, these section
         <source>Edit all tags…</source>
         <comment>Button text</comment>
         <extracomment>Button text</extracomment>
-        <translation type="unfinished"/>
+        <translation>编辑所有标签</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -742,13 +743,13 @@ If you surround sections of text that contain a token with braces, these section
         <source>Add disc…</source>
         <comment>Main menu item</comment>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>添加光盘...</translation>
     </message>
     <message>
         <source>Add disc</source>
         <comment>Toolbar item</comment>
         <extracomment>Toolbar item</extracomment>
-        <translation type="unfinished"/>
+        <translation>添加光盘</translation>
     </message>
     <message>
         <source>Add CUE or audio file</source>
@@ -800,11 +801,11 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Remove disc</source>
-        <translation type="unfinished"/>
+        <translation>删除光盘</translation>
     </message>
     <message>
         <source>Remove disc from project</source>
-        <translation type="unfinished"/>
+        <translation>从项目中移除光盘</translation>
     </message>
     <message>
         <source>Ctrl+Del</source>
@@ -822,13 +823,13 @@ If you surround sections of text that contain a token with braces, these section
         <source>Add folder…</source>
         <comment>Main menu item</comment>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>添加文件夹...</translation>
     </message>
     <message>
         <source>Add folder</source>
         <comment>Toolbar item</comment>
         <extracomment>Toolbar item</extracomment>
-        <translation type="unfinished"/>
+        <translation>添加文件夹</translation>
     </message>
     <message>
         <source>Recursive album search</source>
@@ -840,17 +841,17 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Check for Updates…</source>
-        <translation type="unfinished"/>
+        <translation>检查更新...</translation>
     </message>
     <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>转换选中项</translation>
     </message>
     <message>
         <source>Start conversion process for the selected tracks</source>
         <extracomment>Main menu item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>开始转换选中的项目</translation>
     </message>
     <message>
         <source>Ctrl+Shift+W</source>
@@ -859,7 +860,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Remove current directory from history</source>
-        <translation type="unfinished"/>
+        <translation>从历史记录中删除当前目录</translation>
     </message>
     <message>
         <source>Delete current pattern from history</source>
@@ -911,7 +912,7 @@ Do you want to continue?</source>
         <source>&quot;%1&quot; was not set.</source>
         <comment>Error message, %1 is an filename.</comment>
         <extracomment>Error message, %1 is an filename.</extracomment>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; 未设置。</translation>
     </message>
     <message>
         <source>Select directory</source>
@@ -921,83 +922,83 @@ Do you want to continue?</source>
         <source>Select another audio file…</source>
         <comment>context menu</comment>
         <extracomment>context menu</extracomment>
-        <translation type="unfinished"/>
+        <translation>选择另一个音频文件</translation>
     </message>
     <message>
         <source>Select another audio file for %1 track…</source>
         <comment>context menu. Placeholders are track number</comment>
         <extracomment>context menu. Placeholders are track number</extracomment>
-        <translation type="unfinished"/>
+        <translation>为音轨 %1 选择其他音频文件...</translation>
     </message>
     <message>
         <source>Select another audio file for tracks %1 to %2…</source>
         <comment>context menu. Placeholders are track numbers</comment>
         <extracomment>context menu. Placeholders are track numbers</extracomment>
-        <translation type="unfinished"/>
+        <translation>为音轨 %1 到%2选择其他音频文件...</translation>
     </message>
     <message>
         <source>Edit tags…</source>
         <comment>context menu</comment>
         <extracomment>context menu</extracomment>
-        <translation type="unfinished"/>
+        <translation>编辑标签...</translation>
     </message>
     <message>
         <source>Select another CUE file…</source>
         <comment>context menu</comment>
         <extracomment>context menu</extracomment>
-        <translation type="unfinished"/>
+        <translation>选择其他 CUE 文件...</translation>
     </message>
     <message>
         <source>Get from Internet</source>
-        <translation type="unfinished"/>
+        <translation>从互联网获取</translation>
     </message>
     <message>
         <source>Get album information from Internet</source>
-        <translation type="unfinished"/>
+        <translation>从互联网获取专辑信息</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
         <comment>context menu</comment>
         <extracomment>context menu</extracomment>
-        <translation type="unfinished"/>
+        <translation>从互联网获取数据</translation>
     </message>
     <message>
         <source>Flacon - Converting</source>
         <comment>Main window title</comment>
         <extracomment>Main window title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Flacon - 正在转换</translation>
     </message>
     <message>
         <source>Warnings</source>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>警告</translation>
     </message>
     <message>
         <source>Show Warnings</source>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>显示警告</translation>
     </message>
     <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>错误</translation>
     </message>
     <message>
         <source>Show Errors</source>
         <comment>Toolbar item tooltip</comment>
         <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>显示错误</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>删除成功转换的光碟并从列表中删去</translation>
     </message>
     <message>
         <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>正在转换。&lt;br&gt;确定要退出吗？</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1009,17 +1010,17 @@ Do you want to continue?</source>
         <source>%1% completed</source>
         <comment>Status bar, progress text</comment>
         <extracomment>Status bar, progress text</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1% 已完成</translation>
     </message>
     <message>
         <source>Trash sources for converted disks and remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>删除转换的光碟并从列表中删去</translation>
     </message>
     <message>
         <source>Some disks have errors, and will be skipped when converting:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
-        <translation type="unfinished"/>
+        <translation>一些光碟有错误，在转换时将会被跳过：</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot;</source>
@@ -1073,25 +1074,25 @@ Do you want to continue?</source>
         <source>Select directory…</source>
         <comment>Menu item for output direcory button</comment>
         <extracomment>Menu item for output direcory button</extracomment>
-        <translation type="unfinished"/>
+        <translation>选择目录...</translation>
     </message>
     <message>
         <source>Standard music location</source>
         <comment>Menu item for output direcory button</comment>
         <extracomment>Menu item for output direcory button</extracomment>
-        <translation type="unfinished"/>
+        <translation>标准音乐位置</translation>
     </message>
     <message>
         <source>Desktop</source>
         <comment>Menu item for output direcory button</comment>
         <extracomment>Menu item for output direcory button</extracomment>
-        <translation type="unfinished"/>
+        <translation>桌面</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Menu item for output direcory button</comment>
         <extracomment>Menu item for output direcory button</extracomment>
-        <translation type="unfinished"/>
+        <translation>和CUE文件同目录</translation>
     </message>
     <message>
         <source>Select result directory</source>
@@ -1104,7 +1105,7 @@ Do you want to continue?</source>
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
         <extracomment>Placeholder for output direcory combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>和CUE文件同目录</translation>
     </message>
 </context>
 <context>
@@ -1135,11 +1136,11 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Insert &quot;Disc number&quot;</source>
-        <translation type="unfinished"/>
+        <translation>插入“光碟编号 ”</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of discs&quot;</source>
-        <translation type="unfinished"/>
+        <translation>插入“光碟总数 ”</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
@@ -1149,7 +1150,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
-        <translation type="unfinished"/>
+        <translation>插入“专辑表演者”</translation>
     </message>
 </context>
 <context>
@@ -1174,32 +1175,32 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation>音频配置</translation>
     </message>
     <message>
         <source>I can&apos;t apply your preferences.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>无法应用偏好设置。</translation>
     </message>
     <message>
         <source>You should create at least one profile.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>应该创建至少一个配置文件。</translation>
     </message>
     <message>
         <source>Create profile</source>
         <comment>Button caption</comment>
         <extracomment>Button caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>添加配置文件</translation>
     </message>
 </context>
 <context>
     <name>ProfileTabWidget</name>
     <message>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>音频</translation>
     </message>
     <message>
         <source>Result Files</source>
@@ -1268,15 +1269,15 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Resampling settings:</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>重采样设置：</translation>
     </message>
     <message>
         <source>Maximum bit depth:</source>
-        <translation type="unfinished"/>
+        <translation>最大位深：</translation>
     </message>
     <message>
         <source>Maximum sample rate:</source>
-        <translation type="unfinished"/>
+        <translation>最大采样率：</translation>
     </message>
     <message>
         <source>ReplayGain settings:</source>
@@ -1290,11 +1291,11 @@ If you surround sections of text that contain a token with braces, these section
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
         <extracomment>Preferences dialog tab title</extracomment>
-        <translation type="unfinished"/>
+        <translation>CUE文件和封面图</translation>
     </message>
     <message>
         <source>Copy cover image</source>
-        <translation type="unfinished"/>
+        <translation>复制封面图</translation>
     </message>
     <message>
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
@@ -1304,24 +1305,24 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Embed cover image in output files</source>
-        <translation type="unfinished"/>
+        <translation>在输出文件里内嵌封面图</translation>
     </message>
     <message>
         <source>Create per track CUE sheet</source>
         <extracomment>Preferences dialog: group caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>为每个音轨创建 cue 表</translation>
     </message>
     <message>
         <source>Same directory as CUE file</source>
         <comment>Placeholder for output direcory combobox</comment>
         <extracomment>Placeholder for output direcory combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>和CUE文件同目录</translation>
     </message>
     <message>
         <source>Same as source</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>与源文件一致</translation>
     </message>
     <message>
         <source>16-bit</source>
@@ -1519,15 +1520,15 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>The audio file name is not set.</source>
-        <translation type="unfinished"/>
+        <translation>音频文件名不存在。</translation>
     </message>
     <message>
         <source>The audio file does not exist.</source>
-        <translation type="unfinished"/>
+        <translation>音频文件不存在</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE:&lt;br&gt;%1</source>
-        <translation type="unfinished"/>
+        <translation>无法写入CUE:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>Embedded on %1</source>
@@ -1548,7 +1549,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>Edit tags</source>
         <comment>Dialog title</comment>
         <extracomment>Dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>编辑标签</translation>
     </message>
     <message>
         <source>Artist:</source>
@@ -1560,7 +1561,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>Album performer:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
+        <translation>专辑表演者：</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -1613,11 +1614,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <name>TrackView</name>
     <message>
         <source>Select another CUE file…</source>
-        <translation type="unfinished"/>
+        <translation>选择其他 CUE 文件...</translation>
     </message>
     <message>
         <source>Get data from Internet</source>
-        <translation type="unfinished"/>
+        <translation>从互联网获取数据</translation>
     </message>
 </context>
 <context>

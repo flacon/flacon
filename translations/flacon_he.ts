@@ -1032,13 +1032,13 @@ Do you want to continue?</source>
         <source>Disk %1 &quot;%2 - %3&quot;</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>כונן %1 &quot;%2 - %3&quot;</translation>
     </message>
     <message>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
-        <translation type="unfinished"/>
+        <translation>כונן %1</translation>
     </message>
     <message>
         <source>The following files will be moved to the trash. Remove the following files?</source>
@@ -1181,7 +1181,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Audio profiles</source>
-        <translation type="unfinished"/>
+        <translation>פרופילי שמע</translation>
     </message>
     <message>
         <source>I can&apos;t apply your preferences.</source>
@@ -1199,7 +1199,7 @@ Do you want to continue?</source>
         <source>Create profile</source>
         <comment>Button caption</comment>
         <extracomment>Button caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>יצירת פרופיל</translation>
     </message>
 </context>
 <context>
@@ -1878,7 +1878,7 @@ The ReplayGain will be disabled for this disk.</source>
         <source>The same audio file is used for different tracks.</source>
         <comment>Error message</comment>
         <extracomment>Error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>קובץ שמע זהה משמש לרצועות שונות.</translation>
     </message>
     <message>
         <source>The output files of the disc are mixed with the files of disc %1.
