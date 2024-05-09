@@ -1,29 +1,73 @@
 on: [push, pull_request]
 
 jobs:
-  armv7_job:
-    # The host should always be Linux
+  build_job:
+    # The host should always be linux
     runs-on: ubuntu-22.04
-    name: Build on ubuntu-22.04 armv7
+    name: Build on ${{ matrix.distro }} ${{ matrix.arch }}
+
+    # Run steps on a matrix of 4 arch/distro combinations
+    strategy:
+      matrix:
+        include:
+          - arch: aarch64
+            distro: bullseye
     steps:
       - uses: actions/checkout@v4
       - uses: uraimo/run-on-arch-action@v2
-        name: Run commands
-        id: runcmd
+        name: Build artifact
+        id: build
         with:
-          arch: armv7
-          distro: ubuntu22.04
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
 
-          # Not required, but speeds up builds by storing container images in
-          # a GitHub package registry.
+          # Not required, but speeds up builds
           githubToken: ${{ github.token }}
 
-          # Set an output parameter `uname` for use in subsequent steps
-          run: |
-            uname -a
-            echo ::set-output name=uname::$(uname -a)
+          # Create an artifacts directory
+          setup: |
+            mkdir -p "${PWD}/artifacts"
 
-      - name: Get the output
-        # Echo the `uname` output parameter from the `runcmd` step
+          # Mount the artifacts directory as /artifacts in the container
+          dockerRunArgs: |
+            --volume "${PWD}/artifacts:/artifacts"
+
+          # Pass some environment variables to the container
+          env: | # YAML, but pipe character is necessary
+            artifact_name: git-${{ matrix.distro }}_${{ matrix.arch }}
+
+          # The shell to run commands with in the container
+          shell: /bin/sh
+
+          # Install some dependencies in the container. This speeds up builds if
+          # you are also using githubToken. Any dependencies installed here will
+          # be part of the container image that gets cached, so subsequent
+          # builds don't have to re-install them. The image layer is cached
+          # publicly in your project's package repository, so it is vital that
+          # no secrets are present in the container state or logs.
+          install: |
+            case "${{ matrix.distro }}" in
+              ubuntu*|jessie|stretch|buster|bullseye)
+                apt-get update -q -y
+                apt-get install -q -y git
+                ;;
+              fedora*)
+                dnf -y update
+                dnf -y install git which
+                ;;
+              alpine*)
+                apk update
+                apk add git
+                ;;
+            esac
+
+          # Produce a binary artifact and place it in the mounted volume
+          run: |
+            cp $(which git) "/artifacts/${artifact_name}"
+            echo "Produced artifact at /artifacts/${artifact_name}"
+
+      - name: Show the artifact
+        # Items placed in /artifacts in the container will be in
+        # ${PWD}/artifacts on the host.
         run: |
-          echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
+          ls -al "${PWD}/artifacts"
