@@ -243,7 +243,7 @@ class TextCodecIbm866 : public TextCodec
 {
 public:
     static constexpr int  MIB  = 2086;
-    static constexpr auto NAME = "IBM866";
+    static constexpr auto NAME = "CP866";
 
     TextCodecIbm866();
 };

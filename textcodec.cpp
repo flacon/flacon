@@ -99,6 +99,12 @@ TextCodec TextCodec::codecForName(const QString &name)
     if (s == QString(TextCodecWindows1257::NAME).toUpper())  return TextCodecWindows1257();
     if (s == QString(TextCodecWindows1258::NAME).toUpper())  return TextCodecWindows1258();
     if (s == QString(TextCodecShiftJis::NAME).toUpper())     return TextCodecShiftJis();
+
+    // There are some problems with the CP866 & IBM866 names
+    // https://github.com/flacon/flacon/issues/229
+    if (s == "IBM866")  return TextCodecIbm866();
+    if (s == "CP866")   return TextCodecIbm866();
+
     // clang-format on
 
     return TextCodec();
