@@ -1,0 +1,32 @@
+name: Build AppImage
+
+on: [push]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+  LANG: en_US.UTF-8
+  LS_ALL: en_US.UTF-8
+  LANGUAGE: en_US:en
+  PROGRAMS: alacenc faac flac lame mac oggenc opusenc sox ttaenc wavpack wvunpack
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: uraimo/run-on-arch-action@v2
+      name: Set env
+      run: |
+        echo "RELEASE_DATE=$(date +%Y.%m.%d_%H.%M.%S)" >> ${GITHUB_ENV}
+        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+        [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo APPIMAGE_NAME="flacon-${GITHUB_REF_NAME:1}-x86_64.AppImage" >> $GITHUB_ENV
+        [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo APPIMAGE_NAME="flacon-$(date +%Y.%m.%d_%H.%M.%S)-x86_64.AppImage" >> $GITHUB_ENV
+
+        echo "==============================="
+        export
+        echo "-------------------------------"
+        cat $GITHUB_ENV
+        echo "==============================="
