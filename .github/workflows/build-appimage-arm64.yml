@@ -71,14 +71,17 @@ jobs:
                 qttools5-dev \
                 libuchardet-dev \
                 libtag1-dev \
-                desktop-file-utils
+                desktop-file-utils \
+                software-properties-common
 
 
           # Produce a binary artifact and place it in the mounted volume
           run: |
-            echo "==============================="
+            echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+            apt-add-repository contrib -y
+            echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
             cat /etc/apt/sources.list
-            echo "==============================="
+            echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
             apt-get -y update && apt-get -y install \
                 flac \
                 mac \
