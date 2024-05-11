@@ -35,6 +35,9 @@ jobs:
           # Pass some environment variables to the container
           env: | # YAML, but pipe character is necessary
             artifact_name: git-${{ matrix.distro }}_${{ matrix.arch }}
+            RELEASE_DATE:    $(date +%Y.%m.%d_%H.%M.%S)
+            RELEASE_VERSION: ${GITHUB_REF#refs/*/}
+
 
           # The shell to run commands with in the container
           shell: /bin/sh
@@ -63,6 +66,12 @@ jobs:
 
           # Produce a binary artifact and place it in the mounted volume
           run: |
+            echo "==============================="
+            export
+            echo "-------------------------------"
+            cat $GITHUB_ENV
+            echo "==============================="
+
             cp $(which git) "/artifacts/${artifact_name}"
             echo "Produced artifact at /artifacts/${artifact_name}"
 
