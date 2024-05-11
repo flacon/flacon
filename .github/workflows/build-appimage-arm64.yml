@@ -61,6 +61,7 @@ jobs:
           # publicly in your project's package repository, so it is vital that
           # no secrets are present in the container state or logs.
           install: |
+            cat /etc/apt/sources.lst
             apt-get -y update && \
             apt-get -y install \
                 build-essential \
