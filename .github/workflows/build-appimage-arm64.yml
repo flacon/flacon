@@ -61,7 +61,6 @@ jobs:
           # publicly in your project's package repository, so it is vital that
           # no secrets are present in the container state or logs.
           install: |
-            cat /etc/apt/sources.lst
             apt-get -y update && \
             apt-get -y install \
                 build-essential \
@@ -72,7 +71,13 @@ jobs:
                 qttools5-dev \
                 libuchardet-dev \
                 libtag1-dev \
-                \
+                desktop-file-utils
+
+
+          # Produce a binary artifact and place it in the mounted volume
+          run: |
+            cat /etc/apt/sources.lst
+            apt-get -y update && apt-get -y install \
                 flac \
                 mac \
                 alacenc \
@@ -82,12 +87,9 @@ jobs:
                 ttaenc \
                 faac \
                 opus-tools \
-                sox \
-                desktop-file-utils
+                sox
 
 
-          # Produce a binary artifact and place it in the mounted volume
-          run: |
             pwd
             ls
 
