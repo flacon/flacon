@@ -46,12 +46,10 @@ jobs:
           # Mount the artifacts directory as /artifacts in the container
           dockerRunArgs: |
             --volume "${PWD}/artifacts:/artifacts"
-            --volume "${GITHUB_ENV}:/GITHUB_ENV"
 
           # Pass some environment variables to the container
           env: | # YAML, but pipe character is necessary
             artifact_name: git-${{ matrix.distro }}_${{ matrix.arch }}
-            GITHUB_ENV:    "/GITHUB_ENV"
 
           # The shell to run commands with in the container
           shell: /bin/sh
@@ -63,32 +61,25 @@ jobs:
           # publicly in your project's package repository, so it is vital that
           # no secrets are present in the container state or logs.
           install: |
-            case "${{ matrix.distro }}" in
-              ubuntu*|jessie|stretch|buster|bullseye)
-                apt-get update -q -y
-                apt-get install -q -y git
-                ;;
-              fedora*)
-                dnf -y update
-                dnf -y install git which
-                ;;
-              alpine*)
-                apk update
-                apk add git
-                ;;
-            esac
+            apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev libtag1-dev
+            apt-get -y install flac mac alacenc vorbis-tools wavpack lame ttaenc faac opus-tools sox
+            apt-get -y install desktop-file-utils
+
 
           # Produce a binary artifact and place it in the mounted volume
           run: |
-            mount
-            echo "==============================="
-            export
-            echo "-------------------------------"
-            cat ${GITHUB_ENV}
-            echo "==============================="
+            pwd
+            ls
 
-            cp $(which git) "/artifacts/${artifact_name}"
-            echo "Produced artifact at /artifacts/${artifact_name}"
+            # mount
+            # echo "==============================="
+            # export
+            # echo "-------------------------------"
+            # cat ${GITHUB_ENV}
+            # echo "==============================="
+
+            # cp $(which git) "/artifacts/${artifact_name}"
+            # echo "Produced artifact at /artifacts/${artifact_name}"
 
       - name: Show the artifact
         # Items placed in /artifacts in the container will be in
