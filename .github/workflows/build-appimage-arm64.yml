@@ -61,9 +61,28 @@ jobs:
           # publicly in your project's package repository, so it is vital that
           # no secrets are present in the container state or logs.
           install: |
-            apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev libtag1-dev
-            apt-get -y install flac mac alacenc vorbis-tools wavpack lame ttaenc faac opus-tools sox
-            apt-get -y install desktop-file-utils
+            apt-get -y update && \
+            apt-get -y install \
+                build-essential \
+                pkg-config \
+                cmake \
+                qtbase5-dev \
+                qttools5-dev-tools \
+                qttools5-dev \
+                libuchardet-dev \
+                libtag1-dev \
+                \
+                flac \
+                mac \
+                alacenc \
+                vorbis-tools \
+                wavpack \
+                lame \
+                ttaenc \
+                faac \
+                opus-tools \
+                sox \
+                desktop-file-utils
 
 
           # Produce a binary artifact and place it in the mounted volume
