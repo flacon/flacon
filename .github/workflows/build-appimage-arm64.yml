@@ -79,21 +79,26 @@ jobs:
           run: |
             echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
             apt-add-repository contrib -y
-            echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-            cat /etc/apt/sources.list
-            echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
             apt-get -y update && apt-get -y install \
                 flac \
-                mac \
-                alacenc \
                 vorbis-tools \
                 wavpack \
                 lame \
-                ttaenc \
                 faac \
                 opus-tools \
                 sox
 
+            # apt-get -y update && apt-get -y install \
+            #     flac \
+            #     mac \
+            #     alacenc \
+            #     vorbis-tools \
+            #     wavpack \
+            #     lame \
+            #     ttaenc \
+            #     faac \
+            #     opus-tools \
+            #     sox
 
             pwd
             ls
