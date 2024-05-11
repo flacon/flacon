@@ -26,6 +26,7 @@ jobs:
           echo "-------------------------------"
           cat $GITHUB_ENV
           echo "==============================="
+          ls -l ${GITHUB_ENV}
 
       - uses: actions/checkout@v4
       - uses: uraimo/run-on-arch-action@v2
