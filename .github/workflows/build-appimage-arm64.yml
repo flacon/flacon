@@ -31,13 +31,13 @@ jobs:
           # Mount the artifacts directory as /artifacts in the container
           dockerRunArgs: |
             --volume "${PWD}/artifacts:/artifacts"
+            --volume "${GITHUB_ENV}:/GITHUB_ENV"
 
           # Pass some environment variables to the container
           env: | # YAML, but pipe character is necessary
             artifact_name: git-${{ matrix.distro }}_${{ matrix.arch }}
-            RELEASE_DATE:    $(date +%Y.%m.%d_%H.%M.%S)
-            RELEASE_VERSION: ${GITHUB_REF#refs/*/}
-
+            GITHUB_ENV:    "/GITHUB_ENV"
+            GITHUB_REF_TYPE: ${{ env.GITHUB_REF_TYPE }}
 
           # The shell to run commands with in the container
           shell: /bin/sh
@@ -66,6 +66,12 @@ jobs:
 
           # Produce a binary artifact and place it in the mounted volume
           run: |
+            echo "RELEASE_DATE=$(date +%Y.%m.%d_%H.%M.%S)" >> ${GITHUB_ENV}
+            echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+            [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo APPIMAGE_NAME="flacon-${GITHUB_REF_NAME:1}-x86_64.AppImage" >> $GITHUB_ENV
+            [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo APPIMAGE_NAME="flacon-$(date +%Y.%m.%d_%H.%M.%S)-x86_64.AppImage" >> $GITHUB_ENV
+
             echo "==============================="
             export
             echo "-------------------------------"
