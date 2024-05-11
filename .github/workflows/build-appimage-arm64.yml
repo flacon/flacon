@@ -78,7 +78,7 @@ jobs:
           # Produce a binary artifact and place it in the mounted volume
           run: |
             echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-            apt-add-repository contrib -y
+            apt-add-repository non-free -y
             apt-get -y update && apt-get -y install \
                 flac \
                 vorbis-tools \
