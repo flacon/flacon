@@ -77,7 +77,7 @@ jobs:
           # Produce a binary artifact and place it in the mounted volume
           run: |
             echo "==============================="
-            cat /etc/apt/sources.lst
+            ls -lh /etc/apt/
             echo "==============================="
             apt-get -y update && apt-get -y install \
                 flac \
