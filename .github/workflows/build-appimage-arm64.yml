@@ -80,6 +80,7 @@ jobs:
 
           # Produce a binary artifact and place it in the mounted volume
           run: |
+            mount -h
             echo "==============================="
             export
             echo "-------------------------------"
