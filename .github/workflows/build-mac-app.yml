@@ -52,7 +52,7 @@ jobs:
         echo "--------------------------------------------"
 
     - name: Download arm64
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4.1.7
       with:
         name: Flacon-arm64
 
@@ -67,7 +67,7 @@ jobs:
 
 
     - name: Download x86_64
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4.1.7
       with:
         name: Flacon-x86_64
 
