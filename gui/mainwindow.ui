@@ -349,7 +349,7 @@ If you surround sections of text that contain a token with braces, these section
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -382,6 +382,7 @@ If you surround sections of text that contain a token with braces, these section
      <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionShowLogs"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menu_Settings"/>
@@ -559,6 +560,14 @@ If you surround sections of text that contain a token with braces, these section
    </property>
    <property name="toolTip">
     <string>Trash sources for converted disks and remove from list…</string>
+   </property>
+  </action>
+  <action name="actionShowLogs">
+   <property name="text">
+    <string>View logs</string>
+   </property>
+   <property name="toolTip">
+    <string>View logs</string>
    </property>
   </action>
  </widget>

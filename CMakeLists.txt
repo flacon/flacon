@@ -106,6 +106,7 @@ set(HEADERS
     extprogram.h
     uchardetect.h
     textcodec.h
+    debug.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -139,6 +140,7 @@ set(SOURCES
     extprogram.cpp
     uchardetect.cpp
     textcodec.cpp
+    debug.cpp
 
     gui/aboutdialog/aboutdialog.cpp
     gui/coverdialog/coverdialog.cpp

@@ -91,6 +91,7 @@ private slots:
     void openScanDialog();
 
     void openAboutDialog();
+    void openLogViewDialog();
     void checkUpdates();
 
     void trackViewMenu(const QPoint &pos);

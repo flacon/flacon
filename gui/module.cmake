@@ -21,5 +21,6 @@ list(APPEND SOURCES
 
 include(${CMAKE_CURRENT_LIST_DIR}/preferences/module.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/messagebox/module.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/logview/module.cmake)
 
 

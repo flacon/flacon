@@ -41,6 +41,7 @@
 #include "gui/icon.h"
 #include "application.h"
 #include "gui/messagebox/messagebox.h"
+#include "gui/logview/logview.h"
 
 #include <QFileDialog>
 #include <QDir>
@@ -982,6 +983,23 @@ void MainWindow::openAboutDialog()
 /************************************************
 
  ************************************************/
+void MainWindow::openLogViewDialog()
+{
+    LogView *dialog = findChild<LogView *>();
+
+    if (!dialog) {
+        dialog = new LogView(this);
+    }
+
+    dialog->show();
+    dialog->raise();
+    dialog->activateWindow();
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+}
+
+/************************************************
+
+ ************************************************/
 void MainWindow::checkUpdates()
 {
 #ifdef MAC_UPDATER
@@ -1193,6 +1211,8 @@ void MainWindow::initActions()
 
     connect(actionAbout, &QAction::triggered, this, &MainWindow::openAboutDialog);
     actionAbout->setMenuRole(QAction::AboutRole);
+
+    connect(actionShowLogs, &QAction::triggered, this, &MainWindow::openLogViewDialog);
 
     Controls::arangeTollBarButtonsWidth(toolBar);
 

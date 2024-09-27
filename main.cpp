@@ -33,6 +33,7 @@
 #include "scanner.h"
 #include "consoleout.h"
 #include "types.h"
+#include "debug.h"
 
 #include <QString>
 #include <QLocale>
@@ -322,14 +323,7 @@ int main(int argc, char *argv[])
         Settings::setFileName(parser.value("config"));
     }
 
-    if (parser.isSet("debug") || getenv("FLACON_DEBUG")) {
-        setenv("QT_LOGGING_RULES", "*.debug=true;qt.*.debug=false;kf.*.debug=false;", 1);
-        qSetMessagePattern("%{time yyyy.MM.dd hh:mm:ss.zzz t} [%{threadid}] %{type}: %{category}: %{message}");
-    }
-    else {
-        setenv("QT_LOGGING_RULES", "*.debug=false;default.debug=true;", 1);
-        qSetMessagePattern("%{if-warning}Warning: %{endif}%{if-critical}Error: %{endif}%{if-fatal}Error: %{endif}%{message}");
-    }
+    initDebug((parser.isSet("debug") || getenv("FLACON_DEBUG")));
 
     quiet    = parser.isSet("quiet");
     progress = parser.isSet("progress");
