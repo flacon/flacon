@@ -39,8 +39,8 @@ public:
 private:
     void releaseGroupsReady(QNetworkReply *reply);
 
-    void   releasesReady(QNetworkReply *reply);
-    Tracks parseTracksJson(const QJsonArray &tracks, const QString &album);
+    void         releasesReady(QNetworkReply *reply);
+    InternetTags parseTracksJson(const QJsonArray &tracks, const QString &album);
 
     void processResults();
 

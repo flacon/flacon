@@ -69,15 +69,15 @@ Splitter::Job::Job(const Disc *disk, Conv::ConvTrack track, bool addPregap, bool
     const Track next = (cur.index() + 1 < disk->count()) ? *(disk->track(cur.index() + 1)) : Track();
 
     if (addPregap) {
-        chunks << getPart(cur.cueIndex(0), cur.cueIndex(1));
+        chunks << getPart(cur.cueIndex00(), cur.cueIndex01());
     }
 
     if (addTrack) {
-        chunks << getPart(cur.cueIndex(1), next.cueIndex(0));
+        chunks << getPart(cur.cueIndex01(), next.cueIndex00());
     }
 
     if (addPostgap) {
-        chunks << getPart(next.cueIndex(0), next.cueIndex(1));
+        chunks << getPart(next.cueIndex00(), next.cueIndex01());
     }
 
     merge();
@@ -141,15 +141,22 @@ InputAudioFile Splitter::Job::getInputAudioFile(const QByteArray &fileTag) const
     for (int i = 0; i < disk->count(); ++i) {
         const Track *t = disk->track(i);
 
-        for (int j = 0; j <= 1; ++j) {
-            if (t->cueIndex(j).file() == fileTag) {
-                return disk->audioFiles().at(n);
-            }
+        if (t->cueIndex00().file() == fileTag) {
+            return disk->audioFiles().at(n);
+        }
 
-            if (t->cueIndex(j).file() != prevTag) {
-                n++;
-                prevTag = t->cueIndex(j).file();
-            }
+        if (t->cueIndex00().file() != prevTag) {
+            n++;
+            prevTag = t->cueIndex00().file();
+        }
+
+        if (t->cueIndex01().file() == fileTag) {
+            return disk->audioFiles().at(n);
+        }
+
+        if (t->cueIndex01().file() != prevTag) {
+            n++;
+            prevTag = t->cueIndex01().file();
         }
     }
 

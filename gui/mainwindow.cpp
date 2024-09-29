@@ -117,7 +117,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagArtistEdit, &TagLineEdit::textEdited, this, &MainWindow::refreshEdits);
 
     tagDiscPerformerEdit->setTagId(TagId::AlbumArtist);
-    connect(tagDiscPerformerEdit, &TagLineEdit::textEdited, this, &MainWindow::setDiscTag);
+    // connect(tagDiscPerformerEdit, &TagLineEdit::textEdited, this, &MainWindow::setDiscTag);
     connect(tagDiscPerformerEdit, &TagLineEdit::textEdited, this, &MainWindow::refreshEdits);
 
     tagAlbumEdit->setTagId(TagId::Album);
@@ -598,36 +598,36 @@ void MainWindow::setTrackTag()
 /************************************************
  *
  ************************************************/
-void MainWindow::setDiscTag()
-{
-    TagLineEdit *edit = qobject_cast<TagLineEdit *>(sender());
-    if (!edit)
-        return;
+// void MainWindow::setDiscTag()
+// {
+//     TagLineEdit *edit = qobject_cast<TagLineEdit *>(sender());
+//     if (!edit)
+//         return;
 
-    QList<Disc *> discs = trackView->selectedDiscs();
-    foreach (Disc *disc, discs) {
-        disc->setDiscTag(edit->tagId(), edit->text());
-    }
+//     QList<Disc *> discs = trackView->selectedDiscs();
+//     foreach (Disc *disc, discs) {
+//         disc->setDiscTag(edit->tagId(), edit->text());
+//     }
 
-    trackView->updateAll();
-}
+//     trackView->updateAll();
+// }
 
-/************************************************
- *
- ************************************************/
-void MainWindow::setDiscTagInt()
-{
-    TagSpinBox *spinBox = qobject_cast<TagSpinBox *>(sender());
-    if (!spinBox)
-        return;
+// /************************************************
+//  *
+//  ************************************************/
+// void MainWindow::setDiscTagInt()
+// {
+//     TagSpinBox *spinBox = qobject_cast<TagSpinBox *>(sender());
+//     if (!spinBox)
+//         return;
 
-    QList<Disc *> discs = trackView->selectedDiscs();
-    foreach (Disc *disc, discs) {
-        disc->setDiscTag(spinBox->tagId(), QString::number(spinBox->value()));
-    }
+//     QList<Disc *> discs = trackView->selectedDiscs();
+//     foreach (Disc *disc, discs) {
+//         disc->setDiscTag(spinBox->tagId(), QString::number(spinBox->value()));
+//     }
 
-    trackView->updateAll();
-}
+//     trackView->updateAll();
+// }
 
 /************************************************
  *
@@ -884,7 +884,7 @@ void MainWindow::downloadDiscInfo(Disc *disc)
             [disc, this]() { trackView->downloadFinished(*disc); });
 
     connect(provider, &DataProvider::finished, provider,
-            [disc](const QVector<Tracks> data) { disc->addTagSets(data); });
+            [disc](const QVector<InternetTags> data) { disc->addInternetTags(data); });
 
     provider->start(*disc);
     trackView->downloadStarted(*disc);

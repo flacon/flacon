@@ -24,82 +24,37 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "uchardetect.h"
-#include "settings.h"
 #include <uchardet.h>
-#include "track.h"
 
 /************************************************
  *
  ************************************************/
-struct UcharDet::Data
+UcharDet &UcharDet::operator<<(const QByteArray &string)
 {
-    uchardet_t mUchcharDet;
-};
-
-/************************************************
- *
- ************************************************/
-UcharDet::UcharDet() :
-    mData(new Data())
-{
-    mData->mUchcharDet = uchardet_new();
-}
-
-/************************************************
- *
- ************************************************/
-UcharDet::~UcharDet()
-{
-    uchardet_delete(mData->mUchcharDet);
-    delete mData;
-}
-
-/************************************************
- *
- ************************************************/
-UcharDet &UcharDet::operator<<(const Track &track)
-{
-    TagId tags[] = { TagId::Artist, TagId::Title };
-
-    for (uint i = 0; i < sizeof(tags) / sizeof(TagId); ++i) {
-        TagValue tv = track.tagValue(tags[i]);
-        if (!tv.encoded())
-            uchardet_handle_data(mData->mUchcharDet, tv.value().data(), tv.value().length());
+    if (!string.isEmpty()) {
+        mStrings << string;
     }
-
-    return *this;
-}
-/************************************************
- *
- ************************************************/
-UcharDet &UcharDet::operator<<(const TrackTags &track)
-{
-    TagId tags[] = { TagId::Artist, TagId::Title };
-
-    for (uint i = 0; i < sizeof(tags) / sizeof(TagId); ++i) {
-        TagValue tv = track.tagValue(tags[i]);
-        if (!tv.encoded())
-            uchardet_handle_data(mData->mUchcharDet, tv.value().data(), tv.value().length());
-    }
-
     return *this;
 }
 
 /************************************************
  *
  ************************************************/
-QString UcharDet::textCodecName() const
+TextCodec UcharDet::detect() const
 {
-    uchardet_data_end(mData->mUchcharDet);
-    QString res = uchardet_get_charset(mData->mUchcharDet);
+    uchardet_t uchcharDet = uchardet_new();
 
-    if (!TextCodec::codecForName(res).isValid()) {
-        res = Settings::i()->defaultCodepage();
+    for (const QByteArray &s : mStrings) {
+        uchardet_handle_data(uchcharDet, s.data(), s.length());
     }
 
-    if (res == "US-ASCII") {
-        res = "UTF-8";
+    uchardet_data_end(uchcharDet);
+    QString name = uchardet_get_charset(uchcharDet);
+    if (name == "US-ASCII") {
+        name = "UTF-8";
     }
 
-    return res;
+    uchardet_delete(uchcharDet);
+
+    return TextCodec::codecForName(name);
 }

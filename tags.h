@@ -29,9 +29,63 @@
 #include "types.h"
 #include <QByteArray>
 #include <QString>
-#include <QHash>
+#include <QMap>
 #include <QVector>
 #include "textcodec.h"
+
+struct TagSet
+{
+    QString uri;
+    QString title;
+};
+
+class Tags
+{
+public:
+    QString albumTag(TagId tagId) const;
+    void    setAlbumTag(TagId tagId, const QString &value);
+
+    QString trackTag(int trackIndex, TagId tagId) const;
+    void    setTrackTag(int trackIndex, TagId tagId, const QString &value);
+
+    bool containsTrackTag(int trackIndex, TagId tagId) const;
+
+    bool isEmpty() const { return mTrackTags.isEmpty(); }
+    int  trackCount() const { return mTrackTags.count(); }
+    void resize(int size);
+
+    bool compareTags(const Tags &other) const;
+
+private:
+    QMap<TagId, QString>          mAlbumTags;
+    QVector<QMap<TagId, QString>> mTrackTags;
+};
+
+class InternetTags : public Tags
+{
+public:
+    QString uri() const { return mUri; }
+    QString name() const { return mName; }
+
+    void setUri(const QString &value) { mUri = value; }
+    void setName(const QString &value) { mName = value; }
+
+private:
+    QString mUri;
+    QString mName;
+};
+
+class RawTags
+{
+public:
+    QByteArray trackTag(int trackIndex, TagId tagId) const;
+    void       setTrackTag(int trackIndex, TagId tagId, const QByteArray &value);
+
+    bool containsTrackTag(int trackIndex, TagId tagId) const;
+
+private:
+    QVector<QMap<TagId, QByteArray>> mTrackTags;
+};
 
 class TagValue
 {
@@ -64,70 +118,5 @@ private:
     QByteArray mValue;
     bool       mEncoded;
 };
-
-class TrackTags
-{
-public:
-    TrackTags()                       = default;
-    TrackTags(const TrackTags &other) = default;
-    TrackTags &operator=(const TrackTags &other) = default;
-
-    bool operator==(const TrackTags &other) const;
-
-    QString    tag(const TagId &tagId) const;
-    QByteArray tagData(const TagId &tagId) const;
-    TagValue   tagValue(TagId tagId) const;
-    void       setTag(const TagId &tagId, const QString &value);
-    void       setTag(const TagId &tagId, const QByteArray &value);
-    void       setTag(TagId tagId, const TagValue &value);
-
-    TextCodec codec() const { return mTextCodec; }
-    void      setCodec(const TextCodec &value);
-
-    QString artist() const { return tag(TagId::Artist); }
-    void    setArtist(const QString &value) { setTag(TagId::Artist, value); }
-
-    QString album() const { return tag(TagId::Album); }
-    void    setAlbum(const QString &value) { setTag(TagId::Album, value); }
-
-    QString comment() const { return tag(TagId::Comment); }
-    void    setComment(const QString &value) { setTag(TagId::Comment, value); }
-
-    QString title() const { return tag(TagId::Title); }
-    void    setTitle(const QString &value) { setTag(TagId::Title, value); }
-
-    QString genre() const { return tag(TagId::Genre); }
-    void    setGenre(const QString &value) { setTag(TagId::Genre, value); }
-
-    QString date() const { return tag(TagId::Date); }
-    void    setDate(const QString &value) { setTag(TagId::Date, value); }
-
-    QString discId() const { return tag(TagId::DiscId); }
-
-    TrackNum trackNum() const { return intTag(TagId::TrackNum, 1); };
-    void     setTrackNum(TrackNum value) { setIntTag(TagId::TrackNum, value); }
-
-    TrackNum trackCount() const { return intTag(TagId::TrackCount, 1); }
-    void     setTrackCount(TrackNum value) { setIntTag(TagId::TrackCount, value); }
-
-    DiscNum discNum() const { return intTag(TagId::DiscNum, 1); }
-    void    setDiscNum(DiscNum value) { setIntTag(TagId::DiscNum, value); }
-
-    DiscNum discCount() const { return intTag(TagId::DiscCount, 1); }
-    void    setDiscCount(DiscNum value) { return setIntTag(TagId::DiscCount, value); }
-
-    CueIndex cueIndex(int indexNum) const;
-    void     setCueIndex(int indexNum, const CueIndex &value);
-
-private:
-    QHash<int, TagValue> mTags;
-    TextCodec            mTextCodec = TextCodecUtf8();
-    QVector<CueIndex>    mCueIndexes;
-
-    int  intTag(const TagId &tagId, int defaultValue = 1) const;
-    void setIntTag(const TagId &tagId, int value);
-};
-
-using DiskTags = QVector<TrackTags>;
 
 #endif // TAGS_H

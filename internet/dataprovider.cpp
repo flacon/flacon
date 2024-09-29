@@ -111,7 +111,7 @@ bool DataProvider::isFinished() const
 /************************************************
 
  ************************************************/
-void DataProvider::serviceFinished(const QVector<Tracks> &result)
+void DataProvider::serviceFinished(const QVector<InternetTags> &result)
 {
     mResult << result;
 
@@ -193,7 +193,7 @@ void InterntService::removeDuplicates()
 {
     for (int i = mResult.size() - 1; i >= 0; --i) {
         for (int j = 0; j < i; ++j) {
-            if (mResult[i] == mResult[j]) {
+            if (mResult[i].compareTags(mResult[j])) {
                 mResult.removeAt(i);
                 break;
             }

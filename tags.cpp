@@ -26,7 +26,6 @@
 #include "types.h"
 #include "tags.h"
 
-#include <assert.h>
 #include <QDebug>
 
 #include <QLoggingCategory>
@@ -94,106 +93,103 @@ bool TagValue::operator==(const TagValue &other) const
 /************************************************
  *
  ************************************************/
-bool TrackTags::operator==(const TrackTags &other) const
+QString Tags::albumTag(TagId tagId) const
 {
-    return mTags == other.mTags;
+    return mAlbumTags.value(tagId, "");
 }
 
 /************************************************
  *
  ************************************************/
-QString TrackTags::tag(const TagId &tagId) const
+void Tags::setAlbumTag(TagId tagId, const QString &value)
 {
-    return mTags.value(static_cast<int>(tagId)).asString(mTextCodec);
+    mAlbumTags[tagId] = value;
 }
 
 /************************************************
  *
  ************************************************/
-QByteArray TrackTags::tagData(const TagId &tagId) const
+QString Tags::trackTag(int trackIndex, TagId tagId) const
 {
-    return mTags.value(static_cast<int>(tagId)).value();
+    if (trackIndex < mTrackTags.size()) {
+        return mTrackTags.at(trackIndex).value(tagId, "");
+    }
+
+    return "";
 }
 
 /************************************************
  *
  ************************************************/
-TagValue TrackTags::tagValue(TagId tagId) const
+void Tags::setTrackTag(int trackIndex, TagId tagId, const QString &value)
 {
-    return mTags.value(static_cast<int>(tagId));
+    if (trackIndex >= mTrackTags.size()) {
+        mTrackTags.resize(trackIndex + 1);
+    }
+
+    mTrackTags[trackIndex][tagId] = value;
 }
 
 /************************************************
  *
  ************************************************/
-void TrackTags::setTag(const TagId &tagId, const QString &value)
+bool Tags::containsTrackTag(int trackIndex, TagId tagId) const
 {
-    mTags.insert(static_cast<int>(tagId), TagValue(value));
+    if (trackIndex < mTrackTags.size()) {
+        return mTrackTags.at(trackIndex).contains(tagId);
+    }
+
+    return false;
 }
 
 /************************************************
  *
  ************************************************/
-void TrackTags::setTag(const TagId &tagId, const QByteArray &value)
+void Tags::resize(int size)
 {
-    mTags.insert(static_cast<int>(tagId), TagValue(value, false));
+    mTrackTags.resize(size);
 }
 
 /************************************************
  *
  ************************************************/
-void TrackTags::setTag(TagId tagId, const TagValue &value)
+bool Tags::compareTags(const Tags &other) const
 {
-    mTags.insert(static_cast<int>(tagId), value);
+    return mTrackTags == other.mTrackTags;
 }
 
 /************************************************
  *
  ************************************************/
-void TrackTags::setCodec(const TextCodec &value)
+QByteArray RawTags::trackTag(int trackIndex, TagId tagId) const
 {
-    mTextCodec = value;
+    if (trackIndex < mTrackTags.size()) {
+        return mTrackTags.at(trackIndex).value(tagId, {});
+    }
+
+    return {};
 }
 
 /************************************************
  *
  ************************************************/
-CueIndex TrackTags::cueIndex(int indexNum) const
+void RawTags::setTrackTag(int trackIndex, TagId tagId, const QByteArray &value)
 {
-    if (indexNum < mCueIndexes.length())
-        return mCueIndexes.at(indexNum);
+    if (trackIndex >= mTrackTags.size()) {
+        mTrackTags.resize(trackIndex + 1);
+    }
 
-    return CueIndex();
+    mTrackTags[trackIndex][tagId] = value;
 }
 
 /************************************************
  *
  ************************************************/
-void TrackTags::setCueIndex(int indexNum, const CueIndex &value)
+bool RawTags::containsTrackTag(int trackIndex, TagId tagId) const
 {
-    if (indexNum >= mCueIndexes.length())
-        mCueIndexes.resize(indexNum + 1);
+    if (trackIndex < mTrackTags.size()) {
+        return mTrackTags.at(trackIndex).contains(tagId);
+    }
 
-    mCueIndexes[indexNum] = value;
-}
-
-/************************************************
- *
- ************************************************/
-int TrackTags::intTag(const TagId &tagId, int defaultValue) const
-{
-    bool ok;
-    int  res = tag(tagId).toInt(&ok);
-
-    if (ok)
-        return res;
-
-    return defaultValue;
-}
-/************************************************
- *
- ************************************************/
-void TrackTags::setIntTag(const TagId &tagId, int value)
-{
-    setTag(tagId, QString::number(value));
+    return false;
 }

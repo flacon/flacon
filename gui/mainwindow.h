@@ -81,8 +81,8 @@ private slots:
 
     void setStartTrackNum();
     void setTrackTag();
-    void setDiscTag();
-    void setDiscTagInt();
+    // void setDiscTag();
+    // void setDiscTagInt();
 
     void configure();
     void configureEncoder();

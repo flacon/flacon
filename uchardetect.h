@@ -26,28 +26,17 @@
 #ifndef UCHARDETECT_H
 #define UCHARDETECT_H
 
-#include <QString>
-
-class Track;
-class TrackTags;
+#include "textcodec.h"
 
 class UcharDet
 {
 
 public:
-    UcharDet();
-    UcharDet(const UcharDet &) = delete;
-    UcharDet &operator=(const UcharDet &) = delete;
-    ~UcharDet();
+    UcharDet &operator<<(const QByteArray &string);
 
-    void      add(const Track &track);
-    UcharDet &operator<<(const Track &track);
-    UcharDet &operator<<(const TrackTags &track);
-
-    QString textCodecName() const;
+    TextCodec detect() const;
 
 private:
-    struct Data;
-    Data *mData;
+    QByteArrayList mStrings;
 };
 #endif // UCHARDETECT_H

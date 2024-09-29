@@ -29,7 +29,6 @@
 #include <QtGlobal>
 #include "../types.h"
 #include "../track.h"
-#include "../inputaudiofile.h"
 
 class Track;
 class OutFormat;

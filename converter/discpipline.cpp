@@ -121,8 +121,8 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, const QVector<con
 
         // Pregap track ....................
         bool hasPregap =
-                reqTracks.contains(tracks.first()) &&           // We extract first track in Audio
-                tracks.first()->cueIndex(1).milliseconds() > 0; // The first track don't start from zero second
+                reqTracks.contains(tracks.first()) &&            // We extract first track in Audio
+                tracks.first()->cueIndex01().milliseconds() > 0; // The first track don't start from zero second
 
         if (hasPregap && mPregapType == PreGapType::ExtractToFile) {
             Track *firstTrack = tracks.first();
@@ -593,8 +593,8 @@ void DiscPipeline::loadEmbeddedCue()
  ************************************************/
 bool DiscPipeline::hasPregap() const
 {
-    return mTracks.first().index() == 0 &&                  // We extract first track in Audio
-            mTracks.first().cueIndex(1).milliseconds() > 0; // The first track don't start from zero second
+    return mTracks.first().index() == 0 &&                   // We extract first track in Audio
+            mTracks.first().cueIndex01().milliseconds() > 0; // The first track don't start from zero second
 }
 
 /************************************************

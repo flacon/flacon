@@ -44,6 +44,22 @@
 /************************************************
 
  ************************************************/
+static TagSet toTagSet(const Cue &cue)
+{
+    return TagSet { cue.filePath(), cue.title() };
+}
+
+/************************************************
+
+ ************************************************/
+static TagSet toTagSet(const InternetTags &tags)
+{
+    return TagSet { tags.uri(), tags.name() };
+}
+
+/************************************************
+
+ ************************************************/
 Disc::Disc(QObject *parent) :
     QObject(parent)
 {
@@ -119,37 +135,26 @@ void Disc::setCue(const Cue &cue)
 
     InputAudioFileList audioFiles = this->audioFiles();
 
-    // If the tracks contain tags from the Internet and the
-    // tags have been changed, we must save the changes.
-    syncTagsFromTracks();
-    mTagSets.remove(cueFilePath());
-
-    int count = cue.tracks().count();
+    mCueUserTags.resize(cue.trackCount());
 
     // Remove all tags if number of tracks differ from loaded CUE.
-    for (auto it = mTagSets.begin(); it != mTagSets.end();) {
-        if (it.value().count() != count)
-            it = mTagSets.erase(it);
-        else
-            ++it;
+    for (int i = mInternetTags.size() - 1; i >= 0; i--) {
+        if (mInternetTags.at(i).trackCount() != cue.trackCount()) {
+            mInternetTags.removeAt(i);
+        }
     }
 
     // Sync count of tracks
-    for (int i = mTracks.count(); i < count; ++i) {
+    for (int i = mTracks.count(); i < cue.trackCount(); ++i) {
         Track *track = new Track(this, i);
         mTracks.append(track);
     }
 
-    while (mTracks.count() > count)
+    while (mTracks.count() > cue.trackCount()) {
         delete mTracks.takeLast();
-
-    for (int t = 0; t < count; ++t) {
-        mTracks[t]->setTags(cue.tracks().at(t));
     }
 
-    mCurrentTagsUri = cueFilePath();
-    syncTagsFromTracks();
-    mTagSets[mCurrentTagsUri].setTitle(cue.title());
+    mInternetTagsIndex = -1;
 
     for (int i = 0; i < qMin(audioFiles.count(), mTracks.count()); ++i) {
         if (!audioFiles[i].isNull()) {
@@ -164,63 +169,20 @@ void Disc::setCue(const Cue &cue)
 /************************************************
  *
  ************************************************/
-void Disc::syncTagsFromTracks()
+int Disc::distance(const Tags &other)
 {
-    if (mTagSets.isEmpty())
-        return;
-
-    Tracks &tags = mTagSets[mCurrentTagsUri];
-    if (tags.isEmpty()) {
-        tags.resize(mTracks.count());
-        tags.setUri(mCurrentTagsUri);
-    }
-
-    for (int i = 0; i < qMin(tags.count(), mTracks.count()); ++i) {
-        tags[i] = *(mTracks.at(i));
-    }
-}
-
-/************************************************
- *
- ************************************************/
-void Disc::syncTagsToTracks()
-{
-    if (mTagSets.isEmpty())
-        return;
-
-    Tracks &tags = mTagSets[mCurrentTagsUri];
-    assert(tags.count() == mTracks.count());
-
-    for (int i = 0; i < mTracks.count(); ++i) {
-        Track       *track = mTracks[i];
-        const Track &tgs   = tags.at(i);
-
-        track->setTag(TagId::Album, tgs.tagValue(TagId::Album));
-        track->setTag(TagId::Date, tgs.tagValue(TagId::Date));
-        track->setTag(TagId::Genre, tgs.tagValue(TagId::Genre));
-        track->setTag(TagId::Artist, tgs.tagValue(TagId::Artist));
-        track->setTag(TagId::SongWriter, tgs.tagValue(TagId::SongWriter));
-        track->setTag(TagId::Title, tgs.tagValue(TagId::Title));
-        track->setTag(TagId::AlbumArtist, tgs.tagValue(TagId::AlbumArtist));
-    }
-}
-
-/************************************************
- *
- ************************************************/
-int Disc::distance(const Tracks &other)
-{
-    if (mTracks.isEmpty() || other.empty())
+    if (mTracks.isEmpty() || other.isEmpty()) {
         return std::numeric_limits<int>::max();
+    }
 
     int res = 0;
 
     QString str1 = mTracks.first()->artist().toUpper().replace("THE ", "");
-    QString str2 = other.first().artist().toUpper().replace("THE ", "");
+    QString str2 = other.albumTag(TagId::Artist).toUpper().replace("THE ", "");
     res += levenshteinDistance(str1, str2) * 3;
 
     str1 = mTracks.first()->album().toUpper().replace("THE ", "");
-    str2 = other.first().album().toUpper().replace("THE ", "");
+    str2 = other.albumTag(TagId::Album).toUpper().replace("THE ", "");
     res += levenshteinDistance(str1, str2);
 
     return res;
@@ -234,13 +196,12 @@ bool Disc::isSameTagValue(TagId tagId)
     if (mTracks.isEmpty())
         return false;
 
-    auto       it    = mTracks.constBegin();
-    QByteArray value = (*it)->tagData(tagId);
-    ++it;
+    QString value = mTracks.first()->tag(tagId);
 
-    for (; it != mTracks.constEnd(); ++it) {
-        if ((*it)->tagData(tagId) != value)
+    for (const Track *t : mTracks) {
+        if (t->tag(tagId) != value) {
             return false;
+        }
     }
 
     return true;
@@ -387,48 +348,42 @@ void Disc::setStartTrackNum(TrackNum value)
 /************************************************
 
  ************************************************/
+QString Disc::codecName() const
+{
+    if (mTextCodec.isValid()) {
+        return mTextCodec.name();
+    }
+
+    return CODEC_AUTODETECT;
+}
+
+/************************************************
+
+ ************************************************/
 void Disc::setCodecName(const QString &codecName)
 {
-    mCodecName = codecName;
-
-    QString name = codecName;
-
-    if (name == CODEC_AUTODETECT) {
-        UcharDet charDet;
-        foreach (auto track, mTracks)
-            charDet << *track;
-
-        name = charDet.textCodecName();
+    if (codecName == CODEC_AUTODETECT) {
+        mTextCodec = mCue.detectTextCodec();
+    }
+    else {
+        mTextCodec = TextCodec::codecForName(codecName);
     }
 
-    TextCodec codec = TextCodec::codecForName(name);
-    foreach (auto track, mTracks) {
-        track->setCodec(codec);
-    }
-
-    mCodecName = codec.name();
     Project::instance()->emitDiscChanged(this);
 }
 
 /************************************************
 
  ************************************************/
-QString Disc::tagSetTitle() const
-{
-    if (mCurrentTagsUri.isEmpty())
-        return "";
+// QString Disc::tagSetTitle() const
+// {
+//     if (mCurrentTagsUri.isEmpty())
+//         return "";
 
-    const_cast<Disc *>(this)->syncTagsFromTracks();
-    return mTagSets[mCurrentTagsUri].title();
-}
-
-/************************************************
-
- ************************************************/
-QString Disc::tagsUri() const
-{
-    return mCurrentTagsUri;
-}
+//     return "";
+//     // const_cast<Disc *>(this)->syncTagsFromTracks();
+//     // return mTagSets[mCurrentTagsUri].title();
+// }
 
 /************************************************
  *
@@ -466,24 +421,13 @@ DiscNum Disc::discCount() const
 /************************************************
  *
  ************************************************/
-QVector<Disc::TagSet> Disc::tagSets() const
+QList<TagSet> Disc::tagSets() const
 {
-    if (mTagSets.isEmpty())
-        return QVector<TagSet>();
+    QList<TagSet> res;
+    res << toTagSet(mCue);
 
-    QStringList keys = mTagSets.keys();
-    keys.removeAll(cueFilePath());
-    std::sort(keys.begin(), keys.end());
-    keys.prepend(cueFilePath());
-
-    QVector<TagSet> res;
-    foreach (const QString &key, keys) {
-        const Tracks &tags = mTagSets[key];
-
-        TagSet ts;
-        ts.uri  = tags.uri();
-        ts.name = tags.title();
-        res << ts;
+    for (const InternetTags &tags : mInternetTags) {
+        res << toTagSet(tags);
     }
 
     return res;
@@ -492,56 +436,75 @@ QVector<Disc::TagSet> Disc::tagSets() const
 /************************************************
  *
  ************************************************/
-void Disc::addTagSet(const Tracks &tags, bool activate)
+TagSet Disc::currentTagSet() const
 {
-    mTagSets[tags.uri()] = tags;
-    // Sometimes CDDB response contains an additional
-    // DATA track. For example
-    // http://freedb.freedb.org/~cddb/cddb.cgi?cmd=CDDB+READ+rock+A20FA70C&hello=a+127.0.0.1+f+0&proto=5
-    mTagSets[tags.uri()].resize(mTracks.count());
+    if (mInternetTagsIndex < 0) {
+        return toTagSet(mCue);
+    }
 
-    if (activate)
-        activateTagSet(tags.uri());
+    return toTagSet(mInternetTags[mInternetTagsIndex]);
 }
+
+/************************************************
+ *
+ ************************************************/
+// void Disc::addTagSet(const Tracks &tags, bool activate)
+//{
+// mInternetTagss[tags.uri()] = tags;
+//  // Sometimes CDDB response contains an additional
+//  // DATA track. For example
+//  // http://freedb.freedb.org/~cddb/cddb.cgi?cmd=CDDB+READ+rock+A20FA70C&hello=a+127.0.0.1+f+0&proto=5
+//  mTagSets[tags.uri()].resize(mTracks.count());
+
+// if (activate)
+//     activateTagSet(tags.uri());
+//}
 
 /************************************************
  *
  ************************************************/
 void Disc::activateTagSet(const QString &uri)
 {
-    if (!mTagSets.contains(uri))
+    if (uri == toTagSet(mCue).uri) {
+        mInternetTagsIndex = -1;
+        Project::instance()->emitLayoutChanged();
         return;
+    }
 
-    syncTagsFromTracks();
-    mCurrentTagsUri = uri;
-    syncTagsToTracks();
-    Project::instance()->emitLayoutChanged();
+    for (int i = 0; i < mInternetTags.count(); ++i) {
+        if (uri == mInternetTags.at(i).uri()) {
+            mInternetTagsIndex = i;
+            Project::instance()->emitLayoutChanged();
+            return;
+        }
+    }
 }
 
 /************************************************
  *
  ************************************************/
-void Disc::addTagSets(const QVector<Tracks> &discs)
+void Disc::addInternetTags(const QVector<InternetTags> &tags)
 {
-    if (discs.isEmpty())
+    if (tags.isEmpty())
         return;
 
     int minDist  = std::numeric_limits<int>::max();
     int bestDisc = 0;
-    for (int i = 0; i < discs.count(); ++i) {
-        const Tracks &disc = discs.at(i);
-        if (disc.count() < mTracks.count())
+    for (int i = 0; i < tags.count(); ++i) {
+        const InternetTags &t = tags.at(i);
+        if (t.trackCount() < mTracks.count()) {
             continue;
+        }
 
-        addTagSet(disc, false);
-        int n = distance(disc);
+        mInternetTags << t;
+        int n = distance(t);
         if (n < minDist) {
             minDist  = n;
             bestDisc = i;
         }
     }
 
-    activateTagSet(discs.at(bestDisc).uri());
+    activateTagSet(mInternetTags.at(bestDisc).uri());
 }
 
 /************************************************
@@ -584,8 +547,9 @@ QImage Disc::coverImage() const
  ************************************************/
 QString Disc::discTag(TagId tagId) const
 {
-    if (isEmpty())
+    if (isEmpty()) {
         return "";
+    }
 
     return mTracks.first()->tag(tagId);
 }
@@ -593,31 +557,31 @@ QString Disc::discTag(TagId tagId) const
 /************************************************
  *
  ************************************************/
-QByteArray Disc::discTagData(TagId tagId) const
-{
-    if (isEmpty())
-        return QByteArray();
+// QByteArray Disc::discTagData(TagId tagId) const
+// {
+//     if (isEmpty())
+//         return QByteArray();
 
-    return mTracks.first()->tagData(tagId);
-}
-
-/************************************************
- *
- ************************************************/
-void Disc::setDiscTag(TagId tagId, const QString &value)
-{
-    foreach (auto track, mTracks)
-        track->setTag(tagId, value);
-}
+//     return mTracks.first()->tagData(tagId);
+// }
 
 /************************************************
  *
  ************************************************/
-void Disc::setDiscTag(TagId tagId, const QByteArray &value)
-{
-    foreach (auto track, mTracks)
-        track->setTag(tagId, value);
-}
+// void Disc::setDiscTag(TagId tagId, const QString &value)
+// {
+//     foreach (auto track, mTracks)
+//         track->setTag(tagId, value);
+// }
+
+/************************************************
+ *
+ ************************************************/
+// void Disc::setDiscTag(TagId tagId, const QByteArray &value)
+// {
+//     foreach (auto track, mTracks)
+//         track->setTag(tagId, value);
+// }
 
 /************************************************
 
@@ -760,7 +724,7 @@ void Disc::trackChanged(TagId tagId)
 
     if (tagId == TagId::Artist && isSameTagValue(TagId::Artist)) {
         foreach (Track *track, mTracks) {
-            track->setTag(TagId::AlbumArtist, track->tagValue(TagId::Artist));
+            track->setTag(TagId::AlbumArtist, track->tag(TagId::Artist));
         }
     }
 
@@ -776,46 +740,70 @@ Duration Disc::trackDuration(const Track &track) const
         return 0;
     }
 
-    TrackTags cur  = mCue.tracks().at(track.index());
-    TrackTags next = (track.index() < mTracks.count() - 1) ? mCue.tracks().at(track.index() + 1) : TrackTags();
+    Cue::Track cur  = mCue.tracks().at(track.index());
+    Cue::Track next = (track.index() < mTracks.count() - 1) ? mCue.tracks().at(track.index() + 1) : Cue::Track();
 
     Duration trackLen = 0;
-    if (cur.cueIndex(1).file() != next.cueIndex(0).file()) {
-        uint start = cur.cueIndex(1).milliseconds();
+    if (cur.cueIndex01.file() != next.cueIndex00.file()) {
+        uint start = cur.cueIndex01.milliseconds();
         uint end   = track.audioFile().duration();
         trackLen   = end > start ? end - start : 0;
     }
     else {
-        uint start = cur.cueIndex(1).milliseconds();
-        uint end   = next.cueIndex(0).milliseconds();
+        uint start = cur.cueIndex01.milliseconds();
+        uint end   = next.cueIndex00.milliseconds();
         trackLen   = end > start ? end - start : 0;
     }
 
     Duration postGapLen = 0;
-    if (next.cueIndex(0).file() != next.cueIndex(1).file()) {
-        uint start = next.cueIndex(0).milliseconds();
+    if (next.cueIndex00.file() != next.cueIndex01.file()) {
+        uint start = next.cueIndex00.milliseconds();
         uint end   = track.audioFile().duration();
         postGapLen = end > start ? end - start : 0;
     }
     else {
-        uint start = next.cueIndex(0).milliseconds();
-        uint end   = next.cueIndex(1).milliseconds();
+        uint start = next.cueIndex00.milliseconds();
+        uint end   = next.cueIndex01.milliseconds();
         postGapLen = end > start ? end - start : 0;
     }
 
     /*
     qDebug() << "***************************************";
     qDebug() << "CUR:" << track.index();
-    qDebug() << "  - 00 " << cur.cueIndex(0).toString() << cur.cueIndex(0).file();
-    qDebug() << "  - 01 " << cur.cueIndex(1).toString() << cur.cueIndex(1).file();
+    qDebug() << "  - 00 " << cur.cueIndex00.toString() << cur.cueIndex00.file();
+    qDebug() << "  - 01 " << cur.cueIndex01.toString() << cur.cueIndex01.file();
     qDebug() << ".......................................";
     qDebug() << "NEXT:";
-    qDebug() << "  - 00 " << next.cueIndex(0).toString() << next.cueIndex(0).file();
-    qDebug() << "  - 01 " << next.cueIndex(1).toString() << next.cueIndex(1).file();
+    qDebug() << "  - 00 " << next.cueIndex00.toString() << next.cueIndex00.file();
+    qDebug() << "  - 01 " << next.cueIndex01.toString() << next.cueIndex01.file();
     qDebug() << ".......................................";
     qDebug() << "trackLen: " << trackLen;
     qDebug() << "postGapLen: " << postGapLen;
     qDebug() << "***************************************";
     */
     return trackLen + postGapLen;
+}
+
+QString Disc::trackTag(int trackIndex, TagId tagId)
+{
+    if (mCueUserTags.containsTrackTag(trackIndex, tagId)) {
+        return mCueUserTags.trackTag(trackIndex, tagId);
+    }
+
+    return mTextCodec.decode(mCue.tracks().at(trackIndex).tags.value(tagId));
+}
+
+void Disc::setTrackTag(int trackIndex, TagId tagId, const QString &value)
+{
+    mCueUserTags.setTrackTag(trackIndex, tagId, value);
+}
+
+CueIndex Disc::trackCueIndex00(int trackIndex)
+{
+    return mCue.tracks().at(trackIndex).cueIndex00;
+}
+
+CueIndex Disc::trackCueIndex01(int trackIndex)
+{
+    return mCue.tracks().at(trackIndex).cueIndex01;
 }

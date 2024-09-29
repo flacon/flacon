@@ -73,13 +73,13 @@ void CueCreator::initGlobalTags()
         }
 
         if (!value.isEmpty())
-            mGlobalTags.setTag(tagId, value);
+            mGlobalTags.setAlbumTag(tagId, value);
     }
 
     // Don't write defaults values
-    if (mGlobalTags.tag(TagId::DiscCount) == "1" && mGlobalTags.tag(TagId::DiscNum) == "1") {
-        mGlobalTags.setTag(TagId::DiscCount, QByteArray());
-        mGlobalTags.setTag(TagId::DiscNum, QByteArray());
+    if (mGlobalTags.albumTag(TagId::DiscCount) == "1" && mGlobalTags.albumTag(TagId::DiscNum) == "1") {
+        mGlobalTags.setAlbumTag(TagId::DiscCount, QByteArray());
+        mGlobalTags.setAlbumTag(TagId::DiscNum, QByteArray());
     }
 }
 
@@ -97,7 +97,7 @@ void CueCreator::writeLine(QIODevice *out, const QString &text) const
  ************************************************/
 void CueCreator::writeGlobalTag(QIODevice *out, const QString &format, TagId tagId)
 {
-    QString value = mGlobalTags.tag(tagId);
+    QString value = mGlobalTags.albumTag(tagId);
 
     if (!value.isEmpty()) {
         writeLine(out, format.arg(value));
@@ -111,7 +111,7 @@ void CueCreator::writeTrackTag(QIODevice *out, const Track *track, const QString
 {
     QString value = track->tag(tagId);
 
-    if (!value.isEmpty() && value != mGlobalTags.tag(tagId)) {
+    if (!value.isEmpty() && value != mGlobalTags.albumTag(tagId)) {
         writeLine(out, prefix.arg(value));
     }
 }
@@ -146,7 +146,7 @@ void CueCreator::write(QIODevice *out)
         }
     }
     // If the first track starts with zero second, doesn't make sense to create pregap track.
-    bool createPreGapFile = mPreGapType == PreGapType::ExtractToFile && mDisc->track(0)->cueIndex(1).milliseconds() > 0;
+    bool createPreGapFile = mPreGapType == PreGapType::ExtractToFile && mDisc->track(0)->cueIndex01().milliseconds() > 0;
 
     initGlobalTags();
 
@@ -166,8 +166,8 @@ void CueCreator::write(QIODevice *out)
     CueTime prevIndex("00:00:00");
     for (int i = 0; i < mDisc->count(); ++i) {
         Track   *track  = mDisc->track(i);
-        CueIndex index0 = track->cueIndex(0);
-        CueIndex index1 = track->cueIndex(1);
+        CueIndex index0 = track->cueIndex00();
+        CueIndex index1 = track->cueIndex01();
         writeLine(out, "");
         if (i == 0) {
             if (index0.isNull() || index0 == index1) {

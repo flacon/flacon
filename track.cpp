@@ -31,17 +31,6 @@
 ************************************************/
 Track::Track(Disc *disc, int index) :
     mDisc(disc),
-    mTags(),
-    mIndex(index)
-{
-}
-
-/************************************************
- *
- ************************************************/
-Track::Track(Disc *disc, int index, const TrackTags &tags) :
-    mDisc(disc),
-    mTags(tags),
     mIndex(index)
 {
 }
@@ -57,82 +46,58 @@ void Track::setAudioFile(const InputAudioFile &file)
 /************************************************
  *
  ************************************************/
-void Track::setTags(const TrackTags &tags)
-{
-    mTags = tags;
-}
-
-/************************************************
- *
- ************************************************/
 QString Track::tag(const TagId &tagId) const
 {
-    return mTags.tag(tagId);
+    return mDisc->trackTag(mIndex, tagId);
 }
 
 /************************************************
  *
  ************************************************/
-QByteArray Track::tagData(const TagId &tagId) const
-{
-    return mTags.tagData(tagId);
-}
+// QByteArray Track::tagData(const TagId &tagId) const
+// {
+//     return mTags.tagData(tagId);
+// }
 
 /************************************************
  *
  ************************************************/
-TagValue Track::tagValue(TagId tagId) const
-{
-    return mTags.tagValue(tagId);
-}
+// TagValue Track::tagValue(TagId tagId) const
+// {
+//     return mTags.tagValue(tagId);
+// }
 
 /************************************************
  *
  ************************************************/
 void Track::setTag(const TagId &tagId, const QString &value)
 {
-    setTag(tagId, TagValue(value));
+    mDisc->setTrackTag(mIndex, tagId, value);
 }
 
 /************************************************
  *
  ************************************************/
-void Track::setTag(const TagId &tagId, const QByteArray &value)
-{
-    setTag(tagId, TagValue(value));
-}
+// void Track::setTag(TagId tagId, const TagValue &value)
+// {
+//     mTags.setTag(tagId, value);
+//     if (mDisc) {
+//         mDisc->trackChanged(tagId);
+//     }
+// }
 
 /************************************************
  *
  ************************************************/
-void Track::setTag(TagId tagId, const TagValue &value)
-{
-    mTags.setTag(tagId, value);
-    if (mDisc) {
-        mDisc->trackChanged(tagId);
-    }
-}
-
-/************************************************
- *
- ************************************************/
-void Track::setCodec(const TextCodec &value)
-{
-    mTags.setCodec(value);
-}
-
-/************************************************
- *
- ************************************************/
-bool Track::operator==(const Track &other) const
-{
-    // clang-format off
-    return
-        mDisc           == other.mDisc &&
-        mAudiofile      == other.mAudiofile &&
-        mTags           == other.mTags;
-    // clang-format on
-}
+// bool Track::operator==(const Track &other) const
+// {
+//     // clang-format off
+//     return
+//         mDisc           == other.mDisc &&
+//         mAudiofile      == other.mAudiofile &&
+//         mTags           == other.mTags;
+//     // clang-format on
+// }
 
 /************************************************
  *
@@ -231,11 +196,19 @@ Duration Track::duration() const
 }
 
 /************************************************
-
+ *
  ************************************************/
-CueIndex Track::cueIndex(int indexNum) const
+CueIndex Track::cueIndex00() const
 {
-    return mTags.cueIndex(indexNum);
+    return mDisc->trackCueIndex00(mIndex);
+}
+
+/************************************************
+ *
+ ************************************************/
+CueIndex Track::cueIndex01() const
+{
+    return mDisc->trackCueIndex01(mIndex);
 }
 
 /************************************************
@@ -306,8 +279,11 @@ Tracks::~Tracks()
  ************************************************/
 QString Tracks::title() const
 {
-    assert(!isEmpty());
-    return mTitle.asString(first().codec());
+    if (isEmpty()) {
+        return "";
+    }
+
+    return first().title();
 }
 
 /************************************************

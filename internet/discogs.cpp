@@ -163,27 +163,21 @@ void Discogs::masterReady(QNetworkReply *reply)
     skip = skip || artist.toUpper().simplified() != mRequestArtist.toUpper().simplified();
 
     if (!skip) {
-        Tracks res;
+        InternetTags res;
+        int          n = -1;
         for (const QJsonValue &t : tracklist) {
+            n++;
 
-            Track track;
-            track.setCodec(TextCodecUtf8());
+            res.setTrackTag(n, TagId::Date, year > 0 ? QString::number(year) : "");
+            res.setTrackTag(n, TagId::Album, album);
+            res.setTrackTag(n, TagId::Artist, artist);
+            res.setTrackTag(n, TagId::Title, t["title"].toString());
+            res.setTrackTag(n, TagId::Genre, genre);
+            res.setTrackTag(n, TagId::TrackNum, t["position"].toString());
+            res.setTrackTag(n, TagId::TrackCount, QString::number(tracklist.size()));
 
-            track.setTag(TagId::Date, year > 0 ? QString::number(year) : "");
-            track.setTag(TagId::Album, album);
-            track.setTag(TagId::Artist, artist);
-            track.setTag(TagId::Title, t["title"].toString());
-            track.setTag(TagId::Genre, genre);
-
-            track.setDiscCount(mDisk.discCount());
-            track.setDiscNum(mDisk.discNum());
-            track.setTrackNum(t["position"].toInt());
-            track.setTrackCount(tracklist.size());
-
-            track.setAlbumArtist(artist);
-            track.setTag(TagId::SongWriter, artist);
-
-            res << track;
+            res.setAlbumTag(TagId::Artist, artist);
+            res.setTrackTag(n, TagId::SongWriter, artist);
         }
 
         mResult << res;
@@ -199,14 +193,14 @@ void Discogs::processResults()
     removeDuplicates();
 
     int n = 0;
-    for (Tracks &t : mResult) {
+    for (InternetTags &t : mResult) {
         n++;
         t.setUri(QString("https://discogs.com/Artist=%1&Album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n));
         if (mResult.size() == 1) {
-            t.setTitle(QString("%1 / %2   [ Discogs ]").arg(mRequestArtist, mRequestAlbum));
+            t.setName(QString("%1 / %2   [ Discogs ]").arg(mRequestArtist, mRequestAlbum));
         }
         else {
-            t.setTitle(QString("%1 / %2   [ Discogs %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n));
+            t.setName(QString("%1 / %2   [ Discogs %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n));
         }
     }
 

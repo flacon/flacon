@@ -24,8 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "convertertypes.h"
-#include "../formats_out/outformat.h"
-#include "../profiles.h"
 
 using namespace Conv;
 

@@ -180,7 +180,7 @@ void MusicBrainz::releasesReady(QNetworkReply *reply)
         return;
     }
 
-    QVector<Tracks> res;
+    QVector<InternetTags> res;
 
     for (const QJsonValue r : releases) {
         QString album = r["title"].toString();
@@ -190,9 +190,9 @@ void MusicBrainz::releasesReady(QNetworkReply *reply)
                 continue;
             }
 
-            Tracks tracks = parseTracksJson(m["tracks"].toArray(), album);
-            if (!tracks.isEmpty()) {
-                res << tracks;
+            InternetTags tags = parseTracksJson(m["tracks"].toArray(), album);
+            if (!tags.isEmpty()) {
+                res << tags;
             }
         }
     }
@@ -248,13 +248,14 @@ static QString getDate(const QJsonValue &track)
 /************************************************
 
  ************************************************/
-Tracks MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QString &album)
+InternetTags MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QString &album)
 {
-    Tracks res;
+    InternetTags res;
     res.resize(tracks.count());
 
-    int n = 0;
+    int n = -1;
     for (const QJsonValue &t : tracks) {
+        n++;
 
         int pos = t["position"].toInt(-1);
         if (pos < 0) {
@@ -268,21 +269,16 @@ Tracks MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QString &alb
 
         QString artist = t["artist-credit"][0]["name"].toString();
 
-        Track &track = res[n++];
-        track.setCodec(TextCodecUtf8());
-        track.setTag(TagId::Date, getDate(t));
-        track.setTag(TagId::Album, album);
-        track.setTag(TagId::Artist, artist);
-        track.setTag(TagId::Title, trackTitle);
-        track.setTag(TagId::Genre, getGenre(t));
+        res.setTrackTag(n, TagId::Date, getDate(t));
+        res.setTrackTag(n, TagId::Album, album);
+        res.setTrackTag(n, TagId::Artist, artist);
+        res.setTrackTag(n, TagId::Title, trackTitle);
+        res.setTrackTag(n, TagId::Genre, getGenre(t));
+        res.setTrackTag(n, TagId::TrackNum, QString::number(n));
+        res.setTrackTag(n, TagId::TrackCount, QString::number(tracks.size()));
 
-        track.setDiscCount(mDisk.discCount());
-        track.setDiscNum(mDisk.discNum());
-        track.setTrackNum(n);
-        track.setTrackCount(tracks.size());
-
-        track.setAlbumArtist(artist);
-        track.setTag(TagId::SongWriter, artist);
+        res.setAlbumTag(TagId::Artist, artist);
+        res.setTrackTag(n, TagId::SongWriter, artist);
     }
 
     return res;
@@ -296,14 +292,14 @@ void MusicBrainz::processResults()
     removeDuplicates();
 
     int n = 0;
-    for (Tracks &t : mResult) {
+    for (InternetTags &t : mResult) {
         n++;
         t.setUri(QString("https://musicbrainz.org/artis=%1&album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n));
         if (mResult.size() == 1) {
-            t.setTitle(QString("%1 / %2   [ MusicBrainz ]").arg(mRequestArtist, mRequestAlbum));
+            t.setName(QString("%1 / %2   [ MusicBrainz ]").arg(mRequestArtist, mRequestAlbum));
         }
         else {
-            t.setTitle(QString("%1 / %2   [ MusicBrainz %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n));
+            t.setName(QString("%1 / %2   [ MusicBrainz %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n));
         }
     }
 

@@ -43,7 +43,6 @@ public:
     Track(Disc *disc, int index);
     Track(const Track &other) = default;
     Track &operator=(const Track &other) = default;
-    Track(Disc *disc, int index, const TrackTags &tags);
 
     ~Track() = default;
 
@@ -51,20 +50,14 @@ public:
     void                  setAudioFile(const InputAudioFile &file);
     QString               audioFileName() const { return mAudiofile.fileName(); }
 
-    const TrackTags &tags() const { return mTags; }
-    void             setTags(const TrackTags &tags);
+    QString tag(const TagId &tagId) const;
+    // QByteArray tagData(const TagId &tagId) const;
+    // TagValue   tagValue(TagId tagId) const;
+    void setTag(const TagId &tagId, const QString &value);
 
-    QString    tag(const TagId &tagId) const;
-    QByteArray tagData(const TagId &tagId) const;
-    TagValue   tagValue(TagId tagId) const;
-    void       setTag(const TagId &tagId, const QString &value);
-    void       setTag(const TagId &tagId, const QByteArray &value);
-    void       setTag(TagId tagId, const TagValue &value);
+    // void setTag(TagId tagId, const TagValue &value);
 
-    const TextCodec codec() const { return mTags.codec(); }
-    void            setCodec(const TextCodec &value);
-
-    bool operator==(const Track &other) const;
+    // bool operator==(const Track &other) const;
 
     QString artist() const { return tag(TagId::Artist); }
     void    setArtist(const QString &value) { setTag(TagId::Artist, value); }
@@ -103,7 +96,8 @@ public:
 
     Duration duration() const;
 
-    CueIndex cueIndex(int indexNum) const;
+    CueIndex cueIndex00() const;
+    CueIndex cueIndex01() const;
 
     Disc *disc() const { return mDisc; }
 
@@ -112,8 +106,7 @@ public:
     bool preEmphased() const;
 
 private:
-    Disc          *mDisc = nullptr;
-    TrackTags      mTags;
+    Disc          *mDisc  = nullptr;
     int            mIndex = -1;
     InputAudioFile mAudiofile;
 };

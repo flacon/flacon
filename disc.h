@@ -66,25 +66,30 @@ public:
     int  startTrackNum() const;
     void setStartTrackNum(TrackNum value);
 
-    QString codecName() const { return mCodecName; }
+    QString codecName() const;
     void    setCodecName(const QString &codecName);
 
-    QString tagSetTitle() const;
-    QString tagsUri() const;
+public:
     QString discId() const;
     DiscNum discNum() const;
     DiscNum discCount() const;
 
-    struct TagSet
-    {
-        QString uri;
-        QString name;
-    };
+public:
+    // QList<InternetTags> internetTags() const { return mInternetTags; }
 
-    QVector<TagSet> tagSets() const;
-    void            addTagSet(const Tracks &tags, bool activate);
-    void            addTagSets(const QVector<Tracks> &discs);
-    void            activateTagSet(const QString &uri);
+    QList<TagSet> tagSets() const;
+    TagSet        currentTagSet() const;
+
+    //  TagSet currentTagSet() const { return mCurrentTagSet; }
+    //  void setCurrentTagSet
+
+    // QString currentTagSetTitle() const;
+    // QString currentTagsUri() const;
+
+    // QVector<TagSet> tagSets() const;
+    // void addInternetTags(const Tracks &tags, bool activate);
+    void addInternetTags(const QVector<InternetTags> &tags);
+    void activateTagSet(const QString &uri);
 
     void searchCoverImage(bool replaceExisting = false);
 
@@ -93,10 +98,10 @@ public:
     QImage  coverImagePreview() const;
     QImage  coverImage() const;
 
-    QString    discTag(TagId tagId) const;
-    QByteArray discTagData(TagId tagId) const;
-    void       setDiscTag(TagId tagId, const QString &value);
-    void       setDiscTag(TagId tagId, const QByteArray &value);
+    QString discTag(TagId tagId) const;
+    // QByteArray discTagData(TagId tagId) const;
+    // void       setDiscTag(TagId tagId, const QString &value);
+    // void       setDiscTag(TagId tagId, const QByteArray &value);
 
     static QStringList searchCoverImages(const QString &startDir);
     static QString     searchCoverImage(const QString &startDir);
@@ -115,12 +120,25 @@ protected:
 
     Duration trackDuration(const Track &track) const;
 
-private:
-    QHash<QString, Tracks> mTagSets;
+    QString trackTag(int trackIndex, TagId tagId);
+    void    setTrackTag(int trackIndex, TagId tagId, const QString &value);
 
+    CueIndex trackCueIndex00(int trackIndex);
+    CueIndex trackCueIndex01(int trackIndex);
+
+private:
     QList<Track *> mTracks;
     Cue            mCue;
-    QString        mCurrentTagsUri;
+    Tags           mCueUserTags;
+    TextCodec      mTextCodec;
+
+    QList<InternetTags> mInternetTags;
+    int                 mInternetTagsIndex = -1;
+
+    // QList<TagSet>               mTagSets;
+    //  TagSet              mCurrentTagset;
+
+    // QString mCurrentTagsUri;
 
     InputAudioFile mAudioFile;
     mutable Track  mPreGapTrack;
@@ -128,13 +146,9 @@ private:
     QString        mCoverImageFile;
     mutable QImage mCoverImagePreview;
 
-    DiskState mState     = DiskState::NotRunning;
-    QString   mCodecName = CODEC_AUTODETECT;
+    DiskState mState = DiskState::NotRunning;
 
-    void syncTagsFromTracks();
-    void syncTagsToTracks();
-
-    int  distance(const Tracks &other);
+    int  distance(const Tags &other);
     bool isSameTagValue(TagId tagId);
 };
 

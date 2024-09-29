@@ -28,6 +28,7 @@
 
 #include <QString>
 #include <QList>
+#include <QMap>
 #include "types.h"
 #include "tags.h"
 
@@ -37,11 +38,24 @@ class InputAudioFile;
 class Cue
 {
 public:
+    struct Track
+    {
+        CueIndex cueIndex00;
+        CueIndex cueIndex01;
+        int      trackNum   = 0;
+        int      trackCount = 0;
+
+        QMap<TagId, QByteArray> tags;
+    };
+
+public:
     static constexpr const char *const EMBEDED_PREFIX = "embedded://";
 
 public:
-    Cue() = default;
+    Cue()                 = default;
+    Cue(const Cue &other) = default;
     explicit Cue(const QString &fileName) noexcept(false);
+    Cue &operator=(const Cue &other) = default;
 
     QString     title() const { return mTitle; }
     QString     filePath() const { return mFilePath; }
@@ -49,25 +63,32 @@ public:
     DiscNum     discNum() const { return mDiscNum; }
     QStringList fileTags() const { return mFileTags; }
 
+    int  trackCount() const { return mTracks.count(); }
     bool isEmpty() const { return mTracks.isEmpty(); }
-    bool isMutiplyAudio() const;
+    bool isMutiplyAudio() const { return mMutiplyAudio; }
     bool isEmbedded() const { return mFilePath.startsWith(EMBEDED_PREFIX); }
 
-    const DiskTags  &tracks() const { return mTracks; }
-    const TrackTags &track(uint index) const { return mTracks.at(index); }
+    QList<Track> tracks() const { return mTracks; }
+
+    TextCodec detectTextCodec() const;
+
+    TextCodec::BomCodec bom() const { return mBom; }
 
 protected:
-    DiskTags    mTracks;
-    QString     mFilePath;
-    DiscNum     mDiscCount = 0;
-    DiscNum     mDiscNum   = 0;
-    QString     mTitle;
-    QStringList mFileTags;
+    QString      mFilePath;
+    DiscNum      mDiscCount = 0;
+    DiscNum      mDiscNum   = 0;
+    QString      mTitle;
+    QList<Track> mTracks;
+    QStringList  mFileTags;
+    bool         mMutiplyAudio = false;
+
+    TextCodec::BomCodec mBom = TextCodec::BomCodec::Unknown;
 
     void       read(const CueData &data);
     QByteArray getAlbumPerformer(const CueData &data);
     void       splitTitleTag(const CueData &data);
-    void       setCodecName(const CueData &data);
+    void       splitTitle(Track *track, char separator);
     void       validate();
 };
 

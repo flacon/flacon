@@ -30,7 +30,7 @@
 #include <QList>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
-#include "track.h"
+#include "tags.h"
 
 class Disc;
 class QNetworkAccessManager;
@@ -52,14 +52,14 @@ public:
     bool isFinished() const;
 
 signals:
-    void finished(const QVector<Tracks> &result);
+    void finished(const QVector<InternetTags> &result);
     void errorOccurred(const QString &err);
 
 private:
     QList<InterntService *> mServices;
-    QVector<Tracks>         mResult;
+    QVector<InternetTags>   mResult;
 
-    void serviceFinished(const QVector<Tracks> &result);
+    void serviceFinished(const QVector<InternetTags> &result);
 };
 
 class InterntService : public QObject
@@ -74,12 +74,12 @@ public:
     virtual void stop();
 
 signals:
-    void finished(const QVector<Tracks> result);
+    void finished(const QVector<InternetTags> result);
     void errorOccurred(const QString &err);
 
 protected:
     const Disc            &mDisk;
-    QVector<Tracks>        mResult;
+    QVector<InternetTags>  mResult;
     QList<QNetworkReply *> mReplies;
 
     QNetworkAccessManager *networkAccessManager() const;
