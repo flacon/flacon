@@ -25,70 +25,7 @@
 
 #include "types.h"
 #include "tags.h"
-
 #include <QDebug>
-
-#include <QLoggingCategory>
-
-namespace {
-Q_LOGGING_CATEGORY(LOG, "TAGS")
-}
-
-/************************************************
- *
- ************************************************/
-TagValue::TagValue(const QString &value) :
-    mValue(value.toUtf8()),
-    mEncoded(true)
-{
-}
-
-/************************************************
- *
- ************************************************/
-QString TagValue::asString(const TextCodec &codec) const
-{
-    if (mEncoded)
-        return QString::fromUtf8(mValue);
-
-    // assert(codec != nullptr);
-    if (codec.isValid()) {
-        try {
-            return codec.decode(mValue);
-        }
-        catch (const FlaconError &err) {
-            qCWarning(LOG) << "Unable to convert text for" << codec.name() << ":" << err.what();
-        }
-    }
-
-    return QString::fromUtf8(mValue);
-}
-
-/************************************************
- *
- ************************************************/
-void TagValue::setValue(const QByteArray &value)
-{
-    mValue   = value;
-    mEncoded = false;
-}
-
-/************************************************
- *
- ************************************************/
-void TagValue::setValue(const QString &value)
-{
-    mValue   = value.toUtf8();
-    mEncoded = true;
-}
-
-/************************************************
- *
- ************************************************/
-bool TagValue::operator==(const TagValue &other) const
-{
-    return this->mEncoded == other.mEncoded && this->mValue == other.mValue;
-}
 
 /************************************************
  *

@@ -111,28 +111,7 @@ private:
     InputAudioFile mAudiofile;
 };
 
-class Tracks : public QVector<Track>
-{
-public:
-    Tracks();
-    explicit Tracks(int size);
-    explicit Tracks(const QList<Track *> &other);
-    Tracks(const Tracks &other);
-    Tracks &operator=(const Tracks &other);
-    virtual ~Tracks();
-
-    QString uri() const { return mUri; }
-    void    setUri(const QString &value) { mUri = value; }
-
-    QString title() const;
-    void    setTitle(const QByteArray &value);
-    void    setTitle(const QString &value);
-
-private:
-    QString  mUri;
-    TagValue mTitle;
-};
-
+using Tracks       = QVector<Track>;
 using TrackPtrList = QList<Track *>;
 
 QDebug operator<<(QDebug debug, const Track &track);

@@ -30,7 +30,7 @@
 #include <QList>
 #include <QMap>
 #include "types.h"
-#include "tags.h"
+#include "textcodec.h"
 
 class CueData;
 class InputAudioFile;

@@ -31,7 +31,6 @@
 #include <QString>
 #include <QMap>
 #include <QVector>
-#include "textcodec.h"
 
 struct TagSet
 {
@@ -85,38 +84,6 @@ public:
 
 private:
     QVector<QMap<TagId, QByteArray>> mTrackTags;
-};
-
-class TagValue
-{
-public:
-    TagValue() :
-        mEncoded(false)
-    {
-    }
-
-    TagValue(const QByteArray &val, bool encoded) :
-        mValue(val),
-        mEncoded(encoded)
-    {
-    }
-
-    explicit TagValue(const QString &val);
-
-    bool    encoded() const { return mEncoded; }
-    QString asString(const TextCodec &codec) const;
-
-    const QByteArray &value() const { return mValue; }
-    void              setValue(const QByteArray &value);
-    void              setValue(const QString &value);
-
-    bool operator==(const TagValue &other) const;
-
-    bool isEmpty() const { return mValue.isEmpty(); }
-
-private:
-    QByteArray mValue;
-    bool       mEncoded;
 };
 
 #endif // TAGS_H

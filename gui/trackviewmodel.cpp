@@ -143,11 +143,11 @@ TrackViewModel::TrackViewModel(TrackView *parent) :
     connect(Project::instance(), &Project::discChanged,
             this, &TrackViewModel::discDataChanged);
 
-    connect(Project::instance(), &Project::layoutChanged,
-            [this]() { this->layoutChanged(); });
+    connect(Project::instance(), &Project::layoutChanged, this,
+            [this]() { emit this->layoutChanged(); });
 
-    connect(Project::instance(), &Project::afterRemoveDisc,
-            [this]() { this->layoutChanged(); });
+    connect(Project::instance(), &Project::afterRemoveDisc, this,
+            [this]() { emit this->layoutChanged(); });
 
     connect(Project::instance(), &Project::beforeRemoveDisc,
             this, &TrackViewModel::invalidateCache);
