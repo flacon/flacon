@@ -129,7 +129,7 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, const QVector<con
 
             Track pregapTrack = *firstTrack; // copy tags and all settings
             pregapTrack.setTag(TagId::TrackNum, QByteArray("0"));
-            pregapTrack.setTitle("(HTOA)");
+            pregapTrack.tags().setTitle("(HTOA)");
 
             ConvTrack track(pregapTrack);
             track.setPregap(true);

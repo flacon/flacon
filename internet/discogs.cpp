@@ -164,20 +164,20 @@ void Discogs::masterReady(QNetworkReply *reply)
 
     if (!skip) {
         InternetTags res;
-        int          n = -1;
+        res.tracks().resize(tracklist.count());
+
+        res.setDate(year > 0 ? QString::number(year) : "");
+        res.setAlbum(album);
+        res.setArtist(artist);
+        res.setGenre(genre);
+
+        int n = -1;
         for (const QJsonValue &t : tracklist) {
             n++;
 
-            res.setTrackTag(n, TagId::Date, year > 0 ? QString::number(year) : "");
-            res.setTrackTag(n, TagId::Album, album);
-            res.setTrackTag(n, TagId::Artist, artist);
-            res.setTrackTag(n, TagId::Title, t["title"].toString());
-            res.setTrackTag(n, TagId::Genre, genre);
-            res.setTrackTag(n, TagId::TrackNum, t["position"].toString());
-            res.setTrackTag(n, TagId::TrackCount, QString::number(tracklist.size()));
-
-            res.setAlbumTag(TagId::Artist, artist);
-            res.setTrackTag(n, TagId::SongWriter, artist);
+            InternetTags::Track &track = res.tracks()[n];
+            track.setTitle(t["title"].toString());
+            track.setTrackNum(t["position"].toInt());
         }
 
         mResult << res;

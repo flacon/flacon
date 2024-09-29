@@ -40,6 +40,41 @@ class Disc : public QObject
     friend class Track;
 
 public:
+    class Tags
+    {
+    public:
+        Tags(Disc *disk);
+
+        QString date() const { return mDate; }
+        void    setDate(const QString &value);
+
+        QString album() const { return mAlbum; }
+        void    setAlbum(const QString &value);
+
+        QString artist() const { return mArtist; }
+        void    setArtist(const QString &value);
+
+        QString genre() const { return mGenre; }
+        void    setGenre(const QString &value);
+
+        void initFromInternetTags(const InternetTags &tags);
+        void initFromCue(const Cue &cue, const TextCodec &textCodec);
+
+    private:
+        Disc *mDisk = nullptr;
+
+        QString mDate;
+        QString mAlbum;
+        QString mArtist;
+        QString mGenre;
+
+        bool mDateChanged   = false;
+        bool mAlbumChanged  = false;
+        bool mArtistChanged = false;
+        bool mGenreChanged  = false;
+    };
+
+public:
     explicit Disc(QObject *parent = nullptr);
     virtual ~Disc();
 
@@ -68,6 +103,9 @@ public:
 
     QString codecName() const;
     void    setCodecName(const QString &codecName);
+
+    const Tags &tags() const { return mTags; }
+    Tags       &tags() { return mTags; }
 
 public:
     QString discId() const;
@@ -116,8 +154,9 @@ protected:
 private:
     QList<Track *> mTracks;
     Cue            mCue;
-    Tags           mCueUserTags;
-    TextCodec      mTextCodec;
+    Tags           mTags;
+    // Tags           mCueUserTags;
+    TextCodec mTextCodec;
 
     QList<InternetTags> mInternetTags;
     int                 mInternetTagsIndex = -1;
@@ -130,8 +169,10 @@ private:
 
     DiskState mState = DiskState::NotRunning;
 
-    int  distance(const Tags &other);
+    int  distance(const InternetTags &other);
     bool isSameTagValue(TagId tagId);
+
+    void updateTags();
 };
 
 typedef QList<Disc *> DiscList;

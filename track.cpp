@@ -231,7 +231,57 @@ QDebug operator<<(QDebug debug, const Track &track)
                     << " diskId:" << track.discId()
                     << " Artist:" << track.artist()
                     << " Album:" << track.album()
-                    << " Title:" << track.title()
+                    << " Title:" << track.tags().title()
                     << "}";
     return debug;
+}
+
+/**************************************
+ * Track::Tags
+ **************************************/
+Track::Tags::Tags(Track *track) :
+    mTrack(track)
+{
+}
+
+QString Track::Tags::artist() const
+{
+    if (!mArtist.isNull()) {
+        return mArtist;
+    }
+
+    return mTrack->disc()->tags().artist();
+}
+
+QString Track::Tags::title() const
+{
+    return mTitle;
+}
+
+void Track::Tags::setTitle(const QString &value)
+{
+    mTitle        = value;
+    mTitleChanged = true;
+}
+
+void Track::Tags::setTrackNum(int value)
+{
+    mTrackNum        = value;
+    mTrackNumChanged = value;
+}
+
+void Track::Tags::initFromInternetTags(const InternetTags::Track &tags)
+{
+    // clang-format off
+    if (!mTitleChanged) mTitle    = tags.title();
+    if (!mTrackNum)     mTrackNum = tags.trackNum();
+    // clang-format on
+}
+
+void Track::Tags::initFromCue(const Cue::Track &cue, const TextCodec &textCodec)
+{
+    // clang-format off
+    if (!mTitleChanged) mTitle    = textCodec.decode(cue.title());
+    if (!mTrackNum)     mTrackNum = cue.trackNum;
+    // clang-format on
 }

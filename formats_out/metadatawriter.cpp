@@ -80,7 +80,7 @@ void MetadataWriter::setXiphTags(TagLib::Ogg::XiphComment *tags, const Track &tr
     setXiphTag(tags, "ALBUM", track.album());
     setXiphTag(tags, "GENRE", track.genre());
     setXiphTag(tags, "DATE", track.date());
-    setXiphTag(tags, "TITLE", track.title());
+    setXiphTag(tags, "TITLE", track.tags().title());
     setXiphTag(tags, "ALBUMARTIST", track.tag(TagId::AlbumArtist));
     setXiphTag(tags, "COMMENT", track.comment());
     setXiphTag(tags, "DISCID", track.discId());
@@ -155,7 +155,7 @@ void MetadataWriter::setApeTags(TagLib::APE::Tag *tags, const Track &track) cons
     writeStrTag("ALBUM", track.album());
     writeStrTag("GENRE", track.genre());
     writeStrTag("YEAR", track.date());
-    writeStrTag("TITLE", track.title());
+    writeStrTag("TITLE", track.tags().title());
     writeStrTag("ALBUM ARTIST", track.tag(TagId::AlbumArtist));
     writeStrTag("COMMENT", track.comment());
     writeStrTag("DISCID", track.discId());
@@ -251,7 +251,7 @@ void Mp4MetaDataWriter::setTags(const Track &track)
     writeStrTag("ALBUM", track.album());
     writeStrTag("GENRE", track.genre());
     writeStrTag("DATE", track.date());
-    writeStrTag("TITLE", track.title());
+    writeStrTag("TITLE", track.tags().title());
     writeStrTag("ALBUMARTIST", track.albumArtist());
     writeStrTag("COMMENT", track.comment());
     writeStrTag("TRACKNUMBER", QString("%1/%2").arg(track.trackNum()).arg(track.trackCount()));

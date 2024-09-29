@@ -31,6 +31,7 @@
 #include <QString>
 #include <QMap>
 #include <QVector>
+#include "cue.h"
 
 struct TagSet
 {
@@ -60,19 +61,19 @@ private:
     QVector<QMap<TagId, QString>> mTrackTags;
 };
 
-class InternetTags : public Tags
-{
-public:
-    QString uri() const { return mUri; }
-    QString name() const { return mName; }
+// class InternetTags : public Tags
+// {
+// public:
+//     QString uri() const { return mUri; }
+//     QString name() const { return mName; }
 
-    void setUri(const QString &value) { mUri = value; }
-    void setName(const QString &value) { mName = value; }
+//     void setUri(const QString &value) { mUri = value; }
+//     void setName(const QString &value) { mName = value; }
 
-private:
-    QString mUri;
-    QString mName;
-};
+// private:
+//     QString mUri;
+//     QString mName;
+// };
 
 class RawTags
 {
@@ -85,5 +86,150 @@ public:
 private:
     QVector<QMap<TagId, QByteArray>> mTrackTags;
 };
+
+/**************************************
+ * TrackTags
+ **************************************/
+class TrackTags
+{
+    friend class Track;
+    friend class Disc;
+
+public:
+    QString title() const { return mTitle; }
+
+    void setTitle(const QString &value)
+    {
+        mTitle        = value;
+        mTitleChanged = true;
+    }
+
+protected:
+    void initFromCue(const Cue::Track &cueTrack, const TextCodec &textCodec);
+
+private:
+    QString mTitle;
+    bool    mTitleChanged;
+};
+
+/**************************************
+ * InternetTags
+ **************************************/
+class InternetTags
+{
+public:
+    class Track
+    {
+    public:
+        QString title() const { return mTitle; }
+        void    setTitle(const QString &value) { mTitle = value; }
+
+        int  trackNum() const { return mTrackNum; }
+        void setTrackNum(int value) { mTrackNum = value; }
+
+        bool compareTags(const Track &other) const;
+
+    private:
+        QString mTitle;
+        int     mTrackNum = 0;
+    };
+
+public:
+    QString uri() const { return mUri; }
+    QString name() const { return mName; }
+
+    void setUri(const QString &value) { mUri = value; }
+    void setName(const QString &value) { mName = value; }
+
+    const QVector<Track> &tracks() const { return mTracks; }
+    QVector<Track>       &tracks() { return mTracks; }
+
+    bool isEmpty() const { return mTracks.isEmpty(); }
+
+    QString date() const { return mDate; }
+    void    setDate(const QString &value) { mDate = value; }
+
+    QString album() const { return mAlbum; }
+    void    setAlbum(const QString &value) { mAlbum = value; }
+
+    QString artist() const { return mArtist; }
+    void    setArtist(const QString &value) { mArtist = value; }
+
+    QString genre() const { return mGenre; }
+    void    setGenre(const QString &value) { mGenre = value; }
+
+    // QString songWriter() const { return mSongWriter; }
+    // void    setSongWriter(const QString &value) { mSongWriter = value; }
+
+    bool compareTags(const InternetTags &other) const;
+
+private:
+    QString        mUri;
+    QString        mName;
+    QVector<Track> mTracks;
+
+    QString mDate;
+    QString mAlbum;
+    QString mArtist;
+    QString mGenre;
+    //  QString mSongWriter;
+};
+
+// /**************************************
+//  * DiskTags
+//  **************************************/
+// class DiskTags
+// {
+// public:
+//     class Track
+//     {
+//     public:
+//         QString title() const { return mTitle; }
+//         void    setTitle(const QString &value);
+
+//         int  trackNum() const { return mTrackNum; }
+//         void setTrackNum(int value);
+
+//         void initFromInternetTags(const InternetTags::Track &tags);
+
+//     private:
+//         QString mTitle;
+//         int     mTrackNum = 0;
+
+//         bool mTitleChanged    = false;
+//         bool mTrackNumChanged = false;
+//     };
+
+// public:
+//     const QVector<Track> &tracks() const { return mTracks; }
+//     QVector<Track>       &tracks() { return mTracks; }
+
+//     QString date() const { return mDate; }
+//     void    setDate(const QString &value);
+
+//     QString album() const { return mAlbum; }
+//     void    setAlbum(const QString &value);
+
+//     QString artist() const { return mArtist; }
+//     void    setArtist(const QString &value);
+
+//     QString genre() const { return mGenre; }
+//     void    setGenre(const QString &value);
+
+//     void initFromInternetTags(const InternetTags &tags);
+
+// private:
+//     QVector<Track> mTracks;
+
+//     QString mDate;
+//     QString mAlbum;
+//     QString mArtist;
+//     QString mGenre;
+
+//     bool mDateChanged   = false;
+//     bool mAlbumChanged  = false;
+//     bool mArtistChanged = false;
+//     bool mGenreChanged  = false;
+// };
 
 #endif // TAGS_H

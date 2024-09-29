@@ -86,8 +86,8 @@ void Mp3MetaDataWriter::setTags(const Track &track)
     if (!track.genre().isEmpty())
         tags->setGenre(TagLib::String(track.genre().toUtf8().data(), TagLib::String::UTF8));
 
-    if (!track.title().isEmpty())
-        tags->setTitle(TagLib::String(track.title().toUtf8().data(), TagLib::String::UTF8));
+    if (!track.tags().title().isEmpty())
+        tags->setTitle(TagLib::String(track.tags().title().toUtf8().data(), TagLib::String::UTF8));
 
     if (!track.comment().isEmpty())
         tags->setComment(TagLib::String(track.comment().toUtf8().data(), TagLib::String::UTF8));

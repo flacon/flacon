@@ -302,7 +302,7 @@ bool TrackViewModel::setData(const QModelIndex &index, const QVariant &value, in
     foreach (Track *track, tracks) {
         switch (index.column()) {
             case TrackView::ColumnTitle:
-                track->setTitle(value.toString());
+                track->tags().setTitle(value.toString());
                 break;
 
             case TrackView::ColumnArtist:
@@ -330,28 +330,17 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
 {
     // Display & Edit :::::::::::::::::::::::::::::::::::
     if (role == Qt::DisplayRole || role == Qt::EditRole) {
+        // clang-format off
         switch (index.column()) {
-            case TrackView::ColumnTracknum:
-                return QVariant(QString("%1").arg(track->trackNum(), 2, 10, QChar('0')));
-
-            case TrackView::ColumnDuration:
-                return QVariant(trackDurationToString(track->duration()) + " ");
-
-            case TrackView::ColumnTitle:
-                return QVariant(track->title());
-
-            case TrackView::ColumnArtist:
-                return QVariant(track->artist());
-
-            case TrackView::ColumnAlbum:
-                return QVariant(track->album());
-
-            case TrackView::ColumnComment:
-                return QVariant(track->comment());
-
-            case TrackView::ColumnFileName:
-                return QVariant(Project::instance()->profile()->resultFileName(track));
+            case TrackView::ColumnTracknum: return QVariant(QString("%1").arg(track->trackNum(), 2, 10, QChar('0')));
+            case TrackView::ColumnDuration: return QVariant(trackDurationToString(track->duration()) + " ");
+            case TrackView::ColumnTitle:    return QVariant(track->tags().title());
+            case TrackView::ColumnArtist:   return QVariant(track->tags().artist());
+            case TrackView::ColumnAlbum:    return QVariant(track->album());
+            case TrackView::ColumnComment:  return QVariant(track->comment());
+            case TrackView::ColumnFileName: return QVariant(Project::instance()->profile()->resultFileName(track));
         }
+        // clang-format on
 
         return QVariant();
     }
@@ -389,7 +378,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
         case RoleDuration:
             return track->duration();
         case RoleTitle:
-            return track->title();
+            return track->tags().title();
         case RoleArtist:
             return track->tag(TagId::AlbumArtist);
         case RoleAlbum:
@@ -420,7 +409,7 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
         switch (index.column()) {
             case TrackView::ColumnTitle:
                 for (int i = 0; i < disc->count(); ++i)
-                    values << disc->track(i)->title();
+                    values << disc->track(i)->tags().title();
                 break;
 
             case TrackView::ColumnArtist:

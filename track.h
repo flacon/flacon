@@ -39,6 +39,35 @@ class Track
     friend class Disc;
 
 public:
+    class Tags
+    {
+    public:
+        Tags(Track *track);
+
+        QString artist() const;
+        void    setArtist(const QString &value);
+
+        QString title() const; // { return mTitle; }
+        void    setTitle(const QString &value);
+
+        int  trackNum() const { return mTrackNum; }
+        void setTrackNum(int value);
+
+        void initFromInternetTags(const InternetTags::Track &tags);
+        void initFromCue(const Cue::Track &cue, const TextCodec &textCodec);
+
+    private:
+        Track *mTrack = nullptr;
+
+        QString mArtist;
+        QString mTitle;
+        int     mTrackNum = 0;
+
+        bool mTitleChanged    = false;
+        bool mTrackNumChanged = false;
+    };
+
+public:
     Track() = default;
     Track(Disc *disc, int index);
     Track(const Track &other) = default;
@@ -71,8 +100,8 @@ public:
     QString comment() const { return tag(TagId::Comment); }
     void    setComment(const QString &value) { setTag(TagId::Comment, value); }
 
-    QString title() const { return tag(TagId::Title); }
-    void    setTitle(const QString &value) { setTag(TagId::Title, value); }
+    // QString title() const { return tag(TagId::Title); }
+    // void    setTitle(const QString &value) { setTag(TagId::Title, value); }
 
     QString genre() const { return tag(TagId::Genre); }
     void    setGenre(const QString &value) { setTag(TagId::Genre, value); }
@@ -105,9 +134,14 @@ public:
 
     bool preEmphased() const;
 
+    const Tags &tags() const { return mTags; }
+    Tags       &tags() { return mTags; }
+
 private:
-    Disc          *mDisc  = nullptr;
-    int            mIndex = -1;
+    Disc *mDisc  = nullptr;
+    int   mIndex = -1;
+    Tags  mTags  = Tags(this);
+
     InputAudioFile mAudiofile;
 };
 

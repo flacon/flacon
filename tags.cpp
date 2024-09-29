@@ -130,3 +130,104 @@ bool RawTags::containsTrackTag(int trackIndex, TagId tagId) const
 
     return false;
 }
+
+void TrackTags::initFromCue(const Cue::Track &cueTrack, const TextCodec &textCodec)
+{
+    if (!mTitleChanged) {
+        mTitle = textCodec.decode(cueTrack.tags.value(TagId::Title));
+    }
+}
+
+bool InternetTags::Track::compareTags(const Track &other) const
+{
+    bool res = true;
+
+    res = res && title() == other.title();
+    res = res && trackNum() == other.trackNum();
+
+    return res;
+}
+
+bool InternetTags::compareTags(const InternetTags &other) const
+{
+    bool res = true;
+
+    res = res && date() == other.date();
+    res = res && album() == other.album();
+    res = res && artist() == other.artist();
+    res = res && genre() == other.genre();
+
+    res = res && tracks().count() == other.tracks().count();
+
+    int n = -1;
+    for (const Track &t : tracks()) {
+        n++;
+
+        res = res && t.compareTags(other.tracks().at(n));
+    }
+
+    return res;
+}
+
+// /**************************************
+//  * DiskTags
+//  **************************************/
+// void DiskTags::setDate(const QString &value)
+// {
+//     mDate        = value;
+//     mDateChanged = true;
+// }
+
+// void DiskTags::setAlbum(const QString &value)
+// {
+//     mAlbum        = value;
+//     mAlbumChanged = true;
+// }
+
+// void DiskTags::setArtist(const QString &value)
+// {
+//     mArtist        = value;
+//     mArtistChanged = true;
+// }
+
+// void DiskTags::setGenre(const QString &value)
+// {
+//     mGenre        = value;
+//     mGenreChanged = true;
+// }
+
+// void DiskTags::initFromInternetTags(const InternetTags &tags)
+// {
+//     // clang-format off
+//     if (!mAlbumChanged)  mAlbum = tags.album();
+//     // clang-format on
+
+//     int n = -1;
+//     for (Track &track : mTracks) {
+//         n++;
+//         track.initFromInternetTags(tags.tracks().at(n));
+//     }
+// }
+
+// /**************************************
+//  * DiskTags::Track
+//  **************************************/
+// void DiskTags::Track::setTitle(const QString &value)
+// {
+//     mTitle        = value;
+//     mTitleChanged = true;
+// }
+
+// void DiskTags::Track::setTrackNum(int value)
+// {
+//     mTrackNum        = value;
+//     mTrackNumChanged = value;
+// }
+
+// void DiskTags::Track::initFromInternetTags(const InternetTags::Track &tags)
+// {
+//     // clang-format off
+//     if (!mTitleChanged) mTitle    = tags.title();
+//     if (!mTrackNum)     mTrackNum = tags.trackNum();
+//     // clang-format on
+// }

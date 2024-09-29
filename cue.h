@@ -46,6 +46,8 @@ public:
         int      trackCount = 0;
 
         QMap<TagId, QByteArray> tags;
+
+        QByteArray title() const { return tags.value(TagId::Title); }
     };
 
 public:
@@ -69,6 +71,8 @@ public:
     bool isEmbedded() const { return mFilePath.startsWith(EMBEDED_PREFIX); }
 
     QList<Track> tracks() const { return mTracks; }
+
+    QByteArray album() const { return "QWERTY"; }
 
     TextCodec detectTextCodec() const;
 

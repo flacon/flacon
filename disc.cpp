@@ -61,7 +61,8 @@ static TagSet toTagSet(const InternetTags &tags)
 
  ************************************************/
 Disc::Disc(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    mTags(this)
 {
 }
 
@@ -110,7 +111,7 @@ const Track *Disc::preGapTrack() const
     }
 
     mPreGapTrack.setTag(TagId::TrackNum, QByteArray("0"));
-    mPreGapTrack.setTitle("(HTOA)");
+    mPreGapTrack.tags().setTitle("(HTOA)");
     return &mPreGapTrack;
 }
 
@@ -135,11 +136,9 @@ void Disc::setCue(const Cue &cue)
 
     InputAudioFileList audioFiles = this->audioFiles();
 
-    mCueUserTags.resize(cue.trackCount());
-
     // Remove all tags if number of tracks differ from loaded CUE.
     for (int i = mInternetTags.size() - 1; i >= 0; i--) {
-        if (mInternetTags.at(i).trackCount() != cue.trackCount()) {
+        if (mInternetTags.at(i).tracks().count() != cue.trackCount()) {
             mInternetTags.removeAt(i);
         }
     }
@@ -162,6 +161,8 @@ void Disc::setCue(const Cue &cue)
         }
     }
 
+    updateTags();
+
     Project::instance()->emitLayoutChanged();
     emit revalidateRequested();
 }
@@ -169,7 +170,7 @@ void Disc::setCue(const Cue &cue)
 /************************************************
  *
  ************************************************/
-int Disc::distance(const Tags &other)
+int Disc::distance(const InternetTags &other)
 {
     if (mTracks.isEmpty() || other.isEmpty()) {
         return std::numeric_limits<int>::max();
@@ -178,11 +179,11 @@ int Disc::distance(const Tags &other)
     int res = 0;
 
     QString str1 = mTracks.first()->artist().toUpper().replace("THE ", "");
-    QString str2 = other.albumTag(TagId::Artist).toUpper().replace("THE ", "");
+    QString str2 = other.artist().toUpper().replace("THE ", "");
     res += levenshteinDistance(str1, str2) * 3;
 
     str1 = mTracks.first()->album().toUpper().replace("THE ", "");
-    str2 = other.albumTag(TagId::Album).toUpper().replace("THE ", "");
+    str2 = other.album().toUpper().replace("THE ", "");
     res += levenshteinDistance(str1, str2);
 
     return res;
@@ -205,6 +206,20 @@ bool Disc::isSameTagValue(TagId tagId)
     }
 
     return true;
+}
+
+/************************************************
+
+ ************************************************/
+void Disc::updateTags()
+{
+    mTags.initFromCue(mCue, mTextCodec);
+
+    int n = -1;
+    for (Track *t : mTracks) {
+        n++;
+        t->tags().initFromCue(mCue.tracks().at(n), mTextCodec);
+    }
 }
 
 /************************************************
@@ -369,6 +384,7 @@ void Disc::setCodecName(const QString &codecName)
         mTextCodec = TextCodec::codecForName(codecName);
     }
 
+    updateTags();
     Project::instance()->emitDiscChanged(this);
 }
 
@@ -464,7 +480,7 @@ void Disc::addInternetTags(const QVector<InternetTags> &tags)
     int bestDisc = 0;
     for (int i = 0; i < tags.count(); ++i) {
         const InternetTags &t = tags.at(i);
-        if (t.trackCount() < mTracks.count()) {
+        if (t.tracks().count() < mTracks.count()) {
             continue;
         }
 
@@ -738,25 +754,26 @@ Duration Disc::trackDuration(const Track &track) const
 
 QString Disc::trackTag(int trackIndex, TagId tagId)
 {
-    if (mInternetTagsIndex > -1) {
-        return mInternetTags[mInternetTagsIndex].trackTag(trackIndex, tagId);
-    }
+    return "";
+    // if (mInternetTagsIndex > -1) {
+    //     return mInternetTags[mInternetTagsIndex].trackTag(trackIndex, tagId);
+    // }
 
-    if (mCueUserTags.containsTrackTag(trackIndex, tagId)) {
-        return mCueUserTags.trackTag(trackIndex, tagId);
-    }
+    // if (mCueUserTags.containsTrackTag(trackIndex, tagId)) {
+    //     return mCueUserTags.trackTag(trackIndex, tagId);
+    // }
 
-    return mTextCodec.decode(mCue.tracks().at(trackIndex).tags.value(tagId));
+    // return mTextCodec.decode(mCue.tracks().at(trackIndex).tags.value(tagId));
 }
 
 void Disc::setTrackTag(int trackIndex, TagId tagId, const QString &value)
 {
-    if (mInternetTagsIndex > -1) {
-        mInternetTags[mInternetTagsIndex].setTrackTag(trackIndex, tagId, value);
-        return;
-    }
+    // if (mInternetTagsIndex > -1) {
+    //     mInternetTags[mInternetTagsIndex].setTrackTag(trackIndex, tagId, value);
+    //     return;
+    // }
 
-    mCueUserTags.setTrackTag(trackIndex, tagId, value);
+    // mCueUserTags.setTrackTag(trackIndex, tagId, value);
 }
 
 CueIndex Disc::trackCueIndex00(int trackIndex)
@@ -767,4 +784,50 @@ CueIndex Disc::trackCueIndex00(int trackIndex)
 CueIndex Disc::trackCueIndex01(int trackIndex)
 {
     return mCue.tracks().at(trackIndex).cueIndex01;
+}
+
+/**************************************
+ * Disc::Tags
+ **************************************/
+Disc::Tags::Tags(Disc *disk) :
+    mDisk(disk)
+{
+}
+
+void Disc::Tags::setDate(const QString &value)
+{
+    mDate        = value;
+    mDateChanged = true;
+}
+
+void Disc::Tags::setAlbum(const QString &value)
+{
+    mAlbum        = value;
+    mAlbumChanged = true;
+}
+
+void Disc::Tags::setArtist(const QString &value)
+{
+    mArtist        = value;
+    mArtistChanged = true;
+}
+
+void Disc::Tags::setGenre(const QString &value)
+{
+    mGenre        = value;
+    mGenreChanged = true;
+}
+
+void Disc::Tags::initFromInternetTags(const InternetTags &tags)
+{
+    // clang-format off
+    if (!mAlbumChanged)  mAlbum = tags.album();
+    // clang-format on
+}
+
+void Disc::Tags::initFromCue(const Cue &cue, const TextCodec &textCodec)
+{
+    // clang-format off
+    if (!mAlbumChanged)  mAlbum = textCodec.decode(cue.album());
+    // clang-format on
 }

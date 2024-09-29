@@ -251,7 +251,7 @@ static QString getDate(const QJsonValue &track)
 InternetTags MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QString &album)
 {
     InternetTags res;
-    res.resize(tracks.count());
+    res.tracks().resize(tracks.count());
 
     int n = -1;
     for (const QJsonValue &t : tracks) {
@@ -268,17 +268,15 @@ InternetTags MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QStrin
         }
 
         QString artist = t["artist-credit"][0]["name"].toString();
+        res.setDate(getDate(t));
+        res.setAlbum(album);
+        res.setArtist(artist);
+        res.setGenre(getGenre(t));
 
-        res.setTrackTag(n, TagId::Date, getDate(t));
-        res.setTrackTag(n, TagId::Album, album);
-        res.setTrackTag(n, TagId::Artist, artist);
-        res.setTrackTag(n, TagId::Title, trackTitle);
-        res.setTrackTag(n, TagId::Genre, getGenre(t));
-        res.setTrackTag(n, TagId::TrackNum, QString::number(n));
-        res.setTrackTag(n, TagId::TrackCount, QString::number(tracks.size()));
+        InternetTags::Track &track = res.tracks()[n];
 
-        res.setAlbumTag(TagId::Artist, artist);
-        res.setTrackTag(n, TagId::SongWriter, artist);
+        track.setTitle(trackTitle);
+        track.setTrackNum(n);
     }
 
     return res;
