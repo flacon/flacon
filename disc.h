@@ -75,19 +75,9 @@ public:
     DiscNum discCount() const;
 
 public:
-    // QList<InternetTags> internetTags() const { return mInternetTags; }
-
     QList<TagSet> tagSets() const;
     TagSet        currentTagSet() const;
 
-    //  TagSet currentTagSet() const { return mCurrentTagSet; }
-    //  void setCurrentTagSet
-
-    // QString currentTagSetTitle() const;
-    // QString currentTagsUri() const;
-
-    // QVector<TagSet> tagSets() const;
-    // void addInternetTags(const Tracks &tags, bool activate);
     void addInternetTags(const QVector<InternetTags> &tags);
     void activateTagSet(const QString &uri);
 
@@ -99,9 +89,6 @@ public:
     QImage  coverImage() const;
 
     QString discTag(TagId tagId) const;
-    // QByteArray discTagData(TagId tagId) const;
-    // void       setDiscTag(TagId tagId, const QString &value);
-    // void       setDiscTag(TagId tagId, const QByteArray &value);
 
     static QStringList searchCoverImages(const QString &startDir);
     static QString     searchCoverImage(const QString &startDir);
@@ -134,11 +121,6 @@ private:
 
     QList<InternetTags> mInternetTags;
     int                 mInternetTagsIndex = -1;
-
-    // QList<TagSet>               mTagSets;
-    //  TagSet              mCurrentTagset;
-
-    // QString mCurrentTagsUri;
 
     InputAudioFile mAudioFile;
     mutable Track  mPreGapTrack;

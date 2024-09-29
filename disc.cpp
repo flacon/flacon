@@ -373,19 +373,6 @@ void Disc::setCodecName(const QString &codecName)
 }
 
 /************************************************
-
- ************************************************/
-// QString Disc::tagSetTitle() const
-// {
-//     if (mCurrentTagsUri.isEmpty())
-//         return "";
-
-//     return "";
-//     // const_cast<Disc *>(this)->syncTagsFromTracks();
-//     // return mTagSets[mCurrentTagsUri].title();
-// }
-
-/************************************************
  *
  ************************************************/
 QString Disc::discId() const
@@ -444,21 +431,6 @@ TagSet Disc::currentTagSet() const
 
     return toTagSet(mInternetTags[mInternetTagsIndex]);
 }
-
-/************************************************
- *
- ************************************************/
-// void Disc::addTagSet(const Tracks &tags, bool activate)
-//{
-// mInternetTagss[tags.uri()] = tags;
-//  // Sometimes CDDB response contains an additional
-//  // DATA track. For example
-//  // http://freedb.freedb.org/~cddb/cddb.cgi?cmd=CDDB+READ+rock+A20FA70C&hello=a+127.0.0.1+f+0&proto=5
-//  mTagSets[tags.uri()].resize(mTracks.count());
-
-// if (activate)
-//     activateTagSet(tags.uri());
-//}
 
 /************************************************
  *
@@ -557,27 +529,7 @@ QString Disc::discTag(TagId tagId) const
 /************************************************
  *
  ************************************************/
-// QByteArray Disc::discTagData(TagId tagId) const
-// {
-//     if (isEmpty())
-//         return QByteArray();
-
-//     return mTracks.first()->tagData(tagId);
-// }
-
-/************************************************
- *
- ************************************************/
 // void Disc::setDiscTag(TagId tagId, const QString &value)
-// {
-//     foreach (auto track, mTracks)
-//         track->setTag(tagId, value);
-// }
-
-/************************************************
- *
- ************************************************/
-// void Disc::setDiscTag(TagId tagId, const QByteArray &value)
 // {
 //     foreach (auto track, mTracks)
 //         track->setTag(tagId, value);
@@ -786,6 +738,10 @@ Duration Disc::trackDuration(const Track &track) const
 
 QString Disc::trackTag(int trackIndex, TagId tagId)
 {
+    if (mInternetTagsIndex > -1) {
+        return mInternetTags[mInternetTagsIndex].trackTag(trackIndex, tagId);
+    }
+
     if (mCueUserTags.containsTrackTag(trackIndex, tagId)) {
         return mCueUserTags.trackTag(trackIndex, tagId);
     }
@@ -795,6 +751,11 @@ QString Disc::trackTag(int trackIndex, TagId tagId)
 
 void Disc::setTrackTag(int trackIndex, TagId tagId, const QString &value)
 {
+    if (mInternetTagsIndex > -1) {
+        mInternetTags[mInternetTagsIndex].setTrackTag(trackIndex, tagId, value);
+        return;
+    }
+
     mCueUserTags.setTrackTag(trackIndex, tagId, value);
 }
 
