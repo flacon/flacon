@@ -26,262 +26,315 @@
 #include "track.h"
 #include "disc.h"
 
-/************************************************
-
-************************************************/
+/**************************************
+ *
+ **************************************/
 Track::Track(Disc *disc, int index) :
     mDisc(disc),
     mIndex(index)
 {
 }
 
-/************************************************
-
- ************************************************/
+/**************************************
+ *
+ **************************************/
 void Track::setAudioFile(const InputAudioFile &file)
 {
     mAudiofile = file;
 }
 
-/************************************************
+/**************************************
  *
- ************************************************/
-QString Track::tag(const TagId &tagId) const
-{
-    return mDisc->trackTag(mIndex, tagId);
-}
-
-/************************************************
- *
- ************************************************/
-// QByteArray Track::tagData(const TagId &tagId) const
-// {
-//     return mTags.tagData(tagId);
-// }
-
-/************************************************
- *
- ************************************************/
-// TagValue Track::tagValue(TagId tagId) const
-// {
-//     return mTags.tagValue(tagId);
-// }
-
-/************************************************
- *
- ************************************************/
-void Track::setTag(const TagId &tagId, const QString &value)
-{
-    mDisc->setTrackTag(mIndex, tagId, value);
-}
-
-/************************************************
- *
- ************************************************/
-// void Track::setTag(TagId tagId, const TagValue &value)
-// {
-//     mTags.setTag(tagId, value);
-//     if (mDisc) {
-//         mDisc->trackChanged(tagId);
-//     }
-// }
-
-/************************************************
- *
- ************************************************/
-// bool Track::operator==(const Track &other) const
-// {
-//     // clang-format off
-//     return
-//         mDisc           == other.mDisc &&
-//         mAudiofile      == other.mAudiofile &&
-//         mTags           == other.mTags;
-//     // clang-format on
-// }
-
-/************************************************
- *
- ************************************************/
-TrackNum Track::trackNum() const
-{
-    bool ok;
-    int  res = tag(TagId::TrackNum).toInt(&ok);
-
-    if (ok)
-        return res;
-
-    return 1;
-}
-
-/************************************************
- *
- ************************************************/
-void Track::setTrackNum(TrackNum value)
-{
-    setTag(TagId::TrackNum, QString::number(value));
-}
-
-/************************************************
- *
- ************************************************/
-TrackNum Track::trackCount() const
-{
-    bool ok;
-    int  res = tag(TagId::TrackCount).toInt(&ok);
-
-    if (ok)
-        return res;
-
-    return 1;
-}
-
-/************************************************
- *
- ************************************************/
-void Track::setTrackCount(TrackNum value)
-{
-    setTag(TagId::TrackCount, QString::number(value));
-}
-
-/************************************************
- *
- ************************************************/
-DiscNum Track::discNum() const
-{
-    bool ok;
-    int  res = tag(TagId::DiscNum).toInt(&ok);
-
-    if (ok)
-        return res;
-
-    return 1;
-}
-
-/************************************************
- *
- ************************************************/
-void Track::setDiscNum(DiscNum value)
-{
-    setTag(TagId::DiscNum, QString::number(value));
-}
-
-/************************************************
- *
- ************************************************/
-DiscNum Track::discCount() const
-{
-    bool ok;
-    int  res = tag(TagId::DiscCount).toInt(&ok);
-
-    if (ok)
-        return res;
-
-    return 1;
-}
-
-/************************************************
- *
- ************************************************/
-void Track::setDiscCount(DiscNum value)
-{
-    setTag(TagId::DiscCount, QString::number(value));
-}
-
-/************************************************
- *
- ************************************************/
+ **************************************/
 Duration Track::duration() const
 {
-    return mDisc ? mDisc->trackDuration(*this) : 0;
-}
+    Cue::Track cur  = mDisc->cue().tracks().at(index());
+    Cue::Track next = (index() < mDisc->tracks().count() - 1) ? mDisc->cue().tracks().at(index() + 1) : Cue::Track();
 
-/************************************************
- *
- ************************************************/
-CueIndex Track::cueIndex00() const
-{
-    return mDisc->trackCueIndex00(mIndex);
-}
+    Duration trackLen = 0;
+    if (cur.cueIndex01().file() != next.cueIndex00().file()) {
+        uint start = cur.cueIndex01().milliseconds();
+        uint end   = audioFile().duration();
+        trackLen   = end > start ? end - start : 0;
+    }
+    else {
+        uint start = cur.cueIndex01().milliseconds();
+        uint end   = next.cueIndex00().milliseconds();
+        trackLen   = end > start ? end - start : 0;
+    }
 
-/************************************************
- *
- ************************************************/
-CueIndex Track::cueIndex01() const
-{
-    return mDisc->trackCueIndex01(mIndex);
-}
+    Duration postGapLen = 0;
+    if (next.cueIndex00().file() != next.cueIndex01().file()) {
+        uint start = next.cueIndex00().milliseconds();
+        uint end   = audioFile().duration();
+        postGapLen = end > start ? end - start : 0;
+    }
+    else {
+        uint start = next.cueIndex00().milliseconds();
+        uint end   = next.cueIndex01().milliseconds();
+        postGapLen = end > start ? end - start : 0;
+    }
 
-/************************************************
- *
- ************************************************/
-bool Track::preEmphased() const
-{
-    return CueFlags(tag(TagId::Flags)).preEmphasis;
-}
+    /*
+    qDebug() << "***************************************";
+    qDebug() << "CUR:" << track.index();
+    qDebug() << "  - 00 " << cur.cueIndex00.toString() << cur.cueIndex00.file();
+    qDebug() << "  - 01 " << cur.cueIndex01.toString() << cur.cueIndex01.file();
+    qDebug() << ".......................................";
+    qDebug() << "NEXT:";
+    qDebug() << "  - 00 " << next.cueIndex00.toString() << next.cueIndex00.file();
+    qDebug() << "  - 01 " << next.cueIndex01.toString() << next.cueIndex01.file();
+    qDebug() << ".......................................";
+    qDebug() << "trackLen: " << trackLen;
+    qDebug() << "postGapLen: " << postGapLen;
+    qDebug() << "***************************************";
+    */
 
-/************************************************
- *
- ************************************************/
-QDebug operator<<(QDebug debug, const Track &track)
-{
-    QDebugStateSaver saver(debug);
-    debug.nospace() << " Track {"
-                    << " trackNum: " << track.trackNum()
-                    << " trackCount:" << track.trackCount()
-                    << " diskId:" << track.discId()
-                    << " Artist:" << track.artist()
-                    << " Album:" << track.album()
-                    << " Title:" << track.tags().title()
-                    << "}";
-    return debug;
+    return trackLen + postGapLen;
 }
 
 /**************************************
- * Track::Tags
+ *
  **************************************/
-Track::Tags::Tags(Track *track) :
-    mTrack(track)
+bool Track::preEmphased() const
 {
+    return CueFlags(flagsTag()).preEmphasis;
 }
 
-QString Track::Tags::artist() const
+/**************************************
+ *
+ **************************************/
+TrackNum Track::trackNumTag() const
 {
-    if (!mArtist.isNull()) {
-        return mArtist;
+    return mUserTags.trackNum() > 0 ? mUserTags.trackNum() : mLoadedTags.trackNum();
+}
+
+/**************************************
+ *
+ **************************************/
+QString Track::commentTag() const
+{
+    if (!mUserTags.comment().isNull()) {
+        return mUserTags.comment();
     }
 
-    return mTrack->disc()->tags().artist();
+    if (!mLoadedTags.comment().isNull()) {
+        return mLoadedTags.comment();
+    }
+
+    return mDisc->commentTag();
 }
 
-QString Track::Tags::title() const
+/**************************************
+ *
+ **************************************/
+QString Track::dateTag() const
 {
-    return mTitle;
+    if (!mUserTags.date().isNull()) {
+        return mUserTags.date();
+    }
+
+    if (!mLoadedTags.date().isNull()) {
+        return mLoadedTags.date();
+    }
+
+    return mDisc->commentTag();
 }
 
-void Track::Tags::setTitle(const QString &value)
+/**************************************
+ *
+ **************************************/
+QString Track::flagsTag() const
 {
-    mTitle        = value;
-    mTitleChanged = true;
+    return mLoadedTags.flagsTag();
 }
 
-void Track::Tags::setTrackNum(int value)
+/**************************************
+ *
+ **************************************/
+QString Track::isrcTag() const
 {
-    mTrackNum        = value;
-    mTrackNumChanged = value;
+    if (!mUserTags.isrc().isNull()) {
+        return mUserTags.isrc();
+    }
+    return mLoadedTags.isrc();
 }
 
-void Track::Tags::initFromInternetTags(const InternetTags::Track &tags)
+/**************************************
+ *
+ **************************************/
+QString Track::titleTag() const
 {
-    // clang-format off
-    if (!mTitleChanged) mTitle    = tags.title();
-    if (!mTrackNum)     mTrackNum = tags.trackNum();
-    // clang-format on
+    if (!mUserTags.title().isNull()) {
+        return mUserTags.title();
+    }
+    return mLoadedTags.title();
 }
 
-void Track::Tags::initFromCue(const Cue::Track &cue, const TextCodec &textCodec)
+/**************************************
+ *
+ **************************************/
+QString Track::performerTag() const
 {
-    // clang-format off
-    if (!mTitleChanged) mTitle    = textCodec.decode(cue.title());
-    if (!mTrackNum)     mTrackNum = cue.trackNum;
-    // clang-format on
+    if (!mUserTags.performer().isNull()) {
+        return mUserTags.performer();
+    }
+    return mLoadedTags.performer();
+}
+
+/**************************************
+ *
+ **************************************/
+QString Track::songWriterTag() const
+{
+    if (!mUserTags.songWriter().isNull()) {
+        return mUserTags.songWriter();
+    }
+    return mLoadedTags.songWriter();
+}
+
+/**************************************
+ *
+ **************************************/
+void Track::setCommentTag(const QString &value)
+{
+    mUserTags.setComment(value);
+}
+
+/**************************************
+ *
+ **************************************/
+void Track::setTrackNumTag(int value)
+{
+    mUserTags.setTrackNum(value);
+}
+
+/**************************************
+ *
+ **************************************/
+void Track::setDateTag(const QString &value)
+{
+    mUserTags.setDate(value);
+}
+
+/**************************************
+ *
+ **************************************/
+void Track::setIsrcTag(const QString &value)
+{
+    mUserTags.setIsrc(value);
+}
+
+/**************************************
+ *
+ **************************************/
+void Track::setTitleTag(const QString &value)
+{
+    mUserTags.setTitle(value);
+}
+
+/**************************************
+ *
+ **************************************/
+void Track::setPerformerTag(const QString &value)
+{
+    mUserTags.setPerformer(value);
+}
+
+/**************************************
+ *
+ **************************************/
+void Track::setSongWriterTag(const QString &value)
+{
+    mUserTags.setSongWriter(value);
+}
+
+/**************************************
+ *
+ **************************************/
+QString Track::fileTag() const
+{
+    return mDisc->textCodec().decode(mDisc->cue().tracks().at(mIndex).fileTag());
+}
+
+/**************************************
+ *
+ **************************************/
+TrackNum Track::trackCountTag() const
+{
+    return mDisc->tracks().size();
+}
+
+/**************************************
+ *
+ **************************************/
+DiscNum Track::discCountTag() const
+{
+    return mDisc->discCountTag();
+}
+
+/**************************************
+ *
+ **************************************/
+DiscNum Track::discNumTag() const
+{
+    return mDisc->discNumTag();
+}
+
+/**************************************
+ *
+ **************************************/
+QString Track::albumTag() const
+{
+    return mDisc->albumTag();
+}
+
+/**************************************
+ *
+ **************************************/
+QString Track::catalogTag() const
+{
+    return mDisc->catalogTag();
+}
+
+/**************************************
+ *
+ **************************************/
+QString Track::cdTextfileTag() const
+{
+    return mDisc->cdTextfileTag();
+}
+
+/**************************************
+ *
+ **************************************/
+QString Track::discIdTag() const
+{
+    return mDisc->discIdTag();
+}
+
+/**************************************
+ *
+ **************************************/
+QString Track::genreTag() const
+{
+    return mDisc->genreTag();
+}
+
+/**************************************
+ *
+ **************************************/
+QDebug operator<<(QDebug debug, const Track &track)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace()
+            << " Track {"
+            << " trackNum: " << track.trackNumTag()
+            << " trackCount:" << track.trackCountTag()
+            << " diskId:" << track.disc()->discIdTag()
+            << " Artist:" << track.performerTag()
+            << " Album:" << track.disc()->albumTag()
+            << " Title:" << track.titleTag()
+            << "}";
+    return debug;
 }

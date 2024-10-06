@@ -80,11 +80,16 @@ private slots:
     void removeDiscs();
 
     void setStartTrackNum();
-    void setTrackTag();
-    // void setDiscTag();
-    // void setDiscTagInt();
+    void setGenreTag();
+    void setArtistTag();
+    void setAlbumTag();
 
-    void configure();
+    void setTrackTag();
+    //   void setDiscTag();
+    //   void setDiscTagInt();
+
+    void
+         configure();
     void configureEncoder();
 
     void downloadInfo();

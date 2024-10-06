@@ -87,6 +87,8 @@ protected:
 
     void error(const QString &message);
     void removeDuplicates();
+    bool compareTags(const InternetTags &tags1, const InternetTags &tags2) const;
+    bool compareTrackTags(const InternetTags::Track &tags1, const InternetTags::Track &tags2) const;
 };
 
 #endif // DATAPROVIDER_H

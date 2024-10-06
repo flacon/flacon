@@ -254,7 +254,7 @@ void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
         return;
 
     QMenu menu;
-    foreach (const TagSet &tags, disc->tagSets()) {
+    foreach (const TagsId &tags, disc->tagSets()) {
         QAction *act = new QAction(tags.title, &menu);
         act->setCheckable(true);
         act->setChecked(tags.uri == disc->currentTagSet().uri);

@@ -214,7 +214,7 @@ void Encoder::run()
     }
     catch (const FlaconError &err) {
         deleteFile(mInputFile);
-        QString msg = tr("Track %1. Encoder error:", "Track error message, %1 is a track number").arg(track().trackNum()) + "<pre>" + err.what() + "</pre>";
+        QString msg = tr("Track %1. Encoder error:", "Track error message, %1 is a track number").arg(track().trackNumTag()) + "<pre>" + err.what() + "</pre>";
         emit    error(track(), msg);
     }
 }

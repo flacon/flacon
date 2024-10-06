@@ -107,21 +107,21 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Tag edits ...............................................
     tagGenreEdit->setTagId(TagId::Genre);
-    connect(tagGenreEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
+    connect(tagGenreEdit, &TagLineEdit::textEdited, this, &MainWindow::setGenreTag);
 
     tagYearEdit->setTagId(TagId::Date);
     connect(tagYearEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
 
     tagArtistEdit->setTagId(TagId::Artist);
-    connect(tagArtistEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
-    connect(tagArtistEdit, &TagLineEdit::textEdited, this, &MainWindow::refreshEdits);
+    connect(tagArtistEdit, &TagLineEdit::textEdited, this, &MainWindow::setArtistTag);
+    // connect(tagArtistEdit, &TagLineEdit::textEdited, this, &MainWindow::refreshEdits);
 
     tagDiscPerformerEdit->setTagId(TagId::AlbumArtist);
     // connect(tagDiscPerformerEdit, &TagLineEdit::textEdited, this, &MainWindow::setDiscTag);
     connect(tagDiscPerformerEdit, &TagLineEdit::textEdited, this, &MainWindow::refreshEdits);
 
     tagAlbumEdit->setTagId(TagId::Album);
-    connect(tagAlbumEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
+    connect(tagAlbumEdit, &TagLineEdit::textEdited, this, &MainWindow::setAlbumTag);
 
     tagDiscIdEdit->setTagId(TagId::DiscId);
     connect(tagDiscIdEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
@@ -463,7 +463,7 @@ void MainWindow::refreshEdits()
     QList<Disc *> discs = trackView->selectedDiscs();
     foreach (Disc *disc, discs) {
         startNums << disc->startTrackNum();
-        discId << disc->discId();
+        discId << disc->discIdTag();
         codePage << disc->codecName();
     }
 
@@ -476,11 +476,11 @@ void MainWindow::refreshEdits()
 
     QList<Track *> tracks = trackView->selectedTracks();
     foreach (Track *track, tracks) {
-        genre << track->genre();
-        artist << track->artist();
-        album << track->album();
-        date << track->date();
-        discPerformer << track->tag(TagId::AlbumArtist);
+        genre << track->genreTag();
+        artist << track->artistTag();
+        album << track->albumTag();
+        date << track->dateTag();
+        discPerformer << track->disc()->performerTag();
     }
 
     tagGenreEdit->setMultiValue(genre);
@@ -574,25 +574,26 @@ void MainWindow::setCodePage()
  ************************************************/
 void MainWindow::setTrackTag()
 {
-    TagLineEdit *edit = qobject_cast<TagLineEdit *>(sender());
-    if (!edit)
-        return;
+#warning REMOVE ME
+    //     TagLineEdit *edit = qobject_cast<TagLineEdit *>(sender());
+    //     if (!edit)
+    //         return;
 
-    QList<Disc *> disks = trackView->selectedDiscs();
-    for (Disk *d : disks) {
-        d->blockSignals(true);
-    }
-    QList<Track *> tracks = trackView->selectedTracks();
-    foreach (Track *track, tracks) {
-        track->setTag(edit->tagId(), edit->text());
-    }
+    //     QList<Disc *> disks = trackView->selectedDiscs();
+    //     for (Disk *d : disks) {
+    //         d->blockSignals(true);
+    //     }
+    //     QList<Track *> tracks = trackView->selectedTracks();
+    //     foreach (Track *track, tracks) {
+    //         track->setTag(edit->tagId(), edit->text());
+    //     }
 
-    for (Disk *d : disks) {
-        d->blockSignals(false);
-        emit d->tagChanged();
-    }
+    //     for (Disk *d : disks) {
+    //         d->blockSignals(false);
+    //         emit d->tagChanged();
+    //     }
 
-    trackView->updateAll();
+    //     trackView->updateAll();
 }
 
 /************************************************
@@ -639,8 +640,8 @@ void MainWindow::startConvertAll()
         Conv::Converter::Job job;
         job.disc = Project::instance()->disc(d);
 
-        for (int t = 0; t < job.disc->count(); ++t) {
-            job.tracks << job.disc->track(t);
+        for (int t = 0; t < job.disc->tracks().count(); ++t) {
+            job.tracks << job.disc->tracks().at(t);
         }
 
         jobs << job;
@@ -659,8 +660,7 @@ void MainWindow::startConvertSelected()
         Conv::Converter::Job job;
         job.disc = disc;
 
-        for (int t = 0; t < disc->count(); ++t) {
-            Track *track = disc->track(t);
+        for (const Track *track : disc->tracks()) {
             if (trackView->isSelected(*track)) {
                 job.tracks << track;
             }
@@ -698,8 +698,8 @@ void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
 
     for (int d = 0; d < Project::instance()->count(); ++d) {
         Disc *disc = Project::instance()->disc(d);
-        for (int t = 0; t < disc->count(); ++t)
-            trackView->model()->trackProgressChanged(*disc->track(t), TrackState::NotRunning, 0);
+        for (int t = 0; t < disc->tracks().count(); ++t)
+            trackView->model()->trackProgressChanged(*disc->tracks().at(t), TrackState::NotRunning, 0);
     }
 
     trackView->setColumnWidth(TrackView::ColumnPercent, 200);
@@ -1024,12 +1024,12 @@ void MainWindow::fillAudioMenu(Disc *disc, QMenu &menu)
             QString msg;
             if (l.count() == 1) {
                 msg = tr("Select another audio file for %1 track…", "context menu. Placeholders are track number")
-                              .arg(l.first()->trackNum());
+                              .arg(l.first()->trackNumTag());
             }
             else {
                 msg = tr("Select another audio file for tracks %1 to %2…", "context menu. Placeholders are track numbers")
-                              .arg(l.first()->trackNum())
-                              .arg(l.last()->trackNum());
+                              .arg(l.first()->trackNumTag())
+                              .arg(l.last()->trackNumTag());
             }
 
             act = new QAction(msg, &menu);
@@ -1174,6 +1174,60 @@ void MainWindow::setStartTrackNum()
     foreach (Disc *disc, discs) {
         disc->setStartTrackNum(value);
     }
+}
+
+void MainWindow::setGenreTag()
+{
+    //     TagLineEdit *edit = qobject_cast<TagLineEdit *>(sender());
+    //     if (!edit)
+    //         return;
+
+    QList<Disc *> disks = trackView->selectedDiscs();
+    for (Disk *d : disks) {
+        d->blockSignals(true);
+        d->setGenreTag(tagGenreEdit->text());
+    }
+
+    for (Disk *d : disks) {
+        d->blockSignals(false);
+        emit d->tagChanged();
+    }
+
+    trackView->updateAll();
+}
+
+void MainWindow::setArtistTag()
+{
+    QList<Disc *> disks = trackView->selectedDiscs();
+    for (Disk *d : disks) {
+        d->blockSignals(true);
+        d->setPerformerTag(tagArtistEdit->text());
+    }
+
+    for (Disk *d : disks) {
+        d->blockSignals(false);
+        emit d->tagChanged();
+    }
+
+    trackView->updateAll();
+    refreshEdits();
+}
+
+void MainWindow::setAlbumTag()
+{
+    QList<Disc *> disks = trackView->selectedDiscs();
+    for (Disk *d : disks) {
+        d->blockSignals(true);
+        d->setAlbumTag(tagAlbumEdit->text());
+    }
+
+    for (Disk *d : disks) {
+        d->blockSignals(false);
+        emit d->tagChanged();
+    }
+
+    trackView->updateAll();
+    refreshEdits();
 }
 
 /************************************************
@@ -1360,8 +1414,8 @@ static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringLi
 {
     QStringList res;
     res << "<div>";
-    if (disk->count()) {
-        res << "<b>" + MainWindow::tr("Disk %1 \"%2 - %3\"", "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively").arg(diskNum).arg(disk->track(0)->artist(), disk->track(0)->album()) + "</b>";
+    if (disk->tracks().count()) {
+        res << "<b>" + MainWindow::tr("Disk %1 \"%2 - %3\"", "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively").arg(diskNum).arg(disk->artistTag(), disk->albumTag()) + "</b>";
     }
     else {
         res << "<b>" + MainWindow::tr("Disk %1", "Error message, %1 is the disc number").arg(diskNum) + "</b>";

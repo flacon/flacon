@@ -69,8 +69,9 @@ void Converter::start(const Profile &profile)
         Job job;
         job.disc = Project::instance()->disc(d);
 
-        for (int t = 0; t < job.disc->count(); ++t)
-            job.tracks << job.disc->track(t);
+        for (Track *t : job.disc->tracks()) {
+            job.tracks << t;
+        }
 
         jobs << job;
     }

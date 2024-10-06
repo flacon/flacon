@@ -39,39 +39,11 @@ class Disc : public QObject
     Q_OBJECT
     friend class Track;
 
-public:
-    class Tags
+    struct TagSet
     {
-    public:
-        Tags(Disc *disk);
-
-        QString date() const { return mDate; }
-        void    setDate(const QString &value);
-
-        QString album() const { return mAlbum; }
-        void    setAlbum(const QString &value);
-
-        QString artist() const { return mArtist; }
-        void    setArtist(const QString &value);
-
-        QString genre() const { return mGenre; }
-        void    setGenre(const QString &value);
-
-        void initFromInternetTags(const InternetTags &tags);
-        void initFromCue(const Cue &cue, const TextCodec &textCodec);
-
-    private:
-        Disc *mDisk = nullptr;
-
-        QString mDate;
-        QString mAlbum;
-        QString mArtist;
-        QString mGenre;
-
-        bool mDateChanged   = false;
-        bool mAlbumChanged  = false;
-        bool mArtistChanged = false;
-        bool mGenreChanged  = false;
+        TagsId tagsId;
+        Tags   userTags;
+        Tags   loadedTags;
     };
 
 public:
@@ -79,9 +51,9 @@ public:
     virtual ~Disc();
 
     QList<Track *> tracks() const { return mTracks; }
-    Track         *track(int index) const;
-    int            count() const { return mTracks.count(); }
-    const Track   *preGapTrack() const;
+    bool           isEmpty() const { return mTracks.isEmpty(); }
+
+    const Track *preGapTrack() const;
 
     Cue     cue() const { return mCue; }
     void    setCue(const Cue &cue);
@@ -101,23 +73,15 @@ public:
     int  startTrackNum() const;
     void setStartTrackNum(TrackNum value);
 
-    QString codecName() const;
-    void    setCodecName(const QString &codecName);
+    const TextCodec &textCodec() const { return mTextCodec; }
+    QString          codecName() const;
+    void             setCodecName(const QString &codecName);
 
-    const Tags &tags() const { return mTags; }
-    Tags       &tags() { return mTags; }
-
-public:
-    QString discId() const;
-    DiscNum discNum() const;
-    DiscNum discCount() const;
-
-public:
-    QList<TagSet> tagSets() const;
-    TagSet        currentTagSet() const;
+    QList<TagsId> tagSets() const;
+    TagsId        currentTagSet() const;
+    void          activateTagSet(const QString &uri);
 
     void addInternetTags(const QVector<InternetTags> &tags);
-    void activateTagSet(const QString &uri);
 
     void searchCoverImage(bool replaceExisting = false);
 
@@ -126,13 +90,38 @@ public:
     QImage  coverImagePreview() const;
     QImage  coverImage() const;
 
-    QString discTag(TagId tagId) const;
-
     static QStringList searchCoverImages(const QString &startDir);
     static QString     searchCoverImage(const QString &startDir);
 
-    bool isEmpty() const { return mTracks.isEmpty(); }
+public:
+    // Tags
 
+    DiscNum discCountTag() const;
+    DiscNum discNumTag() const;
+
+    QString albumTag() const;
+    QString catalogTag() const;
+    QString cdTextfileTag() const;
+    QString commentTag() const;
+    QString dateTag() const;
+    QString discIdTag() const;
+    QString genreTag() const;
+    QString performerTag() const;
+    QString songWriterTag() const;
+
+    void setAlbumTag(const QString &value);
+    void setCatalogTag(const QString &value);
+    void setCdTextfileTag(const QString &value);
+    void setCommentTag(const QString &value);
+    void setDateTag(const QString &value);
+    void setDiscIdTag(const QString &value);
+    void setGenreTag(const QString &value);
+    void setPerformerTag(const QString &value);
+    void setSongWriterTag(const QString &value);
+
+    QString artistTag() const { return performerTag(); }
+
+public:
     DiskState state() const { return mState; }
     void      setState(DiskState value);
 
@@ -140,25 +129,21 @@ signals:
     void tagChanged();
     void revalidateRequested();
 
-protected:
-    void trackChanged(TagId tagId);
-
-    Duration trackDuration(const Track &track) const;
-
-    QString trackTag(int trackIndex, TagId tagId);
-    void    setTrackTag(int trackIndex, TagId tagId, const QString &value);
-
-    CueIndex trackCueIndex00(int trackIndex);
-    CueIndex trackCueIndex01(int trackIndex);
-
 private:
     QList<Track *> mTracks;
     Cue            mCue;
-    Tags           mTags;
-    // Tags           mCueUserTags;
+
+    Tags mCueUserTags;
+    Tags mUserTags;
+    Tags mLoadedTags;
+    Tags mCueTags;
+
     TextCodec mTextCodec;
 
+    QVector<TagSet> mTagSets;
+
     QList<InternetTags> mInternetTags;
+    QList<Tags>         mInternetUserTags;
     int                 mInternetTagsIndex = -1;
 
     InputAudioFile mAudioFile;
@@ -169,10 +154,10 @@ private:
 
     DiskState mState = DiskState::NotRunning;
 
-    int  distance(const InternetTags &other);
-    bool isSameTagValue(TagId tagId);
+    int distance(const InternetTags &other);
 
-    void updateTags();
+    void syncTagsFromTracks();
+    void syncTagsToTracks();
 };
 
 typedef QList<Disc *> DiscList;

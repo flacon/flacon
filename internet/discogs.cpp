@@ -65,9 +65,7 @@ bool Discogs::canDownload(const Disc &disk)
         return false;
     }
 
-    const Track *track = disk.track(0);
-
-    return !track->artist().isEmpty() && !track->album().isEmpty();
+    return !disk.performerTag().isEmpty() && !disk.albumTag().isEmpty();
 }
 
 void Discogs::start()
@@ -76,9 +74,8 @@ void Discogs::start()
         return;
     }
 
-    const Track *track = mDisk.track(0);
-    mRequestArtist     = track->artist();
-    mRequestAlbum      = track->album();
+    mRequestArtist = mDisk.performerTag();
+    mRequestAlbum  = mDisk.albumTag();
 
     QStringList query;
     query << QString("artist=\"%1\"").arg(mRequestArtist.toHtmlEscaped());
@@ -158,7 +155,7 @@ void Discogs::masterReady(QNetworkReply *reply)
 
     bool skip = false;
 
-    skip = skip || tracklist.size() != mDisk.count();
+    skip = skip || tracklist.size() != mDisk.tracks().count();
     skip = skip || album.toUpper().simplified() != mRequestAlbum.toUpper().simplified();
     skip = skip || artist.toUpper().simplified() != mRequestArtist.toUpper().simplified();
 
@@ -195,13 +192,17 @@ void Discogs::processResults()
     int n = 0;
     for (InternetTags &t : mResult) {
         n++;
-        t.setUri(QString("https://discogs.com/Artist=%1&Album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n));
+        TagsId tagsId;
+
+        tagsId.uri = QString("https://discogs.com/Artist=%1&Album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n);
         if (mResult.size() == 1) {
-            t.setName(QString("%1 / %2   [ Discogs ]").arg(mRequestArtist, mRequestAlbum));
+            tagsId.title = QString("%1 / %2   [ Discogs ]").arg(mRequestArtist, mRequestAlbum);
         }
         else {
-            t.setName(QString("%1 / %2   [ Discogs %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n));
+            tagsId.title = QString("%1 / %2   [ Discogs %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n);
         }
+
+        t.setTagsId(tagsId);
     }
 
     emit finished(mResult);

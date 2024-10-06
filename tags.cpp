@@ -25,209 +25,76 @@
 
 #include "types.h"
 #include "tags.h"
+#include "disc.h"
 #include <QDebug>
 
-/************************************************
- *
- ************************************************/
-QString Tags::albumTag(TagId tagId) const
-{
-    return mAlbumTags.value(tagId, "");
-}
-
-/************************************************
- *
- ************************************************/
-void Tags::setAlbumTag(TagId tagId, const QString &value)
-{
-    mAlbumTags[tagId] = value;
-}
-
-/************************************************
- *
- ************************************************/
-QString Tags::trackTag(int trackIndex, TagId tagId) const
-{
-    if (trackIndex < mTrackTags.size()) {
-        return mTrackTags.at(trackIndex).value(tagId, "");
-    }
-
-    return "";
-}
-
-/************************************************
- *
- ************************************************/
-void Tags::setTrackTag(int trackIndex, TagId tagId, const QString &value)
-{
-    if (trackIndex >= mTrackTags.size()) {
-        mTrackTags.resize(trackIndex + 1);
-    }
-
-    mTrackTags[trackIndex][tagId] = value;
-}
-
-/************************************************
- *
- ************************************************/
-bool Tags::containsTrackTag(int trackIndex, TagId tagId) const
-{
-    if (trackIndex < mTrackTags.size()) {
-        return mTrackTags.at(trackIndex).contains(tagId);
-    }
-
-    return false;
-}
+#define GET(FIELD) !mUserTags.FIELD().isNull() ? mUserTags.FIELD() : mLoadedTags.FIELD();
 
 /************************************************
  *
  ************************************************/
 void Tags::resize(int size)
 {
-    mTrackTags.resize(size);
+    mTracks.resize(size);
 }
 
-/************************************************
+void Tags::merge(const Tags &other)
+{
+
+    // clang-format off
+    if (other.discCount()) mDiscCount = other.discCount();
+    if (other.discNum())   mDiscNum   = other.discNum();
+
+    if (!other.mAlbum.isNull())      mAlbum      = other.mAlbum;
+    if (!other.mCatalog.isNull())    mCatalog    = other.mCatalog;
+    if (!other.mCdTextfile.isNull()) mCdTextfile = other.mCdTextfile;
+    if (!other.mComment.isNull())    mComment    = other.mComment;
+    if (!other.mDate.isNull())       mDate       = other.mDate;
+    if (!other.mDiscId.isNull())     mDiscId     = other.mDiscId;
+    if (!other.mGenre.isNull())      mGenre      = other.mGenre;
+    if (!other.mPerformer.isNull())  mPerformer  = other.mPerformer;
+    if (!other.mSongWriter.isNull()) mSongWriter = other.mSongWriter;
+    // clang-format on
+
+    int i = -1;
+    for (Track &t : mTracks) {
+        i++;
+        t.merge(other.tracks().at(i));
+    }
+}
+
+/**************************************
  *
- ************************************************/
-bool Tags::compareTags(const Tags &other) const
+ **************************************/
+void Tags::Track::merge(const Tags::Track &other)
 {
-    return mTrackTags == other.mTrackTags;
+    // clang-format off
+    if (other.mTrackNum)    mTrackNum = other.mTrackNum;
+
+    if (!other.mComment.isNull())    mComment    = other.mComment;
+    if (!other.mFlagsTag.isNull())   mFlagsTag   = other.mFlagsTag;
+    if (!other.mDate.isNull())       mDate       = other.mDate;
+    if (!other.mIsrc.isNull())       mIsrc       = other.mIsrc;
+    if (!other.mPerformer.isNull())  mPerformer  = other.mPerformer;
+    if (!other.mSongWriter.isNull()) mSongWriter = other.mSongWriter;
+    if (!other.mTitle.isNull())      mTitle      = other.mTitle;
+    // clang-format on
 }
 
-/************************************************
+/**************************************
  *
- ************************************************/
-QByteArray RawTags::trackTag(int trackIndex, TagId tagId) const
+ **************************************/
+QDebug operator<<(QDebug debug, const Tags::Track &track)
 {
-    if (trackIndex < mTrackTags.size()) {
-        return mTrackTags.at(trackIndex).value(tagId, {});
-    }
 
-    return {};
+    QDebugStateSaver saver(debug);
+    debug.nospace()
+            << "TrackTags {"
+            << " Title:" << track.title()
+            << " Performer:" << track.performer()
+            << " SongWriter:" << track.songWriter()
+            << " Date: " << track.date()
+            << " ISRC:" << track.isrc()
+            << "}";
+    return debug;
 }
-
-/************************************************
- *
- ************************************************/
-void RawTags::setTrackTag(int trackIndex, TagId tagId, const QByteArray &value)
-{
-    if (trackIndex >= mTrackTags.size()) {
-        mTrackTags.resize(trackIndex + 1);
-    }
-
-    mTrackTags[trackIndex][tagId] = value;
-}
-
-/************************************************
- *
- ************************************************/
-bool RawTags::containsTrackTag(int trackIndex, TagId tagId) const
-{
-    if (trackIndex < mTrackTags.size()) {
-        return mTrackTags.at(trackIndex).contains(tagId);
-    }
-
-    return false;
-}
-
-void TrackTags::initFromCue(const Cue::Track &cueTrack, const TextCodec &textCodec)
-{
-    if (!mTitleChanged) {
-        mTitle = textCodec.decode(cueTrack.tags.value(TagId::Title));
-    }
-}
-
-bool InternetTags::Track::compareTags(const Track &other) const
-{
-    bool res = true;
-
-    res = res && title() == other.title();
-    res = res && trackNum() == other.trackNum();
-
-    return res;
-}
-
-bool InternetTags::compareTags(const InternetTags &other) const
-{
-    bool res = true;
-
-    res = res && date() == other.date();
-    res = res && album() == other.album();
-    res = res && artist() == other.artist();
-    res = res && genre() == other.genre();
-
-    res = res && tracks().count() == other.tracks().count();
-
-    int n = -1;
-    for (const Track &t : tracks()) {
-        n++;
-
-        res = res && t.compareTags(other.tracks().at(n));
-    }
-
-    return res;
-}
-
-// /**************************************
-//  * DiskTags
-//  **************************************/
-// void DiskTags::setDate(const QString &value)
-// {
-//     mDate        = value;
-//     mDateChanged = true;
-// }
-
-// void DiskTags::setAlbum(const QString &value)
-// {
-//     mAlbum        = value;
-//     mAlbumChanged = true;
-// }
-
-// void DiskTags::setArtist(const QString &value)
-// {
-//     mArtist        = value;
-//     mArtistChanged = true;
-// }
-
-// void DiskTags::setGenre(const QString &value)
-// {
-//     mGenre        = value;
-//     mGenreChanged = true;
-// }
-
-// void DiskTags::initFromInternetTags(const InternetTags &tags)
-// {
-//     // clang-format off
-//     if (!mAlbumChanged)  mAlbum = tags.album();
-//     // clang-format on
-
-//     int n = -1;
-//     for (Track &track : mTracks) {
-//         n++;
-//         track.initFromInternetTags(tags.tracks().at(n));
-//     }
-// }
-
-// /**************************************
-//  * DiskTags::Track
-//  **************************************/
-// void DiskTags::Track::setTitle(const QString &value)
-// {
-//     mTitle        = value;
-//     mTitleChanged = true;
-// }
-
-// void DiskTags::Track::setTrackNum(int value)
-// {
-//     mTrackNum        = value;
-//     mTrackNumChanged = value;
-// }
-
-// void DiskTags::Track::initFromInternetTags(const InternetTags::Track &tags)
-// {
-//     // clang-format off
-//     if (!mTitleChanged) mTitle    = tags.title();
-//     if (!mTrackNum)     mTrackNum = tags.trackNum();
-//     // clang-format on
-// }

@@ -50,7 +50,7 @@ private:
     const Profile    mProfile;
     const PreGapType mPreGapType;
 
-    Tags mGlobalTags;
+    // Tags mGlobalTags;
 
     void initGlobalTags();
     void writeLine(QIODevice *out, const QString &text) const;

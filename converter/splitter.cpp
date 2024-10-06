@@ -65,8 +65,8 @@ Splitter::Job::Job(const Disc *disk, Conv::ConvTrack track, bool addPregap, bool
     disk(disk),
     track(track)
 {
-    const Track cur  = *(disk->track(track.index()));
-    const Track next = (cur.index() + 1 < disk->count()) ? *(disk->track(cur.index() + 1)) : Track();
+    const Track cur  = *(disk->tracks().at(track.index()));
+    const Track next = (cur.index() + 1 < disk->tracks().count()) ? *(disk->tracks().at(cur.index() + 1)) : Track();
 
     if (addPregap) {
         chunks << getPart(cur.cueIndex00(), cur.cueIndex01());
@@ -138,8 +138,7 @@ InputAudioFile Splitter::Job::getInputAudioFile(const QByteArray &fileTag) const
     QByteArray prevTag;
 
     int n = 0;
-    for (int i = 0; i < disk->count(); ++i) {
-        const Track *t = disk->track(i);
+    for (const Track *t : disk->tracks()) {
 
         if (t->cueIndex00().file() == fileTag) {
             return disk->audioFiles().at(n);
@@ -204,7 +203,7 @@ void Splitter::run()
 
         bool addPregap = (track.index() == 0 && mPregapType == PreGapType::AddToFirstTrack);
         Job  job(mDisc, track, addPregap, true, true);
-        job.outFileName = QString("%1/track-%2_%3.wav").arg(mOutDir, uid).arg(track.trackNum(), 2, 10, QLatin1Char('0'));
+        job.outFileName = QString("%1/track-%2_%3.wav").arg(mOutDir, uid).arg(track.trackNumTag(), 2, 10, QLatin1Char('0'));
         jobs << job;
     }
 
@@ -279,7 +278,7 @@ void Splitter::run()
                 qCWarning(LOG) << "Splitter error for pregap track : " << err.what();
             }
             else {
-                qCWarning(LOG) << "Splitter error for track " << job.track.trackNum() << ": " << err.what();
+                qCWarning(LOG) << "Splitter error for track " << job.track.trackNumTag() << ": " << err.what();
             }
 
             emit error(job.track, err.what());

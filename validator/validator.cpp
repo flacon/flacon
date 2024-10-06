@@ -262,7 +262,7 @@ bool Validator::validateCue(const Disk *disk, QStringList &errors, QStringList &
 {
     Q_UNUSED(warnings)
 
-    if (disk->count() == 0) {
+    if (disk->tracks().count() == 0) {
         errors << tr("Cue file not set.");
         return false;
     }
@@ -292,14 +292,14 @@ bool Validator::validateAudioFiles(const Disk *disk, QStringList &errors, QStrin
 
             if (tracks.count() == 1) {
                 errors << tr("Audio file not set for track %1.", "Warning message, Placeholders is a track number")
-                                  .arg(tracks.first()->trackNum());
+                                  .arg(tracks.first()->trackNumTag());
                 res = false;
                 continue;
             }
 
             errors << tr("Audio file not set for tracks %1 to %2.", "Warning message, Placeholders is a track numbers")
-                              .arg(tracks.first()->trackNum())
-                              .arg(tracks.last()->trackNum());
+                              .arg(tracks.first()->trackNumTag())
+                              .arg(tracks.last()->trackNumTag());
             res = false;
             continue;
         }
@@ -352,11 +352,11 @@ bool Validator::checkSameAudioForFileTags(const Disk *disk)
 
         QString fileTag = audioToFileTags[track->audioFileName()];
         if (fileTag.isEmpty()) {
-            audioToFileTags[track->audioFileName()] = track->tag(TagId::File);
+            audioToFileTags[track->audioFileName()] = track->fileTag();
             continue;
         }
 
-        if (track->tag(TagId::File) != fileTag) {
+        if (track->fileTag() != fileTag) {
             return false;
         }
     }
@@ -388,13 +388,13 @@ bool Validator::validateResultFiles(const Disk *disk, QStringList &inErrors, QSt
                         errors << tr("Disk %1 \"%2 - %3\" will overwrite its own files.",
                                      "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
                                           .arg(n)
-                                          .arg(d->discTag(TagId::Artist), d->discTag(TagId::Album));
+                                          .arg(d->artistTag(), d->albumTag());
                     }
                     else {
                         errors << tr("Disk %1 \"%2 - %3\" will overwrite the files of this disk.",
                                      "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
                                           .arg(n)
-                                          .arg(d->discTag(TagId::Artist), d->discTag(TagId::Album));
+                                          .arg(d->artistTag(), d->albumTag());
                     }
                     break;
                 }
@@ -440,7 +440,7 @@ bool Validator::validateDuplicateSourceFiles(const Disk *disk, QStringList &erro
             warnings << tr("Disk %1 \"%2 - %3\" uses the same CUE file.",
                            "Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
                                 .arg(n)
-                                .arg(d->discTag(TagId::Artist), d->discTag(TagId::Album));
+                                .arg(d->artistTag(), d->albumTag());
         }
 
         for (const QString &path : d->audioFilePaths()) {
@@ -449,7 +449,7 @@ bool Validator::validateDuplicateSourceFiles(const Disk *disk, QStringList &erro
                 warnings << tr("Disk %1 \"%2 - %3\" uses the same audio file.",
                                "Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name")
                                     .arg(n)
-                                    .arg(d->discTag(TagId::Artist), d->discTag(TagId::Album));
+                                    .arg(d->artistTag(), d->albumTag());
             }
         }
     }

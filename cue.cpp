@@ -36,6 +36,26 @@
 #include "formats_in/informat.h"
 #include <QBuffer>
 
+/**************************************
+ * Tags::Track
+ **************************************/
+Tags::Track Cue::Track::decode(const TextCodec &textCodec) const
+{
+    Tags::Track res;
+    // clang-format off
+    res.setTrackNum(mTrackNumTag);
+
+    if (!mDateTag.isNull())       res.setDate(textCodec.decode(mDateTag));
+    if (!mFlagsTag.isNull())      res.setFlagsTag(textCodec.decode(mFlagsTag));
+    if (!mIsrcTag.isNull())       res.setIsrc(textCodec.decode(mIsrcTag));
+    if (!mPerformerTag.isNull())  res.setPerformer(textCodec.decode(mPerformerTag));
+    if (!mSongWriterTag.isNull()) res.setSongWriter(textCodec.decode(mSongWriterTag));
+    if (!mTitleTag.isNull())      res.setTitle(textCodec.decode(mTitleTag));
+    // clang-format on
+
+    return res;
+}
+
 /************************************************
  *
  ************************************************/
@@ -47,8 +67,9 @@ Cue::Cue(const QString &fileName) noexcept(false)
     }
 
     QFileInfo fileInfo(fileName);
-    mFilePath = fileInfo.absoluteFilePath();
-    mTitle    = fileInfo.fileName();
+    mFilePath     = fileInfo.absoluteFilePath();
+    mTagsId.uri   = fileInfo.absoluteFilePath();
+    mTagsId.title = fileInfo.fileName();
 
     read(data);
 }
@@ -58,19 +79,29 @@ Cue::Cue(const QString &fileName) noexcept(false)
  ************************************************/
 void Cue::read(const CueData &data)
 {
+    mDiscCountTag = 1;
+    mDiscNumTag   = 1;
 
-    mDiscCount = 1;
-    mDiscNum   = 1;
+    const CueData::Tags &global = data.globalTags();
 
-    QByteArray           albumPerformer = getAlbumPerformer(data);
-    const CueData::Tags &global         = data.globalTags();
+    mAlbumTag      = global.value(CueData::TITLE_TAG);
+    mCatalogTag    = global.value("CATALOG");
+    mCdTextfileTag = global.value("CDTEXTFILE");
+    mCommentTag    = global.value("COMMENT");
+    mGenreTag      = global.value("GENRE");
+    mDiscIdTag     = global.value("DISCID");
+    mPerformerTag  = getAlbumPerformer(data);
+    mSongWriterTag = global.value("SONGWRITER");
+    mDateTag       = global.value("DATE");
+
+    // track.tags[TagId::DiscNum]   = global.value("DISCNUMBER", "1");
+    // track.tags[TagId::DiscCount] = global.value("TOTALDISCS", "1");
 
     QByteArray prevFileTag;
 
     for (const CueData::Tags &t : data.tracks()) {
         Track track;
-        track.tags[TagId::File]  = t.value(CueData::FILE_TAG);
-        track.tags[TagId::Album] = global.value(CueData::TITLE_TAG);
+        track.mFileTag = t.value(CueData::FILE_TAG);
 
         QByteArray index00     = t.value("INDEX 00");
         QByteArray index00File = t.value("INDEX 00 FILE");
@@ -95,28 +126,16 @@ void Cue::read(const CueData &data)
         }
         prevFileTag = index01File;
 
-        track.cueIndex00 = CueIndex(index00, index00File);
-        track.cueIndex01 = CueIndex(index01, index01File);
+        track.mCueIndex00 = CueIndex(index00, index00File);
+        track.mCueIndex01 = CueIndex(index01, index01File);
 
-        track.tags[TagId::Catalog]    = global.value("CATALOG");
-        track.tags[TagId::CDTextfile] = global.value("CDTEXTFILE");
-        track.tags[TagId::Comment]    = global.value("COMMENT");
-
-        track.tags[TagId::Flags]      = t.value(CueData::FLAGS_TAG);
-        track.tags[TagId::Genre]      = global.value("GENRE");
-        track.tags[TagId::ISRC]       = t.value("ISRC");
-        track.tags[TagId::Title]      = t.value("TITLE");
-        track.tags[TagId::Artist]     = t.value("PERFORMER", global.value("PERFORMER"));
-        track.tags[TagId::SongWriter] = t.value("SONGWRITER", global.value("SONGWRITER"));
-        track.tags[TagId::DiscId]     = global.value("DISCID");
-
-        track.tags[TagId::Date]        = t.value("DATE", global.value("DATE"));
-        track.tags[TagId::AlbumArtist] = albumPerformer;
-
-        track.trackNum               = TrackNum(t.value(CueData::TRACK_TAG).toUInt());
-        track.trackCount             = TrackNum(data.tracks().count());
-        track.tags[TagId::DiscNum]   = global.value("DISCNUMBER", "1");
-        track.tags[TagId::DiscCount] = global.value("TOTALDISCS", "1");
+        track.mFlagsTag      = t.value(CueData::FLAGS_TAG);
+        track.mIsrcTag       = t.value("ISRC");
+        track.mTitleTag      = t.value("TITLE");
+        track.mPerformerTag  = t.value("PERFORMER");
+        track.mSongWriterTag = t.value("SONGWRITER");
+        track.mDateTag       = t.value("DATE");
+        track.mTrackNumTag   = TrackNum(t.value(CueData::TRACK_TAG).toUInt());
 
         mTracks.append(track);
     }
@@ -131,7 +150,7 @@ void Cue::read(const CueData &data)
 
         QString prev;
         for (const Track &track : qAsConst(mTracks)) {
-            QString s = QString::fromUtf8(track.tags.value(TagId::File));
+            QString s = QString::fromUtf8(track.fileTag());
 
             if (s != prev) {
                 mMutiplyAudio = !mFileTags.isEmpty();
@@ -152,7 +171,7 @@ void Cue::validate()
 {
     bool hasFileTag = false;
     for (const Track &t : qAsConst(mTracks)) {
-        hasFileTag = hasFileTag || !t.tags.value(TagId::File).isEmpty();
+        hasFileTag = hasFileTag || !t.fileTag().isEmpty();
     }
 
     if (!hasFileTag) {
@@ -165,10 +184,10 @@ void Cue::validate()
  ************************************************/
 void Cue::splitTitle(Track *track, char separator)
 {
-    QByteArray b               = track->tags.value(TagId::Title);
-    int        pos             = b.indexOf(separator);
-    track->tags[TagId::Artist] = b.left(pos).trimmed();
-    track->tags[TagId::Title]  = b.right(b.length() - pos - 1).trimmed();
+    QByteArray b         = track->titleTag();
+    int        pos       = b.indexOf(separator);
+    track->mPerformerTag = b.left(pos).trimmed();
+    track->mTitleTag     = b.right(b.length() - pos - 1).trimmed();
 }
 
 /************************************************
@@ -177,12 +196,37 @@ void Cue::splitTitle(Track *track, char separator)
 TextCodec Cue::detectTextCodec() const
 {
     UcharDet uchardet;
+
+    uchardet << mPerformerTag;
+    uchardet << mAlbumTag;
+
     for (const Track &track : mTracks) {
-        uchardet << track.tags.value(TagId::Artist);
-        uchardet << track.tags.value(TagId::Title);
+        uchardet << track.performerTag();
+        uchardet << track.titleTag();
     }
 
     return uchardet.detect();
+}
+
+Tags Cue::decode(const TextCodec &textCodec) const
+{
+    Tags res;
+    // clang-format off
+    if (!mAlbumTag.isNull())      res.setAlbum(textCodec.decode(mAlbumTag));
+    if (!mCatalogTag.isNull())    res.setCatalog(textCodec.decode(mCatalogTag));
+    if (!mCommentTag.isNull())    res.setComment(textCodec.decode(mCommentTag));
+    if (!mDateTag.isNull())       res.setDate(textCodec.decode(mDateTag));
+    if (!mDiscIdTag.isNull())     res.setDiscId(textCodec.decode(mDiscIdTag));
+    if (!mGenreTag.isNull())      res.setGenre(textCodec.decode(mGenreTag));
+    if (!mPerformerTag.isNull())  res.setPerformer(textCodec.decode(mPerformerTag));
+    if (!mSongWriterTag.isNull()) res.setSongWriter(textCodec.decode(mSongWriterTag));
+    // clang-format on
+
+    for (const Track &t : mTracks) {
+        res.tracks().append(t.decode(textCodec));
+    }
+
+    return res;
 }
 
 /************************************************
@@ -240,8 +284,9 @@ EmbeddedCue::EmbeddedCue(const InputAudioFile &audioFile) noexcept(false) :
     Cue()
 {
     QFileInfo fileInfo(audioFile.filePath());
-    mFilePath = EMBEDED_PREFIX + fileInfo.absoluteFilePath();
-    mTitle    = QObject::tr("Embedded on %1", "The title for the CUE embedded in the audio file. %1 - is an audio-file name.").arg(fileInfo.fileName());
+    mFilePath     = EMBEDED_PREFIX + fileInfo.absoluteFilePath();
+    mTagsId.uri   = mFilePath;
+    mTagsId.title = QObject::tr("Embedded on %1", "The title for the CUE embedded in the audio file. %1 - is an audio-file name.").arg(fileInfo.fileName());
 
     if (!audioFile.isValid() || !audioFile.format()) {
         return;
@@ -263,9 +308,9 @@ EmbeddedCue::EmbeddedCue(const InputAudioFile &audioFile) noexcept(false) :
     read(data);
 }
 
-/************************************************
+/**************************************
  *
- ************************************************/
+ **************************************/
 CueError::~CueError()
 {
 }

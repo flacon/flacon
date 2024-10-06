@@ -75,9 +75,7 @@ bool MusicBrainz::canDownload(const Disc &disk)
         return false;
     }
 
-    const Track *track = disk.track(0);
-
-    return !track->artist().isEmpty() && !track->album().isEmpty();
+    return !disk.performerTag().isEmpty() && !disk.albumTag().isEmpty();
 }
 
 /************************************************
@@ -89,9 +87,8 @@ void MusicBrainz::start()
         return;
     }
 
-    const Track *track = mDisk.track(0);
-    mRequestArtist     = track->artist();
-    mRequestAlbum      = track->album();
+    mRequestArtist = mDisk.performerTag();
+    mRequestAlbum  = mDisk.albumTag();
 
     QStringList query;
     query << QString("artist:\"%1\"").arg(mRequestArtist.toHtmlEscaped());
@@ -186,7 +183,7 @@ void MusicBrainz::releasesReady(QNetworkReply *reply)
         QString album = r["title"].toString();
 
         for (const QJsonValue m : r["media"].toArray()) {
-            if (m["track-count"].toInt() != mDisk.count()) {
+            if (m["track-count"].toInt() != mDisk.tracks().count()) {
                 continue;
             }
 
@@ -292,13 +289,16 @@ void MusicBrainz::processResults()
     int n = 0;
     for (InternetTags &t : mResult) {
         n++;
-        t.setUri(QString("https://musicbrainz.org/artis=%1&album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n));
+        TagsId tagsId;
+        tagsId.uri = QString("https://musicbrainz.org/artis=%1&album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n);
         if (mResult.size() == 1) {
-            t.setName(QString("%1 / %2   [ MusicBrainz ]").arg(mRequestArtist, mRequestAlbum));
+            tagsId.title = QString("%1 / %2   [ MusicBrainz ]").arg(mRequestArtist, mRequestAlbum);
         }
         else {
-            t.setName(QString("%1 / %2   [ MusicBrainz %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n));
+            tagsId.title = QString("%1 / %2   [ MusicBrainz %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n);
         }
+
+        t.setTagsId(tagsId);
     }
 
     emit finished(mResult);

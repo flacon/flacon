@@ -25,6 +25,7 @@
 
 #include "patternexpander.h"
 #include "track.h"
+#include "disc.h"
 #include <QDir>
 
 class Tokens : public QHash<QChar, QString>
@@ -62,15 +63,15 @@ PatternExpander::PatternExpander() :
  *
  ************************************************/
 PatternExpander::PatternExpander(const Track &track) :
-    mTrackCount(track.trackCount()),
-    mTrackNum(track.trackNum()),
-    mDiscCount(track.discCount()),
-    mDiscNum(track.discNum()),
-    mAlbum(track.album()),
-    mTrackTitle(track.tags().title()),
-    mArtist(track.artist()),
-    mGenre(track.genre()),
-    mDate(track.date())
+    mTrackCount(track.disc()->tracks().count()),
+    mTrackNum(track.trackNumTag()),
+    mDiscCount(track.disc()->discCountTag()),
+    mDiscNum(track.disc()->discNumTag()),
+    mAlbum(track.disc()->albumTag()),
+    mTrackTitle(track.titleTag()),
+    mArtist(track.performerTag()),
+    mGenre(track.disc()->genreTag()),
+    mDate(track.disc()->dateTag())
 {
 }
 
@@ -241,7 +242,7 @@ QString PatternExpander::resultFileName(const QString &aPattern, const Track *tr
     // If the disc is a collection, the files fall into different directories.
     // So we use the tag DiscPerformer for expand the directory path.
     PatternExpander albumExpander(*track);
-    albumExpander.setArtist(track->albumArtist());
+    albumExpander.setArtist(track->disc()->albumTag());
 
     PatternExpander trackExpander(*track);
 

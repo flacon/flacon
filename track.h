@@ -29,6 +29,7 @@
 #include <QObject>
 #include "types.h"
 #include "tags.h"
+#include "cue.h"
 #include "inputaudiofile.h"
 #include <QDebug>
 
@@ -37,35 +38,6 @@ class Disc;
 class Track
 {
     friend class Disc;
-
-public:
-    class Tags
-    {
-    public:
-        Tags(Track *track);
-
-        QString artist() const;
-        void    setArtist(const QString &value);
-
-        QString title() const; // { return mTitle; }
-        void    setTitle(const QString &value);
-
-        int  trackNum() const { return mTrackNum; }
-        void setTrackNum(int value);
-
-        void initFromInternetTags(const InternetTags::Track &tags);
-        void initFromCue(const Cue::Track &cue, const TextCodec &textCodec);
-
-    private:
-        Track *mTrack = nullptr;
-
-        QString mArtist;
-        QString mTitle;
-        int     mTrackNum = 0;
-
-        bool mTitleChanged    = false;
-        bool mTrackNumChanged = false;
-    };
 
 public:
     Track() = default;
@@ -79,54 +51,13 @@ public:
     void                  setAudioFile(const InputAudioFile &file);
     QString               audioFileName() const { return mAudiofile.fileName(); }
 
-    QString tag(const TagId &tagId) const;
-    // QByteArray tagData(const TagId &tagId) const;
-    // TagValue   tagValue(TagId tagId) const;
-    void setTag(const TagId &tagId, const QString &value);
-
-    // void setTag(TagId tagId, const TagValue &value);
-
-    // bool operator==(const Track &other) const;
-
-    QString artist() const { return tag(TagId::Artist); }
-    void    setArtist(const QString &value) { setTag(TagId::Artist, value); }
-
-    QString album() const { return tag(TagId::Album); }
-    void    setAlbum(const QString &value) { setTag(TagId::Album, value); }
-
-    QString albumArtist() const { return tag(TagId::AlbumArtist); }
-    void    setAlbumArtist(const QString &value) { setTag(TagId::AlbumArtist, value); }
-
-    QString comment() const { return tag(TagId::Comment); }
-    void    setComment(const QString &value) { setTag(TagId::Comment, value); }
-
-    // QString title() const { return tag(TagId::Title); }
-    // void    setTitle(const QString &value) { setTag(TagId::Title, value); }
-
-    QString genre() const { return tag(TagId::Genre); }
-    void    setGenre(const QString &value) { setTag(TagId::Genre, value); }
-
-    QString date() const { return tag(TagId::Date); }
-    void    setDate(const QString &value) { setTag(TagId::Date, value); }
-
-    QString discId() const { return tag(TagId::DiscId); }
-
-    TrackNum trackNum() const;
-    void     setTrackNum(TrackNum value);
-
-    TrackNum trackCount() const;
-    void     setTrackCount(TrackNum value);
-
-    DiscNum discNum() const;
-    void    setDiscNum(DiscNum value);
-
-    DiscNum discCount() const;
-    void    setDiscCount(DiscNum value);
+    QString tag_DEL(const TagId &tagId) const { return ""; }
+    void    setTag_DEL(const TagId &tagId, const QString &value) { }
 
     Duration duration() const;
 
-    CueIndex cueIndex00() const;
-    CueIndex cueIndex01() const;
+    CueIndex cueIndex00() const { return mCueIndex00; }
+    CueIndex cueIndex01() const { return mCueIndex01; }
 
     Disc *disc() const { return mDisc; }
 
@@ -134,13 +65,57 @@ public:
 
     bool preEmphased() const;
 
-    const Tags &tags() const { return mTags; }
-    Tags       &tags() { return mTags; }
+public:
+    // Tags
+    TrackNum trackNumTag() const;
+    void     setTrackNumTag(int value);
+
+    QString artistTag() const { return performerTag(); }
+    QString commentTag() const;
+    QString dateTag() const;
+    QString flagsTag() const;
+    QString isrcTag() const;
+    QString titleTag() const;
+    QString performerTag() const;
+    QString songWriterTag() const;
+
+    void setArtistTag(const QString &value) { setPerformerTag(value); }
+    void setCommentTag(const QString &value);
+    void setDateTag(const QString &value);
+    void setIsrcTag(const QString &value);
+    void setTitleTag(const QString &value);
+    void setPerformerTag(const QString &value);
+    void setSongWriterTag(const QString &value);
+
+    QString fileTag() const;
+
+    // Album tags
+    TrackNum trackCountTag() const;
+    DiscNum  discCountTag() const;
+    DiscNum  discNumTag() const;
+
+    QString albumTag() const;
+    QString catalogTag() const;
+    QString cdTextfileTag() const;
+    QString discIdTag() const;
+    QString genreTag() const;
+
+protected:
+    Tags::Track userTags() const { return mUserTags; }
+    Tags::Track loadedTags() const { return mLoadedTags; }
+
+    void setUserTags(const Tags::Track &tags) { mUserTags = tags; }
+    void setLoadedTags(const Tags::Track &tags) { mLoadedTags = tags; }
 
 private:
     Disc *mDisc  = nullptr;
     int   mIndex = -1;
-    Tags  mTags  = Tags(this);
+
+    CueIndex mCueIndex00;
+    CueIndex mCueIndex01;
+
+    Tags::Track mUserTags;
+    Tags::Track mLoadedTags;
 
     InputAudioFile mAudiofile;
 };

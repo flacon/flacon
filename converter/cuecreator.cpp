@@ -47,40 +47,41 @@ CueCreator::CueCreator(const Profile &profile, const Disc *disc, PreGapType preG
  ************************************************/
 void CueCreator::initGlobalTags()
 {
-    static TagId tags[] = {
-        TagId::Genre,
-        TagId::Date,
-        TagId::Artist,
-        TagId::SongWriter,
-        TagId::Album,
-        TagId::Catalog,
-        TagId::CDTextfile,
-        TagId::DiscId,
-        TagId::DiscCount,
-        TagId::DiscNum
-    };
+#warning Fix me!!!!
+    // static TagId tags[] = {
+    //     TagId::Genre,
+    //     TagId::Date,
+    //     TagId::Artist,
+    //     TagId::SongWriter,
+    //     TagId::Album,
+    //     TagId::Catalog,
+    //     TagId::CDTextfile,
+    //     TagId::DiscId,
+    //     TagId::DiscCount,
+    //     TagId::DiscNum
+    // };
 
-    Track *firstTrack = mDisc->track(0);
-    for (uint t = 0; t < sizeof(tags) / sizeof(TagId); ++t) {
-        TagId   tagId = tags[t];
-        QString value = firstTrack->tag(tagId);
+    // Track *firstTrack = mDisc->track(0);
+    // for (uint t = 0; t < sizeof(tags) / sizeof(TagId); ++t) {
+    //     TagId   tagId = tags[t];
+    //     QString value = firstTrack->tag(tagId);
 
-        for (int i = 1; i < mDisc->count(); ++i) {
-            if (mDisc->track(i)->tag(tagId) != value) {
-                value.clear();
-                break;
-            }
-        }
+    //     for (int i = 1; i < mDisc->count(); ++i) {
+    //         if (mDisc->track(i)->tag(tagId) != value) {
+    //             value.clear();
+    //             break;
+    //         }
+    //     }
 
-        if (!value.isEmpty())
-            mGlobalTags.setAlbumTag(tagId, value);
-    }
+    //     if (!value.isEmpty())
+    //         mGlobalTags.setAlbumTag(tagId, value);
+    // }
 
-    // Don't write defaults values
-    if (mGlobalTags.albumTag(TagId::DiscCount) == "1" && mGlobalTags.albumTag(TagId::DiscNum) == "1") {
-        mGlobalTags.setAlbumTag(TagId::DiscCount, QByteArray());
-        mGlobalTags.setAlbumTag(TagId::DiscNum, QByteArray());
-    }
+    // // Don't write defaults values
+    // if (mGlobalTags.albumTag(TagId::DiscCount) == "1" && mGlobalTags.albumTag(TagId::DiscNum) == "1") {
+    //     mGlobalTags.setAlbumTag(TagId::DiscCount, QByteArray());
+    //     mGlobalTags.setAlbumTag(TagId::DiscNum, QByteArray());
+    // }
 }
 
 /************************************************
@@ -97,11 +98,12 @@ void CueCreator::writeLine(QIODevice *out, const QString &text) const
  ************************************************/
 void CueCreator::writeGlobalTag(QIODevice *out, const QString &format, TagId tagId)
 {
-    QString value = mGlobalTags.albumTag(tagId);
+#warning Fix me!!!!
+    // QString value = mGlobalTags.albumTag(tagId);
 
-    if (!value.isEmpty()) {
-        writeLine(out, format.arg(value));
-    }
+    // if (!value.isEmpty()) {
+    //     writeLine(out, format.arg(value));
+    // }
 }
 
 /************************************************
@@ -109,11 +111,12 @@ void CueCreator::writeGlobalTag(QIODevice *out, const QString &format, TagId tag
  ************************************************/
 void CueCreator::writeTrackTag(QIODevice *out, const Track *track, const QString &prefix, TagId tagId) const
 {
-    QString value = track->tag(tagId);
+#warning Fix me!!!!
+    // QString value = track->tag(tagId);
 
-    if (!value.isEmpty() && value != mGlobalTags.albumTag(tagId)) {
-        writeLine(out, prefix.arg(value));
-    }
+    // if (!value.isEmpty() && value != mGlobalTags.albumTag(tagId)) {
+    //     writeLine(out, prefix.arg(value));
+    // }
 }
 
 /************************************************
@@ -121,7 +124,7 @@ void CueCreator::writeTrackTag(QIODevice *out, const Track *track, const QString
  ************************************************/
 void CueCreator::writeTags(QIODevice *out, const Track *track) const
 {
-    CueFlags flags(track->tag(TagId::Flags));
+    CueFlags flags(track->flagsTag());
     flags.preEmphasis = false; // We already deephasis audio, so we reset this flag
     if (!flags.isEmpty()) {
         writeLine(out, QString("    FLAGS %1").arg(flags.toString()));
@@ -146,7 +149,7 @@ void CueCreator::write(QIODevice *out)
         }
     }
     // If the first track starts with zero second, doesn't make sense to create pregap track.
-    bool createPreGapFile = mPreGapType == PreGapType::ExtractToFile && mDisc->track(0)->cueIndex01().milliseconds() > 0;
+    bool createPreGapFile = mPreGapType == PreGapType::ExtractToFile && mDisc->tracks().first()->cueIndex01().milliseconds() > 0;
 
     initGlobalTags();
 
@@ -164,8 +167,8 @@ void CueCreator::write(QIODevice *out)
 
     // Tracks ...........................
     CueTime prevIndex("00:00:00");
-    for (int i = 0; i < mDisc->count(); ++i) {
-        Track   *track  = mDisc->track(i);
+    for (int i = 0; i < mDisc->tracks().count(); ++i) {
+        Track   *track  = mDisc->tracks().at(i);
         CueIndex index0 = track->cueIndex00();
         CueIndex index1 = track->cueIndex01();
         writeLine(out, "");
@@ -219,13 +222,13 @@ void CueCreator::write(QIODevice *out)
 
 QString CueCreator::writeToFile(const QString &fileTemplate)
 {
-    Track          *track = mDisc->track(0);
+    Track          *track = mDisc->tracks().first();
     QString         dir   = QFileInfo(mProfile.resultFilePath(track)).dir().absolutePath();
     PatternExpander expander(*track);
     expander.setTrackNum(0);
-    expander.setTrackCount(mDisc->count());
-    expander.setDiscNum(mDisc->discNum());
-    expander.setDiscCount(mDisc->discCount());
+    expander.setTrackCount(mDisc->tracks().count());
+    expander.setDiscNum(mDisc->discNumTag());
+    expander.setDiscCount(mDisc->discCountTag());
 
     QString fileName = expander.expand(fileTemplate);
 
@@ -233,8 +236,8 @@ QString CueCreator::writeToFile(const QString &fileTemplate)
         fileName = fileName.left(fileName.length() - 4);
     }
 
-    if (track->trackNum() > 1) {
-        fileName += QString(".tracks %1-%2").arg(track->trackNum()).arg(mDisc->tracks().last()->trackNum());
+    if (track->trackNumTag() > 1) {
+        fileName += QString(".tracks %1-%2").arg(track->trackNumTag()).arg(mDisc->tracks().last()->trackNumTag());
     }
 
     fileName += ".cue";

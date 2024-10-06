@@ -174,6 +174,7 @@ void InterntService::error(const QString &message)
         }
     }
 
+    qCDebug(LOG) << "(" << objectName() << ") Request error" << message;
     emit errorOccurred(message);
 }
 
@@ -193,10 +194,46 @@ void InterntService::removeDuplicates()
 {
     for (int i = mResult.size() - 1; i >= 0; --i) {
         for (int j = 0; j < i; ++j) {
-            if (mResult[i].compareTags(mResult[j])) {
+            if (compareTags(mResult[i], mResult[j])) {
                 mResult.removeAt(i);
                 break;
             }
         }
     }
+}
+
+/**************************************
+
+ **************************************/
+bool InterntService::compareTags(const InternetTags &tags1, const InternetTags &tags2) const
+{
+    bool res = true;
+
+    res = res && tags1.date() == tags2.date();
+    res = res && tags1.album() == tags2.album();
+    res = res && tags1.artist() == tags2.artist();
+    res = res && tags1.genre() == tags2.genre();
+
+    res = res && tags1.tracks().count() == tags2.tracks().count();
+
+    int n = -1;
+    for (const Tags::Track &t : tags1.tracks()) {
+        n++;
+        res = res && compareTrackTags(t, tags2.tracks().at(n));
+    }
+
+    return res;
+}
+
+/**************************************
+
+ **************************************/
+bool InterntService::compareTrackTags(const Tags::Track &tags1, const Tags::Track &tags2) const
+{
+    bool res = true;
+
+    res = res && tags1.title() == tags2.title();
+    res = res && tags1.trackNum() == tags2.trackNum();
+
+    return res;
 }

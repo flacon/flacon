@@ -261,4 +261,21 @@ private:
 
 QString expandFilePath(const QString &path);
 
+inline QString firstNotNullString(const QString &s1, const QString &s2)
+{
+    // clang-format off
+    if (!s1.isNull()) return s1;
+    return s2;
+    // clang-format on
+}
+
+inline QString firstNotNullString(const QString &s1, const QString &s2, const QString &s3)
+{
+    // clang-format off
+    if (!s1.isNull()) return s1;
+    if (!s2.isNull()) return s2;
+    return s3;
+    // clang-format on
+}
+
 #endif // TYPES_H

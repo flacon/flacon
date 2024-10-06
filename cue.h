@@ -31,6 +31,7 @@
 #include <QMap>
 #include "types.h"
 #include "textcodec.h"
+#include "tags.h"
 
 class CueData;
 class InputAudioFile;
@@ -38,19 +39,41 @@ class InputAudioFile;
 class Cue
 {
 public:
-    struct Track
+    class Track
     {
-        CueIndex cueIndex00;
-        CueIndex cueIndex01;
-        int      trackNum   = 0;
-        int      trackCount = 0;
+        friend class Cue;
 
-        QMap<TagId, QByteArray> tags;
+    public:
+        CueIndex cueIndex00() const { return mCueIndex00; }
+        CueIndex cueIndex01() const { return mCueIndex01; }
 
-        QByteArray title() const { return tags.value(TagId::Title); }
+        int        trackNumTag() const { return mTrackNumTag; }
+        QByteArray artistTag() const { return performerTag(); }
+        QByteArray dateTag() const { return mDateTag; }
+        QByteArray fileTag() const { return mFileTag; }
+        QByteArray flagsTag() const { return mFlagsTag; }
+        QByteArray isrcTag() const { return mIsrcTag; }
+        QByteArray performerTag() const { return mPerformerTag; }
+        QByteArray songWriterTag() const { return mSongWriterTag; }
+        QByteArray titleTag() const { return mTitleTag; }
+
+        Tags::Track decode(const TextCodec &textCodec) const;
+
+    private:
+        CueIndex mCueIndex00;
+        CueIndex mCueIndex01;
+
+        int mTrackNumTag = 0;
+
+        QByteArray mDateTag;
+        QByteArray mFileTag;
+        QByteArray mFlagsTag;
+        QByteArray mIsrcTag;
+        QByteArray mPerformerTag;
+        QByteArray mSongWriterTag;
+        QByteArray mTitleTag;
     };
 
-public:
     static constexpr const char *const EMBEDED_PREFIX = "embedded://";
 
 public:
@@ -59,41 +82,67 @@ public:
     explicit Cue(const QString &fileName) noexcept(false);
     Cue &operator=(const Cue &other) = default;
 
-    QString     title() const { return mTitle; }
-    QString     filePath() const { return mFilePath; }
-    DiscNum     discCount() const { return mDiscCount; }
-    DiscNum     discNum() const { return mDiscNum; }
-    QStringList fileTags() const { return mFileTags; }
+    QString filePath() const { return mFilePath; }
+    TagsId  tagsId() const { return mTagsId; }
 
-    int  trackCount() const { return mTracks.count(); }
-    bool isEmpty() const { return mTracks.isEmpty(); }
-    bool isMutiplyAudio() const { return mMutiplyAudio; }
-    bool isEmbedded() const { return mFilePath.startsWith(EMBEDED_PREFIX); }
+    DiscNum    discCountTag() const { return mDiscCountTag; }
+    DiscNum    discNumTag() const { return mDiscNumTag; }
+    QByteArray albumTag() const { return mAlbumTag; }
+    QByteArray catalogTag() const { return mCatalogTag; }
+    QByteArray cdTextfileTag() const { return mCdTextfileTag; }
+    QByteArray commentTag() const { return mCommentTag; }
+    QByteArray dateTag() const { return mDateTag; }
+    QByteArray discIdTag() const { return mDiscIdTag; }
+    QByteArray genreTag() const { return mGenreTag; }
+    QByteArray performerTag() const { return mPerformerTag; }
+    QByteArray songWriterTag() const { return mSongWriterTag; }
 
     QList<Track> tracks() const { return mTracks; }
-
-    QByteArray album() const { return "QWERTY"; }
+    bool         isEmpty() const { return mTracks.isEmpty(); }
 
     TextCodec detectTextCodec() const;
 
     TextCodec::BomCodec bom() const { return mBom; }
 
+    QStringList fileTags() const { return mFileTags; }
+
+    bool isMutiplyAudio() const { return mMutiplyAudio; }
+    bool isEmbedded() const { return mFilePath.startsWith(EMBEDED_PREFIX); }
+
+    Tags decode(const TextCodec &textCodec) const;
+
 protected:
-    QString      mFilePath;
-    DiscNum      mDiscCount = 0;
-    DiscNum      mDiscNum   = 0;
-    QString      mTitle;
+    QString mFilePath;
+    TagsId  mTagsId;
+
     QList<Track> mTracks;
-    QStringList  mFileTags;
-    bool         mMutiplyAudio = false;
+
+    QStringList mFileTags;
+    bool        mMutiplyAudio = false;
 
     TextCodec::BomCodec mBom = TextCodec::BomCodec::Unknown;
 
+protected:
     void       read(const CueData &data);
     QByteArray getAlbumPerformer(const CueData &data);
     void       splitTitleTag(const CueData &data);
     void       splitTitle(Track *track, char separator);
     void       validate();
+
+public:
+private:
+    DiscNum mDiscCountTag = 0;
+    DiscNum mDiscNumTag   = 0;
+
+    QByteArray mAlbumTag;
+    QByteArray mCatalogTag;
+    QByteArray mCdTextfileTag;
+    QByteArray mCommentTag;
+    QByteArray mDateTag;
+    QByteArray mDiscIdTag;
+    QByteArray mGenreTag;
+    QByteArray mPerformerTag;
+    QByteArray mSongWriterTag;
 };
 
 class EmbeddedCue : public Cue

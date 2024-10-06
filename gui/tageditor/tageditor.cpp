@@ -44,7 +44,7 @@ static void initControlValue(const QList<Track *> &tracks, const QList<Control *
     foreach (auto *control, controls) {
         QSet<QString> values;
         foreach (Track *track, tracks) {
-            values << track->tag(control->tagId());
+            values << track->tag_DEL(control->tagId());
         }
 
         control->setMultiValue(values);
@@ -59,7 +59,7 @@ static void initControlValue(const QList<Track *> &tracks, const QList<TagSpinBo
     foreach (auto *control, controls) {
         QSet<int> values;
         foreach (Track *track, tracks) {
-            values << track->tag(control->tagId()).toInt();
+            values << track->tag_DEL(control->tagId()).toInt();
         }
 
         control->setMultiValue(values);
@@ -132,7 +132,7 @@ static void setValue(const QList<Track *> &tracks, const QList<Control *> &contr
             continue;
 
         foreach (Track *track, tracks) {
-            track->setTag(edit->tagId(), edit->text());
+            track->setTag_DEL(edit->tagId(), edit->text());
         }
     }
 }
@@ -147,7 +147,7 @@ static void setValue(const QList<Track *> &tracks, const QList<TagSpinBox *> &co
             continue;
 
         foreach (Track *track, tracks) {
-            track->setTag(edit->tagId(), edit->text());
+            track->setTag_DEL(edit->tagId(), edit->text());
         }
     }
 }

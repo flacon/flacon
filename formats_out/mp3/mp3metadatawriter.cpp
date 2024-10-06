@@ -28,6 +28,7 @@
 #include <taglib/id3v2tag.h>
 #include <taglib/textidentificationframe.h>
 #include <taglib/attachedpictureframe.h>
+#include "disc.h"
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "Mp3MetaDataWriter")
@@ -77,33 +78,33 @@ void Mp3MetaDataWriter::setTags(const Track &track)
 {
     TagLib::ID3v2::Tag *tags = mFile.ID3v2Tag(true);
 
-    if (!track.artist().isEmpty())
-        tags->setArtist(TagLib::String(track.artist().toUtf8().data(), TagLib::String::UTF8));
+    if (!track.artistTag().isEmpty())
+        tags->setArtist(TagLib::String(track.artistTag().toUtf8().data(), TagLib::String::UTF8));
 
-    if (!track.album().isEmpty())
-        tags->setAlbum(TagLib::String(track.album().toUtf8().data(), TagLib::String::UTF8));
+    if (!track.albumTag().isEmpty())
+        tags->setAlbum(TagLib::String(track.albumTag().toUtf8().data(), TagLib::String::UTF8));
 
-    if (!track.genre().isEmpty())
-        tags->setGenre(TagLib::String(track.genre().toUtf8().data(), TagLib::String::UTF8));
+    if (!track.genreTag().isEmpty())
+        tags->setGenre(TagLib::String(track.genreTag().toUtf8().data(), TagLib::String::UTF8));
 
-    if (!track.tags().title().isEmpty())
-        tags->setTitle(TagLib::String(track.tags().title().toUtf8().data(), TagLib::String::UTF8));
+    if (!track.titleTag().isEmpty())
+        tags->setTitle(TagLib::String(track.titleTag().toUtf8().data(), TagLib::String::UTF8));
 
-    if (!track.comment().isEmpty())
-        tags->setComment(TagLib::String(track.comment().toUtf8().data(), TagLib::String::UTF8));
+    if (!track.commentTag().isEmpty())
+        tags->setComment(TagLib::String(track.commentTag().toUtf8().data(), TagLib::String::UTF8));
 
     {
-        int year = track.date().toInt();
+        int year = track.dateTag().toInt();
         if (year)
             tags->setYear(year);
     }
 
-    if (!track.tag(TagId::AlbumArtist).isEmpty()) {
-        addFrame(tags, "TPE2")->setText(TagLib::String(track.tag(TagId::AlbumArtist).toUtf8().data(), TagLib::String::UTF8));
+    if (!track.disc()->albumTag().isEmpty()) {
+        addFrame(tags, "TPE2")->setText(TagLib::String(track.disc()->albumTag().toUtf8().data(), TagLib::String::UTF8));
     }
 
-    addFrame(tags, "TRCK")->setText(QString("%1/%2").arg(track.trackNum()).arg(track.trackCount()).toStdString());
-    addFrame(tags, "TPOS")->setText(QString("%1/%2").arg(track.discNum()).arg(track.discCount()).toStdString());
+    addFrame(tags, "TRCK")->setText(QString("%1/%2").arg(track.trackNumTag()).arg(track.trackCountTag()).toStdString());
+    addFrame(tags, "TPOS")->setText(QString("%1/%2").arg(track.discNumTag()).arg(track.discCountTag()).toStdString());
 }
 
 /************************************************
