@@ -29,6 +29,7 @@
 #include <QDialog>
 #include <QList>
 #include "tags.h"
+#include "controls.h"
 
 class Track;
 class Disc;
@@ -50,15 +51,18 @@ public slots:
     void done(int res) override;
 
 private:
-    Ui::TagEditor *      ui;
-    void                 add2Widget(QWidget *widget1, QWidget *widget2, const QString &label);
-    void                 addLineEdit(TagId tagId, const QString &label);
-    void                 addTextEdit(TagId tagId, const QString &label);
-    void                 addIntEdit(TagId tagId, const QString &label);
-    void                 addIntEditNumCount(TagId numTagId, TagId cntTagId, const QString &numLabel);
+    Ui::TagEditor *ui;
+    // void           add2Widget(QWidget *widget1, QWidget *widget2, const QString &label);
+
+    // void addDiskLineEdit(const DiskTagLineEdit::ReadTagFunc &readFunc, const DiskTagLineEdit::UpdateTagFunc &updateFunc, const QString &label);
+
+    // void                 addLineEdit(TagId tagId, const QString &label);
+    // void                 addTextEdit(TagId tagId, const QString &label);
+    // void                 addIntEdit(TagId tagId, const QString &label);
+    // void                 addIntEditNumCount(TagId numTagId, TagId cntTagId, const QString &numLabel);
     const QList<Track *> mTracks;
     const QList<Disc *>  mDiscs;
-    MultiValuesSpinBox * mStartTrackSpin;
+    // MultiValuesSpinBox  *mStartTrackSpin;
 };
 
 #endif // TAGEDITOR_H

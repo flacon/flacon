@@ -210,7 +210,7 @@ void TrackView::update(const Disc &disc)
  ************************************************/
 void TrackView::updateAll()
 {
-    emit layoutChanged();
+    emit model()->layoutChanged();
 }
 
 /************************************************

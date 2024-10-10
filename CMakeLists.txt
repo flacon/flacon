@@ -117,8 +117,7 @@ set(HEADERS
     gui/aboutdialog/aboutdialog.h
     gui/coverdialog/coverdialog.h
     gui/coverdialog/asynclistwidgetitem.h
-    gui/tageditor/tageditor.h
-)
+ )
 
 set(SOURCES
     application.cpp
@@ -145,7 +144,6 @@ set(SOURCES
     gui/aboutdialog/aboutdialog.cpp
     gui/coverdialog/coverdialog.cpp
     gui/coverdialog/asynclistwidgetitem.cpp
-    gui/tageditor/tageditor.cpp
 )
 
 if (APPLE)

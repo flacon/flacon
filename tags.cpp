@@ -30,17 +30,11 @@
 
 #define GET(FIELD) !mUserTags.FIELD().isNull() ? mUserTags.FIELD() : mLoadedTags.FIELD();
 
-/************************************************
- *
- ************************************************/
-void Tags::resize(int size)
+/**************************************
+ * AlbumTags
+ **************************************/
+void AlbumTags::merge(const AlbumTags &other)
 {
-    mTracks.resize(size);
-}
-
-void Tags::merge(const Tags &other)
-{
-
     // clang-format off
     if (other.discCount()) mDiscCount = other.discCount();
     if (other.discNum())   mDiscNum   = other.discNum();
@@ -55,18 +49,12 @@ void Tags::merge(const Tags &other)
     if (!other.mPerformer.isNull())  mPerformer  = other.mPerformer;
     if (!other.mSongWriter.isNull()) mSongWriter = other.mSongWriter;
     // clang-format on
-
-    int i = -1;
-    for (Track &t : mTracks) {
-        i++;
-        t.merge(other.tracks().at(i));
-    }
 }
 
 /**************************************
- *
+ * TrackTags
  **************************************/
-void Tags::Track::merge(const Tags::Track &other)
+void TrackTags::merge(const TrackTags &other)
 {
     // clang-format off
     if (other.mTrackNum)    mTrackNum = other.mTrackNum;
@@ -79,6 +67,28 @@ void Tags::Track::merge(const Tags::Track &other)
     if (!other.mSongWriter.isNull()) mSongWriter = other.mSongWriter;
     if (!other.mTitle.isNull())      mTitle      = other.mTitle;
     // clang-format on
+}
+
+/**************************************
+ * Tags
+ **************************************/
+void Tags::merge(const Tags &other)
+{
+    AlbumTags::merge(other);
+
+    int i = -1;
+    for (TrackTags &t : mTracks) {
+        i++;
+        t.merge(other.tracks().at(i));
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+void Tags::resize(int size)
+{
+    mTracks.resize(size);
 }
 
 /**************************************

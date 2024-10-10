@@ -64,6 +64,25 @@ CueData::CueData(QIODevice *device) noexcept(false)
 /************************************************
  *
  ************************************************/
+bool CueData::allTracksHaveSameTag(const QByteArray &tag) const
+{
+    if (isEmpty()) {
+        return false;
+    }
+
+    QByteArray value = mTracks.first().value(tag);
+    for (const Tags &track : mTracks) {
+        if (track.value(tag) != value) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/************************************************
+ *
+ ************************************************/
 CueData::CueData(const QString &fileName) :
     mFileName(fileName)
 {

@@ -47,6 +47,8 @@ public:
     const Tags          &globalTags() const { return mGlobalTags; }
     const QVector<Tags> &tracks() const { return mTracks; }
 
+    bool allTracksHaveSameTag(const QByteArray &tag) const;
+
     static constexpr auto INDEX_TAG     = "INDEX";
     static constexpr auto FILE_TAG      = "FILE";
     static constexpr auto TRACK_TAG     = "TRACK";

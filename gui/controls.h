@@ -36,6 +36,7 @@
 #include <QMessageBox>
 #include <QLabel>
 #include "types.h"
+#include "disc.h"
 
 class QStringListModel;
 class QToolBar;
@@ -224,6 +225,44 @@ public:
 
 private:
     TagId mTagId;
+};
+
+/************************************************
+
+ ************************************************/
+class DiskTagLineEdit : public MultiValuesLineEdit
+{
+    Q_OBJECT
+public:
+    using ReadTagFunc   = QString (Disc::*)() const;
+    using UpdateTagFunc = void (Disc::*)(const QString &);
+
+public:
+    using MultiValuesLineEdit::MultiValuesLineEdit;
+
+    ReadTagFunc readTagFunc() const { return mReadTagFunc; }
+    void        setReadTagFunc(const ReadTagFunc &func) { mReadTagFunc = func; }
+
+    UpdateTagFunc updateTagFunc() const { return mUpdateTagFunc; }
+    void          setUpdateTagFunc(const UpdateTagFunc &func) { mUpdateTagFunc = func; }
+
+    void readTag(Disc *disk)
+    {
+        if (mReadTagFunc != nullptr) {
+            setText(std::mem_fn(mReadTagFunc)(disk));
+        }
+    }
+
+    void updateTag(Disc *disk)
+    {
+        if (mUpdateTagFunc != nullptr) {
+            std::mem_fn(mUpdateTagFunc)(disk, text());
+        }
+    }
+
+private:
+    ReadTagFunc   mReadTagFunc   = nullptr;
+    UpdateTagFunc mUpdateTagFunc = nullptr;
 };
 
 /************************************************

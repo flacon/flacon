@@ -74,6 +74,19 @@ Cue::Cue(const QString &fileName) noexcept(false)
     read(data);
 }
 
+/**************************************
+ * If all tracks have the same tag value, it is
+ * more convenient for the user to edit the tag in the album area.
+ **************************************/
+static bool updateGlobalTagsFromTracks(const CueData &data, const QByteArray &tag, QByteArray *variable)
+{
+    bool res = data.allTracksHaveSameTag(tag);
+    if (res && !data.tracks().first().value(tag).isEmpty()) {
+        *variable = data.tracks().first().value(tag);
+    }
+    return res;
+}
+
 /************************************************
  *
  ************************************************/
@@ -82,7 +95,8 @@ void Cue::read(const CueData &data)
     mDiscCountTag = 1;
     mDiscNumTag   = 1;
 
-    const CueData::Tags &global = data.globalTags();
+    const CueData::Tags &global     = data.globalTags();
+    const CueData::Tags &firstTrack = data.tracks().first();
 
     mAlbumTag      = global.value(CueData::TITLE_TAG);
     mCatalogTag    = global.value("CATALOG");
@@ -90,12 +104,13 @@ void Cue::read(const CueData &data)
     mCommentTag    = global.value("COMMENT");
     mGenreTag      = global.value("GENRE");
     mDiscIdTag     = global.value("DISCID");
-    mPerformerTag  = getAlbumPerformer(data);
+    mPerformerTag  = global.value("PERFORMER"); // getAlbumPerformer(data);
     mSongWriterTag = global.value("SONGWRITER");
     mDateTag       = global.value("DATE");
 
-    // track.tags[TagId::DiscNum]   = global.value("DISCNUMBER", "1");
-    // track.tags[TagId::DiscCount] = global.value("TOTALDISCS", "1");
+    bool skipTrackPerformer  = updateGlobalTagsFromTracks(data, "PERFORMER", &mPerformerTag);
+    bool skipTrackSongWriter = updateGlobalTagsFromTracks(data, "SONGWRITER", &mSongWriterTag);
+    bool skipTrackDate       = updateGlobalTagsFromTracks(data, "DATE", &mDateTag);
 
     QByteArray prevFileTag;
 
@@ -129,13 +144,23 @@ void Cue::read(const CueData &data)
         track.mCueIndex00 = CueIndex(index00, index00File);
         track.mCueIndex01 = CueIndex(index01, index01File);
 
-        track.mFlagsTag      = t.value(CueData::FLAGS_TAG);
-        track.mIsrcTag       = t.value("ISRC");
-        track.mTitleTag      = t.value("TITLE");
-        track.mPerformerTag  = t.value("PERFORMER");
-        track.mSongWriterTag = t.value("SONGWRITER");
-        track.mDateTag       = t.value("DATE");
-        track.mTrackNumTag   = TrackNum(t.value(CueData::TRACK_TAG).toUInt());
+        track.mFlagsTag = t.value(CueData::FLAGS_TAG);
+        track.mIsrcTag  = t.value("ISRC");
+        track.mTitleTag = t.value("TITLE");
+
+        if (!skipTrackPerformer) {
+            track.mPerformerTag = t.value("PERFORMER");
+        }
+
+        if (!skipTrackSongWriter) {
+            track.mSongWriterTag = t.value("SONGWRITER");
+        }
+
+        if (!skipTrackDate) {
+            track.mDateTag = t.value("DATE");
+        }
+
+        track.mTrackNumTag = TrackNum(t.value(CueData::TRACK_TAG).toUInt());
 
         mTracks.append(track);
     }

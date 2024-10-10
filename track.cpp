@@ -138,7 +138,7 @@ QString Track::dateTag() const
         return mLoadedTags.date();
     }
 
-    return mDisc->commentTag();
+    return mDisc->dateTag();
 }
 
 /**************************************
@@ -176,10 +176,17 @@ QString Track::titleTag() const
  **************************************/
 QString Track::performerTag() const
 {
-    if (!mUserTags.performer().isNull()) {
-        return mUserTags.performer();
+    QString res = mDisc->getTrackTag(mIndex, &TrackTags::performer);
+    if (!res.isNull()) {
+        return res;
     }
-    return mLoadedTags.performer();
+
+    return mDisc->performerTag();
+
+    // if (!mUserTags.performer().isNull()) {
+    //     return mUserTags.performer();
+    // }
+    // return mLoadedTags.performer();
 }
 
 /**************************************
@@ -230,7 +237,7 @@ void Track::setIsrcTag(const QString &value)
  **************************************/
 void Track::setTitleTag(const QString &value)
 {
-    mUserTags.setTitle(value);
+    mDisc->setTrackTag(mIndex, &TrackTags::setTitle, value);
 }
 
 /**************************************
@@ -238,7 +245,7 @@ void Track::setTitleTag(const QString &value)
  **************************************/
 void Track::setPerformerTag(const QString &value)
 {
-    mUserTags.setPerformer(value);
+    mDisc->setTrackTag(mIndex, &TrackTags::setPerformer, value);
 }
 
 /**************************************

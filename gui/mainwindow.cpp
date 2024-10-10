@@ -106,26 +106,10 @@ MainWindow::MainWindow(QWidget *parent) :
     trackView->setAlternatingRowColors(false);
 
     // Tag edits ...............................................
-    tagGenreEdit->setTagId(TagId::Genre);
     connect(tagGenreEdit, &TagLineEdit::textEdited, this, &MainWindow::setGenreTag);
-
-    tagYearEdit->setTagId(TagId::Date);
-    connect(tagYearEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
-
-    tagArtistEdit->setTagId(TagId::Artist);
-    connect(tagArtistEdit, &TagLineEdit::textEdited, this, &MainWindow::setArtistTag);
-    // connect(tagArtistEdit, &TagLineEdit::textEdited, this, &MainWindow::refreshEdits);
-
-    tagDiscPerformerEdit->setTagId(TagId::AlbumArtist);
-    // connect(tagDiscPerformerEdit, &TagLineEdit::textEdited, this, &MainWindow::setDiscTag);
-    connect(tagDiscPerformerEdit, &TagLineEdit::textEdited, this, &MainWindow::refreshEdits);
-
-    tagAlbumEdit->setTagId(TagId::Album);
+    connect(tagYearEdit, &TagLineEdit::textEdited, this, &MainWindow::setDateTag);
+    connect(tagPerformerEdit, &TagLineEdit::textEdited, this, &MainWindow::setPerformerTag);
     connect(tagAlbumEdit, &TagLineEdit::textEdited, this, &MainWindow::setAlbumTag);
-
-    tagDiscIdEdit->setTagId(TagId::DiscId);
-    connect(tagDiscIdEdit, &TagLineEdit::textEdited, this, &MainWindow::setTrackTag);
-    connect(tagDiscIdEdit, &TagLineEdit::textEdited, this, &MainWindow::setControlsEnable);
 
     connect(tagStartNumEdit, &MultiValuesSpinBox::editingFinished, this, &MainWindow::setStartTrackNum);
     connect(tagStartNumEdit, qOverload<int>(&MultiValuesSpinBox::valueChanged),
@@ -195,6 +179,10 @@ MainWindow::MainWindow(QWidget *parent) :
             []() {
                 Icon::setDarkMode(Application::instance()->isDarkVisualMode());
             });
+
+    Validator *validator = &Project::instance()->validator();
+    connect(trackView->model(), &TrackViewModel::dataChanged, validator, &Validator::revalidate);
+    connect(trackView->model(), &TrackViewModel::layoutChanged, validator, &Validator::revalidate);
 
     Icon::setDarkMode(Application::instance()->isDarkVisualMode());
 
@@ -450,8 +438,11 @@ void MainWindow::refreshEdits()
 
     // Discs ...............................
     QSet<int>     startNums;
-    QSet<QString> discId;
     QSet<QString> codePage;
+    QSet<QString> genre;
+    QSet<QString> album;
+    QSet<QString> date;
+    QSet<QString> performer;
 
     bool hasErrors   = false;
     bool hasWarnings = false;
@@ -463,34 +454,19 @@ void MainWindow::refreshEdits()
     QList<Disc *> discs = trackView->selectedDiscs();
     foreach (Disc *disc, discs) {
         startNums << disc->startTrackNum();
-        discId << disc->discIdTag();
         codePage << disc->codecName();
-    }
-
-    // Tracks ..............................
-    QSet<QString> genre;
-    QSet<QString> artist;
-    QSet<QString> album;
-    QSet<QString> date;
-    QSet<QString> discPerformer;
-
-    QList<Track *> tracks = trackView->selectedTracks();
-    foreach (Track *track, tracks) {
-        genre << track->genreTag();
-        artist << track->artistTag();
-        album << track->albumTag();
-        date << track->dateTag();
-        discPerformer << track->disc()->performerTag();
+        genre << disc->genreTag();
+        album << disc->albumTag();
+        date << disc->dateTag();
+        performer << disc->performerTag();
     }
 
     tagGenreEdit->setMultiValue(genre);
     tagYearEdit->setMultiValue(date);
-    tagArtistEdit->setMultiValue(artist);
+    tagPerformerEdit->setMultiValue(performer);
     tagAlbumEdit->setMultiValue(album);
     tagStartNumEdit->setMultiValue(startNums);
-    tagDiscIdEdit->setMultiValue(discId);
     codepageCombo->setMultiValue(codePage);
-    tagDiscPerformerEdit->setMultiValue(discPerformer);
 
     const Profile *profile = Project::instance()->profile();
     if (outDirEdit->currentText() != profile->outFileDir()) {
@@ -568,67 +544,6 @@ void MainWindow::setCodePage()
             disc->setCodecName(codepage);
     }
 }
-
-/************************************************
-
- ************************************************/
-void MainWindow::setTrackTag()
-{
-#warning REMOVE ME
-    //     TagLineEdit *edit = qobject_cast<TagLineEdit *>(sender());
-    //     if (!edit)
-    //         return;
-
-    //     QList<Disc *> disks = trackView->selectedDiscs();
-    //     for (Disk *d : disks) {
-    //         d->blockSignals(true);
-    //     }
-    //     QList<Track *> tracks = trackView->selectedTracks();
-    //     foreach (Track *track, tracks) {
-    //         track->setTag(edit->tagId(), edit->text());
-    //     }
-
-    //     for (Disk *d : disks) {
-    //         d->blockSignals(false);
-    //         emit d->tagChanged();
-    //     }
-
-    //     trackView->updateAll();
-}
-
-/************************************************
- *
- ************************************************/
-// void MainWindow::setDiscTag()
-// {
-//     TagLineEdit *edit = qobject_cast<TagLineEdit *>(sender());
-//     if (!edit)
-//         return;
-
-//     QList<Disc *> discs = trackView->selectedDiscs();
-//     foreach (Disc *disc, discs) {
-//         disc->setDiscTag(edit->tagId(), edit->text());
-//     }
-
-//     trackView->updateAll();
-// }
-
-// /************************************************
-//  *
-//  ************************************************/
-// void MainWindow::setDiscTagInt()
-// {
-//     TagSpinBox *spinBox = qobject_cast<TagSpinBox *>(sender());
-//     if (!spinBox)
-//         return;
-
-//     QList<Disc *> discs = trackView->selectedDiscs();
-//     foreach (Disc *disc, discs) {
-//         disc->setDiscTag(spinBox->tagId(), QString::number(spinBox->value()));
-//     }
-
-//     trackView->updateAll();
-// }
 
 /************************************************
  *
@@ -1176,58 +1091,48 @@ void MainWindow::setStartTrackNum()
     }
 }
 
+/**************************************
+ *
+ **************************************/
 void MainWindow::setGenreTag()
 {
-    //     TagLineEdit *edit = qobject_cast<TagLineEdit *>(sender());
-    //     if (!edit)
-    //         return;
-
-    QList<Disc *> disks = trackView->selectedDiscs();
-    for (Disk *d : disks) {
-        d->blockSignals(true);
-        d->setGenreTag(tagGenreEdit->text());
+    for (Disc *disk : trackView->selectedDiscs()) {
+        disk->setGenreTag(tagGenreEdit->text());
     }
-
-    for (Disk *d : disks) {
-        d->blockSignals(false);
-        emit d->tagChanged();
-    }
-
     trackView->updateAll();
 }
 
-void MainWindow::setArtistTag()
+/**************************************
+ *
+ **************************************/
+void MainWindow::setDateTag()
 {
-    QList<Disc *> disks = trackView->selectedDiscs();
-    for (Disk *d : disks) {
-        d->blockSignals(true);
-        d->setPerformerTag(tagArtistEdit->text());
+    for (Disc *disk : trackView->selectedDiscs()) {
+        disk->setDateTag(tagYearEdit->text());
     }
-
-    for (Disk *d : disks) {
-        d->blockSignals(false);
-        emit d->tagChanged();
-    }
-
     trackView->updateAll();
-    refreshEdits();
 }
 
+/**************************************
+ *
+ **************************************/
+void MainWindow::setPerformerTag()
+{
+    for (Disc *disk : trackView->selectedDiscs()) {
+        disk->setPerformerTag(tagPerformerEdit->text());
+    }
+    trackView->updateAll();
+}
+
+/**************************************
+ *
+ **************************************/
 void MainWindow::setAlbumTag()
 {
-    QList<Disc *> disks = trackView->selectedDiscs();
-    for (Disk *d : disks) {
-        d->blockSignals(true);
-        d->setAlbumTag(tagAlbumEdit->text());
+    for (Disc *disk : trackView->selectedDiscs()) {
+        disk->setAlbumTag(tagAlbumEdit->text());
     }
-
-    for (Disk *d : disks) {
-        d->blockSignals(false);
-        emit d->tagChanged();
-    }
-
     trackView->updateAll();
-    refreshEdits();
 }
 
 /************************************************

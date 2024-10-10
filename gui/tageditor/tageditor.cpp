@@ -38,6 +38,21 @@
 /************************************************
  *
  ************************************************/
+static void initControlValue(const QList<Disc *> &disks, const QList<DiskTagLineEdit *> &controls)
+{
+    foreach (auto *control, controls) {
+        QSet<QString> values;
+        foreach (Disc *disk, disks) {
+            values << std::mem_fn(control->readTagFunc())(disk);
+        }
+
+        control->setMultiValue(values);
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
 template <class Control>
 static void initControlValue(const QList<Track *> &tracks, const QList<Control *> &controls)
 {
@@ -73,44 +88,44 @@ TagEditor::TagEditor(const QList<Track *> &tracks, const QList<Disc *> &discs, Q
     QDialog(parent),
     ui(new Ui::TagEditor),
     mTracks(tracks),
-    mDiscs(discs),
-    mStartTrackSpin(nullptr)
+    mDiscs(discs)
 {
     ui->setupUi(this);
     setWindowModality(Qt::WindowModal);
 
-    addLineEdit(TagId::Artist, tr("Artist:", "Music tag name"));
-    addLineEdit(TagId::AlbumArtist, tr("Album performer:", "Music tag name"));
-    addLineEdit(TagId::Album, tr("Album:", "Music tag name"));
-    addLineEdit(TagId::Genre, tr("Genre:", "Music tag name"));
-    addLineEdit(TagId::Date, tr("Year:", "Music tag name"));
+    // addDiskLineEdit(&Disc::performerTag, &Disc::setPerformerTag, tr("Artist:", "Music tag name"));
+    // // addLineEdit(&Disc::setTagId::AlbumArtist, tr("Album performer:", "Music tag name"));
+    // addDiskLineEdit(&Disc::albumTag, &Disc::setAlbumTag, tr("Album:", "Music tag name"));
+    // addDiskLineEdit(&Disc::genreTag, &Disc::setGenreTag, tr("Genre:", "Music tag name"));
+    // addDiskLineEdit(&Disc::dateTag, &Disc::setDateTag, tr("Year:", "Music tag name"));
 
-    mStartTrackSpin = new MultiValuesSpinBox(this);
-    mStartTrackSpin->setMinimum(1);
-    mStartTrackSpin->setMaximum(99);
+    // mStartTrackSpin = new MultiValuesSpinBox(this);
+    // mStartTrackSpin->setMinimum(1);
+    // mStartTrackSpin->setMaximum(99);
 
-    TagSpinBox *trackCountSpin = new TagSpinBox(this);
-    trackCountSpin->setMinimum(1);
-    trackCountSpin->setMaximum(99);
-    trackCountSpin->setTagId(TagId::TrackCount);
-    this->add2Widget(mStartTrackSpin, trackCountSpin, tr("Start track number:", "Music tag name"));
+    // TagSpinBox *trackCountSpin = new TagSpinBox(this);
+    // trackCountSpin->setMinimum(1);
+    // trackCountSpin->setMaximum(99);
+    // trackCountSpin->setTagId(TagId::TrackCount);
+    // this->add2Widget(mStartTrackSpin, trackCountSpin, tr("Start track number:", "Music tag name"));
 
-    addIntEditNumCount(TagId::DiscNum, TagId::DiscCount, tr("Disc number:", "Music tag name"));
+    // addIntEditNumCount(TagId::DiscNum, TagId::DiscCount, tr("Disc number:", "Music tag name"));
 
-    addLineEdit(TagId::Title, tr("Track title:", "Music tag name"));
-    addTextEdit(TagId::Comment, tr("Comment:", "Music tag name"));
+    // addLineEdit(TagId::Title, tr("Track title:", "Music tag name"));
+    // addTextEdit(TagId::Comment, tr("Comment:", "Music tag name"));
 
-    // Set values ______________________________________________
-    initControlValue(tracks, this->findChildren<TagLineEdit *>());
-    initControlValue(tracks, this->findChildren<TagTextEdit *>());
-    initControlValue(tracks, this->findChildren<TagSpinBox *>());
+    // // Set values ______________________________________________
+    // initControlValue(mDiscs, this->findChildren<DiskTagLineEdit *>());
+    // initControlValue(tracks, this->findChildren<TagLineEdit *>());
+    // initControlValue(tracks, this->findChildren<TagTextEdit *>());
+    // initControlValue(tracks, this->findChildren<TagSpinBox *>());
 
-    QSet<int> values;
-    foreach (Disc *disc, discs) {
-        values << disc->startTrackNum();
-    }
+    // QSet<int> values;
+    // foreach (Disc *disc, discs) {
+    //     values << disc->startTrackNum();
+    // }
 
-    mStartTrackSpin->setMultiValue(values);
+    // mStartTrackSpin->setMultiValue(values);
 }
 
 /************************************************
@@ -162,15 +177,15 @@ void TagEditor::done(int res)
         return;
     }
 
-    setValue(mTracks, this->findChildren<TagLineEdit *>());
-    setValue(mTracks, this->findChildren<TagTextEdit *>());
-    setValue(mTracks, this->findChildren<TagSpinBox *>());
+    // setValue(mTracks, this->findChildren<TagLineEdit *>());
+    // setValue(mTracks, this->findChildren<TagTextEdit *>());
+    // setValue(mTracks, this->findChildren<TagSpinBox *>());
 
-    if (mStartTrackSpin->isModified()) {
-        foreach (Disc *disc, mDiscs) {
-            disc->setStartTrackNum(mStartTrackSpin->value());
-        }
-    }
+    // if (mStartTrackSpin->isModified()) {
+    //     foreach (Disc *disc, mDiscs) {
+    //         disc->setStartTrackNum(mStartTrackSpin->value());
+    //     }
+    // }
 
     QDialog::done(res);
 }
@@ -178,109 +193,124 @@ void TagEditor::done(int res)
 /************************************************
  *
  ************************************************/
-void TagEditor::add2Widget(QWidget *widget1, QWidget *widget2, const QString &label)
-{
-    int row = ui->layout->rowCount();
-    {
-        QLabel *lbl = new QLabel(this);
-        lbl->setText(label);
-        lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
-        ui->layout->addWidget(lbl, row, 0);
-    }
+// void TagEditor::add2Widget(QWidget *widget1, QWidget *widget2, const QString &label)
+// {
+//     int row = ui->layout->rowCount();
+//     {
+//         QLabel *lbl = new QLabel(this);
+//         lbl->setText(label);
+//         lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
+//         ui->layout->addWidget(lbl, row, 0);
+//     }
 
-    ui->layout->addWidget(widget1, row, 1);
+//     ui->layout->addWidget(widget1, row, 1);
 
-    {
-        QLabel *lbl = new QLabel(this);
-        lbl->setText(tr("of"));
-        lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
-        ui->layout->addWidget(lbl, row, 2);
-    }
+//     {
+//         QLabel *lbl = new QLabel(this);
+//         lbl->setText(tr("of"));
+//         lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
+//         ui->layout->addWidget(lbl, row, 2);
+//     }
 
-    ui->layout->addWidget(widget2, row, 3);
-}
+//     ui->layout->addWidget(widget2, row, 3);
+// }
 
-/************************************************
- *
- ************************************************/
-void TagEditor::addLineEdit(TagId tagId, const QString &label)
-{
-    QLabel *lbl = new QLabel(this);
-    lbl->setText(label);
-    lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
+// void TagEditor::addDiskLineEdit(const DiskTagLineEdit::ReadTagFunc &readFunc, const DiskTagLineEdit::UpdateTagFunc &updateFunc, const QString &label)
+// {
+//     QLabel *lbl = new QLabel(this);
+//     lbl->setText(label);
+//     lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
 
-    QGridLayout *layout = ui->layout;
-    layout->addWidget(lbl, layout->rowCount(), 0);
+//     QGridLayout *layout = ui->diskGroupLayout;
+//     layout->addWidget(lbl, layout->rowCount(), 0);
 
-    TagLineEdit *edit = new TagLineEdit(this);
-    edit->setTagId(tagId);
-    layout->addWidget(edit, layout->rowCount() - 1, 1, 1, 3);
-}
+//     DiskTagLineEdit *edit = new DiskTagLineEdit(this);
+//     edit->setReadTagFunc(readFunc);
+//     edit->setUpdateTagFunc(updateFunc);
+//     layout->addWidget(edit, layout->rowCount() - 1, 1, 1, 3);
+// }
 
 /************************************************
  *
  ************************************************/
-void TagEditor::addTextEdit(TagId tagId, const QString &label)
-{
-    QLabel *lbl = new QLabel(this);
-    lbl->setText(label);
-    lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
+// void TagEditor::addLineEdit(TagId tagId, const QString &label)
+// {
+//     QLabel *lbl = new QLabel(this);
+//     lbl->setText(label);
+//     lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
 
-    QGridLayout *layout = ui->layout;
-    layout->addWidget(lbl, layout->rowCount(), 0);
+//     QGridLayout *layout = ui->layout;
+//     layout->addWidget(lbl, layout->rowCount(), 0);
 
-    TagTextEdit *edit = new TagTextEdit(this);
-    edit->setTagId(tagId);
-    layout->addWidget(edit, layout->rowCount() - 1, 1, 1, 3);
-}
-
-/************************************************
- *
- ************************************************/
-void TagEditor::addIntEditNumCount(TagId numTagId, TagId cntTagId, const QString &numLabel)
-{
-    int row = ui->layout->rowCount();
-    {
-        QLabel *lbl = new QLabel(this);
-        lbl->setText(numLabel);
-        lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
-        ui->layout->addWidget(lbl, row, 0);
-    }
-
-    {
-        TagSpinBox *edit = new TagSpinBox(this);
-        edit->setMinimum(1);
-        edit->setTagId(numTagId);
-        ui->layout->addWidget(edit, row, 1);
-    }
-
-    {
-        QLabel *lbl = new QLabel(this);
-        lbl->setText(tr("of"));
-        lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
-        ui->layout->addWidget(lbl, row, 2);
-    }
-
-    {
-        TagSpinBox *edit = new TagSpinBox(this);
-        edit->setMinimum(1);
-        edit->setTagId(cntTagId);
-        ui->layout->addWidget(edit, row, 3);
-    }
-}
+//     TagLineEdit *edit = new TagLineEdit(this);
+//     edit->setTagId(tagId);
+//     layout->addWidget(edit, layout->rowCount() - 1, 1, 1, 3);
+// }
 
 /************************************************
  *
  ************************************************/
-void TagEditor::addIntEdit(TagId tagId, const QString &label)
-{
-    QLabel *lbl = new QLabel(this);
-    lbl->setText(label);
+// void TagEditor::addTextEdit(TagId tagId, const QString &label)
+// {
+//     QLabel *lbl = new QLabel(this);
+//     lbl->setText(label);
+//     lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
 
-    QGridLayout *layout = ui->layout;
-    layout->addWidget(lbl, layout->rowCount(), 0);
+//     QGridLayout *layout = ui->layout;
+//     layout->addWidget(lbl, layout->rowCount(), 0);
 
-    TagSpinBox *edit = new TagSpinBox(this);
-    edit->setTagId(tagId);
-    layout->addWidget(edit, layout->rowCount() - 1, 1);
-}
+//     TagTextEdit *edit = new TagTextEdit(this);
+//     edit->setTagId(tagId);
+//     layout->addWidget(edit, layout->rowCount() - 1, 1, 1, 3);
+// }
+
+/************************************************
+ *
+ ************************************************/
+// void TagEditor::addIntEditNumCount(TagId numTagId, TagId cntTagId, const QString &numLabel)
+// {
+//     int row = ui->layout->rowCount();
+//     {
+//         QLabel *lbl = new QLabel(this);
+//         lbl->setText(numLabel);
+//         lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
+//         ui->layout->addWidget(lbl, row, 0);
+//     }
+
+//     {
+//         TagSpinBox *edit = new TagSpinBox(this);
+//         edit->setMinimum(1);
+//         edit->setTagId(numTagId);
+//         ui->layout->addWidget(edit, row, 1);
+//     }
+
+//     {
+//         QLabel *lbl = new QLabel(this);
+//         lbl->setText(tr("of"));
+//         lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
+//         ui->layout->addWidget(lbl, row, 2);
+//     }
+
+//     {
+//         TagSpinBox *edit = new TagSpinBox(this);
+//         edit->setMinimum(1);
+//         edit->setTagId(cntTagId);
+//         ui->layout->addWidget(edit, row, 3);
+//     }
+// }
+
+/************************************************
+ *
+ ************************************************/
+// void TagEditor::addIntEdit(TagId tagId, const QString &label)
+// {
+//     QLabel *lbl = new QLabel(this);
+//     lbl->setText(label);
+
+//     QGridLayout *layout = ui->layout;
+//     layout->addWidget(lbl, layout->rowCount(), 0);
+
+//     TagSpinBox *edit = new TagSpinBox(this);
+//     edit->setTagId(tagId);
+//     layout->addWidget(edit, layout->rowCount() - 1, 1);
+// }

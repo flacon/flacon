@@ -48,16 +48,7 @@ Validator::Validator(QObject *parent) :
  ************************************************/
 void Validator::setDisks(DiskList disks)
 {
-    for (Disk *d : mDisks) {
-        disconnect(d);
-        mDisks.removeAll(d);
-    }
-
     mDisks = disks;
-    for (Disk *d : mDisks) {
-        connect(d, &Disc::tagChanged, this, &Validator::startDelay);
-    }
-
     startDelay();
 }
 
@@ -81,8 +72,6 @@ int Validator::insertDisk(Disk *disk, int index)
     }
 
     mDisks.insert(index, disk);
-    connect(disk, &Disc::tagChanged, this, &Validator::startDelay);
-    connect(disk, &Disc::revalidateRequested, this, &Validator::startDelay);
 
     startDelay();
     return index;
