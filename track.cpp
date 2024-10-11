@@ -29,8 +29,8 @@
 /**************************************
  *
  **************************************/
-Track::Track(Disc *disc, int index) :
-    mDisc(disc),
+Track::Track(Disc *disk, int index) :
+    mDisk(disk),
     mIndex(index)
 {
 }
@@ -48,8 +48,8 @@ void Track::setAudioFile(const InputAudioFile &file)
  **************************************/
 Duration Track::duration() const
 {
-    Cue::Track cur  = mDisc->cue().tracks().at(index());
-    Cue::Track next = (index() < mDisc->tracks().count() - 1) ? mDisc->cue().tracks().at(index() + 1) : Cue::Track();
+    Cue::Track cur  = mDisk->cue().tracks().at(index());
+    Cue::Track next = (index() < mDisk->tracks().count() - 1) ? mDisk->cue().tracks().at(index() + 1) : Cue::Track();
 
     Duration trackLen = 0;
     if (cur.cueIndex01().file() != next.cueIndex00().file()) {
@@ -122,7 +122,7 @@ QString Track::commentTag() const
         return mLoadedTags.comment();
     }
 
-    return mDisc->commentTag();
+    return mDisk->commentTag();
 }
 
 /**************************************
@@ -138,7 +138,7 @@ QString Track::dateTag() const
         return mLoadedTags.date();
     }
 
-    return mDisc->dateTag();
+    return mDisk->dateTag();
 }
 
 /**************************************
@@ -176,17 +176,7 @@ QString Track::titleTag() const
  **************************************/
 QString Track::performerTag() const
 {
-    QString res = mDisc->getTrackTag(mIndex, &TrackTags::performer);
-    if (!res.isNull()) {
-        return res;
-    }
-
-    return mDisc->performerTag();
-
-    // if (!mUserTags.performer().isNull()) {
-    //     return mUserTags.performer();
-    // }
-    // return mLoadedTags.performer();
+    return firstNotNullString(mUserTags.performer(), mLoadedTags.performer());
 }
 
 /**************************************
@@ -237,7 +227,7 @@ void Track::setIsrcTag(const QString &value)
  **************************************/
 void Track::setTitleTag(const QString &value)
 {
-    mDisc->setTrackTag(mIndex, &TrackTags::setTitle, value);
+    mUserTags.setTitle(value);
 }
 
 /**************************************
@@ -245,7 +235,7 @@ void Track::setTitleTag(const QString &value)
  **************************************/
 void Track::setPerformerTag(const QString &value)
 {
-    mDisc->setTrackTag(mIndex, &TrackTags::setPerformer, value);
+    mUserTags.setPerformer(value);
 }
 
 /**************************************
@@ -261,7 +251,7 @@ void Track::setSongWriterTag(const QString &value)
  **************************************/
 QString Track::fileTag() const
 {
-    return mDisc->textCodec().decode(mDisc->cue().tracks().at(mIndex).fileTag());
+    return mDisk->textCodec().decode(mDisk->cue().tracks().at(mIndex).fileTag());
 }
 
 /**************************************
@@ -269,7 +259,7 @@ QString Track::fileTag() const
  **************************************/
 TrackNum Track::trackCountTag() const
 {
-    return mDisc->tracks().size();
+    return mDisk->tracks().size();
 }
 
 /**************************************
@@ -277,7 +267,7 @@ TrackNum Track::trackCountTag() const
  **************************************/
 DiscNum Track::discCountTag() const
 {
-    return mDisc->discCountTag();
+    return mDisk->discCountTag();
 }
 
 /**************************************
@@ -285,7 +275,7 @@ DiscNum Track::discCountTag() const
  **************************************/
 DiscNum Track::discNumTag() const
 {
-    return mDisc->discNumTag();
+    return mDisk->discNumTag();
 }
 
 /**************************************
@@ -293,7 +283,7 @@ DiscNum Track::discNumTag() const
  **************************************/
 QString Track::albumTag() const
 {
-    return mDisc->albumTag();
+    return mDisk->albumTag();
 }
 
 /**************************************
@@ -301,7 +291,7 @@ QString Track::albumTag() const
  **************************************/
 QString Track::catalogTag() const
 {
-    return mDisc->catalogTag();
+    return mDisk->catalogTag();
 }
 
 /**************************************
@@ -309,7 +299,7 @@ QString Track::catalogTag() const
  **************************************/
 QString Track::cdTextfileTag() const
 {
-    return mDisc->cdTextfileTag();
+    return mDisk->cdTextfileTag();
 }
 
 /**************************************
@@ -317,7 +307,7 @@ QString Track::cdTextfileTag() const
  **************************************/
 QString Track::discIdTag() const
 {
-    return mDisc->discIdTag();
+    return mDisk->discIdTag();
 }
 
 /**************************************
@@ -325,7 +315,7 @@ QString Track::discIdTag() const
  **************************************/
 QString Track::genreTag() const
 {
-    return mDisc->genreTag();
+    return mDisk->genreTag();
 }
 
 /**************************************

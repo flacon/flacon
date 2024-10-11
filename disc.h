@@ -125,10 +125,6 @@ public:
     DiskState state() const { return mState; }
     void      setState(DiskState value);
 
-protected:
-    QString getTrackTag(int trackNum, TrackTags::Getter func);
-    void    setTrackTag(int trackNum, TrackTags::Setter func, const QString &value);
-
 private:
     QList<Track *> mTracks;
     Cue            mCue;

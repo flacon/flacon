@@ -791,29 +791,3 @@ void Disc::setState(DiskState value)
 {
     mState = value;
 }
-
-QString Disc::getTrackTag(int trackNum, TrackTags::Getter func)
-{
-    const Tags &userTags = mInternetTagsIndex < 0 ? mCueUserTags : mInternetUserTags.at(mInternetTagsIndex);
-
-    QString s = std::mem_fn(func)(userTags.tracks().at(trackNum));
-
-    if (!s.isNull()) {
-        return s;
-    }
-
-    if (mInternetTagsIndex > -1) {
-        s = std::mem_fn(func)(mInternetUserTags.at(mInternetTagsIndex).tracks().at(trackNum));
-        if (!s.isNull()) {
-            return s;
-        }
-    }
-
-    return std::mem_fn(func)(mCueTags.tracks().at(trackNum));
-}
-
-void Disc::setTrackTag(int trackNum, TrackTags::Setter func, const QString &value)
-{
-    Tags &userTags = mInternetTagsIndex < 0 ? mCueUserTags : mInternetUserTags[mInternetTagsIndex];
-    std::mem_fn(func)(userTags.tracks()[trackNum], value);
-}

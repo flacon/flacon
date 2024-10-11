@@ -331,8 +331,27 @@ bool TrackViewModel::setData(const QModelIndex &index, const QVariant &value, in
  ************************************************/
 QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index, int role) const
 {
-    // Display & Edit :::::::::::::::::::::::::::::::::::
-    if (role == Qt::DisplayRole || role == Qt::EditRole) {
+    Disc *disk = track->disk();
+
+    // DisplayRole ::::::::::::::::::::::::::::::
+    if (role == Qt::DisplayRole) {
+        // clang-format off
+        switch (index.column()) {
+            case TrackView::ColumnTracknum: return QVariant(QString("%1").arg(track->trackNumTag(), 2, 10, QChar('0')));
+            case TrackView::ColumnDuration: return QVariant(trackDurationToString(track->duration()) + " ");
+            case TrackView::ColumnTitle:    return QVariant(track->titleTag());
+            case TrackView::ColumnArtist:   return firstNotEmptyString(track->artistTag(), disk->artistTag());
+            case TrackView::ColumnAlbum:    return QVariant(track->albumTag());
+            case TrackView::ColumnComment:  return QVariant(track->commentTag());
+            case TrackView::ColumnFileName: return QVariant(Project::instance()->profile()->resultFileName(track));
+        }
+        // clang-format on
+
+        return QVariant();
+    }
+
+    // EditRole :::::::::::::::::::::::::::::::::
+    if (role == Qt::EditRole) {
         // clang-format off
         switch (index.column()) {
             case TrackView::ColumnTracknum: return QVariant(QString("%1").arg(track->trackNumTag(), 2, 10, QChar('0')));
@@ -342,6 +361,19 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
             case TrackView::ColumnAlbum:    return QVariant(track->albumTag());
             case TrackView::ColumnComment:  return QVariant(track->commentTag());
             case TrackView::ColumnFileName: return QVariant(Project::instance()->profile()->resultFileName(track));
+        }
+        // clang-format on
+
+        return QVariant();
+    }
+
+    // EditRole :::::::::::::::::::::::::::::::::
+    if (role == Qt::ForegroundRole) {
+        QBrush placeHolderColor = this->view()->palette().color(QPalette::PlaceholderText);
+        // clang-format off
+        switch (index.column()) {
+            case TrackView::ColumnArtist:   return track->artistTag().isEmpty() ? placeHolderColor : QVariant();
+            case TrackView::ColumnAlbum:    return track->albumTag().isEmpty() ? placeHolderColor : QVariant();
         }
         // clang-format on
 

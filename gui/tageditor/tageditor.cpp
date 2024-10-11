@@ -38,48 +38,48 @@
 /************************************************
  *
  ************************************************/
-static void initControlValue(const QList<Disc *> &disks, const QList<DiskTagLineEdit *> &controls)
-{
-    foreach (auto *control, controls) {
-        QSet<QString> values;
-        foreach (Disc *disk, disks) {
-            values << std::mem_fn(control->readTagFunc())(disk);
-        }
+// static void initControlValue(const QList<Disc *> &disks, const QList<DiskTagLineEdit *> &controls)
+// {
+//     foreach (auto *control, controls) {
+//         QSet<QString> values;
+//         foreach (Disc *disk, disks) {
+//             values << std::mem_fn(control->readTagFunc())(disk);
+//         }
 
-        control->setMultiValue(values);
-    }
-}
-
-/************************************************
- *
- ************************************************/
-template <class Control>
-static void initControlValue(const QList<Track *> &tracks, const QList<Control *> &controls)
-{
-    foreach (auto *control, controls) {
-        QSet<QString> values;
-        foreach (Track *track, tracks) {
-            values << track->tag_DEL(control->tagId());
-        }
-
-        control->setMultiValue(values);
-    }
-}
+//         control->setMultiValue(values);
+//     }
+// }
 
 /************************************************
  *
  ************************************************/
-static void initControlValue(const QList<Track *> &tracks, const QList<TagSpinBox *> &controls)
-{
-    foreach (auto *control, controls) {
-        QSet<int> values;
-        foreach (Track *track, tracks) {
-            values << track->tag_DEL(control->tagId()).toInt();
-        }
+// template <class Control>
+// static void initControlValue(const QList<Track *> &tracks, const QList<Control *> &controls)
+// {
+//     foreach (auto *control, controls) {
+//         QSet<QString> values;
+//         foreach (Track *track, tracks) {
+//             values << track->tag_DEL(control->tagId());
+//         }
 
-        control->setMultiValue(values);
-    }
-}
+//         control->setMultiValue(values);
+//     }
+// }
+
+/************************************************
+ *
+ ************************************************/
+// static void initControlValue(const QList<Track *> &tracks, const QList<TagSpinBox *> &controls)
+// {
+//     foreach (auto *control, controls) {
+//         QSet<int> values;
+//         foreach (Track *track, tracks) {
+//             values << track->tag_DEL(control->tagId()).toInt();
+//         }
+
+//         control->setMultiValue(values);
+//     }
+// }
 
 /************************************************
  *
@@ -139,33 +139,33 @@ TagEditor::~TagEditor()
 /************************************************
  *
  ************************************************/
-template <class Control>
-static void setValue(const QList<Track *> &tracks, const QList<Control *> &controls)
-{
-    foreach (Control *edit, controls) {
-        if (!edit->isModified())
-            continue;
+// template <class Control>
+// static void setValue(const QList<Track *> &tracks, const QList<Control *> &controls)
+// {
+//     foreach (Control *edit, controls) {
+//         if (!edit->isModified())
+//             continue;
 
-        foreach (Track *track, tracks) {
-            track->setTag_DEL(edit->tagId(), edit->text());
-        }
-    }
-}
+//         foreach (Track *track, tracks) {
+//             track->setTag_DEL(edit->tagId(), edit->text());
+//         }
+//     }
+// }
 
 /************************************************
  *
  ************************************************/
-static void setValue(const QList<Track *> &tracks, const QList<TagSpinBox *> &controls)
-{
-    foreach (TagSpinBox *edit, controls) {
-        if (!edit->isModified())
-            continue;
+// static void setValue(const QList<Track *> &tracks, const QList<TagSpinBox *> &controls)
+// {
+//     foreach (TagSpinBox *edit, controls) {
+//         if (!edit->isModified())
+//             continue;
 
-        foreach (Track *track, tracks) {
-            track->setTag_DEL(edit->tagId(), edit->text());
-        }
-    }
-}
+//         foreach (Track *track, tracks) {
+//             track->setTag_DEL(edit->tagId(), edit->text());
+//         }
+//     }
+// }
 
 /************************************************
  *

@@ -41,7 +41,7 @@ class Track
 
 public:
     Track() = default;
-    Track(Disc *disc, int index);
+    Track(Disc *disk, int index);
     Track(const Track &other) = default;
     Track &operator=(const Track &other) = default;
 
@@ -51,15 +51,13 @@ public:
     void                  setAudioFile(const InputAudioFile &file);
     QString               audioFileName() const { return mAudiofile.fileName(); }
 
-    QString tag_DEL(const TagId &tagId) const { return ""; }
-    void    setTag_DEL(const TagId &tagId, const QString &value) { }
-
     Duration duration() const;
 
     CueIndex cueIndex00() const { return mCueIndex00; }
     CueIndex cueIndex01() const { return mCueIndex01; }
 
-    Disc *disc() const { return mDisc; }
+    Disc *disk() const { return mDisk; }
+    Disc *disc() const { return disk(); }
 
     int index() const { return mIndex; }
 
@@ -108,7 +106,7 @@ protected:
     void setLoadedTags(const Tags::Track &tags) { mLoadedTags = tags; }
 
 private:
-    Disc *mDisc  = nullptr;
+    Disc *mDisk  = nullptr;
     int   mIndex = -1;
 
     CueIndex mCueIndex00;

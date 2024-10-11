@@ -575,3 +575,37 @@ QString expandFilePath(const QString &path)
 
     return QFileInfo(res).absoluteFilePath();
 }
+
+QString firstNotNullString(const QString &s1, const QString &s2)
+{
+    // clang-format off
+    if (!s1.isNull()) return s1;
+    return s2;
+    // clang-format on
+}
+
+QString firstNotNullString(const QString &s1, const QString &s2, const QString &s3)
+{
+    // clang-format off
+    if (!s1.isNull()) return s1;
+    if (!s2.isNull()) return s2;
+    return s3;
+    // clang-format on
+}
+
+QString firstNotEmptyString(const QString &s1, const QString &s2)
+{
+    // clang-format off
+    if (!s1.isEmpty()) return s1;
+    return s2;
+    // clang-format on
+}
+
+QString firstNotEmptyString(const QString &s1, const QString &s2, const QString &s3)
+{
+    // clang-format off
+    if (!s1.isEmpty()) return s1;
+    if (!s2.isEmpty()) return s2;
+    return s3;
+    // clang-format on
+}

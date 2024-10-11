@@ -222,7 +222,6 @@ void TrackViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
  ************************************************/
 void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-
     if (!(index.row() % 2))
         painter->fillRect(option.rect, QColor(128, 128, 128, 20));
 
