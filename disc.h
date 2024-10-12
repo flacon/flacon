@@ -96,8 +96,9 @@ public:
 public:
     // Tags
 
-    DiscNum discCountTag() const;
-    DiscNum discNumTag() const;
+    DiscNum  discCountTag() const;
+    DiscNum  discNumTag() const;
+    TrackNum trackCountTag() const;
 
     QString albumTag() const;
     QString catalogTag() const;
@@ -120,6 +121,8 @@ public:
     void setSongWriterTag(const QString &value);
 
     QString artistTag() const { return performerTag(); }
+
+    AlbumTags toTags() const;
 
 public:
     DiskState state() const { return mState; }

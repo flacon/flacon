@@ -302,24 +302,14 @@ bool TrackViewModel::setData(const QModelIndex &index, const QVariant &value, in
 
     QList<Track *> tracks = view()->selectedTracks();
     foreach (Track *track, tracks) {
+        // clang-format off
         switch (index.column()) {
-            case TrackView::ColumnTitle:
-                track->setTitleTag(value.toString());
-                break;
-
-            case TrackView::ColumnArtist:
-                track->setPerformerTag(value.toString());
-                break;
-
-            case TrackView::ColumnAlbum:
-                track->disc()->setAlbumTag(value.toString());
-#warning Update all diskc indexies
-                break;
-
-            case TrackView::ColumnComment:
-                track->setCommentTag(value.toString());
-                break;
+            case TrackView::ColumnTitle:   track->setTitleTag(value.toString());         break;
+            case TrackView::ColumnArtist:  track->setPerformerTag(value.toString());     break;
+            case TrackView::ColumnAlbum:   track->disk()->setAlbumTag(value.toString()); break;
+            case TrackView::ColumnComment: track->setCommentTag(value.toString());       break;
         }
+        // clang-format on
     }
 
     emit dataChanged(index, index, QVector<int>() << role);
@@ -333,15 +323,15 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
 {
     Disc *disk = track->disk();
 
-    // DisplayRole ::::::::::::::::::::::::::::::
-    if (role == Qt::DisplayRole) {
+    // Text roles :::::::::::::::::::::::::::::::
+    if (role == Qt::DisplayRole || role == Qt::DisplayRole || role == TrackViewModel::RolePlaceHolder) {
         // clang-format off
         switch (index.column()) {
             case TrackView::ColumnTracknum: return QVariant(QString("%1").arg(track->trackNumTag(), 2, 10, QChar('0')));
             case TrackView::ColumnDuration: return QVariant(trackDurationToString(track->duration()) + " ");
             case TrackView::ColumnTitle:    return QVariant(track->titleTag());
-            case TrackView::ColumnArtist:   return firstNotEmptyString(track->artistTag(), disk->artistTag());
-            case TrackView::ColumnAlbum:    return QVariant(track->albumTag());
+            case TrackView::ColumnArtist:   return trackTextData(role, track->artistTag(), disk->artistTag());
+            case TrackView::ColumnAlbum:    return track->disc()->albumTag();
             case TrackView::ColumnComment:  return QVariant(track->commentTag());
             case TrackView::ColumnFileName: return QVariant(Project::instance()->profile()->resultFileName(track));
         }
@@ -350,37 +340,19 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
         return QVariant();
     }
 
-    // EditRole :::::::::::::::::::::::::::::::::
-    if (role == Qt::EditRole) {
-        // clang-format off
-        switch (index.column()) {
-            case TrackView::ColumnTracknum: return QVariant(QString("%1").arg(track->trackNumTag(), 2, 10, QChar('0')));
-            case TrackView::ColumnDuration: return QVariant(trackDurationToString(track->duration()) + " ");
-            case TrackView::ColumnTitle:    return QVariant(track->titleTag());
-            case TrackView::ColumnArtist:   return QVariant(track->artistTag());
-            case TrackView::ColumnAlbum:    return QVariant(track->albumTag());
-            case TrackView::ColumnComment:  return QVariant(track->commentTag());
-            case TrackView::ColumnFileName: return QVariant(Project::instance()->profile()->resultFileName(track));
-        }
-        // clang-format on
-
-        return QVariant();
-    }
-
-    // EditRole :::::::::::::::::::::::::::::::::
+    // ForegroundRole :::::::::::::::::::::::::::
     if (role == Qt::ForegroundRole) {
         QBrush placeHolderColor = this->view()->palette().color(QPalette::PlaceholderText);
         // clang-format off
         switch (index.column()) {
             case TrackView::ColumnArtist:   return track->artistTag().isEmpty() ? placeHolderColor : QVariant();
-            case TrackView::ColumnAlbum:    return track->albumTag().isEmpty() ? placeHolderColor : QVariant();
         }
         // clang-format on
 
         return QVariant();
     }
 
-    // ToolTip ::::::::::::::::::::::::::::::::::::::::::
+    // ToolTip ::::::::::::::::::::::::::::::::::
     if (role == Qt::ToolTipRole) {
         switch (index.column()) {
             case TrackView::ColumnFileName:
@@ -406,18 +378,33 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
         case RoleItemType:  return TrackItem;
         case RolePercent:   return mCache->get(*track).percent;
         case RoleStatus:    return int(mCache->get(*track).state);
-        case RoleTracknum:  return track->trackNumTag();
-        case RoleDuration:  return track->duration();
-        case RoleTitle:     return track->titleTag();
-        case RoleArtist:    return track->disc()->albumTag();
-        case RoleAlbum:     return track->albumTag();
-        case RoleComment:   return track->commentTag();
-        case RoleFileName:  return Project::instance()->profile()->resultFileName(track);
+//        case RoleTracknum:  return track->trackNumTag();
+//        case RoleDuration:  return track->duration();
+//        case RoleTitle:     return track->titleTag();
+//        case RoleArtist:    return track->disc()->albumTag();
+//        case RoleAlbum:     return track->albumTag();
+//        case RoleComment:   return track->commentTag();
+//        case RoleFileName:  return Project::instance()->profile()->resultFileName(track);
         default:            return QVariant();
     }
     // clang-format on
 
     return QVariant();
+}
+
+/**************************************
+ *
+ **************************************/
+QVariant TrackViewModel::trackTextData(int role, const QString &trackTag, const QString &diskTag) const
+{
+    // clang-format off
+    switch (role) {
+        case Qt::EditRole:     return trackTag;
+        case RolePlaceHolder:  return diskTag;
+        case Qt::DisplayRole:  return firstNotEmptyString(trackTag, diskTag);
+    }
+    // clang-format on
+    return {};
 }
 
 /************************************************
@@ -444,8 +431,7 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
                 break;
 
             case TrackView::ColumnAlbum:
-                for (int i = 0; i < disc->tracks().count(); ++i)
-                    values << disc->tracks().at(i)->albumTag();
+                values << disc->albumTag();
                 break;
         }
 
@@ -467,7 +453,7 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
         case RoleHasWarnings:   return Project::instance()->validator().diskHasWarnings(disc);
         case RoleHasErrors:     return Project::instance()->validator().diskHasErrors(disc);
         case RoleIsDownloads:   return mCache->downloadedDiscs.contains(index.row());
-        case RoleCoverFile:     return disc->coverImageFile();
+        //case RoleCoverFile:     return disc->coverImageFile();
         case RoleCoverImg:      return disc->coverImagePreview();
         case RoleCueFilePath:   return disc->cueFilePath();
         case RoleAudioFilePath: return disc->audioFilePaths();

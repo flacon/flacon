@@ -50,8 +50,9 @@ struct TagsId
 class AlbumTags
 {
 public:
-    DiscNum discCount() const { return mDiscCount; }
-    DiscNum discNum() const { return mDiscNum; }
+    DiscNum  discCount() const { return mDiscCount; }
+    DiscNum  discNum() const { return mDiscNum; }
+    TrackNum trackCount() const { return mTrackCount; }
 
     QString album() const { return mAlbum; }
     QString artist() const { return performer(); }
@@ -66,6 +67,7 @@ public:
 
     void setDiscCount(DiscNum value) { mDiscCount = value; }
     void setDiscNum(DiscNum value) { mDiscNum = value; }
+    void setTrackCount(TrackCount value) { mTrackCount = value; }
     void setAlbum(const QString &value) { mAlbum = value; }
     void setArtist(const QString &value) { setPerformer(value); }
     void setCatalog(const QString &value) { mCatalog = value; }
@@ -80,8 +82,9 @@ public:
     void merge(const AlbumTags &other);
 
 private:
-    DiscNum mDiscCount = 0;
-    DiscNum mDiscNum   = 0;
+    DiscNum  mDiscCount  = 1;
+    DiscNum  mDiscNum    = 1;
+    TrackNum mTrackCount = 0;
 
     QString mAlbum;
     QString mCatalog;
@@ -158,65 +161,6 @@ public:
 private:
     QVector<TrackTags> mTracks;
 };
-#if 0
-class Tags
-{
-public:
-    class Track;
-
-public:
-    DiscNum discCount() const { return mDiscCount; }
-    DiscNum discNum() const { return mDiscNum; }
-
-    QString album() const { return mAlbum; }
-    QString artist() const { return performer(); }
-    QString catalog() const { return mCatalog; }
-    QString cdTextfile() const { return mCdTextfile; }
-    QString comment() const { return mComment; }
-    QString date() const { return mDate; }
-    QString discId() const { return mDiscId; }
-    QString genre() const { return mGenre; }
-    QString performer() const { return mPerformer; }
-    QString songWriter() const { return mSongWriter; }
-
-    void setDiscCount(DiscNum value) { mDiscCount = value; }
-    void setDiscNum(DiscNum value) { mDiscNum = value; }
-    void setAlbum(const QString &value) { mAlbum = value; }
-    void setArtist(const QString &value) { setPerformer(value); }
-    void setCatalog(const QString &value) { mCatalog = value; }
-    void setCdTextfile(const QString &value) { mCdTextfile = value; }
-    void setComment(const QString &value) { mComment = value; }
-    void setDate(const QString &value) { mDate = value; }
-    void setDiscId(const QString &value) { mDiscId = value; }
-    void setGenre(const QString &value) { mGenre = value; }
-    void setPerformer(const QString &value) { mPerformer = value; }
-    void setSongWriter(const QString &value) { mSongWriter = value; }
-
-    const QVector<Track> &tracks() const { return mTracks; }
-    QVector<Track>       &tracks() { return mTracks; }
-
-    bool isEmpty() const { return mTracks.isEmpty(); }
-    void resize(int size);
-
-    void merge(const Tags &other);
-
-private:
-    DiscNum mDiscCount = 0;
-    DiscNum mDiscNum   = 0;
-
-    QString mAlbum;
-    QString mCatalog;
-    QString mCdTextfile;
-    QString mComment;
-    QString mDate;
-    QString mDiscId;
-    QString mGenre;
-    QString mPerformer;
-    QString mSongWriter;
-
-    QVector<Track> mTracks;
-};
-#endif
 
 /**************************************
  * InternetTags

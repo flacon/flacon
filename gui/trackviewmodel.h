@@ -75,6 +75,7 @@ protected:
         RoleItemType = Qt::UserRole + 1,
         RolePercent,
         RoleStatus,
+        /*
         RoleTracknum,
         RoleDuration,
         RoleTitle,
@@ -83,19 +84,27 @@ protected:
         RoleComment,
         RoleFileName,
         RoleAudioFileName,
+        */
         RoleTagSetTitle,
-        RoleHasWarnings,
-        RoleHasErrors,
+
         RoleIsDownloads,
+        /*
         RoleItemID,
         RoleTrack,
         RoleCoverFile,
+         */
+
         RoleCoverImg,
         RoleCueFilePath,
+        RoleAudioFileName,
         RoleAudioFilePath,
+
+        RoleHasWarnings,
+        RoleHasErrors,
         RoleDiscWarnings,
         RoleDiscErrors,
-        RoleDiscPerformer
+
+        RolePlaceHolder,
     };
 
 public slots:
@@ -110,6 +119,7 @@ private slots:
 
 private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;
+    QVariant trackTextData(int role, const QString &trackTag, const QString &diskTag) const;
     QVariant discData(const Disc *disc, const QModelIndex &index, int role) const;
     QString  trackDurationToString(uint milliseconds) const;
     class Cache;

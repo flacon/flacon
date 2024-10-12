@@ -257,65 +257,20 @@ QString Track::fileTag() const
 /**************************************
  *
  **************************************/
-TrackNum Track::trackCountTag() const
+TrackTags Track::toTags() const
 {
-    return mDisk->tracks().size();
-}
+    TrackTags res;
+    res.setTrackNum(trackNumTag());
 
-/**************************************
- *
- **************************************/
-DiscNum Track::discCountTag() const
-{
-    return mDisk->discCountTag();
-}
-
-/**************************************
- *
- **************************************/
-DiscNum Track::discNumTag() const
-{
-    return mDisk->discNumTag();
-}
-
-/**************************************
- *
- **************************************/
-QString Track::albumTag() const
-{
-    return mDisk->albumTag();
-}
-
-/**************************************
- *
- **************************************/
-QString Track::catalogTag() const
-{
-    return mDisk->catalogTag();
-}
-
-/**************************************
- *
- **************************************/
-QString Track::cdTextfileTag() const
-{
-    return mDisk->cdTextfileTag();
-}
-
-/**************************************
- *
- **************************************/
-QString Track::discIdTag() const
-{
-    return mDisk->discIdTag();
-}
-
-/**************************************
- *
- **************************************/
-QString Track::genreTag() const
-{
-    return mDisk->genreTag();
+    res.setArtist(artistTag());
+    res.setComment(commentTag());
+    res.setDate(dateTag());
+    res.setFlagsTag(flagsTag());
+    res.setIsrc(isrcTag());
+    res.setTitle(titleTag());
+    res.setPerformer(performerTag());
+    res.setSongWriter(songWriterTag());
+    return res;
 }
 
 /**************************************
@@ -327,7 +282,7 @@ QDebug operator<<(QDebug debug, const Track &track)
     debug.nospace()
             << " Track {"
             << " trackNum: " << track.trackNumTag()
-            << " trackCount:" << track.trackCountTag()
+            << " trackCount:" << track.disk()->tracks().count()
             << " diskId:" << track.disc()->discIdTag()
             << " Artist:" << track.performerTag()
             << " Album:" << track.disc()->albumTag()

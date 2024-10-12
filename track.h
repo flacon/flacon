@@ -87,16 +87,7 @@ public:
 
     QString fileTag() const;
 
-    // Album tags
-    TrackNum trackCountTag() const;
-    DiscNum  discCountTag() const;
-    DiscNum  discNumTag() const;
-
-    QString albumTag() const;
-    QString catalogTag() const;
-    QString cdTextfileTag() const;
-    QString discIdTag() const;
-    QString genreTag() const;
+    TrackTags toTags() const;
 
 protected:
     Tags::Track userTags() const { return mUserTags; }

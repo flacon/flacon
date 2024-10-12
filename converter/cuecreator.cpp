@@ -225,10 +225,10 @@ QString CueCreator::writeToFile(const QString &fileTemplate)
     Track          *track = mDisc->tracks().first();
     QString         dir   = QFileInfo(mProfile.resultFilePath(track)).dir().absolutePath();
     PatternExpander expander(*track);
-    expander.setTrackNum(0);
-    expander.setTrackCount(mDisc->tracks().count());
-    expander.setDiscNum(mDisc->discNumTag());
-    expander.setDiscCount(mDisc->discCountTag());
+    expander.trackTags().setTrackNum(0);
+    expander.albumTags().setTrackCount(mDisc->tracks().count());
+    expander.albumTags().setDiscNum(mDisc->discNumTag());
+    expander.albumTags().setDiscCount(mDisc->discCountTag());
 
     QString fileName = expander.expand(fileTemplate);
 

@@ -51,11 +51,17 @@ public:
 /************************************************
  *
  ************************************************/
-PatternExpander::PatternExpander() :
-    mTrackCount(0),
-    mTrackNum(0),
-    mDiscCount(0),
-    mDiscNum(0)
+PatternExpander::PatternExpander()
+{
+}
+
+/**************************************
+ *
+ **************************************/
+PatternExpander::PatternExpander(const AlbumTags &albumTags, const TrackTags &trackTags, const TrackTags &firstTrackTags) :
+    mAlbumTags(albumTags),
+    mTrackTags(trackTags),
+    mFirstTrackTags(firstTrackTags)
 {
 }
 
@@ -63,15 +69,7 @@ PatternExpander::PatternExpander() :
  *
  ************************************************/
 PatternExpander::PatternExpander(const Track &track) :
-    mTrackCount(track.disc()->tracks().count()),
-    mTrackNum(track.trackNumTag()),
-    mDiscCount(track.disc()->discCountTag()),
-    mDiscNum(track.disc()->discNumTag()),
-    mAlbum(track.disc()->albumTag()),
-    mTrackTitle(track.titleTag()),
-    mArtist(track.performerTag()),
-    mGenre(track.disc()->genreTag()),
-    mDate(track.disc()->dateTag())
+    PatternExpander(track.disk()->toTags(), track.toTags(), track.disk()->tracks().first()->toTags())
 {
 }
 
@@ -157,21 +155,45 @@ static QString doExpandPattern(const QString &pattern, const Tokens &tokens, boo
     return res;
 }
 
-/************************************************
+/**************************************
  *
- ************************************************/
+ **************************************/
 QString PatternExpander::expand(const QString &pattern) const
 {
+    int n = lastDirSeparattor(pattern);
+    if (n < 0) {
+        return expand(pattern, Mode::Track);
+    }
+
+    // If the disc is a collection, the files fall into different directories.
+    // So we use the tag Disc::Performer for expand the directory path.
+    QString dirs = expand(pattern.left(n), Mode::Album);
+    QString file = expand(pattern.mid(n), Mode::Track);
+    return dirs + file;
+}
+
+/**************************************
+ *
+ **************************************/
+QString PatternExpander::expand(const QString &pattern, Mode mode) const
+{
     Tokens tokens;
-    tokens.insert(QChar('N'), QString("%1").arg(mTrackCount, 2, 10, QChar('0')));
-    tokens.insert(QChar('n'), QString("%1").arg(mTrackNum, 2, 10, QChar('0')));
-    tokens.insert(QChar('D'), QString("%1").arg(mDiscCount, 2, 10, QChar('0')));
-    tokens.insert(QChar('d'), QString("%1").arg(mDiscNum, 2, 10, QChar('0')));
-    tokens.insert(QChar('A'), safeString(mAlbum));
-    tokens.insert(QChar('t'), safeString(mTrackTitle));
-    tokens.insert(QChar('a'), safeString(mArtist));
-    tokens.insert(QChar('g'), safeString(mGenre));
-    tokens.insert(QChar('y'), safeString(mDate));
+    tokens.insert(QChar('N'), QString("%1").arg(mAlbumTags.trackCount(), 2, 10, QChar('0')));
+    tokens.insert(QChar('n'), QString("%1").arg(mTrackTags.trackNum(), 2, 10, QChar('0')));
+    tokens.insert(QChar('D'), QString("%1").arg(mAlbumTags.discCount(), 2, 10, QChar('0')));
+    tokens.insert(QChar('d'), QString("%1").arg(mAlbumTags.discNum(), 2, 10, QChar('0')));
+    tokens.insert(QChar('A'), safeString(mAlbumTags.album()));
+    tokens.insert(QChar('t'), safeString(mTrackTags.title()));
+    tokens.insert(QChar('g'), safeString(mAlbumTags.genre()));
+
+    if (mode == Mode::Album) {
+        tokens.insert(QChar('a'), safeString(firstNotEmptyString(mAlbumTags.performer(), mFirstTrackTags.performer())));
+        tokens.insert(QChar('y'), safeString(firstNotEmptyString(mAlbumTags.date(), mFirstTrackTags.date())));
+    }
+    else {
+        tokens.insert(QChar('a'), safeString(firstNotEmptyString(mTrackTags.performer(), mAlbumTags.performer())));
+        tokens.insert(QChar('y'), safeString(firstNotEmptyString(mTrackTags.date(), mAlbumTags.date())));
+    }
 
     return doExpandPattern(pattern, tokens, false);
 }
@@ -233,21 +255,8 @@ QString PatternExpander::resultFileName(const QString &aPattern, const Track *tr
         pattern = QString("%a/%y - %A/%n - %t");
     }
 
-    int n = lastDirSeparattor(pattern);
-    if (n < 0) {
-        PatternExpander expander(*track);
-        return safeFilePathLen(expander.expand(pattern) + "." + ext);
-    }
-
-    // If the disc is a collection, the files fall into different directories.
-    // So we use the tag DiscPerformer for expand the directory path.
-    PatternExpander albumExpander(*track);
-    albumExpander.setArtist(track->disc()->albumTag());
-
-    PatternExpander trackExpander(*track);
-
-    return safeFilePathLen(
-            albumExpander.expand(pattern.left(n)) + trackExpander.expand(pattern.mid(n)) + "." + ext);
+    PatternExpander expander(*track);
+    return safeFilePathLen(expander.expand(pattern) + "." + ext);
 }
 
 /************************************************
@@ -255,18 +264,20 @@ QString PatternExpander::resultFileName(const QString &aPattern, const Track *tr
  ************************************************/
 QString PatternExpander::example(const QString &pattern)
 {
-    PatternExpander expander;
+    AlbumTags album;
+    album.setDiscNum(1);
+    album.setDiscCount(1);
+    album.setArtist("The Beatles");
+    album.setAlbum("Help");
+    album.setGenre("Pop");
+    album.setDate("1965");
+    album.setTrackCount(14);
 
-    expander.setTrackNum(13);
-    expander.setTrackCount(14);
-    expander.setDiscNum(1);
-    expander.setDiscCount(1);
+    TrackTags track;
+    track.setTrackNum(13);
+    track.setTitle("Yesterday");
 
-    expander.setArtist("The Beatles");
-    expander.setAlbum("Help");
-    expander.setTrackTtle("Yesterday");
-    expander.setGenre("Pop");
-    expander.setDate("1965");
+    PatternExpander expander(album, track, track);
 
     return expander.expand(pattern);
 }

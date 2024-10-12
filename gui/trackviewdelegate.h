@@ -49,6 +49,8 @@ public:
 
     void drawBranch(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
 
+    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+
 signals:
     void trackButtonClicked(const QModelIndex &index, const QRect &buttonRect);
     void audioButtonClicked(const QModelIndex &index, int fileNum, const QRect &buttonRect);

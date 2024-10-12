@@ -38,6 +38,7 @@
 #include <QMouseEvent>
 #include <QApplication>
 #include <QToolTip>
+#include <QLineEdit>
 
 #include <QDebug>
 
@@ -178,6 +179,20 @@ void TrackViewDelegate::drawBranch(QPainter *painter, const QRect &rect, const Q
 
     if (mTrackView->selectionModel()->isRowSelected(index.row(), index.parent()))
         drawSelectionMark(painter, rect);
+}
+
+/**************************************
+ *
+ **************************************/
+QWidget *TrackViewDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    QWidget   *res      = QStyledItemDelegate::createEditor(parent, option, index);
+    QLineEdit *lineEdit = qobject_cast<QLineEdit *>(res);
+
+    if (lineEdit) {
+        lineEdit->setPlaceholderText(index.data(TrackViewModel::RolePlaceHolder).toString());
+    }
+    return res;
 }
 
 /************************************************

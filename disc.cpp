@@ -202,6 +202,7 @@ void Disc::syncTagsFromTracks()
  **************************************/
 void Disc::syncTagsToTracks()
 {
+    mCueTags.setTrackCount(tracks().count());
     mUserTags   = mInternetTagsIndex < 0 ? mCueUserTags : mInternetTags[mInternetTagsIndex];
     mLoadedTags = mCue.decode(mTextCodec);
 
@@ -401,6 +402,14 @@ DiscNum Disc::discNumTag() const
 /**************************************
  *
  **************************************/
+TrackNum Disc::trackCountTag() const
+{
+    return tracks().count();
+}
+
+/**************************************
+ *
+ **************************************/
 QString Disc::albumTag() const
 {
     return !mUserTags.album().isEmpty() ? mUserTags.album() : mLoadedTags.album();
@@ -540,6 +549,30 @@ void Disc::setPerformerTag(const QString &value)
 void Disc::setSongWriterTag(const QString &value)
 {
     mUserTags.setSongWriter(value);
+}
+
+/**************************************
+ *
+ **************************************/
+AlbumTags Disc::toTags() const
+{
+    AlbumTags res;
+
+    res.setDiscCount(discCountTag());
+    res.setDiscNum(discNumTag());
+    res.setTrackCount(trackCountTag());
+
+    res.setAlbum(albumTag());
+    res.setCatalog(catalogTag());
+    res.setCdTextfile(cdTextfileTag());
+    res.setComment(commentTag());
+    res.setDate(dateTag());
+    res.setDiscId(discIdTag());
+    res.setGenre(genreTag());
+    res.setPerformer(performerTag());
+    res.setSongWriter(songWriterTag());
+
+    return res;
 }
 
 /**************************************
