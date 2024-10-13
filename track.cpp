@@ -118,11 +118,7 @@ QString Track::commentTag() const
         return mUserTags.comment();
     }
 
-    if (!mLoadedTags.comment().isNull()) {
-        return mLoadedTags.comment();
-    }
-
-    return mDisk->commentTag();
+    return mLoadedTags.comment();
 }
 
 /**************************************
@@ -134,11 +130,7 @@ QString Track::dateTag() const
         return mUserTags.date();
     }
 
-    if (!mLoadedTags.date().isNull()) {
-        return mLoadedTags.date();
-    }
-
-    return mDisk->dateTag();
+    return mLoadedTags.date();
 }
 
 /**************************************

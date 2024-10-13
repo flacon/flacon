@@ -51,18 +51,12 @@ public slots:
     void done(int res) override;
 
 private:
-    Ui::TagEditor *ui;
-    // void           add2Widget(QWidget *widget1, QWidget *widget2, const QString &label);
-
-    // void addDiskLineEdit(const DiskTagLineEdit::ReadTagFunc &readFunc, const DiskTagLineEdit::UpdateTagFunc &updateFunc, const QString &label);
-
-    // void                 addLineEdit(TagId tagId, const QString &label);
-    // void                 addTextEdit(TagId tagId, const QString &label);
-    // void                 addIntEdit(TagId tagId, const QString &label);
-    // void                 addIntEditNumCount(TagId numTagId, TagId cntTagId, const QString &numLabel);
+    Ui::TagEditor       *ui;
     const QList<Track *> mTracks;
     const QList<Disc *>  mDiscs;
-    // MultiValuesSpinBox  *mStartTrackSpin;
+
+    void updateWidgets();
+    void apply();
 };
 
 #endif // TAGEDITOR_H

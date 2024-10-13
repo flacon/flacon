@@ -110,6 +110,9 @@ public:
     QString performerTag() const;
     QString songWriterTag() const;
 
+    void setDiscCountTag(DiscNum value);
+    void setDiscNumTag(DiscNum value);
+
     void setAlbumTag(const QString &value);
     void setCatalogTag(const QString &value);
     void setCdTextfileTag(const QString &value);

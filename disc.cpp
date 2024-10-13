@@ -482,6 +482,22 @@ QString Disc::songWriterTag() const
 /**************************************
  *
  **************************************/
+void Disc::setDiscCountTag(DiscNum value)
+{
+    mUserTags.setDiscCount(value);
+}
+
+/**************************************
+ *
+ **************************************/
+void Disc::setDiscNumTag(DiscNum value)
+{
+    mUserTags.setDiscNum(value);
+}
+
+/**************************************
+ *
+ **************************************/
 void Disc::setAlbumTag(const QString &value)
 {
     mUserTags.setAlbum(value);

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1087</width>
-    <height>576</height>
+    <width>842</width>
+    <height>451</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,40 +17,46 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QGroupBox" name="groupBox">
+      <widget class="QGroupBox" name="albumGroupBox">
+       <property name="minimumSize">
+        <size>
+         <width>400</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="title">
         <string>Album tags</string>
        </property>
        <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="0">
-         <widget class="QLabel" name="diskArtistLabel">
-          <property name="text">
-           <string comment="Music tag name" extracomment="Music tag name">Artist:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit"/>
-        </item>
-        <item row="1" column="0">
          <widget class="QLabel" name="diskAlbumLabel">
           <property name="text">
            <string comment="Music tag name" extracomment="Music tag name">Album:</string>
           </property>
          </widget>
         </item>
+        <item row="0" column="1">
+         <widget class="MultiValuesLineEdit" name="diskAlbumValue"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="diskAPerformerLabel">
+          <property name="text">
+           <string comment="Music tag name" extracomment="Music tag name">Artist:</string>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_2"/>
+         <widget class="MultiValuesLineEdit" name="diskPerformerValue"/>
         </item>
         <item row="2" column="0">
-         <widget class="QLabel" name="diskGenreLabel">
+         <widget class="QLabel" name="diskSongWriterLabel">
           <property name="text">
-           <string comment="Music tag name" extracomment="Music tag name">Genge:</string>
+           <string comment="Music tag name" extracomment="Music tag name">Song writer:</string>
           </property>
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEdit_3"/>
+         <widget class="MultiValuesLineEdit" name="diskSongWriterValue"/>
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="diskDateLabel">
@@ -60,19 +66,46 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="lineEdit_4"/>
+         <widget class="MultiValuesLineEdit" name="diskDateValue"/>
         </item>
         <item row="4" column="0">
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="diskGenreLabel">
+          <property name="text">
+           <string comment="Music tag name" extracomment="Music tag name">Genre:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="MultiValuesLineEdit" name="diskGenreValue"/>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="diskCommentLabel">
+          <property name="text">
+           <string comment="Music tag name" extracomment="Music tag name">Comment:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="MultiValuesLineEdit" name="diskCommentValue"/>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="diskTracksNumsLabel">
           <property name="text">
            <string comment="Music tag name" extracomment="Music tag name">Start track number:</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
+        <item row="6" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QSpinBox" name="spinBox"/>
+           <widget class="MultiValuesSpinBox" name="diskStartTrackValue">
+            <property name="minimumSize">
+             <size>
+              <width>75</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QLabel" name="label_2">
@@ -85,21 +118,51 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_2"/>
+           <widget class="MultiValuesSpinBox" name="diskTrackCountValue">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>75</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_4">
+        <item row="7" column="0">
+         <widget class="QLabel" name="diskNumsLabel">
           <property name="text">
            <string comment="Music tag name" extracomment="Music tag name">Disc number:</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
+        <item row="7" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QSpinBox" name="spinBox_3"/>
+           <widget class="MultiValuesSpinBox" name="diskNumValue">
+            <property name="minimumSize">
+             <size>
+              <width>75</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QLabel" name="label_3">
@@ -112,19 +175,42 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_4"/>
+           <widget class="MultiValuesSpinBox" name="diskCountValue">
+            <property name="minimumSize">
+             <size>
+              <width>75</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="diskCommentLabel">
-          <property name="text">
-           <string comment="Music tag name" extracomment="Music tag name">Comment:</string>
+        <item row="8" column="0">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
           </property>
-         </widget>
-        </item>
-        <item row="7" column="0" colspan="2">
-         <widget class="QPlainTextEdit" name="plainTextEdit"/>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>83</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -133,21 +219,89 @@
       <widget class="QGroupBox" name="trackTags">
        <property name="minimumSize">
         <size>
-         <width>500</width>
+         <width>400</width>
          <height>0</height>
         </size>
        </property>
        <property name="title">
-        <string>Current track tags</string>
+        <string>Track tags</string>
        </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="trackTitleLabel">
+          <property name="text">
+           <string>Title:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="MultiValuesLineEdit" name="trackTitleValue"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="trackPerformerLabel">
+          <property name="text">
+           <string>Artist:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="MultiValuesLineEdit" name="trackPerformerValue"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="trackSongWriterLabel">
+          <property name="text">
+           <string>Song writer:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="MultiValuesLineEdit" name="trackSongWriterValue"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="trackDateLabel">
+          <property name="text">
+           <string>Year:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="MultiValuesLineEdit" name="trackDateValue"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="trackIsrcLabel">
+          <property name="text">
+           <string>ISRC:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="MultiValuesLineEdit" name="trackIsrcValue"/>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="trackCommentLabel">
+          <property name="text">
+           <string>Comment:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="MultiValuesLineEdit" name="trackCommentValue"/>
+        </item>
+        <item row="6" column="0">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>149</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
       </widget>
-     </item>
-     <item>
-      <layout class="QGridLayout" name="layout">
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-      </layout>
      </item>
     </layout>
    </item>
@@ -163,6 +317,18 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MultiValuesSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>controls.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MultiValuesLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>controls.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

@@ -29,57 +29,15 @@
 #include <QLabel>
 #include <QGridLayout>
 #include <QDebug>
+#include "settings.h"
 
 #include "gui/controls.h"
 
 #include "track.h"
 #include "disc.h"
 
-/************************************************
- *
- ************************************************/
-// static void initControlValue(const QList<Disc *> &disks, const QList<DiskTagLineEdit *> &controls)
-// {
-//     foreach (auto *control, controls) {
-//         QSet<QString> values;
-//         foreach (Disc *disk, disks) {
-//             values << std::mem_fn(control->readTagFunc())(disk);
-//         }
-
-//         control->setMultiValue(values);
-//     }
-// }
-
-/************************************************
- *
- ************************************************/
-// template <class Control>
-// static void initControlValue(const QList<Track *> &tracks, const QList<Control *> &controls)
-// {
-//     foreach (auto *control, controls) {
-//         QSet<QString> values;
-//         foreach (Track *track, tracks) {
-//             values << track->tag_DEL(control->tagId());
-//         }
-
-//         control->setMultiValue(values);
-//     }
-// }
-
-/************************************************
- *
- ************************************************/
-// static void initControlValue(const QList<Track *> &tracks, const QList<TagSpinBox *> &controls)
-// {
-//     foreach (auto *control, controls) {
-//         QSet<int> values;
-//         foreach (Track *track, tracks) {
-//             values << track->tag_DEL(control->tagId()).toInt();
-//         }
-
-//         control->setMultiValue(values);
-//     }
-// }
+static constexpr auto TAG_EDIT_DIALOG_WIDTH_KEY  = "TagEditor/Width";
+static constexpr auto TAG_EDIT_DIALOG_HEIGHT_KEY = "TagEditor/Height";
 
 /************************************************
  *
@@ -93,39 +51,11 @@ TagEditor::TagEditor(const QList<Track *> &tracks, const QList<Disc *> &discs, Q
     ui->setupUi(this);
     setWindowModality(Qt::WindowModal);
 
-    // addDiskLineEdit(&Disc::performerTag, &Disc::setPerformerTag, tr("Artist:", "Music tag name"));
-    // // addLineEdit(&Disc::setTagId::AlbumArtist, tr("Album performer:", "Music tag name"));
-    // addDiskLineEdit(&Disc::albumTag, &Disc::setAlbumTag, tr("Album:", "Music tag name"));
-    // addDiskLineEdit(&Disc::genreTag, &Disc::setGenreTag, tr("Genre:", "Music tag name"));
-    // addDiskLineEdit(&Disc::dateTag, &Disc::setDateTag, tr("Year:", "Music tag name"));
+    updateWidgets();
 
-    // mStartTrackSpin = new MultiValuesSpinBox(this);
-    // mStartTrackSpin->setMinimum(1);
-    // mStartTrackSpin->setMaximum(99);
-
-    // TagSpinBox *trackCountSpin = new TagSpinBox(this);
-    // trackCountSpin->setMinimum(1);
-    // trackCountSpin->setMaximum(99);
-    // trackCountSpin->setTagId(TagId::TrackCount);
-    // this->add2Widget(mStartTrackSpin, trackCountSpin, tr("Start track number:", "Music tag name"));
-
-    // addIntEditNumCount(TagId::DiscNum, TagId::DiscCount, tr("Disc number:", "Music tag name"));
-
-    // addLineEdit(TagId::Title, tr("Track title:", "Music tag name"));
-    // addTextEdit(TagId::Comment, tr("Comment:", "Music tag name"));
-
-    // // Set values ______________________________________________
-    // initControlValue(mDiscs, this->findChildren<DiskTagLineEdit *>());
-    // initControlValue(tracks, this->findChildren<TagLineEdit *>());
-    // initControlValue(tracks, this->findChildren<TagTextEdit *>());
-    // initControlValue(tracks, this->findChildren<TagSpinBox *>());
-
-    // QSet<int> values;
-    // foreach (Disc *disc, discs) {
-    //     values << disc->startTrackNum();
-    // }
-
-    // mStartTrackSpin->setMultiValue(values);
+    int width  = Settings::i()->value(TAG_EDIT_DIALOG_WIDTH_KEY).toInt();
+    int height = Settings::i()->value(TAG_EDIT_DIALOG_HEIGHT_KEY).toInt();
+    resize(width, height);
 }
 
 /************************************************
@@ -133,184 +63,132 @@ TagEditor::TagEditor(const QList<Track *> &tracks, const QList<Disc *> &discs, Q
  ************************************************/
 TagEditor::~TagEditor()
 {
+    Settings::i()->setValue(TAG_EDIT_DIALOG_WIDTH_KEY, size().width());
+    Settings::i()->setValue(TAG_EDIT_DIALOG_HEIGHT_KEY, size().height());
+    Settings::i()->sync();
+
     delete ui;
 }
 
-/************************************************
+/**************************************
  *
- ************************************************/
-// template <class Control>
-// static void setValue(const QList<Track *> &tracks, const QList<Control *> &controls)
-// {
-//     foreach (Control *edit, controls) {
-//         if (!edit->isModified())
-//             continue;
-
-//         foreach (Track *track, tracks) {
-//             track->setTag_DEL(edit->tagId(), edit->text());
-//         }
-//     }
-// }
-
-/************************************************
- *
- ************************************************/
-// static void setValue(const QList<Track *> &tracks, const QList<TagSpinBox *> &controls)
-// {
-//     foreach (TagSpinBox *edit, controls) {
-//         if (!edit->isModified())
-//             continue;
-
-//         foreach (Track *track, tracks) {
-//             track->setTag_DEL(edit->tagId(), edit->text());
-//         }
-//     }
-// }
-
-/************************************************
- *
- ************************************************/
+ **************************************/
 void TagEditor::done(int res)
 {
-    if (!res) {
-        QDialog::done(res);
-        return;
+    if (res) {
+        apply();
     }
-
-    // setValue(mTracks, this->findChildren<TagLineEdit *>());
-    // setValue(mTracks, this->findChildren<TagTextEdit *>());
-    // setValue(mTracks, this->findChildren<TagSpinBox *>());
-
-    // if (mStartTrackSpin->isModified()) {
-    //     foreach (Disc *disc, mDiscs) {
-    //         disc->setStartTrackNum(mStartTrackSpin->value());
-    //     }
-    // }
 
     QDialog::done(res);
 }
 
-/************************************************
+/**************************************
  *
- ************************************************/
-// void TagEditor::add2Widget(QWidget *widget1, QWidget *widget2, const QString &label)
-// {
-//     int row = ui->layout->rowCount();
-//     {
-//         QLabel *lbl = new QLabel(this);
-//         lbl->setText(label);
-//         lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
-//         ui->layout->addWidget(lbl, row, 0);
-//     }
+ **************************************/
+void TagEditor::updateWidgets()
+{
+    QSet<int> mDiskStartTrack;
+    QSet<int> mDiskTrackCount;
+    QSet<int> mDiskNum;
+    QSet<int> mDiskCount;
 
-//     ui->layout->addWidget(widget1, row, 1);
+    QSet<QString> diskAlbum;
+    QSet<QString> diskPerformer;
+    QSet<QString> diskSongWriter;
+    QSet<QString> diskDate;
+    QSet<QString> diskGenre;
+    QSet<QString> diskComment;
 
-//     {
-//         QLabel *lbl = new QLabel(this);
-//         lbl->setText(tr("of"));
-//         lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
-//         ui->layout->addWidget(lbl, row, 2);
-//     }
+    for (const Disk *disk : mDiscs) {
+        mDiskStartTrack << disk->startTrackNum();
+        mDiskTrackCount << disk->trackCountTag();
+        mDiskNum << disk->discNumTag();
+        mDiskCount << disk->discCountTag();
 
-//     ui->layout->addWidget(widget2, row, 3);
-// }
+        diskAlbum << disk->albumTag();
+        diskPerformer << disk->performerTag();
+        diskSongWriter << disk->songWriterTag();
+        diskDate << disk->dateTag();
+        diskGenre << disk->genreTag();
+        diskComment << disk->commentTag();
+    }
 
-// void TagEditor::addDiskLineEdit(const DiskTagLineEdit::ReadTagFunc &readFunc, const DiskTagLineEdit::UpdateTagFunc &updateFunc, const QString &label)
-// {
-//     QLabel *lbl = new QLabel(this);
-//     lbl->setText(label);
-//     lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
+    ui->diskStartTrackValue->setMultiValue(mDiskStartTrack);
+    ui->diskTrackCountValue->setMultiValue(mDiskTrackCount);
+    ui->diskNumValue->setMultiValue(mDiskNum);
+    ui->diskCountValue->setMultiValue(mDiskCount);
 
-//     QGridLayout *layout = ui->diskGroupLayout;
-//     layout->addWidget(lbl, layout->rowCount(), 0);
+    ui->diskAlbumValue->setMultiValue(diskAlbum);
+    ui->diskPerformerValue->setMultiValue(diskPerformer);
+    ui->diskSongWriterValue->setMultiValue(diskSongWriter);
+    ui->diskDateValue->setMultiValue(diskDate);
+    ui->diskGenreValue->setMultiValue(diskGenre);
+    ui->diskCommentValue->setMultiValue(diskComment);
 
-//     DiskTagLineEdit *edit = new DiskTagLineEdit(this);
-//     edit->setReadTagFunc(readFunc);
-//     edit->setUpdateTagFunc(updateFunc);
-//     layout->addWidget(edit, layout->rowCount() - 1, 1, 1, 3);
-// }
+    QSet<QString> trackTitle;
+    QSet<QString> trackPerformer;
+    QSet<QString> trackSongWriter;
+    QSet<QString> trackDate;
+    QSet<QString> trackIsrc;
+    QSet<QString> trackComment;
 
-/************************************************
+    for (const Track *track : mTracks) {
+        trackTitle << track->titleTag();
+        trackPerformer << track->performerTag();
+        trackSongWriter << track->songWriterTag();
+        trackDate << track->dateTag();
+        trackIsrc << track->isrcTag();
+        trackComment << track->commentTag();
+    }
+
+    ui->trackTitleValue->setMultiValue(trackTitle);
+    ui->trackPerformerValue->setMultiValue(trackPerformer);
+    ui->trackSongWriterValue->setMultiValue(trackSongWriter);
+    ui->trackDateValue->setMultiValue(trackDate);
+    ui->trackIsrcValue->setMultiValue(trackIsrc);
+    ui->trackCommentValue->setMultiValue(trackComment);
+
+    if (trackPerformer.count() == 1 && trackPerformer.cbegin()->isEmpty() && diskPerformer.count() == 1) {
+        ui->trackPerformerValue->setPlaceholderText(*diskPerformer.cbegin());
+    }
+
+    if (trackSongWriter.count() == 1 && trackSongWriter.cbegin()->isEmpty() && diskSongWriter.count() == 1) {
+        ui->trackSongWriterValue->setPlaceholderText(*diskSongWriter.cbegin());
+    }
+
+    if (trackDate.count() == 1 && trackDate.cbegin()->isEmpty() && diskDate.count() == 1) {
+        ui->trackDateValue->setPlaceholderText(*diskDate.cbegin());
+    }
+}
+
+/**************************************
  *
- ************************************************/
-// void TagEditor::addLineEdit(TagId tagId, const QString &label)
-// {
-//     QLabel *lbl = new QLabel(this);
-//     lbl->setText(label);
-//     lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
+ **************************************/
+void TagEditor::apply()
+{
+    for (Disk *disk : mDiscs) {
+        // clang-format off
+        if (ui->diskStartTrackValue->isModified())  disk->setStartTrackNum(ui->diskStartTrackValue->value());
+        if (ui->diskNumValue->isModified())         disk->setDiscNumTag(ui->diskNumValue->value());
+        if (ui->diskCountValue->isModified())       disk->setDiscCountTag(ui->diskCountValue->value());
 
-//     QGridLayout *layout = ui->layout;
-//     layout->addWidget(lbl, layout->rowCount(), 0);
+        if (ui->diskAlbumValue->isModified())       disk->setAlbumTag(ui->diskAlbumValue->text());
+        if (ui->diskPerformerValue->isModified())   disk->setPerformerTag(ui->diskPerformerValue->text());
+        if (ui->diskSongWriterValue->isModified())  disk->setSongWriterTag(ui->diskSongWriterValue->text());
+        if (ui->diskDateValue->isModified())        disk->setDateTag(ui->diskDateValue->text());
+        if (ui->diskGenreValue->isModified())       disk->setGenreTag(ui->diskGenreValue->text());
+        if (ui->diskCommentValue->isModified())     disk->setCommentTag(ui->diskCommentValue->text());
+        // clang-format on
+    }
 
-//     TagLineEdit *edit = new TagLineEdit(this);
-//     edit->setTagId(tagId);
-//     layout->addWidget(edit, layout->rowCount() - 1, 1, 1, 3);
-// }
-
-/************************************************
- *
- ************************************************/
-// void TagEditor::addTextEdit(TagId tagId, const QString &label)
-// {
-//     QLabel *lbl = new QLabel(this);
-//     lbl->setText(label);
-//     lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
-
-//     QGridLayout *layout = ui->layout;
-//     layout->addWidget(lbl, layout->rowCount(), 0);
-
-//     TagTextEdit *edit = new TagTextEdit(this);
-//     edit->setTagId(tagId);
-//     layout->addWidget(edit, layout->rowCount() - 1, 1, 1, 3);
-// }
-
-/************************************************
- *
- ************************************************/
-// void TagEditor::addIntEditNumCount(TagId numTagId, TagId cntTagId, const QString &numLabel)
-// {
-//     int row = ui->layout->rowCount();
-//     {
-//         QLabel *lbl = new QLabel(this);
-//         lbl->setText(numLabel);
-//         lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
-//         ui->layout->addWidget(lbl, row, 0);
-//     }
-
-//     {
-//         TagSpinBox *edit = new TagSpinBox(this);
-//         edit->setMinimum(1);
-//         edit->setTagId(numTagId);
-//         ui->layout->addWidget(edit, row, 1);
-//     }
-
-//     {
-//         QLabel *lbl = new QLabel(this);
-//         lbl->setText(tr("of"));
-//         lbl->setSizePolicy(QSizePolicy::Maximum, lbl->sizePolicy().verticalPolicy());
-//         ui->layout->addWidget(lbl, row, 2);
-//     }
-
-//     {
-//         TagSpinBox *edit = new TagSpinBox(this);
-//         edit->setMinimum(1);
-//         edit->setTagId(cntTagId);
-//         ui->layout->addWidget(edit, row, 3);
-//     }
-// }
-
-/************************************************
- *
- ************************************************/
-// void TagEditor::addIntEdit(TagId tagId, const QString &label)
-// {
-//     QLabel *lbl = new QLabel(this);
-//     lbl->setText(label);
-
-//     QGridLayout *layout = ui->layout;
-//     layout->addWidget(lbl, layout->rowCount(), 0);
-
-//     TagSpinBox *edit = new TagSpinBox(this);
-//     edit->setTagId(tagId);
-//     layout->addWidget(edit, layout->rowCount() - 1, 1);
-// }
+    for (Track *track : mTracks) {
+        // clang-format off
+        if (ui->trackTitleValue->isModified())      track->setTitleTag(ui->trackTitleValue->text());
+        if (ui->trackPerformerValue->isModified())  track->setPerformerTag(ui->trackPerformerValue->text());
+        if (ui->trackSongWriterValue->isModified()) track->setSongWriterTag(ui->trackSongWriterValue->text());
+        if (ui->trackDateValue->isModified())       track->setDateTag(ui->trackDateValue->text());
+        if (ui->trackIsrcValue->isModified())       track->setIsrcTag(ui->trackIsrcValue->text());
+        if (ui->trackCommentValue->isModified())    track->setCommentTag(ui->trackCommentValue->text());
+        // clang-format on
+    }
+}
