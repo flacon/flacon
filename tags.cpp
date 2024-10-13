@@ -36,8 +36,9 @@
 void AlbumTags::merge(const AlbumTags &other)
 {
     // clang-format off
-    if (other.discCount()) mDiscCount = other.discCount();
-    if (other.discNum())   mDiscNum   = other.discNum();
+    if (other.discCount())  mDiscCount  = other.discCount();
+    if (other.discNum())    mDiscNum    = other.discNum();
+    if (other.trackCount()) mTrackCount = other.trackCount();
 
     if (!other.mAlbum.isNull())      mAlbum      = other.mAlbum;
     if (!other.mCatalog.isNull())    mCatalog    = other.mCatalog;

@@ -92,9 +92,6 @@ static bool updateGlobalTagsFromTracks(const CueData &data, const QByteArray &ta
  ************************************************/
 void Cue::read(const CueData &data)
 {
-    mDiscCountTag = 1;
-    mDiscNumTag   = 1;
-
     const CueData::Tags &global     = data.globalTags();
     const CueData::Tags &firstTrack = data.tracks().first();
 
@@ -104,9 +101,11 @@ void Cue::read(const CueData &data)
     mCommentTag    = global.value("COMMENT");
     mGenreTag      = global.value("GENRE");
     mDiscIdTag     = global.value("DISCID");
-    mPerformerTag  = global.value("PERFORMER"); // getAlbumPerformer(data);
+    mPerformerTag  = global.value("PERFORMER");
     mSongWriterTag = global.value("SONGWRITER");
     mDateTag       = global.value("DATE");
+    mDiscNumTag    = global.value("DISCNUMBER", "1").toInt();
+    mDiscCountTag  = global.value("TOTALDISCS", "1").toInt();
 
     bool skipTrackPerformer  = updateGlobalTagsFromTracks(data, "PERFORMER", &mPerformerTag);
     bool skipTrackSongWriter = updateGlobalTagsFromTracks(data, "SONGWRITER", &mSongWriterTag);
@@ -237,6 +236,9 @@ Tags Cue::decode(const TextCodec &textCodec) const
 {
     Tags res;
     // clang-format off
+    if (mDiscCountTag)  res.setDiscCount(mDiscCountTag);
+    if (mDiscNumTag)    res.setDiscNum(mDiscNumTag);
+
     if (!mAlbumTag.isNull())      res.setAlbum(textCodec.decode(mAlbumTag));
     if (!mCatalogTag.isNull())    res.setCatalog(textCodec.decode(mCatalogTag));
     if (!mCommentTag.isNull())    res.setComment(textCodec.decode(mCommentTag));

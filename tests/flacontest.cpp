@@ -451,7 +451,7 @@ void TestFlacon::testTrackResultFileName()
 
     Disc *disc = loadFromCue(cueFile);
 
-    QString result = profile.resultFileName(disc->track(0));
+    QString result = profile.resultFileName(disc->tracks().first());
     // QCOMPARE(result, expected);
 
     if (result != expected) {
@@ -1177,7 +1177,7 @@ void TestFlacon::testTrackResultFilePath()
 
     Disc *disc = loadFromCue(cueFile);
 
-    QString result = profile.resultFilePath(disc->track(0));
+    QString result = profile.resultFilePath(disc->tracks().first());
     if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath()) {
         QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   CueFile: %4").arg(QFileInfo(result).absoluteFilePath(), result, expected, cueFile);
         QFAIL(msg.toLocal8Bit());
@@ -1278,25 +1278,25 @@ void TestFlacon::testTrackSetCodepages()
     // Result *************************
     // result << "GENRE:" << tracks.genre() << "\n";
     // resultSl << "ALBUM:" << tracks.album() << "\n";
-    result << "DISCID:" << disc->discId() << "\n";
+    result << "DISCID:" << disc->discIdTag() << "\n";
 
-    for (int i = 0; i < disc->count(); ++i) {
-        Track *track = disc->track(i);
+    for (int i = 0; i < disc->tracks().count(); ++i) {
+        Track *track = disc->tracks().at(i);
         result << "Track " << (i + 1) << "\n";
         result << "  "
                << "INDEX:" << i << "\n";
         result << "  "
-               << "TRACKNUM:" << track->trackNum() << "\n";
+               << "TRACKNUM:" << track->trackNumTag() << "\n";
         result << "  "
-               << "ALBUM:" << track->album() << "\n";
+               << "ALBUM:" << track->disk()->albumTag() << "\n";
         result << "  "
-               << "TITLE:" << track->title() << "\n";
+               << "TITLE:" << track->titleTag() << "\n";
         result << "  "
-               << "ARTIST:" << track->artist() << "\n";
+               << "ARTIST:" << track->artistTag() << "\n";
         result << "  "
-               << "GENRE:" << track->genre() << "\n";
+               << "GENRE:" << track->disk()->genreTag() << "\n";
         result << "  "
-               << "YEAR:" << track->date() << "\n";
+               << "YEAR:" << track->dateTag() << "\n";
     }
 
     // Result *************************

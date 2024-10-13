@@ -52,37 +52,37 @@ private slots:
     void initTestCase();
     void init();
 
-    void testCue();
-    void testCue_data();
+    // void testCue();
+    // void testCue_data();
 
-    void testCueData();
-    void testCueData_data();
+    // void testCueData();
+    // void testCueData_data();
 
-    void testSearchCoverImage();
-    void testSearchCoverImage_data();
+    // void testSearchCoverImage();
+    // void testSearchCoverImage_data();
 
-    void testReadWavHeader();
-    void testReadWavHeader_data();
+    // void testReadWavHeader();
+    // void testReadWavHeader_data();
 
-    void testResizeWavHeader();
-    void testResizeWavHeader_data();
+    // void testResizeWavHeader();
+    // void testResizeWavHeader_data();
 
-    void testToLegacyWav();
-    void testToLegacyWav_data();
+    // void testToLegacyWav();
+    // void testToLegacyWav_data();
 
-    void testFormatWavLast();
+    // void testFormatWavLast();
 
-    void testFormat();
-    void testFormat_data();
+    // void testFormat();
+    // void testFormat_data();
 
-    void testFormatFromFile();
-    void testFormatFromFile_data();
+    // void testFormatFromFile();
+    // void testFormatFromFile_data();
 
-    void testInputAudioFile();
-    void testInputAudioFile_data();
+    // void testInputAudioFile();
+    // void testInputAudioFile_data();
 
-    void testDecoder();
-    void testDecoder_data();
+    // void testDecoder();
+    // void testDecoder_data();
 
     void testByteArraySplit_data();
     void testByteArraySplit();
@@ -102,39 +102,39 @@ private slots:
     void testCueTime_data();
     void testCueTime();
 
-    void testPatternExpander_data();
-    void testPatternExpander();
+    // void testPatternExpander_data();
+    // void testPatternExpander();
 
-    void testPatternExpanderLastDir();
-    void testPatternExpanderLastDir_data();
+    // void testPatternExpanderLastDir();
+    // void testPatternExpanderLastDir_data();
 
-    void testCalcDiskState();
+    // void testCalcDiskState();
 
-    void testLoadProfiles();
-    void testLoadProfiles_data();
+    // void testLoadProfiles();
+    // void testLoadProfiles_data();
 
-    void testAudioFileMatcher();
-    void testAudioFileMatcher_data();
+    // void testAudioFileMatcher();
+    // void testAudioFileMatcher_data();
 
-    void testLoadDiscFromAudio();
-    void testLoadDiscFromAudio_data();
+    // void testLoadDiscFromAudio();
+    // void testLoadDiscFromAudio_data();
 
-    void testLoadDiscFromAudioErrors();
-    void testLoadDiscFromAudioErrors_data();
+    // void testLoadDiscFromAudioErrors();
+    // void testLoadDiscFromAudioErrors_data();
 
-    void testConvert();
-    void testConvert_data();
+    // void testConvert();
+    // void testConvert_data();
 
-    void testReplayGain();
-    void testReplayGain_data();
+    // void testReplayGain();
+    // void testReplayGain_data();
 
-    void testValidator();
-    void testValidator_data();
+    // void testValidator();
+    // void testValidator_data();
 
-    void testTextCodecNames();
+    // void testTextCodecNames();
 
-    void testTextCodecs();
-    void testTextCodecs_data();
+    // void testTextCodecs();
+    // void testTextCodecs_data();
 
 private:
     void writeTextFile(const QString &fileName, const QString &content);

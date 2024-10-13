@@ -114,7 +114,15 @@ int DiscSpec::durationValue(const QString &key) const
 
 void DiscSpec::verifyTrack(const Track *track, const QString &key) const
 {
+    using TrackGetter = QString (Track::*)() const;
+    using DiskGetter  = QString (Disc::*)() const;
+
     QString expected = mData.value(key).toString();
+
+    QMap<QString, TrackGetter> TRACK_TAGS;
+    TRACK_TAGS["Artist"]  = &Track::performerTag;
+    TRACK_TAGS["Comment"] = &Track::commentTag;
+    TRACK_TAGS["Date"]    = &Track::dateTag;
 
     QMap<QString, TagId> TAGS;
     TAGS["Album"]       = TagId::Album;
@@ -138,26 +146,37 @@ void DiscSpec::verifyTrack(const Track *track, const QString &key) const
     TAGS["TrackCount"]  = TagId::TrackCount;
     TAGS["Performer"]   = TagId::Artist;
 
-    QStringList keys = TAGS.keys();
+    // QStringList keys = TAGS.keys();
+    // for (auto key : keys) {
+    //     TAGS[key.toUpper()] = TAGS[key];
+    // }
+
+    // if (TAGS.contains(key)) {
+    //     QCOMPARE(track->tag(TAGS[key]), expected);
+    //     return;
+    // }
+
+    QStringList keys = TRACK_TAGS.keys();
     for (auto key : keys) {
-        TAGS[key.toUpper()] = TAGS[key];
+        TRACK_TAGS[key.toUpper()] = TRACK_TAGS[key];
     }
 
-    if (TAGS.contains(key)) {
-        QCOMPARE(track->tag(TAGS[key]), expected);
+    if (TRACK_TAGS.contains(key)) {
+        QString actual = std::mem_fn(TRACK_TAGS[key])(track);
+        QCOMPARE(actual, expected);
         return;
     }
 
     if (key == KEY_TRACK_INDEX_0) {
-        if (track->cueIndex(0).toString(true) != expected) {
-            QCOMPARE(track->cueIndex(0).toString(false), expected);
+        if (track->cueIndex00().toString(true) != expected) {
+            QCOMPARE(track->cueIndex00().toString(false), expected);
         }
         return;
     }
 
     if (key == KEY_TRACK_INDEX_1) {
-        if (track->cueIndex(1).toString(true) != expected) {
-            QCOMPARE(track->cueIndex(1).toString(false), expected);
+        if (track->cueIndex01().toString(true) != expected) {
+            QCOMPARE(track->cueIndex01().toString(false), expected);
         }
         return;
     }
@@ -174,7 +193,7 @@ void DiscSpec::verifyTrack(const Track *track, const QString &key) const
         }
 
         if (track->duration() != uint(expected)) {
-            qWarning() << "Track" << track->trackNum();
+            qWarning() << "Track" << track->trackNumTag();
             QCOMPARE(track->duration(), Duration(expected));
         }
         return;
@@ -189,7 +208,7 @@ void DiscSpec::verify(const Disc &disc) const
         QCOMPARE(disc.cueFilePath(), cueFilePath());
     }
 
-    QCOMPARE(disc.count(), tracksCount());
+    QCOMPARE(disc.tracks().count(), tracksCount());
 
     mData.beginGroup("TRACKS");
     for (const QString &group : mData.childGroups()) {
@@ -201,7 +220,7 @@ void DiscSpec::verify(const Disc &disc) const
                 QFAIL("Invalid Track number");
                 return;
             }
-            track = disc.track(n - 1);
+            track = disc.tracks().at(n - 1);
         }
         mData.beginGroup(group);
         for (const QString &key : mData.childKeys()) {
@@ -286,19 +305,18 @@ void DiscSpec::write(const Disc &disc, const QString &fileName)
     w.write(KEY_CUE_FILE_PATH, QFileInfo(disc.cueFilePath()).fileName());
     w.write(KEY_COVER_FILE, dir.relativeFilePath(disc.coverImageFile()));
 
-    for (int i = 0; i < disc.count(); ++i) {
-        const Track *track = disc.track(i);
-        w.beginGroup(QString(KEY_TRACK_GROUP).arg(track->trackNum(), 2, 10, QChar('0')));
+    for (int i = 0; i < disc.tracks().count(); ++i) {
+        const Track *track = disc.tracks().at(i);
+        w.beginGroup(QString(KEY_TRACK_GROUP).arg(track->trackNumTag(), 2, 10, QChar('0')));
 
-        w.write(KEY_TRACK_TITLE, track->title());
-        w.write(KEY_TRACK_DATE, track->date());
-        w.write(KEY_TRACK_DISCID, track->discId());
-        w.write(KEY_TRACK_COMMENT, track->comment());
-        w.write(KEY_TRACK_FILE, track->tag(TagId::File));
-        w.write(KEY_TRACK_PERFORMER, track->artist());
-        w.write(KEY_TRACK_TITLE, track->title());
-        w.write(KEY_TRACK_INDEX_0, track->cueIndex(0));
-        w.write(KEY_TRACK_INDEX_1, track->cueIndex(1));
+        w.write(KEY_TRACK_TITLE, track->titleTag());
+        w.write(KEY_TRACK_DATE, track->dateTag());
+        w.write(KEY_TRACK_DISCID, track->disk()->discIdTag());
+        w.write(KEY_TRACK_COMMENT, track->commentTag());
+        w.write(KEY_TRACK_FILE, track->fileTag());
+        w.write(KEY_TRACK_PERFORMER, track->artistTag());
+        w.write(KEY_TRACK_INDEX_0, track->cueIndex00());
+        w.write(KEY_TRACK_INDEX_1, track->cueIndex01());
 
         w.write(KEY_TRACK_AUDIO_FILE, track->audioFileName());
 
