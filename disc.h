@@ -138,7 +138,6 @@ private:
     Tags mCueUserTags;
     Tags mUserTags;
     Tags mLoadedTags;
-    Tags mCueTags;
 
     TextCodec mTextCodec;
 

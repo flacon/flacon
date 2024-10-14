@@ -1292,11 +1292,11 @@ void TestFlacon::testTrackSetCodepages()
         result << "  "
                << "TITLE:" << track->titleTag() << "\n";
         result << "  "
-               << "ARTIST:" << track->artistTag() << "\n";
+               << "ARTIST:" << firstNotEmptyString(track->artistTag(), track->disk()->artistTag()) << "\n";
         result << "  "
                << "GENRE:" << track->disk()->genreTag() << "\n";
         result << "  "
-               << "YEAR:" << track->dateTag() << "\n";
+               << "YEAR:" << firstNotEmptyString(track->dateTag(), track->disk()->dateTag()) << "\n";
     }
 
     // Result *************************

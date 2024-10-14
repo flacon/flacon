@@ -131,7 +131,6 @@ void Disc::setCue(const Cue &cue)
 
     mUserTags.resize(mTracks.count());
     mLoadedTags.resize(mTracks.count());
-    mCueTags.resize(mTracks.count());
     mCueUserTags.resize(mTracks.count());
 
     syncTagsFromTracks();
@@ -202,7 +201,6 @@ void Disc::syncTagsFromTracks()
  **************************************/
 void Disc::syncTagsToTracks()
 {
-    mCueTags.setTrackCount(tracks().count());
     mUserTags   = mInternetTagsIndex < 0 ? mCueUserTags : mInternetTags[mInternetTagsIndex];
     mLoadedTags = mCue.decode(mTextCodec);
 

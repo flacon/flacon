@@ -82,8 +82,8 @@ public:
     void merge(const AlbumTags &other);
 
 private:
-    DiscNum  mDiscCount  = 1;
-    DiscNum  mDiscNum    = 1;
+    DiscNum  mDiscCount  = 0;
+    DiscNum  mDiscNum    = 0;
     TrackNum mTrackCount = 0;
 
     QString mAlbum;

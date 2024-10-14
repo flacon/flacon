@@ -72,11 +72,6 @@ private:
     QHash<QPair<Disk *, int>, CacheTrackData> mTracks;
 };
 
-inline size_t qHash(const Track &track, uint seed)
-{
-    return qHash(QPair<int, intptr_t>(track.trackNumTag(), intptr_t(track.disc())), seed);
-}
-
 class IndexData
 {
 public:
