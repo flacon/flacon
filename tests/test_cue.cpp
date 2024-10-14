@@ -57,40 +57,40 @@ static void write(const Cue &cue, const QString &fileName)
     f.open(QFile::WriteOnly | QFile::Truncate);
 
     int t = -1;
-    for (const TrackTags &track : cue.tracks()) {
+    for (const Cue::Track &track : cue.tracks()) {
         t++;
         f << QString("[DISC 01 / TRACK %2]\n").arg(t + 1, 2, 10, QChar('0'));
 
         f << "\t"
-          << "FILE        = " << track.tag(TagId::File) << "\n";
+          << "FILE        = " << QString::fromUtf8(track.fileTag()) << "\n";
         f << "\t"
-          << "INDEX CD 00 = " << track.cueIndex(0).toString(true) << "\n";
+          << "INDEX CD 00 = " << track.cueIndex00().toString(true) << "\n";
         f << "\t"
-          << "INDEX CD 01 = " << track.cueIndex(1).toString(true) << "\n";
+          << "INDEX CD 01 = " << track.cueIndex01().toString(true) << "\n";
         f << "\t"
-          << "INDEX HI 00 = " << track.cueIndex(0).toString(false) << "\n";
+          << "INDEX HI 00 = " << track.cueIndex00().toString(false) << "\n";
         f << "\t"
-          << "INDEX HI 01 = " << track.cueIndex(1).toString(false) << "\n";
+          << "INDEX HI 01 = " << track.cueIndex01().toString(false) << "\n";
         f << "\t"
-          << "TITLE       = " << track.tag(TagId::Title) << "\n";
+          << "TITLE       = " << QString::fromUtf8(track.titleTag()) << "\n";
         f << "\t"
-          << "ALBUM       = " << track.tag(TagId::Album) << "\n";
+          << "ALBUM       = " << QString::fromUtf8(cue.albumTag()) << "\n";
         f << "\t"
-          << "PERFORMER   = " << track.tag(TagId::Artist) << "\n";
+          << "PERFORMER   = " << firstNotEmptyString(QString::fromUtf8(track.performerTag()), QString::fromUtf8(cue.performerTag())) << "\n";
         f << "\t"
-          << "DATE        = " << track.tag(TagId::Date) << "\n";
+          << "DATE        = " << firstNotEmptyString(QString::fromUtf8(track.dateTag()), QString::fromUtf8(cue.dateTag())) << "\n";
         f << "\t"
-          << "DISCID      = " << track.tag(TagId::DiscId) << "\n";
+          << "DISCID      = " << QString::fromUtf8(cue.discIdTag()) << "\n";
         f << "\t"
-          << "GENRE       = " << track.tag(TagId::Genre) << "\n";
+          << "GENRE       = " << QString::fromUtf8(cue.genreTag()) << "\n";
         f << "\t"
-          << "TRACKNUM    = " << QString::number(track.trackNum()) << "\n";
+          << "TRACKNUM    = " << QString::number(track.trackNumTag()) << "\n";
         f << "\t"
-          << "TRACKCOUNT  = " << QString::number(track.trackCount()) << "\n";
+          << "TRACKCOUNT  = " << QString::number(cue.tracks().count()) << "\n";
         f << "\t"
-          << "DISCNUM     = " << QString::number(track.discNum()) << "\n";
+          << "DISCNUM     = " << QString::number(cue.discNumTag()) << "\n";
         f << "\t"
-          << "DISCCOUNT   = " << QString::number(track.discCount()) << "\n";
+          << "DISCCOUNT   = " << QString::number(cue.discCountTag()) << "\n";
 
         f << "\n";
     }

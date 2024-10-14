@@ -52,8 +52,28 @@ private slots:
     void initTestCase();
     void init();
 
-    // void testCue();
-    // void testCue_data();
+    void testByteArraySplit_data();
+    void testByteArraySplit();
+
+    void testSafeString_data();
+    void testSafeString();
+
+    void testTrackResultFileName_data();
+    void testTrackResultFileName();
+
+    void testTrackResultFilePath_data();
+    void testTrackResultFilePath();
+
+    void testTrackSetCodepages_data();
+    void testTrackSetCodepages();
+
+    void testCueTime_data();
+    void testCueTime();
+
+    // .................
+
+    void testCue();
+    void testCue_data();
 
     // void testCueData();
     // void testCueData_data();
@@ -83,24 +103,6 @@ private slots:
 
     // void testDecoder();
     // void testDecoder_data();
-
-    void testByteArraySplit_data();
-    void testByteArraySplit();
-
-    void testSafeString_data();
-    void testSafeString();
-
-    void testTrackResultFileName_data();
-    void testTrackResultFileName();
-
-    void testTrackResultFilePath_data();
-    void testTrackResultFilePath();
-
-    void testTrackSetCodepages_data();
-    void testTrackSetCodepages();
-
-    void testCueTime_data();
-    void testCueTime();
 
     // void testPatternExpander_data();
     // void testPatternExpander();
