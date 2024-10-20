@@ -1,0 +1,71 @@
+{
+    "cueFile": "Street_Legal.cue",
+    "performer": "Bob Dylan",
+    "coverFile": "",
+
+    "tracks": [
+        {
+            "audioFile": "Side A.wv",
+            "file": "Side A.wv",
+            "index00": "00:00.000",
+            "index01": "00:00.000",
+            "title": "Changing of the Guards"
+        },
+        {
+            "audioFile": "Side A.wv",
+            "file": "Side A.wv",
+            "index00": "06:35.000",
+            "index01": "06:35.000",
+            "title": "New Pony"
+        },
+        {
+            "audioFile": "Side A.wv",
+            "file": "Side A.wv",
+            "index00": "11:03.000",
+            "index01": "11:03.000",
+            "title": "No Time to Think"
+        },
+        {
+            "audioFile": "Side A.wv",
+            "file": "Side A.wv",
+            "index00": "19:23.500",
+            "index01": "19:23.500",
+            "title": "Baby, Stop Crying"
+        },
+        {
+            "audioFile": "Side B.wv",
+            "file": "Side B.wv",
+            "index00": "00:00.000",
+            "index01": "00:00.000",
+            "title": "Is Your Love in Vain?"
+        },
+        {
+            "audioFile": "Side B.wv",
+            "file": "Side B.wv",
+            "index00": "04:31.000",
+            "index01": "04:31.000",
+            "title": "Señor (Tales of Yankee Power)"
+        },
+        {
+            "audioFile": "Side B.wv",
+            "file": "Side B.wv",
+            "index00": "10:12.000",
+            "index01": "10:12.000",
+            "title": "True Love Tends to Forget"
+        },
+        {
+            "audioFile": "Side B.wv",
+            "file": "Side B.wv",
+            "index00": "14:27.000",
+            "index01": "14:27.000",
+            "title": "We Better Talk This Over"
+        },
+        {
+            "audioFile": "Side B.wv",
+            "file": "Side B.wv",
+            "index00": "18:32.500",
+            "index01": "18:32.500",
+            "title": "Where Are You Tonight? (Journey Through Dark Heat)"
+        }
+    ]
+}

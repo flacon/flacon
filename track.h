@@ -38,6 +38,7 @@ class Disc;
 class Track
 {
     friend class Disc;
+    friend class PregapTrack;
 
 public:
     Track() = default;
@@ -109,7 +110,13 @@ private:
     InputAudioFile mAudiofile;
 };
 
-using Tracks       = QVector<Track>;
+class PregapTrack : public Track
+{
+public:
+    PregapTrack(const Track &track);
+};
+
+// using Tracks     = QVector<Track>;
 using TrackPtrList = QList<Track *>;
 
 QDebug operator<<(QDebug debug, const Track &track);

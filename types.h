@@ -40,28 +40,6 @@ using Duration   = uint;
 using mSec       = int;
 using Percent    = quint8;
 
-enum class TagId {
-    Album,
-    Catalog,
-    CDTextfile,
-    Comment,
-    Date,
-    Flags,
-    Genre,
-    ISRC,
-    Artist,
-    SongWriter,
-    Title,
-    DiscId,
-    File,
-    DiscNum,
-    DiscCount,
-    CueFile,
-    AlbumArtist,
-    TrackNum,
-    TrackCount,
-};
-
 enum class PreGapType {
     Skip = 0,
     ExtractToFile,

@@ -77,22 +77,24 @@ void MetadataWriter::setXiphTags(TagLib::Ogg::XiphComment *tags, const Track &tr
         tags->addField(tagName.toStdString(), QString::number(value).toStdString(), true);
     };
 
-    setXiphTag(tags, "ARTIST", track.performerTag());
-    setXiphTag(tags, "ALBUM", track.disk()->albumTag());
-    setXiphTag(tags, "GENRE", track.disk()->genreTag());
-    setXiphTag(tags, "DATE", track.dateTag());
+    Disk *disk = track.disk();
+
+    setXiphTag(tags, "ARTIST", firstNotEmptyString(track.performerTag(), disk->performerTag()));
+    setXiphTag(tags, "ALBUM", disk->albumTag());
+    setXiphTag(tags, "GENRE", disk->genreTag());
+    setXiphTag(tags, "DATE", firstNotEmptyString(track.dateTag(), disk->dateTag()));
     setXiphTag(tags, "TITLE", track.titleTag());
-    setXiphTag(tags, "ALBUMARTIST", track.disk()->artistTag());
-    setXiphTag(tags, "COMMENT", track.commentTag());
-    setXiphTag(tags, "DISCID", track.disk()->discIdTag());
+    setXiphTag(tags, "ALBUMARTIST", disk->artistTag());
+    setXiphTag(tags, "COMMENT", firstNotEmptyString(track.commentTag(), disk->commentTag()));
+    setXiphTag(tags, "DISCID", disk->discIdTag());
 
     writeIntTag("TRACKNUMBER", track.trackNumTag());
-    writeIntTag("TOTALTRACKS", track.disk()->tracks().count());
-    writeIntTag("TRACKTOTAL", track.disk()->tracks().count());
+    writeIntTag("TOTALTRACKS", disk->tracks().count());
+    writeIntTag("TRACKTOTAL", disk->tracks().count());
 
-    writeIntTag("DISC", track.disk()->discNumTag());
-    writeIntTag("DISCNUMBER", track.disk()->discNumTag());
-    writeIntTag("DISCTOTAL", track.disk()->discCountTag());
+    writeIntTag("DISC", disk->discNumTag());
+    writeIntTag("DISCNUMBER", disk->discNumTag());
+    writeIntTag("DISCTOTAL", disk->discCountTag());
 }
 
 /************************************************
@@ -152,17 +154,19 @@ void MetadataWriter::setApeTags(TagLib::APE::Tag *tags, const Track &track) cons
         }
     };
 
-    writeStrTag("ARTIST", track.performerTag());
-    writeStrTag("ALBUM", track.disk()->albumTag());
-    writeStrTag("GENRE", track.disk()->genreTag());
-    writeStrTag("YEAR", track.disk()->dateTag());
-    writeStrTag("TITLE", track.titleTag());
-    writeStrTag("ALBUM ARTIST", track.disk()->performerTag());
-    writeStrTag("COMMENT", track.disk()->commentTag());
-    writeStrTag("DISCID", track.disk()->discIdTag());
+    Disk *disk = track.disk();
 
-    writeStrTag("TRACK", QString("%1/%2").arg(track.trackNumTag()).arg(track.disk()->tracks().count()));
-    writeStrTag("PART", QString("%1").arg(track.disk()->discNumTag()));
+    writeStrTag("ARTIST", firstNotEmptyString(track.performerTag(), disk->performerTag()));
+    writeStrTag("ALBUM", disk->albumTag());
+    writeStrTag("GENRE", disk->genreTag());
+    writeStrTag("YEAR", firstNotEmptyString(track.dateTag(), disk->dateTag()));
+    writeStrTag("TITLE", track.titleTag());
+    writeStrTag("ALBUM ARTIST", disk->performerTag());
+    writeStrTag("COMMENT", firstNotEmptyString(track.commentTag(), disk->commentTag()));
+    writeStrTag("DISCID", disk->discIdTag());
+
+    writeStrTag("TRACK", QString("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
+    writeStrTag("PART", QString("%1").arg(disk->discNumTag()));
 }
 
 /************************************************
@@ -248,15 +252,17 @@ void Mp4MetaDataWriter::setTags(const Track &track)
         }
     };
 
-    writeStrTag("ARTIST", track.artistTag());
-    writeStrTag("ALBUM", track.disk()->albumTag());
-    writeStrTag("GENRE", track.disk()->genreTag());
-    writeStrTag("DATE", track.dateTag());
+    Disk *disk = track.disk();
+
+    writeStrTag("ARTIST", firstNotEmptyString(track.performerTag(), disk->performerTag()));
+    writeStrTag("ALBUM", disk->albumTag());
+    writeStrTag("GENRE", disk->genreTag());
+    writeStrTag("DATE", firstNotEmptyString(track.dateTag(), disk->dateTag()));
     writeStrTag("TITLE", track.titleTag());
-    writeStrTag("ALBUMARTIST", track.disk()->performerTag());
-    writeStrTag("COMMENT", track.commentTag());
-    writeStrTag("TRACKNUMBER", QString("%1/%2").arg(track.trackNumTag()).arg(track.disk()->tracks().count()));
-    writeStrTag("DISCNUMBER", QString("%1/%2").arg(track.disk()->discNumTag()).arg(track.disk()->discCountTag()));
+    writeStrTag("ALBUMARTIST", disk->performerTag());
+    writeStrTag("COMMENT", firstNotEmptyString(track.commentTag(), disk->commentTag()));
+    writeStrTag("TRACKNUMBER", QString("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
+    writeStrTag("DISCNUMBER", QString("%1/%2").arg(disk->discNumTag()).arg(disk->discCountTag()));
 
     mFile.setProperties(props);
 }

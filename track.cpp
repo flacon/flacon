@@ -282,3 +282,11 @@ QDebug operator<<(QDebug debug, const Track &track)
             << "}";
     return debug;
 }
+
+PregapTrack::PregapTrack(const Track &track) :
+    Track(track)
+{
+    mLoadedTags.setTrackNum(0);
+    setTrackNumTag(0);
+    setTitleTag("(HTOA)");
+}

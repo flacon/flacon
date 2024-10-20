@@ -106,10 +106,10 @@ MainWindow::MainWindow(QWidget *parent) :
     trackView->setAlternatingRowColors(false);
 
     // Tag edits ...............................................
-    connect(tagGenreEdit, &TagLineEdit::textEdited, this, &MainWindow::setGenreTag);
-    connect(tagYearEdit, &TagLineEdit::textEdited, this, &MainWindow::setDateTag);
-    connect(tagPerformerEdit, &TagLineEdit::textEdited, this, &MainWindow::setPerformerTag);
-    connect(tagAlbumEdit, &TagLineEdit::textEdited, this, &MainWindow::setAlbumTag);
+    connect(tagGenreEdit, &QLineEdit::textEdited, this, &MainWindow::setGenreTag);
+    connect(tagYearEdit, &QLineEdit::textEdited, this, &MainWindow::setDateTag);
+    connect(tagPerformerEdit, &QLineEdit::textEdited, this, &MainWindow::setPerformerTag);
+    connect(tagAlbumEdit, &QLineEdit::textEdited, this, &MainWindow::setAlbumTag);
 
     connect(tagStartNumEdit, &MultiValuesSpinBox::editingFinished, this, &MainWindow::setStartTrackNum);
     connect(tagStartNumEdit, qOverload<int>(&MultiValuesSpinBox::valueChanged),

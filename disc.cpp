@@ -79,20 +79,6 @@ void Disc::searchCoverImage(bool replaceExisting)
 /**************************************
  *
  **************************************/
-const Track *Disc::preGapTrack() const
-{
-    if (!mTracks.isEmpty()) {
-        mPreGapTrack = *mTracks.first();
-    }
-
-    mPreGapTrack.setTrackNumTag(0);
-    mPreGapTrack.setTitleTag("(HTOA)");
-    return &mPreGapTrack;
-}
-
-/**************************************
- *
- **************************************/
 QString Disc::cueFilePath() const
 {
     return mCue.isEmpty() ? "" : mCue.filePath();

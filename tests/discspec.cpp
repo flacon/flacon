@@ -29,59 +29,168 @@
 
 #include "../disc.h"
 #include <QTest>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 
 using namespace Tests;
 
 DiscSpec::DiscSpec(const QString &fileName) :
-    mData(fileName, QSettings::IniFormat),
-    mDir(QFileInfo(fileName).dir().path())
+    mFileName(fileName)
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    mData.setIniCodec("UTF-8");
-#endif
-    mData.allKeys();
 }
 
-QString DiscSpec::cueFilePath() const
+void DiscSpec::write(const Disc &disk, const QString &fileName)
 {
-    return mDir + "/" + mData.value(KEY_CUE_FILE_PATH).toString();
-}
+    QDir dir = QFileInfo(fileName).dir();
 
-int DiscSpec::tracksCount() const
-{
-    mData.beginGroup("TRACKS");
-    int res = mData.childGroups().count();
-    mData.endGroup();
-    return res;
-}
+    QJsonObject json;
+    json["cueFile"]   = QFileInfo(disk.cueFilePath()).fileName();
+    json["coverFile"] = dir.relativeFilePath(disk.coverImageFile());
 
-QString DiscSpec::trackAudioFilePath(int index) const
-{
-    if (trackAudioFile(index).isEmpty()) {
-        return "";
+    json["discCount"] = disk.discCountTag();
+    json["discNum"]   = disk.discNumTag();
+
+    json["album"]      = disk.albumTag();
+    json["catalog"]    = disk.catalogTag();
+    json["cdTextfile"] = disk.cdTextfileTag();
+    json["comment"]    = disk.commentTag();
+    json["date"]       = disk.dateTag();
+    json["discId"]     = disk.discIdTag();
+    json["genre"]      = disk.genreTag();
+    json["performer"]  = disk.performerTag();
+    json["songWriter"] = disk.songWriterTag();
+
+    QJsonArray tracks;
+    for (const Track *track : disk.tracks()) {
+        QJsonObject json;
+        json["trackNum"]   = track->trackNumTag();
+        json["comment"]    = track->commentTag();
+        json["date"]       = track->dateTag();
+        json["flags"]      = track->flagsTag();
+        json["isrc"]       = track->isrcTag();
+        json["title"]      = track->titleTag();
+        json["performer"]  = track->performerTag();
+        json["songWriter"] = track->songWriterTag();
+        json["file"]       = track->fileTag();
+
+        tracks.append(json);
+    }
+    json["tracks"] = tracks;
+
+    QJsonDocument doc;
+    doc.setObject(json);
+
+    QFile file(fileName);
+    if (!file.open(QFile::WriteOnly)) {
+        QFAIL(file.errorString().toLocal8Bit());
     }
 
-    return mDir + "/" + trackAudioFile(index);
+    file.write(doc.toJson());
+    file.close();
 }
 
-QString DiscSpec::trackKey(int track, const QString tag) const
+void DiscSpec::verify(const Disc &disk) const
 {
-    return QString("TRACKS/%1/%2").arg(track, 2, 10, QChar('0')).arg(tag);
+    QFile file(mFileName);
+    if (!file.open(QFile::ReadOnly)) {
+        QFAIL(QString("Unable to read '%1': %2").arg(mFileName, file.errorString()).toLocal8Bit());
+    }
+
+    QJsonParseError err;
+    QJsonDocument   doc = QJsonDocument::fromJson(file.readAll(), &err);
+    if (err.error != QJsonParseError::NoError) {
+        QFAIL(QString("Unable to read '%1': %2").arg(mFileName, err.errorString()).toLocal8Bit());
+    }
+
+    verifyDiskTags(disk, doc.object());
 }
 
-QString DiscSpec::trackValue(int track, const QString &key) const
+void DiscSpec::verifyDiskTags(const Disc &disk, const QJsonObject &json) const
 {
-    return mData.value(trackKey(track, key)).toString();
+    QDir dir = QFileInfo(mFileName).dir();
+
+    // clang-format off
+    if (json.contains("cueFile"))    QCOMPARE(QFileInfo(disk.cueFilePath()).fileName(), json["cueFile"].toString());
+    if (json.contains("coverFile"))  QCOMPARE(dir.relativeFilePath(disk.coverImageFile()), json["coverFile"].toString());
+
+    if (json.contains("discCount"))  QCOMPARE(disk.discCountTag(), json["discCount"].toInt(1));
+    if (json.contains("discNum"))    QCOMPARE(disk.discNumTag(), json["discNum"].toInt(1));
+
+    if (json.contains("album"))      QCOMPARE(disk.albumTag(), json["album"].toString());
+    if (json.contains("catalog"))    QCOMPARE(disk.catalogTag(), json["catalog"].toString());
+    if (json.contains("cdTextfile")) QCOMPARE(disk.cdTextfileTag(), json["cdTextfile"].toString());
+    if (json.contains("comment"))    QCOMPARE(disk.commentTag(), json["comment"].toString());
+    if (json.contains("date"))       QCOMPARE(disk.dateTag(), json["date"].toString());
+    if (json.contains("discId"))     QCOMPARE(disk.discIdTag(), json["discId"].toString());
+    if (json.contains("genre"))      QCOMPARE(disk.genreTag(), json["genre"].toString());
+    if (json.contains("performer"))  QCOMPARE(disk.performerTag(), json["performer"].toString());
+    if (json.contains("songWriter")) QCOMPARE(disk.songWriterTag(), json["songWriter"].toString());
+    // clang-format on
+
+    QJsonArray tracks = json["tracks"].toArray();
+    QCOMPARE(disk.tracks().count(), tracks.count());
+
+    int i = 0;
+    for (const Track *track : disk.tracks()) {
+        verifyTrackTags(track, tracks.at(i).toObject());
+        i++;
+    }
 }
 
-int DiscSpec::durationValue(const QString &key) const
+void DiscSpec::verifyTrackTags(const Track *track, const QJsonObject &json) const
 {
-    QString s = mData.value(key).toString();
+    if (json.contains("audioFile")) {
+        QCOMPARE(track->audioFileName(), json["audioFile"].toString());
+    }
 
+    if (json.contains("duration")) {
+        int expected = strToDuration(json["duration"].toString());
+
+        if (expected < 0) {
+            QFAIL("Invalid track duration");
+        }
+
+        if (track->duration() != uint(expected)) {
+            qWarning() << "Track" << track->trackNumTag();
+            QCOMPARE(track->duration(), Duration(expected));
+        }
+        return;
+    }
+
+    if (json.contains("index00")) {
+        QString expected = json["index00"].toString();
+        if (track->cueIndex00().toString(true) != expected) {
+            QCOMPARE(track->cueIndex00().toString(false), expected);
+        }
+    }
+
+    if (json.contains("index01")) {
+        QString expected = json["index01"].toString();
+        if (track->cueIndex01().toString(true) != expected) {
+            QCOMPARE(track->cueIndex01().toString(false), expected);
+        }
+    }
+
+    // clang-format off
+    if (json.contains("trackNum"))   QCOMPARE(track->trackNumTag(), json["trackNum"].toInt());
+    if (json.contains("comment"))    QCOMPARE(track->commentTag(), json["comment"].toString());
+    if (json.contains("date"))       QCOMPARE(track->dateTag(), json["date"].toString());
+    if (json.contains("flags"))      QCOMPARE(track->flagsTag(), json["flags"].toString());
+    if (json.contains("isrc"))       QCOMPARE(track->isrcTag(), json["isrc"].toString());
+    if (json.contains("title"))      QCOMPARE(track->titleTag(), json["title"].toString());
+    if (json.contains("performer"))  QCOMPARE(track->performerTag(), json["performer"].toString());
+    if (json.contains("songWriter")) QCOMPARE(track->songWriterTag(), json["songWriter"].toString());
+    if (json.contains("file"))       QCOMPARE(track->fileTag(), json["file"].toString());
+    // clang-format on
+}
+
+int DiscSpec::strToDuration(const QString &str) const
+{
 #if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-    QStringList sl = s.split(QRegularExpression("\\D"), QString::KeepEmptyParts);
+    QStringList sl = str.split(QRegularExpression("\\D"), QString::KeepEmptyParts);
 #else
-    QStringList sl = s.split(QRegularExpression("\\D"), Qt::KeepEmptyParts);
+    QStringList sl = str.split(QRegularExpression("\\D"), Qt::KeepEmptyParts);
 #endif
 
     if (sl.length() < 3)
@@ -104,222 +213,10 @@ int DiscSpec::durationValue(const QString &key) const
     if (!ok)
         return -1;
 
-    if (s.contains(".") || sl[2].length() > 2) {
+    if (str.contains(".") || sl[2].length() > 2) {
         return (min * 60 + sec) * 1000 + msec;
     }
     else {
         return (min * 60 + sec) * 1000 + frm / 75.0 * 1000.0;
-    }
-}
-
-void DiscSpec::verifyTrack(const Track *track, const QString &key) const
-{
-    using TrackGetter = QString (Track::*)() const;
-    using DiskGetter  = QString (Disc::*)() const;
-
-    QString expected = mData.value(key).toString();
-
-    QMap<QString, TrackGetter> TRACK_TAGS;
-    TRACK_TAGS["Artist"]  = &Track::performerTag;
-    TRACK_TAGS["Comment"] = &Track::commentTag;
-    TRACK_TAGS["Date"]    = &Track::dateTag;
-
-    QMap<QString, TagId> TAGS;
-    TAGS["Album"]       = TagId::Album;
-    TAGS["Catalog"]     = TagId::Catalog;
-    TAGS["CDTextfile"]  = TagId::CDTextfile;
-    TAGS["Comment"]     = TagId::Comment;
-    TAGS["Date"]        = TagId::Date;
-    TAGS["Flags"]       = TagId::Flags;
-    TAGS["Genre"]       = TagId::Genre;
-    TAGS["ISRC"]        = TagId::ISRC;
-    TAGS["Artist"]      = TagId::Artist;
-    TAGS["SongWriter"]  = TagId::SongWriter;
-    TAGS["Title"]       = TagId::Title;
-    TAGS["DiscId"]      = TagId::DiscId;
-    TAGS["File"]        = TagId::File;
-    TAGS["DiscNum"]     = TagId::DiscNum;
-    TAGS["DiscCount"]   = TagId::DiscCount;
-    TAGS["CueFile"]     = TagId::CueFile;
-    TAGS["AlbumArtist"] = TagId::AlbumArtist;
-    TAGS["TrackNum"]    = TagId::TrackNum;
-    TAGS["TrackCount"]  = TagId::TrackCount;
-    TAGS["Performer"]   = TagId::Artist;
-
-    // QStringList keys = TAGS.keys();
-    // for (auto key : keys) {
-    //     TAGS[key.toUpper()] = TAGS[key];
-    // }
-
-    // if (TAGS.contains(key)) {
-    //     QCOMPARE(track->tag(TAGS[key]), expected);
-    //     return;
-    // }
-
-    QStringList keys = TRACK_TAGS.keys();
-    for (auto key : keys) {
-        TRACK_TAGS[key.toUpper()] = TRACK_TAGS[key];
-    }
-
-    if (TRACK_TAGS.contains(key)) {
-        QString actual = std::mem_fn(TRACK_TAGS[key])(track);
-        QCOMPARE(actual, expected);
-        return;
-    }
-
-    if (key == KEY_TRACK_INDEX_0) {
-        if (track->cueIndex00().toString(true) != expected) {
-            QCOMPARE(track->cueIndex00().toString(false), expected);
-        }
-        return;
-    }
-
-    if (key == KEY_TRACK_INDEX_1) {
-        if (track->cueIndex01().toString(true) != expected) {
-            QCOMPARE(track->cueIndex01().toString(false), expected);
-        }
-        return;
-    }
-
-    if (key == KEY_TRACK_AUDIO_FILE) {
-        QCOMPARE(track->audioFileName(), expected);
-        return;
-    }
-
-    if (key == KEY_TRACK_DURATION) {
-        int expected = durationValue(key);
-        if (expected < 0) {
-            QFAIL("Invalid track duration");
-        }
-
-        if (track->duration() != uint(expected)) {
-            qWarning() << "Track" << track->trackNumTag();
-            QCOMPARE(track->duration(), Duration(expected));
-        }
-        return;
-    }
-
-    QFAIL(QString("Unknown expected key: %1").arg(key).toLocal8Bit());
-}
-
-void DiscSpec::verify(const Disc &disc) const
-{
-    if (mData.contains(KEY_CUE_FILE_PATH)) {
-        QCOMPARE(disc.cueFilePath(), cueFilePath());
-    }
-
-    QCOMPARE(disc.tracks().count(), tracksCount());
-
-    mData.beginGroup("TRACKS");
-    for (const QString &group : mData.childGroups()) {
-        Track *track;
-        {
-            bool ok;
-            int  n = group.toInt(&ok);
-            if (!ok) {
-                QFAIL("Invalid Track number");
-                return;
-            }
-            track = disc.tracks().at(n - 1);
-        }
-        mData.beginGroup(group);
-        for (const QString &key : mData.childKeys()) {
-            verifyTrack(track, key);
-        }
-        mData.endGroup();
-    }
-    mData.endGroup();
-}
-
-namespace {
-class Writer
-{
-public:
-    explicit Writer(const QString &fileName) :
-        mFile(fileName)
-    {
-        mFile.open(QFile::WriteOnly);
-    }
-
-    ~Writer()
-    {
-        mFile.flush();
-        mFile.close();
-    }
-
-    void beginGroup(const QString &group)
-    {
-        mGroups << group;
-        mFile.write("\n[");
-        mFile.write(mGroups.join("/").toUtf8());
-        mFile.write("]\n");
-    }
-
-    void endGroup()
-    {
-        mGroups.removeLast();
-    }
-
-    void write(const QString &key, const QString &value)
-    {
-        bool quoted = needQuote(value);
-
-        if (!mGroups.isEmpty()) {
-            mFile.write("    ");
-        }
-        mFile.write(key.toUtf8());
-        mFile.write(" = ");
-
-        if (quoted) {
-            mFile.write("\"");
-        }
-        mFile.write(value.toUtf8());
-        if (quoted) {
-            mFile.write("\"");
-        }
-
-        mFile.write("\n");
-    }
-
-    void write(const QString &key, const CueIndex &value)
-    {
-        write(key, value.toString(false));
-    }
-
-private:
-    QFile       mFile;
-    QStringList mGroups;
-
-    bool needQuote(const QString &value) const
-    {
-        return value.contains(",");
-    }
-};
-
-}
-void DiscSpec::write(const Disc &disc, const QString &fileName)
-{
-    QDir dir = QFileInfo(fileName).dir();
-
-    Writer w(fileName);
-    w.write(KEY_CUE_FILE_PATH, QFileInfo(disc.cueFilePath()).fileName());
-    w.write(KEY_COVER_FILE, dir.relativeFilePath(disc.coverImageFile()));
-
-    for (int i = 0; i < disc.tracks().count(); ++i) {
-        const Track *track = disc.tracks().at(i);
-        w.beginGroup(QString(KEY_TRACK_GROUP).arg(track->trackNumTag(), 2, 10, QChar('0')));
-
-        w.write(KEY_TRACK_TITLE, track->titleTag());
-        w.write(KEY_TRACK_DATE, track->dateTag());
-        w.write(KEY_TRACK_DISCID, track->disk()->discIdTag());
-        w.write(KEY_TRACK_COMMENT, track->commentTag());
-        w.write(KEY_TRACK_FILE, track->fileTag());
-        w.write(KEY_TRACK_PERFORMER, track->artistTag());
-        w.write(KEY_TRACK_INDEX_0, track->cueIndex00());
-        w.write(KEY_TRACK_INDEX_1, track->cueIndex01());
-
-        w.write(KEY_TRACK_AUDIO_FILE, track->audioFileName());
-
-        w.endGroup();
     }
 }

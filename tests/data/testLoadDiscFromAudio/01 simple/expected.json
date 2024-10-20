@@ -1,0 +1,26 @@
+{
+    "cueFile": "1.cue",
+    "date": "2013",
+    "discId": "123456789",
+    "comment": "ExactAudioCopy v0.99pb4",
+    "performer": "Artist",
+
+
+    "tracks": [
+        {
+            "audioFile": "1.wav",
+
+            "index00": "00:00.000",
+            "index01": "00:00.000",
+
+            "title": "Song01",
+            "file": "1.wav"
+        }
+    ]
+}
+
+
+
+
+
+

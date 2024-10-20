@@ -53,8 +53,6 @@ public:
     QList<Track *> tracks() const { return mTracks; }
     bool           isEmpty() const { return mTracks.isEmpty(); }
 
-    const Track *preGapTrack() const;
-
     Cue     cue() const { return mCue; }
     void    setCue(const Cue &cue);
     QString cueFilePath() const;
@@ -148,7 +146,6 @@ private:
     int                 mInternetTagsIndex = -1;
 
     InputAudioFile mAudioFile;
-    mutable Track  mPreGapTrack;
 
     QString        mCoverImageFile;
     mutable QImage mCoverImagePreview;

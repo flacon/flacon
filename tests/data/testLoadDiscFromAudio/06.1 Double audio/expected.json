@@ -1,0 +1,38 @@
+{
+    "cue file": "album.cue",
+    "comment": "ExactAudioCopy v0.99pb4",
+    "date": "2013",
+    "discId": "123456789",
+    "performer": "Artist_01",
+
+    "tracks": [
+        {
+            "audioFile": "album.wav",
+            "file": "en.wav",
+            "index00": "00:00:00",
+            "index01": "00:00:33",
+            "title": "Song01"
+        },
+        {
+            "audioFile": "album.wav",
+            "file": "en.wav",
+            "index00": "00:46:00",
+            "index01": "00:46:00",
+            "title": "Song02"
+        },
+        {
+            "audioFile": "album.wav",
+            "file": "en.wav",
+            "index00": "01:22:22",
+            "index01": "01:25:10",
+            "title": "Song03"
+        },
+        {
+            "audioFile": "album.wav",
+            "file": "en.wav",
+            "index00": "02:39:54",
+            "index01": "02:41:05",
+            "title": "Song04"
+        }
+    ]
+}

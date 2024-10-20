@@ -125,13 +125,8 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, const QVector<con
                 tracks.first()->cueIndex01().milliseconds() > 0; // The first track don't start from zero second
 
         if (hasPregap && mPregapType == PreGapType::ExtractToFile) {
-            Track *firstTrack = tracks.first();
-
-            Track pregapTrack = *firstTrack; // copy tags and all settings
-            pregapTrack.setTrackNumTag(0);
-            pregapTrack.setTitleTag("(HTOA)");
-
-            ConvTrack track(pregapTrack);
+            PregapTrack pregapTrack(*tracks.first());
+            ConvTrack   track(pregapTrack);
             track.setPregap(true);
 
             mTracks << track;

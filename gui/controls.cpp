@@ -286,7 +286,7 @@ void OutDirButton::fillMenu()
         if (!dir.isEmpty() && dir != QDir::homePath()) {
             QAction *act = new QAction(menu);
             act->setText(tr("Standard music location", "Menu item for output direcory button"));
-            connect(act, &QAction::triggered, [this, dir]() { setDirectory(dir); });
+            connect(act, &QAction::triggered, this, [this, dir]() { setDirectory(dir); });
             menu->addAction(act);
         }
     }
@@ -296,7 +296,7 @@ void OutDirButton::fillMenu()
         if (!dir.isEmpty()) {
             QAction *act = new QAction(menu);
             act->setText(tr("Desktop", "Menu item for output direcory button"));
-            connect(act, &QAction::triggered, [this, dir]() { setDirectory(dir); });
+            connect(act, &QAction::triggered, this, [this, dir]() { setDirectory(dir); });
             menu->addAction(act);
         }
     }
@@ -304,7 +304,7 @@ void OutDirButton::fillMenu()
     {
         QAction *act = new QAction(menu);
         act->setText(tr("Same directory as CUE file", "Menu item for output direcory button"));
-        connect(act, &QAction::triggered, [this]() { setDirectory(""); });
+        connect(act, &QAction::triggered, this, [this]() { setDirectory(""); });
         menu->addAction(act);
     }
 }
@@ -570,16 +570,6 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
 }
 
 /************************************************
- *
- ************************************************/
-
-TagLineEdit::TagLineEdit(QWidget *parent) :
-    MultiValuesLineEdit(parent),
-    mTagId(TagId())
-{
-}
-
-/************************************************
 
  ************************************************/
 MultiValuesComboBox::MultiValuesComboBox(QWidget *parent) :
@@ -806,15 +796,6 @@ OutDirComboBox::OutDirComboBox(QWidget *parent) :
 /************************************************
  *
  ************************************************/
-TagSpinBox::TagSpinBox(QWidget *parent) :
-    MultiValuesSpinBox(parent),
-    mTagId(TagId())
-{
-}
-
-/************************************************
- *
- ************************************************/
 MultiValuesTextEdit::MultiValuesTextEdit(QWidget *parent) :
     QPlainTextEdit(parent)
 {
@@ -835,15 +816,6 @@ void MultiValuesTextEdit::setMultiValue(QSet<QString> value)
 {
     setPlainText(getTagEditText(value));
     setPlaceholderText(getTagEditPlaceHolder(value));
-}
-
-/************************************************
- *
- ************************************************/
-TagTextEdit::TagTextEdit(QWidget *parent) :
-    MultiValuesTextEdit(parent),
-    mTagId(TagId())
-{
 }
 
 /************************************************

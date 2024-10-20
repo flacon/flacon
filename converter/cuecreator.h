@@ -40,23 +40,19 @@ namespace Conv {
 class CueCreator
 {
 public:
-    explicit CueCreator(const Profile &profile, const Disc *disc, PreGapType preGapType);
+    explicit CueCreator(const Profile &profile, const Disc *disk, PreGapType preGapType);
 
     void    write(QIODevice *out);
     QString writeToFile(const QString &fileTemplate);
 
 private:
-    const Disc      *mDisc;
+    const Disc      *mDisk;
     const Profile    mProfile;
     const PreGapType mPreGapType;
 
-    // Tags mGlobalTags;
-
-    void initGlobalTags();
     void writeLine(QIODevice *out, const QString &text) const;
-    void writeGlobalTag(QIODevice *out, const QString &format, TagId tagId);
-    void writeTrackTag(QIODevice *out, const Track *track, const QString &prefix, TagId tagId) const;
-    void writeTags(QIODevice *out, const Track *track) const;
+    void writeTag(QIODevice *out, const QString &format, const QString &value) const;
+    void writeTrackTags(QIODevice *out, const Track *track) const;
 };
 
 } // namepace

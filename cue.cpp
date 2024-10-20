@@ -80,11 +80,24 @@ Cue::Cue(const QString &fileName) noexcept(false)
  **************************************/
 static bool updateGlobalTagsFromTracks(const CueData &data, const QByteArray &tag, QByteArray *variable)
 {
-    bool res = data.allTracksHaveSameTag(tag);
-    if (res && !data.tracks().first().value(tag).isEmpty()) {
-        *variable = data.tracks().first().value(tag);
+    bool same = data.allTracksHaveSameTag(tag);
+
+    if (!same) {
+        return false;
     }
-    return res;
+
+    QByteArray trackValue = data.tracks().first().value(tag);
+
+    if (*variable == trackValue) {
+        return true;
+    }
+
+    if (variable->isEmpty()) {
+        *variable = trackValue;
+        return true;
+    }
+
+    return false;
 }
 
 /************************************************
@@ -92,8 +105,7 @@ static bool updateGlobalTagsFromTracks(const CueData &data, const QByteArray &ta
  ************************************************/
 void Cue::read(const CueData &data)
 {
-    const CueData::Tags &global     = data.globalTags();
-    const CueData::Tags &firstTrack = data.tracks().first();
+    const CueData::Tags &global = data.globalTags();
 
     mAlbumTag      = global.value(CueData::TITLE_TAG);
     mCatalogTag    = global.value("CATALOG");
@@ -241,6 +253,7 @@ Tags Cue::decode(const TextCodec &textCodec) const
 
     if (!mAlbumTag.isNull())      res.setAlbum(textCodec.decode(mAlbumTag));
     if (!mCatalogTag.isNull())    res.setCatalog(textCodec.decode(mCatalogTag));
+    if (!mCdTextfileTag.isNull()) res.setCdTextfile(textCodec.decode(mCdTextfileTag));
     if (!mCommentTag.isNull())    res.setComment(textCodec.decode(mCommentTag));
     if (!mDateTag.isNull())       res.setDate(textCodec.decode(mDateTag));
     if (!mDiscIdTag.isNull())     res.setDiscId(textCodec.decode(mDiscIdTag));

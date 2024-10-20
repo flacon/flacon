@@ -72,18 +72,21 @@ void TestFlacon::testPatternExpander()
 
     QMap<QString, QString> trackValues = parseTrackData(trackData);
 
-    PatternExpander expander;
+    AlbumTags albumTags;
+    TrackTags trackTags;
 
-    expander.setTrackCount(trackValues.value("trackCount").toInt());
-    expander.setTrackNum(trackValues.value("trackNum").toInt());
-    expander.setDiscCount(trackValues.value("discCount").toInt());
-    expander.setDiscNum(trackValues.value("discNum").toInt());
+    albumTags.setTrackCount(trackValues.value("trackCount").toInt());
+    trackTags.setTrackNum(trackValues.value("trackNum").toInt());
+    albumTags.setDiscCount(trackValues.value("discCount").toInt());
+    albumTags.setDiscNum(trackValues.value("discNum").toInt());
 
-    expander.setAlbum(trackValues.value("album"));
-    expander.setTrackTtle(trackValues.value("title"));
-    expander.setArtist(trackValues.value("artist"));
-    expander.setGenre(trackValues.value("genre"));
-    expander.setDate(trackValues.value("date"));
+    albumTags.setAlbum(trackValues.value("album"));
+    trackTags.setTitle(trackValues.value("title"));
+    albumTags.setArtist(trackValues.value("artist"));
+    albumTags.setGenre(trackValues.value("genre"));
+    albumTags.setDate(trackValues.value("date"));
+
+    PatternExpander expander(albumTags, trackTags, trackTags);
 
     QString result = expander.expand(pattern);
 
@@ -297,8 +300,26 @@ void TestFlacon::testPatternExpander_data()
                date:       1999
                )"
             << "Band/1999 - Hits/01/01 - Track title";
+
+    QTest::newRow("16 - pregap")
+            << "%a/{%y - }%A/%n - %t"
+            << R"(
+               trackCount: 10
+               trackNum:   0
+               discCount:  1
+               discNum:    1
+               album:      Hits
+               title:      Track title
+               artist:     Band
+               genre:      Rock
+               date:       1999
+               )"
+            << "Band/1999 - Hits/00 - (HTOA)";
 }
 
+/**************************************
+ *
+ **************************************/
 void TestFlacon::testPatternExpanderLastDir()
 {
     QFETCH(QString, pattern);
@@ -308,6 +329,9 @@ void TestFlacon::testPatternExpanderLastDir()
     QCOMPARE(actual, expected);
 }
 
+/**************************************
+ *
+ **************************************/
 void TestFlacon::testPatternExpanderLastDir_data()
 {
     QTest::addColumn<QString>("pattern", nullptr);

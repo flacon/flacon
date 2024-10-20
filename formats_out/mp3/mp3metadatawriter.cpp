@@ -78,33 +78,45 @@ void Mp3MetaDataWriter::setTags(const Track &track)
 {
     TagLib::ID3v2::Tag *tags = mFile.ID3v2Tag(true);
 
-    if (!track.artistTag().isEmpty())
-        tags->setArtist(TagLib::String(track.artistTag().toUtf8().data(), TagLib::String::UTF8));
+    Disk *disk = track.disk();
 
-    if (!track.disk()->albumTag().isEmpty())
+    QString artistTag  = firstNotEmptyString(track.artistTag(), disk->artistTag());
+    QString commentTag = firstNotEmptyString(track.commentTag(), disk->commentTag());
+    QString dateTag    = firstNotEmptyString(track.dateTag(), disk->dateTag());
+
+    if (!artistTag.isEmpty()) {
+        tags->setArtist(TagLib::String(artistTag.toUtf8().data(), TagLib::String::UTF8));
+    }
+
+    if (!track.disk()->albumTag().isEmpty()) {
         tags->setAlbum(TagLib::String(track.disk()->albumTag().toUtf8().data(), TagLib::String::UTF8));
+    }
 
-    if (!track.disk()->genreTag().isEmpty())
+    if (!track.disk()->genreTag().isEmpty()) {
         tags->setGenre(TagLib::String(track.disk()->genreTag().toUtf8().data(), TagLib::String::UTF8));
+    }
 
-    if (!track.titleTag().isEmpty())
+    if (!track.titleTag().isEmpty()) {
         tags->setTitle(TagLib::String(track.titleTag().toUtf8().data(), TagLib::String::UTF8));
+    }
 
-    if (!track.commentTag().isEmpty())
-        tags->setComment(TagLib::String(track.commentTag().toUtf8().data(), TagLib::String::UTF8));
+    if (!commentTag.isEmpty()) {
+        tags->setComment(TagLib::String(commentTag.toUtf8().data(), TagLib::String::UTF8));
+    }
 
     {
-        int year = track.dateTag().toInt();
-        if (year)
+        int year = dateTag.toInt();
+        if (year) {
             tags->setYear(year);
+        }
     }
 
-    if (!track.disc()->albumTag().isEmpty()) {
-        addFrame(tags, "TPE2")->setText(TagLib::String(track.disc()->albumTag().toUtf8().data(), TagLib::String::UTF8));
+    if (!disk->albumTag().isEmpty()) {
+        addFrame(tags, "TPE2")->setText(TagLib::String(disk->albumTag().toUtf8().data(), TagLib::String::UTF8));
     }
 
-    addFrame(tags, "TRCK")->setText(QString("%1/%2").arg(track.trackNumTag()).arg(track.disk()->tracks().count()).toStdString());
-    addFrame(tags, "TPOS")->setText(QString("%1/%2").arg(track.disk()->discNumTag()).arg(track.disk()->discCountTag()).toStdString());
+    addFrame(tags, "TRCK")->setText(QString("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()).toStdString());
+    addFrame(tags, "TPOS")->setText(QString("%1/%2").arg(disk->discNumTag()).arg(disk->discCountTag()).toStdString());
 }
 
 /************************************************
