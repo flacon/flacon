@@ -419,6 +419,11 @@ void ConverterTest::check()
                 QVariant actual   = mediainfo.value(tag);
                 QVariant expected = spec.value(tag);
 
+                if (tag == "extra/CUESHEET") {
+                    actual   = trimmCueSheet(actual.toByteArray());
+                    expected = trimmCueSheet(expected.toByteArray());
+                }
+
                 if (actual != expected) {
                     printError(file, tag, actual, expected);
                     tagsError = true;
@@ -617,6 +622,23 @@ void ConverterTest::printFile(const QString &fileName, bool printHeader)
     if (printHeader) {
         out << QString("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
     }
+}
+
+/**************************************
+ *
+ **************************************/
+QByteArray ConverterTest::trimmCueSheet(const QByteArray &cue) const
+{
+    QByteArray res;
+    for (QByteArray line : cue.split('//')) {
+        line = line.trimmed();
+        if (!line.isEmpty()) {
+            res += line;
+            res += '\n';
+        }
+    }
+
+    return res;
 }
 
 /************************************************

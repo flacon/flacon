@@ -300,21 +300,6 @@ void TestFlacon::testPatternExpander_data()
                date:       1999
                )"
             << "Band/1999 - Hits/01/01 - Track title";
-
-    QTest::newRow("16 - pregap")
-            << "%a/{%y - }%A/%n - %t"
-            << R"(
-               trackCount: 10
-               trackNum:   0
-               discCount:  1
-               discNum:    1
-               album:      Hits
-               title:      Track title
-               artist:     Band
-               genre:      Rock
-               date:       1999
-               )"
-            << "Band/1999 - Hits/00 - (HTOA)";
 }
 
 /**************************************

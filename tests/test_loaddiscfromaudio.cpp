@@ -50,66 +50,6 @@ public:
 #include <QJsonArray>
 #include <QJsonDocument>
 
-void convert(const QString &dir)
-{
-    if (QFileInfo(dir + "/expected.json").exists()) {
-        return;
-    }
-
-    QSettings r(dir + "/disc.expected", QSettings::IniFormat);
-    r.setIniCodec("UTF-8");
-
-    QJsonObject json;
-
-    for (const QString key : r.allKeys()) {
-        if (!key.startsWith("TRACKS")) {
-            json[key.toLower()] = r.value(key).toString();
-        }
-
-        // qDebug() << key;
-    }
-
-    QJsonArray tracks;
-    for (int i = 1; i < 100; ++i) {
-        r.beginGroup(QString("TRACKS/%1").arg(i, 2, 10, QChar('0')));
-
-        if (r.allKeys().isEmpty()) {
-            break;
-        }
-
-        QJsonObject json;
-
-        for (const QString key : r.allKeys()) {
-            QString k = key.toLower();
-
-            // clang-format off
-            if (key == "INDEX 00")   k = "index00";
-            if (key == "INDEX 01")   k = "index01";
-            if (key == "AUDIO FILE") k = "audioFile";
-            if (key == "DISCID")     k = "discId";
-            // clang-format on
-
-            json[k] = r.value(key).toString();
-        }
-        tracks.append(json);
-
-        r.endGroup();
-    }
-    json["tracks"] = tracks;
-
-    //============
-    QJsonDocument doc;
-    doc.setObject(json);
-
-    QFile file(dir + "/_expected.json");
-    if (!file.open(QFile::WriteOnly)) {
-        QFAIL(file.errorString().toLocal8Bit());
-    }
-
-    file.write(doc.toJson());
-    file.close();
-}
-
 void TestFlacon::testLoadDiscFromAudio()
 {
     QLoggingCategory::setFilterRules("InputAudioFile.debug=false\n"
@@ -132,8 +72,6 @@ void TestFlacon::testLoadDiscFromAudio()
         Disc   *disc     = fileName.endsWith("cue") ? p.addCueFile(fileName) : p.addAudioFile(fileName);
 
         disc->setCodecName(spec.value("CODEC", "UTF-8").toString());
-
-        convert(dir);
 
         Tests::DiscSpec exp(dir + "/expected.json");
         exp.verify(*disc);
