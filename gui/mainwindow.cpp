@@ -772,6 +772,7 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
 
     disc->setAudioFile(audio, audioFileNum);
     trackView->update(*disc);
+    Project::instance()->validator().revalidate();
 }
 
 /************************************************

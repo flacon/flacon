@@ -95,8 +95,6 @@ void Disc::setCue(const Cue &cue)
         return;
     }
 
-    InputAudioFileList audioFiles = this->audioFiles();
-
     // Remove all tags if number of tracks differ from loaded CUE.
     for (int i = mInternetTags.size() - 1; i >= 0; i--) {
         if (mInternetTags.at(i).tracks().count() != cue.tracks().count()) {
@@ -122,6 +120,8 @@ void Disc::setCue(const Cue &cue)
     syncTagsFromTracks();
 
     mInternetTagsIndex = -1;
+
+    InputAudioFileList audioFiles = this->audioFiles();
 
     for (int i = 0; i < qMin(audioFiles.count(), mTracks.count()); ++i) {
         if (!audioFiles[i].isNull()) {
@@ -217,7 +217,7 @@ QList<TrackPtrList> Disc::tracksByFileTag() const
     }
 
     int b = 0;
-    while (b < mCue.tracks().count()) {
+    while (b < tracks().count()) {
         int e = b;
         res.append(TrackPtrList());
         TrackPtrList &list = res.last();
