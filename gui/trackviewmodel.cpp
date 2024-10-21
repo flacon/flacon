@@ -319,7 +319,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
     Disc *disk = track->disk();
 
     // Text roles :::::::::::::::::::::::::::::::
-    if (role == Qt::DisplayRole || role == Qt::DisplayRole || role == TrackViewModel::RolePlaceHolder) {
+    if (role == Qt::DisplayRole || role == Qt::EditRole || role == TrackViewModel::RolePlaceHolder) {
         // clang-format off
         switch (index.column()) {
             case TrackView::ColumnTracknum: return QVariant(QString("%1").arg(track->trackNumTag(), 2, 10, QChar('0')));

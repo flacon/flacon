@@ -136,6 +136,10 @@ void Disc::setCue(const Cue &cue)
         track->mCueIndex01 = mCue.tracks().at(n).cueIndex01();
     }
 
+    if (!mTextCodec.isValid()) {
+        setCodecName(CODEC_AUTODETECT);
+    }
+
     syncTagsToTracks();
 
     Project::instance()->emitLayoutChanged();

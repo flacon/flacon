@@ -33,7 +33,7 @@
 #include "profiles.h"
 #include <QApplication>
 
-ValidatorCheckResultOrder::ValidatorCheckResultOrder(const QList<const Disk *> disks, const Profile *profile) :
+ValidatorCheckResultOrder::ValidatorCheckResultOrder(const QList<const Disk *> &disks, const Profile *profile) :
     mDisks(disks),
     mProfile(profile)
 {

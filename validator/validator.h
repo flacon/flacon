@@ -100,8 +100,8 @@ class ValidatorResultFiles : public QList<ValidatorResultFile>
 {
 public:
     using QList::QList;
-    ValidatorResultFiles(const QList<Disc *> disks, const Profile *profile);
-    ValidatorResultFiles(const QList<const Disc *> disks, const Profile *profile);
+    ValidatorResultFiles(const QList<Disc *> &disks, const Profile *profile);
+    ValidatorResultFiles(const QList<const Disc *> &disks, const Profile *profile);
 
     QMap<QString, ValidatorResultFiles> splitByDirectory() const;
 

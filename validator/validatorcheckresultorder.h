@@ -37,7 +37,7 @@ class ValidatorCheckResultOrder
     Q_DECLARE_TR_FUNCTIONS(Validator)
 
 public:
-    ValidatorCheckResultOrder(const QList<const Disc *> disks, const Profile *profile);
+    ValidatorCheckResultOrder(const QList<const Disc *> &disks, const Profile *profile);
 
     void clear();
 

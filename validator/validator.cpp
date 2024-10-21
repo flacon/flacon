@@ -485,7 +485,7 @@ bool Validator::validateDiskWarnings(const Disk *disk, QStringList &warnings)
     return res;
 }
 
-ValidatorResultFiles::ValidatorResultFiles(const QList<Disc *> disks, const Profile *profile)
+ValidatorResultFiles::ValidatorResultFiles(const QList<Disc *> &disks, const Profile *profile)
 {
     for (const Disk *d : disks) {
         for (Track *t : d->tracks()) {
@@ -494,7 +494,7 @@ ValidatorResultFiles::ValidatorResultFiles(const QList<Disc *> disks, const Prof
     }
 }
 
-ValidatorResultFiles::ValidatorResultFiles(const QList<const Disc *> disks, const Profile *profile)
+ValidatorResultFiles::ValidatorResultFiles(const QList<const Disc *> &disks, const Profile *profile)
 {
     for (const Disk *d : disks) {
         for (Track *t : d->tracks()) {
