@@ -89,6 +89,8 @@ QString Disc::cueFilePath() const
  **************************************/
 void Disc::setCue(const Cue &cue)
 {
+    bool detectTextCodec = mCue.isEmpty();
+
     mCue = cue;
 
     if (cue.isEmpty()) {
@@ -136,7 +138,7 @@ void Disc::setCue(const Cue &cue)
         track->mCueIndex01 = mCue.tracks().at(n).cueIndex01();
     }
 
-    if (!mTextCodec.isValid()) {
+    if (detectTextCodec) {
         setCodecName(CODEC_AUTODETECT);
     }
 
@@ -366,6 +368,11 @@ void Disc::setCodecName(const QString &codecName)
     else {
         mTextCodec = TextCodec::codecForName(codecName);
     }
+
+    if (!mTextCodec.isValid()) {
+        mTextCodec = TextCodecUtf8();
+    }
+
     syncTagsToTracks();
 
     Project::instance()->emitDiscChanged(this);

@@ -50,7 +50,6 @@ void TestFlacon::testTrackResultFileName()
     Disc *disc = loadFromCue(cueFile);
 
     QString result = profile.resultFileName(disc->tracks().first());
-    // QCOMPARE(result, expected);
 
     if (result != expected) {
         QString msg = QString("Compared values are not the same\n   Pattern   %1\n   Actual:   %2\n   Expected: %3").arg(pattern, result, expected);

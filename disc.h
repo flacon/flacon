@@ -137,7 +137,7 @@ private:
     Tags mUserTags;
     Tags mLoadedTags;
 
-    TextCodec mTextCodec;
+    TextCodec mTextCodec = TextCodecUtf8();
 
     QVector<TagSet> mTagSets;
 

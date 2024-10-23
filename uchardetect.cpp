@@ -51,7 +51,7 @@ TextCodec UcharDet::detect() const
     uchardet_data_end(uchcharDet);
     QString name = uchardet_get_charset(uchcharDet);
     if (name == "US-ASCII") {
-        name = "UTF-8";
+        name = TextCodecUtf8::NAME;
     }
 
     uchardet_delete(uchcharDet);
