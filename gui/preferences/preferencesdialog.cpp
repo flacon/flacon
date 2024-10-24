@@ -182,8 +182,6 @@ void PreferencesDialog::setProfiles(const Profiles &profiles)
     ui->generalPage->setTmpDir(p.tmpDir());
     ui->generalPage->setSplitTrackTitle(p.isSplitTrackTitle());
 
-    ui->generalPage->setDefaultCodepage(Settings::i()->defaultCodepage());
-
 #ifndef BUNDLED_PROGRAMS
     // Programs page .......................
     ui->programsPage->load();
@@ -281,8 +279,6 @@ bool PreferencesDialog::save()
     p.setEncoderThreadsCount(ui->generalPage->encoderThreadsCount());
     p.setTmpDir(ui->generalPage->tmpDir());
     p.setSplitTrackTitle(ui->generalPage->isSplitTrackTitle());
-
-    Settings::i()->setDefaultCodepage(ui->generalPage->defaultCodepage());
 
 #ifndef BUNDLED_PROGRAMS
     // Programs page .......................

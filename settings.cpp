@@ -47,7 +47,6 @@ static constexpr auto PROFILE_COVER_FILE_SIZE_KEY  = "CoverFile/Size";
 static constexpr auto PROFILE_COVER_EMBED_MODE_KEY = "CoverEmbed/Mode";
 static constexpr auto PROFILE_COVER_EMBED_SIZE_KEY = "CoverEmbed/Size";
 
-static constexpr auto DEFAULTCODEPAGE_KEY     = "Tags/DefaultCodepage";
 static constexpr auto SPLIT_TRACK_TITLE_KEY   = "Tags/SplitTrackTitle";
 static constexpr auto ENCODER_THREADCOUNT_KEY = "Encoder/ThreadCount";
 static constexpr auto ENCODER_TMPDIR_KEY      = "Encoder/TmpDir";
@@ -363,19 +362,3 @@ void Settings::writeExtPrograms()
     }
 }
 #endif
-
-/************************************************
- *
- ************************************************/
-QString Settings::defaultCodepage() const
-{
-    return value(DEFAULTCODEPAGE_KEY, "AUTODETECT").toString();
-}
-
-/************************************************
- *
- ************************************************/
-void Settings::setDefaultCodepage(const QString &value)
-{
-    setValue(DEFAULTCODEPAGE_KEY, value);
-}

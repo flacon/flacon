@@ -52,9 +52,6 @@ public:
     void writeExtPrograms();
 #endif
 
-    QString defaultCodepage() const;
-    void    setDefaultCodepage(const QString &value);
-
 protected:
     explicit Settings(const QString &organization, const QString &application);
     explicit Settings(const QString &fileName);

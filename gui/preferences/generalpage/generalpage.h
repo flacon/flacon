@@ -43,9 +43,6 @@ public:
     QString tmpDir() const;
     void    setTmpDir(const QString &value);
 
-    QString defaultCodepage() const;
-    void    setDefaultCodepage(const QString &value);
-
     uint encoderThreadsCount() const;
     void setEncoderThreadsCount(uint value);
 

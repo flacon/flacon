@@ -76,16 +76,6 @@ void GeneralPage::setTmpDir(const QString &value)
 #endif
 }
 
-QString GeneralPage::defaultCodepage() const
-{
-    return ui->codePageComboBox->codePage();
-}
-
-void GeneralPage::setDefaultCodepage(const QString &value)
-{
-    ui->codePageComboBox->setCodePage(value);
-}
-
 uint GeneralPage::encoderThreadsCount() const
 {
     return uint(ui->threadsCountSpin->value());

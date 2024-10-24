@@ -538,11 +538,6 @@ void TestFlacon::testTrackSetCodepages()
     if (!QFile::copy(testDataDir + cueFile, testCueFile))
         QFAIL(QString("Can't copy file %1 to %2").arg(testDataDir + cueFile, testCueFile).toLocal8Bit().data());
 
-    if (!codepageBefore.isEmpty())
-        Settings::i()->setDefaultCodepage(codepageBefore);
-    else
-        Settings::i()->setDefaultCodepage("UTF-8");
-
     Disc *disc = loadFromCue(testCueFile);
 
     if (!codepageAfter.isEmpty())
