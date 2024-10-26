@@ -63,6 +63,7 @@ void TrackTags::merge(const TrackTags &other)
     if (!other.mComment.isNull())    mComment    = other.mComment;
     if (!other.mFlagsTag.isNull())   mFlagsTag   = other.mFlagsTag;
     if (!other.mDate.isNull())       mDate       = other.mDate;
+    if (!other.mGenre.isNull())      mGenre      = other.mGenre;
     if (!other.mIsrc.isNull())       mIsrc       = other.mIsrc;
     if (!other.mPerformer.isNull())  mPerformer  = other.mPerformer;
     if (!other.mSongWriter.isNull()) mSongWriter = other.mSongWriter;

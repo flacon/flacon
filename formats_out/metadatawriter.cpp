@@ -61,6 +61,38 @@ QString MetadataWriter::peakToString(float &peak) const
 /************************************************
  *
  ************************************************/
+QString MetadataWriter::artistTag(const Track &track) const
+{
+    return firstNotEmptyString(track.artistTag(), track.disk()->artistTag());
+}
+
+/************************************************
+ *
+ ************************************************/
+QString MetadataWriter::commentTag(const Track &track) const
+{
+    return firstNotEmptyString(track.commentTag(), track.disk()->commentTag());
+}
+
+/************************************************
+ *
+ ************************************************/
+QString MetadataWriter::dateTag(const Track &track) const
+{
+    return firstNotEmptyString(track.dateTag(), track.disk()->dateTag());
+}
+
+/**************************************
+ *
+ **************************************/
+QString MetadataWriter::genreTag(const Track &track) const
+{
+    return firstNotEmptyString(track.genreTag(), track.disk()->genreTag());
+}
+
+/************************************************
+ *
+ ************************************************/
 void MetadataWriter::setXiphTag(TagLib::Ogg::XiphComment *tags, const QString &key, const QString &value) const
 {
     if (!value.isEmpty()) {
@@ -79,13 +111,13 @@ void MetadataWriter::setXiphTags(TagLib::Ogg::XiphComment *tags, const Track &tr
 
     Disk *disk = track.disk();
 
-    setXiphTag(tags, "ARTIST", firstNotEmptyString(track.performerTag(), disk->performerTag()));
+    setXiphTag(tags, "ARTIST", this->artistTag(track));
     setXiphTag(tags, "ALBUM", disk->albumTag());
-    setXiphTag(tags, "GENRE", disk->genreTag());
-    setXiphTag(tags, "DATE", firstNotEmptyString(track.dateTag(), disk->dateTag()));
+    setXiphTag(tags, "GENRE", this->genreTag(track));
+    setXiphTag(tags, "DATE", this->dateTag(track));
     setXiphTag(tags, "TITLE", track.titleTag());
     setXiphTag(tags, "ALBUMARTIST", disk->artistTag());
-    setXiphTag(tags, "COMMENT", firstNotEmptyString(track.commentTag(), disk->commentTag()));
+    setXiphTag(tags, "COMMENT", this->commentTag(track));
     setXiphTag(tags, "DISCID", disk->discIdTag());
 
     writeIntTag("TRACKNUMBER", track.trackNumTag());
@@ -156,13 +188,13 @@ void MetadataWriter::setApeTags(TagLib::APE::Tag *tags, const Track &track) cons
 
     Disk *disk = track.disk();
 
-    writeStrTag("ARTIST", firstNotEmptyString(track.performerTag(), disk->performerTag()));
+    writeStrTag("ARTIST", this->artistTag(track));
     writeStrTag("ALBUM", disk->albumTag());
-    writeStrTag("GENRE", disk->genreTag());
-    writeStrTag("YEAR", firstNotEmptyString(track.dateTag(), disk->dateTag()));
+    writeStrTag("GENRE", this->genreTag(track));
+    writeStrTag("YEAR", this->dateTag(track));
     writeStrTag("TITLE", track.titleTag());
     writeStrTag("ALBUM ARTIST", disk->performerTag());
-    writeStrTag("COMMENT", firstNotEmptyString(track.commentTag(), disk->commentTag()));
+    writeStrTag("COMMENT", this->commentTag(track));
     writeStrTag("DISCID", disk->discIdTag());
 
     writeStrTag("TRACK", QString("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
@@ -254,13 +286,13 @@ void Mp4MetaDataWriter::setTags(const Track &track)
 
     Disk *disk = track.disk();
 
-    writeStrTag("ARTIST", firstNotEmptyString(track.performerTag(), disk->performerTag()));
+    writeStrTag("ARTIST", this->artistTag(track));
     writeStrTag("ALBUM", disk->albumTag());
-    writeStrTag("GENRE", disk->genreTag());
-    writeStrTag("DATE", firstNotEmptyString(track.dateTag(), disk->dateTag()));
+    writeStrTag("GENRE", this->genreTag(track));
+    writeStrTag("DATE", this->dateTag(track));
     writeStrTag("TITLE", track.titleTag());
     writeStrTag("ALBUMARTIST", disk->performerTag());
-    writeStrTag("COMMENT", firstNotEmptyString(track.commentTag(), disk->commentTag()));
+    writeStrTag("COMMENT", this->commentTag(track));
     writeStrTag("TRACKNUMBER", QString("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
     writeStrTag("DISCNUMBER", QString("%1/%2").arg(disk->discNumTag()).arg(disk->discCountTag()));
 

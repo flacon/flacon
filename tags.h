@@ -113,6 +113,7 @@ public:
     QString artist() const { return performer(); }
     QString comment() const { return mComment; }
     QString date() const { return mDate; }
+    QString genre() const { return mGenre; }
     QString flagsTag() const { return mFlagsTag; }
     QString isrc() const { return mIsrc; }
     QString title() const { return mTitle; }
@@ -122,6 +123,7 @@ public:
     void setArtist(const QString &value) { setPerformer(value); }
     void setComment(const QString &value) { mComment = value; }
     void setDate(const QString &value) { mDate = value; }
+    void setGenre(const QString &value) { mGenre = value; }
     void setFlagsTag(const QString &value) { mFlagsTag = value; }
     void setIsrc(const QString &value) { mIsrc = value; }
     void setTitle(const QString &value) { mTitle = value; }
@@ -136,6 +138,7 @@ private:
     QString mComment;
     QString mFlagsTag;
     QString mDate;
+    QString mGenre;
     QString mIsrc;
     QString mPerformer;
     QString mSongWriter;

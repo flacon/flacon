@@ -72,6 +72,7 @@ public:
     QString artistTag() const { return performerTag(); }
     QString commentTag() const;
     QString dateTag() const;
+    QString genreTag() const;
     QString flagsTag() const;
     QString isrcTag() const;
     QString titleTag() const;
@@ -81,6 +82,7 @@ public:
     void setArtistTag(const QString &value) { setPerformerTag(value); }
     void setCommentTag(const QString &value);
     void setDateTag(const QString &value);
+    void setGenreTag(const QString &value);
     void setIsrcTag(const QString &value);
     void setTitleTag(const QString &value);
     void setPerformerTag(const QString &value);

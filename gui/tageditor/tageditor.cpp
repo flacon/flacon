@@ -129,6 +129,7 @@ void TagEditor::updateWidgets()
     QSet<QString> trackPerformer;
     QSet<QString> trackSongWriter;
     QSet<QString> trackDate;
+    QSet<QString> trackGenre;
     QSet<QString> trackIsrc;
     QSet<QString> trackComment;
 
@@ -137,6 +138,7 @@ void TagEditor::updateWidgets()
         trackPerformer << track->performerTag();
         trackSongWriter << track->songWriterTag();
         trackDate << track->dateTag();
+        trackGenre << track->genreTag();
         trackIsrc << track->isrcTag();
         trackComment << track->commentTag();
     }
@@ -145,6 +147,7 @@ void TagEditor::updateWidgets()
     ui->trackPerformerValue->setMultiValue(trackPerformer);
     ui->trackSongWriterValue->setMultiValue(trackSongWriter);
     ui->trackDateValue->setMultiValue(trackDate);
+    ui->trackGenreValue->setMultiValue(trackGenre);
     ui->trackIsrcValue->setMultiValue(trackIsrc);
     ui->trackCommentValue->setMultiValue(trackComment);
 
@@ -158,6 +161,10 @@ void TagEditor::updateWidgets()
 
     if (trackDate.count() == 1 && trackDate.cbegin()->isEmpty() && diskDate.count() == 1) {
         ui->trackDateValue->setPlaceholderText(*diskDate.cbegin());
+    }
+
+    if (trackGenre.count() == 1 && trackGenre.cbegin()->isEmpty() && diskGenre.count() == 1) {
+        ui->trackGenreValue->setPlaceholderText(*diskGenre.cbegin());
     }
 }
 
@@ -187,6 +194,7 @@ void TagEditor::apply()
         if (ui->trackPerformerValue->isModified())  track->setPerformerTag(ui->trackPerformerValue->text());
         if (ui->trackSongWriterValue->isModified()) track->setSongWriterTag(ui->trackSongWriterValue->text());
         if (ui->trackDateValue->isModified())       track->setDateTag(ui->trackDateValue->text());
+        if (ui->trackGenreValue->isModified())      track->setGenreTag(ui->trackGenreValue->text());
         if (ui->trackIsrcValue->isModified())       track->setIsrcTag(ui->trackIsrcValue->text());
         if (ui->trackCommentValue->isModified())    track->setCommentTag(ui->trackCommentValue->text());
         // clang-format on

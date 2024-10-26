@@ -73,6 +73,11 @@ protected:
     void setApeCoverImage(TagLib::APE::Tag *tags, const CoverImage &image) const;
     void setApeTrackReplayGain(TagLib::APE::Tag *tags, float gain, float peak) const;
     void setApeAlbumReplayGain(TagLib::APE::Tag *tags, float gain, float peak) const;
+
+    QString artistTag(const Track &track) const;
+    QString commentTag(const Track &track) const;
+    QString dateTag(const Track &track) const;
+    QString genreTag(const Track &track) const;
 };
 
 class NullMetadataWriter : public MetadataWriter

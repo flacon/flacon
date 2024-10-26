@@ -133,6 +133,15 @@ QString Track::dateTag() const
     return mLoadedTags.date();
 }
 
+
+/**************************************
+ *
+ **************************************/
+QString Track::genreTag() const
+{
+    return firstNotNullString(mUserTags.genre(), mLoadedTags.genre());
+}
+
 /**************************************
  *
  **************************************/
@@ -209,6 +218,14 @@ void Track::setDateTag(const QString &value)
 /**************************************
  *
  **************************************/
+void Track::setGenreTag(const QString &value)
+{
+    mUserTags.setGenre(value);
+}
+
+/**************************************
+ *
+ **************************************/
 void Track::setIsrcTag(const QString &value)
 {
     mUserTags.setIsrc(value);
@@ -257,6 +274,7 @@ TrackTags Track::toTags() const
     res.setArtist(artistTag());
     res.setComment(commentTag());
     res.setDate(dateTag());
+    res.setGenre(genreTag());
     res.setFlagsTag(flagsTag());
     res.setIsrc(isrcTag());
     res.setTitle(titleTag());

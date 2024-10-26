@@ -81,9 +81,10 @@ void Mp3MetaDataWriter::setTags(const Track &track)
 
     Disk *disk = track.disk();
 
-    QString artistTag  = firstNotEmptyString(track.artistTag(), disk->artistTag());
-    QString commentTag = firstNotEmptyString(track.commentTag(), disk->commentTag());
-    QString dateTag    = firstNotEmptyString(track.dateTag(), disk->dateTag());
+    QString artistTag  = this->artistTag(track);
+    QString commentTag = this->commentTag(track);
+    QString dateTag    = this->dateTag(track);
+    QString genreTag   = this->genreTag(track);
 
     if (!artistTag.isEmpty()) {
         tags->setArtist(TagLib::String(artistTag.toUtf8().data(), TagLib::String::UTF8));
@@ -93,8 +94,8 @@ void Mp3MetaDataWriter::setTags(const Track &track)
         tags->setAlbum(TagLib::String(track.disk()->albumTag().toUtf8().data(), TagLib::String::UTF8));
     }
 
-    if (!track.disk()->genreTag().isEmpty()) {
-        tags->setGenre(TagLib::String(track.disk()->genreTag().toUtf8().data(), TagLib::String::UTF8));
+    if (!genreTag.isEmpty()) {
+        tags->setGenre(TagLib::String(genreTag.toUtf8().data(), TagLib::String::UTF8));
     }
 
     if (!track.titleTag().isEmpty()) {
