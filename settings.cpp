@@ -27,8 +27,9 @@
 #include "extprogram.h"
 
 static constexpr auto PROFILES_GROUP = "Profiles";
+#if !BUNDLED_PROGRAMS
 static constexpr auto PROGRAMS_GROUP = "Programs";
-
+#endif
 static constexpr auto CURRENT_PROFILE_ID           = "OutFiles/Profile";
 static constexpr auto KNOWN_FORMATS_KEY            = "KnownFormats";
 static constexpr auto PROFILE_NAME_KEY             = "Name";
@@ -50,6 +51,7 @@ static constexpr auto PROFILE_COVER_EMBED_SIZE_KEY = "CoverEmbed/Size";
 static constexpr auto SPLIT_TRACK_TITLE_KEY   = "Tags/SplitTrackTitle";
 static constexpr auto ENCODER_THREADCOUNT_KEY = "Encoder/ThreadCount";
 static constexpr auto ENCODER_TMPDIR_KEY      = "Encoder/TmpDir";
+
 
 QString   Settings::mFileName;
 Settings *Settings::mInstance = nullptr;

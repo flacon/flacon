@@ -44,9 +44,10 @@ static constexpr auto PATH_ENV_SEPARATOR = ';';
 static constexpr auto BINARY_EXT         = ".exe";
 
 #else
+#ifndef BUNDLED_PROGRAMS
 static constexpr auto PATH_ENV_SEPARATOR = ':';
 static constexpr auto BINARY_EXT         = "";
-
+#endif
 #endif
 
 ExtProgram::ExtProgram(const QString &name) :
