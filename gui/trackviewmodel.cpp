@@ -55,17 +55,17 @@ public:
 
     CacheTrackData get(const Track &track)
     {
-        return mTracks.value(QPair(track.disc(), track.index()));
+        return mTracks.value(QPair<Disc*,int>(track.disc(), track.index()));
     }
 
     void set(const Track &track, const CacheTrackData &data)
     {
-        mTracks[QPair(track.disc(), track.index())] = data;
+        mTracks[QPair<Disc*,int>(track.disc(), track.index())] = data;
     }
 
     void remove(const Track &track)
     {
-        mTracks.remove(QPair(track.disc(), track.index()));
+        mTracks.remove(QPair<Disc*,int>(track.disc(), track.index()));
     }
 
 private:

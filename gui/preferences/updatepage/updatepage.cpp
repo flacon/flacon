@@ -56,7 +56,7 @@ void UpdatePage::updateLastUpdateLbl()
     QString   s;
     if (!date.isNull())
         s = tr("Last check was %1", "Information about last update")
-                    .arg(date.toString(Qt::DefaultLocaleLongDate));
+                    .arg(QLocale().toString(date, QLocale::LongFormat));
     else
         s = tr("Never checked", "Information about last update");
 
