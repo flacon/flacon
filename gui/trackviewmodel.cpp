@@ -55,17 +55,17 @@ public:
 
     CacheTrackData get(const Track &track)
     {
-        return mTracks.value(QPair<Disc*,int>(track.disc(), track.index()));
+        return mTracks.value(QPair<Disc *, int>(track.disc(), track.index()));
     }
 
     void set(const Track &track, const CacheTrackData &data)
     {
-        mTracks[QPair<Disc*,int>(track.disc(), track.index())] = data;
+        mTracks[QPair<Disc *, int>(track.disc(), track.index())] = data;
     }
 
     void remove(const Track &track)
     {
-        mTracks.remove(QPair<Disc*,int>(track.disc(), track.index()));
+        mTracks.remove(QPair<Disc *, int>(track.disc(), track.index()));
     }
 
 private:
@@ -166,22 +166,21 @@ QVariant TrackViewModel::headerData(int section, Qt::Orientation orientation, in
     if (orientation != Qt::Horizontal || role != Qt::DisplayRole)
         return QVariant();
 
+    // clang-format off
     switch (section) {
-        case TrackView::ColumnTracknum:
-            return QVariant(tr("Track", "Table header."));
-        case TrackView::ColumnDuration:
-            return QVariant(tr("Length", "Table header."));
-        case TrackView::ColumnTitle:
-            return QVariant(tr("Title", "Table header."));
-        case TrackView::ColumnArtist:
-            return QVariant(tr("Artist", "Table header."));
-        case TrackView::ColumnAlbum:
-            return QVariant(tr("Album", "Table header."));
-        case TrackView::ColumnComment:
-            return QVariant(tr("Comment", "Table header."));
-        case TrackView::ColumnFileName:
-            return QVariant(tr("File", "Table header."));
+        case TrackView::ColumnTracknum:   return tr("Track", "Table header.");
+        case TrackView::ColumnDuration:   return tr("Length", "Table header.");
+        case TrackView::ColumnTitle:      return tr("Title", "Table header.");
+        case TrackView::ColumnArtist:     return tr("Artist", "Table header.");
+        case TrackView::ColumnAlbum:      return tr("Album", "Table header.");
+        case TrackView::ColumnComment:    return tr("Comment", "Table header.");
+        case TrackView::ColumnFileName:   return tr("File", "Table header.");
+        case TrackView::ColumnDate:       return tr("Date", "Table header.");
+        case TrackView::ColumnGenre:      return tr("Genre", "Table header.");
+        case TrackView::ColumnSongWriter: return tr("Song writer", "Table header.");
     }
+    // clang-format on
+
     return QVariant();
 }
 
@@ -322,13 +321,16 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
     if (role == Qt::DisplayRole || role == Qt::EditRole || role == TrackViewModel::RolePlaceHolder) {
         // clang-format off
         switch (index.column()) {
-            case TrackView::ColumnTracknum: return QVariant(QString("%1").arg(track->trackNumTag(), 2, 10, QChar('0')));
-            case TrackView::ColumnDuration: return QVariant(trackDurationToString(track->duration()) + " ");
-            case TrackView::ColumnTitle:    return QVariant(track->titleTag());
-            case TrackView::ColumnArtist:   return trackTextData(role, track->artistTag(), disk->artistTag());
-            case TrackView::ColumnAlbum:    return track->disc()->albumTag();
-            case TrackView::ColumnComment:  return QVariant(track->commentTag());
-            case TrackView::ColumnFileName: return QVariant(Project::instance()->profile()->resultFileName(track));
+            case TrackView::ColumnTracknum:     return QVariant(QString("%1").arg(track->trackNumTag(), 2, 10, QChar('0')));
+            case TrackView::ColumnDuration:     return QVariant(trackDurationToString(track->duration()) + " ");
+            case TrackView::ColumnTitle:        return QVariant(track->titleTag());
+            case TrackView::ColumnArtist:       return trackTextData(role, track->artistTag(), disk->artistTag());
+            case TrackView::ColumnAlbum:        return track->disc()->albumTag();
+            case TrackView::ColumnComment:      return QVariant(track->commentTag());
+            case TrackView::ColumnFileName:     return QVariant(Project::instance()->profile()->resultFileName(track));
+            case TrackView::ColumnDate:         return trackTextData(role, track->dateTag(), disk->dateTag());
+            case TrackView::ColumnGenre:        return trackTextData(role, track->genreTag(), disk->genreTag());
+            case TrackView::ColumnSongWriter:   return trackTextData(role, track->songWriterTag(), disk->songWriterTag());
         }
         // clang-format on
 
@@ -340,7 +342,10 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
         QBrush placeHolderColor = this->view()->palette().color(QPalette::PlaceholderText);
         // clang-format off
         switch (index.column()) {
-            case TrackView::ColumnArtist:   return track->artistTag().isEmpty() ? placeHolderColor : QVariant();
+            case TrackView::ColumnArtist:       return track->artistTag().isEmpty() ? placeHolderColor : QVariant();
+            case TrackView::ColumnDate:         return track->dateTag().isEmpty() ? placeHolderColor : QVariant();
+            case TrackView::ColumnGenre:        return track->genreTag().isEmpty() ? placeHolderColor : QVariant();
+            case TrackView::ColumnSongWriter:   return track->songWriterTag().isEmpty() ? placeHolderColor : QVariant();
         }
         // clang-format on
 
@@ -525,6 +530,9 @@ Qt::ItemFlags TrackViewModel::flags(const QModelIndex &index) const
             case TrackView::ColumnArtist:
             case TrackView::ColumnAlbum:
             case TrackView::ColumnComment:
+            case TrackView::ColumnDate:
+            case TrackView::ColumnGenre:
+            case TrackView::ColumnSongWriter:
                 res = res | Qt::ItemIsEditable;
                 break;
         }

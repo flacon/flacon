@@ -103,6 +103,9 @@ MainWindow::MainWindow(QWidget *parent) :
     trackView->setRootIsDecorated(false);
     trackView->setItemsExpandable(false);
     trackView->hideColumn((int)TrackView::ColumnComment);
+    trackView->hideColumn((int)TrackView::ColumnSongWriter);
+    trackView->hideColumn((int)TrackView::ColumnDate);
+    trackView->hideColumn((int)TrackView::ColumnGenre);
     trackView->setAlternatingRowColors(false);
 
     // Tag edits ...............................................
@@ -1242,7 +1245,7 @@ void MainWindow::loadSettings()
     this->setGeometry(x, y, width, height);
 
     splitter->restoreState(settings->value("MainWindow/Splitter").toByteArray());
-    trackView->header()->restoreState(settings->value("MainWindow/TrackView").toByteArray());
+    trackView->header()->restoreState(settings->value("MainWindow/TrackViewV2").toByteArray());
 
     outDirEdit->setHistory(Settings::i()->value(SETTINGS_OUTFILES_DIR_HISTORY_KEY).toStringList());
     outPatternEdit->setHistory(Settings::i()->value(SETTINGS_PATTERN_HISTORY_KEY).toStringList());
@@ -1260,7 +1263,7 @@ void MainWindow::saveSettings()
     settings->setValue("MainWindow/Width", QVariant(size().width()));
     settings->setValue("MainWindow/Height", QVariant(size().height()));
     settings->setValue("MainWindow/Splitter", QVariant(splitter->saveState()));
-    settings->setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
+    settings->setValue("MainWindow/TrackViewV2", QVariant(trackView->header()->saveState()));
 
     Settings::i()->setValue(SETTINGS_OUTFILES_DIR_HISTORY_KEY, outDirEdit->history());
     Settings::i()->setValue(SETTINGS_PATTERN_HISTORY_KEY, outPatternEdit->history());
