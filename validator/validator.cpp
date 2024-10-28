@@ -40,7 +40,7 @@ Validator::Validator(QObject *parent) :
 {
     mDelayTimer.setInterval(VALIDATE_DELAY_MS);
     mDelayTimer.setSingleShot(true);
-    connect(&mDelayTimer, &QTimer::timeout, this, &Validator::revalidate);
+    connect(&mDelayTimer, &QTimer::timeout, this, &Validator::doRevalidate);
 }
 
 /************************************************
@@ -49,7 +49,7 @@ Validator::Validator(QObject *parent) :
 void Validator::setDisks(DiskList disks)
 {
     mDisks = disks;
-    startDelay();
+    revalidate();
 }
 
 /************************************************
@@ -57,9 +57,8 @@ void Validator::setDisks(DiskList disks)
  ************************************************/
 void Validator::setProfile(const Profile *profile)
 {
-
     mProfile = profile;
-    startDelay();
+    revalidate();
 }
 
 /************************************************
@@ -73,7 +72,7 @@ int Validator::insertDisk(Disk *disk, int index)
 
     mDisks.insert(index, disk);
 
-    startDelay();
+    revalidate();
     return index;
 }
 
@@ -87,13 +86,13 @@ void Validator::removeDisk(const DiskList &disks)
         mDisks.removeAll(d);
     }
 
-    startDelay();
+    revalidate();
 }
 
 /************************************************
  *
  ************************************************/
-void Validator::startDelay()
+void Validator::revalidate()
 {
     mDelayTimer.start();
 }
@@ -101,7 +100,7 @@ void Validator::startDelay()
 /************************************************
  *
  ************************************************/
-void Validator::revalidate()
+void Validator::doRevalidate()
 {
     auto oldGlobalErrors  = mGlobalErrors;
     auto oldDisksErrors   = mDisksErrors;

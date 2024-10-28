@@ -77,7 +77,7 @@ private:
 
     bool mResultFilesOverwrite = false;
 
-    void startDelay();
+    void doRevalidate();
     bool validateProfile();
 
     void revalidateDisk(const Disk *disk, QStringList &errors, QStringList &warnings);
