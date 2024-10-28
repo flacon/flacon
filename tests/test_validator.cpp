@@ -35,6 +35,17 @@
 #include "tools.h"
 
 namespace {
+
+class TestValidator : public Validator
+{
+public:
+    using Validator::Validator;
+    void doRevalidate()
+    {
+        Validator::doRevalidate();
+    }
+};
+
 struct TcDisk
 {
     std::string              cue;
@@ -109,7 +120,7 @@ void TestFlacon::testValidator()
         Profile profile = settings.readProfile(settings.readCurrentProfileId());
         settings.readExtPrograms();
 
-        Validator validator;
+        TestValidator validator;
         validator.setProfile(&profile);
 
         for (auto d : spec.disks) {
@@ -124,7 +135,7 @@ void TestFlacon::testValidator()
             validator.insertDisk(disk);
         }
 
-        validator.revalidate();
+        validator.doRevalidate();
 
         for (uint i = 0; i < spec.disks.size(); ++i) {
             QStringList expected;

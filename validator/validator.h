@@ -65,6 +65,9 @@ public:
 signals:
     void changed();
 
+protected:
+    void doRevalidate();
+
 private:
     QList<Disk *>  mDisks;
     const Profile *mProfile = nullptr;
@@ -77,7 +80,6 @@ private:
 
     bool mResultFilesOverwrite = false;
 
-    void doRevalidate();
     bool validateProfile();
 
     void revalidateDisk(const Disk *disk, QStringList &errors, QStringList &warnings);
