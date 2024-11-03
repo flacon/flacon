@@ -584,14 +584,6 @@ Ovlivní to jenom velikost souboru. Všechna nastavení jsou bezztrátová.</tra
         <translation>Adresář s dočasnými soubory:</translation>
     </message>
     <message>
-        <source>Default codepage:</source>
-        <translation>Výchozí kódová stránka:</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Počet vláken:</translation>
-    </message>
-    <message>
         <source>Select temporary directory</source>
         <translation>Vyberte adresář pro dočasné soubory</translation>
     </message>
@@ -608,6 +600,19 @@ Ovlivní to jenom velikost souboru. Všechna nastavení jsou bezztrátová.</tra
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Počet vláken:</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -688,10 +693,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Výstupní formát</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>Značky</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
         <translation>Účinkující na albu:</translation>
     </message>
@@ -700,16 +701,8 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Začít číslovat od:</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>Číslo disku:</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>Žánr:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Umělec:</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -1046,6 +1039,22 @@ Chcete pokračovat?</translation>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1560,12 +1569,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <translation>Umělec:</translation>
     </message>
     <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Účinkující na albu:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1596,12 +1599,6 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <translation>Číslo disku</translation>
     </message>
     <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Název skladby</translation>
-    </message>
-    <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1610,6 +1607,48 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
     <message>
         <source>of</source>
         <translation>z</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Umělec:</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Rok:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>Žánr:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>Poznámka:</translation>
+    </message>
+    <message>
+        <source>ISRC:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1757,6 +1796,24 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <comment>Track length, string like '02:56'</comment>
         <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

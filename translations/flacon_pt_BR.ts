@@ -604,14 +604,6 @@ Isso afeta somente o tamanho do arquivo. Todas as configurações são sem perda
         <translation>Diretório temporário:</translation>
     </message>
     <message>
-        <source>Default codepage:</source>
-        <translation>Codificação padrão:</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Contagem de linhas de execução:</translation>
-    </message>
-    <message>
         <source>Select temporary directory</source>
         <translation>Selecionar diretório temporário</translation>
     </message>
@@ -629,6 +621,19 @@ Isso afeta somente o tamanho do arquivo. Todas as configurações são sem perda
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
         <translation>Usar definição heurística do artista da faixa</translation>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Contagem de linhas de execução:</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -708,10 +713,6 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>Formato de saída</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>Etiquetas</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
         <translation>Intérprete do disco:</translation>
     </message>
@@ -720,16 +721,8 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>Número inicial:</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>ID do disco:</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>Gênero:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Artista:</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -1067,6 +1060,22 @@ Você deseja continuar?</translation>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
         <translation>Alguns discos têm avisos:</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1580,12 +1589,6 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
         <translation>Artista:</translation>
     </message>
     <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Intérprete do disco:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1616,12 +1619,6 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
         <translation>Número do disco:</translation>
     </message>
     <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Título da faixa:</translation>
-    </message>
-    <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1630,6 +1627,48 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
     <message>
         <source>of</source>
         <translation>de</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Artista:</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Ano:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>Gênero:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>Comentário:</translation>
+    </message>
+    <message>
+        <source>ISRC:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1777,6 +1816,24 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
         <comment>Track length, string like '02:56'</comment>
         <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

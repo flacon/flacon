@@ -314,7 +314,26 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;מדיום VBR&lt;/dt&gt;
+&lt;dd&gt;על ידי שימוש בקצב סיביות משתנה בינוני, הגדרה מראש זו אמורה לספק כמעט שקיפות לרוב האנשים ולרוב המוזיקה.&lt;/dd&gt;
+
+&lt;dt&gt;תקן VBR&lt;/dt&gt;
+&lt;dd&gt;על ידי שימוש בקצב סיביות משתנה רגיל, הגדרה מראש זו אמורה להיות שקופה לרוב האנשים ברוב המוזיקה והיא כבר די גבוהה באיכותה.&lt;/dd&gt;
+
+&lt;dt&gt;VBR קיצוני&lt;/dt&gt;
+&lt;dd&gt;על ידי שימוש בקצב ה-Variable BitRate הגבוה ביותר האפשרי, הגדרה מראש זו מספקת איכות מעט גבוהה יותר מהמצב התקני לבעלי שמיעה טובה במיוחד או ציוד שמע מתקדם.&lt;/dd&gt;
+
+&lt;dt&gt;איכות VBR&lt;/dt&gt;
+&lt;dd&gt;אפשרות קצב סיביות משתנה זו מאפשרת לציין את איכות הפלט.&lt;/dd&gt;
+
+&lt;dt&gt;CBR מטורף&lt;/dt&gt;
+&lt;dd&gt;קבלת האיכות הגבוהה ביותר ללא קשר לגודל הקובץ, ניתנת להשגה באמצעות קצב סיביות קבוע זה.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;שימוש בקביעת קצב סיביות קבועה זה בדרך כלל יספק איכות טובה בקצב סיביות מוגדר.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;שימוש בקביעת קצב סיביות ממוצע זה יבדרך כלל יספק איכות גבוהה יותר מאשר אפשרות קצב סיביות קבוע עבור קצב סיביות מוגדר.&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -470,7 +489,7 @@ In CBR mode, it sets the specific output bitrate.
         <source>Resize if image size greater than</source>
         <comment>Cover image option on the preferences dialog</comment>
         <extracomment>Cover image option on the preferences dialog</extracomment>
-        <translation>שינוי גודל כאשר התמונה גדולה מ</translation>
+        <translation>שינוי גודל כאשר התמונה גדולה מ־</translation>
     </message>
 </context>
 <context>
@@ -483,7 +502,7 @@ In CBR mode, it sets the specific output bitrate.
         <source>File name format</source>
         <comment>Preferences dialog edit tooltip</comment>
         <extracomment>Preferences dialog edit tooltip</extracomment>
-        <translation>תבנית שם קובץ</translation>
+        <translation>תסדיר שם קובץ</translation>
     </message>
     <message>
         <source>First track pregap:</source>
@@ -503,33 +522,33 @@ In CBR mode, it sets the specific output bitrate.
     </message>
     <message>
         <source>Insert &quot;Artist&quot;</source>
-        <translation>הזנת &quot;אמן&quot;</translation>
+        <translation>תחיבת &quot;אמן&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>הזנת &quot;שם אלבום&quot;</translation>
+        <translation>תחיבת &quot;שם אלבום&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
-        <translation>הזנת &quot;שנה&quot;</translation>
+        <translation>תחיבת &quot;שנה&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Genre&quot;</source>
-        <translation>הזנת &quot;סוגה&quot;</translation>
+        <translation>תחיבת &quot;סוגה&quot;</translation>
     </message>
     <message>
         <source>Use &quot;%1&quot;</source>
         <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
         <extracomment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</extracomment>
-        <translation>משתמש ב &quot;%1&quot;</translation>
+        <translation>להשתמש ב־&quot;%1&quot;</translation>
     </message>
     <message>
         <source>Extract to separate file</source>
-        <translation>חילוץ לקובץ נפרד</translation>
+        <translation>לחלץ לקובץ נפרד</translation>
     </message>
     <message>
         <source>Add to first track</source>
-        <translation>הוספה לרצועה הראשונה</translation>
+        <translation>להוסיף לרצועה הראשונה</translation>
     </message>
 </context>
 <context>
@@ -585,14 +604,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>ספריה זמנית:</translation>
     </message>
     <message>
-        <source>Default codepage:</source>
-        <translation>קידוד ברירת מחדל</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>מונה שרשורים:</translation>
-    </message>
-    <message>
         <source>Select temporary directory</source>
         <translation>בחירת ספריה זמנית</translation>
     </message>
@@ -604,11 +615,24 @@ This only affects the file size. All settings are lossless.</source>
     <message>
         <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
         <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>אם תג ה־&quot;TITLE&quot; מכיל את שמות האמן והרצועות משולבים ומופרדים תו מפריד, התוכנית תנסה להקצות את התגים המתאימים.</translation>
     </message>
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
+        <translation>להשתמש בהגדרה היוריסטית של מבצע רצועה</translation>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>מונה שרשורים:</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -692,10 +716,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>תבנית פלט:</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>תגים</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
         <translation>מבצע:</translation>
     </message>
@@ -704,16 +724,8 @@ If you surround sections of text that contain a token with braces, these section
         <translation>להתחיל מרצועה:</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>מזהה תקליטור:</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>סוגה:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>אמן:</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -1020,36 +1032,52 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Trash sources for converted disks and remove from list…</source>
-        <translation type="unfinished"/>
+        <translation>השלכת מקורות כוננים שהומרו לסל־ המיחזור והסרתם מהרשימה...</translation>
     </message>
     <message>
         <source>Some disks have errors, and will be skipped when converting:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
-        <translation type="unfinished"/>
+        <translation>בחלק מהתקליטורים יש שגיאות והם ידולגו בעת ההמרה:</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot;</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>כונן %1 &quot;%2 - %3&quot;</translation>
+        <translation>תקליטור %1 &quot;%2 - %3&quot;</translation>
     </message>
     <message>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
-        <translation>כונן %1</translation>
+        <translation>תקליטור %1</translation>
     </message>
     <message>
         <source>The following files will be moved to the trash. Remove the following files?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>הקבצים הבאים יועברו לסל המחזור. האם להסיר את הקבצים הבאים?</translation>
     </message>
     <message>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
+        <translation>קיימות אזהרות למספר כוננים:</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1156,7 +1184,7 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
-        <translation type="unfinished"/>
+        <translation>לתחוב &quot;מבצע אלבום&quot;</translation>
     </message>
 </context>
 <context>
@@ -1187,13 +1215,13 @@ Do you want to continue?</source>
         <source>I can&apos;t apply your preferences.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>לא ניתן להחיל העדפות.</translation>
     </message>
     <message>
         <source>You should create at least one profile.</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>נידרש לייצור פרופיל אחד לפחות.</translation>
     </message>
     <message>
         <source>Create profile</source>
@@ -1565,12 +1593,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>אמן:</translation>
     </message>
     <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>אמן תקליטור:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1601,12 +1623,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>מספר תקליטור:</translation>
     </message>
     <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>כותרת רצועה:</translation>
-    </message>
-    <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1615,6 +1631,48 @@ Using the album-gain analysis will preserve the volume differences within an alb
     <message>
         <source>of</source>
         <translation>מ</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>אמן:</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>שנה:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>סוגה:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>הערה:</translation>
+    </message>
+    <message>
+        <source>ISRC:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1763,6 +1821,24 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
     </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>UpdatePage</name>
@@ -1854,25 +1930,25 @@ The ReplayGain will be disabled for this disk.</source>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>תקליטור %1 &quot;%2 - %3&quot; יכתוב על הקבצים של עצמו.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>תקליטור %1 &quot;%2 - %3&quot; יכתוב על הקבצים של תקליטור זה.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>תקליטור %1 &quot;%2 - %3&quot; משתמש באותו בקובץ CUE.</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
         <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
-        <translation type="unfinished"/>
+        <translation>תקליטור %1 &quot;%2 - %3&quot; משתמש באותו בקובץ שמע.</translation>
     </message>
     <message>
         <source>The same audio file is used for different tracks.</source>
@@ -1885,7 +1961,8 @@ The ReplayGain will be disabled for this disk.</source>
 You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>קובצי הפלט של התקליטור מעורבבים עם קבצי התקליטור.
+ניתן לשנות &quot;מספר התחלתי&quot; של אחד מהם.</translation>
     </message>
 </context>
 <context>

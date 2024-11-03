@@ -592,7 +592,7 @@ This only affects the file size. All settings are lossless.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Thread count:</source>
+        <source>Thread count:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

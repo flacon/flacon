@@ -581,14 +581,6 @@ Dette har bare innvirkning på filstørrelse. Alle innstillinger er tapsfrie.</t
         <translation>Midlertidig katalog:</translation>
     </message>
     <message>
-        <source>Default codepage:</source>
-        <translation>Forvalgt kodeside:</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Antall tråder:</translation>
-    </message>
-    <message>
         <source>Select temporary directory</source>
         <translation>Velg midlertidig mappe</translation>
     </message>
@@ -605,6 +597,19 @@ Dette har bare innvirkning på filstørrelse. Alle innstillinger er tapsfrie.</t
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Antall tråder:</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -685,10 +690,6 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation>Utdata-format</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>Merkelapper</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
         <translation type="unfinished"/>
     </message>
@@ -697,16 +698,8 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation>Startnummer:</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>Disk-ID:</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>Sjanger:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Artist:</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -1043,6 +1036,22 @@ Do you want to continue?</source>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1557,12 +1566,6 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
         <translation>Artist:</translation>
     </message>
     <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1593,12 +1596,6 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1606,6 +1603,48 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
     </message>
     <message>
         <source>of</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Artist:</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>År:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>Sjanger:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ISRC:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1754,6 +1793,24 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
         <comment>Track length, string like '02:56'</comment>
         <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -33,7 +33,7 @@
         <source>Bug tracker %1</source>
         <comment>About dialog, About tab</comment>
         <extracomment>About dialog, About tab</extracomment>
-        <translation>Traccia bug %1</translation>
+        <translation>Bug tracker %1</translation>
     </message>
     <message>
         <source>License: %1</source>
@@ -45,7 +45,7 @@
     </message>
     <message>
         <source>Flacon uses external programs. Many thanks to their authors!</source>
-        <translation>Flacon usa programmi esterni. Un grazie ai loro autori!</translation>
+        <translation>Flacon usa programmi esterni. Molte grazie ai loro autori!</translation>
     </message>
     <message>
         <source>Extracts individual tracks from one big audio file containing the entire album.</source>
@@ -111,7 +111,7 @@
     <message>
         <source>New profile name:</source>
         <extracomment>Add profile dialog, profile name label</extracomment>
-        <translation>Nuovo nome del profilo:</translation>
+        <translation>Nome del nuovo profilo:</translation>
     </message>
     <message>
         <source>Audio format:</source>
@@ -138,7 +138,7 @@
         <source>Auto detect</source>
         <comment>Codepage auto detection</comment>
         <extracomment>Codepage auto detection</extracomment>
-        <translation>Ricerca automaticamente</translation>
+        <translation>Rileva automaticamente</translation>
     </message>
     <message>
         <source>Unicode (UTF-8)</source>
@@ -559,7 +559,7 @@ In modalità CBR, imposta il bitrate in uscita specifico.</translation>
     <message>
         <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-        <translation>Imposta il livello della compressione compreso tra %1 (veloce) e %2 (maggiore compressione).
+        <translation>Imposta il livello della compressione compreso tra %1 (più veloce) e %2 (maggiore compressione).
 Questa impostazione modifica la dimensione. Tutte le impostazioni verranno perse.</translation>
     </message>
     <message>
@@ -596,19 +596,11 @@ Questa impostazione modifica la dimensione. Tutte le impostazioni verranno perse
     <name>GeneralPage</name>
     <message>
         <source>The number of threads in the conversion process.</source>
-        <translation>Il numero di processi nella procedura di conversione.</translation>
+        <translation>Il numero di thread nella procedura di conversione.</translation>
     </message>
     <message>
         <source>Temporary directory:</source>
         <translation>Cartella temporanea:</translation>
-    </message>
-    <message>
-        <source>Default codepage:</source>
-        <translation>Tabella dei codici di base:</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Contatore processi:</translation>
     </message>
     <message>
         <source>Select temporary directory</source>
@@ -628,6 +620,19 @@ Questa impostazione modifica la dimensione. Tutte le impostazioni verranno perse
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
         <translation>Usa la definizione euristica dell&apos;esecutore della traccia</translation>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Numero  di thread:</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -707,32 +712,20 @@ Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, quest
         <translation>Formato di output</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>Etichette</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
-        <translation>Album esecutore:</translation>
+        <translation>Esecutore Album:</translation>
     </message>
     <message>
         <source>Start num:</source>
         <translation>Numero di partenza:</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>ID Disco:</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>Genere:</translation>
     </message>
     <message>
-        <source>Artist:</source>
-        <translation>Artista:</translation>
-    </message>
-    <message>
         <source>Codepage:</source>
-        <translation>Tabella di codici:</translation>
+        <translation>Codepage:</translation>
     </message>
     <message>
         <source>Year:</source>
@@ -1059,13 +1052,29 @@ Vuoi continuare?</translation>
         <source>The following files will be moved to the trash. Remove the following files?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation>I seguenti file saranno spostati nel cestino. Rimuovere i seguenti file?</translation>
+        <translation>I seguenti file saranno spostati nel cestino. Rimuovo i seguenti file?</translation>
     </message>
     <message>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
         <translation>Alcuni dischi hanno avvisi:</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1137,15 +1146,15 @@ Vuoi continuare?</translation>
     </message>
     <message>
         <source>Insert &quot;Total number of tracks&quot;</source>
-        <translation>Inserisci &quot;Numero totale delle tracce&quot;</translation>
+        <translation>Inserisci &quot;Numero totale di tracce&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Album title&quot;</source>
-        <translation>Inserisci &quot;Titolo dell&apos;album&quot;</translation>
+        <translation>Inserisci &quot;Titolo album&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Track title&quot;</source>
-        <translation>Inserisci &quot;Titolo della traccia&quot;</translation>
+        <translation>Inserisci &quot;Titolo traccia&quot;</translation>
     </message>
     <message>
         <source>Insert &quot;Year&quot;</source>
@@ -1225,7 +1234,7 @@ Vuoi continuare?</translation>
     </message>
     <message>
         <source>Result Files</source>
-        <translation>Files risultanti</translation>
+        <translation>Files Risultanti</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1294,7 +1303,7 @@ Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, quest
     </message>
     <message>
         <source>Maximum bit depth:</source>
-        <translation>Profondità massima dei bit:</translation>
+        <translation>Profondità dei bit massima:</translation>
     </message>
     <message>
         <source>Maximum sample rate:</source>
@@ -1312,7 +1321,7 @@ Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, quest
         <source>CUE and Cover image</source>
         <comment>Preferences dialog tab title</comment>
         <extracomment>Preferences dialog tab title</extracomment>
-        <translation>CUE e immagine di copertina</translation>
+        <translation>CUE e immagine di Copertina</translation>
     </message>
     <message>
         <source>Copy cover image</source>
@@ -1412,8 +1421,8 @@ The analysis can be performed on individual tracks, so that all tracks will be o
 Using the album-gain analysis will preserve the volume differences within an album.</source>
         <translation>ReplayGain è uno standard che normalizza i rumori di sottofondo percepiti dal computer nei formati audio.
 
-L&apos;analisi può essere effettuata nelle singole tracce, così che tutte le tracce abbiano lo stesso livello di rumore di sottofondo. 
-Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tutto l&apos;album.</translation>
+L&apos;analisi può essere effettuata per singole tracce, così che tutte le tracce abbiano lo stesso livello di volume in riproduzione. 
+Usando l&apos;analisi sull&apos;album si eliminano le differenze di volume per tutto l&apos;album.</translation>
     </message>
     <message>
         <source>%1 encoder settings:</source>
@@ -1468,7 +1477,7 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
     <name>ProgramsPage</name>
     <message>
         <source>Rescan</source>
-        <translation>Cerca nuovamente</translation>
+        <translation>Riscansiona</translation>
     </message>
     <message>
         <source>%1:</source>
@@ -1483,13 +1492,13 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <extracomment>%1 - is a file name, %2 - an error text</extracomment>
-        <translation>Impossibile leggere l&apos;immagine di copertina &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Impossibile leggere l&apos;immagine della copertina &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <extracomment>%1 - is file name, %2 - an error text</extracomment>
-        <translation>Impossibile salvare l&apos;immagine di copertina &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+        <translation>Impossibile salvare l&apos;immagine della copertina &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1561,7 +1570,7 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
         <source>file name is empty</source>
         <comment>error message text</comment>
         <extracomment>error message text</extracomment>
-        <translation>Il nome del file è vuoto</translation>
+        <translation>il nome del file è vuoto</translation>
     </message>
 </context>
 <context>
@@ -1577,12 +1586,6 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
         <translation>Artista:</translation>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Esecutore Album:</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -1615,12 +1618,6 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
         <translation>Disco numero:</translation>
     </message>
     <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Titolo della traccia:</translation>
-    </message>
-    <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1629,6 +1626,48 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
     <message>
         <source>of</source>
         <translation>di</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Artista:</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Anno:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>Genere:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>Commento:</translation>
+    </message>
+    <message>
+        <source>ISRC:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1666,7 +1705,7 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
         <source>Extracting</source>
         <comment>Status of the track conversion.</comment>
         <extracomment>Status of the track conversion.</extracomment>
-        <translation>Estraendo</translation>
+        <translation>Estrazione</translation>
     </message>
     <message>
         <source>Encoding</source>
@@ -1753,7 +1792,7 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
         <source>Comment</source>
         <comment>Table header.</comment>
         <extracomment>Table header.</extracomment>
-        <translation>Commenti</translation>
+        <translation>Commento</translation>
     </message>
     <message>
         <source>File</source>
@@ -1776,6 +1815,24 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
         <comment>Track length, string like '02:56'</comment>
         <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1811,13 +1868,13 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di audio in tut
     </message>
     <message>
         <source>Cue file not set.</source>
-        <translation>Nessun file CUE impostato.</translation>
+        <translation>File CUE non impostato.</translation>
     </message>
     <message>
         <source>Audio file not set.</source>
         <comment>Warning message</comment>
         <extracomment>Warning message</extracomment>
-        <translation>Nessun file audio selezionato.</translation>
+        <translation>File audio non impostato.</translation>
     </message>
     <message>
         <source>Audio file not set for track %1.</source>
@@ -1893,21 +1950,22 @@ Il ReplayGain sarà disabilitato per questo disco.</translation>
         <source>The same audio file is used for different tracks.</source>
         <comment>Error message</comment>
         <extracomment>Error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>Lo stesso file audio è utilizzato per tracce differenti.</translation>
     </message>
     <message>
         <source>The output files of the disc are mixed with the files of disc %1.
 You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>I file in uscita del disco sono mescolati con i file del disco %1.
+È possibile modificare il &quot;numero iniziale&quot; per uno di questi.</translation>
     </message>
 </context>
 <context>
     <name>aacConfigPage</name>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Usa le impostazioni sulla qualità (raccomandato)</translation>
+        <translation>Usa le impostazioni della qualità (raccomandato)</translation>
     </message>
     <message>
         <source>Quality:</source>
@@ -1921,7 +1979,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Imposta il bitrate fissato (in kb/s).</translation>
+        <translation>Imposta il bitrate di destinazione (in kb/s).</translation>
     </message>
 </context>
 <context>
@@ -1935,7 +1993,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     <name>mp3ConfigPage</name>
     <message>
         <source>Preset:</source>
-        <translation>Presettato:</translation>
+        <translation>Predefinito:</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -1943,7 +2001,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>
-        <translation>Imposta il bitrate fissato (in kb/s).</translation>
+        <translation>Imposta il bitrate di destinazione (in kb/s).</translation>
     </message>
     <message>
         <source>Quality:</source>
@@ -1954,7 +2012,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     <name>oggConfigPage</name>
     <message>
         <source>Use quality setting (recommended)</source>
-        <translation>Usa le impostazioni sulla qualità (raccomandato)</translation>
+        <translation>Usa le impostazioni della qualità (raccomandato)</translation>
     </message>
     <message>
         <source>Quality:</source>
@@ -1971,7 +2029,7 @@ You could change the &quot;Start num&quot; for one of them.</source>
     </message>
     <message>
         <source>Nominal bitrate:</source>
-        <translation>Bitrate normale:</translation>
+        <translation>Bitrate nominale:</translation>
     </message>
     <message>
         <source>Sets target bitrate (in kb/s).</source>

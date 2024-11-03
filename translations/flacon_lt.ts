@@ -604,14 +604,6 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
         <translation>Laikinas katalogas:</translation>
     </message>
     <message>
-        <source>Default codepage:</source>
-        <translation>Numatytoji koduotė:</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Gijų skaičius:</translation>
-    </message>
-    <message>
         <source>Select temporary directory</source>
         <translation>Pasirinkite laikiną katalogą</translation>
     </message>
@@ -629,6 +621,19 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
         <translation>Naudoti heuristinį takelio atlikėjo apibrėžimą</translation>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Gijų skaičius:</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -708,10 +713,6 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Išvesties formatas</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>Žymės</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
         <translation>Albumo atlikėjas:</translation>
     </message>
@@ -720,16 +721,8 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Numeruoti nuo:</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>Disko ID:</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>Žanras:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Atlikėjas:</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -1067,6 +1060,22 @@ Ar norite tęsti?</translation>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
         <translation>Kai kuriuose diskuose yra įspėjimų:</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1580,12 +1589,6 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <translation>Atlikėjas:</translation>
     </message>
     <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Albumo atlikėjas:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1616,12 +1619,6 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <translation>Disko numeris:</translation>
     </message>
     <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Takelio pavadinimas:</translation>
-    </message>
-    <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1630,6 +1627,48 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
     <message>
         <source>of</source>
         <translation>iš</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Atlikėjas:</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Metai:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>Žanras:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>Komentaras:</translation>
+    </message>
+    <message>
+        <source>ISRC:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1777,6 +1816,24 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <comment>Track length, string like '02:56'</comment>
         <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

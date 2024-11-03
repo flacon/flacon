@@ -581,14 +581,6 @@ Ia hanya memberi kesan pada saiz fail. Semua tetapan adalah tak hilang.</transla
         <translation>Direktori sementara:</translation>
     </message>
     <message>
-        <source>Default codepage:</source>
-        <translation>Laman kod lalai:</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Kiraan bebenang:</translation>
-    </message>
-    <message>
         <source>Select temporary directory</source>
         <translation>Pilih direktori sementara</translation>
     </message>
@@ -605,6 +597,19 @@ Ia hanya memberi kesan pada saiz fail. Semua tetapan adalah tak hilang.</transla
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Kiraan bebenang:</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -685,10 +690,6 @@ Jika anda terkurung teks seksyen yang mengandungi token dengan tanda kurungan, s
         <translation>Format Output</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>Tag:</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
         <translation>Pelaku album:</translation>
     </message>
@@ -697,16 +698,8 @@ Jika anda terkurung teks seksyen yang mengandungi token dengan tanda kurungan, s
         <translation>Bil. mula:</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>ID cakera:</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>Genre:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Artis:</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -1043,6 +1036,22 @@ Mahu diteruskan?</translation>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1558,12 +1567,6 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
         <translation>Artis:</translation>
     </message>
     <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Pelaku album:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1594,12 +1597,6 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Tajuk trek:</translation>
-    </message>
-    <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1608,6 +1605,48 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
     <message>
         <source>of</source>
         <translation>dari</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Artis:</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Tahun:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>Genre:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>Ulasan:</translation>
+    </message>
+    <message>
+        <source>ISRC:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1755,6 +1794,24 @@ Dengan menggunakan analisis album-gain akan kekalkan perbezaan volum di dalam se
         <comment>Track length, string like '02:56'</comment>
         <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

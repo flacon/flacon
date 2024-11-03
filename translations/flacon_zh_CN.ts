@@ -315,7 +315,26 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
+      &lt;dd&gt;使用中等可变比特率。对大多数人而言，这个预设应该能给大多数音乐提供近乎透明的质量。&lt;/dd&gt;
+
+      &lt;dt&gt;VBR standard&lt;/dt&gt;
+      &lt;dd&gt;使用标准可变比特率。对大多数人而言，这个预设一般对大多数音乐来说是透明的，并且质量已经相当高。&lt;/dd&gt;
+
+      &lt;dt&gt;VBR extreme&lt;/dt&gt;
+      &lt;dd&gt;使用最高可能的可变比特率。如果你有极好的听力或高端音频设备，这个预设会提供比标准模式稍高的质量。&lt;/dd&gt;
+
+      &lt;dt&gt;VBR quality&lt;/dt&gt;
+      &lt;dd&gt;这个可变比特率选项允许你指定输出质量。&lt;/dd&gt;
+
+      &lt;dt&gt;CBR insane&lt;/dt&gt;
+      &lt;dd&gt;如果你必须要绝对最高的质量而不考虑文件大小，你可以通过使用这个恒定比特率来实现。&lt;/dd&gt;
+
+      &lt;dt&gt;CBR kbps&lt;/dt&gt;
+      &lt;dd&gt;使用这个恒定比特率预设通常会在指定比特率下提供良好的质量。&lt;/dd&gt;
+
+      &lt;dt&gt;ABR kbps&lt;/dt&gt;
+      &lt;dd&gt;使用这个平均比特率预设通常会在指定比特率下提供比恒定比特率选项更高的质量。&lt;/dd&gt;</translation>
     </message>
 </context>
 <context>
@@ -330,7 +349,11 @@
 
 &lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;使用可变码率编码（推荐）。在 VBR 模式下，码率可能根据内容而上升或下降以保证质量的稳定性。&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;使用固定码率编码。输出到一个特定的码率。这个模式类似于 AAC/MP3 编码器中的 CBR 和 Vorbis 编码器中的管理模式。这提供了比 VBR 模式更不稳定的质量，但码率更加一贯。&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -360,7 +383,7 @@ CBR 模式下，它指定特定的输出码率。
         <source>CVBR - constrained variable bitrate</source>
         <comment>Opus encoding mode</comment>
         <extracomment>Opus encoding mode</extracomment>
-        <translation type="unfinished"/>
+        <translation>CVBR - 限制可编码率</translation>
     </message>
 </context>
 <context>
@@ -582,14 +605,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>临时目录：</translation>
     </message>
     <message>
-        <source>Default codepage:</source>
-        <translation>默认字符编码</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>线程计数：</translation>
-    </message>
-    <message>
         <source>Select temporary directory</source>
         <translation>选择临时目录</translation>
     </message>
@@ -607,6 +622,19 @@ This only affects the file size. All settings are lossless.</source>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
         <translation>用启发式方法来推断音轨中的表演者信息</translation>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>线程计数：</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -686,10 +714,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>输出格式</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>标签</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
         <translation>专辑表演者：</translation>
     </message>
@@ -698,16 +722,8 @@ If you surround sections of text that contain a token with braces, these section
         <translation>起始编号：</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>光盘编号：</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>风格：</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>艺术家：</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -837,7 +853,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Ctrl+Shift+O</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
         <source>Check for Updates…</source>
@@ -856,7 +872,7 @@ If you surround sections of text that contain a token with braces, these section
     <message>
         <source>Ctrl+Shift+W</source>
         <extracomment>Main menu item shortcut</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Shift+W</translation>
     </message>
     <message>
         <source>Remove current directory from history</source>
@@ -1026,24 +1042,40 @@ Do you want to continue?</source>
         <source>Disk %1 &quot;%2 - %3&quot;</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>光盘 %1 &quot;%2 - %3&quot;</translation>
     </message>
     <message>
         <source>Disk %1</source>
         <comment>Error message, %1 is the disc number</comment>
         <extracomment>Error message, %1 is the disc number</extracomment>
-        <translation type="unfinished"/>
+        <translation>光盘 %1</translation>
     </message>
     <message>
         <source>The following files will be moved to the trash. Remove the following files?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>以下文件将会被移动到垃圾桶，确定要删除文件？</translation>
     </message>
     <message>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
+        <translation>一些光盘有警告：</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1281,7 +1313,7 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>ReplayGain settings:</source>
-        <translation type="unfinished"/>
+        <translation>回放增益设置：</translation>
     </message>
     <message>
         <source>Calculate gain:</source>
@@ -1301,7 +1333,7 @@ If you surround sections of text that contain a token with braces, these section
         <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
         <comment>Tooltip on checkbox on preferences dialog</comment>
         <extracomment>Tooltip on checkbox on preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>如果格式支持，每个输出文件的元数据都会包含封面图。</translation>
     </message>
     <message>
         <source>Embed cover image in output files</source>
@@ -1328,43 +1360,43 @@ If you surround sections of text that contain a token with braces, these section
         <source>16-bit</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>16-bit</translation>
     </message>
     <message>
         <source>24-bit</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>24-bit</translation>
     </message>
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>32-bit</translation>
     </message>
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>44100 Hz</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>48000 Hz</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>96000 Hz</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation type="unfinished"/>
+        <translation>192000 Hz</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -1398,30 +1430,30 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1编码设置</translation>
     </message>
 </context>
 <context>
     <name>ProfilesPage</name>
     <message>
         <source>+</source>
-        <translation type="unfinished"/>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished"/>
+        <translation>-</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
         <comment>Message box text</comment>
         <extracomment>Message box text</extracomment>
-        <translation type="unfinished"/>
+        <translation>确定要删除配置文件“%1”？</translation>
     </message>
     <message>
         <source>Delete the profile</source>
         <comment>Button caption</comment>
         <extracomment>Button caption</extracomment>
-        <translation type="unfinished"/>
+        <translation>删除配置文件</translation>
     </message>
 </context>
 <context>
@@ -1453,7 +1485,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>%1:</source>
         <comment>Template for the program name label on the preferences form. %1 is a program name.</comment>
         <extracomment>Template for the program name label on the preferences form. %1 is a program name.</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1:</translation>
     </message>
 </context>
 <context>
@@ -1462,13 +1494,13 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>I can&apos;t read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is a file name, %2 - an error text</comment>
         <extracomment>%1 - is a file name, %2 - an error text</extracomment>
-        <translation type="unfinished"/>
+        <translation>无法读取封面图像 &lt;b&gt;%1&lt;/b&gt;：&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
         <comment>%1 - is file name, %2 - an error text</comment>
         <extracomment>%1 - is file name, %2 - an error text</extracomment>
-        <translation type="unfinished"/>
+        <translation>无法保存封面图像&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;%2</translation>
     </message>
     <message>
         <source>I can&apos;t write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
@@ -1484,7 +1516,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; 不是一个有效的 CUE 文件。该 CUE 没有 FILE 标签。</translation>
     </message>
     <message>
         <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
@@ -1494,13 +1526,13 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
         <comment>Cue parser error.</comment>
         <extracomment>Cue parser error.</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; 不是一个有效的 cue 文件。在 %2 有不正确的轨道数。</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
         <comment>Cue parser error.</comment>
         <extracomment>Cue parser error.</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; 不是一个有效的 cue 文件。在 %2 有不正确的轨道编号。</translation>
     </message>
     <message>
         <source>you can&apos;t use &apos;ReplayGain&apos; for files with sample rates above 48kHz. Metaflac doesn&apos;t support such files.</source>
@@ -1534,13 +1566,13 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>Embedded on %1</source>
         <comment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</comment>
         <extracomment>The title for the CUE embedded in the audio file. %1 - is an audio-file name.</extracomment>
-        <translation type="unfinished"/>
+        <translation>内嵌在%1</translation>
     </message>
     <message>
         <source>file name is empty</source>
         <comment>error message text</comment>
         <extracomment>error message text</extracomment>
-        <translation type="unfinished"/>
+        <translation>文件名为空</translation>
     </message>
 </context>
 <context>
@@ -1556,12 +1588,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
         <translation>艺术家：</translation>
-    </message>
-    <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>专辑表演者：</translation>
     </message>
     <message>
         <source>Album:</source>
@@ -1585,28 +1611,64 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>Start track number:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
+        <translation>起始轨道数：</translation>
     </message>
     <message>
         <source>Disc number:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
+        <translation>光盘数：</translation>
     </message>
     <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
+        <translation>注释：</translation>
     </message>
     <message>
         <source>of</source>
+        <translation>of</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>艺术家：</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>年份：</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>风格：</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>注释：</translation>
+    </message>
+    <message>
+        <source>ISRC:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1663,19 +1725,19 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>Calculating gain</source>
         <comment>Status of the track conversion.</comment>
         <extracomment>Status of the track conversion.</extracomment>
-        <translation type="unfinished"/>
+        <translation>正在计算增益</translation>
     </message>
     <message>
         <source>Waiting for gain</source>
         <comment>Status of the track conversion.</comment>
         <extracomment>Status of the track conversion.</extracomment>
-        <translation type="unfinished"/>
+        <translation>正在等待增益</translation>
     </message>
     <message>
         <source>Writing gain</source>
         <comment>Status of the track conversion.</comment>
         <extracomment>Status of the track conversion.</extracomment>
-        <translation type="unfinished"/>
+        <translation>正在写入增益</translation>
     </message>
     <message>
         <source>Tracks:</source>
@@ -1689,11 +1751,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>Multiple files</source>
         <comment>Disk preview, audio file placeholder</comment>
         <extracomment>Disk preview, audio file placeholder</extracomment>
-        <translation type="unfinished"/>
+        <translation>多个文件</translation>
     </message>
     <message>
         <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;不可能转换。&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1756,6 +1818,24 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
     </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>UpdatePage</name>
@@ -1786,7 +1866,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>Some disks will overwrite the resulting files of another disk.</source>
         <comment>error message</comment>
         <extracomment>error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>部分光盘会覆盖另一个光盘的转换结果文件。</translation>
     </message>
     <message>
         <source>Cue file not set.</source>
@@ -1802,81 +1882,81 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>Audio file not set for track %1.</source>
         <comment>Warning message, Placeholders is a track number</comment>
         <extracomment>Warning message, Placeholders is a track number</extracomment>
-        <translation type="unfinished"/>
+        <translation>轨道%1的音频文件未设置。</translation>
     </message>
     <message>
         <source>Audio file not set for tracks %1 to %2.</source>
         <comment>Warning message, Placeholders is a track numbers</comment>
         <extracomment>Warning message, Placeholders is a track numbers</extracomment>
-        <translation type="unfinished"/>
+        <translation>轨道%1至%2的音频文件未设置。</translation>
     </message>
     <message>
         <source>Audio file shorter than expected from CUE sheet.</source>
-        <translation type="unfinished"/>
+        <translation>音频文件比预期的 cue 表短。</translation>
     </message>
     <message>
         <source>A maximum of %1-bit per sample is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <extracomment>Warning message</extracomment>
-        <translation type="unfinished"/>
+        <translation>这个格式最大只支持%1bit每采样，编码时将会使用这个值。</translation>
     </message>
     <message>
         <source>A maximum sample rate of %1 is supported by this format.
 This value will be used for encoding.</source>
         <comment>Warning message</comment>
         <extracomment>Warning message</extracomment>
-        <translation type="unfinished"/>
+        <translation>这个格式最大值支持%1采样率，编码时将会使用这个值。</translation>
     </message>
     <message>
         <source>ReplayGain calculation is not supported for multi-channel audio.
 The ReplayGain will be disabled for this disk.</source>
         <comment>Warning message</comment>
         <extracomment>Warning message</extracomment>
-        <translation type="unfinished"/>
+        <translation>不支持在多声道音频中计算回放增益。回放增益将对这个光盘禁用。</translation>
     </message>
     <message>
         <source>Incorrect output profile.</source>
         <comment>error message</comment>
         <extracomment>error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>错误的输出配置文件。</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>光盘 %1 &quot;%2 - %3&quot; 将会覆盖自己的源文件。</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
         <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>光盘 %1 &quot;%2 - %3&quot; 将会覆盖自己的这个光盘的文件。</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>光盘 %1 &quot;%2 - %3&quot; 使用同一个CUE文件。</translation>
     </message>
     <message>
         <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
         <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
         <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
-        <translation type="unfinished"/>
+        <translation>光盘 %1 &quot;%2 - %3&quot; 使用同一个音频文件。</translation>
     </message>
     <message>
         <source>The same audio file is used for different tracks.</source>
         <comment>Error message</comment>
         <extracomment>Error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>不同的轨道使用了相同的音频文件。</translation>
     </message>
     <message>
         <source>The output files of the disc are mixed with the files of disc %1.
 You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>这个光碟的输出文件将会和光碟%1混合。你可以调整它们中一个的起始值。</translation>
     </message>
 </context>
 <context>

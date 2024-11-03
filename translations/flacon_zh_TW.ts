@@ -572,14 +572,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>臨時目錄：</translation>
     </message>
     <message>
-        <source>Default codepage:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>執行緒計數：</translation>
-    </message>
-    <message>
         <source>Select temporary directory</source>
         <translation>選取臨時目錄</translation>
     </message>
@@ -596,6 +588,19 @@ This only affects the file size. All settings are lossless.</source>
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>執行緒計數：</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -658,10 +663,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>標簽</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
         <translation type="unfinished"/>
     </message>
@@ -670,16 +671,8 @@ If you surround sections of text that contain a token with braces, these section
         <translation>起始編號：</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>光碟編號：</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>風格：</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>藝朮家：</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -1015,6 +1008,22 @@ Do you want to continue?</source>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1511,12 +1520,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>藝朮家：</translation>
     </message>
     <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1547,12 +1550,6 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1560,6 +1557,48 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>of</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>藝朮家：</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>年代：</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>風格：</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ISRC:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1707,6 +1746,24 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>%1:%2</source>
         <comment>Track length, string like '02:56'</comment>
         <extracomment>Track length, string like '02:56'</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>

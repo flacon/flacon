@@ -604,14 +604,6 @@ Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdi
         <translation>Directorio temporal:</translation>
     </message>
     <message>
-        <source>Default codepage:</source>
-        <translation>Página de código predeterminada:</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Número de subprocesos:</translation>
-    </message>
-    <message>
         <source>Select temporary directory</source>
         <translation>Seleccione un directorio temporal</translation>
     </message>
@@ -629,6 +621,19 @@ Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdi
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
         <translation>Usar la definición heurística del intérprete de la pista</translation>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Número de subprocesos:</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -708,10 +713,6 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>Formato de salida</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>Etiquetas</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
         <translation>Artista del álbum:</translation>
     </message>
@@ -720,16 +721,8 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>Número de inicio:</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>ID de Disco:</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>Género:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Artista:</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -1067,6 +1060,22 @@ Do you want to continue?</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
         <translation>Algunos discos tienen avisos:</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1580,12 +1589,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>Artista:</translation>
     </message>
     <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Artista del Álbum:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1616,12 +1619,6 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>Número de disco:</translation>
     </message>
     <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Título de pista:</translation>
-    </message>
-    <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1630,6 +1627,48 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     <message>
         <source>of</source>
         <translation>de</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Artista:</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Año:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>Género:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>Comentario:</translation>
+    </message>
+    <message>
+        <source>ISRC:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1777,6 +1816,24 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <comment>Track length, string like '02:56'</comment>
         <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

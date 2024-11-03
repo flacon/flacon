@@ -581,14 +581,6 @@ Aceasta are efect doar asupra mărimii fișierului rezultat. Calitatea va fi ace
         <translation>Dosar temporar:</translation>
     </message>
     <message>
-        <source>Default codepage:</source>
-        <translation>Codare implicită caractere:</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Număr fire de execuție:</translation>
-    </message>
-    <message>
         <source>Select temporary directory</source>
         <translation>Alegere director fișiere temporare</translation>
     </message>
@@ -605,6 +597,19 @@ Aceasta are efect doar asupra mărimii fișierului rezultat. Calitatea va fi ace
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Număr fire de execuție:</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -685,10 +690,6 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Format ieșire</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>Etichete</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
         <translation>Artist album:</translation>
     </message>
@@ -697,16 +698,8 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Număr început:</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>ID disc:</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>Gen:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Artist:</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -1043,6 +1036,22 @@ Vreți să continuați?</translation>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1557,12 +1566,6 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
         <translation>Artist:</translation>
     </message>
     <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Artist album:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1593,12 +1596,6 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
         <translation>Număr disc:</translation>
     </message>
     <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Titlu pistă:</translation>
-    </message>
-    <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1607,6 +1604,48 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
     <message>
         <source>of</source>
         <translation>de/din</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Artist:</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>An:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>Gen:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>Comentariu:</translation>
+    </message>
+    <message>
+        <source>ISRC:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1754,6 +1793,24 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
         <comment>Track length, string like '02:56'</comment>
         <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

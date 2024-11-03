@@ -582,14 +582,6 @@ Ez csak a fájl méretet befolyásolja. Minden beállítás veszteségmentes.</t
         <translation>Ideiglenes könyvtár:</translation>
     </message>
     <message>
-        <source>Default codepage:</source>
-        <translation>Alapértelmezett kódlap:</translation>
-    </message>
-    <message>
-        <source>Thread count:</source>
-        <translation>Szálnak száma:</translation>
-    </message>
-    <message>
         <source>Select temporary directory</source>
         <translation>Válasszon ideiglenes könyvtárt</translation>
     </message>
@@ -606,6 +598,19 @@ Ez csak a fájl méretet befolyásolja. Minden beállítás veszteségmentes.</t
     <message>
         <source>Use heuristic definition of track performer</source>
         <extracomment>Checkbox text on preferences </extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Thread count:</source>
+        <translation>Szálnak száma:</translation>
+    </message>
+</context>
+<context>
+    <name>LogView</name>
+    <message>
+        <source>Flacon logs</source>
+        <comment>Logs view dialog title</comment>
+        <extracomment>Logs view dialog title</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -686,10 +691,6 @@ Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, h
         <translation>Kimeneti formátum</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <translation>Címkék</translation>
-    </message>
-    <message>
         <source>Album performer:</source>
         <translation>Album előadója:</translation>
     </message>
@@ -698,16 +699,8 @@ Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, h
         <translation>Kezdőszám:</translation>
     </message>
     <message>
-        <source>Disc ID:</source>
-        <translation>Lemezazonosító:</translation>
-    </message>
-    <message>
         <source>Genre:</source>
         <translation>Műfaj:</translation>
-    </message>
-    <message>
-        <source>Artist:</source>
-        <translation>Művész:</translation>
     </message>
     <message>
         <source>Codepage:</source>
@@ -1044,6 +1037,22 @@ Biztosan folytatni akarod?</translation>
         <source>Some disks have warnings:</source>
         <comment>Error message title</comment>
         <extracomment>Error message title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu item</comment>
+        <extracomment>Main menu item</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View logs</source>
+        <comment>Main menu tooltip</comment>
+        <extracomment>Main menu tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1558,12 +1567,6 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <translation>Művész:</translation>
     </message>
     <message>
-        <source>Album performer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Album előadója:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1594,12 +1597,6 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Track title:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Sáv címe:</translation>
-    </message>
-    <message>
         <source>Comment:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
@@ -1608,6 +1605,48 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
     <message>
         <source>of</source>
         <translation>é</translation>
+    </message>
+    <message>
+        <source>Album tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track tags</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Művész:</translation>
+    </message>
+    <message>
+        <source>Song writer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Year:</source>
+        <translation>Év:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation>Műfaj:</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>Megjegyzés:</translation>
+    </message>
+    <message>
+        <source>ISRC:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1755,6 +1794,24 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <comment>Track length, string like '02:56'</comment>
         <extracomment>Track length, string like '02:56'</extracomment>
         <translation>%1:%2</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Song writer</source>
+        <comment>Table header.</comment>
+        <extracomment>Table header.</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
