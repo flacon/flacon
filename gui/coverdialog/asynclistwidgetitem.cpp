@@ -52,7 +52,7 @@ QImage *loadImage(const QString &fileName, const QSize &size)
     painter.drawImage(rect, img);
 
     //....................................
-    QString sizeStr = QString("%1x%2").arg(imgSize.width()).arg(imgSize.height());
+    QString sizeStr = QStringLiteral("%1x%2").arg(imgSize.width()).arg(imgSize.height());
 
     QFont font = painter.font();
     font.setPointSize(font.pointSize() * 0.8);

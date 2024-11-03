@@ -119,12 +119,12 @@ Icon::Icon(const QString &fileName) :
 {
     const auto sizes = { 16, 22, 24, 32, 48, 64, 128, 256, 512 };
     for (auto size : sizes) {
-        addFile(QString(":icons/light/%1/%2.png")
+        addFile(QStringLiteral(":icons/light/%1/%2.png")
                         .arg(size, 3, 10, QChar('0'))
                         .arg(fileName),
                 QSize(size, size), QIcon::Normal);
 
-        addFile(QString(":icons/light/%1/%2-disabled.png")
+        addFile(QStringLiteral(":icons/light/%1/%2-disabled.png")
                         .arg(size, 3, 10, QChar('0'))
                         .arg(fileName),
                 QSize(size, size), QIcon::Disabled);

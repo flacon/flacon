@@ -217,7 +217,7 @@ void ProfilesPage::addProfile()
         return;
     }
 
-    QString id = QString("%1_%2")
+    QString id = QStringLiteral("%1_%2")
                          .arg(dialog.formaiId())
                          .arg(QDateTime::currentMSecsSinceEpoch());
 

@@ -102,8 +102,8 @@ void Mp3MetaDataWriter::setTags(const Track &track)
         addFrame(tags, "TPE2")->setText(TagLib::String(track.tag(TagId::AlbumArtist).toUtf8().data(), TagLib::String::UTF8));
     }
 
-    addFrame(tags, "TRCK")->setText(QString("%1/%2").arg(track.trackNum()).arg(track.trackCount()).toStdString());
-    addFrame(tags, "TPOS")->setText(QString("%1/%2").arg(track.discNum()).arg(track.discCount()).toStdString());
+    addFrame(tags, "TRCK")->setText(QStringLiteral("%1/%2").arg(track.trackNum()).arg(track.trackCount()).toStdString());
+    addFrame(tags, "TPOS")->setText(QStringLiteral("%1/%2").arg(track.discNum()).arg(track.discCount()).toStdString());
 }
 
 /************************************************

@@ -81,7 +81,7 @@ QString calcAudioHash(const QString &fileName)
         decoder.open(fileName);
     }
     catch (FlaconError &err) {
-        FAIL(QString("Can't open input file '%1': %2").arg(fileName, err.what()).toLocal8Bit());
+        FAIL(QStringLiteral("Can't open input file '%1': %2").arg(fileName, err.what()).toLocal8Bit());
         return "";
     }
 
@@ -138,20 +138,20 @@ void TestCueFile::write()
 {
     QFile f(mFileName);
     if (!f.open(QFile::WriteOnly | QFile::Truncate))
-        QFAIL(QString("Can't create cue file '%1': %2").arg(mFileName).arg(f.errorString()).toLocal8Bit());
+        QFAIL(QStringLiteral("Can't create cue file '%1': %2").arg(mFileName).arg(f.errorString()).toLocal8Bit());
 
     QTextStream cue(&f);
 
-    cue << QString("FILE \"%1\" WAVE\n").arg(mWavFile);
+    cue << QStringLiteral("FILE \"%1\" WAVE\n").arg(mWavFile);
     for (int i = 0; i < mTracks.count(); ++i) {
         TestCueTrack track = mTracks.at(i);
 
-        cue << QString("\nTRACK %1 AUDIO\n").arg(i + 1);
+        cue << QStringLiteral("\nTRACK %1 AUDIO\n").arg(i + 1);
         if (track.index0 != "")
-            cue << QString("  INDEX 00 %1\n").arg(track.index0);
+            cue << QStringLiteral("  INDEX 00 %1\n").arg(track.index0);
 
         if (track.index1 != "")
-            cue << QString("  INDEX 01 %1\n").arg(track.index1);
+            cue << QStringLiteral("  INDEX 01 %1\n").arg(track.index1);
     }
 
     f.close();
@@ -163,7 +163,7 @@ void TestCueFile::write()
 bool compareAudioHash(const QString &file1, const QString &expected)
 {
     if (calcAudioHash(file1) != expected) {
-        FAIL(QString("Compared hases are not the same for:\n"
+        FAIL(QStringLiteral("Compared hases are not the same for:\n"
                      "    [%1] %2\n"
                      "    [%3] %4\n")
 
@@ -203,7 +203,7 @@ void writeHexString(const QString &str, QIODevice *out)
             bool ok;
             n16 = line.mid(i, 2).toShort(&ok, 16);
             if (!ok)
-                throw QString("Incorrect HEX data at %1:\n%2").arg(i).arg(line);
+                throw QStringLiteral("Incorrect HEX data at %1:\n%2").arg(i).arg(line);
 
             out->write(&b, 1);
             i += 2;
@@ -293,7 +293,7 @@ void createWavFile(const QString &fileName, const QString &header, const int dur
         return;
 
     if (!file.open(QFile::WriteOnly | QFile::Truncate))
-        QFAIL(QString("Can't create file '%1': %2").arg(fileName, file.errorString()).toLocal8Bit());
+        QFAIL(QStringLiteral("Can't create file '%1': %2").arg(fileName, file.errorString()).toLocal8Bit());
 
     file.write(wavHdr.buffer());
     file.write("data", 4);
@@ -346,7 +346,7 @@ void createWavFile(const QString &fileName, quint16 bitsPerSample, quint32 sampl
         return;
 
     if (!file.open(QFile::WriteOnly | QFile::Truncate))
-        QFAIL(QString("Can't create file '%1': %2").arg(fileName, file.errorString()).toLocal8Bit());
+        QFAIL(QStringLiteral("Can't create file '%1': %2").arg(fileName, file.errorString()).toLocal8Bit());
 
     file.write(header.toByteArray());
     writeTestWavData(&file, header.dataSize());
@@ -398,7 +398,7 @@ void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
     }
 
     else {
-        QFAIL(QString("Can't create file '%1': unknown file format").arg(outFileName).toLocal8Bit());
+        QFAIL(QStringLiteral("Can't create file '%1': unknown file format").arg(outFileName).toLocal8Bit());
     }
 
     bool     ok = true;
@@ -409,7 +409,7 @@ void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
     ok = ok && (proc.exitStatus() == 0);
 
     if (!ok) {
-        QFAIL(QString("Can't encode %1 %2:")
+        QFAIL(QStringLiteral("Can't encode %1 %2:")
                       .arg(program)
                       .arg(args.join(" "))
                       .toLocal8Bit()
@@ -417,7 +417,7 @@ void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
     }
 
     if (!QFileInfo(outFileName).isFile()) {
-        QFAIL(QString("Can't encode to file '%1' (file don't exists'):")
+        QFAIL(QStringLiteral("Can't encode to file '%1' (file don't exists'):")
                       .arg(outFileName)
                       .toLocal8Bit()
               + proc.readAllStandardError());

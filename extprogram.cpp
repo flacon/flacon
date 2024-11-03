@@ -145,7 +145,7 @@ QProcess *ExtProgram::open(QObject *parent) const
 
     proc->connect(proc, &QProcess::errorOccurred, proc, [proc](QProcess::ProcessError error) {
         qCWarning(LOG) << "ERROR";
-        qCWarning(LOG) << QString("%1: The '%2' program crashes").arg(proc->objectName()).arg(proc->program());
+        qCWarning(LOG) << QStringLiteral("%1: The '%2' program crashes").arg(proc->objectName()).arg(proc->program());
         qCWarning(LOG) << "Program with args:" << debugProgramArgs(proc->program(), proc->arguments());
         qCWarning(LOG) << "Error:" << error;
         qCWarning(LOG) << "Error string:" << proc->errorString();
@@ -155,7 +155,7 @@ QProcess *ExtProgram::open(QObject *parent) const
             qCWarning(LOG) << "....................";
         }
 
-        QString msg = QString("The '%1' program crashes with an error: %2").arg(proc->program()).arg(proc->errorString());
+        QString msg = QStringLiteral("The '%1' program crashes with an error: %2").arg(proc->program()).arg(proc->errorString());
         throw FlaconError(msg);
     });
 

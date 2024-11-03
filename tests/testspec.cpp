@@ -199,11 +199,11 @@ QString TestSpec::findFile(const QString &pattern) const
 {
     QFileInfoList files = mDir.entryInfoList(QStringList(pattern), QDir::Files);
     if (files.count() < 1) {
-        throw FlaconError(QString("%1 file not found").arg(pattern));
+        throw FlaconError(QStringLiteral("%1 file not found").arg(pattern));
     }
 
     if (files.count() > 1) {
-        throw FlaconError(QString("Multipy %1 files found").arg(pattern));
+        throw FlaconError(QStringLiteral("Multipy %1 files found").arg(pattern));
     }
 
     return files.first().filePath();

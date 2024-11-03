@@ -45,7 +45,7 @@ QFile &operator<<(QFile &file, const QString &value)
  ************************************************/
 QFile &operator<<(QFile &file, const int &value)
 {
-    return file << QString("%1").arg(value);
+    return file << QStringLiteral("%1").arg(value);
 }
 
 /************************************************
@@ -59,7 +59,7 @@ static void write(const Cue &cue, const QString &fileName)
     int t = -1;
     for (const TrackTags &track : cue.tracks()) {
         t++;
-        f << QString("[DISC 01 / TRACK %2]\n").arg(t + 1, 2, 10, QChar('0'));
+        f << QStringLiteral("[DISC 01 / TRACK %2]\n").arg(t + 1, 2, 10, QChar('0'));
 
         f << "\t"
           << "FILE        = " << track.tag(TagId::File) << "\n";
@@ -110,7 +110,7 @@ static void compare(const QString &resFile, const QString &expectedFile)
         if (result.value(key).toString() == expected.value(key).toString())
             continue;
 
-        QString msg = QString("Compared values are not the same\n\tKey\t%1\n\tActual\t%2\n\tExpected\t%3")
+        QString msg = QStringLiteral("Compared values are not the same\n\tKey\t%1\n\tActual\t%2\n\tExpected\t%3")
                               .arg(key)
                               .arg(result.value(key).toString())
                               .arg(expected.value(key).toString());

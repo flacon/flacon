@@ -128,7 +128,7 @@ static QString doExpandPattern(const QString &pattern, const Tokens &tokens, boo
                     if (c == '%')
                         res += "%";
                     else
-                        res += QString("%") + c;
+                        res += QStringLiteral("%") + c;
                 }
             }
             else {
@@ -162,10 +162,10 @@ static QString doExpandPattern(const QString &pattern, const Tokens &tokens, boo
 QString PatternExpander::expand(const QString &pattern) const
 {
     Tokens tokens;
-    tokens.insert(QChar('N'), QString("%1").arg(mTrackCount, 2, 10, QChar('0')));
-    tokens.insert(QChar('n'), QString("%1").arg(mTrackNum, 2, 10, QChar('0')));
-    tokens.insert(QChar('D'), QString("%1").arg(mDiscCount, 2, 10, QChar('0')));
-    tokens.insert(QChar('d'), QString("%1").arg(mDiscNum, 2, 10, QChar('0')));
+    tokens.insert(QChar('N'), QStringLiteral("%1").arg(mTrackCount, 2, 10, QChar('0')));
+    tokens.insert(QChar('n'), QStringLiteral("%1").arg(mTrackNum, 2, 10, QChar('0')));
+    tokens.insert(QChar('D'), QStringLiteral("%1").arg(mDiscCount, 2, 10, QChar('0')));
+    tokens.insert(QChar('d'), QStringLiteral("%1").arg(mDiscNum, 2, 10, QChar('0')));
     tokens.insert(QChar('A'), safeString(mAlbum));
     tokens.insert(QChar('t'), safeString(mTrackTitle));
     tokens.insert(QChar('a'), safeString(mArtist));
@@ -229,7 +229,7 @@ QString PatternExpander::resultFileName(const QString &aPattern, const Track *tr
 {
     QString pattern = aPattern;
     if (pattern.isEmpty()) {
-        pattern = QString("%a/%y - %A/%n - %t");
+        pattern = QStringLiteral("%a/%y - %A/%n - %t");
     }
 
     int n = lastDirSeparattor(pattern);

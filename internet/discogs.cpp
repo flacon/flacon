@@ -81,13 +81,13 @@ void Discogs::start()
     mRequestAlbum      = track->album();
 
     QStringList query;
-    query << QString("artist=\"%1\"").arg(mRequestArtist.toHtmlEscaped());
-    query << QString("release_title=\"%1\"").arg(mRequestAlbum.toHtmlEscaped());
+    query << QStringLiteral("artist=\"%1\"").arg(mRequestArtist.toHtmlEscaped());
+    query << QStringLiteral("release_title=\"%1\"").arg(mRequestAlbum.toHtmlEscaped());
 
     QUrl url = QString(SEARCH_URL).arg(query.join("&"));
 
     QNetworkRequest request(url);
-    request.setRawHeader("Authorization", QString("Discogs token=%1").arg(TOKEN).toUtf8().data());
+    request.setRawHeader("Authorization", QStringLiteral("Discogs token=%1").arg(TOKEN).toUtf8().data());
 
     QNetworkReply *reply = get(request);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() { searchReady(reply); });
@@ -201,12 +201,12 @@ void Discogs::processResults()
     int n = 0;
     for (Tracks &t : mResult) {
         n++;
-        t.setUri(QString("https://discogs.com/Artist=%1&Album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n));
+        t.setUri(QStringLiteral("https://discogs.com/Artist=%1&Album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n));
         if (mResult.size() == 1) {
-            t.setTitle(QString("%1 / %2   [ Discogs ]").arg(mRequestArtist, mRequestAlbum));
+            t.setTitle(QStringLiteral("%1 / %2   [ Discogs ]").arg(mRequestArtist, mRequestAlbum));
         }
         else {
-            t.setTitle(QString("%1 / %2   [ Discogs %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n));
+            t.setTitle(QStringLiteral("%1 / %2   [ Discogs %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n));
         }
     }
 

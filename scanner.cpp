@@ -55,7 +55,7 @@ void Scanner::start(const QString &startDir)
 
     QStringList exts;
     foreach (const InputFormat *format, InputFormat::allFormats()) {
-        exts << QString("*.%1").arg(format->ext());
+        exts << QStringLiteral("*.%1").arg(format->ext());
     }
 
     QQueue<QString> query;

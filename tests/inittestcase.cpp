@@ -57,7 +57,7 @@ static void createWavFile(const QString &fileName, const int duration)
 {
     QFile hdr(TEST_DATA_DIR "CD.wav.hdr");
     if (!hdr.open(QFile::ReadOnly))
-        QTest::qFail(QString("Can't open header file '%1': %2").arg(hdr.fileName()).arg(hdr.errorString()).toLocal8Bit(), __FILE__, __LINE__);
+        QTest::qFail(QStringLiteral("Can't open header file '%1': %2").arg(hdr.fileName()).arg(hdr.errorString()).toLocal8Bit(), __FILE__, __LINE__);
 
     createWavFile(fileName, hdr.readAll(), duration);
 }
@@ -81,12 +81,12 @@ void TestFlacon::initTestCase()
 
     for (auto &p : PROGS) {
         if (p->path().isEmpty()) {
-            QFAIL(QString("%1 program not found").arg(p->name()).toLocal8Bit());
+            QFAIL(QStringLiteral("%1 program not found").arg(p->name()).toLocal8Bit());
         }
     }
 
     if (!QDir().mkpath(mTmpDir))
-        QTest::qFail(QString("Can't create directory '%1'").arg(mTmpDir).toLocal8Bit(), __FILE__, __LINE__);
+        QTest::qFail(QStringLiteral("Can't create directory '%1'").arg(mTmpDir).toLocal8Bit(), __FILE__, __LINE__);
 
     createWavFile(mTmpDir + "1sec.wav", 1);
     createWavFile(mTmpDir + "1min.wav", 60);
@@ -113,7 +113,7 @@ void TestFlacon::initTestCase()
     {
         QFile hdr(TEST_DATA_DIR "24x96.wav.hdr");
         if (!hdr.open(QFile::ReadOnly))
-            QTest::qFail(QString("Can't open header file '%1': %2").arg(hdr.fileName()).arg(hdr.errorString()).toLocal8Bit(), __FILE__, __LINE__);
+            QTest::qFail(QStringLiteral("Can't open header file '%1': %2").arg(hdr.fileName()).arg(hdr.errorString()).toLocal8Bit(), __FILE__, __LINE__);
 
         createWavFile(mAudio_24x96_wav, hdr.readAll(), 900);
     }
@@ -164,7 +164,7 @@ QString TestFlacon::dir(const QString &subTest)
     QString test    = QString::fromLocal8Bit(QTest::currentTestFunction());
     QString subtest = subTest.isEmpty() ? QString::fromLocal8Bit(QTest::currentDataTag()) : subTest;
 
-    return QDir::cleanPath(QString("%1/%2/%3")
+    return QDir::cleanPath(QStringLiteral("%1/%2/%3")
                                    .arg(TEST_OUT_DIR)
                                    .arg(safePath(test))
                                    .arg(safePath(subtest)));
@@ -178,7 +178,7 @@ QString TestFlacon::sourceDir(const QString &subTest)
     QString test    = QString::fromLocal8Bit(QTest::currentTestFunction());
     QString subtest = subTest.isEmpty() ? QString::fromLocal8Bit(QTest::currentDataTag()) : subTest;
 
-    return QDir::cleanPath(QString("%1/%2/%3")
+    return QDir::cleanPath(QStringLiteral("%1/%2/%3")
                                    .arg(mDataDir)
                                    .arg(safePath(test))
                                    .arg(safePath(subtest)));
@@ -199,7 +199,7 @@ void TestFlacon::init()
 
     QDir(dir).removeRecursively();
     if (!QDir().mkpath(dir)) {
-        QTest::qFail(QString("Can't create directory '%1'").arg(dir).toLocal8Bit(), __FILE__, __LINE__);
+        QTest::qFail(QStringLiteral("Can't create directory '%1'").arg(dir).toLocal8Bit(), __FILE__, __LINE__);
     }
 
     Settings::setFileName(dir + "/flacon.conf");

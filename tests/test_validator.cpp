@@ -98,9 +98,9 @@ void TestFlacon::testValidator()
         TcCase spec = loadTestCase(dataDir);
 
         for (auto d : spec.disks) {
-            QFile::copy(QString("%1/%2").arg(dataDir).arg(d.cue.c_str()), QString("%1/%2").arg(dir()).arg(d.cue.c_str()));
+            QFile::copy(QStringLiteral("%1/%2").arg(dataDir).arg(d.cue.c_str()), QStringLiteral("%1/%2").arg(dir()).arg(d.cue.c_str()));
             for (auto a : d.audio) {
-                QFile::copy(QString("%1/%2").arg(dataDir).arg(a.c_str()), QString("%1/%2").arg(dir()).arg(a.c_str()));
+                QFile::copy(QStringLiteral("%1/%2").arg(dataDir).arg(a.c_str()), QStringLiteral("%1/%2").arg(dir()).arg(a.c_str()));
             }
         }
 
@@ -138,7 +138,7 @@ void TestFlacon::testValidator()
             }
 
             if (actual != expected) {
-                QFAIL(QString("Compared errors differ.\n"
+                QFAIL(QStringLiteral("Compared errors differ.\n"
                               "   Actual  : \"%1\"\n"
                               "   Expected: \"%2\"")
                               .arg(actual.join("\", \""), expected.join("\", \""))
@@ -158,7 +158,7 @@ void TestFlacon::testValidator()
             }
 
             if (actual != expected) {
-                QFAIL(QString("Compared warnings differ.\n"
+                QFAIL(QStringLiteral("Compared warnings differ.\n"
                               "   Actual  : \"%1\"\n"
                               "   Expected: \"%2\"")
                               .arg(actual.join("\", \""), expected.join("\", \""))

@@ -33,7 +33,7 @@ static QString toString(const CueData::Tags &tags)
 {
     QString res;
     for (QByteArray k : tags.keys()) {
-        res += QString("%1 = %2\n").arg(QString::fromLatin1(k)).arg(QString::fromLocal8Bit(tags.value(k)));
+        res += QStringLiteral("%1 = %2\n").arg(QString::fromLatin1(k)).arg(QString::fromLocal8Bit(tags.value(k)));
     }
     return res;
 }
@@ -42,7 +42,7 @@ static QString toString(QSettings &settings)
 {
     QString res;
     for (const QString &k : settings.allKeys()) {
-        res += QString("%1 = %2\n").arg(k).arg(settings.value(k).toString());
+        res += QStringLiteral("%1 = %2\n").arg(k).arg(settings.value(k).toString());
     }
     return res;
 }
@@ -69,7 +69,7 @@ void TestFlacon::testCueData()
         int n = 0;
         for (auto track : result.tracks()) {
             n++;
-            expected.beginGroup(QString("TRACK %1").arg(n, 2, 10, QChar('0')));
+            expected.beginGroup(QStringLiteral("TRACK %1").arg(n, 2, 10, QChar('0')));
             QCOMPARE(toString(track), toString(expected));
             expected.endGroup();
         }

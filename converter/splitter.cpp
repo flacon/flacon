@@ -153,7 +153,7 @@ InputAudioFile Splitter::Job::getInputAudioFile(const QByteArray &fileTag) const
         }
     }
 
-    throw FlaconError(QString("Incorrect file tag %1").arg(fileTag.data()));
+    throw FlaconError(QStringLiteral("Incorrect file tag %1").arg(fileTag.data()));
 }
 
 /************************************************
@@ -181,7 +181,7 @@ void Splitter::setPregapType(const PreGapType &pregapType)
 void Splitter::run()
 {
     static QAtomicInteger<quint32> globalUid(1);
-    QString                        uid = QString("%1").arg(globalUid.fetchAndAddRelaxed(1), 4, 10, QLatin1Char('0'));
+    QString                        uid = QStringLiteral("%1").arg(globalUid.fetchAndAddRelaxed(1), 4, 10, QLatin1Char('0'));
 
     // ******************************************
     // Create jobs
@@ -189,7 +189,7 @@ void Splitter::run()
     for (const ConvTrack &track : mTracks) {
         if (track.isPregap()) {
             Job job(mDisc, mTracks.first(), true, false, false);
-            job.outFileName = QString("%1/pregap-%2.wav").arg(mOutDir, uid);
+            job.outFileName = QStringLiteral("%1/pregap-%2.wav").arg(mOutDir, uid);
             job.isPregap    = true;
             jobs << job;
             continue;
@@ -197,7 +197,7 @@ void Splitter::run()
 
         bool addPregap = (track.index() == 0 && mPregapType == PreGapType::AddToFirstTrack);
         Job  job(mDisc, track, addPregap, true, true);
-        job.outFileName = QString("%1/track-%2_%3.wav").arg(mOutDir, uid).arg(track.trackNum(), 2, 10, QLatin1Char('0'));
+        job.outFileName = QStringLiteral("%1/track-%2_%3.wav").arg(mOutDir, uid).arg(track.trackNum(), 2, 10, QLatin1Char('0'));
         jobs << job;
     }
 

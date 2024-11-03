@@ -100,5 +100,5 @@ bool ValidatorCheckResultOrder::validateDir(const QString &, const Disk *disk, c
 
 QString ValidatorCheckResultOrder::diskString(const Disk *disk)
 {
-    return QString("%1 \"%2 - %3\"").arg(mDisks.indexOf(disk) + 1).arg(disk->discTag(TagId::Artist), disk->discTag(TagId::Album));
+    return QStringLiteral("%1 \"%2 - %3\"").arg(mDisks.indexOf(disk) + 1).arg(disk->discTag(TagId::Artist), disk->discTag(TagId::Album));
 }

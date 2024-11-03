@@ -323,7 +323,7 @@ QStringList Encoder::resamplerArgs(int bitsPerSample, int sampleRate, const QStr
 
     args << "-"; // Read from STDIN
     if (bitsPerSample) {
-        args << "-b" << QString("%1").arg(bitsPerSample);
+        args << "-b" << QStringLiteral("%1").arg(bitsPerSample);
     }
 
     args << "--type"
@@ -333,7 +333,7 @@ QStringList Encoder::resamplerArgs(int bitsPerSample, int sampleRate, const QStr
     if (sampleRate) {
         args << "rate";
         args << "-v"; // very high quality
-        args << QString("%1").arg(sampleRate);
+        args << QStringLiteral("%1").arg(sampleRate);
     }
 
     return args;

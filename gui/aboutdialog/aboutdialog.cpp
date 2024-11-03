@@ -94,7 +94,7 @@ QString AboutDialog::titleText() const
            "<td style='padding:8px 8px;'>"
             +
 #ifdef GIT_BRANCH
-            QString("<div class=name>Flacon</div> developer version."
+            QStringLiteral("<div class=name>Flacon</div> developer version."
                     "<div class=ver>%1 + git %2</b> "
                     "<a href='https://github.com/flacon/flacon/commit/%3'>%3</a></div>")
                     .arg(FLACON_VERSION)
@@ -102,7 +102,7 @@ QString AboutDialog::titleText() const
                     .arg(GIT_COMMIT_HASH)
             +
 #else
-            QString("<div class=name>Flacon</div><div class=ver>Version %1</div>").arg(FLACON_VERSION) +
+            QStringLiteral("<div class=name>Flacon</div><div class=ver>Version %1</div>").arg(FLACON_VERSION) +
 #endif
             "</td></tr></table>";
 }
@@ -276,7 +276,7 @@ QString AboutInfo::asString() const
 #endif
         foreach (QString url, urls) {
             QString text = QString(url).remove("mailto:").remove("http://");
-            result += QString(" <a href='%1'>%2</a>").arg(url, text);
+            result += QStringLiteral(" <a href='%1'>%2</a>").arg(url, text);
         }
 
         if (!item.description.isEmpty())

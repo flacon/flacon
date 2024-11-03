@@ -118,7 +118,7 @@ QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const QString &ou
 
     else if (preset == VBR_QUALITY) {
         int quality = profile.encoderValue("Quality").toInt();
-        args << "-V" << QString("%1").arg(9 - quality);
+        args << "-V" << QStringLiteral("%1").arg(9 - quality);
     }
 
     // ReplayGain ...............................................
