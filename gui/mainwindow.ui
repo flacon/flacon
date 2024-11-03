@@ -319,7 +319,7 @@ If you surround sections of text that contain a token with braces, these section
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -534,10 +534,10 @@ If you surround sections of text that contain a token with braces, these section
   </action>
   <action name="actionShowLogs">
    <property name="text">
-    <string>View logs</string>
+    <string comment="Main menu item" extracomment="Main menu item">View logs</string>
    </property>
    <property name="toolTip">
-    <string>View logs</string>
+    <string comment="Main menu tooltip" extracomment="Main menu tooltip">View logs</string>
    </property>
   </action>
  </widget>

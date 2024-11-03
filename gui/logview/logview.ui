@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Flacon logs</string>
+   <string comment="Logs view dialog title" extracomment="Logs view dialog title">Flacon logs</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
