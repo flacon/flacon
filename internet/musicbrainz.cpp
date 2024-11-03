@@ -94,7 +94,7 @@ void MusicBrainz::start()
     query << QStringLiteral("artist:\"%1\"").arg(mRequestArtist.toHtmlEscaped());
     query << QStringLiteral("release:\"%1\"").arg(mRequestAlbum.toHtmlEscaped());
 
-    QUrl url = QStringLiteral(SEARCH_URL).arg(query.join("%20AND%20"));
+    QUrl url = QString(SEARCH_URL).arg(query.join("%20AND%20"));
 
     QNetworkRequest request(url);
 

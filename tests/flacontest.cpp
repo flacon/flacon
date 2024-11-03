@@ -302,7 +302,7 @@ void TestFlacon::testSafeString_data()
     for (char c = 1; c <= 31; ++c) {
         if (c != '\t' && c != '\n')
             QTest::newRow(QStringLiteral("01 - \\%1").arg(int(c), 2, 16, QChar('0')).toLocal8Bit())
-                    << QStringLiteral(c)
+                    << QString(c)
                     << "";
     }
 
@@ -330,7 +330,7 @@ void TestFlacon::testSafeString_data()
     for (char c = 1; c <= 31; ++c) {
         if (c != '\t' && c != '\n')
             QTest::newRow(QStringLiteral("02 - A\\%1B").arg(int(c), 2, 16, QChar('0')).toLocal8Bit())
-                    << "A" + QStringLiteral(c) + "B"
+                    << "A" + QString(c) + "B"
                     << "AB";
     }
 

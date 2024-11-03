@@ -119,7 +119,7 @@ void Discogs::searchReady(QNetworkReply *reply)
             continue;
         }
 
-        QNetworkReply *reply = get(QNetworkRequest(QStringLiteral(LOOKUP_URL).arg(id)));
+        QNetworkReply *reply = get(QNetworkRequest(QString(LOOKUP_URL).arg(id)));
         connect(reply, &QNetworkReply::finished, this, [this, reply]() { masterReady(reply); });
     }
 
