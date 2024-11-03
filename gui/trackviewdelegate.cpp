@@ -310,7 +310,7 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
         opt.minimum  = 0;
         opt.maximum  = 100;
         opt.progress = progress;
-        opt.text     = QString("%1 %2%").arg(txt).arg(opt.progress);
+        opt.text     = QStringLiteral("%1 %2%").arg(txt).arg(opt.progress);
 
         QApplication::style()->drawControl(QStyle::CE_ProgressBarContents, &opt, painter);
         QApplication::style()->drawControl(QStyle::CE_ProgressBarLabel, &opt, painter);
@@ -481,7 +481,7 @@ QRect TrackViewDelegate::drawTitle(QPainter *painter, const QRect &windowRect, c
 
     QString text;
     if (!album.isEmpty() || !artist.isEmpty()) {
-        text = QString("%1 / %2").arg(artist, album);
+        text = QStringLiteral("%1 / %2").arg(artist, album);
     }
 
     QRect res;
@@ -723,14 +723,14 @@ bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, co
             html += tr("<b>The conversion is not possible.</b>");
             html += "<ul>";
             for (const QString &s : errs) {
-                html += QString("<li><nobr>%1</nobr></li>").arg(s);
+                html += QStringLiteral("<li><nobr>%1</nobr></li>").arg(s);
             }
             html += "</ul>";
         }
         else {
             html += "<ul>";
             for (const QString &s : warns) {
-                html += QString("<li><nobr>%1</nobr></li>").arg(s);
+                html += QStringLiteral("<li><nobr>%1</nobr></li>").arg(s);
             }
             html += "</ul>";
         }

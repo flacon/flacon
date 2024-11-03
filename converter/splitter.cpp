@@ -159,7 +159,7 @@ InputAudioFile Splitter::Job::getInputAudioFile(const QByteArray &fileTag) const
         }
     }
 
-    throw FlaconError(QString("Incorrect file tag %1").arg(fileTag.data()));
+    throw FlaconError(QStringLiteral("Incorrect file tag %1").arg(fileTag.data()));
 }
 
 /************************************************

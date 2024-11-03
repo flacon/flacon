@@ -155,7 +155,7 @@ void InterntService::stop()
 QNetworkReply *InterntService::get(const QNetworkRequest &request)
 {
     QNetworkRequest req = request;
-    req.setRawHeader("User-Agent", QString("Flacon/%1 (https://github.com/flacon/flacon)").arg(FLACON_VERSION).toUtf8());
+    req.setRawHeader("User-Agent", QStringLiteral("Flacon/%1 (https://github.com/flacon/flacon)").arg(FLACON_VERSION).toUtf8());
     qCDebug(LOG).noquote() << req.url().toEncoded();
 
     QNetworkReply *reply = networkAccessManager()->get(req);

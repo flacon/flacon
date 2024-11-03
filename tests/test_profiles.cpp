@@ -82,7 +82,7 @@ void TestFlacon::testLoadProfiles()
         if (result.value(key).toString() == exp)
             continue;
 
-        QString msg = QString("Compared values are not the same\n\tKey\t%1\n\tActual\t%2\n\tExpected\t%3")
+        QString msg = QStringLiteral("Compared values are not the same\n\tKey\t%1\n\tActual\t%2\n\tExpected\t%3")
                               .arg(key)
                               .arg(result.value(key).toString())
                               .arg(expected.value(key).toString());

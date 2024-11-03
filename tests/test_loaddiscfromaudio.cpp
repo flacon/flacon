@@ -124,7 +124,7 @@ void TestFlacon::testLoadDiscFromAudioErrors()
 
         QVERIFY(audio.isValid() == false);
         if (!re.match(audio.errorString()).hasMatch()) {
-            QFAIL(QString("Error doesen't match to expected\n\tError:    %1\n\tExpected: %2")
+            QFAIL(QStringLiteral("Error doesen't match to expected\n\tError:    %1\n\tExpected: %2")
                           .arg(audio.errorString(), expected)
                           .toLocal8Bit());
         }

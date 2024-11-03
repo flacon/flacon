@@ -167,7 +167,7 @@ QString CueTime::toString(bool cdQuality) const
         int sec = (mCdValue - min * 60 * 75) / 75;
         int frm = mCdValue - (min * 60 + sec) * 75;
 
-        return QString("%1:%2:%3")
+        return QStringLiteral("%1:%2:%3")
                 .arg(min, 2, 10, QChar('0'))
                 .arg(sec, 2, 10, QChar('0'))
                 .arg(frm, 2, 10, QChar('0'));
@@ -177,7 +177,7 @@ QString CueTime::toString(bool cdQuality) const
         int sec  = (mHiValue - min * 60 * 1000) / 1000;
         int msec = mHiValue - (min * 60 + sec) * 1000;
 
-        return QString("%1:%2.%3")
+        return QStringLiteral("%1:%2.%3")
                 .arg(min, 2, 10, QChar('0'))
                 .arg(sec, 2, 10, QChar('0'))
                 .arg(msec, 3, 10, QChar('0'));

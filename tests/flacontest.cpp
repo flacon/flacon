@@ -140,7 +140,7 @@ void TestFlacon::checkFileExists(const QString &fileName)
 {
     QFileInfo fi(fileName);
     if (!fi.exists())
-        QFAIL(QString("File not exists:\n\t%1").arg(fi.absoluteFilePath()).toLocal8Bit());
+        QFAIL(QStringLiteral("File not exists:\n\t%1").arg(fi.absoluteFilePath()).toLocal8Bit());
 }
 
 /************************************************
@@ -150,7 +150,7 @@ void TestFlacon::checkFileNotExists(const QString &fileName)
 {
     QFileInfo fi(fileName);
     if (fi.exists())
-        QFAIL(QString("File exists:\n\t%1").arg(fi.absoluteFilePath()).toLocal8Bit());
+        QFAIL(QStringLiteral("File exists:\n\t%1").arg(fi.absoluteFilePath()).toLocal8Bit());
 }
 
 /************************************************
@@ -301,8 +301,8 @@ void TestFlacon::testSafeString_data()
 
     for (char c = 1; c <= 31; ++c) {
         if (c != '\t' && c != '\n')
-            QTest::newRow(QString("01 - \\%1").arg(int(c), 2, 16, QChar('0')).toLocal8Bit())
-                    << QString(c)
+            QTest::newRow(QStringLiteral("01 - \\%1").arg(int(c), 2, 16, QChar('0')).toLocal8Bit())
+                    << QStringLiteral(c)
                     << "";
     }
 
@@ -329,8 +329,8 @@ void TestFlacon::testSafeString_data()
 
     for (char c = 1; c <= 31; ++c) {
         if (c != '\t' && c != '\n')
-            QTest::newRow(QString("02 - A\\%1B").arg(int(c), 2, 16, QChar('0')).toLocal8Bit())
-                    << "A" + QString(c) + "B"
+            QTest::newRow(QStringLiteral("02 - A\\%1B").arg(int(c), 2, 16, QChar('0')).toLocal8Bit())
+                    << "A" + QStringLiteral(c) + "B"
                     << "AB";
     }
 
@@ -386,7 +386,7 @@ QStringList TestFlacon::readFile(const QString &fileName)
     file.open(QIODevice::ReadOnly);
 
     if (!file.isOpen()) {
-        FAIL(QString("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
+        FAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
         return res;
     }
 
@@ -409,7 +409,7 @@ void TestFlacon::writeFile(const QStringList &strings, const QString &fileName)
     file.open(QIODevice::WriteOnly);
 
     if (!file.isOpen())
-        QFAIL(QString("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
+        QFAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
 
     foreach (const QString &string, strings) {
         file.write(string.toLocal8Bit());
@@ -429,7 +429,7 @@ QString TestFlacon::stigListToString(const QStringList &strings, const QString d
  ************************************************/
 QStringList &operator<<(QStringList &list, int value)
 {
-    return list << QString("%1").arg(value);
+    return list << QStringLiteral("%1").arg(value);
 }
 
 /************************************************
@@ -455,7 +455,7 @@ void TestFlacon::testTrackResultFilePath()
 
     QString result = profile.resultFilePath(disc->tracks().first());
     if (QFileInfo(result).absoluteFilePath() != QFileInfo(expected).absoluteFilePath()) {
-        QString msg = QString("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   CueFile: %4").arg(QFileInfo(result).absoluteFilePath(), result, expected, cueFile);
+        QString msg = QStringLiteral("Compared values are not the same\n   Actual:   %1 [%2]\n   Expected: %3\n   CueFile: %4").arg(QFileInfo(result).absoluteFilePath(), result, expected, cueFile);
         QFAIL(msg.toLocal8Bit());
     }
     // QCOMPARE(result, expected);
@@ -536,7 +536,7 @@ void TestFlacon::testTrackSetCodepages()
         QFile(testCueFile).remove();
 
     if (!QFile::copy(testDataDir + cueFile, testCueFile))
-        QFAIL(QString("Can't copy file %1 to %2").arg(testDataDir + cueFile, testCueFile).toLocal8Bit().data());
+        QFAIL(QStringLiteral("Can't copy file %1 to %2").arg(testDataDir + cueFile, testCueFile).toLocal8Bit().data());
 
     Disc *disc = loadFromCue(testCueFile);
 
@@ -577,7 +577,7 @@ void TestFlacon::testTrackSetCodepages()
 
     if (result.join("") != expected.join("")) {
         QString msg = "The result is different from the expected. Use the following command for details:";
-        QString cmd = QString("diff %1 %2").arg(expectedFile, resultFile);
+        QString cmd = QStringLiteral("diff %1 %2").arg(expectedFile, resultFile);
         QFAIL((msg + "\n    " + cmd).toLocal8Bit());
     }
 

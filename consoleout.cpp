@@ -95,11 +95,11 @@ void ConsoleOut::printStatistic()
     QString str;
 
     if (h)
-        str = QString("Encoding time %4h %3m %2s [%1 sec]").arg(duration).arg(s).arg(m).arg(h);
+        str = QStringLiteral("Encoding time %4h %3m %2s [%1 sec]").arg(duration).arg(s).arg(m).arg(h);
     else if (m)
-        str = QString("Encoding time %3m %2s [%1 sec]").arg(duration).arg(s).arg(m);
+        str = QStringLiteral("Encoding time %3m %2s [%1 sec]").arg(duration).arg(s).arg(m);
     else
-        str = QString("Encoding time %1 sec").arg(duration);
+        str = QStringLiteral("Encoding time %1 sec").arg(duration);
 
     QTextStream(stdout) << str << "\n";
 }

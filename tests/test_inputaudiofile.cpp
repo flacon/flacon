@@ -46,7 +46,7 @@ void TestFlacon::testInputAudioFile()
     try {
         InputAudioFile ia(fileName);
         if (!ia.isValid()) {
-            FAIL(QString("Can't open '%1': %2").arg(fileName, ia.errorString()));
+            FAIL(QStringLiteral("Can't open '%1': %2").arg(fileName, ia.errorString()));
             return;
         }
 

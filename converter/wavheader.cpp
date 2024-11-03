@@ -62,11 +62,11 @@ static inline void mustRead(QIODevice *device, char *data, qint64 size, int msec
 
         qint64 n = device->read(d, left);
         if (n < 0) {
-            throw FlaconError(QString("Error reading data: %1").arg(device->errorString()));
+            throw FlaconError(QStringLiteral("Error reading data: %1").arg(device->errorString()));
         }
         else if (n == 0) {
             if (!device->isSequential()) {
-                throw FlaconError(QString("Unexpected end of file on %1").arg(device->pos()));
+                throw FlaconError(QStringLiteral("Unexpected end of file on %1").arg(device->pos()));
             }
         }
 
@@ -328,7 +328,7 @@ void WavHeader::readWavHeader(QIODevice *stream)
         }
 
         if (chunkSize < 1) {
-            throw FlaconError(QString("[WAV] incorrect chunk size %1 at %2").arg(chunkSize).arg(pos - 4));
+            throw FlaconError(QStringLiteral("[WAV] incorrect chunk size %1 at %2").arg(chunkSize).arg(pos - 4));
         }
 
         if (chunkId == WAV_FMT) {
@@ -382,7 +382,7 @@ void WavHeader::readWave64Header(QIODevice *stream)
         }
 
         if (chunkSize < 1) {
-            throw FlaconError(QString("[WAV] incorrect chunk size %1 at %2").arg(chunkSize).arg(pos - 4));
+            throw FlaconError(QStringLiteral("[WAV] incorrect chunk size %1 at %2").arg(chunkSize).arg(pos - 4));
         }
 
         if (chunkId.startsWidth(WAV_FMT)) {
@@ -476,7 +476,7 @@ void checkFormat(quint16 format)
             return;
     }
 
-    throw FlaconError(QString("unknown format (%1) in WAVE header").arg(format, 0, 16));
+    throw FlaconError(QStringLiteral("unknown format (%1) in WAVE header").arg(format, 0, 16));
 }
 
 /************************************************

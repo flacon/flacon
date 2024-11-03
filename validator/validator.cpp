@@ -410,7 +410,7 @@ bool Validator::checkSameAudioForFileTags(const Disk *disk)
 QString Validator::diskString(int diskNum) const
 {
     const Disk *disk = mDisks.at(diskNum);
-    return QString("%1 \"%2 - %3\"").arg(diskNum + 1).arg(disk->artistTag(), disk->albumTag());
+    return QStringLiteral("%1 \"%2 - %3\"").arg(diskNum + 1).arg(disk->artistTag(), disk->albumTag());
 }
 
 /**************************************

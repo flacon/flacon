@@ -91,10 +91,10 @@ void MusicBrainz::start()
     mRequestAlbum  = mDisk.albumTag();
 
     QStringList query;
-    query << QString("artist:\"%1\"").arg(mRequestArtist.toHtmlEscaped());
-    query << QString("release:\"%1\"").arg(mRequestAlbum.toHtmlEscaped());
+    query << QStringLiteral("artist:\"%1\"").arg(mRequestArtist.toHtmlEscaped());
+    query << QStringLiteral("release:\"%1\"").arg(mRequestAlbum.toHtmlEscaped());
 
-    QUrl url = QString(SEARCH_URL).arg(query.join("%20AND%20"));
+    QUrl url = QStringLiteral(SEARCH_URL).arg(query.join("%20AND%20"));
 
     QNetworkRequest request(url);
 
@@ -290,12 +290,12 @@ void MusicBrainz::processResults()
     for (InternetTags &t : mResult) {
         n++;
         TagsId tagsId;
-        tagsId.uri = QString("https://musicbrainz.org/artis=%1&album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n);
+        tagsId.uri = QStringLiteral("https://musicbrainz.org/artis=%1&album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n);
         if (mResult.size() == 1) {
-            tagsId.title = QString("%1 / %2   [ MusicBrainz ]").arg(mRequestArtist, mRequestAlbum);
+            tagsId.title = QStringLiteral("%1 / %2   [ MusicBrainz ]").arg(mRequestArtist, mRequestAlbum);
         }
         else {
-            tagsId.title = QString("%1 / %2   [ MusicBrainz %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n);
+            tagsId.title = QStringLiteral("%1 / %2   [ MusicBrainz %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n);
         }
 
         t.setTagsId(tagsId);

@@ -81,7 +81,7 @@ const QStringList InputFormat::allFileExts()
 {
     QStringList res;
     foreach (const InputFormat *format, allFormats()) {
-        res << QString("*.%1").arg(format->ext());
+        res << QStringLiteral("*.%1").arg(format->ext());
     }
     return res;
 }

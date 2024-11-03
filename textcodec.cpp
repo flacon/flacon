@@ -169,13 +169,13 @@ QString TextCodec::decode(const QByteArray &data) const noexcept(false)
 
     iconv_t cd = iconv_open("UTF-16", mName.toLatin1().constData());
     if (cd == (iconv_t)-1) {
-        throw FlaconError(QString("Unable to open iconv_open for %1: %2").arg(mName, strerror(errno)));
+        throw FlaconError(QStringLiteral("Unable to open iconv_open for %1: %2").arg(mName, strerror(errno)));
     }
 
     // int discardIlegalSequence = 1;
     // if (iconvctl(cd, ICONV_SET_DISCARD_ILSEQ, &discardIlegalSequence) == -1) {
     //     iconv_close(cd);
-    //     throw FlaconError(QString("Unable to set ICONV_SET_DISCARD_ILSEQ flag %1: %2").arg(mName, strerror(errno)));
+    //     throw FlaconError(QStringLiteral("Unable to set ICONV_SET_DISCARD_ILSEQ flag %1: %2").arg(mName, strerror(errno)));
     // }
 
     QByteArray out;
@@ -190,7 +190,7 @@ QString TextCodec::decode(const QByteArray &data) const noexcept(false)
     // size_t ok = iconv(cd, &in, &inBytesLeft, &outBuffer, &outBytesLeft);
     //  if (ok == (size_t)-1) {
     //    iconv_close(cd);
-    //    throw FlaconError(QString("Unable to decode for %1: %2 at %3").arg(mName, strerror(errno)).arg(int(in - data.data())));
+    //    throw FlaconError(QStringLiteral("Unable to decode for %1: %2 at %3").arg(mName, strerror(errno)).arg(int(in - data.data())));
     //  }
 
     iconv(cd, &in, &inBytesLeft, &outBuffer, &outBytesLeft);

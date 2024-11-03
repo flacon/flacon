@@ -186,7 +186,7 @@ void ConfigPage_Ogg::oggQualitySpinChanged(double value)
     double y1      = kbps[x1 + 1];
     double y2      = kbps[x1 + 2];
     int    bitrate = round((y2 - y1) * (value - x1) + y1);
-    oggQualityLabel->setText(QString("(~%1 kbps)").arg(bitrate));
+    oggQualityLabel->setText(QStringLiteral("(~%1 kbps)").arg(bitrate));
 }
 
 /************************************************

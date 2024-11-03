@@ -42,7 +42,7 @@ char *toString(const DiskState &state)
     }
     // clang-format on
 
-    return qstrdup(QString("Unknown %1").arg(int(state)).toLocal8Bit().constData());
+    return qstrdup(QStringLiteral("Unknown %1").arg(int(state)).toLocal8Bit().constData());
 }
 
 /************************************************

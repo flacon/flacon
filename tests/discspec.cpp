@@ -94,13 +94,13 @@ void DiscSpec::verify(const Disc &disk) const
 {
     QFile file(mFileName);
     if (!file.open(QFile::ReadOnly)) {
-        QFAIL(QString("Unable to read '%1': %2").arg(mFileName, file.errorString()).toLocal8Bit());
+        QFAIL(QStringLiteral("Unable to read '%1': %2").arg(mFileName, file.errorString()).toLocal8Bit());
     }
 
     QJsonParseError err;
     QJsonDocument   doc = QJsonDocument::fromJson(file.readAll(), &err);
     if (err.error != QJsonParseError::NoError) {
-        QFAIL(QString("Unable to read '%1': %2").arg(mFileName, err.errorString()).toLocal8Bit());
+        QFAIL(QStringLiteral("Unable to read '%1': %2").arg(mFileName, err.errorString()).toLocal8Bit());
     }
 
     verifyDiskTags(disk, doc.object());

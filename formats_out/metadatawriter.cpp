@@ -47,7 +47,7 @@ MetadataWriter::MetadataWriter(const QString &)
  ************************************************/
 QString MetadataWriter::gainToString(float &gain) const
 {
-    return QString("%1 dB").arg(gain, 0, 'f', 2);
+    return QStringLiteral("%1 dB").arg(gain, 0, 'f', 2);
 }
 
 /************************************************
@@ -55,7 +55,7 @@ QString MetadataWriter::gainToString(float &gain) const
  ************************************************/
 QString MetadataWriter::peakToString(float &peak) const
 {
-    return QString("%1").arg(peak, 0, 'f', 6);
+    return QStringLiteral("%1").arg(peak, 0, 'f', 6);
 }
 
 /************************************************
@@ -197,8 +197,8 @@ void MetadataWriter::setApeTags(TagLib::APE::Tag *tags, const Track &track) cons
     writeStrTag("COMMENT", this->commentTag(track));
     writeStrTag("DISCID", disk->discIdTag());
 
-    writeStrTag("TRACK", QString("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
-    writeStrTag("PART", QString("%1").arg(disk->discNumTag()));
+    writeStrTag("TRACK", QStringLiteral("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
+    writeStrTag("PART", QStringLiteral("%1").arg(disk->discNumTag()));
 }
 
 /************************************************
@@ -209,7 +209,7 @@ void MetadataWriter::setApeCoverImage(TagLib::APE::Tag *tags, const CoverImage &
     TagLib::ByteVector imgData(image.data().data(), image.data().size());
 
     TagLib::ByteVector data;
-    data.append(QString("Cover Art (Front).%1").arg(image.fileExt()).toUtf8().data());
+    data.append(QStringLiteral("Cover Art (Front).%1").arg(image.fileExt()).toUtf8().data());
     data.append(TagLib::ByteVector(1, 0));
     data.append(imgData);
     tags->setItem("Cover Art (Front)", TagLib::APE::Item("Cover Art (Front)", data, true));
@@ -293,8 +293,8 @@ void Mp4MetaDataWriter::setTags(const Track &track)
     writeStrTag("TITLE", track.titleTag());
     writeStrTag("ALBUMARTIST", disk->performerTag());
     writeStrTag("COMMENT", this->commentTag(track));
-    writeStrTag("TRACKNUMBER", QString("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
-    writeStrTag("DISCNUMBER", QString("%1/%2").arg(disk->discNumTag()).arg(disk->discCountTag()));
+    writeStrTag("TRACKNUMBER", QStringLiteral("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
+    writeStrTag("DISCNUMBER", QStringLiteral("%1/%2").arg(disk->discNumTag()).arg(disk->discCountTag()));
 
     mFile.setProperties(props);
 }

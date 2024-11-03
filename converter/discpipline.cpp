@@ -155,7 +155,7 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, const QVector<con
 
     createDir(dir);
 
-    mTmpDir = new QTemporaryDir(QString("%1/tmp").arg(dir));
+    mTmpDir = new QTemporaryDir(QStringLiteral("%1/tmp").arg(dir));
     mTmpDir->setAutoRemove(true);
 
     for (const ConvTrack &track : std::as_const(mTracks)) {
@@ -240,7 +240,7 @@ void DiscPipeline::startSplitter(const SplitterRequest &request)
     Splitter *splitter = new Splitter(mDisc, request.tracks, request.outDir);
     splitter->setPregapType(request.pregapType);
     QPointer<WorkerThread> thread = new WorkerThread(splitter, this);
-    thread->setObjectName(QString("%1 splitter").arg(mDisc->cueFilePath()));
+    thread->setObjectName(QStringLiteral("%1 splitter").arg(mDisc->cueFilePath()));
 
     connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(splitter, &Splitter::trackProgress, this, &DiscPipeline::trackProgress);
@@ -296,7 +296,7 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     encoder->setCoverImage(mCoverImage);
 
     QPointer<WorkerThread> thread = new WorkerThread(encoder, this);
-    thread->setObjectName(QString("%1 encoder track %2").arg(track.disc()->cueFilePath()).arg(track.index()));
+    thread->setObjectName(QStringLiteral("%1 encoder track %2").arg(track.disc()->cueFilePath()).arg(track.index()));
 
     connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(encoder, &Encoder::trackProgress, this, &DiscPipeline::trackProgress);
@@ -531,7 +531,7 @@ void DiscPipeline::copyCoverImage() const
     }
 
     QString dir  = QFileInfo(mProfile.resultFilePath(&mTracks.first())).dir().absolutePath();
-    QString dest = QDir(dir).absoluteFilePath(QString("cover.%1").arg(QFileInfo(file).suffix()));
+    QString dest = QDir(dir).absoluteFilePath(QStringLiteral("cover.%1").arg(QFileInfo(file).suffix()));
 
     CoverImage image = CoverImage(file, size);
     image.saveAs(dest);
@@ -551,7 +551,7 @@ void DiscPipeline::createEmbedImage()
 
     mCoverImage = CoverImage(file, size);
 
-    QString tmpCoverFile = QDir(mTmpDir->path()).absoluteFilePath(QString("cover.%1").arg(QFileInfo(file).suffix()));
+    QString tmpCoverFile = QDir(mTmpDir->path()).absoluteFilePath(QStringLiteral("cover.%1").arg(QFileInfo(file).suffix()));
     mCoverImage.saveTmpFile(tmpCoverFile);
 }
 

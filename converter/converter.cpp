@@ -221,10 +221,10 @@ bool Converter::validate(const Jobs &jobs, const Profile &profile)
 
     QString s;
     foreach (QString e, errors) {
-        s += QString("<li style='margin-top: 4px;'> %1</li>").arg(e);
+        s += QStringLiteral("<li style='margin-top: 4px;'> %1</li>").arg(e);
     }
 
-    Messages::error(QString("<html>%1<ul>%2</ul></html>")
+    Messages::error(QStringLiteral("<html>%1<ul>%2</ul></html>")
                             .arg(tr("Conversion is not possible:"))
                             .arg(s));
 

@@ -46,7 +46,7 @@ static QByteArray readDataFile(const QString &fileName)
     QFile f(fileName);
 
     if (!f.open(QFile::ReadOnly)) {
-        FAIL(QString("Can't read file %1:\n\t%2").arg(fileName, f.errorString()).toLocal8Bit());
+        FAIL(QStringLiteral("Can't read file %1:\n\t%2").arg(fileName, f.errorString()).toLocal8Bit());
     }
 
     return f.readAll();

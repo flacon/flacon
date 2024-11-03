@@ -78,13 +78,13 @@ void Discogs::start()
     mRequestAlbum  = mDisk.albumTag();
 
     QStringList query;
-    query << QString("artist=\"%1\"").arg(mRequestArtist.toHtmlEscaped());
-    query << QString("release_title=\"%1\"").arg(mRequestAlbum.toHtmlEscaped());
+    query << QStringLiteral("artist=\"%1\"").arg(mRequestArtist.toHtmlEscaped());
+    query << QStringLiteral("release_title=\"%1\"").arg(mRequestAlbum.toHtmlEscaped());
 
     QUrl url = QString(SEARCH_URL).arg(query.join("&"));
 
     QNetworkRequest request(url);
-    request.setRawHeader("Authorization", QString("Discogs token=%1").arg(TOKEN).toUtf8().data());
+    request.setRawHeader("Authorization", QStringLiteral("Discogs token=%1").arg(TOKEN).toUtf8().data());
 
     QNetworkReply *reply = get(request);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() { searchReady(reply); });
@@ -119,7 +119,7 @@ void Discogs::searchReady(QNetworkReply *reply)
             continue;
         }
 
-        QNetworkReply *reply = get(QNetworkRequest(QString(LOOKUP_URL).arg(id)));
+        QNetworkReply *reply = get(QNetworkRequest(QStringLiteral(LOOKUP_URL).arg(id)));
         connect(reply, &QNetworkReply::finished, this, [this, reply]() { masterReady(reply); });
     }
 
@@ -194,12 +194,12 @@ void Discogs::processResults()
         n++;
         TagsId tagsId;
 
-        tagsId.uri = QString("https://discogs.com/Artist=%1&Album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n);
+        tagsId.uri = QStringLiteral("https://discogs.com/Artist=%1&Album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n);
         if (mResult.size() == 1) {
-            tagsId.title = QString("%1 / %2   [ Discogs ]").arg(mRequestArtist, mRequestAlbum);
+            tagsId.title = QStringLiteral("%1 / %2   [ Discogs ]").arg(mRequestArtist, mRequestAlbum);
         }
         else {
-            tagsId.title = QString("%1 / %2   [ Discogs %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n);
+            tagsId.title = QStringLiteral("%1 / %2   [ Discogs %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n);
         }
 
         t.setTagsId(tagsId);
