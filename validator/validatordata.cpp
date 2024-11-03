@@ -1,0 +1,60 @@
+#include "validatordata.h"
+#include "profiles.h"
+
+static uint64_t genId()
+{
+    static uint64_t id = 0;
+    return ++id;
+}
+
+ValidatorTrack::ValidatorTrack(const Track *track, const Profile *profile)
+{
+    id             = genId();
+    resultFilePath = profile->resultFilePath(track);
+}
+
+ValidatorDisk::ValidatorDisk(const Disc *disk, const Profile *profile)
+{
+    id        = genId();
+    albumTag  = disk->albumTag();
+    artistTag = disk->artistTag();
+
+    for (const Track *t : disk->tracks()) {
+        ValidatorTrack track = ValidatorTrack(t, profile);
+        track.diskId         = id;
+        tracks << track;
+    }
+}
+
+void ValidatorData::clear()
+{
+    disks.clear();
+}
+
+void ValidatorData::fill(QList<Disc *> disks, const Profile *profile)
+{
+    for (const ::Disc *disk : disks) {
+        this->disks << ValidatorDisk(disk, profile);
+    }
+
+    fillResultFilePathIndex();
+}
+
+void ValidatorData::fillResultFilePathIndex()
+{
+    QMap<QString, QList<ValidatorTrack *>> paths;
+
+    for (ValidatorDisk &d : this->disks) {
+        for (ValidatorTrack &t : d.tracks) {
+            paths[t.resultFilePath].append(&t);
+        }
+    }
+
+    int n = -1;
+    for (auto it = paths.keyValueBegin(); it != paths.keyValueEnd(); ++it) {
+        n++;
+        for (ValidatorTrack *t : it->second) {
+            t->resultFilePathIndex = n;
+        }
+    }
+}

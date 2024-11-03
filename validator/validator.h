@@ -31,6 +31,7 @@
 #include <QMap>
 #include <QTimer>
 #include <QFileInfo>
+#include "validatordata.h"
 
 class Validator : public QObject
 {
@@ -77,19 +78,22 @@ private:
     QStringList                      mGlobalErrors;
     QHash<const Disk *, QStringList> mDisksErrors;
     QHash<const Disk *, QStringList> mDisksWarnings;
+    ValidatorData                    mData;
 
     bool mResultFilesOverwrite = false;
 
     bool validateProfile();
 
-    void revalidateDisk(const Disk *disk, QStringList &errors, QStringList &warnings);
+    void revalidateDisk(int diskNum, QStringList &errors, QStringList &warnings);
     bool validateCue(const Disk *disk, QStringList &errors, QStringList &warnings);
     bool validateAudioFiles(const Disk *disk, QStringList &errors, QStringList &warnings);
-    bool validateResultFiles(const Disk *disk, QStringList &errors, QStringList &warnings);
+    bool validateResultFilesOverwrite(int diskNum, QStringList &errors, QStringList &warnings);
+    bool validateResultFilesOrder(int diskNum, QStringList &errors, QStringList &warnings);
     bool validateDuplicateSourceFiles(const Disk *disk, QStringList &errors, QStringList &warnings) const;
     bool validateDiskWarnings(const Disk *disk, QStringList &warnings);
 
-    bool checkSameAudioForFileTags(const Disk *disk);
+    bool    checkSameAudioForFileTags(const Disk *disk);
+    QString diskString(int diskNum) const;
 };
 
 struct ValidatorResultFile

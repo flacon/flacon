@@ -27,7 +27,6 @@
 #include <QDebug>
 #include <QDateTime>
 #include "extprogram.h"
-#include "validatorcheckresultorder.h"
 #include <QDir>
 
 static constexpr int VALIDATE_DELAY_MS = 50;
@@ -111,16 +110,18 @@ void Validator::doRevalidate()
     mDisksErrors.clear();
     mDisksWarnings.clear();
 
+    mData.clear();
+    mData.fill(mDisks, mProfile);
+
     validateProfile();
 
-    for (Disk *disk : std::as_const(mDisks)) {
+    for (int i = 0; i < mDisks.count(); ++i) {
         QStringList errors = mGlobalErrors;
         QStringList warnings;
 
-        revalidateDisk(disk, errors, warnings);
-
-        mDisksErrors[disk]   = errors;
-        mDisksWarnings[disk] = warnings;
+        revalidateDisk(i, errors, warnings);
+        mDisksErrors[mDisks.at(i)]   = errors;
+        mDisksWarnings[mDisks.at(i)] = warnings;
     }
 
     if (mResultFilesOverwrite) {
@@ -226,8 +227,10 @@ bool Validator::validateProfile()
 /************************************************
  *
  ************************************************/
-void Validator::revalidateDisk(const Disk *disk, QStringList &errors, QStringList &warnings)
+void Validator::revalidateDisk(int diskNum, QStringList &errors, QStringList &warnings)
 {
+    Disk *disk = mDisks.at(diskNum);
+
     if (!validateCue(disk, errors, warnings)) {
         return;
     }
@@ -235,12 +238,19 @@ void Validator::revalidateDisk(const Disk *disk, QStringList &errors, QStringLis
 
     bool ok = true;
 
-    ok = validateResultFiles(disk, errors, warnings) && ok;
+    ok = validateResultFilesOverwrite(diskNum, errors, warnings) && ok;
+    ok = validateResultFilesOrder(diskNum, errors, warnings) && ok;
     ok = validateDuplicateSourceFiles(disk, errors, warnings) && ok;
 
     mResultFilesOverwrite = mResultFilesOverwrite || !ok;
 
     validateDiskWarnings(disk, warnings);
+
+    std::sort(errors.begin(), errors.end());
+    errors.removeDuplicates();
+
+    std::sort(warnings.begin(), warnings.end());
+    warnings.removeDuplicates();
 }
 
 /************************************************
@@ -327,6 +337,48 @@ bool Validator::validateAudioFiles(const Disk *disk, QStringList &errors, QStrin
     return res;
 }
 
+/**************************************
+ *
+ **************************************/
+bool Validator::validateResultFilesOverwrite(int diskNum, QStringList &errors, QStringList &warnings)
+{
+    Q_UNUSED(warnings)
+
+    const ValidatorDisk disk = mData.disks.at(diskNum);
+
+    for (const ValidatorTrack &track : disk.tracks) {
+        int n = 0;
+        for (const ValidatorDisk &d : mData.disks) {
+            n++;
+
+            for (const ValidatorTrack &t : d.tracks) {
+
+                if (t == track) {
+                    continue;
+                }
+
+                if (t.resultFilePath == track.resultFilePath) {
+                    if (d == disk) {
+                        errors << tr("Disk %1 \"%2 - %3\" will overwrite its own files.",
+                                     "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
+                                          .arg(n)
+                                          .arg(d.artistTag, d.albumTag);
+                    }
+                    else {
+                        errors << tr("Disk %1 \"%2 - %3\" will overwrite the files of this disk.",
+                                     "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
+                                          .arg(n)
+                                          .arg(d.artistTag, d.albumTag);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    return errors.isEmpty();
+}
+
 /************************************************
  *
  ************************************************/
@@ -352,59 +404,64 @@ bool Validator::checkSameAudioForFileTags(const Disk *disk)
     return true;
 }
 
-/************************************************
+/**************************************
  *
- ************************************************/
-bool Validator::validateResultFiles(const Disk *disk, QStringList &inErrors, QStringList &warnings)
+ **************************************/
+QString Validator::diskString(int diskNum) const
 {
-    Q_UNUSED(warnings)
-    QStringList errors;
+    const Disk *disk = mDisks.at(diskNum);
+    return QString("%1 \"%2 - %3\"").arg(diskNum + 1).arg(disk->artistTag(), disk->albumTag());
+}
 
-    for (const Track *track : disk->tracks()) {
-        int n = 0;
-        for (const Disk *d : mDisks) {
-            n++;
+/**************************************
+ *
+ **************************************/
+bool Validator::validateResultFilesOrder(int diskNum, QStringList &errors, QStringList &warnings)
+{
+    const ValidatorDisk disk = mData.disks.at(diskNum);
 
-            for (const Track *t : d->tracks()) {
+    int minIndex = 99999;
+    int maxIndex = -1;
 
-                if (t == track) {
-                    continue;
-                }
+    for (const ValidatorTrack &track : disk.tracks) {
+        minIndex = std::min(minIndex, track.resultFilePathIndex);
+        maxIndex = std::max(minIndex, track.resultFilePathIndex);
+    }
 
-                if (mProfile->resultFilePath(t) == mProfile->resultFilePath(track)) {
-                    if (d == disk) {
-                        errors << tr("Disk %1 \"%2 - %3\" will overwrite its own files.",
-                                     "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
-                                          .arg(n)
-                                          .arg(d->artistTag(), d->albumTag());
-                    }
-                    else {
-                        errors << tr("Disk %1 \"%2 - %3\" will overwrite the files of this disk.",
-                                     "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
-                                          .arg(n)
-                                          .arg(d->artistTag(), d->albumTag());
-                    }
-                    break;
-                }
+    if (maxIndex - minIndex <= disk.tracks.count() - 1) {
+        return true;
+    }
+
+    // Search another disk;
+    QSet<int> missing;
+    for (int i = minIndex; i <= maxIndex; ++i) {
+        missing << i;
+    }
+
+    for (const ValidatorTrack &track : disk.tracks) {
+        missing.remove(track.resultFilePathIndex);
+    }
+
+    int n = -1;
+    for (const ValidatorDisk &d : mData.disks) {
+        n++;
+
+        if (d == disk) {
+            continue;
+        }
+
+        for (const ValidatorTrack &t : d.tracks) {
+            if (missing.contains(t.resultFilePathIndex)) {
+                errors << tr("The output files of the disc are mixed with the files of disc %1.\n"
+                             "You could change the \"Start num\" for one of them.",
+                             "Error message, %1 is the disk description, artist and album for the disc, respectively")
+                                  .arg(diskString(n));
+                break;
             }
         }
     }
 
-    QList<const Disk *> disks;
-    for (auto d : mDisks) {
-        disks << d;
-    }
-
-    ValidatorCheckResultOrder resultOrder(disks, mProfile);
-    if (!resultOrder.validate(disk)) {
-        errors << resultOrder.errors();
-        warnings << resultOrder.warnings();
-    }
-
-    std::sort(errors.begin(), errors.end());
-    errors.removeDuplicates();
-    inErrors << errors;
-    return errors.isEmpty();
+    return false;
 }
 
 /************************************************
