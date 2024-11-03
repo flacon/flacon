@@ -76,9 +76,9 @@ void ValidatorData::fillResultFilePathIndex()
     }
 
     int n = -1;
-    for (auto it = paths.keyValueBegin(); it != paths.keyValueEnd(); ++it) {
+    for (auto it = paths.cbegin(), end = paths.cend(); it != end; ++it) {
         n++;
-        for (ValidatorTrack *t : it->second) {
+        for (ValidatorTrack *t : it.value()) {
             t->resultFilePathIndex = n;
         }
     }

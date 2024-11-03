@@ -102,28 +102,4 @@ struct ValidatorResultFile
     const Track *track;
 };
 
-class ValidatorResultFiles : public QList<ValidatorResultFile>
-{
-public:
-    using QList::QList;
-    ValidatorResultFiles(const QList<Disc *> &disks, const Profile *profile);
-    ValidatorResultFiles(const QList<const Disc *> &disks, const Profile *profile);
-
-    QMap<QString, ValidatorResultFiles> splitByDirectory() const;
-
-    void sortByPath();
-
-    using QList::indexOf;
-    using QList::lastIndexOf;
-
-    using UnaryPred = std::function<bool(const ValidatorResultFile &)>;
-
-    int indexOf(const UnaryPred &where) const;
-    int lastIndexOf(const UnaryPred &where) const;
-
-    ValidatorResultFiles::const_iterator findFirst(const UnaryPred &where) const;
-    ValidatorResultFiles::const_iterator findLast(const UnaryPred &where) const;
-    // ValidatorResultFiles::const_iterator searchFirst(std::function<bool(const ValidatorResultFile &)> &where);
-};
-
 #endif // VALIDATOR_H
