@@ -58,7 +58,7 @@ void TestFlacon::testDecoder()
         decoder.open(inputFile);
     }
     catch (FlaconError &err) {
-        QFAIL(QString("Can't open input file '%1': %2").arg(inputFile, err.what()).toLocal8Bit());
+        QFAIL(QStringLiteral("Can't open input file '%1': %2").arg(inputFile, err.what()).toLocal8Bit());
     }
 
     if (!decoder.audioFormat())
@@ -67,13 +67,13 @@ void TestFlacon::testDecoder()
     for (int i = 0; i < tracks.count(); ++i) {
         TestTrack track = tracks.at(i);
 
-        QString flaconFile = QString("%1/%2-flacon.wav").arg(dir()).arg(i + 1, 3, 10, QChar('0'));
+        QString flaconFile = QStringLiteral("%1/%2-flacon.wav").arg(dir()).arg(i + 1, 3, 10, QChar('0'));
 
         try {
             decoder.extract(CueTime(track.start), CueTime(track.end), flaconFile);
         }
         catch (FlaconError &err) {
-            QFAIL(QString("Can't extract file '%1' [%2-%3]: %4")
+            QFAIL(QStringLiteral("Can't extract file '%1' [%2-%3]: %4")
                           .arg(inputFile)
                           .arg(track.start, track.end)
                           .arg(err.what())
@@ -85,7 +85,7 @@ void TestFlacon::testDecoder()
     // Checks ___________________________________
     for (int i = 0; i < tracks.count(); ++i) {
         compareAudioHash(
-                QString("%1/%2-flacon.wav").arg(dir()).arg(i + 1, 3, 10, QChar('0')),
+                QStringLiteral("%1/%2-flacon.wav").arg(dir()).arg(i + 1, 3, 10, QChar('0')),
                 tracks.at(i).hash);
     }
 }

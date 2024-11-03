@@ -124,7 +124,7 @@ void CueCreator::writeTags(QIODevice *out, const Track *track) const
     CueFlags flags(track->tag(TagId::Flags));
     flags.preEmphasis = false; // We already deephasis audio, so we reset this flag
     if (!flags.isEmpty()) {
-        writeLine(out, QString("    FLAGS %1").arg(flags.toString()));
+        writeLine(out, QStringLiteral("    FLAGS %1").arg(flags.toString()));
     }
 
     writeTrackTag(out, track, "ISRC %1", TagId::ISRC);
@@ -172,45 +172,45 @@ void CueCreator::write(QIODevice *out)
         if (i == 0) {
             if (index0.isNull() || index0 == index1) {
                 // No pregap ....................
-                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
-                writeLine(out, QString("TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+                writeLine(out, QStringLiteral("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
+                writeLine(out, QStringLiteral("TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
                 writeTags(out, track);
-                writeLine(out, QString("INDEX 01 %1").arg("00:00:00"));
+                writeLine(out, QStringLiteral("INDEX 01 %1").arg("00:00:00"));
             }
             else {
                 // With pregap ..................
                 if (createPreGapFile) {
-                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFilePath(mDisc->preGapTrack())).fileName()));
-                    writeLine(out, QString("TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+                    writeLine(out, QStringLiteral("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFilePath(mDisc->preGapTrack())).fileName()));
+                    writeLine(out, QStringLiteral("TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
                     writeTags(out, track);
-                    writeLine(out, QString("INDEX 00 %1").arg("00:00:00"));
-                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
-                    writeLine(out, QString("INDEX 01 %1").arg("00:00:00"));
+                    writeLine(out, QStringLiteral("INDEX 00 %1").arg("00:00:00"));
+                    writeLine(out, QStringLiteral("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
+                    writeLine(out, QStringLiteral("INDEX 01 %1").arg("00:00:00"));
                 }
                 else {
-                    writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
-                    writeLine(out, QString("TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+                    writeLine(out, QStringLiteral("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
+                    writeLine(out, QStringLiteral("TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
                     writeTags(out, track);
-                    writeLine(out, QString("INDEX 00 %1").arg(index0.toString()));
-                    writeLine(out, QString("INDEX 01 %1").arg(index1.toString()));
+                    writeLine(out, QStringLiteral("INDEX 00 %1").arg(index0.toString()));
+                    writeLine(out, QStringLiteral("INDEX 01 %1").arg(index1.toString()));
                 }
             }
         }
         else {
             if (index0.isNull() || index0 == index1) {
                 // No pregap ....................
-                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
-                writeLine(out, QString("TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+                writeLine(out, QStringLiteral("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
+                writeLine(out, QStringLiteral("TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
                 writeTags(out, track);
-                writeLine(out, QString("INDEX 01 %1").arg("00:00:00"));
+                writeLine(out, QStringLiteral("INDEX 01 %1").arg("00:00:00"));
             }
             else {
                 // With pregap ..................
-                writeLine(out, QString("TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
+                writeLine(out, QStringLiteral("TRACK %1 AUDIO").arg(i + 1, 2, 10, QChar('0')));
                 writeTags(out, track);
-                writeLine(out, QString("INDEX 00 %1").arg((index0 - prevIndex).toString()));
-                writeLine(out, QString("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
-                writeLine(out, QString("INDEX 01 %1").arg("00:00:00"));
+                writeLine(out, QStringLiteral("INDEX 00 %1").arg((index0 - prevIndex).toString()));
+                writeLine(out, QStringLiteral("FILE \"%1\" WAVE").arg(QFileInfo(mProfile.resultFileName(track)).fileName()));
+                writeLine(out, QStringLiteral("INDEX 01 %1").arg("00:00:00"));
             }
         }
         prevIndex = index1;
@@ -234,7 +234,7 @@ QString CueCreator::writeToFile(const QString &fileTemplate)
     }
 
     if (track->trackNum() > 1) {
-        fileName += QString(".tracks %1-%2").arg(track->trackNum()).arg(mDisc->tracks().last()->trackNum());
+        fileName += QStringLiteral(".tracks %1-%2").arg(track->trackNum()).arg(mDisc->tracks().last()->trackNum());
     }
 
     fileName += ".cue";

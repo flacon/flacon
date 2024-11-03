@@ -230,7 +230,7 @@ void CueData::parseLine(const QByteArray &line, QByteArray &tag, QByteArray &val
                                       .arg(mFileName)
                                       .arg(lineNum));
 
-        tag   = QString("%1 %2").arg(INDEX_TAG).arg(num, 2, 10, QChar('0')).toLatin1();
+        tag   = QStringLiteral("%1 %2").arg(INDEX_TAG).arg(num, 2, 10, QChar('0')).toLatin1();
         value = rightPart(value, ' ').trimmed();
     }
 }

@@ -108,7 +108,7 @@ QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const QString &o
 
     // Settings .................................................
     // Compression parametr really looks like --compression-level-N
-    args << QString("--compression-level-%1").arg(profile.encoderValue("Compression").toString());
+    args << QStringLiteral("--compression-level-%1").arg(profile.encoderValue("Compression").toString());
 
     args << "-";
     args << "-o" << outFile;

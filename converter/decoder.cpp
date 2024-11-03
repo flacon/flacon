@@ -145,7 +145,7 @@ void Decoder::openProcess()
     mProcess->start(QDir::toNativeSeparators(program->path()), mFormat->decoderArgs(mInputFile));
     bool res = mProcess->waitForStarted();
     if (!res) {
-        throw FlaconError(QString("Can't start '%1': %2")
+        throw FlaconError(QStringLiteral("Can't start '%1': %2")
                                   .arg(program->path(), mProcess->errorString()));
     }
 
@@ -184,7 +184,7 @@ void mustWrite(const char *buf, qint64 maxSize, QIODevice *outDevice)
         outDevice->waitForBytesWritten(10000);
         qint64 n = outDevice->write(buf + done, maxSize - done);
         if (n < 0)
-            throw FlaconError(QString("Can't write %1 bytes. %2")
+            throw FlaconError(QStringLiteral("Can't write %1 bytes. %2")
                                       .arg(maxSize - done)
                                       .arg(outDevice->errorString()));
 
@@ -273,7 +273,7 @@ void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
             qint64 n = qMin(qint64(MAX_BUF_SIZE), remains);
             n        = input->read(buf, n);
             if (n < 0)
-                throw FlaconError(QString("Can't read %1 bytes").arg(remains));
+                throw FlaconError(QStringLiteral("Can't read %1 bytes").arg(remains));
 
             remains -= n;
 

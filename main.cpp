@@ -157,7 +157,7 @@ void translate(QApplication *app)
     }
 
     QTranslator *appTranslator = new QTranslator(app);
-    if (appTranslator->load(QString("flacon_%2.qm").arg(locale)) || appTranslator->load(QString("%1/flacon_%2.qm").arg(appDir, locale))) {
+    if (appTranslator->load(QStringLiteral("flacon_%2.qm").arg(locale)) || appTranslator->load(QStringLiteral("%1/flacon_%2.qm").arg(appDir, locale))) {
         app->installTranslator(appTranslator);
     }
 }

@@ -60,7 +60,7 @@ void TestFlacon::testFormat()
         QFAIL("Can't find format");
 
     if (format->ext() != ext)
-        QFAIL(QString("Incorrect format found:\n    found    '%1',\n    expected '%2' ").arg(format->ext(), ext).toLocal8Bit());
+        QFAIL(QStringLiteral("Incorrect format found:\n    found    '%1',\n    expected '%2' ").arg(format->ext(), ext).toLocal8Bit());
 }
 
 /************************************************
@@ -93,7 +93,7 @@ void TestFlacon::testFormatFromFile()
         QFAIL("Can't find format");
 
     if (format->ext() != ext)
-        QFAIL(QString("Incorrect format found:\n    found    '%1',\n    expected '%2' ").arg(format->ext(), ext).toLocal8Bit());
+        QFAIL(QStringLiteral("Incorrect format found:\n    found    '%1',\n    expected '%2' ").arg(format->ext(), ext).toLocal8Bit());
 }
 
 /************************************************

@@ -448,7 +448,7 @@ size_t TrackGain::Engine::loadHeader(const char *data, size_t size)
     }
 
     if (!mYuleCoeffA) {
-        throw FlaconError(QString("sample rate of %1 is not supported!").arg(header.sampleRate()));
+        throw FlaconError(QStringLiteral("sample rate of %1 is not supported!").arg(header.sampleRate()));
     }
 
     // clang-format off

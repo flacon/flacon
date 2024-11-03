@@ -108,7 +108,7 @@ Settings::Settings(const QString &fileName) :
  ************************************************/
 Profile Settings::readProfile(const QString &profileId)
 {
-    QString group = QString("%1/%2").arg(PROFILES_GROUP, profileId);
+    QString group = QStringLiteral("%1/%2").arg(PROFILES_GROUP, profileId);
 
     beginGroup(group);
 
@@ -169,7 +169,7 @@ void Settings::writeProfile(const Profile &profile)
         return;
     }
 
-    QString group = QString("%1/%2").arg(PROFILES_GROUP, profile.id());
+    QString group = QStringLiteral("%1/%2").arg(PROFILES_GROUP, profile.id());
     beginGroup(group);
 
     setValue(PROFILE_NAME_KEY, profile.name());
@@ -341,7 +341,7 @@ void Settings::writeCurrentProfileId(const QString &profileId)
 void Settings::readExtPrograms() const
 {
     for (ExtProgram *p : ExtProgram::allPrograms()) {
-        auto key = QString("%1/%2").arg(PROGRAMS_GROUP, p->name());
+        auto key = QStringLiteral("%1/%2").arg(PROGRAMS_GROUP, p->name());
 
         QString path = value(key).toString();
         if (path.isEmpty()) {
@@ -358,7 +358,7 @@ void Settings::writeExtPrograms()
 {
     remove(PROGRAMS_GROUP);
     for (ExtProgram *p : ExtProgram::allPrograms()) {
-        auto key = QString("%1/%2").arg(PROGRAMS_GROUP, p->name());
+        auto key = QStringLiteral("%1/%2").arg(PROGRAMS_GROUP, p->name());
         setValue(key, p->path());
     }
 }

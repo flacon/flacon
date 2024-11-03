@@ -40,11 +40,11 @@ static QString findFile(const QString &dir, const QString &pattern)
     QStringList files = QDir(dir).entryList(QStringList(pattern), QDir::Filter::Files);
 
     if (files.isEmpty()) {
-        throw FlaconError(QString("File %1 not found").arg(pattern));
+        throw FlaconError(QStringLiteral("File %1 not found").arg(pattern));
     }
 
     if (files.count() > 1) {
-        throw FlaconError(QString("Mask %1 matches multiple files.").arg(pattern));
+        throw FlaconError(QStringLiteral("Mask %1 matches multiple files.").arg(pattern));
     }
 
     return files.first();
@@ -98,7 +98,7 @@ ConverterTest::ConverterTest(const QString &dataDir, const QString &dir, const Q
             ;
 
             if (!QFile::copy(src, dest))
-                QFAIL(QString("Can't copy audio file \"%1\"").arg(src).toLocal8Bit());
+                QFAIL(QStringLiteral("Can't copy audio file \"%1\"").arg(src).toLocal8Bit());
         }
 
         // Generate file ........................
@@ -123,7 +123,7 @@ ConverterTest::ConverterTest(const QString &dataDir, const QString &dir, const Q
 
         QFileInfo(dest).dir().mkpath(".");
         if (!QFile::copy(src, dest))
-            QFAIL(QString("Can't copy CUE file \"%1\"").arg(src).toLocal8Bit());
+            QFAIL(QStringLiteral("Can't copy CUE file \"%1\"").arg(src).toLocal8Bit());
     }
     spec.endGroup();
     // ..........................................
@@ -136,7 +136,7 @@ ConverterTest::ConverterTest(const QString &dataDir, const QString &dir, const Q
 
         QFileInfo(dest).dir().mkpath(".");
         if (!QFile::copy(src, dest)) {
-            QFAIL(QString("Can't copy file \"%1\"").arg(src).toLocal8Bit());
+            QFAIL(QStringLiteral("Can't copy file \"%1\"").arg(src).toLocal8Bit());
         }
     }
     spec.endGroup();
@@ -149,7 +149,7 @@ ConverterTest::ConverterTest(const QString &dataDir, const QString &dir, const Q
         QString src  = dataDir + "/" + spec.value(key).toString();
         QFileInfo(dest).dir().mkpath(".");
         if (!QFile::copy(src, dest))
-            QFAIL(QString("Can't copy CUE file \"%1\"").arg(src).toLocal8Bit());
+            QFAIL(QStringLiteral("Can't copy CUE file \"%1\"").arg(src).toLocal8Bit());
     }
     spec.endGroup();
     // ..........................................
@@ -212,7 +212,7 @@ void ConverterTest::srcAudioExec(QSettings &spec) const
         QString     prog = args.takeFirst();
 
         if (QProcess::execute(prog, args) != 0) {
-            throw FlaconError(QString("Command `%1` failed!").arg(cmd));
+            throw FlaconError(QStringLiteral("Command `%1` failed!").arg(cmd));
         }
     }
 
@@ -287,14 +287,14 @@ bool ConverterTest::run()
     proc.start(flacon, args);
 
     if (!proc.waitForFinished(30 * 1000)) {
-        FAIL(QString("The program timed out waiting for the result: %1.")
+        FAIL(QStringLiteral("The program timed out waiting for the result: %1.")
                      .arg(QString::fromLocal8Bit(proc.readAllStandardError()))
                      .toLocal8Bit());
         return false;
     }
 
     if (proc.exitCode() != 0) {
-        FAIL(QString("flacon returned non-zero exit status %1: %2")
+        FAIL(QStringLiteral("flacon returned non-zero exit status %1: %2")
                      .arg(proc.exitCode())
                      .arg(QString::fromLocal8Bit(proc.readAll()))
                      .toLocal8Bit());
@@ -382,7 +382,7 @@ void ConverterTest::check()
     //        QString cmd = spec.value(key).toString();
     //        int     res = QProcess::execute(cmd);
     //        if (res != 0) {
-    //            QFAIL(QString("Chack is failed for %1").arg(cmd).toLocal8Bit());
+    //            QFAIL(QStringLiteral("Chack is failed for %1").arg(cmd).toLocal8Bit());
     //        }
     //    }
     //    spec.endGroup();
@@ -390,17 +390,17 @@ void ConverterTest::check()
     //    // ******************************************
 
     if (!missing.isEmpty())
-        msg += QString("\nFiles not exists in %1:\n  * %2")
+        msg += QStringLiteral("\nFiles not exists in %1:\n  * %2")
                        .arg(mOutDir)
                        .arg(missing.join("\n  * "));
 
     if (!files.isEmpty())
-        msg += QString("\nFiles exists in %1:\n  * %2")
+        msg += QStringLiteral("\nFiles exists in %1:\n  * %2")
                        .arg(mOutDir)
                        .arg(files.join("\n  * "));
 
     if (!msg.isEmpty())
-        QFAIL(QString("%1\n%2").arg(QTest::currentDataTag()).arg(msg).toLocal8Bit().data());
+        QFAIL(QStringLiteral("%1\n%2").arg(QTest::currentDataTag()).arg(msg).toLocal8Bit().data());
 
     // ******************************************
     // Check tags
@@ -486,7 +486,7 @@ bool ConverterTest::checkReplayGain()
                     double d = s.toDouble(&ok);
 
                     if (!ok) {
-                        qWarning() << QString("Can't convert actual value \"%1\" to double (tag: %2)").arg(actual.toString(), tag).toLocal8Bit();
+                        qWarning() << QStringLiteral("Can't convert actual value \"%1\" to double (tag: %2)").arg(actual.toString(), tag).toLocal8Bit();
                         errors = true;
                         continue;
                     }
@@ -525,7 +525,7 @@ QStringList ConverterTest::readFile(const QString &fileName)
     file.open(QIODevice::ReadOnly);
 
     if (!file.isOpen()) {
-        FAIL(QString("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
+        FAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
         return res;
     }
 
@@ -548,7 +548,7 @@ void ConverterTest::writeFile(const QStringList &strings, const QString &fileNam
     file.open(QIODevice::WriteOnly);
 
     if (!file.isOpen())
-        QFAIL(QString("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
+        QFAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
 
     foreach (const QString &string, strings) {
         file.write(string.toLocal8Bit());
@@ -605,9 +605,9 @@ void ConverterTest::printFile(const QString &fileName, bool printHeader)
 {
     QTextStream out(stderr);
     if (printHeader) {
-        out << QString("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+        out << QStringLiteral("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
         out << fileName << "\n";
-        out << QString("───────────────────────────────────────────────────────────────────────\n");
+        out << QStringLiteral("───────────────────────────────────────────────────────────────────────\n");
     }
     QFile f(fileName);
     f.open(QFile::ReadOnly);
@@ -615,7 +615,7 @@ void ConverterTest::printFile(const QString &fileName, bool printHeader)
     out << "\n";
 
     if (printHeader) {
-        out << QString("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+        out << QStringLiteral("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
     }
 }
 
@@ -626,7 +626,7 @@ Mediainfo::Mediainfo(const QString &fileName) :
     mFileName(fileName)
 {
     if (!QFileInfo::exists(fileName)) {
-        throw FlaconError(QString("Can't read mediainfo to file '%1' (file don't exists').").arg(mFileName));
+        throw FlaconError(QStringLiteral("Can't read mediainfo to file '%1' (file don't exists').").arg(mFileName));
     }
 
     QStringList args;
@@ -640,7 +640,7 @@ Mediainfo::Mediainfo(const QString &fileName) :
     proc.waitForFinished();
     if (proc.exitCode() != 0) {
         QString err = QString::fromLocal8Bit(proc.readAll());
-        FAIL(QString("Can't read tags from \"%1\": %2").arg(mFileName).arg(err).toLocal8Bit());
+        FAIL(QStringLiteral("Can't read tags from \"%1\": %2").arg(mFileName).arg(err).toLocal8Bit());
     }
 
     QByteArray data = proc.readAllStandardOutput();

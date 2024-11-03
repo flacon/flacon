@@ -780,7 +780,7 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
 
     if (includeAudio) {
         foreach (const InputFormat *format, InputFormat::allFormats()) {
-            allFlt << QString(" *.%1").arg(format->ext());
+            allFlt << QStringLiteral(" *.%1").arg(format->ext());
             flt << fltPattern.arg(format->name(), format->ext());
         }
     }
@@ -788,7 +788,7 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
     flt.sort();
 
     if (includeCue) {
-        allFlt << QString("*.cue");
+        allFlt << QStringLiteral("*.cue");
         flt.insert(0, fltPattern.arg("CUE", "cue"));
     }
 
@@ -1370,7 +1370,7 @@ static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringLi
     res << "<ul>";
     for (QString msg : msgs) {
         msg = msg.replace("\n", "<br>");
-        res << QString("<li>%1</li>").arg(msg);
+        res << QStringLiteral("<li>%1</li>").arg(msg);
     }
     res << "</ul>";
     res << "</div>";

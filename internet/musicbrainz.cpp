@@ -94,8 +94,8 @@ void MusicBrainz::start()
     mRequestAlbum      = track->album();
 
     QStringList query;
-    query << QString("artist:\"%1\"").arg(mRequestArtist.toHtmlEscaped());
-    query << QString("release:\"%1\"").arg(mRequestAlbum.toHtmlEscaped());
+    query << QStringLiteral("artist:\"%1\"").arg(mRequestArtist.toHtmlEscaped());
+    query << QStringLiteral("release:\"%1\"").arg(mRequestAlbum.toHtmlEscaped());
 
     QUrl url = QString(SEARCH_URL).arg(query.join("%20AND%20"));
 
@@ -298,12 +298,12 @@ void MusicBrainz::processResults()
     int n = 0;
     for (Tracks &t : mResult) {
         n++;
-        t.setUri(QString("https://musicbrainz.org/artis=%1&album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n));
+        t.setUri(QStringLiteral("https://musicbrainz.org/artis=%1&album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n));
         if (mResult.size() == 1) {
-            t.setTitle(QString("%1 / %2   [ MusicBrainz ]").arg(mRequestArtist, mRequestAlbum));
+            t.setTitle(QStringLiteral("%1 / %2   [ MusicBrainz ]").arg(mRequestArtist, mRequestAlbum));
         }
         else {
-            t.setTitle(QString("%1 / %2   [ MusicBrainz %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n));
+            t.setTitle(QStringLiteral("%1 / %2   [ MusicBrainz %3 ]").arg(mRequestArtist, mRequestAlbum).arg(n));
         }
     }
 

@@ -159,7 +159,7 @@ OutPatternButton::OutPatternButton(QWidget *parent) :
  ************************************************/
 void OutPatternButton::addPattern(const QString &pattern, const QString &title)
 {
-    QAction *act = new QAction(title + QString(" (%1)").arg(pattern), this);
+    QAction *act = new QAction(title + QStringLiteral(" (%1)").arg(pattern), this);
     act->setData(pattern);
     connect(act, &QAction::triggered,
             this, &OutPatternButton::patternTriggered);
@@ -675,7 +675,7 @@ void ProgramEdit::openDialog()
     QString flt = tr("%1 program",
                      "This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'")
                           .arg(mProgram->name())
-            + QString(" (%1);;").arg(mProgram->name()) + tr("All files", "This is part of filter for 'select program' dialog. 'All files (*)'") + " (*)";
+            + QStringLiteral(" (%1);;").arg(mProgram->name()) + tr("All files", "This is part of filter for 'select program' dialog. 'All files (*)'") + " (*)";
 
     QString fileName = !text().isEmpty() ? text() : "/usr/bin/" + mProgram->name();
 
@@ -871,7 +871,7 @@ void ErrorBox::setMessages(const QStringList &messages)
     QString txt;
     foreach (QString s, mMessgaes) {
         s.replace("\n", "<p>");
-        txt += QString("<li>%1</li>").arg(s);
+        txt += QStringLiteral("<li>%1</li>").arg(s);
     }
 
     setText("<ul>" + txt + "</ul>");

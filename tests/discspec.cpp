@@ -66,7 +66,7 @@ QString DiscSpec::trackAudioFilePath(int index) const
 
 QString DiscSpec::trackKey(int track, const QString tag) const
 {
-    return QString("TRACKS/%1/%2").arg(track, 2, 10, QChar('0')).arg(tag);
+    return QStringLiteral("TRACKS/%1/%2").arg(track, 2, 10, QChar('0')).arg(tag);
 }
 
 QString DiscSpec::trackValue(int track, const QString &key) const
@@ -180,7 +180,7 @@ void DiscSpec::verifyTrack(const Track *track, const QString &key) const
         return;
     }
 
-    QFAIL(QString("Unknown expected key: %1").arg(key).toLocal8Bit());
+    QFAIL(QStringLiteral("Unknown expected key: %1").arg(key).toLocal8Bit());
 }
 
 void DiscSpec::verify(const Disc &disc) const

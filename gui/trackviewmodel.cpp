@@ -312,7 +312,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
     if (role == Qt::DisplayRole || role == Qt::EditRole) {
         switch (index.column()) {
             case TrackView::ColumnTracknum:
-                return QVariant(QString("%1").arg(track->trackNum(), 2, 10, QChar('0')));
+                return QVariant(QStringLiteral("%1").arg(track->trackNum(), 2, 10, QChar('0')));
 
             case TrackView::ColumnDuration:
                 return QVariant(trackDurationToString(track->duration()) + " ");
