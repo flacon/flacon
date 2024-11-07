@@ -416,7 +416,7 @@ QString Validator::diskString(int diskNum) const
 /**************************************
  *
  **************************************/
-bool Validator::validateResultFilesOrder(int diskNum, QStringList &errors, QStringList &warnings)
+bool Validator::validateResultFilesOrder(int diskNum, QStringList &errors, QStringList &)
 {
     const ValidatorDisk disk = mData.disks.at(diskNum);
 
