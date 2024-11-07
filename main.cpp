@@ -222,17 +222,13 @@ int runConsole(int argc, char *argv[], const QStringList &files)
         }
     }
 
-    app.connect(&converter, &Conv::Converter::finished,
-                &app, &QCoreApplication::quit);
+    app.connect(&converter, &Conv::Converter::finished, [](bool success) {
+        qApp->exit(success ? 0 : 11);
+    });
 
-    app.connect(&converter, &Conv::Converter::error,
-                [](const QString &message) {
-                    consoleErroHandler(QtCriticalMsg, QMessageLogContext(), message);
-                });
-
-    converter.start(*(Project::instance()->profile()));
-    if (!converter.isRunning())
-        return 11;
+    QTimer::singleShot(0, &converter, [&converter]() {
+        converter.start(*(Project::instance()->profile()));
+    });
 
     return app.exec();
 }

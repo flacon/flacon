@@ -61,7 +61,7 @@ public:
 
 signals:
     void started();
-    void finished();
+    void finished(bool success);
     void trackProgress(const Track &track, TrackState state, Percent percent);
     void error(const QString err);
     void totalProgress(double percent);

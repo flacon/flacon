@@ -371,6 +371,7 @@ void DiscPipeline::trackDone(const ConvTrack &track, const QString &outFileName)
     QFile file(outFileName);
     if (!file.rename(mProfile.resultFilePath(&track))) {
         trackError(track, tr("I can't rename file:\n%1 to %2\n%3").arg(outFileName, mProfile.resultFilePath(&track), file.errorString()));
+        return;
     }
 
     mTrackStates[track.index()] = TrackState::OK;
@@ -489,6 +490,26 @@ bool DiscPipeline::isRunning() const
     }
 
     return false;
+}
+
+/**************************************
+ *
+ **************************************/
+bool DiscPipeline::isSuccess() const
+{
+    for (TrackState state : mTrackStates) {
+        switch (state) {
+            case TrackState::Canceled:
+            case TrackState::Error:
+            case TrackState::Aborted:
+                return false;
+
+            default:
+                break;
+        }
+    }
+
+    return true;
 }
 
 /************************************************

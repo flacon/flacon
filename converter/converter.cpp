@@ -89,12 +89,12 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
     qCDebug(LOG) << "Temp dir =" << profile.tmpDir();
 
     if (jobs.isEmpty()) {
-        emit finished();
+        emit finished(false);
         return;
     }
 
     if (!validate(jobs, profile)) {
-        emit finished();
+        emit finished(false);
         return;
     }
 
@@ -121,7 +121,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
         emit error(err.what());
         qDeleteAll(mDiskPiplines);
         mDiskPiplines.clear();
-        emit finished();
+        emit finished(false);
     }
 
     mTotalProgressCounter.init(*this);
@@ -191,13 +191,16 @@ void Converter::startThread()
         }
     }
 
+    bool success = true;
     foreach (DiscPipeline *pipe, mDiskPiplines) {
         if (pipe->isRunning()) {
             return;
         }
+
+        success = pipe->isSuccess();
     }
 
-    emit finished();
+    emit finished(success);
 }
 
 /************************************************

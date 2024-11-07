@@ -54,6 +54,7 @@ public:
     void stop();
     bool isRunning() const;
     int  runningThreadCount() const;
+    bool isSuccess() const;
 
 signals:
     void readyStart();
