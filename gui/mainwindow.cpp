@@ -1008,7 +1008,7 @@ void MainWindow::showDiskAudioFileMenu(Disc *disc, const QPoint &pos)
  ************************************************/
 void MainWindow::openEditTagsDialog()
 {
-    TagEditor editor(trackView->selectedTracks(), trackView->selectedDiscs(), this);
+    TagEditor editor(trackView->selectedTracks(), this);
     editor.exec();
     refreshEdits();
     setControlsEnable();

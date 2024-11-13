@@ -42,11 +42,10 @@ static constexpr auto TAG_EDIT_DIALOG_HEIGHT_KEY = "TagEditor/Height";
 /************************************************
  *
  ************************************************/
-TagEditor::TagEditor(const QList<Track *> &tracks, const QList<Disc *> &discs, QWidget *parent) :
+TagEditor::TagEditor(const QList<Track *> &tracks, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TagEditor),
-    mTracks(tracks),
-    mDiscs(discs)
+    mTracks(tracks)
 {
     ui->setupUi(this);
     setWindowModality(Qt::WindowModal);
@@ -87,16 +86,63 @@ void TagEditor::done(int res)
  **************************************/
 void TagEditor::updateWidgets()
 {
-    QSet<int> mDiskStartTrack;
-    QSet<int> mDiskTrackCount;
-    QSet<int> mDiskNum;
-    QSet<int> mDiskCount;
+    QSet<int> startTrackNum;
+    QSet<int> trackCount;
+    QSet<int> diskNum;
+    QSet<int> diskCount;
+
+    QSet<QString> performer;
+    QSet<QString> albumPerformer;
+    QSet<QString> songWriter;
+    QSet<QString> album;
+    QSet<QString> date;
+    QSet<QString> genre;
+    QSet<QString> trackTitle;
+    QSet<QString> comment;
+
+    for (const Track *track : mTracks) {
+        startTrackNum << track->disk()->startTrackNum();
+        trackCount << track->disk()->tracks().count();
+        diskNum << track->disk()->discNumTag();
+        diskCount << track->disk()->discCountTag();
+
+        performer << track->performerTag();
+        // albumPerformer << track->disk()->alb
+        songWriter << track->songWriterTag();
+        album << track->disk()->albumTag();
+        date << track->dateTag();
+        genre << track->genreTag();
+        trackTitle << track->titleTag();
+        comment << track->commentTag();
+    }
+
+    ui->startTrackEdit->setMultiValue(startTrackNum);
+    ui->trackCountEdit->setMultiValue(trackCount);
+    ui->diskNumEdit->setMultiValue(diskNum);
+    ui->diskCountEdit->setMultiValue(diskCount);
+
+    ui->performerEdit->setMultiValue(performer);
+    ui->albumPerformerEdit->setMultiValue(albumPerformer);
+    ui->songWriterEdit->setMultiValue(songWriter);
+    ui->albumEdit->setMultiValue(album);
+    ui->dateEdit->setMultiValue(date);
+    ui->genreEdit->setMultiValue(genre);
+    ui->trackTitleEdit->setMultiValue(trackTitle);
+    ui->commentEdit->setMultiValue(comment);
+
+    // ui->trackTitleValue->setMultiValue(trackTitle);
+    // ui->trackPerformerValue->setMultiValue(trackPerformer);
+    // ui->trackSongWriterValue->setMultiValue(trackSongWriter);
+    // ui->trackDateValue->setMultiValue(trackDate);
+    // ui->trackGenreValue->setMultiValue(trackGenre);
+    // ui->trackIsrcValue->setMultiValue(trackIsrc);
+    // ui->trackCommentValue->setMultiValue(trackComment);
+
+    /*
 
     QSet<QString> diskAlbum;
     QSet<QString> diskPerformer;
     QSet<QString> diskSongWriter;
-    QSet<QString> diskDate;
-    QSet<QString> diskGenre;
     QSet<QString> diskComment;
 
     for (const Disk *disk : mDiscs) {
@@ -125,7 +171,7 @@ void TagEditor::updateWidgets()
     ui->diskGenreValue->setMultiValue(diskGenre);
     ui->diskCommentValue->setMultiValue(diskComment);
 
-    QSet<QString> trackTitle;
+
     QSet<QString> trackPerformer;
     QSet<QString> trackSongWriter;
     QSet<QString> trackDate;
@@ -166,6 +212,7 @@ void TagEditor::updateWidgets()
     if (trackGenre.count() == 1 && trackGenre.cbegin()->isEmpty() && diskGenre.count() == 1) {
         ui->trackGenreValue->setPlaceholderText(*diskGenre.cbegin());
     }
+*/
 }
 
 /**************************************
@@ -173,6 +220,7 @@ void TagEditor::updateWidgets()
  **************************************/
 void TagEditor::apply()
 {
+    /*
     for (Disk *disk : mDiscs) {
         // clang-format off
         if (ui->diskStartTrackValue->isModified())  disk->setStartTrackNum(ui->diskStartTrackValue->value());
@@ -199,4 +247,5 @@ void TagEditor::apply()
         if (ui->trackCommentValue->isModified())    track->setCommentTag(ui->trackCommentValue->text());
         // clang-format on
     }
+*/
 }

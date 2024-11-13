@@ -177,23 +177,18 @@ QString PatternExpander::expand(const QString &pattern) const
  **************************************/
 QString PatternExpander::expand(const QString &pattern, Mode mode) const
 {
+    const TrackTags &trackTags = (mode == Mode::Album) ? mFirstTrackTags : mTrackTags;
+
     Tokens tokens;
     tokens.insert(QChar('N'), QStringLiteral("%1").arg(mAlbumTags.trackCount(), 2, 10, QChar('0')));
-    tokens.insert(QChar('n'), QStringLiteral("%1").arg(mTrackTags.trackNum(), 2, 10, QChar('0')));
+    tokens.insert(QChar('n'), QStringLiteral("%1").arg(trackTags.trackNum(), 2, 10, QChar('0')));
     tokens.insert(QChar('D'), QStringLiteral("%1").arg(mAlbumTags.discCount(), 2, 10, QChar('0')));
     tokens.insert(QChar('d'), QStringLiteral("%1").arg(mAlbumTags.discNum(), 2, 10, QChar('0')));
     tokens.insert(QChar('A'), safeString(mAlbumTags.album()));
-    tokens.insert(QChar('t'), safeString(mTrackTags.title()));
-    tokens.insert(QChar('g'), safeString(mAlbumTags.genre()));
-
-    if (mode == Mode::Album) {
-        tokens.insert(QChar('a'), safeString(firstNotEmptyString(mAlbumTags.performer(), mFirstTrackTags.performer())));
-        tokens.insert(QChar('y'), safeString(firstNotEmptyString(mAlbumTags.date(), mFirstTrackTags.date())));
-    }
-    else {
-        tokens.insert(QChar('a'), safeString(firstNotEmptyString(mTrackTags.performer(), mAlbumTags.performer())));
-        tokens.insert(QChar('y'), safeString(firstNotEmptyString(mTrackTags.date(), mAlbumTags.date())));
-    }
+    tokens.insert(QChar('t'), safeString(trackTags.title()));
+    tokens.insert(QChar('g'), safeString(trackTags.genre()));
+    tokens.insert(QChar('a'), safeString(trackTags.performer()));
+    tokens.insert(QChar('y'), safeString(trackTags.date()));
 
     return doExpandPattern(pattern, tokens, false);
 }
