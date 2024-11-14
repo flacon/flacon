@@ -548,10 +548,17 @@ MultiValuesLineEdit::MultiValuesLineEdit(QWidget *parent) :
     QLineEdit(parent),
     mCompleterModel(new QStringListModel(this))
 {
+    mMultiValuesText = tr("Multiple values");
+
     setCompleter(new QCompleter(this));
     completer()->setModel(mCompleterModel);
     completer()->setCaseSensitivity(Qt::CaseInsensitive);
     completer()->setCompletionMode(QCompleter::PopupCompletion);
+}
+
+void MultiValuesLineEdit::setMultiValuesText(const QString &value)
+{
+    mMultiValuesText = value;
 }
 
 /************************************************
@@ -565,7 +572,7 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
         QLineEdit::setText(str);
     }
 
-    setPlaceholderText(value.count() > 1 ? tr("Multiple values") : "");
+    setPlaceholderText(value.count() > 1 ? mMultiValuesText : "");
     mCompleterModel->setStringList(value.values());
 }
 
@@ -879,4 +886,15 @@ void Controls::arangeTollBarButtonsWidth(QToolBar *toolBar)
             btn->setMinimumWidth(w);
         }
     }
+}
+
+void TrackTagLineEdit::loadFromTracks(const TrackPtrList &tracks)
+{
+    QSet<QString> values;
+    for (const Track *track : tracks) {
+        values << std::mem_fn(mGetter)(track);
+    }
+
+    setMultiValuesText(tr("Different accross %1 songs").arg(tracks.count()));
+    setMultiValue(values);
 }

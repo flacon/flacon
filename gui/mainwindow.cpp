@@ -112,6 +112,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagGenreEdit, &QLineEdit::textEdited, this, &MainWindow::setGenreTag);
     connect(tagYearEdit, &QLineEdit::textEdited, this, &MainWindow::setDateTag);
     connect(tagPerformerEdit, &QLineEdit::textEdited, this, &MainWindow::setPerformerTag);
+    connect(tagAlbumPerformerEdit, &QLineEdit::textEdited, this, &MainWindow::setAlbumPerformerTag);
     connect(tagAlbumEdit, &QLineEdit::textEdited, this, &MainWindow::setAlbumTag);
 
     connect(tagStartNumEdit, &MultiValuesSpinBox::editingFinished, this, &MainWindow::setStartTrackNum);
@@ -446,6 +447,7 @@ void MainWindow::refreshEdits()
     QSet<QString> album;
     QSet<QString> date;
     QSet<QString> performer;
+    QSet<QString> albumPerformer;
 
     bool hasErrors   = false;
     bool hasWarnings = false;
@@ -458,15 +460,20 @@ void MainWindow::refreshEdits()
     foreach (Disc *disc, discs) {
         startNums << disc->startTrackNum();
         codePage << disc->codecName();
-        genre << disc->genreTag();
         album << disc->albumTag();
-        date << disc->dateTag();
-        performer << disc->performerTag();
+        albumPerformer << disc->albumPerformerTag();
+    }
+
+    for (const Track *track : trackView->selectedTracks()) {
+        genre << track->genreTag();
+        date << track->dateTag();
+        performer << track->performerTag();
     }
 
     tagGenreEdit->setMultiValue(genre);
     tagYearEdit->setMultiValue(date);
     tagPerformerEdit->setMultiValue(performer);
+    tagAlbumPerformerEdit->setMultiValue(albumPerformer);
     tagAlbumEdit->setMultiValue(album);
     tagStartNumEdit->setMultiValue(startNums);
     codepageCombo->setMultiValue(codePage);
@@ -1100,8 +1107,8 @@ void MainWindow::setStartTrackNum()
  **************************************/
 void MainWindow::setGenreTag()
 {
-    for (Disc *disk : trackView->selectedDiscs()) {
-        disk->setGenreTag(tagGenreEdit->text());
+    for (Track *track : trackView->selectedTracks()) {
+        track->setGenreTag(tagGenreEdit->text());
     }
     trackView->updateAll();
 }
@@ -1111,8 +1118,8 @@ void MainWindow::setGenreTag()
  **************************************/
 void MainWindow::setDateTag()
 {
-    for (Disc *disk : trackView->selectedDiscs()) {
-        disk->setDateTag(tagYearEdit->text());
+    for (Track *track : trackView->selectedTracks()) {
+        track->setDateTag(tagYearEdit->text());
     }
     trackView->updateAll();
 }
@@ -1122,8 +1129,19 @@ void MainWindow::setDateTag()
  **************************************/
 void MainWindow::setPerformerTag()
 {
+    for (Track *track : trackView->selectedTracks()) {
+        track->setPerformerTag(tagPerformerEdit->text());
+    }
+    trackView->updateAll();
+}
+
+/**************************************
+ *
+ **************************************/
+void MainWindow::setAlbumPerformerTag()
+{
     for (Disc *disk : trackView->selectedDiscs()) {
-        disk->setPerformerTag(tagPerformerEdit->text());
+        disk->setAlbumPerformerTag(tagAlbumPerformerEdit->text());
     }
     trackView->updateAll();
 }
@@ -1324,7 +1342,8 @@ static QStringList diskMsgsToHtml(int diskNum, const Disk *disk, const QStringLi
     QStringList res;
     res << "<div>";
     if (disk->tracks().count()) {
-        res << "<b>" + MainWindow::tr("Disk %1 \"%2 - %3\"", "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively").arg(diskNum).arg(disk->artistTag(), disk->albumTag()) + "</b>";
+        QString artist = disk->isEmpty() ? "" : disk->tracks().first()->performerTag();
+        res << "<b>" + MainWindow::tr("Disk %1 \"%2 - %3\"", "Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively").arg(diskNum).arg(artist, disk->albumTag()) + "</b>";
     }
     else {
         res << "<b>" + MainWindow::tr("Disk %1", "Error message, %1 is the disc number").arg(diskNum) + "</b>";

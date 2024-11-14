@@ -114,7 +114,7 @@ void Mp3MetaDataWriter::setTags(const Track &track)
     }
 
     if (!disk->albumTag().isEmpty()) {
-        addFrame(tags, "TPE2")->setText(TagLib::String(disk->performerTag().toUtf8().data(), TagLib::String::UTF8));
+        addFrame(tags, "TPE2")->setText(TagLib::String(disk->albumPerformerTag().toUtf8().data(), TagLib::String::UTF8));
     }
 
     addFrame(tags, "TRCK")->setText(QStringLiteral("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()).toStdString());

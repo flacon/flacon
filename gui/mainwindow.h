@@ -82,6 +82,7 @@ private slots:
     void setGenreTag();
     void setDateTag();
     void setPerformerTag();
+    void setAlbumPerformerTag();
     void setAlbumTag();
     void setStartTrackNum();
 

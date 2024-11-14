@@ -74,10 +74,37 @@ void CueCreator::writeTrackTags(QIODevice *out, const Track *track) const
 
     writeTag(out, "    ISRC %1", track->isrcTag());
     writeTag(out, "    TITLE \"%1\"", track->titleTag());
-    // writeTag(out, "    REM GENRE \"%1\"", track.ge .TagId::Genre);
-    writeTag(out, "    REM DATE %1", track->dateTag());
-    writeTag(out, "    PERFORMER \"%1\"", track->performerTag());
-    writeTag(out, "    SONGWRITER \"%1\"", track->songWriterTag());
+
+    if (track->genreTag() != mCommonGenre) {
+        writeTag(out, "    REM GENRE \"%1\"", track->genreTag());
+    }
+
+    if (track->dateTag() != mCommonDate) {
+        writeTag(out, "    REM DATE %1", track->dateTag());
+    }
+
+    if (track->performerTag() != mCommonPerformer) {
+        writeTag(out, "    PERFORMER \"%1\"", track->performerTag());
+    }
+
+    if (track->songWriterTag() != mCommonSongWriter) {
+        writeTag(out, "    SONGWRITER \"%1\"", track->songWriterTag());
+    }
+}
+
+/**************************************
+ *
+ **************************************/
+QString CueCreator::getCommonTag(const Track::Getter &func)
+{
+    QString res = std::mem_fn(func)(mDisk->tracks().first());
+    for (int i = 1; i < mDisk->tracks().count(); ++i) {
+        if (std::mem_fn(func)(mDisk->tracks().at(i)) != res) {
+            return "";
+        }
+    }
+
+    return res;
 }
 
 /************************************************
@@ -93,18 +120,23 @@ void CueCreator::write(QIODevice *out)
     // If the first track starts with zero second, doesn't make sense to create pregap track.
     bool createPreGapFile = mPreGapType == PreGapType::ExtractToFile && mDisk->tracks().first()->cueIndex01().milliseconds() > 0;
 
+    mCommonGenre      = getCommonTag(&Track::genreTag);
+    mCommonDate       = getCommonTag(&Track::dateTag);
+    mCommonPerformer  = !mDisk->albumPerformerTag().isEmpty() ? mDisk->albumPerformerTag() : getCommonTag(&Track::performerTag);
+    mCommonSongWriter = getCommonTag(&Track::songWriterTag);
+
     // Common ...........................
     writeTag(out, "CATALOG %1", mDisk->catalogTag());
     writeTag(out, "CDTEXTFILE \"%1\"", mDisk->cdTextfileTag());
-    writeTag(out, "REM GENRE \"%1\"", mDisk->genreTag());
-    writeTag(out, "REM DATE %1", mDisk->dateTag());
+    writeTag(out, "REM GENRE \"%1\"", mCommonGenre);
+    writeTag(out, "REM DATE %1", mCommonDate);
     writeTag(out, "REM DISCID %1", mDisk->discIdTag());
     if (mDisk->discNumTag() != 1 || mDisk->discCountTag() != 1) {
         writeTag(out, "REM TOTALDISCS %1", QString::number(mDisk->discCountTag()));
         writeTag(out, "REM DISCNUMBER %1", QString::number(mDisk->discNumTag()));
     }
-    writeTag(out, "PERFORMER \"%1\"", mDisk->performerTag());
-    writeTag(out, "SONGWRITER \"%1\"", mDisk->songWriterTag());
+    writeTag(out, "PERFORMER \"%1\"", mCommonPerformer);
+    writeTag(out, "SONGWRITER \"%1\"", mCommonSongWriter);
     writeTag(out, "TITLE \"%1\"", mDisk->albumTag());
 
     // Tracks ...........................
@@ -163,6 +195,9 @@ void CueCreator::write(QIODevice *out)
     }
 }
 
+/**************************************
+ *
+ **************************************/
 QString CueCreator::writeToFile(const QString &fileTemplate)
 {
     Track          *track = mDisk->tracks().first();

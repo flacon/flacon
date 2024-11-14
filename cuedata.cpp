@@ -239,15 +239,17 @@ void CueData::parseLine(const QByteArray &line, QByteArray &tag, QByteArray &val
     if (tag == INDEX_TAG) {
         bool ok;
         int  num = leftPart(value, ' ').toInt(&ok);
-        if (!ok)
+        if (!ok) {
             throw FlaconError(QObject::tr("<b>%1</b> is not a valid CUE file. Incorrect track index on line %2.", "Cue parser error.")
                                       .arg(mFileName)
                                       .arg(lineNum));
+        }
 
-        if (num < 0 || num > 99)
+        if (num < 0 || num > 99) {
             throw FlaconError(QObject::tr("<b>%1</b> is not a valid CUE file. Incorrect track index on line %2.", "Cue parser error.")
                                       .arg(mFileName)
                                       .arg(lineNum));
+        }
 
         tag   = QStringLiteral("%1 %2").arg(INDEX_TAG).arg(num, 2, 10, QChar('0')).toLatin1();
         value = rightPart(value, ' ').trimmed();

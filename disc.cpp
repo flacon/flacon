@@ -159,7 +159,7 @@ int Disc::distance(const InternetTags &other)
     int res = 0;
 
     QString str1 = mTracks.first()->artistTag().toUpper().replace("THE ", "");
-    QString str2 = other.artist().toUpper().replace("THE ", "");
+    QString str2 = other.tracks().first().artist().toUpper().replace("THE ", "");
     res += levenshteinDistance(str1, str2) * 3;
 
     str1 = albumTag().toUpper().replace("THE ", "");
@@ -429,22 +429,6 @@ QString Disc::cdTextfileTag() const
 /**************************************
  *
  **************************************/
-QString Disc::commentTag() const
-{
-    return !mUserTags.comment().isEmpty() ? mUserTags.comment() : mLoadedTags.comment();
-}
-
-/**************************************
- *
- **************************************/
-QString Disc::dateTag() const
-{
-    return !mUserTags.date().isEmpty() ? mUserTags.date() : mLoadedTags.date();
-}
-
-/**************************************
- *
- **************************************/
 QString Disc::discIdTag() const
 {
     return !mUserTags.discId().isEmpty() ? mUserTags.discId() : mLoadedTags.discId();
@@ -453,25 +437,9 @@ QString Disc::discIdTag() const
 /**************************************
  *
  **************************************/
-QString Disc::genreTag() const
+QString Disc::albumPerformerTag() const
 {
-    return !mUserTags.genre().isEmpty() ? mUserTags.genre() : mLoadedTags.genre();
-}
-
-/**************************************
- *
- **************************************/
-QString Disc::performerTag() const
-{
-    return !mUserTags.performer().isEmpty() ? mUserTags.performer() : mLoadedTags.performer();
-}
-
-/**************************************
- *
- **************************************/
-QString Disc::songWriterTag() const
-{
-    return !mUserTags.songWriter().isEmpty() ? mUserTags.songWriter() : mLoadedTags.songWriter();
+    return !mUserTags.albumPerformer().isEmpty() ? mUserTags.albumPerformer() : mLoadedTags.albumPerformer();
 }
 
 /**************************************
@@ -517,22 +485,6 @@ void Disc::setCdTextfileTag(const QString &value)
 /**************************************
  *
  **************************************/
-void Disc::setCommentTag(const QString &value)
-{
-    mUserTags.setComment(value);
-}
-
-/**************************************
- *
- **************************************/
-void Disc::setDateTag(const QString &value)
-{
-    mUserTags.setDate(value);
-}
-
-/**************************************
- *
- **************************************/
 void Disc::setDiscIdTag(const QString &value)
 {
     mUserTags.setDiscId(value);
@@ -541,25 +493,9 @@ void Disc::setDiscIdTag(const QString &value)
 /**************************************
  *
  **************************************/
-void Disc::setGenreTag(const QString &value)
+void Disc::setAlbumPerformerTag(const QString &value)
 {
-    mUserTags.setGenre(value);
-}
-
-/**************************************
- *
- **************************************/
-void Disc::setPerformerTag(const QString &value)
-{
-    mUserTags.setPerformer(value);
-}
-
-/**************************************
- *
- **************************************/
-void Disc::setSongWriterTag(const QString &value)
-{
-    mUserTags.setSongWriter(value);
+    mUserTags.setmAlbumPerformer(value);
 }
 
 /**************************************
@@ -576,12 +512,8 @@ AlbumTags Disc::toTags() const
     res.setAlbum(albumTag());
     res.setCatalog(catalogTag());
     res.setCdTextfile(cdTextfileTag());
-    res.setComment(commentTag());
-    res.setDate(dateTag());
     res.setDiscId(discIdTag());
-    res.setGenre(genreTag());
-    res.setPerformer(performerTag());
-    res.setSongWriter(songWriterTag());
+    res.setmAlbumPerformer(albumPerformerTag());
 
     return res;
 }

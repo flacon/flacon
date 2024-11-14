@@ -209,10 +209,8 @@ bool InterntService::compareTags(const InternetTags &tags1, const InternetTags &
 {
     bool res = true;
 
-    res = res && tags1.date() == tags2.date();
     res = res && tags1.album() == tags2.album();
-    res = res && tags1.artist() == tags2.artist();
-    res = res && tags1.genre() == tags2.genre();
+    res = res && tags1.albumPerformer() == tags2.albumPerformer();
 
     res = res && tags1.tracks().count() == tags2.tracks().count();
 

@@ -563,11 +563,11 @@ void TestFlacon::testTrackSetCodepages()
         result << "  "
                << "TITLE:" << track->titleTag() << "\n";
         result << "  "
-               << "ARTIST:" << firstNotEmptyString(track->artistTag(), track->disk()->artistTag()) << "\n";
+               << "ARTIST:" << track->artistTag() << "\n";
         result << "  "
-               << "GENRE:" << track->disk()->genreTag() << "\n";
+               << "GENRE:" << track->genreTag() << "\n";
         result << "  "
-               << "YEAR:" << firstNotEmptyString(track->dateTag(), track->disk()->dateTag()) << "\n";
+               << "YEAR:" << track->dateTag() << "\n";
     }
 
     // Result *************************

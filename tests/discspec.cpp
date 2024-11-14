@@ -51,15 +51,11 @@ void DiscSpec::write(const Disc &disk, const QString &fileName)
     json["discCount"] = disk.discCountTag();
     json["discNum"]   = disk.discNumTag();
 
-    json["album"]      = disk.albumTag();
-    json["catalog"]    = disk.catalogTag();
-    json["cdTextfile"] = disk.cdTextfileTag();
-    json["comment"]    = disk.commentTag();
-    json["date"]       = disk.dateTag();
-    json["discId"]     = disk.discIdTag();
-    json["genre"]      = disk.genreTag();
-    json["performer"]  = disk.performerTag();
-    json["songWriter"] = disk.songWriterTag();
+    json["albumPerformer"] = disk.albumPerformerTag();
+    json["album"]          = disk.albumTag();
+    json["catalog"]        = disk.catalogTag();
+    json["cdTextfile"]     = disk.cdTextfileTag();
+    json["discId"]         = disk.discIdTag();
 
     QJsonArray tracks;
     for (const Track *track : disk.tracks()) {
@@ -67,6 +63,7 @@ void DiscSpec::write(const Disc &disk, const QString &fileName)
         json["trackNum"]   = track->trackNumTag();
         json["comment"]    = track->commentTag();
         json["date"]       = track->dateTag();
+        json["genre"]      = track->genreTag();
         json["flags"]      = track->flagsTag();
         json["isrc"]       = track->isrcTag();
         json["title"]      = track->titleTag();
@@ -120,12 +117,7 @@ void DiscSpec::verifyDiskTags(const Disc &disk, const QJsonObject &json) const
     if (json.contains("album"))      QCOMPARE(disk.albumTag(), json["album"].toString());
     if (json.contains("catalog"))    QCOMPARE(disk.catalogTag(), json["catalog"].toString());
     if (json.contains("cdTextfile")) QCOMPARE(disk.cdTextfileTag(), json["cdTextfile"].toString());
-    if (json.contains("comment"))    QCOMPARE(disk.commentTag(), json["comment"].toString());
-    if (json.contains("date"))       QCOMPARE(disk.dateTag(), json["date"].toString());
     if (json.contains("discId"))     QCOMPARE(disk.discIdTag(), json["discId"].toString());
-    if (json.contains("genre"))      QCOMPARE(disk.genreTag(), json["genre"].toString());
-    if (json.contains("performer"))  QCOMPARE(disk.performerTag(), json["performer"].toString());
-    if (json.contains("songWriter")) QCOMPARE(disk.songWriterTag(), json["songWriter"].toString());
     // clang-format on
 
     QJsonArray tracks = json["tracks"].toArray();
@@ -176,6 +168,7 @@ void DiscSpec::verifyTrackTags(const Track *track, const QJsonObject &json) cons
     if (json.contains("trackNum"))   QCOMPARE(track->trackNumTag(), json["trackNum"].toInt());
     if (json.contains("comment"))    QCOMPARE(track->commentTag(), json["comment"].toString());
     if (json.contains("date"))       QCOMPARE(track->dateTag(), json["date"].toString());
+    if (json.contains("genre"))      QCOMPARE(track->dateTag(), json["genre"].toString());
     if (json.contains("flags"))      QCOMPARE(track->flagsTag(), json["flags"].toString());
     if (json.contains("isrc"))       QCOMPARE(track->isrcTag(), json["isrc"].toString());
     if (json.contains("title"))      QCOMPARE(track->titleTag(), json["title"].toString());

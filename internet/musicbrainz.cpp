@@ -75,7 +75,7 @@ bool MusicBrainz::canDownload(const Disc &disk)
         return false;
     }
 
-    return !disk.performerTag().isEmpty() && !disk.albumTag().isEmpty();
+    return !disk.tracks().first()->performerTag().isEmpty() && !disk.albumTag().isEmpty();
 }
 
 /************************************************
@@ -87,7 +87,7 @@ void MusicBrainz::start()
         return;
     }
 
-    mRequestArtist = mDisk.performerTag();
+    mRequestArtist = mDisk.tracks().first()->performerTag();
     mRequestAlbum  = mDisk.albumTag();
 
     QStringList query;
@@ -265,15 +265,15 @@ InternetTags MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QStrin
         }
 
         QString artist = t["artist-credit"][0]["name"].toString();
-        res.setDate(getDate(t));
         res.setAlbum(album);
-        res.setArtist(artist);
-        res.setGenre(getGenre(t));
 
         InternetTags::Track &track = res.tracks()[n];
 
         track.setTitle(trackTitle);
         track.setTrackNum(n);
+        track.setDate(getDate(t));
+        track.setPerformer(artist);
+        track.setGenre(getGenre(t));
     }
 
     return res;

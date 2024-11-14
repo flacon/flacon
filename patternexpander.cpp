@@ -262,15 +262,15 @@ QString PatternExpander::example(const QString &pattern)
     AlbumTags album;
     album.setDiscNum(1);
     album.setDiscCount(1);
-    album.setArtist("The Beatles");
     album.setAlbum("Help");
-    album.setGenre("Pop");
-    album.setDate("1965");
     album.setTrackCount(14);
 
     TrackTags track;
+    track.setArtist("The Beatles");
     track.setTrackNum(13);
     track.setTitle("Yesterday");
+    track.setGenre("Pop");
+    track.setDate("1965");
 
     PatternExpander expander(album, track, track);
 

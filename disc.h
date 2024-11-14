@@ -101,12 +101,8 @@ public:
     QString albumTag() const;
     QString catalogTag() const;
     QString cdTextfileTag() const;
-    QString commentTag() const;
-    QString dateTag() const;
     QString discIdTag() const;
-    QString genreTag() const;
-    QString performerTag() const;
-    QString songWriterTag() const;
+    QString albumPerformerTag() const;
 
     void setDiscCountTag(DiscNum value);
     void setDiscNumTag(DiscNum value);
@@ -114,14 +110,8 @@ public:
     void setAlbumTag(const QString &value);
     void setCatalogTag(const QString &value);
     void setCdTextfileTag(const QString &value);
-    void setCommentTag(const QString &value);
-    void setDateTag(const QString &value);
     void setDiscIdTag(const QString &value);
-    void setGenreTag(const QString &value);
-    void setPerformerTag(const QString &value);
-    void setSongWriterTag(const QString &value);
-
-    QString artistTag() const { return performerTag(); }
+    void setAlbumPerformerTag(const QString &value);
 
     AlbumTags toTags() const;
 

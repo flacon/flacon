@@ -119,7 +119,6 @@ private slots:
 
 private:
     QVariant trackData(const Track *track, const QModelIndex &index, int role) const;
-    QVariant trackTextData(int role, const QString &trackTag, const QString &diskTag) const;
     QVariant discData(const Disc *disc, const QModelIndex &index, int role) const;
     QString  trackDurationToString(uint milliseconds) const;
     class Cache;

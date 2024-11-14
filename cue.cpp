@@ -45,12 +45,14 @@ Tags::Track Cue::Track::decode(const TextCodec &textCodec) const
     // clang-format off
     res.setTrackNum(mTrackNumTag);
 
+    if (!mCommentTag.isNull())    res.setComment(textCodec.decode(mCommentTag));
     if (!mDateTag.isNull())       res.setDate(textCodec.decode(mDateTag));
+    if (!mGenreTag.isNull())      res.setGenre(textCodec.decode(mGenreTag));
     if (!mFlagsTag.isNull())      res.setFlagsTag(textCodec.decode(mFlagsTag));
     if (!mIsrcTag.isNull())       res.setIsrc(textCodec.decode(mIsrcTag));
+    if (!mTitleTag.isNull())      res.setTitle(textCodec.decode(mTitleTag));
     if (!mPerformerTag.isNull())  res.setPerformer(textCodec.decode(mPerformerTag));
     if (!mSongWriterTag.isNull()) res.setSongWriter(textCodec.decode(mSongWriterTag));
-    if (!mTitleTag.isNull())      res.setTitle(textCodec.decode(mTitleTag));
     // clang-format on
 
     return res;
@@ -107,21 +109,13 @@ void Cue::read(const CueData &data)
 {
     const CueData::Tags &global = data.globalTags();
 
-    mAlbumTag      = global.value(CueData::TITLE_TAG);
-    mCatalogTag    = global.value("CATALOG");
-    mCdTextfileTag = global.value("CDTEXTFILE");
-    mCommentTag    = global.value("COMMENT");
-    mGenreTag      = global.value("GENRE");
-    mDiscIdTag     = global.value("DISCID");
-    mPerformerTag  = global.value("PERFORMER");
-    mSongWriterTag = global.value("SONGWRITER");
-    mDateTag       = global.value("DATE");
-    mDiscNumTag    = global.value("DISCNUMBER", "1").toInt();
-    mDiscCountTag  = global.value("TOTALDISCS", "1").toInt();
-
-    bool skipTrackPerformer  = updateGlobalTagsFromTracks(data, "PERFORMER", &mPerformerTag);
-    bool skipTrackSongWriter = updateGlobalTagsFromTracks(data, "SONGWRITER", &mSongWriterTag);
-    bool skipTrackDate       = updateGlobalTagsFromTracks(data, "DATE", &mDateTag);
+    mAlbumTag          = global.value(CueData::TITLE_TAG);
+    mCatalogTag        = global.value("CATALOG");
+    mCdTextfileTag     = global.value("CDTEXTFILE");
+    mDiscIdTag         = global.value("DISCID");
+    mDiscNumTag        = global.value("DISCNUMBER", "1").toInt();
+    mDiscCountTag      = global.value("TOTALDISCS", "1").toInt();
+    mAlbumPerformerTag = getAlbumPerformer(data);
 
     QByteArray prevFileTag;
 
@@ -159,17 +153,11 @@ void Cue::read(const CueData &data)
         track.mIsrcTag  = t.value("ISRC");
         track.mTitleTag = t.value("TITLE");
 
-        if (!skipTrackPerformer) {
-            track.mPerformerTag = t.value("PERFORMER");
-        }
-
-        if (!skipTrackSongWriter) {
-            track.mSongWriterTag = t.value("SONGWRITER");
-        }
-
-        if (!skipTrackDate) {
-            track.mDateTag = t.value("DATE");
-        }
+        track.mCommentTag    = t.value("COMMENT", global.value("COMMENT"));
+        track.mGenreTag      = t.value("GENRE", global.value("GENRE"));
+        track.mPerformerTag  = t.value("PERFORMER", global.value("PERFORMER"));
+        track.mSongWriterTag = t.value("SONGWRITER", global.value("SONGWRITER"));
+        track.mDateTag       = t.value("DATE", global.value("DATE"));
 
         track.mTrackNumTag = TrackNum(t.value(CueData::TRACK_TAG).toUInt());
 
@@ -233,7 +221,6 @@ TextCodec Cue::detectTextCodec() const
 {
     UcharDet uchardet;
 
-    uchardet << mPerformerTag;
     uchardet << mAlbumTag;
 
     for (const Track &track : mTracks) {
@@ -251,15 +238,11 @@ Tags Cue::decode(const TextCodec &textCodec) const
     if (mDiscCountTag)  res.setDiscCount(mDiscCountTag);
     if (mDiscNumTag)    res.setDiscNum(mDiscNumTag);
 
-    if (!mAlbumTag.isNull())      res.setAlbum(textCodec.decode(mAlbumTag));
-    if (!mCatalogTag.isNull())    res.setCatalog(textCodec.decode(mCatalogTag));
-    if (!mCdTextfileTag.isNull()) res.setCdTextfile(textCodec.decode(mCdTextfileTag));
-    if (!mCommentTag.isNull())    res.setComment(textCodec.decode(mCommentTag));
-    if (!mDateTag.isNull())       res.setDate(textCodec.decode(mDateTag));
-    if (!mDiscIdTag.isNull())     res.setDiscId(textCodec.decode(mDiscIdTag));
-    if (!mGenreTag.isNull())      res.setGenre(textCodec.decode(mGenreTag));
-    if (!mPerformerTag.isNull())  res.setPerformer(textCodec.decode(mPerformerTag));
-    if (!mSongWriterTag.isNull()) res.setSongWriter(textCodec.decode(mSongWriterTag));
+    if (!mAlbumTag.isNull())          res.setAlbum(textCodec.decode(mAlbumTag));
+    if (!mCatalogTag.isNull())        res.setCatalog(textCodec.decode(mCatalogTag));
+    if (!mCdTextfileTag.isNull())     res.setCdTextfile(textCodec.decode(mCdTextfileTag));
+    if (!mDiscIdTag.isNull())         res.setDiscId(textCodec.decode(mDiscIdTag));
+    if (!mAlbumPerformerTag.isNull()) res.setmAlbumPerformer(textCodec.decode(mAlbumPerformerTag));
     // clang-format on
 
     for (const Track &t : mTracks) {

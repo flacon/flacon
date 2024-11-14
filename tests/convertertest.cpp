@@ -420,8 +420,8 @@ void ConverterTest::check()
                 QVariant expected = spec.value(tag);
 
                 if (tag == "extra/CUESHEET") {
-                    actual   = trimmCueSheet(actual.toByteArray());
-                    expected = trimmCueSheet(expected.toByteArray());
+                    actual   = '\n' + trimmCueSheet(actual.toByteArray());
+                    expected = '\n' + trimmCueSheet(expected.toByteArray());
                 }
 
                 if (actual != expected) {

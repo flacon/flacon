@@ -41,6 +41,10 @@ class Track
     friend class PregapTrack;
 
 public:
+    using Getter = QString (Track::*)() const;
+    using Setter = void (Track::*)(const QString &);
+
+public:
     Track() = default;
     Track(Disc *disk, int index);
     Track(const Track &other) = default;

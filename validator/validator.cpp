@@ -409,8 +409,9 @@ bool Validator::checkSameAudioForFileTags(const Disk *disk)
  **************************************/
 QString Validator::diskString(int diskNum) const
 {
-    const Disk *disk = mDisks.at(diskNum);
-    return QStringLiteral("%1 \"%2 - %3\"").arg(diskNum + 1).arg(disk->artistTag(), disk->albumTag());
+    const Disk *disk   = mDisks.at(diskNum);
+    QString     artist = disk->isEmpty() ? "" : disk->tracks().first()->performerTag();
+    return QStringLiteral("%1 \"%2 - %3\"").arg(diskNum + 1).arg(artist, disk->albumTag());
 }
 
 /**************************************
@@ -473,7 +474,7 @@ bool Validator::validateDuplicateSourceFiles(const Disk *disk, QStringList &erro
 
     QStringList audioFiles = disk->audioFilePaths();
 
-    int n = 0;
+    int n = -1;
     for (const Disk *d : mDisks) {
         n++;
 
@@ -482,19 +483,17 @@ bool Validator::validateDuplicateSourceFiles(const Disk *disk, QStringList &erro
         }
 
         if (d->cueFilePath() == disk->cueFilePath()) {
-            warnings << tr("Disk %1 \"%2 - %3\" uses the same CUE file.",
-                           "Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively")
-                                .arg(n)
-                                .arg(d->artistTag(), d->albumTag());
+            warnings << tr("Disk %1 uses the same CUE file.",
+                           "Warning message, %1 is the disk description, artist and album for the disc, respectively")
+                                .arg(diskString(n));
         }
 
         for (const QString &path : d->audioFilePaths()) {
             if (audioFiles.contains(path)) {
 
-                warnings << tr("Disk %1 \"%2 - %3\" uses the same audio file.",
-                               "Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name")
-                                    .arg(n)
-                                    .arg(d->artistTag(), d->albumTag());
+                warnings << tr("Disk %1 uses the same audio file.",
+                               "Warning message, %1 is the disk description, artist and album for the disc, respectively")
+                                    .arg(diskString(n));
             }
         }
     }

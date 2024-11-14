@@ -63,7 +63,7 @@ QString MetadataWriter::peakToString(float &peak) const
  ************************************************/
 QString MetadataWriter::artistTag(const Track &track) const
 {
-    return firstNotEmptyString(track.artistTag(), track.disk()->artistTag());
+    return track.artistTag();
 }
 
 /************************************************
@@ -71,7 +71,7 @@ QString MetadataWriter::artistTag(const Track &track) const
  ************************************************/
 QString MetadataWriter::commentTag(const Track &track) const
 {
-    return firstNotEmptyString(track.commentTag(), track.disk()->commentTag());
+    return track.commentTag();
 }
 
 /************************************************
@@ -79,7 +79,7 @@ QString MetadataWriter::commentTag(const Track &track) const
  ************************************************/
 QString MetadataWriter::dateTag(const Track &track) const
 {
-    return firstNotEmptyString(track.dateTag(), track.disk()->dateTag());
+    return track.dateTag();
 }
 
 /**************************************
@@ -87,7 +87,7 @@ QString MetadataWriter::dateTag(const Track &track) const
  **************************************/
 QString MetadataWriter::genreTag(const Track &track) const
 {
-    return firstNotEmptyString(track.genreTag(), track.disk()->genreTag());
+    return track.genreTag();
 }
 
 /************************************************
@@ -116,7 +116,7 @@ void MetadataWriter::setXiphTags(TagLib::Ogg::XiphComment *tags, const Track &tr
     setXiphTag(tags, "GENRE", this->genreTag(track));
     setXiphTag(tags, "DATE", this->dateTag(track));
     setXiphTag(tags, "TITLE", track.titleTag());
-    setXiphTag(tags, "ALBUMARTIST", disk->artistTag());
+    setXiphTag(tags, "ALBUMARTIST", disk->albumPerformerTag());
     setXiphTag(tags, "COMMENT", this->commentTag(track));
     setXiphTag(tags, "DISCID", disk->discIdTag());
 
@@ -193,7 +193,7 @@ void MetadataWriter::setApeTags(TagLib::APE::Tag *tags, const Track &track) cons
     writeStrTag("GENRE", this->genreTag(track));
     writeStrTag("YEAR", this->dateTag(track));
     writeStrTag("TITLE", track.titleTag());
-    writeStrTag("ALBUM ARTIST", disk->performerTag());
+    writeStrTag("ALBUM ARTIST", disk->albumPerformerTag());
     writeStrTag("COMMENT", this->commentTag(track));
     writeStrTag("DISCID", disk->discIdTag());
 
@@ -291,7 +291,7 @@ void Mp4MetaDataWriter::setTags(const Track &track)
     writeStrTag("GENRE", this->genreTag(track));
     writeStrTag("DATE", this->dateTag(track));
     writeStrTag("TITLE", track.titleTag());
-    writeStrTag("ALBUMARTIST", disk->performerTag());
+    writeStrTag("ALBUMARTIST", disk->albumPerformerTag());
     writeStrTag("COMMENT", this->commentTag(track));
     writeStrTag("TRACKNUMBER", QStringLiteral("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
     writeStrTag("DISCNUMBER", QStringLiteral("%1/%2").arg(disk->discNumTag()).arg(disk->discCountTag()));

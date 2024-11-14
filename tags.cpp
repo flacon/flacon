@@ -40,15 +40,11 @@ void AlbumTags::merge(const AlbumTags &other)
     if (other.discNum())    mDiscNum    = other.discNum();
     if (other.trackCount()) mTrackCount = other.trackCount();
 
-    if (!other.mAlbum.isNull())      mAlbum      = other.mAlbum;
-    if (!other.mCatalog.isNull())    mCatalog    = other.mCatalog;
-    if (!other.mCdTextfile.isNull()) mCdTextfile = other.mCdTextfile;
-    if (!other.mComment.isNull())    mComment    = other.mComment;
-    if (!other.mDate.isNull())       mDate       = other.mDate;
-    if (!other.mDiscId.isNull())     mDiscId     = other.mDiscId;
-    if (!other.mGenre.isNull())      mGenre      = other.mGenre;
-    if (!other.mPerformer.isNull())  mPerformer  = other.mPerformer;
-    if (!other.mSongWriter.isNull()) mSongWriter = other.mSongWriter;
+    if (!other.mAlbum.isNull())             mAlbum          = other.mAlbum;
+    if (!other.mCatalog.isNull())           mCatalog        = other.mCatalog;
+    if (!other.mCdTextfile.isNull())        mCdTextfile     = other.mCdTextfile;
+    if (!other.mDiscId.isNull())            mDiscId         = other.mDiscId;
+    if (!other.mAlbumPerformer.isNull())    mAlbumPerformer = other.mAlbumPerformer;
     // clang-format on
 }
 

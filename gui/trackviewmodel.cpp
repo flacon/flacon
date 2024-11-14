@@ -298,10 +298,13 @@ bool TrackViewModel::setData(const QModelIndex &index, const QVariant &value, in
     foreach (Track *track, tracks) {
         // clang-format off
         switch (index.column()) {
-            case TrackView::ColumnTitle:   track->setTitleTag(value.toString());         break;
-            case TrackView::ColumnArtist:  track->setPerformerTag(value.toString());     break;
-            case TrackView::ColumnAlbum:   track->disk()->setAlbumTag(value.toString()); break;
-            case TrackView::ColumnComment: track->setCommentTag(value.toString());       break;
+            case TrackView::ColumnTitle:        track->setTitleTag(value.toString());         break;
+            case TrackView::ColumnArtist:       track->setPerformerTag(value.toString());     break;
+            case TrackView::ColumnAlbum:        track->disk()->setAlbumTag(value.toString()); break;
+            case TrackView::ColumnComment:      track->setCommentTag(value.toString());       break;
+            case TrackView::ColumnDate:         track->setDateTag(value.toString());          break;
+            case TrackView::ColumnGenre:        track->setGenreTag(value.toString());         break;
+            case TrackView::ColumnSongWriter:   track->setSongWriterTag(value.toString());    break;
         }
         // clang-format on
     }
@@ -315,8 +318,6 @@ bool TrackViewModel::setData(const QModelIndex &index, const QVariant &value, in
  ************************************************/
 QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index, int role) const
 {
-    Disc *disk = track->disk();
-
     // Text roles :::::::::::::::::::::::::::::::
     if (role == Qt::DisplayRole || role == Qt::EditRole || role == TrackViewModel::RolePlaceHolder) {
         // clang-format off
@@ -324,28 +325,13 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
             case TrackView::ColumnTracknum:     return QVariant(QStringLiteral("%1").arg(track->trackNumTag(), 2, 10, QChar('0')));
             case TrackView::ColumnDuration:     return QVariant(trackDurationToString(track->duration()) + " ");
             case TrackView::ColumnTitle:        return QVariant(track->titleTag());
-            case TrackView::ColumnArtist:       return trackTextData(role, track->artistTag(), disk->artistTag());
+            case TrackView::ColumnArtist:       return track->artistTag();
             case TrackView::ColumnAlbum:        return track->disc()->albumTag();
             case TrackView::ColumnComment:      return QVariant(track->commentTag());
             case TrackView::ColumnFileName:     return QVariant(Project::instance()->profile()->resultFileName(track));
-            case TrackView::ColumnDate:         return trackTextData(role, track->dateTag(), disk->dateTag());
-            case TrackView::ColumnGenre:        return trackTextData(role, track->genreTag(), disk->genreTag());
-            case TrackView::ColumnSongWriter:   return trackTextData(role, track->songWriterTag(), disk->songWriterTag());
-        }
-        // clang-format on
-
-        return QVariant();
-    }
-
-    // ForegroundRole :::::::::::::::::::::::::::
-    if (role == Qt::ForegroundRole) {
-        QBrush placeHolderColor = this->view()->palette().color(QPalette::PlaceholderText);
-        // clang-format off
-        switch (index.column()) {
-            case TrackView::ColumnArtist:       return track->artistTag().isEmpty() ? placeHolderColor : QVariant();
-            case TrackView::ColumnDate:         return track->dateTag().isEmpty() ? placeHolderColor : QVariant();
-            case TrackView::ColumnGenre:        return track->genreTag().isEmpty() ? placeHolderColor : QVariant();
-            case TrackView::ColumnSongWriter:   return track->songWriterTag().isEmpty() ? placeHolderColor : QVariant();
+            case TrackView::ColumnDate:         return track->dateTag();
+            case TrackView::ColumnGenre:        return track->genreTag();
+            case TrackView::ColumnSongWriter:   return track->songWriterTag();
         }
         // clang-format on
 
@@ -390,21 +376,6 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
     // clang-format on
 
     return QVariant();
-}
-
-/**************************************
- *
- **************************************/
-QVariant TrackViewModel::trackTextData(int role, const QString &trackTag, const QString &diskTag) const
-{
-    // clang-format off
-    switch (role) {
-        case Qt::EditRole:     return trackTag;
-        case RolePlaceHolder:  return diskTag;
-        case Qt::DisplayRole:  return firstNotEmptyString(trackTag, diskTag);
-    }
-    // clang-format on
-    return {};
 }
 
 /************************************************

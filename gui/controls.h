@@ -172,11 +172,32 @@ class MultiValuesLineEdit : public QLineEdit
 public:
     explicit MultiValuesLineEdit(QWidget *parent = nullptr);
 
+    QString multiValuesText() const { return mMultiValuesText; }
+    void    setMultiValuesText(const QString &value);
+
 public slots:
     void setMultiValue(QSet<QString> value);
 
 private:
     QStringListModel *mCompleterModel;
+    QString           mMultiValuesText;
+};
+
+/************************************************
+
+ ************************************************/
+class TrackTagLineEdit : public MultiValuesLineEdit
+{
+public:
+    using MultiValuesLineEdit::MultiValuesLineEdit;
+
+    Track::Getter getter() const { return mGetter; }
+    void          setGetter(const Track::Getter &func) { mGetter = func; }
+
+    void loadFromTracks(const TrackPtrList &tracks);
+
+private:
+    Track::Getter mGetter = nullptr;
 };
 
 /************************************************

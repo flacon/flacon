@@ -65,7 +65,7 @@ bool Discogs::canDownload(const Disc &disk)
         return false;
     }
 
-    return !disk.performerTag().isEmpty() && !disk.albumTag().isEmpty();
+    return !disk.tracks().first()->performerTag().isEmpty() && !disk.albumTag().isEmpty();
 }
 
 void Discogs::start()
@@ -74,7 +74,7 @@ void Discogs::start()
         return;
     }
 
-    mRequestArtist = mDisk.performerTag();
+    mRequestArtist = mDisk.tracks().first()->performerTag();
     mRequestAlbum  = mDisk.albumTag();
 
     QStringList query;
@@ -163,10 +163,7 @@ void Discogs::masterReady(QNetworkReply *reply)
         InternetTags res;
         res.tracks().resize(tracklist.count());
 
-        res.setDate(year > 0 ? QString::number(year) : "");
         res.setAlbum(album);
-        res.setArtist(artist);
-        res.setGenre(genre);
 
         int n = -1;
         for (const QJsonValue &t : tracklist) {
@@ -175,6 +172,9 @@ void Discogs::masterReady(QNetworkReply *reply)
             InternetTags::Track &track = res.tracks()[n];
             track.setTitle(t["title"].toString());
             track.setTrackNum(t["position"].toInt());
+            track.setDate(year > 0 ? QString::number(year) : "");
+            track.setPerformer(artist);
+            track.setGenre(genre);
         }
 
         mResult << res;

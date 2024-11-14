@@ -76,13 +76,13 @@ static void write(const Cue &cue, const QString &fileName)
         f << "\t"
           << "ALBUM       = " << QString::fromUtf8(cue.albumTag()) << "\n";
         f << "\t"
-          << "PERFORMER   = " << firstNotEmptyString(QString::fromUtf8(track.performerTag()), QString::fromUtf8(cue.performerTag())) << "\n";
+          << "PERFORMER   = " << QString::fromUtf8(track.performerTag()) << "\n";
         f << "\t"
-          << "DATE        = " << firstNotEmptyString(QString::fromUtf8(track.dateTag()), QString::fromUtf8(cue.dateTag())) << "\n";
+          << "DATE        = " << QString::fromUtf8(track.dateTag()) << "\n";
         f << "\t"
           << "DISCID      = " << QString::fromUtf8(cue.discIdTag()) << "\n";
         f << "\t"
-          << "GENRE       = " << QString::fromUtf8(cue.genreTag()) << "\n";
+          << "GENRE       = " << QString::fromUtf8(track.genreTag()) << "\n";
         f << "\t"
           << "TRACKNUM    = " << QString::number(track.trackNumTag()) << "\n";
         f << "\t"

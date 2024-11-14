@@ -49,7 +49,9 @@ public:
 
         int        trackNumTag() const { return mTrackNumTag; }
         QByteArray artistTag() const { return performerTag(); }
+        QByteArray commentTag() const { return mCommentTag; }
         QByteArray dateTag() const { return mDateTag; }
+        QByteArray genreTag() const { return mGenreTag; }
         QByteArray fileTag() const { return mFileTag; }
         QByteArray flagsTag() const { return mFlagsTag; }
         QByteArray isrcTag() const { return mIsrcTag; }
@@ -65,9 +67,11 @@ public:
 
         int mTrackNumTag = 0;
 
+        QByteArray mCommentTag;
         QByteArray mDateTag;
         QByteArray mFileTag;
         QByteArray mFlagsTag;
+        QByteArray mGenreTag;
         QByteArray mIsrcTag;
         QByteArray mPerformerTag;
         QByteArray mSongWriterTag;
@@ -90,12 +94,8 @@ public:
     QByteArray albumTag() const { return mAlbumTag; }
     QByteArray catalogTag() const { return mCatalogTag; }
     QByteArray cdTextfileTag() const { return mCdTextfileTag; }
-    QByteArray commentTag() const { return mCommentTag; }
-    QByteArray dateTag() const { return mDateTag; }
     QByteArray discIdTag() const { return mDiscIdTag; }
-    QByteArray genreTag() const { return mGenreTag; }
-    QByteArray performerTag() const { return mPerformerTag; }
-    QByteArray songWriterTag() const { return mSongWriterTag; }
+    QByteArray albumPerformer() const { return mAlbumPerformerTag; }
 
     QList<Track> tracks() const { return mTracks; }
     bool         isEmpty() const { return mTracks.isEmpty(); }
@@ -137,12 +137,8 @@ private:
     QByteArray mAlbumTag;
     QByteArray mCatalogTag;
     QByteArray mCdTextfileTag;
-    QByteArray mCommentTag;
-    QByteArray mDateTag;
     QByteArray mDiscIdTag;
-    QByteArray mGenreTag;
-    QByteArray mPerformerTag;
-    QByteArray mSongWriterTag;
+    QByteArray mAlbumPerformerTag;
 };
 
 class EmbeddedCue : public Cue

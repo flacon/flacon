@@ -107,7 +107,7 @@ void TagEditor::updateWidgets()
         diskCount << track->disk()->discCountTag();
 
         performer << track->performerTag();
-        // albumPerformer << track->disk()->alb
+        albumPerformer << track->disk()->albumPerformerTag();
         songWriter << track->songWriterTag();
         album << track->disk()->albumTag();
         date << track->dateTag();
@@ -121,13 +121,16 @@ void TagEditor::updateWidgets()
     ui->diskNumEdit->setMultiValue(diskNum);
     ui->diskCountEdit->setMultiValue(diskCount);
 
+    ui->trackTitleEdit->setGetter(&Track::titleTag);
+    ui->trackTitleEdit->loadFromTracks(mTracks);
+
     ui->performerEdit->setMultiValue(performer);
     ui->albumPerformerEdit->setMultiValue(albumPerformer);
     ui->songWriterEdit->setMultiValue(songWriter);
     ui->albumEdit->setMultiValue(album);
     ui->dateEdit->setMultiValue(date);
     ui->genreEdit->setMultiValue(genre);
-    ui->trackTitleEdit->setMultiValue(trackTitle);
+    // ui->trackTitleEdit->setMultiValue(trackTitle);
     ui->commentEdit->setMultiValue(comment);
 
     // ui->trackTitleValue->setMultiValue(trackTitle);

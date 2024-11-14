@@ -49,10 +49,16 @@ private:
     const Disc      *mDisk;
     const Profile    mProfile;
     const PreGapType mPreGapType;
+    QString          mCommonGenre;
+    QString          mCommonDate;
+    QString          mCommonPerformer;
+    QString          mCommonSongWriter;
 
     void writeLine(QIODevice *out, const QString &text) const;
     void writeTag(QIODevice *out, const QString &format, const QString &value) const;
     void writeTrackTags(QIODevice *out, const Track *track) const;
+
+    QString getCommonTag(const Track::Getter &func);
 };
 
 } // namepace

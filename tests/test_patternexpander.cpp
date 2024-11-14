@@ -82,9 +82,9 @@ void TestFlacon::testPatternExpander()
 
     albumTags.setAlbum(trackValues.value("album"));
     trackTags.setTitle(trackValues.value("title"));
-    albumTags.setArtist(trackValues.value("artist"));
-    albumTags.setGenre(trackValues.value("genre"));
-    albumTags.setDate(trackValues.value("date"));
+    trackTags.setArtist(trackValues.value("artist"));
+    trackTags.setGenre(trackValues.value("genre"));
+    trackTags.setDate(trackValues.value("date"));
 
     PatternExpander expander(albumTags, trackTags, trackTags);
 

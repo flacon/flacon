@@ -42,7 +42,7 @@ ValidatorDisk::ValidatorDisk(const Disc *disk, const Profile *profile)
 {
     id        = genId();
     albumTag  = disk->albumTag();
-    artistTag = disk->artistTag();
+    artistTag = disk->isEmpty() ? "" : disk->tracks().first()->artistTag();
 
     for (const Track *t : disk->tracks()) {
         ValidatorTrack track = ValidatorTrack(t, profile);
