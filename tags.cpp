@@ -27,11 +27,26 @@
 #include "tags.h"
 #include "disc.h"
 #include <QDebug>
+#include <QMetaEnum>
 
 #define GET(FIELD) !mUserTags.FIELD().isNull() ? mUserTags.FIELD() : mLoadedTags.FIELD();
 
 /**************************************
  * AlbumTags
+ **************************************/
+QList<AlbumTags::TagId> AlbumTags::allTagId()
+{
+    QMetaEnum e = QMetaEnum::fromType<TagId>();
+
+    QList<TagId> res;
+    for (int i = 0; i < e.keyCount(); i++) {
+        res << TagId(e.value(i));
+    }
+    return res;
+}
+
+/**************************************
+ *
  **************************************/
 void AlbumTags::merge(const AlbumTags &other)
 {
@@ -39,32 +54,38 @@ void AlbumTags::merge(const AlbumTags &other)
     if (other.discCount())  mDiscCount  = other.discCount();
     if (other.discNum())    mDiscNum    = other.discNum();
     if (other.trackCount()) mTrackCount = other.trackCount();
-
-    if (!other.mAlbum.isNull())             mAlbum          = other.mAlbum;
-    if (!other.mCatalog.isNull())           mCatalog        = other.mCatalog;
-    if (!other.mCdTextfile.isNull())        mCdTextfile     = other.mCdTextfile;
-    if (!other.mDiscId.isNull())            mDiscId         = other.mDiscId;
-    if (!other.mAlbumPerformer.isNull())    mAlbumPerformer = other.mAlbumPerformer;
     // clang-format on
+
+    for (TagId tagId : other.mTags.keys()) {
+        setTag(tagId, other.tag(tagId));
+    }
 }
 
 /**************************************
  * TrackTags
  **************************************/
+QList<TrackTags::TagId> TrackTags::allTagId()
+{
+    QMetaEnum e = QMetaEnum::fromType<TagId>();
+
+    QList<TrackTags::TagId> res;
+    for (int i = 0; i < e.keyCount(); i++) {
+        res << TagId(e.value(i));
+    }
+    return res;
+}
+
+/**************************************
+ *
+ **************************************/
 void TrackTags::merge(const TrackTags &other)
 {
-    // clang-format off
-    if (other.mTrackNum)    mTrackNum = other.mTrackNum;
+    if (other.mTrackNum)
+        mTrackNum = other.mTrackNum;
 
-    if (!other.mComment.isNull())    mComment    = other.mComment;
-    if (!other.mFlagsTag.isNull())   mFlagsTag   = other.mFlagsTag;
-    if (!other.mDate.isNull())       mDate       = other.mDate;
-    if (!other.mGenre.isNull())      mGenre      = other.mGenre;
-    if (!other.mIsrc.isNull())       mIsrc       = other.mIsrc;
-    if (!other.mPerformer.isNull())  mPerformer  = other.mPerformer;
-    if (!other.mSongWriter.isNull()) mSongWriter = other.mSongWriter;
-    if (!other.mTitle.isNull())      mTitle      = other.mTitle;
-    // clang-format on
+    for (TrackTags::TagId tagId : other.mTags.keys()) {
+        setTag(tagId, other.tag(tagId));
+    }
 }
 
 /**************************************

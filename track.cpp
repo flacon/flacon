@@ -104,6 +104,22 @@ bool Track::preEmphased() const
 /**************************************
  *
  **************************************/
+QString Track::tag(TrackTags::TagId tagId) const
+{
+    return firstNotNullString(mUserTags.tag(tagId), mLoadedTags.tag(tagId));
+}
+
+/**************************************
+ *
+ **************************************/
+void Track::setTag(TrackTags::TagId tagId, const QString &value)
+{
+    mUserTags.setTag(tagId, value);
+}
+
+/**************************************
+ *
+ **************************************/
 TrackNum Track::trackNumTag() const
 {
     return mUserTags.trackNum() > 0 ? mUserTags.trackNum() : mLoadedTags.trackNum();
@@ -112,147 +128,9 @@ TrackNum Track::trackNumTag() const
 /**************************************
  *
  **************************************/
-QString Track::commentTag() const
-{
-    if (!mUserTags.comment().isNull()) {
-        return mUserTags.comment();
-    }
-
-    return mLoadedTags.comment();
-}
-
-/**************************************
- *
- **************************************/
-QString Track::dateTag() const
-{
-    if (!mUserTags.date().isNull()) {
-        return mUserTags.date();
-    }
-
-    return mLoadedTags.date();
-}
-
-
-/**************************************
- *
- **************************************/
-QString Track::genreTag() const
-{
-    return firstNotNullString(mUserTags.genre(), mLoadedTags.genre());
-}
-
-/**************************************
- *
- **************************************/
-QString Track::flagsTag() const
-{
-    return mLoadedTags.flagsTag();
-}
-
-/**************************************
- *
- **************************************/
-QString Track::isrcTag() const
-{
-    if (!mUserTags.isrc().isNull()) {
-        return mUserTags.isrc();
-    }
-    return mLoadedTags.isrc();
-}
-
-/**************************************
- *
- **************************************/
-QString Track::titleTag() const
-{
-    if (!mUserTags.title().isNull()) {
-        return mUserTags.title();
-    }
-    return mLoadedTags.title();
-}
-
-/**************************************
- *
- **************************************/
-QString Track::performerTag() const
-{
-    return firstNotNullString(mUserTags.performer(), mLoadedTags.performer());
-}
-
-/**************************************
- *
- **************************************/
-QString Track::songWriterTag() const
-{
-    if (!mUserTags.songWriter().isNull()) {
-        return mUserTags.songWriter();
-    }
-    return mLoadedTags.songWriter();
-}
-
-/**************************************
- *
- **************************************/
-void Track::setCommentTag(const QString &value)
-{
-    mUserTags.setComment(value);
-}
-
-/**************************************
- *
- **************************************/
 void Track::setTrackNumTag(int value)
 {
     mUserTags.setTrackNum(value);
-}
-
-/**************************************
- *
- **************************************/
-void Track::setDateTag(const QString &value)
-{
-    mUserTags.setDate(value);
-}
-
-/**************************************
- *
- **************************************/
-void Track::setGenreTag(const QString &value)
-{
-    mUserTags.setGenre(value);
-}
-
-/**************************************
- *
- **************************************/
-void Track::setIsrcTag(const QString &value)
-{
-    mUserTags.setIsrc(value);
-}
-
-/**************************************
- *
- **************************************/
-void Track::setTitleTag(const QString &value)
-{
-    mUserTags.setTitle(value);
-}
-
-/**************************************
- *
- **************************************/
-void Track::setPerformerTag(const QString &value)
-{
-    mUserTags.setPerformer(value);
-}
-
-/**************************************
- *
- **************************************/
-void Track::setSongWriterTag(const QString &value)
-{
-    mUserTags.setSongWriter(value);
 }
 
 /**************************************
@@ -271,15 +149,10 @@ TrackTags Track::toTags() const
     TrackTags res;
     res.setTrackNum(trackNumTag());
 
-    res.setArtist(artistTag());
-    res.setComment(commentTag());
-    res.setDate(dateTag());
-    res.setGenre(genreTag());
-    res.setFlagsTag(flagsTag());
-    res.setIsrc(isrcTag());
-    res.setTitle(titleTag());
-    res.setPerformer(performerTag());
-    res.setSongWriter(songWriterTag());
+    for (TrackTags::TagId tagId : TrackTags::allTagId()) {
+        res.setTag(tagId, this->tag(tagId));
+    }
+
     return res;
 }
 

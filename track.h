@@ -70,27 +70,30 @@ public:
 
 public:
     // Tags
+    QString tag(TrackTags::TagId tagId) const;
+    void    setTag(TrackTags::TagId tagId, const QString &value);
+
     TrackNum trackNumTag() const;
     void     setTrackNumTag(int value);
 
     QString artistTag() const { return performerTag(); }
-    QString commentTag() const;
-    QString dateTag() const;
-    QString genreTag() const;
-    QString flagsTag() const;
-    QString isrcTag() const;
-    QString titleTag() const;
-    QString performerTag() const;
-    QString songWriterTag() const;
+    QString commentTag() const { return tag(TrackTags::TagId::Comment); }
+    QString dateTag() const { return tag(TrackTags::TagId::Date); }
+    QString genreTag() const { return tag(TrackTags::TagId::Genre); }
+    QString flagsTag() const { return tag(TrackTags::TagId::Flags); }
+    QString isrcTag() const { return tag(TrackTags::TagId::Isrc); }
+    QString titleTag() const { return tag(TrackTags::TagId::Title); }
+    QString performerTag() const { return tag(TrackTags::TagId::Performer); }
+    QString songWriterTag() const { return tag(TrackTags::TagId::SongWriter); }
 
     void setArtistTag(const QString &value) { setPerformerTag(value); }
-    void setCommentTag(const QString &value);
-    void setDateTag(const QString &value);
-    void setGenreTag(const QString &value);
-    void setIsrcTag(const QString &value);
-    void setTitleTag(const QString &value);
-    void setPerformerTag(const QString &value);
-    void setSongWriterTag(const QString &value);
+    void setCommentTag(const QString &value) { setTag(TrackTags::TagId::Comment, value); }
+    void setDateTag(const QString &value) { setTag(TrackTags::TagId::Date, value); }
+    void setGenreTag(const QString &value) { setTag(TrackTags::TagId::Genre, value); }
+    void setIsrcTag(const QString &value) { setTag(TrackTags::TagId::Isrc, value); }
+    void setTitleTag(const QString &value) { setTag(TrackTags::TagId::Title, value); }
+    void setPerformerTag(const QString &value) { setTag(TrackTags::TagId::Performer, value); }
+    void setSongWriterTag(const QString &value) { setTag(TrackTags::TagId::SongWriter, value); }
 
     QString fileTag() const;
 

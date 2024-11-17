@@ -47,17 +47,19 @@ public:
         CueIndex cueIndex00() const { return mCueIndex00; }
         CueIndex cueIndex01() const { return mCueIndex01; }
 
+        QByteArray tag(TrackTags::TagId tagId) const { return mTags.value(tagId); }
+
         int        trackNumTag() const { return mTrackNumTag; }
         QByteArray artistTag() const { return performerTag(); }
-        QByteArray commentTag() const { return mCommentTag; }
-        QByteArray dateTag() const { return mDateTag; }
-        QByteArray genreTag() const { return mGenreTag; }
+        QByteArray commentTag() const { return tag(TrackTags::TagId::Comment); }
+        QByteArray dateTag() const { return tag(TrackTags::TagId::Date); }
+        QByteArray genreTag() const { return tag(TrackTags::TagId::Genre); }
         QByteArray fileTag() const { return mFileTag; }
-        QByteArray flagsTag() const { return mFlagsTag; }
-        QByteArray isrcTag() const { return mIsrcTag; }
-        QByteArray performerTag() const { return mPerformerTag; }
-        QByteArray songWriterTag() const { return mSongWriterTag; }
-        QByteArray titleTag() const { return mTitleTag; }
+        QByteArray flagsTag() const { return tag(TrackTags::TagId::Flags); }
+        QByteArray isrcTag() const { return tag(TrackTags::TagId::Isrc); }
+        QByteArray performerTag() const { return tag(TrackTags::TagId::Performer); }
+        QByteArray songWriterTag() const { return tag(TrackTags::TagId::SongWriter); }
+        QByteArray titleTag() const { return tag(TrackTags::TagId::Title); }
 
         Tags::Track decode(const TextCodec &textCodec) const;
 
@@ -67,15 +69,8 @@ public:
 
         int mTrackNumTag = 0;
 
-        QByteArray mCommentTag;
-        QByteArray mDateTag;
-        QByteArray mFileTag;
-        QByteArray mFlagsTag;
-        QByteArray mGenreTag;
-        QByteArray mIsrcTag;
-        QByteArray mPerformerTag;
-        QByteArray mSongWriterTag;
-        QByteArray mTitleTag;
+        QMap<TrackTags::TagId, QByteArray> mTags;
+        QByteArray                         mFileTag;
     };
 
     static constexpr const char *const EMBEDED_PREFIX = "embedded://";
@@ -89,13 +84,15 @@ public:
     QString filePath() const { return mFilePath; }
     TagsId  tagsId() const { return mTagsId; }
 
+    QByteArray tag(AlbumTags::TagId tagId) const { return mTags.value(tagId); }
+
     DiscNum    discCountTag() const { return mDiscCountTag; }
     DiscNum    discNumTag() const { return mDiscNumTag; }
-    QByteArray albumTag() const { return mAlbumTag; }
-    QByteArray catalogTag() const { return mCatalogTag; }
-    QByteArray cdTextfileTag() const { return mCdTextfileTag; }
-    QByteArray discIdTag() const { return mDiscIdTag; }
-    QByteArray albumPerformer() const { return mAlbumPerformerTag; }
+    QByteArray albumTag() const { return tag(AlbumTags::TagId::Album); }
+    QByteArray catalogTag() const { return tag(AlbumTags::TagId::Catalog); }
+    QByteArray cdTextfileTag() const { return tag(AlbumTags::TagId::CdTextfile); }
+    QByteArray discIdTag() const { return tag(AlbumTags::TagId::DiscId); }
+    QByteArray albumPerformer() const { return tag(AlbumTags::TagId::AlbumPerformer); }
 
     QList<Track> tracks() const { return mTracks; }
     bool         isEmpty() const { return mTracks.isEmpty(); }
@@ -134,11 +131,7 @@ private:
     DiscNum mDiscCountTag = 0;
     DiscNum mDiscNumTag   = 0;
 
-    QByteArray mAlbumTag;
-    QByteArray mCatalogTag;
-    QByteArray mCdTextfileTag;
-    QByteArray mDiscIdTag;
-    QByteArray mAlbumPerformerTag;
+    QMap<AlbumTags::TagId, QByteArray> mTags;
 };
 
 class EmbeddedCue : public Cue
