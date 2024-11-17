@@ -381,6 +381,22 @@ void Disc::setCodecName(const QString &codecName)
 /**************************************
  *
  **************************************/
+QString Disc::tag(AlbumTags::TagId tagId) const
+{
+    return firstNotNullString(mUserTags.tag(tagId), mLoadedTags.tag(tagId));
+}
+
+/**************************************
+ *
+ **************************************/
+void Disc::setTag(AlbumTags::TagId tagId, const QString &value)
+{
+    mUserTags.setTag(tagId, value);
+}
+
+/**************************************
+ *
+ **************************************/
 DiscNum Disc::discCountTag() const
 {
     return mUserTags.discCount() != 0 ? mUserTags.discCount() : mLoadedTags.discCount();
@@ -405,46 +421,6 @@ TrackNum Disc::trackCountTag() const
 /**************************************
  *
  **************************************/
-QString Disc::albumTag() const
-{
-    return !mUserTags.album().isEmpty() ? mUserTags.album() : mLoadedTags.album();
-}
-
-/**************************************
- *
- **************************************/
-QString Disc::catalogTag() const
-{
-    return !mUserTags.catalog().isEmpty() ? mUserTags.catalog() : mLoadedTags.catalog();
-}
-
-/**************************************
- *
- **************************************/
-QString Disc::cdTextfileTag() const
-{
-    return !mUserTags.cdTextfile().isEmpty() ? mUserTags.cdTextfile() : mLoadedTags.cdTextfile();
-}
-
-/**************************************
- *
- **************************************/
-QString Disc::discIdTag() const
-{
-    return !mUserTags.discId().isEmpty() ? mUserTags.discId() : mLoadedTags.discId();
-}
-
-/**************************************
- *
- **************************************/
-QString Disc::albumPerformerTag() const
-{
-    return !mUserTags.albumPerformer().isEmpty() ? mUserTags.albumPerformer() : mLoadedTags.albumPerformer();
-}
-
-/**************************************
- *
- **************************************/
 void Disc::setDiscCountTag(DiscNum value)
 {
     mUserTags.setDiscCount(value);
@@ -456,46 +432,6 @@ void Disc::setDiscCountTag(DiscNum value)
 void Disc::setDiscNumTag(DiscNum value)
 {
     mUserTags.setDiscNum(value);
-}
-
-/**************************************
- *
- **************************************/
-void Disc::setAlbumTag(const QString &value)
-{
-    mUserTags.setAlbum(value);
-}
-
-/**************************************
- *
- **************************************/
-void Disc::setCatalogTag(const QString &value)
-{
-    mUserTags.setCatalog(value);
-}
-
-/**************************************
- *
- **************************************/
-void Disc::setCdTextfileTag(const QString &value)
-{
-    mUserTags.setCdTextfile(value);
-}
-
-/**************************************
- *
- **************************************/
-void Disc::setDiscIdTag(const QString &value)
-{
-    mUserTags.setDiscId(value);
-}
-
-/**************************************
- *
- **************************************/
-void Disc::setAlbumPerformerTag(const QString &value)
-{
-    mUserTags.setmAlbumPerformer(value);
 }
 
 /**************************************

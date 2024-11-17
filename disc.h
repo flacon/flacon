@@ -93,25 +93,27 @@ public:
 
 public:
     // Tags
+    QString tag(AlbumTags::TagId tagId) const;
+    void    setTag(AlbumTags::TagId tagId, const QString &value);
 
     DiscNum  discCountTag() const;
     DiscNum  discNumTag() const;
     TrackNum trackCountTag() const;
 
-    QString albumTag() const;
-    QString catalogTag() const;
-    QString cdTextfileTag() const;
-    QString discIdTag() const;
-    QString albumPerformerTag() const;
+    QString albumTag() const { return tag(AlbumTags::TagId::Album); }
+    QString catalogTag() const { return tag(AlbumTags::TagId::Catalog); }
+    QString cdTextfileTag() const { return tag(AlbumTags::TagId::CdTextfile); }
+    QString discIdTag() const { return tag(AlbumTags::TagId::DiscId); }
+    QString albumPerformerTag() const { return tag(AlbumTags::TagId::AlbumPerformer); }
 
     void setDiscCountTag(DiscNum value);
     void setDiscNumTag(DiscNum value);
 
-    void setAlbumTag(const QString &value);
-    void setCatalogTag(const QString &value);
-    void setCdTextfileTag(const QString &value);
-    void setDiscIdTag(const QString &value);
-    void setAlbumPerformerTag(const QString &value);
+    void setAlbumTag(const QString &value) { setTag(AlbumTags::TagId::Album, value); }
+    void setCatalogTag(const QString &value) { setTag(AlbumTags::TagId::Catalog, value); }
+    void setCdTextfileTag(const QString &value) { setTag(AlbumTags::TagId::CdTextfile, value); }
+    void setDiscIdTag(const QString &value) { setTag(AlbumTags::TagId::DiscId, value); }
+    void setAlbumPerformerTag(const QString &value) { setTag(AlbumTags::TagId::AlbumPerformer, value); }
 
     AlbumTags toTags() const;
 
