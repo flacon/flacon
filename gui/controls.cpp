@@ -556,11 +556,6 @@ MultiValuesLineEdit::MultiValuesLineEdit(QWidget *parent) :
     completer()->setCompletionMode(QCompleter::PopupCompletion);
 }
 
-void MultiValuesLineEdit::setMultiValuesText(const QString &value)
-{
-    mMultiValuesText = value;
-}
-
 /************************************************
 
  ************************************************/
@@ -888,13 +883,92 @@ void Controls::arangeTollBarButtonsWidth(QToolBar *toolBar)
     }
 }
 
-void TrackTagLineEdit::loadFromTracks(const TrackPtrList &tracks)
+/**************************************
+ *
+ **************************************/
+template <class T>
+void doWriteToTracks(T *edit, const TrackPtrList &tracks)
+{
+    if (!edit->isModified()) {
+        return;
+    }
+
+    for (Track *track : tracks) {
+        track->setTag(edit->tagId(), edit->text());
+    }
+}
+
+/**************************************
+ *
+ **************************************/
+template <class T>
+void doLoadFromTracks(T *edit, const TrackPtrList &tracks)
 {
     QSet<QString> values;
     for (const Track *track : tracks) {
-        values << std::mem_fn(mGetter)(track);
+        values << track->tag(edit->tagId());
     }
 
-    setMultiValuesText(tr("Different accross %1 songs").arg(tracks.count()));
+    edit->setMultiValuesText(edit->tr("Different accross %1 songs").arg(tracks.count()));
+    edit->setMultiValue(values);
+}
+
+/**************************************
+ *
+ **************************************/
+void TrackTagLineEdit::loadFromTracks(const TrackPtrList &tracks)
+{
+    doLoadFromTracks(this, tracks);
+}
+
+/**************************************
+ *
+ **************************************/
+void TrackTagLineEdit::writeToTracks(const TrackPtrList &tracks)
+{
+    doWriteToTracks(this, tracks);
+}
+
+/**************************************
+ *
+ **************************************/
+void TrackTagTextEdit::loadFromTracks(const TrackPtrList &tracks)
+{
+    doLoadFromTracks(this, tracks);
+}
+
+/**************************************
+ *
+ **************************************/
+void TrackTagTextEdit::writeToTracks(const TrackPtrList &tracks)
+{
+    doWriteToTracks(this, tracks);
+}
+
+/**************************************
+ *
+ **************************************/
+void AlbumTagLineEdit::loadFromDisks(const DiskList &disks)
+{
+    QSet<QString> values;
+    for (const Disk *disk : disks) {
+        values << disk->tag(mTagId);
+    }
+
+    setMultiValuesText(tr("Different accross %1 disks").arg(disks.count()));
     setMultiValue(values);
+}
+
+/**************************************
+ *
+ **************************************/
+void AlbumTagLineEdit::writeToDisks(const DiskList &disks)
+{
+    if (!isModified()) {
+        return;
+    }
+
+    for (Disk *disk : disks) {
+        disk->setTag(mTagId, text());
+    }
 }

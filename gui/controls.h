@@ -173,7 +173,7 @@ public:
     explicit MultiValuesLineEdit(QWidget *parent = nullptr);
 
     QString multiValuesText() const { return mMultiValuesText; }
-    void    setMultiValuesText(const QString &value);
+    void    setMultiValuesText(const QString &value) { mMultiValuesText = value; }
 
 public slots:
     void setMultiValue(QSet<QString> value);
@@ -188,16 +188,37 @@ private:
  ************************************************/
 class TrackTagLineEdit : public MultiValuesLineEdit
 {
+    Q_OBJECT
 public:
     using MultiValuesLineEdit::MultiValuesLineEdit;
 
-    Track::Getter getter() const { return mGetter; }
-    void          setGetter(const Track::Getter &func) { mGetter = func; }
+    TrackTags::TagId tagId() const { return mTagId; }
+    void             setTagId(TrackTags::TagId value) { mTagId = value; }
 
     void loadFromTracks(const TrackPtrList &tracks);
+    void writeToTracks(const TrackPtrList &tracks);
 
 private:
-    Track::Getter mGetter = nullptr;
+    TrackTags::TagId mTagId = TrackTags::TagId(-1);
+};
+
+/************************************************
+
+ ************************************************/
+class AlbumTagLineEdit : public MultiValuesLineEdit
+{
+    Q_OBJECT
+public:
+    using MultiValuesLineEdit::MultiValuesLineEdit;
+
+    AlbumTags::TagId tagId() const { return mTagId; }
+    void             setTagId(AlbumTags::TagId value) { mTagId = value; }
+
+    void loadFromDisks(const DiskList &disks);
+    void writeToDisks(const DiskList &disks);
+
+private:
+    AlbumTags::TagId mTagId = AlbumTags::TagId(-1);
 };
 
 /************************************************
@@ -212,8 +233,33 @@ public:
     bool    isModified() const;
     QString text() const { return this->toPlainText(); }
 
+    QString multiValuesText() const { return mMultiValuesText; }
+    void    setMultiValuesText(const QString &value) { mMultiValuesText = value; }
+
 public slots:
     void setMultiValue(QSet<QString> value);
+
+private:
+    QString mMultiValuesText;
+};
+
+/************************************************
+
+ ************************************************/
+class TrackTagTextEdit : public MultiValuesTextEdit
+{
+    Q_OBJECT
+public:
+    using MultiValuesTextEdit::MultiValuesTextEdit;
+
+    TrackTags::TagId tagId() const { return mTagId; }
+    void             setTagId(TrackTags::TagId value) { mTagId = value; }
+
+    void loadFromTracks(const TrackPtrList &tracks);
+    void writeToTracks(const TrackPtrList &tracks);
+
+private:
+    TrackTags::TagId mTagId = TrackTags::TagId(-1);
 };
 
 /************************************************

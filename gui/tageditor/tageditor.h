@@ -53,6 +53,7 @@ public slots:
 private:
     Ui::TagEditor       *ui;
     const QList<Track *> mTracks;
+    const QList<Disk *>  mDisks;
 
     void updateWidgets();
     void apply();

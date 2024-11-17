@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>416</width>
+    <width>540</width>
     <height>575</height>
    </rect>
   </property>
@@ -16,6 +16,9 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::ExpandingFieldsGrow</enum>
+     </property>
      <item row="0" column="0">
       <widget class="QLabel" name="trackPerformerLabel">
        <property name="text">
@@ -24,7 +27,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="MultiValuesLineEdit" name="performerEdit"/>
+      <widget class="TrackTagLineEdit" name="performerEdit"/>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="diskAPerformerLabel">
@@ -34,7 +37,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="MultiValuesLineEdit" name="albumPerformerEdit"/>
+      <widget class="AlbumTagLineEdit" name="albumPerformerEdit"/>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="trackSongWriterLabel">
@@ -44,7 +47,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="MultiValuesLineEdit" name="songWriterEdit"/>
+      <widget class="TrackTagLineEdit" name="songWriterEdit"/>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="diskAlbumLabel">
@@ -54,7 +57,7 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="MultiValuesLineEdit" name="albumEdit"/>
+      <widget class="AlbumTagLineEdit" name="albumEdit"/>
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="trackDateLabel">
@@ -64,7 +67,7 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="MultiValuesLineEdit" name="dateEdit"/>
+      <widget class="TrackTagLineEdit" name="dateEdit"/>
      </item>
      <item row="5" column="0">
       <widget class="QLabel" name="trackGnreLabel">
@@ -74,7 +77,7 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="MultiValuesLineEdit" name="genreEdit"/>
+      <widget class="TrackTagLineEdit" name="genreEdit"/>
      </item>
      <item row="6" column="0">
       <widget class="QLabel" name="trackTitleLabel">
@@ -111,7 +114,7 @@
           <string>of</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -131,7 +134,7 @@
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -168,7 +171,7 @@
           <string>of</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -185,7 +188,7 @@
        <item>
         <spacer name="horizontalSpacer_2">
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -205,17 +208,17 @@
       </widget>
      </item>
      <item row="9" column="1">
-      <widget class="MultiValuesTextEdit" name="commentEdit"/>
+      <widget class="TrackTagTextEdit" name="commentEdit"/>
      </item>
     </layout>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
+      <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>
@@ -228,17 +231,17 @@
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>MultiValuesLineEdit</class>
+   <class>TrackTagLineEdit</class>
    <extends>QLineEdit</extends>
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>MultiValuesTextEdit</class>
+   <class>TrackTagTextEdit</class>
    <extends>QTextEdit</extends>
    <header>controls.h</header>
   </customwidget>
   <customwidget>
-   <class>TrackTagLineEdit</class>
+   <class>AlbumTagLineEdit</class>
    <extends>QLineEdit</extends>
    <header>controls.h</header>
   </customwidget>
