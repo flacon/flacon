@@ -114,6 +114,21 @@ public:
     QString resultFileDir(const Track *track) const;
     QString resultFilePath(const Track *track) const;
 
+    ProxyType proxyType() const { return globalParams().proxyType; }
+    void      setProxyType(ProxyType value) { globalParams().proxyType = value; }
+
+    QString proxyHost() const { return globalParams().proxyHost; }
+    void    setProxyHost(const QString &value) { globalParams().proxyHost = value; }
+
+    uint proxyPort() const { return globalParams().proxyPort; }
+    void setProxyPort(uint value) { globalParams().proxyPort = value; }
+
+    QString proxyUserName() const { return globalParams().proxyUserName; }
+    void    setProxyUserName(const QString &value) { globalParams().proxyUserName = value; }
+
+    QString proxyPassword() const { return globalParams().proxyPassword; }
+    void    setProxyPassword(const QString &value) { globalParams().proxyPassword = value; }
+
 private:
     QString mId;
     QString mName;
@@ -141,6 +156,12 @@ private:
         QString mTmpDir;
         uint    mEncoderThreadsCount = defaultEncoderThreadCount();
         bool    splitTrackTitle      = true;
+
+        ProxyType proxyType = ProxyType::NoProxy;
+        QString   proxyHost;
+        QString   proxyUserName;
+        QString   proxyPassword;
+        uint      proxyPort = 0;
     };
 
     static GlobalParams &globalParams();

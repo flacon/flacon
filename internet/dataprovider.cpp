@@ -31,10 +31,11 @@
 #include <QStringList>
 #include <QDebug>
 #include <QLoggingCategory>
-#include <functional>
+#include "profiles.h"
 
 #include "musicbrainz.h"
 #include "discogs.h"
+#include <QNetworkProxy>
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "DataProvider")
@@ -53,12 +54,33 @@ bool DataProvider::canDownload(const Disc &disk)
     return res;
 }
 
+static QNetworkProxy::ProxyType proxyTypeToQProxyType(ProxyType type)
+{
+    // clang-format off
+    switch (type) {
+        case ProxyType::NoProxy:     return QNetworkProxy::ProxyType::NoProxy;
+        case ProxyType::HttpProxy:   return QNetworkProxy::ProxyType::HttpProxy;
+        case ProxyType::Socks5Proxy: return QNetworkProxy::ProxyType::Socks5Proxy;
+    }
+    // clang-format on
+
+    return QNetworkProxy::ProxyType::NoProxy;
+}
+
 /************************************************
 
  ************************************************/
-DataProvider::DataProvider(QObject *parent) :
+DataProvider::DataProvider(Profile *profile, QObject *parent) :
     QObject(parent)
 {
+
+    QNetworkProxy proxy;
+    proxy.setType(proxyTypeToQProxyType(profile->proxyType()));
+    proxy.setHostName(profile->proxyHost());
+    proxy.setPort(profile->proxyPort());
+    proxy.setUser(profile->proxyUserName());
+    proxy.setPassword(profile->proxyPassword());
+    QNetworkProxy::setApplicationProxy(proxy);
 }
 
 /************************************************

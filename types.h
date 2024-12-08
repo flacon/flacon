@@ -211,6 +211,12 @@ int calcSampleRate(int input, SampleRate resample);
 
 int calcQuality(int input, int preferences, int formatMax);
 
+enum class ProxyType {
+    NoProxy,
+    HttpProxy,
+    Socks5Proxy,
+};
+
 QByteArray leftPart(const QByteArray &line, const char separator);
 QByteArray rightPart(const QByteArray &line, const char separator);
 void       initTypes();

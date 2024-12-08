@@ -182,6 +182,12 @@ void PreferencesDialog::setProfiles(const Profiles &profiles)
     ui->generalPage->setTmpDir(p.tmpDir());
     ui->generalPage->setSplitTrackTitle(p.isSplitTrackTitle());
 
+    ui->generalPage->setProxyType(p.proxyType());
+    ui->generalPage->setProxyHost(p.proxyHost());
+    ui->generalPage->setProxyPort(p.proxyPort());
+    ui->generalPage->setProxyUserName(p.proxyUserName());
+    ui->generalPage->setProxyPassword(p.proxyPassword());
+
 #ifndef BUNDLED_PROGRAMS
     // Programs page .......................
     ui->programsPage->load();
@@ -279,6 +285,12 @@ bool PreferencesDialog::save()
     p.setEncoderThreadsCount(ui->generalPage->encoderThreadsCount());
     p.setTmpDir(ui->generalPage->tmpDir());
     p.setSplitTrackTitle(ui->generalPage->isSplitTrackTitle());
+
+    p.setProxyType(ui->generalPage->proxyType());
+    p.setProxyHost(ui->generalPage->proxyHost());
+    p.setProxyPort(ui->generalPage->proxyPort());
+    p.setProxyUserName(ui->generalPage->proxyUserName());
+    p.setProxyPassword(ui->generalPage->proxyPassword());
 
 #ifndef BUNDLED_PROGRAMS
     // Programs page .......................

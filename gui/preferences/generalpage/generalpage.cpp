@@ -38,6 +38,8 @@ GeneralPage::GeneralPage(QWidget *parent) :
     ui->tmpDirButton->setBuddy(ui->tmpDirEdit);
     connect(ui->tmpDirButton, &QToolButton::clicked, this, &GeneralPage::showTmpDirDialog);
 
+    initProxyTypeComboBox();
+
 #ifdef DISABLE_TMP_DIR
     ui->tmpDirLabel->hide();
     ui->tmpDirEdit->hide();
@@ -56,6 +58,17 @@ void GeneralPage::showTmpDirDialog()
     if (!dir.isEmpty()) {
         setTmpDir(dir);
     }
+}
+
+/**************************************
+ *
+ **************************************/
+void GeneralPage::initProxyTypeComboBox()
+{
+    ui->proxyTypeComboBox->addItem(tr("No proxy"), int(ProxyType::NoProxy));
+    ui->proxyTypeComboBox->addItem(tr("HTTP"), int(ProxyType::HttpProxy));
+    ui->proxyTypeComboBox->addItem(tr("SOCKS 5"), int(ProxyType::Socks5Proxy));
+    ui->proxyTypeComboBox->setCurrentIndex(0);
 }
 
 QString GeneralPage::tmpDir() const
@@ -94,4 +107,84 @@ bool GeneralPage::isSplitTrackTitle() const
 void GeneralPage::setSplitTrackTitle(bool value)
 {
     ui->splitTrackTitleCbx->setChecked(value);
+}
+
+/**************************************
+ *
+ **************************************/
+ProxyType GeneralPage::proxyType() const
+{
+    return ProxyType(ui->proxyTypeComboBox->currentData().toInt());
+}
+
+/**************************************
+ *
+ **************************************/
+void GeneralPage::setProxyType(ProxyType value)
+{
+    ui->proxyTypeComboBox->setCurrentIndex(qMax(0, ui->proxyTypeComboBox->findData(int(value))));
+}
+
+/**************************************
+ *
+ **************************************/
+QString GeneralPage::proxyHost() const
+{
+    return ui->proxyHostEdit->text();
+}
+
+/**************************************
+ *
+ **************************************/
+void GeneralPage::setProxyHost(const QString &value)
+{
+    ui->proxyHostEdit->setText(value);
+}
+
+/**************************************
+ *
+ **************************************/
+uint GeneralPage::proxyPort() const
+{
+    return ui->proxyPortEdit->value();
+}
+
+/**************************************
+ *
+ **************************************/
+void GeneralPage::setProxyPort(uint value)
+{
+    ui->proxyPortEdit->setValue(value);
+}
+
+/**************************************
+ *
+ **************************************/
+QString GeneralPage::proxyUserName() const
+{
+    return ui->ProxyUserNameEdit->text();
+}
+
+/**************************************
+ *
+ **************************************/
+void GeneralPage::setProxyUserName(const QString &value)
+{
+    ui->ProxyUserNameEdit->setText(value);
+}
+
+/**************************************
+ *
+ **************************************/
+QString GeneralPage::proxyPassword() const
+{
+    return ui->proxyPasswordEdit->text();
+}
+
+/**************************************
+ *
+ **************************************/
+void GeneralPage::setProxyPassword(const QString &value)
+{
+    ui->proxyPasswordEdit->setText(value);
 }

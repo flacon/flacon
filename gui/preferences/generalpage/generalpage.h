@@ -27,6 +27,7 @@
 #define GENERALPAGE_H
 
 #include <QWidget>
+#include "types.h"
 
 namespace Ui {
 class GeneralPage;
@@ -49,10 +50,26 @@ public:
     bool isSplitTrackTitle() const;
     void setSplitTrackTitle(bool value);
 
+    ProxyType proxyType() const;
+    void      setProxyType(ProxyType value);
+
+    QString proxyHost() const;
+    void    setProxyHost(const QString &value);
+
+    uint proxyPort() const;
+    void setProxyPort(uint value);
+
+    QString proxyUserName() const;
+    void    setProxyUserName(const QString &value);
+
+    QString proxyPassword() const;
+    void    setProxyPassword(const QString &value);
+
 private:
     Ui::GeneralPage *ui;
 
     void showTmpDirDialog();
+    void initProxyTypeComboBox();
 };
 
 #endif // GENERALPAGE_H

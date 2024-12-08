@@ -35,6 +35,7 @@
 class Disc;
 class QNetworkAccessManager;
 class InterntService;
+class Profile;
 
 class DataProvider : public QObject
 {
@@ -43,7 +44,7 @@ public:
     static bool canDownload(const Disc &disk);
 
 public:
-    explicit DataProvider(QObject *parent = nullptr);
+    explicit DataProvider(Profile *profile, QObject *parent = nullptr);
     virtual ~DataProvider();
 
     void start(const Disc &disk);

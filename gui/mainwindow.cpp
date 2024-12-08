@@ -802,7 +802,7 @@ void MainWindow::downloadDiscInfo(Disc *disc)
         return;
     }
 
-    DataProvider *provider = new DataProvider();
+    DataProvider *provider = new DataProvider(Project::instance()->profile());
     connect(provider, &DataProvider::finished,
             provider, &DataProvider::deleteLater);
 

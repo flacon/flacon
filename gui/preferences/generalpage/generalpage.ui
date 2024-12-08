@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>491</width>
-    <height>335</height>
+    <height>389</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -105,6 +105,86 @@
         </property>
         <property name="text">
          <string extracomment="Checkbox text on preferences ">Use heuristic definition of track performer</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="proxyGroup">
+     <property name="title">
+      <string>Proxy</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <layout class="QFormLayout" name="formLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string comment="Preferences proxy settings" extracomment="Preferences proxy settings">Proxy type</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="proxyTypeComboBox"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string comment="Preferences proxy settings" extracomment="Preferences proxy settings">Host</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLineEdit" name="proxyHostEdit"/>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="proxyPortEdit">
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximum">
+           <number>65535</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string comment="Preferences proxy settings" extracomment="Preferences proxy settings">User name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="ProxyUserNameEdit"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string comment="Preferences proxy settings" extracomment="Preferences proxy settings">Password</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="proxyPasswordEdit">
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
         </property>
        </widget>
       </item>

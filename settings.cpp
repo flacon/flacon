@@ -52,9 +52,44 @@ static constexpr auto SPLIT_TRACK_TITLE_KEY   = "Tags/SplitTrackTitle";
 static constexpr auto ENCODER_THREADCOUNT_KEY = "Encoder/ThreadCount";
 static constexpr auto ENCODER_TMPDIR_KEY      = "Encoder/TmpDir";
 
+static constexpr auto PROXY_TYPE = "Proxy/Type";
+static constexpr auto PROXY_HOST = "Proxy/Host";
+static constexpr auto PROXY_PORT = "Proxy/Port";
+static constexpr auto PROXY_USER = "Proxy/User";
+static constexpr auto PROXY_PASS = "Proxy/Password";
 
 QString   Settings::mFileName;
 Settings *Settings::mInstance = nullptr;
+
+/************************************************
+ *
+ ************************************************/
+static QString proxyTypeToStr(ProxyType type)
+{
+    // clang-format off
+    switch (type) {
+        case ProxyType::NoProxy:          return "NoProxy";
+        case ProxyType::HttpProxy:        return "HTTP";
+        case ProxyType::Socks5Proxy:      return "Socks5";
+    }
+    // clang-format on
+
+    return "Disabled";
+}
+
+/************************************************
+ *
+ ************************************************/
+ProxyType strToProxyType(const QString &value)
+{
+    QString s = value.toLower();
+    // clang-format off
+    if (s == "socks5") return ProxyType::Socks5Proxy;
+    if (s == "http")   return ProxyType::HttpProxy;
+    // clang-format on
+
+    return ProxyType::NoProxy;
+}
 
 /************************************************
  *
@@ -158,6 +193,12 @@ Profile Settings::readProfile(const QString &profileId)
     profile.setEncoderThreadsCount(readThreadsCount(ENCODER_THREADCOUNT_KEY, profile.encoderThreadsCount()));
     profile.setSplitTrackTitle(value(SPLIT_TRACK_TITLE_KEY, profile.isSplitTrackTitle()).toBool());
 
+    profile.setProxyType(strToProxyType(value(PROXY_TYPE).toString()));
+    profile.setProxyHost(value(PROXY_HOST).toString());
+    profile.setProxyPort(value(PROXY_PORT, 0).toInt());
+    profile.setProxyUserName(value(PROXY_USER).toString());
+    profile.setProxyPassword(value(PROXY_PASS).toString());
+
     return profile;
 }
 
@@ -206,6 +247,12 @@ void Settings::writeProfile(const Profile &profile)
     setValue(ENCODER_TMPDIR_KEY, profile.tmpDir());
     setValue(ENCODER_THREADCOUNT_KEY, profile.encoderThreadsCount());
     setValue(SPLIT_TRACK_TITLE_KEY, profile.isSplitTrackTitle());
+
+    setValue(PROXY_TYPE, proxyTypeToStr(profile.proxyType()));
+    setValue(PROXY_HOST, profile.proxyHost());
+    setValue(PROXY_PORT, profile.proxyPort());
+    setValue(PROXY_USER, profile.proxyUserName());
+    setValue(PROXY_PASS, profile.proxyPassword());
 }
 
 /************************************************
