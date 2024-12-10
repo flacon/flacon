@@ -215,11 +215,17 @@ void ProfileTabWidget::recreateEncoderWidget(const Profile *profile)
         }
         ui->encoderGroup->layout()->addWidget(mEncoderWidget.get());
         PreferencesDialog::fixLayout(this);
+
+        setTabVisible(indexOf(ui->tagsTab), true);
+        setTabVisible(indexOf(ui->cueTab), true);
     }
     else {
         ui->encoderGroup->setVisible(false);
         ui->encoderGroupLine->setVisible(false);
 
         mEncoderWidget.reset(new NoEncoderConfigPage(ui->encoderGroup));
+
+        setTabVisible(indexOf(ui->tagsTab), false);
+        setTabVisible(indexOf(ui->cueTab), false);
     }
 }

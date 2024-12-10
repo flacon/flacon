@@ -13,6 +13,7 @@
     PregapType = AddToFirst
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    Tags\WriteSingleDiskNum=false
 
 [Profiles/FLAC]
     OutDirectory=~/Music/flac
@@ -30,6 +31,7 @@
     CoverFile/Size=600
     CoverEmbed/Mode=Scale
     CoverEmbed/Size=800
+    Tags\WriteSingleDiskNum=true
 
 
 [Profiles/MP3]
@@ -48,6 +50,7 @@
     PregapType = Disable
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    Tags\WriteSingleDiskNum=false
 
 
 [Profiles/OGG]
@@ -68,6 +71,7 @@
     PregapType = AddToFirst
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    Tags\WriteSingleDiskNum=true
 
 
 [Profiles/OPUS]
@@ -84,6 +88,7 @@
     PregapType = Extract
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    Tags\WriteSingleDiskNum=false
 
 
 [Profiles/WV]
@@ -100,6 +105,7 @@
     PregapType = Disable
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    Tags\WriteSingleDiskNum=true
 
 
 [Profiles/WAV]
@@ -114,6 +120,7 @@
     PregapType = AddToFirst
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    Tags\WriteSingleDiskNum=false
 
 [Profiles/ALAC]
     OutDirectory=~/Music/flac
@@ -131,3 +138,4 @@
     CoverFile/Size=600
     CoverEmbed/Mode=Scale
     CoverEmbed/Size=800
+    Tags\WriteSingleDiskNum=true

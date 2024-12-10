@@ -17,6 +17,8 @@
     CoverEmbed/Size=1024
     EmbedCue=false
     ReplayGain=Disable
+    Tags\WriteSingleDiskNum=true
+
 
 [Profiles/FLAC]
     OutDirectory=:Music
@@ -35,6 +37,7 @@
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
     EmbedCue=false
+    Tags\WriteSingleDiskNum=true
 
 
 [Profiles/MP3]
@@ -56,6 +59,7 @@
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
     EmbedCue=false
+    Tags\WriteSingleDiskNum=true
 
 
 [Profiles/OGG]
@@ -79,6 +83,7 @@
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
     EmbedCue=false
+    Tags\WriteSingleDiskNum=true
 
 
 [Profiles/OPUS]
@@ -99,6 +104,7 @@
     CoverEmbed/Size=1024
     EmbedCue=false
     ReplayGain=Disable
+    Tags\WriteSingleDiskNum=true
 
 
 [Profiles/WV]
@@ -118,6 +124,7 @@
     CoverEmbed/Mode=Disable
     CoverEmbed/Size=1024
     EmbedCue=false
+    Tags\WriteSingleDiskNum=true
 
 
 [Profiles/WAV]
@@ -134,6 +141,7 @@
     CoverFile/Size=1024
     EmbedCue=false
     ReplayGain=Disable
+    Tags\WriteSingleDiskNum=true
 
 
 [Profiles/ALAC]
@@ -153,3 +161,4 @@
     CoverEmbed/Size=1024
     EmbedCue=false
     ReplayGain=Disable
+    Tags\WriteSingleDiskNum=true

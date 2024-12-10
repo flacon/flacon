@@ -14,7 +14,7 @@
    <string notr="true">TabWidget</string>
   </property>
   <property name="currentIndex">
-   <number>2</number>
+   <number>1</number>
   </property>
   <widget class="QWidget" name="audioTab">
    <attribute name="title">
@@ -221,7 +221,7 @@ If you surround sections of text that contain a token with braces, these section
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="tab_2">
+  <widget class="QWidget" name="cueTab">
    <attribute name="title">
     <string comment="Preferences dialog tab title">CUE and Cover image</string>
    </attribute>
@@ -296,7 +296,7 @@ If you surround sections of text that contain a token with braces, these section
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="tab">
+  <widget class="QWidget" name="tagsTab">
    <attribute name="title">
     <string comment="Preferences tab page title" extracomment="Preferences tab page title">Tags</string>
    </attribute>
