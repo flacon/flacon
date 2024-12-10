@@ -324,7 +324,7 @@ void DiscPipeline::writeGain(const ConvTrack &track, const QString &fileName, co
 {
     qCDebug(LOG) << "Write track gain: " << fileName << "gain:" << trackGain.gain() << "peak:" << track;
 
-    MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(fileName);
+    MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(mProfile, fileName);
     writer->setTrackReplayGain(trackGain.gain(), trackGain.peak());
     writer->save();
     delete writer;
@@ -345,7 +345,7 @@ void DiscPipeline::writeGain(const ConvTrack &track, const QString &fileName, co
     for (const Request &r : std::as_const(mAlbumGainRequests)) {
         qCDebug(LOG) << "Write album gain: " << r.inputFile << "gain:" << mAlbumGain.result().gain() << "peak:" << mAlbumGain.result().peak();
 
-        MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(r.inputFile);
+        MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(mProfile, r.inputFile);
         writer->setAlbumReplayGain(mAlbumGain.result().gain(), mAlbumGain.result().peak());
         writer->save();
         delete writer;

@@ -89,9 +89,9 @@ QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const QString &ou
 /************************************************
  *
  ************************************************/
-MetadataWriter *OutFormat_Aac::createMetadataWriter(const QString &filePath) const
+MetadataWriter *OutFormat_Aac::createMetadataWriter(const Profile &profile, const QString &filePath) const
 {
-    return new Mp4MetaDataWriter(filePath);
+    return new Mp4MetaDataWriter(profile, filePath);
 }
 
 /************************************************

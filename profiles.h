@@ -75,6 +75,9 @@ public:
     bool isEmbedCue() const { return mEmbedCue; }
     void setEmbedCue(bool value);
 
+    bool isWriteSingleDiskNum() const { return mWriteSingleDiskNum; }
+    void setWriteSingleDiskNum(bool value);
+
     QString cueFileName() const { return mCueFileName; }
     void    setCueFileName(const QString &value);
 
@@ -141,8 +144,9 @@ private:
     SampleRate    mSampleRate    = SampleRate::AsSource;
     PreGapType    mPregapType    = PreGapType::ExtractToFile;
 
-    bool mCreateCue = false;
-    bool mEmbedCue  = false;
+    bool mCreateCue          = false;
+    bool mEmbedCue           = false;
+    bool mWriteSingleDiskNum = true;
 
     OutFormat *mFormat = nullptr;
 

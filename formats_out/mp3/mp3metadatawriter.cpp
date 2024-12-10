@@ -37,8 +37,8 @@ Q_LOGGING_CATEGORY(LOG, "Mp3MetaDataWriter")
 /************************************************
 
  ************************************************/
-Mp3MetaDataWriter::Mp3MetaDataWriter(const QString &filePath) :
-    MetadataWriter(filePath),
+Mp3MetaDataWriter::Mp3MetaDataWriter(const Profile &profile, const QString &filePath) :
+    MetadataWriter(profile, filePath),
     mFile(filePath.toLocal8Bit(), false)
 {
     if (!mFile.isValid()) {
@@ -118,7 +118,9 @@ void Mp3MetaDataWriter::setTags(const Track &track)
     }
 
     addFrame(tags, "TRCK")->setText(QStringLiteral("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()).toStdString());
-    addFrame(tags, "TPOS")->setText(QStringLiteral("%1/%2").arg(disk->discNumTag()).arg(disk->discCountTag()).toStdString());
+    if (needWriteDiskNumTags(track)) {
+        addFrame(tags, "TPOS")->setText(QStringLiteral("%1/%2").arg(disk->discNumTag()).arg(disk->discCountTag()).toStdString());
+    }
 }
 
 /************************************************

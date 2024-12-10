@@ -107,9 +107,9 @@ QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const QString &ou
 /************************************************
  *
  ************************************************/
-MetadataWriter *OutFormat_Ogg::createMetadataWriter(const QString &filePath) const
+MetadataWriter *OutFormat_Ogg::createMetadataWriter(const Profile &profile, const QString &filePath) const
 {
-    return new OggMetaDataWriter(filePath);
+    return new OggMetaDataWriter(profile, filePath);
 }
 
 /************************************************

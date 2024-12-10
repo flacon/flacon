@@ -30,23 +30,24 @@ static constexpr auto PROFILES_GROUP = "Profiles";
 #if !BUNDLED_PROGRAMS
 static constexpr auto PROGRAMS_GROUP = "Programs";
 #endif
-static constexpr auto CURRENT_PROFILE_ID           = "OutFiles/Profile";
-static constexpr auto KNOWN_FORMATS_KEY            = "KnownFormats";
-static constexpr auto PROFILE_NAME_KEY             = "Name";
-static constexpr auto PROFILE_FORMAT_KEY           = "Format";
-static constexpr auto PROFILE_OUT_DIRECTORY_KEY    = "OutDirectory";
-static constexpr auto PROFILE_OUT_PATTERN_KEY      = "OutPattern";
-static constexpr auto PROFILE_BITS_PER_SAMPLE_KEY  = "BitsPerSample";
-static constexpr auto PROFILE_SAMPLE_RATE_KEY      = "SampleRate";
-static constexpr auto PROFILE_CREATE_CUE_KEY       = "CreateCue";
-static constexpr auto PROFILE_EMBED_CUE_KEY        = "EmbedCue";
-static constexpr auto PROFILE_CUE_FILE_NAME_KEY    = "CueFileName";
-static constexpr auto PROFILE_PREGAP_TYPE_KEY      = "PregapType";
-static constexpr auto PROFILE_REPLAY_GAIN_KEY      = "ReplayGain";
-static constexpr auto PROFILE_COVER_FILE_MODE_KEY  = "CoverFile/Mode";
-static constexpr auto PROFILE_COVER_FILE_SIZE_KEY  = "CoverFile/Size";
-static constexpr auto PROFILE_COVER_EMBED_MODE_KEY = "CoverEmbed/Mode";
-static constexpr auto PROFILE_COVER_EMBED_SIZE_KEY = "CoverEmbed/Size";
+static constexpr auto CURRENT_PROFILE_ID             = "OutFiles/Profile";
+static constexpr auto KNOWN_FORMATS_KEY              = "KnownFormats";
+static constexpr auto PROFILE_NAME_KEY               = "Name";
+static constexpr auto PROFILE_FORMAT_KEY             = "Format";
+static constexpr auto PROFILE_OUT_DIRECTORY_KEY      = "OutDirectory";
+static constexpr auto PROFILE_OUT_PATTERN_KEY        = "OutPattern";
+static constexpr auto PROFILE_BITS_PER_SAMPLE_KEY    = "BitsPerSample";
+static constexpr auto PROFILE_SAMPLE_RATE_KEY        = "SampleRate";
+static constexpr auto PROFILE_CREATE_CUE_KEY         = "CreateCue";
+static constexpr auto PROFILE_EMBED_CUE_KEY          = "EmbedCue";
+static constexpr auto PROFILE_CUE_FILE_NAME_KEY      = "CueFileName";
+static constexpr auto PROFILE_PREGAP_TYPE_KEY        = "PregapType";
+static constexpr auto PROFILE_REPLAY_GAIN_KEY        = "ReplayGain";
+static constexpr auto PROFILE_COVER_FILE_MODE_KEY    = "CoverFile/Mode";
+static constexpr auto PROFILE_COVER_FILE_SIZE_KEY    = "CoverFile/Size";
+static constexpr auto PROFILE_COVER_EMBED_MODE_KEY   = "CoverEmbed/Mode";
+static constexpr auto PROFILE_COVER_EMBED_SIZE_KEY   = "CoverEmbed/Size";
+static constexpr auto PROFILE_WRITE_DISK_NUM_TAG_KEY = "Tags/WriteSingleDiskNum";
 
 static constexpr auto SPLIT_TRACK_TITLE_KEY   = "Tags/SplitTrackTitle";
 static constexpr auto ENCODER_THREADCOUNT_KEY = "Encoder/ThreadCount";
@@ -168,6 +169,7 @@ Profile Settings::readProfile(const QString &profileId)
 
     profile.setCreateCue(value(PROFILE_CREATE_CUE_KEY, profile.isCreateCue()).toBool());
     profile.setEmbedCue(value(PROFILE_EMBED_CUE_KEY, profile.isEmbedCue()).toBool());
+    profile.setWriteSingleDiskNum(value(PROFILE_WRITE_DISK_NUM_TAG_KEY, profile.isWriteSingleDiskNum()).toBool());
 
     CoverOptions opts = profile.copyCoverOptions();
     opts.mode         = strToCoverMode(value(PROFILE_COVER_FILE_MODE_KEY).toString(), opts.mode);
@@ -229,6 +231,7 @@ void Settings::writeProfile(const Profile &profile)
 
     setValue(PROFILE_CREATE_CUE_KEY, profile.isCreateCue());
     setValue(PROFILE_EMBED_CUE_KEY, profile.isEmbedCue());
+    setValue(PROFILE_WRITE_DISK_NUM_TAG_KEY, profile.isWriteSingleDiskNum());
 
     setValue(PROFILE_COVER_FILE_MODE_KEY, coverModeToString(profile.copyCoverOptions().mode));
     setValue(PROFILE_COVER_FILE_SIZE_KEY, profile.copyCoverOptions().size);

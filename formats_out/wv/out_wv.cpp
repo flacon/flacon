@@ -101,9 +101,9 @@ QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const QString &out
 /************************************************
  *
  ************************************************/
-MetadataWriter *OutFormat_Wv::createMetadataWriter(const QString &filePath) const
+MetadataWriter *OutFormat_Wv::createMetadataWriter(const Profile &profile, const QString &filePath) const
 {
-    return new WvMetadataWriter(filePath);
+    return new WvMetadataWriter(profile, filePath);
 }
 
 /************************************************

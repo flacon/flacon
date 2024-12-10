@@ -118,9 +118,9 @@ QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const QString &o
 /************************************************
 
 ************************************************/
-MetadataWriter *OutFormat_Flac::createMetadataWriter(const QString &filePath) const
+MetadataWriter *OutFormat_Flac::createMetadataWriter(const Profile &profile, const QString &filePath) const
 {
-    return new FlacMetadataWriter(filePath);
+    return new FlacMetadataWriter(profile, filePath);
 }
 
 /************************************************

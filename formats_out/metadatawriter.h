@@ -30,6 +30,7 @@
 #include "track.h"
 #include "coverimage.h"
 #include <taglib/mp4file.h>
+#include "../profiles.h"
 
 namespace TagLib {
 
@@ -46,7 +47,7 @@ class Tag;
 class MetadataWriter
 {
 public:
-    explicit MetadataWriter(const QString &filePath);
+    explicit MetadataWriter(const Profile &profile, const QString &filePath);
     virtual ~MetadataWriter() = default;
 
     virtual void save() = 0;
@@ -78,12 +79,19 @@ protected:
     QString commentTag(const Track &track) const;
     QString dateTag(const Track &track) const;
     QString genreTag(const Track &track) const;
+
+    const Profile &profile() const { return mProfile; }
+
+    bool needWriteDiskNumTags(const Track &track) const;
+
+private:
+    Profile mProfile;
 };
 
 class NullMetadataWriter : public MetadataWriter
 {
 public:
-    NullMetadataWriter(const QString &filePath);
+    NullMetadataWriter(const Profile &profile, const QString &filePath);
     void save() override;
 
     void setTags(const Track &track) override;
@@ -97,7 +105,7 @@ public:
 class Mp4MetaDataWriter : public MetadataWriter
 {
 public:
-    Mp4MetaDataWriter(const QString &filePath);
+    Mp4MetaDataWriter(const Profile &profile, const QString &filePath);
 
     void save() override;
 

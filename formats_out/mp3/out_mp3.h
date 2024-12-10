@@ -47,7 +47,7 @@ public:
     ExtProgram *encoderProgram(const Profile &profile) const override;
     QStringList encoderArgs(const Profile &profile, const QString &outFile) const override;
 
-    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
+    MetadataWriter *createMetadataWriter(const Profile &profile, const QString &filePath) const override;
 };
 
 class ConfigPage_Mp3 : public EncoderConfigPage, private Ui::mp3ConfigPage

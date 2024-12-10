@@ -46,7 +46,7 @@ public:
     ExtProgram *encoderProgram(const Profile &profile) const override;
     QStringList encoderArgs(const Profile &profile, const QString &outFile) const override;
 
-    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
+    MetadataWriter *createMetadataWriter(const Profile &profile, const QString &filePath) const override;
 };
 
 class ConfigPage_Opus : public EncoderConfigPage, private Ui::ConfigPage_Opus

@@ -14,7 +14,7 @@
    <string notr="true">TabWidget</string>
   </property>
   <property name="currentIndex">
-   <number>0</number>
+   <number>2</number>
   </property>
   <widget class="QWidget" name="audioTab">
    <attribute name="title">
@@ -295,6 +295,33 @@ If you surround sections of text that contain a token with braces, these section
      </spacer>
     </item>
    </layout>
+  </widget>
+  <widget class="QWidget" name="tab">
+   <attribute name="title">
+    <string comment="Preferences tab page title" extracomment="Preferences tab page title">Tags</string>
+   </attribute>
+   <widget class="CoverGroupBox" name="writeSingleDiskNumCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>581</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Write “Disc Number” and “Disc Count” tags for single-disc albums.</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
  </widget>
  <customwidgets>

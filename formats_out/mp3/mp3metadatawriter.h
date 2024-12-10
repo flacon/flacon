@@ -32,7 +32,7 @@
 class Mp3MetaDataWriter : public MetadataWriter
 {
 public:
-    Mp3MetaDataWriter(const QString &filePath);
+    Mp3MetaDataWriter(const Profile &profile, const QString &filePath);
     void save() override;
 
     void setTags(const Track &track) override;

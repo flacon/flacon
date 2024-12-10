@@ -146,6 +146,9 @@ void ProfileTabWidget::fromProfile(const Profile *profile)
 
     // Out CUE options ....................
     ui->cueGroup->fromProfile(profile);
+
+    // Tags options .......................
+    ui->writeSingleDiskNumCheckBox->setChecked(profile->isWriteSingleDiskNum());
 }
 
 /************************************************
@@ -181,6 +184,9 @@ void ProfileTabWidget::toProfile(Profile *profile) const
 
     // Out CUE options ....................
     ui->cueGroup->toProfile(profile);
+
+    // Tags options .......................
+    profile->setWriteSingleDiskNum(ui->writeSingleDiskNumCheckBox->isChecked());
 }
 
 /************************************************

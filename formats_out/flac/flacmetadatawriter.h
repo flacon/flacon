@@ -32,7 +32,7 @@
 class FlacMetadataWriter : public MetadataWriter
 {
 public:
-    FlacMetadataWriter(const QString &filePath);
+    FlacMetadataWriter(const Profile &profile, const QString &filePath);
     void save() override;
 
     void setTags(const Track &track) override;

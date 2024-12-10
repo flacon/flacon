@@ -42,7 +42,7 @@ public:
     ExtProgram *encoderProgram(const Profile &profile) const override;
     QStringList encoderArgs(const Profile &profile, const QString &outFile) const override;
 
-    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
+    MetadataWriter *createMetadataWriter(const Profile &profile, const QString &filePath) const override;
 };
 
 #endif // ALACOITFORMAT_H

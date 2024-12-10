@@ -136,9 +136,9 @@ QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const QString &ou
 /************************************************
  *
  ************************************************/
-MetadataWriter *OutFormat_Mp3::createMetadataWriter(const QString &filePath) const
+MetadataWriter *OutFormat_Mp3::createMetadataWriter(const Profile &profile, const QString &filePath) const
 {
-    return new Mp3MetaDataWriter(filePath);
+    return new Mp3MetaDataWriter(profile, filePath);
 }
 
 /************************************************

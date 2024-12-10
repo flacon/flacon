@@ -38,7 +38,8 @@
 /************************************************
  *
  ************************************************/
-MetadataWriter::MetadataWriter(const QString &)
+MetadataWriter::MetadataWriter(const Profile &profile, const QString &) :
+    mProfile(profile)
 {
 }
 
@@ -90,6 +91,14 @@ QString MetadataWriter::genreTag(const Track &track) const
     return track.genreTag();
 }
 
+/**************************************
+ *
+ **************************************/
+bool MetadataWriter::needWriteDiskNumTags(const Track &track) const
+{
+    return (track.disk()->discCountTag() > 1 || profile().isWriteSingleDiskNum());
+}
+
 /************************************************
  *
  ************************************************/
@@ -124,9 +133,11 @@ void MetadataWriter::setXiphTags(TagLib::Ogg::XiphComment *tags, const Track &tr
     writeIntTag("TOTALTRACKS", disk->tracks().count());
     writeIntTag("TRACKTOTAL", disk->tracks().count());
 
-    writeIntTag("DISC", disk->discNumTag());
-    writeIntTag("DISCNUMBER", disk->discNumTag());
-    writeIntTag("DISCTOTAL", disk->discCountTag());
+    if (needWriteDiskNumTags(track)) {
+        writeIntTag("DISC", disk->discNumTag());
+        writeIntTag("DISCNUMBER", disk->discNumTag());
+        writeIntTag("DISCTOTAL", disk->discCountTag());
+    }
 }
 
 /************************************************
@@ -198,7 +209,9 @@ void MetadataWriter::setApeTags(TagLib::APE::Tag *tags, const Track &track) cons
     writeStrTag("DISCID", disk->discIdTag());
 
     writeStrTag("TRACK", QStringLiteral("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
-    writeStrTag("PART", QStringLiteral("%1").arg(disk->discNumTag()));
+    if (needWriteDiskNumTags(track)) {
+        writeStrTag("PART", QStringLiteral("%1").arg(disk->discNumTag()));
+    }
 }
 
 /************************************************
@@ -252,8 +265,8 @@ static TagLib::MP4::CoverArt::Format coverFormatToTagLib(const CoverImage::Forma
 /************************************************
  *
  ************************************************/
-Mp4MetaDataWriter::Mp4MetaDataWriter(const QString &filePath) :
-    MetadataWriter(filePath),
+Mp4MetaDataWriter::Mp4MetaDataWriter(const Profile &profile, const QString &filePath) :
+    MetadataWriter(profile, filePath),
     mFile(filePath.toLocal8Bit(), false)
 {
     if (!mFile.isValid()) {
@@ -294,7 +307,9 @@ void Mp4MetaDataWriter::setTags(const Track &track)
     writeStrTag("ALBUMARTIST", disk->albumPerformerTag());
     writeStrTag("COMMENT", this->commentTag(track));
     writeStrTag("TRACKNUMBER", QStringLiteral("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
-    writeStrTag("DISCNUMBER", QStringLiteral("%1/%2").arg(disk->discNumTag()).arg(disk->discCountTag()));
+    if (needWriteDiskNumTags(track)) {
+        writeStrTag("DISCNUMBER", QStringLiteral("%1/%2").arg(disk->discNumTag()).arg(disk->discCountTag()));
+    }
 
     mFile.setProperties(props);
 }
@@ -342,8 +357,8 @@ void Mp4MetaDataWriter::setAlbumReplayGain(float gain, float peak)
 /************************************************
  *
  ************************************************/
-NullMetadataWriter::NullMetadataWriter(const QString &filePath) :
-    MetadataWriter(filePath) { }
+NullMetadataWriter::NullMetadataWriter(const Profile &profile, const QString &filePath) :
+    MetadataWriter(profile, filePath) { }
 void NullMetadataWriter::save() { }
 void NullMetadataWriter::setTags(const Track &) { }
 void NullMetadataWriter::setEmbeddedCue(const QString &) { }

@@ -67,7 +67,7 @@ public:
     virtual ExtProgram *encoderProgram(const Profile &profile) const                      = 0;
     virtual QStringList encoderArgs(const Profile &profile, const QString &outFile) const = 0;
 
-    virtual MetadataWriter *createMetadataWriter(const QString &filePath) const = 0;
+    virtual MetadataWriter *createMetadataWriter(const Profile &profile, const QString &filePath) const = 0;
 
 protected:
     QString       mId;

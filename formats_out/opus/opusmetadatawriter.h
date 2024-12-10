@@ -32,7 +32,7 @@
 class OpusMetadataWriter : public MetadataWriter
 {
 public:
-    OpusMetadataWriter(const QString &filePath);
+    OpusMetadataWriter(const Profile &profile, const QString &filePath);
     void save() override;
 
     void setTags(const Track &track) override;

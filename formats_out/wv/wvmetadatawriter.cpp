@@ -34,8 +34,8 @@ Q_LOGGING_CATEGORY(LOG, "WvMetadataWriter")
 /************************************************
 
  ************************************************/
-WvMetadataWriter::WvMetadataWriter(const QString &filePath) :
-    MetadataWriter(filePath),
+WvMetadataWriter::WvMetadataWriter(const Profile &profile, const QString &filePath) :
+    MetadataWriter(profile, filePath),
     mFile(filePath.toLocal8Bit(), false)
 {
     if (!mFile.isValid()) {

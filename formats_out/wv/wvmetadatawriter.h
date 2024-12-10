@@ -32,7 +32,7 @@
 class WvMetadataWriter : public MetadataWriter
 {
 public:
-    WvMetadataWriter(const QString &filePath);
+    WvMetadataWriter(const Profile &profile, const QString &filePath);
     void save() override;
 
     void setTags(const Track &track) override;

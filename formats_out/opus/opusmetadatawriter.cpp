@@ -33,8 +33,8 @@ Q_LOGGING_CATEGORY(LOG, "OpusMetadataWriter")
 /************************************************
 
  ************************************************/
-OpusMetadataWriter::OpusMetadataWriter(const QString &filePath) :
-    MetadataWriter(filePath),
+OpusMetadataWriter::OpusMetadataWriter(const Profile &profile, const QString &filePath) :
+    MetadataWriter(profile, filePath),
     mFile(filePath.toLocal8Bit(), false)
 {
     if (!mFile.isValid()) {

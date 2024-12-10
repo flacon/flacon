@@ -43,7 +43,7 @@ public:
     BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_24; }
     SampleRate    maxSampleRate() const override { return SampleRate::Hz_768000; }
 
-    MetadataWriter *createMetadataWriter(const QString &filePath) const override;
+    MetadataWriter *createMetadataWriter(const Profile &profile, const QString &filePath) const override;
 
     ExtProgram *encoderProgram(const Profile &profile) const override;
     QStringList encoderArgs(const Profile &profile, const QString &outFile) const override;

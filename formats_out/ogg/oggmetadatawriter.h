@@ -32,7 +32,7 @@
 class OggMetaDataWriter : public MetadataWriter
 {
 public:
-    OggMetaDataWriter(const QString &filePath);
+    OggMetaDataWriter(const Profile &profile, const QString &filePath);
     void save() override;
 
     void setTags(const Track &track) override;

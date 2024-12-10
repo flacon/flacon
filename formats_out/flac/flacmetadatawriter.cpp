@@ -35,8 +35,8 @@ Q_LOGGING_CATEGORY(LOG, "FlacMetadataWriter")
 /************************************************
 
  ************************************************/
-FlacMetadataWriter::FlacMetadataWriter(const QString &filePath) :
-    MetadataWriter(filePath),
+FlacMetadataWriter::FlacMetadataWriter(const Profile &profile, const QString &filePath) :
+    MetadataWriter(profile, filePath),
     mFile(filePath.toLocal8Bit(), false)
 {
     if (!mFile.isValid()) {

@@ -224,7 +224,7 @@ void Encoder::run()
  ************************************************/
 void Encoder::writeMetadata() const
 {
-    MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(outFile());
+    MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(mProfile, outFile());
     if (!writer) {
         return;
     }

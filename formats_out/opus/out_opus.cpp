@@ -96,9 +96,9 @@ QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const QString &o
 /************************************************
 
  ************************************************/
-MetadataWriter *OutFormat_Opus::createMetadataWriter(const QString &filePath) const
+MetadataWriter *OutFormat_Opus::createMetadataWriter(const Profile &profile, const QString &filePath) const
 {
-    return new OpusMetadataWriter(filePath);
+    return new OpusMetadataWriter(profile, filePath);
 }
 
 /************************************************

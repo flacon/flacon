@@ -34,8 +34,8 @@ Q_LOGGING_CATEGORY(LOG, "OggMetaDataWriter")
 /************************************************
 
  ************************************************/
-OggMetaDataWriter::OggMetaDataWriter(const QString &filePath) :
-    MetadataWriter(filePath),
+OggMetaDataWriter::OggMetaDataWriter(const Profile &profile, const QString &filePath) :
+    MetadataWriter(profile, filePath),
     mFile(filePath.toLocal8Bit(), false)
 {
     if (!mFile.isValid()) {

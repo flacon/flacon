@@ -73,7 +73,7 @@ QStringList OutFormat_Wav::encoderArgs(const Profile &, const QString &) const
 /************************************************
  *
  ************************************************/
-MetadataWriter *OutFormat_Wav::createMetadataWriter(const QString &filePath) const
+MetadataWriter *OutFormat_Wav::createMetadataWriter(const Profile &profile, const QString &filePath) const
 {
-    return new NullMetadataWriter(filePath);
+    return new NullMetadataWriter(profile, filePath);
 }

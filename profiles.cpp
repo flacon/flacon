@@ -142,6 +142,14 @@ void Profile::setEmbedCue(bool value)
 /************************************************
  *
  ************************************************/
+void Profile::setWriteSingleDiskNum(bool value)
+{
+    mWriteSingleDiskNum = value;
+}
+
+/************************************************
+ *
+ ************************************************/
 void Profile::setCueFileName(const QString &value)
 {
     mCueFileName = value;

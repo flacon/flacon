@@ -86,7 +86,7 @@ QStringList OutFormat_Alac::encoderArgs(const Profile &profile, const QString &o
 /************************************************
  *
  ************************************************/
-MetadataWriter *OutFormat_Alac::createMetadataWriter(const QString &filePath) const
+MetadataWriter *OutFormat_Alac::createMetadataWriter(const Profile &profile, const QString &filePath) const
 {
-    return new Mp4MetaDataWriter(filePath);
+    return new Mp4MetaDataWriter(profile, filePath);
 }
