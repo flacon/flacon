@@ -102,7 +102,7 @@ jobs:
 
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ env.APPIMAGE_NAME }}
         path: "${{github.workspace}}/build/${{ env.APPIMAGE_NAME }}"
