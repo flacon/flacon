@@ -310,7 +310,7 @@ If you surround sections of text that contain a token with braces, these section
      </rect>
     </property>
     <property name="title">
-     <string>Write “Disc Number” and “Disc Count” tags for single-disc albums.</string>
+     <string>Write “Disc Number” and “Disc Count” tags for single-disc albums</string>
     </property>
     <property name="flat">
      <bool>true</bool>
