@@ -909,7 +909,7 @@ void doLoadFromTracks(T *edit, const TrackPtrList &tracks)
         values << track->tag(edit->tagId());
     }
 
-    edit->setMultiValuesText(edit->tr("Different accross %1 songs").arg(tracks.count()));
+    edit->setMultiValuesText(edit->tr("Different across %1 songs").arg(tracks.count()));
     edit->setMultiValue(values);
 }
 
@@ -955,7 +955,7 @@ void AlbumTagLineEdit::loadFromDisks(const DiskList &disks)
         values << disk->tag(mTagId);
     }
 
-    setMultiValuesText(tr("Different accross %1 disks").arg(disks.count()));
+    setMultiValuesText(tr("Different across %1 disks").arg(disks.count()));
     setMultiValue(values);
 }
 
