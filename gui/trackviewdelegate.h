@@ -30,7 +30,7 @@
 #include <QImage>
 #include <QPixmap>
 #include <QRect>
-#include <QMovie>
+#include "movie.h"
 
 class TrackView;
 class TrackViewCache;
@@ -75,7 +75,7 @@ private:
     QPixmap        mDiscWarnPix;
     QPixmap        mTrackOkPix;
     QPixmap        mTrackErrorPix;
-    mutable QMovie mDownloadMovie;
+    mutable Movie  mDownloadMovie;
     mutable int    mDiscHeightHint  = 0;
     mutable int    mAudioFileHeight = 0;
 

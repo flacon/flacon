@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="">
         <file alias="noCover">nocover.png</file>
-        <file alias="wait">wait.mng</file>
     </qresource>
 
     <qresource prefix="16">

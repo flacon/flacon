@@ -26,7 +26,15 @@ GRAY_FILES="add-disk.svg
 			preferences-audio.svg
 			preferences-general.svg
 			preferences-programs.svg
-			preferences-update.svg"
+			preferences-update.svg
+			wait-0.svg
+			wait-1.svg
+			wait-2.svg
+			wait-3.svg
+			wait-4.svg
+			wait-5.svg
+			wait-6.svg
+			wait-7.svg"
 
 COLOR_FILES="track-cancel.svg
 			warning.svg

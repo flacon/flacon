@@ -17,6 +17,9 @@ list(APPEND SOURCES
 
   ${CMAKE_CURRENT_LIST_DIR}/trackviewmodel.cpp
   ${CMAKE_CURRENT_LIST_DIR}/trackviewmodel.h
+
+  ${CMAKE_CURRENT_LIST_DIR}/movie.h
+  ${CMAKE_CURRENT_LIST_DIR}/movie.cpp
 )
 
 include(${CMAKE_CURRENT_LIST_DIR}/preferences/module.cmake)

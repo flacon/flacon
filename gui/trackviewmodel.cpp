@@ -424,7 +424,6 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
         case RoleHasWarnings:   return Project::instance()->validator().diskHasWarnings(disc);
         case RoleHasErrors:     return Project::instance()->validator().diskHasErrors(disc);
         case RoleIsDownloads:   return mCache->downloadedDiscs.contains(index.row());
-        //case RoleCoverFile:     return disc->coverImageFile();
         case RoleCoverImg:      return disc->coverImagePreview();
         case RoleCueFilePath:   return disc->cueFilePath();
         case RoleAudioFilePath: return disc->audioFilePaths();
@@ -526,6 +525,14 @@ Disc *TrackViewModel::discByIndex(const QModelIndex &index)
 Track *TrackViewModel::trackByIndex(const QModelIndex &index)
 {
     return IndexData(index).track();
+}
+
+/**************************************
+ *
+ **************************************/
+bool TrackViewModel::downloading() const
+{
+    return !mCache->downloadedDiscs.isEmpty();
 }
 
 /************************************************

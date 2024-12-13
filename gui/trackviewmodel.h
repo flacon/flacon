@@ -63,7 +63,7 @@ public:
     Disc  *discByIndex(const QModelIndex &index);
     Track *trackByIndex(const QModelIndex &index);
 
-public slots:
+    bool downloading() const;
 
 protected:
     enum ItemType {
@@ -75,24 +75,9 @@ protected:
         RoleItemType = Qt::UserRole + 1,
         RolePercent,
         RoleStatus,
-        /*
-        RoleTracknum,
-        RoleDuration,
-        RoleTitle,
-        RoleArtist,
-        RoleAlbum,
-        RoleComment,
-        RoleFileName,
-        RoleAudioFileName,
-        */
         RoleTagSetTitle,
 
         RoleIsDownloads,
-        /*
-        RoleItemID,
-        RoleTrack,
-        RoleCoverFile,
-         */
 
         RoleCoverImg,
         RoleCueFilePath,

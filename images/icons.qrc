@@ -65,6 +65,38 @@
         <file>icons/light/016/preferences-update-disabled.png</file>
         <file>icons/dark/016/preferences-update.png</file>
         <file>icons/dark/016/preferences-update-disabled.png</file>
+        <file>icons/light/016/wait-0.png</file>
+        <file>icons/light/016/wait-0-disabled.png</file>
+        <file>icons/dark/016/wait-0.png</file>
+        <file>icons/dark/016/wait-0-disabled.png</file>
+        <file>icons/light/016/wait-1.png</file>
+        <file>icons/light/016/wait-1-disabled.png</file>
+        <file>icons/dark/016/wait-1.png</file>
+        <file>icons/dark/016/wait-1-disabled.png</file>
+        <file>icons/light/016/wait-2.png</file>
+        <file>icons/light/016/wait-2-disabled.png</file>
+        <file>icons/dark/016/wait-2.png</file>
+        <file>icons/dark/016/wait-2-disabled.png</file>
+        <file>icons/light/016/wait-3.png</file>
+        <file>icons/light/016/wait-3-disabled.png</file>
+        <file>icons/dark/016/wait-3.png</file>
+        <file>icons/dark/016/wait-3-disabled.png</file>
+        <file>icons/light/016/wait-4.png</file>
+        <file>icons/light/016/wait-4-disabled.png</file>
+        <file>icons/dark/016/wait-4.png</file>
+        <file>icons/dark/016/wait-4-disabled.png</file>
+        <file>icons/light/016/wait-5.png</file>
+        <file>icons/light/016/wait-5-disabled.png</file>
+        <file>icons/dark/016/wait-5.png</file>
+        <file>icons/dark/016/wait-5-disabled.png</file>
+        <file>icons/light/016/wait-6.png</file>
+        <file>icons/light/016/wait-6-disabled.png</file>
+        <file>icons/dark/016/wait-6.png</file>
+        <file>icons/dark/016/wait-6-disabled.png</file>
+        <file>icons/light/016/wait-7.png</file>
+        <file>icons/light/016/wait-7-disabled.png</file>
+        <file>icons/dark/016/wait-7.png</file>
+        <file>icons/dark/016/wait-7-disabled.png</file>
         <file>icons/light/016/track-cancel.png</file>
         <file>icons/dark/016/track-cancel.png</file>
         <file>icons/light/016/warning.png</file>
@@ -136,6 +168,38 @@
         <file>icons/light/022/preferences-update-disabled.png</file>
         <file>icons/dark/022/preferences-update.png</file>
         <file>icons/dark/022/preferences-update-disabled.png</file>
+        <file>icons/light/022/wait-0.png</file>
+        <file>icons/light/022/wait-0-disabled.png</file>
+        <file>icons/dark/022/wait-0.png</file>
+        <file>icons/dark/022/wait-0-disabled.png</file>
+        <file>icons/light/022/wait-1.png</file>
+        <file>icons/light/022/wait-1-disabled.png</file>
+        <file>icons/dark/022/wait-1.png</file>
+        <file>icons/dark/022/wait-1-disabled.png</file>
+        <file>icons/light/022/wait-2.png</file>
+        <file>icons/light/022/wait-2-disabled.png</file>
+        <file>icons/dark/022/wait-2.png</file>
+        <file>icons/dark/022/wait-2-disabled.png</file>
+        <file>icons/light/022/wait-3.png</file>
+        <file>icons/light/022/wait-3-disabled.png</file>
+        <file>icons/dark/022/wait-3.png</file>
+        <file>icons/dark/022/wait-3-disabled.png</file>
+        <file>icons/light/022/wait-4.png</file>
+        <file>icons/light/022/wait-4-disabled.png</file>
+        <file>icons/dark/022/wait-4.png</file>
+        <file>icons/dark/022/wait-4-disabled.png</file>
+        <file>icons/light/022/wait-5.png</file>
+        <file>icons/light/022/wait-5-disabled.png</file>
+        <file>icons/dark/022/wait-5.png</file>
+        <file>icons/dark/022/wait-5-disabled.png</file>
+        <file>icons/light/022/wait-6.png</file>
+        <file>icons/light/022/wait-6-disabled.png</file>
+        <file>icons/dark/022/wait-6.png</file>
+        <file>icons/dark/022/wait-6-disabled.png</file>
+        <file>icons/light/022/wait-7.png</file>
+        <file>icons/light/022/wait-7-disabled.png</file>
+        <file>icons/dark/022/wait-7.png</file>
+        <file>icons/dark/022/wait-7-disabled.png</file>
         <file>icons/light/022/track-cancel.png</file>
         <file>icons/dark/022/track-cancel.png</file>
         <file>icons/light/022/warning.png</file>
@@ -207,6 +271,38 @@
         <file>icons/light/024/preferences-update-disabled.png</file>
         <file>icons/dark/024/preferences-update.png</file>
         <file>icons/dark/024/preferences-update-disabled.png</file>
+        <file>icons/light/024/wait-0.png</file>
+        <file>icons/light/024/wait-0-disabled.png</file>
+        <file>icons/dark/024/wait-0.png</file>
+        <file>icons/dark/024/wait-0-disabled.png</file>
+        <file>icons/light/024/wait-1.png</file>
+        <file>icons/light/024/wait-1-disabled.png</file>
+        <file>icons/dark/024/wait-1.png</file>
+        <file>icons/dark/024/wait-1-disabled.png</file>
+        <file>icons/light/024/wait-2.png</file>
+        <file>icons/light/024/wait-2-disabled.png</file>
+        <file>icons/dark/024/wait-2.png</file>
+        <file>icons/dark/024/wait-2-disabled.png</file>
+        <file>icons/light/024/wait-3.png</file>
+        <file>icons/light/024/wait-3-disabled.png</file>
+        <file>icons/dark/024/wait-3.png</file>
+        <file>icons/dark/024/wait-3-disabled.png</file>
+        <file>icons/light/024/wait-4.png</file>
+        <file>icons/light/024/wait-4-disabled.png</file>
+        <file>icons/dark/024/wait-4.png</file>
+        <file>icons/dark/024/wait-4-disabled.png</file>
+        <file>icons/light/024/wait-5.png</file>
+        <file>icons/light/024/wait-5-disabled.png</file>
+        <file>icons/dark/024/wait-5.png</file>
+        <file>icons/dark/024/wait-5-disabled.png</file>
+        <file>icons/light/024/wait-6.png</file>
+        <file>icons/light/024/wait-6-disabled.png</file>
+        <file>icons/dark/024/wait-6.png</file>
+        <file>icons/dark/024/wait-6-disabled.png</file>
+        <file>icons/light/024/wait-7.png</file>
+        <file>icons/light/024/wait-7-disabled.png</file>
+        <file>icons/dark/024/wait-7.png</file>
+        <file>icons/dark/024/wait-7-disabled.png</file>
         <file>icons/light/024/track-cancel.png</file>
         <file>icons/dark/024/track-cancel.png</file>
         <file>icons/light/024/warning.png</file>
@@ -278,6 +374,38 @@
         <file>icons/light/032/preferences-update-disabled.png</file>
         <file>icons/dark/032/preferences-update.png</file>
         <file>icons/dark/032/preferences-update-disabled.png</file>
+        <file>icons/light/032/wait-0.png</file>
+        <file>icons/light/032/wait-0-disabled.png</file>
+        <file>icons/dark/032/wait-0.png</file>
+        <file>icons/dark/032/wait-0-disabled.png</file>
+        <file>icons/light/032/wait-1.png</file>
+        <file>icons/light/032/wait-1-disabled.png</file>
+        <file>icons/dark/032/wait-1.png</file>
+        <file>icons/dark/032/wait-1-disabled.png</file>
+        <file>icons/light/032/wait-2.png</file>
+        <file>icons/light/032/wait-2-disabled.png</file>
+        <file>icons/dark/032/wait-2.png</file>
+        <file>icons/dark/032/wait-2-disabled.png</file>
+        <file>icons/light/032/wait-3.png</file>
+        <file>icons/light/032/wait-3-disabled.png</file>
+        <file>icons/dark/032/wait-3.png</file>
+        <file>icons/dark/032/wait-3-disabled.png</file>
+        <file>icons/light/032/wait-4.png</file>
+        <file>icons/light/032/wait-4-disabled.png</file>
+        <file>icons/dark/032/wait-4.png</file>
+        <file>icons/dark/032/wait-4-disabled.png</file>
+        <file>icons/light/032/wait-5.png</file>
+        <file>icons/light/032/wait-5-disabled.png</file>
+        <file>icons/dark/032/wait-5.png</file>
+        <file>icons/dark/032/wait-5-disabled.png</file>
+        <file>icons/light/032/wait-6.png</file>
+        <file>icons/light/032/wait-6-disabled.png</file>
+        <file>icons/dark/032/wait-6.png</file>
+        <file>icons/dark/032/wait-6-disabled.png</file>
+        <file>icons/light/032/wait-7.png</file>
+        <file>icons/light/032/wait-7-disabled.png</file>
+        <file>icons/dark/032/wait-7.png</file>
+        <file>icons/dark/032/wait-7-disabled.png</file>
         <file>icons/light/032/track-cancel.png</file>
         <file>icons/dark/032/track-cancel.png</file>
         <file>icons/light/032/warning.png</file>
@@ -349,6 +477,38 @@
         <file>icons/light/048/preferences-update-disabled.png</file>
         <file>icons/dark/048/preferences-update.png</file>
         <file>icons/dark/048/preferences-update-disabled.png</file>
+        <file>icons/light/048/wait-0.png</file>
+        <file>icons/light/048/wait-0-disabled.png</file>
+        <file>icons/dark/048/wait-0.png</file>
+        <file>icons/dark/048/wait-0-disabled.png</file>
+        <file>icons/light/048/wait-1.png</file>
+        <file>icons/light/048/wait-1-disabled.png</file>
+        <file>icons/dark/048/wait-1.png</file>
+        <file>icons/dark/048/wait-1-disabled.png</file>
+        <file>icons/light/048/wait-2.png</file>
+        <file>icons/light/048/wait-2-disabled.png</file>
+        <file>icons/dark/048/wait-2.png</file>
+        <file>icons/dark/048/wait-2-disabled.png</file>
+        <file>icons/light/048/wait-3.png</file>
+        <file>icons/light/048/wait-3-disabled.png</file>
+        <file>icons/dark/048/wait-3.png</file>
+        <file>icons/dark/048/wait-3-disabled.png</file>
+        <file>icons/light/048/wait-4.png</file>
+        <file>icons/light/048/wait-4-disabled.png</file>
+        <file>icons/dark/048/wait-4.png</file>
+        <file>icons/dark/048/wait-4-disabled.png</file>
+        <file>icons/light/048/wait-5.png</file>
+        <file>icons/light/048/wait-5-disabled.png</file>
+        <file>icons/dark/048/wait-5.png</file>
+        <file>icons/dark/048/wait-5-disabled.png</file>
+        <file>icons/light/048/wait-6.png</file>
+        <file>icons/light/048/wait-6-disabled.png</file>
+        <file>icons/dark/048/wait-6.png</file>
+        <file>icons/dark/048/wait-6-disabled.png</file>
+        <file>icons/light/048/wait-7.png</file>
+        <file>icons/light/048/wait-7-disabled.png</file>
+        <file>icons/dark/048/wait-7.png</file>
+        <file>icons/dark/048/wait-7-disabled.png</file>
         <file>icons/light/048/track-cancel.png</file>
         <file>icons/dark/048/track-cancel.png</file>
         <file>icons/light/048/warning.png</file>
@@ -420,6 +580,38 @@
         <file>icons/light/064/preferences-update-disabled.png</file>
         <file>icons/dark/064/preferences-update.png</file>
         <file>icons/dark/064/preferences-update-disabled.png</file>
+        <file>icons/light/064/wait-0.png</file>
+        <file>icons/light/064/wait-0-disabled.png</file>
+        <file>icons/dark/064/wait-0.png</file>
+        <file>icons/dark/064/wait-0-disabled.png</file>
+        <file>icons/light/064/wait-1.png</file>
+        <file>icons/light/064/wait-1-disabled.png</file>
+        <file>icons/dark/064/wait-1.png</file>
+        <file>icons/dark/064/wait-1-disabled.png</file>
+        <file>icons/light/064/wait-2.png</file>
+        <file>icons/light/064/wait-2-disabled.png</file>
+        <file>icons/dark/064/wait-2.png</file>
+        <file>icons/dark/064/wait-2-disabled.png</file>
+        <file>icons/light/064/wait-3.png</file>
+        <file>icons/light/064/wait-3-disabled.png</file>
+        <file>icons/dark/064/wait-3.png</file>
+        <file>icons/dark/064/wait-3-disabled.png</file>
+        <file>icons/light/064/wait-4.png</file>
+        <file>icons/light/064/wait-4-disabled.png</file>
+        <file>icons/dark/064/wait-4.png</file>
+        <file>icons/dark/064/wait-4-disabled.png</file>
+        <file>icons/light/064/wait-5.png</file>
+        <file>icons/light/064/wait-5-disabled.png</file>
+        <file>icons/dark/064/wait-5.png</file>
+        <file>icons/dark/064/wait-5-disabled.png</file>
+        <file>icons/light/064/wait-6.png</file>
+        <file>icons/light/064/wait-6-disabled.png</file>
+        <file>icons/dark/064/wait-6.png</file>
+        <file>icons/dark/064/wait-6-disabled.png</file>
+        <file>icons/light/064/wait-7.png</file>
+        <file>icons/light/064/wait-7-disabled.png</file>
+        <file>icons/dark/064/wait-7.png</file>
+        <file>icons/dark/064/wait-7-disabled.png</file>
         <file>icons/light/064/track-cancel.png</file>
         <file>icons/dark/064/track-cancel.png</file>
         <file>icons/light/064/warning.png</file>
@@ -491,6 +683,38 @@
         <file>icons/light/128/preferences-update-disabled.png</file>
         <file>icons/dark/128/preferences-update.png</file>
         <file>icons/dark/128/preferences-update-disabled.png</file>
+        <file>icons/light/128/wait-0.png</file>
+        <file>icons/light/128/wait-0-disabled.png</file>
+        <file>icons/dark/128/wait-0.png</file>
+        <file>icons/dark/128/wait-0-disabled.png</file>
+        <file>icons/light/128/wait-1.png</file>
+        <file>icons/light/128/wait-1-disabled.png</file>
+        <file>icons/dark/128/wait-1.png</file>
+        <file>icons/dark/128/wait-1-disabled.png</file>
+        <file>icons/light/128/wait-2.png</file>
+        <file>icons/light/128/wait-2-disabled.png</file>
+        <file>icons/dark/128/wait-2.png</file>
+        <file>icons/dark/128/wait-2-disabled.png</file>
+        <file>icons/light/128/wait-3.png</file>
+        <file>icons/light/128/wait-3-disabled.png</file>
+        <file>icons/dark/128/wait-3.png</file>
+        <file>icons/dark/128/wait-3-disabled.png</file>
+        <file>icons/light/128/wait-4.png</file>
+        <file>icons/light/128/wait-4-disabled.png</file>
+        <file>icons/dark/128/wait-4.png</file>
+        <file>icons/dark/128/wait-4-disabled.png</file>
+        <file>icons/light/128/wait-5.png</file>
+        <file>icons/light/128/wait-5-disabled.png</file>
+        <file>icons/dark/128/wait-5.png</file>
+        <file>icons/dark/128/wait-5-disabled.png</file>
+        <file>icons/light/128/wait-6.png</file>
+        <file>icons/light/128/wait-6-disabled.png</file>
+        <file>icons/dark/128/wait-6.png</file>
+        <file>icons/dark/128/wait-6-disabled.png</file>
+        <file>icons/light/128/wait-7.png</file>
+        <file>icons/light/128/wait-7-disabled.png</file>
+        <file>icons/dark/128/wait-7.png</file>
+        <file>icons/dark/128/wait-7-disabled.png</file>
         <file>icons/light/128/track-cancel.png</file>
         <file>icons/dark/128/track-cancel.png</file>
         <file>icons/light/128/warning.png</file>
@@ -562,6 +786,38 @@
         <file>icons/light/256/preferences-update-disabled.png</file>
         <file>icons/dark/256/preferences-update.png</file>
         <file>icons/dark/256/preferences-update-disabled.png</file>
+        <file>icons/light/256/wait-0.png</file>
+        <file>icons/light/256/wait-0-disabled.png</file>
+        <file>icons/dark/256/wait-0.png</file>
+        <file>icons/dark/256/wait-0-disabled.png</file>
+        <file>icons/light/256/wait-1.png</file>
+        <file>icons/light/256/wait-1-disabled.png</file>
+        <file>icons/dark/256/wait-1.png</file>
+        <file>icons/dark/256/wait-1-disabled.png</file>
+        <file>icons/light/256/wait-2.png</file>
+        <file>icons/light/256/wait-2-disabled.png</file>
+        <file>icons/dark/256/wait-2.png</file>
+        <file>icons/dark/256/wait-2-disabled.png</file>
+        <file>icons/light/256/wait-3.png</file>
+        <file>icons/light/256/wait-3-disabled.png</file>
+        <file>icons/dark/256/wait-3.png</file>
+        <file>icons/dark/256/wait-3-disabled.png</file>
+        <file>icons/light/256/wait-4.png</file>
+        <file>icons/light/256/wait-4-disabled.png</file>
+        <file>icons/dark/256/wait-4.png</file>
+        <file>icons/dark/256/wait-4-disabled.png</file>
+        <file>icons/light/256/wait-5.png</file>
+        <file>icons/light/256/wait-5-disabled.png</file>
+        <file>icons/dark/256/wait-5.png</file>
+        <file>icons/dark/256/wait-5-disabled.png</file>
+        <file>icons/light/256/wait-6.png</file>
+        <file>icons/light/256/wait-6-disabled.png</file>
+        <file>icons/dark/256/wait-6.png</file>
+        <file>icons/dark/256/wait-6-disabled.png</file>
+        <file>icons/light/256/wait-7.png</file>
+        <file>icons/light/256/wait-7-disabled.png</file>
+        <file>icons/dark/256/wait-7.png</file>
+        <file>icons/dark/256/wait-7-disabled.png</file>
         <file>icons/light/256/track-cancel.png</file>
         <file>icons/dark/256/track-cancel.png</file>
         <file>icons/light/256/warning.png</file>
@@ -633,6 +889,38 @@
         <file>icons/light/512/preferences-update-disabled.png</file>
         <file>icons/dark/512/preferences-update.png</file>
         <file>icons/dark/512/preferences-update-disabled.png</file>
+        <file>icons/light/512/wait-0.png</file>
+        <file>icons/light/512/wait-0-disabled.png</file>
+        <file>icons/dark/512/wait-0.png</file>
+        <file>icons/dark/512/wait-0-disabled.png</file>
+        <file>icons/light/512/wait-1.png</file>
+        <file>icons/light/512/wait-1-disabled.png</file>
+        <file>icons/dark/512/wait-1.png</file>
+        <file>icons/dark/512/wait-1-disabled.png</file>
+        <file>icons/light/512/wait-2.png</file>
+        <file>icons/light/512/wait-2-disabled.png</file>
+        <file>icons/dark/512/wait-2.png</file>
+        <file>icons/dark/512/wait-2-disabled.png</file>
+        <file>icons/light/512/wait-3.png</file>
+        <file>icons/light/512/wait-3-disabled.png</file>
+        <file>icons/dark/512/wait-3.png</file>
+        <file>icons/dark/512/wait-3-disabled.png</file>
+        <file>icons/light/512/wait-4.png</file>
+        <file>icons/light/512/wait-4-disabled.png</file>
+        <file>icons/dark/512/wait-4.png</file>
+        <file>icons/dark/512/wait-4-disabled.png</file>
+        <file>icons/light/512/wait-5.png</file>
+        <file>icons/light/512/wait-5-disabled.png</file>
+        <file>icons/dark/512/wait-5.png</file>
+        <file>icons/dark/512/wait-5-disabled.png</file>
+        <file>icons/light/512/wait-6.png</file>
+        <file>icons/light/512/wait-6-disabled.png</file>
+        <file>icons/dark/512/wait-6.png</file>
+        <file>icons/dark/512/wait-6-disabled.png</file>
+        <file>icons/light/512/wait-7.png</file>
+        <file>icons/light/512/wait-7-disabled.png</file>
+        <file>icons/dark/512/wait-7.png</file>
+        <file>icons/dark/512/wait-7-disabled.png</file>
         <file>icons/light/512/track-cancel.png</file>
         <file>icons/dark/512/track-cancel.png</file>
         <file>icons/light/512/warning.png</file>

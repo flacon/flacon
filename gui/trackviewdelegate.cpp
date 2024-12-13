@@ -26,7 +26,6 @@
 #include "trackviewdelegate.h"
 #include "trackview.h"
 #include "trackviewmodel.h"
-#include "project.h"
 #include "types.h"
 #include "icon.h"
 
@@ -85,6 +84,8 @@ public:
     TrackViewCacheItem *item(const QModelIndex &index);
     Keys                clickType(const QModelIndex &index, const QPoint &point);
 
+    QList<QModelIndex> keys() const { return mItems.keys(); }
+
 private:
     TrackViewCacheItem                       nullItemCache;
     QHash<QModelIndex, TrackViewCacheItem *> mItems;
@@ -125,7 +126,8 @@ TrackViewCacheItem *TrackViewCache::item(const QModelIndex &index)
 TrackViewDelegate::TrackViewDelegate(TrackView *parent) :
     QStyledItemDelegate(parent),
     mTrackView(parent),
-    mCache(new TrackViewCache)
+    mCache(new TrackViewCache),
+    mDownloadMovie(QSize(32, 32))
 {
     mTrackBtnPix   = Pixmap("cue-button", BUTTON_SIZE, BUTTON_SIZE);
     mAudioBtnPix   = Pixmap("audio-button", BUTTON_SIZE, BUTTON_SIZE);
@@ -135,8 +137,16 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent) :
     mTrackErrorPix = Pixmap("track-cancel", LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
     mNoCoverImg    = QImage(":noCover");
 
-    mDownloadMovie.setFileName(":wait");
-    connect(&mDownloadMovie, &QMovie::updated,
+    mDownloadMovie.loadFrame("wait-0");
+    mDownloadMovie.loadFrame("wait-1");
+    mDownloadMovie.loadFrame("wait-2");
+    mDownloadMovie.loadFrame("wait-3");
+    mDownloadMovie.loadFrame("wait-4");
+    mDownloadMovie.loadFrame("wait-5");
+    mDownloadMovie.loadFrame("wait-6");
+    mDownloadMovie.loadFrame("wait-7");
+
+    connect(&mDownloadMovie, &Movie::updated,
             this, &TrackViewDelegate::movieUpdated);
 }
 
@@ -443,6 +453,8 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     cache->audioShowMenu = showAudioMenu;
     cache->isWaiting     = isWaiting;
     cache->markBtn       = markRect;
+
+    mDownloadMovie.setRunning(qobject_cast<TrackViewModel *>(mTrackView->model())->downloading());
 }
 
 /************************************************
@@ -498,7 +510,6 @@ QRect TrackViewDelegate::drawMark(QPainter *painter, bool isWaiting, const QRect
     QRect markRect(imgRect.right() - MARK_HEIGHT, imgRect.bottom() - MARK_HEIGHT, MARK_HEIGHT, MARK_HEIGHT);
 
     if (isWaiting) {
-        mDownloadMovie.start();
         painter->drawPixmap(markRect, mDownloadMovie.currentPixmap());
         return markRect;
     }
@@ -751,21 +762,11 @@ bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, co
  ************************************************/
 void TrackViewDelegate::movieUpdated()
 {
-    TrackViewModel *model = qobject_cast<TrackViewModel *>(mTrackView->model());
-    if (!model)
-        return;
-
-    bool active = false;
-    for (int i = 0; i < model->rowCount(QModelIndex()); ++i) {
-        QModelIndex index = model->index(i, 0, QModelIndex());
+    for (const QModelIndex &index : mCache->keys()) {
         if (mCache->item(index)->isWaiting) {
-            Project::instance()->emitDiscChanged(Project::instance()->disc(0));
-            active = true;
+            emit mTrackView->model()->dataChanged(index, index);
         }
     }
-
-    if (!active)
-        mDownloadMovie.stop();
 }
 
 /************************************************
