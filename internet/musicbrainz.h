@@ -30,6 +30,7 @@
 
 class MusicBrainz : public InterntService
 {
+    Q_OBJECT
 public:
     static bool canDownload(const Disc &disk);
 

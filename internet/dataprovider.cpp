@@ -178,6 +178,9 @@ QNetworkReply *InterntService::get(const QNetworkRequest &request)
 {
     QNetworkRequest req = request;
     req.setRawHeader("User-Agent", QStringLiteral("Flacon/%1 (https://github.com/flacon/flacon)").arg(FLACON_VERSION).toUtf8());
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    req.setTransferTimeout(3 * 1000);
+#endif
     qCDebug(LOG).noquote() << req.url().toEncoded();
 
     QNetworkReply *reply = networkAccessManager()->get(req);
