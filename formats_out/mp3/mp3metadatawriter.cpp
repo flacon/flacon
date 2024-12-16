@@ -113,7 +113,7 @@ void Mp3MetaDataWriter::setTags(const Track &track)
         }
     }
 
-    if (!disk->albumTag().isEmpty()) {
+    if (!disk->albumPerformerTag().isEmpty()) {
         addFrame(tags, "TPE2")->setText(TagLib::String(disk->albumPerformerTag().toUtf8().data(), TagLib::String::UTF8));
     }
 

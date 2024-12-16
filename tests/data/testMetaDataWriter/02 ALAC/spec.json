@@ -1,0 +1,15 @@
+{
+    "fileType": "ALAC",
+
+    "tags": {
+        "Album": "Album TAG",
+        "AlbumPerformer": "AlbumArtist TAG",
+
+        "Comment": "Comment TAG",
+        "Date": "Date TAG",
+        "Genre": "Genre TAG",
+        "Title": "Title TAG",
+        "Performer": "Performer TAG",
+        "SongWriter": "SongWriter TAG"
+    }
+}

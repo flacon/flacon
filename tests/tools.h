@@ -29,6 +29,7 @@
 #include <QString>
 #include <QStringList>
 #include <QVector>
+#include <QJsonDocument>
 #include "wavheader.h"
 #include "settings.h"
 
@@ -106,5 +107,32 @@ void       testFail(const QString &message, const char *file, int line);
     } while (0)
 
 Disc *loadFromCue(const QString &cueFile);
+
+/************************************************
+
+ ************************************************/
+class Mediainfo
+{
+public:
+    Mediainfo(const QString &fileName);
+
+    void save(const QString &fileName);
+
+    QVariant value(const QString &key);
+
+    void validateTags(const QMap<QString, QVariant> &expected);
+    void validateTags(const QJsonObject &expected);
+
+private:
+    QString       mFileName;
+    QJsonDocument mJsonDoc;
+    QByteArray    mData;
+    QString       mFileExt;
+
+    QByteArray trimmCueSheet(const QByteArray &cue) const;
+    void       printError(const QString &file, const QString &tag, const QVariant &actual, const QVariant &expected) const;
+    QString    tagToJsonPath(const QString &tag) const;
+    QVariant   search(const QJsonObject &root, const QStringList &path) const;
+};
 
 #endif // TOOLS_H

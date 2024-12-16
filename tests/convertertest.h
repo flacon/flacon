@@ -27,7 +27,6 @@
 
 #include <QString>
 #include <QSettings>
-#include <QJsonDocument>
 
 /************************************************
 
@@ -66,24 +65,6 @@ private:
     void        printFile(const QString &fileName, bool printHeader = true);
 
     QByteArray trimmCueSheet(const QByteArray &cue) const;
-};
-
-/************************************************
-
- ************************************************/
-class Mediainfo
-{
-public:
-    Mediainfo(const QString &fileName);
-
-    void save(const QString &fileName);
-
-    QVariant value(const QString &key);
-
-private:
-    QString       mFileName;
-    QJsonDocument mJsonDoc;
-    QByteArray    mData;
 };
 
 #endif // CONVERTERTEST_H

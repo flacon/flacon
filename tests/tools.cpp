@@ -30,6 +30,8 @@
 #include <QProcess>
 #include <QBuffer>
 #include <QDebug>
+#include <QJsonObject>
+#include <QJsonArray>
 #include "../cue.h"
 #include "../disc.h"
 #include "../converter/decoder.h"
@@ -163,7 +165,8 @@ void TestCueFile::write()
 bool compareAudioHash(const QString &file1, const QString &expected)
 {
     if (calcAudioHash(file1) != expected) {
-        FAIL(QStringLiteral("Compared hases are not the same for:\n"
+        FAIL(QStringLiteral(
+                     "Compared hases are not the same for:\n"
                      "    [%1] %2\n"
                      "    [%3] %4\n")
 
@@ -373,12 +376,50 @@ void encodeAudioFile(const QString &wavFileName, const QString &outFileName)
         args << "-c2000";
     }
 
+    else if (ext == "aac") {
+        program = "faac";
+        args << "-w";
+        args << "-o" << outFileName;
+        args << wavFileName;
+    }
+
+    else if (ext == "alac") {
+        program = "alacenc";
+        args << "--quiet";
+        args << "--fast";
+        args << wavFileName;
+        args << outFileName;
+    }
+
     else if (ext == "flac") {
         program = "flac";
         args << "--silent";
         args << "--force";
         args << "-o" << outFileName;
         args << wavFileName;
+    }
+
+    else if (ext == "mp3") {
+        program = "lame";
+        args << "--silent";
+        args << "--preset"
+             << "medium";
+        args << wavFileName;
+        args << outFileName;
+    }
+
+    else if (ext == "ogg") {
+        program = "oggenc";
+        args << "--quiet";
+        args << "-o" << outFileName;
+        args << wavFileName;
+    }
+
+    else if (ext == "opus") {
+        program = "opusenc";
+        args << "--quiet";
+        args << wavFileName;
+        args << outFileName;
     }
 
     else if (ext == "wv") {
@@ -500,4 +541,180 @@ bool compareCue(const QString &result, const QString &expected, QString *error, 
     }
 
     return true;
+}
+
+/************************************************
+
+ ************************************************/
+Mediainfo::Mediainfo(const QString &fileName) :
+    mFileName(fileName)
+{
+    if (!QFileInfo::exists(fileName)) {
+        throw FlaconError(QStringLiteral("Can't read mediainfo to file '%1' (file don't exists').").arg(mFileName));
+    }
+
+    mFileExt = QFileInfo(fileName).suffix().toLower();
+
+    QStringList args;
+    args << "--Full";
+    args << "--Output=JSON";
+    args << mFileName;
+
+    QProcess proc;
+    proc.setEnvironment(QStringList("LANG=en_US.UTF-8"));
+    proc.start("mediainfo", args);
+    proc.waitForFinished();
+    if (proc.exitCode() != 0) {
+        QString err = QString::fromLocal8Bit(proc.readAll());
+        FAIL(QStringLiteral("Can't read tags from \"%1\": %2").arg(mFileName).arg(err).toLocal8Bit());
+    }
+
+    QByteArray data = proc.readAllStandardOutput();
+    mJsonDoc        = QJsonDocument::fromJson(data);
+}
+
+/************************************************
+
+ ************************************************/
+void Mediainfo::save(const QString &fileName)
+{
+    QFile file(fileName);
+    file.open(QIODevice::WriteOnly);
+    file.write(mJsonDoc.toJson(QJsonDocument::Indented));
+    file.close();
+}
+
+/************************************************
+
+ ************************************************/
+QVariant Mediainfo::value(const QString &key)
+{
+    QJsonArray arr = mJsonDoc["media"]["track"].toArray();
+
+    QStringList path = key.split("/");
+
+    if (path.isEmpty()) {
+        return {};
+    }
+
+    for (QJsonValue v : arr) {
+        QJsonObject obj = v.toObject();
+        QVariant    res = search(obj, path);
+
+        if (!res.isNull()) {
+            return res;
+        }
+    }
+    return {};
+}
+
+/**************************************
+ * Validate tags
+ **************************************/
+void Mediainfo::validateTags(const QMap<QString, QVariant> &expected)
+{
+    bool tagsError = false;
+    try {
+        foreach (auto tag, expected.keys()) {
+
+            QString  path   = tagToJsonPath(tag);
+            QVariant actual = value(path);
+            QVariant expect = expected.value(tag);
+
+            if (tag == "extra/CUESHEET") {
+                actual = '\n' + trimmCueSheet(actual.toByteArray());
+                expect = '\n' + trimmCueSheet(expect.toByteArray());
+            }
+
+            if (actual != expect) {
+                printError(mFileName, tag, actual, expect);
+                tagsError = true;
+            }
+        }
+    }
+    catch (const FlaconError &err) {
+        QFAIL(err.what());
+    }
+
+    if (tagsError) {
+        QFAIL("Some tags not the same");
+    }
+}
+
+/**************************************
+ * Validate tags
+ **************************************/
+void Mediainfo::validateTags(const QJsonObject &expected)
+{
+    QMap<QString, QVariant> map;
+    for (const QString &key : expected.keys()) {
+        map[key] = expected[key].toVariant();
+    }
+
+    validateTags(map);
+}
+
+/**************************************
+ *
+ **************************************/
+QByteArray Mediainfo::trimmCueSheet(const QByteArray &cue) const
+{
+    QByteArray res;
+    for (QByteArray line : cue.split('//')) {
+        line = line.trimmed();
+        if (!line.isEmpty()) {
+            res += line;
+            res += '\n';
+        }
+    }
+
+    return res;
+}
+
+/**************************************
+ *
+ **************************************/
+void Mediainfo::printError(const QString &file, const QString &tag, const QVariant &actual, const QVariant &expected) const
+{
+    qWarning().noquote() << "Compared values are not the same:";
+    qWarning().noquote() << "    File: " << file;
+    qWarning().noquote() << "    Tag:  " << tag;
+    qWarning().noquote() << "";
+    qWarning().noquote() << "    Actual str   :" << QString::fromLocal8Bit(actual.toByteArray());
+    qWarning().noquote() << "    Expected str :" << QString::fromLocal8Bit(expected.toByteArray());
+    qWarning().noquote() << "    Actual hex   :" << actual.toByteArray().toHex(' ').data();
+    qWarning().noquote() << "    Expected hex :" << expected.toByteArray().toHex(' ').data();
+}
+
+/**************************************
+ *
+ **************************************/
+QString Mediainfo::tagToJsonPath(const QString &tag) const
+{
+    if (mFileExt == "wv") {
+        // clang-format off
+        if (tag == "AlbumPerformer") return "extra/ALBUM_ARTIST";
+        // clang-format on
+    }
+
+    // clang-format off
+    if (tag == "Date")           return "Recorded_Date";
+    if (tag == "AlbumPerformer") return "Album_Performer";
+    if (tag == "SongWriter")     return "Composer";
+    //  clang-format on
+
+    return tag;
+}
+
+/**************************************
+ *
+ **************************************/
+QVariant Mediainfo::search(const QJsonObject &root, const QStringList &path) const
+{
+    QJsonObject obj = root;
+    for (const QString &key : path.mid(0, path.length() - 1)) {
+        obj = obj.take(key).toObject();
+    }
+
+    return obj.take(path.last()).toVariant();
 }

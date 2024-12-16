@@ -1,0 +1,14 @@
+{
+    "fileType": "MP3",
+
+    "tags": {
+        "Album": "Album TAG",
+        "AlbumPerformer": "AlbumArtist TAG",
+
+        "Comment": "Comment TAG",
+        "Date": "2024",
+        "Genre": "Genre TAG",
+        "Title": "Title TAG",
+        "Performer": "Performer TAG"
+    }
+}
