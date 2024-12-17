@@ -175,12 +175,16 @@ public:
     QString multiValuesText() const { return mMultiValuesText; }
     void    setMultiValuesText(const QString &value) { mMultiValuesText = value; }
 
-public slots:
-    void setMultiValue(QSet<QString> value);
+    QSet<QString> multiValues() { return mValues; }
+    void          setMultiValue(QSet<QString> value);
 
 private:
+    QSet<QString>     mValues;
     QStringListModel *mCompleterModel;
     QString           mMultiValuesText;
+
+    void onTextChanged();
+    void refresh();
 };
 
 /************************************************
@@ -190,7 +194,7 @@ class TrackTagLineEdit : public MultiValuesLineEdit
 {
     Q_OBJECT
 public:
-    using MultiValuesLineEdit::MultiValuesLineEdit;
+    explicit TrackTagLineEdit(QWidget *parent = nullptr);
 
     TrackTags::TagId tagId() const { return mTagId; }
     void             setTagId(TrackTags::TagId value) { mTagId = value; }
@@ -209,7 +213,7 @@ class AlbumTagLineEdit : public MultiValuesLineEdit
 {
     Q_OBJECT
 public:
-    using MultiValuesLineEdit::MultiValuesLineEdit;
+    AlbumTagLineEdit(QWidget *parent = nullptr);
 
     AlbumTags::TagId tagId() const { return mTagId; }
     void             setTagId(AlbumTags::TagId value) { mTagId = value; }
@@ -237,10 +241,14 @@ public:
     void    setMultiValuesText(const QString &value) { mMultiValuesText = value; }
 
 public slots:
-    void setMultiValue(QSet<QString> value);
+    void setMultiValue(QSet<QString> values);
 
 private:
-    QString mMultiValuesText;
+    QString       mMultiValuesText;
+    QSet<QString> mValues;
+
+    void onTextChanged();
+    void refresh();
 };
 
 /************************************************
@@ -250,7 +258,7 @@ class TrackTagTextEdit : public MultiValuesTextEdit
 {
     Q_OBJECT
 public:
-    using MultiValuesTextEdit::MultiValuesTextEdit;
+    explicit TrackTagTextEdit(QWidget *parent = nullptr);
 
     TrackTags::TagId tagId() const { return mTagId; }
     void             setTagId(TrackTags::TagId value) { mTagId = value; }
