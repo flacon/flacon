@@ -473,35 +473,35 @@ void TestFlacon::testTrackResultFilePath_data()
     QTest::addColumn<QString>("expected", nullptr);
     QTest::addColumn<QString>("cueFile", nullptr);
 
-    QTest::newRow("1: /home/user/music")
+    QTest::newRow("1. /home/user/music")
             << "/home/user/music"
             << "%a/%y - %A/%n - %t"
             << "/home/user/music/Artist/2013 - Album/01 - Song01.wav"
             << "";
 
-    QTest::newRow("2: ~/music")
+    QTest::newRow("2. ~/music")
             << "~/music"
             << "%a/%y - %A/%n - %t"
             << QDir::homePath() + "/music/Artist/2013 - Album/01 - Song01.wav"
             << "";
 
-    QTest::newRow("3: /music")
+    QTest::newRow("3. /music")
             << "/music"
             << "%a/%y - %A/%n - %t"
             << "/music/Artist/2013 - Album/01 - Song01.wav"
             << "";
 
-    QTest::newRow("4: empty")
+    QTest::newRow("4. empty")
             << ""
             << "%a/%y - %A/%n - %t"
             << mDataDir + "/Artist/2013 - Album/01 - Song01.wav"
             << "";
 
-    QTest::newRow("5: dot (.) with CdAudioFile")
+    QTest::newRow("5. dot (.) with CdAudioFile")
             << "."
             << "%a/%y - %A/%n - %t"
-            << dir("5: dot (.) with CdAudioFile") + "/Artist/2013 - Album/01 - Song01.wav"
-            << dir("5: dot (.) with CdAudioFile") + "/simple.cue";
+            << dir("5. dot (.) with CdAudioFile") + "/Artist/2013 - Album/01 - Song01.wav"
+            << dir("5. dot (.) with CdAudioFile") + "/simple.cue";
 
     QTest::newRow("6. empty with CdAudioFile")
             << ""
@@ -509,7 +509,7 @@ void TestFlacon::testTrackResultFilePath_data()
             << dir("6. empty with CdAudioFile") + "/Artist/2013 - Album/01 - Song01.wav"
             << dir("6. empty with CdAudioFile") + "/simple.cue";
 
-    QTest::newRow("7: ~")
+    QTest::newRow("7. ~")
             << "~"
             << "%a/%y - %A/%n - %t"
             << QDir::homePath() + "/Artist/2013 - Album/01 - Song01.wav"
