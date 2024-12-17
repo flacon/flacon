@@ -30,8 +30,8 @@
 #include "disc.h"
 #include "formats_out/outformat.h"
 #include "formats_out/metadatawriter.h"
-#include "convertertest.h"
 #include <QJsonObject>
+#include "math.h"
 
 using TagsMap = QMap<QString, QVariant>;
 
