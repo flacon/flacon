@@ -660,7 +660,7 @@ void Mediainfo::validateTags(const QJsonObject &expected)
 QByteArray Mediainfo::trimmCueSheet(const QByteArray &cue) const
 {
     QByteArray res;
-    for (QByteArray line : cue.split('//')) {
+    for (QByteArray line : cue.split('/')) {
         line = line.trimmed();
         if (!line.isEmpty()) {
             res += line;

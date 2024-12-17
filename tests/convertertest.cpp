@@ -408,33 +408,16 @@ void ConverterTest::check()
     spec.beginGroup("Result_Tags");
     foreach (auto file, spec.childGroups()) {
 
+        QMap<QString, QVariant> tags;
+        spec.beginGroup(file);
+        foreach (auto key, spec.allKeys()) {
+            tags[key] = spec.value(key);
+        }
+        spec.endGroup();
+
         Mediainfo mediainfo(mOutDir + "/" + file);
         mediainfo.save(mOutDir + "/" + file + ".json");
-
-        spec.beginGroup(file);
-
-        try {
-            foreach (auto tag, spec.allKeys()) {
-
-                QVariant actual   = mediainfo.value(tag);
-                QVariant expected = spec.value(tag);
-
-                if (tag == "extra/CUESHEET") {
-                    actual   = '\n' + trimmCueSheet(actual.toByteArray());
-                    expected = '\n' + trimmCueSheet(expected.toByteArray());
-                }
-
-                if (actual != expected) {
-                    printError(file, tag, actual, expected);
-                    tagsError = true;
-                }
-            }
-        }
-        catch (const FlaconError &err) {
-            QFAIL(err.what());
-        }
-
-        spec.endGroup();
+        mediainfo.validateTags(tags);
     }
     spec.endGroup();
 
@@ -622,21 +605,4 @@ void ConverterTest::printFile(const QString &fileName, bool printHeader)
     if (printHeader) {
         out << QStringLiteral("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
     }
-}
-
-/**************************************
- *
- **************************************/
-QByteArray ConverterTest::trimmCueSheet(const QByteArray &cue) const
-{
-    QByteArray res;
-    for (QByteArray line : cue.split('//')) {
-        line = line.trimmed();
-        if (!line.isEmpty()) {
-            res += line;
-            res += '\n';
-        }
-    }
-
-    return res;
 }

@@ -63,8 +63,6 @@ private:
     QStringList findFiles(const QString &dir, const QString &pattern) const;
     void        printError(const QString &file, const QString &tag, const QVariant &actual, const QVariant &expected) const;
     void        printFile(const QString &fileName, bool printHeader = true);
-
-    QByteArray trimmCueSheet(const QByteArray &cue) const;
 };
 
 #endif // CONVERTERTEST_H
