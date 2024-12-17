@@ -55,7 +55,7 @@ static QJsonObject readSpec(const QString &specFileName)
     QJsonParseError err;
     QJsonDocument   doc = QJsonDocument::fromJson(file.readAll(), &err);
     if (err.error != QJsonParseError::NoError) {
-        throw FlaconError(QStringLiteral("Unable to read '%1': %2").arg(specFileName, err.errorString().toLocal8Bit()));
+        throw FlaconError(QStringLiteral("Unable to read '%1': %2").arg(specFileName, err.errorString()));
     }
     return doc.object();
 }

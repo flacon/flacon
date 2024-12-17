@@ -69,32 +69,6 @@ Cue::Cue(const QString &fileName) noexcept(false)
     read(data);
 }
 
-/**************************************
- * If all tracks have the same tag value, it is
- * more convenient for the user to edit the tag in the album area.
- **************************************/
-static bool updateGlobalTagsFromTracks(const CueData &data, const QByteArray &tag, QByteArray *variable)
-{
-    bool same = data.allTracksHaveSameTag(tag);
-
-    if (!same) {
-        return false;
-    }
-
-    QByteArray trackValue = data.tracks().first().value(tag);
-
-    if (*variable == trackValue) {
-        return true;
-    }
-
-    if (variable->isEmpty()) {
-        *variable = trackValue;
-        return true;
-    }
-
-    return false;
-}
-
 /************************************************
  *
  ************************************************/
