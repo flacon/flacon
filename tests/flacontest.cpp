@@ -134,8 +134,10 @@ bool TestFlacon::clearDir(const QString &dirName) const
     return true;
 }
 
-void TestFlacon::removeLargeFiles(const QDir &dir, qint64 sizeLimit)
+void TestFlacon::removeLargeFiles(const QString &dirPath, qint64 sizeLimit)
 {
+    QDir dir(dirPath);
+
     if (!dir.exists()) {
         return;
     }
@@ -145,7 +147,7 @@ void TestFlacon::removeLargeFiles(const QDir &dir, qint64 sizeLimit)
 
     for (const QFileInfo &entry : entries) {
         if (entry.isDir()) {
-            removeLargeFiles(entry.dir(), sizeLimit);
+            removeLargeFiles(entry.absoluteFilePath(), sizeLimit);
         }
         else if (entry.isFile() && entry.size() > sizeLimit) {
             QFile::remove(entry.absoluteFilePath());
