@@ -53,3 +53,17 @@ jobs:
       working-directory: ${{github.workspace}}/build
       shell: bash
       run: tests/flacon_test
+
+    - name: Prepare Artifacts
+      working-directory: ${{github.workspace}}/build/tests/output
+      if: ${{ failure() }}
+      shell: bash
+      run: |
+        rm -rvf 1min.*  1sec.*  24x96.* CD.*
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      if: ${{ failure() }}
+      with:
+        name: ${{ github.workflow }}
+        path: "${{github.workspace}}/build/tests/output"
