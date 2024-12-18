@@ -152,7 +152,7 @@ private:
 
     bool removeDir(const QString &dirName) const;
     bool clearDir(const QString &dirName) const;
-    void removeLargeFiles(const QDir &dir, qint64 sizeLimit = 1024 * 1024);
+    void removeLargeFiles(const QString &dirPath, qint64 sizeLimit = 1024 * 1024);
     void checkFileExists(const QString &fileName);
     void checkFileNotExists(const QString &fileName);
 

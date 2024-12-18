@@ -218,5 +218,5 @@ void TestFlacon::cleanup()
         return;
     }
 
-    removeLargeFiles(QDir(dir()));
+    removeLargeFiles(dir());
 }
