@@ -207,3 +207,16 @@ void TestFlacon::init()
     QLoggingCategory::setFilterRules("*.debug=false\n"
                                      "default.debug=true\n");
 }
+
+void TestFlacon::cleanup()
+{
+    if (QTest::currentTestFailed()) {
+        return;
+    }
+
+    if (getenv("FLACON_KEEP_TEST_DATA")) {
+        return;
+    }
+
+    removeLargeFiles(QDir(dir()));
+}

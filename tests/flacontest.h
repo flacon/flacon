@@ -31,6 +31,7 @@
 #include <QMap>
 #include <QVariant>
 #include <QLoggingCategory>
+#include <QDir>
 
 class Disc;
 
@@ -51,6 +52,7 @@ private:
 private slots:
     void initTestCase();
     void init();
+    void cleanup();
 
     void testByteArraySplit_data();
     void testByteArraySplit();
@@ -150,6 +152,7 @@ private:
 
     bool removeDir(const QString &dirName) const;
     bool clearDir(const QString &dirName) const;
+    void removeLargeFiles(const QDir &dir, qint64 sizeLimit = 1024 * 1024);
     void checkFileExists(const QString &fileName);
     void checkFileNotExists(const QString &fileName);
 

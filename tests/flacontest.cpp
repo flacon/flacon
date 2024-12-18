@@ -33,6 +33,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QThreadPool>
+#include <QFileInfo>
 
 #include "../disc.h"
 #include "../settings.h"
@@ -131,6 +132,25 @@ bool TestFlacon::clearDir(const QString &dirName) const
     }
 
     return true;
+}
+
+void TestFlacon::removeLargeFiles(const QDir &dir, qint64 sizeLimit)
+{
+    if (!dir.exists()) {
+        return;
+    }
+
+    // Получаем список файлов и папок в текущей директории
+    QFileInfoList entries = dir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
+
+    for (const QFileInfo &entry : entries) {
+        if (entry.isDir()) {
+            removeLargeFiles(entry.dir(), sizeLimit);
+        }
+        else if (entry.isFile() && entry.size() > sizeLimit) {
+            QFile::remove(entry.absoluteFilePath());
+        }
+    }
 }
 
 /************************************************
