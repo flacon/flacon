@@ -609,3 +609,23 @@ QString firstNotEmptyString(const QString &s1, const QString &s2, const QString 
     return s3;
     // clang-format on
 }
+
+QString trackStateToString(TrackState state)
+{
+    // clang-format off
+    switch (state) {
+        case TrackState::NotRunning: return "NotRunning";
+        case TrackState::Canceled:   return "Canceled";
+        case TrackState::Error:      return "Error";
+        case TrackState::Aborted:    return "Aborted";
+        case TrackState::OK:         return "OK";
+        case TrackState::Splitting:  return "Splitting";
+        case TrackState::Encoding:   return "Encoding";
+        case TrackState::Queued:     return "Queued";
+        case TrackState::WaitGain:   return "WaitGain";
+        case TrackState::CalcGain:   return "CalcGain";
+        case TrackState::WriteGain:  return "WriteGain";
+    };
+    // clang-format on
+    return "Unknown";
+}

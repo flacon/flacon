@@ -56,6 +56,8 @@ public:
     int  runningThreadCount() const;
     bool isSuccess() const;
 
+    const QMap<int, TrackState> &trackStates() const { return mTrackStates; }
+
 signals:
     void readyStart();
     void threadFinished();

@@ -89,11 +89,13 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
     qCDebug(LOG) << "Temp dir =" << profile.tmpDir();
 
     if (jobs.isEmpty()) {
+        qCWarning(LOG) << "jobs is empty";
         emit finished(false);
         return;
     }
 
     if (!validate(jobs, profile)) {
+        qCWarning(LOG) << "validation failed";
         emit finished(false);
         return;
     }
@@ -121,6 +123,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
         emit error(err.what());
         qDeleteAll(mDiskPiplines);
         mDiskPiplines.clear();
+        qCWarning(LOG) << "starting failed";
         emit finished(false);
     }
 
@@ -197,9 +200,18 @@ void Converter::startThread()
             return;
         }
 
-        success = pipe->isSuccess();
+        success = success && pipe->isSuccess();
     }
 
+    foreach (DiscPipeline *pipe, mDiskPiplines) {
+        qCDebug(LOG) << "Pipeline status:" << pipe->isSuccess();
+
+        for (auto it = pipe->trackStates().begin(); it != pipe->trackStates().end(); ++it) {
+            qCDebug(LOG) << "  track" << it.key() << "status:" << trackStateToString(it.value());
+        }
+    }
+
+    qCWarning(LOG) << (success ? "conversion successfully finished" : "conversion failed");
     emit finished(success);
 }
 

@@ -159,6 +159,8 @@ enum class TrackState {
 
 Q_DECLARE_METATYPE(TrackState)
 
+QString trackStateToString(TrackState state);
+
 enum class DiskState {
     NotRunning = 0,
     Canceled   = 1,
