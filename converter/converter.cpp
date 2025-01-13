@@ -87,6 +87,8 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
     qCDebug(LOG) << "Start converter:" << jobs.length() << "\n"
                  << profile;
     qCDebug(LOG) << "Temp dir =" << profile.tmpDir();
+    qCDebug(LOG) << "Out dir =" << profile.outFileDir();
+    qCDebug(LOG) << "Out profile = " << profile.outFilePattern();
 
     if (jobs.isEmpty()) {
         qCWarning(LOG) << "jobs is empty";

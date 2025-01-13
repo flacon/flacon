@@ -150,7 +150,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Signals .................................................
     connect(outDirEdit->lineEdit(), &QLineEdit::textEdited, this, &MainWindow::setOutDir);
+    connect(outDirEdit->lineEdit(), &QLineEdit::editingFinished, this, &MainWindow::setOutDir);
     connect(outPatternEdit->lineEdit(), &QLineEdit::textEdited, this, &MainWindow::setPattern);
+    connect(outPatternEdit->lineEdit(), &QLineEdit::editingFinished, this, &MainWindow::setPattern);
 
     connect(outProfileCombo, qOverload<int>(&QComboBox::currentIndexChanged),
             this, &MainWindow::setOutProfile);
