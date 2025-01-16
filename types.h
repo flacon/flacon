@@ -86,6 +86,14 @@ public:
         std::runtime_error(msg.toStdString()) { }
 };
 
+class Abort : public std::runtime_error
+{
+public:
+    Abort() :
+        std::runtime_error("") { }
+    static void check() noexcept(false);
+};
+
 class CueTime
 {
 public:

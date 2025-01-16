@@ -270,6 +270,7 @@ void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDe
         while (remains > 0) {
             input->bytesAvailable() || input->waitForReadyRead(10000);
 
+            Abort::check();
             qint64 n = qMin(qint64(MAX_BUF_SIZE), remains);
             n        = input->read(buf, n);
             if (n < 0)

@@ -203,7 +203,7 @@ void Encoder::run()
 
         for (QProcess *p : procs) {
             if (p->exitCode() != 0) {
-                throw(QString::fromLocal8Bit(p->readAllStandardError()));
+                throw FlaconError(QString::fromLocal8Bit(p->readAllStandardError()));
             }
         }
 

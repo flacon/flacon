@@ -80,8 +80,9 @@ WorkerThread::WorkerThread(Worker *worker, QObject *parent) :
  ************************************************/
 WorkerThread::~WorkerThread()
 {
-    this->terminate();
-    if (!wait(3000)) {
+    requestInterruption();
+    quit();
+    if (!wait()) {
         qWarning() << "Can't terminate thread" << objectName();
     }
     mWorker->deleteLater();
@@ -179,14 +180,6 @@ DiscPipeline::DiscPipeline(const Profile &profile, Disc *disc, const QVector<con
 DiscPipeline::~DiscPipeline()
 {
     mThreads.clear();
-
-    for (QThread *t : findChildren<QThread *>()) {
-        qCDebug(LOG).noquote() << "Delete " << t->objectName();
-        t->disconnect();
-        t->setParent(nullptr);
-        t->deleteLater();
-    }
-
     delete mTmpDir;
 }
 

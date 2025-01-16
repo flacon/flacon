@@ -107,7 +107,7 @@ CoverImage::CoverImage(const QString &inFilePath, uint size)
     try {
         if (inFilePath.isEmpty()) {
             qCCritical(LOG) << "Input file name is empty";
-            throw QObject::tr("file name is empty", "error message text");
+            throw FlaconError(QObject::tr("file name is empty", "error message text"));
         }
 
         QImageReader reader(inFilePath);
@@ -119,7 +119,7 @@ CoverImage::CoverImage(const QString &inFilePath, uint size)
         QImage image = reader.read();
         if (image.isNull()) {
             qCCritical(LOG) << "Can't read cover file" << inFilePath << ":" << reader.errorString();
-            throw reader.errorString();
+            throw FlaconError(reader.errorString());
         }
 
         if (size > 0) {
@@ -136,14 +136,14 @@ CoverImage::CoverImage(const QString &inFilePath, uint size)
         QImageWriter writer(&out, format);
         if (!writer.write(image)) {
             qCCritical(LOG) << "Can't write cover file to memory" << inFilePath << ":" << writer.errorString();
-            throw writer.errorString();
+            throw FlaconError(writer.errorString());
         }
     }
-    catch (const QString &err) {
+    catch (const FlaconError &err) {
         throw FlaconError(QObject::tr(
                                   "I can't read cover image <b>%1</b>:<br>%2",
                                   "%1 - is a file name, %2 - an error text")
-                                  .arg(inFilePath, err));
+                                  .arg(inFilePath, err.what()));
     }
 }
 

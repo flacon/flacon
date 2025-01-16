@@ -273,6 +273,11 @@ void Splitter::run()
             qCDebug(LOG) << "Splitter trackReady:" << job.track << job.outFileName;
             emit trackReady(job.track, job.outFileName);
         }
+        catch (const Abort &) {
+            qCDebug(LOG) << "Splitter job was aborted on track" << job.track.trackNumTag();
+            deleteFile(job.outFileName);
+            return;
+        }
         catch (FlaconError &err) {
             if (job.isPregap) {
                 qCWarning(LOG) << "Splitter error for pregap track : " << err.what();
@@ -306,7 +311,7 @@ void Splitter::processTrack(const Job &job)
 
     QFile outFile(job.outFileName);
     if (!outFile.open(QFile::WriteOnly)) {
-        throw outFile.errorString();
+        throw FlaconError(outFile.errorString());
     }
 
     uint32_t bytes = 0;
@@ -324,7 +329,7 @@ void Splitter::processTrack(const Job &job)
     for (const Job::Chunk &chunk : job.chunks) {
         try {
             progress.chunkSize = chunk.decoder->bytesCount(chunk.start, chunk.end);
-
+            Abort::check();
             // Extract chunk .............................
             QObject keeper;
             connect(chunk.decoder, &Decoder::progress, &keeper, [this, job, progress](int percents) {
@@ -336,7 +341,7 @@ void Splitter::processTrack(const Job &job)
             qCDebug(LOG) << "extract: " << chunk.file.filePath() << " [" << chunk.start.toString() << ":" << chunk.end.toString() << "] OUT:" << job.outFileName;
             chunk.decoder->extract(chunk.start, chunk.end, &outFile, false);
         }
-        catch (FlaconError &err) {
+        catch (const FlaconError &err) {
             throw FlaconError(tr("I can't read <b>%1</b>:<br>%2", "Splitter error. %1 is a file name, %2 is a system error text.").arg(chunk.file.fileName(), err.what()));
         }
     }

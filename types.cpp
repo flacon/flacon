@@ -29,6 +29,7 @@
 #include <QDir>
 #include <QDebug>
 #include <QRegularExpression>
+#include <QThread>
 
 /************************************************
  *
@@ -628,4 +629,11 @@ QString trackStateToString(TrackState state)
     };
     // clang-format on
     return "Unknown";
+}
+
+void Abort::check()
+{
+    if (QThread::currentThread()->isInterruptionRequested()) {
+        throw Abort();
+    }
 }

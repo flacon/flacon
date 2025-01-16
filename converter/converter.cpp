@@ -213,7 +213,13 @@ void Converter::startThread()
         }
     }
 
-    qCWarning(LOG) << (success ? "conversion successfully finished" : "conversion failed");
+    if (success) {
+        qCInfo(LOG) << "conversion successfully finished";
+    }
+    else {
+        qCWarning(LOG) << "conversion failed";
+    }
+
     emit finished(success);
 }
 
