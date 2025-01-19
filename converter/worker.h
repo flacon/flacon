@@ -45,7 +45,7 @@ public slots:
     virtual void run() = 0;
 
 signals:
-    void error(const Conv::ConvTrack &track, const QString &message);
+    void error(const Track &track, const QString &message);
     void trackProgress(const Conv::ConvTrack &track, TrackState state, int percent);
 
 protected:

@@ -63,11 +63,11 @@ signals:
     void threadFinished();
     void finished();
     void stopAllThreads();
-    void trackProgressChanged(const Conv::ConvTrack &track, TrackState status, Percent percent);
+    void trackProgressChanged(const Track &track, TrackState status, Percent percent);
 
 private slots:
     void trackProgress(const Conv::ConvTrack &track, TrackState state, int percent);
-    void trackError(const Conv::ConvTrack &track, const QString &message);
+    void trackError(const Track &track, const QString &message);
 
     void trackDone(const Conv::ConvTrack &track, const QString &outFileName);
 

@@ -445,7 +445,7 @@ void DiscPipeline::stop()
 /************************************************
 
  ************************************************/
-void DiscPipeline::trackError(const ConvTrack &track, const QString &message)
+void DiscPipeline::trackError(const Track &track, const QString &message)
 {
     mTrackStates[track.index()] = TrackState::Error;
     emit trackProgressChanged(track, TrackState::Error, 0);
