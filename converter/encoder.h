@@ -93,6 +93,7 @@ private:
 
     QStringList resamplerArgs(int bitsPerSample, int sampleRate, const QString &outFile);
     QStringList deemphasisArgs(const QString &outFile);
+    void        stopProcesses(QList<QProcess *> procs);
 };
 
 } // namespace

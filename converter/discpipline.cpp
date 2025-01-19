@@ -82,9 +82,7 @@ WorkerThread::~WorkerThread()
 {
     requestInterruption();
     quit();
-    if (!wait()) {
-        qWarning() << "Can't terminate thread" << objectName();
-    }
+    wait();
     mWorker->deleteLater();
 }
 

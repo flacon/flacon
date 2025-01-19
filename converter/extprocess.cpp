@@ -27,6 +27,7 @@
 #include <QDebug>
 #include "../types.h"
 #include <QLoggingCategory>
+#include <QThread>
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "ExtProgram")
@@ -40,6 +41,10 @@ ExtProcess::ExtProcess(QObject *parent) :
 
 void ExtProcess::handleError(QProcess::ProcessError error)
 {
+    if (QThread::currentThread()->isInterruptionRequested()) {
+        return;
+    }
+
     qCWarning(LOG) << "ERROR";
     qCWarning(LOG) << QStringLiteral("%1: The '%2' program crashes").arg(objectName(), program());
     qCWarning(LOG) << "Program with args:" << debugProgramArgs(program(), arguments());

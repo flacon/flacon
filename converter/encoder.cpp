@@ -135,6 +135,23 @@ QProcess *Encoder::createDemph(const QString &outFile)
     return res;
 }
 
+/**************************************
+
+ **************************************/
+void Encoder::stopProcesses(QList<QProcess *> procs)
+{
+    for (QProcess *p : procs) {
+        try {
+            p->closeWriteChannel();
+            p->terminate();
+            p->waitForFinished(-1);
+            delete p;
+        }
+        catch (...) {
+        }
+    }
+}
+
 /************************************************
 
  ************************************************/
@@ -212,8 +229,16 @@ void Encoder::run()
 
         emit trackReady(track(), outFile(), mTrackGain.result());
     }
-    catch (const FlaconError &err) {
+    catch (const Abort &) {
+        stopProcesses(procs);
         deleteFile(mInputFile);
+
+        qCDebug(LOG) << "Encoder job was aborted on track" << track().trackNumTag();
+    }
+    catch (const FlaconError &err) {
+        stopProcesses(procs);
+        deleteFile(mInputFile);
+
         QString msg = tr("Track %1. Encoder error:", "Track error message, %1 is a track number").arg(track().trackNumTag()) + "<pre>" + err.what() + "</pre>";
         emit    error(track(), msg);
     }
@@ -289,6 +314,7 @@ void Encoder::readInputFile(QProcess *process)
     QByteArray buf;
 
     while (!file.atEnd()) {
+        Abort::check();
         buf = file.read(bufSize);
         process->write(buf);
         if (mReplayGainEnabled) {
