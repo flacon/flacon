@@ -27,6 +27,7 @@
 #include "ui_profiletabwidget.h"
 #include "controls.h"
 #include "../preferencesdialog.h"
+#include "outtagspage.h"
 
 class NoEncoderConfigPage : public EncoderConfigPage
 {
@@ -41,10 +42,13 @@ public:
  ************************************************/
 ProfileTabWidget::ProfileTabWidget(QWidget *parent) :
     QTabWidget(parent),
-    ui(new Ui::ProfileTabWidget)
+    ui(new Ui::ProfileTabWidget),
+    mOutTagsPage(new OutTagsPage(this))
 {
     ui->setupUi(this);
     setCurrentIndex(0);
+
+    addTab(mOutTagsPage, mOutTagsPage->windowTitle());
 
     ui->outDirEdit->setPlaceholderText(tr("Same directory as CUE file", "Placeholder for output direcory combobox"));
     ui->outDirButton->setBuddy(ui->outDirEdit);
@@ -148,7 +152,7 @@ void ProfileTabWidget::fromProfile(const Profile *profile)
     ui->cueGroup->fromProfile(profile);
 
     // Tags options .......................
-    ui->writeSingleDiskNumCheckBox->setChecked(profile->isWriteSingleDiskNum());
+    mOutTagsPage->setWriteSingleDiskNum(profile->isWriteSingleDiskNum());
 }
 
 /************************************************
@@ -186,7 +190,7 @@ void ProfileTabWidget::toProfile(Profile *profile) const
     ui->cueGroup->toProfile(profile);
 
     // Tags options .......................
-    profile->setWriteSingleDiskNum(ui->writeSingleDiskNumCheckBox->isChecked());
+    profile->setWriteSingleDiskNum(mOutTagsPage->isWriteSingleDiskNum());
 }
 
 /************************************************
@@ -216,7 +220,7 @@ void ProfileTabWidget::recreateEncoderWidget(const Profile *profile)
         ui->encoderGroup->layout()->addWidget(mEncoderWidget.get());
         PreferencesDialog::fixLayout(this);
 
-        setTabEnabled(indexOf(ui->tagsTab), true);
+        setTabEnabled(indexOf(mOutTagsPage), true);
         setTabEnabled(indexOf(ui->cueTab), true);
     }
     else {
@@ -225,7 +229,7 @@ void ProfileTabWidget::recreateEncoderWidget(const Profile *profile)
 
         mEncoderWidget.reset(new NoEncoderConfigPage(ui->encoderGroup));
 
-        setTabEnabled(indexOf(ui->tagsTab), false);
+        setTabEnabled(indexOf(mOutTagsPage), false);
         setTabEnabled(indexOf(ui->cueTab), false);
     }
 }

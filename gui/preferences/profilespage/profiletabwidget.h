@@ -32,6 +32,8 @@
 #include "formats_out/encoderconfigpage.h"
 #include "../controls.h"
 
+class OutTagsPage;
+
 namespace Ui {
 class ProfileTabWidget;
 }
@@ -49,6 +51,7 @@ public:
 
 private:
     Ui::ProfileTabWidget *ui;
+    OutTagsPage          *mOutTagsPage = nullptr;
 
     std::unique_ptr<EncoderConfigPage> mEncoderWidget = nullptr;
 

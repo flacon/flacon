@@ -20,6 +20,10 @@ list(APPEND SOURCES
   ${CMAKE_CURRENT_LIST_DIR}/cuegroupbox.h
   ${CMAKE_CURRENT_LIST_DIR}/cuegroupbox.cpp
   ${CMAKE_CURRENT_LIST_DIR}/cuegroupbox.ui
+
+  ${CMAKE_CURRENT_LIST_DIR}/outtagspage.h
+  ${CMAKE_CURRENT_LIST_DIR}/outtagspage.cpp
+  ${CMAKE_CURRENT_LIST_DIR}/outtagspage.ui
 )
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
