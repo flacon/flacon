@@ -111,17 +111,6 @@ void printVersion()
     out << "There is NO WARRANTY, to the extent permitted by law." << Qt::endl;
 }
 
-/************************************************
- *
- ************************************************/
-void consoleErroHandler(QtMsgType type, const QMessageLogContext &context, const QString &message)
-{
-    Q_UNUSED(type)
-    Q_UNUSED(context)
-
-    QTextStream(stderr) << htmlToText(message).toLocal8Bit() << Qt::endl;
-}
-
 namespace LibraryInfo {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 QString path(QLibraryInfo::LibraryLocation p)
@@ -167,7 +156,6 @@ void translate(QApplication *app)
  ************************************************/
 int runConsole(int argc, char *argv[], const QStringList &files)
 {
-    qInstallMessageHandler(consoleErroHandler);
     QCoreApplication app(argc, argv);
 
     Project::instance()->load(Settings::i());
