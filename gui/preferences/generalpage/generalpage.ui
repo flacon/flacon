@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>491</width>
-    <height>389</height>
+    <height>392</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -92,7 +92,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string extracomment="Groupbox title on preferences dialog">Tags</string>
+      <string comment="Groupbox title on preferences dialog" extracomment="Groupbox title on preferences dialog">CUE tags</string>
      </property>
      <property name="flat">
       <bool>true</bool>
