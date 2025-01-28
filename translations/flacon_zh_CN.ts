@@ -134,6 +134,15 @@
     </message>
 </context>
 <context>
+    <name>AlbumTagLineEdit</name>
+    <message>
+        <source>Different across %1 disks</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -609,11 +618,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>选择临时目录</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <extracomment>Groupbox title on preferences dialog</extracomment>
-        <translation>标签</translation>
-    </message>
-    <message>
         <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
         <extracomment>Checkbox tooltip on preferences dialog</extracomment>
         <translation>如果“标题”标签包含了用分隔符分开的艺术家名和音轨名，程序会尝试分配合适的标签。</translation>
@@ -627,6 +631,52 @@ This only affects the file size. All settings are lossless.</source>
         <source>Thread count:</source>
         <translation>线程计数：</translation>
     </message>
+    <message>
+        <source>CUE tags</source>
+        <comment>Groupbox title on preferences dialog</comment>
+        <extracomment>Groupbox title on preferences dialog</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy type</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User name</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Password</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>SOCKS 5</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LogView</name>
@@ -634,7 +684,7 @@ This only affects the file size. All settings are lossless.</source>
         <source>Flacon logs</source>
         <comment>Logs view dialog title</comment>
         <extracomment>Logs view dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Flacon日志</translation>
     </message>
 </context>
 <context>
@@ -1064,19 +1114,23 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Album tags</source>
-        <translation type="unfinished"/>
+        <translation>专辑标签</translation>
     </message>
     <message>
         <source>View logs</source>
         <comment>Main menu item</comment>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>查看日志</translation>
     </message>
     <message>
         <source>View logs</source>
         <comment>Main menu tooltip</comment>
         <extracomment>Main menu tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>查看日志</translation>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>艺术家：</translation>
     </message>
 </context>
 <context>
@@ -1183,6 +1237,17 @@ Do you want to continue?</source>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
         <translation>插入“专辑表演者”</translation>
+    </message>
+</context>
+<context>
+    <name>OutTagsPage</name>
+    <message>
+        <source>Tags</source>
+        <translation>标签</translation>
+    </message>
+    <message>
+        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1584,28 +1649,10 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>编辑标签</translation>
     </message>
     <message>
-        <source>Artist:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>艺术家：</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
         <translation>专辑：</translation>
-    </message>
-    <message>
-        <source>Genre:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>风格：</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>年份：</translation>
     </message>
     <message>
         <source>Start track number:</source>
@@ -1620,32 +1667,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>光盘数：</translation>
     </message>
     <message>
-        <source>Comment:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>注释：</translation>
-    </message>
-    <message>
         <source>of</source>
         <translation>of</translation>
-    </message>
-    <message>
-        <source>Album tags</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Song writer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Track tags</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Artist:</source>
@@ -1653,7 +1676,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
     </message>
     <message>
         <source>Song writer:</source>
-        <translation type="unfinished"/>
+        <translation>歌曲作者：</translation>
     </message>
     <message>
         <source>Year:</source>
@@ -1668,7 +1691,31 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>注释：</translation>
     </message>
     <message>
-        <source>ISRC:</source>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation>专辑表演者：</translation>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <translation>音轨编号：</translation>
+    </message>
+</context>
+<context>
+    <name>TrackTagLineEdit</name>
+    <message>
+        <source>Different across %1 songs</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>TrackTagTextEdit</name>
+    <message>
+        <source>Different across %1 songs</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1822,19 +1869,20 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>Date</source>
         <comment>Table header.</comment>
         <extracomment>Table header.</extracomment>
-        <translation type="unfinished"/>
+        <translation>日期</translation>
     </message>
     <message>
         <source>Genre</source>
         <comment>Table header.</comment>
         <extracomment>Table header.</extracomment>
-        <translation type="unfinished"/>
+        <translation>风格</translation>
     </message>
     <message>
         <source>Song writer</source>
         <comment>Table header.</comment>
         <extracomment>Table header.</extracomment>
-        <translation type="unfinished"/>
+        <translation>歌曲作者
+ </translation>
     </message>
 </context>
 <context>
@@ -1934,18 +1982,6 @@ The ReplayGain will be disabled for this disk.</source>
         <translation>光盘 %1 &quot;%2 - %3&quot; 将会覆盖自己的这个光盘的文件。</translation>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
-        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>光盘 %1 &quot;%2 - %3&quot; 使用同一个CUE文件。</translation>
-    </message>
-    <message>
-        <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
-        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
-        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
-        <translation>光盘 %1 &quot;%2 - %3&quot; 使用同一个音频文件。</translation>
-    </message>
-    <message>
         <source>The same audio file is used for different tracks.</source>
         <comment>Error message</comment>
         <extracomment>Error message</extracomment>
@@ -1957,6 +1993,18 @@ You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
         <translation>这个光碟的输出文件将会和光碟%1混合。你可以调整它们中一个的起始值。</translation>
+    </message>
+    <message>
+        <source>Disk %1 uses the same CUE file.</source>
+        <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 uses the same audio file.</source>
+        <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

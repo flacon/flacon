@@ -133,6 +133,15 @@
     </message>
 </context>
 <context>
+    <name>AlbumTagLineEdit</name>
+    <message>
+        <source>Different across %1 disks</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
+        <translation>Различные в %1 дисках</translation>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -608,11 +617,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>Укажите временную директорию</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <extracomment>Groupbox title on preferences dialog</extracomment>
-        <translation>Теги</translation>
-    </message>
-    <message>
         <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
         <extracomment>Checkbox tooltip on preferences dialog</extracomment>
         <translation>Если тег &quot;TITLE&quot; содержит имена исполнителя и трека, объединенные символом-разделителем, программа попытается заполнить соответствующие теги.</translation>
@@ -625,6 +629,52 @@ This only affects the file size. All settings are lossless.</source>
     <message>
         <source>Thread count:</source>
         <translation>Количество потоков:</translation>
+    </message>
+    <message>
+        <source>CUE tags</source>
+        <comment>Groupbox title on preferences dialog</comment>
+        <extracomment>Groupbox title on preferences dialog</extracomment>
+        <translation>CUE теги</translation>
+    </message>
+    <message>
+        <source>Proxy</source>
+        <translation>Прокси</translation>
+    </message>
+    <message>
+        <source>Proxy type</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation>Тип прокис</translation>
+    </message>
+    <message>
+        <source>Host</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation>Хост</translation>
+    </message>
+    <message>
+        <source>User name</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation>Имя пользователя</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <source>No proxy</source>
+        <translation>Без прокси</translation>
+    </message>
+    <message>
+        <source>HTTP</source>
+        <translation>HTTP</translation>
+    </message>
+    <message>
+        <source>SOCKS 5</source>
+        <translation>SOCKS 5</translation>
     </message>
 </context>
 <context>
@@ -1077,6 +1127,10 @@ Do you want to continue?</source>
         <extracomment>Main menu tooltip</extracomment>
         <translation>Посмотреть логи</translation>
     </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Артист:</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -1182,6 +1236,17 @@ Do you want to continue?</source>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
         <translation>Вставить исполнителя альбома</translation>
+    </message>
+</context>
+<context>
+    <name>OutTagsPage</name>
+    <message>
+        <source>Tags</source>
+        <translation>Теги</translation>
+    </message>
+    <message>
+        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <translation>Запиcывать теги «Номер диска» и «Количество дисков» для однодисковых альбомов</translation>
     </message>
 </context>
 <context>
@@ -1583,28 +1648,10 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>Редактирование тегов</translation>
     </message>
     <message>
-        <source>Artist:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Артист:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
         <translation>Альбом:</translation>
-    </message>
-    <message>
-        <source>Genre:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Жанр:</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Год:</translation>
     </message>
     <message>
         <source>Start track number:</source>
@@ -1619,32 +1666,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>Номер диска:</translation>
     </message>
     <message>
-        <source>Comment:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Комментарий:</translation>
-    </message>
-    <message>
         <source>of</source>
         <translation>из</translation>
-    </message>
-    <message>
-        <source>Album tags</source>
-        <translation>Теги альбома</translation>
-    </message>
-    <message>
-        <source>Song writer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Автор песни:</translation>
-    </message>
-    <message>
-        <source>Track tags</source>
-        <translation>Теги трека</translation>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation>Название:</translation>
     </message>
     <message>
         <source>Artist:</source>
@@ -1667,8 +1690,32 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation>Комментарий:</translation>
     </message>
     <message>
-        <source>ISRC:</source>
-        <translation>ISRC:</translation>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation>Исполнитель альбома:</translation>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <translation>Название трека:</translation>
+    </message>
+</context>
+<context>
+    <name>TrackTagLineEdit</name>
+    <message>
+        <source>Different across %1 songs</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
+        <translation>Различные в %1 песнях</translation>
+    </message>
+</context>
+<context>
+    <name>TrackTagTextEdit</name>
+    <message>
+        <source>Different across %1 songs</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
+        <translation>Различные в %1 песнях</translation>
     </message>
 </context>
 <context>
@@ -1936,18 +1983,6 @@ The ReplayGain will be disabled for this disk.</source>
         <translation>Диск %1 &quot;%2 — %3&quot; перезапишет файлы этого диска.</translation>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
-        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>Диск %1 &quot;%2 — %3&quot; использует тот же CUE-файл.</translation>
-    </message>
-    <message>
-        <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
-        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
-        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
-        <translation>Диск %1 &quot;%2 — %3&quot; использует тот же аудиофайл.</translation>
-    </message>
-    <message>
         <source>The same audio file is used for different tracks.</source>
         <comment>Error message</comment>
         <extracomment>Error message</extracomment>
@@ -1960,6 +1995,18 @@ You could change the &quot;Start num&quot; for one of them.</source>
         <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
         <translation>Выходные файлы этого диска будут перемешаны с файлами диска %1.
 Возможно надо изменить &quot;Нумеровать с&quot; для одного из дисков.</translation>
+    </message>
+    <message>
+        <source>Disk %1 uses the same CUE file.</source>
+        <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation>Диск %1 использует тот же CUE-файл.</translation>
+    </message>
+    <message>
+        <source>Disk %1 uses the same audio file.</source>
+        <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation>Диск %1 использует тот же аудиофайл.</translation>
     </message>
 </context>
 <context>

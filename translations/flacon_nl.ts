@@ -133,6 +133,15 @@
     </message>
 </context>
 <context>
+    <name>AlbumTagLineEdit</name>
+    <message>
+        <source>Different across %1 disks</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -314,7 +323,29 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
         <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
         <extracomment>Tooltip for the Mp3 presets combobox on preferences dialog.</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling is voor de meeste mensen en de meeste muziek normaal gezien transparant.&lt;/dd&gt;
+
+&lt;dt&gt;VBR standaard, VBR standaard snel&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling is voor de meeste mensen en de meeste muziek normaal gezien transparant, en is al van vrij hoge kwaliteit.&lt;/dd&gt;
+
+&lt;dt&gt;VBR extreem, VBR extreme snel&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling biedt iets hogere kwaliteit dan de standaardmodus als u een uitzonderlijk goed gehoor of high-end audio-apparatuur hebt.&lt;/dd&gt;
+
+&lt;dt&gt;VBR kwaliteit&lt;/dt&gt;
+&lt;dd&gt;Deze optie laat u de uitvoerkwaliteit opgeven.&lt;/dd&gt;
+
+&lt;dt&gt;snelle optie&lt;/dt&gt;
+&lt;dd&gt;Schakelt de nieuwe snelle VBR voor een specifiek profiel in. Dit is aanbevolen.&lt;/dd&gt;
+
+&lt;dt&gt;CBR waanzinnig&lt;/dt&gt;
+&lt;dd&gt;Als u absoluut de hoogste kwaliteit nodig hebt ongeacht bestandsgrootte, zal u dat met deze constante bitsnelheid bereiken.&lt;/dd&gt;
+
+&lt;dt&gt;CBR kbps&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling geeft u normaal gezien goede kwaliteit voor een vooraf opgegeven bitsnelheid.&lt;/dd&gt;
+
+&lt;dt&gt;ABR kbps&lt;/dt&gt;
+&lt;dd&gt;Deze voorinstelling geeft u normaal gezien hogere kwaliteit dan de constante bitsnelheid voor een vooraf opgegeven bitsnelheid.</translation>
     </message>
 </context>
 <context>
@@ -329,7 +360,11 @@
 
 &lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;dt&gt;VBR&lt;/dt&gt;
+&lt;dd&gt;Gebruik variabele bitsnelheidscodering (aanbevolen). In VBR-modus kan de bitsnelheid vrij omhoog en omlaag gaan afhankelijk van de inhoud om uniforme kwaliteit te verzekeren.&lt;/dd&gt;
+
+&lt;dt&gt;CBR&lt;/dt&gt;
+&lt;dd&gt;Gebruik beperkte bitsnelheidscodering. Voert uit naar een specifieke bitsnelheid. Deze modus is analoog aan CBR in AAC/MP3-encoders en beheerde modus in vorbis-encoders. Dit biedt minder uniforme kwaliteit dan VBR-modus, maar wel een uniforme bitsnelheid.&lt;/dd&gt;</translation>
     </message>
     <message>
         <source>Bitrate:</source>
@@ -585,11 +620,6 @@ Dit is enkel van invloed op de bestandsgrootte - alle instellingen zijn zonder k
         <translation>Kies een tijdelijke map</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <extracomment>Groupbox title on preferences dialog</extracomment>
-        <translation>Tags</translation>
-    </message>
-    <message>
         <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
         <extracomment>Checkbox tooltip on preferences dialog</extracomment>
         <translation>Als de ‘TITEL’-tag de artiestnaam en naam van het nummer kommagescheiden bevatten, dan zal het programma de juiste tags proberen toe te kennen.</translation>
@@ -603,6 +633,52 @@ Dit is enkel van invloed op de bestandsgrootte - alle instellingen zijn zonder k
         <source>Thread count:</source>
         <translation>Aantal processen:</translation>
     </message>
+    <message>
+        <source>CUE tags</source>
+        <comment>Groupbox title on preferences dialog</comment>
+        <extracomment>Groupbox title on preferences dialog</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy type</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User name</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Password</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>SOCKS 5</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LogView</name>
@@ -610,7 +686,7 @@ Dit is enkel van invloed op de bestandsgrootte - alle instellingen zijn zonder k
         <source>Flacon logs</source>
         <comment>Logs view dialog title</comment>
         <extracomment>Logs view dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Flacon-logboek</translation>
     </message>
 </context>
 <context>
@@ -1039,19 +1115,23 @@ Wil u doorgaan?</translation>
     </message>
     <message>
         <source>Album tags</source>
-        <translation type="unfinished"/>
+        <translation>Albumtags</translation>
     </message>
     <message>
         <source>View logs</source>
         <comment>Main menu item</comment>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Logboek bekijken</translation>
     </message>
     <message>
         <source>View logs</source>
         <comment>Main menu tooltip</comment>
         <extracomment>Main menu tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Logboek bekijken</translation>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Artiest:</translation>
     </message>
 </context>
 <context>
@@ -1158,6 +1238,17 @@ Wil u doorgaan?</translation>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
         <translation>‘Albumartiest’ invoegen</translation>
+    </message>
+</context>
+<context>
+    <name>OutTagsPage</name>
+    <message>
+        <source>Tags</source>
+        <translation>Tags</translation>
+    </message>
+    <message>
+        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1558,28 +1649,10 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <translation>Tags bewerken</translation>
     </message>
     <message>
-        <source>Artist:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Artiest:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
         <translation>Album:</translation>
-    </message>
-    <message>
-        <source>Genre:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Genre:</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Jaar:</translation>
     </message>
     <message>
         <source>Start track number:</source>
@@ -1594,32 +1667,8 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <translation>Schijfnummer:</translation>
     </message>
     <message>
-        <source>Comment:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Opmerking:</translation>
-    </message>
-    <message>
         <source>of</source>
         <translation>van</translation>
-    </message>
-    <message>
-        <source>Album tags</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Song writer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Track tags</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Artist:</source>
@@ -1627,7 +1676,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
     </message>
     <message>
         <source>Song writer:</source>
-        <translation type="unfinished"/>
+        <translation>Tekstschrijver:</translation>
     </message>
     <message>
         <source>Year:</source>
@@ -1642,7 +1691,31 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <translation>Opmerking:</translation>
     </message>
     <message>
-        <source>ISRC:</source>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation>Albumartiest:</translation>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <translation>Nummertitel:</translation>
+    </message>
+</context>
+<context>
+    <name>TrackTagLineEdit</name>
+    <message>
+        <source>Different across %1 songs</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>TrackTagTextEdit</name>
+    <message>
+        <source>Different across %1 songs</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1796,19 +1869,19 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Date</source>
         <comment>Table header.</comment>
         <extracomment>Table header.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Datum</translation>
     </message>
     <message>
         <source>Genre</source>
         <comment>Table header.</comment>
         <extracomment>Table header.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Genre</translation>
     </message>
     <message>
         <source>Song writer</source>
         <comment>Table header.</comment>
         <extracomment>Table header.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Tekstschrijver</translation>
     </message>
 </context>
 <context>
@@ -1911,28 +1984,29 @@ ReplayGain wordt uitgeschakeld voor deze schijf.</translation>
         <translation>%1 ‘%2 - %3’ zal de bestanden van deze schijf overschrijven.</translation>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
-        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>%1 ‘%2 - %3’ maakt gebruik van hetzelfde cueblad.</translation>
-    </message>
-    <message>
-        <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
-        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
-        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
-        <translation>%1 ‘%2 - %3’ maakt gebruik van hetzelfde audiobestand.</translation>
-    </message>
-    <message>
         <source>The same audio file is used for different tracks.</source>
         <comment>Error message</comment>
         <extracomment>Error message</extracomment>
-        <translation type="unfinished"/>
+        <translation>Het audiobestand wordt voor verschillende nummers gebruikt.</translation>
     </message>
     <message>
         <source>The output files of the disc are mixed with the files of disc %1.
 You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation>De uitvoerbestanden van de schijf zijn verweven met die van schijf %1.
+Pas het volgnummer van een van de nummers aan.</translation>
+    </message>
+    <message>
+        <source>Disk %1 uses the same CUE file.</source>
+        <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 uses the same audio file.</source>
+        <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -133,6 +133,15 @@
     </message>
 </context>
 <context>
+    <name>AlbumTagLineEdit</name>
+    <message>
+        <source>Different across %1 disks</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -585,11 +594,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>Επιλογή προσωρινού καταλόγου</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <extracomment>Groupbox title on preferences dialog</extracomment>
-        <translation>Ετικέτες</translation>
-    </message>
-    <message>
         <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
         <extracomment>Checkbox tooltip on preferences dialog</extracomment>
         <translation type="unfinished"/>
@@ -602,6 +606,52 @@ This only affects the file size. All settings are lossless.</source>
     <message>
         <source>Thread count:</source>
         <translation>Αρίθμηση νημάτων:</translation>
+    </message>
+    <message>
+        <source>CUE tags</source>
+        <comment>Groupbox title on preferences dialog</comment>
+        <extracomment>Groupbox title on preferences dialog</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy type</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User name</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Password</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>SOCKS 5</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1054,6 +1104,10 @@ Do you want to continue?</source>
         <extracomment>Main menu tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Καλλιτέχνης:</translation>
+    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -1158,6 +1212,17 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>OutTagsPage</name>
+    <message>
+        <source>Tags</source>
+        <translation>Ετικέτες</translation>
+    </message>
+    <message>
+        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1560,28 +1625,10 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Artist:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Καλλιτέχνης:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
         <translation>Άλμπουμ:</translation>
-    </message>
-    <message>
-        <source>Genre:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Είδος:</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Έτος:</translation>
     </message>
     <message>
         <source>Start track number:</source>
@@ -1596,31 +1643,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Comment:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>of</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Album tags</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Song writer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Track tags</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Title:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1644,7 +1667,31 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>ISRC:</source>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>TrackTagLineEdit</name>
+    <message>
+        <source>Different across %1 songs</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>TrackTagTextEdit</name>
+    <message>
+        <source>Different across %1 songs</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1910,18 +1957,6 @@ The ReplayGain will be disabled for this disk.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
-        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
-        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
-        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>The same audio file is used for different tracks.</source>
         <comment>Error message</comment>
         <extracomment>Error message</extracomment>
@@ -1932,6 +1967,18 @@ The ReplayGain will be disabled for this disk.</source>
 You could change the &quot;Start num&quot; for one of them.</source>
         <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 uses the same CUE file.</source>
+        <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 uses the same audio file.</source>
+        <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>

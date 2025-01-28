@@ -133,6 +133,15 @@
     </message>
 </context>
 <context>
+    <name>AlbumTagLineEdit</name>
+    <message>
+        <source>Different across %1 disks</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>CodePageComboBox</name>
     <message>
         <source>Auto detect</source>
@@ -608,11 +617,6 @@ Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdi
         <translation>Seleccione un directorio temporal</translation>
     </message>
     <message>
-        <source>Tags</source>
-        <extracomment>Groupbox title on preferences dialog</extracomment>
-        <translation>Etiquetas</translation>
-    </message>
-    <message>
         <source>If the &quot;TITLE&quot; tag contains the artist&apos;s and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
         <extracomment>Checkbox tooltip on preferences dialog</extracomment>
         <translation>Si la etiqueta &quot;TÍTULO&quot; contiene el nombre del artista y de la pista, combinados por un caracter separador, el programa intentará asignar las etiquetas apropiadas.</translation>
@@ -626,6 +630,52 @@ Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdi
         <source>Thread count:</source>
         <translation>Número de subprocesos:</translation>
     </message>
+    <message>
+        <source>CUE tags</source>
+        <comment>Groupbox title on preferences dialog</comment>
+        <extracomment>Groupbox title on preferences dialog</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Proxy type</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User name</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Password</source>
+        <comment>Preferences proxy settings</comment>
+        <extracomment>Preferences proxy settings</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No proxy</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HTTP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>SOCKS 5</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LogView</name>
@@ -633,7 +683,7 @@ Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdi
         <source>Flacon logs</source>
         <comment>Logs view dialog title</comment>
         <extracomment>Logs view dialog title</extracomment>
-        <translation type="unfinished"/>
+        <translation>Registros de Flacon</translation>
     </message>
 </context>
 <context>
@@ -1063,19 +1113,23 @@ Do you want to continue?</source>
     </message>
     <message>
         <source>Album tags</source>
-        <translation type="unfinished"/>
+        <translation>Etiquetas de álbumes</translation>
     </message>
     <message>
         <source>View logs</source>
         <comment>Main menu item</comment>
         <extracomment>Main menu item</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ver registros</translation>
     </message>
     <message>
         <source>View logs</source>
         <comment>Main menu tooltip</comment>
         <extracomment>Main menu tooltip</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ver registros</translation>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation>Artista:</translation>
     </message>
 </context>
 <context>
@@ -1182,6 +1236,17 @@ Do you want to continue?</source>
     <message>
         <source>Insert &quot;Album Performer&quot;</source>
         <translation>Introduzca &quot;Intérprete del Álbum&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>OutTagsPage</name>
+    <message>
+        <source>Tags</source>
+        <translation>Etiquetas</translation>
+    </message>
+    <message>
+        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1583,28 +1648,10 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>Editar etiquetas</translation>
     </message>
     <message>
-        <source>Artist:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Artista:</translation>
-    </message>
-    <message>
         <source>Album:</source>
         <comment>Music tag name</comment>
         <extracomment>Music tag name</extracomment>
         <translation>Álbum:</translation>
-    </message>
-    <message>
-        <source>Genre:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Género:</translation>
-    </message>
-    <message>
-        <source>Year:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Año:</translation>
     </message>
     <message>
         <source>Start track number:</source>
@@ -1619,32 +1666,8 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>Número de disco:</translation>
     </message>
     <message>
-        <source>Comment:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation>Comentario:</translation>
-    </message>
-    <message>
         <source>of</source>
         <translation>de</translation>
-    </message>
-    <message>
-        <source>Album tags</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Song writer:</source>
-        <comment>Music tag name</comment>
-        <extracomment>Music tag name</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Track tags</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Artist:</source>
@@ -1652,7 +1675,7 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
     </message>
     <message>
         <source>Song writer:</source>
-        <translation type="unfinished"/>
+        <translation>Autor de la canción:</translation>
     </message>
     <message>
         <source>Year:</source>
@@ -1667,7 +1690,31 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <translation>Comentario:</translation>
     </message>
     <message>
-        <source>ISRC:</source>
+        <source>Album performer:</source>
+        <comment>Music tag name</comment>
+        <extracomment>Music tag name</extracomment>
+        <translation>Artista del Álbum:</translation>
+    </message>
+    <message>
+        <source>Track title:</source>
+        <translation>Título de pista:</translation>
+    </message>
+</context>
+<context>
+    <name>TrackTagLineEdit</name>
+    <message>
+        <source>Different across %1 songs</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>TrackTagTextEdit</name>
+    <message>
+        <source>Different across %1 songs</source>
+        <comment>Placeholder for tags edit, %1 is count of different values</comment>
+        <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1821,19 +1868,19 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <source>Date</source>
         <comment>Table header.</comment>
         <extracomment>Table header.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Fecha</translation>
     </message>
     <message>
         <source>Genre</source>
         <comment>Table header.</comment>
         <extracomment>Table header.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Género</translation>
     </message>
     <message>
         <source>Song writer</source>
         <comment>Table header.</comment>
         <extracomment>Table header.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Autor de la canción</translation>
     </message>
 </context>
 <context>
@@ -1936,18 +1983,6 @@ ReplayGain se desactivará para este disco.</translation>
         <translation>El disco %1 &quot;%2 - %3&quot; sobrescribirá los archivos de este disco.</translation>
     </message>
     <message>
-        <source>Disk %1 &quot;%2 - %3&quot; uses the same CUE file.</source>
-        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively</extracomment>
-        <translation>El Disco %1 &quot;%2 - %3&quot; usa el mismo archivo CUE.</translation>
-    </message>
-    <message>
-        <source>Disk %1 &quot;%2 - %3&quot; uses the same audio file.</source>
-        <comment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</comment>
-        <extracomment>Warning message, %1, %2 and %3 is the number, artist and album for the disc, respectively. %4 is an audio file name</extracomment>
-        <translation>El disco %1 &quot;%2 - %3&quot; usa el mismo archivo de audio.</translation>
-    </message>
-    <message>
         <source>The same audio file is used for different tracks.</source>
         <comment>Error message</comment>
         <extracomment>Error message</extracomment>
@@ -1960,6 +1995,18 @@ You could change the &quot;Start num&quot; for one of them.</source>
         <extracomment>Error message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
         <translation>Los archivos de salida del disco están mezclados con los archivos del disco %1.
 Puede cambiar el &quot;Núm de Inicio&quot; de uno de ellos.</translation>
+    </message>
+    <message>
+        <source>Disk %1 uses the same CUE file.</source>
+        <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk %1 uses the same audio file.</source>
+        <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
+        <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
