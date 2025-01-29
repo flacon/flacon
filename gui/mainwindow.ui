@@ -534,7 +534,7 @@ If you surround sections of text that contain a token with braces, these section
     <string comment="Toolbar item caption" extracomment="Toolbar item caption">Errors</string>
    </property>
    <property name="toolTip">
-    <string comment="Toolbar item tooltip" extracomment="Toolbar item tooltip">Show Errors</string>
+    <string comment="Toolbar item tooltip" extracomment="Toolbar item tooltip">Show errors</string>
    </property>
   </action>
   <action name="actionRemoveSourceFiles">
