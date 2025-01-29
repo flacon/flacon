@@ -138,7 +138,7 @@
         <source>Different across %1 disks</source>
         <comment>Placeholder for tags edit, %1 is count of different values</comment>
         <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
-        <translation type="unfinished"/>
+        <translation>Verschillend op %1 schijven</translation>
     </message>
 </context>
 <context>
@@ -637,47 +637,47 @@ Dit is enkel van invloed op de bestandsgrootte - alle instellingen zijn zonder k
         <source>CUE tags</source>
         <comment>Groupbox title on preferences dialog</comment>
         <extracomment>Groupbox title on preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Cue-tags</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Proxy</translation>
     </message>
     <message>
         <source>Proxy type</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Soort proxy</translation>
     </message>
     <message>
         <source>Host</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Host</translation>
     </message>
     <message>
         <source>User name</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Gebruikersnaam</translation>
     </message>
     <message>
         <source>Password</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Wachtwoord</translation>
     </message>
     <message>
         <source>No proxy</source>
-        <translation type="unfinished"/>
+        <translation>Geen proxy</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"/>
+        <translation>Http</translation>
     </message>
     <message>
         <source>SOCKS 5</source>
-        <translation type="unfinished"/>
+        <translation>Socks 5</translation>
     </message>
 </context>
 <context>
@@ -1248,7 +1248,7 @@ Wil u doorgaan?</translation>
     </message>
     <message>
         <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
-        <translation type="unfinished"/>
+        <translation>Tags van schijfnummer en aantal schijven wegschrijven op albums met één schijf</translation>
     </message>
 </context>
 <context>
@@ -1707,7 +1707,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Different across %1 songs</source>
         <comment>Placeholder for tags edit, %1 is count of different values</comment>
         <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
-        <translation type="unfinished"/>
+        <translation>Verschillend op %1 nummers</translation>
     </message>
 </context>
 <context>
@@ -1716,7 +1716,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
         <source>Different across %1 songs</source>
         <comment>Placeholder for tags edit, %1 is count of different values</comment>
         <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
-        <translation type="unfinished"/>
+        <translation>Verschillend op %1 nummers</translation>
     </message>
 </context>
 <context>
@@ -2001,13 +2001,13 @@ Pas het volgnummer van een van de nummers aan.</translation>
         <source>Disk %1 uses the same CUE file.</source>
         <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>Schijf %1 maakt gebruik van hetzelfde cue-bestand.</translation>
     </message>
     <message>
         <source>Disk %1 uses the same audio file.</source>
         <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>Schijf %1 maakt gebruik van hetzelfde audiobestand.</translation>
     </message>
 </context>
 <context>

@@ -138,7 +138,7 @@
         <source>Different across %1 disks</source>
         <comment>Placeholder for tags edit, %1 is count of different values</comment>
         <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
-        <translation type="unfinished"/>
+        <translation>Différent sur %1 disques</translation>
     </message>
 </context>
 <context>
@@ -635,47 +635,47 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
         <source>CUE tags</source>
         <comment>Groupbox title on preferences dialog</comment>
         <extracomment>Groupbox title on preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Balises CUE</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Mandataire</translation>
     </message>
     <message>
         <source>Proxy type</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Type de mandataire</translation>
     </message>
     <message>
         <source>Host</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Hôte</translation>
     </message>
     <message>
         <source>User name</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Nom d’utilisateur</translation>
     </message>
     <message>
         <source>Password</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <source>No proxy</source>
-        <translation type="unfinished"/>
+        <translation>Aucun mandataire</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"/>
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>SOCKS 5</source>
-        <translation type="unfinished"/>
+        <translation>SOCKS 5</translation>
     </message>
 </context>
 <context>
@@ -907,7 +907,7 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
     </message>
     <message>
         <source>Check for Updates…</source>
-        <translation>Vérifier les mises à jour…</translation>
+        <translation>Recherche de mises à jour…</translation>
     </message>
     <message>
         <source>Convert selected</source>
@@ -1247,7 +1247,7 @@ Voulez-vous continuer ?</translation>
     </message>
     <message>
         <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
-        <translation type="unfinished"/>
+        <translation>Écrire des balises « Numéro de disque » et « Nombre de disques » pour les albums qui ne comporte qu’un disque</translation>
     </message>
 </context>
 <context>
@@ -1425,43 +1425,43 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
         <source>16-bit</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation>16 bits</translation>
+        <translation>16 bits</translation>
     </message>
     <message>
         <source>24-bit</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation>24 bits</translation>
+        <translation>24 bits</translation>
     </message>
     <message>
         <source>32-bit</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation>32 bits</translation>
+        <translation>32 bits</translation>
     </message>
     <message>
         <source>44100 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation>44 100 Hz</translation>
+        <translation>44 100 Hz</translation>
     </message>
     <message>
         <source>48000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation>48 000 Hz</translation>
+        <translation>48 000 Hz</translation>
     </message>
     <message>
         <source>96000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation>96 000 Hz</translation>
+        <translation>96 000 Hz</translation>
     </message>
     <message>
         <source>192000 Hz</source>
         <comment>Item in combobox</comment>
         <extracomment>Item in combobox</extracomment>
-        <translation>192 000 Hz</translation>
+        <translation>192 000 Hz</translation>
     </message>
     <message>
         <source>Disabled</source>
@@ -1707,7 +1707,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <source>Different across %1 songs</source>
         <comment>Placeholder for tags edit, %1 is count of different values</comment>
         <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
-        <translation type="unfinished"/>
+        <translation>Différent sur %1 pièces</translation>
     </message>
 </context>
 <context>
@@ -1716,7 +1716,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <source>Different across %1 songs</source>
         <comment>Placeholder for tags edit, %1 is count of different values</comment>
         <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
-        <translation type="unfinished"/>
+        <translation>Différent sur %1 pièces</translation>
     </message>
 </context>
 <context>
@@ -2001,13 +2001,13 @@ Vous pouvez changer le « Numéro de début » d’un des fichiers.</translati
         <source>Disk %1 uses the same CUE file.</source>
         <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>Le disque %1 utilise le même fichier CUE.</translation>
     </message>
     <message>
         <source>Disk %1 uses the same audio file.</source>
         <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>Le disque %1 utilise le même fichier son.</translation>
     </message>
 </context>
 <context>

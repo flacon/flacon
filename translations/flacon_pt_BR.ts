@@ -138,7 +138,7 @@
         <source>Different across %1 disks</source>
         <comment>Placeholder for tags edit, %1 is count of different values</comment>
         <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
-        <translation type="unfinished"/>
+        <translation>Diferente entre %1 discos</translation>
     </message>
 </context>
 <context>
@@ -634,47 +634,47 @@ Isso afeta somente o tamanho do arquivo. Todas as configurações são sem perda
         <source>CUE tags</source>
         <comment>Groupbox title on preferences dialog</comment>
         <extracomment>Groupbox title on preferences dialog</extracomment>
-        <translation type="unfinished"/>
+        <translation>Etiquetas CUE</translation>
     </message>
     <message>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Proxy</translation>
     </message>
     <message>
         <source>Proxy type</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Tipo do proxy</translation>
     </message>
     <message>
         <source>Host</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Servidor</translation>
     </message>
     <message>
         <source>User name</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Nome de usuário</translation>
     </message>
     <message>
         <source>Password</source>
         <comment>Preferences proxy settings</comment>
         <extracomment>Preferences proxy settings</extracomment>
-        <translation type="unfinished"/>
+        <translation>Senha</translation>
     </message>
     <message>
         <source>No proxy</source>
-        <translation type="unfinished"/>
+        <translation>Sem proxy</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"/>
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>SOCKS 5</source>
-        <translation type="unfinished"/>
+        <translation>SOCKS 5</translation>
     </message>
 </context>
 <context>
@@ -1246,7 +1246,7 @@ Você deseja continuar?</translation>
     </message>
     <message>
         <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
-        <translation type="unfinished"/>
+        <translation>Gravar etiquetas &quot;Número do disco&quot; e &quot;Número de discos&quot; para álbuns com um único disco</translation>
     </message>
 </context>
 <context>
@@ -1706,7 +1706,7 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
         <source>Different across %1 songs</source>
         <comment>Placeholder for tags edit, %1 is count of different values</comment>
         <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
-        <translation type="unfinished"/>
+        <translation>Diferente entre %1 faixas</translation>
     </message>
 </context>
 <context>
@@ -1715,7 +1715,7 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
         <source>Different across %1 songs</source>
         <comment>Placeholder for tags edit, %1 is count of different values</comment>
         <extracomment>Placeholder for tags edit, %1 is count of different values</extracomment>
-        <translation type="unfinished"/>
+        <translation>Diferente entre %1 faixas</translation>
     </message>
 </context>
 <context>
@@ -2000,13 +2000,13 @@ Você poderia alterar o &quot;Número inicial&quot; de um deles.</translation>
         <source>Disk %1 uses the same CUE file.</source>
         <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>Disco %1 usa o mesmo arquivo CUE. </translation>
     </message>
     <message>
         <source>Disk %1 uses the same audio file.</source>
         <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
         <extracomment>Warning message, %1 is the disk description, artist and album for the disc, respectively</extracomment>
-        <translation type="unfinished"/>
+        <translation>Disco %1 usa o mesmo arquivo de áudio.</translation>
     </message>
 </context>
 <context>
