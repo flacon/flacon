@@ -71,7 +71,7 @@ ProfileTabWidget::ProfileTabWidget(QWidget *parent) :
 
     ui->gainComboBox->clear();
     ui->gainComboBox->addItem(tr("Disabled", "ReplayGain type combobox"), GainType::Disable);
-    ui->gainComboBox->addItem(tr("Per Track", "ReplayGain type combobox"), GainType::Track);
+    ui->gainComboBox->addItem(tr("Per track", "ReplayGain type combobox"), GainType::Track);
     ui->gainComboBox->addItem(tr("Per Album", "ReplayGain type combobox"), GainType::Album);
     ui->gainComboBox->setToolTip(tr("ReplayGain is a standard to normalize the perceived loudness of computer audio formats. \n\n"
                                     "The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. \n"
