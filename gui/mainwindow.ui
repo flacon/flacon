@@ -501,7 +501,7 @@ If you surround sections of text that contain a token with braces, these section
   </action>
   <action name="actionUpdates">
    <property name="text">
-    <string>Check for Updates…</string>
+    <string>Check for updates…</string>
    </property>
    <property name="visible">
     <bool>true</bool>
