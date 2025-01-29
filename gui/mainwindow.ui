@@ -526,7 +526,7 @@ If you surround sections of text that contain a token with braces, these section
     <string extracomment="Toolbar item caption">Warnings</string>
    </property>
    <property name="toolTip">
-    <string extracomment="Toolbar item tooltip">Show Warnings</string>
+    <string extracomment="Toolbar item tooltip">Show warnings</string>
    </property>
   </action>
   <action name="actionErrors">
