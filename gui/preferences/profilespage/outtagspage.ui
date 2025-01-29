@@ -26,7 +26,7 @@
       <item>
        <widget class="QCheckBox" name="writeSingleDiskNumCheckBox">
         <property name="text">
-         <string>Write “Disc Number” and “Disc Count” tags for single-disc albums</string>
+         <string>Write “Disc number” and “Disc count” tags for single-disc albums</string>
         </property>
        </widget>
       </item>
