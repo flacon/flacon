@@ -186,7 +186,7 @@ void OutPatternButton::addStandardPatterns()
 {
     addPattern("%n", tr("Insert \"Track number\""));
     addPattern("%N", tr("Insert \"Total number of tracks\""));
-    addPattern("%a", tr("Insert \"Album Performer\""));
+    addPattern("%a", tr("Insert \"Album performer\""));
     addPattern("%A", tr("Insert \"Album title\""));
     addPattern("%t", tr("Insert \"Track title\""));
     addPattern("%y", tr("Insert \"Year\""));
