@@ -223,7 +223,7 @@ If you surround sections of text that contain a token with braces, these section
   </widget>
   <widget class="QWidget" name="cueTab">
    <attribute name="title">
-    <string comment="Preferences dialog tab title">CUE and Cover image</string>
+    <string comment="Preferences dialog tab title">CUE and cover image</string>
    </attribute>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
