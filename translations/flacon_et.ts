@@ -660,10 +660,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Kataloog:</translation>
     </message>
@@ -854,10 +850,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation type="unfinished"/>
@@ -987,20 +979,9 @@ Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1078,6 +1059,25 @@ Do you want to continue?</source>
     <message>
         <source>Artist:</source>
         <translation>Esitaja:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1182,7 +1182,7 @@ Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
+        <source>Insert &quot;Album performer&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1193,7 +1193,7 @@ Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1244,10 +1244,6 @@ Do you want to continue?</source>
     <name>ProfileTabWidget</name>
     <message>
         <source>Audio</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Result Files</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1311,12 +1307,6 @@ If you surround sections of text that contain a token with braces, these section
     </message>
     <message>
         <source>Calculate gain:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1399,18 +1389,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Keelatud</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1421,6 +1399,28 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>

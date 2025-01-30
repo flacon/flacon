@@ -673,10 +673,6 @@ Ovlivní to jenom velikost souboru. Všechna nastavení jsou bezztrátová.</tra
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation>Výsledné soubory</translation>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Adresář:</translation>
     </message>
@@ -885,10 +881,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation>Zkontrolovat aktualizace...</translation>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation>Převést vybrané</translation>
@@ -1019,20 +1011,9 @@ Chcete pokračovat?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1110,6 +1091,25 @@ Chcete pokračovat?</translation>
     <message>
         <source>Artist:</source>
         <translation>Umělec:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1214,7 +1214,7 @@ Chcete pokračovat?</translation>
         <translation>Použít &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
+        <source>Insert &quot;Album performer&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1225,7 +1225,7 @@ Chcete pokračovat?</translation>
         <translation>Značky</translation>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1277,10 +1277,6 @@ Chcete pokračovat?</translation>
     <message>
         <source>Audio</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Result Files</source>
-        <translation>Výsledné soubory</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1364,12 +1360,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Spočítat zesílení:</translation>
     </message>
     <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
-        <translation>CUE a obrázek obalu</translation>
-    </message>
-    <message>
         <source>Copy cover image</source>
         <translation type="unfinished"/>
     </message>
@@ -1449,18 +1439,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Zakázáno</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>U skladby</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>U alba</translation>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1475,6 +1453,28 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>%1 nastavení kodéru:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

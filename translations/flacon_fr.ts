@@ -694,10 +694,6 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation>Fichiers de résultat</translation>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Dossier :</translation>
     </message>
@@ -906,10 +902,6 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
         <translation>Ctrl+Maj+O</translation>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation>Recherche de mises à jour…</translation>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation>Convertir la sélection</translation>
@@ -1040,21 +1032,10 @@ Voulez-vous continuer ?</translation>
         <translation>Avertissements</translation>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Afficher les avertissements</translation>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
         <translation>Erreurs</translation>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Afficher les erreurs</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
@@ -1131,6 +1112,25 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Artist:</source>
         <translation>Artiste :</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation>Fichiers de résultats</translation>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation>Recherche de mises à jour…</translation>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation>Afficher les avertissements</translation>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation>Afficher les erreurs</translation>
     </message>
 </context>
 <context>
@@ -1235,7 +1235,7 @@ Voulez-vous continuer ?</translation>
         <translation>Utiliser « %1 »</translation>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
+        <source>Insert &quot;Album performer&quot;</source>
         <translation>Insérer l’« Interprète de l’album »</translation>
     </message>
 </context>
@@ -1246,7 +1246,7 @@ Voulez-vous continuer ?</translation>
         <translation>Balises</translation>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
         <translation>Écrire des balises « Numéro de disque » et « Nombre de disques » pour les albums qui ne comporte qu’un disque</translation>
     </message>
 </context>
@@ -1298,10 +1298,6 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Audio</source>
         <translation>Son</translation>
-    </message>
-    <message>
-        <source>Result Files</source>
-        <translation>Fichiers de résultat</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1385,12 +1381,6 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
         <translation>Calculer le gain :</translation>
     </message>
     <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
-        <translation>CUE et image de couverture</translation>
-    </message>
-    <message>
         <source>Copy cover image</source>
         <translation>Copier l’image de couverture</translation>
     </message>
@@ -1470,18 +1460,6 @@ Si vous entourez des sections de texte qui comprennent un marqueur avec des acco
         <translation>Désactivé</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Par plage</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Par album</translation>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1496,6 +1474,28 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>Paramètres de l’encodeur %1 :</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation>Fichiers de résultats</translation>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation>CUE et image de couverture</translation>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation>Par plage</translation>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation>Par album</translation>
     </message>
 </context>
 <context>

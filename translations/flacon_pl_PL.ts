@@ -670,10 +670,6 @@ Wpływa to wyłącznie na wielkość pliku. Konwersja pozostaje bezstratna.</tra
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation>Pliki Wynikowe</translation>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Katalog:</translation>
     </message>
@@ -882,10 +878,6 @@ Otoczenie klamrami części tekstu, zawierającej znacznik, spowoduje jej ukryci
         <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation>Sprawdź dostępność aktualizacji...</translation>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation>Konwertuj wybrane</translation>
@@ -1016,20 +1008,9 @@ Czy chcesz kontynuować?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1107,6 +1088,25 @@ Czy chcesz kontynuować?</translation>
     <message>
         <source>Artist:</source>
         <translation>Wykonawca:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1211,7 +1211,7 @@ Czy chcesz kontynuować?</translation>
         <translation>Użyj &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
+        <source>Insert &quot;Album performer&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1222,7 +1222,7 @@ Czy chcesz kontynuować?</translation>
         <translation>Tagi</translation>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1274,10 +1274,6 @@ Czy chcesz kontynuować?</translation>
     <message>
         <source>Audio</source>
         <translation>Audio</translation>
-    </message>
-    <message>
-        <source>Result Files</source>
-        <translation>Pliki Wynikowe</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1361,12 +1357,6 @@ Otoczenie klamrami części tekstu, zawierającej znacznik, spowoduje jej ukryci
         <translation>Oblicz wzmocnienie:</translation>
     </message>
     <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
-        <translation>Arkusz CUE i zdjęcie okładki</translation>
-    </message>
-    <message>
         <source>Copy cover image</source>
         <translation>Zapis obrazu okładki w oddzielnym pliku</translation>
     </message>
@@ -1446,18 +1436,6 @@ Otoczenie klamrami części tekstu, zawierającej znacznik, spowoduje jej ukryci
         <translation>Nieaktywne</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Dla Ścieżki</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Dla Albumu</translation>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1472,6 +1450,28 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>ustawienia kodera: %1</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -693,10 +693,6 @@ This only affects the file size. All settings are lossless.</source>
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation>Выходные файлы</translation>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Директория:</translation>
     </message>
@@ -905,10 +901,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation>Проверить обновления…</translation>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation>Конвертировать выделенное</translation>
@@ -1039,21 +1031,10 @@ Do you want to continue?</source>
         <translation>Предупреждения</translation>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Показать предупреждения</translation>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
         <translation>Ошибки</translation>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Показать ошибки</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
@@ -1130,6 +1111,25 @@ Do you want to continue?</source>
     <message>
         <source>Artist:</source>
         <translation>Артист:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1234,8 +1234,8 @@ Do you want to continue?</source>
         <translation>Использовать &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
-        <translation>Вставить исполнителя альбома</translation>
+        <source>Insert &quot;Album performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1245,8 +1245,8 @@ Do you want to continue?</source>
         <translation>Теги</translation>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
-        <translation>Запиcывать теги «Номер диска» и «Количество дисков» для однодисковых альбомов</translation>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1297,10 +1297,6 @@ Do you want to continue?</source>
     <message>
         <source>Audio</source>
         <translation>Аудио</translation>
-    </message>
-    <message>
-        <source>Result Files</source>
-        <translation>Выходные файлы</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1384,12 +1380,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Расчет громкости:</translation>
     </message>
     <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
-        <translation>CUE-файл и обложка</translation>
-    </message>
-    <message>
         <source>Copy cover image</source>
         <translation>Копировать обложку</translation>
     </message>
@@ -1469,18 +1459,6 @@ If you surround sections of text that contain a token with braces, these section
         <translation>Отключен</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>По трекам</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Для всего альбома</translation>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1495,6 +1473,28 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>Настройки кодирования в %1:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

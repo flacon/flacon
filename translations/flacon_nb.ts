@@ -670,10 +670,6 @@ Dette har bare innvirkning på filstørrelse. Alle innstillinger er tapsfrie.</t
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation>Resulterende filer</translation>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Katalog:</translation>
     </message>
@@ -882,10 +878,6 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation type="unfinished"/>
@@ -1016,20 +1008,9 @@ Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1107,6 +1088,25 @@ Do you want to continue?</source>
     <message>
         <source>Artist:</source>
         <translation>Artist:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1211,7 +1211,7 @@ Do you want to continue?</source>
         <translation>Bruk &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
+        <source>Insert &quot;Album performer&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1222,7 +1222,7 @@ Do you want to continue?</source>
         <translation>Merkelapper</translation>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1274,10 +1274,6 @@ Do you want to continue?</source>
     <message>
         <source>Audio</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Result Files</source>
-        <translation>Resulterende filer</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1361,12 +1357,6 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation>Kalkuler forsterkning</translation>
     </message>
     <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Copy cover image</source>
         <translation type="unfinished"/>
     </message>
@@ -1446,18 +1436,6 @@ Hvis du setter inn deler av tekst som inneholder redigeringspoletter med klammep
         <translation>Avskrudd</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Per spor</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Per album</translation>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1471,6 +1449,28 @@ Bruk av album-forsterkningsanalyse vil beholde forskjeller i lydstyrkenivåer p�
         <source>%1 encoder settings:</source>
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
         <translation type="unfinished"/>
     </message>
 </context>

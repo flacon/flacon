@@ -693,10 +693,6 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation>Galutiniai failai</translation>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Katalogas:</translation>
     </message>
@@ -905,10 +901,6 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation>Tikrinti ar yra atnaujinimų…</translation>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation>Konvertavimas pasirinktas</translation>
@@ -1039,21 +1031,10 @@ Ar norite tęsti?</translation>
         <translation>Įspėjimai</translation>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Rodyti įspėjimus</translation>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
         <translation>Klaidos</translation>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Rodyti klaidas</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
@@ -1130,6 +1111,25 @@ Ar norite tęsti?</translation>
     <message>
         <source>Artist:</source>
         <translation>Atlikėjas:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1234,8 +1234,8 @@ Ar norite tęsti?</translation>
         <translation>Naudoti „%1“</translation>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
-        <translation>Įterpti „Albumo atlikėją“</translation>
+        <source>Insert &quot;Album performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1245,7 +1245,7 @@ Ar norite tęsti?</translation>
         <translation>Žymės</translation>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1297,10 +1297,6 @@ Ar norite tęsti?</translation>
     <message>
         <source>Audio</source>
         <translation>Garso įrašas</translation>
-    </message>
-    <message>
-        <source>Result Files</source>
-        <translation>Galutiniai failai</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1384,12 +1380,6 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Apskaičiuoti stiprinimą:</translation>
     </message>
     <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
-        <translation>CUE ir viršelio paveikslas</translation>
-    </message>
-    <message>
         <source>Copy cover image</source>
         <translation>Kopijuoti viršelio paveikslą</translation>
     </message>
@@ -1469,18 +1459,6 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         <translation>Išjungta</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Kiekvienam takeliui</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Kiekvienam albumui</translation>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1495,6 +1473,28 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>%1 koduotuvo nustatymai:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

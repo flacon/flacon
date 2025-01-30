@@ -670,10 +670,6 @@ Aceasta are efect doar asupra mărimii fișierului rezultat. Calitatea va fi ace
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation>Fișier cu rezultate</translation>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Dosar:</translation>
     </message>
@@ -882,10 +878,6 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation>Verificare actualizări...</translation>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation>Conversie fișiere selectate</translation>
@@ -1016,20 +1008,9 @@ Vreți să continuați?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1107,6 +1088,25 @@ Vreți să continuați?</translation>
     <message>
         <source>Artist:</source>
         <translation>Artist:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1211,7 +1211,7 @@ Vreți să continuați?</translation>
         <translation>Utilizează &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
+        <source>Insert &quot;Album performer&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1222,7 +1222,7 @@ Vreți să continuați?</translation>
         <translation>Etichete</translation>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1274,10 +1274,6 @@ Vreți să continuați?</translation>
     <message>
         <source>Audio</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Result Files</source>
-        <translation>Fișiere finale</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1361,12 +1357,6 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Calculează normalizare sunet:</translation>
     </message>
     <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Copy cover image</source>
         <translation type="unfinished"/>
     </message>
@@ -1446,18 +1436,6 @@ Dacă un fragment de text care conține un marcaj este pus între paranteze acol
         <translation>Dezactivat(ă)</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Per pistă</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Per album</translation>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1472,6 +1450,28 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>Setări codare %1:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

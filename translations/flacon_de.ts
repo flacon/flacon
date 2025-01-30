@@ -670,10 +670,6 @@ Diese Einstellung wirkt sich nur auf die Dateigröße aus. Alle Einstellungen si
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation>Ausgabedateien</translation>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Verzeichnis:</translation>
     </message>
@@ -882,10 +878,6 @@ Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werd
         <translation>Strg+Umschalt+O</translation>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation>Auf Aktualisierungen prüfen…</translation>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation>Ausgewählte konvertieren</translation>
@@ -1016,21 +1008,10 @@ Möchten Sie fortsetzen?</translation>
         <translation>Warnungen</translation>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Warnungen anzeigen</translation>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
         <translation>Fehler</translation>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Fehler anzeigen</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
@@ -1107,6 +1088,25 @@ Möchten Sie fortsetzen?</translation>
     <message>
         <source>Artist:</source>
         <translation>Interpret:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1211,7 +1211,7 @@ Möchten Sie fortsetzen?</translation>
         <translation>&quot;%1&quot; verwenden</translation>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
+        <source>Insert &quot;Album performer&quot;</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1222,7 +1222,7 @@ Möchten Sie fortsetzen?</translation>
         <translation>Schlagwörter</translation>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1274,10 +1274,6 @@ Möchten Sie fortsetzen?</translation>
     <message>
         <source>Audio</source>
         <translation>Audio</translation>
-    </message>
-    <message>
-        <source>Result Files</source>
-        <translation>Ausgabedateien</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1361,12 +1357,6 @@ Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werd
         <translation>Verstärkung berechnen:</translation>
     </message>
     <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
-        <translation>CUE und Cover-Bild</translation>
-    </message>
-    <message>
         <source>Copy cover image</source>
         <translation>Cover-Bild kopieren</translation>
     </message>
@@ -1446,18 +1436,6 @@ Wenn Sie Textabschnitte umschließen, die ein Token mit Klammern enthalten, werd
         <translation>Deaktiviert</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Pro Stück</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Pro Album</translation>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1472,6 +1450,28 @@ Die Album-Gain Analyse behält die Lautstärkeunterschiede innerhalb eines Album
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>%1 Kodierer-Einstellungen:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

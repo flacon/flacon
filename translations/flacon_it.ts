@@ -692,10 +692,6 @@ Questa impostazione modifica la dimensione. Tutte le impostazioni verranno perse
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation>Files risultanti</translation>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Cartella:</translation>
     </message>
@@ -904,10 +900,6 @@ Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, quest
         <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation>Controlla aggiornamenti...</translation>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation>Converti i selezionati</translation>
@@ -1038,21 +1030,10 @@ Vuoi continuare?</translation>
         <translation>Avvisi</translation>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Mostra Avvisi</translation>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
         <translation>Errori</translation>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Mostra Errori</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
@@ -1129,6 +1110,25 @@ Vuoi continuare?</translation>
     <message>
         <source>Artist:</source>
         <translation>Artista:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1233,8 +1233,8 @@ Vuoi continuare?</translation>
         <translation>Usa &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
-        <translation>Inserisci &quot;Album Performer&quot;</translation>
+        <source>Insert &quot;Album performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1244,7 +1244,7 @@ Vuoi continuare?</translation>
         <translation>Etichette</translation>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1296,10 +1296,6 @@ Vuoi continuare?</translation>
     <message>
         <source>Audio</source>
         <translation>Audio</translation>
-    </message>
-    <message>
-        <source>Result Files</source>
-        <translation>Files Risultanti</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1383,12 +1379,6 @@ Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, quest
         <translation>Calcola guadagno:</translation>
     </message>
     <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
-        <translation>CUE e immagine di Copertina</translation>
-    </message>
-    <message>
         <source>Copy cover image</source>
         <translation>Copia immagine di copertina</translation>
     </message>
@@ -1468,18 +1458,6 @@ Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, quest
         <translation>Disabilitato</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Per Traccia</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Per Album</translation>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1494,6 +1472,28 @@ Usando l&apos;analisi sull&apos;album si eliminano le differenze di volume per t
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>Impostazioni dell&apos;encoder %1:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

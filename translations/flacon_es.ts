@@ -693,10 +693,6 @@ Esto sólo afectará al tamaño de archivo. Todos los parámetros son sin pérdi
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation>Archivos Procesados</translation>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Directorio:</translation>
     </message>
@@ -905,10 +901,6 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>Ctrl+Mayúsculas+O</translation>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation>Comprobar actualizaciones...</translation>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation>Convertir selección</translation>
@@ -1039,21 +1031,10 @@ Do you want to continue?</source>
         <translation>Avisos</translation>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Mostrar los avisos</translation>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
         <translation>Errores</translation>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Mostrar los errores</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
@@ -1130,6 +1111,25 @@ Do you want to continue?</source>
     <message>
         <source>Artist:</source>
         <translation>Artista:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1234,8 +1234,8 @@ Do you want to continue?</source>
         <translation>Usar &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
-        <translation>Introduzca &quot;Intérprete del Álbum&quot;</translation>
+        <source>Insert &quot;Album performer&quot;</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1245,8 +1245,8 @@ Do you want to continue?</source>
         <translation>Etiquetas</translation>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
-        <translation>Escribe las etiquetas  &quot;Número de Disco&quot; y &quot;Recuento de Discos&quot;  para álbumes de un solo disco</translation>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1297,10 +1297,6 @@ Do you want to continue?</source>
     <message>
         <source>Audio</source>
         <translation>Audio</translation>
-    </message>
-    <message>
-        <source>Result Files</source>
-        <translation>Archivos Procesados</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1384,12 +1380,6 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>Calcular ganancia:</translation>
     </message>
     <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
-        <translation>Cue e imagen de Portada</translation>
-    </message>
-    <message>
         <source>Copy cover image</source>
         <translation>Copiar imagen de portada</translation>
     </message>
@@ -1469,18 +1459,6 @@ Si usa entre llaves secciones de texto que contengan una variable, dichas seccio
         <translation>Deshabilitado</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Por Pista</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Por Álbum</translation>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1495,6 +1473,28 @@ Usando el análisis de ganancia-álbum se preservarán las diferencias de volume
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>Configuración del codificador %1:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

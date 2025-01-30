@@ -693,10 +693,6 @@ Isso afeta somente o tamanho do arquivo. Todas as configurações são sem perda
         <translation>Flacon</translation>
     </message>
     <message>
-        <source>Result Files</source>
-        <translation>Arquivos finais</translation>
-    </message>
-    <message>
         <source>Directory:</source>
         <translation>Diretório:</translation>
     </message>
@@ -905,10 +901,6 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>Ctrl+Shift+O</translation>
     </message>
     <message>
-        <source>Check for Updates…</source>
-        <translation>Verificar atualizações...</translation>
-    </message>
-    <message>
         <source>Convert selected</source>
         <extracomment>Main menu item</extracomment>
         <translation>Converter selecionadas</translation>
@@ -1039,21 +1031,10 @@ Você deseja continuar?</translation>
         <translation>Avisos</translation>
     </message>
     <message>
-        <source>Show Warnings</source>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Exibir avisos</translation>
-    </message>
-    <message>
         <source>Errors</source>
         <comment>Toolbar item caption</comment>
         <extracomment>Toolbar item caption</extracomment>
         <translation>Erros</translation>
-    </message>
-    <message>
-        <source>Show Errors</source>
-        <comment>Toolbar item tooltip</comment>
-        <extracomment>Toolbar item tooltip</extracomment>
-        <translation>Exibir erros</translation>
     </message>
     <message>
         <source>Trash Sources for successfully converted disks and Remove from list…</source>
@@ -1130,6 +1111,25 @@ Você deseja continuar?</translation>
     <message>
         <source>Artist:</source>
         <translation>Artista:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation>Arquivos finais</translation>
+    </message>
+    <message>
+        <source>Check for updates…</source>
+        <translation>Verificar atualizações...</translation>
+    </message>
+    <message>
+        <source>Show warnings</source>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation>Exibir avisos</translation>
+    </message>
+    <message>
+        <source>Show errors</source>
+        <comment>Toolbar item tooltip</comment>
+        <extracomment>Toolbar item tooltip</extracomment>
+        <translation>Exibir erros</translation>
     </message>
 </context>
 <context>
@@ -1234,7 +1234,7 @@ Você deseja continuar?</translation>
         <translation>Usar &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Insert &quot;Album Performer&quot;</source>
+        <source>Insert &quot;Album performer&quot;</source>
         <translation>Insira o &quot;Artista do álbum&quot;</translation>
     </message>
 </context>
@@ -1245,7 +1245,7 @@ Você deseja continuar?</translation>
         <translation>Etiquetas</translation>
     </message>
     <message>
-        <source>Write “Disc Number” and “Disc Count” tags for single-disc albums</source>
+        <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
         <translation>Gravar etiquetas &quot;Número do disco&quot; e &quot;Número de discos&quot; para álbuns com um único disco</translation>
     </message>
 </context>
@@ -1297,10 +1297,6 @@ Você deseja continuar?</translation>
     <message>
         <source>Audio</source>
         <translation>Áudio</translation>
-    </message>
-    <message>
-        <source>Result Files</source>
-        <translation>Arquivos finais</translation>
     </message>
     <message>
         <source>Directory:</source>
@@ -1384,12 +1380,6 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>Calcular ganho:</translation>
     </message>
     <message>
-        <source>CUE and Cover image</source>
-        <comment>Preferences dialog tab title</comment>
-        <extracomment>Preferences dialog tab title</extracomment>
-        <translation>CUE e imagem da capa</translation>
-    </message>
-    <message>
         <source>Copy cover image</source>
         <translation>Copiar a imagem da capa</translation>
     </message>
@@ -1469,18 +1459,6 @@ Se você estiver entre seções que possuam um token com colchetes, estas seçõ
         <translation>Desabilitado</translation>
     </message>
     <message>
-        <source>Per Track</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Por faixa</translation>
-    </message>
-    <message>
-        <source>Per Album</source>
-        <comment>ReplayGain type combobox</comment>
-        <extracomment>ReplayGain type combobox</extracomment>
-        <translation>Por álbum</translation>
-    </message>
-    <message>
         <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
@@ -1495,6 +1473,28 @@ Ao usar  a análise a nível de álbum, as diferenças de volume dentro do álbu
         <comment>Preferences group title, %1 is a audio format name</comment>
         <extracomment>Preferences group title, %1 is a audio format name</extracomment>
         <translation>Configurações do codificador %1:</translation>
+    </message>
+    <message>
+        <source>Result files</source>
+        <translation>Arquivos finais</translation>
+    </message>
+    <message>
+        <source>CUE and cover image</source>
+        <comment>Preferences dialog tab title</comment>
+        <extracomment>Preferences dialog tab title</extracomment>
+        <translation>CUE e imagem da capa</translation>
+    </message>
+    <message>
+        <source>Per track</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation>Por faixa</translation>
+    </message>
+    <message>
+        <source>Per album</source>
+        <comment>ReplayGain type combobox</comment>
+        <extracomment>ReplayGain type combobox</extracomment>
+        <translation>Por álbum</translation>
     </message>
 </context>
 <context>
