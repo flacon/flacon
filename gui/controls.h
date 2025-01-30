@@ -172,16 +172,15 @@ class MultiValuesLineEdit : public QLineEdit
 public:
     explicit MultiValuesLineEdit(QWidget *parent = nullptr);
 
-    QString multiValuesText() const { return mMultiValuesText; }
-    void    setMultiValuesText(const QString &value) { mMultiValuesText = value; }
-
     QSet<QString> multiValues() { return mValues; }
     void          setMultiValue(QSet<QString> value);
+
+protected:
+    virtual QString getPlaceholderText(int count);
 
 private:
     QSet<QString>     mValues;
     QStringListModel *mCompleterModel;
-    QString           mMultiValuesText;
 
     void onTextChanged();
     void refresh();
@@ -202,6 +201,9 @@ public:
     void loadFromTracks(const TrackPtrList &tracks);
     void writeToTracks(const TrackPtrList &tracks);
 
+protected:
+    QString getPlaceholderText(int count) override;
+
 private:
     TrackTags::TagId mTagId = TrackTags::TagId(-1);
 };
@@ -221,6 +223,9 @@ public:
     void loadFromDisks(const DiskList &disks);
     void writeToDisks(const DiskList &disks);
 
+protected:
+    QString getPlaceholderText(int count) override;
+
 private:
     AlbumTags::TagId mTagId = AlbumTags::TagId(-1);
 };
@@ -237,14 +242,13 @@ public:
     bool    isModified() const;
     QString text() const { return this->toPlainText(); }
 
-    QString multiValuesText() const { return mMultiValuesText; }
-    void    setMultiValuesText(const QString &value) { mMultiValuesText = value; }
-
 public slots:
     void setMultiValue(QSet<QString> values);
 
+protected:
+    virtual QString getPlaceholderText(int count);
+
 private:
-    QString       mMultiValuesText;
     QSet<QString> mValues;
 
     void onTextChanged();
@@ -265,6 +269,9 @@ public:
 
     void loadFromTracks(const TrackPtrList &tracks);
     void writeToTracks(const TrackPtrList &tracks);
+
+protected:
+    QString getPlaceholderText(int count) override;
 
 private:
     TrackTags::TagId mTagId = TrackTags::TagId(-1);

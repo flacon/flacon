@@ -444,20 +444,6 @@ static QString getMultiValuesText(const QSet<QString> &values)
 }
 
 /************************************************
- *
- ************************************************/
-static QString getMultiValuesPlaceHolder(const QSet<QString> &values, const QString &multiValuesText)
-{
-    // clang-format off
-    switch (values.count()) {
-        case 0:  return "";
-        case 1:  return "";
-        default: return multiValuesText.arg(values.count());
-    }
-    // clang-format on
-}
-
-/************************************************
 
  ************************************************/
 void MultiValuesSpinBox::stepBy(int steps)
@@ -547,8 +533,6 @@ MultiValuesLineEdit::MultiValuesLineEdit(QWidget *parent) :
     QLineEdit(parent),
     mCompleterModel(new QStringListModel(this))
 {
-    mMultiValuesText = tr("Multiple values");
-
     setCompleter(new QCompleter(this));
     completer()->setModel(mCompleterModel);
     completer()->setCaseSensitivity(Qt::CaseInsensitive);
@@ -563,6 +547,11 @@ void MultiValuesLineEdit::setMultiValue(QSet<QString> value)
     refresh();
 }
 
+QString MultiValuesLineEdit::getPlaceholderText(int)
+{
+    return tr("Multiple values", "MultiValues edit placeholder");
+}
+
 void MultiValuesLineEdit::onTextChanged()
 {
     QSet<QString> val;
@@ -572,7 +561,7 @@ void MultiValuesLineEdit::onTextChanged()
 
 void MultiValuesLineEdit::refresh()
 {
-    setPlaceholderText(getMultiValuesPlaceHolder(mValues, mMultiValuesText));
+    setPlaceholderText(mValues.count() > 1 ? getPlaceholderText(mValues.count()) : "");
 
     QString str = getMultiValuesText(mValues);
     if (text() != str) {
@@ -588,7 +577,6 @@ void MultiValuesLineEdit::refresh()
 TrackTagLineEdit::TrackTagLineEdit(QWidget *parent) :
     MultiValuesLineEdit(parent)
 {
-    setMultiValuesText(tr("Different across %1 songs", "Placeholder for tags edit, %1 is count of different values"));
 }
 
 void TrackTagLineEdit::loadFromTracks(const TrackPtrList &tracks)
@@ -612,13 +600,17 @@ void TrackTagLineEdit::writeToTracks(const TrackPtrList &tracks)
     }
 }
 
+QString TrackTagLineEdit::getPlaceholderText(int count)
+{
+    return tr("Different across %n songs", "Placeholder for tags edit, %n is count of different values", count);
+}
+
 /**************************************
  * AlbumTagLineEdit
  **************************************/
 AlbumTagLineEdit::AlbumTagLineEdit(QWidget *parent) :
     MultiValuesLineEdit(parent)
 {
-    setMultiValuesText(tr("Different across %1 disks", "Placeholder for tags edit, %1 is count of different values"));
 }
 
 void AlbumTagLineEdit::loadFromDisks(const DiskList &disks)
@@ -642,14 +634,17 @@ void AlbumTagLineEdit::writeToDisks(const DiskList &disks)
     }
 }
 
+QString AlbumTagLineEdit::getPlaceholderText(int count)
+{
+    return tr("Different across %n disks", "Placeholder for tags edit, %n is count of different values", count);
+}
+
 /************************************************
  * MultiValuesTextEdit
  ************************************************/
 MultiValuesTextEdit::MultiValuesTextEdit(QWidget *parent) :
     QPlainTextEdit(parent)
 {
-    setMultiValuesText(QObject::tr("Multiple values"));
-
     connect(this, &QPlainTextEdit::textChanged, this, &MultiValuesTextEdit::onTextChanged);
 }
 
@@ -673,12 +668,17 @@ void MultiValuesTextEdit::onTextChanged()
 
 void MultiValuesTextEdit::refresh()
 {
-    setPlaceholderText(getMultiValuesPlaceHolder(mValues, mMultiValuesText));
+    setPlaceholderText(mValues.count() > 1 ? getPlaceholderText(mValues.count()) : "");
 
     QString str = getMultiValuesText(mValues);
     if (str != toPlainText()) {
         setPlainText(str);
     }
+}
+
+QString MultiValuesTextEdit::getPlaceholderText(int)
+{
+    return tr("Multiple values", "MultiValues edit placeholder");
 }
 
 /**************************************
@@ -687,7 +687,6 @@ void MultiValuesTextEdit::refresh()
 TrackTagTextEdit::TrackTagTextEdit(QWidget *parent) :
     MultiValuesTextEdit(parent)
 {
-    setMultiValuesText(tr("Different across %1 songs", "Placeholder for tags edit, %1 is count of different values"));
 }
 
 void TrackTagTextEdit::loadFromTracks(const TrackPtrList &tracks)
@@ -709,6 +708,11 @@ void TrackTagTextEdit::writeToTracks(const TrackPtrList &tracks)
     for (Track *track : tracks) {
         track->setTag(mTagId, text());
     }
+}
+
+QString TrackTagTextEdit::getPlaceholderText(int count)
+{
+    return tr("Different across %n songs", "Placeholder for tags edit, %n is count of different values", count);
 }
 
 /************************************************
