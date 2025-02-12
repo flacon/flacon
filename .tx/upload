@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import shutil
+import json
+sys.path.insert(1, '../scripts')
+import txlib as tx
+from txlib import Error, TsFile
+
+TMP_DIR = "./tmp"
+
+##################################
+# Convert TS file to JSON
+def ts_to_json(ts_file, json_file, is_source = True):
+    if is_source:
+        lang = "en"
+    else:
+        lang = TsFile.get_lang(ts_file)
+
+    data = {}
+    ts = TsFile()
+    ts.load(ts_file, is_source=is_source)
+
+    for message in ts.messages:
+
+            data[message.id] = {
+                "string": message.json_translation(lang),
+                "context": message.json_contex(),
+                "developer_comment": message.json_comment(),
+            }
+
+
+    with open(json_file, 'w', encoding='utf-8') as w:
+        json.dump(data, w, ensure_ascii=False, indent=4)
+
+##################################
+#
+def push():
+    tx.push_source()
+
+    for lang in sys.argv[1:]:
+        tx.push_lang(lang)
+
+
+##################################
+#
+if __name__ == "__main__":
+    try:
+        shutil.rmtree(TMP_DIR, ignore_errors=True)
+        os.makedirs(TMP_DIR, exist_ok=True)
+
+        ts_file   = "../translations/src.flacon.ts"
+        json_file = f"{TMP_DIR}/" + os.path.basename(ts_file) + ".json"
+        ts_to_json(ts_file, json_file, is_source=True)
+
+        for lang in sys.argv[1:]:
+            ts_file = f"../translations/flacon_{lang}.ts"
+            json_file = f"{TMP_DIR}/" + os.path.basename(ts_file) + ".json"
+            ts_to_json(ts_file, json_file, is_source=False)
+
+        push()
+
+    except KeyboardInterrupt:
+        sys.exit(0)
+
+    except Error as err:
+        sys.exit(err)

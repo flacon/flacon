@@ -2,10 +2,10 @@
 host = https://www.transifex.com
 
 [o:sokoloff:p:flacon:r:flacon]
-file_filter = ../translations/flacon_<lang>.ts
-source_file = ../translations/src.flacon.ts
+file_filter = ./tmp/flacon_<lang>.ts.json
+source_file = ./tmp/src.flacon.ts.json
 source_lang = en
-type        = QT
+type        = STRUCTURED_JSON
 minimum_perc = 10
 
 [o:sokoloff:p:flacon:r:flacon_desktop]

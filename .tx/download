@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import shutil
+import json
+import glob
+import subprocess
+from pathlib import Path
+sys.path.insert(1, '../scripts')
+import txlib as tx
+from txlib import Error, TsFile
+
+
+TMP_DIR = "./tmp"
+
+##################################
+# Convert JSON file to TS
+def json_to_ts(src_file, json_file, ts_file):
+    src = TsFile()
+    src.load(src_file, is_source=False)
+
+    with open(json_file) as r:
+        translations = json.load(r)
+
+    res = TsFile()
+    for message in src.messages:
+
+        try:
+            str = translations[message.id].get("string", "")
+        except KeyError:
+            print(f"Translation not found for source: '{message.source}' context: '{message.context}' comment: '{message.comment}' id: '{message.id}'")
+            continue
+
+        message.set_json_translation(str)
+        res.messages.append(message)
+
+    res.write(ts_file)
+
+
+##################################
+#
+def find_json_files(dir):
+    res = []
+    for f in glob.glob("flacon_*.ts.json", root_dir=dir, recursive=False):
+        res.append(f"{dir}/{f}")
+    return res
+
+
+##################################
+#
+def find_lupdate():
+    candidates = [
+        "lupdate-qt6",
+        "lupdate-qt5",
+        "lupdate",
+    ]
+
+    for c in candidates:
+        path = shutil.which(c)
+        if path:
+            return path
+
+    raise Error("The lupdate program not found.")
+
+
+##################################
+#
+def lupdate(input, ts_file, silent = False):
+    args = [
+        find_lupdate(),
+        "-no-obsolete",
+        "-locations", "none",
+        input,
+        "-ts", ts_file
+    ]
+
+    if silent:
+        args.append("-silent")
+
+    subprocess.run(args)
+
+
+##################################
+#
+if __name__ == "__main__":
+    try:
+        shutil.rmtree(TMP_DIR, ignore_errors=True)
+        os.makedirs(TMP_DIR, exist_ok=True)
+        tx.pull_translations()
+
+        src_file = f"{TMP_DIR}/src.flacon.ts"
+        lupdate("..", src_file, silent=True)
+
+        json_files = find_json_files(TMP_DIR)
+
+        print("\n# Converting files\n")
+        for json_file in json_files:
+            ts_file = "../translations/" + Path(json_file).stem
+
+            print(os.path.basename(ts_file))
+            json_to_ts(src_file, json_file, ts_file)
+
+    except KeyboardInterrupt:
+        sys.exit(0)
+
+    except Error as err:
+        sys.exit(err)

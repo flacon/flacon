@@ -23,3 +23,5 @@ CMakeLists.txt.user*
 *.pro.user
 *.pro.user.*
 PVS.tasks
+__pycache__
+.ropeproject
