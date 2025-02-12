@@ -52,6 +52,8 @@ if __name__ == "__main__":
 
         ts_file   = "../translations/src.flacon.ts"
         json_file = f"{TMP_DIR}/" + os.path.basename(ts_file) + ".json"
+
+        tx.lupdate("..", ts_file, silent=True)
         ts_to_json(ts_file, json_file, is_source=True)
 
         for lang in sys.argv[1:]:

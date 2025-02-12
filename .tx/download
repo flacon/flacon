@@ -5,7 +5,6 @@ import sys
 import shutil
 import json
 import glob
-import subprocess
 from pathlib import Path
 sys.path.insert(1, '../scripts')
 import txlib as tx
@@ -49,40 +48,6 @@ def find_json_files(dir):
 
 ##################################
 #
-def find_lupdate():
-    candidates = [
-        "lupdate-qt6",
-        "lupdate-qt5",
-        "lupdate",
-    ]
-
-    for c in candidates:
-        path = shutil.which(c)
-        if path:
-            return path
-
-    raise Error("The lupdate program not found.")
-
-
-##################################
-#
-def lupdate(input, ts_file, silent = False):
-    args = [
-        find_lupdate(),
-        "-no-obsolete",
-        "-locations", "none",
-        input,
-        "-ts", ts_file
-    ]
-
-    if silent:
-        args.append("-silent")
-
-    subprocess.run(args)
-
-
-##################################
-#
 if __name__ == "__main__":
     try:
         shutil.rmtree(TMP_DIR, ignore_errors=True)
@@ -90,7 +55,7 @@ if __name__ == "__main__":
         tx.pull_translations()
 
         src_file = f"{TMP_DIR}/src.flacon.ts"
-        lupdate("..", src_file, silent=True)
+        tx.lupdate("..", src_file, silent=True)
 
         json_files = find_json_files(TMP_DIR)
 

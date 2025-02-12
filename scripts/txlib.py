@@ -4,6 +4,7 @@ import os
 import subprocess
 import xml.dom.minidom as minidom
 import hashlib
+import shutil
 
 class Error(Exception):
     pass
@@ -305,7 +306,6 @@ class TsFile:
         return file_name[start:end]
 
 
-
 ##################################
 #
 def push_source():
@@ -343,6 +343,7 @@ def pull_source():
 
     subprocess.run(args)
 
+
 ##################################
 #
 def pull_translations():
@@ -354,6 +355,41 @@ def pull_translations():
     ]
 
     subprocess.run(args)
+
+
+##################################
+#
+def find_lupdate():
+    candidates = [
+        "lupdate-qt6",
+        "lupdate-qt5",
+        "lupdate",
+    ]
+
+    for c in candidates:
+        path = shutil.which(c)
+        if path:
+            return path
+
+    raise Error("The lupdate program not found.")
+
+
+##################################
+#
+def lupdate(input, ts_file, silent = False):
+    args = [
+        find_lupdate(),
+        "-no-obsolete",
+        "-locations", "none",
+        input,
+        "-ts", ts_file
+    ]
+
+    if silent:
+        args.append("-silent")
+
+    subprocess.run(args)
+
 
 ##################################
 # imported from https://rest.api.transifex.com/languages
