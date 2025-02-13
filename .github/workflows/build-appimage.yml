@@ -79,7 +79,7 @@ jobs:
         echo "= Create symlinks ============="
         ln -sf usr/bin/flacon AppRun
         ln -sf usr/share/icons/hicolor/scalable/apps/flacon.svg .
-        ln -sf ./flacon.png  ./.DirIcon
+        ln -sf ./flacon.svg  ./.DirIcon
         ln -sf usr/share/applications/flacon.desktop .
         echo "= Add programs ================"
         for prog in ${PROGRAMS}; do echo " * Copy ${prog}"; src=$(which "$prog"); dest=${src#/}; cp -f "${src}" "usr/bin/"; done
