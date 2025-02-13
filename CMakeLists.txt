@@ -198,7 +198,7 @@ include_directories(
 include("cmake/macos.cmake")
 
 option(USE_QT5 "Try to use the Qt5." ON)
-option(USE_QT6 "Try to use the Qt6." OFF)
+option(USE_QT6 "Try to use the Qt6." ON)
 
 if (USE_QT5 AND USE_QT6)
     find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
