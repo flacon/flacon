@@ -78,7 +78,7 @@ jobs:
         export LD_LIBRARY_PATH=~/tools/appimage/usr/lib
         echo "= Create symlinks ============="
         ln -sf usr/bin/flacon AppRun
-        ln -sf usr/share/icons/hicolor/128x128/apps/flacon.png .
+        ln -sf usr/share/icons/hicolor/scalable/apps/flacon.svg .
         ln -sf ./flacon.png  ./.DirIcon
         ln -sf usr/share/applications/flacon.desktop .
         echo "= Add programs ================"
