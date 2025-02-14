@@ -56,9 +56,10 @@
   </screenshots>
 
   <releases>
-    <release date="2024-05-05" version="11.4.0">
+    <release date="2025-02-14" version="12.0.0">
       <description><p>Latest version of Flacon on Flathub.</p></description>
     </release>
+    <release date="2024-05-05" version="11.4.0" />
     <release date="2023-10-04" version="11.3.0" />
     <release date="2023-06-17" version="11.2.0" />
     <release date="2023-05-28" version="11.1.0" />
