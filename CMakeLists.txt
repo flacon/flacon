@@ -56,6 +56,14 @@ include("cmake/cxx_standard.cmake")
 include("cmake/git_version.cmake")
 include("cmake/build_type.cmake")
 
+
+git_version(GIT_BRANCH GIT_COMMIT_HASH GIT_COMMIT_DATE)
+if ( $ENV{GITHUB_REF_TYPE} STREQUAL "tag" )
+    set(IS_TAG_RELEASE "true")
+else()
+    set(IS_TAG_RELEASE "false")
+endif()
+
 status_message("${PROJECT_NAME} ver. ${FLACON_VERSION}")
 status_message(" ")
 
@@ -107,6 +115,7 @@ set(HEADERS
     uchardetect.h
     textcodec.h
     debug.h
+    appconfig.h.in
 
     gui/icon.h
     gui/mainwindow.h
@@ -150,6 +159,8 @@ if (APPLE)
     set(SOURCES ${SOURCES} application_mac.mm )
 endif()
 
+
+configure_file(appconfig.h.in appconfig.h)
 
 include(internet/module.cmake)
 include(gui/module.cmake)

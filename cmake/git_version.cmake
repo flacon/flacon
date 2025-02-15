@@ -23,7 +23,7 @@
  #
  # END_COMMON_COPYRIGHT_HEADER
 
-function(git_version GIT_BRANCH GIT_COMMIT_HASH)
+function(git_version GIT_BRANCH GIT_COMMIT_HASH GIT_COMMIT_DATE)
 
     # Get the current working branch
     execute_process(
@@ -45,10 +45,13 @@ function(git_version GIT_BRANCH GIT_COMMIT_HASH)
     )
     SET(${GIT_COMMIT_HASH} ${hash} PARENT_SCOPE)
 
-endfunction()
+    execute_process(
+        COMMAND git log -1 --format=%cD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE date
+        ERROR_QUIET
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    SET(${GIT_COMMIT_DATE} ${date} PARENT_SCOPE)
 
-git_version(GIT_BRANCH GIT_COMMIT_HASH)
-if (NOT "${GIT_COMMIT_HASH}" STREQUAL "")
-    add_definitions(-DGIT_COMMIT_HASH=\"${GIT_COMMIT_HASH}\")
-    add_definitions(-DGIT_BRANCH=\"${GIT_BRANCH}\")
-endif()
+endfunction()

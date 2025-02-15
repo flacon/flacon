@@ -34,6 +34,7 @@
 #include "consoleout.h"
 #include "types.h"
 #include "debug.h"
+#include "appconfig.h"
 
 #include <QString>
 #include <QLocale>
@@ -97,11 +98,12 @@ void printVersion()
 {
     QTextStream out(stdout);
 
-#ifndef GIT_BRANCH
-    out << "flacon " << FLACON_VERSION << Qt::endl;
-#else
-    out << "flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " " << GIT_COMMIT_HASH << Qt::endl;
-#endif
+    if (IS_TAG_RELEASE) {
+        out << "flacon " << APP_VERSION << Qt::endl;
+    }
+    else {
+        out << "flacon " << APP_VERSION << " + git " << APP_GIT_COMMIT_HASH << " " << APP_GIT_COMMIT_DATE << Qt::endl;
+    }
     out << "Copyright (c) 2013-" << QDate::currentDate().year() << " Alexander Sokolov" << Qt::endl;
     out << "   https://github.com/flacon/flacon" << Qt::endl;
     out << Qt::endl;
@@ -312,11 +314,8 @@ int main(int argc, char *argv[])
     quiet    = parser.isSet("quiet");
     progress = parser.isSet("progress");
 
-#ifndef GIT_BRANCH
-    qInfo() << "Start flacon " << FLACON_VERSION;
-#else
-    qInfo() << "Start flacon " << FLACON_VERSION << " + git " << GIT_BRANCH << " " << GIT_COMMIT_HASH;
-#endif
+    qInfo() << "Start flacon " << APP_VERSION;
+    qInfo() << "git info: " << APP_GIT_COMMIT_HASH << " " << APP_GIT_COMMIT_DATE;
 
     int res = 0;
     if (parser.isSet("start"))

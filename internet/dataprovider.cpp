@@ -32,6 +32,7 @@
 #include <QDebug>
 #include <QLoggingCategory>
 #include "profiles.h"
+#include "appconfig.h"
 
 #include "musicbrainz.h"
 #include "discogs.h"
@@ -177,7 +178,7 @@ void InterntService::stop()
 QNetworkReply *InterntService::get(const QNetworkRequest &request)
 {
     QNetworkRequest req = request;
-    req.setRawHeader("User-Agent", QStringLiteral("Flacon/%1 (https://github.com/flacon/flacon)").arg(FLACON_VERSION).toUtf8());
+    req.setRawHeader("User-Agent", QStringLiteral("Flacon/%1 (https://github.com/flacon/flacon)").arg(APP_VERSION).toUtf8());
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     req.setTransferTimeout(3 * 1000);
 #endif

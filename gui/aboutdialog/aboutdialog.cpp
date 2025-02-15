@@ -25,6 +25,7 @@
 
 #include "aboutdialog.h"
 #include "types.h"
+#include "appconfig.h"
 #include <QDate>
 #include <QList>
 #include <QDebug>
@@ -50,10 +51,11 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
     QString css = "<style TYPE='text/css'> "
                   "body { font-family: sans-serif;} "
-                  ".name { font-size: 16pt; } "
-                  "a { white-space: nowrap ;} "
+                  ".name { font-size: 16pt;} "
+                  "a { white-space: nowrap;} "
                   "h2 { font-size: 10pt;} "
                   "li { line-height: 120%;} "
+                  ".ver {margin-left: 8px;} "
                   ".techInfoKey { white-space: nowrap ; margin: 0 20px 0 16px; } "
                   "</style>";
 
@@ -81,7 +83,7 @@ void AboutDialog::paintEvent(QPaintEvent *)
 {
     QRect    rect(0, 0, this->width(), titleLabel->pos().y() + titleLabel->height());
     QPainter painter(this);
-    painter.fillRect(rect, QColor::fromRgb(0x404040));
+    painter.fillRect(rect, QColor::fromRgb(0x4081e4));
 }
 
 /************************************************
@@ -89,22 +91,25 @@ void AboutDialog::paintEvent(QPaintEvent *)
  ************************************************/
 QString AboutDialog::titleText() const
 {
-    return "<table style='width:100%' border=0><tr>"
-           "<td style='padding:8px 8px;'><img src=':/48/mainicon' style='margin:8 px;'></td>"
-           "<td style='padding:8px 8px;'>"
-            +
-#ifdef GIT_BRANCH
-            QStringLiteral("<div class=name>Flacon</div> developer version."
-                    "<div class=ver>%1 + git %2</b> "
-                    "<a href='https://github.com/flacon/flacon/commit/%3'>%3</a></div>")
-                    .arg(FLACON_VERSION)
-                    .arg(GIT_BRANCH)
-                    .arg(GIT_COMMIT_HASH)
-            +
-#else
-            QStringLiteral("<div class=name>Flacon</div><div class=ver>Version %1</div>").arg(FLACON_VERSION) +
-#endif
-            "</td></tr></table>";
+    QString res = "<table style='width:100%' border=0><tr>"
+                  "<td style='padding:8px 8px;'><img src=':/48/mainicon' style='margin:8 px;'></td>"
+                  "<td style='padding:8px 8px;'>";
+
+    if (IS_TAG_RELEASE) {
+        res += QStringLiteral("<div class=name>Flacon</div>"
+                              "<div class=ver>version %1</div>")
+                       .arg(APP_VERSION);
+    }
+    else {
+        res += QStringLiteral("<div class=name>Flacon</div> developer version. %1"
+                              "<div class=ver>commit: <a style='color: #ffffff;' href='https://github.com/flacon/flacon/commit/%2'>%2</a></div>"
+                              "<div class=ver>date: %3<div>")
+                       .arg(APP_VERSION)
+                       .arg(APP_GIT_COMMIT_HASH)
+                       .arg(APP_GIT_COMMIT_DATE);
+    }
+    res += "</td></tr></table>";
+    return res;
 }
 
 /************************************************
