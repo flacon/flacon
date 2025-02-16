@@ -58,7 +58,7 @@ include("cmake/build_type.cmake")
 
 
 git_version(GIT_BRANCH GIT_COMMIT_HASH GIT_COMMIT_DATE)
-if ( $ENV{GITHUB_REF_TYPE} STREQUAL "tag" )
+if ( "$ENV{GITHUB_REF_TYPE}" STREQUAL "tag" )
     set(IS_TAG_RELEASE "true")
 else()
     set(IS_TAG_RELEASE "false")
