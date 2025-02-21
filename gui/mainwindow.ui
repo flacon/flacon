@@ -27,7 +27,7 @@
     <item>
      <widget class="QSplitter" name="splitter">
       <property name="orientation">
-       <enum>Qt::Orientation::Horizontal</enum>
+       <enum>Qt::Horizontal</enum>
       </property>
       <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1">
@@ -281,7 +281,7 @@ If you surround sections of text that contain a token with braces, these section
         <item>
          <spacer name="verticalSpacer">
           <property name="orientation">
-           <enum>Qt::Orientation::Vertical</enum>
+           <enum>Qt::Vertical</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -307,7 +307,7 @@ If you surround sections of text that contain a token with braces, these section
         <bool>true</bool>
        </property>
        <property name="selectionMode">
-        <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
+        <enum>QAbstractItemView::ExtendedSelection</enum>
        </property>
        <property name="iconSize">
         <size>
@@ -507,7 +507,7 @@ If you surround sections of text that contain a token with braces, these section
     <bool>true</bool>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::ApplicationSpecificRole</enum>
+    <enum>QAction::ApplicationSpecificRole</enum>
    </property>
   </action>
   <action name="actionStartConvertSelected">
