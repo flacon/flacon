@@ -36,16 +36,6 @@
 
 namespace {
 
-class TestValidator : public Validator
-{
-public:
-    using Validator::Validator;
-    void doRevalidate()
-    {
-        Validator::doRevalidate();
-    }
-};
-
 struct TcDisk
 {
     std::string              cue;
@@ -120,7 +110,7 @@ void TestFlacon::testValidator()
         Profile profile = settings.readProfile(settings.readCurrentProfileId());
         settings.readExtPrograms();
 
-        TestValidator validator;
+        Validator validator;
         validator.setProfile(&profile);
 
         for (auto d : spec.disks) {
@@ -135,7 +125,7 @@ void TestFlacon::testValidator()
             validator.insertDisk(disk);
         }
 
-        validator.doRevalidate();
+        validator.revalidateNow();
 
         for (uint i = 0; i < spec.disks.size(); ++i) {
             QStringList expected;
@@ -150,8 +140,8 @@ void TestFlacon::testValidator()
 
             if (actual != expected) {
                 QFAIL(QStringLiteral("Compared errors differ.\n"
-                              "   Actual  : \"%1\"\n"
-                              "   Expected: \"%2\"")
+                                     "   Actual  : \"%1\"\n"
+                                     "   Expected: \"%2\"")
                               .arg(actual.join("\", \""), expected.join("\", \""))
                               .toLocal8Bit());
             }
@@ -170,8 +160,8 @@ void TestFlacon::testValidator()
 
             if (actual != expected) {
                 QFAIL(QStringLiteral("Compared warnings differ.\n"
-                              "   Actual  : \"%1\"\n"
-                              "   Expected: \"%2\"")
+                                     "   Actual  : \"%1\"\n"
+                                     "   Expected: \"%2\"")
                               .arg(actual.join("\", \""), expected.join("\", \""))
                               .toLocal8Bit());
             }
