@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2024
+ * Copyright: 2025
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -23,20 +23,37 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "logview.h"
-#include "ui_logview.h"
-#include "rungui.h"
+#ifndef COMMANDLINEPARSER_H
+#define COMMANDLINEPARSER_H
 
-LogView::LogView(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::LogView)
+#include <QString>
+#include <QCommandLineParser>
+
+class QCoreApplication;
+
+class CommandLineParser
 {
-    ui->setupUi(this);
+public:
+    static bool isConsoleMode(int argc, char *argv[]);
 
-    ui->logBrowser->setText(RunGui::logMessages().join("\n"));
-}
+public:
+    CommandLineParser() = default;
 
-LogView::~LogView()
-{
-    delete ui;
-}
+    void process(const QCoreApplication &app);
+
+    QStringList files();
+
+    bool debug() const;
+    bool start() const;
+    bool quiet() const;
+    bool progress() const;
+
+    QString config() const;
+
+private:
+    QCommandLineParser mParser;
+
+    QString appVersion() const;
+};
+
+#endif // COMMANDLINEPARSER_H

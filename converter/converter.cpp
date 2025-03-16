@@ -133,6 +133,7 @@ void Converter::start(const Converter::Jobs &jobs, const Profile &profile)
     connect(this, &Converter::trackProgress, &mTotalProgressCounter, &TotalProgressCounter::setTrackProgress, Qt::UniqueConnection);
     connect(&mTotalProgressCounter, &TotalProgressCounter::changed, this, &Converter::totalProgress, Qt::UniqueConnection);
 
+    mFinished = false;
     startThread();
     emit started();
 }
@@ -182,6 +183,10 @@ void Converter::stop()
  ************************************************/
 void Converter::startThread()
 {
+    if (mFinished) {
+        return;
+    }
+
     int count         = mThreadCount;
     int splitterCount = qMax(1.0, ceil(count / 2.0));
 
@@ -220,6 +225,7 @@ void Converter::startThread()
         qCWarning(LOG) << "conversion failed";
     }
 
+    mFinished = true;
     emit finished(success);
 }
 

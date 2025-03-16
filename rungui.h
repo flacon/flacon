@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2024
+ * Copyright: 2025
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -23,12 +23,24 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef DEBUG_H
-#define DEBUG_H
+#ifndef RUNGUI_H
+#define RUNGUI_H
 
+#include <QObject>
 #include <QStringList>
 
-void        initDebug(bool debug);
-QStringList debugMessages();
+class QApplication;
 
-#endif // DEBUG_H
+class RunGui : public QObject
+{
+    Q_OBJECT
+public:
+    int run(int argc, char *argv[]);
+
+    static QStringList logMessages();
+
+private:
+    void translate(QApplication *app);
+};
+
+#endif // RUNGUI_H

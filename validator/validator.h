@@ -49,6 +49,7 @@ public:
     void removeDisk(const DiskList &disks);
 
     void revalidate();
+    void revalidateNow();
 
     QStringList converterErrors() const { return mGlobalErrors; }
 
@@ -65,9 +66,6 @@ public:
 
 signals:
     void changed();
-
-protected:
-    void doRevalidate();
 
 private:
     QList<Disk *>  mDisks;

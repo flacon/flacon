@@ -32,6 +32,10 @@
 
 #define CODEC_AUTODETECT "AUTODETECT"
 
+// clang-format off
+template <typename T> struct AutoRegMetaType { AutoRegMetaType() { qRegisterMetaType<T>(); } };
+// clang-format on
+
 using DiscNum    = quint16;
 using DiscCount  = quint16;
 using TrackNum   = quint16;
@@ -260,5 +264,13 @@ QString firstNotNullString(const QString &s1, const QString &s2, const QString &
 
 QString firstNotEmptyString(const QString &s1, const QString &s2);
 QString firstNotEmptyString(const QString &s1, const QString &s2, const QString &s3);
+
+enum class ExitCodes {
+    Ok              = 0,
+    ArgsError       = 1,
+    NoInputFiles    = 10,
+    ConverterError  = 11,
+    ValidationError = 12,
+};
 
 #endif // TYPES_H

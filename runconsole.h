@@ -4,7 +4,7 @@
  * Flacon - audio File Encoder
  * https://github.com/flacon/flacon
  *
- * Copyright: 2024
+ * Copyright: 2025
  *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -23,35 +23,42 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "debug.h"
-#include <QtGlobal>
+#ifndef RUNCONSOLE_H
+#define RUNCONSOLE_H
 
-namespace {
-QStringList      messages;
-QtMessageHandler defaultMessageHandler = nullptr;
-bool             debugOn               = false;
-}
+#include <QObject>
+#include <QDateTime>
+#include <QStringList>
+#include "commandlineparser.h"
+#include "track.h"
+#include "profiles.h"
 
-static void msgHandler(QtMsgType type, const QMessageLogContext &context, const QString &message)
+class Project;
+class Disc;
+
+class RunConsole : public QObject
 {
-    if (debugOn || type > QtMsgType::QtDebugMsg || strcmp(context.category, "default") == 0) {
-        (defaultMessageHandler)(type, context, message);
-    }
+    Q_OBJECT
+public:
+    int run(int argc, char *argv[]);
 
-    messages << qFormatLogMessage(type, context, message);
-}
+private:
+    CommandLineParser mCommandLineParser;
+    QDateTime         mStartTime;
+    QDateTime         mFinishTime;
+    Profile           mProfile;
 
-void initDebug(bool debug)
-{
-    debugOn = debug;
+    void doRun();
+    void finished(bool success);
+    void printStatistic();
+    bool validate() const;
 
-    setenv("QT_LOGGING_RULES", "*.debug=true;qt.*.debug=false;kf.*.debug=false;", 1);
-    qSetMessagePattern("%{time yyyy.MM.dd hh:mm:ss.zzz t} [%{threadid}] %{type}: %{category}: %{message}");
+    void addFile(const QString &file);
+    void addFile(const QString &file, bool showError);
 
-    defaultMessageHandler = qInstallMessageHandler(msgHandler);
-}
+    void printProgress(const Track &track, TrackState state, Percent);
 
-QStringList debugMessages()
-{
-    return messages;
-}
+    QString diskDescription(const Disc *disk) const;
+};
+
+#endif // RUNCONSOLE_H

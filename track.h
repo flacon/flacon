@@ -39,6 +39,7 @@ class Track
 {
     friend class Disc;
     friend class PregapTrack;
+    AutoRegMetaType<Track> _autoRegMetaType;
 
 public:
     using Getter = QString (Track::*)() const;
@@ -118,6 +119,8 @@ private:
 
     InputAudioFile mAudiofile;
 };
+
+Q_DECLARE_METATYPE(Track)
 
 class PregapTrack : public Track
 {

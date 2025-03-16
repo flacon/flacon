@@ -107,15 +107,16 @@ set(HEADERS
     inputaudiofile.h
     scanner.h
     patternexpander.h
-    consoleout.h
     profiles.h
     audiofilematcher.h
     sync.h
     extprogram.h
     uchardetect.h
     textcodec.h
-    debug.h
     appconfig.h.in
+    rungui.h
+    runconsole.h
+    commandlineparser.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -142,13 +143,14 @@ set(SOURCES
     inputaudiofile.cpp
     scanner.cpp
     patternexpander.cpp
-    consoleout.cpp
     profiles.cpp
     audiofilematcher.cpp
     extprogram.cpp
     uchardetect.cpp
     textcodec.cpp
-    debug.cpp
+    rungui.cpp
+    runconsole.cpp
+    commandlineparser.cpp
 
     gui/aboutdialog/aboutdialog.cpp
     gui/coverdialog/coverdialog.cpp

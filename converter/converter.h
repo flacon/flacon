@@ -79,6 +79,7 @@ private:
     Validator               mValidator;
     QVector<DiscPipeline *> mDiskPiplines;
     TotalProgressCounter    mTotalProgressCounter;
+    bool                    mFinished = false;
 
     bool          validate(const Jobs &jobs, const Profile &profile);
     DiscPipeline *createDiscPipeline(const Profile &profile, const Job &converterJob);

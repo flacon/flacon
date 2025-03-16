@@ -39,7 +39,7 @@ Validator::Validator(QObject *parent) :
 {
     mDelayTimer.setInterval(VALIDATE_DELAY_MS);
     mDelayTimer.setSingleShot(true);
-    connect(&mDelayTimer, &QTimer::timeout, this, &Validator::doRevalidate);
+    connect(&mDelayTimer, &QTimer::timeout, this, &Validator::revalidateNow);
 }
 
 /************************************************
@@ -99,7 +99,7 @@ void Validator::revalidate()
 /************************************************
  *
  ************************************************/
-void Validator::doRevalidate()
+void Validator::revalidateNow()
 {
     auto oldGlobalErrors  = mGlobalErrors;
     auto oldDisksErrors   = mDisksErrors;
