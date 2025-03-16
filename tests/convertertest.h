@@ -54,8 +54,11 @@ private:
     const QString mInDir;
     const QString mOutDir;
 
+    QList<int> mValidExitCodes = { 0 };
+
     void srcAudioExec(QSettings &spec) const;
 
+    QList<int>  loadValidExitCodes(const QSettings &spec) const;
     QStringList readFile(const QString &fileName);
     void        writeFile(const QStringList &strings, const QString &fileName);
 

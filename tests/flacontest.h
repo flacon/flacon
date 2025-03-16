@@ -146,6 +146,9 @@ private slots:
     void testMetaDataWriter();
     void testMetaDataWriter_data();
 
+    void testConvertBroken();
+    void testConvertBroken_data();
+
 private:
     void writeTextFile(const QString &fileName, const QString &content);
     void writeTextFile(const QString &fileName, const QStringList &content);

@@ -140,6 +140,10 @@ InputAudioFile Splitter::Job::getInputAudioFile(const QByteArray &fileTag) const
     int n = 0;
     for (const Track *t : disk->tracks()) {
 
+        if (n >= disk->audioFiles().count()) {
+            throw FlaconError("Internal error: Invalid index for audio file");
+        }
+
         if (t->cueIndex00().file() == fileTag) {
             return disk->audioFiles().at(n);
         }
@@ -192,35 +196,36 @@ void Splitter::run()
     // ******************************************
     // Create jobs
     QList<Job> jobs;
-    for (const ConvTrack &track : mTracks) {
-        if (track.isPregap()) {
-            Job job(mDisc, mTracks.first(), true, false, false);
-            job.outFileName = QString("%1/pregap-%2.wav").arg(mOutDir, uid);
-            job.isPregap    = true;
-            jobs << job;
-            continue;
-        }
 
-        bool addPregap = (track.index() == 0 && mPregapType == PreGapType::AddToFirstTrack);
-        Job  job(mDisc, track, addPregap, true, true);
-        job.outFileName = QString("%1/track-%2_%3.wav").arg(mOutDir, uid).arg(track.trackNumTag(), 2, 10, QLatin1Char('0'));
-        jobs << job;
-    }
-
-    for (const Job &job : jobs) {
-        qCDebug(LOG) << "Spliter job _________________________";
-        qCDebug(LOG) << "  track index: " << job.track.index();
-        qCDebug(LOG) << "  outFileName: " << job.outFileName;
-        qCDebug(LOG) << "  isPregap:    " << job.isPregap;
-        qCDebug(LOG) << "  chunks:    ";
-        for (const Job::Chunk &chunk : job.chunks) {
-            qCDebug(LOG) << "  * " << chunk.start.toString() << ":" << chunk.end.toString() << " file" << chunk.file.filePath();
-        }
-    }
-
-    // ******************************************
-    // Validate jobs
     try {
+        for (const ConvTrack &track : mTracks) {
+            if (track.isPregap()) {
+                Job job(mDisc, mTracks.first(), true, false, false);
+                job.outFileName = QString("%1/pregap-%2.wav").arg(mOutDir, uid);
+                job.isPregap    = true;
+                jobs << job;
+                continue;
+            }
+
+            bool addPregap = (track.index() == 0 && mPregapType == PreGapType::AddToFirstTrack);
+            Job  job(mDisc, track, addPregap, true, true);
+            job.outFileName = QString("%1/track-%2_%3.wav").arg(mOutDir, uid).arg(track.trackNumTag(), 2, 10, QLatin1Char('0'));
+            jobs << job;
+        }
+
+        for (const Job &job : jobs) {
+            qCDebug(LOG) << "Spliter job _________________________";
+            qCDebug(LOG) << "  track index: " << job.track.index();
+            qCDebug(LOG) << "  outFileName: " << job.outFileName;
+            qCDebug(LOG) << "  isPregap:    " << job.isPregap;
+            qCDebug(LOG) << "  chunks:    ";
+            for (const Job::Chunk &chunk : job.chunks) {
+                qCDebug(LOG) << "  * " << chunk.start.toString() << ":" << chunk.end.toString() << " file" << chunk.file.filePath();
+            }
+        }
+
+        // ******************************************
+        // Validate jobs
         if (jobs.isEmpty()) {
             throw FlaconError("Jobs is empty");
         }

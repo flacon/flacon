@@ -68,6 +68,8 @@ ConverterTest::ConverterTest(const QString &dataDir, const QString &dir, const Q
     spec.setIniCodec("UTF-8");
 #endif
 
+    mValidExitCodes = loadValidExitCodes(spec);
+
     QDir(mInDir).mkpath(".");
     QDir(mOutDir).mkpath(".");
 
@@ -222,6 +224,25 @@ void ConverterTest::srcAudioExec(QSettings &spec) const
 /************************************************
 
  ************************************************/
+QList<int> ConverterTest::loadValidExitCodes(const QSettings &spec) const
+{
+    QList<int> res;
+
+    QStringList items = spec.value("Run/validExitCodes", "0").toStringList();
+    for (const QString &s : items) {
+        bool ok;
+        res << s.toInt(&ok);
+        if (!ok) {
+            FAIL("Invalid Run/validExitCodes");
+            return {};
+        }
+    }
+    return res;
+}
+
+/************************************************
+
+ ************************************************/
 static bool removeDir(const QString &dirName)
 {
     QDir dir(dirName);
@@ -293,8 +314,8 @@ bool ConverterTest::run()
         return false;
     }
 
-    if (proc.exitCode() != 0) {
-        FAIL(QStringLiteral("flacon returned non-zero exit status %1: %2")
+    if (!mValidExitCodes.contains(proc.exitCode())) {
+        FAIL(QStringLiteral("flacon returned an unexpected exit code %1: %2")
                      .arg(proc.exitCode())
                      .arg(QString::fromLocal8Bit(proc.readAll()))
                      .toLocal8Bit());
