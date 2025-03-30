@@ -25,7 +25,9 @@ jobs:
     - name: Clone tools
       run: |
         git clone --depth 1 https://github.com/SokoloffA/nightly-tools.git ~/tools
-        cp ~/tools/mediainfo /usr/bin/mediainfo
+        ls -l /usr/bin
+        ls -l ~/tools/
+        sudo cp ~/tools/mediainfo /usr/bin/mediainfo
 
     - name: Install packages
       run:  |
