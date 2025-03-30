@@ -63,22 +63,25 @@ static QJsonObject readSpec(const QString &specFileName)
 static void setTags(Disc *disk, const QMap<QString, QVariant> &tags)
 {
     QMap<QString, AlbumTags::TagId> albumTags;
-    albumTags["Album"]          = AlbumTags::TagId::Album;
-    albumTags["Catalog"]        = AlbumTags::TagId::Catalog;
-    albumTags["CdTextfile"]     = AlbumTags::TagId::CdTextfile;
-    albumTags["DiscId"]         = AlbumTags::TagId::DiscId;
-    albumTags["AlbumPerformer"] = AlbumTags::TagId::AlbumPerformer;
-    albumTags["AlbumArtist"]    = AlbumTags::TagId::AlbumPerformer;
-
     QMap<QString, TrackTags::TagId> trackTags;
-    trackTags["Comment"]    = TrackTags::TagId::Comment;
-    trackTags["Date"]       = TrackTags::TagId::Date;
-    trackTags["Genre"]      = TrackTags::TagId::Genre;
-    trackTags["Isrc"]       = TrackTags::TagId::Isrc;
-    trackTags["Title"]      = TrackTags::TagId::Title;
-    trackTags["Performer"]  = TrackTags::TagId::Performer;
-    trackTags["Artist"]     = TrackTags::TagId::Performer;
-    trackTags["SongWriter"] = TrackTags::TagId::SongWriter;
+
+    {
+        QMetaEnum metaEnum = QMetaEnum::fromType<AlbumTags::TagId>();
+        for (int i = 0; i < metaEnum.keyCount(); ++i) {
+            int     value   = metaEnum.value(i);
+            QString name    = metaEnum.valueToKey(value);
+            albumTags[name] = AlbumTags::TagId(value);
+        }
+    }
+
+    {
+        QMetaEnum metaEnum = QMetaEnum::fromType<TrackTags::TagId>();
+        for (int i = 0; i < metaEnum.keyCount(); ++i) {
+            int     value   = metaEnum.value(i);
+            QString name    = metaEnum.valueToKey(value);
+            trackTags[name] = TrackTags::TagId(value);
+        }
+    }
 
     for (const QString &key : tags.keys()) {
         if (albumTags.contains(key)) {
@@ -140,6 +143,45 @@ void TestFlacon::testMetaDataWriter_data()
     QTest::addColumn<TagsMap>("tags", nullptr);
 
     QString srcDir = sourceDir();
+
+    QDir dir(srcDir);
+    foreach (QFileInfo d, dir.entryInfoList(QStringList("*"), QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name)) {
+        QJsonObject spec;
+        try {
+            spec = readSpec(d.filePath() + "/spec.json");
+        }
+        catch (const FlaconError &err) {
+            QFAIL(err.what());
+        }
+
+        QStringList allTags = spec["tags"].toObject().keys();
+
+        TagsMap tags;
+        for (int t = 0; t < allTags.count(); ++t) {
+            QString key = allTags.at(t);
+            tags[key]   = spec["tags"].toObject()[key].toVariant();
+        }
+
+        QString testName = QString("%1").arg(d.fileName());
+        QTest::newRow(testName.toLocal8Bit())
+                << d.filePath()
+                << spec["fileType"].toString()
+                << tags;
+    }
+}
+
+void TestFlacon::testMetaDataWriterMatrix()
+{
+    testMetaDataWriter();
+}
+
+void TestFlacon::testMetaDataWriterMatrix_data()
+{
+    QTest::addColumn<QString>("srcDir", nullptr);
+    QTest::addColumn<QString>("fileType", nullptr);
+    QTest::addColumn<TagsMap>("tags", nullptr);
+
+    QString srcDir = mDataDir + "/testMetaDataWriter";
 
     QDir dir(srcDir);
     foreach (QFileInfo d, dir.entryInfoList(QStringList("*"), QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name)) {

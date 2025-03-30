@@ -37,7 +37,7 @@ class Track;
   %D  Number of discs        %d  Disc number
   %a  Artist                 %A  Album title
   %y  Year                   %g  Genre
-  %t  Track title
+  %t  Track title            %C  Catalog
  ************************************************/
 class PatternExpander
 {

@@ -80,6 +80,7 @@ void TestFlacon::testPatternExpander()
     albumTags.setDiscCount(trackValues.value("discCount").toInt());
     albumTags.setDiscNum(trackValues.value("discNum").toInt());
 
+    albumTags.setCatalog(trackValues.value("catalog"));
     albumTags.setAlbum(trackValues.value("album"));
     trackTags.setTitle(trackValues.value("title"));
     trackTags.setArtist(trackValues.value("artist"));
@@ -300,6 +301,53 @@ void TestFlacon::testPatternExpander_data()
                date:       1999
                )"
             << "Band/1999 - Hits/01/01 - Track title";
+
+    QTest::newRow("16 - catalog")
+            << "%a/{%y - }%A.%C/%n - %t"
+            << R"(
+               catalog:    8340218374610
+               trackCount: 10
+               trackNum:   1
+               discCount:  2
+               discNum:    1
+               album:      Hits
+               title:      Track title
+               artist:     Band
+               genre:      Rock
+               date:       1999
+               )"
+            << "Band/1999 - Hits.8340218374610/01 - Track title";
+
+    QTest::newRow("17 - catalog")
+            << "%a/{%y - }%A{.%C}/%n - %t"
+            << R"(
+               catalog:    8340218374610
+               trackCount: 10
+               trackNum:   1
+               discCount:  2
+               discNum:    1
+               album:      Hits
+               title:      Track title
+               artist:     Band
+               genre:      Rock
+               date:       1999
+               )"
+            << "Band/1999 - Hits.8340218374610/01 - Track title";
+
+    QTest::newRow("18 - empty catalog")
+            << "%a/{%y - }%A{.%C}/%n - %t"
+            << R"(
+               trackCount: 10
+               trackNum:   1
+               discCount:  2
+               discNum:    1
+               album:      Hits
+               title:      Track title
+               artist:     Band
+               genre:      Rock
+               date:       1999
+               )"
+            << "Band/1999 - Hits/01 - Track title";
 }
 
 /**************************************

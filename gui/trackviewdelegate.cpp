@@ -251,7 +251,7 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
         painter->fillRect(option.rect, QColor(128, 128, 128, 20));
 
     QStyledItemDelegate::paint(painter, option, index);
-    if (index.column() != TrackView::ColumnPercent)
+    if (index.column() != TrackView::ColumnTracknum)
         return;
 
     const QPixmap *icon = nullptr;

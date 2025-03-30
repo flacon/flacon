@@ -40,7 +40,6 @@ class TrackView : public QTreeView
     Q_OBJECT
 public:
     enum Columns {
-        ColumnPercent    = 0,
         ColumnTracknum   = 0,
         ColumnDuration   = 1,
         ColumnTitle      = 2,
@@ -51,9 +50,9 @@ public:
         ColumnGenre      = 7,
         ColumnSongWriter = 8,
         ColumnFileName   = 9,
-
-        ColumnCount = 10,
+        ColumnCatalog    = 10,
     };
+    Q_ENUM(Columns);
 
     explicit TrackView(QWidget *parent = nullptr);
 

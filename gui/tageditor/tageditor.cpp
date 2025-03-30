@@ -70,6 +70,7 @@ TagEditor::TagEditor(const QList<Track *> &tracks, QWidget *parent) :
     ui->genreEdit->setTagId(TrackTags::TagId::Genre);
     ui->trackTitleEdit->setTagId(TrackTags::TagId::Title);
     ui->commentEdit->setTagId(TrackTags::TagId::Comment);
+    ui->catalogEdit->setTagId(AlbumTags::TagId::Catalog);
 
     updateWidgets();
 

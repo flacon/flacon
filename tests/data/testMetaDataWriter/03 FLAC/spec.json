@@ -4,6 +4,7 @@
     "tags": {
         "Album": "Album TAG",
         "AlbumPerformer": "AlbumArtist TAG",
+        "Catalog": "1234567890123",
 
         "Comment": "Comment TAG",
         "Date": "2024",

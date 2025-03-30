@@ -30,7 +30,7 @@
       <widget class="TrackTagLineEdit" name="performerEdit"/>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="diskAPerformerLabel">
+      <widget class="QLabel" name="diskPerformerLabel">
        <property name="text">
         <string comment="Music tag name" extracomment="Music tag name">Album performer:</string>
        </property>
@@ -206,15 +206,25 @@
        </item>
       </layout>
      </item>
-     <item row="9" column="0">
+     <item row="10" column="0">
       <widget class="QLabel" name="trackCommentLabel">
        <property name="text">
         <string>Comment:</string>
        </property>
       </widget>
      </item>
-     <item row="9" column="1">
+     <item row="10" column="1">
       <widget class="TrackTagTextEdit" name="commentEdit"/>
+     </item>
+     <item row="9" column="0">
+      <widget class="QLabel" name="catalogLabel">
+       <property name="text">
+        <string comment="Music tag name" extracomment="Music tag name">Catalog number:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="1">
+      <widget class="AlbumTagLineEdit" name="catalogEdit"/>
      </item>
     </layout>
    </item>

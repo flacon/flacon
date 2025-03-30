@@ -629,7 +629,7 @@ void MainWindow::startConvert(const Conv::Converter::Jobs &jobs)
             trackView->model()->trackProgressChanged(*disc->tracks().at(t), TrackState::NotRunning, 0);
     }
 
-    trackView->setColumnWidth(TrackView::ColumnPercent, 200);
+    trackView->setColumnWidth(TrackView::ColumnTracknum, 200);
     mConverter = new Conv::Converter();
     connect(mConverter, &Conv::Converter::finished,
             this, &MainWindow::setControlsEnable);

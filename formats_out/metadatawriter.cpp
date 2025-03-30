@@ -129,6 +129,7 @@ void MetadataWriter::setXiphTags(TagLib::Ogg::XiphComment *tags, const Track &tr
     setXiphTag(tags, "ALBUMARTIST", disk->albumPerformerTag());
     setXiphTag(tags, "COMMENT", this->commentTag(track));
     setXiphTag(tags, "DISCID", disk->discIdTag());
+    setXiphTag(tags, "CATALOGNUMBER", disk->catalogTag());
 
     writeIntTag("TRACKNUMBER", track.trackNumTag());
     writeIntTag("TOTALTRACKS", disk->tracks().count());
@@ -209,6 +210,7 @@ void MetadataWriter::setApeTags(TagLib::APE::Tag *tags, const Track &track) cons
     writeStrTag("COMMENT", this->commentTag(track));
     writeStrTag("DISCID", disk->discIdTag());
     writeStrTag("COMPOSER", track.songWriterTag());
+    writeStrTag("CATALOGNUMBER", disk->catalogTag());
 
     writeStrTag("TRACK", QStringLiteral("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
     if (needWriteDiskNumTags(track)) {
@@ -309,6 +311,8 @@ void Mp4MetaDataWriter::setTags(const Track &track)
     writeStrTag("ALBUMARTIST", disk->albumPerformerTag());
     writeStrTag("COMMENT", this->commentTag(track));
     writeStrTag("COMPOSER", track.songWriterTag());
+    writeStrTag("CATALOGNUMBER", disk->catalogTag());
+
     writeStrTag("TRACKNUMBER", QStringLiteral("%1/%2").arg(track.trackNumTag()).arg(disk->tracks().count()));
     if (needWriteDiskNumTags(track)) {
         writeStrTag("DISCNUMBER", QStringLiteral("%1/%2").arg(disk->discNumTag()).arg(disk->discCountTag()));

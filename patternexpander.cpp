@@ -185,6 +185,7 @@ QString PatternExpander::expand(const QString &pattern, Mode mode) const
     tokens.insert(QChar('D'), QStringLiteral("%1").arg(mAlbumTags.discCount(), 2, 10, QChar('0')));
     tokens.insert(QChar('d'), QStringLiteral("%1").arg(mAlbumTags.discNum(), 2, 10, QChar('0')));
     tokens.insert(QChar('A'), safeString(mAlbumTags.album()));
+    tokens.insert(QChar('C'), safeString(mAlbumTags.catalog()));
     tokens.insert(QChar('t'), safeString(trackTags.title()));
     tokens.insert(QChar('g'), safeString(trackTags.genre()));
     tokens.insert(QChar('a'), safeString(trackTags.performer()));

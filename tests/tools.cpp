@@ -691,19 +691,18 @@ void Mediainfo::printError(const QString &file, const QString &tag, const QVaria
  **************************************/
 QString Mediainfo::tagToJsonPath(const QString &tag) const
 {
+    // clang-format off
     if (mFileExt == "wv") {
-        // clang-format off
         if (tag == "AlbumPerformer") return "extra/ALBUM_ARTIST";
-        // clang-format on
     }
 
-    // clang-format off
     if (tag == "Date")           return "Recorded_Date";
     if (tag == "AlbumPerformer") return "Album_Performer";
     if (tag == "SongWriter")     return "Composer";
-    //  clang-format on
+    if (tag == "Catalog")        return "extra/CATALOGNUMBER";
 
     return tag;
+    //  clang-format on
 }
 
 /**************************************

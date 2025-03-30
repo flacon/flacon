@@ -30,6 +30,7 @@
 
 #include <QDebug>
 #include <QSet>
+#include <QMetaEnum>
 
 struct CacheTrackData
 {
@@ -167,7 +168,7 @@ QVariant TrackViewModel::headerData(int section, Qt::Orientation orientation, in
         return QVariant();
 
     // clang-format off
-    switch (section) {
+    switch (TrackView::Columns(section)) {
         case TrackView::ColumnTracknum:   return tr("Track", "Table header.");
         case TrackView::ColumnDuration:   return tr("Length", "Table header.");
         case TrackView::ColumnTitle:      return tr("Title", "Table header.");
@@ -178,6 +179,7 @@ QVariant TrackViewModel::headerData(int section, Qt::Orientation orientation, in
         case TrackView::ColumnDate:       return tr("Date", "Table header.");
         case TrackView::ColumnGenre:      return tr("Genre", "Table header.");
         case TrackView::ColumnSongWriter: return tr("Song writer", "Table header.");
+        case TrackView::ColumnCatalog:    return tr("Catalog number", "Table header.");
     }
     // clang-format on
 
@@ -297,14 +299,20 @@ bool TrackViewModel::setData(const QModelIndex &index, const QVariant &value, in
     QList<Track *> tracks = view()->selectedTracks();
     foreach (Track *track, tracks) {
         // clang-format off
-        switch (index.column()) {
-            case TrackView::ColumnTitle:        track->setTitleTag(value.toString());         break;
-            case TrackView::ColumnArtist:       track->setPerformerTag(value.toString());     break;
-            case TrackView::ColumnAlbum:        track->disk()->setAlbumTag(value.toString()); break;
-            case TrackView::ColumnComment:      track->setCommentTag(value.toString());       break;
-            case TrackView::ColumnDate:         track->setDateTag(value.toString());          break;
-            case TrackView::ColumnGenre:        track->setGenreTag(value.toString());         break;
-            case TrackView::ColumnSongWriter:   track->setSongWriterTag(value.toString());    break;
+        switch (TrackView::Columns(index.column())) {
+            case TrackView::ColumnTitle:        track->setTitleTag(value.toString());           break;
+            case TrackView::ColumnArtist:       track->setPerformerTag(value.toString());       break;
+            case TrackView::ColumnAlbum:        track->disk()->setAlbumTag(value.toString());   break;
+            case TrackView::ColumnComment:      track->setCommentTag(value.toString());         break;
+            case TrackView::ColumnDate:         track->setDateTag(value.toString());            break;
+            case TrackView::ColumnGenre:        track->setGenreTag(value.toString());           break;
+            case TrackView::ColumnSongWriter:   track->setSongWriterTag(value.toString());      break;
+            case TrackView::ColumnCatalog:      track->disk()->setCatalogTag(value.toString()); break;
+
+            // Read only columns
+            case TrackView::ColumnTracknum: break;
+            case TrackView::ColumnDuration: break;
+            case TrackView::ColumnFileName: break;
         }
         // clang-format on
     }
@@ -321,7 +329,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
     // Text roles :::::::::::::::::::::::::::::::
     if (role == Qt::DisplayRole || role == Qt::EditRole || role == TrackViewModel::RolePlaceHolder) {
         // clang-format off
-        switch (index.column()) {
+        switch (TrackView::Columns(index.column())) {
             case TrackView::ColumnTracknum:     return QVariant(QStringLiteral("%1").arg(track->trackNumTag(), 2, 10, QChar('0')));
             case TrackView::ColumnDuration:     return QVariant(trackDurationToString(track->duration()) + " ");
             case TrackView::ColumnTitle:        return QVariant(track->titleTag());
@@ -332,6 +340,7 @@ QVariant TrackViewModel::trackData(const Track *track, const QModelIndex &index,
             case TrackView::ColumnDate:         return track->dateTag();
             case TrackView::ColumnGenre:        return track->genreTag();
             case TrackView::ColumnSongWriter:   return track->songWriterTag();
+            case TrackView::ColumnCatalog:      return track->disc()->catalogTag();
         }
         // clang-format on
 
@@ -459,10 +468,10 @@ QString TrackViewModel::trackDurationToString(uint milliseconds) const
 /************************************************
 
  ************************************************/
-int TrackViewModel::columnCount(const QModelIndex &parent) const
+int TrackViewModel::columnCount(const QModelIndex &) const
 {
-    Q_UNUSED(parent);
-    return TrackView::ColumnCount;
+    static int columnCount = QMetaEnum::fromType<TrackView::Columns>().keyCount();
+    return columnCount;
 }
 
 /************************************************
@@ -495,7 +504,7 @@ Qt::ItemFlags TrackViewModel::flags(const QModelIndex &index) const
     Qt::ItemFlags res = Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 
     if (IndexData(index).isTrack()) {
-        switch (index.column()) {
+        switch (TrackView::Columns(index.column())) {
             case TrackView::ColumnTitle:
             case TrackView::ColumnArtist:
             case TrackView::ColumnAlbum:
@@ -503,7 +512,13 @@ Qt::ItemFlags TrackViewModel::flags(const QModelIndex &index) const
             case TrackView::ColumnDate:
             case TrackView::ColumnGenre:
             case TrackView::ColumnSongWriter:
+            case TrackView::ColumnCatalog:
                 res = res | Qt::ItemIsEditable;
+                break;
+
+            case TrackView::ColumnTracknum:
+            case TrackView::ColumnDuration:
+            case TrackView::ColumnFileName:
                 break;
         }
     }
@@ -563,7 +578,7 @@ void TrackViewModel::trackProgressChanged(const Track &track, TrackState state, 
     cache.percent        = percent;
     mCache->set(track, cache);
 
-    QModelIndex idx = index(track, TrackView::ColumnPercent);
+    QModelIndex idx = index(track, TrackView::ColumnTracknum);
     emit        dataChanged(idx, idx);
 }
 
@@ -572,8 +587,10 @@ void TrackViewModel::trackProgressChanged(const Track &track, TrackState state, 
  ************************************************/
 void TrackViewModel::discDataChanged(const Disc *disc)
 {
+    static int columnCount = QMetaEnum::fromType<TrackView::Columns>().keyCount();
+
     QModelIndex index1 = index(*disc, 0);
-    QModelIndex index2 = index(*disc, TrackView::ColumnCount);
+    QModelIndex index2 = index(*disc, columnCount);
     emit        dataChanged(index1, index2);
 }
 
