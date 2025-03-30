@@ -33,8 +33,14 @@ jobs:
         sudo add-apt-repository -y ppa:flacon
         sudo apt-get -y update
         sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev libtag1-dev
-        sudo apt-get -y install flac mac alacenc vorbis-tools wavpack lame vorbisgain mp3gain ttaenc faac opus-tools mediainfo sox
+        sudo apt-get -y install flac mac alacenc vorbis-tools wavpack lame vorbisgain mp3gain ttaenc faac opus-tools sox
         sudo apt-get -y install libyaml-cpp-dev
+
+    - name: Insall mediainfo
+      run: |
+        wget --quiet https://mediaarea.net/download/binary/libmediainfo0/25.03/libmediainfo0v5_25.03-1_amd64.Ubuntu_24.04.deb
+        wget --quiet https://mediaarea.net/download/binary/mediainfo/25.03/mediainfo_25.03-1_amd64.Ubuntu_24.04.deb
+        sudo dpkg -i ./*.deb
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
