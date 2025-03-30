@@ -193,7 +193,7 @@ void OutPatternButton::addStandardPatterns()
     addPattern("%g", tr("Insert \"Genre\""));
     addPattern("%d", tr("Insert \"Disc number\""));
     addPattern("%D", tr("Insert \"Total number of discs\""));
-    addPattern("%C", tr("Insert \"Media Catalog Number\""));
+    addPattern("%C", tr("Insert \"Catalog number\""));
 
     const static char *patterns[] = {
         "%a/{%y - }%A/%n - %t",
