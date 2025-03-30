@@ -28,6 +28,8 @@ jobs:
         ls -l /usr/bin
         ls -l ~/tools/
         sudo cp ~/tools/mediainfo /usr/bin/mediainfo
+        df -h
+        mediainfo --help
 
     - name: Install packages
       run:  |
