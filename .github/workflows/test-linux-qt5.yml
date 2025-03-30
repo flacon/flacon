@@ -25,7 +25,7 @@ jobs:
     - name: Clone tools
       run: |
         git clone --depth 1 https://github.com/SokoloffA/nightly-tools.git ~/tools
-        echo PATH=~/tools/:$PATH >> $GITHUB_ENV
+        cp ~/tools/mediainfo /usr/bin/mediainfo
 
     - name: Install packages
       run:  |
